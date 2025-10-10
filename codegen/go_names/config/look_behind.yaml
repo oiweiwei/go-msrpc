@@ -1,5 +1,5 @@
 lookBehind:
-  a: {col: [columns], val: [values]}
+  a: {col: [columns], val: [values], ds: [ads]}
   account: {handle: [account]}
   ack: {rr: [ack]}
   act: {e: [action]}
@@ -32,7 +32,7 @@ lookBehind:
   dw: {num: [num]}
   dwcb: {this: [cb, this], size: [size]}
   ee: {info: [info]}
-  end: {point: [endpoint]}
+  end: {point: [endpoint], points: [endpoints]}
   ent: {inf: [entity, info]}
   entity: {inf: [entity, info]}
   enum: {handle: [enum], empty: [empty], "null": ["null"], cy: [currency], y: [currency], lpstr: [char, str], lpwstr: [unicode, str], wbem: [enum], vds: [enum]}
@@ -67,7 +67,7 @@ lookBehind:
   id: {lpstr: [id, str], lpwstr: [id, unicode, str]}
   iid: {str: [iid]}
   ik: {ev1: [ikev1], ev2: [ikev2]}
-  info: {ff: [info255]}
+  info: {ff: [info255], stuct: [info]}
   init: {adapter: [initiator, adapter], portal: [initiator, portal]}
   int: {xact: [internal, transaction]}
   inter: {domain: [interdomain]}
@@ -146,7 +146,8 @@ lookBehind:
   single: {signon: [sso]}
   spl: {printer: [printer], client: [client]}
   sr: {sd: [self, relative, security, descriptor]}
-  state: {e: [state], vst: [state]}
+  relative: {sd: [relative, security, descriptor]}
+  state: {e: [state], vst: [state], ss: [state]}
   status: {mps: [status]}
   store: {handle: [store]}
   string: {str: [string], ptrsa: [string], ptrsw: [unicode, string]}
@@ -170,7 +171,8 @@ lookBehind:
   un: {known: [unknown], register: [unregister], load: [unload]}
   uni: {directional: [unidirectional]}
   unknown: {str: [unknown]}
-  var: {value: [value]}
+  var: {value: [value], body: [body], sender: [sender], msg: [message], ret: [result], extension: [extension], dest: [dest], signature: [signature], handle: [handle], security: [security], transaction: [transaction]}
+  pvar: {ret: [result]}
   variant: {str: [variant]}
   vf: {refs: [vf, re, fs]}
   vth: {result: [hresult]}
@@ -184,3 +186,13 @@ lookBehind:
   per: {sync: [periodical, sync]}
   mail: {rep: [mail, replication]}
   lib: {new: [new], offset: [offset]}
+  ia: {ds: [iads]}
+  pis: {authenticated: [is, authenticated], first: [is, first], last: [is, last], open: [is, open], closed: [is, closed], transactional: [is, transactional], world: [is, world]}
+  iso: {level: [isolation, level], flags: [isolation, flags]}
+  pctb: {sd: [security, descriptor]}
+  as: {brdr: ["as0", brdr]}
+  is: {is: [isis]}
+  es: {is: [esis]}
+  up: {strm: [upstream]}
+  pp: {po: [pppo]}
+  pppo: {e: [pppoe]}

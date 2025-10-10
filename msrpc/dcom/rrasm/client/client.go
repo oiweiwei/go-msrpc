@@ -61,10 +61,10 @@ type Client interface {
 	RemoteNetworkConfig() iremotenetworkconfig.RemoteNetworkConfigClient
 	RemoteRouterRestart() iremoterouterrestart.RemoteRouterRestartClient
 	RemoteSetDNSConfig() iremotesetdnsconfig.RemoteSetDNSConfigClient
-	RemoteIcficsConfig() iremoteicficsconfig.RemoteIcficsConfigClient
+	RemoteICFICSConfig() iremoteicficsconfig.RemoteICFICSConfigClient
 	RemoteStringIDConfig() iremotestringidconfig.RemoteStringIDConfigClient
 	RemoteIPv6Config() iremoteipv6config.RemoteIPv6ConfigClient
-	RemoteSstpCertCheck() iremotesstpcertcheck.RemoteSstpCertCheckClient
+	RemoteSSTPCertCheck() iremotesstpcertcheck.RemoteSSTPCertCheckClient
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
@@ -82,10 +82,10 @@ type xxx_DefaultClient struct {
 	remoteNetworkConfig  iremotenetworkconfig.RemoteNetworkConfigClient
 	remoteRouterRestart  iremoterouterrestart.RemoteRouterRestartClient
 	remoteSetDNSConfig   iremotesetdnsconfig.RemoteSetDNSConfigClient
-	remoteIcficsConfig   iremoteicficsconfig.RemoteIcficsConfigClient
+	remoteICFICSConfig   iremoteicficsconfig.RemoteICFICSConfigClient
 	remoteStringIDConfig iremotestringidconfig.RemoteStringIDConfigClient
 	remoteIPv6Config     iremoteipv6config.RemoteIPv6ConfigClient
-	remoteSstpCertCheck  iremotesstpcertcheck.RemoteSstpCertCheckClient
+	remoteSSTPCertCheck  iremotesstpcertcheck.RemoteSSTPCertCheckClient
 }
 
 func (o *xxx_DefaultClient) RemoteUnknown() iremunknown.RemoteUnknownClient {
@@ -108,8 +108,8 @@ func (o *xxx_DefaultClient) RemoteSetDNSConfig() iremotesetdnsconfig.RemoteSetDN
 	return o.remoteSetDNSConfig
 }
 
-func (o *xxx_DefaultClient) RemoteIcficsConfig() iremoteicficsconfig.RemoteIcficsConfigClient {
-	return o.remoteIcficsConfig
+func (o *xxx_DefaultClient) RemoteICFICSConfig() iremoteicficsconfig.RemoteICFICSConfigClient {
+	return o.remoteICFICSConfig
 }
 
 func (o *xxx_DefaultClient) RemoteStringIDConfig() iremotestringidconfig.RemoteStringIDConfigClient {
@@ -120,8 +120,8 @@ func (o *xxx_DefaultClient) RemoteIPv6Config() iremoteipv6config.RemoteIPv6Confi
 	return o.remoteIPv6Config
 }
 
-func (o *xxx_DefaultClient) RemoteSstpCertCheck() iremotesstpcertcheck.RemoteSstpCertCheckClient {
-	return o.remoteSstpCertCheck
+func (o *xxx_DefaultClient) RemoteSSTPCertCheck() iremotesstpcertcheck.RemoteSSTPCertCheckClient {
+	return o.remoteSSTPCertCheck
 }
 
 func NewClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Client, error) {
@@ -130,10 +130,10 @@ func NewClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Clie
 		dcerpc.WithAbstractSyntax(iremotenetworkconfig.RemoteNetworkConfigSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iremoterouterrestart.RemoteRouterRestartSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iremotesetdnsconfig.RemoteSetDNSConfigSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(iremoteicficsconfig.RemoteIcficsConfigSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(iremoteicficsconfig.RemoteICFICSConfigSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iremotestringidconfig.RemoteStringIDConfigSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iremoteipv6config.RemoteIPv6ConfigSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(iremotesstpcertcheck.RemoteSstpCertCheckSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(iremotesstpcertcheck.RemoteSSTPCertCheckSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iremunknown.RemoteUnknownSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iremunknown2.RemoteUnknown2SyntaxV0_0),
 	)
@@ -183,14 +183,14 @@ func NewClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Clie
 
 	o.remoteSetDNSConfig, err = iremotesetdnsconfig.NewRemoteSetDNSConfigClient(ctx, remoteSetDNSConfigSubConn, append(opts, dcerpc.WithNoBind(remoteSetDNSConfigSubConn))...)
 
-	remoteIcficsConfigSubConn, err := sub.SubConn(ctx, iremoteicficsconfig.RemoteIcficsConfigSyntaxV0_0)
+	remoteICFICSConfigSubConn, err := sub.SubConn(ctx, iremoteicficsconfig.RemoteICFICSConfigSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		remoteIcficsConfigSubConn = sub
+		remoteICFICSConfigSubConn = sub
 	}
 
-	o.remoteIcficsConfig, err = iremoteicficsconfig.NewRemoteIcficsConfigClient(ctx, remoteIcficsConfigSubConn, append(opts, dcerpc.WithNoBind(remoteIcficsConfigSubConn))...)
+	o.remoteICFICSConfig, err = iremoteicficsconfig.NewRemoteICFICSConfigClient(ctx, remoteICFICSConfigSubConn, append(opts, dcerpc.WithNoBind(remoteICFICSConfigSubConn))...)
 
 	remoteStringIDConfigSubConn, err := sub.SubConn(ctx, iremotestringidconfig.RemoteStringIDConfigSyntaxV0_0)
 	if err != nil {
@@ -210,14 +210,14 @@ func NewClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Clie
 
 	o.remoteIPv6Config, err = iremoteipv6config.NewRemoteIPv6ConfigClient(ctx, remoteIPv6ConfigSubConn, append(opts, dcerpc.WithNoBind(remoteIPv6ConfigSubConn))...)
 
-	remoteSstpCertCheckSubConn, err := sub.SubConn(ctx, iremotesstpcertcheck.RemoteSstpCertCheckSyntaxV0_0)
+	remoteSSTPCertCheckSubConn, err := sub.SubConn(ctx, iremotesstpcertcheck.RemoteSSTPCertCheckSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		remoteSstpCertCheckSubConn = sub
+		remoteSSTPCertCheckSubConn = sub
 	}
 
-	o.remoteSstpCertCheck, err = iremotesstpcertcheck.NewRemoteSstpCertCheckClient(ctx, remoteSstpCertCheckSubConn, append(opts, dcerpc.WithNoBind(remoteSstpCertCheckSubConn))...)
+	o.remoteSSTPCertCheck, err = iremotesstpcertcheck.NewRemoteSSTPCertCheckClient(ctx, remoteSSTPCertCheckSubConn, append(opts, dcerpc.WithNoBind(remoteSSTPCertCheckSubConn))...)
 	return o, nil
 }
 
@@ -238,10 +238,10 @@ func (o *xxx_DefaultClient) IPID(ctx context.Context, ipid *dcom.IPID) Client {
 		remoteNetworkConfig:  o.remoteNetworkConfig.IPID(ctx, ipid),
 		remoteRouterRestart:  o.remoteRouterRestart.IPID(ctx, ipid),
 		remoteSetDNSConfig:   o.remoteSetDNSConfig.IPID(ctx, ipid),
-		remoteIcficsConfig:   o.remoteIcficsConfig.IPID(ctx, ipid),
+		remoteICFICSConfig:   o.remoteICFICSConfig.IPID(ctx, ipid),
 		remoteStringIDConfig: o.remoteStringIDConfig.IPID(ctx, ipid),
 		remoteIPv6Config:     o.remoteIPv6Config.IPID(ctx, ipid),
-		remoteSstpCertCheck:  o.remoteSstpCertCheck.IPID(ctx, ipid),
+		remoteSSTPCertCheck:  o.remoteSSTPCertCheck.IPID(ctx, ipid),
 		cc:                   o.cc,
 	}
 }

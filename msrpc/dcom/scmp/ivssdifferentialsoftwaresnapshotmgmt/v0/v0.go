@@ -36,15 +36,15 @@ var (
 
 var (
 	// IVssDifferentialSoftwareSnapshotMgmt interface identifier 214a0f28-b737-4026-b847-4f9e37d79529
-	VSSDifferentialSoftwareSnapshotManagementIID = &dcom.IID{Data1: 0x214a0f28, Data2: 0xb737, Data3: 0x4026, Data4: []byte{0xb8, 0x47, 0x4f, 0x9e, 0x37, 0xd7, 0x95, 0x29}}
+	DifferentialSoftwareSnapshotManagementIID = &dcom.IID{Data1: 0x214a0f28, Data2: 0xb737, Data3: 0x4026, Data4: []byte{0xb8, 0x47, 0x4f, 0x9e, 0x37, 0xd7, 0x95, 0x29}}
 	// Syntax UUID
-	VSSDifferentialSoftwareSnapshotManagementSyntaxUUID = &uuid.UUID{TimeLow: 0x214a0f28, TimeMid: 0xb737, TimeHiAndVersion: 0x4026, ClockSeqHiAndReserved: 0xb8, ClockSeqLow: 0x47, Node: [6]uint8{0x4f, 0x9e, 0x37, 0xd7, 0x95, 0x29}}
+	DifferentialSoftwareSnapshotManagementSyntaxUUID = &uuid.UUID{TimeLow: 0x214a0f28, TimeMid: 0xb737, TimeHiAndVersion: 0x4026, ClockSeqHiAndReserved: 0xb8, ClockSeqLow: 0x47, Node: [6]uint8{0x4f, 0x9e, 0x37, 0xd7, 0x95, 0x29}}
 	// Syntax ID
-	VSSDifferentialSoftwareSnapshotManagementSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: VSSDifferentialSoftwareSnapshotManagementSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	DifferentialSoftwareSnapshotManagementSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: DifferentialSoftwareSnapshotManagementSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IVssDifferentialSoftwareSnapshotMgmt interface.
-type VSSDifferentialSoftwareSnapshotManagementClient interface {
+type DifferentialSoftwareSnapshotManagementClient interface {
 
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
@@ -69,20 +69,20 @@ type VSSDifferentialSoftwareSnapshotManagementClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) VSSDifferentialSoftwareSnapshotManagementClient
+	IPID(context.Context, *dcom.IPID) DifferentialSoftwareSnapshotManagementClient
 }
 
-type xxx_DefaultVSSDifferentialSoftwareSnapshotManagementClient struct {
+type xxx_DefaultDifferentialSoftwareSnapshotManagementClient struct {
 	iunknown.UnknownClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultVSSDifferentialSoftwareSnapshotManagementClient) Unknown() iunknown.UnknownClient {
+func (o *xxx_DefaultDifferentialSoftwareSnapshotManagementClient) Unknown() iunknown.UnknownClient {
 	return o.UnknownClient
 }
 
-func (o *xxx_DefaultVSSDifferentialSoftwareSnapshotManagementClient) AddDiffArea(ctx context.Context, in *AddDiffAreaRequest, opts ...dcerpc.CallOption) (*AddDiffAreaResponse, error) {
+func (o *xxx_DefaultDifferentialSoftwareSnapshotManagementClient) AddDiffArea(ctx context.Context, in *AddDiffAreaRequest, opts ...dcerpc.CallOption) (*AddDiffAreaResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -102,7 +102,7 @@ func (o *xxx_DefaultVSSDifferentialSoftwareSnapshotManagementClient) AddDiffArea
 	return out, nil
 }
 
-func (o *xxx_DefaultVSSDifferentialSoftwareSnapshotManagementClient) ChangeDiffAreaMaximumSize(ctx context.Context, in *ChangeDiffAreaMaximumSizeRequest, opts ...dcerpc.CallOption) (*ChangeDiffAreaMaximumSizeResponse, error) {
+func (o *xxx_DefaultDifferentialSoftwareSnapshotManagementClient) ChangeDiffAreaMaximumSize(ctx context.Context, in *ChangeDiffAreaMaximumSizeRequest, opts ...dcerpc.CallOption) (*ChangeDiffAreaMaximumSizeResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -122,7 +122,7 @@ func (o *xxx_DefaultVSSDifferentialSoftwareSnapshotManagementClient) ChangeDiffA
 	return out, nil
 }
 
-func (o *xxx_DefaultVSSDifferentialSoftwareSnapshotManagementClient) QueryVolumesSupportedForDiffAreas(ctx context.Context, in *QueryVolumesSupportedForDiffAreasRequest, opts ...dcerpc.CallOption) (*QueryVolumesSupportedForDiffAreasResponse, error) {
+func (o *xxx_DefaultDifferentialSoftwareSnapshotManagementClient) QueryVolumesSupportedForDiffAreas(ctx context.Context, in *QueryVolumesSupportedForDiffAreasRequest, opts ...dcerpc.CallOption) (*QueryVolumesSupportedForDiffAreasResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -142,7 +142,7 @@ func (o *xxx_DefaultVSSDifferentialSoftwareSnapshotManagementClient) QueryVolume
 	return out, nil
 }
 
-func (o *xxx_DefaultVSSDifferentialSoftwareSnapshotManagementClient) QueryDiffAreasForVolume(ctx context.Context, in *QueryDiffAreasForVolumeRequest, opts ...dcerpc.CallOption) (*QueryDiffAreasForVolumeResponse, error) {
+func (o *xxx_DefaultDifferentialSoftwareSnapshotManagementClient) QueryDiffAreasForVolume(ctx context.Context, in *QueryDiffAreasForVolumeRequest, opts ...dcerpc.CallOption) (*QueryDiffAreasForVolumeResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -162,7 +162,7 @@ func (o *xxx_DefaultVSSDifferentialSoftwareSnapshotManagementClient) QueryDiffAr
 	return out, nil
 }
 
-func (o *xxx_DefaultVSSDifferentialSoftwareSnapshotManagementClient) QueryDiffAreasOnVolume(ctx context.Context, in *QueryDiffAreasOnVolumeRequest, opts ...dcerpc.CallOption) (*QueryDiffAreasOnVolumeResponse, error) {
+func (o *xxx_DefaultDifferentialSoftwareSnapshotManagementClient) QueryDiffAreasOnVolume(ctx context.Context, in *QueryDiffAreasOnVolumeRequest, opts ...dcerpc.CallOption) (*QueryDiffAreasOnVolumeResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -182,29 +182,29 @@ func (o *xxx_DefaultVSSDifferentialSoftwareSnapshotManagementClient) QueryDiffAr
 	return out, nil
 }
 
-func (o *xxx_DefaultVSSDifferentialSoftwareSnapshotManagementClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultDifferentialSoftwareSnapshotManagementClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultVSSDifferentialSoftwareSnapshotManagementClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultDifferentialSoftwareSnapshotManagementClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultVSSDifferentialSoftwareSnapshotManagementClient) IPID(ctx context.Context, ipid *dcom.IPID) VSSDifferentialSoftwareSnapshotManagementClient {
+func (o *xxx_DefaultDifferentialSoftwareSnapshotManagementClient) IPID(ctx context.Context, ipid *dcom.IPID) DifferentialSoftwareSnapshotManagementClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultVSSDifferentialSoftwareSnapshotManagementClient{
+	return &xxx_DefaultDifferentialSoftwareSnapshotManagementClient{
 		UnknownClient: o.UnknownClient.IPID(ctx, ipid),
 		cc:            o.cc,
 		ipid:          ipid,
 	}
 }
 
-func NewVSSDifferentialSoftwareSnapshotManagementClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (VSSDifferentialSoftwareSnapshotManagementClient, error) {
+func NewDifferentialSoftwareSnapshotManagementClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (DifferentialSoftwareSnapshotManagementClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(VSSDifferentialSoftwareSnapshotManagementSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(DifferentialSoftwareSnapshotManagementSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -217,7 +217,7 @@ func NewVSSDifferentialSoftwareSnapshotManagementClient(ctx context.Context, cc 
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultVSSDifferentialSoftwareSnapshotManagementClient{
+	return &xxx_DefaultDifferentialSoftwareSnapshotManagementClient{
 		UnknownClient: base,
 		cc:            cc,
 		ipid:          ipid,
@@ -230,7 +230,7 @@ type xxx_AddDiffAreaOperation struct {
 	That               *dcom.ORPCThat `idl:"name:That" json:"that"`
 	VolumeName         string         `idl:"name:pwszVolumeName" json:"volume_name"`
 	DiffAreaVolumeName string         `idl:"name:pwszDiffAreaVolumeName" json:"diff_area_volume_name"`
-	LlMaximumDiffSpace int64          `idl:"name:llMaximumDiffSpace" json:"ll_maximum_diff_space"`
+	MaximumDiffSpace   int64          `idl:"name:llMaximumDiffSpace" json:"maximum_diff_space"`
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
@@ -312,7 +312,7 @@ func (o *xxx_AddDiffAreaOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// llMaximumDiffSpace {in} (1:{alias=LONGLONG}(int64))
 	{
-		if err := w.WriteData(o.LlMaximumDiffSpace); err != nil {
+		if err := w.WriteData(o.MaximumDiffSpace); err != nil {
 			return err
 		}
 	}
@@ -366,7 +366,7 @@ func (o *xxx_AddDiffAreaOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 	}
 	// llMaximumDiffSpace {in} (1:{alias=LONGLONG}(int64))
 	{
-		if err := w.ReadData(&o.LlMaximumDiffSpace); err != nil {
+		if err := w.ReadData(&o.MaximumDiffSpace); err != nil {
 			return err
 		}
 	}
@@ -438,7 +438,7 @@ type AddDiffAreaRequest struct {
 	This               *dcom.ORPCThis `idl:"name:This" json:"this"`
 	VolumeName         string         `idl:"name:pwszVolumeName" json:"volume_name"`
 	DiffAreaVolumeName string         `idl:"name:pwszDiffAreaVolumeName" json:"diff_area_volume_name"`
-	LlMaximumDiffSpace int64          `idl:"name:llMaximumDiffSpace" json:"ll_maximum_diff_space"`
+	MaximumDiffSpace   int64          `idl:"name:llMaximumDiffSpace" json:"maximum_diff_space"`
 }
 
 func (o *AddDiffAreaRequest) xxx_ToOp(ctx context.Context, op *xxx_AddDiffAreaOperation) *xxx_AddDiffAreaOperation {
@@ -451,7 +451,7 @@ func (o *AddDiffAreaRequest) xxx_ToOp(ctx context.Context, op *xxx_AddDiffAreaOp
 	op.This = o.This
 	op.VolumeName = o.VolumeName
 	op.DiffAreaVolumeName = o.DiffAreaVolumeName
-	op.LlMaximumDiffSpace = o.LlMaximumDiffSpace
+	op.MaximumDiffSpace = o.MaximumDiffSpace
 	return op
 }
 
@@ -462,7 +462,7 @@ func (o *AddDiffAreaRequest) xxx_FromOp(ctx context.Context, op *xxx_AddDiffArea
 	o.This = op.This
 	o.VolumeName = op.VolumeName
 	o.DiffAreaVolumeName = op.DiffAreaVolumeName
-	o.LlMaximumDiffSpace = op.LlMaximumDiffSpace
+	o.MaximumDiffSpace = op.MaximumDiffSpace
 }
 func (o *AddDiffAreaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -521,7 +521,7 @@ type xxx_ChangeDiffAreaMaximumSizeOperation struct {
 	That               *dcom.ORPCThat `idl:"name:That" json:"that"`
 	VolumeName         string         `idl:"name:pwszVolumeName" json:"volume_name"`
 	DiffAreaVolumeName string         `idl:"name:pwszDiffAreaVolumeName" json:"diff_area_volume_name"`
-	LlMaximumDiffSpace int64          `idl:"name:llMaximumDiffSpace" json:"ll_maximum_diff_space"`
+	MaximumDiffSpace   int64          `idl:"name:llMaximumDiffSpace" json:"maximum_diff_space"`
 	Return             int32          `idl:"name:Return" json:"return"`
 }
 
@@ -603,7 +603,7 @@ func (o *xxx_ChangeDiffAreaMaximumSizeOperation) MarshalNDRRequest(ctx context.C
 	}
 	// llMaximumDiffSpace {in} (1:{alias=LONGLONG}(int64))
 	{
-		if err := w.WriteData(o.LlMaximumDiffSpace); err != nil {
+		if err := w.WriteData(o.MaximumDiffSpace); err != nil {
 			return err
 		}
 	}
@@ -657,7 +657,7 @@ func (o *xxx_ChangeDiffAreaMaximumSizeOperation) UnmarshalNDRRequest(ctx context
 	}
 	// llMaximumDiffSpace {in} (1:{alias=LONGLONG}(int64))
 	{
-		if err := w.ReadData(&o.LlMaximumDiffSpace); err != nil {
+		if err := w.ReadData(&o.MaximumDiffSpace); err != nil {
 			return err
 		}
 	}
@@ -729,7 +729,7 @@ type ChangeDiffAreaMaximumSizeRequest struct {
 	This               *dcom.ORPCThis `idl:"name:This" json:"this"`
 	VolumeName         string         `idl:"name:pwszVolumeName" json:"volume_name"`
 	DiffAreaVolumeName string         `idl:"name:pwszDiffAreaVolumeName" json:"diff_area_volume_name"`
-	LlMaximumDiffSpace int64          `idl:"name:llMaximumDiffSpace" json:"ll_maximum_diff_space"`
+	MaximumDiffSpace   int64          `idl:"name:llMaximumDiffSpace" json:"maximum_diff_space"`
 }
 
 func (o *ChangeDiffAreaMaximumSizeRequest) xxx_ToOp(ctx context.Context, op *xxx_ChangeDiffAreaMaximumSizeOperation) *xxx_ChangeDiffAreaMaximumSizeOperation {
@@ -742,7 +742,7 @@ func (o *ChangeDiffAreaMaximumSizeRequest) xxx_ToOp(ctx context.Context, op *xxx
 	op.This = o.This
 	op.VolumeName = o.VolumeName
 	op.DiffAreaVolumeName = o.DiffAreaVolumeName
-	op.LlMaximumDiffSpace = o.LlMaximumDiffSpace
+	op.MaximumDiffSpace = o.MaximumDiffSpace
 	return op
 }
 
@@ -753,7 +753,7 @@ func (o *ChangeDiffAreaMaximumSizeRequest) xxx_FromOp(ctx context.Context, op *x
 	o.This = op.This
 	o.VolumeName = op.VolumeName
 	o.DiffAreaVolumeName = op.DiffAreaVolumeName
-	o.LlMaximumDiffSpace = op.LlMaximumDiffSpace
+	o.MaximumDiffSpace = op.MaximumDiffSpace
 }
 func (o *ChangeDiffAreaMaximumSizeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -808,11 +808,11 @@ func (o *ChangeDiffAreaMaximumSizeResponse) UnmarshalNDR(ctx context.Context, r 
 
 // xxx_QueryVolumesSupportedForDiffAreasOperation structure represents the QueryVolumesSupportedForDiffAreas operation
 type xxx_QueryVolumesSupportedForDiffAreasOperation struct {
-	This               *dcom.ORPCThis                `idl:"name:This" json:"this"`
-	That               *dcom.ORPCThat                `idl:"name:That" json:"that"`
-	OriginalVolumeName string                        `idl:"name:pwszOriginalVolumeName" json:"original_volume_name"`
-	Enum               *scmp.VSSEnumManagementObject `idl:"name:ppEnum" json:"enum"`
-	Return             int32                         `idl:"name:Return" json:"return"`
+	This               *dcom.ORPCThis             `idl:"name:This" json:"this"`
+	That               *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	OriginalVolumeName string                     `idl:"name:pwszOriginalVolumeName" json:"original_volume_name"`
+	Enum               *scmp.EnumManagementObject `idl:"name:ppEnum" json:"enum"`
+	Return             int32                      `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_QueryVolumesSupportedForDiffAreasOperation) OpNum() int { return 5 }
@@ -942,7 +942,7 @@ func (o *xxx_QueryVolumesSupportedForDiffAreasOperation) MarshalNDRResponse(ctx 
 						return err
 					}
 				} else {
-					if err := (&scmp.VSSEnumManagementObject{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&scmp.EnumManagementObject{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
@@ -986,14 +986,14 @@ func (o *xxx_QueryVolumesSupportedForDiffAreasOperation) UnmarshalNDRResponse(ct
 	{
 		_ptr_ppEnum := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if o.Enum == nil {
-				o.Enum = &scmp.VSSEnumManagementObject{}
+				o.Enum = &scmp.EnumManagementObject{}
 			}
 			if err := o.Enum.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**scmp.VSSEnumManagementObject) }
+		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**scmp.EnumManagementObject) }
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}
@@ -1051,8 +1051,8 @@ func (o *QueryVolumesSupportedForDiffAreasRequest) UnmarshalNDR(ctx context.Cont
 // QueryVolumesSupportedForDiffAreasResponse structure represents the QueryVolumesSupportedForDiffAreas operation response
 type QueryVolumesSupportedForDiffAreasResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat                `idl:"name:That" json:"that"`
-	Enum *scmp.VSSEnumManagementObject `idl:"name:ppEnum" json:"enum"`
+	That *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	Enum *scmp.EnumManagementObject `idl:"name:ppEnum" json:"enum"`
 	// Return: The QueryVolumesSupportedForDiffAreas return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1092,11 +1092,11 @@ func (o *QueryVolumesSupportedForDiffAreasResponse) UnmarshalNDR(ctx context.Con
 
 // xxx_QueryDiffAreasForVolumeOperation structure represents the QueryDiffAreasForVolume operation
 type xxx_QueryDiffAreasForVolumeOperation struct {
-	This       *dcom.ORPCThis                `idl:"name:This" json:"this"`
-	That       *dcom.ORPCThat                `idl:"name:That" json:"that"`
-	VolumeName string                        `idl:"name:pwszVolumeName" json:"volume_name"`
-	Enum       *scmp.VSSEnumManagementObject `idl:"name:ppEnum" json:"enum"`
-	Return     int32                         `idl:"name:Return" json:"return"`
+	This       *dcom.ORPCThis             `idl:"name:This" json:"this"`
+	That       *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	VolumeName string                     `idl:"name:pwszVolumeName" json:"volume_name"`
+	Enum       *scmp.EnumManagementObject `idl:"name:ppEnum" json:"enum"`
+	Return     int32                      `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_QueryDiffAreasForVolumeOperation) OpNum() int { return 6 }
@@ -1226,7 +1226,7 @@ func (o *xxx_QueryDiffAreasForVolumeOperation) MarshalNDRResponse(ctx context.Co
 						return err
 					}
 				} else {
-					if err := (&scmp.VSSEnumManagementObject{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&scmp.EnumManagementObject{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
@@ -1270,14 +1270,14 @@ func (o *xxx_QueryDiffAreasForVolumeOperation) UnmarshalNDRResponse(ctx context.
 	{
 		_ptr_ppEnum := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if o.Enum == nil {
-				o.Enum = &scmp.VSSEnumManagementObject{}
+				o.Enum = &scmp.EnumManagementObject{}
 			}
 			if err := o.Enum.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**scmp.VSSEnumManagementObject) }
+		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**scmp.EnumManagementObject) }
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}
@@ -1335,8 +1335,8 @@ func (o *QueryDiffAreasForVolumeRequest) UnmarshalNDR(ctx context.Context, r ndr
 // QueryDiffAreasForVolumeResponse structure represents the QueryDiffAreasForVolume operation response
 type QueryDiffAreasForVolumeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat                `idl:"name:That" json:"that"`
-	Enum *scmp.VSSEnumManagementObject `idl:"name:ppEnum" json:"enum"`
+	That *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	Enum *scmp.EnumManagementObject `idl:"name:ppEnum" json:"enum"`
 	// Return: The QueryDiffAreasForVolume return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1376,11 +1376,11 @@ func (o *QueryDiffAreasForVolumeResponse) UnmarshalNDR(ctx context.Context, r nd
 
 // xxx_QueryDiffAreasOnVolumeOperation structure represents the QueryDiffAreasOnVolume operation
 type xxx_QueryDiffAreasOnVolumeOperation struct {
-	This       *dcom.ORPCThis                `idl:"name:This" json:"this"`
-	That       *dcom.ORPCThat                `idl:"name:That" json:"that"`
-	VolumeName string                        `idl:"name:pwszVolumeName" json:"volume_name"`
-	Enum       *scmp.VSSEnumManagementObject `idl:"name:ppEnum" json:"enum"`
-	Return     int32                         `idl:"name:Return" json:"return"`
+	This       *dcom.ORPCThis             `idl:"name:This" json:"this"`
+	That       *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	VolumeName string                     `idl:"name:pwszVolumeName" json:"volume_name"`
+	Enum       *scmp.EnumManagementObject `idl:"name:ppEnum" json:"enum"`
+	Return     int32                      `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_QueryDiffAreasOnVolumeOperation) OpNum() int { return 7 }
@@ -1510,7 +1510,7 @@ func (o *xxx_QueryDiffAreasOnVolumeOperation) MarshalNDRResponse(ctx context.Con
 						return err
 					}
 				} else {
-					if err := (&scmp.VSSEnumManagementObject{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&scmp.EnumManagementObject{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
@@ -1554,14 +1554,14 @@ func (o *xxx_QueryDiffAreasOnVolumeOperation) UnmarshalNDRResponse(ctx context.C
 	{
 		_ptr_ppEnum := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if o.Enum == nil {
-				o.Enum = &scmp.VSSEnumManagementObject{}
+				o.Enum = &scmp.EnumManagementObject{}
 			}
 			if err := o.Enum.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**scmp.VSSEnumManagementObject) }
+		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**scmp.EnumManagementObject) }
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}
@@ -1619,8 +1619,8 @@ func (o *QueryDiffAreasOnVolumeRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // QueryDiffAreasOnVolumeResponse structure represents the QueryDiffAreasOnVolume operation response
 type QueryDiffAreasOnVolumeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat                `idl:"name:That" json:"that"`
-	Enum *scmp.VSSEnumManagementObject `idl:"name:ppEnum" json:"enum"`
+	That *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	Enum *scmp.EnumManagementObject `idl:"name:ppEnum" json:"enum"`
 	// Return: The QueryDiffAreasOnVolume return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

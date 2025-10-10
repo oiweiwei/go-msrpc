@@ -26,28 +26,28 @@ var (
 )
 
 // INtmsLibraryControl2 server interface.
-type NTMSLibraryControl2Server interface {
+type LibraryControl2Server interface {
 
 	// INtmsLibraryControl1 base class.
-	intmslibrarycontrol1.NTMSLibraryControl1Server
+	intmslibrarycontrol1.LibraryControl1Server
 
 	IdentifyNTMSSlot(context.Context, *IdentifyNTMSSlotRequest) (*IdentifyNTMSSlotResponse, error)
 }
 
-func RegisterNTMSLibraryControl2Server(conn dcerpc.Conn, o NTMSLibraryControl2Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewNTMSLibraryControl2ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(NTMSLibraryControl2SyntaxV0_0))...)
+func RegisterLibraryControl2Server(conn dcerpc.Conn, o LibraryControl2Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewLibraryControl2ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(LibraryControl2SyntaxV0_0))...)
 }
 
-func NewNTMSLibraryControl2ServerHandle(o NTMSLibraryControl2Server) dcerpc.ServerHandle {
+func NewLibraryControl2ServerHandle(o LibraryControl2Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return NTMSLibraryControl2ServerHandle(ctx, o, opNum, r)
+		return LibraryControl2ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func NTMSLibraryControl2ServerHandle(ctx context.Context, o NTMSLibraryControl2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func LibraryControl2ServerHandle(ctx context.Context, o LibraryControl2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 20 {
 		// INtmsLibraryControl1 base method.
-		return intmslibrarycontrol1.NTMSLibraryControl1ServerHandle(ctx, o, opNum, r)
+		return intmslibrarycontrol1.LibraryControl1ServerHandle(ctx, o, opNum, r)
 	}
 	switch opNum {
 	case 20: // IdentifyNtmsSlot
@@ -64,12 +64,12 @@ func NTMSLibraryControl2ServerHandle(ctx context.Context, o NTMSLibraryControl2S
 }
 
 // Unimplemented INtmsLibraryControl2
-type UnimplementedNTMSLibraryControl2Server struct {
-	intmslibrarycontrol1.UnimplementedNTMSLibraryControl1Server
+type UnimplementedLibraryControl2Server struct {
+	intmslibrarycontrol1.UnimplementedLibraryControl1Server
 }
 
-func (UnimplementedNTMSLibraryControl2Server) IdentifyNTMSSlot(context.Context, *IdentifyNTMSSlotRequest) (*IdentifyNTMSSlotResponse, error) {
+func (UnimplementedLibraryControl2Server) IdentifyNTMSSlot(context.Context, *IdentifyNTMSSlotRequest) (*IdentifyNTMSSlotResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ NTMSLibraryControl2Server = (*UnimplementedNTMSLibraryControl2Server)(nil)
+var _ LibraryControl2Server = (*UnimplementedLibraryControl2Server)(nil)

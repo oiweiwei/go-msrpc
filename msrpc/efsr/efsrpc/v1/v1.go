@@ -4216,13 +4216,13 @@ func (o *FileKeyInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 
 // xxx_DuplicateEncryptionInfoFileOperation structure represents the EfsRpcDuplicateEncryptionInfoFile operation
 type xxx_DuplicateEncryptionInfoFileOperation struct {
-	SourceFileName      string `idl:"name:SrcFileName;string" json:"source_file_name"`
-	DestinationFileName string `idl:"name:DestFileName;string" json:"destination_file_name"`
-	CreationDisposition uint32 `idl:"name:dwCreationDisposition" json:"creation_disposition"`
-	Attributes          uint32 `idl:"name:dwAttributes" json:"attributes"`
-	RelativeSD          *Blob  `idl:"name:RelativeSD;pointer:unique" json:"relative_sd"`
-	InheritHandle       bool   `idl:"name:bInheritHandle" json:"inherit_handle"`
-	Return              uint32 `idl:"name:Return" json:"return"`
+	SourceFileName             string `idl:"name:SrcFileName;string" json:"source_file_name"`
+	DestinationFileName        string `idl:"name:DestFileName;string" json:"destination_file_name"`
+	CreationDisposition        uint32 `idl:"name:dwCreationDisposition" json:"creation_disposition"`
+	Attributes                 uint32 `idl:"name:dwAttributes" json:"attributes"`
+	RelativeSecurityDescriptor *Blob  `idl:"name:RelativeSD;pointer:unique" json:"relative_security_descriptor"`
+	InheritHandle              bool   `idl:"name:bInheritHandle" json:"inherit_handle"`
+	Return                     uint32 `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_DuplicateEncryptionInfoFileOperation) OpNum() int { return 13 }
@@ -4270,10 +4270,10 @@ func (o *xxx_DuplicateEncryptionInfoFileOperation) MarshalNDRRequest(ctx context
 	}
 	// RelativeSD {in} (1:{pointer=unique}*(1))(2:{alias=EFS_RPC_BLOB}(struct))
 	{
-		if o.RelativeSD != nil {
+		if o.RelativeSecurityDescriptor != nil {
 			_ptr_RelativeSD := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.RelativeSD != nil {
-					if err := o.RelativeSD.MarshalNDR(ctx, w); err != nil {
+				if o.RelativeSecurityDescriptor != nil {
+					if err := o.RelativeSecurityDescriptor.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -4283,7 +4283,7 @@ func (o *xxx_DuplicateEncryptionInfoFileOperation) MarshalNDRRequest(ctx context
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.RelativeSD, _ptr_RelativeSD); err != nil {
+			if err := w.WritePointer(&o.RelativeSecurityDescriptor, _ptr_RelativeSD); err != nil {
 				return err
 			}
 		} else {
@@ -4338,16 +4338,16 @@ func (o *xxx_DuplicateEncryptionInfoFileOperation) UnmarshalNDRRequest(ctx conte
 	// RelativeSD {in} (1:{pointer=unique}*(1))(2:{alias=EFS_RPC_BLOB}(struct))
 	{
 		_ptr_RelativeSD := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.RelativeSD == nil {
-				o.RelativeSD = &Blob{}
+			if o.RelativeSecurityDescriptor == nil {
+				o.RelativeSecurityDescriptor = &Blob{}
 			}
-			if err := o.RelativeSD.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.RelativeSecurityDescriptor.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_RelativeSD := func(ptr interface{}) { o.RelativeSD = *ptr.(**Blob) }
-		if err := w.ReadPointer(&o.RelativeSD, _s_RelativeSD, _ptr_RelativeSD); err != nil {
+		_s_RelativeSD := func(ptr interface{}) { o.RelativeSecurityDescriptor = *ptr.(**Blob) }
+		if err := w.ReadPointer(&o.RelativeSecurityDescriptor, _s_RelativeSD, _ptr_RelativeSD); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4399,12 +4399,12 @@ func (o *xxx_DuplicateEncryptionInfoFileOperation) UnmarshalNDRResponse(ctx cont
 
 // DuplicateEncryptionInfoFileRequest structure represents the EfsRpcDuplicateEncryptionInfoFile operation request
 type DuplicateEncryptionInfoFileRequest struct {
-	SourceFileName      string `idl:"name:SrcFileName;string" json:"source_file_name"`
-	DestinationFileName string `idl:"name:DestFileName;string" json:"destination_file_name"`
-	CreationDisposition uint32 `idl:"name:dwCreationDisposition" json:"creation_disposition"`
-	Attributes          uint32 `idl:"name:dwAttributes" json:"attributes"`
-	RelativeSD          *Blob  `idl:"name:RelativeSD;pointer:unique" json:"relative_sd"`
-	InheritHandle       bool   `idl:"name:bInheritHandle" json:"inherit_handle"`
+	SourceFileName             string `idl:"name:SrcFileName;string" json:"source_file_name"`
+	DestinationFileName        string `idl:"name:DestFileName;string" json:"destination_file_name"`
+	CreationDisposition        uint32 `idl:"name:dwCreationDisposition" json:"creation_disposition"`
+	Attributes                 uint32 `idl:"name:dwAttributes" json:"attributes"`
+	RelativeSecurityDescriptor *Blob  `idl:"name:RelativeSD;pointer:unique" json:"relative_security_descriptor"`
+	InheritHandle              bool   `idl:"name:bInheritHandle" json:"inherit_handle"`
 }
 
 func (o *DuplicateEncryptionInfoFileRequest) xxx_ToOp(ctx context.Context, op *xxx_DuplicateEncryptionInfoFileOperation) *xxx_DuplicateEncryptionInfoFileOperation {
@@ -4418,7 +4418,7 @@ func (o *DuplicateEncryptionInfoFileRequest) xxx_ToOp(ctx context.Context, op *x
 	op.DestinationFileName = o.DestinationFileName
 	op.CreationDisposition = o.CreationDisposition
 	op.Attributes = o.Attributes
-	op.RelativeSD = o.RelativeSD
+	op.RelativeSecurityDescriptor = o.RelativeSecurityDescriptor
 	op.InheritHandle = o.InheritHandle
 	return op
 }
@@ -4431,7 +4431,7 @@ func (o *DuplicateEncryptionInfoFileRequest) xxx_FromOp(ctx context.Context, op 
 	o.DestinationFileName = op.DestinationFileName
 	o.CreationDisposition = op.CreationDisposition
 	o.Attributes = op.Attributes
-	o.RelativeSD = op.RelativeSD
+	o.RelativeSecurityDescriptor = op.RelativeSecurityDescriptor
 	o.InheritHandle = op.InheritHandle
 }
 func (o *DuplicateEncryptionInfoFileRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {

@@ -512,12 +512,12 @@ func (o *ExportObjectsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 type xxx_GetImportConflictsOperation struct {
 	This               *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That               *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PmcXML             *oaut.String   `idl:"name:bstrPMCXml" json:"pmc_xml"`
+	PMCXML             *oaut.String   `idl:"name:bstrPMCXml" json:"pmc_xml"`
 	PolicyXML          *oaut.String   `idl:"name:bstrPolicyXml" json:"policy_xml"`
 	CalendarXML        *oaut.String   `idl:"name:bstrCalendarXml" json:"calendar_xml"`
 	ConditionalXML     *oaut.String   `idl:"name:bstrConditionalXml" json:"conditional_xml"`
 	MachineGroupXML    *oaut.String   `idl:"name:bstrMachineGroupXml" json:"machine_group_xml"`
-	ConfigurationXmls  *oaut.String   `idl:"name:bstrConfigurationXmls" json:"configuration_xmls"`
+	ConfigurationXMLs  *oaut.String   `idl:"name:bstrConfigurationXmls" json:"configuration_xmls"`
 	ConflictingObjects *oaut.String   `idl:"name:pbstrConflictingObjects" json:"conflicting_objects"`
 	Return             int32          `idl:"name:Return" json:"return"`
 }
@@ -558,10 +558,10 @@ func (o *xxx_GetImportConflictsOperation) MarshalNDRRequest(ctx context.Context,
 	}
 	// bstrPMCXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
-		if o.PmcXML != nil {
+		if o.PMCXML != nil {
 			_ptr_bstrPMCXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PmcXML != nil {
-					if err := o.PmcXML.MarshalNDR(ctx, w); err != nil {
+				if o.PMCXML != nil {
+					if err := o.PMCXML.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -571,7 +571,7 @@ func (o *xxx_GetImportConflictsOperation) MarshalNDRRequest(ctx context.Context,
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PmcXML, _ptr_bstrPMCXml); err != nil {
+			if err := w.WritePointer(&o.PMCXML, _ptr_bstrPMCXml); err != nil {
 				return err
 			}
 		} else {
@@ -693,10 +693,10 @@ func (o *xxx_GetImportConflictsOperation) MarshalNDRRequest(ctx context.Context,
 	}
 	// bstrConfigurationXmls {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
-		if o.ConfigurationXmls != nil {
+		if o.ConfigurationXMLs != nil {
 			_ptr_bstrConfigurationXmls := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.ConfigurationXmls != nil {
-					if err := o.ConfigurationXmls.MarshalNDR(ctx, w); err != nil {
+				if o.ConfigurationXMLs != nil {
+					if err := o.ConfigurationXMLs.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -706,7 +706,7 @@ func (o *xxx_GetImportConflictsOperation) MarshalNDRRequest(ctx context.Context,
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.ConfigurationXmls, _ptr_bstrConfigurationXmls); err != nil {
+			if err := w.WritePointer(&o.ConfigurationXMLs, _ptr_bstrConfigurationXmls); err != nil {
 				return err
 			}
 		} else {
@@ -737,16 +737,16 @@ func (o *xxx_GetImportConflictsOperation) UnmarshalNDRRequest(ctx context.Contex
 	// bstrPMCXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
 		_ptr_bstrPMCXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PmcXML == nil {
-				o.PmcXML = &oaut.String{}
+			if o.PMCXML == nil {
+				o.PMCXML = &oaut.String{}
 			}
-			if err := o.PmcXML.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.PMCXML.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_bstrPMCXml := func(ptr interface{}) { o.PmcXML = *ptr.(**oaut.String) }
-		if err := w.ReadPointer(&o.PmcXML, _s_bstrPMCXml, _ptr_bstrPMCXml); err != nil {
+		_s_bstrPMCXml := func(ptr interface{}) { o.PMCXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.PMCXML, _s_bstrPMCXml, _ptr_bstrPMCXml); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -832,16 +832,16 @@ func (o *xxx_GetImportConflictsOperation) UnmarshalNDRRequest(ctx context.Contex
 	// bstrConfigurationXmls {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
 		_ptr_bstrConfigurationXmls := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.ConfigurationXmls == nil {
-				o.ConfigurationXmls = &oaut.String{}
+			if o.ConfigurationXMLs == nil {
+				o.ConfigurationXMLs = &oaut.String{}
 			}
-			if err := o.ConfigurationXmls.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.ConfigurationXMLs.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_bstrConfigurationXmls := func(ptr interface{}) { o.ConfigurationXmls = *ptr.(**oaut.String) }
-		if err := w.ReadPointer(&o.ConfigurationXmls, _s_bstrConfigurationXmls, _ptr_bstrConfigurationXmls); err != nil {
+		_s_bstrConfigurationXmls := func(ptr interface{}) { o.ConfigurationXMLs = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.ConfigurationXMLs, _s_bstrConfigurationXmls, _ptr_bstrConfigurationXmls); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -960,12 +960,12 @@ func (o *xxx_GetImportConflictsOperation) UnmarshalNDRResponse(ctx context.Conte
 type GetImportConflictsRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This              *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PmcXML            *oaut.String   `idl:"name:bstrPMCXml" json:"pmc_xml"`
+	PMCXML            *oaut.String   `idl:"name:bstrPMCXml" json:"pmc_xml"`
 	PolicyXML         *oaut.String   `idl:"name:bstrPolicyXml" json:"policy_xml"`
 	CalendarXML       *oaut.String   `idl:"name:bstrCalendarXml" json:"calendar_xml"`
 	ConditionalXML    *oaut.String   `idl:"name:bstrConditionalXml" json:"conditional_xml"`
 	MachineGroupXML   *oaut.String   `idl:"name:bstrMachineGroupXml" json:"machine_group_xml"`
-	ConfigurationXmls *oaut.String   `idl:"name:bstrConfigurationXmls" json:"configuration_xmls"`
+	ConfigurationXMLs *oaut.String   `idl:"name:bstrConfigurationXmls" json:"configuration_xmls"`
 }
 
 func (o *GetImportConflictsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetImportConflictsOperation) *xxx_GetImportConflictsOperation {
@@ -976,12 +976,12 @@ func (o *GetImportConflictsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetImp
 		return op
 	}
 	op.This = o.This
-	op.PmcXML = o.PmcXML
+	op.PMCXML = o.PMCXML
 	op.PolicyXML = o.PolicyXML
 	op.CalendarXML = o.CalendarXML
 	op.ConditionalXML = o.ConditionalXML
 	op.MachineGroupXML = o.MachineGroupXML
-	op.ConfigurationXmls = o.ConfigurationXmls
+	op.ConfigurationXMLs = o.ConfigurationXMLs
 	return op
 }
 
@@ -990,12 +990,12 @@ func (o *GetImportConflictsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetI
 		return
 	}
 	o.This = op.This
-	o.PmcXML = op.PmcXML
+	o.PMCXML = op.PMCXML
 	o.PolicyXML = op.PolicyXML
 	o.CalendarXML = op.CalendarXML
 	o.ConditionalXML = op.ConditionalXML
 	o.MachineGroupXML = op.MachineGroupXML
-	o.ConfigurationXmls = op.ConfigurationXmls
+	o.ConfigurationXMLs = op.ConfigurationXMLs
 }
 func (o *GetImportConflictsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -1055,12 +1055,12 @@ func (o *GetImportConflictsResponse) UnmarshalNDR(ctx context.Context, r ndr.Rea
 type xxx_ImportXMLOperation struct {
 	This              *dcom.ORPCThis  `idl:"name:This" json:"this"`
 	That              *dcom.ORPCThat  `idl:"name:That" json:"that"`
-	PmcXML            *oaut.String    `idl:"name:bstrPMCXml" json:"pmc_xml"`
+	PMCXML            *oaut.String    `idl:"name:bstrPMCXml" json:"pmc_xml"`
 	PolicyXML         *oaut.String    `idl:"name:bstrPolicyXml" json:"policy_xml"`
 	CalendarXML       *oaut.String    `idl:"name:bstrCalendarXml" json:"calendar_xml"`
 	ConditionalXML    *oaut.String    `idl:"name:bstrConditionalXml" json:"conditional_xml"`
 	MachineGroupXML   *oaut.String    `idl:"name:bstrMachineGroupXml" json:"machine_group_xml"`
-	ConfigurationXmls *oaut.String    `idl:"name:bstrConfigurationXmls" json:"configuration_xmls"`
+	ConfigurationXMLs *oaut.String    `idl:"name:bstrConfigurationXmls" json:"configuration_xmls"`
 	EnumImportType    wsrm.ImportType `idl:"name:enumImportType" json:"enum_import_type"`
 	Return            int32           `idl:"name:Return" json:"return"`
 }
@@ -1099,10 +1099,10 @@ func (o *xxx_ImportXMLOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 	}
 	// bstrPMCXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
-		if o.PmcXML != nil {
+		if o.PMCXML != nil {
 			_ptr_bstrPMCXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PmcXML != nil {
-					if err := o.PmcXML.MarshalNDR(ctx, w); err != nil {
+				if o.PMCXML != nil {
+					if err := o.PMCXML.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1112,7 +1112,7 @@ func (o *xxx_ImportXMLOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PmcXML, _ptr_bstrPMCXml); err != nil {
+			if err := w.WritePointer(&o.PMCXML, _ptr_bstrPMCXml); err != nil {
 				return err
 			}
 		} else {
@@ -1234,10 +1234,10 @@ func (o *xxx_ImportXMLOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 	}
 	// bstrConfigurationXmls {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
-		if o.ConfigurationXmls != nil {
+		if o.ConfigurationXMLs != nil {
 			_ptr_bstrConfigurationXmls := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.ConfigurationXmls != nil {
-					if err := o.ConfigurationXmls.MarshalNDR(ctx, w); err != nil {
+				if o.ConfigurationXMLs != nil {
+					if err := o.ConfigurationXMLs.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1247,7 +1247,7 @@ func (o *xxx_ImportXMLOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.ConfigurationXmls, _ptr_bstrConfigurationXmls); err != nil {
+			if err := w.WritePointer(&o.ConfigurationXMLs, _ptr_bstrConfigurationXmls); err != nil {
 				return err
 			}
 		} else {
@@ -1284,16 +1284,16 @@ func (o *xxx_ImportXMLOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 	// bstrPMCXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
 		_ptr_bstrPMCXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PmcXML == nil {
-				o.PmcXML = &oaut.String{}
+			if o.PMCXML == nil {
+				o.PMCXML = &oaut.String{}
 			}
-			if err := o.PmcXML.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.PMCXML.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_bstrPMCXml := func(ptr interface{}) { o.PmcXML = *ptr.(**oaut.String) }
-		if err := w.ReadPointer(&o.PmcXML, _s_bstrPMCXml, _ptr_bstrPMCXml); err != nil {
+		_s_bstrPMCXml := func(ptr interface{}) { o.PMCXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.PMCXML, _s_bstrPMCXml, _ptr_bstrPMCXml); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1379,16 +1379,16 @@ func (o *xxx_ImportXMLOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 	// bstrConfigurationXmls {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
 		_ptr_bstrConfigurationXmls := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.ConfigurationXmls == nil {
-				o.ConfigurationXmls = &oaut.String{}
+			if o.ConfigurationXMLs == nil {
+				o.ConfigurationXMLs = &oaut.String{}
 			}
-			if err := o.ConfigurationXmls.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.ConfigurationXMLs.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_bstrConfigurationXmls := func(ptr interface{}) { o.ConfigurationXmls = *ptr.(**oaut.String) }
-		if err := w.ReadPointer(&o.ConfigurationXmls, _s_bstrConfigurationXmls, _ptr_bstrConfigurationXmls); err != nil {
+		_s_bstrConfigurationXmls := func(ptr interface{}) { o.ConfigurationXMLs = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.ConfigurationXMLs, _s_bstrConfigurationXmls, _ptr_bstrConfigurationXmls); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1467,12 +1467,12 @@ func (o *xxx_ImportXMLOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 type ImportXMLRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This              *dcom.ORPCThis  `idl:"name:This" json:"this"`
-	PmcXML            *oaut.String    `idl:"name:bstrPMCXml" json:"pmc_xml"`
+	PMCXML            *oaut.String    `idl:"name:bstrPMCXml" json:"pmc_xml"`
 	PolicyXML         *oaut.String    `idl:"name:bstrPolicyXml" json:"policy_xml"`
 	CalendarXML       *oaut.String    `idl:"name:bstrCalendarXml" json:"calendar_xml"`
 	ConditionalXML    *oaut.String    `idl:"name:bstrConditionalXml" json:"conditional_xml"`
 	MachineGroupXML   *oaut.String    `idl:"name:bstrMachineGroupXml" json:"machine_group_xml"`
-	ConfigurationXmls *oaut.String    `idl:"name:bstrConfigurationXmls" json:"configuration_xmls"`
+	ConfigurationXMLs *oaut.String    `idl:"name:bstrConfigurationXmls" json:"configuration_xmls"`
 	EnumImportType    wsrm.ImportType `idl:"name:enumImportType" json:"enum_import_type"`
 }
 
@@ -1484,12 +1484,12 @@ func (o *ImportXMLRequest) xxx_ToOp(ctx context.Context, op *xxx_ImportXMLOperat
 		return op
 	}
 	op.This = o.This
-	op.PmcXML = o.PmcXML
+	op.PMCXML = o.PMCXML
 	op.PolicyXML = o.PolicyXML
 	op.CalendarXML = o.CalendarXML
 	op.ConditionalXML = o.ConditionalXML
 	op.MachineGroupXML = o.MachineGroupXML
-	op.ConfigurationXmls = o.ConfigurationXmls
+	op.ConfigurationXMLs = o.ConfigurationXMLs
 	op.EnumImportType = o.EnumImportType
 	return op
 }
@@ -1499,12 +1499,12 @@ func (o *ImportXMLRequest) xxx_FromOp(ctx context.Context, op *xxx_ImportXMLOper
 		return
 	}
 	o.This = op.This
-	o.PmcXML = op.PmcXML
+	o.PMCXML = op.PMCXML
 	o.PolicyXML = op.PolicyXML
 	o.CalendarXML = op.CalendarXML
 	o.ConditionalXML = op.ConditionalXML
 	o.MachineGroupXML = op.MachineGroupXML
-	o.ConfigurationXmls = op.ConfigurationXmls
+	o.ConfigurationXMLs = op.ConfigurationXMLs
 	o.EnumImportType = op.EnumImportType
 }
 func (o *ImportXMLRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -1562,12 +1562,12 @@ func (o *ImportXMLResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 type xxx_ExportXMLOperation struct {
 	This              *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That              *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PmcXML            *oaut.String   `idl:"name:pbstrPMCXml" json:"pmc_xml"`
+	PMCXML            *oaut.String   `idl:"name:pbstrPMCXml" json:"pmc_xml"`
 	PolicyXML         *oaut.String   `idl:"name:pbstrPolicyXml" json:"policy_xml"`
 	CalendarXML       *oaut.String   `idl:"name:pbstrCalendarXml" json:"calendar_xml"`
 	ConditionalXML    *oaut.String   `idl:"name:pbstrConditionalXml" json:"conditional_xml"`
 	MachineGroupXML   *oaut.String   `idl:"name:pbstrMachineGroupXml" json:"machine_group_xml"`
-	ConfigurationXmls *oaut.String   `idl:"name:pbstrConfigurationXmls" json:"configuration_xmls"`
+	ConfigurationXMLs *oaut.String   `idl:"name:pbstrConfigurationXmls" json:"configuration_xmls"`
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
@@ -1652,10 +1652,10 @@ func (o *xxx_ExportXMLOperation) MarshalNDRResponse(ctx context.Context, w ndr.W
 	}
 	// pbstrPMCXml {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
-		if o.PmcXML != nil {
+		if o.PMCXML != nil {
 			_ptr_pbstrPMCXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PmcXML != nil {
-					if err := o.PmcXML.MarshalNDR(ctx, w); err != nil {
+				if o.PMCXML != nil {
+					if err := o.PMCXML.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1665,7 +1665,7 @@ func (o *xxx_ExportXMLOperation) MarshalNDRResponse(ctx context.Context, w ndr.W
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PmcXML, _ptr_pbstrPMCXml); err != nil {
+			if err := w.WritePointer(&o.PMCXML, _ptr_pbstrPMCXml); err != nil {
 				return err
 			}
 		} else {
@@ -1787,10 +1787,10 @@ func (o *xxx_ExportXMLOperation) MarshalNDRResponse(ctx context.Context, w ndr.W
 	}
 	// pbstrConfigurationXmls {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
-		if o.ConfigurationXmls != nil {
+		if o.ConfigurationXMLs != nil {
 			_ptr_pbstrConfigurationXmls := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.ConfigurationXmls != nil {
-					if err := o.ConfigurationXmls.MarshalNDR(ctx, w); err != nil {
+				if o.ConfigurationXMLs != nil {
+					if err := o.ConfigurationXMLs.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1800,7 +1800,7 @@ func (o *xxx_ExportXMLOperation) MarshalNDRResponse(ctx context.Context, w ndr.W
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.ConfigurationXmls, _ptr_pbstrConfigurationXmls); err != nil {
+			if err := w.WritePointer(&o.ConfigurationXMLs, _ptr_pbstrConfigurationXmls); err != nil {
 				return err
 			}
 		} else {
@@ -1837,16 +1837,16 @@ func (o *xxx_ExportXMLOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 	// pbstrPMCXml {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
 		_ptr_pbstrPMCXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PmcXML == nil {
-				o.PmcXML = &oaut.String{}
+			if o.PMCXML == nil {
+				o.PMCXML = &oaut.String{}
 			}
-			if err := o.PmcXML.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.PMCXML.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pbstrPMCXml := func(ptr interface{}) { o.PmcXML = *ptr.(**oaut.String) }
-		if err := w.ReadPointer(&o.PmcXML, _s_pbstrPMCXml, _ptr_pbstrPMCXml); err != nil {
+		_s_pbstrPMCXml := func(ptr interface{}) { o.PMCXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.PMCXML, _s_pbstrPMCXml, _ptr_pbstrPMCXml); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1932,16 +1932,16 @@ func (o *xxx_ExportXMLOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 	// pbstrConfigurationXmls {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
 		_ptr_pbstrConfigurationXmls := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.ConfigurationXmls == nil {
-				o.ConfigurationXmls = &oaut.String{}
+			if o.ConfigurationXMLs == nil {
+				o.ConfigurationXMLs = &oaut.String{}
 			}
-			if err := o.ConfigurationXmls.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.ConfigurationXMLs.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pbstrConfigurationXmls := func(ptr interface{}) { o.ConfigurationXmls = *ptr.(**oaut.String) }
-		if err := w.ReadPointer(&o.ConfigurationXmls, _s_pbstrConfigurationXmls, _ptr_pbstrConfigurationXmls); err != nil {
+		_s_pbstrConfigurationXmls := func(ptr interface{}) { o.ConfigurationXMLs = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.ConfigurationXMLs, _s_pbstrConfigurationXmls, _ptr_pbstrConfigurationXmls); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1996,12 +1996,12 @@ func (o *ExportXMLRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 type ExportXMLResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That              *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PmcXML            *oaut.String   `idl:"name:pbstrPMCXml" json:"pmc_xml"`
+	PMCXML            *oaut.String   `idl:"name:pbstrPMCXml" json:"pmc_xml"`
 	PolicyXML         *oaut.String   `idl:"name:pbstrPolicyXml" json:"policy_xml"`
 	CalendarXML       *oaut.String   `idl:"name:pbstrCalendarXml" json:"calendar_xml"`
 	ConditionalXML    *oaut.String   `idl:"name:pbstrConditionalXml" json:"conditional_xml"`
 	MachineGroupXML   *oaut.String   `idl:"name:pbstrMachineGroupXml" json:"machine_group_xml"`
-	ConfigurationXmls *oaut.String   `idl:"name:pbstrConfigurationXmls" json:"configuration_xmls"`
+	ConfigurationXMLs *oaut.String   `idl:"name:pbstrConfigurationXmls" json:"configuration_xmls"`
 	// Return: The ExportXml return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2014,12 +2014,12 @@ func (o *ExportXMLResponse) xxx_ToOp(ctx context.Context, op *xxx_ExportXMLOpera
 		return op
 	}
 	op.That = o.That
-	op.PmcXML = o.PmcXML
+	op.PMCXML = o.PMCXML
 	op.PolicyXML = o.PolicyXML
 	op.CalendarXML = o.CalendarXML
 	op.ConditionalXML = o.ConditionalXML
 	op.MachineGroupXML = o.MachineGroupXML
-	op.ConfigurationXmls = o.ConfigurationXmls
+	op.ConfigurationXMLs = o.ConfigurationXMLs
 	op.Return = o.Return
 	return op
 }
@@ -2029,12 +2029,12 @@ func (o *ExportXMLResponse) xxx_FromOp(ctx context.Context, op *xxx_ExportXMLOpe
 		return
 	}
 	o.That = op.That
-	o.PmcXML = op.PmcXML
+	o.PMCXML = op.PMCXML
 	o.PolicyXML = op.PolicyXML
 	o.CalendarXML = op.CalendarXML
 	o.ConditionalXML = op.ConditionalXML
 	o.MachineGroupXML = op.MachineGroupXML
-	o.ConfigurationXmls = op.ConfigurationXmls
+	o.ConfigurationXMLs = op.ConfigurationXMLs
 	o.Return = op.Return
 }
 func (o *ExportXMLResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {

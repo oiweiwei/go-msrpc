@@ -28,7 +28,6 @@ abbr:
   ah: AH
   rm: RM
   ras: RAS
-  ads: ADS
   krbtgt: KRBTGT
   alg: Algorithm
   ansi: ANSI
@@ -309,7 +308,7 @@ abbr:
   mapi: MAPI
   mb: MB
   mbr: MBR
-  mcast: MCast
+  mcast: Multicast
   mclt: MCLT
   md5: MD5
   mdns: MDNS
@@ -676,3 +675,98 @@ abbr:
   ppstm: Stream
   pstm: Stream
   pv: Value
+  cpc: CPC
+  msmq: MSMQ
+  iads: IADs
+  prov: Provider
+  priv: Privacy
+  soap: SOAP
+  eod: EOD
+  hwnd: Handle
+  phwnd: Handle
+  ads: ADs
+  boid: BOID
+  pinfo: Info
+  sstp: SSTP
+  ekuoid: EKUOID
+  ppp: PPP
+  lcp: LCP
+  ccp: CCP
+  nbf: NBF
+  ospf: OSPF
+  hbeat: HBeat
+  brdr: Border
+  rtr: Router
+  as0: AS
+  mtu: MTU
+  nbma: NBMA
+  virt: Virtual
+  retrans: Retransimit
+  atcp: ATCP
+  ipx: IPX
+  eap: EAP
+  ndiswan: NDISWAN
+  rasi: RASI
+  rasman: RASMAN
+  icfics: ICFICS
+  rip: RIP
+  advt: Advertise
+  toc: TOC
+  sap: SAP
+  l2tp: L2TP
+  psz: String
+  rto: RTO
+  rsre: RSRE
+  vanj: VANJ
+  v6r: DHCPV6R
+  igmp: IGMP
+  in6: IN6
+  ipcp: IPCP
+  pin: PIN
+  vpn: VPN
+  snmp: SNMP
+  isis: ISIS
+  esis: ESIS
+  mpls: MPLS
+  netmgmt: NETMGMT
+  egp: EGP
+  bgp: BGP
+  ggp: GGP
+  bpn: BPN
+  dod: DOD
+  ngbr: Neighbor
+  pkts: Packets
+  oks: OKs
+  pppoe: PPPoE
+  atm: ATM
+  sonet: SONET
+  irda: IRDA
+  sw56: SW56
+  icf: ICF
+  ics: ICS
+  rmib: MIB
+  phys: Physical
+  ie: IE
+  rsm: RSM
+  pmid: PMID
+  lmid: LMID
+  omid: OMID
+  id1: ID1
+  id2: ID2
+  ar: AR
+  wr: WR
+  vol: Volume
+  vtpm: VTPM
+  vgids: VGIDS
+  vreader: VReader
+  puk: PUK
+  kcv: KCV
+  au: AU
+  pmc: PMC
+  curr: Current
+  xmls: XMLs
+  wsrm: WSRM
+  nop: Noop
+  rdc: RDC
+  w2k3r2: W2K3R2
+  gvsn: GVSN

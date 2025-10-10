@@ -26,10 +26,10 @@ var (
 )
 
 // INtmsObjectManagement2 server interface.
-type NTMSObjectManagement2Server interface {
+type ObjectManagement2Server interface {
 
 	// INtmsObjectManagement1 base class.
-	intmsobjectmanagement1.NTMSObjectManagement1Server
+	intmsobjectmanagement1.ObjectManagement1Server
 
 	EnumerateNTMSObjectR(context.Context, *EnumerateNTMSObjectRRequest) (*EnumerateNTMSObjectRResponse, error)
 
@@ -42,20 +42,20 @@ type NTMSObjectManagement2Server interface {
 	SetNTMSUIOptionsW(context.Context, *SetNTMSUIOptionsWRequest) (*SetNTMSUIOptionsWResponse, error)
 }
 
-func RegisterNTMSObjectManagement2Server(conn dcerpc.Conn, o NTMSObjectManagement2Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewNTMSObjectManagement2ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(NTMSObjectManagement2SyntaxV0_0))...)
+func RegisterObjectManagement2Server(conn dcerpc.Conn, o ObjectManagement2Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewObjectManagement2ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ObjectManagement2SyntaxV0_0))...)
 }
 
-func NewNTMSObjectManagement2ServerHandle(o NTMSObjectManagement2Server) dcerpc.ServerHandle {
+func NewObjectManagement2ServerHandle(o ObjectManagement2Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return NTMSObjectManagement2ServerHandle(ctx, o, opNum, r)
+		return ObjectManagement2ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func NTMSObjectManagement2ServerHandle(ctx context.Context, o NTMSObjectManagement2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func ObjectManagement2ServerHandle(ctx context.Context, o ObjectManagement2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 9 {
 		// INtmsObjectManagement1 base method.
-		return intmsobjectmanagement1.NTMSObjectManagement1ServerHandle(ctx, o, opNum, r)
+		return intmsobjectmanagement1.ObjectManagement1ServerHandle(ctx, o, opNum, r)
 	}
 	switch opNum {
 	case 9: // EnumerateNtmsObjectR
@@ -108,24 +108,24 @@ func NTMSObjectManagement2ServerHandle(ctx context.Context, o NTMSObjectManageme
 }
 
 // Unimplemented INtmsObjectManagement2
-type UnimplementedNTMSObjectManagement2Server struct {
-	intmsobjectmanagement1.UnimplementedNTMSObjectManagement1Server
+type UnimplementedObjectManagement2Server struct {
+	intmsobjectmanagement1.UnimplementedObjectManagement1Server
 }
 
-func (UnimplementedNTMSObjectManagement2Server) EnumerateNTMSObjectR(context.Context, *EnumerateNTMSObjectRRequest) (*EnumerateNTMSObjectRResponse, error) {
+func (UnimplementedObjectManagement2Server) EnumerateNTMSObjectR(context.Context, *EnumerateNTMSObjectRRequest) (*EnumerateNTMSObjectRResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSObjectManagement2Server) GetNTMSUIOptionsA(context.Context, *GetNTMSUIOptionsARequest) (*GetNTMSUIOptionsAResponse, error) {
+func (UnimplementedObjectManagement2Server) GetNTMSUIOptionsA(context.Context, *GetNTMSUIOptionsARequest) (*GetNTMSUIOptionsAResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSObjectManagement2Server) GetNTMSUIOptionsW(context.Context, *GetNTMSUIOptionsWRequest) (*GetNTMSUIOptionsWResponse, error) {
+func (UnimplementedObjectManagement2Server) GetNTMSUIOptionsW(context.Context, *GetNTMSUIOptionsWRequest) (*GetNTMSUIOptionsWResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSObjectManagement2Server) SetNTMSUIOptionsA(context.Context, *SetNTMSUIOptionsARequest) (*SetNTMSUIOptionsAResponse, error) {
+func (UnimplementedObjectManagement2Server) SetNTMSUIOptionsA(context.Context, *SetNTMSUIOptionsARequest) (*SetNTMSUIOptionsAResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSObjectManagement2Server) SetNTMSUIOptionsW(context.Context, *SetNTMSUIOptionsWRequest) (*SetNTMSUIOptionsWResponse, error) {
+func (UnimplementedObjectManagement2Server) SetNTMSUIOptionsW(context.Context, *SetNTMSUIOptionsWRequest) (*SetNTMSUIOptionsWResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ NTMSObjectManagement2Server = (*UnimplementedNTMSObjectManagement2Server)(nil)
+var _ ObjectManagement2Server = (*UnimplementedObjectManagement2Server)(nil)

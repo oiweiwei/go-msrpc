@@ -161,7 +161,7 @@ func NewMessengerClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Opti
 type xxx_SendMessageOperation struct {
 	This       *dcom.ORPCThis   `idl:"name:This" json:"this"`
 	That       *dcom.ORPCThat   `idl:"name:That" json:"that"`
-	RsmMessage *rsmp.RsmMessage `idl:"name:lpRsmMessage;pointer:unique" json:"rsm_message"`
+	RSMMessage *rsmp.RSMMessage `idl:"name:lpRsmMessage;pointer:unique" json:"rsm_message"`
 	Return     int32            `idl:"name:Return" json:"return"`
 }
 
@@ -199,20 +199,20 @@ func (o *xxx_SendMessageOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// lpRsmMessage {in} (1:{pointer=unique, alias=LPRSM_MESSAGE}*(1))(2:{alias=RSM_MESSAGE}(struct))
 	{
-		if o.RsmMessage != nil {
+		if o.RSMMessage != nil {
 			_ptr_lpRsmMessage := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.RsmMessage != nil {
-					if err := o.RsmMessage.MarshalNDR(ctx, w); err != nil {
+				if o.RSMMessage != nil {
+					if err := o.RSMMessage.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&rsmp.RsmMessage{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&rsmp.RSMMessage{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.RsmMessage, _ptr_lpRsmMessage); err != nil {
+			if err := w.WritePointer(&o.RSMMessage, _ptr_lpRsmMessage); err != nil {
 				return err
 			}
 		} else {
@@ -243,16 +243,16 @@ func (o *xxx_SendMessageOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 	// lpRsmMessage {in} (1:{pointer=unique, alias=LPRSM_MESSAGE}*(1))(2:{alias=RSM_MESSAGE}(struct))
 	{
 		_ptr_lpRsmMessage := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.RsmMessage == nil {
-				o.RsmMessage = &rsmp.RsmMessage{}
+			if o.RSMMessage == nil {
+				o.RSMMessage = &rsmp.RSMMessage{}
 			}
-			if err := o.RsmMessage.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.RSMMessage.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_lpRsmMessage := func(ptr interface{}) { o.RsmMessage = *ptr.(**rsmp.RsmMessage) }
-		if err := w.ReadPointer(&o.RsmMessage, _s_lpRsmMessage, _ptr_lpRsmMessage); err != nil {
+		_s_lpRsmMessage := func(ptr interface{}) { o.RSMMessage = *ptr.(**rsmp.RSMMessage) }
+		if err := w.ReadPointer(&o.RSMMessage, _s_lpRsmMessage, _ptr_lpRsmMessage); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -325,7 +325,7 @@ func (o *xxx_SendMessageOperation) UnmarshalNDRResponse(ctx context.Context, w n
 type SendMessageRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This       *dcom.ORPCThis   `idl:"name:This" json:"this"`
-	RsmMessage *rsmp.RsmMessage `idl:"name:lpRsmMessage;pointer:unique" json:"rsm_message"`
+	RSMMessage *rsmp.RSMMessage `idl:"name:lpRsmMessage;pointer:unique" json:"rsm_message"`
 }
 
 func (o *SendMessageRequest) xxx_ToOp(ctx context.Context, op *xxx_SendMessageOperation) *xxx_SendMessageOperation {
@@ -336,7 +336,7 @@ func (o *SendMessageRequest) xxx_ToOp(ctx context.Context, op *xxx_SendMessageOp
 		return op
 	}
 	op.This = o.This
-	op.RsmMessage = o.RsmMessage
+	op.RSMMessage = o.RSMMessage
 	return op
 }
 
@@ -345,7 +345,7 @@ func (o *SendMessageRequest) xxx_FromOp(ctx context.Context, op *xxx_SendMessage
 		return
 	}
 	o.This = op.This
-	o.RsmMessage = op.RsmMessage
+	o.RSMMessage = op.RSMMessage
 }
 func (o *SendMessageRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)

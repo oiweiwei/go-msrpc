@@ -36,15 +36,15 @@ var (
 
 var (
 	// IWRMResourceGroup interface identifier bc681469-9dd9-4bf4-9b3d-709f69efe431
-	IwrmResourceGroupIID = &dcom.IID{Data1: 0xbc681469, Data2: 0x9dd9, Data3: 0x4bf4, Data4: []byte{0x9b, 0x3d, 0x70, 0x9f, 0x69, 0xef, 0xe4, 0x31}}
+	ResourceGroupIID = &dcom.IID{Data1: 0xbc681469, Data2: 0x9dd9, Data3: 0x4bf4, Data4: []byte{0x9b, 0x3d, 0x70, 0x9f, 0x69, 0xef, 0xe4, 0x31}}
 	// Syntax UUID
-	IwrmResourceGroupSyntaxUUID = &uuid.UUID{TimeLow: 0xbc681469, TimeMid: 0x9dd9, TimeHiAndVersion: 0x4bf4, ClockSeqHiAndReserved: 0x9b, ClockSeqLow: 0x3d, Node: [6]uint8{0x70, 0x9f, 0x69, 0xef, 0xe4, 0x31}}
+	ResourceGroupSyntaxUUID = &uuid.UUID{TimeLow: 0xbc681469, TimeMid: 0x9dd9, TimeHiAndVersion: 0x4bf4, ClockSeqHiAndReserved: 0x9b, ClockSeqLow: 0x3d, Node: [6]uint8{0x70, 0x9f, 0x69, 0xef, 0xe4, 0x31}}
 	// Syntax ID
-	IwrmResourceGroupSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: IwrmResourceGroupSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	ResourceGroupSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ResourceGroupSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IWRMResourceGroup interface.
-type IwrmResourceGroupClient interface {
+type ResourceGroupClient interface {
 
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
@@ -66,20 +66,20 @@ type IwrmResourceGroupClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) IwrmResourceGroupClient
+	IPID(context.Context, *dcom.IPID) ResourceGroupClient
 }
 
-type xxx_DefaultIwrmResourceGroupClient struct {
+type xxx_DefaultResourceGroupClient struct {
 	idispatch.DispatchClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultIwrmResourceGroupClient) Dispatch() idispatch.DispatchClient {
+func (o *xxx_DefaultResourceGroupClient) Dispatch() idispatch.DispatchClient {
 	return o.DispatchClient
 }
 
-func (o *xxx_DefaultIwrmResourceGroupClient) GetResourceGroupInfo(ctx context.Context, in *GetResourceGroupInfoRequest, opts ...dcerpc.CallOption) (*GetResourceGroupInfoResponse, error) {
+func (o *xxx_DefaultResourceGroupClient) GetResourceGroupInfo(ctx context.Context, in *GetResourceGroupInfoRequest, opts ...dcerpc.CallOption) (*GetResourceGroupInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -99,7 +99,7 @@ func (o *xxx_DefaultIwrmResourceGroupClient) GetResourceGroupInfo(ctx context.Co
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmResourceGroupClient) ModifyResourceGroup(ctx context.Context, in *ModifyResourceGroupRequest, opts ...dcerpc.CallOption) (*ModifyResourceGroupResponse, error) {
+func (o *xxx_DefaultResourceGroupClient) ModifyResourceGroup(ctx context.Context, in *ModifyResourceGroupRequest, opts ...dcerpc.CallOption) (*ModifyResourceGroupResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -119,7 +119,7 @@ func (o *xxx_DefaultIwrmResourceGroupClient) ModifyResourceGroup(ctx context.Con
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmResourceGroupClient) CreateResourceGroup(ctx context.Context, in *CreateResourceGroupRequest, opts ...dcerpc.CallOption) (*CreateResourceGroupResponse, error) {
+func (o *xxx_DefaultResourceGroupClient) CreateResourceGroup(ctx context.Context, in *CreateResourceGroupRequest, opts ...dcerpc.CallOption) (*CreateResourceGroupResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -139,7 +139,7 @@ func (o *xxx_DefaultIwrmResourceGroupClient) CreateResourceGroup(ctx context.Con
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmResourceGroupClient) DeleteResourceGroup(ctx context.Context, in *DeleteResourceGroupRequest, opts ...dcerpc.CallOption) (*DeleteResourceGroupResponse, error) {
+func (o *xxx_DefaultResourceGroupClient) DeleteResourceGroup(ctx context.Context, in *DeleteResourceGroupRequest, opts ...dcerpc.CallOption) (*DeleteResourceGroupResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -159,7 +159,7 @@ func (o *xxx_DefaultIwrmResourceGroupClient) DeleteResourceGroup(ctx context.Con
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmResourceGroupClient) RenameResourceGroup(ctx context.Context, in *RenameResourceGroupRequest, opts ...dcerpc.CallOption) (*RenameResourceGroupResponse, error) {
+func (o *xxx_DefaultResourceGroupClient) RenameResourceGroup(ctx context.Context, in *RenameResourceGroupRequest, opts ...dcerpc.CallOption) (*RenameResourceGroupResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -179,29 +179,29 @@ func (o *xxx_DefaultIwrmResourceGroupClient) RenameResourceGroup(ctx context.Con
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmResourceGroupClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultResourceGroupClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultIwrmResourceGroupClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultResourceGroupClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultIwrmResourceGroupClient) IPID(ctx context.Context, ipid *dcom.IPID) IwrmResourceGroupClient {
+func (o *xxx_DefaultResourceGroupClient) IPID(ctx context.Context, ipid *dcom.IPID) ResourceGroupClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultIwrmResourceGroupClient{
+	return &xxx_DefaultResourceGroupClient{
 		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
 		cc:             o.cc,
 		ipid:           ipid,
 	}
 }
 
-func NewIwrmResourceGroupClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (IwrmResourceGroupClient, error) {
+func NewResourceGroupClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ResourceGroupClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(IwrmResourceGroupSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ResourceGroupSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -214,7 +214,7 @@ func NewIwrmResourceGroupClient(ctx context.Context, cc dcerpc.Conn, opts ...dce
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultIwrmResourceGroupClient{
+	return &xxx_DefaultResourceGroupClient{
 		DispatchClient: base,
 		cc:             cc,
 		ipid:           ipid,

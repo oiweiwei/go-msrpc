@@ -38,15 +38,15 @@ var (
 
 var (
 	// IWRMPolicy interface identifier 59602eb6-57b0-4fd8-aa4b-ebf06971fe15
-	IwrmPolicyIID = &dcom.IID{Data1: 0x59602eb6, Data2: 0x57b0, Data3: 0x4fd8, Data4: []byte{0xaa, 0x4b, 0xeb, 0xf0, 0x69, 0x71, 0xfe, 0x15}}
+	PolicyIID = &dcom.IID{Data1: 0x59602eb6, Data2: 0x57b0, Data3: 0x4fd8, Data4: []byte{0xaa, 0x4b, 0xeb, 0xf0, 0x69, 0x71, 0xfe, 0x15}}
 	// Syntax UUID
-	IwrmPolicySyntaxUUID = &uuid.UUID{TimeLow: 0x59602eb6, TimeMid: 0x57b0, TimeHiAndVersion: 0x4fd8, ClockSeqHiAndReserved: 0xaa, ClockSeqLow: 0x4b, Node: [6]uint8{0xeb, 0xf0, 0x69, 0x71, 0xfe, 0x15}}
+	PolicySyntaxUUID = &uuid.UUID{TimeLow: 0x59602eb6, TimeMid: 0x57b0, TimeHiAndVersion: 0x4fd8, ClockSeqHiAndReserved: 0xaa, ClockSeqLow: 0x4b, Node: [6]uint8{0xeb, 0xf0, 0x69, 0x71, 0xfe, 0x15}}
 	// Syntax ID
-	IwrmPolicySyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: IwrmPolicySyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	PolicySyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: PolicySyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IWRMPolicy interface.
-type IwrmPolicyClient interface {
+type PolicyClient interface {
 
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
@@ -88,20 +88,20 @@ type IwrmPolicyClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) IwrmPolicyClient
+	IPID(context.Context, *dcom.IPID) PolicyClient
 }
 
-type xxx_DefaultIwrmPolicyClient struct {
+type xxx_DefaultPolicyClient struct {
 	idispatch.DispatchClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultIwrmPolicyClient) Dispatch() idispatch.DispatchClient {
+func (o *xxx_DefaultPolicyClient) Dispatch() idispatch.DispatchClient {
 	return o.DispatchClient
 }
 
-func (o *xxx_DefaultIwrmPolicyClient) GetPolicyInfo(ctx context.Context, in *GetPolicyInfoRequest, opts ...dcerpc.CallOption) (*GetPolicyInfoResponse, error) {
+func (o *xxx_DefaultPolicyClient) GetPolicyInfo(ctx context.Context, in *GetPolicyInfoRequest, opts ...dcerpc.CallOption) (*GetPolicyInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -121,7 +121,7 @@ func (o *xxx_DefaultIwrmPolicyClient) GetPolicyInfo(ctx context.Context, in *Get
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmPolicyClient) CreatePolicy(ctx context.Context, in *CreatePolicyRequest, opts ...dcerpc.CallOption) (*CreatePolicyResponse, error) {
+func (o *xxx_DefaultPolicyClient) CreatePolicy(ctx context.Context, in *CreatePolicyRequest, opts ...dcerpc.CallOption) (*CreatePolicyResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -141,7 +141,7 @@ func (o *xxx_DefaultIwrmPolicyClient) CreatePolicy(ctx context.Context, in *Crea
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmPolicyClient) ModifyPolicy(ctx context.Context, in *ModifyPolicyRequest, opts ...dcerpc.CallOption) (*ModifyPolicyResponse, error) {
+func (o *xxx_DefaultPolicyClient) ModifyPolicy(ctx context.Context, in *ModifyPolicyRequest, opts ...dcerpc.CallOption) (*ModifyPolicyResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -161,7 +161,7 @@ func (o *xxx_DefaultIwrmPolicyClient) ModifyPolicy(ctx context.Context, in *Modi
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmPolicyClient) DeletePolicy(ctx context.Context, in *DeletePolicyRequest, opts ...dcerpc.CallOption) (*DeletePolicyResponse, error) {
+func (o *xxx_DefaultPolicyClient) DeletePolicy(ctx context.Context, in *DeletePolicyRequest, opts ...dcerpc.CallOption) (*DeletePolicyResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -181,7 +181,7 @@ func (o *xxx_DefaultIwrmPolicyClient) DeletePolicy(ctx context.Context, in *Dele
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmPolicyClient) RenameAllocationPolicy(ctx context.Context, in *RenameAllocationPolicyRequest, opts ...dcerpc.CallOption) (*RenameAllocationPolicyResponse, error) {
+func (o *xxx_DefaultPolicyClient) RenameAllocationPolicy(ctx context.Context, in *RenameAllocationPolicyRequest, opts ...dcerpc.CallOption) (*RenameAllocationPolicyResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -201,7 +201,7 @@ func (o *xxx_DefaultIwrmPolicyClient) RenameAllocationPolicy(ctx context.Context
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmPolicyClient) MoveBefore(ctx context.Context, in *MoveBeforeRequest, opts ...dcerpc.CallOption) (*MoveBeforeResponse, error) {
+func (o *xxx_DefaultPolicyClient) MoveBefore(ctx context.Context, in *MoveBeforeRequest, opts ...dcerpc.CallOption) (*MoveBeforeResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -221,7 +221,7 @@ func (o *xxx_DefaultIwrmPolicyClient) MoveBefore(ctx context.Context, in *MoveBe
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmPolicyClient) MoveAfter(ctx context.Context, in *MoveAfterRequest, opts ...dcerpc.CallOption) (*MoveAfterResponse, error) {
+func (o *xxx_DefaultPolicyClient) MoveAfter(ctx context.Context, in *MoveAfterRequest, opts ...dcerpc.CallOption) (*MoveAfterResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -241,7 +241,7 @@ func (o *xxx_DefaultIwrmPolicyClient) MoveAfter(ctx context.Context, in *MoveAft
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmPolicyClient) SetCALDefaultPolicyName(ctx context.Context, in *SetCALDefaultPolicyNameRequest, opts ...dcerpc.CallOption) (*SetCALDefaultPolicyNameResponse, error) {
+func (o *xxx_DefaultPolicyClient) SetCALDefaultPolicyName(ctx context.Context, in *SetCALDefaultPolicyNameRequest, opts ...dcerpc.CallOption) (*SetCALDefaultPolicyNameResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -261,7 +261,7 @@ func (o *xxx_DefaultIwrmPolicyClient) SetCALDefaultPolicyName(ctx context.Contex
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmPolicyClient) GetCALDefaultPolicyName(ctx context.Context, in *GetCALDefaultPolicyNameRequest, opts ...dcerpc.CallOption) (*GetCALDefaultPolicyNameResponse, error) {
+func (o *xxx_DefaultPolicyClient) GetCALDefaultPolicyName(ctx context.Context, in *GetCALDefaultPolicyNameRequest, opts ...dcerpc.CallOption) (*GetCALDefaultPolicyNameResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -281,7 +281,7 @@ func (o *xxx_DefaultIwrmPolicyClient) GetCALDefaultPolicyName(ctx context.Contex
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmPolicyClient) GetProcessList(ctx context.Context, in *GetProcessListRequest, opts ...dcerpc.CallOption) (*GetProcessListResponse, error) {
+func (o *xxx_DefaultPolicyClient) GetProcessList(ctx context.Context, in *GetProcessListRequest, opts ...dcerpc.CallOption) (*GetProcessListResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -301,7 +301,7 @@ func (o *xxx_DefaultIwrmPolicyClient) GetProcessList(ctx context.Context, in *Ge
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmPolicyClient) GetCurrentPolicy(ctx context.Context, in *GetCurrentPolicyRequest, opts ...dcerpc.CallOption) (*GetCurrentPolicyResponse, error) {
+func (o *xxx_DefaultPolicyClient) GetCurrentPolicy(ctx context.Context, in *GetCurrentPolicyRequest, opts ...dcerpc.CallOption) (*GetCurrentPolicyResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -321,7 +321,7 @@ func (o *xxx_DefaultIwrmPolicyClient) GetCurrentPolicy(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmPolicyClient) SetCurrentPolicy(ctx context.Context, in *SetCurrentPolicyRequest, opts ...dcerpc.CallOption) (*SetCurrentPolicyResponse, error) {
+func (o *xxx_DefaultPolicyClient) SetCurrentPolicy(ctx context.Context, in *SetCurrentPolicyRequest, opts ...dcerpc.CallOption) (*SetCurrentPolicyResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -341,7 +341,7 @@ func (o *xxx_DefaultIwrmPolicyClient) SetCurrentPolicy(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmPolicyClient) GetCurrentStateAndActivePolicyName(ctx context.Context, in *GetCurrentStateAndActivePolicyNameRequest, opts ...dcerpc.CallOption) (*GetCurrentStateAndActivePolicyNameResponse, error) {
+func (o *xxx_DefaultPolicyClient) GetCurrentStateAndActivePolicyName(ctx context.Context, in *GetCurrentStateAndActivePolicyNameRequest, opts ...dcerpc.CallOption) (*GetCurrentStateAndActivePolicyNameResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -361,7 +361,7 @@ func (o *xxx_DefaultIwrmPolicyClient) GetCurrentStateAndActivePolicyName(ctx con
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmPolicyClient) GetConditionalPolicy(ctx context.Context, in *GetConditionalPolicyRequest, opts ...dcerpc.CallOption) (*GetConditionalPolicyResponse, error) {
+func (o *xxx_DefaultPolicyClient) GetConditionalPolicy(ctx context.Context, in *GetConditionalPolicyRequest, opts ...dcerpc.CallOption) (*GetConditionalPolicyResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -381,7 +381,7 @@ func (o *xxx_DefaultIwrmPolicyClient) GetConditionalPolicy(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmPolicyClient) SetConditionalPolicy(ctx context.Context, in *SetConditionalPolicyRequest, opts ...dcerpc.CallOption) (*SetConditionalPolicyResponse, error) {
+func (o *xxx_DefaultPolicyClient) SetConditionalPolicy(ctx context.Context, in *SetConditionalPolicyRequest, opts ...dcerpc.CallOption) (*SetConditionalPolicyResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -401,29 +401,29 @@ func (o *xxx_DefaultIwrmPolicyClient) SetConditionalPolicy(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmPolicyClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultPolicyClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultIwrmPolicyClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultPolicyClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultIwrmPolicyClient) IPID(ctx context.Context, ipid *dcom.IPID) IwrmPolicyClient {
+func (o *xxx_DefaultPolicyClient) IPID(ctx context.Context, ipid *dcom.IPID) PolicyClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultIwrmPolicyClient{
+	return &xxx_DefaultPolicyClient{
 		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
 		cc:             o.cc,
 		ipid:           ipid,
 	}
 }
 
-func NewIwrmPolicyClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (IwrmPolicyClient, error) {
+func NewPolicyClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (PolicyClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(IwrmPolicySyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(PolicySyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -436,7 +436,7 @@ func NewIwrmPolicyClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Opt
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultIwrmPolicyClient{
+	return &xxx_DefaultPolicyClient{
 		DispatchClient: base,
 		cc:             cc,
 		ipid:           ipid,

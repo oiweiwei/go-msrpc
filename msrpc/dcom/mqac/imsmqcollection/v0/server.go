@@ -26,7 +26,7 @@ var (
 )
 
 // IMSMQCollection server interface.
-type ImsmqCollectionServer interface {
+type CollectionServer interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -41,17 +41,17 @@ type ImsmqCollectionServer interface {
 	_NewEnum(context.Context, *_NewEnumRequest) (*_NewEnumResponse, error)
 }
 
-func RegisterImsmqCollectionServer(conn dcerpc.Conn, o ImsmqCollectionServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqCollectionServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqCollectionSyntaxV0_0))...)
+func RegisterCollectionServer(conn dcerpc.Conn, o CollectionServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewCollectionServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(CollectionSyntaxV0_0))...)
 }
 
-func NewImsmqCollectionServerHandle(o ImsmqCollectionServer) dcerpc.ServerHandle {
+func NewCollectionServerHandle(o CollectionServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqCollectionServerHandle(ctx, o, opNum, r)
+		return CollectionServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqCollectionServerHandle(ctx context.Context, o ImsmqCollectionServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func CollectionServerHandle(ctx context.Context, o CollectionServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -89,18 +89,18 @@ func ImsmqCollectionServerHandle(ctx context.Context, o ImsmqCollectionServer, o
 }
 
 // Unimplemented IMSMQCollection
-type UnimplementedImsmqCollectionServer struct {
+type UnimplementedCollectionServer struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedImsmqCollectionServer) Item(context.Context, *ItemRequest) (*ItemResponse, error) {
+func (UnimplementedCollectionServer) Item(context.Context, *ItemRequest) (*ItemResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqCollectionServer) GetCount(context.Context, *GetCountRequest) (*GetCountResponse, error) {
+func (UnimplementedCollectionServer) GetCount(context.Context, *GetCountRequest) (*GetCountResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqCollectionServer) _NewEnum(context.Context, *_NewEnumRequest) (*_NewEnumResponse, error) {
+func (UnimplementedCollectionServer) _NewEnum(context.Context, *_NewEnumRequest) (*_NewEnumResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqCollectionServer = (*UnimplementedImsmqCollectionServer)(nil)
+var _ CollectionServer = (*UnimplementedCollectionServer)(nil)

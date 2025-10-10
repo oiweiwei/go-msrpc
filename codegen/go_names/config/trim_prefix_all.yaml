@@ -3,6 +3,18 @@ trim:
   - FSRM_
   - dwMD
   - pbMD
+  - TPMVSC_
+  - TPMVSCMGR_
+  - IWRM
+  - FrsRpc
+  - Frs
+  - PFRS_
+  - Rdc
+  - RDC_
+  - NtFrsApi_Rpc_
+  - FRS_RDC
+  - FRS
+  - ITpm
   - bMD
   - pmdrMD
   - szMD
@@ -102,8 +114,10 @@ trim:
   - Elfr
   - IELF
   - m_guid
+  - m_pwsz
   - m_pwz
   - m_g
+  - m_ll
   - m_
   - _vd
   - _td
@@ -146,3 +160,34 @@ trim:
   - EFS_
   - EfsRpc
   - Efs
+  - IMSMQ
+  - MSMQ
+  - pUnk
+  - psMSMQ
+  - pbstrGuid
+  - bstrGuid
+  - ppqinfo
+  - Rasrpc
+  - RASRPC_
+  - RasRpc
+  - RRasAdmin
+  - RMprAdmin
+  - DIM_
+  - MPRAPI_
+  - MPRI_
+  - MPR_
+  - RB_PCB
+  - RB_
+  - IC_
+  - IS_
+  - IMGID_
+  - IMGOD_
+  - IA_
+  - IB_
+  - GC_
+  - RI_
+  - P_
+  - NTMS_
+  - INtms
+  - VSS_
+  - IVss

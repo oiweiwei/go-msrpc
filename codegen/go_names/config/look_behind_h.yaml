@@ -1,7 +1,13 @@
 lookBehind:
   h:
     context: [context]
+    connection: [connection]
+    interface: [interface]
     sc: [service]
+    event: [event]
+    dim: [h]
+    ras: [h]
+    port: [port]
     service: [service]
     spl: [spl]
     xcv: [xcv]

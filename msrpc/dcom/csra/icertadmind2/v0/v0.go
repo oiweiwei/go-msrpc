@@ -2358,11 +2358,11 @@ func (o *EnumViewColumnTableResponse) UnmarshalNDR(ctx context.Context, r ndr.Re
 
 // xxx_GetCASecurityOperation structure represents the GetCASecurity operation
 type xxx_GetCASecurityOperation struct {
-	This      *dcom.ORPCThis          `idl:"name:This" json:"this"`
-	That      *dcom.ORPCThat          `idl:"name:That" json:"that"`
-	Authority string                  `idl:"name:pwszAuthority;string;pointer:unique" json:"authority"`
-	SD        *csra.CertTransportBlob `idl:"name:pctbSD;pointer:ref" json:"sd"`
-	Return    int32                   `idl:"name:Return" json:"return"`
+	This               *dcom.ORPCThis          `idl:"name:This" json:"this"`
+	That               *dcom.ORPCThat          `idl:"name:That" json:"that"`
+	Authority          string                  `idl:"name:pwszAuthority;string;pointer:unique" json:"authority"`
+	SecurityDescriptor *csra.CertTransportBlob `idl:"name:pctbSD;pointer:ref" json:"security_descriptor"`
+	Return             int32                   `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetCASecurityOperation) OpNum() int { return 36 }
@@ -2483,8 +2483,8 @@ func (o *xxx_GetCASecurityOperation) MarshalNDRResponse(ctx context.Context, w n
 	}
 	// pctbSD {out} (1:{pointer=ref}*(1))(2:{alias=CERTTRANSBLOB}(struct))
 	{
-		if o.SD != nil {
-			if err := o.SD.MarshalNDR(ctx, w); err != nil {
+		if o.SecurityDescriptor != nil {
+			if err := o.SecurityDescriptor.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -2520,10 +2520,10 @@ func (o *xxx_GetCASecurityOperation) UnmarshalNDRResponse(ctx context.Context, w
 	}
 	// pctbSD {out} (1:{pointer=ref}*(1))(2:{alias=CERTTRANSBLOB}(struct))
 	{
-		if o.SD == nil {
-			o.SD = &csra.CertTransportBlob{}
+		if o.SecurityDescriptor == nil {
+			o.SecurityDescriptor = &csra.CertTransportBlob{}
 		}
-		if err := o.SD.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.SecurityDescriptor.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -2584,7 +2584,7 @@ type GetCASecurityResponse struct {
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pctbSD: A pointer to a CERTTRANSBLOB data structure that contains the CA's security
 	// descriptor. Security descriptors are specified in [MS-DTYP] section 2.4.6.
-	SD *csra.CertTransportBlob `idl:"name:pctbSD;pointer:ref" json:"sd"`
+	SecurityDescriptor *csra.CertTransportBlob `idl:"name:pctbSD;pointer:ref" json:"security_descriptor"`
 	// Return: The GetCASecurity return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2597,7 +2597,7 @@ func (o *GetCASecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCASecur
 		return op
 	}
 	op.That = o.That
-	op.SD = o.SD
+	op.SecurityDescriptor = o.SecurityDescriptor
 	op.Return = o.Return
 	return op
 }
@@ -2607,7 +2607,7 @@ func (o *GetCASecurityResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCASec
 		return
 	}
 	o.That = op.That
-	o.SD = op.SD
+	o.SecurityDescriptor = op.SecurityDescriptor
 	o.Return = op.Return
 }
 func (o *GetCASecurityResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -2624,11 +2624,11 @@ func (o *GetCASecurityResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 
 // xxx_SetCASecurityOperation structure represents the SetCASecurity operation
 type xxx_SetCASecurityOperation struct {
-	This      *dcom.ORPCThis          `idl:"name:This" json:"this"`
-	That      *dcom.ORPCThat          `idl:"name:That" json:"that"`
-	Authority string                  `idl:"name:pwszAuthority;string;pointer:unique" json:"authority"`
-	SD        *csra.CertTransportBlob `idl:"name:pctbSD;pointer:ref" json:"sd"`
-	Return    int32                   `idl:"name:Return" json:"return"`
+	This               *dcom.ORPCThis          `idl:"name:This" json:"this"`
+	That               *dcom.ORPCThat          `idl:"name:That" json:"that"`
+	Authority          string                  `idl:"name:pwszAuthority;string;pointer:unique" json:"authority"`
+	SecurityDescriptor *csra.CertTransportBlob `idl:"name:pctbSD;pointer:ref" json:"security_descriptor"`
+	Return             int32                   `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_SetCASecurityOperation) OpNum() int { return 37 }
@@ -2686,8 +2686,8 @@ func (o *xxx_SetCASecurityOperation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// pctbSD {in} (1:{pointer=ref}*(1))(2:{alias=CERTTRANSBLOB}(struct))
 	{
-		if o.SD != nil {
-			if err := o.SD.MarshalNDR(ctx, w); err != nil {
+		if o.SecurityDescriptor != nil {
+			if err := o.SecurityDescriptor.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -2733,10 +2733,10 @@ func (o *xxx_SetCASecurityOperation) UnmarshalNDRRequest(ctx context.Context, w 
 	}
 	// pctbSD {in} (1:{pointer=ref}*(1))(2:{alias=CERTTRANSBLOB}(struct))
 	{
-		if o.SD == nil {
-			o.SD = &csra.CertTransportBlob{}
+		if o.SecurityDescriptor == nil {
+			o.SecurityDescriptor = &csra.CertTransportBlob{}
 		}
-		if err := o.SD.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.SecurityDescriptor.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -2816,7 +2816,7 @@ type SetCASecurityRequest struct {
 	//
 	// The CA SHOULD use the permissions set in pctbSD to deny and allow permissions to
 	// CA functionality. Microsoft CA permissions are defined in section 3.1.1.7.
-	SD *csra.CertTransportBlob `idl:"name:pctbSD;pointer:ref" json:"sd"`
+	SecurityDescriptor *csra.CertTransportBlob `idl:"name:pctbSD;pointer:ref" json:"security_descriptor"`
 }
 
 func (o *SetCASecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_SetCASecurityOperation) *xxx_SetCASecurityOperation {
@@ -2828,7 +2828,7 @@ func (o *SetCASecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_SetCASecuri
 	}
 	op.This = o.This
 	op.Authority = o.Authority
-	op.SD = o.SD
+	op.SecurityDescriptor = o.SecurityDescriptor
 	return op
 }
 
@@ -2838,7 +2838,7 @@ func (o *SetCASecurityRequest) xxx_FromOp(ctx context.Context, op *xxx_SetCASecu
 	}
 	o.This = op.This
 	o.Authority = op.Authority
-	o.SD = op.SD
+	o.SecurityDescriptor = op.SecurityDescriptor
 }
 func (o *SetCASecurityRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -3948,12 +3948,12 @@ func (o *SetAuditFilterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // xxx_GetOfficerRightsOperation structure represents the GetOfficerRights operation
 type xxx_GetOfficerRightsOperation struct {
-	This      *dcom.ORPCThis          `idl:"name:This" json:"this"`
-	That      *dcom.ORPCThat          `idl:"name:That" json:"that"`
-	Authority string                  `idl:"name:pwszAuthority;string;pointer:unique" json:"authority"`
-	Enabled   bool                    `idl:"name:pfEnabled" json:"enabled"`
-	SD        *csra.CertTransportBlob `idl:"name:pctbSD;pointer:ref" json:"sd"`
-	Return    int32                   `idl:"name:Return" json:"return"`
+	This               *dcom.ORPCThis          `idl:"name:This" json:"this"`
+	That               *dcom.ORPCThat          `idl:"name:That" json:"that"`
+	Authority          string                  `idl:"name:pwszAuthority;string;pointer:unique" json:"authority"`
+	Enabled            bool                    `idl:"name:pfEnabled" json:"enabled"`
+	SecurityDescriptor *csra.CertTransportBlob `idl:"name:pctbSD;pointer:ref" json:"security_descriptor"`
+	Return             int32                   `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetOfficerRightsOperation) OpNum() int { return 42 }
@@ -4086,8 +4086,8 @@ func (o *xxx_GetOfficerRightsOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// pctbSD {out} (1:{pointer=ref}*(1))(2:{alias=CERTTRANSBLOB}(struct))
 	{
-		if o.SD != nil {
-			if err := o.SD.MarshalNDR(ctx, w); err != nil {
+		if o.SecurityDescriptor != nil {
+			if err := o.SecurityDescriptor.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -4131,10 +4131,10 @@ func (o *xxx_GetOfficerRightsOperation) UnmarshalNDRResponse(ctx context.Context
 	}
 	// pctbSD {out} (1:{pointer=ref}*(1))(2:{alias=CERTTRANSBLOB}(struct))
 	{
-		if o.SD == nil {
-			o.SD = &csra.CertTransportBlob{}
+		if o.SecurityDescriptor == nil {
+			o.SecurityDescriptor = &csra.CertTransportBlob{}
 		}
-		if err := o.SD.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.SecurityDescriptor.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4197,7 +4197,7 @@ type GetOfficerRightsResponse struct {
 	Enabled bool `idl:"name:pfEnabled" json:"enabled"`
 	// pctbSD: A pointer to the CERTTRANSBLOB structure that contains the marshaled information
 	// specified in section 2.2.1.11.1.
-	SD *csra.CertTransportBlob `idl:"name:pctbSD;pointer:ref" json:"sd"`
+	SecurityDescriptor *csra.CertTransportBlob `idl:"name:pctbSD;pointer:ref" json:"security_descriptor"`
 	// Return: The GetOfficerRights return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -4211,7 +4211,7 @@ func (o *GetOfficerRightsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetOffi
 	}
 	op.That = o.That
 	op.Enabled = o.Enabled
-	op.SD = o.SD
+	op.SecurityDescriptor = o.SecurityDescriptor
 	op.Return = o.Return
 	return op
 }
@@ -4222,7 +4222,7 @@ func (o *GetOfficerRightsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetOf
 	}
 	o.That = op.That
 	o.Enabled = op.Enabled
-	o.SD = op.SD
+	o.SecurityDescriptor = op.SecurityDescriptor
 	o.Return = op.Return
 }
 func (o *GetOfficerRightsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -4239,12 +4239,12 @@ func (o *GetOfficerRightsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // xxx_SetOfficerRightsOperation structure represents the SetOfficerRights operation
 type xxx_SetOfficerRightsOperation struct {
-	This      *dcom.ORPCThis          `idl:"name:This" json:"this"`
-	That      *dcom.ORPCThat          `idl:"name:That" json:"that"`
-	Authority string                  `idl:"name:pwszAuthority;string;pointer:unique" json:"authority"`
-	Enable    bool                    `idl:"name:fEnable" json:"enable"`
-	SD        *csra.CertTransportBlob `idl:"name:pctbSD;pointer:ref" json:"sd"`
-	Return    int32                   `idl:"name:Return" json:"return"`
+	This               *dcom.ORPCThis          `idl:"name:This" json:"this"`
+	That               *dcom.ORPCThat          `idl:"name:That" json:"that"`
+	Authority          string                  `idl:"name:pwszAuthority;string;pointer:unique" json:"authority"`
+	Enable             bool                    `idl:"name:fEnable" json:"enable"`
+	SecurityDescriptor *csra.CertTransportBlob `idl:"name:pctbSD;pointer:ref" json:"security_descriptor"`
+	Return             int32                   `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_SetOfficerRightsOperation) OpNum() int { return 43 }
@@ -4314,8 +4314,8 @@ func (o *xxx_SetOfficerRightsOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// pctbSD {in} (1:{pointer=ref}*(1))(2:{alias=CERTTRANSBLOB}(struct))
 	{
-		if o.SD != nil {
-			if err := o.SD.MarshalNDR(ctx, w); err != nil {
+		if o.SecurityDescriptor != nil {
+			if err := o.SecurityDescriptor.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -4369,10 +4369,10 @@ func (o *xxx_SetOfficerRightsOperation) UnmarshalNDRRequest(ctx context.Context,
 	}
 	// pctbSD {in} (1:{pointer=ref}*(1))(2:{alias=CERTTRANSBLOB}(struct))
 	{
-		if o.SD == nil {
-			o.SD = &csra.CertTransportBlob{}
+		if o.SecurityDescriptor == nil {
+			o.SecurityDescriptor = &csra.CertTransportBlob{}
 		}
-		if err := o.SD.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.SecurityDescriptor.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4466,7 +4466,7 @@ type SetOfficerRightsRequest struct {
 	Enable bool `idl:"name:fEnable" json:"enable"`
 	// pctbSD: A pointer to the CERTTRANSBLOB structure that holds the marshaled security
 	// descriptor, as specified in [MS-DTYP] section 2.4.6.
-	SD *csra.CertTransportBlob `idl:"name:pctbSD;pointer:ref" json:"sd"`
+	SecurityDescriptor *csra.CertTransportBlob `idl:"name:pctbSD;pointer:ref" json:"security_descriptor"`
 }
 
 func (o *SetOfficerRightsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetOfficerRightsOperation) *xxx_SetOfficerRightsOperation {
@@ -4479,7 +4479,7 @@ func (o *SetOfficerRightsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetOffic
 	op.This = o.This
 	op.Authority = o.Authority
 	op.Enable = o.Enable
-	op.SD = o.SD
+	op.SecurityDescriptor = o.SecurityDescriptor
 	return op
 }
 
@@ -4490,7 +4490,7 @@ func (o *SetOfficerRightsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetOff
 	o.This = op.This
 	o.Authority = op.Authority
 	o.Enable = op.Enable
-	o.SD = op.SD
+	o.SecurityDescriptor = op.SecurityDescriptor
 }
 func (o *SetOfficerRightsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)

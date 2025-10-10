@@ -448,7 +448,7 @@ func (o *GetConnectionInterfaceResponse) UnmarshalNDR(ctx context.Context, r ndr
 type xxx_GetConnectionPointContainerOperation struct {
 	This   *dcom.ORPCThis                 `idl:"name:This" json:"this"`
 	That   *dcom.ORPCThat                 `idl:"name:That" json:"that"`
-	Cpc    *mqac.ConnectionPointContainer `idl:"name:ppCPC" json:"cpc"`
+	CPC    *mqac.ConnectionPointContainer `idl:"name:ppCPC" json:"cpc"`
 	Return int32                          `idl:"name:Return" json:"return"`
 }
 
@@ -535,10 +535,10 @@ func (o *xxx_GetConnectionPointContainerOperation) MarshalNDRResponse(ctx contex
 	}
 	// ppCPC {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IConnectionPointContainer}(interface))
 	{
-		if o.Cpc != nil {
+		if o.CPC != nil {
 			_ptr_ppCPC := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Cpc != nil {
-					if err := o.Cpc.MarshalNDR(ctx, w); err != nil {
+				if o.CPC != nil {
+					if err := o.CPC.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -548,7 +548,7 @@ func (o *xxx_GetConnectionPointContainerOperation) MarshalNDRResponse(ctx contex
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Cpc, _ptr_ppCPC); err != nil {
+			if err := w.WritePointer(&o.CPC, _ptr_ppCPC); err != nil {
 				return err
 			}
 		} else {
@@ -585,16 +585,16 @@ func (o *xxx_GetConnectionPointContainerOperation) UnmarshalNDRResponse(ctx cont
 	// ppCPC {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IConnectionPointContainer}(interface))
 	{
 		_ptr_ppCPC := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Cpc == nil {
-				o.Cpc = &mqac.ConnectionPointContainer{}
+			if o.CPC == nil {
+				o.CPC = &mqac.ConnectionPointContainer{}
 			}
-			if err := o.Cpc.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.CPC.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppCPC := func(ptr interface{}) { o.Cpc = *ptr.(**mqac.ConnectionPointContainer) }
-		if err := w.ReadPointer(&o.Cpc, _s_ppCPC, _ptr_ppCPC); err != nil {
+		_s_ppCPC := func(ptr interface{}) { o.CPC = *ptr.(**mqac.ConnectionPointContainer) }
+		if err := w.ReadPointer(&o.CPC, _s_ppCPC, _ptr_ppCPC); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -649,7 +649,7 @@ func (o *GetConnectionPointContainerRequest) UnmarshalNDR(ctx context.Context, r
 type GetConnectionPointContainerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat                 `idl:"name:That" json:"that"`
-	Cpc  *mqac.ConnectionPointContainer `idl:"name:ppCPC" json:"cpc"`
+	CPC  *mqac.ConnectionPointContainer `idl:"name:ppCPC" json:"cpc"`
 	// Return: The GetConnectionPointContainer return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -662,7 +662,7 @@ func (o *GetConnectionPointContainerResponse) xxx_ToOp(ctx context.Context, op *
 		return op
 	}
 	op.That = o.That
-	op.Cpc = o.Cpc
+	op.CPC = o.CPC
 	op.Return = o.Return
 	return op
 }
@@ -672,7 +672,7 @@ func (o *GetConnectionPointContainerResponse) xxx_FromOp(ctx context.Context, op
 		return
 	}
 	o.That = op.That
-	o.Cpc = op.Cpc
+	o.CPC = op.CPC
 	o.Return = op.Return
 }
 func (o *GetConnectionPointContainerResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -689,11 +689,11 @@ func (o *GetConnectionPointContainerResponse) UnmarshalNDR(ctx context.Context, 
 
 // xxx_AdviseOperation structure represents the Advise operation
 type xxx_AdviseOperation struct {
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	UnknownSink *dcom.Unknown  `idl:"name:pUnkSink" json:"unknown_sink"`
-	Cookie      uint32         `idl:"name:pdwCookie" json:"cookie"`
-	Return      int32          `idl:"name:Return" json:"return"`
+	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Sink   *dcom.Unknown  `idl:"name:pUnkSink" json:"sink"`
+	Cookie uint32         `idl:"name:pdwCookie" json:"cookie"`
+	Return int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_AdviseOperation) OpNum() int { return 5 }
@@ -730,10 +730,10 @@ func (o *xxx_AdviseOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 	}
 	// pUnkSink {in} (1:{pointer=ref}*(1))(2:{alias=IUnknown}(interface))
 	{
-		if o.UnknownSink != nil {
+		if o.Sink != nil {
 			_ptr_pUnkSink := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.UnknownSink != nil {
-					if err := o.UnknownSink.MarshalNDR(ctx, w); err != nil {
+				if o.Sink != nil {
+					if err := o.Sink.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -743,7 +743,7 @@ func (o *xxx_AdviseOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.UnknownSink, _ptr_pUnkSink); err != nil {
+			if err := w.WritePointer(&o.Sink, _ptr_pUnkSink); err != nil {
 				return err
 			}
 		} else {
@@ -774,16 +774,16 @@ func (o *xxx_AdviseOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 	// pUnkSink {in} (1:{pointer=ref}*(1))(2:{alias=IUnknown}(interface))
 	{
 		_ptr_pUnkSink := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.UnknownSink == nil {
-				o.UnknownSink = &dcom.Unknown{}
+			if o.Sink == nil {
+				o.Sink = &dcom.Unknown{}
 			}
-			if err := o.UnknownSink.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Sink.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pUnkSink := func(ptr interface{}) { o.UnknownSink = *ptr.(**dcom.Unknown) }
-		if err := w.ReadPointer(&o.UnknownSink, _s_pUnkSink, _ptr_pUnkSink); err != nil {
+		_s_pUnkSink := func(ptr interface{}) { o.Sink = *ptr.(**dcom.Unknown) }
+		if err := w.ReadPointer(&o.Sink, _s_pUnkSink, _ptr_pUnkSink); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -867,8 +867,8 @@ func (o *xxx_AdviseOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 // AdviseRequest structure represents the Advise operation request
 type AdviseRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	UnknownSink *dcom.Unknown  `idl:"name:pUnkSink" json:"unknown_sink"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	Sink *dcom.Unknown  `idl:"name:pUnkSink" json:"sink"`
 }
 
 func (o *AdviseRequest) xxx_ToOp(ctx context.Context, op *xxx_AdviseOperation) *xxx_AdviseOperation {
@@ -879,7 +879,7 @@ func (o *AdviseRequest) xxx_ToOp(ctx context.Context, op *xxx_AdviseOperation) *
 		return op
 	}
 	op.This = o.This
-	op.UnknownSink = o.UnknownSink
+	op.Sink = o.Sink
 	return op
 }
 
@@ -888,7 +888,7 @@ func (o *AdviseRequest) xxx_FromOp(ctx context.Context, op *xxx_AdviseOperation)
 		return
 	}
 	o.This = op.This
-	o.UnknownSink = op.UnknownSink
+	o.Sink = op.Sink
 }
 func (o *AdviseRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)

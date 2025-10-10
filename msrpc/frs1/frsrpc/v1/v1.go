@@ -37,13 +37,13 @@ var (
 
 // frsrpc interface.
 type FrsrpcClient interface {
-	FrsRPCSendCommPacket(context.Context, *FrsRPCSendCommPacketRequest, ...dcerpc.CallOption) (*FrsRPCSendCommPacketResponse, error)
+	SendCommPacket(context.Context, *SendCommPacketRequest, ...dcerpc.CallOption) (*SendCommPacketResponse, error)
 
-	FrsRPCVerifyPromotionParent(context.Context, *FrsRPCVerifyPromotionParentRequest, ...dcerpc.CallOption) (*FrsRPCVerifyPromotionParentResponse, error)
+	VerifyPromotionParent(context.Context, *VerifyPromotionParentRequest, ...dcerpc.CallOption) (*VerifyPromotionParentResponse, error)
 
-	FrsRPCStartPromotionParent(context.Context, *FrsRPCStartPromotionParentRequest, ...dcerpc.CallOption) (*FrsRPCStartPromotionParentResponse, error)
+	StartPromotionParent(context.Context, *StartPromotionParentRequest, ...dcerpc.CallOption) (*StartPromotionParentResponse, error)
 
-	FrsNop(context.Context, *FrsNopRequest, ...dcerpc.CallOption) (*FrsNopResponse, error)
+	Noop(context.Context, *NoopRequest, ...dcerpc.CallOption) (*NoopResponse, error)
 
 	// Opnum4NotUsedOnWire operation.
 	// Opnum4NotUsedOnWire
@@ -219,12 +219,12 @@ type xxx_DefaultFrsrpcClient struct {
 	cc dcerpc.Conn
 }
 
-func (o *xxx_DefaultFrsrpcClient) FrsRPCSendCommPacket(ctx context.Context, in *FrsRPCSendCommPacketRequest, opts ...dcerpc.CallOption) (*FrsRPCSendCommPacketResponse, error) {
+func (o *xxx_DefaultFrsrpcClient) SendCommPacket(ctx context.Context, in *SendCommPacketRequest, opts ...dcerpc.CallOption) (*SendCommPacketResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &FrsRPCSendCommPacketResponse{}
+	out := &SendCommPacketResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -232,12 +232,12 @@ func (o *xxx_DefaultFrsrpcClient) FrsRPCSendCommPacket(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsrpcClient) FrsRPCVerifyPromotionParent(ctx context.Context, in *FrsRPCVerifyPromotionParentRequest, opts ...dcerpc.CallOption) (*FrsRPCVerifyPromotionParentResponse, error) {
+func (o *xxx_DefaultFrsrpcClient) VerifyPromotionParent(ctx context.Context, in *VerifyPromotionParentRequest, opts ...dcerpc.CallOption) (*VerifyPromotionParentResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &FrsRPCVerifyPromotionParentResponse{}
+	out := &VerifyPromotionParentResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -245,12 +245,12 @@ func (o *xxx_DefaultFrsrpcClient) FrsRPCVerifyPromotionParent(ctx context.Contex
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsrpcClient) FrsRPCStartPromotionParent(ctx context.Context, in *FrsRPCStartPromotionParentRequest, opts ...dcerpc.CallOption) (*FrsRPCStartPromotionParentResponse, error) {
+func (o *xxx_DefaultFrsrpcClient) StartPromotionParent(ctx context.Context, in *StartPromotionParentRequest, opts ...dcerpc.CallOption) (*StartPromotionParentResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &FrsRPCStartPromotionParentResponse{}
+	out := &StartPromotionParentResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -258,12 +258,12 @@ func (o *xxx_DefaultFrsrpcClient) FrsRPCStartPromotionParent(ctx context.Context
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsrpcClient) FrsNop(ctx context.Context, in *FrsNopRequest, opts ...dcerpc.CallOption) (*FrsNopResponse, error) {
+func (o *xxx_DefaultFrsrpcClient) Noop(ctx context.Context, in *NoopRequest, opts ...dcerpc.CallOption) (*NoopResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &FrsNopResponse{}
+	out := &NoopResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -287,17 +287,17 @@ func NewFrsrpcClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option)
 	return &xxx_DefaultFrsrpcClient{cc: cc}, nil
 }
 
-// xxx_FrsRPCSendCommPacketOperation structure represents the FrsRpcSendCommPkt operation
-type xxx_FrsRPCSendCommPacketOperation struct {
+// xxx_SendCommPacketOperation structure represents the FrsRpcSendCommPkt operation
+type xxx_SendCommPacketOperation struct {
 	CommPacket *CommPacket `idl:"name:CommPkt" json:"comm_packet"`
 	Return     uint32      `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_FrsRPCSendCommPacketOperation) OpNum() int { return 0 }
+func (o *xxx_SendCommPacketOperation) OpNum() int { return 0 }
 
-func (o *xxx_FrsRPCSendCommPacketOperation) OpName() string { return "/frsrpc/v1.1/FrsRpcSendCommPkt" }
+func (o *xxx_SendCommPacketOperation) OpName() string { return "/frsrpc/v1.1/FrsRpcSendCommPkt" }
 
-func (o *xxx_FrsRPCSendCommPacketOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_SendCommPacketOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -306,7 +306,7 @@ func (o *xxx_FrsRPCSendCommPacketOperation) xxx_PrepareRequestPayload(ctx contex
 	return nil
 }
 
-func (o *xxx_FrsRPCSendCommPacketOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_SendCommPacketOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -328,7 +328,7 @@ func (o *xxx_FrsRPCSendCommPacketOperation) MarshalNDRRequest(ctx context.Contex
 	return nil
 }
 
-func (o *xxx_FrsRPCSendCommPacketOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_SendCommPacketOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// CommPkt {in} (1:{alias=PCOMM_PACKET,pointer=ref}*(1))(2:{alias=COMM_PACKET}(struct))
 	{
 		if o.CommPacket == nil {
@@ -344,7 +344,7 @@ func (o *xxx_FrsRPCSendCommPacketOperation) UnmarshalNDRRequest(ctx context.Cont
 	return nil
 }
 
-func (o *xxx_FrsRPCSendCommPacketOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_SendCommPacketOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -353,7 +353,7 @@ func (o *xxx_FrsRPCSendCommPacketOperation) xxx_PrepareResponsePayload(ctx conte
 	return nil
 }
 
-func (o *xxx_FrsRPCSendCommPacketOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_SendCommPacketOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -366,7 +366,7 @@ func (o *xxx_FrsRPCSendCommPacketOperation) MarshalNDRResponse(ctx context.Conte
 	return nil
 }
 
-func (o *xxx_FrsRPCSendCommPacketOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_SendCommPacketOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -376,14 +376,14 @@ func (o *xxx_FrsRPCSendCommPacketOperation) UnmarshalNDRResponse(ctx context.Con
 	return nil
 }
 
-// FrsRPCSendCommPacketRequest structure represents the FrsRpcSendCommPkt operation request
-type FrsRPCSendCommPacketRequest struct {
+// SendCommPacketRequest structure represents the FrsRpcSendCommPkt operation request
+type SendCommPacketRequest struct {
 	CommPacket *CommPacket `idl:"name:CommPkt" json:"comm_packet"`
 }
 
-func (o *FrsRPCSendCommPacketRequest) xxx_ToOp(ctx context.Context, op *xxx_FrsRPCSendCommPacketOperation) *xxx_FrsRPCSendCommPacketOperation {
+func (o *SendCommPacketRequest) xxx_ToOp(ctx context.Context, op *xxx_SendCommPacketOperation) *xxx_SendCommPacketOperation {
 	if op == nil {
-		op = &xxx_FrsRPCSendCommPacketOperation{}
+		op = &xxx_SendCommPacketOperation{}
 	}
 	if o == nil {
 		return op
@@ -392,17 +392,17 @@ func (o *FrsRPCSendCommPacketRequest) xxx_ToOp(ctx context.Context, op *xxx_FrsR
 	return op
 }
 
-func (o *FrsRPCSendCommPacketRequest) xxx_FromOp(ctx context.Context, op *xxx_FrsRPCSendCommPacketOperation) {
+func (o *SendCommPacketRequest) xxx_FromOp(ctx context.Context, op *xxx_SendCommPacketOperation) {
 	if o == nil {
 		return
 	}
 	o.CommPacket = op.CommPacket
 }
-func (o *FrsRPCSendCommPacketRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SendCommPacketRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *FrsRPCSendCommPacketRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_FrsRPCSendCommPacketOperation{}
+func (o *SendCommPacketRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SendCommPacketOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -410,15 +410,15 @@ func (o *FrsRPCSendCommPacketRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
-// FrsRPCSendCommPacketResponse structure represents the FrsRpcSendCommPkt operation response
-type FrsRPCSendCommPacketResponse struct {
+// SendCommPacketResponse structure represents the FrsRpcSendCommPkt operation response
+type SendCommPacketResponse struct {
 	// Return: The FrsRpcSendCommPkt return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *FrsRPCSendCommPacketResponse) xxx_ToOp(ctx context.Context, op *xxx_FrsRPCSendCommPacketOperation) *xxx_FrsRPCSendCommPacketOperation {
+func (o *SendCommPacketResponse) xxx_ToOp(ctx context.Context, op *xxx_SendCommPacketOperation) *xxx_SendCommPacketOperation {
 	if op == nil {
-		op = &xxx_FrsRPCSendCommPacketOperation{}
+		op = &xxx_SendCommPacketOperation{}
 	}
 	if o == nil {
 		return op
@@ -427,17 +427,17 @@ func (o *FrsRPCSendCommPacketResponse) xxx_ToOp(ctx context.Context, op *xxx_Frs
 	return op
 }
 
-func (o *FrsRPCSendCommPacketResponse) xxx_FromOp(ctx context.Context, op *xxx_FrsRPCSendCommPacketOperation) {
+func (o *SendCommPacketResponse) xxx_FromOp(ctx context.Context, op *xxx_SendCommPacketOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *FrsRPCSendCommPacketResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SendCommPacketResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *FrsRPCSendCommPacketResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_FrsRPCSendCommPacketOperation{}
+func (o *SendCommPacketResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SendCommPacketOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -445,8 +445,8 @@ func (o *FrsRPCSendCommPacketResponse) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
-// xxx_FrsRPCVerifyPromotionParentOperation structure represents the FrsRpcVerifyPromotionParent operation
-type xxx_FrsRPCVerifyPromotionParentOperation struct {
+// xxx_VerifyPromotionParentOperation structure represents the FrsRpcVerifyPromotionParent operation
+type xxx_VerifyPromotionParentOperation struct {
 	ParentAccount    string `idl:"name:ParentAccount;string;pointer:unique" json:"parent_account"`
 	ParentPassword   string `idl:"name:ParentPassword;string;pointer:unique" json:"parent_password"`
 	SetNameReplica   string `idl:"name:ReplicaSetName;string;pointer:unique" json:"set_name_replica"`
@@ -456,13 +456,13 @@ type xxx_FrsRPCVerifyPromotionParentOperation struct {
 	Return           uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_FrsRPCVerifyPromotionParentOperation) OpNum() int { return 1 }
+func (o *xxx_VerifyPromotionParentOperation) OpNum() int { return 1 }
 
-func (o *xxx_FrsRPCVerifyPromotionParentOperation) OpName() string {
+func (o *xxx_VerifyPromotionParentOperation) OpName() string {
 	return "/frsrpc/v1.1/FrsRpcVerifyPromotionParent"
 }
 
-func (o *xxx_FrsRPCVerifyPromotionParentOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_VerifyPromotionParentOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -471,7 +471,7 @@ func (o *xxx_FrsRPCVerifyPromotionParentOperation) xxx_PrepareRequestPayload(ctx
 	return nil
 }
 
-func (o *xxx_FrsRPCVerifyPromotionParentOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_VerifyPromotionParentOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -574,7 +574,7 @@ func (o *xxx_FrsRPCVerifyPromotionParentOperation) MarshalNDRRequest(ctx context
 	return nil
 }
 
-func (o *xxx_FrsRPCVerifyPromotionParentOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_VerifyPromotionParentOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// ParentAccount {in} (1:{string, pointer=unique, alias=PWCHAR}*(1))(2:{alias=WCHAR}[dim:0,string,null](wchar))
 	{
 		_ptr_ParentAccount := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -654,7 +654,7 @@ func (o *xxx_FrsRPCVerifyPromotionParentOperation) UnmarshalNDRRequest(ctx conte
 	return nil
 }
 
-func (o *xxx_FrsRPCVerifyPromotionParentOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_VerifyPromotionParentOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -663,7 +663,7 @@ func (o *xxx_FrsRPCVerifyPromotionParentOperation) xxx_PrepareResponsePayload(ct
 	return nil
 }
 
-func (o *xxx_FrsRPCVerifyPromotionParentOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_VerifyPromotionParentOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -676,7 +676,7 @@ func (o *xxx_FrsRPCVerifyPromotionParentOperation) MarshalNDRResponse(ctx contex
 	return nil
 }
 
-func (o *xxx_FrsRPCVerifyPromotionParentOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_VerifyPromotionParentOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -686,8 +686,8 @@ func (o *xxx_FrsRPCVerifyPromotionParentOperation) UnmarshalNDRResponse(ctx cont
 	return nil
 }
 
-// FrsRPCVerifyPromotionParentRequest structure represents the FrsRpcVerifyPromotionParent operation request
-type FrsRPCVerifyPromotionParentRequest struct {
+// VerifyPromotionParentRequest structure represents the FrsRpcVerifyPromotionParent operation request
+type VerifyPromotionParentRequest struct {
 	ParentAccount    string `idl:"name:ParentAccount;string;pointer:unique" json:"parent_account"`
 	ParentPassword   string `idl:"name:ParentPassword;string;pointer:unique" json:"parent_password"`
 	SetNameReplica   string `idl:"name:ReplicaSetName;string;pointer:unique" json:"set_name_replica"`
@@ -696,9 +696,9 @@ type FrsRPCVerifyPromotionParentRequest struct {
 	GUIDSize         uint32 `idl:"name:GuidSize" json:"guid_size"`
 }
 
-func (o *FrsRPCVerifyPromotionParentRequest) xxx_ToOp(ctx context.Context, op *xxx_FrsRPCVerifyPromotionParentOperation) *xxx_FrsRPCVerifyPromotionParentOperation {
+func (o *VerifyPromotionParentRequest) xxx_ToOp(ctx context.Context, op *xxx_VerifyPromotionParentOperation) *xxx_VerifyPromotionParentOperation {
 	if op == nil {
-		op = &xxx_FrsRPCVerifyPromotionParentOperation{}
+		op = &xxx_VerifyPromotionParentOperation{}
 	}
 	if o == nil {
 		return op
@@ -712,7 +712,7 @@ func (o *FrsRPCVerifyPromotionParentRequest) xxx_ToOp(ctx context.Context, op *x
 	return op
 }
 
-func (o *FrsRPCVerifyPromotionParentRequest) xxx_FromOp(ctx context.Context, op *xxx_FrsRPCVerifyPromotionParentOperation) {
+func (o *VerifyPromotionParentRequest) xxx_FromOp(ctx context.Context, op *xxx_VerifyPromotionParentOperation) {
 	if o == nil {
 		return
 	}
@@ -723,11 +723,11 @@ func (o *FrsRPCVerifyPromotionParentRequest) xxx_FromOp(ctx context.Context, op 
 	o.PartnerAuthLevel = op.PartnerAuthLevel
 	o.GUIDSize = op.GUIDSize
 }
-func (o *FrsRPCVerifyPromotionParentRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *VerifyPromotionParentRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *FrsRPCVerifyPromotionParentRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_FrsRPCVerifyPromotionParentOperation{}
+func (o *VerifyPromotionParentRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_VerifyPromotionParentOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -735,15 +735,15 @@ func (o *FrsRPCVerifyPromotionParentRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
-// FrsRPCVerifyPromotionParentResponse structure represents the FrsRpcVerifyPromotionParent operation response
-type FrsRPCVerifyPromotionParentResponse struct {
+// VerifyPromotionParentResponse structure represents the FrsRpcVerifyPromotionParent operation response
+type VerifyPromotionParentResponse struct {
 	// Return: The FrsRpcVerifyPromotionParent return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *FrsRPCVerifyPromotionParentResponse) xxx_ToOp(ctx context.Context, op *xxx_FrsRPCVerifyPromotionParentOperation) *xxx_FrsRPCVerifyPromotionParentOperation {
+func (o *VerifyPromotionParentResponse) xxx_ToOp(ctx context.Context, op *xxx_VerifyPromotionParentOperation) *xxx_VerifyPromotionParentOperation {
 	if op == nil {
-		op = &xxx_FrsRPCVerifyPromotionParentOperation{}
+		op = &xxx_VerifyPromotionParentOperation{}
 	}
 	if o == nil {
 		return op
@@ -752,17 +752,17 @@ func (o *FrsRPCVerifyPromotionParentResponse) xxx_ToOp(ctx context.Context, op *
 	return op
 }
 
-func (o *FrsRPCVerifyPromotionParentResponse) xxx_FromOp(ctx context.Context, op *xxx_FrsRPCVerifyPromotionParentOperation) {
+func (o *VerifyPromotionParentResponse) xxx_FromOp(ctx context.Context, op *xxx_VerifyPromotionParentOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *FrsRPCVerifyPromotionParentResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *VerifyPromotionParentResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *FrsRPCVerifyPromotionParentResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_FrsRPCVerifyPromotionParentOperation{}
+func (o *VerifyPromotionParentResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_VerifyPromotionParentOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -770,8 +770,8 @@ func (o *FrsRPCVerifyPromotionParentResponse) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
-// xxx_FrsRPCStartPromotionParentOperation structure represents the FrsRpcStartPromotionParent operation
-type xxx_FrsRPCStartPromotionParentOperation struct {
+// xxx_StartPromotionParentOperation structure represents the FrsRpcStartPromotionParent operation
+type xxx_StartPromotionParentOperation struct {
 	ParentAccount    string `idl:"name:ParentAccount;string;pointer:unique" json:"parent_account"`
 	ParentPassword   string `idl:"name:ParentPassword;string;pointer:unique" json:"parent_password"`
 	SetNameReplica   string `idl:"name:ReplicaSetName;string;pointer:unique" json:"set_name_replica"`
@@ -787,13 +787,13 @@ type xxx_FrsRPCStartPromotionParentOperation struct {
 	Return           uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_FrsRPCStartPromotionParentOperation) OpNum() int { return 2 }
+func (o *xxx_StartPromotionParentOperation) OpNum() int { return 2 }
 
-func (o *xxx_FrsRPCStartPromotionParentOperation) OpName() string {
+func (o *xxx_StartPromotionParentOperation) OpName() string {
 	return "/frsrpc/v1.1/FrsRpcStartPromotionParent"
 }
 
-func (o *xxx_FrsRPCStartPromotionParentOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_StartPromotionParentOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if o.CxtionGUID != nil && o.GUIDSize == 0 {
 		o.GUIDSize = uint32(len(o.CxtionGUID))
 	}
@@ -814,7 +814,7 @@ func (o *xxx_FrsRPCStartPromotionParentOperation) xxx_PrepareRequestPayload(ctx 
 	return nil
 }
 
-func (o *xxx_FrsRPCStartPromotionParentOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_StartPromotionParentOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -1097,7 +1097,7 @@ func (o *xxx_FrsRPCStartPromotionParentOperation) MarshalNDRRequest(ctx context.
 	return nil
 }
 
-func (o *xxx_FrsRPCStartPromotionParentOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_StartPromotionParentOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// ParentAccount {in} (1:{string, pointer=unique, alias=PWCHAR}*(1))(2:{alias=WCHAR}[dim:0,string,null](wchar))
 	{
 		_ptr_ParentAccount := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -1318,7 +1318,7 @@ func (o *xxx_FrsRPCStartPromotionParentOperation) UnmarshalNDRRequest(ctx contex
 	return nil
 }
 
-func (o *xxx_FrsRPCStartPromotionParentOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_StartPromotionParentOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1327,7 +1327,7 @@ func (o *xxx_FrsRPCStartPromotionParentOperation) xxx_PrepareResponsePayload(ctx
 	return nil
 }
 
-func (o *xxx_FrsRPCStartPromotionParentOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_StartPromotionParentOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1379,7 +1379,7 @@ func (o *xxx_FrsRPCStartPromotionParentOperation) MarshalNDRResponse(ctx context
 	return nil
 }
 
-func (o *xxx_FrsRPCStartPromotionParentOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_StartPromotionParentOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// ParentGuid {in, out} (1:{pointer=unique}*(1)[dim:0,size_is=GuidSize](uchar))
 	{
 		_ptr_ParentGuid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -1420,8 +1420,8 @@ func (o *xxx_FrsRPCStartPromotionParentOperation) UnmarshalNDRResponse(ctx conte
 	return nil
 }
 
-// FrsRPCStartPromotionParentRequest structure represents the FrsRpcStartPromotionParent operation request
-type FrsRPCStartPromotionParentRequest struct {
+// StartPromotionParentRequest structure represents the FrsRpcStartPromotionParent operation request
+type StartPromotionParentRequest struct {
 	ParentAccount    string `idl:"name:ParentAccount;string;pointer:unique" json:"parent_account"`
 	ParentPassword   string `idl:"name:ParentPassword;string;pointer:unique" json:"parent_password"`
 	SetNameReplica   string `idl:"name:ReplicaSetName;string;pointer:unique" json:"set_name_replica"`
@@ -1436,9 +1436,9 @@ type FrsRPCStartPromotionParentRequest struct {
 	ParentGUID       []byte `idl:"name:ParentGuid;size_is:(GuidSize);pointer:unique" json:"parent_guid"`
 }
 
-func (o *FrsRPCStartPromotionParentRequest) xxx_ToOp(ctx context.Context, op *xxx_FrsRPCStartPromotionParentOperation) *xxx_FrsRPCStartPromotionParentOperation {
+func (o *StartPromotionParentRequest) xxx_ToOp(ctx context.Context, op *xxx_StartPromotionParentOperation) *xxx_StartPromotionParentOperation {
 	if op == nil {
-		op = &xxx_FrsRPCStartPromotionParentOperation{}
+		op = &xxx_StartPromotionParentOperation{}
 	}
 	if o == nil {
 		return op
@@ -1458,7 +1458,7 @@ func (o *FrsRPCStartPromotionParentRequest) xxx_ToOp(ctx context.Context, op *xx
 	return op
 }
 
-func (o *FrsRPCStartPromotionParentRequest) xxx_FromOp(ctx context.Context, op *xxx_FrsRPCStartPromotionParentOperation) {
+func (o *StartPromotionParentRequest) xxx_FromOp(ctx context.Context, op *xxx_StartPromotionParentOperation) {
 	if o == nil {
 		return
 	}
@@ -1475,11 +1475,11 @@ func (o *FrsRPCStartPromotionParentRequest) xxx_FromOp(ctx context.Context, op *
 	o.PartnerGUID = op.PartnerGUID
 	o.ParentGUID = op.ParentGUID
 }
-func (o *FrsRPCStartPromotionParentRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *StartPromotionParentRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *FrsRPCStartPromotionParentRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_FrsRPCStartPromotionParentOperation{}
+func (o *StartPromotionParentRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_StartPromotionParentOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1487,8 +1487,8 @@ func (o *FrsRPCStartPromotionParentRequest) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
-// FrsRPCStartPromotionParentResponse structure represents the FrsRpcStartPromotionParent operation response
-type FrsRPCStartPromotionParentResponse struct {
+// StartPromotionParentResponse structure represents the FrsRpcStartPromotionParent operation response
+type StartPromotionParentResponse struct {
 	// XXX: GuidSize is an implicit input depedency for output parameters
 	GUIDSize uint32 `idl:"name:GuidSize" json:"guid_size"`
 
@@ -1497,9 +1497,9 @@ type FrsRPCStartPromotionParentResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *FrsRPCStartPromotionParentResponse) xxx_ToOp(ctx context.Context, op *xxx_FrsRPCStartPromotionParentOperation) *xxx_FrsRPCStartPromotionParentOperation {
+func (o *StartPromotionParentResponse) xxx_ToOp(ctx context.Context, op *xxx_StartPromotionParentOperation) *xxx_StartPromotionParentOperation {
 	if op == nil {
-		op = &xxx_FrsRPCStartPromotionParentOperation{}
+		op = &xxx_StartPromotionParentOperation{}
 	}
 	if o == nil {
 		return op
@@ -1514,7 +1514,7 @@ func (o *FrsRPCStartPromotionParentResponse) xxx_ToOp(ctx context.Context, op *x
 	return op
 }
 
-func (o *FrsRPCStartPromotionParentResponse) xxx_FromOp(ctx context.Context, op *xxx_FrsRPCStartPromotionParentOperation) {
+func (o *StartPromotionParentResponse) xxx_FromOp(ctx context.Context, op *xxx_StartPromotionParentOperation) {
 	if o == nil {
 		return
 	}
@@ -1524,11 +1524,11 @@ func (o *FrsRPCStartPromotionParentResponse) xxx_FromOp(ctx context.Context, op 
 	o.ParentGUID = op.ParentGUID
 	o.Return = op.Return
 }
-func (o *FrsRPCStartPromotionParentResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *StartPromotionParentResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *FrsRPCStartPromotionParentResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_FrsRPCStartPromotionParentOperation{}
+func (o *StartPromotionParentResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_StartPromotionParentOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -1536,16 +1536,16 @@ func (o *FrsRPCStartPromotionParentResponse) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
-// xxx_FrsNopOperation structure represents the FrsNOP operation
-type xxx_FrsNopOperation struct {
+// xxx_NoopOperation structure represents the FrsNOP operation
+type xxx_NoopOperation struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_FrsNopOperation) OpNum() int { return 3 }
+func (o *xxx_NoopOperation) OpNum() int { return 3 }
 
-func (o *xxx_FrsNopOperation) OpName() string { return "/frsrpc/v1.1/FrsNOP" }
+func (o *xxx_NoopOperation) OpName() string { return "/frsrpc/v1.1/FrsNOP" }
 
-func (o *xxx_FrsNopOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_NoopOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -1554,18 +1554,18 @@ func (o *xxx_FrsNopOperation) xxx_PrepareRequestPayload(ctx context.Context) err
 	return nil
 }
 
-func (o *xxx_FrsNopOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_NoopOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *xxx_FrsNopOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_NoopOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-func (o *xxx_FrsNopOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_NoopOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1574,7 +1574,7 @@ func (o *xxx_FrsNopOperation) xxx_PrepareResponsePayload(ctx context.Context) er
 	return nil
 }
 
-func (o *xxx_FrsNopOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_NoopOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1587,7 +1587,7 @@ func (o *xxx_FrsNopOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writ
 	return nil
 }
 
-func (o *xxx_FrsNopOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_NoopOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -1597,13 +1597,13 @@ func (o *xxx_FrsNopOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 	return nil
 }
 
-// FrsNopRequest structure represents the FrsNOP operation request
-type FrsNopRequest struct {
+// NoopRequest structure represents the FrsNOP operation request
+type NoopRequest struct {
 }
 
-func (o *FrsNopRequest) xxx_ToOp(ctx context.Context, op *xxx_FrsNopOperation) *xxx_FrsNopOperation {
+func (o *NoopRequest) xxx_ToOp(ctx context.Context, op *xxx_NoopOperation) *xxx_NoopOperation {
 	if op == nil {
-		op = &xxx_FrsNopOperation{}
+		op = &xxx_NoopOperation{}
 	}
 	if o == nil {
 		return op
@@ -1611,16 +1611,16 @@ func (o *FrsNopRequest) xxx_ToOp(ctx context.Context, op *xxx_FrsNopOperation) *
 	return op
 }
 
-func (o *FrsNopRequest) xxx_FromOp(ctx context.Context, op *xxx_FrsNopOperation) {
+func (o *NoopRequest) xxx_FromOp(ctx context.Context, op *xxx_NoopOperation) {
 	if o == nil {
 		return
 	}
 }
-func (o *FrsNopRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *NoopRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *FrsNopRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_FrsNopOperation{}
+func (o *NoopRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_NoopOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1628,15 +1628,15 @@ func (o *FrsNopRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
-// FrsNopResponse structure represents the FrsNOP operation response
-type FrsNopResponse struct {
+// NoopResponse structure represents the FrsNOP operation response
+type NoopResponse struct {
 	// Return: The FrsNOP return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *FrsNopResponse) xxx_ToOp(ctx context.Context, op *xxx_FrsNopOperation) *xxx_FrsNopOperation {
+func (o *NoopResponse) xxx_ToOp(ctx context.Context, op *xxx_NoopOperation) *xxx_NoopOperation {
 	if op == nil {
-		op = &xxx_FrsNopOperation{}
+		op = &xxx_NoopOperation{}
 	}
 	if o == nil {
 		return op
@@ -1645,17 +1645,17 @@ func (o *FrsNopResponse) xxx_ToOp(ctx context.Context, op *xxx_FrsNopOperation) 
 	return op
 }
 
-func (o *FrsNopResponse) xxx_FromOp(ctx context.Context, op *xxx_FrsNopOperation) {
+func (o *NoopResponse) xxx_FromOp(ctx context.Context, op *xxx_NoopOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *FrsNopResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *NoopResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *FrsNopResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_FrsNopOperation{}
+func (o *NoopResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_NoopOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

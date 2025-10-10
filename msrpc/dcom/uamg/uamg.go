@@ -338,7 +338,7 @@ type AddServiceFlag uint16
 var (
 	AddServiceFlagAllowPendingRegistration AddServiceFlag = 1
 	AddServiceFlagAllowOnlineRegistration  AddServiceFlag = 2
-	AddServiceFlagRegisterServiceWithAu    AddServiceFlag = 4
+	AddServiceFlagRegisterServiceWithAU    AddServiceFlag = 4
 )
 
 func (o AddServiceFlag) String() string {
@@ -347,8 +347,8 @@ func (o AddServiceFlag) String() string {
 		return "AddServiceFlagAllowPendingRegistration"
 	case AddServiceFlagAllowOnlineRegistration:
 		return "AddServiceFlagAllowOnlineRegistration"
-	case AddServiceFlagRegisterServiceWithAu:
-		return "AddServiceFlagRegisterServiceWithAu"
+	case AddServiceFlagRegisterServiceWithAU:
+		return "AddServiceFlagRegisterServiceWithAU"
 	}
 	return "Invalid"
 }

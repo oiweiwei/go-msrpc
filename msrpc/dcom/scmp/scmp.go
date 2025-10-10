@@ -37,126 +37,126 @@ var (
 	GoPackage = "dcom/scmp"
 )
 
-// VSSObjectType type represents VSS_OBJECT_TYPE RPC enumeration.
-type VSSObjectType uint32
+// ObjectType type represents VSS_OBJECT_TYPE RPC enumeration.
+type ObjectType uint32
 
 var (
-	VSSObjectTypeUnknown     VSSObjectType = 0
-	VSSObjectTypeNone        VSSObjectType = 1
-	VSSObjectTypeSnapshotSet VSSObjectType = 2
-	VSSObjectTypeSnapshot    VSSObjectType = 3
-	VSSObjectTypeProvider    VSSObjectType = 4
-	VSSObjectTypeCount       VSSObjectType = 5
+	ObjectTypeUnknown     ObjectType = 0
+	ObjectTypeNone        ObjectType = 1
+	ObjectTypeSnapshotSet ObjectType = 2
+	ObjectTypeSnapshot    ObjectType = 3
+	ObjectTypeProvider    ObjectType = 4
+	ObjectTypeCount       ObjectType = 5
 )
 
-func (o VSSObjectType) String() string {
+func (o ObjectType) String() string {
 	switch o {
-	case VSSObjectTypeUnknown:
-		return "VSSObjectTypeUnknown"
-	case VSSObjectTypeNone:
-		return "VSSObjectTypeNone"
-	case VSSObjectTypeSnapshotSet:
-		return "VSSObjectTypeSnapshotSet"
-	case VSSObjectTypeSnapshot:
-		return "VSSObjectTypeSnapshot"
-	case VSSObjectTypeProvider:
-		return "VSSObjectTypeProvider"
-	case VSSObjectTypeCount:
-		return "VSSObjectTypeCount"
+	case ObjectTypeUnknown:
+		return "ObjectTypeUnknown"
+	case ObjectTypeNone:
+		return "ObjectTypeNone"
+	case ObjectTypeSnapshotSet:
+		return "ObjectTypeSnapshotSet"
+	case ObjectTypeSnapshot:
+		return "ObjectTypeSnapshot"
+	case ObjectTypeProvider:
+		return "ObjectTypeProvider"
+	case ObjectTypeCount:
+		return "ObjectTypeCount"
 	}
 	return "Invalid"
 }
 
-// VSSSnapshotState type represents VSS_SNAPSHOT_STATE RPC enumeration.
-type VSSSnapshotState uint32
+// SnapshotState type represents VSS_SNAPSHOT_STATE RPC enumeration.
+type SnapshotState uint32
 
 var (
-	VSSSnapshotStateSsUnknown VSSSnapshotState = 0
-	VSSSnapshotStateSsCreated VSSSnapshotState = 12
+	SnapshotStateUnknown SnapshotState = 0
+	SnapshotStateCreated SnapshotState = 12
 )
 
-func (o VSSSnapshotState) String() string {
+func (o SnapshotState) String() string {
 	switch o {
-	case VSSSnapshotStateSsUnknown:
-		return "VSSSnapshotStateSsUnknown"
-	case VSSSnapshotStateSsCreated:
-		return "VSSSnapshotStateSsCreated"
+	case SnapshotStateUnknown:
+		return "SnapshotStateUnknown"
+	case SnapshotStateCreated:
+		return "SnapshotStateCreated"
 	}
 	return "Invalid"
 }
 
-// VSSVolumeSnapshotAttributes type represents VSS_VOLUME_SNAPSHOT_ATTRIBUTES RPC enumeration.
-type VSSVolumeSnapshotAttributes uint32
+// VolumeSnapshotAttributes type represents VSS_VOLUME_SNAPSHOT_ATTRIBUTES RPC enumeration.
+type VolumeSnapshotAttributes uint32
 
 var (
-	VSSVolumeSnapshotAttributesVolsnapAttributePersistent       VSSVolumeSnapshotAttributes = 1
-	VSSVolumeSnapshotAttributesVolsnapAttributeNoAutorecovery   VSSVolumeSnapshotAttributes = 2
-	VSSVolumeSnapshotAttributesVolsnapAttributeClientAccessible VSSVolumeSnapshotAttributes = 4
-	VSSVolumeSnapshotAttributesVolsnapAttributeNoAutoRelease    VSSVolumeSnapshotAttributes = 8
-	VSSVolumeSnapshotAttributesVolsnapAttributeNoWriters        VSSVolumeSnapshotAttributes = 16
+	VolumeSnapshotAttributesPersistent       VolumeSnapshotAttributes = 1
+	VolumeSnapshotAttributesNoAutorecovery   VolumeSnapshotAttributes = 2
+	VolumeSnapshotAttributesClientAccessible VolumeSnapshotAttributes = 4
+	VolumeSnapshotAttributesNoAutoRelease    VolumeSnapshotAttributes = 8
+	VolumeSnapshotAttributesNoWriters        VolumeSnapshotAttributes = 16
 )
 
-func (o VSSVolumeSnapshotAttributes) String() string {
+func (o VolumeSnapshotAttributes) String() string {
 	switch o {
-	case VSSVolumeSnapshotAttributesVolsnapAttributePersistent:
-		return "VSSVolumeSnapshotAttributesVolsnapAttributePersistent"
-	case VSSVolumeSnapshotAttributesVolsnapAttributeNoAutorecovery:
-		return "VSSVolumeSnapshotAttributesVolsnapAttributeNoAutorecovery"
-	case VSSVolumeSnapshotAttributesVolsnapAttributeClientAccessible:
-		return "VSSVolumeSnapshotAttributesVolsnapAttributeClientAccessible"
-	case VSSVolumeSnapshotAttributesVolsnapAttributeNoAutoRelease:
-		return "VSSVolumeSnapshotAttributesVolsnapAttributeNoAutoRelease"
-	case VSSVolumeSnapshotAttributesVolsnapAttributeNoWriters:
-		return "VSSVolumeSnapshotAttributesVolsnapAttributeNoWriters"
+	case VolumeSnapshotAttributesPersistent:
+		return "VolumeSnapshotAttributesPersistent"
+	case VolumeSnapshotAttributesNoAutorecovery:
+		return "VolumeSnapshotAttributesNoAutorecovery"
+	case VolumeSnapshotAttributesClientAccessible:
+		return "VolumeSnapshotAttributesClientAccessible"
+	case VolumeSnapshotAttributesNoAutoRelease:
+		return "VolumeSnapshotAttributesNoAutoRelease"
+	case VolumeSnapshotAttributesNoWriters:
+		return "VolumeSnapshotAttributesNoWriters"
 	}
 	return "Invalid"
 }
 
-// VSSManagementObjectType type represents VSS_MGMT_OBJECT_TYPE RPC enumeration.
-type VSSManagementObjectType uint32
+// ManagementObjectType type represents VSS_MGMT_OBJECT_TYPE RPC enumeration.
+type ManagementObjectType uint32
 
 var (
-	VSSManagementObjectTypeUnknown    VSSManagementObjectType = 0
-	VSSManagementObjectTypeVolume     VSSManagementObjectType = 1
-	VSSManagementObjectTypeDiffVolume VSSManagementObjectType = 2
-	VSSManagementObjectTypeDiffArea   VSSManagementObjectType = 3
+	ManagementObjectTypeUnknown    ManagementObjectType = 0
+	ManagementObjectTypeVolume     ManagementObjectType = 1
+	ManagementObjectTypeDiffVolume ManagementObjectType = 2
+	ManagementObjectTypeDiffArea   ManagementObjectType = 3
 )
 
-func (o VSSManagementObjectType) String() string {
+func (o ManagementObjectType) String() string {
 	switch o {
-	case VSSManagementObjectTypeUnknown:
-		return "VSSManagementObjectTypeUnknown"
-	case VSSManagementObjectTypeVolume:
-		return "VSSManagementObjectTypeVolume"
-	case VSSManagementObjectTypeDiffVolume:
-		return "VSSManagementObjectTypeDiffVolume"
-	case VSSManagementObjectTypeDiffArea:
-		return "VSSManagementObjectTypeDiffArea"
+	case ManagementObjectTypeUnknown:
+		return "ManagementObjectTypeUnknown"
+	case ManagementObjectTypeVolume:
+		return "ManagementObjectTypeVolume"
+	case ManagementObjectTypeDiffVolume:
+		return "ManagementObjectTypeDiffVolume"
+	case ManagementObjectTypeDiffArea:
+		return "ManagementObjectTypeDiffArea"
 	}
 	return "Invalid"
 }
 
-// VSSProviderType type represents VSS_PROVIDER_TYPE RPC enumeration.
-type VSSProviderType uint32
+// ProviderType type represents VSS_PROVIDER_TYPE RPC enumeration.
+type ProviderType uint32
 
 var (
-	VSSProviderTypeUnknown VSSProviderType = 0
+	ProviderTypeUnknown ProviderType = 0
 )
 
-func (o VSSProviderType) String() string {
+func (o ProviderType) String() string {
 	switch o {
-	case VSSProviderTypeUnknown:
-		return "VSSProviderTypeUnknown"
+	case ProviderTypeUnknown:
+		return "ProviderTypeUnknown"
 	}
 	return "Invalid"
 }
 
-// VSSID structure represents VSS_ID RPC structure.
-type VSSID dtyp.GUID
+// ID structure represents VSS_ID RPC structure.
+type ID dtyp.GUID
 
-func (o *VSSID) GUID() *dtyp.GUID { return (*dtyp.GUID)(o) }
+func (o *ID) GUID() *dtyp.GUID { return (*dtyp.GUID)(o) }
 
-func (o *VSSID) xxx_PreparePayload(ctx context.Context) error {
+func (o *ID) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -165,7 +165,7 @@ func (o *VSSID) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *VSSID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -200,7 +200,7 @@ func (o *VSSID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *VSSID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -226,24 +226,24 @@ func (o *VSSID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// VSSSnapshotProperty structure represents VSS_SNAPSHOT_PROP RPC structure.
-type VSSSnapshotProperty struct {
-	SnapshotID           *VSSID           `idl:"name:m_SnapshotId" json:"snapshot_id"`
-	SnapshotSetID        *VSSID           `idl:"name:m_SnapshotSetId" json:"snapshot_set_id"`
-	SnapshotsCount       int32            `idl:"name:m_lSnapshotsCount" json:"snapshots_count"`
-	SnapshotDeviceObject string           `idl:"name:m_pwszSnapshotDeviceObject" json:"snapshot_device_object"`
-	OriginalVolumeName   string           `idl:"name:m_pwszOriginalVolumeName" json:"original_volume_name"`
-	OriginatingMachine   string           `idl:"name:m_pwszOriginatingMachine" json:"originating_machine"`
-	ServiceMachine       string           `idl:"name:m_pwszServiceMachine" json:"service_machine"`
-	ExposedName          string           `idl:"name:m_pwszExposedName" json:"exposed_name"`
-	ExposedPath          string           `idl:"name:m_pwszExposedPath" json:"exposed_path"`
-	ProviderID           *VSSID           `idl:"name:m_ProviderId" json:"provider_id"`
-	SnapshotAttributes   int32            `idl:"name:m_lSnapshotAttributes" json:"snapshot_attributes"`
-	CreationTimestamp    int64            `idl:"name:m_tsCreationTimestamp" json:"creation_timestamp"`
-	Status               VSSSnapshotState `idl:"name:m_eStatus" json:"status"`
+// SnapshotProperty structure represents VSS_SNAPSHOT_PROP RPC structure.
+type SnapshotProperty struct {
+	SnapshotID           *ID           `idl:"name:m_SnapshotId" json:"snapshot_id"`
+	SnapshotSetID        *ID           `idl:"name:m_SnapshotSetId" json:"snapshot_set_id"`
+	SnapshotsCount       int32         `idl:"name:m_lSnapshotsCount" json:"snapshots_count"`
+	SnapshotDeviceObject string        `idl:"name:m_pwszSnapshotDeviceObject" json:"snapshot_device_object"`
+	OriginalVolumeName   string        `idl:"name:m_pwszOriginalVolumeName" json:"original_volume_name"`
+	OriginatingMachine   string        `idl:"name:m_pwszOriginatingMachine" json:"originating_machine"`
+	ServiceMachine       string        `idl:"name:m_pwszServiceMachine" json:"service_machine"`
+	ExposedName          string        `idl:"name:m_pwszExposedName" json:"exposed_name"`
+	ExposedPath          string        `idl:"name:m_pwszExposedPath" json:"exposed_path"`
+	ProviderID           *ID           `idl:"name:m_ProviderId" json:"provider_id"`
+	SnapshotAttributes   int32         `idl:"name:m_lSnapshotAttributes" json:"snapshot_attributes"`
+	CreationTimestamp    int64         `idl:"name:m_tsCreationTimestamp" json:"creation_timestamp"`
+	Status               SnapshotState `idl:"name:m_eStatus" json:"status"`
 }
 
-func (o *VSSSnapshotProperty) xxx_PreparePayload(ctx context.Context) error {
+func (o *SnapshotProperty) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -252,7 +252,7 @@ func (o *VSSSnapshotProperty) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *VSSSnapshotProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SnapshotProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -264,7 +264,7 @@ func (o *VSSSnapshotProperty) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 			return err
 		}
 	} else {
-		if err := (&VSSID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -273,7 +273,7 @@ func (o *VSSSnapshotProperty) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 			return err
 		}
 	} else {
-		if err := (&VSSID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -375,7 +375,7 @@ func (o *VSSSnapshotProperty) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 			return err
 		}
 	} else {
-		if err := (&VSSID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -393,18 +393,18 @@ func (o *VSSSnapshotProperty) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	}
 	return nil
 }
-func (o *VSSSnapshotProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *SnapshotProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
 	if o.SnapshotID == nil {
-		o.SnapshotID = &VSSID{}
+		o.SnapshotID = &ID{}
 	}
 	if err := o.SnapshotID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.SnapshotSetID == nil {
-		o.SnapshotSetID = &VSSID{}
+		o.SnapshotSetID = &ID{}
 	}
 	if err := o.SnapshotSetID.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -473,7 +473,7 @@ func (o *VSSSnapshotProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		return err
 	}
 	if o.ProviderID == nil {
-		o.ProviderID = &VSSID{}
+		o.ProviderID = &ID{}
 	}
 	if err := o.ProviderID.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -493,17 +493,17 @@ func (o *VSSSnapshotProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	return nil
 }
 
-// VSSProviderProperty structure represents VSS_PROVIDER_PROP RPC structure.
-type VSSProviderProperty struct {
-	ProviderID        *VSSID          `idl:"name:m_ProviderId" json:"provider_id"`
-	ProviderName      string          `idl:"name:m_pwszProviderName" json:"provider_name"`
-	ProviderType      VSSProviderType `idl:"name:m_eProviderType" json:"provider_type"`
-	ProviderVersion   string          `idl:"name:m_pwszProviderVersion" json:"provider_version"`
-	ProviderVersionID *VSSID          `idl:"name:m_ProviderVersionId" json:"provider_version_id"`
-	ClassID           *dcom.ClassID   `idl:"name:m_ClassId" json:"class_id"`
+// ProviderProperty structure represents VSS_PROVIDER_PROP RPC structure.
+type ProviderProperty struct {
+	ProviderID        *ID           `idl:"name:m_ProviderId" json:"provider_id"`
+	ProviderName      string        `idl:"name:m_pwszProviderName" json:"provider_name"`
+	ProviderType      ProviderType  `idl:"name:m_eProviderType" json:"provider_type"`
+	ProviderVersion   string        `idl:"name:m_pwszProviderVersion" json:"provider_version"`
+	ProviderVersionID *ID           `idl:"name:m_ProviderVersionId" json:"provider_version_id"`
+	ClassID           *dcom.ClassID `idl:"name:m_ClassId" json:"class_id"`
 }
 
-func (o *VSSProviderProperty) xxx_PreparePayload(ctx context.Context) error {
+func (o *ProviderProperty) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -512,7 +512,7 @@ func (o *VSSProviderProperty) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *VSSProviderProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ProviderProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -524,7 +524,7 @@ func (o *VSSProviderProperty) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 			return err
 		}
 	} else {
-		if err := (&VSSID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -566,7 +566,7 @@ func (o *VSSProviderProperty) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 			return err
 		}
 	} else {
-		if err := (&VSSID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -584,12 +584,12 @@ func (o *VSSProviderProperty) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	}
 	return nil
 }
-func (o *VSSProviderProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ProviderProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
 	if o.ProviderID == nil {
-		o.ProviderID = &VSSID{}
+		o.ProviderID = &ID{}
 	}
 	if err := o.ProviderID.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -618,7 +618,7 @@ func (o *VSSProviderProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		return err
 	}
 	if o.ProviderVersionID == nil {
-		o.ProviderVersionID = &VSSID{}
+		o.ProviderVersionID = &ID{}
 	}
 	if err := o.ProviderVersionID.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -635,52 +635,52 @@ func (o *VSSProviderProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	return nil
 }
 
-// VSSObjectUnion structure represents VSS_OBJECT_UNION RPC union.
-type VSSObjectUnion struct {
+// ObjectUnion structure represents VSS_OBJECT_UNION RPC union.
+type ObjectUnion struct {
 	// Types that are assignable to Value
 	//
-	// *VSSObjectUnion_Snap
-	// *VSSObjectUnion_Prov
-	Value is_VSSObjectUnion `json:"value"`
+	// *ObjectUnion_Snap
+	// *ObjectUnion_Provider
+	Value is_ObjectUnion `json:"value"`
 }
 
-func (o *VSSObjectUnion) GetValue() any {
+func (o *ObjectUnion) GetValue() any {
 	if o == nil {
 		return nil
 	}
 	switch value := (interface{})(o.Value).(type) {
-	case *VSSObjectUnion_Snap:
+	case *ObjectUnion_Snap:
 		if value != nil {
 			return value.Snap
 		}
-	case *VSSObjectUnion_Prov:
+	case *ObjectUnion_Provider:
 		if value != nil {
-			return value.Prov
+			return value.Provider
 		}
 	}
 	return nil
 }
 
-type is_VSSObjectUnion interface {
+type is_ObjectUnion interface {
 	ndr.Marshaler
 	ndr.Unmarshaler
-	is_VSSObjectUnion()
+	is_ObjectUnion()
 }
 
-func (o *VSSObjectUnion) NDRSwitchValue(sw uint32) uint32 {
+func (o *ObjectUnion) NDRSwitchValue(sw uint32) uint32 {
 	if o == nil {
 		return uint32(0)
 	}
 	switch (interface{})(o.Value).(type) {
-	case *VSSObjectUnion_Snap:
+	case *ObjectUnion_Snap:
 		return uint32(3)
-	case *VSSObjectUnion_Prov:
+	case *ObjectUnion_Provider:
 		return uint32(4)
 	}
 	return uint32(0)
 }
 
-func (o *VSSObjectUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+func (o *ObjectUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
 	if err := w.WriteUnionAlign(8); err != nil {
 		return err
 	}
@@ -692,24 +692,24 @@ func (o *VSSObjectUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw u
 	}
 	switch sw {
 	case uint32(3):
-		_o, _ := o.Value.(*VSSObjectUnion_Snap)
+		_o, _ := o.Value.(*ObjectUnion_Snap)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&VSSObjectUnion_Snap{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectUnion_Snap{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(4):
-		_o, _ := o.Value.(*VSSObjectUnion_Prov)
+		_o, _ := o.Value.(*ObjectUnion_Provider)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&VSSObjectUnion_Prov{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectUnion_Provider{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -718,7 +718,7 @@ func (o *VSSObjectUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw u
 	return nil
 }
 
-func (o *VSSObjectUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+func (o *ObjectUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadUnionAlign(8); err != nil {
 		return err
 	}
@@ -730,12 +730,12 @@ func (o *VSSObjectUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw
 	}
 	switch sw {
 	case uint32(3):
-		o.Value = &VSSObjectUnion_Snap{}
+		o.Value = &ObjectUnion_Snap{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(4):
-		o.Value = &VSSObjectUnion_Prov{}
+		o.Value = &ObjectUnion_Provider{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -744,30 +744,30 @@ func (o *VSSObjectUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw
 	return nil
 }
 
-// VSSObjectUnion_Snap structure represents VSS_OBJECT_UNION RPC union arm.
+// ObjectUnion_Snap structure represents VSS_OBJECT_UNION RPC union arm.
 //
 // It has following labels: 3
-type VSSObjectUnion_Snap struct {
-	Snap *VSSSnapshotProperty `idl:"name:Snap" json:"snap"`
+type ObjectUnion_Snap struct {
+	Snap *SnapshotProperty `idl:"name:Snap" json:"snap"`
 }
 
-func (*VSSObjectUnion_Snap) is_VSSObjectUnion() {}
+func (*ObjectUnion_Snap) is_ObjectUnion() {}
 
-func (o *VSSObjectUnion_Snap) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectUnion_Snap) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.Snap != nil {
 		if err := o.Snap.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&VSSSnapshotProperty{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&SnapshotProperty{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *VSSObjectUnion_Snap) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectUnion_Snap) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.Snap == nil {
-		o.Snap = &VSSSnapshotProperty{}
+		o.Snap = &SnapshotProperty{}
 	}
 	if err := o.Snap.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -775,44 +775,44 @@ func (o *VSSObjectUnion_Snap) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	return nil
 }
 
-// VSSObjectUnion_Prov structure represents VSS_OBJECT_UNION RPC union arm.
+// ObjectUnion_Provider structure represents VSS_OBJECT_UNION RPC union arm.
 //
 // It has following labels: 4
-type VSSObjectUnion_Prov struct {
-	Prov *VSSProviderProperty `idl:"name:Prov" json:"prov"`
+type ObjectUnion_Provider struct {
+	Provider *ProviderProperty `idl:"name:Prov" json:"provider"`
 }
 
-func (*VSSObjectUnion_Prov) is_VSSObjectUnion() {}
+func (*ObjectUnion_Provider) is_ObjectUnion() {}
 
-func (o *VSSObjectUnion_Prov) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.Prov != nil {
-		if err := o.Prov.MarshalNDR(ctx, w); err != nil {
+func (o *ObjectUnion_Provider) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.Provider != nil {
+		if err := o.Provider.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&VSSProviderProperty{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ProviderProperty{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *VSSObjectUnion_Prov) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.Prov == nil {
-		o.Prov = &VSSProviderProperty{}
+func (o *ObjectUnion_Provider) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.Provider == nil {
+		o.Provider = &ProviderProperty{}
 	}
-	if err := o.Prov.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.Provider.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// VSSObjectProperty structure represents VSS_OBJECT_PROP RPC structure.
-type VSSObjectProperty struct {
-	Type   VSSObjectType   `idl:"name:Type" json:"type"`
-	Object *VSSObjectUnion `idl:"name:Obj;switch_is:Type" json:"object"`
+// ObjectProperty structure represents VSS_OBJECT_PROP RPC structure.
+type ObjectProperty struct {
+	Type   ObjectType   `idl:"name:Type" json:"type"`
+	Object *ObjectUnion `idl:"name:Obj;switch_is:Type" json:"object"`
 }
 
-func (o *VSSObjectProperty) xxx_PreparePayload(ctx context.Context) error {
+func (o *ObjectProperty) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -821,7 +821,7 @@ func (o *VSSObjectProperty) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *VSSObjectProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -837,13 +837,13 @@ func (o *VSSObjectProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 			return err
 		}
 	} else {
-		if err := (&VSSObjectUnion{}).MarshalUnionNDR(ctx, w, _swObject); err != nil {
+		if err := (&ObjectUnion{}).MarshalUnionNDR(ctx, w, _swObject); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *VSSObjectProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
@@ -851,7 +851,7 @@ func (o *VSSObjectProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		return err
 	}
 	if o.Object == nil {
-		o.Object = &VSSObjectUnion{}
+		o.Object = &ObjectUnion{}
 	}
 	_swObject := uint32(o.Type)
 	if err := o.Object.UnmarshalUnionNDR(ctx, w, _swObject); err != nil {
@@ -860,13 +860,13 @@ func (o *VSSObjectProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	return nil
 }
 
-// VSSVolumeProperty structure represents VSS_VOLUME_PROP RPC structure.
-type VSSVolumeProperty struct {
+// VolumeProperty structure represents VSS_VOLUME_PROP RPC structure.
+type VolumeProperty struct {
 	VolumeName        string `idl:"name:m_pwszVolumeName" json:"volume_name"`
 	VolumeDisplayName string `idl:"name:m_pwszVolumeDisplayName" json:"volume_display_name"`
 }
 
-func (o *VSSVolumeProperty) xxx_PreparePayload(ctx context.Context) error {
+func (o *VolumeProperty) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -875,7 +875,7 @@ func (o *VSSVolumeProperty) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *VSSVolumeProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *VolumeProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -914,7 +914,7 @@ func (o *VSSVolumeProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	}
 	return nil
 }
-func (o *VSSVolumeProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *VolumeProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(6); err != nil {
 		return err
 	}
@@ -941,15 +941,15 @@ func (o *VSSVolumeProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	return nil
 }
 
-// VSSDiffVolumeProperty structure represents VSS_DIFF_VOLUME_PROP RPC structure.
-type VSSDiffVolumeProperty struct {
-	VolumeName         string `idl:"name:m_pwszVolumeName" json:"volume_name"`
-	VolumeDisplayName  string `idl:"name:m_pwszVolumeDisplayName" json:"volume_display_name"`
-	LlVolumeFreeSpace  int64  `idl:"name:m_llVolumeFreeSpace" json:"ll_volume_free_space"`
-	LlVolumeTotalSpace int64  `idl:"name:m_llVolumeTotalSpace" json:"ll_volume_total_space"`
+// DiffVolumeProperty structure represents VSS_DIFF_VOLUME_PROP RPC structure.
+type DiffVolumeProperty struct {
+	VolumeName        string `idl:"name:m_pwszVolumeName" json:"volume_name"`
+	VolumeDisplayName string `idl:"name:m_pwszVolumeDisplayName" json:"volume_display_name"`
+	VolumeFreeSpace   int64  `idl:"name:m_llVolumeFreeSpace" json:"volume_free_space"`
+	VolumeTotalSpace  int64  `idl:"name:m_llVolumeTotalSpace" json:"volume_total_space"`
 }
 
-func (o *VSSDiffVolumeProperty) xxx_PreparePayload(ctx context.Context) error {
+func (o *DiffVolumeProperty) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -958,7 +958,7 @@ func (o *VSSDiffVolumeProperty) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *VSSDiffVolumeProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *DiffVolumeProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -995,15 +995,15 @@ func (o *VSSDiffVolumeProperty) MarshalNDR(ctx context.Context, w ndr.Writer) er
 			return err
 		}
 	}
-	if err := w.WriteData(o.LlVolumeFreeSpace); err != nil {
+	if err := w.WriteData(o.VolumeFreeSpace); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.LlVolumeTotalSpace); err != nil {
+	if err := w.WriteData(o.VolumeTotalSpace); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *VSSDiffVolumeProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *DiffVolumeProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
@@ -1027,25 +1027,25 @@ func (o *VSSDiffVolumeProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	if err := w.ReadPointer(&o.VolumeDisplayName, _s_m_pwszVolumeDisplayName, _ptr_m_pwszVolumeDisplayName); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.LlVolumeFreeSpace); err != nil {
+	if err := w.ReadData(&o.VolumeFreeSpace); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.LlVolumeTotalSpace); err != nil {
+	if err := w.ReadData(&o.VolumeTotalSpace); err != nil {
 		return err
 	}
 	return nil
 }
 
-// VSSDiffAreaProperty structure represents VSS_DIFF_AREA_PROP RPC structure.
-type VSSDiffAreaProperty struct {
-	VolumeName           string `idl:"name:m_pwszVolumeName" json:"volume_name"`
-	DiffAreaVolumeName   string `idl:"name:m_pwszDiffAreaVolumeName" json:"diff_area_volume_name"`
-	LlMaximumDiffSpace   int64  `idl:"name:m_llMaximumDiffSpace" json:"ll_maximum_diff_space"`
-	LlAllocatedDiffSpace int64  `idl:"name:m_llAllocatedDiffSpace" json:"ll_allocated_diff_space"`
-	LlUsedDiffSpace      int64  `idl:"name:m_llUsedDiffSpace" json:"ll_used_diff_space"`
+// DiffAreaProperty structure represents VSS_DIFF_AREA_PROP RPC structure.
+type DiffAreaProperty struct {
+	VolumeName         string `idl:"name:m_pwszVolumeName" json:"volume_name"`
+	DiffAreaVolumeName string `idl:"name:m_pwszDiffAreaVolumeName" json:"diff_area_volume_name"`
+	MaximumDiffSpace   int64  `idl:"name:m_llMaximumDiffSpace" json:"maximum_diff_space"`
+	AllocatedDiffSpace int64  `idl:"name:m_llAllocatedDiffSpace" json:"allocated_diff_space"`
+	UsedDiffSpace      int64  `idl:"name:m_llUsedDiffSpace" json:"used_diff_space"`
 }
 
-func (o *VSSDiffAreaProperty) xxx_PreparePayload(ctx context.Context) error {
+func (o *DiffAreaProperty) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -1054,7 +1054,7 @@ func (o *VSSDiffAreaProperty) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *VSSDiffAreaProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *DiffAreaProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -1091,18 +1091,18 @@ func (o *VSSDiffAreaProperty) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 			return err
 		}
 	}
-	if err := w.WriteData(o.LlMaximumDiffSpace); err != nil {
+	if err := w.WriteData(o.MaximumDiffSpace); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.LlAllocatedDiffSpace); err != nil {
+	if err := w.WriteData(o.AllocatedDiffSpace); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.LlUsedDiffSpace); err != nil {
+	if err := w.WriteData(o.UsedDiffSpace); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *VSSDiffAreaProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *DiffAreaProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
@@ -1126,42 +1126,42 @@ func (o *VSSDiffAreaProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	if err := w.ReadPointer(&o.DiffAreaVolumeName, _s_m_pwszDiffAreaVolumeName, _ptr_m_pwszDiffAreaVolumeName); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.LlMaximumDiffSpace); err != nil {
+	if err := w.ReadData(&o.MaximumDiffSpace); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.LlAllocatedDiffSpace); err != nil {
+	if err := w.ReadData(&o.AllocatedDiffSpace); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.LlUsedDiffSpace); err != nil {
+	if err := w.ReadData(&o.UsedDiffSpace); err != nil {
 		return err
 	}
 	return nil
 }
 
-// VSSManagementObjectUnion structure represents VSS_MGMT_OBJECT_UNION RPC union.
-type VSSManagementObjectUnion struct {
+// ManagementObjectUnion structure represents VSS_MGMT_OBJECT_UNION RPC union.
+type ManagementObjectUnion struct {
 	// Types that are assignable to Value
 	//
-	// *VSSManagementObjectUnion_Vol
-	// *VSSManagementObjectUnion_DiffVol
-	// *VSSManagementObjectUnion_DiffArea
-	Value is_VSSManagementObjectUnion `json:"value"`
+	// *ManagementObjectUnion_Volume
+	// *ManagementObjectUnion_DiffVolume
+	// *ManagementObjectUnion_DiffArea
+	Value is_ManagementObjectUnion `json:"value"`
 }
 
-func (o *VSSManagementObjectUnion) GetValue() any {
+func (o *ManagementObjectUnion) GetValue() any {
 	if o == nil {
 		return nil
 	}
 	switch value := (interface{})(o.Value).(type) {
-	case *VSSManagementObjectUnion_Vol:
+	case *ManagementObjectUnion_Volume:
 		if value != nil {
-			return value.Vol
+			return value.Volume
 		}
-	case *VSSManagementObjectUnion_DiffVol:
+	case *ManagementObjectUnion_DiffVolume:
 		if value != nil {
-			return value.DiffVol
+			return value.DiffVolume
 		}
-	case *VSSManagementObjectUnion_DiffArea:
+	case *ManagementObjectUnion_DiffArea:
 		if value != nil {
 			return value.DiffArea
 		}
@@ -1169,28 +1169,28 @@ func (o *VSSManagementObjectUnion) GetValue() any {
 	return nil
 }
 
-type is_VSSManagementObjectUnion interface {
+type is_ManagementObjectUnion interface {
 	ndr.Marshaler
 	ndr.Unmarshaler
-	is_VSSManagementObjectUnion()
+	is_ManagementObjectUnion()
 }
 
-func (o *VSSManagementObjectUnion) NDRSwitchValue(sw uint32) uint32 {
+func (o *ManagementObjectUnion) NDRSwitchValue(sw uint32) uint32 {
 	if o == nil {
 		return uint32(0)
 	}
 	switch (interface{})(o.Value).(type) {
-	case *VSSManagementObjectUnion_Vol:
+	case *ManagementObjectUnion_Volume:
 		return uint32(1)
-	case *VSSManagementObjectUnion_DiffVol:
+	case *ManagementObjectUnion_DiffVolume:
 		return uint32(2)
-	case *VSSManagementObjectUnion_DiffArea:
+	case *ManagementObjectUnion_DiffArea:
 		return uint32(3)
 	}
 	return uint32(0)
 }
 
-func (o *VSSManagementObjectUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+func (o *ManagementObjectUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
 	if err := w.WriteUnionAlign(8); err != nil {
 		return err
 	}
@@ -1202,35 +1202,35 @@ func (o *VSSManagementObjectUnion) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 	}
 	switch sw {
 	case uint32(1):
-		_o, _ := o.Value.(*VSSManagementObjectUnion_Vol)
+		_o, _ := o.Value.(*ManagementObjectUnion_Volume)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&VSSManagementObjectUnion_Vol{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ManagementObjectUnion_Volume{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(2):
-		_o, _ := o.Value.(*VSSManagementObjectUnion_DiffVol)
+		_o, _ := o.Value.(*ManagementObjectUnion_DiffVolume)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&VSSManagementObjectUnion_DiffVol{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ManagementObjectUnion_DiffVolume{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(3):
-		_o, _ := o.Value.(*VSSManagementObjectUnion_DiffArea)
+		_o, _ := o.Value.(*ManagementObjectUnion_DiffArea)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&VSSManagementObjectUnion_DiffArea{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ManagementObjectUnion_DiffArea{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1239,7 +1239,7 @@ func (o *VSSManagementObjectUnion) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 	return nil
 }
 
-func (o *VSSManagementObjectUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+func (o *ManagementObjectUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadUnionAlign(8); err != nil {
 		return err
 	}
@@ -1251,17 +1251,17 @@ func (o *VSSManagementObjectUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.
 	}
 	switch sw {
 	case uint32(1):
-		o.Value = &VSSManagementObjectUnion_Vol{}
+		o.Value = &ManagementObjectUnion_Volume{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(2):
-		o.Value = &VSSManagementObjectUnion_DiffVol{}
+		o.Value = &ManagementObjectUnion_DiffVolume{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(3):
-		o.Value = &VSSManagementObjectUnion_DiffArea{}
+		o.Value = &ManagementObjectUnion_DiffArea{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -1270,92 +1270,92 @@ func (o *VSSManagementObjectUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.
 	return nil
 }
 
-// VSSManagementObjectUnion_Vol structure represents VSS_MGMT_OBJECT_UNION RPC union arm.
+// ManagementObjectUnion_Volume structure represents VSS_MGMT_OBJECT_UNION RPC union arm.
 //
 // It has following labels: 1
-type VSSManagementObjectUnion_Vol struct {
-	Vol *VSSVolumeProperty `idl:"name:Vol" json:"vol"`
+type ManagementObjectUnion_Volume struct {
+	Volume *VolumeProperty `idl:"name:Vol" json:"volume"`
 }
 
-func (*VSSManagementObjectUnion_Vol) is_VSSManagementObjectUnion() {}
+func (*ManagementObjectUnion_Volume) is_ManagementObjectUnion() {}
 
-func (o *VSSManagementObjectUnion_Vol) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.Vol != nil {
-		if err := o.Vol.MarshalNDR(ctx, w); err != nil {
+func (o *ManagementObjectUnion_Volume) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.Volume != nil {
+		if err := o.Volume.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&VSSVolumeProperty{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&VolumeProperty{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *VSSManagementObjectUnion_Vol) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.Vol == nil {
-		o.Vol = &VSSVolumeProperty{}
+func (o *ManagementObjectUnion_Volume) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.Volume == nil {
+		o.Volume = &VolumeProperty{}
 	}
-	if err := o.Vol.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.Volume.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// VSSManagementObjectUnion_DiffVol structure represents VSS_MGMT_OBJECT_UNION RPC union arm.
+// ManagementObjectUnion_DiffVolume structure represents VSS_MGMT_OBJECT_UNION RPC union arm.
 //
 // It has following labels: 2
-type VSSManagementObjectUnion_DiffVol struct {
-	DiffVol *VSSDiffVolumeProperty `idl:"name:DiffVol" json:"diff_vol"`
+type ManagementObjectUnion_DiffVolume struct {
+	DiffVolume *DiffVolumeProperty `idl:"name:DiffVol" json:"diff_volume"`
 }
 
-func (*VSSManagementObjectUnion_DiffVol) is_VSSManagementObjectUnion() {}
+func (*ManagementObjectUnion_DiffVolume) is_ManagementObjectUnion() {}
 
-func (o *VSSManagementObjectUnion_DiffVol) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.DiffVol != nil {
-		if err := o.DiffVol.MarshalNDR(ctx, w); err != nil {
+func (o *ManagementObjectUnion_DiffVolume) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.DiffVolume != nil {
+		if err := o.DiffVolume.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&VSSDiffVolumeProperty{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&DiffVolumeProperty{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *VSSManagementObjectUnion_DiffVol) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.DiffVol == nil {
-		o.DiffVol = &VSSDiffVolumeProperty{}
+func (o *ManagementObjectUnion_DiffVolume) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.DiffVolume == nil {
+		o.DiffVolume = &DiffVolumeProperty{}
 	}
-	if err := o.DiffVol.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.DiffVolume.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// VSSManagementObjectUnion_DiffArea structure represents VSS_MGMT_OBJECT_UNION RPC union arm.
+// ManagementObjectUnion_DiffArea structure represents VSS_MGMT_OBJECT_UNION RPC union arm.
 //
 // It has following labels: 3
-type VSSManagementObjectUnion_DiffArea struct {
-	DiffArea *VSSDiffAreaProperty `idl:"name:DiffArea" json:"diff_area"`
+type ManagementObjectUnion_DiffArea struct {
+	DiffArea *DiffAreaProperty `idl:"name:DiffArea" json:"diff_area"`
 }
 
-func (*VSSManagementObjectUnion_DiffArea) is_VSSManagementObjectUnion() {}
+func (*ManagementObjectUnion_DiffArea) is_ManagementObjectUnion() {}
 
-func (o *VSSManagementObjectUnion_DiffArea) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ManagementObjectUnion_DiffArea) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.DiffArea != nil {
 		if err := o.DiffArea.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&VSSDiffAreaProperty{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&DiffAreaProperty{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *VSSManagementObjectUnion_DiffArea) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ManagementObjectUnion_DiffArea) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.DiffArea == nil {
-		o.DiffArea = &VSSDiffAreaProperty{}
+		o.DiffArea = &DiffAreaProperty{}
 	}
 	if err := o.DiffArea.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -1363,13 +1363,13 @@ func (o *VSSManagementObjectUnion_DiffArea) UnmarshalNDR(ctx context.Context, w 
 	return nil
 }
 
-// VSSManagementObjectProperty structure represents VSS_MGMT_OBJECT_PROP RPC structure.
-type VSSManagementObjectProperty struct {
-	Type   VSSManagementObjectType   `idl:"name:Type" json:"type"`
-	Object *VSSManagementObjectUnion `idl:"name:Obj;switch_is:Type" json:"object"`
+// ManagementObjectProperty structure represents VSS_MGMT_OBJECT_PROP RPC structure.
+type ManagementObjectProperty struct {
+	Type   ManagementObjectType   `idl:"name:Type" json:"type"`
+	Object *ManagementObjectUnion `idl:"name:Obj;switch_is:Type" json:"object"`
 }
 
-func (o *VSSManagementObjectProperty) xxx_PreparePayload(ctx context.Context) error {
+func (o *ManagementObjectProperty) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -1378,7 +1378,7 @@ func (o *VSSManagementObjectProperty) xxx_PreparePayload(ctx context.Context) er
 	}
 	return nil
 }
-func (o *VSSManagementObjectProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ManagementObjectProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -1394,13 +1394,13 @@ func (o *VSSManagementObjectProperty) MarshalNDR(ctx context.Context, w ndr.Writ
 			return err
 		}
 	} else {
-		if err := (&VSSManagementObjectUnion{}).MarshalUnionNDR(ctx, w, _swObject); err != nil {
+		if err := (&ManagementObjectUnion{}).MarshalUnionNDR(ctx, w, _swObject); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *VSSManagementObjectProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ManagementObjectProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
@@ -1408,7 +1408,7 @@ func (o *VSSManagementObjectProperty) UnmarshalNDR(ctx context.Context, w ndr.Re
 		return err
 	}
 	if o.Object == nil {
-		o.Object = &VSSManagementObjectUnion{}
+		o.Object = &ManagementObjectUnion{}
 	}
 	_swObject := uint32(o.Type)
 	if err := o.Object.UnmarshalUnionNDR(ctx, w, _swObject); err != nil {
@@ -1417,14 +1417,14 @@ func (o *VSSManagementObjectProperty) UnmarshalNDR(ctx context.Context, w ndr.Re
 	return nil
 }
 
-// VSSSnapshotManagement structure represents IVssSnapshotMgmt RPC structure.
-type VSSSnapshotManagement dcom.InterfacePointer
+// SnapshotManagement structure represents IVssSnapshotMgmt RPC structure.
+type SnapshotManagement dcom.InterfacePointer
 
-func (o *VSSSnapshotManagement) InterfacePointer() *dcom.InterfacePointer {
+func (o *SnapshotManagement) InterfacePointer() *dcom.InterfacePointer {
 	return (*dcom.InterfacePointer)(o)
 }
 
-func (o *VSSSnapshotManagement) xxx_PreparePayload(ctx context.Context) error {
+func (o *SnapshotManagement) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -1437,13 +1437,13 @@ func (o *VSSSnapshotManagement) xxx_PreparePayload(ctx context.Context) error {
 	return nil
 }
 
-func (o *VSSSnapshotManagement) NDRSizeInfo() []uint64 {
+func (o *SnapshotManagement) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *VSSSnapshotManagement) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SnapshotManagement) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -1479,7 +1479,7 @@ func (o *VSSSnapshotManagement) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	}
 	return nil
 }
-func (o *VSSSnapshotManagement) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *SnapshotManagement) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()
@@ -1513,14 +1513,14 @@ func (o *VSSSnapshotManagement) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	return nil
 }
 
-// VSSEnumManagementObject structure represents IVssEnumMgmtObject RPC structure.
-type VSSEnumManagementObject dcom.InterfacePointer
+// EnumManagementObject structure represents IVssEnumMgmtObject RPC structure.
+type EnumManagementObject dcom.InterfacePointer
 
-func (o *VSSEnumManagementObject) InterfacePointer() *dcom.InterfacePointer {
+func (o *EnumManagementObject) InterfacePointer() *dcom.InterfacePointer {
 	return (*dcom.InterfacePointer)(o)
 }
 
-func (o *VSSEnumManagementObject) xxx_PreparePayload(ctx context.Context) error {
+func (o *EnumManagementObject) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -1533,13 +1533,13 @@ func (o *VSSEnumManagementObject) xxx_PreparePayload(ctx context.Context) error 
 	return nil
 }
 
-func (o *VSSEnumManagementObject) NDRSizeInfo() []uint64 {
+func (o *EnumManagementObject) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *VSSEnumManagementObject) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *EnumManagementObject) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -1575,7 +1575,7 @@ func (o *VSSEnumManagementObject) MarshalNDR(ctx context.Context, w ndr.Writer) 
 	}
 	return nil
 }
-func (o *VSSEnumManagementObject) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *EnumManagementObject) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()
@@ -1609,12 +1609,12 @@ func (o *VSSEnumManagementObject) UnmarshalNDR(ctx context.Context, w ndr.Reader
 	return nil
 }
 
-// VSSEnumObject structure represents IVssEnumObject RPC structure.
-type VSSEnumObject dcom.InterfacePointer
+// EnumObject structure represents IVssEnumObject RPC structure.
+type EnumObject dcom.InterfacePointer
 
-func (o *VSSEnumObject) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
+func (o *EnumObject) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
-func (o *VSSEnumObject) xxx_PreparePayload(ctx context.Context) error {
+func (o *EnumObject) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -1627,13 +1627,13 @@ func (o *VSSEnumObject) xxx_PreparePayload(ctx context.Context) error {
 	return nil
 }
 
-func (o *VSSEnumObject) NDRSizeInfo() []uint64 {
+func (o *EnumObject) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *VSSEnumObject) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *EnumObject) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -1669,7 +1669,7 @@ func (o *VSSEnumObject) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *VSSEnumObject) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *EnumObject) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()
@@ -1703,14 +1703,14 @@ func (o *VSSEnumObject) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// VSSDifferentialSoftwareSnapshotManagement structure represents IVssDifferentialSoftwareSnapshotMgmt RPC structure.
-type VSSDifferentialSoftwareSnapshotManagement dcom.InterfacePointer
+// DifferentialSoftwareSnapshotManagement structure represents IVssDifferentialSoftwareSnapshotMgmt RPC structure.
+type DifferentialSoftwareSnapshotManagement dcom.InterfacePointer
 
-func (o *VSSDifferentialSoftwareSnapshotManagement) InterfacePointer() *dcom.InterfacePointer {
+func (o *DifferentialSoftwareSnapshotManagement) InterfacePointer() *dcom.InterfacePointer {
 	return (*dcom.InterfacePointer)(o)
 }
 
-func (o *VSSDifferentialSoftwareSnapshotManagement) xxx_PreparePayload(ctx context.Context) error {
+func (o *DifferentialSoftwareSnapshotManagement) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -1723,13 +1723,13 @@ func (o *VSSDifferentialSoftwareSnapshotManagement) xxx_PreparePayload(ctx conte
 	return nil
 }
 
-func (o *VSSDifferentialSoftwareSnapshotManagement) NDRSizeInfo() []uint64 {
+func (o *DifferentialSoftwareSnapshotManagement) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *VSSDifferentialSoftwareSnapshotManagement) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *DifferentialSoftwareSnapshotManagement) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -1765,7 +1765,7 @@ func (o *VSSDifferentialSoftwareSnapshotManagement) MarshalNDR(ctx context.Conte
 	}
 	return nil
 }
-func (o *VSSDifferentialSoftwareSnapshotManagement) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *DifferentialSoftwareSnapshotManagement) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()

@@ -36,15 +36,15 @@ var (
 
 var (
 	// IMSMQQueueInfos interface identifier d7d6e07d-dccd-11d0-aa4b-0060970debae
-	ImsmqQueueInfosIID = &dcom.IID{Data1: 0xd7d6e07d, Data2: 0xdccd, Data3: 0x11d0, Data4: []byte{0xaa, 0x4b, 0x00, 0x60, 0x97, 0x0d, 0xeb, 0xae}}
+	QueueInfosIID = &dcom.IID{Data1: 0xd7d6e07d, Data2: 0xdccd, Data3: 0x11d0, Data4: []byte{0xaa, 0x4b, 0x00, 0x60, 0x97, 0x0d, 0xeb, 0xae}}
 	// Syntax UUID
-	ImsmqQueueInfosSyntaxUUID = &uuid.UUID{TimeLow: 0xd7d6e07d, TimeMid: 0xdccd, TimeHiAndVersion: 0x11d0, ClockSeqHiAndReserved: 0xaa, ClockSeqLow: 0x4b, Node: [6]uint8{0x0, 0x60, 0x97, 0xd, 0xeb, 0xae}}
+	QueueInfosSyntaxUUID = &uuid.UUID{TimeLow: 0xd7d6e07d, TimeMid: 0xdccd, TimeHiAndVersion: 0x11d0, ClockSeqHiAndReserved: 0xaa, ClockSeqLow: 0x4b, Node: [6]uint8{0x0, 0x60, 0x97, 0xd, 0xeb, 0xae}}
 	// Syntax ID
-	ImsmqQueueInfosSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ImsmqQueueInfosSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	QueueInfosSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: QueueInfosSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IMSMQQueueInfos interface.
-type ImsmqQueueInfosClient interface {
+type QueueInfosClient interface {
 
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
@@ -62,20 +62,20 @@ type ImsmqQueueInfosClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) ImsmqQueueInfosClient
+	IPID(context.Context, *dcom.IPID) QueueInfosClient
 }
 
-type xxx_DefaultImsmqQueueInfosClient struct {
+type xxx_DefaultQueueInfosClient struct {
 	idispatch.DispatchClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultImsmqQueueInfosClient) Dispatch() idispatch.DispatchClient {
+func (o *xxx_DefaultQueueInfosClient) Dispatch() idispatch.DispatchClient {
 	return o.DispatchClient
 }
 
-func (o *xxx_DefaultImsmqQueueInfosClient) Reset(ctx context.Context, in *ResetRequest, opts ...dcerpc.CallOption) (*ResetResponse, error) {
+func (o *xxx_DefaultQueueInfosClient) Reset(ctx context.Context, in *ResetRequest, opts ...dcerpc.CallOption) (*ResetResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -95,7 +95,7 @@ func (o *xxx_DefaultImsmqQueueInfosClient) Reset(ctx context.Context, in *ResetR
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueueInfosClient) Next(ctx context.Context, in *NextRequest, opts ...dcerpc.CallOption) (*NextResponse, error) {
+func (o *xxx_DefaultQueueInfosClient) Next(ctx context.Context, in *NextRequest, opts ...dcerpc.CallOption) (*NextResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -115,29 +115,29 @@ func (o *xxx_DefaultImsmqQueueInfosClient) Next(ctx context.Context, in *NextReq
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueueInfosClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultQueueInfosClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultImsmqQueueInfosClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultQueueInfosClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultImsmqQueueInfosClient) IPID(ctx context.Context, ipid *dcom.IPID) ImsmqQueueInfosClient {
+func (o *xxx_DefaultQueueInfosClient) IPID(ctx context.Context, ipid *dcom.IPID) QueueInfosClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultImsmqQueueInfosClient{
+	return &xxx_DefaultQueueInfosClient{
 		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
 		cc:             o.cc,
 		ipid:           ipid,
 	}
 }
 
-func NewImsmqQueueInfosClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ImsmqQueueInfosClient, error) {
+func NewQueueInfosClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (QueueInfosClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ImsmqQueueInfosSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(QueueInfosSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -150,7 +150,7 @@ func NewImsmqQueueInfosClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerp
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultImsmqQueueInfosClient{
+	return &xxx_DefaultQueueInfosClient{
 		DispatchClient: base,
 		cc:             cc,
 		ipid:           ipid,
@@ -350,10 +350,10 @@ func (o *ResetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_NextOperation structure represents the Next operation
 type xxx_NextOperation struct {
-	This        *dcom.ORPCThis       `idl:"name:This" json:"this"`
-	That        *dcom.ORPCThat       `idl:"name:That" json:"that"`
-	PpqinfoNext *mqac.ImsmqQueueInfo `idl:"name:ppqinfoNext" json:"ppqinfo_next"`
-	Return      int32                `idl:"name:Return" json:"return"`
+	This   *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	That   *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	Next   *mqac.QueueInfo `idl:"name:ppqinfoNext" json:"next"`
+	Return int32           `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_NextOperation) OpNum() int { return 8 }
@@ -437,20 +437,20 @@ func (o *xxx_NextOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 	}
 	// ppqinfoNext {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQQueueInfo}(interface))
 	{
-		if o.PpqinfoNext != nil {
+		if o.Next != nil {
 			_ptr_ppqinfoNext := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PpqinfoNext != nil {
-					if err := o.PpqinfoNext.MarshalNDR(ctx, w); err != nil {
+				if o.Next != nil {
+					if err := o.Next.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqQueueInfo{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.QueueInfo{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PpqinfoNext, _ptr_ppqinfoNext); err != nil {
+			if err := w.WritePointer(&o.Next, _ptr_ppqinfoNext); err != nil {
 				return err
 			}
 		} else {
@@ -487,16 +487,16 @@ func (o *xxx_NextOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 	// ppqinfoNext {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQQueueInfo}(interface))
 	{
 		_ptr_ppqinfoNext := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PpqinfoNext == nil {
-				o.PpqinfoNext = &mqac.ImsmqQueueInfo{}
+			if o.Next == nil {
+				o.Next = &mqac.QueueInfo{}
 			}
-			if err := o.PpqinfoNext.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Next.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppqinfoNext := func(ptr interface{}) { o.PpqinfoNext = *ptr.(**mqac.ImsmqQueueInfo) }
-		if err := w.ReadPointer(&o.PpqinfoNext, _s_ppqinfoNext, _ptr_ppqinfoNext); err != nil {
+		_s_ppqinfoNext := func(ptr interface{}) { o.Next = *ptr.(**mqac.QueueInfo) }
+		if err := w.ReadPointer(&o.Next, _s_ppqinfoNext, _ptr_ppqinfoNext); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -550,8 +550,8 @@ func (o *NextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // NextResponse structure represents the Next operation response
 type NextResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat       `idl:"name:That" json:"that"`
-	PpqinfoNext *mqac.ImsmqQueueInfo `idl:"name:ppqinfoNext" json:"ppqinfo_next"`
+	That *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	Next *mqac.QueueInfo `idl:"name:ppqinfoNext" json:"next"`
 	// Return: The Next return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -564,7 +564,7 @@ func (o *NextResponse) xxx_ToOp(ctx context.Context, op *xxx_NextOperation) *xxx
 		return op
 	}
 	op.That = o.That
-	op.PpqinfoNext = o.PpqinfoNext
+	op.Next = o.Next
 	op.Return = o.Return
 	return op
 }
@@ -574,7 +574,7 @@ func (o *NextResponse) xxx_FromOp(ctx context.Context, op *xxx_NextOperation) {
 		return
 	}
 	o.That = op.That
-	o.PpqinfoNext = op.PpqinfoNext
+	o.Next = op.Next
 	o.Return = op.Return
 }
 func (o *NextResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {

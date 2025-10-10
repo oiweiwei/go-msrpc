@@ -26,66 +26,66 @@ var (
 )
 
 // IRemoteICFICSConfig server interface.
-type RemoteIcficsConfigServer interface {
+type RemoteICFICSConfigServer interface {
 
 	// IUnknown base class.
 	iunknown.UnknownServer
 
 	// GetIcfEnabled operation.
-	GetIcfEnabled(context.Context, *GetIcfEnabledRequest) (*GetIcfEnabledResponse, error)
+	GetICFEnabled(context.Context, *GetICFEnabledRequest) (*GetICFEnabledResponse, error)
 
 	// GetIcsEnabled operation.
-	GetIcsEnabled(context.Context, *GetIcsEnabledRequest) (*GetIcsEnabledResponse, error)
+	GetICSEnabled(context.Context, *GetICSEnabledRequest) (*GetICSEnabledResponse, error)
 }
 
-func RegisterRemoteIcficsConfigServer(conn dcerpc.Conn, o RemoteIcficsConfigServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewRemoteIcficsConfigServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(RemoteIcficsConfigSyntaxV0_0))...)
+func RegisterRemoteICFICSConfigServer(conn dcerpc.Conn, o RemoteICFICSConfigServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewRemoteICFICSConfigServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(RemoteICFICSConfigSyntaxV0_0))...)
 }
 
-func NewRemoteIcficsConfigServerHandle(o RemoteIcficsConfigServer) dcerpc.ServerHandle {
+func NewRemoteICFICSConfigServerHandle(o RemoteICFICSConfigServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return RemoteIcficsConfigServerHandle(ctx, o, opNum, r)
+		return RemoteICFICSConfigServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func RemoteIcficsConfigServerHandle(ctx context.Context, o RemoteIcficsConfigServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func RemoteICFICSConfigServerHandle(ctx context.Context, o RemoteICFICSConfigServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 3 {
 		// IUnknown base method.
 		return iunknown.UnknownServerHandle(ctx, o, opNum, r)
 	}
 	switch opNum {
 	case 3: // GetIcfEnabled
-		op := &xxx_GetIcfEnabledOperation{}
+		op := &xxx_GetICFEnabledOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &GetIcfEnabledRequest{}
+		req := &GetICFEnabledRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.GetIcfEnabled(ctx, req)
+		resp, err := o.GetICFEnabled(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetIcsEnabled
-		op := &xxx_GetIcsEnabledOperation{}
+		op := &xxx_GetICSEnabledOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &GetIcsEnabledRequest{}
+		req := &GetICSEnabledRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.GetIcsEnabled(ctx, req)
+		resp, err := o.GetICSEnabled(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
 
 // Unimplemented IRemoteICFICSConfig
-type UnimplementedRemoteIcficsConfigServer struct {
+type UnimplementedRemoteICFICSConfigServer struct {
 	iunknown.UnimplementedUnknownServer
 }
 
-func (UnimplementedRemoteIcficsConfigServer) GetIcfEnabled(context.Context, *GetIcfEnabledRequest) (*GetIcfEnabledResponse, error) {
+func (UnimplementedRemoteICFICSConfigServer) GetICFEnabled(context.Context, *GetICFEnabledRequest) (*GetICFEnabledResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedRemoteIcficsConfigServer) GetIcsEnabled(context.Context, *GetIcsEnabledRequest) (*GetIcsEnabledResponse, error) {
+func (UnimplementedRemoteICFICSConfigServer) GetICSEnabled(context.Context, *GetICSEnabledRequest) (*GetICSEnabledResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ RemoteIcficsConfigServer = (*UnimplementedRemoteIcficsConfigServer)(nil)
+var _ RemoteICFICSConfigServer = (*UnimplementedRemoteICFICSConfigServer)(nil)

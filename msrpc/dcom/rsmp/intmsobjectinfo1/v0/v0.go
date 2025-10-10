@@ -38,15 +38,15 @@ var (
 
 var (
 	// INtmsObjectInfo1 interface identifier 69ab7050-3059-11d1-8faf-00a024cb6019
-	NTMSObjectInfo1IID = &dcom.IID{Data1: 0x69ab7050, Data2: 0x3059, Data3: 0x11d1, Data4: []byte{0x8f, 0xaf, 0x00, 0xa0, 0x24, 0xcb, 0x60, 0x19}}
+	ObjectInfo1IID = &dcom.IID{Data1: 0x69ab7050, Data2: 0x3059, Data3: 0x11d1, Data4: []byte{0x8f, 0xaf, 0x00, 0xa0, 0x24, 0xcb, 0x60, 0x19}}
 	// Syntax UUID
-	NTMSObjectInfo1SyntaxUUID = &uuid.UUID{TimeLow: 0x69ab7050, TimeMid: 0x3059, TimeHiAndVersion: 0x11d1, ClockSeqHiAndReserved: 0x8f, ClockSeqLow: 0xaf, Node: [6]uint8{0x0, 0xa0, 0x24, 0xcb, 0x60, 0x19}}
+	ObjectInfo1SyntaxUUID = &uuid.UUID{TimeLow: 0x69ab7050, TimeMid: 0x3059, TimeHiAndVersion: 0x11d1, ClockSeqHiAndReserved: 0x8f, ClockSeqLow: 0xaf, Node: [6]uint8{0x0, 0xa0, 0x24, 0xcb, 0x60, 0x19}}
 	// Syntax ID
-	NTMSObjectInfo1SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: NTMSObjectInfo1SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	ObjectInfo1SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ObjectInfo1SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // INtmsObjectInfo1 interface.
-type NTMSObjectInfo1Client interface {
+type ObjectInfo1Client interface {
 
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
@@ -70,20 +70,20 @@ type NTMSObjectInfo1Client interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) NTMSObjectInfo1Client
+	IPID(context.Context, *dcom.IPID) ObjectInfo1Client
 }
 
-type xxx_DefaultNTMSObjectInfo1Client struct {
+type xxx_DefaultObjectInfo1Client struct {
 	iunknown.UnknownClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultNTMSObjectInfo1Client) Unknown() iunknown.UnknownClient {
+func (o *xxx_DefaultObjectInfo1Client) Unknown() iunknown.UnknownClient {
 	return o.UnknownClient
 }
 
-func (o *xxx_DefaultNTMSObjectInfo1Client) GetNTMSServerObjectInformationA(ctx context.Context, in *GetNTMSServerObjectInformationARequest, opts ...dcerpc.CallOption) (*GetNTMSServerObjectInformationAResponse, error) {
+func (o *xxx_DefaultObjectInfo1Client) GetNTMSServerObjectInformationA(ctx context.Context, in *GetNTMSServerObjectInformationARequest, opts ...dcerpc.CallOption) (*GetNTMSServerObjectInformationAResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -103,7 +103,7 @@ func (o *xxx_DefaultNTMSObjectInfo1Client) GetNTMSServerObjectInformationA(ctx c
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSObjectInfo1Client) GetNTMSServerObjectInformationW(ctx context.Context, in *GetNTMSServerObjectInformationWRequest, opts ...dcerpc.CallOption) (*GetNTMSServerObjectInformationWResponse, error) {
+func (o *xxx_DefaultObjectInfo1Client) GetNTMSServerObjectInformationW(ctx context.Context, in *GetNTMSServerObjectInformationWRequest, opts ...dcerpc.CallOption) (*GetNTMSServerObjectInformationWResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -123,7 +123,7 @@ func (o *xxx_DefaultNTMSObjectInfo1Client) GetNTMSServerObjectInformationW(ctx c
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSObjectInfo1Client) SetNTMSObjectInformationA(ctx context.Context, in *SetNTMSObjectInformationARequest, opts ...dcerpc.CallOption) (*SetNTMSObjectInformationAResponse, error) {
+func (o *xxx_DefaultObjectInfo1Client) SetNTMSObjectInformationA(ctx context.Context, in *SetNTMSObjectInformationARequest, opts ...dcerpc.CallOption) (*SetNTMSObjectInformationAResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -143,7 +143,7 @@ func (o *xxx_DefaultNTMSObjectInfo1Client) SetNTMSObjectInformationA(ctx context
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSObjectInfo1Client) SetNTMSObjectInformationW(ctx context.Context, in *SetNTMSObjectInformationWRequest, opts ...dcerpc.CallOption) (*SetNTMSObjectInformationWResponse, error) {
+func (o *xxx_DefaultObjectInfo1Client) SetNTMSObjectInformationW(ctx context.Context, in *SetNTMSObjectInformationWRequest, opts ...dcerpc.CallOption) (*SetNTMSObjectInformationWResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -163,7 +163,7 @@ func (o *xxx_DefaultNTMSObjectInfo1Client) SetNTMSObjectInformationW(ctx context
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSObjectInfo1Client) CreateNTMSMediaA(ctx context.Context, in *CreateNTMSMediaARequest, opts ...dcerpc.CallOption) (*CreateNTMSMediaAResponse, error) {
+func (o *xxx_DefaultObjectInfo1Client) CreateNTMSMediaA(ctx context.Context, in *CreateNTMSMediaARequest, opts ...dcerpc.CallOption) (*CreateNTMSMediaAResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -183,7 +183,7 @@ func (o *xxx_DefaultNTMSObjectInfo1Client) CreateNTMSMediaA(ctx context.Context,
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSObjectInfo1Client) CreateNTMSMediaW(ctx context.Context, in *CreateNTMSMediaWRequest, opts ...dcerpc.CallOption) (*CreateNTMSMediaWResponse, error) {
+func (o *xxx_DefaultObjectInfo1Client) CreateNTMSMediaW(ctx context.Context, in *CreateNTMSMediaWRequest, opts ...dcerpc.CallOption) (*CreateNTMSMediaWResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -203,29 +203,29 @@ func (o *xxx_DefaultNTMSObjectInfo1Client) CreateNTMSMediaW(ctx context.Context,
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSObjectInfo1Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultObjectInfo1Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultNTMSObjectInfo1Client) Conn() dcerpc.Conn {
+func (o *xxx_DefaultObjectInfo1Client) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultNTMSObjectInfo1Client) IPID(ctx context.Context, ipid *dcom.IPID) NTMSObjectInfo1Client {
+func (o *xxx_DefaultObjectInfo1Client) IPID(ctx context.Context, ipid *dcom.IPID) ObjectInfo1Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultNTMSObjectInfo1Client{
+	return &xxx_DefaultObjectInfo1Client{
 		UnknownClient: o.UnknownClient.IPID(ctx, ipid),
 		cc:            o.cc,
 		ipid:          ipid,
 	}
 }
 
-func NewNTMSObjectInfo1Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (NTMSObjectInfo1Client, error) {
+func NewObjectInfo1Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ObjectInfo1Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(NTMSObjectInfo1SyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ObjectInfo1SyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -238,7 +238,7 @@ func NewNTMSObjectInfo1Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerp
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultNTMSObjectInfo1Client{
+	return &xxx_DefaultObjectInfo1Client{
 		UnknownClient: base,
 		cc:            cc,
 		ipid:          ipid,
@@ -247,13 +247,13 @@ func NewNTMSObjectInfo1Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerp
 
 // xxx_GetNTMSServerObjectInformationAOperation structure represents the GetNtmsServerObjectInformationA operation
 type xxx_GetNTMSServerObjectInformationAOperation struct {
-	This     *dcom.ORPCThis               `idl:"name:This" json:"this"`
-	That     *dcom.ORPCThat               `idl:"name:That" json:"that"`
-	ObjectID *dtyp.GUID                   `idl:"name:lpObjectId;pointer:unique" json:"object_id"`
-	Info     *rsmp.NTMSObjectinformationa `idl:"name:lpInfo" json:"info"`
-	Type     uint32                       `idl:"name:dwType" json:"type"`
-	Size     uint32                       `idl:"name:dwSize" json:"size"`
-	Return   int32                        `idl:"name:Return" json:"return"`
+	This     *dcom.ORPCThis           `idl:"name:This" json:"this"`
+	That     *dcom.ORPCThat           `idl:"name:That" json:"that"`
+	ObjectID *dtyp.GUID               `idl:"name:lpObjectId;pointer:unique" json:"object_id"`
+	Info     *rsmp.ObjectInformationA `idl:"name:lpInfo" json:"info"`
+	Type     uint32                   `idl:"name:dwType" json:"type"`
+	Size     uint32                   `idl:"name:dwSize" json:"size"`
+	Return   int32                    `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetNTMSServerObjectInformationAOperation) OpNum() int { return 0 }
@@ -414,7 +414,7 @@ func (o *xxx_GetNTMSServerObjectInformationAOperation) MarshalNDRResponse(ctx co
 				return err
 			}
 		} else {
-			if err := (&rsmp.NTMSObjectinformationa{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rsmp.ObjectInformationA{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -444,7 +444,7 @@ func (o *xxx_GetNTMSServerObjectInformationAOperation) UnmarshalNDRResponse(ctx 
 	// lpInfo {out} (1:{alias=LPNTMS_OBJECTINFORMATIONA,pointer=ref}*(1))(2:{alias=NTMS_OBJECTINFORMATIONA}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rsmp.NTMSObjectinformationa{}
+			o.Info = &rsmp.ObjectInformationA{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -506,8 +506,8 @@ func (o *GetNTMSServerObjectInformationARequest) UnmarshalNDR(ctx context.Contex
 // GetNTMSServerObjectInformationAResponse structure represents the GetNtmsServerObjectInformationA operation response
 type GetNTMSServerObjectInformationAResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat               `idl:"name:That" json:"that"`
-	Info *rsmp.NTMSObjectinformationa `idl:"name:lpInfo" json:"info"`
+	That *dcom.ORPCThat           `idl:"name:That" json:"that"`
+	Info *rsmp.ObjectInformationA `idl:"name:lpInfo" json:"info"`
 	// Return: The GetNtmsServerObjectInformationA return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -547,13 +547,13 @@ func (o *GetNTMSServerObjectInformationAResponse) UnmarshalNDR(ctx context.Conte
 
 // xxx_GetNTMSServerObjectInformationWOperation structure represents the GetNtmsServerObjectInformationW operation
 type xxx_GetNTMSServerObjectInformationWOperation struct {
-	This     *dcom.ORPCThis               `idl:"name:This" json:"this"`
-	That     *dcom.ORPCThat               `idl:"name:That" json:"that"`
-	ObjectID *dtyp.GUID                   `idl:"name:lpObjectId" json:"object_id"`
-	Info     *rsmp.NTMSObjectinformationw `idl:"name:lpInfo" json:"info"`
-	Type     uint32                       `idl:"name:dwType" json:"type"`
-	Size     uint32                       `idl:"name:dwSize" json:"size"`
-	Return   int32                        `idl:"name:Return" json:"return"`
+	This     *dcom.ORPCThis           `idl:"name:This" json:"this"`
+	That     *dcom.ORPCThat           `idl:"name:That" json:"that"`
+	ObjectID *dtyp.GUID               `idl:"name:lpObjectId" json:"object_id"`
+	Info     *rsmp.ObjectInformationW `idl:"name:lpInfo" json:"info"`
+	Type     uint32                   `idl:"name:dwType" json:"type"`
+	Size     uint32                   `idl:"name:dwSize" json:"size"`
+	Return   int32                    `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetNTMSServerObjectInformationWOperation) OpNum() int { return 1 }
@@ -689,7 +689,7 @@ func (o *xxx_GetNTMSServerObjectInformationWOperation) MarshalNDRResponse(ctx co
 				return err
 			}
 		} else {
-			if err := (&rsmp.NTMSObjectinformationw{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rsmp.ObjectInformationW{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -719,7 +719,7 @@ func (o *xxx_GetNTMSServerObjectInformationWOperation) UnmarshalNDRResponse(ctx 
 	// lpInfo {out} (1:{alias=LPNTMS_OBJECTINFORMATIONW,pointer=ref}*(1))(2:{alias=NTMS_OBJECTINFORMATIONW}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rsmp.NTMSObjectinformationw{}
+			o.Info = &rsmp.ObjectInformationW{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -781,8 +781,8 @@ func (o *GetNTMSServerObjectInformationWRequest) UnmarshalNDR(ctx context.Contex
 // GetNTMSServerObjectInformationWResponse structure represents the GetNtmsServerObjectInformationW operation response
 type GetNTMSServerObjectInformationWResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat               `idl:"name:That" json:"that"`
-	Info *rsmp.NTMSObjectinformationw `idl:"name:lpInfo" json:"info"`
+	That *dcom.ORPCThat           `idl:"name:That" json:"that"`
+	Info *rsmp.ObjectInformationW `idl:"name:lpInfo" json:"info"`
 	// Return: The GetNtmsServerObjectInformationW return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -822,11 +822,11 @@ func (o *GetNTMSServerObjectInformationWResponse) UnmarshalNDR(ctx context.Conte
 
 // xxx_SetNTMSObjectInformationAOperation structure represents the SetNtmsObjectInformationA operation
 type xxx_SetNTMSObjectInformationAOperation struct {
-	This     *dcom.ORPCThis               `idl:"name:This" json:"this"`
-	That     *dcom.ORPCThat               `idl:"name:That" json:"that"`
-	ObjectID *dtyp.GUID                   `idl:"name:lpObjectId" json:"object_id"`
-	Info     *rsmp.NTMSObjectinformationa `idl:"name:lpInfo" json:"info"`
-	Return   int32                        `idl:"name:Return" json:"return"`
+	This     *dcom.ORPCThis           `idl:"name:This" json:"this"`
+	That     *dcom.ORPCThat           `idl:"name:That" json:"that"`
+	ObjectID *dtyp.GUID               `idl:"name:lpObjectId" json:"object_id"`
+	Info     *rsmp.ObjectInformationA `idl:"name:lpInfo" json:"info"`
+	Return   int32                    `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_SetNTMSObjectInformationAOperation) OpNum() int { return 2 }
@@ -882,7 +882,7 @@ func (o *xxx_SetNTMSObjectInformationAOperation) MarshalNDRRequest(ctx context.C
 				return err
 			}
 		} else {
-			if err := (&rsmp.NTMSObjectinformationa{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rsmp.ObjectInformationA{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -915,7 +915,7 @@ func (o *xxx_SetNTMSObjectInformationAOperation) UnmarshalNDRRequest(ctx context
 	// lpInfo {in} (1:{alias=LPNTMS_OBJECTINFORMATIONA,pointer=ref}*(1))(2:{alias=NTMS_OBJECTINFORMATIONA}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rsmp.NTMSObjectinformationa{}
+			o.Info = &rsmp.ObjectInformationA{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -986,9 +986,9 @@ func (o *xxx_SetNTMSObjectInformationAOperation) UnmarshalNDRResponse(ctx contex
 // SetNTMSObjectInformationARequest structure represents the SetNtmsObjectInformationA operation request
 type SetNTMSObjectInformationARequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis               `idl:"name:This" json:"this"`
-	ObjectID *dtyp.GUID                   `idl:"name:lpObjectId" json:"object_id"`
-	Info     *rsmp.NTMSObjectinformationa `idl:"name:lpInfo" json:"info"`
+	This     *dcom.ORPCThis           `idl:"name:This" json:"this"`
+	ObjectID *dtyp.GUID               `idl:"name:lpObjectId" json:"object_id"`
+	Info     *rsmp.ObjectInformationA `idl:"name:lpInfo" json:"info"`
 }
 
 func (o *SetNTMSObjectInformationARequest) xxx_ToOp(ctx context.Context, op *xxx_SetNTMSObjectInformationAOperation) *xxx_SetNTMSObjectInformationAOperation {
@@ -1065,11 +1065,11 @@ func (o *SetNTMSObjectInformationAResponse) UnmarshalNDR(ctx context.Context, r 
 
 // xxx_SetNTMSObjectInformationWOperation structure represents the SetNtmsObjectInformationW operation
 type xxx_SetNTMSObjectInformationWOperation struct {
-	This     *dcom.ORPCThis               `idl:"name:This" json:"this"`
-	That     *dcom.ORPCThat               `idl:"name:That" json:"that"`
-	ObjectID *dtyp.GUID                   `idl:"name:lpObjectId" json:"object_id"`
-	Info     *rsmp.NTMSObjectinformationw `idl:"name:lpInfo" json:"info"`
-	Return   int32                        `idl:"name:Return" json:"return"`
+	This     *dcom.ORPCThis           `idl:"name:This" json:"this"`
+	That     *dcom.ORPCThat           `idl:"name:That" json:"that"`
+	ObjectID *dtyp.GUID               `idl:"name:lpObjectId" json:"object_id"`
+	Info     *rsmp.ObjectInformationW `idl:"name:lpInfo" json:"info"`
+	Return   int32                    `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_SetNTMSObjectInformationWOperation) OpNum() int { return 3 }
@@ -1125,7 +1125,7 @@ func (o *xxx_SetNTMSObjectInformationWOperation) MarshalNDRRequest(ctx context.C
 				return err
 			}
 		} else {
-			if err := (&rsmp.NTMSObjectinformationw{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rsmp.ObjectInformationW{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1158,7 +1158,7 @@ func (o *xxx_SetNTMSObjectInformationWOperation) UnmarshalNDRRequest(ctx context
 	// lpInfo {in} (1:{alias=LPNTMS_OBJECTINFORMATIONW,pointer=ref}*(1))(2:{alias=NTMS_OBJECTINFORMATIONW}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rsmp.NTMSObjectinformationw{}
+			o.Info = &rsmp.ObjectInformationW{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -1229,9 +1229,9 @@ func (o *xxx_SetNTMSObjectInformationWOperation) UnmarshalNDRResponse(ctx contex
 // SetNTMSObjectInformationWRequest structure represents the SetNtmsObjectInformationW operation request
 type SetNTMSObjectInformationWRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis               `idl:"name:This" json:"this"`
-	ObjectID *dtyp.GUID                   `idl:"name:lpObjectId" json:"object_id"`
-	Info     *rsmp.NTMSObjectinformationw `idl:"name:lpInfo" json:"info"`
+	This     *dcom.ORPCThis           `idl:"name:This" json:"this"`
+	ObjectID *dtyp.GUID               `idl:"name:lpObjectId" json:"object_id"`
+	Info     *rsmp.ObjectInformationW `idl:"name:lpInfo" json:"info"`
 }
 
 func (o *SetNTMSObjectInformationWRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNTMSObjectInformationWOperation) *xxx_SetNTMSObjectInformationWOperation {
@@ -1308,14 +1308,14 @@ func (o *SetNTMSObjectInformationWResponse) UnmarshalNDR(ctx context.Context, r 
 
 // xxx_CreateNTMSMediaAOperation structure represents the CreateNtmsMediaA operation
 type xxx_CreateNTMSMediaAOperation struct {
-	This           *dcom.ORPCThis                 `idl:"name:This" json:"this"`
-	That           *dcom.ORPCThat                 `idl:"name:That" json:"that"`
-	Media          *rsmp.NTMSObjectinformationa   `idl:"name:lpMedia" json:"media"`
-	List           []*rsmp.NTMSObjectinformationa `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
-	ListBufferSize uint32                         `idl:"name:lpdwListBufferSize" json:"list_buffer_size"`
-	ListCount      uint32                         `idl:"name:dwListCount" json:"list_count"`
-	Options        uint32                         `idl:"name:dwOptions" json:"options"`
-	Return         int32                          `idl:"name:Return" json:"return"`
+	This           *dcom.ORPCThis             `idl:"name:This" json:"this"`
+	That           *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	Media          *rsmp.ObjectInformationA   `idl:"name:lpMedia" json:"media"`
+	List           []*rsmp.ObjectInformationA `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
+	ListBufferSize uint32                     `idl:"name:lpdwListBufferSize" json:"list_buffer_size"`
+	ListCount      uint32                     `idl:"name:dwListCount" json:"list_count"`
+	Options        uint32                     `idl:"name:dwOptions" json:"options"`
+	Return         int32                      `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_CreateNTMSMediaAOperation) OpNum() int { return 4 }
@@ -1365,7 +1365,7 @@ func (o *xxx_CreateNTMSMediaAOperation) MarshalNDRRequest(ctx context.Context, w
 				return err
 			}
 		} else {
-			if err := (&rsmp.NTMSObjectinformationa{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rsmp.ObjectInformationA{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1401,13 +1401,13 @@ func (o *xxx_CreateNTMSMediaAOperation) MarshalNDRRequest(ctx context.Context, w
 					return err
 				}
 			} else {
-				if err := (&rsmp.NTMSObjectinformationa{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&rsmp.ObjectInformationA{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
 		}
 		for i1 := len(o.List); uint64(i1) < sizeInfo[0]; i1++ {
-			if err := (&rsmp.NTMSObjectinformationa{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rsmp.ObjectInformationA{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1449,7 +1449,7 @@ func (o *xxx_CreateNTMSMediaAOperation) UnmarshalNDRRequest(ctx context.Context,
 	// lpMedia {in, out} (1:{alias=LPNTMS_OBJECTINFORMATIONA,pointer=ref}*(1))(2:{alias=NTMS_OBJECTINFORMATIONA}(struct))
 	{
 		if o.Media == nil {
-			o.Media = &rsmp.NTMSObjectinformationa{}
+			o.Media = &rsmp.ObjectInformationA{}
 		}
 		if err := o.Media.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -1476,11 +1476,11 @@ func (o *xxx_CreateNTMSMediaAOperation) UnmarshalNDRRequest(ctx context.Context,
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
 			return fmt.Errorf("buffer overflow for size %d of array o.List", sizeInfo[0])
 		}
-		o.List = make([]*rsmp.NTMSObjectinformationa, sizeInfo[0])
+		o.List = make([]*rsmp.ObjectInformationA, sizeInfo[0])
 		for i1 := range o.List {
 			i1 := i1
 			if o.List[i1] == nil {
-				o.List[i1] = &rsmp.NTMSObjectinformationa{}
+				o.List[i1] = &rsmp.ObjectInformationA{}
 			}
 			if err := o.List[i1].UnmarshalNDR(ctx, w); err != nil {
 				return err
@@ -1543,7 +1543,7 @@ func (o *xxx_CreateNTMSMediaAOperation) MarshalNDRResponse(ctx context.Context, 
 				return err
 			}
 		} else {
-			if err := (&rsmp.NTMSObjectinformationa{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rsmp.ObjectInformationA{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1579,13 +1579,13 @@ func (o *xxx_CreateNTMSMediaAOperation) MarshalNDRResponse(ctx context.Context, 
 					return err
 				}
 			} else {
-				if err := (&rsmp.NTMSObjectinformationa{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&rsmp.ObjectInformationA{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
 		}
 		for i1 := len(o.List); uint64(i1) < sizeInfo[0]; i1++ {
-			if err := (&rsmp.NTMSObjectinformationa{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rsmp.ObjectInformationA{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1615,7 +1615,7 @@ func (o *xxx_CreateNTMSMediaAOperation) UnmarshalNDRResponse(ctx context.Context
 	// lpMedia {in, out} (1:{alias=LPNTMS_OBJECTINFORMATIONA,pointer=ref}*(1))(2:{alias=NTMS_OBJECTINFORMATIONA}(struct))
 	{
 		if o.Media == nil {
-			o.Media = &rsmp.NTMSObjectinformationa{}
+			o.Media = &rsmp.ObjectInformationA{}
 		}
 		if err := o.Media.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -1642,11 +1642,11 @@ func (o *xxx_CreateNTMSMediaAOperation) UnmarshalNDRResponse(ctx context.Context
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
 			return fmt.Errorf("buffer overflow for size %d of array o.List", sizeInfo[0])
 		}
-		o.List = make([]*rsmp.NTMSObjectinformationa, sizeInfo[0])
+		o.List = make([]*rsmp.ObjectInformationA, sizeInfo[0])
 		for i1 := range o.List {
 			i1 := i1
 			if o.List[i1] == nil {
-				o.List[i1] = &rsmp.NTMSObjectinformationa{}
+				o.List[i1] = &rsmp.ObjectInformationA{}
 			}
 			if err := o.List[i1].UnmarshalNDR(ctx, w); err != nil {
 				return err
@@ -1665,12 +1665,12 @@ func (o *xxx_CreateNTMSMediaAOperation) UnmarshalNDRResponse(ctx context.Context
 // CreateNTMSMediaARequest structure represents the CreateNtmsMediaA operation request
 type CreateNTMSMediaARequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis                 `idl:"name:This" json:"this"`
-	Media          *rsmp.NTMSObjectinformationa   `idl:"name:lpMedia" json:"media"`
-	List           []*rsmp.NTMSObjectinformationa `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
-	ListBufferSize uint32                         `idl:"name:lpdwListBufferSize" json:"list_buffer_size"`
-	ListCount      uint32                         `idl:"name:dwListCount" json:"list_count"`
-	Options        uint32                         `idl:"name:dwOptions" json:"options"`
+	This           *dcom.ORPCThis             `idl:"name:This" json:"this"`
+	Media          *rsmp.ObjectInformationA   `idl:"name:lpMedia" json:"media"`
+	List           []*rsmp.ObjectInformationA `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
+	ListBufferSize uint32                     `idl:"name:lpdwListBufferSize" json:"list_buffer_size"`
+	ListCount      uint32                     `idl:"name:dwListCount" json:"list_count"`
+	Options        uint32                     `idl:"name:dwOptions" json:"options"`
 }
 
 func (o *CreateNTMSMediaARequest) xxx_ToOp(ctx context.Context, op *xxx_CreateNTMSMediaAOperation) *xxx_CreateNTMSMediaAOperation {
@@ -1720,9 +1720,9 @@ type CreateNTMSMediaAResponse struct {
 	ListCount uint32 `idl:"name:dwListCount" json:"list_count"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat                 `idl:"name:That" json:"that"`
-	Media *rsmp.NTMSObjectinformationa   `idl:"name:lpMedia" json:"media"`
-	List  []*rsmp.NTMSObjectinformationa `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
+	That  *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	Media *rsmp.ObjectInformationA   `idl:"name:lpMedia" json:"media"`
+	List  []*rsmp.ObjectInformationA `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
 	// Return: The CreateNtmsMediaA return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1776,14 +1776,14 @@ func (o *CreateNTMSMediaAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // xxx_CreateNTMSMediaWOperation structure represents the CreateNtmsMediaW operation
 type xxx_CreateNTMSMediaWOperation struct {
-	This           *dcom.ORPCThis                 `idl:"name:This" json:"this"`
-	That           *dcom.ORPCThat                 `idl:"name:That" json:"that"`
-	Media          *rsmp.NTMSObjectinformationw   `idl:"name:lpMedia" json:"media"`
-	List           []*rsmp.NTMSObjectinformationw `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
-	ListBufferSize uint32                         `idl:"name:lpdwListBufferSize" json:"list_buffer_size"`
-	ListCount      uint32                         `idl:"name:dwListCount" json:"list_count"`
-	Options        uint32                         `idl:"name:dwOptions" json:"options"`
-	Return         int32                          `idl:"name:Return" json:"return"`
+	This           *dcom.ORPCThis             `idl:"name:This" json:"this"`
+	That           *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	Media          *rsmp.ObjectInformationW   `idl:"name:lpMedia" json:"media"`
+	List           []*rsmp.ObjectInformationW `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
+	ListBufferSize uint32                     `idl:"name:lpdwListBufferSize" json:"list_buffer_size"`
+	ListCount      uint32                     `idl:"name:dwListCount" json:"list_count"`
+	Options        uint32                     `idl:"name:dwOptions" json:"options"`
+	Return         int32                      `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_CreateNTMSMediaWOperation) OpNum() int { return 5 }
@@ -1833,7 +1833,7 @@ func (o *xxx_CreateNTMSMediaWOperation) MarshalNDRRequest(ctx context.Context, w
 				return err
 			}
 		} else {
-			if err := (&rsmp.NTMSObjectinformationw{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rsmp.ObjectInformationW{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1869,13 +1869,13 @@ func (o *xxx_CreateNTMSMediaWOperation) MarshalNDRRequest(ctx context.Context, w
 					return err
 				}
 			} else {
-				if err := (&rsmp.NTMSObjectinformationw{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&rsmp.ObjectInformationW{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
 		}
 		for i1 := len(o.List); uint64(i1) < sizeInfo[0]; i1++ {
-			if err := (&rsmp.NTMSObjectinformationw{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rsmp.ObjectInformationW{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1917,7 +1917,7 @@ func (o *xxx_CreateNTMSMediaWOperation) UnmarshalNDRRequest(ctx context.Context,
 	// lpMedia {in, out} (1:{alias=LPNTMS_OBJECTINFORMATIONW,pointer=ref}*(1))(2:{alias=NTMS_OBJECTINFORMATIONW}(struct))
 	{
 		if o.Media == nil {
-			o.Media = &rsmp.NTMSObjectinformationw{}
+			o.Media = &rsmp.ObjectInformationW{}
 		}
 		if err := o.Media.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -1944,11 +1944,11 @@ func (o *xxx_CreateNTMSMediaWOperation) UnmarshalNDRRequest(ctx context.Context,
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
 			return fmt.Errorf("buffer overflow for size %d of array o.List", sizeInfo[0])
 		}
-		o.List = make([]*rsmp.NTMSObjectinformationw, sizeInfo[0])
+		o.List = make([]*rsmp.ObjectInformationW, sizeInfo[0])
 		for i1 := range o.List {
 			i1 := i1
 			if o.List[i1] == nil {
-				o.List[i1] = &rsmp.NTMSObjectinformationw{}
+				o.List[i1] = &rsmp.ObjectInformationW{}
 			}
 			if err := o.List[i1].UnmarshalNDR(ctx, w); err != nil {
 				return err
@@ -2011,7 +2011,7 @@ func (o *xxx_CreateNTMSMediaWOperation) MarshalNDRResponse(ctx context.Context, 
 				return err
 			}
 		} else {
-			if err := (&rsmp.NTMSObjectinformationw{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rsmp.ObjectInformationW{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -2047,13 +2047,13 @@ func (o *xxx_CreateNTMSMediaWOperation) MarshalNDRResponse(ctx context.Context, 
 					return err
 				}
 			} else {
-				if err := (&rsmp.NTMSObjectinformationw{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&rsmp.ObjectInformationW{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
 		}
 		for i1 := len(o.List); uint64(i1) < sizeInfo[0]; i1++ {
-			if err := (&rsmp.NTMSObjectinformationw{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rsmp.ObjectInformationW{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -2083,7 +2083,7 @@ func (o *xxx_CreateNTMSMediaWOperation) UnmarshalNDRResponse(ctx context.Context
 	// lpMedia {in, out} (1:{alias=LPNTMS_OBJECTINFORMATIONW,pointer=ref}*(1))(2:{alias=NTMS_OBJECTINFORMATIONW}(struct))
 	{
 		if o.Media == nil {
-			o.Media = &rsmp.NTMSObjectinformationw{}
+			o.Media = &rsmp.ObjectInformationW{}
 		}
 		if err := o.Media.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -2110,11 +2110,11 @@ func (o *xxx_CreateNTMSMediaWOperation) UnmarshalNDRResponse(ctx context.Context
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
 			return fmt.Errorf("buffer overflow for size %d of array o.List", sizeInfo[0])
 		}
-		o.List = make([]*rsmp.NTMSObjectinformationw, sizeInfo[0])
+		o.List = make([]*rsmp.ObjectInformationW, sizeInfo[0])
 		for i1 := range o.List {
 			i1 := i1
 			if o.List[i1] == nil {
-				o.List[i1] = &rsmp.NTMSObjectinformationw{}
+				o.List[i1] = &rsmp.ObjectInformationW{}
 			}
 			if err := o.List[i1].UnmarshalNDR(ctx, w); err != nil {
 				return err
@@ -2133,12 +2133,12 @@ func (o *xxx_CreateNTMSMediaWOperation) UnmarshalNDRResponse(ctx context.Context
 // CreateNTMSMediaWRequest structure represents the CreateNtmsMediaW operation request
 type CreateNTMSMediaWRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis                 `idl:"name:This" json:"this"`
-	Media          *rsmp.NTMSObjectinformationw   `idl:"name:lpMedia" json:"media"`
-	List           []*rsmp.NTMSObjectinformationw `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
-	ListBufferSize uint32                         `idl:"name:lpdwListBufferSize" json:"list_buffer_size"`
-	ListCount      uint32                         `idl:"name:dwListCount" json:"list_count"`
-	Options        uint32                         `idl:"name:dwOptions" json:"options"`
+	This           *dcom.ORPCThis             `idl:"name:This" json:"this"`
+	Media          *rsmp.ObjectInformationW   `idl:"name:lpMedia" json:"media"`
+	List           []*rsmp.ObjectInformationW `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
+	ListBufferSize uint32                     `idl:"name:lpdwListBufferSize" json:"list_buffer_size"`
+	ListCount      uint32                     `idl:"name:dwListCount" json:"list_count"`
+	Options        uint32                     `idl:"name:dwOptions" json:"options"`
 }
 
 func (o *CreateNTMSMediaWRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateNTMSMediaWOperation) *xxx_CreateNTMSMediaWOperation {
@@ -2188,9 +2188,9 @@ type CreateNTMSMediaWResponse struct {
 	ListCount uint32 `idl:"name:dwListCount" json:"list_count"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat                 `idl:"name:That" json:"that"`
-	Media *rsmp.NTMSObjectinformationw   `idl:"name:lpMedia" json:"media"`
-	List  []*rsmp.NTMSObjectinformationw `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
+	That  *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	Media *rsmp.ObjectInformationW   `idl:"name:lpMedia" json:"media"`
+	List  []*rsmp.ObjectInformationW `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
 	// Return: The CreateNtmsMediaW return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

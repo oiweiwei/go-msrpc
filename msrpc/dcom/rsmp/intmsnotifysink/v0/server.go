@@ -26,7 +26,7 @@ var (
 )
 
 // INtmsNotifySink server interface.
-type NTMSNotifySinkServer interface {
+type NotifySinkServer interface {
 
 	// IUnknown base class.
 	iunknown.UnknownServer
@@ -39,17 +39,17 @@ type NTMSNotifySinkServer interface {
 	ReleaseCallback(context.Context, *ReleaseCallbackRequest) (*ReleaseCallbackResponse, error)
 }
 
-func RegisterNTMSNotifySinkServer(conn dcerpc.Conn, o NTMSNotifySinkServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewNTMSNotifySinkServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(NTMSNotifySinkSyntaxV0_0))...)
+func RegisterNotifySinkServer(conn dcerpc.Conn, o NotifySinkServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewNotifySinkServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(NotifySinkSyntaxV0_0))...)
 }
 
-func NewNTMSNotifySinkServerHandle(o NTMSNotifySinkServer) dcerpc.ServerHandle {
+func NewNotifySinkServerHandle(o NotifySinkServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return NTMSNotifySinkServerHandle(ctx, o, opNum, r)
+		return NotifySinkServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func NTMSNotifySinkServerHandle(ctx context.Context, o NTMSNotifySinkServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func NotifySinkServerHandle(ctx context.Context, o NotifySinkServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 3 {
 		// IUnknown base method.
 		return iunknown.UnknownServerHandle(ctx, o, opNum, r)
@@ -87,18 +87,18 @@ func NTMSNotifySinkServerHandle(ctx context.Context, o NTMSNotifySinkServer, opN
 }
 
 // Unimplemented INtmsNotifySink
-type UnimplementedNTMSNotifySinkServer struct {
+type UnimplementedNotifySinkServer struct {
 	iunknown.UnimplementedUnknownServer
 }
 
-func (UnimplementedNTMSNotifySinkServer) ConnectCallback(context.Context, *ConnectCallbackRequest) (*ConnectCallbackResponse, error) {
+func (UnimplementedNotifySinkServer) ConnectCallback(context.Context, *ConnectCallbackRequest) (*ConnectCallbackResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSNotifySinkServer) OnNotify(context.Context, *OnNotifyRequest) (*OnNotifyResponse, error) {
+func (UnimplementedNotifySinkServer) OnNotify(context.Context, *OnNotifyRequest) (*OnNotifyResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSNotifySinkServer) ReleaseCallback(context.Context, *ReleaseCallbackRequest) (*ReleaseCallbackResponse, error) {
+func (UnimplementedNotifySinkServer) ReleaseCallback(context.Context, *ReleaseCallbackRequest) (*ReleaseCallbackResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ NTMSNotifySinkServer = (*UnimplementedNTMSNotifySinkServer)(nil)
+var _ NotifySinkServer = (*UnimplementedNotifySinkServer)(nil)

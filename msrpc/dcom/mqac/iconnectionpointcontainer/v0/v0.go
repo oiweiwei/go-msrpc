@@ -405,7 +405,7 @@ type xxx_FindConnectionPointOperation struct {
 	This            *dcom.ORPCThis        `idl:"name:This" json:"this"`
 	That            *dcom.ORPCThat        `idl:"name:That" json:"that"`
 	IID             *dcom.IID             `idl:"name:riid" json:"iid"`
-	CreatePartition *mqac.ConnectionPoint `idl:"name:ppCP" json:"create_partition"`
+	ConnectionPoint *mqac.ConnectionPoint `idl:"name:ppCP" json:"connection_point"`
 	Return          int32                 `idl:"name:Return" json:"return"`
 }
 
@@ -513,10 +513,10 @@ func (o *xxx_FindConnectionPointOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// ppCP {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IConnectionPoint}(interface))
 	{
-		if o.CreatePartition != nil {
+		if o.ConnectionPoint != nil {
 			_ptr_ppCP := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.CreatePartition != nil {
-					if err := o.CreatePartition.MarshalNDR(ctx, w); err != nil {
+				if o.ConnectionPoint != nil {
+					if err := o.ConnectionPoint.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -526,7 +526,7 @@ func (o *xxx_FindConnectionPointOperation) MarshalNDRResponse(ctx context.Contex
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.CreatePartition, _ptr_ppCP); err != nil {
+			if err := w.WritePointer(&o.ConnectionPoint, _ptr_ppCP); err != nil {
 				return err
 			}
 		} else {
@@ -563,16 +563,16 @@ func (o *xxx_FindConnectionPointOperation) UnmarshalNDRResponse(ctx context.Cont
 	// ppCP {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IConnectionPoint}(interface))
 	{
 		_ptr_ppCP := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.CreatePartition == nil {
-				o.CreatePartition = &mqac.ConnectionPoint{}
+			if o.ConnectionPoint == nil {
+				o.ConnectionPoint = &mqac.ConnectionPoint{}
 			}
-			if err := o.CreatePartition.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.ConnectionPoint.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppCP := func(ptr interface{}) { o.CreatePartition = *ptr.(**mqac.ConnectionPoint) }
-		if err := w.ReadPointer(&o.CreatePartition, _s_ppCP, _ptr_ppCP); err != nil {
+		_s_ppCP := func(ptr interface{}) { o.ConnectionPoint = *ptr.(**mqac.ConnectionPoint) }
+		if err := w.ReadPointer(&o.ConnectionPoint, _s_ppCP, _ptr_ppCP); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -630,7 +630,7 @@ func (o *FindConnectionPointRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 type FindConnectionPointResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That            *dcom.ORPCThat        `idl:"name:That" json:"that"`
-	CreatePartition *mqac.ConnectionPoint `idl:"name:ppCP" json:"create_partition"`
+	ConnectionPoint *mqac.ConnectionPoint `idl:"name:ppCP" json:"connection_point"`
 	// Return: The FindConnectionPoint return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -643,7 +643,7 @@ func (o *FindConnectionPointResponse) xxx_ToOp(ctx context.Context, op *xxx_Find
 		return op
 	}
 	op.That = o.That
-	op.CreatePartition = o.CreatePartition
+	op.ConnectionPoint = o.ConnectionPoint
 	op.Return = o.Return
 	return op
 }
@@ -653,7 +653,7 @@ func (o *FindConnectionPointResponse) xxx_FromOp(ctx context.Context, op *xxx_Fi
 		return
 	}
 	o.That = op.That
-	o.CreatePartition = op.CreatePartition
+	o.ConnectionPoint = op.ConnectionPoint
 	o.Return = op.Return
 }
 func (o *FindConnectionPointResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {

@@ -25,13 +25,13 @@ var (
 
 // frsrpc server interface.
 type FrsrpcServer interface {
-	FrsRPCSendCommPacket(context.Context, *FrsRPCSendCommPacketRequest) (*FrsRPCSendCommPacketResponse, error)
+	SendCommPacket(context.Context, *SendCommPacketRequest) (*SendCommPacketResponse, error)
 
-	FrsRPCVerifyPromotionParent(context.Context, *FrsRPCVerifyPromotionParentRequest) (*FrsRPCVerifyPromotionParentResponse, error)
+	VerifyPromotionParent(context.Context, *VerifyPromotionParentRequest) (*VerifyPromotionParentResponse, error)
 
-	FrsRPCStartPromotionParent(context.Context, *FrsRPCStartPromotionParentRequest) (*FrsRPCStartPromotionParentResponse, error)
+	StartPromotionParent(context.Context, *StartPromotionParentRequest) (*StartPromotionParentResponse, error)
 
-	FrsNop(context.Context, *FrsNopRequest) (*FrsNopResponse, error)
+	Noop(context.Context, *NoopRequest) (*NoopResponse, error)
 
 	// Opnum4NotUsedOnWire operation.
 	// Opnum4NotUsedOnWire
@@ -68,40 +68,40 @@ func NewFrsrpcServerHandle(o FrsrpcServer) dcerpc.ServerHandle {
 func FrsrpcServerHandle(ctx context.Context, o FrsrpcServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // FrsRpcSendCommPkt
-		op := &xxx_FrsRPCSendCommPacketOperation{}
+		op := &xxx_SendCommPacketOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &FrsRPCSendCommPacketRequest{}
+		req := &SendCommPacketRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.FrsRPCSendCommPacket(ctx, req)
+		resp, err := o.SendCommPacket(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 1: // FrsRpcVerifyPromotionParent
-		op := &xxx_FrsRPCVerifyPromotionParentOperation{}
+		op := &xxx_VerifyPromotionParentOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &FrsRPCVerifyPromotionParentRequest{}
+		req := &VerifyPromotionParentRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.FrsRPCVerifyPromotionParent(ctx, req)
+		resp, err := o.VerifyPromotionParent(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 2: // FrsRpcStartPromotionParent
-		op := &xxx_FrsRPCStartPromotionParentOperation{}
+		op := &xxx_StartPromotionParentOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &FrsRPCStartPromotionParentRequest{}
+		req := &StartPromotionParentRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.FrsRPCStartPromotionParent(ctx, req)
+		resp, err := o.StartPromotionParent(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 3: // FrsNOP
-		op := &xxx_FrsNopOperation{}
+		op := &xxx_NoopOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &FrsNopRequest{}
+		req := &NoopRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.FrsNop(ctx, req)
+		resp, err := o.Noop(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Opnum4NotUsedOnWire
 		// Opnum4NotUsedOnWire
@@ -132,16 +132,16 @@ func FrsrpcServerHandle(ctx context.Context, o FrsrpcServer, opNum int, r ndr.Re
 type UnimplementedFrsrpcServer struct {
 }
 
-func (UnimplementedFrsrpcServer) FrsRPCSendCommPacket(context.Context, *FrsRPCSendCommPacketRequest) (*FrsRPCSendCommPacketResponse, error) {
+func (UnimplementedFrsrpcServer) SendCommPacket(context.Context, *SendCommPacketRequest) (*SendCommPacketResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedFrsrpcServer) FrsRPCVerifyPromotionParent(context.Context, *FrsRPCVerifyPromotionParentRequest) (*FrsRPCVerifyPromotionParentResponse, error) {
+func (UnimplementedFrsrpcServer) VerifyPromotionParent(context.Context, *VerifyPromotionParentRequest) (*VerifyPromotionParentResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedFrsrpcServer) FrsRPCStartPromotionParent(context.Context, *FrsRPCStartPromotionParentRequest) (*FrsRPCStartPromotionParentResponse, error) {
+func (UnimplementedFrsrpcServer) StartPromotionParent(context.Context, *StartPromotionParentRequest) (*StartPromotionParentResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedFrsrpcServer) FrsNop(context.Context, *FrsNopRequest) (*FrsNopResponse, error) {
+func (UnimplementedFrsrpcServer) Noop(context.Context, *NoopRequest) (*NoopResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 

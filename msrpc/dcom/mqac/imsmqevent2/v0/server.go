@@ -26,26 +26,26 @@ var (
 )
 
 // IMSMQEvent2 server interface.
-type ImsmqEvent2Server interface {
+type Event2Server interface {
 
 	// IMSMQEvent base class.
-	imsmqevent.ImsmqEventServer
+	imsmqevent.EventServer
 
 	// Properties operation.
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 }
 
-func RegisterImsmqEvent2Server(conn dcerpc.Conn, o ImsmqEvent2Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqEvent2ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqEvent2SyntaxV0_0))...)
+func RegisterEvent2Server(conn dcerpc.Conn, o Event2Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewEvent2ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(Event2SyntaxV0_0))...)
 }
 
-func NewImsmqEvent2ServerHandle(o ImsmqEvent2Server) dcerpc.ServerHandle {
+func NewEvent2ServerHandle(o Event2Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqEvent2ServerHandle(ctx, o, opNum, r)
+		return Event2ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqEvent2ServerHandle(ctx context.Context, o ImsmqEvent2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func Event2ServerHandle(ctx context.Context, o Event2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // Properties
 		op := &xxx_GetPropertiesOperation{}
@@ -61,12 +61,12 @@ func ImsmqEvent2ServerHandle(ctx context.Context, o ImsmqEvent2Server, opNum int
 }
 
 // Unimplemented IMSMQEvent2
-type UnimplementedImsmqEvent2Server struct {
-	imsmqevent.UnimplementedImsmqEventServer
+type UnimplementedEvent2Server struct {
+	imsmqevent.UnimplementedEventServer
 }
 
-func (UnimplementedImsmqEvent2Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+func (UnimplementedEvent2Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqEvent2Server = (*UnimplementedImsmqEvent2Server)(nil)
+var _ Event2Server = (*UnimplementedEvent2Server)(nil)

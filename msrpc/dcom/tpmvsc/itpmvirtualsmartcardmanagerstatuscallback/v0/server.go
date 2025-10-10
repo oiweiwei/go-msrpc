@@ -26,7 +26,7 @@ var (
 )
 
 // ITpmVirtualSmartCardManagerStatusCallback server interface.
-type TpmVirtualSmartCardManagerStatusCallbackServer interface {
+type VirtualSmartCardManagerStatusCallbackServer interface {
 
 	// IUnknown base class.
 	iunknown.UnknownServer
@@ -36,17 +36,17 @@ type TpmVirtualSmartCardManagerStatusCallbackServer interface {
 	ReportError(context.Context, *ReportErrorRequest) (*ReportErrorResponse, error)
 }
 
-func RegisterTpmVirtualSmartCardManagerStatusCallbackServer(conn dcerpc.Conn, o TpmVirtualSmartCardManagerStatusCallbackServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewTpmVirtualSmartCardManagerStatusCallbackServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(TpmVirtualSmartCardManagerStatusCallbackSyntaxV0_0))...)
+func RegisterVirtualSmartCardManagerStatusCallbackServer(conn dcerpc.Conn, o VirtualSmartCardManagerStatusCallbackServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewVirtualSmartCardManagerStatusCallbackServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(VirtualSmartCardManagerStatusCallbackSyntaxV0_0))...)
 }
 
-func NewTpmVirtualSmartCardManagerStatusCallbackServerHandle(o TpmVirtualSmartCardManagerStatusCallbackServer) dcerpc.ServerHandle {
+func NewVirtualSmartCardManagerStatusCallbackServerHandle(o VirtualSmartCardManagerStatusCallbackServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return TpmVirtualSmartCardManagerStatusCallbackServerHandle(ctx, o, opNum, r)
+		return VirtualSmartCardManagerStatusCallbackServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func TpmVirtualSmartCardManagerStatusCallbackServerHandle(ctx context.Context, o TpmVirtualSmartCardManagerStatusCallbackServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func VirtualSmartCardManagerStatusCallbackServerHandle(ctx context.Context, o VirtualSmartCardManagerStatusCallbackServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 3 {
 		// IUnknown base method.
 		return iunknown.UnknownServerHandle(ctx, o, opNum, r)
@@ -75,15 +75,15 @@ func TpmVirtualSmartCardManagerStatusCallbackServerHandle(ctx context.Context, o
 }
 
 // Unimplemented ITpmVirtualSmartCardManagerStatusCallback
-type UnimplementedTpmVirtualSmartCardManagerStatusCallbackServer struct {
+type UnimplementedVirtualSmartCardManagerStatusCallbackServer struct {
 	iunknown.UnimplementedUnknownServer
 }
 
-func (UnimplementedTpmVirtualSmartCardManagerStatusCallbackServer) ReportProgress(context.Context, *ReportProgressRequest) (*ReportProgressResponse, error) {
+func (UnimplementedVirtualSmartCardManagerStatusCallbackServer) ReportProgress(context.Context, *ReportProgressRequest) (*ReportProgressResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedTpmVirtualSmartCardManagerStatusCallbackServer) ReportError(context.Context, *ReportErrorRequest) (*ReportErrorResponse, error) {
+func (UnimplementedVirtualSmartCardManagerStatusCallbackServer) ReportError(context.Context, *ReportErrorRequest) (*ReportErrorResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ TpmVirtualSmartCardManagerStatusCallbackServer = (*UnimplementedTpmVirtualSmartCardManagerStatusCallbackServer)(nil)
+var _ VirtualSmartCardManagerStatusCallbackServer = (*UnimplementedVirtualSmartCardManagerStatusCallbackServer)(nil)

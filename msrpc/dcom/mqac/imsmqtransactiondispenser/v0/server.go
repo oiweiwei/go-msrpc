@@ -26,7 +26,7 @@ var (
 )
 
 // IMSMQTransactionDispenser server interface.
-type ImsmqTransactionDispenserServer interface {
+type TransactionDispenserServer interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -35,17 +35,17 @@ type ImsmqTransactionDispenserServer interface {
 	BeginTransaction(context.Context, *BeginTransactionRequest) (*BeginTransactionResponse, error)
 }
 
-func RegisterImsmqTransactionDispenserServer(conn dcerpc.Conn, o ImsmqTransactionDispenserServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqTransactionDispenserServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqTransactionDispenserSyntaxV0_0))...)
+func RegisterTransactionDispenserServer(conn dcerpc.Conn, o TransactionDispenserServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewTransactionDispenserServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(TransactionDispenserSyntaxV0_0))...)
 }
 
-func NewImsmqTransactionDispenserServerHandle(o ImsmqTransactionDispenserServer) dcerpc.ServerHandle {
+func NewTransactionDispenserServerHandle(o TransactionDispenserServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqTransactionDispenserServerHandle(ctx, o, opNum, r)
+		return TransactionDispenserServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqTransactionDispenserServerHandle(ctx context.Context, o ImsmqTransactionDispenserServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func TransactionDispenserServerHandle(ctx context.Context, o TransactionDispenserServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -65,12 +65,12 @@ func ImsmqTransactionDispenserServerHandle(ctx context.Context, o ImsmqTransacti
 }
 
 // Unimplemented IMSMQTransactionDispenser
-type UnimplementedImsmqTransactionDispenserServer struct {
+type UnimplementedTransactionDispenserServer struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedImsmqTransactionDispenserServer) BeginTransaction(context.Context, *BeginTransactionRequest) (*BeginTransactionResponse, error) {
+func (UnimplementedTransactionDispenserServer) BeginTransaction(context.Context, *BeginTransactionRequest) (*BeginTransactionResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqTransactionDispenserServer = (*UnimplementedImsmqTransactionDispenserServer)(nil)
+var _ TransactionDispenserServer = (*UnimplementedTransactionDispenserServer)(nil)

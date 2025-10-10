@@ -36,18 +36,18 @@ var (
 
 var (
 	// INtmsObjectManagement2 interface identifier 895a2c86-270d-489d-a6c0-dc2a9b35280e
-	NTMSObjectManagement2IID = &dcom.IID{Data1: 0x895a2c86, Data2: 0x270d, Data3: 0x489d, Data4: []byte{0xa6, 0xc0, 0xdc, 0x2a, 0x9b, 0x35, 0x28, 0x0e}}
+	ObjectManagement2IID = &dcom.IID{Data1: 0x895a2c86, Data2: 0x270d, Data3: 0x489d, Data4: []byte{0xa6, 0xc0, 0xdc, 0x2a, 0x9b, 0x35, 0x28, 0x0e}}
 	// Syntax UUID
-	NTMSObjectManagement2SyntaxUUID = &uuid.UUID{TimeLow: 0x895a2c86, TimeMid: 0x270d, TimeHiAndVersion: 0x489d, ClockSeqHiAndReserved: 0xa6, ClockSeqLow: 0xc0, Node: [6]uint8{0xdc, 0x2a, 0x9b, 0x35, 0x28, 0xe}}
+	ObjectManagement2SyntaxUUID = &uuid.UUID{TimeLow: 0x895a2c86, TimeMid: 0x270d, TimeHiAndVersion: 0x489d, ClockSeqHiAndReserved: 0xa6, ClockSeqLow: 0xc0, Node: [6]uint8{0xdc, 0x2a, 0x9b, 0x35, 0x28, 0xe}}
 	// Syntax ID
-	NTMSObjectManagement2SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: NTMSObjectManagement2SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	ObjectManagement2SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ObjectManagement2SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // INtmsObjectManagement2 interface.
-type NTMSObjectManagement2Client interface {
+type ObjectManagement2Client interface {
 
 	// INtmsObjectManagement1 retrieval method.
-	NTMSObjectManagement1() intmsobjectmanagement1.NTMSObjectManagement1Client
+	ObjectManagement1() intmsobjectmanagement1.ObjectManagement1Client
 
 	EnumerateNTMSObjectR(context.Context, *EnumerateNTMSObjectRRequest, ...dcerpc.CallOption) (*EnumerateNTMSObjectRResponse, error)
 
@@ -66,20 +66,20 @@ type NTMSObjectManagement2Client interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) NTMSObjectManagement2Client
+	IPID(context.Context, *dcom.IPID) ObjectManagement2Client
 }
 
-type xxx_DefaultNTMSObjectManagement2Client struct {
-	intmsobjectmanagement1.NTMSObjectManagement1Client
+type xxx_DefaultObjectManagement2Client struct {
+	intmsobjectmanagement1.ObjectManagement1Client
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultNTMSObjectManagement2Client) NTMSObjectManagement1() intmsobjectmanagement1.NTMSObjectManagement1Client {
-	return o.NTMSObjectManagement1Client
+func (o *xxx_DefaultObjectManagement2Client) ObjectManagement1() intmsobjectmanagement1.ObjectManagement1Client {
+	return o.ObjectManagement1Client
 }
 
-func (o *xxx_DefaultNTMSObjectManagement2Client) EnumerateNTMSObjectR(ctx context.Context, in *EnumerateNTMSObjectRRequest, opts ...dcerpc.CallOption) (*EnumerateNTMSObjectRResponse, error) {
+func (o *xxx_DefaultObjectManagement2Client) EnumerateNTMSObjectR(ctx context.Context, in *EnumerateNTMSObjectRRequest, opts ...dcerpc.CallOption) (*EnumerateNTMSObjectRResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -99,7 +99,7 @@ func (o *xxx_DefaultNTMSObjectManagement2Client) EnumerateNTMSObjectR(ctx contex
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSObjectManagement2Client) GetNTMSUIOptionsA(ctx context.Context, in *GetNTMSUIOptionsARequest, opts ...dcerpc.CallOption) (*GetNTMSUIOptionsAResponse, error) {
+func (o *xxx_DefaultObjectManagement2Client) GetNTMSUIOptionsA(ctx context.Context, in *GetNTMSUIOptionsARequest, opts ...dcerpc.CallOption) (*GetNTMSUIOptionsAResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -119,7 +119,7 @@ func (o *xxx_DefaultNTMSObjectManagement2Client) GetNTMSUIOptionsA(ctx context.C
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSObjectManagement2Client) GetNTMSUIOptionsW(ctx context.Context, in *GetNTMSUIOptionsWRequest, opts ...dcerpc.CallOption) (*GetNTMSUIOptionsWResponse, error) {
+func (o *xxx_DefaultObjectManagement2Client) GetNTMSUIOptionsW(ctx context.Context, in *GetNTMSUIOptionsWRequest, opts ...dcerpc.CallOption) (*GetNTMSUIOptionsWResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -139,7 +139,7 @@ func (o *xxx_DefaultNTMSObjectManagement2Client) GetNTMSUIOptionsW(ctx context.C
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSObjectManagement2Client) SetNTMSUIOptionsA(ctx context.Context, in *SetNTMSUIOptionsARequest, opts ...dcerpc.CallOption) (*SetNTMSUIOptionsAResponse, error) {
+func (o *xxx_DefaultObjectManagement2Client) SetNTMSUIOptionsA(ctx context.Context, in *SetNTMSUIOptionsARequest, opts ...dcerpc.CallOption) (*SetNTMSUIOptionsAResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -159,7 +159,7 @@ func (o *xxx_DefaultNTMSObjectManagement2Client) SetNTMSUIOptionsA(ctx context.C
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSObjectManagement2Client) SetNTMSUIOptionsW(ctx context.Context, in *SetNTMSUIOptionsWRequest, opts ...dcerpc.CallOption) (*SetNTMSUIOptionsWResponse, error) {
+func (o *xxx_DefaultObjectManagement2Client) SetNTMSUIOptionsW(ctx context.Context, in *SetNTMSUIOptionsWRequest, opts ...dcerpc.CallOption) (*SetNTMSUIOptionsWResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -179,34 +179,34 @@ func (o *xxx_DefaultNTMSObjectManagement2Client) SetNTMSUIOptionsW(ctx context.C
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSObjectManagement2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultObjectManagement2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultNTMSObjectManagement2Client) Conn() dcerpc.Conn {
+func (o *xxx_DefaultObjectManagement2Client) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultNTMSObjectManagement2Client) IPID(ctx context.Context, ipid *dcom.IPID) NTMSObjectManagement2Client {
+func (o *xxx_DefaultObjectManagement2Client) IPID(ctx context.Context, ipid *dcom.IPID) ObjectManagement2Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultNTMSObjectManagement2Client{
-		NTMSObjectManagement1Client: o.NTMSObjectManagement1Client.IPID(ctx, ipid),
-		cc:                          o.cc,
-		ipid:                        ipid,
+	return &xxx_DefaultObjectManagement2Client{
+		ObjectManagement1Client: o.ObjectManagement1Client.IPID(ctx, ipid),
+		cc:                      o.cc,
+		ipid:                    ipid,
 	}
 }
 
-func NewNTMSObjectManagement2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (NTMSObjectManagement2Client, error) {
+func NewObjectManagement2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ObjectManagement2Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(NTMSObjectManagement2SyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ObjectManagement2SyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
 	}
-	base, err := intmsobjectmanagement1.NewNTMSObjectManagement1Client(ctx, cc, append(opts, dcom.Superclass(cc))...)
+	base, err := intmsobjectmanagement1.NewObjectManagement1Client(ctx, cc, append(opts, dcom.Superclass(cc))...)
 	if err != nil {
 		return nil, err
 	}
@@ -214,10 +214,10 @@ func NewNTMSObjectManagement2Client(ctx context.Context, cc dcerpc.Conn, opts ..
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultNTMSObjectManagement2Client{
-		NTMSObjectManagement1Client: base,
-		cc:                          cc,
-		ipid:                        ipid,
+	return &xxx_DefaultObjectManagement2Client{
+		ObjectManagement1Client: base,
+		cc:                      cc,
+		ipid:                    ipid,
 	}, nil
 }
 

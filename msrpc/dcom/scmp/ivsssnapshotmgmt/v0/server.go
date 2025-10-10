@@ -26,7 +26,7 @@ var (
 )
 
 // IVssSnapshotMgmt server interface.
-type VSSSnapshotManagementServer interface {
+type SnapshotManagementServer interface {
 
 	// IUnknown base class.
 	iunknown.UnknownServer
@@ -38,17 +38,17 @@ type VSSSnapshotManagementServer interface {
 	QuerySnapshotsByVolume(context.Context, *QuerySnapshotsByVolumeRequest) (*QuerySnapshotsByVolumeResponse, error)
 }
 
-func RegisterVSSSnapshotManagementServer(conn dcerpc.Conn, o VSSSnapshotManagementServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewVSSSnapshotManagementServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(VSSSnapshotManagementSyntaxV0_0))...)
+func RegisterSnapshotManagementServer(conn dcerpc.Conn, o SnapshotManagementServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewSnapshotManagementServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(SnapshotManagementSyntaxV0_0))...)
 }
 
-func NewVSSSnapshotManagementServerHandle(o VSSSnapshotManagementServer) dcerpc.ServerHandle {
+func NewSnapshotManagementServerHandle(o SnapshotManagementServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return VSSSnapshotManagementServerHandle(ctx, o, opNum, r)
+		return SnapshotManagementServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func VSSSnapshotManagementServerHandle(ctx context.Context, o VSSSnapshotManagementServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func SnapshotManagementServerHandle(ctx context.Context, o SnapshotManagementServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 3 {
 		// IUnknown base method.
 		return iunknown.UnknownServerHandle(ctx, o, opNum, r)
@@ -86,18 +86,18 @@ func VSSSnapshotManagementServerHandle(ctx context.Context, o VSSSnapshotManagem
 }
 
 // Unimplemented IVssSnapshotMgmt
-type UnimplementedVSSSnapshotManagementServer struct {
+type UnimplementedSnapshotManagementServer struct {
 	iunknown.UnimplementedUnknownServer
 }
 
-func (UnimplementedVSSSnapshotManagementServer) GetProviderManagementInterface(context.Context, *GetProviderManagementInterfaceRequest) (*GetProviderManagementInterfaceResponse, error) {
+func (UnimplementedSnapshotManagementServer) GetProviderManagementInterface(context.Context, *GetProviderManagementInterfaceRequest) (*GetProviderManagementInterfaceResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedVSSSnapshotManagementServer) QueryVolumesSupportedForSnapshots(context.Context, *QueryVolumesSupportedForSnapshotsRequest) (*QueryVolumesSupportedForSnapshotsResponse, error) {
+func (UnimplementedSnapshotManagementServer) QueryVolumesSupportedForSnapshots(context.Context, *QueryVolumesSupportedForSnapshotsRequest) (*QueryVolumesSupportedForSnapshotsResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedVSSSnapshotManagementServer) QuerySnapshotsByVolume(context.Context, *QuerySnapshotsByVolumeRequest) (*QuerySnapshotsByVolumeResponse, error) {
+func (UnimplementedSnapshotManagementServer) QuerySnapshotsByVolume(context.Context, *QuerySnapshotsByVolumeRequest) (*QuerySnapshotsByVolumeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ VSSSnapshotManagementServer = (*UnimplementedVSSSnapshotManagementServer)(nil)
+var _ SnapshotManagementServer = (*UnimplementedSnapshotManagementServer)(nil)

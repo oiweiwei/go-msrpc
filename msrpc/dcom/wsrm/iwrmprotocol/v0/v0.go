@@ -36,15 +36,15 @@ var (
 
 var (
 	// IWRMProtocol interface identifier f31931a9-832d-481c-9503-887a0e6a79f0
-	IwrmProtocolIID = &dcom.IID{Data1: 0xf31931a9, Data2: 0x832d, Data3: 0x481c, Data4: []byte{0x95, 0x03, 0x88, 0x7a, 0x0e, 0x6a, 0x79, 0xf0}}
+	ProtocolIID = &dcom.IID{Data1: 0xf31931a9, Data2: 0x832d, Data3: 0x481c, Data4: []byte{0x95, 0x03, 0x88, 0x7a, 0x0e, 0x6a, 0x79, 0xf0}}
 	// Syntax UUID
-	IwrmProtocolSyntaxUUID = &uuid.UUID{TimeLow: 0xf31931a9, TimeMid: 0x832d, TimeHiAndVersion: 0x481c, ClockSeqHiAndReserved: 0x95, ClockSeqLow: 0x3, Node: [6]uint8{0x88, 0x7a, 0xe, 0x6a, 0x79, 0xf0}}
+	ProtocolSyntaxUUID = &uuid.UUID{TimeLow: 0xf31931a9, TimeMid: 0x832d, TimeHiAndVersion: 0x481c, ClockSeqHiAndReserved: 0x95, ClockSeqLow: 0x3, Node: [6]uint8{0x88, 0x7a, 0xe, 0x6a, 0x79, 0xf0}}
 	// Syntax ID
-	IwrmProtocolSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: IwrmProtocolSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	ProtocolSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ProtocolSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IWRMProtocol interface.
-type IwrmProtocolClient interface {
+type ProtocolClient interface {
 
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
@@ -58,20 +58,20 @@ type IwrmProtocolClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) IwrmProtocolClient
+	IPID(context.Context, *dcom.IPID) ProtocolClient
 }
 
-type xxx_DefaultIwrmProtocolClient struct {
+type xxx_DefaultProtocolClient struct {
 	idispatch.DispatchClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultIwrmProtocolClient) Dispatch() idispatch.DispatchClient {
+func (o *xxx_DefaultProtocolClient) Dispatch() idispatch.DispatchClient {
 	return o.DispatchClient
 }
 
-func (o *xxx_DefaultIwrmProtocolClient) GetSupportedClient(ctx context.Context, in *GetSupportedClientRequest, opts ...dcerpc.CallOption) (*GetSupportedClientResponse, error) {
+func (o *xxx_DefaultProtocolClient) GetSupportedClient(ctx context.Context, in *GetSupportedClientRequest, opts ...dcerpc.CallOption) (*GetSupportedClientResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -91,29 +91,29 @@ func (o *xxx_DefaultIwrmProtocolClient) GetSupportedClient(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmProtocolClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultProtocolClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultIwrmProtocolClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultProtocolClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultIwrmProtocolClient) IPID(ctx context.Context, ipid *dcom.IPID) IwrmProtocolClient {
+func (o *xxx_DefaultProtocolClient) IPID(ctx context.Context, ipid *dcom.IPID) ProtocolClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultIwrmProtocolClient{
+	return &xxx_DefaultProtocolClient{
 		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
 		cc:             o.cc,
 		ipid:           ipid,
 	}
 }
 
-func NewIwrmProtocolClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (IwrmProtocolClient, error) {
+func NewProtocolClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ProtocolClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(IwrmProtocolSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ProtocolSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -126,7 +126,7 @@ func NewIwrmProtocolClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.O
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultIwrmProtocolClient{
+	return &xxx_DefaultProtocolClient{
 		DispatchClient: base,
 		cc:             cc,
 		ipid:           ipid,

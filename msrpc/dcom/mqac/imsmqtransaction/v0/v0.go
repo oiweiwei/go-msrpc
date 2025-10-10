@@ -36,15 +36,15 @@ var (
 
 var (
 	// IMSMQTransaction interface identifier d7d6e07f-dccd-11d0-aa4b-0060970debae
-	ImsmqTransactionIID = &dcom.IID{Data1: 0xd7d6e07f, Data2: 0xdccd, Data3: 0x11d0, Data4: []byte{0xaa, 0x4b, 0x00, 0x60, 0x97, 0x0d, 0xeb, 0xae}}
+	TransactionIID = &dcom.IID{Data1: 0xd7d6e07f, Data2: 0xdccd, Data3: 0x11d0, Data4: []byte{0xaa, 0x4b, 0x00, 0x60, 0x97, 0x0d, 0xeb, 0xae}}
 	// Syntax UUID
-	ImsmqTransactionSyntaxUUID = &uuid.UUID{TimeLow: 0xd7d6e07f, TimeMid: 0xdccd, TimeHiAndVersion: 0x11d0, ClockSeqHiAndReserved: 0xaa, ClockSeqLow: 0x4b, Node: [6]uint8{0x0, 0x60, 0x97, 0xd, 0xeb, 0xae}}
+	TransactionSyntaxUUID = &uuid.UUID{TimeLow: 0xd7d6e07f, TimeMid: 0xdccd, TimeHiAndVersion: 0x11d0, ClockSeqHiAndReserved: 0xaa, ClockSeqLow: 0x4b, Node: [6]uint8{0x0, 0x60, 0x97, 0xd, 0xeb, 0xae}}
 	// Syntax ID
-	ImsmqTransactionSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ImsmqTransactionSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	TransactionSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: TransactionSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IMSMQTransaction interface.
-type ImsmqTransactionClient interface {
+type TransactionClient interface {
 
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
@@ -65,20 +65,20 @@ type ImsmqTransactionClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) ImsmqTransactionClient
+	IPID(context.Context, *dcom.IPID) TransactionClient
 }
 
-type xxx_DefaultImsmqTransactionClient struct {
+type xxx_DefaultTransactionClient struct {
 	idispatch.DispatchClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultImsmqTransactionClient) Dispatch() idispatch.DispatchClient {
+func (o *xxx_DefaultTransactionClient) Dispatch() idispatch.DispatchClient {
 	return o.DispatchClient
 }
 
-func (o *xxx_DefaultImsmqTransactionClient) GetTransaction(ctx context.Context, in *GetTransactionRequest, opts ...dcerpc.CallOption) (*GetTransactionResponse, error) {
+func (o *xxx_DefaultTransactionClient) GetTransaction(ctx context.Context, in *GetTransactionRequest, opts ...dcerpc.CallOption) (*GetTransactionResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -98,7 +98,7 @@ func (o *xxx_DefaultImsmqTransactionClient) GetTransaction(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqTransactionClient) Commit(ctx context.Context, in *CommitRequest, opts ...dcerpc.CallOption) (*CommitResponse, error) {
+func (o *xxx_DefaultTransactionClient) Commit(ctx context.Context, in *CommitRequest, opts ...dcerpc.CallOption) (*CommitResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -118,7 +118,7 @@ func (o *xxx_DefaultImsmqTransactionClient) Commit(ctx context.Context, in *Comm
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqTransactionClient) Abort(ctx context.Context, in *AbortRequest, opts ...dcerpc.CallOption) (*AbortResponse, error) {
+func (o *xxx_DefaultTransactionClient) Abort(ctx context.Context, in *AbortRequest, opts ...dcerpc.CallOption) (*AbortResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -138,29 +138,29 @@ func (o *xxx_DefaultImsmqTransactionClient) Abort(ctx context.Context, in *Abort
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqTransactionClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultTransactionClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultImsmqTransactionClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultTransactionClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultImsmqTransactionClient) IPID(ctx context.Context, ipid *dcom.IPID) ImsmqTransactionClient {
+func (o *xxx_DefaultTransactionClient) IPID(ctx context.Context, ipid *dcom.IPID) TransactionClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultImsmqTransactionClient{
+	return &xxx_DefaultTransactionClient{
 		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
 		cc:             o.cc,
 		ipid:           ipid,
 	}
 }
 
-func NewImsmqTransactionClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ImsmqTransactionClient, error) {
+func NewTransactionClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (TransactionClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ImsmqTransactionSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(TransactionSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -173,7 +173,7 @@ func NewImsmqTransactionClient(ctx context.Context, cc dcerpc.Conn, opts ...dcer
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultImsmqTransactionClient{
+	return &xxx_DefaultTransactionClient{
 		DispatchClient: base,
 		cc:             cc,
 		ipid:           ipid,

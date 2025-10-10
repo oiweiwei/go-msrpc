@@ -38,15 +38,15 @@ var (
 
 var (
 	// IWRMMachineGroup interface identifier 943991a5-b3fe-41fa-9696-7f7b656ee34b
-	IwrmMachineGroupIID = &dcom.IID{Data1: 0x943991a5, Data2: 0xb3fe, Data3: 0x41fa, Data4: []byte{0x96, 0x96, 0x7f, 0x7b, 0x65, 0x6e, 0xe3, 0x4b}}
+	MachineGroupIID = &dcom.IID{Data1: 0x943991a5, Data2: 0xb3fe, Data3: 0x41fa, Data4: []byte{0x96, 0x96, 0x7f, 0x7b, 0x65, 0x6e, 0xe3, 0x4b}}
 	// Syntax UUID
-	IwrmMachineGroupSyntaxUUID = &uuid.UUID{TimeLow: 0x943991a5, TimeMid: 0xb3fe, TimeHiAndVersion: 0x41fa, ClockSeqHiAndReserved: 0x96, ClockSeqLow: 0x96, Node: [6]uint8{0x7f, 0x7b, 0x65, 0x6e, 0xe3, 0x4b}}
+	MachineGroupSyntaxUUID = &uuid.UUID{TimeLow: 0x943991a5, TimeMid: 0xb3fe, TimeHiAndVersion: 0x41fa, ClockSeqHiAndReserved: 0x96, ClockSeqLow: 0x96, Node: [6]uint8{0x7f, 0x7b, 0x65, 0x6e, 0xe3, 0x4b}}
 	// Syntax ID
-	IwrmMachineGroupSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: IwrmMachineGroupSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	MachineGroupSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: MachineGroupSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IWRMMachineGroup interface.
-type IwrmMachineGroupClient interface {
+type MachineGroupClient interface {
 
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
@@ -76,20 +76,20 @@ type IwrmMachineGroupClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) IwrmMachineGroupClient
+	IPID(context.Context, *dcom.IPID) MachineGroupClient
 }
 
-type xxx_DefaultIwrmMachineGroupClient struct {
+type xxx_DefaultMachineGroupClient struct {
 	idispatch.DispatchClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultIwrmMachineGroupClient) Dispatch() idispatch.DispatchClient {
+func (o *xxx_DefaultMachineGroupClient) Dispatch() idispatch.DispatchClient {
 	return o.DispatchClient
 }
 
-func (o *xxx_DefaultIwrmMachineGroupClient) CreateMachineGroup(ctx context.Context, in *CreateMachineGroupRequest, opts ...dcerpc.CallOption) (*CreateMachineGroupResponse, error) {
+func (o *xxx_DefaultMachineGroupClient) CreateMachineGroup(ctx context.Context, in *CreateMachineGroupRequest, opts ...dcerpc.CallOption) (*CreateMachineGroupResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -109,7 +109,7 @@ func (o *xxx_DefaultIwrmMachineGroupClient) CreateMachineGroup(ctx context.Conte
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmMachineGroupClient) GetMachineGroupInfo(ctx context.Context, in *GetMachineGroupInfoRequest, opts ...dcerpc.CallOption) (*GetMachineGroupInfoResponse, error) {
+func (o *xxx_DefaultMachineGroupClient) GetMachineGroupInfo(ctx context.Context, in *GetMachineGroupInfoRequest, opts ...dcerpc.CallOption) (*GetMachineGroupInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -129,7 +129,7 @@ func (o *xxx_DefaultIwrmMachineGroupClient) GetMachineGroupInfo(ctx context.Cont
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmMachineGroupClient) ModifyMachineGroup(ctx context.Context, in *ModifyMachineGroupRequest, opts ...dcerpc.CallOption) (*ModifyMachineGroupResponse, error) {
+func (o *xxx_DefaultMachineGroupClient) ModifyMachineGroup(ctx context.Context, in *ModifyMachineGroupRequest, opts ...dcerpc.CallOption) (*ModifyMachineGroupResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -149,7 +149,7 @@ func (o *xxx_DefaultIwrmMachineGroupClient) ModifyMachineGroup(ctx context.Conte
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmMachineGroupClient) DeleteMachineGroup(ctx context.Context, in *DeleteMachineGroupRequest, opts ...dcerpc.CallOption) (*DeleteMachineGroupResponse, error) {
+func (o *xxx_DefaultMachineGroupClient) DeleteMachineGroup(ctx context.Context, in *DeleteMachineGroupRequest, opts ...dcerpc.CallOption) (*DeleteMachineGroupResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -169,7 +169,7 @@ func (o *xxx_DefaultIwrmMachineGroupClient) DeleteMachineGroup(ctx context.Conte
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmMachineGroupClient) RenameMachineGroup(ctx context.Context, in *RenameMachineGroupRequest, opts ...dcerpc.CallOption) (*RenameMachineGroupResponse, error) {
+func (o *xxx_DefaultMachineGroupClient) RenameMachineGroup(ctx context.Context, in *RenameMachineGroupRequest, opts ...dcerpc.CallOption) (*RenameMachineGroupResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -189,7 +189,7 @@ func (o *xxx_DefaultIwrmMachineGroupClient) RenameMachineGroup(ctx context.Conte
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmMachineGroupClient) AddMachine(ctx context.Context, in *AddMachineRequest, opts ...dcerpc.CallOption) (*AddMachineResponse, error) {
+func (o *xxx_DefaultMachineGroupClient) AddMachine(ctx context.Context, in *AddMachineRequest, opts ...dcerpc.CallOption) (*AddMachineResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -209,7 +209,7 @@ func (o *xxx_DefaultIwrmMachineGroupClient) AddMachine(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmMachineGroupClient) GetMachineInfo(ctx context.Context, in *GetMachineInfoRequest, opts ...dcerpc.CallOption) (*GetMachineInfoResponse, error) {
+func (o *xxx_DefaultMachineGroupClient) GetMachineInfo(ctx context.Context, in *GetMachineInfoRequest, opts ...dcerpc.CallOption) (*GetMachineInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -229,7 +229,7 @@ func (o *xxx_DefaultIwrmMachineGroupClient) GetMachineInfo(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmMachineGroupClient) ModifyMachineInfo(ctx context.Context, in *ModifyMachineInfoRequest, opts ...dcerpc.CallOption) (*ModifyMachineInfoResponse, error) {
+func (o *xxx_DefaultMachineGroupClient) ModifyMachineInfo(ctx context.Context, in *ModifyMachineInfoRequest, opts ...dcerpc.CallOption) (*ModifyMachineInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -249,7 +249,7 @@ func (o *xxx_DefaultIwrmMachineGroupClient) ModifyMachineInfo(ctx context.Contex
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmMachineGroupClient) DeleteMachine(ctx context.Context, in *DeleteMachineRequest, opts ...dcerpc.CallOption) (*DeleteMachineResponse, error) {
+func (o *xxx_DefaultMachineGroupClient) DeleteMachine(ctx context.Context, in *DeleteMachineRequest, opts ...dcerpc.CallOption) (*DeleteMachineResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -269,29 +269,29 @@ func (o *xxx_DefaultIwrmMachineGroupClient) DeleteMachine(ctx context.Context, i
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmMachineGroupClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultMachineGroupClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultIwrmMachineGroupClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultMachineGroupClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultIwrmMachineGroupClient) IPID(ctx context.Context, ipid *dcom.IPID) IwrmMachineGroupClient {
+func (o *xxx_DefaultMachineGroupClient) IPID(ctx context.Context, ipid *dcom.IPID) MachineGroupClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultIwrmMachineGroupClient{
+	return &xxx_DefaultMachineGroupClient{
 		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
 		cc:             o.cc,
 		ipid:           ipid,
 	}
 }
 
-func NewIwrmMachineGroupClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (IwrmMachineGroupClient, error) {
+func NewMachineGroupClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (MachineGroupClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(IwrmMachineGroupSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(MachineGroupSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -304,7 +304,7 @@ func NewIwrmMachineGroupClient(ctx context.Context, cc dcerpc.Conn, opts ...dcer
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultIwrmMachineGroupClient{
+	return &xxx_DefaultMachineGroupClient{
 		DispatchClient: base,
 		cc:             cc,
 		ipid:           ipid,

@@ -38,15 +38,15 @@ var (
 
 var (
 	// IMSMQQuery interface identifier d7d6e072-dccd-11d0-aa4b-0060970debae
-	ImsmqQueryIID = &dcom.IID{Data1: 0xd7d6e072, Data2: 0xdccd, Data3: 0x11d0, Data4: []byte{0xaa, 0x4b, 0x00, 0x60, 0x97, 0x0d, 0xeb, 0xae}}
+	QueryIID = &dcom.IID{Data1: 0xd7d6e072, Data2: 0xdccd, Data3: 0x11d0, Data4: []byte{0xaa, 0x4b, 0x00, 0x60, 0x97, 0x0d, 0xeb, 0xae}}
 	// Syntax UUID
-	ImsmqQuerySyntaxUUID = &uuid.UUID{TimeLow: 0xd7d6e072, TimeMid: 0xdccd, TimeHiAndVersion: 0x11d0, ClockSeqHiAndReserved: 0xaa, ClockSeqLow: 0x4b, Node: [6]uint8{0x0, 0x60, 0x97, 0xd, 0xeb, 0xae}}
+	QuerySyntaxUUID = &uuid.UUID{TimeLow: 0xd7d6e072, TimeMid: 0xdccd, TimeHiAndVersion: 0x11d0, ClockSeqHiAndReserved: 0xaa, ClockSeqLow: 0x4b, Node: [6]uint8{0x0, 0x60, 0x97, 0xd, 0xeb, 0xae}}
 	// Syntax ID
-	ImsmqQuerySyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ImsmqQuerySyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	QuerySyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: QuerySyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IMSMQQuery interface.
-type ImsmqQueryClient interface {
+type QueryClient interface {
 
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
@@ -61,20 +61,20 @@ type ImsmqQueryClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) ImsmqQueryClient
+	IPID(context.Context, *dcom.IPID) QueryClient
 }
 
-type xxx_DefaultImsmqQueryClient struct {
+type xxx_DefaultQueryClient struct {
 	idispatch.DispatchClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultImsmqQueryClient) Dispatch() idispatch.DispatchClient {
+func (o *xxx_DefaultQueryClient) Dispatch() idispatch.DispatchClient {
 	return o.DispatchClient
 }
 
-func (o *xxx_DefaultImsmqQueryClient) LookupQueue(ctx context.Context, in *LookupQueueRequest, opts ...dcerpc.CallOption) (*LookupQueueResponse, error) {
+func (o *xxx_DefaultQueryClient) LookupQueue(ctx context.Context, in *LookupQueueRequest, opts ...dcerpc.CallOption) (*LookupQueueResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -94,29 +94,29 @@ func (o *xxx_DefaultImsmqQueryClient) LookupQueue(ctx context.Context, in *Looku
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueryClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultQueryClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultImsmqQueryClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultQueryClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultImsmqQueryClient) IPID(ctx context.Context, ipid *dcom.IPID) ImsmqQueryClient {
+func (o *xxx_DefaultQueryClient) IPID(ctx context.Context, ipid *dcom.IPID) QueryClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultImsmqQueryClient{
+	return &xxx_DefaultQueryClient{
 		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
 		cc:             o.cc,
 		ipid:           ipid,
 	}
 }
 
-func NewImsmqQueryClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ImsmqQueryClient, error) {
+func NewQueryClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (QueryClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ImsmqQuerySyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(QuerySyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -129,7 +129,7 @@ func NewImsmqQueryClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Opt
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultImsmqQueryClient{
+	return &xxx_DefaultQueryClient{
 		DispatchClient: base,
 		cc:             cc,
 		ipid:           ipid,
@@ -138,19 +138,19 @@ func NewImsmqQueryClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Opt
 
 // xxx_LookupQueueOperation structure represents the LookupQueue operation
 type xxx_LookupQueueOperation struct {
-	This                *dcom.ORPCThis        `idl:"name:This" json:"this"`
-	That                *dcom.ORPCThat        `idl:"name:That" json:"that"`
-	QueueGUID           *oaut.Variant         `idl:"name:QueueGuid" json:"queue_guid"`
-	ServiceTypeGUID     *oaut.Variant         `idl:"name:ServiceTypeGuid" json:"service_type_guid"`
-	Label               *oaut.Variant         `idl:"name:Label" json:"label"`
-	CreateTime          *oaut.Variant         `idl:"name:CreateTime" json:"create_time"`
-	ModifyTime          *oaut.Variant         `idl:"name:ModifyTime" json:"modify_time"`
-	RelationServiceType *oaut.Variant         `idl:"name:RelServiceType" json:"relation_service_type"`
-	RelationLabel       *oaut.Variant         `idl:"name:RelLabel" json:"relation_label"`
-	RelationCreateTime  *oaut.Variant         `idl:"name:RelCreateTime" json:"relation_create_time"`
-	RelationModifyTime  *oaut.Variant         `idl:"name:RelModifyTime" json:"relation_modify_time"`
-	Ppqinfos            *mqac.ImsmqQueueInfos `idl:"name:ppqinfos" json:"ppqinfos"`
-	Return              int32                 `idl:"name:Return" json:"return"`
+	This                *dcom.ORPCThis   `idl:"name:This" json:"this"`
+	That                *dcom.ORPCThat   `idl:"name:That" json:"that"`
+	QueueGUID           *oaut.Variant    `idl:"name:QueueGuid" json:"queue_guid"`
+	ServiceTypeGUID     *oaut.Variant    `idl:"name:ServiceTypeGuid" json:"service_type_guid"`
+	Label               *oaut.Variant    `idl:"name:Label" json:"label"`
+	CreateTime          *oaut.Variant    `idl:"name:CreateTime" json:"create_time"`
+	ModifyTime          *oaut.Variant    `idl:"name:ModifyTime" json:"modify_time"`
+	RelationServiceType *oaut.Variant    `idl:"name:RelServiceType" json:"relation_service_type"`
+	RelationLabel       *oaut.Variant    `idl:"name:RelLabel" json:"relation_label"`
+	RelationCreateTime  *oaut.Variant    `idl:"name:RelCreateTime" json:"relation_create_time"`
+	RelationModifyTime  *oaut.Variant    `idl:"name:RelModifyTime" json:"relation_modify_time"`
+	S                   *mqac.QueueInfos `idl:"name:ppqinfos" json:"s"`
+	Return              int32            `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_LookupQueueOperation) OpNum() int { return 7 }
@@ -648,20 +648,20 @@ func (o *xxx_LookupQueueOperation) MarshalNDRResponse(ctx context.Context, w ndr
 	}
 	// ppqinfos {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQQueueInfos}(interface))
 	{
-		if o.Ppqinfos != nil {
+		if o.S != nil {
 			_ptr_ppqinfos := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppqinfos != nil {
-					if err := o.Ppqinfos.MarshalNDR(ctx, w); err != nil {
+				if o.S != nil {
+					if err := o.S.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqQueueInfos{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.QueueInfos{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppqinfos, _ptr_ppqinfos); err != nil {
+			if err := w.WritePointer(&o.S, _ptr_ppqinfos); err != nil {
 				return err
 			}
 		} else {
@@ -698,16 +698,16 @@ func (o *xxx_LookupQueueOperation) UnmarshalNDRResponse(ctx context.Context, w n
 	// ppqinfos {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQQueueInfos}(interface))
 	{
 		_ptr_ppqinfos := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppqinfos == nil {
-				o.Ppqinfos = &mqac.ImsmqQueueInfos{}
+			if o.S == nil {
+				o.S = &mqac.QueueInfos{}
 			}
-			if err := o.Ppqinfos.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.S.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppqinfos := func(ptr interface{}) { o.Ppqinfos = *ptr.(**mqac.ImsmqQueueInfos) }
-		if err := w.ReadPointer(&o.Ppqinfos, _s_ppqinfos, _ptr_ppqinfos); err != nil {
+		_s_ppqinfos := func(ptr interface{}) { o.S = *ptr.(**mqac.QueueInfos) }
+		if err := w.ReadPointer(&o.S, _s_ppqinfos, _ptr_ppqinfos); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -788,8 +788,8 @@ func (o *LookupQueueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // LookupQueueResponse structure represents the LookupQueue operation response
 type LookupQueueResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That     *dcom.ORPCThat        `idl:"name:That" json:"that"`
-	Ppqinfos *mqac.ImsmqQueueInfos `idl:"name:ppqinfos" json:"ppqinfos"`
+	That *dcom.ORPCThat   `idl:"name:That" json:"that"`
+	S    *mqac.QueueInfos `idl:"name:ppqinfos" json:"s"`
 	// Return: The LookupQueue return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -802,7 +802,7 @@ func (o *LookupQueueResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupQueueO
 		return op
 	}
 	op.That = o.That
-	op.Ppqinfos = o.Ppqinfos
+	op.S = o.S
 	op.Return = o.Return
 	return op
 }
@@ -812,7 +812,7 @@ func (o *LookupQueueResponse) xxx_FromOp(ctx context.Context, op *xxx_LookupQueu
 		return
 	}
 	o.That = op.That
-	o.Ppqinfos = op.Ppqinfos
+	o.S = op.S
 	o.Return = op.Return
 }
 func (o *LookupQueueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {

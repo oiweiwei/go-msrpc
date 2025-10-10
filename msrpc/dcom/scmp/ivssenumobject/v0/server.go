@@ -26,7 +26,7 @@ var (
 )
 
 // IVssEnumObject server interface.
-type VSSEnumObjectServer interface {
+type EnumObjectServer interface {
 
 	// IUnknown base class.
 	iunknown.UnknownServer
@@ -44,17 +44,17 @@ type VSSEnumObjectServer interface {
 	Clone(context.Context, *CloneRequest) (*CloneResponse, error)
 }
 
-func RegisterVSSEnumObjectServer(conn dcerpc.Conn, o VSSEnumObjectServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewVSSEnumObjectServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(VSSEnumObjectSyntaxV0_0))...)
+func RegisterEnumObjectServer(conn dcerpc.Conn, o EnumObjectServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewEnumObjectServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(EnumObjectSyntaxV0_0))...)
 }
 
-func NewVSSEnumObjectServerHandle(o VSSEnumObjectServer) dcerpc.ServerHandle {
+func NewEnumObjectServerHandle(o EnumObjectServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return VSSEnumObjectServerHandle(ctx, o, opNum, r)
+		return EnumObjectServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func VSSEnumObjectServerHandle(ctx context.Context, o VSSEnumObjectServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func EnumObjectServerHandle(ctx context.Context, o EnumObjectServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 3 {
 		// IUnknown base method.
 		return iunknown.UnknownServerHandle(ctx, o, opNum, r)
@@ -101,21 +101,21 @@ func VSSEnumObjectServerHandle(ctx context.Context, o VSSEnumObjectServer, opNum
 }
 
 // Unimplemented IVssEnumObject
-type UnimplementedVSSEnumObjectServer struct {
+type UnimplementedEnumObjectServer struct {
 	iunknown.UnimplementedUnknownServer
 }
 
-func (UnimplementedVSSEnumObjectServer) Next(context.Context, *NextRequest) (*NextResponse, error) {
+func (UnimplementedEnumObjectServer) Next(context.Context, *NextRequest) (*NextResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedVSSEnumObjectServer) Skip(context.Context, *SkipRequest) (*SkipResponse, error) {
+func (UnimplementedEnumObjectServer) Skip(context.Context, *SkipRequest) (*SkipResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedVSSEnumObjectServer) Reset(context.Context, *ResetRequest) (*ResetResponse, error) {
+func (UnimplementedEnumObjectServer) Reset(context.Context, *ResetRequest) (*ResetResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedVSSEnumObjectServer) Clone(context.Context, *CloneRequest) (*CloneResponse, error) {
+func (UnimplementedEnumObjectServer) Clone(context.Context, *CloneRequest) (*CloneResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ VSSEnumObjectServer = (*UnimplementedVSSEnumObjectServer)(nil)
+var _ EnumObjectServer = (*UnimplementedEnumObjectServer)(nil)

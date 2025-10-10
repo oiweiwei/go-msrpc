@@ -26,7 +26,7 @@ var (
 )
 
 // IMSMQQueue2 server interface.
-type ImsmqQueue2Server interface {
+type Queue2Server interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -89,17 +89,17 @@ type ImsmqQueue2Server interface {
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 }
 
-func RegisterImsmqQueue2Server(conn dcerpc.Conn, o ImsmqQueue2Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqQueue2ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqQueue2SyntaxV0_0))...)
+func RegisterQueue2Server(conn dcerpc.Conn, o Queue2Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewQueue2ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(Queue2SyntaxV0_0))...)
 }
 
-func NewImsmqQueue2ServerHandle(o ImsmqQueue2Server) dcerpc.ServerHandle {
+func NewQueue2ServerHandle(o Queue2Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqQueue2ServerHandle(ctx, o, opNum, r)
+		return Queue2ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqQueue2ServerHandle(ctx context.Context, o ImsmqQueue2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func Queue2ServerHandle(ctx context.Context, o Queue2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -281,66 +281,66 @@ func ImsmqQueue2ServerHandle(ctx context.Context, o ImsmqQueue2Server, opNum int
 }
 
 // Unimplemented IMSMQQueue2
-type UnimplementedImsmqQueue2Server struct {
+type UnimplementedQueue2Server struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedImsmqQueue2Server) GetAccess(context.Context, *GetAccessRequest) (*GetAccessResponse, error) {
+func (UnimplementedQueue2Server) GetAccess(context.Context, *GetAccessRequest) (*GetAccessResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue2Server) GetShareMode(context.Context, *GetShareModeRequest) (*GetShareModeResponse, error) {
+func (UnimplementedQueue2Server) GetShareMode(context.Context, *GetShareModeRequest) (*GetShareModeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue2Server) GetQueueInfo(context.Context, *GetQueueInfoRequest) (*GetQueueInfoResponse, error) {
+func (UnimplementedQueue2Server) GetQueueInfo(context.Context, *GetQueueInfoRequest) (*GetQueueInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue2Server) GetHandle(context.Context, *GetHandleRequest) (*GetHandleResponse, error) {
+func (UnimplementedQueue2Server) GetHandle(context.Context, *GetHandleRequest) (*GetHandleResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue2Server) GetIsOpen(context.Context, *GetIsOpenRequest) (*GetIsOpenResponse, error) {
+func (UnimplementedQueue2Server) GetIsOpen(context.Context, *GetIsOpenRequest) (*GetIsOpenResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue2Server) Close(context.Context, *CloseRequest) (*CloseResponse, error) {
+func (UnimplementedQueue2Server) Close(context.Context, *CloseRequest) (*CloseResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue2Server) ReceiveV1(context.Context, *ReceiveV1Request) (*ReceiveV1Response, error) {
+func (UnimplementedQueue2Server) ReceiveV1(context.Context, *ReceiveV1Request) (*ReceiveV1Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue2Server) PeekV1(context.Context, *PeekV1Request) (*PeekV1Response, error) {
+func (UnimplementedQueue2Server) PeekV1(context.Context, *PeekV1Request) (*PeekV1Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue2Server) EnableNotification(context.Context, *EnableNotificationRequest) (*EnableNotificationResponse, error) {
+func (UnimplementedQueue2Server) EnableNotification(context.Context, *EnableNotificationRequest) (*EnableNotificationResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue2Server) Reset(context.Context, *ResetRequest) (*ResetResponse, error) {
+func (UnimplementedQueue2Server) Reset(context.Context, *ResetRequest) (*ResetResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue2Server) ReceiveCurrentV1(context.Context, *ReceiveCurrentV1Request) (*ReceiveCurrentV1Response, error) {
+func (UnimplementedQueue2Server) ReceiveCurrentV1(context.Context, *ReceiveCurrentV1Request) (*ReceiveCurrentV1Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue2Server) PeekNextV1(context.Context, *PeekNextV1Request) (*PeekNextV1Response, error) {
+func (UnimplementedQueue2Server) PeekNextV1(context.Context, *PeekNextV1Request) (*PeekNextV1Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue2Server) PeekCurrentV1(context.Context, *PeekCurrentV1Request) (*PeekCurrentV1Response, error) {
+func (UnimplementedQueue2Server) PeekCurrentV1(context.Context, *PeekCurrentV1Request) (*PeekCurrentV1Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue2Server) Receive(context.Context, *ReceiveRequest) (*ReceiveResponse, error) {
+func (UnimplementedQueue2Server) Receive(context.Context, *ReceiveRequest) (*ReceiveResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue2Server) Peek(context.Context, *PeekRequest) (*PeekResponse, error) {
+func (UnimplementedQueue2Server) Peek(context.Context, *PeekRequest) (*PeekResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue2Server) ReceiveCurrent(context.Context, *ReceiveCurrentRequest) (*ReceiveCurrentResponse, error) {
+func (UnimplementedQueue2Server) ReceiveCurrent(context.Context, *ReceiveCurrentRequest) (*ReceiveCurrentResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue2Server) PeekNext(context.Context, *PeekNextRequest) (*PeekNextResponse, error) {
+func (UnimplementedQueue2Server) PeekNext(context.Context, *PeekNextRequest) (*PeekNextResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue2Server) PeekCurrent(context.Context, *PeekCurrentRequest) (*PeekCurrentResponse, error) {
+func (UnimplementedQueue2Server) PeekCurrent(context.Context, *PeekCurrentRequest) (*PeekCurrentResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue2Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+func (UnimplementedQueue2Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqQueue2Server = (*UnimplementedImsmqQueue2Server)(nil)
+var _ Queue2Server = (*UnimplementedQueue2Server)(nil)

@@ -208,7 +208,7 @@ type xxx_NextOperation struct {
 	This             *dcom.ORPCThis          `idl:"name:This" json:"this"`
 	That             *dcom.ORPCThat          `idl:"name:That" json:"that"`
 	ConnectionsCount uint32                  `idl:"name:cConnections" json:"connections_count"`
-	CreatePartition  []*mqac.ConnectionPoint `idl:"name:ppCP;size_is:(cConnections);length_is:(pcFetched)" json:"create_partition"`
+	ConnectionPoint  []*mqac.ConnectionPoint `idl:"name:ppCP;size_is:(cConnections);length_is:(pcFetched)" json:"connection_point"`
 	FetchedCount     uint32                  `idl:"name:pcFetched" json:"fetched_count"`
 	Return           int32                   `idl:"name:Return" json:"return"`
 }
@@ -277,8 +277,8 @@ func (o *xxx_NextOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 }
 
 func (o *xxx_NextOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
-	if o.CreatePartition != nil && o.FetchedCount == 0 {
-		o.FetchedCount = uint32(len(o.CreatePartition))
+	if o.ConnectionPoint != nil && o.FetchedCount == 0 {
+		o.FetchedCount = uint32(len(o.ConnectionPoint))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
@@ -328,15 +328,15 @@ func (o *xxx_NextOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 		if err := w.WriteSize(dimLength1); err != nil {
 			return err
 		}
-		for i1 := range o.CreatePartition {
+		for i1 := range o.ConnectionPoint {
 			i1 := i1
 			if uint64(i1) >= sizeInfo[0] {
 				break
 			}
-			if o.CreatePartition[i1] != nil {
+			if o.ConnectionPoint[i1] != nil {
 				_ptr_ppCP := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-					if o.CreatePartition[i1] != nil {
-						if err := o.CreatePartition[i1].MarshalNDR(ctx, w); err != nil {
+					if o.ConnectionPoint[i1] != nil {
+						if err := o.ConnectionPoint[i1].MarshalNDR(ctx, w); err != nil {
 							return err
 						}
 					} else {
@@ -346,7 +346,7 @@ func (o *xxx_NextOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 					}
 					return nil
 				})
-				if err := w.WritePointer(&o.CreatePartition[i1], _ptr_ppCP); err != nil {
+				if err := w.WritePointer(&o.ConnectionPoint[i1], _ptr_ppCP); err != nil {
 					return err
 				}
 			} else {
@@ -355,7 +355,7 @@ func (o *xxx_NextOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 				}
 			}
 		}
-		for i1 := len(o.CreatePartition); uint64(i1) < sizeInfo[0]; i1++ {
+		for i1 := len(o.ConnectionPoint); uint64(i1) < sizeInfo[0]; i1++ {
 			if err := w.WritePointer(nil); err != nil {
 				return err
 			}
@@ -411,22 +411,22 @@ func (o *xxx_NextOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 			}
 		}
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-			return fmt.Errorf("buffer overflow for size %d of array o.CreatePartition", sizeInfo[0])
+			return fmt.Errorf("buffer overflow for size %d of array o.ConnectionPoint", sizeInfo[0])
 		}
-		o.CreatePartition = make([]*mqac.ConnectionPoint, sizeInfo[0])
-		for i1 := range o.CreatePartition {
+		o.ConnectionPoint = make([]*mqac.ConnectionPoint, sizeInfo[0])
+		for i1 := range o.ConnectionPoint {
 			i1 := i1
 			_ptr_ppCP := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-				if o.CreatePartition[i1] == nil {
-					o.CreatePartition[i1] = &mqac.ConnectionPoint{}
+				if o.ConnectionPoint[i1] == nil {
+					o.ConnectionPoint[i1] = &mqac.ConnectionPoint{}
 				}
-				if err := o.CreatePartition[i1].UnmarshalNDR(ctx, w); err != nil {
+				if err := o.ConnectionPoint[i1].UnmarshalNDR(ctx, w); err != nil {
 					return err
 				}
 				return nil
 			})
-			_s_ppCP := func(ptr interface{}) { o.CreatePartition[i1] = *ptr.(**mqac.ConnectionPoint) }
-			if err := w.ReadPointer(&o.CreatePartition[i1], _s_ppCP, _ptr_ppCP); err != nil {
+			_s_ppCP := func(ptr interface{}) { o.ConnectionPoint[i1] = *ptr.(**mqac.ConnectionPoint) }
+			if err := w.ReadPointer(&o.ConnectionPoint[i1], _s_ppCP, _ptr_ppCP); err != nil {
 				return err
 			}
 		}
@@ -494,7 +494,7 @@ type NextResponse struct {
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That            *dcom.ORPCThat          `idl:"name:That" json:"that"`
-	CreatePartition []*mqac.ConnectionPoint `idl:"name:ppCP;size_is:(cConnections);length_is:(pcFetched)" json:"create_partition"`
+	ConnectionPoint []*mqac.ConnectionPoint `idl:"name:ppCP;size_is:(cConnections);length_is:(pcFetched)" json:"connection_point"`
 	FetchedCount    uint32                  `idl:"name:pcFetched" json:"fetched_count"`
 	// Return: The Next return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -513,7 +513,7 @@ func (o *NextResponse) xxx_ToOp(ctx context.Context, op *xxx_NextOperation) *xxx
 	}
 
 	op.That = o.That
-	op.CreatePartition = o.CreatePartition
+	op.ConnectionPoint = o.ConnectionPoint
 	op.FetchedCount = o.FetchedCount
 	op.Return = o.Return
 	return op
@@ -527,7 +527,7 @@ func (o *NextResponse) xxx_FromOp(ctx context.Context, op *xxx_NextOperation) {
 	o.ConnectionsCount = op.ConnectionsCount
 
 	o.That = op.That
-	o.CreatePartition = op.CreatePartition
+	o.ConnectionPoint = op.ConnectionPoint
 	o.FetchedCount = op.FetchedCount
 	o.Return = op.Return
 }

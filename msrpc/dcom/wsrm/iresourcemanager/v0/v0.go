@@ -789,7 +789,7 @@ func (o *GetSystemAffinityResponse) UnmarshalNDR(ctx context.Context, r ndr.Read
 type xxx_ImportXMLFilesOperation struct {
 	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PmcXML         *oaut.String   `idl:"name:bstrPMCXml" json:"pmc_xml"`
+	PMCXML         *oaut.String   `idl:"name:bstrPMCXml" json:"pmc_xml"`
 	PolicyXML      *oaut.String   `idl:"name:bstrPolicyXml" json:"policy_xml"`
 	CalendarXML    *oaut.String   `idl:"name:bstrCalendarXml" json:"calendar_xml"`
 	ConditionalXML *oaut.String   `idl:"name:bstrConditionalXml" json:"conditional_xml"`
@@ -830,10 +830,10 @@ func (o *xxx_ImportXMLFilesOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// bstrPMCXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
-		if o.PmcXML != nil {
+		if o.PMCXML != nil {
 			_ptr_bstrPMCXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PmcXML != nil {
-					if err := o.PmcXML.MarshalNDR(ctx, w); err != nil {
+				if o.PMCXML != nil {
+					if err := o.PMCXML.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -843,7 +843,7 @@ func (o *xxx_ImportXMLFilesOperation) MarshalNDRRequest(ctx context.Context, w n
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PmcXML, _ptr_bstrPMCXml); err != nil {
+			if err := w.WritePointer(&o.PMCXML, _ptr_bstrPMCXml); err != nil {
 				return err
 			}
 		} else {
@@ -955,16 +955,16 @@ func (o *xxx_ImportXMLFilesOperation) UnmarshalNDRRequest(ctx context.Context, w
 	// bstrPMCXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
 		_ptr_bstrPMCXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PmcXML == nil {
-				o.PmcXML = &oaut.String{}
+			if o.PMCXML == nil {
+				o.PMCXML = &oaut.String{}
 			}
-			if err := o.PmcXML.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.PMCXML.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_bstrPMCXml := func(ptr interface{}) { o.PmcXML = *ptr.(**oaut.String) }
-		if err := w.ReadPointer(&o.PmcXML, _s_bstrPMCXml, _ptr_bstrPMCXml); err != nil {
+		_s_bstrPMCXml := func(ptr interface{}) { o.PMCXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.PMCXML, _s_bstrPMCXml, _ptr_bstrPMCXml); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1094,7 +1094,7 @@ func (o *xxx_ImportXMLFilesOperation) UnmarshalNDRResponse(ctx context.Context, 
 type ImportXMLFilesRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PmcXML         *oaut.String   `idl:"name:bstrPMCXml" json:"pmc_xml"`
+	PMCXML         *oaut.String   `idl:"name:bstrPMCXml" json:"pmc_xml"`
 	PolicyXML      *oaut.String   `idl:"name:bstrPolicyXml" json:"policy_xml"`
 	CalendarXML    *oaut.String   `idl:"name:bstrCalendarXml" json:"calendar_xml"`
 	ConditionalXML *oaut.String   `idl:"name:bstrConditionalXml" json:"conditional_xml"`
@@ -1108,7 +1108,7 @@ func (o *ImportXMLFilesRequest) xxx_ToOp(ctx context.Context, op *xxx_ImportXMLF
 		return op
 	}
 	op.This = o.This
-	op.PmcXML = o.PmcXML
+	op.PMCXML = o.PMCXML
 	op.PolicyXML = o.PolicyXML
 	op.CalendarXML = o.CalendarXML
 	op.ConditionalXML = o.ConditionalXML
@@ -1120,7 +1120,7 @@ func (o *ImportXMLFilesRequest) xxx_FromOp(ctx context.Context, op *xxx_ImportXM
 		return
 	}
 	o.This = op.This
-	o.PmcXML = op.PmcXML
+	o.PMCXML = op.PMCXML
 	o.PolicyXML = op.PolicyXML
 	o.CalendarXML = op.CalendarXML
 	o.ConditionalXML = op.ConditionalXML
@@ -1180,7 +1180,7 @@ func (o *ImportXMLFilesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 type xxx_ExportXMLFilesOperation struct {
 	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PmcXML         *oaut.String   `idl:"name:pbstrPMCXml" json:"pmc_xml"`
+	PMCXML         *oaut.String   `idl:"name:pbstrPMCXml" json:"pmc_xml"`
 	PolicyXML      *oaut.String   `idl:"name:pbstrPolicyXml" json:"policy_xml"`
 	CalendarXML    *oaut.String   `idl:"name:pbstrCalendarXml" json:"calendar_xml"`
 	ConditionalXML *oaut.String   `idl:"name:pbstrConditionalXml" json:"conditional_xml"`
@@ -1268,10 +1268,10 @@ func (o *xxx_ExportXMLFilesOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// pbstrPMCXml {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
-		if o.PmcXML != nil {
+		if o.PMCXML != nil {
 			_ptr_pbstrPMCXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PmcXML != nil {
-					if err := o.PmcXML.MarshalNDR(ctx, w); err != nil {
+				if o.PMCXML != nil {
+					if err := o.PMCXML.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1281,7 +1281,7 @@ func (o *xxx_ExportXMLFilesOperation) MarshalNDRResponse(ctx context.Context, w 
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PmcXML, _ptr_pbstrPMCXml); err != nil {
+			if err := w.WritePointer(&o.PMCXML, _ptr_pbstrPMCXml); err != nil {
 				return err
 			}
 		} else {
@@ -1399,16 +1399,16 @@ func (o *xxx_ExportXMLFilesOperation) UnmarshalNDRResponse(ctx context.Context, 
 	// pbstrPMCXml {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
 		_ptr_pbstrPMCXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PmcXML == nil {
-				o.PmcXML = &oaut.String{}
+			if o.PMCXML == nil {
+				o.PMCXML = &oaut.String{}
 			}
-			if err := o.PmcXML.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.PMCXML.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pbstrPMCXml := func(ptr interface{}) { o.PmcXML = *ptr.(**oaut.String) }
-		if err := w.ReadPointer(&o.PmcXML, _s_pbstrPMCXml, _ptr_pbstrPMCXml); err != nil {
+		_s_pbstrPMCXml := func(ptr interface{}) { o.PMCXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.PMCXML, _s_pbstrPMCXml, _ptr_pbstrPMCXml); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1520,7 +1520,7 @@ func (o *ExportXMLFilesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 type ExportXMLFilesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PmcXML         *oaut.String   `idl:"name:pbstrPMCXml" json:"pmc_xml"`
+	PMCXML         *oaut.String   `idl:"name:pbstrPMCXml" json:"pmc_xml"`
 	PolicyXML      *oaut.String   `idl:"name:pbstrPolicyXml" json:"policy_xml"`
 	CalendarXML    *oaut.String   `idl:"name:pbstrCalendarXml" json:"calendar_xml"`
 	ConditionalXML *oaut.String   `idl:"name:pbstrConditionalXml" json:"conditional_xml"`
@@ -1536,7 +1536,7 @@ func (o *ExportXMLFilesResponse) xxx_ToOp(ctx context.Context, op *xxx_ExportXML
 		return op
 	}
 	op.That = o.That
-	op.PmcXML = o.PmcXML
+	op.PMCXML = o.PMCXML
 	op.PolicyXML = o.PolicyXML
 	op.CalendarXML = o.CalendarXML
 	op.ConditionalXML = o.ConditionalXML
@@ -1549,7 +1549,7 @@ func (o *ExportXMLFilesResponse) xxx_FromOp(ctx context.Context, op *xxx_ExportX
 		return
 	}
 	o.That = op.That
-	o.PmcXML = op.PmcXML
+	o.PMCXML = op.PMCXML
 	o.PolicyXML = op.PolicyXML
 	o.CalendarXML = op.CalendarXML
 	o.ConditionalXML = op.ConditionalXML
@@ -2858,10 +2858,10 @@ func (o *GetServerNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 
 // xxx_GetCurrentMemoryOperation structure represents the GetCurrentMemory operation
 type xxx_GetCurrentMemoryOperation struct {
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	CurrMemory uint64         `idl:"name:pdwCurrMemory" json:"curr_memory"`
-	Return     int32          `idl:"name:Return" json:"return"`
+	This          *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
+	CurrentMemory uint64         `idl:"name:pdwCurrMemory" json:"current_memory"`
+	Return        int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetCurrentMemoryOperation) OpNum() int { return 16 }
@@ -2947,7 +2947,7 @@ func (o *xxx_GetCurrentMemoryOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// pdwCurrMemory {out} (1:{pointer=ref}*(1))(2:{alias=DWORD64}(uint64))
 	{
-		if err := w.WriteData(o.CurrMemory); err != nil {
+		if err := w.WriteData(o.CurrentMemory); err != nil {
 			return err
 		}
 	}
@@ -2975,7 +2975,7 @@ func (o *xxx_GetCurrentMemoryOperation) UnmarshalNDRResponse(ctx context.Context
 	}
 	// pdwCurrMemory {out} (1:{pointer=ref}*(1))(2:{alias=DWORD64}(uint64))
 	{
-		if err := w.ReadData(&o.CurrMemory); err != nil {
+		if err := w.ReadData(&o.CurrentMemory); err != nil {
 			return err
 		}
 	}
@@ -3026,8 +3026,8 @@ func (o *GetCurrentMemoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // GetCurrentMemoryResponse structure represents the GetCurrentMemory operation response
 type GetCurrentMemoryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	CurrMemory uint64         `idl:"name:pdwCurrMemory" json:"curr_memory"`
+	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
+	CurrentMemory uint64         `idl:"name:pdwCurrMemory" json:"current_memory"`
 	// Return: The GetCurrentMemory return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3040,7 +3040,7 @@ func (o *GetCurrentMemoryResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCurr
 		return op
 	}
 	op.That = o.That
-	op.CurrMemory = o.CurrMemory
+	op.CurrentMemory = o.CurrentMemory
 	op.Return = o.Return
 	return op
 }
@@ -3050,7 +3050,7 @@ func (o *GetCurrentMemoryResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCu
 		return
 	}
 	o.That = op.That
-	o.CurrMemory = op.CurrMemory
+	o.CurrentMemory = op.CurrentMemory
 	o.Return = op.Return
 }
 func (o *GetCurrentMemoryResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {

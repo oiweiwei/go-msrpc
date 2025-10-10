@@ -36,15 +36,15 @@ var (
 
 var (
 	// IMSMQCollection interface identifier 0188ac2f-ecb3-4173-9779-635ca2039c72
-	ImsmqCollectionIID = &dcom.IID{Data1: 0x0188ac2f, Data2: 0xecb3, Data3: 0x4173, Data4: []byte{0x97, 0x79, 0x63, 0x5c, 0xa2, 0x03, 0x9c, 0x72}}
+	CollectionIID = &dcom.IID{Data1: 0x0188ac2f, Data2: 0xecb3, Data3: 0x4173, Data4: []byte{0x97, 0x79, 0x63, 0x5c, 0xa2, 0x03, 0x9c, 0x72}}
 	// Syntax UUID
-	ImsmqCollectionSyntaxUUID = &uuid.UUID{TimeLow: 0x188ac2f, TimeMid: 0xecb3, TimeHiAndVersion: 0x4173, ClockSeqHiAndReserved: 0x97, ClockSeqLow: 0x79, Node: [6]uint8{0x63, 0x5c, 0xa2, 0x3, 0x9c, 0x72}}
+	CollectionSyntaxUUID = &uuid.UUID{TimeLow: 0x188ac2f, TimeMid: 0xecb3, TimeHiAndVersion: 0x4173, ClockSeqHiAndReserved: 0x97, ClockSeqLow: 0x79, Node: [6]uint8{0x63, 0x5c, 0xa2, 0x3, 0x9c, 0x72}}
 	// Syntax ID
-	ImsmqCollectionSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ImsmqCollectionSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	CollectionSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: CollectionSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IMSMQCollection interface.
-type ImsmqCollectionClient interface {
+type CollectionClient interface {
 
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
@@ -65,20 +65,20 @@ type ImsmqCollectionClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) ImsmqCollectionClient
+	IPID(context.Context, *dcom.IPID) CollectionClient
 }
 
-type xxx_DefaultImsmqCollectionClient struct {
+type xxx_DefaultCollectionClient struct {
 	idispatch.DispatchClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultImsmqCollectionClient) Dispatch() idispatch.DispatchClient {
+func (o *xxx_DefaultCollectionClient) Dispatch() idispatch.DispatchClient {
 	return o.DispatchClient
 }
 
-func (o *xxx_DefaultImsmqCollectionClient) Item(ctx context.Context, in *ItemRequest, opts ...dcerpc.CallOption) (*ItemResponse, error) {
+func (o *xxx_DefaultCollectionClient) Item(ctx context.Context, in *ItemRequest, opts ...dcerpc.CallOption) (*ItemResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -98,7 +98,7 @@ func (o *xxx_DefaultImsmqCollectionClient) Item(ctx context.Context, in *ItemReq
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqCollectionClient) GetCount(ctx context.Context, in *GetCountRequest, opts ...dcerpc.CallOption) (*GetCountResponse, error) {
+func (o *xxx_DefaultCollectionClient) GetCount(ctx context.Context, in *GetCountRequest, opts ...dcerpc.CallOption) (*GetCountResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -118,7 +118,7 @@ func (o *xxx_DefaultImsmqCollectionClient) GetCount(ctx context.Context, in *Get
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqCollectionClient) _NewEnum(ctx context.Context, in *_NewEnumRequest, opts ...dcerpc.CallOption) (*_NewEnumResponse, error) {
+func (o *xxx_DefaultCollectionClient) _NewEnum(ctx context.Context, in *_NewEnumRequest, opts ...dcerpc.CallOption) (*_NewEnumResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -138,29 +138,29 @@ func (o *xxx_DefaultImsmqCollectionClient) _NewEnum(ctx context.Context, in *_Ne
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqCollectionClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultCollectionClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultImsmqCollectionClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultCollectionClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultImsmqCollectionClient) IPID(ctx context.Context, ipid *dcom.IPID) ImsmqCollectionClient {
+func (o *xxx_DefaultCollectionClient) IPID(ctx context.Context, ipid *dcom.IPID) CollectionClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultImsmqCollectionClient{
+	return &xxx_DefaultCollectionClient{
 		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
 		cc:             o.cc,
 		ipid:           ipid,
 	}
 }
 
-func NewImsmqCollectionClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ImsmqCollectionClient, error) {
+func NewCollectionClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (CollectionClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ImsmqCollectionSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(CollectionSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -173,7 +173,7 @@ func NewImsmqCollectionClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerp
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultImsmqCollectionClient{
+	return &xxx_DefaultCollectionClient{
 		DispatchClient: base,
 		cc:             cc,
 		ipid:           ipid,
@@ -182,11 +182,11 @@ func NewImsmqCollectionClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerp
 
 // xxx_ItemOperation structure represents the Item operation
 type xxx_ItemOperation struct {
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Index      *oaut.Variant  `idl:"name:Index" json:"index"`
-	PvarReturn *oaut.Variant  `idl:"name:pvarRet" json:"pvar_return"`
-	Return     int32          `idl:"name:Return" json:"return"`
+	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Index  *oaut.Variant  `idl:"name:Index" json:"index"`
+	Result *oaut.Variant  `idl:"name:pvarRet" json:"result"`
+	Return int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_ItemOperation) OpNum() int { return 7 }
@@ -316,10 +316,10 @@ func (o *xxx_ItemOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 	}
 	// pvarRet {out, retval} (1:{pointer=ref}*(2))(2:{alias=VARIANT}*(1))(3:{alias=_VARIANT}(struct))
 	{
-		if o.PvarReturn != nil {
+		if o.Result != nil {
 			_ptr_pvarRet := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PvarReturn != nil {
-					if err := o.PvarReturn.MarshalNDR(ctx, w); err != nil {
+				if o.Result != nil {
+					if err := o.Result.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -329,7 +329,7 @@ func (o *xxx_ItemOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PvarReturn, _ptr_pvarRet); err != nil {
+			if err := w.WritePointer(&o.Result, _ptr_pvarRet); err != nil {
 				return err
 			}
 		} else {
@@ -366,16 +366,16 @@ func (o *xxx_ItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 	// pvarRet {out, retval} (1:{pointer=ref}*(2))(2:{alias=VARIANT,pointer=ref}*(1))(3:{alias=_VARIANT}(struct))
 	{
 		_ptr_pvarRet := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PvarReturn == nil {
-				o.PvarReturn = &oaut.Variant{}
+			if o.Result == nil {
+				o.Result = &oaut.Variant{}
 			}
-			if err := o.PvarReturn.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Result.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pvarRet := func(ptr interface{}) { o.PvarReturn = *ptr.(**oaut.Variant) }
-		if err := w.ReadPointer(&o.PvarReturn, _s_pvarRet, _ptr_pvarRet); err != nil {
+		_s_pvarRet := func(ptr interface{}) { o.Result = *ptr.(**oaut.Variant) }
+		if err := w.ReadPointer(&o.Result, _s_pvarRet, _ptr_pvarRet); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -432,8 +432,8 @@ func (o *ItemRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // ItemResponse structure represents the Item operation response
 type ItemResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PvarReturn *oaut.Variant  `idl:"name:pvarRet" json:"pvar_return"`
+	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Result *oaut.Variant  `idl:"name:pvarRet" json:"result"`
 	// Return: The Item return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -446,7 +446,7 @@ func (o *ItemResponse) xxx_ToOp(ctx context.Context, op *xxx_ItemOperation) *xxx
 		return op
 	}
 	op.That = o.That
-	op.PvarReturn = o.PvarReturn
+	op.Result = o.Result
 	op.Return = o.Return
 	return op
 }
@@ -456,7 +456,7 @@ func (o *ItemResponse) xxx_FromOp(ctx context.Context, op *xxx_ItemOperation) {
 		return
 	}
 	o.That = op.That
-	o.PvarReturn = op.PvarReturn
+	o.Result = op.Result
 	o.Return = op.Return
 }
 func (o *ItemResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {

@@ -47,11 +47,11 @@ var (
 type RobustNTMSMediaServices1Client interface {
 
 	// INtmsMediaServices1 retrieval method.
-	NTMSMediaServices1() intmsmediaservices1.NTMSMediaServices1Client
+	MediaServices1() intmsmediaservices1.MediaServices1Client
 
-	GetNTMSMediaPoolNameAr(context.Context, *GetNTMSMediaPoolNameArRequest, ...dcerpc.CallOption) (*GetNTMSMediaPoolNameArResponse, error)
+	GetNTMSMediaPoolNameAR(context.Context, *GetNTMSMediaPoolNameARRequest, ...dcerpc.CallOption) (*GetNTMSMediaPoolNameARResponse, error)
 
-	GetNTMSMediaPoolNameWr(context.Context, *GetNTMSMediaPoolNameWrRequest, ...dcerpc.CallOption) (*GetNTMSMediaPoolNameWrResponse, error)
+	GetNTMSMediaPoolNameWR(context.Context, *GetNTMSMediaPoolNameWRRequest, ...dcerpc.CallOption) (*GetNTMSMediaPoolNameWRResponse, error)
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
@@ -64,16 +64,16 @@ type RobustNTMSMediaServices1Client interface {
 }
 
 type xxx_DefaultRobustNTMSMediaServices1Client struct {
-	intmsmediaservices1.NTMSMediaServices1Client
+	intmsmediaservices1.MediaServices1Client
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultRobustNTMSMediaServices1Client) NTMSMediaServices1() intmsmediaservices1.NTMSMediaServices1Client {
-	return o.NTMSMediaServices1Client
+func (o *xxx_DefaultRobustNTMSMediaServices1Client) MediaServices1() intmsmediaservices1.MediaServices1Client {
+	return o.MediaServices1Client
 }
 
-func (o *xxx_DefaultRobustNTMSMediaServices1Client) GetNTMSMediaPoolNameAr(ctx context.Context, in *GetNTMSMediaPoolNameArRequest, opts ...dcerpc.CallOption) (*GetNTMSMediaPoolNameArResponse, error) {
+func (o *xxx_DefaultRobustNTMSMediaServices1Client) GetNTMSMediaPoolNameAR(ctx context.Context, in *GetNTMSMediaPoolNameARRequest, opts ...dcerpc.CallOption) (*GetNTMSMediaPoolNameARResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -85,7 +85,7 @@ func (o *xxx_DefaultRobustNTMSMediaServices1Client) GetNTMSMediaPoolNameAr(ctx c
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &GetNTMSMediaPoolNameArResponse{}
+	out := &GetNTMSMediaPoolNameARResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -93,7 +93,7 @@ func (o *xxx_DefaultRobustNTMSMediaServices1Client) GetNTMSMediaPoolNameAr(ctx c
 	return out, nil
 }
 
-func (o *xxx_DefaultRobustNTMSMediaServices1Client) GetNTMSMediaPoolNameWr(ctx context.Context, in *GetNTMSMediaPoolNameWrRequest, opts ...dcerpc.CallOption) (*GetNTMSMediaPoolNameWrResponse, error) {
+func (o *xxx_DefaultRobustNTMSMediaServices1Client) GetNTMSMediaPoolNameWR(ctx context.Context, in *GetNTMSMediaPoolNameWRRequest, opts ...dcerpc.CallOption) (*GetNTMSMediaPoolNameWRResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -105,7 +105,7 @@ func (o *xxx_DefaultRobustNTMSMediaServices1Client) GetNTMSMediaPoolNameWr(ctx c
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &GetNTMSMediaPoolNameWrResponse{}
+	out := &GetNTMSMediaPoolNameWRResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -126,9 +126,9 @@ func (o *xxx_DefaultRobustNTMSMediaServices1Client) IPID(ctx context.Context, ip
 		ipid = &dcom.IPID{}
 	}
 	return &xxx_DefaultRobustNTMSMediaServices1Client{
-		NTMSMediaServices1Client: o.NTMSMediaServices1Client.IPID(ctx, ipid),
-		cc:                       o.cc,
-		ipid:                     ipid,
+		MediaServices1Client: o.MediaServices1Client.IPID(ctx, ipid),
+		cc:                   o.cc,
+		ipid:                 ipid,
 	}
 }
 
@@ -140,7 +140,7 @@ func NewRobustNTMSMediaServices1Client(ctx context.Context, cc dcerpc.Conn, opts
 			return nil, err
 		}
 	}
-	base, err := intmsmediaservices1.NewNTMSMediaServices1Client(ctx, cc, append(opts, dcom.Superclass(cc))...)
+	base, err := intmsmediaservices1.NewMediaServices1Client(ctx, cc, append(opts, dcom.Superclass(cc))...)
 	if err != nil {
 		return nil, err
 	}
@@ -149,14 +149,14 @@ func NewRobustNTMSMediaServices1Client(ctx context.Context, cc dcerpc.Conn, opts
 		base = base.IPID(ctx, ipid)
 	}
 	return &xxx_DefaultRobustNTMSMediaServices1Client{
-		NTMSMediaServices1Client: base,
-		cc:                       cc,
-		ipid:                     ipid,
+		MediaServices1Client: base,
+		cc:                   cc,
+		ipid:                 ipid,
 	}, nil
 }
 
-// xxx_GetNTMSMediaPoolNameArOperation structure represents the GetNtmsMediaPoolNameAR operation
-type xxx_GetNTMSMediaPoolNameArOperation struct {
+// xxx_GetNTMSMediaPoolNameAROperation structure represents the GetNtmsMediaPoolNameAR operation
+type xxx_GetNTMSMediaPoolNameAROperation struct {
 	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
 	PoolID         *dtyp.GUID     `idl:"name:lpPoolId" json:"pool_id"`
@@ -167,13 +167,13 @@ type xxx_GetNTMSMediaPoolNameArOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_GetNTMSMediaPoolNameArOperation) OpNum() int { return 18 }
+func (o *xxx_GetNTMSMediaPoolNameAROperation) OpNum() int { return 18 }
 
-func (o *xxx_GetNTMSMediaPoolNameArOperation) OpName() string {
+func (o *xxx_GetNTMSMediaPoolNameAROperation) OpName() string {
 	return "/IRobustNtmsMediaServices1/v0/GetNtmsMediaPoolNameAR"
 }
 
-func (o *xxx_GetNTMSMediaPoolNameArOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetNTMSMediaPoolNameAROperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -182,7 +182,7 @@ func (o *xxx_GetNTMSMediaPoolNameArOperation) xxx_PrepareRequestPayload(ctx cont
 	return nil
 }
 
-func (o *xxx_GetNTMSMediaPoolNameArOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetNTMSMediaPoolNameAROperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -222,7 +222,7 @@ func (o *xxx_GetNTMSMediaPoolNameArOperation) MarshalNDRRequest(ctx context.Cont
 	return nil
 }
 
-func (o *xxx_GetNTMSMediaPoolNameArOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetNTMSMediaPoolNameAROperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -253,7 +253,7 @@ func (o *xxx_GetNTMSMediaPoolNameArOperation) UnmarshalNDRRequest(ctx context.Co
 	return nil
 }
 
-func (o *xxx_GetNTMSMediaPoolNameArOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetNTMSMediaPoolNameAROperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if o.BufferName != nil && o.NameSize == 0 {
 		o.NameSize = uint32(len(o.BufferName))
 	}
@@ -265,7 +265,7 @@ func (o *xxx_GetNTMSMediaPoolNameArOperation) xxx_PrepareResponsePayload(ctx con
 	return nil
 }
 
-func (o *xxx_GetNTMSMediaPoolNameArOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetNTMSMediaPoolNameAROperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -341,7 +341,7 @@ func (o *xxx_GetNTMSMediaPoolNameArOperation) MarshalNDRResponse(ctx context.Con
 	return nil
 }
 
-func (o *xxx_GetNTMSMediaPoolNameArOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetNTMSMediaPoolNameAROperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -404,17 +404,17 @@ func (o *xxx_GetNTMSMediaPoolNameArOperation) UnmarshalNDRResponse(ctx context.C
 	return nil
 }
 
-// GetNTMSMediaPoolNameArRequest structure represents the GetNtmsMediaPoolNameAR operation request
-type GetNTMSMediaPoolNameArRequest struct {
+// GetNTMSMediaPoolNameARRequest structure represents the GetNtmsMediaPoolNameAR operation request
+type GetNTMSMediaPoolNameARRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
 	PoolID         *dtyp.GUID     `idl:"name:lpPoolId" json:"pool_id"`
 	NameSizeBuffer uint32         `idl:"name:lpdwNameSizeBuf" json:"name_size_buffer"`
 }
 
-func (o *GetNTMSMediaPoolNameArRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameArOperation) *xxx_GetNTMSMediaPoolNameArOperation {
+func (o *GetNTMSMediaPoolNameARRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameAROperation) *xxx_GetNTMSMediaPoolNameAROperation {
 	if op == nil {
-		op = &xxx_GetNTMSMediaPoolNameArOperation{}
+		op = &xxx_GetNTMSMediaPoolNameAROperation{}
 	}
 	if o == nil {
 		return op
@@ -425,7 +425,7 @@ func (o *GetNTMSMediaPoolNameArRequest) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	return op
 }
 
-func (o *GetNTMSMediaPoolNameArRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameArOperation) {
+func (o *GetNTMSMediaPoolNameARRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameAROperation) {
 	if o == nil {
 		return
 	}
@@ -433,11 +433,11 @@ func (o *GetNTMSMediaPoolNameArRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.PoolID = op.PoolID
 	o.NameSizeBuffer = op.NameSizeBuffer
 }
-func (o *GetNTMSMediaPoolNameArRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetNTMSMediaPoolNameARRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *GetNTMSMediaPoolNameArRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetNTMSMediaPoolNameArOperation{}
+func (o *GetNTMSMediaPoolNameARRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetNTMSMediaPoolNameAROperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -445,8 +445,8 @@ func (o *GetNTMSMediaPoolNameArRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
-// GetNTMSMediaPoolNameArResponse structure represents the GetNtmsMediaPoolNameAR operation response
-type GetNTMSMediaPoolNameArResponse struct {
+// GetNTMSMediaPoolNameARResponse structure represents the GetNtmsMediaPoolNameAR operation response
+type GetNTMSMediaPoolNameARResponse struct {
 	// XXX: lpdwNameSizeBuf is an implicit input depedency for output parameters
 	NameSizeBuffer uint32 `idl:"name:lpdwNameSizeBuf" json:"name_size_buffer"`
 
@@ -459,9 +459,9 @@ type GetNTMSMediaPoolNameArResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNTMSMediaPoolNameArResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameArOperation) *xxx_GetNTMSMediaPoolNameArOperation {
+func (o *GetNTMSMediaPoolNameARResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameAROperation) *xxx_GetNTMSMediaPoolNameAROperation {
 	if op == nil {
-		op = &xxx_GetNTMSMediaPoolNameArOperation{}
+		op = &xxx_GetNTMSMediaPoolNameAROperation{}
 	}
 	if o == nil {
 		return op
@@ -479,7 +479,7 @@ func (o *GetNTMSMediaPoolNameArResponse) xxx_ToOp(ctx context.Context, op *xxx_G
 	return op
 }
 
-func (o *GetNTMSMediaPoolNameArResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameArOperation) {
+func (o *GetNTMSMediaPoolNameARResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameAROperation) {
 	if o == nil {
 		return
 	}
@@ -492,11 +492,11 @@ func (o *GetNTMSMediaPoolNameArResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.OutputSize = op.OutputSize
 	o.Return = op.Return
 }
-func (o *GetNTMSMediaPoolNameArResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetNTMSMediaPoolNameARResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *GetNTMSMediaPoolNameArResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetNTMSMediaPoolNameArOperation{}
+func (o *GetNTMSMediaPoolNameARResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetNTMSMediaPoolNameAROperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -504,8 +504,8 @@ func (o *GetNTMSMediaPoolNameArResponse) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
-// xxx_GetNTMSMediaPoolNameWrOperation structure represents the GetNtmsMediaPoolNameWR operation
-type xxx_GetNTMSMediaPoolNameWrOperation struct {
+// xxx_GetNTMSMediaPoolNameWROperation structure represents the GetNtmsMediaPoolNameWR operation
+type xxx_GetNTMSMediaPoolNameWROperation struct {
 	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
 	PoolID         *dtyp.GUID     `idl:"name:lpPoolId" json:"pool_id"`
@@ -516,13 +516,13 @@ type xxx_GetNTMSMediaPoolNameWrOperation struct {
 	Return         int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_GetNTMSMediaPoolNameWrOperation) OpNum() int { return 19 }
+func (o *xxx_GetNTMSMediaPoolNameWROperation) OpNum() int { return 19 }
 
-func (o *xxx_GetNTMSMediaPoolNameWrOperation) OpName() string {
+func (o *xxx_GetNTMSMediaPoolNameWROperation) OpName() string {
 	return "/IRobustNtmsMediaServices1/v0/GetNtmsMediaPoolNameWR"
 }
 
-func (o *xxx_GetNTMSMediaPoolNameWrOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetNTMSMediaPoolNameWROperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -531,7 +531,7 @@ func (o *xxx_GetNTMSMediaPoolNameWrOperation) xxx_PrepareRequestPayload(ctx cont
 	return nil
 }
 
-func (o *xxx_GetNTMSMediaPoolNameWrOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetNTMSMediaPoolNameWROperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -571,7 +571,7 @@ func (o *xxx_GetNTMSMediaPoolNameWrOperation) MarshalNDRRequest(ctx context.Cont
 	return nil
 }
 
-func (o *xxx_GetNTMSMediaPoolNameWrOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetNTMSMediaPoolNameWROperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -602,7 +602,7 @@ func (o *xxx_GetNTMSMediaPoolNameWrOperation) UnmarshalNDRRequest(ctx context.Co
 	return nil
 }
 
-func (o *xxx_GetNTMSMediaPoolNameWrOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetNTMSMediaPoolNameWROperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if o.BufferName != "" && o.NameSize == 0 {
 		o.NameSize = uint32(ndr.UTF16Len(o.BufferName))
 	}
@@ -614,7 +614,7 @@ func (o *xxx_GetNTMSMediaPoolNameWrOperation) xxx_PrepareResponsePayload(ctx con
 	return nil
 }
 
-func (o *xxx_GetNTMSMediaPoolNameWrOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetNTMSMediaPoolNameWROperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -694,7 +694,7 @@ func (o *xxx_GetNTMSMediaPoolNameWrOperation) MarshalNDRResponse(ctx context.Con
 	return nil
 }
 
-func (o *xxx_GetNTMSMediaPoolNameWrOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetNTMSMediaPoolNameWROperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -759,17 +759,17 @@ func (o *xxx_GetNTMSMediaPoolNameWrOperation) UnmarshalNDRResponse(ctx context.C
 	return nil
 }
 
-// GetNTMSMediaPoolNameWrRequest structure represents the GetNtmsMediaPoolNameWR operation request
-type GetNTMSMediaPoolNameWrRequest struct {
+// GetNTMSMediaPoolNameWRRequest structure represents the GetNtmsMediaPoolNameWR operation request
+type GetNTMSMediaPoolNameWRRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
 	PoolID         *dtyp.GUID     `idl:"name:lpPoolId" json:"pool_id"`
 	NameSizeBuffer uint32         `idl:"name:lpdwNameSizeBuf" json:"name_size_buffer"`
 }
 
-func (o *GetNTMSMediaPoolNameWrRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameWrOperation) *xxx_GetNTMSMediaPoolNameWrOperation {
+func (o *GetNTMSMediaPoolNameWRRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameWROperation) *xxx_GetNTMSMediaPoolNameWROperation {
 	if op == nil {
-		op = &xxx_GetNTMSMediaPoolNameWrOperation{}
+		op = &xxx_GetNTMSMediaPoolNameWROperation{}
 	}
 	if o == nil {
 		return op
@@ -780,7 +780,7 @@ func (o *GetNTMSMediaPoolNameWrRequest) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	return op
 }
 
-func (o *GetNTMSMediaPoolNameWrRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameWrOperation) {
+func (o *GetNTMSMediaPoolNameWRRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameWROperation) {
 	if o == nil {
 		return
 	}
@@ -788,11 +788,11 @@ func (o *GetNTMSMediaPoolNameWrRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.PoolID = op.PoolID
 	o.NameSizeBuffer = op.NameSizeBuffer
 }
-func (o *GetNTMSMediaPoolNameWrRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetNTMSMediaPoolNameWRRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *GetNTMSMediaPoolNameWrRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetNTMSMediaPoolNameWrOperation{}
+func (o *GetNTMSMediaPoolNameWRRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetNTMSMediaPoolNameWROperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -800,8 +800,8 @@ func (o *GetNTMSMediaPoolNameWrRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
-// GetNTMSMediaPoolNameWrResponse structure represents the GetNtmsMediaPoolNameWR operation response
-type GetNTMSMediaPoolNameWrResponse struct {
+// GetNTMSMediaPoolNameWRResponse structure represents the GetNtmsMediaPoolNameWR operation response
+type GetNTMSMediaPoolNameWRResponse struct {
 	// XXX: lpdwNameSizeBuf is an implicit input depedency for output parameters
 	NameSizeBuffer uint32 `idl:"name:lpdwNameSizeBuf" json:"name_size_buffer"`
 
@@ -814,9 +814,9 @@ type GetNTMSMediaPoolNameWrResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNTMSMediaPoolNameWrResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameWrOperation) *xxx_GetNTMSMediaPoolNameWrOperation {
+func (o *GetNTMSMediaPoolNameWRResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameWROperation) *xxx_GetNTMSMediaPoolNameWROperation {
 	if op == nil {
-		op = &xxx_GetNTMSMediaPoolNameWrOperation{}
+		op = &xxx_GetNTMSMediaPoolNameWROperation{}
 	}
 	if o == nil {
 		return op
@@ -834,7 +834,7 @@ func (o *GetNTMSMediaPoolNameWrResponse) xxx_ToOp(ctx context.Context, op *xxx_G
 	return op
 }
 
-func (o *GetNTMSMediaPoolNameWrResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameWrOperation) {
+func (o *GetNTMSMediaPoolNameWRResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameWROperation) {
 	if o == nil {
 		return
 	}
@@ -847,11 +847,11 @@ func (o *GetNTMSMediaPoolNameWrResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.OutputSize = op.OutputSize
 	o.Return = op.Return
 }
-func (o *GetNTMSMediaPoolNameWrResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetNTMSMediaPoolNameWRResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *GetNTMSMediaPoolNameWrResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetNTMSMediaPoolNameWrOperation{}
+func (o *GetNTMSMediaPoolNameWRResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetNTMSMediaPoolNameWROperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

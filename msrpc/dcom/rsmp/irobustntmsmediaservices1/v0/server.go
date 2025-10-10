@@ -29,11 +29,11 @@ var (
 type RobustNTMSMediaServices1Server interface {
 
 	// INtmsMediaServices1 base class.
-	intmsmediaservices1.NTMSMediaServices1Server
+	intmsmediaservices1.MediaServices1Server
 
-	GetNTMSMediaPoolNameAr(context.Context, *GetNTMSMediaPoolNameArRequest) (*GetNTMSMediaPoolNameArResponse, error)
+	GetNTMSMediaPoolNameAR(context.Context, *GetNTMSMediaPoolNameARRequest) (*GetNTMSMediaPoolNameARResponse, error)
 
-	GetNTMSMediaPoolNameWr(context.Context, *GetNTMSMediaPoolNameWrRequest) (*GetNTMSMediaPoolNameWrResponse, error)
+	GetNTMSMediaPoolNameWR(context.Context, *GetNTMSMediaPoolNameWRRequest) (*GetNTMSMediaPoolNameWRResponse, error)
 }
 
 func RegisterRobustNTMSMediaServices1Server(conn dcerpc.Conn, o RobustNTMSMediaServices1Server, opts ...dcerpc.Option) {
@@ -49,26 +49,26 @@ func NewRobustNTMSMediaServices1ServerHandle(o RobustNTMSMediaServices1Server) d
 func RobustNTMSMediaServices1ServerHandle(ctx context.Context, o RobustNTMSMediaServices1Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 18 {
 		// INtmsMediaServices1 base method.
-		return intmsmediaservices1.NTMSMediaServices1ServerHandle(ctx, o, opNum, r)
+		return intmsmediaservices1.MediaServices1ServerHandle(ctx, o, opNum, r)
 	}
 	switch opNum {
 	case 18: // GetNtmsMediaPoolNameAR
-		op := &xxx_GetNTMSMediaPoolNameArOperation{}
+		op := &xxx_GetNTMSMediaPoolNameAROperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &GetNTMSMediaPoolNameArRequest{}
+		req := &GetNTMSMediaPoolNameARRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.GetNTMSMediaPoolNameAr(ctx, req)
+		resp, err := o.GetNTMSMediaPoolNameAR(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 19: // GetNtmsMediaPoolNameWR
-		op := &xxx_GetNTMSMediaPoolNameWrOperation{}
+		op := &xxx_GetNTMSMediaPoolNameWROperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &GetNTMSMediaPoolNameWrRequest{}
+		req := &GetNTMSMediaPoolNameWRRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.GetNTMSMediaPoolNameWr(ctx, req)
+		resp, err := o.GetNTMSMediaPoolNameWR(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
@@ -76,13 +76,13 @@ func RobustNTMSMediaServices1ServerHandle(ctx context.Context, o RobustNTMSMedia
 
 // Unimplemented IRobustNtmsMediaServices1
 type UnimplementedRobustNTMSMediaServices1Server struct {
-	intmsmediaservices1.UnimplementedNTMSMediaServices1Server
+	intmsmediaservices1.UnimplementedMediaServices1Server
 }
 
-func (UnimplementedRobustNTMSMediaServices1Server) GetNTMSMediaPoolNameAr(context.Context, *GetNTMSMediaPoolNameArRequest) (*GetNTMSMediaPoolNameArResponse, error) {
+func (UnimplementedRobustNTMSMediaServices1Server) GetNTMSMediaPoolNameAR(context.Context, *GetNTMSMediaPoolNameARRequest) (*GetNTMSMediaPoolNameARResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedRobustNTMSMediaServices1Server) GetNTMSMediaPoolNameWr(context.Context, *GetNTMSMediaPoolNameWrRequest) (*GetNTMSMediaPoolNameWrResponse, error) {
+func (UnimplementedRobustNTMSMediaServices1Server) GetNTMSMediaPoolNameWR(context.Context, *GetNTMSMediaPoolNameWRRequest) (*GetNTMSMediaPoolNameWRResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 

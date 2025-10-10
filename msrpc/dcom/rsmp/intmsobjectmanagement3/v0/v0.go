@@ -36,22 +36,22 @@ var (
 
 var (
 	// INtmsObjectManagement3 interface identifier 3bbed8d9-2c9a-4b21-8936-acb2f995be6c
-	NTMSObjectManagement3IID = &dcom.IID{Data1: 0x3bbed8d9, Data2: 0x2c9a, Data3: 0x4b21, Data4: []byte{0x89, 0x36, 0xac, 0xb2, 0xf9, 0x95, 0xbe, 0x6c}}
+	ObjectManagement3IID = &dcom.IID{Data1: 0x3bbed8d9, Data2: 0x2c9a, Data3: 0x4b21, Data4: []byte{0x89, 0x36, 0xac, 0xb2, 0xf9, 0x95, 0xbe, 0x6c}}
 	// Syntax UUID
-	NTMSObjectManagement3SyntaxUUID = &uuid.UUID{TimeLow: 0x3bbed8d9, TimeMid: 0x2c9a, TimeHiAndVersion: 0x4b21, ClockSeqHiAndReserved: 0x89, ClockSeqLow: 0x36, Node: [6]uint8{0xac, 0xb2, 0xf9, 0x95, 0xbe, 0x6c}}
+	ObjectManagement3SyntaxUUID = &uuid.UUID{TimeLow: 0x3bbed8d9, TimeMid: 0x2c9a, TimeHiAndVersion: 0x4b21, ClockSeqHiAndReserved: 0x89, ClockSeqLow: 0x36, Node: [6]uint8{0xac, 0xb2, 0xf9, 0x95, 0xbe, 0x6c}}
 	// Syntax ID
-	NTMSObjectManagement3SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: NTMSObjectManagement3SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	ObjectManagement3SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ObjectManagement3SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // INtmsObjectManagement3 interface.
-type NTMSObjectManagement3Client interface {
+type ObjectManagement3Client interface {
 
 	// INtmsObjectManagement2 retrieval method.
-	NTMSObjectManagement2() intmsobjectmanagement2.NTMSObjectManagement2Client
+	ObjectManagement2() intmsobjectmanagement2.ObjectManagement2Client
 
-	GetNTMSObjectAttributeAr(context.Context, *GetNTMSObjectAttributeArRequest, ...dcerpc.CallOption) (*GetNTMSObjectAttributeArResponse, error)
+	GetNTMSObjectAttributeAR(context.Context, *GetNTMSObjectAttributeARRequest, ...dcerpc.CallOption) (*GetNTMSObjectAttributeARResponse, error)
 
-	GetNTMSObjectAttributeWr(context.Context, *GetNTMSObjectAttributeWrRequest, ...dcerpc.CallOption) (*GetNTMSObjectAttributeWrResponse, error)
+	GetNTMSObjectAttributeWR(context.Context, *GetNTMSObjectAttributeWRRequest, ...dcerpc.CallOption) (*GetNTMSObjectAttributeWRResponse, error)
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
@@ -60,20 +60,20 @@ type NTMSObjectManagement3Client interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) NTMSObjectManagement3Client
+	IPID(context.Context, *dcom.IPID) ObjectManagement3Client
 }
 
-type xxx_DefaultNTMSObjectManagement3Client struct {
-	intmsobjectmanagement2.NTMSObjectManagement2Client
+type xxx_DefaultObjectManagement3Client struct {
+	intmsobjectmanagement2.ObjectManagement2Client
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultNTMSObjectManagement3Client) NTMSObjectManagement2() intmsobjectmanagement2.NTMSObjectManagement2Client {
-	return o.NTMSObjectManagement2Client
+func (o *xxx_DefaultObjectManagement3Client) ObjectManagement2() intmsobjectmanagement2.ObjectManagement2Client {
+	return o.ObjectManagement2Client
 }
 
-func (o *xxx_DefaultNTMSObjectManagement3Client) GetNTMSObjectAttributeAr(ctx context.Context, in *GetNTMSObjectAttributeArRequest, opts ...dcerpc.CallOption) (*GetNTMSObjectAttributeArResponse, error) {
+func (o *xxx_DefaultObjectManagement3Client) GetNTMSObjectAttributeAR(ctx context.Context, in *GetNTMSObjectAttributeARRequest, opts ...dcerpc.CallOption) (*GetNTMSObjectAttributeARResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -85,7 +85,7 @@ func (o *xxx_DefaultNTMSObjectManagement3Client) GetNTMSObjectAttributeAr(ctx co
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &GetNTMSObjectAttributeArResponse{}
+	out := &GetNTMSObjectAttributeARResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -93,7 +93,7 @@ func (o *xxx_DefaultNTMSObjectManagement3Client) GetNTMSObjectAttributeAr(ctx co
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSObjectManagement3Client) GetNTMSObjectAttributeWr(ctx context.Context, in *GetNTMSObjectAttributeWrRequest, opts ...dcerpc.CallOption) (*GetNTMSObjectAttributeWrResponse, error) {
+func (o *xxx_DefaultObjectManagement3Client) GetNTMSObjectAttributeWR(ctx context.Context, in *GetNTMSObjectAttributeWRRequest, opts ...dcerpc.CallOption) (*GetNTMSObjectAttributeWRResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -105,7 +105,7 @@ func (o *xxx_DefaultNTMSObjectManagement3Client) GetNTMSObjectAttributeWr(ctx co
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &GetNTMSObjectAttributeWrResponse{}
+	out := &GetNTMSObjectAttributeWRResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -113,34 +113,34 @@ func (o *xxx_DefaultNTMSObjectManagement3Client) GetNTMSObjectAttributeWr(ctx co
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSObjectManagement3Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultObjectManagement3Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultNTMSObjectManagement3Client) Conn() dcerpc.Conn {
+func (o *xxx_DefaultObjectManagement3Client) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultNTMSObjectManagement3Client) IPID(ctx context.Context, ipid *dcom.IPID) NTMSObjectManagement3Client {
+func (o *xxx_DefaultObjectManagement3Client) IPID(ctx context.Context, ipid *dcom.IPID) ObjectManagement3Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultNTMSObjectManagement3Client{
-		NTMSObjectManagement2Client: o.NTMSObjectManagement2Client.IPID(ctx, ipid),
-		cc:                          o.cc,
-		ipid:                        ipid,
+	return &xxx_DefaultObjectManagement3Client{
+		ObjectManagement2Client: o.ObjectManagement2Client.IPID(ctx, ipid),
+		cc:                      o.cc,
+		ipid:                    ipid,
 	}
 }
 
-func NewNTMSObjectManagement3Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (NTMSObjectManagement3Client, error) {
+func NewObjectManagement3Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ObjectManagement3Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(NTMSObjectManagement3SyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ObjectManagement3SyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
 	}
-	base, err := intmsobjectmanagement2.NewNTMSObjectManagement2Client(ctx, cc, append(opts, dcom.Superclass(cc))...)
+	base, err := intmsobjectmanagement2.NewObjectManagement2Client(ctx, cc, append(opts, dcom.Superclass(cc))...)
 	if err != nil {
 		return nil, err
 	}
@@ -148,15 +148,15 @@ func NewNTMSObjectManagement3Client(ctx context.Context, cc dcerpc.Conn, opts ..
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultNTMSObjectManagement3Client{
-		NTMSObjectManagement2Client: base,
-		cc:                          cc,
-		ipid:                        ipid,
+	return &xxx_DefaultObjectManagement3Client{
+		ObjectManagement2Client: base,
+		cc:                      cc,
+		ipid:                    ipid,
 	}, nil
 }
 
-// xxx_GetNTMSObjectAttributeArOperation structure represents the GetNtmsObjectAttributeAR operation
-type xxx_GetNTMSObjectAttributeArOperation struct {
+// xxx_GetNTMSObjectAttributeAROperation structure represents the GetNtmsObjectAttributeAR operation
+type xxx_GetNTMSObjectAttributeAROperation struct {
 	This                *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That                *dcom.ORPCThat `idl:"name:That" json:"that"`
 	ObjectID            *dtyp.GUID     `idl:"name:lpObjectId" json:"object_id"`
@@ -169,13 +169,13 @@ type xxx_GetNTMSObjectAttributeArOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_GetNTMSObjectAttributeArOperation) OpNum() int { return 14 }
+func (o *xxx_GetNTMSObjectAttributeAROperation) OpNum() int { return 14 }
 
-func (o *xxx_GetNTMSObjectAttributeArOperation) OpName() string {
+func (o *xxx_GetNTMSObjectAttributeAROperation) OpName() string {
 	return "/INtmsObjectManagement3/v0/GetNtmsObjectAttributeAR"
 }
 
-func (o *xxx_GetNTMSObjectAttributeArOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetNTMSObjectAttributeAROperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -184,7 +184,7 @@ func (o *xxx_GetNTMSObjectAttributeArOperation) xxx_PrepareRequestPayload(ctx co
 	return nil
 }
 
-func (o *xxx_GetNTMSObjectAttributeArOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetNTMSObjectAttributeAROperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -236,7 +236,7 @@ func (o *xxx_GetNTMSObjectAttributeArOperation) MarshalNDRRequest(ctx context.Co
 	return nil
 }
 
-func (o *xxx_GetNTMSObjectAttributeArOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetNTMSObjectAttributeAROperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -279,7 +279,7 @@ func (o *xxx_GetNTMSObjectAttributeArOperation) UnmarshalNDRRequest(ctx context.
 	return nil
 }
 
-func (o *xxx_GetNTMSObjectAttributeArOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetNTMSObjectAttributeAROperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if o.AttributeData != nil && o.AttributeSize == 0 {
 		o.AttributeSize = uint32(len(o.AttributeData))
 	}
@@ -291,7 +291,7 @@ func (o *xxx_GetNTMSObjectAttributeArOperation) xxx_PrepareResponsePayload(ctx c
 	return nil
 }
 
-func (o *xxx_GetNTMSObjectAttributeArOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetNTMSObjectAttributeAROperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -367,7 +367,7 @@ func (o *xxx_GetNTMSObjectAttributeArOperation) MarshalNDRResponse(ctx context.C
 	return nil
 }
 
-func (o *xxx_GetNTMSObjectAttributeArOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetNTMSObjectAttributeAROperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -430,8 +430,8 @@ func (o *xxx_GetNTMSObjectAttributeArOperation) UnmarshalNDRResponse(ctx context
 	return nil
 }
 
-// GetNTMSObjectAttributeArRequest structure represents the GetNtmsObjectAttributeAR operation request
-type GetNTMSObjectAttributeArRequest struct {
+// GetNTMSObjectAttributeARRequest structure represents the GetNtmsObjectAttributeAR operation request
+type GetNTMSObjectAttributeARRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This                *dcom.ORPCThis `idl:"name:This" json:"this"`
 	ObjectID            *dtyp.GUID     `idl:"name:lpObjectId" json:"object_id"`
@@ -440,9 +440,9 @@ type GetNTMSObjectAttributeArRequest struct {
 	AttributeBufferSize uint32         `idl:"name:lpdwAttributeBufferSize" json:"attribute_buffer_size"`
 }
 
-func (o *GetNTMSObjectAttributeArRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeArOperation) *xxx_GetNTMSObjectAttributeArOperation {
+func (o *GetNTMSObjectAttributeARRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeAROperation) *xxx_GetNTMSObjectAttributeAROperation {
 	if op == nil {
-		op = &xxx_GetNTMSObjectAttributeArOperation{}
+		op = &xxx_GetNTMSObjectAttributeAROperation{}
 	}
 	if o == nil {
 		return op
@@ -455,7 +455,7 @@ func (o *GetNTMSObjectAttributeArRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	return op
 }
 
-func (o *GetNTMSObjectAttributeArRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeArOperation) {
+func (o *GetNTMSObjectAttributeARRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeAROperation) {
 	if o == nil {
 		return
 	}
@@ -465,11 +465,11 @@ func (o *GetNTMSObjectAttributeArRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.AttributeName = op.AttributeName
 	o.AttributeBufferSize = op.AttributeBufferSize
 }
-func (o *GetNTMSObjectAttributeArRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetNTMSObjectAttributeARRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *GetNTMSObjectAttributeArRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetNTMSObjectAttributeArOperation{}
+func (o *GetNTMSObjectAttributeARRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetNTMSObjectAttributeAROperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -477,8 +477,8 @@ func (o *GetNTMSObjectAttributeArRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
-// GetNTMSObjectAttributeArResponse structure represents the GetNtmsObjectAttributeAR operation response
-type GetNTMSObjectAttributeArResponse struct {
+// GetNTMSObjectAttributeARResponse structure represents the GetNtmsObjectAttributeAR operation response
+type GetNTMSObjectAttributeARResponse struct {
 	// XXX: lpdwAttributeBufferSize is an implicit input depedency for output parameters
 	AttributeBufferSize uint32 `idl:"name:lpdwAttributeBufferSize" json:"attribute_buffer_size"`
 
@@ -491,9 +491,9 @@ type GetNTMSObjectAttributeArResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNTMSObjectAttributeArResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeArOperation) *xxx_GetNTMSObjectAttributeArOperation {
+func (o *GetNTMSObjectAttributeARResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeAROperation) *xxx_GetNTMSObjectAttributeAROperation {
 	if op == nil {
-		op = &xxx_GetNTMSObjectAttributeArOperation{}
+		op = &xxx_GetNTMSObjectAttributeAROperation{}
 	}
 	if o == nil {
 		return op
@@ -511,7 +511,7 @@ func (o *GetNTMSObjectAttributeArResponse) xxx_ToOp(ctx context.Context, op *xxx
 	return op
 }
 
-func (o *GetNTMSObjectAttributeArResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeArOperation) {
+func (o *GetNTMSObjectAttributeARResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeAROperation) {
 	if o == nil {
 		return
 	}
@@ -524,11 +524,11 @@ func (o *GetNTMSObjectAttributeArResponse) xxx_FromOp(ctx context.Context, op *x
 	o.ActualAttributeSize = op.ActualAttributeSize
 	o.Return = op.Return
 }
-func (o *GetNTMSObjectAttributeArResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetNTMSObjectAttributeARResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *GetNTMSObjectAttributeArResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetNTMSObjectAttributeArOperation{}
+func (o *GetNTMSObjectAttributeARResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetNTMSObjectAttributeAROperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -536,8 +536,8 @@ func (o *GetNTMSObjectAttributeArResponse) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
-// xxx_GetNTMSObjectAttributeWrOperation structure represents the GetNtmsObjectAttributeWR operation
-type xxx_GetNTMSObjectAttributeWrOperation struct {
+// xxx_GetNTMSObjectAttributeWROperation structure represents the GetNtmsObjectAttributeWR operation
+type xxx_GetNTMSObjectAttributeWROperation struct {
 	This                *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That                *dcom.ORPCThat `idl:"name:That" json:"that"`
 	ObjectID            *dtyp.GUID     `idl:"name:lpObjectId" json:"object_id"`
@@ -550,13 +550,13 @@ type xxx_GetNTMSObjectAttributeWrOperation struct {
 	Return              int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_GetNTMSObjectAttributeWrOperation) OpNum() int { return 15 }
+func (o *xxx_GetNTMSObjectAttributeWROperation) OpNum() int { return 15 }
 
-func (o *xxx_GetNTMSObjectAttributeWrOperation) OpName() string {
+func (o *xxx_GetNTMSObjectAttributeWROperation) OpName() string {
 	return "/INtmsObjectManagement3/v0/GetNtmsObjectAttributeWR"
 }
 
-func (o *xxx_GetNTMSObjectAttributeWrOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetNTMSObjectAttributeWROperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -565,7 +565,7 @@ func (o *xxx_GetNTMSObjectAttributeWrOperation) xxx_PrepareRequestPayload(ctx co
 	return nil
 }
 
-func (o *xxx_GetNTMSObjectAttributeWrOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetNTMSObjectAttributeWROperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -617,7 +617,7 @@ func (o *xxx_GetNTMSObjectAttributeWrOperation) MarshalNDRRequest(ctx context.Co
 	return nil
 }
 
-func (o *xxx_GetNTMSObjectAttributeWrOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetNTMSObjectAttributeWROperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -660,7 +660,7 @@ func (o *xxx_GetNTMSObjectAttributeWrOperation) UnmarshalNDRRequest(ctx context.
 	return nil
 }
 
-func (o *xxx_GetNTMSObjectAttributeWrOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetNTMSObjectAttributeWROperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if o.AttributeData != nil && o.AttributeSize == 0 {
 		o.AttributeSize = uint32(len(o.AttributeData))
 	}
@@ -672,7 +672,7 @@ func (o *xxx_GetNTMSObjectAttributeWrOperation) xxx_PrepareResponsePayload(ctx c
 	return nil
 }
 
-func (o *xxx_GetNTMSObjectAttributeWrOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetNTMSObjectAttributeWROperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -748,7 +748,7 @@ func (o *xxx_GetNTMSObjectAttributeWrOperation) MarshalNDRResponse(ctx context.C
 	return nil
 }
 
-func (o *xxx_GetNTMSObjectAttributeWrOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetNTMSObjectAttributeWROperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -811,8 +811,8 @@ func (o *xxx_GetNTMSObjectAttributeWrOperation) UnmarshalNDRResponse(ctx context
 	return nil
 }
 
-// GetNTMSObjectAttributeWrRequest structure represents the GetNtmsObjectAttributeWR operation request
-type GetNTMSObjectAttributeWrRequest struct {
+// GetNTMSObjectAttributeWRRequest structure represents the GetNtmsObjectAttributeWR operation request
+type GetNTMSObjectAttributeWRRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This                *dcom.ORPCThis `idl:"name:This" json:"this"`
 	ObjectID            *dtyp.GUID     `idl:"name:lpObjectId" json:"object_id"`
@@ -821,9 +821,9 @@ type GetNTMSObjectAttributeWrRequest struct {
 	AttributeBufferSize uint32         `idl:"name:lpdwAttributeBufferSize" json:"attribute_buffer_size"`
 }
 
-func (o *GetNTMSObjectAttributeWrRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeWrOperation) *xxx_GetNTMSObjectAttributeWrOperation {
+func (o *GetNTMSObjectAttributeWRRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeWROperation) *xxx_GetNTMSObjectAttributeWROperation {
 	if op == nil {
-		op = &xxx_GetNTMSObjectAttributeWrOperation{}
+		op = &xxx_GetNTMSObjectAttributeWROperation{}
 	}
 	if o == nil {
 		return op
@@ -836,7 +836,7 @@ func (o *GetNTMSObjectAttributeWrRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	return op
 }
 
-func (o *GetNTMSObjectAttributeWrRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeWrOperation) {
+func (o *GetNTMSObjectAttributeWRRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeWROperation) {
 	if o == nil {
 		return
 	}
@@ -846,11 +846,11 @@ func (o *GetNTMSObjectAttributeWrRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.AttributeName = op.AttributeName
 	o.AttributeBufferSize = op.AttributeBufferSize
 }
-func (o *GetNTMSObjectAttributeWrRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetNTMSObjectAttributeWRRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *GetNTMSObjectAttributeWrRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetNTMSObjectAttributeWrOperation{}
+func (o *GetNTMSObjectAttributeWRRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetNTMSObjectAttributeWROperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -858,8 +858,8 @@ func (o *GetNTMSObjectAttributeWrRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
-// GetNTMSObjectAttributeWrResponse structure represents the GetNtmsObjectAttributeWR operation response
-type GetNTMSObjectAttributeWrResponse struct {
+// GetNTMSObjectAttributeWRResponse structure represents the GetNtmsObjectAttributeWR operation response
+type GetNTMSObjectAttributeWRResponse struct {
 	// XXX: lpdwAttributeBufferSize is an implicit input depedency for output parameters
 	AttributeBufferSize uint32 `idl:"name:lpdwAttributeBufferSize" json:"attribute_buffer_size"`
 
@@ -872,9 +872,9 @@ type GetNTMSObjectAttributeWrResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNTMSObjectAttributeWrResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeWrOperation) *xxx_GetNTMSObjectAttributeWrOperation {
+func (o *GetNTMSObjectAttributeWRResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeWROperation) *xxx_GetNTMSObjectAttributeWROperation {
 	if op == nil {
-		op = &xxx_GetNTMSObjectAttributeWrOperation{}
+		op = &xxx_GetNTMSObjectAttributeWROperation{}
 	}
 	if o == nil {
 		return op
@@ -892,7 +892,7 @@ func (o *GetNTMSObjectAttributeWrResponse) xxx_ToOp(ctx context.Context, op *xxx
 	return op
 }
 
-func (o *GetNTMSObjectAttributeWrResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeWrOperation) {
+func (o *GetNTMSObjectAttributeWRResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeWROperation) {
 	if o == nil {
 		return
 	}
@@ -905,11 +905,11 @@ func (o *GetNTMSObjectAttributeWrResponse) xxx_FromOp(ctx context.Context, op *x
 	o.ActualAttributeSize = op.ActualAttributeSize
 	o.Return = op.Return
 }
-func (o *GetNTMSObjectAttributeWrResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetNTMSObjectAttributeWRResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *GetNTMSObjectAttributeWrResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetNTMSObjectAttributeWrOperation{}
+func (o *GetNTMSObjectAttributeWRResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetNTMSObjectAttributeWROperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

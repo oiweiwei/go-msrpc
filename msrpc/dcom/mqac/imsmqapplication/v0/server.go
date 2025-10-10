@@ -26,7 +26,7 @@ var (
 )
 
 // IMSMQApplication server interface.
-type ImsmqApplicationServer interface {
+type ApplicationServer interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -35,17 +35,17 @@ type ImsmqApplicationServer interface {
 	MachineIDOfMachineName(context.Context, *MachineIDOfMachineNameRequest) (*MachineIDOfMachineNameResponse, error)
 }
 
-func RegisterImsmqApplicationServer(conn dcerpc.Conn, o ImsmqApplicationServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqApplicationServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqApplicationSyntaxV0_0))...)
+func RegisterApplicationServer(conn dcerpc.Conn, o ApplicationServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewApplicationServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ApplicationSyntaxV0_0))...)
 }
 
-func NewImsmqApplicationServerHandle(o ImsmqApplicationServer) dcerpc.ServerHandle {
+func NewApplicationServerHandle(o ApplicationServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqApplicationServerHandle(ctx, o, opNum, r)
+		return ApplicationServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqApplicationServerHandle(ctx context.Context, o ImsmqApplicationServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func ApplicationServerHandle(ctx context.Context, o ApplicationServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -65,12 +65,12 @@ func ImsmqApplicationServerHandle(ctx context.Context, o ImsmqApplicationServer,
 }
 
 // Unimplemented IMSMQApplication
-type UnimplementedImsmqApplicationServer struct {
+type UnimplementedApplicationServer struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedImsmqApplicationServer) MachineIDOfMachineName(context.Context, *MachineIDOfMachineNameRequest) (*MachineIDOfMachineNameResponse, error) {
+func (UnimplementedApplicationServer) MachineIDOfMachineName(context.Context, *MachineIDOfMachineNameRequest) (*MachineIDOfMachineNameResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqApplicationServer = (*UnimplementedImsmqApplicationServer)(nil)
+var _ ApplicationServer = (*UnimplementedApplicationServer)(nil)

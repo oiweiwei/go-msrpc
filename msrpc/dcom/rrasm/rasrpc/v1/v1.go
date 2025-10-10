@@ -55,7 +55,7 @@ type RasrpcClient interface {
 	// Opnum4NotUsedOnWire operation.
 	// Opnum4NotUsedOnWire
 
-	RASRPCDeleteEntry(context.Context, *RASRPCDeleteEntryRequest, ...dcerpc.CallOption) (*RASRPCDeleteEntryResponse, error)
+	DeleteEntry(context.Context, *DeleteEntryRequest, ...dcerpc.CallOption) (*DeleteEntryResponse, error)
 
 	// Opnum6NotUsedOnWire operation.
 	// Opnum6NotUsedOnWire
@@ -66,20 +66,20 @@ type RasrpcClient interface {
 	// Opnum8NotUsedOnWire operation.
 	// Opnum8NotUsedOnWire
 
-	RASRPCGetUserPreferences(context.Context, *RASRPCGetUserPreferencesRequest, ...dcerpc.CallOption) (*RASRPCGetUserPreferencesResponse, error)
+	GetUserPreferences(context.Context, *GetUserPreferencesRequest, ...dcerpc.CallOption) (*GetUserPreferencesResponse, error)
 
-	RASRPCSetUserPreferences(context.Context, *RASRPCSetUserPreferencesRequest, ...dcerpc.CallOption) (*RASRPCSetUserPreferencesResponse, error)
+	SetUserPreferences(context.Context, *SetUserPreferencesRequest, ...dcerpc.CallOption) (*SetUserPreferencesResponse, error)
 
-	RASRPCGetSystemDirectory(context.Context, *RASRPCGetSystemDirectoryRequest, ...dcerpc.CallOption) (*RASRPCGetSystemDirectoryResponse, error)
+	GetSystemDirectory(context.Context, *GetSystemDirectoryRequest, ...dcerpc.CallOption) (*GetSystemDirectoryResponse, error)
 
-	RASRPCSubmitRequest(context.Context, *RASRPCSubmitRequestRequest, ...dcerpc.CallOption) (*RASRPCSubmitRequestResponse, error)
+	SubmitRequest(context.Context, *SubmitRequestRequest, ...dcerpc.CallOption) (*SubmitRequestResponse, error)
 
 	// Opnum13NotUsedOnWire operation.
 	// Opnum13NotUsedOnWire
 
-	RASRPCGetInstalledProtocolsEx(context.Context, *RASRPCGetInstalledProtocolsExRequest, ...dcerpc.CallOption) (*RASRPCGetInstalledProtocolsExResponse, error)
+	GetInstalledProtocolsEx(context.Context, *GetInstalledProtocolsExRequest, ...dcerpc.CallOption) (*GetInstalledProtocolsExResponse, error)
 
-	RASRPCGetVersion(context.Context, *RASRPCGetVersionRequest, ...dcerpc.CallOption) (*RASRPCGetVersionResponse, error)
+	GetVersion(context.Context, *GetVersionRequest, ...dcerpc.CallOption) (*GetVersionResponse, error)
 
 	// Opnum16NotUsedOnWire operation.
 	// Opnum16NotUsedOnWire
@@ -95,12 +95,12 @@ type xxx_DefaultRasrpcClient struct {
 	cc dcerpc.Conn
 }
 
-func (o *xxx_DefaultRasrpcClient) RASRPCDeleteEntry(ctx context.Context, in *RASRPCDeleteEntryRequest, opts ...dcerpc.CallOption) (*RASRPCDeleteEntryResponse, error) {
+func (o *xxx_DefaultRasrpcClient) DeleteEntry(ctx context.Context, in *DeleteEntryRequest, opts ...dcerpc.CallOption) (*DeleteEntryResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASRPCDeleteEntryResponse{}
+	out := &DeleteEntryResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -108,12 +108,12 @@ func (o *xxx_DefaultRasrpcClient) RASRPCDeleteEntry(ctx context.Context, in *RAS
 	return out, nil
 }
 
-func (o *xxx_DefaultRasrpcClient) RASRPCGetUserPreferences(ctx context.Context, in *RASRPCGetUserPreferencesRequest, opts ...dcerpc.CallOption) (*RASRPCGetUserPreferencesResponse, error) {
+func (o *xxx_DefaultRasrpcClient) GetUserPreferences(ctx context.Context, in *GetUserPreferencesRequest, opts ...dcerpc.CallOption) (*GetUserPreferencesResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASRPCGetUserPreferencesResponse{}
+	out := &GetUserPreferencesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -121,12 +121,12 @@ func (o *xxx_DefaultRasrpcClient) RASRPCGetUserPreferences(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultRasrpcClient) RASRPCSetUserPreferences(ctx context.Context, in *RASRPCSetUserPreferencesRequest, opts ...dcerpc.CallOption) (*RASRPCSetUserPreferencesResponse, error) {
+func (o *xxx_DefaultRasrpcClient) SetUserPreferences(ctx context.Context, in *SetUserPreferencesRequest, opts ...dcerpc.CallOption) (*SetUserPreferencesResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASRPCSetUserPreferencesResponse{}
+	out := &SetUserPreferencesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -134,12 +134,12 @@ func (o *xxx_DefaultRasrpcClient) RASRPCSetUserPreferences(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultRasrpcClient) RASRPCGetSystemDirectory(ctx context.Context, in *RASRPCGetSystemDirectoryRequest, opts ...dcerpc.CallOption) (*RASRPCGetSystemDirectoryResponse, error) {
+func (o *xxx_DefaultRasrpcClient) GetSystemDirectory(ctx context.Context, in *GetSystemDirectoryRequest, opts ...dcerpc.CallOption) (*GetSystemDirectoryResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASRPCGetSystemDirectoryResponse{}
+	out := &GetSystemDirectoryResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -147,12 +147,12 @@ func (o *xxx_DefaultRasrpcClient) RASRPCGetSystemDirectory(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultRasrpcClient) RASRPCSubmitRequest(ctx context.Context, in *RASRPCSubmitRequestRequest, opts ...dcerpc.CallOption) (*RASRPCSubmitRequestResponse, error) {
+func (o *xxx_DefaultRasrpcClient) SubmitRequest(ctx context.Context, in *SubmitRequestRequest, opts ...dcerpc.CallOption) (*SubmitRequestResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASRPCSubmitRequestResponse{}
+	out := &SubmitRequestResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -160,12 +160,12 @@ func (o *xxx_DefaultRasrpcClient) RASRPCSubmitRequest(ctx context.Context, in *R
 	return out, nil
 }
 
-func (o *xxx_DefaultRasrpcClient) RASRPCGetInstalledProtocolsEx(ctx context.Context, in *RASRPCGetInstalledProtocolsExRequest, opts ...dcerpc.CallOption) (*RASRPCGetInstalledProtocolsExResponse, error) {
+func (o *xxx_DefaultRasrpcClient) GetInstalledProtocolsEx(ctx context.Context, in *GetInstalledProtocolsExRequest, opts ...dcerpc.CallOption) (*GetInstalledProtocolsExResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASRPCGetInstalledProtocolsExResponse{}
+	out := &GetInstalledProtocolsExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -173,12 +173,12 @@ func (o *xxx_DefaultRasrpcClient) RASRPCGetInstalledProtocolsEx(ctx context.Cont
 	return out, nil
 }
 
-func (o *xxx_DefaultRasrpcClient) RASRPCGetVersion(ctx context.Context, in *RASRPCGetVersionRequest, opts ...dcerpc.CallOption) (*RASRPCGetVersionResponse, error) {
+func (o *xxx_DefaultRasrpcClient) GetVersion(ctx context.Context, in *GetVersionRequest, opts ...dcerpc.CallOption) (*GetVersionResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASRPCGetVersionResponse{}
+	out := &GetVersionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -202,18 +202,18 @@ func NewRasrpcClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option)
 	return &xxx_DefaultRasrpcClient{cc: cc}, nil
 }
 
-// xxx_RASRPCDeleteEntryOperation structure represents the RasRpcDeleteEntry operation
-type xxx_RASRPCDeleteEntryOperation struct {
+// xxx_DeleteEntryOperation structure represents the RasRpcDeleteEntry operation
+type xxx_DeleteEntryOperation struct {
 	Phonebook string `idl:"name:lpszPhonebook;string" json:"phonebook"`
 	Entry     string `idl:"name:lpszEntry;string" json:"entry"`
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASRPCDeleteEntryOperation) OpNum() int { return 5 }
+func (o *xxx_DeleteEntryOperation) OpNum() int { return 5 }
 
-func (o *xxx_RASRPCDeleteEntryOperation) OpName() string { return "/rasrpc/v1/RasRpcDeleteEntry" }
+func (o *xxx_DeleteEntryOperation) OpName() string { return "/rasrpc/v1/RasRpcDeleteEntry" }
 
-func (o *xxx_RASRPCDeleteEntryOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_DeleteEntryOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -222,7 +222,7 @@ func (o *xxx_RASRPCDeleteEntryOperation) xxx_PrepareRequestPayload(ctx context.C
 	return nil
 }
 
-func (o *xxx_RASRPCDeleteEntryOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_DeleteEntryOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -241,7 +241,7 @@ func (o *xxx_RASRPCDeleteEntryOperation) MarshalNDRRequest(ctx context.Context, 
 	return nil
 }
 
-func (o *xxx_RASRPCDeleteEntryOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_DeleteEntryOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// lpszPhonebook {in} (1:{string, alias=LPWSTR,pointer=ref}*(1)[dim:0,string,null](wchar))
 	{
 		if err := ndr.ReadUTF16NString(ctx, w, &o.Phonebook); err != nil {
@@ -257,7 +257,7 @@ func (o *xxx_RASRPCDeleteEntryOperation) UnmarshalNDRRequest(ctx context.Context
 	return nil
 }
 
-func (o *xxx_RASRPCDeleteEntryOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_DeleteEntryOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -266,7 +266,7 @@ func (o *xxx_RASRPCDeleteEntryOperation) xxx_PrepareResponsePayload(ctx context.
 	return nil
 }
 
-func (o *xxx_RASRPCDeleteEntryOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_DeleteEntryOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -279,7 +279,7 @@ func (o *xxx_RASRPCDeleteEntryOperation) MarshalNDRResponse(ctx context.Context,
 	return nil
 }
 
-func (o *xxx_RASRPCDeleteEntryOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_DeleteEntryOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -289,15 +289,15 @@ func (o *xxx_RASRPCDeleteEntryOperation) UnmarshalNDRResponse(ctx context.Contex
 	return nil
 }
 
-// RASRPCDeleteEntryRequest structure represents the RasRpcDeleteEntry operation request
-type RASRPCDeleteEntryRequest struct {
+// DeleteEntryRequest structure represents the RasRpcDeleteEntry operation request
+type DeleteEntryRequest struct {
 	Phonebook string `idl:"name:lpszPhonebook;string" json:"phonebook"`
 	Entry     string `idl:"name:lpszEntry;string" json:"entry"`
 }
 
-func (o *RASRPCDeleteEntryRequest) xxx_ToOp(ctx context.Context, op *xxx_RASRPCDeleteEntryOperation) *xxx_RASRPCDeleteEntryOperation {
+func (o *DeleteEntryRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteEntryOperation) *xxx_DeleteEntryOperation {
 	if op == nil {
-		op = &xxx_RASRPCDeleteEntryOperation{}
+		op = &xxx_DeleteEntryOperation{}
 	}
 	if o == nil {
 		return op
@@ -307,18 +307,18 @@ func (o *RASRPCDeleteEntryRequest) xxx_ToOp(ctx context.Context, op *xxx_RASRPCD
 	return op
 }
 
-func (o *RASRPCDeleteEntryRequest) xxx_FromOp(ctx context.Context, op *xxx_RASRPCDeleteEntryOperation) {
+func (o *DeleteEntryRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteEntryOperation) {
 	if o == nil {
 		return
 	}
 	o.Phonebook = op.Phonebook
 	o.Entry = op.Entry
 }
-func (o *RASRPCDeleteEntryRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *DeleteEntryRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASRPCDeleteEntryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASRPCDeleteEntryOperation{}
+func (o *DeleteEntryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_DeleteEntryOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -326,15 +326,15 @@ func (o *RASRPCDeleteEntryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
-// RASRPCDeleteEntryResponse structure represents the RasRpcDeleteEntry operation response
-type RASRPCDeleteEntryResponse struct {
+// DeleteEntryResponse structure represents the RasRpcDeleteEntry operation response
+type DeleteEntryResponse struct {
 	// Return: The RasRpcDeleteEntry return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASRPCDeleteEntryResponse) xxx_ToOp(ctx context.Context, op *xxx_RASRPCDeleteEntryOperation) *xxx_RASRPCDeleteEntryOperation {
+func (o *DeleteEntryResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteEntryOperation) *xxx_DeleteEntryOperation {
 	if op == nil {
-		op = &xxx_RASRPCDeleteEntryOperation{}
+		op = &xxx_DeleteEntryOperation{}
 	}
 	if o == nil {
 		return op
@@ -343,17 +343,17 @@ func (o *RASRPCDeleteEntryResponse) xxx_ToOp(ctx context.Context, op *xxx_RASRPC
 	return op
 }
 
-func (o *RASRPCDeleteEntryResponse) xxx_FromOp(ctx context.Context, op *xxx_RASRPCDeleteEntryOperation) {
+func (o *DeleteEntryResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteEntryOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *RASRPCDeleteEntryResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *DeleteEntryResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASRPCDeleteEntryResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASRPCDeleteEntryOperation{}
+func (o *DeleteEntryResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_DeleteEntryOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -361,20 +361,20 @@ func (o *RASRPCDeleteEntryResponse) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
-// xxx_RASRPCGetUserPreferencesOperation structure represents the RasRpcGetUserPreferences operation
-type xxx_RASRPCGetUserPreferencesOperation struct {
-	User   *rrasm.RasrpcPbuser `idl:"name:pUser" json:"user"`
-	Mode   uint32              `idl:"name:dwMode" json:"mode"`
-	Return uint32              `idl:"name:Return" json:"return"`
+// xxx_GetUserPreferencesOperation structure represents the RasRpcGetUserPreferences operation
+type xxx_GetUserPreferencesOperation struct {
+	User   *rrasm.User `idl:"name:pUser" json:"user"`
+	Mode   uint32      `idl:"name:dwMode" json:"mode"`
+	Return uint32      `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASRPCGetUserPreferencesOperation) OpNum() int { return 9 }
+func (o *xxx_GetUserPreferencesOperation) OpNum() int { return 9 }
 
-func (o *xxx_RASRPCGetUserPreferencesOperation) OpName() string {
+func (o *xxx_GetUserPreferencesOperation) OpName() string {
 	return "/rasrpc/v1/RasRpcGetUserPreferences"
 }
 
-func (o *xxx_RASRPCGetUserPreferencesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetUserPreferencesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -383,7 +383,7 @@ func (o *xxx_RASRPCGetUserPreferencesOperation) xxx_PrepareRequestPayload(ctx co
 	return nil
 }
 
-func (o *xxx_RASRPCGetUserPreferencesOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetUserPreferencesOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -394,7 +394,7 @@ func (o *xxx_RASRPCGetUserPreferencesOperation) MarshalNDRRequest(ctx context.Co
 				return err
 			}
 		} else {
-			if err := (&rrasm.RasrpcPbuser{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.User{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -411,11 +411,11 @@ func (o *xxx_RASRPCGetUserPreferencesOperation) MarshalNDRRequest(ctx context.Co
 	return nil
 }
 
-func (o *xxx_RASRPCGetUserPreferencesOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetUserPreferencesOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// pUser {in, out} (1:{alias=LPRASRPC_PBUSER,pointer=ref}*(1))(2:{alias=RASRPC_PBUSER}(struct))
 	{
 		if o.User == nil {
-			o.User = &rrasm.RasrpcPbuser{}
+			o.User = &rrasm.User{}
 		}
 		if err := o.User.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -433,7 +433,7 @@ func (o *xxx_RASRPCGetUserPreferencesOperation) UnmarshalNDRRequest(ctx context.
 	return nil
 }
 
-func (o *xxx_RASRPCGetUserPreferencesOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetUserPreferencesOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -442,7 +442,7 @@ func (o *xxx_RASRPCGetUserPreferencesOperation) xxx_PrepareResponsePayload(ctx c
 	return nil
 }
 
-func (o *xxx_RASRPCGetUserPreferencesOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetUserPreferencesOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -453,7 +453,7 @@ func (o *xxx_RASRPCGetUserPreferencesOperation) MarshalNDRResponse(ctx context.C
 				return err
 			}
 		} else {
-			if err := (&rrasm.RasrpcPbuser{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.User{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -470,11 +470,11 @@ func (o *xxx_RASRPCGetUserPreferencesOperation) MarshalNDRResponse(ctx context.C
 	return nil
 }
 
-func (o *xxx_RASRPCGetUserPreferencesOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetUserPreferencesOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pUser {in, out} (1:{alias=LPRASRPC_PBUSER,pointer=ref}*(1))(2:{alias=RASRPC_PBUSER}(struct))
 	{
 		if o.User == nil {
-			o.User = &rrasm.RasrpcPbuser{}
+			o.User = &rrasm.User{}
 		}
 		if err := o.User.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -492,15 +492,15 @@ func (o *xxx_RASRPCGetUserPreferencesOperation) UnmarshalNDRResponse(ctx context
 	return nil
 }
 
-// RASRPCGetUserPreferencesRequest structure represents the RasRpcGetUserPreferences operation request
-type RASRPCGetUserPreferencesRequest struct {
-	User *rrasm.RasrpcPbuser `idl:"name:pUser" json:"user"`
-	Mode uint32              `idl:"name:dwMode" json:"mode"`
+// GetUserPreferencesRequest structure represents the RasRpcGetUserPreferences operation request
+type GetUserPreferencesRequest struct {
+	User *rrasm.User `idl:"name:pUser" json:"user"`
+	Mode uint32      `idl:"name:dwMode" json:"mode"`
 }
 
-func (o *RASRPCGetUserPreferencesRequest) xxx_ToOp(ctx context.Context, op *xxx_RASRPCGetUserPreferencesOperation) *xxx_RASRPCGetUserPreferencesOperation {
+func (o *GetUserPreferencesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUserPreferencesOperation) *xxx_GetUserPreferencesOperation {
 	if op == nil {
-		op = &xxx_RASRPCGetUserPreferencesOperation{}
+		op = &xxx_GetUserPreferencesOperation{}
 	}
 	if o == nil {
 		return op
@@ -510,18 +510,18 @@ func (o *RASRPCGetUserPreferencesRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	return op
 }
 
-func (o *RASRPCGetUserPreferencesRequest) xxx_FromOp(ctx context.Context, op *xxx_RASRPCGetUserPreferencesOperation) {
+func (o *GetUserPreferencesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetUserPreferencesOperation) {
 	if o == nil {
 		return
 	}
 	o.User = op.User
 	o.Mode = op.Mode
 }
-func (o *RASRPCGetUserPreferencesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetUserPreferencesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASRPCGetUserPreferencesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASRPCGetUserPreferencesOperation{}
+func (o *GetUserPreferencesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetUserPreferencesOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -529,16 +529,16 @@ func (o *RASRPCGetUserPreferencesRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
-// RASRPCGetUserPreferencesResponse structure represents the RasRpcGetUserPreferences operation response
-type RASRPCGetUserPreferencesResponse struct {
-	User *rrasm.RasrpcPbuser `idl:"name:pUser" json:"user"`
+// GetUserPreferencesResponse structure represents the RasRpcGetUserPreferences operation response
+type GetUserPreferencesResponse struct {
+	User *rrasm.User `idl:"name:pUser" json:"user"`
 	// Return: The RasRpcGetUserPreferences return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASRPCGetUserPreferencesResponse) xxx_ToOp(ctx context.Context, op *xxx_RASRPCGetUserPreferencesOperation) *xxx_RASRPCGetUserPreferencesOperation {
+func (o *GetUserPreferencesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUserPreferencesOperation) *xxx_GetUserPreferencesOperation {
 	if op == nil {
-		op = &xxx_RASRPCGetUserPreferencesOperation{}
+		op = &xxx_GetUserPreferencesOperation{}
 	}
 	if o == nil {
 		return op
@@ -548,18 +548,18 @@ func (o *RASRPCGetUserPreferencesResponse) xxx_ToOp(ctx context.Context, op *xxx
 	return op
 }
 
-func (o *RASRPCGetUserPreferencesResponse) xxx_FromOp(ctx context.Context, op *xxx_RASRPCGetUserPreferencesOperation) {
+func (o *GetUserPreferencesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetUserPreferencesOperation) {
 	if o == nil {
 		return
 	}
 	o.User = op.User
 	o.Return = op.Return
 }
-func (o *RASRPCGetUserPreferencesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetUserPreferencesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASRPCGetUserPreferencesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASRPCGetUserPreferencesOperation{}
+func (o *GetUserPreferencesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetUserPreferencesOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -567,20 +567,20 @@ func (o *RASRPCGetUserPreferencesResponse) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
-// xxx_RASRPCSetUserPreferencesOperation structure represents the RasRpcSetUserPreferences operation
-type xxx_RASRPCSetUserPreferencesOperation struct {
-	User   *rrasm.RasrpcPbuser `idl:"name:pUser" json:"user"`
-	Mode   uint32              `idl:"name:dwMode" json:"mode"`
-	Return uint32              `idl:"name:Return" json:"return"`
+// xxx_SetUserPreferencesOperation structure represents the RasRpcSetUserPreferences operation
+type xxx_SetUserPreferencesOperation struct {
+	User   *rrasm.User `idl:"name:pUser" json:"user"`
+	Mode   uint32      `idl:"name:dwMode" json:"mode"`
+	Return uint32      `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASRPCSetUserPreferencesOperation) OpNum() int { return 10 }
+func (o *xxx_SetUserPreferencesOperation) OpNum() int { return 10 }
 
-func (o *xxx_RASRPCSetUserPreferencesOperation) OpName() string {
+func (o *xxx_SetUserPreferencesOperation) OpName() string {
 	return "/rasrpc/v1/RasRpcSetUserPreferences"
 }
 
-func (o *xxx_RASRPCSetUserPreferencesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_SetUserPreferencesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -589,7 +589,7 @@ func (o *xxx_RASRPCSetUserPreferencesOperation) xxx_PrepareRequestPayload(ctx co
 	return nil
 }
 
-func (o *xxx_RASRPCSetUserPreferencesOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_SetUserPreferencesOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -600,7 +600,7 @@ func (o *xxx_RASRPCSetUserPreferencesOperation) MarshalNDRRequest(ctx context.Co
 				return err
 			}
 		} else {
-			if err := (&rrasm.RasrpcPbuser{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.User{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -617,11 +617,11 @@ func (o *xxx_RASRPCSetUserPreferencesOperation) MarshalNDRRequest(ctx context.Co
 	return nil
 }
 
-func (o *xxx_RASRPCSetUserPreferencesOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_SetUserPreferencesOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// pUser {in} (1:{alias=LPRASRPC_PBUSER,pointer=ref}*(1))(2:{alias=RASRPC_PBUSER}(struct))
 	{
 		if o.User == nil {
-			o.User = &rrasm.RasrpcPbuser{}
+			o.User = &rrasm.User{}
 		}
 		if err := o.User.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -639,7 +639,7 @@ func (o *xxx_RASRPCSetUserPreferencesOperation) UnmarshalNDRRequest(ctx context.
 	return nil
 }
 
-func (o *xxx_RASRPCSetUserPreferencesOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_SetUserPreferencesOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -648,7 +648,7 @@ func (o *xxx_RASRPCSetUserPreferencesOperation) xxx_PrepareResponsePayload(ctx c
 	return nil
 }
 
-func (o *xxx_RASRPCSetUserPreferencesOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_SetUserPreferencesOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -661,7 +661,7 @@ func (o *xxx_RASRPCSetUserPreferencesOperation) MarshalNDRResponse(ctx context.C
 	return nil
 }
 
-func (o *xxx_RASRPCSetUserPreferencesOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_SetUserPreferencesOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -671,15 +671,15 @@ func (o *xxx_RASRPCSetUserPreferencesOperation) UnmarshalNDRResponse(ctx context
 	return nil
 }
 
-// RASRPCSetUserPreferencesRequest structure represents the RasRpcSetUserPreferences operation request
-type RASRPCSetUserPreferencesRequest struct {
-	User *rrasm.RasrpcPbuser `idl:"name:pUser" json:"user"`
-	Mode uint32              `idl:"name:dwMode" json:"mode"`
+// SetUserPreferencesRequest structure represents the RasRpcSetUserPreferences operation request
+type SetUserPreferencesRequest struct {
+	User *rrasm.User `idl:"name:pUser" json:"user"`
+	Mode uint32      `idl:"name:dwMode" json:"mode"`
 }
 
-func (o *RASRPCSetUserPreferencesRequest) xxx_ToOp(ctx context.Context, op *xxx_RASRPCSetUserPreferencesOperation) *xxx_RASRPCSetUserPreferencesOperation {
+func (o *SetUserPreferencesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetUserPreferencesOperation) *xxx_SetUserPreferencesOperation {
 	if op == nil {
-		op = &xxx_RASRPCSetUserPreferencesOperation{}
+		op = &xxx_SetUserPreferencesOperation{}
 	}
 	if o == nil {
 		return op
@@ -689,18 +689,18 @@ func (o *RASRPCSetUserPreferencesRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	return op
 }
 
-func (o *RASRPCSetUserPreferencesRequest) xxx_FromOp(ctx context.Context, op *xxx_RASRPCSetUserPreferencesOperation) {
+func (o *SetUserPreferencesRequest) xxx_FromOp(ctx context.Context, op *xxx_SetUserPreferencesOperation) {
 	if o == nil {
 		return
 	}
 	o.User = op.User
 	o.Mode = op.Mode
 }
-func (o *RASRPCSetUserPreferencesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SetUserPreferencesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASRPCSetUserPreferencesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASRPCSetUserPreferencesOperation{}
+func (o *SetUserPreferencesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SetUserPreferencesOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -708,15 +708,15 @@ func (o *RASRPCSetUserPreferencesRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
-// RASRPCSetUserPreferencesResponse structure represents the RasRpcSetUserPreferences operation response
-type RASRPCSetUserPreferencesResponse struct {
+// SetUserPreferencesResponse structure represents the RasRpcSetUserPreferences operation response
+type SetUserPreferencesResponse struct {
 	// Return: The RasRpcSetUserPreferences return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASRPCSetUserPreferencesResponse) xxx_ToOp(ctx context.Context, op *xxx_RASRPCSetUserPreferencesOperation) *xxx_RASRPCSetUserPreferencesOperation {
+func (o *SetUserPreferencesResponse) xxx_ToOp(ctx context.Context, op *xxx_SetUserPreferencesOperation) *xxx_SetUserPreferencesOperation {
 	if op == nil {
-		op = &xxx_RASRPCSetUserPreferencesOperation{}
+		op = &xxx_SetUserPreferencesOperation{}
 	}
 	if o == nil {
 		return op
@@ -725,17 +725,17 @@ func (o *RASRPCSetUserPreferencesResponse) xxx_ToOp(ctx context.Context, op *xxx
 	return op
 }
 
-func (o *RASRPCSetUserPreferencesResponse) xxx_FromOp(ctx context.Context, op *xxx_RASRPCSetUserPreferencesOperation) {
+func (o *SetUserPreferencesResponse) xxx_FromOp(ctx context.Context, op *xxx_SetUserPreferencesOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *RASRPCSetUserPreferencesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SetUserPreferencesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASRPCSetUserPreferencesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASRPCSetUserPreferencesOperation{}
+func (o *SetUserPreferencesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SetUserPreferencesOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -743,20 +743,20 @@ func (o *RASRPCSetUserPreferencesResponse) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
-// xxx_RASRPCGetSystemDirectoryOperation structure represents the RasRpcGetSystemDirectory operation
-type xxx_RASRPCGetSystemDirectoryOperation struct {
+// xxx_GetSystemDirectoryOperation structure represents the RasRpcGetSystemDirectory operation
+type xxx_GetSystemDirectoryOperation struct {
 	Buffer string `idl:"name:lpBuffer;size_is:(uSize);string" json:"buffer"`
 	Size   uint32 `idl:"name:uSize" json:"size"`
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASRPCGetSystemDirectoryOperation) OpNum() int { return 11 }
+func (o *xxx_GetSystemDirectoryOperation) OpNum() int { return 11 }
 
-func (o *xxx_RASRPCGetSystemDirectoryOperation) OpName() string {
+func (o *xxx_GetSystemDirectoryOperation) OpName() string {
 	return "/rasrpc/v1/RasRpcGetSystemDirectory"
 }
 
-func (o *xxx_RASRPCGetSystemDirectoryOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetSystemDirectoryOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if o.Buffer != "" && o.Size == 0 {
 		o.Size = uint32(ndr.UTF16NLen(o.Buffer))
 	}
@@ -771,7 +771,7 @@ func (o *xxx_RASRPCGetSystemDirectoryOperation) xxx_PrepareRequestPayload(ctx co
 	return nil
 }
 
-func (o *xxx_RASRPCGetSystemDirectoryOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetSystemDirectoryOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -827,7 +827,7 @@ func (o *xxx_RASRPCGetSystemDirectoryOperation) MarshalNDRRequest(ctx context.Co
 	return nil
 }
 
-func (o *xxx_RASRPCGetSystemDirectoryOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetSystemDirectoryOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// lpBuffer {in, out} (1:{string, alias=LPWSTR,pointer=ref}*(1)[dim:0,size_is=uSize,string,null](wchar))
 	{
 		sizeInfo := []uint64{
@@ -868,7 +868,7 @@ func (o *xxx_RASRPCGetSystemDirectoryOperation) UnmarshalNDRRequest(ctx context.
 	return nil
 }
 
-func (o *xxx_RASRPCGetSystemDirectoryOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetSystemDirectoryOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -877,7 +877,7 @@ func (o *xxx_RASRPCGetSystemDirectoryOperation) xxx_PrepareResponsePayload(ctx c
 	return nil
 }
 
-func (o *xxx_RASRPCGetSystemDirectoryOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetSystemDirectoryOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -933,7 +933,7 @@ func (o *xxx_RASRPCGetSystemDirectoryOperation) MarshalNDRResponse(ctx context.C
 	return nil
 }
 
-func (o *xxx_RASRPCGetSystemDirectoryOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetSystemDirectoryOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// lpBuffer {in, out} (1:{string, alias=LPWSTR,pointer=ref}*(1)[dim:0,size_is=uSize,string,null](wchar))
 	{
 		sizeInfo := []uint64{
@@ -974,15 +974,15 @@ func (o *xxx_RASRPCGetSystemDirectoryOperation) UnmarshalNDRResponse(ctx context
 	return nil
 }
 
-// RASRPCGetSystemDirectoryRequest structure represents the RasRpcGetSystemDirectory operation request
-type RASRPCGetSystemDirectoryRequest struct {
+// GetSystemDirectoryRequest structure represents the RasRpcGetSystemDirectory operation request
+type GetSystemDirectoryRequest struct {
 	Buffer string `idl:"name:lpBuffer;size_is:(uSize);string" json:"buffer"`
 	Size   uint32 `idl:"name:uSize" json:"size"`
 }
 
-func (o *RASRPCGetSystemDirectoryRequest) xxx_ToOp(ctx context.Context, op *xxx_RASRPCGetSystemDirectoryOperation) *xxx_RASRPCGetSystemDirectoryOperation {
+func (o *GetSystemDirectoryRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSystemDirectoryOperation) *xxx_GetSystemDirectoryOperation {
 	if op == nil {
-		op = &xxx_RASRPCGetSystemDirectoryOperation{}
+		op = &xxx_GetSystemDirectoryOperation{}
 	}
 	if o == nil {
 		return op
@@ -992,18 +992,18 @@ func (o *RASRPCGetSystemDirectoryRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	return op
 }
 
-func (o *RASRPCGetSystemDirectoryRequest) xxx_FromOp(ctx context.Context, op *xxx_RASRPCGetSystemDirectoryOperation) {
+func (o *GetSystemDirectoryRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSystemDirectoryOperation) {
 	if o == nil {
 		return
 	}
 	o.Buffer = op.Buffer
 	o.Size = op.Size
 }
-func (o *RASRPCGetSystemDirectoryRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetSystemDirectoryRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASRPCGetSystemDirectoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASRPCGetSystemDirectoryOperation{}
+func (o *GetSystemDirectoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetSystemDirectoryOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1011,8 +1011,8 @@ func (o *RASRPCGetSystemDirectoryRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
-// RASRPCGetSystemDirectoryResponse structure represents the RasRpcGetSystemDirectory operation response
-type RASRPCGetSystemDirectoryResponse struct {
+// GetSystemDirectoryResponse structure represents the RasRpcGetSystemDirectory operation response
+type GetSystemDirectoryResponse struct {
 	// XXX: uSize is an implicit input depedency for output parameters
 	Size uint32 `idl:"name:uSize" json:"size"`
 
@@ -1021,9 +1021,9 @@ type RASRPCGetSystemDirectoryResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASRPCGetSystemDirectoryResponse) xxx_ToOp(ctx context.Context, op *xxx_RASRPCGetSystemDirectoryOperation) *xxx_RASRPCGetSystemDirectoryOperation {
+func (o *GetSystemDirectoryResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSystemDirectoryOperation) *xxx_GetSystemDirectoryOperation {
 	if op == nil {
-		op = &xxx_RASRPCGetSystemDirectoryOperation{}
+		op = &xxx_GetSystemDirectoryOperation{}
 	}
 	if o == nil {
 		return op
@@ -1038,7 +1038,7 @@ func (o *RASRPCGetSystemDirectoryResponse) xxx_ToOp(ctx context.Context, op *xxx
 	return op
 }
 
-func (o *RASRPCGetSystemDirectoryResponse) xxx_FromOp(ctx context.Context, op *xxx_RASRPCGetSystemDirectoryOperation) {
+func (o *GetSystemDirectoryResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSystemDirectoryOperation) {
 	if o == nil {
 		return
 	}
@@ -1048,11 +1048,11 @@ func (o *RASRPCGetSystemDirectoryResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Buffer = op.Buffer
 	o.Return = op.Return
 }
-func (o *RASRPCGetSystemDirectoryResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetSystemDirectoryResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASRPCGetSystemDirectoryResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASRPCGetSystemDirectoryOperation{}
+func (o *GetSystemDirectoryResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetSystemDirectoryOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -1060,20 +1060,20 @@ func (o *RASRPCGetSystemDirectoryResponse) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
-// xxx_RASRPCSubmitRequestOperation structure represents the RasRpcSubmitRequest operation
-type xxx_RASRPCSubmitRequestOperation struct {
-	RequestBuffer  []byte `idl:"name:pReqBuffer;size_is:(dwcbBufSize);pointer:unique" json:"request_buffer"`
-	DwcbBufferSize uint32 `idl:"name:dwcbBufSize" json:"dwcb_buffer_size"`
-	Return         uint32 `idl:"name:Return" json:"return"`
+// xxx_SubmitRequestOperation structure represents the RasRpcSubmitRequest operation
+type xxx_SubmitRequestOperation struct {
+	RequestBuffer []byte `idl:"name:pReqBuffer;size_is:(dwcbBufSize);pointer:unique" json:"request_buffer"`
+	BufferSize    uint32 `idl:"name:dwcbBufSize" json:"buffer_size"`
+	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASRPCSubmitRequestOperation) OpNum() int { return 12 }
+func (o *xxx_SubmitRequestOperation) OpNum() int { return 12 }
 
-func (o *xxx_RASRPCSubmitRequestOperation) OpName() string { return "/rasrpc/v1/RasRpcSubmitRequest" }
+func (o *xxx_SubmitRequestOperation) OpName() string { return "/rasrpc/v1/RasRpcSubmitRequest" }
 
-func (o *xxx_RASRPCSubmitRequestOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
-	if o.RequestBuffer != nil && o.DwcbBufferSize == 0 {
-		o.DwcbBufferSize = uint32(len(o.RequestBuffer))
+func (o *xxx_SubmitRequestOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if o.RequestBuffer != nil && o.BufferSize == 0 {
+		o.BufferSize = uint32(len(o.RequestBuffer))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
@@ -1083,15 +1083,15 @@ func (o *xxx_RASRPCSubmitRequestOperation) xxx_PrepareRequestPayload(ctx context
 	return nil
 }
 
-func (o *xxx_RASRPCSubmitRequestOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_SubmitRequestOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
 	// pReqBuffer {in, out} (1:{pointer=unique, alias=PBYTE}*(1))(2:{alias=BYTE}[dim:0,size_is=dwcbBufSize](uchar))
 	{
-		if o.RequestBuffer != nil || o.DwcbBufferSize > 0 {
+		if o.RequestBuffer != nil || o.BufferSize > 0 {
 			_ptr_pReqBuffer := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				dimSize1 := uint64(o.DwcbBufferSize)
+				dimSize1 := uint64(o.BufferSize)
 				if err := w.WriteSize(dimSize1); err != nil {
 					return err
 				}
@@ -1128,14 +1128,14 @@ func (o *xxx_RASRPCSubmitRequestOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// dwcbBufSize {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.DwcbBufferSize); err != nil {
+		if err := w.WriteData(o.BufferSize); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (o *xxx_RASRPCSubmitRequestOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_SubmitRequestOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// pReqBuffer {in, out} (1:{pointer=unique, alias=PBYTE}*(1))(2:{alias=BYTE}[dim:0,size_is=dwcbBufSize](uchar))
 	{
 		_ptr_pReqBuffer := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -1169,14 +1169,14 @@ func (o *xxx_RASRPCSubmitRequestOperation) UnmarshalNDRRequest(ctx context.Conte
 	}
 	// dwcbBufSize {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.DwcbBufferSize); err != nil {
+		if err := w.ReadData(&o.BufferSize); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (o *xxx_RASRPCSubmitRequestOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_SubmitRequestOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1185,15 +1185,15 @@ func (o *xxx_RASRPCSubmitRequestOperation) xxx_PrepareResponsePayload(ctx contex
 	return nil
 }
 
-func (o *xxx_RASRPCSubmitRequestOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_SubmitRequestOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
 	// pReqBuffer {in, out} (1:{pointer=unique, alias=PBYTE}*(1))(2:{alias=BYTE}[dim:0,size_is=dwcbBufSize](uchar))
 	{
-		if o.RequestBuffer != nil || o.DwcbBufferSize > 0 {
+		if o.RequestBuffer != nil || o.BufferSize > 0 {
 			_ptr_pReqBuffer := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				dimSize1 := uint64(o.DwcbBufferSize)
+				dimSize1 := uint64(o.BufferSize)
 				if err := w.WriteSize(dimSize1); err != nil {
 					return err
 				}
@@ -1237,7 +1237,7 @@ func (o *xxx_RASRPCSubmitRequestOperation) MarshalNDRResponse(ctx context.Contex
 	return nil
 }
 
-func (o *xxx_RASRPCSubmitRequestOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_SubmitRequestOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pReqBuffer {in, out} (1:{pointer=unique, alias=PBYTE}*(1))(2:{alias=BYTE}[dim:0,size_is=dwcbBufSize](uchar))
 	{
 		_ptr_pReqBuffer := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -1278,36 +1278,36 @@ func (o *xxx_RASRPCSubmitRequestOperation) UnmarshalNDRResponse(ctx context.Cont
 	return nil
 }
 
-// RASRPCSubmitRequestRequest structure represents the RasRpcSubmitRequest operation request
-type RASRPCSubmitRequestRequest struct {
-	RequestBuffer  []byte `idl:"name:pReqBuffer;size_is:(dwcbBufSize);pointer:unique" json:"request_buffer"`
-	DwcbBufferSize uint32 `idl:"name:dwcbBufSize" json:"dwcb_buffer_size"`
+// SubmitRequestRequest structure represents the RasRpcSubmitRequest operation request
+type SubmitRequestRequest struct {
+	RequestBuffer []byte `idl:"name:pReqBuffer;size_is:(dwcbBufSize);pointer:unique" json:"request_buffer"`
+	BufferSize    uint32 `idl:"name:dwcbBufSize" json:"buffer_size"`
 }
 
-func (o *RASRPCSubmitRequestRequest) xxx_ToOp(ctx context.Context, op *xxx_RASRPCSubmitRequestOperation) *xxx_RASRPCSubmitRequestOperation {
+func (o *SubmitRequestRequest) xxx_ToOp(ctx context.Context, op *xxx_SubmitRequestOperation) *xxx_SubmitRequestOperation {
 	if op == nil {
-		op = &xxx_RASRPCSubmitRequestOperation{}
+		op = &xxx_SubmitRequestOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.RequestBuffer = o.RequestBuffer
-	op.DwcbBufferSize = o.DwcbBufferSize
+	op.BufferSize = o.BufferSize
 	return op
 }
 
-func (o *RASRPCSubmitRequestRequest) xxx_FromOp(ctx context.Context, op *xxx_RASRPCSubmitRequestOperation) {
+func (o *SubmitRequestRequest) xxx_FromOp(ctx context.Context, op *xxx_SubmitRequestOperation) {
 	if o == nil {
 		return
 	}
 	o.RequestBuffer = op.RequestBuffer
-	o.DwcbBufferSize = op.DwcbBufferSize
+	o.BufferSize = op.BufferSize
 }
-func (o *RASRPCSubmitRequestRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SubmitRequestRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASRPCSubmitRequestRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASRPCSubmitRequestOperation{}
+func (o *SubmitRequestRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SubmitRequestOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1315,26 +1315,26 @@ func (o *RASRPCSubmitRequestRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
-// RASRPCSubmitRequestResponse structure represents the RasRpcSubmitRequest operation response
-type RASRPCSubmitRequestResponse struct {
+// SubmitRequestResponse structure represents the RasRpcSubmitRequest operation response
+type SubmitRequestResponse struct {
 	// XXX: dwcbBufSize is an implicit input depedency for output parameters
-	DwcbBufferSize uint32 `idl:"name:dwcbBufSize" json:"dwcb_buffer_size"`
+	BufferSize uint32 `idl:"name:dwcbBufSize" json:"buffer_size"`
 
 	RequestBuffer []byte `idl:"name:pReqBuffer;size_is:(dwcbBufSize);pointer:unique" json:"request_buffer"`
 	// Return: The RasRpcSubmitRequest return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASRPCSubmitRequestResponse) xxx_ToOp(ctx context.Context, op *xxx_RASRPCSubmitRequestOperation) *xxx_RASRPCSubmitRequestOperation {
+func (o *SubmitRequestResponse) xxx_ToOp(ctx context.Context, op *xxx_SubmitRequestOperation) *xxx_SubmitRequestOperation {
 	if op == nil {
-		op = &xxx_RASRPCSubmitRequestOperation{}
+		op = &xxx_SubmitRequestOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	// XXX: implicit input dependencies for output parameters
-	if op.DwcbBufferSize == uint32(0) {
-		op.DwcbBufferSize = o.DwcbBufferSize
+	if op.BufferSize == uint32(0) {
+		op.BufferSize = o.BufferSize
 	}
 
 	op.RequestBuffer = o.RequestBuffer
@@ -1342,21 +1342,21 @@ func (o *RASRPCSubmitRequestResponse) xxx_ToOp(ctx context.Context, op *xxx_RASR
 	return op
 }
 
-func (o *RASRPCSubmitRequestResponse) xxx_FromOp(ctx context.Context, op *xxx_RASRPCSubmitRequestOperation) {
+func (o *SubmitRequestResponse) xxx_FromOp(ctx context.Context, op *xxx_SubmitRequestOperation) {
 	if o == nil {
 		return
 	}
 	// XXX: implicit input dependencies for output parameters
-	o.DwcbBufferSize = op.DwcbBufferSize
+	o.BufferSize = op.BufferSize
 
 	o.RequestBuffer = op.RequestBuffer
 	o.Return = op.Return
 }
-func (o *RASRPCSubmitRequestResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SubmitRequestResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASRPCSubmitRequestResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASRPCSubmitRequestOperation{}
+func (o *SubmitRequestResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SubmitRequestOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -1364,21 +1364,21 @@ func (o *RASRPCSubmitRequestResponse) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
-// xxx_RASRPCGetInstalledProtocolsExOperation structure represents the RasRpcGetInstalledProtocolsEx operation
-type xxx_RASRPCGetInstalledProtocolsExOperation struct {
+// xxx_GetInstalledProtocolsExOperation structure represents the RasRpcGetInstalledProtocolsEx operation
+type xxx_GetInstalledProtocolsExOperation struct {
 	Router    bool   `idl:"name:fRouter" json:"router"`
 	RASCli    bool   `idl:"name:fRasCli" json:"ras_cli"`
 	RASServer bool   `idl:"name:fRasSrv" json:"ras_server"`
 	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASRPCGetInstalledProtocolsExOperation) OpNum() int { return 14 }
+func (o *xxx_GetInstalledProtocolsExOperation) OpNum() int { return 14 }
 
-func (o *xxx_RASRPCGetInstalledProtocolsExOperation) OpName() string {
+func (o *xxx_GetInstalledProtocolsExOperation) OpName() string {
 	return "/rasrpc/v1/RasRpcGetInstalledProtocolsEx"
 }
 
-func (o *xxx_RASRPCGetInstalledProtocolsExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetInstalledProtocolsExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -1387,7 +1387,7 @@ func (o *xxx_RASRPCGetInstalledProtocolsExOperation) xxx_PrepareRequestPayload(c
 	return nil
 }
 
-func (o *xxx_RASRPCGetInstalledProtocolsExOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetInstalledProtocolsExOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -1430,7 +1430,7 @@ func (o *xxx_RASRPCGetInstalledProtocolsExOperation) MarshalNDRRequest(ctx conte
 	return nil
 }
 
-func (o *xxx_RASRPCGetInstalledProtocolsExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetInstalledProtocolsExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// fRouter {in} (1:{alias=BOOL}(int32))
 	{
 		var _bRouter int32
@@ -1458,7 +1458,7 @@ func (o *xxx_RASRPCGetInstalledProtocolsExOperation) UnmarshalNDRRequest(ctx con
 	return nil
 }
 
-func (o *xxx_RASRPCGetInstalledProtocolsExOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetInstalledProtocolsExOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1467,7 +1467,7 @@ func (o *xxx_RASRPCGetInstalledProtocolsExOperation) xxx_PrepareResponsePayload(
 	return nil
 }
 
-func (o *xxx_RASRPCGetInstalledProtocolsExOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetInstalledProtocolsExOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1480,7 +1480,7 @@ func (o *xxx_RASRPCGetInstalledProtocolsExOperation) MarshalNDRResponse(ctx cont
 	return nil
 }
 
-func (o *xxx_RASRPCGetInstalledProtocolsExOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetInstalledProtocolsExOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -1490,16 +1490,16 @@ func (o *xxx_RASRPCGetInstalledProtocolsExOperation) UnmarshalNDRResponse(ctx co
 	return nil
 }
 
-// RASRPCGetInstalledProtocolsExRequest structure represents the RasRpcGetInstalledProtocolsEx operation request
-type RASRPCGetInstalledProtocolsExRequest struct {
+// GetInstalledProtocolsExRequest structure represents the RasRpcGetInstalledProtocolsEx operation request
+type GetInstalledProtocolsExRequest struct {
 	Router    bool `idl:"name:fRouter" json:"router"`
 	RASCli    bool `idl:"name:fRasCli" json:"ras_cli"`
 	RASServer bool `idl:"name:fRasSrv" json:"ras_server"`
 }
 
-func (o *RASRPCGetInstalledProtocolsExRequest) xxx_ToOp(ctx context.Context, op *xxx_RASRPCGetInstalledProtocolsExOperation) *xxx_RASRPCGetInstalledProtocolsExOperation {
+func (o *GetInstalledProtocolsExRequest) xxx_ToOp(ctx context.Context, op *xxx_GetInstalledProtocolsExOperation) *xxx_GetInstalledProtocolsExOperation {
 	if op == nil {
-		op = &xxx_RASRPCGetInstalledProtocolsExOperation{}
+		op = &xxx_GetInstalledProtocolsExOperation{}
 	}
 	if o == nil {
 		return op
@@ -1510,7 +1510,7 @@ func (o *RASRPCGetInstalledProtocolsExRequest) xxx_ToOp(ctx context.Context, op 
 	return op
 }
 
-func (o *RASRPCGetInstalledProtocolsExRequest) xxx_FromOp(ctx context.Context, op *xxx_RASRPCGetInstalledProtocolsExOperation) {
+func (o *GetInstalledProtocolsExRequest) xxx_FromOp(ctx context.Context, op *xxx_GetInstalledProtocolsExOperation) {
 	if o == nil {
 		return
 	}
@@ -1518,11 +1518,11 @@ func (o *RASRPCGetInstalledProtocolsExRequest) xxx_FromOp(ctx context.Context, o
 	o.RASCli = op.RASCli
 	o.RASServer = op.RASServer
 }
-func (o *RASRPCGetInstalledProtocolsExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetInstalledProtocolsExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASRPCGetInstalledProtocolsExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASRPCGetInstalledProtocolsExOperation{}
+func (o *GetInstalledProtocolsExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetInstalledProtocolsExOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1530,15 +1530,15 @@ func (o *RASRPCGetInstalledProtocolsExRequest) UnmarshalNDR(ctx context.Context,
 	return nil
 }
 
-// RASRPCGetInstalledProtocolsExResponse structure represents the RasRpcGetInstalledProtocolsEx operation response
-type RASRPCGetInstalledProtocolsExResponse struct {
+// GetInstalledProtocolsExResponse structure represents the RasRpcGetInstalledProtocolsEx operation response
+type GetInstalledProtocolsExResponse struct {
 	// Return: The RasRpcGetInstalledProtocolsEx return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASRPCGetInstalledProtocolsExResponse) xxx_ToOp(ctx context.Context, op *xxx_RASRPCGetInstalledProtocolsExOperation) *xxx_RASRPCGetInstalledProtocolsExOperation {
+func (o *GetInstalledProtocolsExResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInstalledProtocolsExOperation) *xxx_GetInstalledProtocolsExOperation {
 	if op == nil {
-		op = &xxx_RASRPCGetInstalledProtocolsExOperation{}
+		op = &xxx_GetInstalledProtocolsExOperation{}
 	}
 	if o == nil {
 		return op
@@ -1547,17 +1547,17 @@ func (o *RASRPCGetInstalledProtocolsExResponse) xxx_ToOp(ctx context.Context, op
 	return op
 }
 
-func (o *RASRPCGetInstalledProtocolsExResponse) xxx_FromOp(ctx context.Context, op *xxx_RASRPCGetInstalledProtocolsExOperation) {
+func (o *GetInstalledProtocolsExResponse) xxx_FromOp(ctx context.Context, op *xxx_GetInstalledProtocolsExOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *RASRPCGetInstalledProtocolsExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetInstalledProtocolsExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASRPCGetInstalledProtocolsExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASRPCGetInstalledProtocolsExOperation{}
+func (o *GetInstalledProtocolsExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetInstalledProtocolsExOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -1565,17 +1565,17 @@ func (o *RASRPCGetInstalledProtocolsExResponse) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
-// xxx_RASRPCGetVersionOperation structure represents the RasRpcGetVersion operation
-type xxx_RASRPCGetVersionOperation struct {
+// xxx_GetVersionOperation structure represents the RasRpcGetVersion operation
+type xxx_GetVersionOperation struct {
 	Version uint32 `idl:"name:pdwVersion;pointer:ref" json:"version"`
 	Return  uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASRPCGetVersionOperation) OpNum() int { return 15 }
+func (o *xxx_GetVersionOperation) OpNum() int { return 15 }
 
-func (o *xxx_RASRPCGetVersionOperation) OpName() string { return "/rasrpc/v1/RasRpcGetVersion" }
+func (o *xxx_GetVersionOperation) OpName() string { return "/rasrpc/v1/RasRpcGetVersion" }
 
-func (o *xxx_RASRPCGetVersionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetVersionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -1584,7 +1584,7 @@ func (o *xxx_RASRPCGetVersionOperation) xxx_PrepareRequestPayload(ctx context.Co
 	return nil
 }
 
-func (o *xxx_RASRPCGetVersionOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetVersionOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -1597,7 +1597,7 @@ func (o *xxx_RASRPCGetVersionOperation) MarshalNDRRequest(ctx context.Context, w
 	return nil
 }
 
-func (o *xxx_RASRPCGetVersionOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetVersionOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// pdwVersion {in, out} (1:{pointer=ref, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Version); err != nil {
@@ -1607,7 +1607,7 @@ func (o *xxx_RASRPCGetVersionOperation) UnmarshalNDRRequest(ctx context.Context,
 	return nil
 }
 
-func (o *xxx_RASRPCGetVersionOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetVersionOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1616,7 +1616,7 @@ func (o *xxx_RASRPCGetVersionOperation) xxx_PrepareResponsePayload(ctx context.C
 	return nil
 }
 
-func (o *xxx_RASRPCGetVersionOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetVersionOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1635,7 +1635,7 @@ func (o *xxx_RASRPCGetVersionOperation) MarshalNDRResponse(ctx context.Context, 
 	return nil
 }
 
-func (o *xxx_RASRPCGetVersionOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetVersionOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pdwVersion {in, out} (1:{pointer=ref, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Version); err != nil {
@@ -1651,14 +1651,14 @@ func (o *xxx_RASRPCGetVersionOperation) UnmarshalNDRResponse(ctx context.Context
 	return nil
 }
 
-// RASRPCGetVersionRequest structure represents the RasRpcGetVersion operation request
-type RASRPCGetVersionRequest struct {
+// GetVersionRequest structure represents the RasRpcGetVersion operation request
+type GetVersionRequest struct {
 	Version uint32 `idl:"name:pdwVersion;pointer:ref" json:"version"`
 }
 
-func (o *RASRPCGetVersionRequest) xxx_ToOp(ctx context.Context, op *xxx_RASRPCGetVersionOperation) *xxx_RASRPCGetVersionOperation {
+func (o *GetVersionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOperation) *xxx_GetVersionOperation {
 	if op == nil {
-		op = &xxx_RASRPCGetVersionOperation{}
+		op = &xxx_GetVersionOperation{}
 	}
 	if o == nil {
 		return op
@@ -1667,17 +1667,17 @@ func (o *RASRPCGetVersionRequest) xxx_ToOp(ctx context.Context, op *xxx_RASRPCGe
 	return op
 }
 
-func (o *RASRPCGetVersionRequest) xxx_FromOp(ctx context.Context, op *xxx_RASRPCGetVersionOperation) {
+func (o *GetVersionRequest) xxx_FromOp(ctx context.Context, op *xxx_GetVersionOperation) {
 	if o == nil {
 		return
 	}
 	o.Version = op.Version
 }
-func (o *RASRPCGetVersionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetVersionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASRPCGetVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASRPCGetVersionOperation{}
+func (o *GetVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetVersionOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1685,16 +1685,16 @@ func (o *RASRPCGetVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
-// RASRPCGetVersionResponse structure represents the RasRpcGetVersion operation response
-type RASRPCGetVersionResponse struct {
+// GetVersionResponse structure represents the RasRpcGetVersion operation response
+type GetVersionResponse struct {
 	Version uint32 `idl:"name:pdwVersion;pointer:ref" json:"version"`
 	// Return: The RasRpcGetVersion return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASRPCGetVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_RASRPCGetVersionOperation) *xxx_RASRPCGetVersionOperation {
+func (o *GetVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOperation) *xxx_GetVersionOperation {
 	if op == nil {
-		op = &xxx_RASRPCGetVersionOperation{}
+		op = &xxx_GetVersionOperation{}
 	}
 	if o == nil {
 		return op
@@ -1704,18 +1704,18 @@ func (o *RASRPCGetVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_RASRPCG
 	return op
 }
 
-func (o *RASRPCGetVersionResponse) xxx_FromOp(ctx context.Context, op *xxx_RASRPCGetVersionOperation) {
+func (o *GetVersionResponse) xxx_FromOp(ctx context.Context, op *xxx_GetVersionOperation) {
 	if o == nil {
 		return
 	}
 	o.Version = op.Version
 	o.Return = op.Return
 }
-func (o *RASRPCGetVersionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetVersionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASRPCGetVersionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASRPCGetVersionOperation{}
+func (o *GetVersionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetVersionOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

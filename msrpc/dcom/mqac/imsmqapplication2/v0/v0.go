@@ -36,18 +36,18 @@ var (
 
 var (
 	// IMSMQApplication2 interface identifier 12a30900-7300-11d2-b0e6-00e02c074f6b
-	ImsmqApplication2IID = &dcom.IID{Data1: 0x12a30900, Data2: 0x7300, Data3: 0x11d2, Data4: []byte{0xb0, 0xe6, 0x00, 0xe0, 0x2c, 0x07, 0x4f, 0x6b}}
+	Application2IID = &dcom.IID{Data1: 0x12a30900, Data2: 0x7300, Data3: 0x11d2, Data4: []byte{0xb0, 0xe6, 0x00, 0xe0, 0x2c, 0x07, 0x4f, 0x6b}}
 	// Syntax UUID
-	ImsmqApplication2SyntaxUUID = &uuid.UUID{TimeLow: 0x12a30900, TimeMid: 0x7300, TimeHiAndVersion: 0x11d2, ClockSeqHiAndReserved: 0xb0, ClockSeqLow: 0xe6, Node: [6]uint8{0x0, 0xe0, 0x2c, 0x7, 0x4f, 0x6b}}
+	Application2SyntaxUUID = &uuid.UUID{TimeLow: 0x12a30900, TimeMid: 0x7300, TimeHiAndVersion: 0x11d2, ClockSeqHiAndReserved: 0xb0, ClockSeqLow: 0xe6, Node: [6]uint8{0x0, 0xe0, 0x2c, 0x7, 0x4f, 0x6b}}
 	// Syntax ID
-	ImsmqApplication2SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ImsmqApplication2SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	Application2SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: Application2SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IMSMQApplication2 interface.
-type ImsmqApplication2Client interface {
+type Application2Client interface {
 
 	// IMSMQApplication retrieval method.
-	ImsmqApplication() imsmqapplication.ImsmqApplicationClient
+	Application() imsmqapplication.ApplicationClient
 
 	// RegisterCertificate operation.
 	RegisterCertificate(context.Context, *RegisterCertificateRequest, ...dcerpc.CallOption) (*RegisterCertificateResponse, error)
@@ -56,13 +56,13 @@ type ImsmqApplication2Client interface {
 	MachineNameOfMachineID(context.Context, *MachineNameOfMachineIDRequest, ...dcerpc.CallOption) (*MachineNameOfMachineIDResponse, error)
 
 	// MSMQVersionMajor operation.
-	GetMsmqVersionMajor(context.Context, *GetMsmqVersionMajorRequest, ...dcerpc.CallOption) (*GetMsmqVersionMajorResponse, error)
+	GetVersionMajor(context.Context, *GetVersionMajorRequest, ...dcerpc.CallOption) (*GetVersionMajorResponse, error)
 
 	// MSMQVersionMinor operation.
-	GetMsmqVersionMinor(context.Context, *GetMsmqVersionMinorRequest, ...dcerpc.CallOption) (*GetMsmqVersionMinorResponse, error)
+	GetVersionMinor(context.Context, *GetVersionMinorRequest, ...dcerpc.CallOption) (*GetVersionMinorResponse, error)
 
 	// MSMQVersionBuild operation.
-	GetMsmqVersionBuild(context.Context, *GetMsmqVersionBuildRequest, ...dcerpc.CallOption) (*GetMsmqVersionBuildResponse, error)
+	GetVersionBuild(context.Context, *GetVersionBuildRequest, ...dcerpc.CallOption) (*GetVersionBuildResponse, error)
 
 	// IsDsEnabled operation.
 	GetIsDSEnabled(context.Context, *GetIsDSEnabledRequest, ...dcerpc.CallOption) (*GetIsDSEnabledResponse, error)
@@ -77,20 +77,20 @@ type ImsmqApplication2Client interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) ImsmqApplication2Client
+	IPID(context.Context, *dcom.IPID) Application2Client
 }
 
-type xxx_DefaultImsmqApplication2Client struct {
-	imsmqapplication.ImsmqApplicationClient
+type xxx_DefaultApplication2Client struct {
+	imsmqapplication.ApplicationClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultImsmqApplication2Client) ImsmqApplication() imsmqapplication.ImsmqApplicationClient {
-	return o.ImsmqApplicationClient
+func (o *xxx_DefaultApplication2Client) Application() imsmqapplication.ApplicationClient {
+	return o.ApplicationClient
 }
 
-func (o *xxx_DefaultImsmqApplication2Client) RegisterCertificate(ctx context.Context, in *RegisterCertificateRequest, opts ...dcerpc.CallOption) (*RegisterCertificateResponse, error) {
+func (o *xxx_DefaultApplication2Client) RegisterCertificate(ctx context.Context, in *RegisterCertificateRequest, opts ...dcerpc.CallOption) (*RegisterCertificateResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -110,7 +110,7 @@ func (o *xxx_DefaultImsmqApplication2Client) RegisterCertificate(ctx context.Con
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqApplication2Client) MachineNameOfMachineID(ctx context.Context, in *MachineNameOfMachineIDRequest, opts ...dcerpc.CallOption) (*MachineNameOfMachineIDResponse, error) {
+func (o *xxx_DefaultApplication2Client) MachineNameOfMachineID(ctx context.Context, in *MachineNameOfMachineIDRequest, opts ...dcerpc.CallOption) (*MachineNameOfMachineIDResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -130,7 +130,7 @@ func (o *xxx_DefaultImsmqApplication2Client) MachineNameOfMachineID(ctx context.
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqApplication2Client) GetMsmqVersionMajor(ctx context.Context, in *GetMsmqVersionMajorRequest, opts ...dcerpc.CallOption) (*GetMsmqVersionMajorResponse, error) {
+func (o *xxx_DefaultApplication2Client) GetVersionMajor(ctx context.Context, in *GetVersionMajorRequest, opts ...dcerpc.CallOption) (*GetVersionMajorResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -142,7 +142,7 @@ func (o *xxx_DefaultImsmqApplication2Client) GetMsmqVersionMajor(ctx context.Con
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &GetMsmqVersionMajorResponse{}
+	out := &GetVersionMajorResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -150,7 +150,7 @@ func (o *xxx_DefaultImsmqApplication2Client) GetMsmqVersionMajor(ctx context.Con
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqApplication2Client) GetMsmqVersionMinor(ctx context.Context, in *GetMsmqVersionMinorRequest, opts ...dcerpc.CallOption) (*GetMsmqVersionMinorResponse, error) {
+func (o *xxx_DefaultApplication2Client) GetVersionMinor(ctx context.Context, in *GetVersionMinorRequest, opts ...dcerpc.CallOption) (*GetVersionMinorResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -162,7 +162,7 @@ func (o *xxx_DefaultImsmqApplication2Client) GetMsmqVersionMinor(ctx context.Con
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &GetMsmqVersionMinorResponse{}
+	out := &GetVersionMinorResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -170,7 +170,7 @@ func (o *xxx_DefaultImsmqApplication2Client) GetMsmqVersionMinor(ctx context.Con
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqApplication2Client) GetMsmqVersionBuild(ctx context.Context, in *GetMsmqVersionBuildRequest, opts ...dcerpc.CallOption) (*GetMsmqVersionBuildResponse, error) {
+func (o *xxx_DefaultApplication2Client) GetVersionBuild(ctx context.Context, in *GetVersionBuildRequest, opts ...dcerpc.CallOption) (*GetVersionBuildResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -182,7 +182,7 @@ func (o *xxx_DefaultImsmqApplication2Client) GetMsmqVersionBuild(ctx context.Con
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &GetMsmqVersionBuildResponse{}
+	out := &GetVersionBuildResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -190,7 +190,7 @@ func (o *xxx_DefaultImsmqApplication2Client) GetMsmqVersionBuild(ctx context.Con
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqApplication2Client) GetIsDSEnabled(ctx context.Context, in *GetIsDSEnabledRequest, opts ...dcerpc.CallOption) (*GetIsDSEnabledResponse, error) {
+func (o *xxx_DefaultApplication2Client) GetIsDSEnabled(ctx context.Context, in *GetIsDSEnabledRequest, opts ...dcerpc.CallOption) (*GetIsDSEnabledResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -210,7 +210,7 @@ func (o *xxx_DefaultImsmqApplication2Client) GetIsDSEnabled(ctx context.Context,
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqApplication2Client) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
+func (o *xxx_DefaultApplication2Client) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -230,34 +230,34 @@ func (o *xxx_DefaultImsmqApplication2Client) GetProperties(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqApplication2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultApplication2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultImsmqApplication2Client) Conn() dcerpc.Conn {
+func (o *xxx_DefaultApplication2Client) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultImsmqApplication2Client) IPID(ctx context.Context, ipid *dcom.IPID) ImsmqApplication2Client {
+func (o *xxx_DefaultApplication2Client) IPID(ctx context.Context, ipid *dcom.IPID) Application2Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultImsmqApplication2Client{
-		ImsmqApplicationClient: o.ImsmqApplicationClient.IPID(ctx, ipid),
-		cc:                     o.cc,
-		ipid:                   ipid,
+	return &xxx_DefaultApplication2Client{
+		ApplicationClient: o.ApplicationClient.IPID(ctx, ipid),
+		cc:                o.cc,
+		ipid:              ipid,
 	}
 }
 
-func NewImsmqApplication2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ImsmqApplication2Client, error) {
+func NewApplication2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Application2Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ImsmqApplication2SyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(Application2SyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
 	}
-	base, err := imsmqapplication.NewImsmqApplicationClient(ctx, cc, append(opts, dcom.Superclass(cc))...)
+	base, err := imsmqapplication.NewApplicationClient(ctx, cc, append(opts, dcom.Superclass(cc))...)
 	if err != nil {
 		return nil, err
 	}
@@ -265,10 +265,10 @@ func NewImsmqApplication2Client(ctx context.Context, cc dcerpc.Conn, opts ...dce
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultImsmqApplication2Client{
-		ImsmqApplicationClient: base,
-		cc:                     cc,
-		ipid:                   ipid,
+	return &xxx_DefaultApplication2Client{
+		ApplicationClient: base,
+		cc:                cc,
+		ipid:              ipid,
 	}, nil
 }
 
@@ -858,21 +858,21 @@ func (o *MachineNameOfMachineIDResponse) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
-// xxx_GetMsmqVersionMajorOperation structure represents the MSMQVersionMajor operation
-type xxx_GetMsmqVersionMajorOperation struct {
-	This               *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That               *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PsMsmqVersionMajor int16          `idl:"name:psMSMQVersionMajor" json:"ps_msmq_version_major"`
-	Return             int32          `idl:"name:Return" json:"return"`
+// xxx_GetVersionMajorOperation structure represents the MSMQVersionMajor operation
+type xxx_GetVersionMajorOperation struct {
+	This         *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
+	VersionMajor int16          `idl:"name:psMSMQVersionMajor" json:"version_major"`
+	Return       int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_GetMsmqVersionMajorOperation) OpNum() int { return 10 }
+func (o *xxx_GetVersionMajorOperation) OpNum() int { return 10 }
 
-func (o *xxx_GetMsmqVersionMajorOperation) OpName() string {
+func (o *xxx_GetVersionMajorOperation) OpName() string {
 	return "/IMSMQApplication2/v0/MSMQVersionMajor"
 }
 
-func (o *xxx_GetMsmqVersionMajorOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetVersionMajorOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -881,7 +881,7 @@ func (o *xxx_GetMsmqVersionMajorOperation) xxx_PrepareRequestPayload(ctx context
 	return nil
 }
 
-func (o *xxx_GetMsmqVersionMajorOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetVersionMajorOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -903,7 +903,7 @@ func (o *xxx_GetMsmqVersionMajorOperation) MarshalNDRRequest(ctx context.Context
 	return nil
 }
 
-func (o *xxx_GetMsmqVersionMajorOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetVersionMajorOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -919,7 +919,7 @@ func (o *xxx_GetMsmqVersionMajorOperation) UnmarshalNDRRequest(ctx context.Conte
 	return nil
 }
 
-func (o *xxx_GetMsmqVersionMajorOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetVersionMajorOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -928,7 +928,7 @@ func (o *xxx_GetMsmqVersionMajorOperation) xxx_PrepareResponsePayload(ctx contex
 	return nil
 }
 
-func (o *xxx_GetMsmqVersionMajorOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetVersionMajorOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -949,7 +949,7 @@ func (o *xxx_GetMsmqVersionMajorOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// psMSMQVersionMajor {out, retval} (1:{pointer=ref}*(1)(int16))
 	{
-		if err := w.WriteData(o.PsMsmqVersionMajor); err != nil {
+		if err := w.WriteData(o.VersionMajor); err != nil {
 			return err
 		}
 	}
@@ -962,7 +962,7 @@ func (o *xxx_GetMsmqVersionMajorOperation) MarshalNDRResponse(ctx context.Contex
 	return nil
 }
 
-func (o *xxx_GetMsmqVersionMajorOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetVersionMajorOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -977,7 +977,7 @@ func (o *xxx_GetMsmqVersionMajorOperation) UnmarshalNDRResponse(ctx context.Cont
 	}
 	// psMSMQVersionMajor {out, retval} (1:{pointer=ref}*(1)(int16))
 	{
-		if err := w.ReadData(&o.PsMsmqVersionMajor); err != nil {
+		if err := w.ReadData(&o.VersionMajor); err != nil {
 			return err
 		}
 	}
@@ -990,15 +990,15 @@ func (o *xxx_GetMsmqVersionMajorOperation) UnmarshalNDRResponse(ctx context.Cont
 	return nil
 }
 
-// GetMsmqVersionMajorRequest structure represents the MSMQVersionMajor operation request
-type GetMsmqVersionMajorRequest struct {
+// GetVersionMajorRequest structure represents the MSMQVersionMajor operation request
+type GetVersionMajorRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetMsmqVersionMajorRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMsmqVersionMajorOperation) *xxx_GetMsmqVersionMajorOperation {
+func (o *GetVersionMajorRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVersionMajorOperation) *xxx_GetVersionMajorOperation {
 	if op == nil {
-		op = &xxx_GetMsmqVersionMajorOperation{}
+		op = &xxx_GetVersionMajorOperation{}
 	}
 	if o == nil {
 		return op
@@ -1007,17 +1007,17 @@ func (o *GetMsmqVersionMajorRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMs
 	return op
 }
 
-func (o *GetMsmqVersionMajorRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMsmqVersionMajorOperation) {
+func (o *GetVersionMajorRequest) xxx_FromOp(ctx context.Context, op *xxx_GetVersionMajorOperation) {
 	if o == nil {
 		return
 	}
 	o.This = op.This
 }
-func (o *GetMsmqVersionMajorRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetVersionMajorRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *GetMsmqVersionMajorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetMsmqVersionMajorOperation{}
+func (o *GetVersionMajorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetVersionMajorOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1025,41 +1025,41 @@ func (o *GetMsmqVersionMajorRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
-// GetMsmqVersionMajorResponse structure represents the MSMQVersionMajor operation response
-type GetMsmqVersionMajorResponse struct {
+// GetVersionMajorResponse structure represents the MSMQVersionMajor operation response
+type GetVersionMajorResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That               *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PsMsmqVersionMajor int16          `idl:"name:psMSMQVersionMajor" json:"ps_msmq_version_major"`
+	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
+	VersionMajor int16          `idl:"name:psMSMQVersionMajor" json:"version_major"`
 	// Return: The MSMQVersionMajor return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMsmqVersionMajorResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMsmqVersionMajorOperation) *xxx_GetMsmqVersionMajorOperation {
+func (o *GetVersionMajorResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVersionMajorOperation) *xxx_GetVersionMajorOperation {
 	if op == nil {
-		op = &xxx_GetMsmqVersionMajorOperation{}
+		op = &xxx_GetVersionMajorOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.That = o.That
-	op.PsMsmqVersionMajor = o.PsMsmqVersionMajor
+	op.VersionMajor = o.VersionMajor
 	op.Return = o.Return
 	return op
 }
 
-func (o *GetMsmqVersionMajorResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMsmqVersionMajorOperation) {
+func (o *GetVersionMajorResponse) xxx_FromOp(ctx context.Context, op *xxx_GetVersionMajorOperation) {
 	if o == nil {
 		return
 	}
 	o.That = op.That
-	o.PsMsmqVersionMajor = op.PsMsmqVersionMajor
+	o.VersionMajor = op.VersionMajor
 	o.Return = op.Return
 }
-func (o *GetMsmqVersionMajorResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetVersionMajorResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *GetMsmqVersionMajorResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetMsmqVersionMajorOperation{}
+func (o *GetVersionMajorResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetVersionMajorOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -1067,21 +1067,21 @@ func (o *GetMsmqVersionMajorResponse) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
-// xxx_GetMsmqVersionMinorOperation structure represents the MSMQVersionMinor operation
-type xxx_GetMsmqVersionMinorOperation struct {
-	This               *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That               *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PsMsmqVersionMinor int16          `idl:"name:psMSMQVersionMinor" json:"ps_msmq_version_minor"`
-	Return             int32          `idl:"name:Return" json:"return"`
+// xxx_GetVersionMinorOperation structure represents the MSMQVersionMinor operation
+type xxx_GetVersionMinorOperation struct {
+	This         *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
+	VersionMinor int16          `idl:"name:psMSMQVersionMinor" json:"version_minor"`
+	Return       int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_GetMsmqVersionMinorOperation) OpNum() int { return 11 }
+func (o *xxx_GetVersionMinorOperation) OpNum() int { return 11 }
 
-func (o *xxx_GetMsmqVersionMinorOperation) OpName() string {
+func (o *xxx_GetVersionMinorOperation) OpName() string {
 	return "/IMSMQApplication2/v0/MSMQVersionMinor"
 }
 
-func (o *xxx_GetMsmqVersionMinorOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetVersionMinorOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -1090,7 +1090,7 @@ func (o *xxx_GetMsmqVersionMinorOperation) xxx_PrepareRequestPayload(ctx context
 	return nil
 }
 
-func (o *xxx_GetMsmqVersionMinorOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetVersionMinorOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -1112,7 +1112,7 @@ func (o *xxx_GetMsmqVersionMinorOperation) MarshalNDRRequest(ctx context.Context
 	return nil
 }
 
-func (o *xxx_GetMsmqVersionMinorOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetVersionMinorOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -1128,7 +1128,7 @@ func (o *xxx_GetMsmqVersionMinorOperation) UnmarshalNDRRequest(ctx context.Conte
 	return nil
 }
 
-func (o *xxx_GetMsmqVersionMinorOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetVersionMinorOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1137,7 +1137,7 @@ func (o *xxx_GetMsmqVersionMinorOperation) xxx_PrepareResponsePayload(ctx contex
 	return nil
 }
 
-func (o *xxx_GetMsmqVersionMinorOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetVersionMinorOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1158,7 +1158,7 @@ func (o *xxx_GetMsmqVersionMinorOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// psMSMQVersionMinor {out, retval} (1:{pointer=ref}*(1)(int16))
 	{
-		if err := w.WriteData(o.PsMsmqVersionMinor); err != nil {
+		if err := w.WriteData(o.VersionMinor); err != nil {
 			return err
 		}
 	}
@@ -1171,7 +1171,7 @@ func (o *xxx_GetMsmqVersionMinorOperation) MarshalNDRResponse(ctx context.Contex
 	return nil
 }
 
-func (o *xxx_GetMsmqVersionMinorOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetVersionMinorOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -1186,7 +1186,7 @@ func (o *xxx_GetMsmqVersionMinorOperation) UnmarshalNDRResponse(ctx context.Cont
 	}
 	// psMSMQVersionMinor {out, retval} (1:{pointer=ref}*(1)(int16))
 	{
-		if err := w.ReadData(&o.PsMsmqVersionMinor); err != nil {
+		if err := w.ReadData(&o.VersionMinor); err != nil {
 			return err
 		}
 	}
@@ -1199,15 +1199,15 @@ func (o *xxx_GetMsmqVersionMinorOperation) UnmarshalNDRResponse(ctx context.Cont
 	return nil
 }
 
-// GetMsmqVersionMinorRequest structure represents the MSMQVersionMinor operation request
-type GetMsmqVersionMinorRequest struct {
+// GetVersionMinorRequest structure represents the MSMQVersionMinor operation request
+type GetVersionMinorRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetMsmqVersionMinorRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMsmqVersionMinorOperation) *xxx_GetMsmqVersionMinorOperation {
+func (o *GetVersionMinorRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVersionMinorOperation) *xxx_GetVersionMinorOperation {
 	if op == nil {
-		op = &xxx_GetMsmqVersionMinorOperation{}
+		op = &xxx_GetVersionMinorOperation{}
 	}
 	if o == nil {
 		return op
@@ -1216,17 +1216,17 @@ func (o *GetMsmqVersionMinorRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMs
 	return op
 }
 
-func (o *GetMsmqVersionMinorRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMsmqVersionMinorOperation) {
+func (o *GetVersionMinorRequest) xxx_FromOp(ctx context.Context, op *xxx_GetVersionMinorOperation) {
 	if o == nil {
 		return
 	}
 	o.This = op.This
 }
-func (o *GetMsmqVersionMinorRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetVersionMinorRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *GetMsmqVersionMinorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetMsmqVersionMinorOperation{}
+func (o *GetVersionMinorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetVersionMinorOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1234,41 +1234,41 @@ func (o *GetMsmqVersionMinorRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
-// GetMsmqVersionMinorResponse structure represents the MSMQVersionMinor operation response
-type GetMsmqVersionMinorResponse struct {
+// GetVersionMinorResponse structure represents the MSMQVersionMinor operation response
+type GetVersionMinorResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That               *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PsMsmqVersionMinor int16          `idl:"name:psMSMQVersionMinor" json:"ps_msmq_version_minor"`
+	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
+	VersionMinor int16          `idl:"name:psMSMQVersionMinor" json:"version_minor"`
 	// Return: The MSMQVersionMinor return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMsmqVersionMinorResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMsmqVersionMinorOperation) *xxx_GetMsmqVersionMinorOperation {
+func (o *GetVersionMinorResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVersionMinorOperation) *xxx_GetVersionMinorOperation {
 	if op == nil {
-		op = &xxx_GetMsmqVersionMinorOperation{}
+		op = &xxx_GetVersionMinorOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.That = o.That
-	op.PsMsmqVersionMinor = o.PsMsmqVersionMinor
+	op.VersionMinor = o.VersionMinor
 	op.Return = o.Return
 	return op
 }
 
-func (o *GetMsmqVersionMinorResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMsmqVersionMinorOperation) {
+func (o *GetVersionMinorResponse) xxx_FromOp(ctx context.Context, op *xxx_GetVersionMinorOperation) {
 	if o == nil {
 		return
 	}
 	o.That = op.That
-	o.PsMsmqVersionMinor = op.PsMsmqVersionMinor
+	o.VersionMinor = op.VersionMinor
 	o.Return = op.Return
 }
-func (o *GetMsmqVersionMinorResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetVersionMinorResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *GetMsmqVersionMinorResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetMsmqVersionMinorOperation{}
+func (o *GetVersionMinorResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetVersionMinorOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -1276,21 +1276,21 @@ func (o *GetMsmqVersionMinorResponse) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
-// xxx_GetMsmqVersionBuildOperation structure represents the MSMQVersionBuild operation
-type xxx_GetMsmqVersionBuildOperation struct {
-	This               *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That               *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PsMsmqVersionBuild int16          `idl:"name:psMSMQVersionBuild" json:"ps_msmq_version_build"`
-	Return             int32          `idl:"name:Return" json:"return"`
+// xxx_GetVersionBuildOperation structure represents the MSMQVersionBuild operation
+type xxx_GetVersionBuildOperation struct {
+	This         *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
+	VersionBuild int16          `idl:"name:psMSMQVersionBuild" json:"version_build"`
+	Return       int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_GetMsmqVersionBuildOperation) OpNum() int { return 12 }
+func (o *xxx_GetVersionBuildOperation) OpNum() int { return 12 }
 
-func (o *xxx_GetMsmqVersionBuildOperation) OpName() string {
+func (o *xxx_GetVersionBuildOperation) OpName() string {
 	return "/IMSMQApplication2/v0/MSMQVersionBuild"
 }
 
-func (o *xxx_GetMsmqVersionBuildOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetVersionBuildOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -1299,7 +1299,7 @@ func (o *xxx_GetMsmqVersionBuildOperation) xxx_PrepareRequestPayload(ctx context
 	return nil
 }
 
-func (o *xxx_GetMsmqVersionBuildOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetVersionBuildOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -1321,7 +1321,7 @@ func (o *xxx_GetMsmqVersionBuildOperation) MarshalNDRRequest(ctx context.Context
 	return nil
 }
 
-func (o *xxx_GetMsmqVersionBuildOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetVersionBuildOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -1337,7 +1337,7 @@ func (o *xxx_GetMsmqVersionBuildOperation) UnmarshalNDRRequest(ctx context.Conte
 	return nil
 }
 
-func (o *xxx_GetMsmqVersionBuildOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetVersionBuildOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1346,7 +1346,7 @@ func (o *xxx_GetMsmqVersionBuildOperation) xxx_PrepareResponsePayload(ctx contex
 	return nil
 }
 
-func (o *xxx_GetMsmqVersionBuildOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetVersionBuildOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1367,7 +1367,7 @@ func (o *xxx_GetMsmqVersionBuildOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// psMSMQVersionBuild {out, retval} (1:{pointer=ref}*(1)(int16))
 	{
-		if err := w.WriteData(o.PsMsmqVersionBuild); err != nil {
+		if err := w.WriteData(o.VersionBuild); err != nil {
 			return err
 		}
 	}
@@ -1380,7 +1380,7 @@ func (o *xxx_GetMsmqVersionBuildOperation) MarshalNDRResponse(ctx context.Contex
 	return nil
 }
 
-func (o *xxx_GetMsmqVersionBuildOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetVersionBuildOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -1395,7 +1395,7 @@ func (o *xxx_GetMsmqVersionBuildOperation) UnmarshalNDRResponse(ctx context.Cont
 	}
 	// psMSMQVersionBuild {out, retval} (1:{pointer=ref}*(1)(int16))
 	{
-		if err := w.ReadData(&o.PsMsmqVersionBuild); err != nil {
+		if err := w.ReadData(&o.VersionBuild); err != nil {
 			return err
 		}
 	}
@@ -1408,15 +1408,15 @@ func (o *xxx_GetMsmqVersionBuildOperation) UnmarshalNDRResponse(ctx context.Cont
 	return nil
 }
 
-// GetMsmqVersionBuildRequest structure represents the MSMQVersionBuild operation request
-type GetMsmqVersionBuildRequest struct {
+// GetVersionBuildRequest structure represents the MSMQVersionBuild operation request
+type GetVersionBuildRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetMsmqVersionBuildRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMsmqVersionBuildOperation) *xxx_GetMsmqVersionBuildOperation {
+func (o *GetVersionBuildRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVersionBuildOperation) *xxx_GetVersionBuildOperation {
 	if op == nil {
-		op = &xxx_GetMsmqVersionBuildOperation{}
+		op = &xxx_GetVersionBuildOperation{}
 	}
 	if o == nil {
 		return op
@@ -1425,17 +1425,17 @@ func (o *GetMsmqVersionBuildRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMs
 	return op
 }
 
-func (o *GetMsmqVersionBuildRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMsmqVersionBuildOperation) {
+func (o *GetVersionBuildRequest) xxx_FromOp(ctx context.Context, op *xxx_GetVersionBuildOperation) {
 	if o == nil {
 		return
 	}
 	o.This = op.This
 }
-func (o *GetMsmqVersionBuildRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetVersionBuildRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *GetMsmqVersionBuildRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetMsmqVersionBuildOperation{}
+func (o *GetVersionBuildRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetVersionBuildOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1443,41 +1443,41 @@ func (o *GetMsmqVersionBuildRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
-// GetMsmqVersionBuildResponse structure represents the MSMQVersionBuild operation response
-type GetMsmqVersionBuildResponse struct {
+// GetVersionBuildResponse structure represents the MSMQVersionBuild operation response
+type GetVersionBuildResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That               *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PsMsmqVersionBuild int16          `idl:"name:psMSMQVersionBuild" json:"ps_msmq_version_build"`
+	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
+	VersionBuild int16          `idl:"name:psMSMQVersionBuild" json:"version_build"`
 	// Return: The MSMQVersionBuild return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMsmqVersionBuildResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMsmqVersionBuildOperation) *xxx_GetMsmqVersionBuildOperation {
+func (o *GetVersionBuildResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVersionBuildOperation) *xxx_GetVersionBuildOperation {
 	if op == nil {
-		op = &xxx_GetMsmqVersionBuildOperation{}
+		op = &xxx_GetVersionBuildOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.That = o.That
-	op.PsMsmqVersionBuild = o.PsMsmqVersionBuild
+	op.VersionBuild = o.VersionBuild
 	op.Return = o.Return
 	return op
 }
 
-func (o *GetMsmqVersionBuildResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMsmqVersionBuildOperation) {
+func (o *GetVersionBuildResponse) xxx_FromOp(ctx context.Context, op *xxx_GetVersionBuildOperation) {
 	if o == nil {
 		return
 	}
 	o.That = op.That
-	o.PsMsmqVersionBuild = op.PsMsmqVersionBuild
+	o.VersionBuild = op.VersionBuild
 	o.Return = op.Return
 }
-func (o *GetMsmqVersionBuildResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetVersionBuildResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *GetMsmqVersionBuildResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetMsmqVersionBuildOperation{}
+func (o *GetVersionBuildResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetVersionBuildOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -1694,10 +1694,10 @@ func (o *GetIsDSEnabledResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // xxx_GetPropertiesOperation structure represents the Properties operation
 type xxx_GetPropertiesOperation struct {
-	This            *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PpcolProperties *oaut.Dispatch `idl:"name:ppcolProperties" json:"ppcol_properties"`
-	Return          int32          `idl:"name:Return" json:"return"`
+	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Properties *oaut.Dispatch `idl:"name:ppcolProperties" json:"properties"`
+	Return     int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetPropertiesOperation) OpNum() int { return 14 }
@@ -1781,10 +1781,10 @@ func (o *xxx_GetPropertiesOperation) MarshalNDRResponse(ctx context.Context, w n
 	}
 	// ppcolProperties {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IDispatch}(interface))
 	{
-		if o.PpcolProperties != nil {
+		if o.Properties != nil {
 			_ptr_ppcolProperties := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PpcolProperties != nil {
-					if err := o.PpcolProperties.MarshalNDR(ctx, w); err != nil {
+				if o.Properties != nil {
+					if err := o.Properties.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1794,7 +1794,7 @@ func (o *xxx_GetPropertiesOperation) MarshalNDRResponse(ctx context.Context, w n
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PpcolProperties, _ptr_ppcolProperties); err != nil {
+			if err := w.WritePointer(&o.Properties, _ptr_ppcolProperties); err != nil {
 				return err
 			}
 		} else {
@@ -1831,16 +1831,16 @@ func (o *xxx_GetPropertiesOperation) UnmarshalNDRResponse(ctx context.Context, w
 	// ppcolProperties {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IDispatch}(interface))
 	{
 		_ptr_ppcolProperties := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PpcolProperties == nil {
-				o.PpcolProperties = &oaut.Dispatch{}
+			if o.Properties == nil {
+				o.Properties = &oaut.Dispatch{}
 			}
-			if err := o.PpcolProperties.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Properties.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppcolProperties := func(ptr interface{}) { o.PpcolProperties = *ptr.(**oaut.Dispatch) }
-		if err := w.ReadPointer(&o.PpcolProperties, _s_ppcolProperties, _ptr_ppcolProperties); err != nil {
+		_s_ppcolProperties := func(ptr interface{}) { o.Properties = *ptr.(**oaut.Dispatch) }
+		if err := w.ReadPointer(&o.Properties, _s_ppcolProperties, _ptr_ppcolProperties); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1894,8 +1894,8 @@ func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetPropertiesResponse structure represents the Properties operation response
 type GetPropertiesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PpcolProperties *oaut.Dispatch `idl:"name:ppcolProperties" json:"ppcol_properties"`
+	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Properties *oaut.Dispatch `idl:"name:ppcolProperties" json:"properties"`
 	// Return: The Properties return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1908,7 +1908,7 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 		return op
 	}
 	op.That = o.That
-	op.PpcolProperties = o.PpcolProperties
+	op.Properties = o.Properties
 	op.Return = o.Return
 	return op
 }
@@ -1918,7 +1918,7 @@ func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrope
 		return
 	}
 	o.That = op.That
-	o.PpcolProperties = op.PpcolProperties
+	o.Properties = op.Properties
 	o.Return = op.Return
 }
 func (o *GetPropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {

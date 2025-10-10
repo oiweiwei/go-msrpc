@@ -16043,7 +16043,7 @@ func (o *GenericRPCData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 // and is beyond the scope of this document.
 type ValidationUASInfo struct {
 	EffectiveName      string `idl:"name:usrlog1_eff_name;string" json:"effective_name"`
-	Priv               uint32 `idl:"name:usrlog1_priv" json:"priv"`
+	Privacy            uint32 `idl:"name:usrlog1_priv" json:"privacy"`
 	AuthFlags          uint32 `idl:"name:usrlog1_auth_flags" json:"auth_flags"`
 	NumLogons          uint32 `idl:"name:usrlog1_num_logons" json:"num_logons"`
 	BadPasswordCount   uint32 `idl:"name:usrlog1_bad_pw_count" json:"bad_password_count"`
@@ -16091,7 +16091,7 @@ func (o *ValidationUASInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 			return err
 		}
 	}
-	if err := w.WriteData(o.Priv); err != nil {
+	if err := w.WriteData(o.Privacy); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.AuthFlags); err != nil {
@@ -16192,7 +16192,7 @@ func (o *ValidationUASInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	if err := w.ReadPointer(&o.EffectiveName, _s_usrlog1_eff_name, _ptr_usrlog1_eff_name); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.Priv); err != nil {
+	if err := w.ReadData(&o.Privacy); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.AuthFlags); err != nil {

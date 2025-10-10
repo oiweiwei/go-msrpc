@@ -36,15 +36,15 @@ var (
 
 var (
 	// IMSMQManagement interface identifier be5f0241-e489-4957-8cc4-a452fcf3e23e
-	ImsmqManagementIID = &dcom.IID{Data1: 0xbe5f0241, Data2: 0xe489, Data3: 0x4957, Data4: []byte{0x8c, 0xc4, 0xa4, 0x52, 0xfc, 0xf3, 0xe2, 0x3e}}
+	ManagementIID = &dcom.IID{Data1: 0xbe5f0241, Data2: 0xe489, Data3: 0x4957, Data4: []byte{0x8c, 0xc4, 0xa4, 0x52, 0xfc, 0xf3, 0xe2, 0x3e}}
 	// Syntax UUID
-	ImsmqManagementSyntaxUUID = &uuid.UUID{TimeLow: 0xbe5f0241, TimeMid: 0xe489, TimeHiAndVersion: 0x4957, ClockSeqHiAndReserved: 0x8c, ClockSeqLow: 0xc4, Node: [6]uint8{0xa4, 0x52, 0xfc, 0xf3, 0xe2, 0x3e}}
+	ManagementSyntaxUUID = &uuid.UUID{TimeLow: 0xbe5f0241, TimeMid: 0xe489, TimeHiAndVersion: 0x4957, ClockSeqHiAndReserved: 0x8c, ClockSeqLow: 0xc4, Node: [6]uint8{0xa4, 0x52, 0xfc, 0xf3, 0xe2, 0x3e}}
 	// Syntax ID
-	ImsmqManagementSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ImsmqManagementSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	ManagementSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ManagementSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IMSMQManagement interface.
-type ImsmqManagementClient interface {
+type ManagementClient interface {
 
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
@@ -83,20 +83,20 @@ type ImsmqManagementClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) ImsmqManagementClient
+	IPID(context.Context, *dcom.IPID) ManagementClient
 }
 
-type xxx_DefaultImsmqManagementClient struct {
+type xxx_DefaultManagementClient struct {
 	idispatch.DispatchClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultImsmqManagementClient) Dispatch() idispatch.DispatchClient {
+func (o *xxx_DefaultManagementClient) Dispatch() idispatch.DispatchClient {
 	return o.DispatchClient
 }
 
-func (o *xxx_DefaultImsmqManagementClient) Init(ctx context.Context, in *InitRequest, opts ...dcerpc.CallOption) (*InitResponse, error) {
+func (o *xxx_DefaultManagementClient) Init(ctx context.Context, in *InitRequest, opts ...dcerpc.CallOption) (*InitResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -116,7 +116,7 @@ func (o *xxx_DefaultImsmqManagementClient) Init(ctx context.Context, in *InitReq
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqManagementClient) GetFormatName(ctx context.Context, in *GetFormatNameRequest, opts ...dcerpc.CallOption) (*GetFormatNameResponse, error) {
+func (o *xxx_DefaultManagementClient) GetFormatName(ctx context.Context, in *GetFormatNameRequest, opts ...dcerpc.CallOption) (*GetFormatNameResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -136,7 +136,7 @@ func (o *xxx_DefaultImsmqManagementClient) GetFormatName(ctx context.Context, in
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqManagementClient) GetMachine(ctx context.Context, in *GetMachineRequest, opts ...dcerpc.CallOption) (*GetMachineResponse, error) {
+func (o *xxx_DefaultManagementClient) GetMachine(ctx context.Context, in *GetMachineRequest, opts ...dcerpc.CallOption) (*GetMachineResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -156,7 +156,7 @@ func (o *xxx_DefaultImsmqManagementClient) GetMachine(ctx context.Context, in *G
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqManagementClient) GetMessageCount(ctx context.Context, in *GetMessageCountRequest, opts ...dcerpc.CallOption) (*GetMessageCountResponse, error) {
+func (o *xxx_DefaultManagementClient) GetMessageCount(ctx context.Context, in *GetMessageCountRequest, opts ...dcerpc.CallOption) (*GetMessageCountResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -176,7 +176,7 @@ func (o *xxx_DefaultImsmqManagementClient) GetMessageCount(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqManagementClient) GetForeignStatus(ctx context.Context, in *GetForeignStatusRequest, opts ...dcerpc.CallOption) (*GetForeignStatusResponse, error) {
+func (o *xxx_DefaultManagementClient) GetForeignStatus(ctx context.Context, in *GetForeignStatusRequest, opts ...dcerpc.CallOption) (*GetForeignStatusResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -196,7 +196,7 @@ func (o *xxx_DefaultImsmqManagementClient) GetForeignStatus(ctx context.Context,
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqManagementClient) GetQueueType(ctx context.Context, in *GetQueueTypeRequest, opts ...dcerpc.CallOption) (*GetQueueTypeResponse, error) {
+func (o *xxx_DefaultManagementClient) GetQueueType(ctx context.Context, in *GetQueueTypeRequest, opts ...dcerpc.CallOption) (*GetQueueTypeResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -216,7 +216,7 @@ func (o *xxx_DefaultImsmqManagementClient) GetQueueType(ctx context.Context, in 
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqManagementClient) GetIsLocal(ctx context.Context, in *GetIsLocalRequest, opts ...dcerpc.CallOption) (*GetIsLocalResponse, error) {
+func (o *xxx_DefaultManagementClient) GetIsLocal(ctx context.Context, in *GetIsLocalRequest, opts ...dcerpc.CallOption) (*GetIsLocalResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -236,7 +236,7 @@ func (o *xxx_DefaultImsmqManagementClient) GetIsLocal(ctx context.Context, in *G
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqManagementClient) GetTransactionalStatus(ctx context.Context, in *GetTransactionalStatusRequest, opts ...dcerpc.CallOption) (*GetTransactionalStatusResponse, error) {
+func (o *xxx_DefaultManagementClient) GetTransactionalStatus(ctx context.Context, in *GetTransactionalStatusRequest, opts ...dcerpc.CallOption) (*GetTransactionalStatusResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -256,7 +256,7 @@ func (o *xxx_DefaultImsmqManagementClient) GetTransactionalStatus(ctx context.Co
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqManagementClient) GetBytesInQueue(ctx context.Context, in *GetBytesInQueueRequest, opts ...dcerpc.CallOption) (*GetBytesInQueueResponse, error) {
+func (o *xxx_DefaultManagementClient) GetBytesInQueue(ctx context.Context, in *GetBytesInQueueRequest, opts ...dcerpc.CallOption) (*GetBytesInQueueResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -276,29 +276,29 @@ func (o *xxx_DefaultImsmqManagementClient) GetBytesInQueue(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqManagementClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultManagementClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultImsmqManagementClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultManagementClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultImsmqManagementClient) IPID(ctx context.Context, ipid *dcom.IPID) ImsmqManagementClient {
+func (o *xxx_DefaultManagementClient) IPID(ctx context.Context, ipid *dcom.IPID) ManagementClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultImsmqManagementClient{
+	return &xxx_DefaultManagementClient{
 		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
 		cc:             o.cc,
 		ipid:           ipid,
 	}
 }
 
-func NewImsmqManagementClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ImsmqManagementClient, error) {
+func NewManagementClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ManagementClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ImsmqManagementSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ManagementSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -311,7 +311,7 @@ func NewImsmqManagementClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerp
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultImsmqManagementClient{
+	return &xxx_DefaultManagementClient{
 		DispatchClient: base,
 		cc:             cc,
 		ipid:           ipid,

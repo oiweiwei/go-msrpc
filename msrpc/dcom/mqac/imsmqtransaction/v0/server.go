@@ -26,7 +26,7 @@ var (
 )
 
 // IMSMQTransaction server interface.
-type ImsmqTransactionServer interface {
+type TransactionServer interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -41,17 +41,17 @@ type ImsmqTransactionServer interface {
 	Abort(context.Context, *AbortRequest) (*AbortResponse, error)
 }
 
-func RegisterImsmqTransactionServer(conn dcerpc.Conn, o ImsmqTransactionServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqTransactionServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqTransactionSyntaxV0_0))...)
+func RegisterTransactionServer(conn dcerpc.Conn, o TransactionServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewTransactionServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(TransactionSyntaxV0_0))...)
 }
 
-func NewImsmqTransactionServerHandle(o ImsmqTransactionServer) dcerpc.ServerHandle {
+func NewTransactionServerHandle(o TransactionServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqTransactionServerHandle(ctx, o, opNum, r)
+		return TransactionServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqTransactionServerHandle(ctx context.Context, o ImsmqTransactionServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func TransactionServerHandle(ctx context.Context, o TransactionServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -89,18 +89,18 @@ func ImsmqTransactionServerHandle(ctx context.Context, o ImsmqTransactionServer,
 }
 
 // Unimplemented IMSMQTransaction
-type UnimplementedImsmqTransactionServer struct {
+type UnimplementedTransactionServer struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedImsmqTransactionServer) GetTransaction(context.Context, *GetTransactionRequest) (*GetTransactionResponse, error) {
+func (UnimplementedTransactionServer) GetTransaction(context.Context, *GetTransactionRequest) (*GetTransactionResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqTransactionServer) Commit(context.Context, *CommitRequest) (*CommitResponse, error) {
+func (UnimplementedTransactionServer) Commit(context.Context, *CommitRequest) (*CommitResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqTransactionServer) Abort(context.Context, *AbortRequest) (*AbortResponse, error) {
+func (UnimplementedTransactionServer) Abort(context.Context, *AbortRequest) (*AbortResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqTransactionServer = (*UnimplementedImsmqTransactionServer)(nil)
+var _ TransactionServer = (*UnimplementedTransactionServer)(nil)

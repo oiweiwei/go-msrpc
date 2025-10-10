@@ -11178,13 +11178,13 @@ func (o *MScopeMIBInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MCastMIBInfo structure represents DHCP_MCAST_MIB_INFO RPC structure.
+// MulticastMIBInfo structure represents DHCP_MCAST_MIB_INFO RPC structure.
 //
 // The DHCP_MCAST_MIB_INFO structure contains counter values for all multicast scopes
 // defined on the MADCAP server. This structure is used in R_DhcpGetMCastMibInfo (section
 // 3.2.4.32) method which retrieves statistics on multicast scopes defined on the MADCAP
 // server.
-type MCastMIBInfo struct {
+type MulticastMIBInfo struct {
 	// Discovers:  This is of type DWORD, containing the number of DHCPDISCOVER messages
 	// [RFC2131] received by the MADCAP server from MADCAP clients.
 	Discovers uint32 `idl:"name:Discovers" json:"discovers"`
@@ -11222,7 +11222,7 @@ type MCastMIBInfo struct {
 	ScopeInfo []*MScopeMIBInfo `idl:"name:ScopeInfo;size_is:(Scopes)" json:"scope_info"`
 }
 
-func (o *MCastMIBInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *MulticastMIBInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -11234,7 +11234,7 @@ func (o *MCastMIBInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MCastMIBInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MulticastMIBInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -11318,7 +11318,7 @@ func (o *MCastMIBInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MCastMIBInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MulticastMIBInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}

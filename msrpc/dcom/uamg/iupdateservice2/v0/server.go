@@ -31,7 +31,7 @@ type UpdateService2Server interface {
 	// IUpdateService base class.
 	iupdateservice.UpdateServiceServer
 
-	GetIsDefaultAuService(context.Context, *GetIsDefaultAuServiceRequest) (*GetIsDefaultAuServiceResponse, error)
+	GetIsDefaultAUService(context.Context, *GetIsDefaultAUServiceRequest) (*GetIsDefaultAUServiceResponse, error)
 }
 
 func RegisterUpdateService2Server(conn dcerpc.Conn, o UpdateService2Server, opts ...dcerpc.Option) {
@@ -51,13 +51,13 @@ func UpdateService2ServerHandle(ctx context.Context, o UpdateService2Server, opN
 	}
 	switch opNum {
 	case 20: // IsDefaultAUService
-		op := &xxx_GetIsDefaultAuServiceOperation{}
+		op := &xxx_GetIsDefaultAUServiceOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &GetIsDefaultAuServiceRequest{}
+		req := &GetIsDefaultAUServiceRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.GetIsDefaultAuService(ctx, req)
+		resp, err := o.GetIsDefaultAUService(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
@@ -68,7 +68,7 @@ type UnimplementedUpdateService2Server struct {
 	iupdateservice.UnimplementedUpdateServiceServer
 }
 
-func (UnimplementedUpdateService2Server) GetIsDefaultAuService(context.Context, *GetIsDefaultAuServiceRequest) (*GetIsDefaultAuServiceResponse, error) {
+func (UnimplementedUpdateService2Server) GetIsDefaultAUService(context.Context, *GetIsDefaultAUServiceRequest) (*GetIsDefaultAUServiceResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 

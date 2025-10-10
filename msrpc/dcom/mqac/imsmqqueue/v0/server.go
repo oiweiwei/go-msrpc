@@ -26,7 +26,7 @@ var (
 )
 
 // IMSMQQueue server interface.
-type ImsmqQueueServer interface {
+type QueueServer interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -71,17 +71,17 @@ type ImsmqQueueServer interface {
 	PeekCurrent(context.Context, *PeekCurrentRequest) (*PeekCurrentResponse, error)
 }
 
-func RegisterImsmqQueueServer(conn dcerpc.Conn, o ImsmqQueueServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqQueueServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqQueueSyntaxV0_0))...)
+func RegisterQueueServer(conn dcerpc.Conn, o QueueServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewQueueServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(QueueSyntaxV0_0))...)
 }
 
-func NewImsmqQueueServerHandle(o ImsmqQueueServer) dcerpc.ServerHandle {
+func NewQueueServerHandle(o QueueServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqQueueServerHandle(ctx, o, opNum, r)
+		return QueueServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqQueueServerHandle(ctx context.Context, o ImsmqQueueServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func QueueServerHandle(ctx context.Context, o QueueServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -209,48 +209,48 @@ func ImsmqQueueServerHandle(ctx context.Context, o ImsmqQueueServer, opNum int, 
 }
 
 // Unimplemented IMSMQQueue
-type UnimplementedImsmqQueueServer struct {
+type UnimplementedQueueServer struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedImsmqQueueServer) GetAccess(context.Context, *GetAccessRequest) (*GetAccessResponse, error) {
+func (UnimplementedQueueServer) GetAccess(context.Context, *GetAccessRequest) (*GetAccessResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueServer) GetShareMode(context.Context, *GetShareModeRequest) (*GetShareModeResponse, error) {
+func (UnimplementedQueueServer) GetShareMode(context.Context, *GetShareModeRequest) (*GetShareModeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueServer) GetQueueInfo(context.Context, *GetQueueInfoRequest) (*GetQueueInfoResponse, error) {
+func (UnimplementedQueueServer) GetQueueInfo(context.Context, *GetQueueInfoRequest) (*GetQueueInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueServer) GetHandle(context.Context, *GetHandleRequest) (*GetHandleResponse, error) {
+func (UnimplementedQueueServer) GetHandle(context.Context, *GetHandleRequest) (*GetHandleResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueServer) GetIsOpen(context.Context, *GetIsOpenRequest) (*GetIsOpenResponse, error) {
+func (UnimplementedQueueServer) GetIsOpen(context.Context, *GetIsOpenRequest) (*GetIsOpenResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueServer) Close(context.Context, *CloseRequest) (*CloseResponse, error) {
+func (UnimplementedQueueServer) Close(context.Context, *CloseRequest) (*CloseResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueServer) Receive(context.Context, *ReceiveRequest) (*ReceiveResponse, error) {
+func (UnimplementedQueueServer) Receive(context.Context, *ReceiveRequest) (*ReceiveResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueServer) Peek(context.Context, *PeekRequest) (*PeekResponse, error) {
+func (UnimplementedQueueServer) Peek(context.Context, *PeekRequest) (*PeekResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueServer) EnableNotification(context.Context, *EnableNotificationRequest) (*EnableNotificationResponse, error) {
+func (UnimplementedQueueServer) EnableNotification(context.Context, *EnableNotificationRequest) (*EnableNotificationResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueServer) Reset(context.Context, *ResetRequest) (*ResetResponse, error) {
+func (UnimplementedQueueServer) Reset(context.Context, *ResetRequest) (*ResetResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueServer) ReceiveCurrent(context.Context, *ReceiveCurrentRequest) (*ReceiveCurrentResponse, error) {
+func (UnimplementedQueueServer) ReceiveCurrent(context.Context, *ReceiveCurrentRequest) (*ReceiveCurrentResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueServer) PeekNext(context.Context, *PeekNextRequest) (*PeekNextResponse, error) {
+func (UnimplementedQueueServer) PeekNext(context.Context, *PeekNextRequest) (*PeekNextResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueServer) PeekCurrent(context.Context, *PeekCurrentRequest) (*PeekCurrentResponse, error) {
+func (UnimplementedQueueServer) PeekCurrent(context.Context, *PeekCurrentRequest) (*PeekCurrentResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqQueueServer = (*UnimplementedImsmqQueueServer)(nil)
+var _ QueueServer = (*UnimplementedQueueServer)(nil)

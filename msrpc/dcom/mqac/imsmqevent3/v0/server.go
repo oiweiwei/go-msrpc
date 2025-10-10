@@ -26,31 +26,31 @@ var (
 )
 
 // IMSMQEvent3 server interface.
-type ImsmqEvent3Server interface {
+type Event3Server interface {
 
 	// IMSMQEvent2 base class.
-	imsmqevent2.ImsmqEvent2Server
+	imsmqevent2.Event2Server
 }
 
-func RegisterImsmqEvent3Server(conn dcerpc.Conn, o ImsmqEvent3Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqEvent3ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqEvent3SyntaxV0_0))...)
+func RegisterEvent3Server(conn dcerpc.Conn, o Event3Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewEvent3ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(Event3SyntaxV0_0))...)
 }
 
-func NewImsmqEvent3ServerHandle(o ImsmqEvent3Server) dcerpc.ServerHandle {
+func NewEvent3ServerHandle(o Event3Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqEvent3ServerHandle(ctx, o, opNum, r)
+		return Event3ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqEvent3ServerHandle(ctx context.Context, o ImsmqEvent3Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func Event3ServerHandle(ctx context.Context, o Event3Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	}
 	return nil, nil
 }
 
 // Unimplemented IMSMQEvent3
-type UnimplementedImsmqEvent3Server struct {
-	imsmqevent2.UnimplementedImsmqEvent2Server
+type UnimplementedEvent3Server struct {
+	imsmqevent2.UnimplementedEvent2Server
 }
 
-var _ ImsmqEvent3Server = (*UnimplementedImsmqEvent3Server)(nil)
+var _ Event3Server = (*UnimplementedEvent3Server)(nil)

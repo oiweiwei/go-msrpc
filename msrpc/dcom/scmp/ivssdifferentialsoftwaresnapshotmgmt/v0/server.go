@@ -26,7 +26,7 @@ var (
 )
 
 // IVssDifferentialSoftwareSnapshotMgmt server interface.
-type VSSDifferentialSoftwareSnapshotManagementServer interface {
+type DifferentialSoftwareSnapshotManagementServer interface {
 
 	// IUnknown base class.
 	iunknown.UnknownServer
@@ -45,17 +45,17 @@ type VSSDifferentialSoftwareSnapshotManagementServer interface {
 	// Opnum08NotUsedOnWire
 }
 
-func RegisterVSSDifferentialSoftwareSnapshotManagementServer(conn dcerpc.Conn, o VSSDifferentialSoftwareSnapshotManagementServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewVSSDifferentialSoftwareSnapshotManagementServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(VSSDifferentialSoftwareSnapshotManagementSyntaxV0_0))...)
+func RegisterDifferentialSoftwareSnapshotManagementServer(conn dcerpc.Conn, o DifferentialSoftwareSnapshotManagementServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewDifferentialSoftwareSnapshotManagementServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(DifferentialSoftwareSnapshotManagementSyntaxV0_0))...)
 }
 
-func NewVSSDifferentialSoftwareSnapshotManagementServerHandle(o VSSDifferentialSoftwareSnapshotManagementServer) dcerpc.ServerHandle {
+func NewDifferentialSoftwareSnapshotManagementServerHandle(o DifferentialSoftwareSnapshotManagementServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return VSSDifferentialSoftwareSnapshotManagementServerHandle(ctx, o, opNum, r)
+		return DifferentialSoftwareSnapshotManagementServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func VSSDifferentialSoftwareSnapshotManagementServerHandle(ctx context.Context, o VSSDifferentialSoftwareSnapshotManagementServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func DifferentialSoftwareSnapshotManagementServerHandle(ctx context.Context, o DifferentialSoftwareSnapshotManagementServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 3 {
 		// IUnknown base method.
 		return iunknown.UnknownServerHandle(ctx, o, opNum, r)
@@ -114,24 +114,24 @@ func VSSDifferentialSoftwareSnapshotManagementServerHandle(ctx context.Context, 
 }
 
 // Unimplemented IVssDifferentialSoftwareSnapshotMgmt
-type UnimplementedVSSDifferentialSoftwareSnapshotManagementServer struct {
+type UnimplementedDifferentialSoftwareSnapshotManagementServer struct {
 	iunknown.UnimplementedUnknownServer
 }
 
-func (UnimplementedVSSDifferentialSoftwareSnapshotManagementServer) AddDiffArea(context.Context, *AddDiffAreaRequest) (*AddDiffAreaResponse, error) {
+func (UnimplementedDifferentialSoftwareSnapshotManagementServer) AddDiffArea(context.Context, *AddDiffAreaRequest) (*AddDiffAreaResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedVSSDifferentialSoftwareSnapshotManagementServer) ChangeDiffAreaMaximumSize(context.Context, *ChangeDiffAreaMaximumSizeRequest) (*ChangeDiffAreaMaximumSizeResponse, error) {
+func (UnimplementedDifferentialSoftwareSnapshotManagementServer) ChangeDiffAreaMaximumSize(context.Context, *ChangeDiffAreaMaximumSizeRequest) (*ChangeDiffAreaMaximumSizeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedVSSDifferentialSoftwareSnapshotManagementServer) QueryVolumesSupportedForDiffAreas(context.Context, *QueryVolumesSupportedForDiffAreasRequest) (*QueryVolumesSupportedForDiffAreasResponse, error) {
+func (UnimplementedDifferentialSoftwareSnapshotManagementServer) QueryVolumesSupportedForDiffAreas(context.Context, *QueryVolumesSupportedForDiffAreasRequest) (*QueryVolumesSupportedForDiffAreasResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedVSSDifferentialSoftwareSnapshotManagementServer) QueryDiffAreasForVolume(context.Context, *QueryDiffAreasForVolumeRequest) (*QueryDiffAreasForVolumeResponse, error) {
+func (UnimplementedDifferentialSoftwareSnapshotManagementServer) QueryDiffAreasForVolume(context.Context, *QueryDiffAreasForVolumeRequest) (*QueryDiffAreasForVolumeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedVSSDifferentialSoftwareSnapshotManagementServer) QueryDiffAreasOnVolume(context.Context, *QueryDiffAreasOnVolumeRequest) (*QueryDiffAreasOnVolumeResponse, error) {
+func (UnimplementedDifferentialSoftwareSnapshotManagementServer) QueryDiffAreasOnVolume(context.Context, *QueryDiffAreasOnVolumeRequest) (*QueryDiffAreasOnVolumeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ VSSDifferentialSoftwareSnapshotManagementServer = (*UnimplementedVSSDifferentialSoftwareSnapshotManagementServer)(nil)
+var _ DifferentialSoftwareSnapshotManagementServer = (*UnimplementedDifferentialSoftwareSnapshotManagementServer)(nil)

@@ -26,28 +26,28 @@ var (
 )
 
 // ITpmVirtualSmartCardManager3 server interface.
-type TpmVirtualSmartCardManager3Server interface {
+type VirtualSmartCardManager3Server interface {
 
 	// ITpmVirtualSmartCardManager2 base class.
-	itpmvirtualsmartcardmanager2.TpmVirtualSmartCardManager2Server
+	itpmvirtualsmartcardmanager2.VirtualSmartCardManager2Server
 
 	CreateVirtualSmartCardWithAttestation(context.Context, *CreateVirtualSmartCardWithAttestationRequest) (*CreateVirtualSmartCardWithAttestationResponse, error)
 }
 
-func RegisterTpmVirtualSmartCardManager3Server(conn dcerpc.Conn, o TpmVirtualSmartCardManager3Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewTpmVirtualSmartCardManager3ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(TpmVirtualSmartCardManager3SyntaxV0_0))...)
+func RegisterVirtualSmartCardManager3Server(conn dcerpc.Conn, o VirtualSmartCardManager3Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewVirtualSmartCardManager3ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(VirtualSmartCardManager3SyntaxV0_0))...)
 }
 
-func NewTpmVirtualSmartCardManager3ServerHandle(o TpmVirtualSmartCardManager3Server) dcerpc.ServerHandle {
+func NewVirtualSmartCardManager3ServerHandle(o VirtualSmartCardManager3Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return TpmVirtualSmartCardManager3ServerHandle(ctx, o, opNum, r)
+		return VirtualSmartCardManager3ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func TpmVirtualSmartCardManager3ServerHandle(ctx context.Context, o TpmVirtualSmartCardManager3Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func VirtualSmartCardManager3ServerHandle(ctx context.Context, o VirtualSmartCardManager3Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 6 {
 		// ITpmVirtualSmartCardManager2 base method.
-		return itpmvirtualsmartcardmanager2.TpmVirtualSmartCardManager2ServerHandle(ctx, o, opNum, r)
+		return itpmvirtualsmartcardmanager2.VirtualSmartCardManager2ServerHandle(ctx, o, opNum, r)
 	}
 	switch opNum {
 	case 6: // CreateVirtualSmartCardWithAttestation
@@ -64,12 +64,12 @@ func TpmVirtualSmartCardManager3ServerHandle(ctx context.Context, o TpmVirtualSm
 }
 
 // Unimplemented ITpmVirtualSmartCardManager3
-type UnimplementedTpmVirtualSmartCardManager3Server struct {
-	itpmvirtualsmartcardmanager2.UnimplementedTpmVirtualSmartCardManager2Server
+type UnimplementedVirtualSmartCardManager3Server struct {
+	itpmvirtualsmartcardmanager2.UnimplementedVirtualSmartCardManager2Server
 }
 
-func (UnimplementedTpmVirtualSmartCardManager3Server) CreateVirtualSmartCardWithAttestation(context.Context, *CreateVirtualSmartCardWithAttestationRequest) (*CreateVirtualSmartCardWithAttestationResponse, error) {
+func (UnimplementedVirtualSmartCardManager3Server) CreateVirtualSmartCardWithAttestation(context.Context, *CreateVirtualSmartCardWithAttestationRequest) (*CreateVirtualSmartCardWithAttestationResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ TpmVirtualSmartCardManager3Server = (*UnimplementedTpmVirtualSmartCardManager3Server)(nil)
+var _ VirtualSmartCardManager3Server = (*UnimplementedVirtualSmartCardManager3Server)(nil)

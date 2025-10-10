@@ -36,20 +36,20 @@ var (
 
 var (
 	// ITpmVirtualSmartCardManager2 interface identifier fdf8a2b9-02de-47f4-bc26-aa85ab5e5267
-	TpmVirtualSmartCardManager2IID = &dcom.IID{Data1: 0xfdf8a2b9, Data2: 0x02de, Data3: 0x47f4, Data4: []byte{0xbc, 0x26, 0xaa, 0x85, 0xab, 0x5e, 0x52, 0x67}}
+	VirtualSmartCardManager2IID = &dcom.IID{Data1: 0xfdf8a2b9, Data2: 0x02de, Data3: 0x47f4, Data4: []byte{0xbc, 0x26, 0xaa, 0x85, 0xab, 0x5e, 0x52, 0x67}}
 	// Syntax UUID
-	TpmVirtualSmartCardManager2SyntaxUUID = &uuid.UUID{TimeLow: 0xfdf8a2b9, TimeMid: 0x2de, TimeHiAndVersion: 0x47f4, ClockSeqHiAndReserved: 0xbc, ClockSeqLow: 0x26, Node: [6]uint8{0xaa, 0x85, 0xab, 0x5e, 0x52, 0x67}}
+	VirtualSmartCardManager2SyntaxUUID = &uuid.UUID{TimeLow: 0xfdf8a2b9, TimeMid: 0x2de, TimeHiAndVersion: 0x47f4, ClockSeqHiAndReserved: 0xbc, ClockSeqLow: 0x26, Node: [6]uint8{0xaa, 0x85, 0xab, 0x5e, 0x52, 0x67}}
 	// Syntax ID
-	TpmVirtualSmartCardManager2SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: TpmVirtualSmartCardManager2SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	VirtualSmartCardManager2SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: VirtualSmartCardManager2SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // ITpmVirtualSmartCardManager2 interface.
-type TpmVirtualSmartCardManager2Client interface {
+type VirtualSmartCardManager2Client interface {
 
 	// ITpmVirtualSmartCardManager retrieval method.
-	TpmVirtualSmartCardManager() itpmvirtualsmartcardmanager.TpmVirtualSmartCardManagerClient
+	VirtualSmartCardManager() itpmvirtualsmartcardmanager.VirtualSmartCardManagerClient
 
-	CreateVirtualSmartCardWithPinPolicy(context.Context, *CreateVirtualSmartCardWithPinPolicyRequest, ...dcerpc.CallOption) (*CreateVirtualSmartCardWithPinPolicyResponse, error)
+	CreateVirtualSmartCardWithPINPolicy(context.Context, *CreateVirtualSmartCardWithPINPolicyRequest, ...dcerpc.CallOption) (*CreateVirtualSmartCardWithPINPolicyResponse, error)
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
@@ -58,20 +58,20 @@ type TpmVirtualSmartCardManager2Client interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) TpmVirtualSmartCardManager2Client
+	IPID(context.Context, *dcom.IPID) VirtualSmartCardManager2Client
 }
 
-type xxx_DefaultTpmVirtualSmartCardManager2Client struct {
-	itpmvirtualsmartcardmanager.TpmVirtualSmartCardManagerClient
+type xxx_DefaultVirtualSmartCardManager2Client struct {
+	itpmvirtualsmartcardmanager.VirtualSmartCardManagerClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultTpmVirtualSmartCardManager2Client) TpmVirtualSmartCardManager() itpmvirtualsmartcardmanager.TpmVirtualSmartCardManagerClient {
-	return o.TpmVirtualSmartCardManagerClient
+func (o *xxx_DefaultVirtualSmartCardManager2Client) VirtualSmartCardManager() itpmvirtualsmartcardmanager.VirtualSmartCardManagerClient {
+	return o.VirtualSmartCardManagerClient
 }
 
-func (o *xxx_DefaultTpmVirtualSmartCardManager2Client) CreateVirtualSmartCardWithPinPolicy(ctx context.Context, in *CreateVirtualSmartCardWithPinPolicyRequest, opts ...dcerpc.CallOption) (*CreateVirtualSmartCardWithPinPolicyResponse, error) {
+func (o *xxx_DefaultVirtualSmartCardManager2Client) CreateVirtualSmartCardWithPINPolicy(ctx context.Context, in *CreateVirtualSmartCardWithPINPolicyRequest, opts ...dcerpc.CallOption) (*CreateVirtualSmartCardWithPINPolicyResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -83,7 +83,7 @@ func (o *xxx_DefaultTpmVirtualSmartCardManager2Client) CreateVirtualSmartCardWit
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &CreateVirtualSmartCardWithPinPolicyResponse{}
+	out := &CreateVirtualSmartCardWithPINPolicyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -91,34 +91,34 @@ func (o *xxx_DefaultTpmVirtualSmartCardManager2Client) CreateVirtualSmartCardWit
 	return out, nil
 }
 
-func (o *xxx_DefaultTpmVirtualSmartCardManager2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultVirtualSmartCardManager2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultTpmVirtualSmartCardManager2Client) Conn() dcerpc.Conn {
+func (o *xxx_DefaultVirtualSmartCardManager2Client) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultTpmVirtualSmartCardManager2Client) IPID(ctx context.Context, ipid *dcom.IPID) TpmVirtualSmartCardManager2Client {
+func (o *xxx_DefaultVirtualSmartCardManager2Client) IPID(ctx context.Context, ipid *dcom.IPID) VirtualSmartCardManager2Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultTpmVirtualSmartCardManager2Client{
-		TpmVirtualSmartCardManagerClient: o.TpmVirtualSmartCardManagerClient.IPID(ctx, ipid),
-		cc:                               o.cc,
-		ipid:                             ipid,
+	return &xxx_DefaultVirtualSmartCardManager2Client{
+		VirtualSmartCardManagerClient: o.VirtualSmartCardManagerClient.IPID(ctx, ipid),
+		cc:                            o.cc,
+		ipid:                          ipid,
 	}
 }
 
-func NewTpmVirtualSmartCardManager2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (TpmVirtualSmartCardManager2Client, error) {
+func NewVirtualSmartCardManager2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (VirtualSmartCardManager2Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(TpmVirtualSmartCardManager2SyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(VirtualSmartCardManager2SyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
 	}
-	base, err := itpmvirtualsmartcardmanager.NewTpmVirtualSmartCardManagerClient(ctx, cc, append(opts, dcom.Superclass(cc))...)
+	base, err := itpmvirtualsmartcardmanager.NewVirtualSmartCardManagerClient(ctx, cc, append(opts, dcom.Superclass(cc))...)
 	if err != nil {
 		return nil, err
 	}
@@ -126,57 +126,57 @@ func NewTpmVirtualSmartCardManager2Client(ctx context.Context, cc dcerpc.Conn, o
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultTpmVirtualSmartCardManager2Client{
-		TpmVirtualSmartCardManagerClient: base,
-		cc:                               cc,
-		ipid:                             ipid,
+	return &xxx_DefaultVirtualSmartCardManager2Client{
+		VirtualSmartCardManagerClient: base,
+		cc:                            cc,
+		ipid:                          ipid,
 	}, nil
 }
 
-// xxx_CreateVirtualSmartCardWithPinPolicyOperation structure represents the CreateVirtualSmartCardWithPinPolicy operation
-type xxx_CreateVirtualSmartCardWithPinPolicyOperation struct {
-	This             *dcom.ORPCThis                                   `idl:"name:This" json:"this"`
-	That             *dcom.ORPCThat                                   `idl:"name:That" json:"that"`
-	FriendlyName     string                                           `idl:"name:pszFriendlyName;string" json:"friendly_name"`
-	AdminAlgorithmID uint8                                            `idl:"name:bAdminAlgId" json:"admin_algorithm_id"`
-	AdminKey         []byte                                           `idl:"name:pbAdminKey;size_is:(cbAdminKey)" json:"admin_key"`
-	AdminKeyLength   uint32                                           `idl:"name:cbAdminKey" json:"admin_key_length"`
-	AdminKcv         []byte                                           `idl:"name:pbAdminKcv;size_is:(cbAdminKcv);pointer:unique" json:"admin_kcv"`
-	AdminKcvLength   uint32                                           `idl:"name:cbAdminKcv" json:"admin_kcv_length"`
-	Puk              []byte                                           `idl:"name:pbPuk;size_is:(cbPuk);pointer:unique" json:"puk"`
-	PukLength        uint32                                           `idl:"name:cbPuk" json:"puk_length"`
-	Pin              []byte                                           `idl:"name:pbPin;size_is:(cbPin)" json:"pin"`
-	PinLength        uint32                                           `idl:"name:cbPin" json:"pin_length"`
-	PinPolicy        []byte                                           `idl:"name:pbPinPolicy;size_is:(cbPinPolicy);pointer:unique" json:"pin_policy"`
-	PinPolicyLength  uint32                                           `idl:"name:cbPinPolicy" json:"pin_policy_length"`
-	Generate         int32                                            `idl:"name:fGenerate" json:"generate"`
-	StatusCallback   *tpmvsc.TpmVirtualSmartCardManagerStatusCallback `idl:"name:pStatusCallback;pointer:unique" json:"status_callback"`
-	InstanceID       string                                           `idl:"name:ppszInstanceId;string" json:"instance_id"`
-	NeedReboot       int32                                            `idl:"name:pfNeedReboot" json:"need_reboot"`
-	Return           int32                                            `idl:"name:Return" json:"return"`
+// xxx_CreateVirtualSmartCardWithPINPolicyOperation structure represents the CreateVirtualSmartCardWithPinPolicy operation
+type xxx_CreateVirtualSmartCardWithPINPolicyOperation struct {
+	This             *dcom.ORPCThis                                `idl:"name:This" json:"this"`
+	That             *dcom.ORPCThat                                `idl:"name:That" json:"that"`
+	FriendlyName     string                                        `idl:"name:pszFriendlyName;string" json:"friendly_name"`
+	AdminAlgorithmID uint8                                         `idl:"name:bAdminAlgId" json:"admin_algorithm_id"`
+	AdminKey         []byte                                        `idl:"name:pbAdminKey;size_is:(cbAdminKey)" json:"admin_key"`
+	AdminKeyLength   uint32                                        `idl:"name:cbAdminKey" json:"admin_key_length"`
+	AdminKCV         []byte                                        `idl:"name:pbAdminKcv;size_is:(cbAdminKcv);pointer:unique" json:"admin_kcv"`
+	AdminKCVLength   uint32                                        `idl:"name:cbAdminKcv" json:"admin_kcv_length"`
+	PUK              []byte                                        `idl:"name:pbPuk;size_is:(cbPuk);pointer:unique" json:"puk"`
+	PUKLength        uint32                                        `idl:"name:cbPuk" json:"puk_length"`
+	PIN              []byte                                        `idl:"name:pbPin;size_is:(cbPin)" json:"pin"`
+	PINLength        uint32                                        `idl:"name:cbPin" json:"pin_length"`
+	PINPolicy        []byte                                        `idl:"name:pbPinPolicy;size_is:(cbPinPolicy);pointer:unique" json:"pin_policy"`
+	PINPolicyLength  uint32                                        `idl:"name:cbPinPolicy" json:"pin_policy_length"`
+	Generate         int32                                         `idl:"name:fGenerate" json:"generate"`
+	StatusCallback   *tpmvsc.VirtualSmartCardManagerStatusCallback `idl:"name:pStatusCallback;pointer:unique" json:"status_callback"`
+	InstanceID       string                                        `idl:"name:ppszInstanceId;string" json:"instance_id"`
+	NeedReboot       int32                                         `idl:"name:pfNeedReboot" json:"need_reboot"`
+	Return           int32                                         `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) OpNum() int { return 5 }
+func (o *xxx_CreateVirtualSmartCardWithPINPolicyOperation) OpNum() int { return 5 }
 
-func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) OpName() string {
+func (o *xxx_CreateVirtualSmartCardWithPINPolicyOperation) OpName() string {
 	return "/ITpmVirtualSmartCardManager2/v0/CreateVirtualSmartCardWithPinPolicy"
 }
 
-func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_CreateVirtualSmartCardWithPINPolicyOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if o.AdminKey != nil && o.AdminKeyLength == 0 {
 		o.AdminKeyLength = uint32(len(o.AdminKey))
 	}
-	if o.AdminKcv != nil && o.AdminKcvLength == 0 {
-		o.AdminKcvLength = uint32(len(o.AdminKcv))
+	if o.AdminKCV != nil && o.AdminKCVLength == 0 {
+		o.AdminKCVLength = uint32(len(o.AdminKCV))
 	}
-	if o.Puk != nil && o.PukLength == 0 {
-		o.PukLength = uint32(len(o.Puk))
+	if o.PUK != nil && o.PUKLength == 0 {
+		o.PUKLength = uint32(len(o.PUK))
 	}
-	if o.Pin != nil && o.PinLength == 0 {
-		o.PinLength = uint32(len(o.Pin))
+	if o.PIN != nil && o.PINLength == 0 {
+		o.PINLength = uint32(len(o.PIN))
 	}
-	if o.PinPolicy != nil && o.PinPolicyLength == 0 {
-		o.PinPolicyLength = uint32(len(o.PinPolicy))
+	if o.PINPolicy != nil && o.PINPolicyLength == 0 {
+		o.PINPolicyLength = uint32(len(o.PINPolicy))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
@@ -186,7 +186,7 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) xxx_PrepareRequestPay
 	return nil
 }
 
-func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_CreateVirtualSmartCardWithPINPolicyOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -249,32 +249,32 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) MarshalNDRRequest(ctx
 	}
 	// pbAdminKcv {in} (1:{pointer=unique}*(1)[dim:0,size_is=cbAdminKcv](uchar))
 	{
-		if o.AdminKcv != nil || o.AdminKcvLength > 0 {
+		if o.AdminKCV != nil || o.AdminKCVLength > 0 {
 			_ptr_pbAdminKcv := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				dimSize1 := uint64(o.AdminKcvLength)
+				dimSize1 := uint64(o.AdminKCVLength)
 				if err := w.WriteSize(dimSize1); err != nil {
 					return err
 				}
 				sizeInfo := []uint64{
 					dimSize1,
 				}
-				for i1 := range o.AdminKcv {
+				for i1 := range o.AdminKCV {
 					i1 := i1
 					if uint64(i1) >= sizeInfo[0] {
 						break
 					}
-					if err := w.WriteData(o.AdminKcv[i1]); err != nil {
+					if err := w.WriteData(o.AdminKCV[i1]); err != nil {
 						return err
 					}
 				}
-				for i1 := len(o.AdminKcv); uint64(i1) < sizeInfo[0]; i1++ {
+				for i1 := len(o.AdminKCV); uint64(i1) < sizeInfo[0]; i1++ {
 					if err := w.WriteData(uint8(0)); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.AdminKcv, _ptr_pbAdminKcv); err != nil {
+			if err := w.WritePointer(&o.AdminKCV, _ptr_pbAdminKcv); err != nil {
 				return err
 			}
 		} else {
@@ -288,38 +288,38 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) MarshalNDRRequest(ctx
 	}
 	// cbAdminKcv {in} (1:(uint32))
 	{
-		if err := w.WriteData(o.AdminKcvLength); err != nil {
+		if err := w.WriteData(o.AdminKCVLength); err != nil {
 			return err
 		}
 	}
 	// pbPuk {in} (1:{pointer=unique}*(1)[dim:0,size_is=cbPuk](uchar))
 	{
-		if o.Puk != nil || o.PukLength > 0 {
+		if o.PUK != nil || o.PUKLength > 0 {
 			_ptr_pbPuk := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				dimSize1 := uint64(o.PukLength)
+				dimSize1 := uint64(o.PUKLength)
 				if err := w.WriteSize(dimSize1); err != nil {
 					return err
 				}
 				sizeInfo := []uint64{
 					dimSize1,
 				}
-				for i1 := range o.Puk {
+				for i1 := range o.PUK {
 					i1 := i1
 					if uint64(i1) >= sizeInfo[0] {
 						break
 					}
-					if err := w.WriteData(o.Puk[i1]); err != nil {
+					if err := w.WriteData(o.PUK[i1]); err != nil {
 						return err
 					}
 				}
-				for i1 := len(o.Puk); uint64(i1) < sizeInfo[0]; i1++ {
+				for i1 := len(o.PUK); uint64(i1) < sizeInfo[0]; i1++ {
 					if err := w.WriteData(uint8(0)); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Puk, _ptr_pbPuk); err != nil {
+			if err := w.WritePointer(&o.PUK, _ptr_pbPuk); err != nil {
 				return err
 			}
 		} else {
@@ -333,29 +333,29 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) MarshalNDRRequest(ctx
 	}
 	// cbPuk {in} (1:(uint32))
 	{
-		if err := w.WriteData(o.PukLength); err != nil {
+		if err := w.WriteData(o.PUKLength); err != nil {
 			return err
 		}
 	}
 	// pbPin {in} (1:{pointer=ref}*(1)[dim:0,size_is=cbPin](uchar))
 	{
-		dimSize1 := uint64(o.PinLength)
+		dimSize1 := uint64(o.PINLength)
 		if err := w.WriteSize(dimSize1); err != nil {
 			return err
 		}
 		sizeInfo := []uint64{
 			dimSize1,
 		}
-		for i1 := range o.Pin {
+		for i1 := range o.PIN {
 			i1 := i1
 			if uint64(i1) >= sizeInfo[0] {
 				break
 			}
-			if err := w.WriteData(o.Pin[i1]); err != nil {
+			if err := w.WriteData(o.PIN[i1]); err != nil {
 				return err
 			}
 		}
-		for i1 := len(o.Pin); uint64(i1) < sizeInfo[0]; i1++ {
+		for i1 := len(o.PIN); uint64(i1) < sizeInfo[0]; i1++ {
 			if err := w.WriteData(uint8(0)); err != nil {
 				return err
 			}
@@ -363,38 +363,38 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) MarshalNDRRequest(ctx
 	}
 	// cbPin {in} (1:(uint32))
 	{
-		if err := w.WriteData(o.PinLength); err != nil {
+		if err := w.WriteData(o.PINLength); err != nil {
 			return err
 		}
 	}
 	// pbPinPolicy {in} (1:{pointer=unique}*(1)[dim:0,size_is=cbPinPolicy](uchar))
 	{
-		if o.PinPolicy != nil || o.PinPolicyLength > 0 {
+		if o.PINPolicy != nil || o.PINPolicyLength > 0 {
 			_ptr_pbPinPolicy := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				dimSize1 := uint64(o.PinPolicyLength)
+				dimSize1 := uint64(o.PINPolicyLength)
 				if err := w.WriteSize(dimSize1); err != nil {
 					return err
 				}
 				sizeInfo := []uint64{
 					dimSize1,
 				}
-				for i1 := range o.PinPolicy {
+				for i1 := range o.PINPolicy {
 					i1 := i1
 					if uint64(i1) >= sizeInfo[0] {
 						break
 					}
-					if err := w.WriteData(o.PinPolicy[i1]); err != nil {
+					if err := w.WriteData(o.PINPolicy[i1]); err != nil {
 						return err
 					}
 				}
-				for i1 := len(o.PinPolicy); uint64(i1) < sizeInfo[0]; i1++ {
+				for i1 := len(o.PINPolicy); uint64(i1) < sizeInfo[0]; i1++ {
 					if err := w.WriteData(uint8(0)); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PinPolicy, _ptr_pbPinPolicy); err != nil {
+			if err := w.WritePointer(&o.PINPolicy, _ptr_pbPinPolicy); err != nil {
 				return err
 			}
 		} else {
@@ -408,7 +408,7 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) MarshalNDRRequest(ctx
 	}
 	// cbPinPolicy {in} (1:(uint32))
 	{
-		if err := w.WriteData(o.PinPolicyLength); err != nil {
+		if err := w.WriteData(o.PINPolicyLength); err != nil {
 			return err
 		}
 	}
@@ -427,7 +427,7 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) MarshalNDRRequest(ctx
 						return err
 					}
 				} else {
-					if err := (&tpmvsc.TpmVirtualSmartCardManagerStatusCallback{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&tpmvsc.VirtualSmartCardManagerStatusCallback{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
@@ -448,7 +448,7 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) MarshalNDRRequest(ctx
 	return nil
 }
 
-func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_CreateVirtualSmartCardWithPINPolicyOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -512,19 +512,19 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) UnmarshalNDRRequest(c
 				}
 			}
 			if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-				return fmt.Errorf("buffer overflow for size %d of array o.AdminKcv", sizeInfo[0])
+				return fmt.Errorf("buffer overflow for size %d of array o.AdminKCV", sizeInfo[0])
 			}
-			o.AdminKcv = make([]byte, sizeInfo[0])
-			for i1 := range o.AdminKcv {
+			o.AdminKCV = make([]byte, sizeInfo[0])
+			for i1 := range o.AdminKCV {
 				i1 := i1
-				if err := w.ReadData(&o.AdminKcv[i1]); err != nil {
+				if err := w.ReadData(&o.AdminKCV[i1]); err != nil {
 					return err
 				}
 			}
 			return nil
 		})
-		_s_pbAdminKcv := func(ptr interface{}) { o.AdminKcv = *ptr.(*[]byte) }
-		if err := w.ReadPointer(&o.AdminKcv, _s_pbAdminKcv, _ptr_pbAdminKcv); err != nil {
+		_s_pbAdminKcv := func(ptr interface{}) { o.AdminKCV = *ptr.(*[]byte) }
+		if err := w.ReadPointer(&o.AdminKCV, _s_pbAdminKcv, _ptr_pbAdminKcv); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -533,7 +533,7 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) UnmarshalNDRRequest(c
 	}
 	// cbAdminKcv {in} (1:(uint32))
 	{
-		if err := w.ReadData(&o.AdminKcvLength); err != nil {
+		if err := w.ReadData(&o.AdminKCVLength); err != nil {
 			return err
 		}
 	}
@@ -549,19 +549,19 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) UnmarshalNDRRequest(c
 				}
 			}
 			if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-				return fmt.Errorf("buffer overflow for size %d of array o.Puk", sizeInfo[0])
+				return fmt.Errorf("buffer overflow for size %d of array o.PUK", sizeInfo[0])
 			}
-			o.Puk = make([]byte, sizeInfo[0])
-			for i1 := range o.Puk {
+			o.PUK = make([]byte, sizeInfo[0])
+			for i1 := range o.PUK {
 				i1 := i1
-				if err := w.ReadData(&o.Puk[i1]); err != nil {
+				if err := w.ReadData(&o.PUK[i1]); err != nil {
 					return err
 				}
 			}
 			return nil
 		})
-		_s_pbPuk := func(ptr interface{}) { o.Puk = *ptr.(*[]byte) }
-		if err := w.ReadPointer(&o.Puk, _s_pbPuk, _ptr_pbPuk); err != nil {
+		_s_pbPuk := func(ptr interface{}) { o.PUK = *ptr.(*[]byte) }
+		if err := w.ReadPointer(&o.PUK, _s_pbPuk, _ptr_pbPuk); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -570,7 +570,7 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) UnmarshalNDRRequest(c
 	}
 	// cbPuk {in} (1:(uint32))
 	{
-		if err := w.ReadData(&o.PukLength); err != nil {
+		if err := w.ReadData(&o.PUKLength); err != nil {
 			return err
 		}
 	}
@@ -585,19 +585,19 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) UnmarshalNDRRequest(c
 			}
 		}
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-			return fmt.Errorf("buffer overflow for size %d of array o.Pin", sizeInfo[0])
+			return fmt.Errorf("buffer overflow for size %d of array o.PIN", sizeInfo[0])
 		}
-		o.Pin = make([]byte, sizeInfo[0])
-		for i1 := range o.Pin {
+		o.PIN = make([]byte, sizeInfo[0])
+		for i1 := range o.PIN {
 			i1 := i1
-			if err := w.ReadData(&o.Pin[i1]); err != nil {
+			if err := w.ReadData(&o.PIN[i1]); err != nil {
 				return err
 			}
 		}
 	}
 	// cbPin {in} (1:(uint32))
 	{
-		if err := w.ReadData(&o.PinLength); err != nil {
+		if err := w.ReadData(&o.PINLength); err != nil {
 			return err
 		}
 	}
@@ -613,19 +613,19 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) UnmarshalNDRRequest(c
 				}
 			}
 			if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-				return fmt.Errorf("buffer overflow for size %d of array o.PinPolicy", sizeInfo[0])
+				return fmt.Errorf("buffer overflow for size %d of array o.PINPolicy", sizeInfo[0])
 			}
-			o.PinPolicy = make([]byte, sizeInfo[0])
-			for i1 := range o.PinPolicy {
+			o.PINPolicy = make([]byte, sizeInfo[0])
+			for i1 := range o.PINPolicy {
 				i1 := i1
-				if err := w.ReadData(&o.PinPolicy[i1]); err != nil {
+				if err := w.ReadData(&o.PINPolicy[i1]); err != nil {
 					return err
 				}
 			}
 			return nil
 		})
-		_s_pbPinPolicy := func(ptr interface{}) { o.PinPolicy = *ptr.(*[]byte) }
-		if err := w.ReadPointer(&o.PinPolicy, _s_pbPinPolicy, _ptr_pbPinPolicy); err != nil {
+		_s_pbPinPolicy := func(ptr interface{}) { o.PINPolicy = *ptr.(*[]byte) }
+		if err := w.ReadPointer(&o.PINPolicy, _s_pbPinPolicy, _ptr_pbPinPolicy); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -634,7 +634,7 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) UnmarshalNDRRequest(c
 	}
 	// cbPinPolicy {in} (1:(uint32))
 	{
-		if err := w.ReadData(&o.PinPolicyLength); err != nil {
+		if err := w.ReadData(&o.PINPolicyLength); err != nil {
 			return err
 		}
 	}
@@ -648,14 +648,14 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) UnmarshalNDRRequest(c
 	{
 		_ptr_pStatusCallback := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if o.StatusCallback == nil {
-				o.StatusCallback = &tpmvsc.TpmVirtualSmartCardManagerStatusCallback{}
+				o.StatusCallback = &tpmvsc.VirtualSmartCardManagerStatusCallback{}
 			}
 			if err := o.StatusCallback.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pStatusCallback := func(ptr interface{}) { o.StatusCallback = *ptr.(**tpmvsc.TpmVirtualSmartCardManagerStatusCallback) }
+		_s_pStatusCallback := func(ptr interface{}) { o.StatusCallback = *ptr.(**tpmvsc.VirtualSmartCardManagerStatusCallback) }
 		if err := w.ReadPointer(&o.StatusCallback, _s_pStatusCallback, _ptr_pStatusCallback); err != nil {
 			return err
 		}
@@ -666,7 +666,7 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) UnmarshalNDRRequest(c
 	return nil
 }
 
-func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_CreateVirtualSmartCardWithPINPolicyOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -675,7 +675,7 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) xxx_PrepareResponsePa
 	return nil
 }
 
-func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_CreateVirtualSmartCardWithPINPolicyOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -730,7 +730,7 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) MarshalNDRResponse(ct
 	return nil
 }
 
-func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_CreateVirtualSmartCardWithPINPolicyOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -774,29 +774,29 @@ func (o *xxx_CreateVirtualSmartCardWithPinPolicyOperation) UnmarshalNDRResponse(
 	return nil
 }
 
-// CreateVirtualSmartCardWithPinPolicyRequest structure represents the CreateVirtualSmartCardWithPinPolicy operation request
-type CreateVirtualSmartCardWithPinPolicyRequest struct {
+// CreateVirtualSmartCardWithPINPolicyRequest structure represents the CreateVirtualSmartCardWithPinPolicy operation request
+type CreateVirtualSmartCardWithPINPolicyRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This             *dcom.ORPCThis                                   `idl:"name:This" json:"this"`
-	FriendlyName     string                                           `idl:"name:pszFriendlyName;string" json:"friendly_name"`
-	AdminAlgorithmID uint8                                            `idl:"name:bAdminAlgId" json:"admin_algorithm_id"`
-	AdminKey         []byte                                           `idl:"name:pbAdminKey;size_is:(cbAdminKey)" json:"admin_key"`
-	AdminKeyLength   uint32                                           `idl:"name:cbAdminKey" json:"admin_key_length"`
-	AdminKcv         []byte                                           `idl:"name:pbAdminKcv;size_is:(cbAdminKcv);pointer:unique" json:"admin_kcv"`
-	AdminKcvLength   uint32                                           `idl:"name:cbAdminKcv" json:"admin_kcv_length"`
-	Puk              []byte                                           `idl:"name:pbPuk;size_is:(cbPuk);pointer:unique" json:"puk"`
-	PukLength        uint32                                           `idl:"name:cbPuk" json:"puk_length"`
-	Pin              []byte                                           `idl:"name:pbPin;size_is:(cbPin)" json:"pin"`
-	PinLength        uint32                                           `idl:"name:cbPin" json:"pin_length"`
-	PinPolicy        []byte                                           `idl:"name:pbPinPolicy;size_is:(cbPinPolicy);pointer:unique" json:"pin_policy"`
-	PinPolicyLength  uint32                                           `idl:"name:cbPinPolicy" json:"pin_policy_length"`
-	Generate         int32                                            `idl:"name:fGenerate" json:"generate"`
-	StatusCallback   *tpmvsc.TpmVirtualSmartCardManagerStatusCallback `idl:"name:pStatusCallback;pointer:unique" json:"status_callback"`
+	This             *dcom.ORPCThis                                `idl:"name:This" json:"this"`
+	FriendlyName     string                                        `idl:"name:pszFriendlyName;string" json:"friendly_name"`
+	AdminAlgorithmID uint8                                         `idl:"name:bAdminAlgId" json:"admin_algorithm_id"`
+	AdminKey         []byte                                        `idl:"name:pbAdminKey;size_is:(cbAdminKey)" json:"admin_key"`
+	AdminKeyLength   uint32                                        `idl:"name:cbAdminKey" json:"admin_key_length"`
+	AdminKCV         []byte                                        `idl:"name:pbAdminKcv;size_is:(cbAdminKcv);pointer:unique" json:"admin_kcv"`
+	AdminKCVLength   uint32                                        `idl:"name:cbAdminKcv" json:"admin_kcv_length"`
+	PUK              []byte                                        `idl:"name:pbPuk;size_is:(cbPuk);pointer:unique" json:"puk"`
+	PUKLength        uint32                                        `idl:"name:cbPuk" json:"puk_length"`
+	PIN              []byte                                        `idl:"name:pbPin;size_is:(cbPin)" json:"pin"`
+	PINLength        uint32                                        `idl:"name:cbPin" json:"pin_length"`
+	PINPolicy        []byte                                        `idl:"name:pbPinPolicy;size_is:(cbPinPolicy);pointer:unique" json:"pin_policy"`
+	PINPolicyLength  uint32                                        `idl:"name:cbPinPolicy" json:"pin_policy_length"`
+	Generate         int32                                         `idl:"name:fGenerate" json:"generate"`
+	StatusCallback   *tpmvsc.VirtualSmartCardManagerStatusCallback `idl:"name:pStatusCallback;pointer:unique" json:"status_callback"`
 }
 
-func (o *CreateVirtualSmartCardWithPinPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateVirtualSmartCardWithPinPolicyOperation) *xxx_CreateVirtualSmartCardWithPinPolicyOperation {
+func (o *CreateVirtualSmartCardWithPINPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateVirtualSmartCardWithPINPolicyOperation) *xxx_CreateVirtualSmartCardWithPINPolicyOperation {
 	if op == nil {
-		op = &xxx_CreateVirtualSmartCardWithPinPolicyOperation{}
+		op = &xxx_CreateVirtualSmartCardWithPINPolicyOperation{}
 	}
 	if o == nil {
 		return op
@@ -806,20 +806,20 @@ func (o *CreateVirtualSmartCardWithPinPolicyRequest) xxx_ToOp(ctx context.Contex
 	op.AdminAlgorithmID = o.AdminAlgorithmID
 	op.AdminKey = o.AdminKey
 	op.AdminKeyLength = o.AdminKeyLength
-	op.AdminKcv = o.AdminKcv
-	op.AdminKcvLength = o.AdminKcvLength
-	op.Puk = o.Puk
-	op.PukLength = o.PukLength
-	op.Pin = o.Pin
-	op.PinLength = o.PinLength
-	op.PinPolicy = o.PinPolicy
-	op.PinPolicyLength = o.PinPolicyLength
+	op.AdminKCV = o.AdminKCV
+	op.AdminKCVLength = o.AdminKCVLength
+	op.PUK = o.PUK
+	op.PUKLength = o.PUKLength
+	op.PIN = o.PIN
+	op.PINLength = o.PINLength
+	op.PINPolicy = o.PINPolicy
+	op.PINPolicyLength = o.PINPolicyLength
 	op.Generate = o.Generate
 	op.StatusCallback = o.StatusCallback
 	return op
 }
 
-func (o *CreateVirtualSmartCardWithPinPolicyRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateVirtualSmartCardWithPinPolicyOperation) {
+func (o *CreateVirtualSmartCardWithPINPolicyRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateVirtualSmartCardWithPINPolicyOperation) {
 	if o == nil {
 		return
 	}
@@ -828,22 +828,22 @@ func (o *CreateVirtualSmartCardWithPinPolicyRequest) xxx_FromOp(ctx context.Cont
 	o.AdminAlgorithmID = op.AdminAlgorithmID
 	o.AdminKey = op.AdminKey
 	o.AdminKeyLength = op.AdminKeyLength
-	o.AdminKcv = op.AdminKcv
-	o.AdminKcvLength = op.AdminKcvLength
-	o.Puk = op.Puk
-	o.PukLength = op.PukLength
-	o.Pin = op.Pin
-	o.PinLength = op.PinLength
-	o.PinPolicy = op.PinPolicy
-	o.PinPolicyLength = op.PinPolicyLength
+	o.AdminKCV = op.AdminKCV
+	o.AdminKCVLength = op.AdminKCVLength
+	o.PUK = op.PUK
+	o.PUKLength = op.PUKLength
+	o.PIN = op.PIN
+	o.PINLength = op.PINLength
+	o.PINPolicy = op.PINPolicy
+	o.PINPolicyLength = op.PINPolicyLength
 	o.Generate = op.Generate
 	o.StatusCallback = op.StatusCallback
 }
-func (o *CreateVirtualSmartCardWithPinPolicyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *CreateVirtualSmartCardWithPINPolicyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *CreateVirtualSmartCardWithPinPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_CreateVirtualSmartCardWithPinPolicyOperation{}
+func (o *CreateVirtualSmartCardWithPINPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_CreateVirtualSmartCardWithPINPolicyOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -851,8 +851,8 @@ func (o *CreateVirtualSmartCardWithPinPolicyRequest) UnmarshalNDR(ctx context.Co
 	return nil
 }
 
-// CreateVirtualSmartCardWithPinPolicyResponse structure represents the CreateVirtualSmartCardWithPinPolicy operation response
-type CreateVirtualSmartCardWithPinPolicyResponse struct {
+// CreateVirtualSmartCardWithPINPolicyResponse structure represents the CreateVirtualSmartCardWithPinPolicy operation response
+type CreateVirtualSmartCardWithPINPolicyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
 	InstanceID string         `idl:"name:ppszInstanceId;string" json:"instance_id"`
@@ -861,9 +861,9 @@ type CreateVirtualSmartCardWithPinPolicyResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateVirtualSmartCardWithPinPolicyResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateVirtualSmartCardWithPinPolicyOperation) *xxx_CreateVirtualSmartCardWithPinPolicyOperation {
+func (o *CreateVirtualSmartCardWithPINPolicyResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateVirtualSmartCardWithPINPolicyOperation) *xxx_CreateVirtualSmartCardWithPINPolicyOperation {
 	if op == nil {
-		op = &xxx_CreateVirtualSmartCardWithPinPolicyOperation{}
+		op = &xxx_CreateVirtualSmartCardWithPINPolicyOperation{}
 	}
 	if o == nil {
 		return op
@@ -875,7 +875,7 @@ func (o *CreateVirtualSmartCardWithPinPolicyResponse) xxx_ToOp(ctx context.Conte
 	return op
 }
 
-func (o *CreateVirtualSmartCardWithPinPolicyResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateVirtualSmartCardWithPinPolicyOperation) {
+func (o *CreateVirtualSmartCardWithPINPolicyResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateVirtualSmartCardWithPINPolicyOperation) {
 	if o == nil {
 		return
 	}
@@ -884,11 +884,11 @@ func (o *CreateVirtualSmartCardWithPinPolicyResponse) xxx_FromOp(ctx context.Con
 	o.NeedReboot = op.NeedReboot
 	o.Return = op.Return
 }
-func (o *CreateVirtualSmartCardWithPinPolicyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *CreateVirtualSmartCardWithPINPolicyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *CreateVirtualSmartCardWithPinPolicyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_CreateVirtualSmartCardWithPinPolicyOperation{}
+func (o *CreateVirtualSmartCardWithPINPolicyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_CreateVirtualSmartCardWithPINPolicyOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

@@ -26,7 +26,7 @@ var (
 )
 
 // IMSMQQuery2 server interface.
-type ImsmqQuery2Server interface {
+type Query2Server interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -38,17 +38,17 @@ type ImsmqQuery2Server interface {
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 }
 
-func RegisterImsmqQuery2Server(conn dcerpc.Conn, o ImsmqQuery2Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqQuery2ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqQuery2SyntaxV0_0))...)
+func RegisterQuery2Server(conn dcerpc.Conn, o Query2Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewQuery2ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(Query2SyntaxV0_0))...)
 }
 
-func NewImsmqQuery2ServerHandle(o ImsmqQuery2Server) dcerpc.ServerHandle {
+func NewQuery2ServerHandle(o Query2Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqQuery2ServerHandle(ctx, o, opNum, r)
+		return Query2ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqQuery2ServerHandle(ctx context.Context, o ImsmqQuery2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func Query2ServerHandle(ctx context.Context, o Query2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -77,15 +77,15 @@ func ImsmqQuery2ServerHandle(ctx context.Context, o ImsmqQuery2Server, opNum int
 }
 
 // Unimplemented IMSMQQuery2
-type UnimplementedImsmqQuery2Server struct {
+type UnimplementedQuery2Server struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedImsmqQuery2Server) LookupQueue(context.Context, *LookupQueueRequest) (*LookupQueueResponse, error) {
+func (UnimplementedQuery2Server) LookupQueue(context.Context, *LookupQueueRequest) (*LookupQueueResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQuery2Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+func (UnimplementedQuery2Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqQuery2Server = (*UnimplementedImsmqQuery2Server)(nil)
+var _ Query2Server = (*UnimplementedQuery2Server)(nil)

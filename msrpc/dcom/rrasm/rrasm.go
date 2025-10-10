@@ -37,8 +37,8 @@ var (
 	GoPackage = "dcom/rrasm"
 )
 
-// MaxSstpHashSize represents the MAX_SSTP_HASH_SIZE RPC constant
-var MaxSstpHashSize = 32
+// MaxSSTPHashSize represents the MAX_SSTP_HASH_SIZE RPC constant
+var MaxSSTPHashSize = 32
 
 // MaxGroupLength represents the MAX_GROUP_LEN RPC constant
 var MaxGroupLength = 64
@@ -46,20 +46,20 @@ var MaxGroupLength = 64
 // MaxAdaptorNameLength represents the MAX_ADAPTOR_NAME_LEN RPC constant
 var MaxAdaptorNameLength = 48
 
-// RasrpcMaxEntryName represents the RASRPC_MaxEntryName RPC constant
-var RasrpcMaxEntryName = 256
+// MaxEntryName represents the RASRPC_MaxEntryName RPC constant
+var MaxEntryName = 256
 
-// RasrpcMaxPortName represents the RASRPC_MaxPortName RPC constant
-var RasrpcMaxPortName = 16
+// MaxPortName represents the RASRPC_MaxPortName RPC constant
+var MaxPortName = 16
 
-// RasrpcMaxDeviceName represents the RASRPC_MaxDeviceName RPC constant
-var RasrpcMaxDeviceName = 128
+// MaxDeviceName represents the RASRPC_MaxDeviceName RPC constant
+var MaxDeviceName = 128
 
-// RasrpcMaxPhoneNumber represents the RASRPC_MaxPhoneNumber RPC constant
-var RasrpcMaxPhoneNumber = 128
+// MaxPhoneNumber represents the RASRPC_MaxPhoneNumber RPC constant
+var MaxPhoneNumber = 128
 
-// RasrpcMaxPath represents the RASRPC_MAX_PATH RPC constant
-var RasrpcMaxPath = 260
+// MaxPath represents the RASRPC_MAX_PATH RPC constant
+var MaxPath = 260
 
 // RouterInterfaceType type represents ROUTER_INTERFACE_TYPE RPC enumeration.
 type RouterInterfaceType uint16
@@ -214,89 +214,89 @@ func (o ForwardAction) String() string {
 	return "Invalid"
 }
 
-// MIBIpforwardType type represents MIB_IPFORWARD_TYPE RPC enumeration.
-type MIBIpforwardType uint16
+// MIBIPForwardType type represents MIB_IPFORWARD_TYPE RPC enumeration.
+type MIBIPForwardType uint16
 
 var (
-	MIBIpforwardTypeIprouteTypeOther    MIBIpforwardType = 1
-	MIBIpforwardTypeIprouteTypeInvalid  MIBIpforwardType = 2
-	MIBIpforwardTypeIprouteTypeDirect   MIBIpforwardType = 3
-	MIBIpforwardTypeIprouteTypeIndirect MIBIpforwardType = 4
+	MIBIPForwardTypeRouteTypeOther    MIBIPForwardType = 1
+	MIBIPForwardTypeRouteTypeInvalid  MIBIPForwardType = 2
+	MIBIPForwardTypeRouteTypeDirect   MIBIPForwardType = 3
+	MIBIPForwardTypeRouteTypeIndirect MIBIPForwardType = 4
 )
 
-func (o MIBIpforwardType) String() string {
+func (o MIBIPForwardType) String() string {
 	switch o {
-	case MIBIpforwardTypeIprouteTypeOther:
-		return "MIBIpforwardTypeIprouteTypeOther"
-	case MIBIpforwardTypeIprouteTypeInvalid:
-		return "MIBIpforwardTypeIprouteTypeInvalid"
-	case MIBIpforwardTypeIprouteTypeDirect:
-		return "MIBIpforwardTypeIprouteTypeDirect"
-	case MIBIpforwardTypeIprouteTypeIndirect:
-		return "MIBIpforwardTypeIprouteTypeIndirect"
+	case MIBIPForwardTypeRouteTypeOther:
+		return "MIBIPForwardTypeRouteTypeOther"
+	case MIBIPForwardTypeRouteTypeInvalid:
+		return "MIBIPForwardTypeRouteTypeInvalid"
+	case MIBIPForwardTypeRouteTypeDirect:
+		return "MIBIPForwardTypeRouteTypeDirect"
+	case MIBIPForwardTypeRouteTypeIndirect:
+		return "MIBIPForwardTypeRouteTypeIndirect"
 	}
 	return "Invalid"
 }
 
-// MIBIpforwardProto type represents MIB_IPFORWARD_PROTO RPC enumeration.
-type MIBIpforwardProto uint16
+// MIBIPForwardProto type represents MIB_IPFORWARD_PROTO RPC enumeration.
+type MIBIPForwardProto uint16
 
 var (
-	MIBIpforwardProtoIPProtoOther          MIBIpforwardProto = 1
-	MIBIpforwardProtoIPProtoLocal          MIBIpforwardProto = 2
-	MIBIpforwardProtoIPProtoNetmgmt        MIBIpforwardProto = 3
-	MIBIpforwardProtoIPProtoICMP           MIBIpforwardProto = 4
-	MIBIpforwardProtoIPProtoEgp            MIBIpforwardProto = 5
-	MIBIpforwardProtoIPProtoGgp            MIBIpforwardProto = 6
-	MIBIpforwardProtoIPProtoHello          MIBIpforwardProto = 7
-	MIBIpforwardProtoIPProtoRip            MIBIpforwardProto = 8
-	MIBIpforwardProtoIPProtoIsIs           MIBIpforwardProto = 9
-	MIBIpforwardProtoIPProtoEsIs           MIBIpforwardProto = 10
-	MIBIpforwardProtoIPProtoCisco          MIBIpforwardProto = 11
-	MIBIpforwardProtoIPProtoBbn            MIBIpforwardProto = 12
-	MIBIpforwardProtoIPProtoOspf           MIBIpforwardProto = 13
-	MIBIpforwardProtoIPProtoBgp            MIBIpforwardProto = 14
-	MIBIpforwardProtoIPProtoNTAutostatic   MIBIpforwardProto = 10002
-	MIBIpforwardProtoIPProtoNTStatic       MIBIpforwardProto = 10006
-	MIBIpforwardProtoIPProtoNTStaticNonDod MIBIpforwardProto = 10007
+	MIBIPForwardProtoOther          MIBIPForwardProto = 1
+	MIBIPForwardProtoLocal          MIBIPForwardProto = 2
+	MIBIPForwardProtoNETMGMT        MIBIPForwardProto = 3
+	MIBIPForwardProtoICMP           MIBIPForwardProto = 4
+	MIBIPForwardProtoEGP            MIBIPForwardProto = 5
+	MIBIPForwardProtoGGP            MIBIPForwardProto = 6
+	MIBIPForwardProtoHello          MIBIPForwardProto = 7
+	MIBIPForwardProtoRIP            MIBIPForwardProto = 8
+	MIBIPForwardProtoISIS           MIBIPForwardProto = 9
+	MIBIPForwardProtoESIS           MIBIPForwardProto = 10
+	MIBIPForwardProtoCisco          MIBIPForwardProto = 11
+	MIBIPForwardProtoBbn            MIBIPForwardProto = 12
+	MIBIPForwardProtoOSPF           MIBIPForwardProto = 13
+	MIBIPForwardProtoBGP            MIBIPForwardProto = 14
+	MIBIPForwardProtoNTAutostatic   MIBIPForwardProto = 10002
+	MIBIPForwardProtoNTStatic       MIBIPForwardProto = 10006
+	MIBIPForwardProtoNTStaticNonDOD MIBIPForwardProto = 10007
 )
 
-func (o MIBIpforwardProto) String() string {
+func (o MIBIPForwardProto) String() string {
 	switch o {
-	case MIBIpforwardProtoIPProtoOther:
-		return "MIBIpforwardProtoIPProtoOther"
-	case MIBIpforwardProtoIPProtoLocal:
-		return "MIBIpforwardProtoIPProtoLocal"
-	case MIBIpforwardProtoIPProtoNetmgmt:
-		return "MIBIpforwardProtoIPProtoNetmgmt"
-	case MIBIpforwardProtoIPProtoICMP:
-		return "MIBIpforwardProtoIPProtoICMP"
-	case MIBIpforwardProtoIPProtoEgp:
-		return "MIBIpforwardProtoIPProtoEgp"
-	case MIBIpforwardProtoIPProtoGgp:
-		return "MIBIpforwardProtoIPProtoGgp"
-	case MIBIpforwardProtoIPProtoHello:
-		return "MIBIpforwardProtoIPProtoHello"
-	case MIBIpforwardProtoIPProtoRip:
-		return "MIBIpforwardProtoIPProtoRip"
-	case MIBIpforwardProtoIPProtoIsIs:
-		return "MIBIpforwardProtoIPProtoIsIs"
-	case MIBIpforwardProtoIPProtoEsIs:
-		return "MIBIpforwardProtoIPProtoEsIs"
-	case MIBIpforwardProtoIPProtoCisco:
-		return "MIBIpforwardProtoIPProtoCisco"
-	case MIBIpforwardProtoIPProtoBbn:
-		return "MIBIpforwardProtoIPProtoBbn"
-	case MIBIpforwardProtoIPProtoOspf:
-		return "MIBIpforwardProtoIPProtoOspf"
-	case MIBIpforwardProtoIPProtoBgp:
-		return "MIBIpforwardProtoIPProtoBgp"
-	case MIBIpforwardProtoIPProtoNTAutostatic:
-		return "MIBIpforwardProtoIPProtoNTAutostatic"
-	case MIBIpforwardProtoIPProtoNTStatic:
-		return "MIBIpforwardProtoIPProtoNTStatic"
-	case MIBIpforwardProtoIPProtoNTStaticNonDod:
-		return "MIBIpforwardProtoIPProtoNTStaticNonDod"
+	case MIBIPForwardProtoOther:
+		return "MIBIPForwardProtoOther"
+	case MIBIPForwardProtoLocal:
+		return "MIBIPForwardProtoLocal"
+	case MIBIPForwardProtoNETMGMT:
+		return "MIBIPForwardProtoNETMGMT"
+	case MIBIPForwardProtoICMP:
+		return "MIBIPForwardProtoICMP"
+	case MIBIPForwardProtoEGP:
+		return "MIBIPForwardProtoEGP"
+	case MIBIPForwardProtoGGP:
+		return "MIBIPForwardProtoGGP"
+	case MIBIPForwardProtoHello:
+		return "MIBIPForwardProtoHello"
+	case MIBIPForwardProtoRIP:
+		return "MIBIPForwardProtoRIP"
+	case MIBIPForwardProtoISIS:
+		return "MIBIPForwardProtoISIS"
+	case MIBIPForwardProtoESIS:
+		return "MIBIPForwardProtoESIS"
+	case MIBIPForwardProtoCisco:
+		return "MIBIPForwardProtoCisco"
+	case MIBIPForwardProtoBbn:
+		return "MIBIPForwardProtoBbn"
+	case MIBIPForwardProtoOSPF:
+		return "MIBIPForwardProtoOSPF"
+	case MIBIPForwardProtoBGP:
+		return "MIBIPForwardProtoBGP"
+	case MIBIPForwardProtoNTAutostatic:
+		return "MIBIPForwardProtoNTAutostatic"
+	case MIBIPForwardProtoNTStatic:
+		return "MIBIPForwardProtoNTStatic"
+	case MIBIPForwardProtoNTStaticNonDOD:
+		return "MIBIPForwardProtoNTStaticNonDOD"
 	}
 	return "Invalid"
 }
@@ -323,80 +323,80 @@ func (o MIBIPStatsForwarding) String() string {
 type MIBTCPState uint16
 
 var (
-	MibtcpStateClosed    MIBTCPState = 1
-	MibtcpStateListen    MIBTCPState = 2
-	MibtcpStateSynSent   MIBTCPState = 3
-	MibtcpStateSynRcvd   MIBTCPState = 4
-	MibtcpStateEstab     MIBTCPState = 5
-	MibtcpStateInWait1   MIBTCPState = 6
-	MibtcpStateInWait2   MIBTCPState = 7
-	MibtcpStateCloseWait MIBTCPState = 8
-	MibtcpStateClosing   MIBTCPState = 9
-	MibtcpStateLastAck   MIBTCPState = 10
-	MibtcpStateTimeWait  MIBTCPState = 11
-	MibtcpStateDeleteTcb MIBTCPState = 12
+	MIBTCPStateClosed    MIBTCPState = 1
+	MIBTCPStateListen    MIBTCPState = 2
+	MIBTCPStateSynSent   MIBTCPState = 3
+	MIBTCPStateSynRcvd   MIBTCPState = 4
+	MIBTCPStateEstab     MIBTCPState = 5
+	MIBTCPStateInWait1   MIBTCPState = 6
+	MIBTCPStateInWait2   MIBTCPState = 7
+	MIBTCPStateCloseWait MIBTCPState = 8
+	MIBTCPStateClosing   MIBTCPState = 9
+	MIBTCPStateLastAck   MIBTCPState = 10
+	MIBTCPStateTimeWait  MIBTCPState = 11
+	MIBTCPStateDeleteTcb MIBTCPState = 12
 )
 
 func (o MIBTCPState) String() string {
 	switch o {
-	case MibtcpStateClosed:
-		return "MibtcpStateClosed"
-	case MibtcpStateListen:
-		return "MibtcpStateListen"
-	case MibtcpStateSynSent:
-		return "MibtcpStateSynSent"
-	case MibtcpStateSynRcvd:
-		return "MibtcpStateSynRcvd"
-	case MibtcpStateEstab:
-		return "MibtcpStateEstab"
-	case MibtcpStateInWait1:
-		return "MibtcpStateInWait1"
-	case MibtcpStateInWait2:
-		return "MibtcpStateInWait2"
-	case MibtcpStateCloseWait:
-		return "MibtcpStateCloseWait"
-	case MibtcpStateClosing:
-		return "MibtcpStateClosing"
-	case MibtcpStateLastAck:
-		return "MibtcpStateLastAck"
-	case MibtcpStateTimeWait:
-		return "MibtcpStateTimeWait"
-	case MibtcpStateDeleteTcb:
-		return "MibtcpStateDeleteTcb"
+	case MIBTCPStateClosed:
+		return "MIBTCPStateClosed"
+	case MIBTCPStateListen:
+		return "MIBTCPStateListen"
+	case MIBTCPStateSynSent:
+		return "MIBTCPStateSynSent"
+	case MIBTCPStateSynRcvd:
+		return "MIBTCPStateSynRcvd"
+	case MIBTCPStateEstab:
+		return "MIBTCPStateEstab"
+	case MIBTCPStateInWait1:
+		return "MIBTCPStateInWait1"
+	case MIBTCPStateInWait2:
+		return "MIBTCPStateInWait2"
+	case MIBTCPStateCloseWait:
+		return "MIBTCPStateCloseWait"
+	case MIBTCPStateClosing:
+		return "MIBTCPStateClosing"
+	case MIBTCPStateLastAck:
+		return "MIBTCPStateLastAck"
+	case MIBTCPStateTimeWait:
+		return "MIBTCPStateTimeWait"
+	case MIBTCPStateDeleteTcb:
+		return "MIBTCPStateDeleteTcb"
 	}
 	return "Invalid"
 }
 
-// TCPRtoAlgorithm type represents TCP_RTO_ALGORITHM RPC enumeration.
-type TCPRtoAlgorithm uint16
+// TCPRTOAlgorithm type represents TCP_RTO_ALGORITHM RPC enumeration.
+type TCPRTOAlgorithm uint16
 
 var (
-	TCPRtoAlgorithmMibtcpRtoOther    TCPRtoAlgorithm = 1
-	TCPRtoAlgorithmMibtcpRtoConstant TCPRtoAlgorithm = 2
-	TCPRtoAlgorithmMibtcpRtoRsre     TCPRtoAlgorithm = 3
-	TCPRtoAlgorithmMibtcpRtoVanj     TCPRtoAlgorithm = 4
+	TCPRTOAlgorithmMIBTCPRTOOther    TCPRTOAlgorithm = 1
+	TCPRTOAlgorithmMIBTCPRTOConstant TCPRTOAlgorithm = 2
+	TCPRTOAlgorithmMIBTCPRTORSRE     TCPRTOAlgorithm = 3
+	TCPRTOAlgorithmMIBTCPRTOVANJ     TCPRTOAlgorithm = 4
 )
 
-func (o TCPRtoAlgorithm) String() string {
+func (o TCPRTOAlgorithm) String() string {
 	switch o {
-	case TCPRtoAlgorithmMibtcpRtoOther:
-		return "TCPRtoAlgorithmMibtcpRtoOther"
-	case TCPRtoAlgorithmMibtcpRtoConstant:
-		return "TCPRtoAlgorithmMibtcpRtoConstant"
-	case TCPRtoAlgorithmMibtcpRtoRsre:
-		return "TCPRtoAlgorithmMibtcpRtoRsre"
-	case TCPRtoAlgorithmMibtcpRtoVanj:
-		return "TCPRtoAlgorithmMibtcpRtoVanj"
+	case TCPRTOAlgorithmMIBTCPRTOOther:
+		return "TCPRTOAlgorithmMIBTCPRTOOther"
+	case TCPRTOAlgorithmMIBTCPRTOConstant:
+		return "TCPRTOAlgorithmMIBTCPRTOConstant"
+	case TCPRTOAlgorithmMIBTCPRTORSRE:
+		return "TCPRTOAlgorithmMIBTCPRTORSRE"
+	case TCPRTOAlgorithmMIBTCPRTOVANJ:
+		return "TCPRTOAlgorithmMIBTCPRTOVANJ"
 	}
 	return "Invalid"
 }
 
-// In6Addr structure represents IN6_ADDR RPC structure.
-type In6Addr struct {
-	Union *In6Addr_Union `idl:"name:u" json:"union"`
+// IN6Addr structure represents IN6_ADDR RPC structure.
+type IN6Addr struct {
+	Union *IN6Addr_Union `idl:"name:u" json:"union"`
 }
 
-func (o *In6Addr) xxx_PreparePayload(ctx context.Context) error {
+func (o *IN6Addr) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -405,30 +405,30 @@ func (o *In6Addr) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *In6Addr) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IN6Addr) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	// FIXME unknown type u
 	return nil
 }
-func (o *In6Addr) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IN6Addr) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	// FIXME: unknown type u
 	return nil
 }
 
-type In6Addr_Union struct {
+type IN6Addr_Union struct {
 	Byte []byte   `idl:"name:Byte" json:"byte"`
 	Word []uint16 `idl:"name:Word" json:"word"`
 }
 
-// DimInformationContainer structure represents DIM_INFORMATION_CONTAINER RPC structure.
-type DimInformationContainer struct {
+// InformationContainer structure represents DIM_INFORMATION_CONTAINER RPC structure.
+type InformationContainer struct {
 	BufferSize uint32 `idl:"name:dwBufferSize" json:"buffer_size"`
 	Buffer     []byte `idl:"name:pBuffer;size_is:(dwBufferSize)" json:"buffer"`
 }
 
-func (o *DimInformationContainer) xxx_PreparePayload(ctx context.Context) error {
+func (o *InformationContainer) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -440,7 +440,7 @@ func (o *DimInformationContainer) xxx_PreparePayload(ctx context.Context) error 
 	}
 	return nil
 }
-func (o *DimInformationContainer) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *InformationContainer) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -485,7 +485,7 @@ func (o *DimInformationContainer) MarshalNDR(ctx context.Context, w ndr.Writer) 
 	}
 	return nil
 }
-func (o *DimInformationContainer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *InformationContainer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -524,14 +524,14 @@ func (o *DimInformationContainer) UnmarshalNDR(ctx context.Context, w ndr.Reader
 	return nil
 }
 
-// MprapiObjectHeaderIDL structure represents MPRAPI_OBJECT_HEADER_IDL RPC structure.
-type MprapiObjectHeaderIDL struct {
+// ObjectHeaderIDL structure represents MPRAPI_OBJECT_HEADER_IDL RPC structure.
+type ObjectHeaderIDL struct {
 	Revision uint8  `idl:"name:revision" json:"revision"`
 	Type     uint8  `idl:"name:type" json:"type"`
 	Size     uint16 `idl:"name:size" json:"size"`
 }
 
-func (o *MprapiObjectHeaderIDL) xxx_PreparePayload(ctx context.Context) error {
+func (o *ObjectHeaderIDL) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -540,7 +540,7 @@ func (o *MprapiObjectHeaderIDL) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MprapiObjectHeaderIDL) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectHeaderIDL) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -558,7 +558,7 @@ func (o *MprapiObjectHeaderIDL) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	}
 	return nil
 }
-func (o *MprapiObjectHeaderIDL) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectHeaderIDL) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(2); err != nil {
 		return err
 	}
@@ -574,8 +574,8 @@ func (o *MprapiObjectHeaderIDL) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	return nil
 }
 
-// PppProjectionInfo1 structure represents PPP_PROJECTION_INFO_1 RPC structure.
-type PppProjectionInfo1 struct {
+// PPPProjectionInfo1 structure represents PPP_PROJECTION_INFO_1 RPC structure.
+type PPPProjectionInfo1 struct {
 	IPv4NegotiationError         uint32   `idl:"name:dwIPv4NegotiationError" json:"ipv4_negotiation_error"`
 	Address                      []uint16 `idl:"name:wszAddress" json:"address"`
 	RemoteAddress                []uint16 `idl:"name:wszRemoteAddress" json:"remote_address"`
@@ -588,25 +588,25 @@ type PppProjectionInfo1 struct {
 	Prefix                       []byte   `idl:"name:bPrefix" json:"prefix"`
 	PrefixLength                 uint32   `idl:"name:dwPrefixLength" json:"prefix_length"`
 	IPv6SubInterfaceIndex        uint64   `idl:"name:IPv6SubInterfaceIndex" json:"ipv6_sub_interface_index"`
-	LcpError                     uint32   `idl:"name:dwLcpError" json:"lcp_error"`
+	LCPError                     uint32   `idl:"name:dwLcpError" json:"lcp_error"`
 	AuthenticationProtocol       uint32   `idl:"name:dwAuthenticationProtocol" json:"authentication_protocol"`
 	AuthenticationData           uint32   `idl:"name:dwAuthenticationData" json:"authentication_data"`
 	RemoteAuthenticationProtocol uint32   `idl:"name:dwRemoteAuthenticationProtocol" json:"remote_authentication_protocol"`
 	RemoteAuthenticationData     uint32   `idl:"name:dwRemoteAuthenticationData" json:"remote_authentication_data"`
-	LcpTerminateReason           uint32   `idl:"name:dwLcpTerminateReason" json:"lcp_terminate_reason"`
-	LcpRemoteTerminateReason     uint32   `idl:"name:dwLcpRemoteTerminateReason" json:"lcp_remote_terminate_reason"`
-	LcpOptions                   uint32   `idl:"name:dwLcpOptions" json:"lcp_options"`
-	LcpRemoteOptions             uint32   `idl:"name:dwLcpRemoteOptions" json:"lcp_remote_options"`
-	EapTypeID                    uint32   `idl:"name:dwEapTypeId" json:"eap_type_id"`
-	RemoteEapTypeID              uint32   `idl:"name:dwRemoteEapTypeId" json:"remote_eap_type_id"`
-	CcpError                     uint32   `idl:"name:dwCcpError" json:"ccp_error"`
+	LCPTerminateReason           uint32   `idl:"name:dwLcpTerminateReason" json:"lcp_terminate_reason"`
+	LCPRemoteTerminateReason     uint32   `idl:"name:dwLcpRemoteTerminateReason" json:"lcp_remote_terminate_reason"`
+	LCPOptions                   uint32   `idl:"name:dwLcpOptions" json:"lcp_options"`
+	LCPRemoteOptions             uint32   `idl:"name:dwLcpRemoteOptions" json:"lcp_remote_options"`
+	EAPTypeID                    uint32   `idl:"name:dwEapTypeId" json:"eap_type_id"`
+	RemoteEAPTypeID              uint32   `idl:"name:dwRemoteEapTypeId" json:"remote_eap_type_id"`
+	CCPError                     uint32   `idl:"name:dwCcpError" json:"ccp_error"`
 	CompressionAlgorithm         uint32   `idl:"name:dwCompressionAlgorithm" json:"compression_algorithm"`
-	CcpOptions                   uint32   `idl:"name:dwCcpOptions" json:"ccp_options"`
+	CCPOptions                   uint32   `idl:"name:dwCcpOptions" json:"ccp_options"`
 	RemoteCompressionAlgorithm   uint32   `idl:"name:dwRemoteCompressionAlgorithm" json:"remote_compression_algorithm"`
-	CcpRemoteOptions             uint32   `idl:"name:dwCcpRemoteOptions" json:"ccp_remote_options"`
+	CCPRemoteOptions             uint32   `idl:"name:dwCcpRemoteOptions" json:"ccp_remote_options"`
 }
 
-func (o *PppProjectionInfo1) xxx_PreparePayload(ctx context.Context) error {
+func (o *PPPProjectionInfo1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -615,7 +615,7 @@ func (o *PppProjectionInfo1) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *PppProjectionInfo1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PPPProjectionInfo1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -713,7 +713,7 @@ func (o *PppProjectionInfo1) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.IPv6SubInterfaceIndex); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.LcpError); err != nil {
+	if err := w.WriteData(o.LCPError); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.AuthenticationProtocol); err != nil {
@@ -728,37 +728,37 @@ func (o *PppProjectionInfo1) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.RemoteAuthenticationData); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.LcpTerminateReason); err != nil {
+	if err := w.WriteData(o.LCPTerminateReason); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.LcpRemoteTerminateReason); err != nil {
+	if err := w.WriteData(o.LCPRemoteTerminateReason); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.LcpOptions); err != nil {
+	if err := w.WriteData(o.LCPOptions); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.LcpRemoteOptions); err != nil {
+	if err := w.WriteData(o.LCPRemoteOptions); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.EapTypeID); err != nil {
+	if err := w.WriteData(o.EAPTypeID); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RemoteEapTypeID); err != nil {
+	if err := w.WriteData(o.RemoteEAPTypeID); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.CcpError); err != nil {
+	if err := w.WriteData(o.CCPError); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.CompressionAlgorithm); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.CcpOptions); err != nil {
+	if err := w.WriteData(o.CCPOptions); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.RemoteCompressionAlgorithm); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.CcpRemoteOptions); err != nil {
+	if err := w.WriteData(o.CCPRemoteOptions); err != nil {
 		return err
 	}
 	if err := w.WriteTrailingGap(8); err != nil {
@@ -766,7 +766,7 @@ func (o *PppProjectionInfo1) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	}
 	return nil
 }
-func (o *PppProjectionInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *PPPProjectionInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
@@ -826,7 +826,7 @@ func (o *PppProjectionInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	if err := w.ReadData(&o.IPv6SubInterfaceIndex); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.LcpError); err != nil {
+	if err := w.ReadData(&o.LCPError); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.AuthenticationProtocol); err != nil {
@@ -841,37 +841,37 @@ func (o *PppProjectionInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	if err := w.ReadData(&o.RemoteAuthenticationData); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.LcpTerminateReason); err != nil {
+	if err := w.ReadData(&o.LCPTerminateReason); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.LcpRemoteTerminateReason); err != nil {
+	if err := w.ReadData(&o.LCPRemoteTerminateReason); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.LcpOptions); err != nil {
+	if err := w.ReadData(&o.LCPOptions); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.LcpRemoteOptions); err != nil {
+	if err := w.ReadData(&o.LCPRemoteOptions); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.EapTypeID); err != nil {
+	if err := w.ReadData(&o.EAPTypeID); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RemoteEapTypeID); err != nil {
+	if err := w.ReadData(&o.RemoteEAPTypeID); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.CcpError); err != nil {
+	if err := w.ReadData(&o.CCPError); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.CompressionAlgorithm); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.CcpOptions); err != nil {
+	if err := w.ReadData(&o.CCPOptions); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.RemoteCompressionAlgorithm); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.CcpRemoteOptions); err != nil {
+	if err := w.ReadData(&o.CCPRemoteOptions); err != nil {
 		return err
 	}
 	if err := w.ReadTrailingGap(8); err != nil {
@@ -880,8 +880,8 @@ func (o *PppProjectionInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	return nil
 }
 
-// PppProjectionInfo2 structure represents PPP_PROJECTION_INFO_2 RPC structure.
-type PppProjectionInfo2 struct {
+// PPPProjectionInfo2 structure represents PPP_PROJECTION_INFO_2 RPC structure.
+type PPPProjectionInfo2 struct {
 	IPv4NegotiationError         uint32   `idl:"name:dwIPv4NegotiationError" json:"ipv4_negotiation_error"`
 	Address                      []uint16 `idl:"name:wszAddress" json:"address"`
 	RemoteAddress                []uint16 `idl:"name:wszRemoteAddress" json:"remote_address"`
@@ -894,26 +894,26 @@ type PppProjectionInfo2 struct {
 	Prefix                       []byte   `idl:"name:bPrefix" json:"prefix"`
 	PrefixLength                 uint32   `idl:"name:dwPrefixLength" json:"prefix_length"`
 	IPv6SubInterfaceIndex        uint64   `idl:"name:IPv6SubInterfaceIndex" json:"ipv6_sub_interface_index"`
-	LcpError                     uint32   `idl:"name:dwLcpError" json:"lcp_error"`
+	LCPError                     uint32   `idl:"name:dwLcpError" json:"lcp_error"`
 	AuthenticationProtocol       uint32   `idl:"name:dwAuthenticationProtocol" json:"authentication_protocol"`
 	AuthenticationData           uint32   `idl:"name:dwAuthenticationData" json:"authentication_data"`
 	RemoteAuthenticationProtocol uint32   `idl:"name:dwRemoteAuthenticationProtocol" json:"remote_authentication_protocol"`
 	RemoteAuthenticationData     uint32   `idl:"name:dwRemoteAuthenticationData" json:"remote_authentication_data"`
-	LcpTerminateReason           uint32   `idl:"name:dwLcpTerminateReason" json:"lcp_terminate_reason"`
-	LcpRemoteTerminateReason     uint32   `idl:"name:dwLcpRemoteTerminateReason" json:"lcp_remote_terminate_reason"`
-	LcpOptions                   uint32   `idl:"name:dwLcpOptions" json:"lcp_options"`
-	LcpRemoteOptions             uint32   `idl:"name:dwLcpRemoteOptions" json:"lcp_remote_options"`
-	EapTypeID                    uint32   `idl:"name:dwEapTypeId" json:"eap_type_id"`
-	EmbeddedEapTypeID            uint32   `idl:"name:dwEmbeddedEAPTypeId" json:"embedded_eap_type_id"`
-	RemoteEapTypeID              uint32   `idl:"name:dwRemoteEapTypeId" json:"remote_eap_type_id"`
-	CcpError                     uint32   `idl:"name:dwCcpError" json:"ccp_error"`
+	LCPTerminateReason           uint32   `idl:"name:dwLcpTerminateReason" json:"lcp_terminate_reason"`
+	LCPRemoteTerminateReason     uint32   `idl:"name:dwLcpRemoteTerminateReason" json:"lcp_remote_terminate_reason"`
+	LCPOptions                   uint32   `idl:"name:dwLcpOptions" json:"lcp_options"`
+	LCPRemoteOptions             uint32   `idl:"name:dwLcpRemoteOptions" json:"lcp_remote_options"`
+	EAPTypeID                    uint32   `idl:"name:dwEapTypeId" json:"eap_type_id"`
+	EmbeddedEAPTypeID            uint32   `idl:"name:dwEmbeddedEAPTypeId" json:"embedded_eap_type_id"`
+	RemoteEAPTypeID              uint32   `idl:"name:dwRemoteEapTypeId" json:"remote_eap_type_id"`
+	CCPError                     uint32   `idl:"name:dwCcpError" json:"ccp_error"`
 	CompressionAlgorithm         uint32   `idl:"name:dwCompressionAlgorithm" json:"compression_algorithm"`
-	CcpOptions                   uint32   `idl:"name:dwCcpOptions" json:"ccp_options"`
+	CCPOptions                   uint32   `idl:"name:dwCcpOptions" json:"ccp_options"`
 	RemoteCompressionAlgorithm   uint32   `idl:"name:dwRemoteCompressionAlgorithm" json:"remote_compression_algorithm"`
-	CcpRemoteOptions             uint32   `idl:"name:dwCcpRemoteOptions" json:"ccp_remote_options"`
+	CCPRemoteOptions             uint32   `idl:"name:dwCcpRemoteOptions" json:"ccp_remote_options"`
 }
 
-func (o *PppProjectionInfo2) xxx_PreparePayload(ctx context.Context) error {
+func (o *PPPProjectionInfo2) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -922,7 +922,7 @@ func (o *PppProjectionInfo2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *PppProjectionInfo2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PPPProjectionInfo2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -1020,7 +1020,7 @@ func (o *PppProjectionInfo2) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.IPv6SubInterfaceIndex); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.LcpError); err != nil {
+	if err := w.WriteData(o.LCPError); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.AuthenticationProtocol); err != nil {
@@ -1035,40 +1035,40 @@ func (o *PppProjectionInfo2) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.RemoteAuthenticationData); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.LcpTerminateReason); err != nil {
+	if err := w.WriteData(o.LCPTerminateReason); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.LcpRemoteTerminateReason); err != nil {
+	if err := w.WriteData(o.LCPRemoteTerminateReason); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.LcpOptions); err != nil {
+	if err := w.WriteData(o.LCPOptions); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.LcpRemoteOptions); err != nil {
+	if err := w.WriteData(o.LCPRemoteOptions); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.EapTypeID); err != nil {
+	if err := w.WriteData(o.EAPTypeID); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.EmbeddedEapTypeID); err != nil {
+	if err := w.WriteData(o.EmbeddedEAPTypeID); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RemoteEapTypeID); err != nil {
+	if err := w.WriteData(o.RemoteEAPTypeID); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.CcpError); err != nil {
+	if err := w.WriteData(o.CCPError); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.CompressionAlgorithm); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.CcpOptions); err != nil {
+	if err := w.WriteData(o.CCPOptions); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.RemoteCompressionAlgorithm); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.CcpRemoteOptions); err != nil {
+	if err := w.WriteData(o.CCPRemoteOptions); err != nil {
 		return err
 	}
 	if err := w.WriteTrailingGap(8); err != nil {
@@ -1076,7 +1076,7 @@ func (o *PppProjectionInfo2) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	}
 	return nil
 }
-func (o *PppProjectionInfo2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *PPPProjectionInfo2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
@@ -1136,7 +1136,7 @@ func (o *PppProjectionInfo2) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	if err := w.ReadData(&o.IPv6SubInterfaceIndex); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.LcpError); err != nil {
+	if err := w.ReadData(&o.LCPError); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.AuthenticationProtocol); err != nil {
@@ -1151,40 +1151,40 @@ func (o *PppProjectionInfo2) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	if err := w.ReadData(&o.RemoteAuthenticationData); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.LcpTerminateReason); err != nil {
+	if err := w.ReadData(&o.LCPTerminateReason); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.LcpRemoteTerminateReason); err != nil {
+	if err := w.ReadData(&o.LCPRemoteTerminateReason); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.LcpOptions); err != nil {
+	if err := w.ReadData(&o.LCPOptions); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.LcpRemoteOptions); err != nil {
+	if err := w.ReadData(&o.LCPRemoteOptions); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.EapTypeID); err != nil {
+	if err := w.ReadData(&o.EAPTypeID); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.EmbeddedEapTypeID); err != nil {
+	if err := w.ReadData(&o.EmbeddedEAPTypeID); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RemoteEapTypeID); err != nil {
+	if err := w.ReadData(&o.RemoteEAPTypeID); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.CcpError); err != nil {
+	if err := w.ReadData(&o.CCPError); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.CompressionAlgorithm); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.CcpOptions); err != nil {
+	if err := w.ReadData(&o.CCPOptions); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.RemoteCompressionAlgorithm); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.CcpRemoteOptions); err != nil {
+	if err := w.ReadData(&o.CCPRemoteOptions); err != nil {
 		return err
 	}
 	if err := w.ReadTrailingGap(8); err != nil {
@@ -1207,7 +1207,7 @@ type IKEv2ProjectionInfo1 struct {
 	IPv6SubInterfaceIndex  uint64   `idl:"name:IPv6SubInterfaceIndex" json:"ipv6_sub_interface_index"`
 	Options                uint32   `idl:"name:dwOptions" json:"options"`
 	AuthenticationProtocol uint32   `idl:"name:dwAuthenticationProtocol" json:"authentication_protocol"`
-	EapTypeID              uint32   `idl:"name:dwEapTypeId" json:"eap_type_id"`
+	EAPTypeID              uint32   `idl:"name:dwEapTypeId" json:"eap_type_id"`
 	CompressionAlgorithm   uint32   `idl:"name:dwCompressionAlgorithm" json:"compression_algorithm"`
 	EncryptionMethod       uint32   `idl:"name:dwEncryptionMethod" json:"encryption_method"`
 }
@@ -1319,7 +1319,7 @@ func (o *IKEv2ProjectionInfo1) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	if err := w.WriteData(o.AuthenticationProtocol); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.EapTypeID); err != nil {
+	if err := w.WriteData(o.EAPTypeID); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.CompressionAlgorithm); err != nil {
@@ -1393,7 +1393,7 @@ func (o *IKEv2ProjectionInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 	if err := w.ReadData(&o.AuthenticationProtocol); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.EapTypeID); err != nil {
+	if err := w.ReadData(&o.EAPTypeID); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.CompressionAlgorithm); err != nil {
@@ -1422,8 +1422,8 @@ type IKEv2ProjectionInfo2 struct {
 	IPv6SubInterfaceIndex  uint64   `idl:"name:IPv6SubInterfaceIndex" json:"ipv6_sub_interface_index"`
 	Options                uint32   `idl:"name:dwOptions" json:"options"`
 	AuthenticationProtocol uint32   `idl:"name:dwAuthenticationProtocol" json:"authentication_protocol"`
-	EapTypeID              uint32   `idl:"name:dwEapTypeId" json:"eap_type_id"`
-	EmbeddedEapTypeID      uint32   `idl:"name:dwEmbeddedEAPTypeId" json:"embedded_eap_type_id"`
+	EAPTypeID              uint32   `idl:"name:dwEapTypeId" json:"eap_type_id"`
+	EmbeddedEAPTypeID      uint32   `idl:"name:dwEmbeddedEAPTypeId" json:"embedded_eap_type_id"`
 	CompressionAlgorithm   uint32   `idl:"name:dwCompressionAlgorithm" json:"compression_algorithm"`
 	EncryptionMethod       uint32   `idl:"name:dwEncryptionMethod" json:"encryption_method"`
 }
@@ -1535,10 +1535,10 @@ func (o *IKEv2ProjectionInfo2) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	if err := w.WriteData(o.AuthenticationProtocol); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.EapTypeID); err != nil {
+	if err := w.WriteData(o.EAPTypeID); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.EmbeddedEapTypeID); err != nil {
+	if err := w.WriteData(o.EmbeddedEAPTypeID); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.CompressionAlgorithm); err != nil {
@@ -1612,10 +1612,10 @@ func (o *IKEv2ProjectionInfo2) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 	if err := w.ReadData(&o.AuthenticationProtocol); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.EapTypeID); err != nil {
+	if err := w.ReadData(&o.EAPTypeID); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.EmbeddedEapTypeID); err != nil {
+	if err := w.ReadData(&o.EmbeddedEAPTypeID); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.CompressionAlgorithm); err != nil {
@@ -1635,7 +1635,7 @@ type ProjectionInfoIDL1 struct {
 	ProjectionInfoType uint8
 	// Types that are assignable to Value
 	//
-	// *ProjectionInfoIDL1_PppProjectionInfo
+	// *ProjectionInfoIDL1_PPPProjectionInfo
 	// *ProjectionInfoIDL1_IKEv2ProjectionInfo
 	Value is_ProjectionInfoIDL1 `json:"value"`
 }
@@ -1645,9 +1645,9 @@ func (o *ProjectionInfoIDL1) GetValue() any {
 		return nil
 	}
 	switch value := (interface{})(o.Value).(type) {
-	case *ProjectionInfoIDL1_PppProjectionInfo:
+	case *ProjectionInfoIDL1_PPPProjectionInfo:
 		if value != nil {
-			return value.PppProjectionInfo
+			return value.PPPProjectionInfo
 		}
 	case *ProjectionInfoIDL1_IKEv2ProjectionInfo:
 		if value != nil {
@@ -1675,13 +1675,13 @@ func (o *ProjectionInfoIDL1) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	}
 	switch o.ProjectionInfoType {
 	case uint8(1):
-		_o, _ := o.Value.(*ProjectionInfoIDL1_PppProjectionInfo)
+		_o, _ := o.Value.(*ProjectionInfoIDL1_PPPProjectionInfo)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&ProjectionInfoIDL1_PppProjectionInfo{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ProjectionInfoIDL1_PPPProjectionInfo{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1714,7 +1714,7 @@ func (o *ProjectionInfoIDL1) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	}
 	switch o.ProjectionInfoType {
 	case uint8(1):
-		o.Value = &ProjectionInfoIDL1_PppProjectionInfo{}
+		o.Value = &ProjectionInfoIDL1_PPPProjectionInfo{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -1729,32 +1729,32 @@ func (o *ProjectionInfoIDL1) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	return nil
 }
 
-// ProjectionInfoIDL1_PppProjectionInfo structure represents PROJECTION_INFO_IDL_1 RPC union arm.
+// ProjectionInfoIDL1_PPPProjectionInfo structure represents PROJECTION_INFO_IDL_1 RPC union arm.
 //
 // It has following labels: 1
-type ProjectionInfoIDL1_PppProjectionInfo struct {
-	PppProjectionInfo *PppProjectionInfo1 `idl:"name:PppProjectionInfo" json:"ppp_projection_info"`
+type ProjectionInfoIDL1_PPPProjectionInfo struct {
+	PPPProjectionInfo *PPPProjectionInfo1 `idl:"name:PppProjectionInfo" json:"ppp_projection_info"`
 }
 
-func (*ProjectionInfoIDL1_PppProjectionInfo) is_ProjectionInfoIDL1() {}
+func (*ProjectionInfoIDL1_PPPProjectionInfo) is_ProjectionInfoIDL1() {}
 
-func (o *ProjectionInfoIDL1_PppProjectionInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.PppProjectionInfo != nil {
-		if err := o.PppProjectionInfo.MarshalNDR(ctx, w); err != nil {
+func (o *ProjectionInfoIDL1_PPPProjectionInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.PPPProjectionInfo != nil {
+		if err := o.PPPProjectionInfo.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&PppProjectionInfo1{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPProjectionInfo1{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *ProjectionInfoIDL1_PppProjectionInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.PppProjectionInfo == nil {
-		o.PppProjectionInfo = &PppProjectionInfo1{}
+func (o *ProjectionInfoIDL1_PPPProjectionInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.PPPProjectionInfo == nil {
+		o.PPPProjectionInfo = &PPPProjectionInfo1{}
 	}
-	if err := o.PppProjectionInfo.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.PPPProjectionInfo.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
@@ -1796,7 +1796,7 @@ type ProjectionInfoIDL2 struct {
 	ProjectionInfoType uint8
 	// Types that are assignable to Value
 	//
-	// *ProjectionInfoIDL2_PppProjectionInfo
+	// *ProjectionInfoIDL2_PPPProjectionInfo
 	// *ProjectionInfoIDL2_IKEv2ProjectionInfo
 	Value is_ProjectionInfoIDL2 `json:"value"`
 }
@@ -1806,9 +1806,9 @@ func (o *ProjectionInfoIDL2) GetValue() any {
 		return nil
 	}
 	switch value := (interface{})(o.Value).(type) {
-	case *ProjectionInfoIDL2_PppProjectionInfo:
+	case *ProjectionInfoIDL2_PPPProjectionInfo:
 		if value != nil {
-			return value.PppProjectionInfo
+			return value.PPPProjectionInfo
 		}
 	case *ProjectionInfoIDL2_IKEv2ProjectionInfo:
 		if value != nil {
@@ -1836,13 +1836,13 @@ func (o *ProjectionInfoIDL2) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	}
 	switch o.ProjectionInfoType {
 	case uint8(1):
-		_o, _ := o.Value.(*ProjectionInfoIDL2_PppProjectionInfo)
+		_o, _ := o.Value.(*ProjectionInfoIDL2_PPPProjectionInfo)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&ProjectionInfoIDL2_PppProjectionInfo{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ProjectionInfoIDL2_PPPProjectionInfo{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1875,7 +1875,7 @@ func (o *ProjectionInfoIDL2) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	}
 	switch o.ProjectionInfoType {
 	case uint8(1):
-		o.Value = &ProjectionInfoIDL2_PppProjectionInfo{}
+		o.Value = &ProjectionInfoIDL2_PPPProjectionInfo{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -1890,32 +1890,32 @@ func (o *ProjectionInfoIDL2) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	return nil
 }
 
-// ProjectionInfoIDL2_PppProjectionInfo structure represents PROJECTION_INFO_IDL_2 RPC union arm.
+// ProjectionInfoIDL2_PPPProjectionInfo structure represents PROJECTION_INFO_IDL_2 RPC union arm.
 //
 // It has following labels: 1
-type ProjectionInfoIDL2_PppProjectionInfo struct {
-	PppProjectionInfo *PppProjectionInfo2 `idl:"name:PppProjectionInfo" json:"ppp_projection_info"`
+type ProjectionInfoIDL2_PPPProjectionInfo struct {
+	PPPProjectionInfo *PPPProjectionInfo2 `idl:"name:PppProjectionInfo" json:"ppp_projection_info"`
 }
 
-func (*ProjectionInfoIDL2_PppProjectionInfo) is_ProjectionInfoIDL2() {}
+func (*ProjectionInfoIDL2_PPPProjectionInfo) is_ProjectionInfoIDL2() {}
 
-func (o *ProjectionInfoIDL2_PppProjectionInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.PppProjectionInfo != nil {
-		if err := o.PppProjectionInfo.MarshalNDR(ctx, w); err != nil {
+func (o *ProjectionInfoIDL2_PPPProjectionInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.PPPProjectionInfo != nil {
+		if err := o.PPPProjectionInfo.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&PppProjectionInfo2{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPProjectionInfo2{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *ProjectionInfoIDL2_PppProjectionInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.PppProjectionInfo == nil {
-		o.PppProjectionInfo = &PppProjectionInfo2{}
+func (o *ProjectionInfoIDL2_PPPProjectionInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.PPPProjectionInfo == nil {
+		o.PPPProjectionInfo = &PPPProjectionInfo2{}
 	}
-	if err := o.PppProjectionInfo.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.PPPProjectionInfo.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
@@ -1954,35 +1954,35 @@ func (o *ProjectionInfoIDL2_IKEv2ProjectionInfo) UnmarshalNDR(ctx context.Contex
 
 // RASConnectionEx1IDL structure represents RAS_CONNECTION_EX_1_IDL RPC structure.
 type RASConnectionEx1IDL struct {
-	Header                *MprapiObjectHeaderIDL `idl:"name:Header" json:"header"`
-	ConnectDuration       uint32                 `idl:"name:dwConnectDuration" json:"connect_duration"`
-	InterfaceType         RouterInterfaceType    `idl:"name:dwInterfaceType" json:"interface_type"`
-	ConnectionFlags       uint32                 `idl:"name:dwConnectionFlags" json:"connection_flags"`
-	InterfaceName         []uint16               `idl:"name:wszInterfaceName" json:"interface_name"`
-	UserName              []uint16               `idl:"name:wszUserName" json:"user_name"`
-	LogonDomain           []uint16               `idl:"name:wszLogonDomain" json:"logon_domain"`
-	RemoteComputer        []uint16               `idl:"name:wszRemoteComputer" json:"remote_computer"`
-	GUID                  *dtyp.GUID             `idl:"name:guid" json:"guid"`
-	RASQuarantineState    RASQuarantineState     `idl:"name:rasQuarState" json:"ras_quarantine_state"`
-	ProbationTime         *dtyp.Filetime         `idl:"name:probationTime" json:"probation_time"`
-	BytesXmited           uint32                 `idl:"name:dwBytesXmited" json:"bytes_xmited"`
-	BytesRcved            uint32                 `idl:"name:dwBytesRcved" json:"bytes_rcved"`
-	FramesXmited          uint32                 `idl:"name:dwFramesXmited" json:"frames_xmited"`
-	FramesRcved           uint32                 `idl:"name:dwFramesRcved" json:"frames_rcved"`
-	CRCError              uint32                 `idl:"name:dwCrcErr" json:"crc_error"`
-	TimeoutError          uint32                 `idl:"name:dwTimeoutErr" json:"timeout_error"`
-	AlignmentError        uint32                 `idl:"name:dwAlignmentErr" json:"alignment_error"`
-	HardwareOverrunError  uint32                 `idl:"name:dwHardwareOverrunErr" json:"hardware_overrun_error"`
-	FramingError          uint32                 `idl:"name:dwFramingErr" json:"framing_error"`
-	BufferOverrunError    uint32                 `idl:"name:dwBufferOverrunErr" json:"buffer_overrun_error"`
-	CompressionRatioIn    uint32                 `idl:"name:dwCompressionRatioIn" json:"compression_ratio_in"`
-	CompressionRatioOut   uint32                 `idl:"name:dwCompressionRatioOut" json:"compression_ratio_out"`
-	SwitchOversLength     uint32                 `idl:"name:dwNumSwitchOvers" json:"switch_overs_length"`
-	RemoteEndpointAddress []uint16               `idl:"name:wszRemoteEndpointAddress" json:"remote_endpoint_address"`
-	LocalEndpointAddress  []uint16               `idl:"name:wszLocalEndpointAddress" json:"local_endpoint_address"`
-	ProjectionInfo        *ProjectionInfoIDL1    `idl:"name:ProjectionInfo" json:"projection_info"`
-	HConnection           uint32                 `idl:"name:hConnection" json:"h_connection"`
-	HInterface            uint32                 `idl:"name:hInterface" json:"h_interface"`
+	Header                *ObjectHeaderIDL    `idl:"name:Header" json:"header"`
+	ConnectDuration       uint32              `idl:"name:dwConnectDuration" json:"connect_duration"`
+	InterfaceType         RouterInterfaceType `idl:"name:dwInterfaceType" json:"interface_type"`
+	ConnectionFlags       uint32              `idl:"name:dwConnectionFlags" json:"connection_flags"`
+	InterfaceName         []uint16            `idl:"name:wszInterfaceName" json:"interface_name"`
+	UserName              []uint16            `idl:"name:wszUserName" json:"user_name"`
+	LogonDomain           []uint16            `idl:"name:wszLogonDomain" json:"logon_domain"`
+	RemoteComputer        []uint16            `idl:"name:wszRemoteComputer" json:"remote_computer"`
+	GUID                  *dtyp.GUID          `idl:"name:guid" json:"guid"`
+	RASQuarantineState    RASQuarantineState  `idl:"name:rasQuarState" json:"ras_quarantine_state"`
+	ProbationTime         *dtyp.Filetime      `idl:"name:probationTime" json:"probation_time"`
+	BytesXmited           uint32              `idl:"name:dwBytesXmited" json:"bytes_xmited"`
+	BytesRcved            uint32              `idl:"name:dwBytesRcved" json:"bytes_rcved"`
+	FramesXmited          uint32              `idl:"name:dwFramesXmited" json:"frames_xmited"`
+	FramesRcved           uint32              `idl:"name:dwFramesRcved" json:"frames_rcved"`
+	CRCError              uint32              `idl:"name:dwCrcErr" json:"crc_error"`
+	TimeoutError          uint32              `idl:"name:dwTimeoutErr" json:"timeout_error"`
+	AlignmentError        uint32              `idl:"name:dwAlignmentErr" json:"alignment_error"`
+	HardwareOverrunError  uint32              `idl:"name:dwHardwareOverrunErr" json:"hardware_overrun_error"`
+	FramingError          uint32              `idl:"name:dwFramingErr" json:"framing_error"`
+	BufferOverrunError    uint32              `idl:"name:dwBufferOverrunErr" json:"buffer_overrun_error"`
+	CompressionRatioIn    uint32              `idl:"name:dwCompressionRatioIn" json:"compression_ratio_in"`
+	CompressionRatioOut   uint32              `idl:"name:dwCompressionRatioOut" json:"compression_ratio_out"`
+	SwitchOversLength     uint32              `idl:"name:dwNumSwitchOvers" json:"switch_overs_length"`
+	RemoteEndpointAddress []uint16            `idl:"name:wszRemoteEndpointAddress" json:"remote_endpoint_address"`
+	LocalEndpointAddress  []uint16            `idl:"name:wszLocalEndpointAddress" json:"local_endpoint_address"`
+	ProjectionInfo        *ProjectionInfoIDL1 `idl:"name:ProjectionInfo" json:"projection_info"`
+	Connection            uint32              `idl:"name:hConnection" json:"connection"`
+	Interface             uint32              `idl:"name:hInterface" json:"interface"`
 }
 
 func (o *RASConnectionEx1IDL) xxx_PreparePayload(ctx context.Context) error {
@@ -2006,7 +2006,7 @@ func (o *RASConnectionEx1IDL) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 			return err
 		}
 	} else {
-		if err := (&MprapiObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -2172,10 +2172,10 @@ func (o *RASConnectionEx1IDL) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 			return err
 		}
 	}
-	if err := w.WriteData(o.HConnection); err != nil {
+	if err := w.WriteData(o.Connection); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.HInterface); err != nil {
+	if err := w.WriteData(o.Interface); err != nil {
 		return err
 	}
 	if err := w.WriteTrailingGap(8); err != nil {
@@ -2188,7 +2188,7 @@ func (o *RASConnectionEx1IDL) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		return err
 	}
 	if o.Header == nil {
-		o.Header = &MprapiObjectHeaderIDL{}
+		o.Header = &ObjectHeaderIDL{}
 	}
 	if err := o.Header.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -2304,10 +2304,10 @@ func (o *RASConnectionEx1IDL) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	if err := o.ProjectionInfo.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.HConnection); err != nil {
+	if err := w.ReadData(&o.Connection); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.HInterface); err != nil {
+	if err := w.ReadData(&o.Interface); err != nil {
 		return err
 	}
 	if err := w.ReadTrailingGap(8); err != nil {
@@ -2454,8 +2454,8 @@ type RASConnection4IDL struct {
 	RemoteEndpointAddress []uint16            `idl:"name:wszRemoteEndpointAddress" json:"remote_endpoint_address"`
 	LocalEndpointAddress  []uint16            `idl:"name:wszLocalEndpointAddress" json:"local_endpoint_address"`
 	ProjectionInfo        *ProjectionInfoIDL2 `idl:"name:ProjectionInfo" json:"projection_info"`
-	HConnection           uint32              `idl:"name:hConnection" json:"h_connection"`
-	HInterface            uint32              `idl:"name:hInterface" json:"h_interface"`
+	Connection            uint32              `idl:"name:hConnection" json:"connection"`
+	Interface             uint32              `idl:"name:hInterface" json:"interface"`
 	DeviceType            uint32              `idl:"name:dwDeviceType" json:"device_type"`
 }
 
@@ -2646,10 +2646,10 @@ func (o *RASConnection4IDL) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 			return err
 		}
 	}
-	if err := w.WriteData(o.HConnection); err != nil {
+	if err := w.WriteData(o.Connection); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.HInterface); err != nil {
+	if err := w.WriteData(o.Interface); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.DeviceType); err != nil {
@@ -2781,10 +2781,10 @@ func (o *RASConnection4IDL) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	if err := o.ProjectionInfo.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.HConnection); err != nil {
+	if err := w.ReadData(&o.Connection); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.HInterface); err != nil {
+	if err := w.ReadData(&o.Interface); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.DeviceType); err != nil {
@@ -2901,7 +2901,7 @@ func (o *CertBlob1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 // CertEKU1 structure represents CERT_EKU_1 RPC structure.
 type CertEKU1 struct {
 	Size     uint32 `idl:"name:dwSize" json:"size"`
-	IsEkuoid bool   `idl:"name:IsEKUOID" json:"is_ekuoid"`
+	IsEKUOID bool   `idl:"name:IsEKUOID" json:"is_ekuoid"`
 	EKU      string `idl:"name:pwszEKU;size_is:(dwSize)" json:"eku"`
 }
 
@@ -2927,7 +2927,7 @@ func (o *CertEKU1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Size); err != nil {
 		return err
 	}
-	if !o.IsEkuoid {
+	if !o.IsEKUOID {
 		if err := w.WriteData(int32(0)); err != nil {
 			return err
 		}
@@ -2982,11 +2982,11 @@ func (o *CertEKU1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Size); err != nil {
 		return err
 	}
-	var _bIsEkuoid int32
-	if err := w.ReadData(&_bIsEkuoid); err != nil {
+	var _bIsEKUOID int32
+	if err := w.ReadData(&_bIsEKUOID); err != nil {
 		return err
 	}
-	o.IsEkuoid = _bIsEkuoid != 0
+	o.IsEKUOID = _bIsEKUOID != 0
 	_ptr_pwszEKU := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		sizeInfo := []uint64{
 			0,
@@ -3238,8 +3238,8 @@ func (o *RouterCustomIKEv2Policy0) UnmarshalNDR(ctx context.Context, w ndr.Reade
 	return nil
 }
 
-// RouterCustomL2tpPolicy0 structure represents ROUTER_CUSTOM_L2TP_POLICY_0 RPC structure.
-type RouterCustomL2tpPolicy0 struct {
+// RouterCustomL2TPPolicy0 structure represents ROUTER_CUSTOM_L2TP_POLICY_0 RPC structure.
+type RouterCustomL2TPPolicy0 struct {
 	IntegrityMethod         uint32 `idl:"name:dwIntegrityMethod" json:"integrity_method"`
 	EncryptionMethod        uint32 `idl:"name:dwEncryptionMethod" json:"encryption_method"`
 	CipherTransformConstant uint32 `idl:"name:dwCipherTransformConstant" json:"cipher_transform_constant"`
@@ -3248,7 +3248,7 @@ type RouterCustomL2tpPolicy0 struct {
 	DHGroup                 uint32 `idl:"name:dwDhGroup" json:"dh_group"`
 }
 
-func (o *RouterCustomL2tpPolicy0) xxx_PreparePayload(ctx context.Context) error {
+func (o *RouterCustomL2TPPolicy0) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -3257,7 +3257,7 @@ func (o *RouterCustomL2tpPolicy0) xxx_PreparePayload(ctx context.Context) error 
 	}
 	return nil
 }
-func (o *RouterCustomL2tpPolicy0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RouterCustomL2TPPolicy0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -3284,7 +3284,7 @@ func (o *RouterCustomL2tpPolicy0) MarshalNDR(ctx context.Context, w ndr.Writer) 
 	}
 	return nil
 }
-func (o *RouterCustomL2tpPolicy0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RouterCustomL2TPPolicy0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -3513,14 +3513,14 @@ func (o *RouterIKEv2InterfaceCustomConfig1) UnmarshalNDR(ctx context.Context, w 
 	return nil
 }
 
-// MprInterfaceCustominfoex0 structure represents MPR_IF_CUSTOMINFOEX_0 RPC structure.
-type MprInterfaceCustominfoex0 struct {
-	Header            *MprapiObjectHeaderIDL             `idl:"name:Header" json:"header"`
+// InterfaceCustominfoex0 structure represents MPR_IF_CUSTOMINFOEX_0 RPC structure.
+type InterfaceCustominfoex0 struct {
+	Header            *ObjectHeaderIDL                   `idl:"name:Header" json:"header"`
 	Flags             uint32                             `idl:"name:dwFlags" json:"flags"`
 	CustomIKEv2Config *RouterIKEv2InterfaceCustomConfig0 `idl:"name:customIkev2Config" json:"custom_ikev2_config"`
 }
 
-func (o *MprInterfaceCustominfoex0) xxx_PreparePayload(ctx context.Context) error {
+func (o *InterfaceCustominfoex0) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -3529,7 +3529,7 @@ func (o *MprInterfaceCustominfoex0) xxx_PreparePayload(ctx context.Context) erro
 	}
 	return nil
 }
-func (o *MprInterfaceCustominfoex0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *InterfaceCustominfoex0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -3541,7 +3541,7 @@ func (o *MprInterfaceCustominfoex0) MarshalNDR(ctx context.Context, w ndr.Writer
 			return err
 		}
 	} else {
-		if err := (&MprapiObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -3559,12 +3559,12 @@ func (o *MprInterfaceCustominfoex0) MarshalNDR(ctx context.Context, w ndr.Writer
 	}
 	return nil
 }
-func (o *MprInterfaceCustominfoex0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *InterfaceCustominfoex0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
 	if o.Header == nil {
-		o.Header = &MprapiObjectHeaderIDL{}
+		o.Header = &ObjectHeaderIDL{}
 	}
 	if err := o.Header.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -3581,14 +3581,14 @@ func (o *MprInterfaceCustominfoex0) UnmarshalNDR(ctx context.Context, w ndr.Read
 	return nil
 }
 
-// MprInterfaceCustominfoex1 structure represents MPR_IF_CUSTOMINFOEX_1 RPC structure.
-type MprInterfaceCustominfoex1 struct {
-	Header            *MprapiObjectHeaderIDL             `idl:"name:Header" json:"header"`
+// InterfaceCustominfoex1 structure represents MPR_IF_CUSTOMINFOEX_1 RPC structure.
+type InterfaceCustominfoex1 struct {
+	Header            *ObjectHeaderIDL                   `idl:"name:Header" json:"header"`
 	Flags             uint32                             `idl:"name:dwFlags" json:"flags"`
 	CustomIKEv2Config *RouterIKEv2InterfaceCustomConfig1 `idl:"name:customIkev2Config" json:"custom_ikev2_config"`
 }
 
-func (o *MprInterfaceCustominfoex1) xxx_PreparePayload(ctx context.Context) error {
+func (o *InterfaceCustominfoex1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -3597,7 +3597,7 @@ func (o *MprInterfaceCustominfoex1) xxx_PreparePayload(ctx context.Context) erro
 	}
 	return nil
 }
-func (o *MprInterfaceCustominfoex1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *InterfaceCustominfoex1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -3609,7 +3609,7 @@ func (o *MprInterfaceCustominfoex1) MarshalNDR(ctx context.Context, w ndr.Writer
 			return err
 		}
 	} else {
-		if err := (&MprapiObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -3627,12 +3627,12 @@ func (o *MprInterfaceCustominfoex1) MarshalNDR(ctx context.Context, w ndr.Writer
 	}
 	return nil
 }
-func (o *MprInterfaceCustominfoex1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *InterfaceCustominfoex1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
 	if o.Header == nil {
-		o.Header = &MprapiObjectHeaderIDL{}
+		o.Header = &ObjectHeaderIDL{}
 	}
 	if err := o.Header.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -3649,26 +3649,26 @@ func (o *MprInterfaceCustominfoex1) UnmarshalNDR(ctx context.Context, w ndr.Read
 	return nil
 }
 
-// MprInterfaceCustominfoexIDL structure represents MPR_IF_CUSTOMINFOEX_IDL RPC union.
-type MprInterfaceCustominfoexIDL struct {
+// InterfaceCustominfoexIDL structure represents MPR_IF_CUSTOMINFOEX_IDL RPC union.
+type InterfaceCustominfoexIDL struct {
 	Revision uint8
 	// Types that are assignable to Value
 	//
-	// *MprInterfaceCustominfoexIDL_InterfaceConfigObj1
-	// *MprInterfaceCustominfoexIDL_InterfaceConfigObj2
-	Value is_MprInterfaceCustominfoexIDL `json:"value"`
+	// *InterfaceCustominfoexIDL_InterfaceConfigObj1
+	// *InterfaceCustominfoexIDL_InterfaceConfigObj2
+	Value is_InterfaceCustominfoexIDL `json:"value"`
 }
 
-func (o *MprInterfaceCustominfoexIDL) GetValue() any {
+func (o *InterfaceCustominfoexIDL) GetValue() any {
 	if o == nil {
 		return nil
 	}
 	switch value := (interface{})(o.Value).(type) {
-	case *MprInterfaceCustominfoexIDL_InterfaceConfigObj1:
+	case *InterfaceCustominfoexIDL_InterfaceConfigObj1:
 		if value != nil {
 			return value.InterfaceConfigObj1
 		}
-	case *MprInterfaceCustominfoexIDL_InterfaceConfigObj2:
+	case *InterfaceCustominfoexIDL_InterfaceConfigObj2:
 		if value != nil {
 			return value.InterfaceConfigObj2
 		}
@@ -3676,13 +3676,13 @@ func (o *MprInterfaceCustominfoexIDL) GetValue() any {
 	return nil
 }
 
-type is_MprInterfaceCustominfoexIDL interface {
+type is_InterfaceCustominfoexIDL interface {
 	ndr.Marshaler
 	ndr.Unmarshaler
-	is_MprInterfaceCustominfoexIDL()
+	is_InterfaceCustominfoexIDL()
 }
 
-func (o *MprInterfaceCustominfoexIDL) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *InterfaceCustominfoexIDL) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteUnionAlign(9); err != nil {
 		return err
 	}
@@ -3694,24 +3694,24 @@ func (o *MprInterfaceCustominfoexIDL) MarshalNDR(ctx context.Context, w ndr.Writ
 	}
 	switch o.Revision {
 	case uint8(1):
-		_o, _ := o.Value.(*MprInterfaceCustominfoexIDL_InterfaceConfigObj1)
+		_o, _ := o.Value.(*InterfaceCustominfoexIDL_InterfaceConfigObj1)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&MprInterfaceCustominfoexIDL_InterfaceConfigObj1{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&InterfaceCustominfoexIDL_InterfaceConfigObj1{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint8(2):
-		_o, _ := o.Value.(*MprInterfaceCustominfoexIDL_InterfaceConfigObj2)
+		_o, _ := o.Value.(*InterfaceCustominfoexIDL_InterfaceConfigObj2)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&MprInterfaceCustominfoexIDL_InterfaceConfigObj2{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&InterfaceCustominfoexIDL_InterfaceConfigObj2{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -3721,7 +3721,7 @@ func (o *MprInterfaceCustominfoexIDL) MarshalNDR(ctx context.Context, w ndr.Writ
 	return nil
 }
 
-func (o *MprInterfaceCustominfoexIDL) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *InterfaceCustominfoexIDL) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
@@ -3733,12 +3733,12 @@ func (o *MprInterfaceCustominfoexIDL) UnmarshalNDR(ctx context.Context, w ndr.Re
 	}
 	switch o.Revision {
 	case uint8(1):
-		o.Value = &MprInterfaceCustominfoexIDL_InterfaceConfigObj1{}
+		o.Value = &InterfaceCustominfoexIDL_InterfaceConfigObj1{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint8(2):
-		o.Value = &MprInterfaceCustominfoexIDL_InterfaceConfigObj2{}
+		o.Value = &InterfaceCustominfoexIDL_InterfaceConfigObj2{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -3748,30 +3748,30 @@ func (o *MprInterfaceCustominfoexIDL) UnmarshalNDR(ctx context.Context, w ndr.Re
 	return nil
 }
 
-// MprInterfaceCustominfoexIDL_InterfaceConfigObj1 structure represents MPR_IF_CUSTOMINFOEX_IDL RPC union arm.
+// InterfaceCustominfoexIDL_InterfaceConfigObj1 structure represents MPR_IF_CUSTOMINFOEX_IDL RPC union arm.
 //
 // It has following labels: 1
-type MprInterfaceCustominfoexIDL_InterfaceConfigObj1 struct {
-	InterfaceConfigObj1 *MprInterfaceCustominfoex0 `idl:"name:IfConfigObj1" json:"interface_config_obj1"`
+type InterfaceCustominfoexIDL_InterfaceConfigObj1 struct {
+	InterfaceConfigObj1 *InterfaceCustominfoex0 `idl:"name:IfConfigObj1" json:"interface_config_obj1"`
 }
 
-func (*MprInterfaceCustominfoexIDL_InterfaceConfigObj1) is_MprInterfaceCustominfoexIDL() {}
+func (*InterfaceCustominfoexIDL_InterfaceConfigObj1) is_InterfaceCustominfoexIDL() {}
 
-func (o *MprInterfaceCustominfoexIDL_InterfaceConfigObj1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *InterfaceCustominfoexIDL_InterfaceConfigObj1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.InterfaceConfigObj1 != nil {
 		if err := o.InterfaceConfigObj1.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&MprInterfaceCustominfoex0{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&InterfaceCustominfoex0{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MprInterfaceCustominfoexIDL_InterfaceConfigObj1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *InterfaceCustominfoexIDL_InterfaceConfigObj1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.InterfaceConfigObj1 == nil {
-		o.InterfaceConfigObj1 = &MprInterfaceCustominfoex0{}
+		o.InterfaceConfigObj1 = &InterfaceCustominfoex0{}
 	}
 	if err := o.InterfaceConfigObj1.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -3779,30 +3779,30 @@ func (o *MprInterfaceCustominfoexIDL_InterfaceConfigObj1) UnmarshalNDR(ctx conte
 	return nil
 }
 
-// MprInterfaceCustominfoexIDL_InterfaceConfigObj2 structure represents MPR_IF_CUSTOMINFOEX_IDL RPC union arm.
+// InterfaceCustominfoexIDL_InterfaceConfigObj2 structure represents MPR_IF_CUSTOMINFOEX_IDL RPC union arm.
 //
 // It has following labels: 2
-type MprInterfaceCustominfoexIDL_InterfaceConfigObj2 struct {
-	InterfaceConfigObj2 *MprInterfaceCustominfoex1 `idl:"name:IfConfigObj2" json:"interface_config_obj2"`
+type InterfaceCustominfoexIDL_InterfaceConfigObj2 struct {
+	InterfaceConfigObj2 *InterfaceCustominfoex1 `idl:"name:IfConfigObj2" json:"interface_config_obj2"`
 }
 
-func (*MprInterfaceCustominfoexIDL_InterfaceConfigObj2) is_MprInterfaceCustominfoexIDL() {}
+func (*InterfaceCustominfoexIDL_InterfaceConfigObj2) is_InterfaceCustominfoexIDL() {}
 
-func (o *MprInterfaceCustominfoexIDL_InterfaceConfigObj2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *InterfaceCustominfoexIDL_InterfaceConfigObj2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.InterfaceConfigObj2 != nil {
 		if err := o.InterfaceConfigObj2.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&MprInterfaceCustominfoex1{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&InterfaceCustominfoex1{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MprInterfaceCustominfoexIDL_InterfaceConfigObj2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *InterfaceCustominfoexIDL_InterfaceConfigObj2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.InterfaceConfigObj2 == nil {
-		o.InterfaceConfigObj2 = &MprInterfaceCustominfoex1{}
+		o.InterfaceConfigObj2 = &InterfaceCustominfoex1{}
 	}
 	if err := o.InterfaceConfigObj2.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -4316,16 +4316,16 @@ func (o *IKEv2TunnelConfigParams3) UnmarshalNDR(ctx context.Context, w ndr.Reade
 	return nil
 }
 
-// L2tpTunnelConfigParams1 structure represents L2TP_TUNNEL_CONFIG_PARAMS_1 RPC structure.
-type L2tpTunnelConfigParams1 struct {
+// L2TPTunnelConfigParams1 structure represents L2TP_TUNNEL_CONFIG_PARAMS_1 RPC structure.
+type L2TPTunnelConfigParams1 struct {
 	IdleTimeout                uint32                   `idl:"name:dwIdleTimeout" json:"idle_timeout"`
 	EncryptionType             uint32                   `idl:"name:dwEncryptionType" json:"encryption_type"`
 	SALifeTime                 uint32                   `idl:"name:dwSaLifeTime" json:"sa_life_time"`
 	SADataSizeForRenegotiation uint32                   `idl:"name:dwSaDataSizeForRenegotiation" json:"sa_data_size_for_renegotiation"`
-	CustomPolicy               *RouterCustomL2tpPolicy0 `idl:"name:customPolicy" json:"custom_policy"`
+	CustomPolicy               *RouterCustomL2TPPolicy0 `idl:"name:customPolicy" json:"custom_policy"`
 }
 
-func (o *L2tpTunnelConfigParams1) xxx_PreparePayload(ctx context.Context) error {
+func (o *L2TPTunnelConfigParams1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -4334,7 +4334,7 @@ func (o *L2tpTunnelConfigParams1) xxx_PreparePayload(ctx context.Context) error 
 	}
 	return nil
 }
-func (o *L2tpTunnelConfigParams1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *L2TPTunnelConfigParams1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -4360,7 +4360,7 @@ func (o *L2tpTunnelConfigParams1) MarshalNDR(ctx context.Context, w ndr.Writer) 
 					return err
 				}
 			} else {
-				if err := (&RouterCustomL2tpPolicy0{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&RouterCustomL2TPPolicy0{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
@@ -4376,7 +4376,7 @@ func (o *L2tpTunnelConfigParams1) MarshalNDR(ctx context.Context, w ndr.Writer) 
 	}
 	return nil
 }
-func (o *L2tpTunnelConfigParams1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *L2TPTunnelConfigParams1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -4394,14 +4394,14 @@ func (o *L2tpTunnelConfigParams1) UnmarshalNDR(ctx context.Context, w ndr.Reader
 	}
 	_ptr_customPolicy := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if o.CustomPolicy == nil {
-			o.CustomPolicy = &RouterCustomL2tpPolicy0{}
+			o.CustomPolicy = &RouterCustomL2TPPolicy0{}
 		}
 		if err := o.CustomPolicy.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_customPolicy := func(ptr interface{}) { o.CustomPolicy = *ptr.(**RouterCustomL2tpPolicy0) }
+	_s_customPolicy := func(ptr interface{}) { o.CustomPolicy = *ptr.(**RouterCustomL2TPPolicy0) }
 	if err := w.ReadPointer(&o.CustomPolicy, _s_customPolicy, _ptr_customPolicy); err != nil {
 		return err
 	}
@@ -4649,13 +4649,13 @@ func (o *PPTPConfigParams1) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	return nil
 }
 
-// L2tpConfigParams1 structure represents L2TP_CONFIG_PARAMS_1 RPC structure.
-type L2tpConfigParams1 struct {
+// L2TPConfigParams1 structure represents L2TP_CONFIG_PARAMS_1 RPC structure.
+type L2TPConfigParams1 struct {
 	PortsLength uint32 `idl:"name:dwNumPorts" json:"ports_length"`
 	PortFlags   uint32 `idl:"name:dwPortFlags" json:"port_flags"`
 }
 
-func (o *L2tpConfigParams1) xxx_PreparePayload(ctx context.Context) error {
+func (o *L2TPConfigParams1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -4664,7 +4664,7 @@ func (o *L2tpConfigParams1) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *L2tpConfigParams1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *L2TPConfigParams1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -4679,7 +4679,7 @@ func (o *L2tpConfigParams1) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	}
 	return nil
 }
-func (o *L2tpConfigParams1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *L2TPConfigParams1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -4692,15 +4692,15 @@ func (o *L2tpConfigParams1) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	return nil
 }
 
-// L2tpConfigParams2 structure represents L2TP_CONFIG_PARAMS_2 RPC structure.
-type L2tpConfigParams2 struct {
+// L2TPConfigParams2 structure represents L2TP_CONFIG_PARAMS_2 RPC structure.
+type L2TPConfigParams2 struct {
 	PortsLength            uint32                   `idl:"name:dwNumPorts" json:"ports_length"`
 	PortFlags              uint32                   `idl:"name:dwPortFlags" json:"port_flags"`
 	TunnelConfigParamFlags uint32                   `idl:"name:dwTunnelConfigParamFlags" json:"tunnel_config_param_flags"`
-	TunnelConfigParams     *L2tpTunnelConfigParams1 `idl:"name:TunnelConfigParams" json:"tunnel_config_params"`
+	TunnelConfigParams     *L2TPTunnelConfigParams1 `idl:"name:TunnelConfigParams" json:"tunnel_config_params"`
 }
 
-func (o *L2tpConfigParams2) xxx_PreparePayload(ctx context.Context) error {
+func (o *L2TPConfigParams2) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -4709,7 +4709,7 @@ func (o *L2tpConfigParams2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *L2tpConfigParams2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *L2TPConfigParams2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -4730,13 +4730,13 @@ func (o *L2tpConfigParams2) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 			return err
 		}
 	} else {
-		if err := (&L2tpTunnelConfigParams1{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&L2TPTunnelConfigParams1{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *L2tpConfigParams2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *L2TPConfigParams2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -4750,7 +4750,7 @@ func (o *L2tpConfigParams2) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		return err
 	}
 	if o.TunnelConfigParams == nil {
-		o.TunnelConfigParams = &L2tpTunnelConfigParams1{}
+		o.TunnelConfigParams = &L2TPTunnelConfigParams1{}
 	}
 	if err := o.TunnelConfigParams.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -4758,13 +4758,13 @@ func (o *L2tpConfigParams2) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	return nil
 }
 
-// SstpCertInfo1 structure represents SSTP_CERT_INFO_1 RPC structure.
-type SstpCertInfo1 struct {
+// SSTPCertInfo1 structure represents SSTP_CERT_INFO_1 RPC structure.
+type SSTPCertInfo1 struct {
 	IsDefault bool       `idl:"name:isDefault" json:"is_default"`
 	CertBlob  *CertBlob1 `idl:"name:certBlob" json:"cert_blob"`
 }
 
-func (o *SstpCertInfo1) xxx_PreparePayload(ctx context.Context) error {
+func (o *SSTPCertInfo1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -4773,7 +4773,7 @@ func (o *SstpCertInfo1) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *SstpCertInfo1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SSTPCertInfo1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -4800,7 +4800,7 @@ func (o *SstpCertInfo1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *SstpCertInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *SSTPCertInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -4818,16 +4818,16 @@ func (o *SstpCertInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// SstpConfigParams1 structure represents SSTP_CONFIG_PARAMS_1 RPC structure.
-type SstpConfigParams1 struct {
+// SSTPConfigParams1 structure represents SSTP_CONFIG_PARAMS_1 RPC structure.
+type SSTPConfigParams1 struct {
 	PortsLength     uint32         `idl:"name:dwNumPorts" json:"ports_length"`
 	PortFlags       uint32         `idl:"name:dwPortFlags" json:"port_flags"`
 	IsUseHTTPS      bool           `idl:"name:isUseHttps" json:"is_use_https"`
 	CertAlgorithm   uint32         `idl:"name:certAlgorithm" json:"cert_algorithm"`
-	SstpCertDetails *SstpCertInfo1 `idl:"name:sstpCertDetails" json:"sstp_cert_details"`
+	SSTPCertDetails *SSTPCertInfo1 `idl:"name:sstpCertDetails" json:"sstp_cert_details"`
 }
 
-func (o *SstpConfigParams1) xxx_PreparePayload(ctx context.Context) error {
+func (o *SSTPConfigParams1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -4836,7 +4836,7 @@ func (o *SstpConfigParams1) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *SstpConfigParams1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SSTPConfigParams1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -4861,18 +4861,18 @@ func (o *SstpConfigParams1) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	if err := w.WriteData(o.CertAlgorithm); err != nil {
 		return err
 	}
-	if o.SstpCertDetails != nil {
-		if err := o.SstpCertDetails.MarshalNDR(ctx, w); err != nil {
+	if o.SSTPCertDetails != nil {
+		if err := o.SSTPCertDetails.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&SstpCertInfo1{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&SSTPCertInfo1{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *SstpConfigParams1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *SSTPConfigParams1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -4890,24 +4890,24 @@ func (o *SstpConfigParams1) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	if err := w.ReadData(&o.CertAlgorithm); err != nil {
 		return err
 	}
-	if o.SstpCertDetails == nil {
-		o.SstpCertDetails = &SstpCertInfo1{}
+	if o.SSTPCertDetails == nil {
+		o.SSTPCertDetails = &SSTPCertInfo1{}
 	}
-	if err := o.SstpCertDetails.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.SSTPCertDetails.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// MprapiTunnelConfigParams1 structure represents MPRAPI_TUNNEL_CONFIG_PARAMS_1 RPC structure.
-type MprapiTunnelConfigParams1 struct {
+// TunnelConfigParams1 structure represents MPRAPI_TUNNEL_CONFIG_PARAMS_1 RPC structure.
+type TunnelConfigParams1 struct {
 	IKEConfigParams  *IKEv2ConfigParams1 `idl:"name:IkeConfigParams" json:"ike_config_params"`
 	PPTPConfigParams *PPTPConfigParams1  `idl:"name:PptpConfigParams" json:"pptp_config_params"`
-	L2tpConfigParams *L2tpConfigParams1  `idl:"name:L2tpConfigParams" json:"l2tp_config_params"`
-	SstpConfigParams *SstpConfigParams1  `idl:"name:SstpConfigParams" json:"sstp_config_params"`
+	L2TPConfigParams *L2TPConfigParams1  `idl:"name:L2tpConfigParams" json:"l2tp_config_params"`
+	SSTPConfigParams *SSTPConfigParams1  `idl:"name:SstpConfigParams" json:"sstp_config_params"`
 }
 
-func (o *MprapiTunnelConfigParams1) xxx_PreparePayload(ctx context.Context) error {
+func (o *TunnelConfigParams1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -4916,7 +4916,7 @@ func (o *MprapiTunnelConfigParams1) xxx_PreparePayload(ctx context.Context) erro
 	}
 	return nil
 }
-func (o *MprapiTunnelConfigParams1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *TunnelConfigParams1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -4941,27 +4941,27 @@ func (o *MprapiTunnelConfigParams1) MarshalNDR(ctx context.Context, w ndr.Writer
 			return err
 		}
 	}
-	if o.L2tpConfigParams != nil {
-		if err := o.L2tpConfigParams.MarshalNDR(ctx, w); err != nil {
+	if o.L2TPConfigParams != nil {
+		if err := o.L2TPConfigParams.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&L2tpConfigParams1{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&L2TPConfigParams1{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
-	if o.SstpConfigParams != nil {
-		if err := o.SstpConfigParams.MarshalNDR(ctx, w); err != nil {
+	if o.SSTPConfigParams != nil {
+		if err := o.SSTPConfigParams.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&SstpConfigParams1{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&SSTPConfigParams1{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MprapiTunnelConfigParams1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *TunnelConfigParams1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -4977,30 +4977,30 @@ func (o *MprapiTunnelConfigParams1) UnmarshalNDR(ctx context.Context, w ndr.Read
 	if err := o.PPTPConfigParams.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.L2tpConfigParams == nil {
-		o.L2tpConfigParams = &L2tpConfigParams1{}
+	if o.L2TPConfigParams == nil {
+		o.L2TPConfigParams = &L2TPConfigParams1{}
 	}
-	if err := o.L2tpConfigParams.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.L2TPConfigParams.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.SstpConfigParams == nil {
-		o.SstpConfigParams = &SstpConfigParams1{}
+	if o.SSTPConfigParams == nil {
+		o.SSTPConfigParams = &SSTPConfigParams1{}
 	}
-	if err := o.SstpConfigParams.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.SSTPConfigParams.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// MprapiTunnelConfigParams2 structure represents MPRAPI_TUNNEL_CONFIG_PARAMS_2 RPC structure.
-type MprapiTunnelConfigParams2 struct {
+// TunnelConfigParams2 structure represents MPRAPI_TUNNEL_CONFIG_PARAMS_2 RPC structure.
+type TunnelConfigParams2 struct {
 	IKEConfigParams  *IKEv2ConfigParams2 `idl:"name:IkeConfigParams" json:"ike_config_params"`
 	PPTPConfigParams *PPTPConfigParams1  `idl:"name:PptpConfigParams" json:"pptp_config_params"`
-	L2tpConfigParams *L2tpConfigParams1  `idl:"name:L2tpConfigParams" json:"l2tp_config_params"`
-	SstpConfigParams *SstpConfigParams1  `idl:"name:SstpConfigParams" json:"sstp_config_params"`
+	L2TPConfigParams *L2TPConfigParams1  `idl:"name:L2tpConfigParams" json:"l2tp_config_params"`
+	SSTPConfigParams *SSTPConfigParams1  `idl:"name:SstpConfigParams" json:"sstp_config_params"`
 }
 
-func (o *MprapiTunnelConfigParams2) xxx_PreparePayload(ctx context.Context) error {
+func (o *TunnelConfigParams2) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -5009,7 +5009,7 @@ func (o *MprapiTunnelConfigParams2) xxx_PreparePayload(ctx context.Context) erro
 	}
 	return nil
 }
-func (o *MprapiTunnelConfigParams2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *TunnelConfigParams2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -5034,27 +5034,27 @@ func (o *MprapiTunnelConfigParams2) MarshalNDR(ctx context.Context, w ndr.Writer
 			return err
 		}
 	}
-	if o.L2tpConfigParams != nil {
-		if err := o.L2tpConfigParams.MarshalNDR(ctx, w); err != nil {
+	if o.L2TPConfigParams != nil {
+		if err := o.L2TPConfigParams.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&L2tpConfigParams1{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&L2TPConfigParams1{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
-	if o.SstpConfigParams != nil {
-		if err := o.SstpConfigParams.MarshalNDR(ctx, w); err != nil {
+	if o.SSTPConfigParams != nil {
+		if err := o.SSTPConfigParams.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&SstpConfigParams1{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&SSTPConfigParams1{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MprapiTunnelConfigParams2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *TunnelConfigParams2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -5070,30 +5070,30 @@ func (o *MprapiTunnelConfigParams2) UnmarshalNDR(ctx context.Context, w ndr.Read
 	if err := o.PPTPConfigParams.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.L2tpConfigParams == nil {
-		o.L2tpConfigParams = &L2tpConfigParams1{}
+	if o.L2TPConfigParams == nil {
+		o.L2TPConfigParams = &L2TPConfigParams1{}
 	}
-	if err := o.L2tpConfigParams.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.L2TPConfigParams.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.SstpConfigParams == nil {
-		o.SstpConfigParams = &SstpConfigParams1{}
+	if o.SSTPConfigParams == nil {
+		o.SSTPConfigParams = &SSTPConfigParams1{}
 	}
-	if err := o.SstpConfigParams.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.SSTPConfigParams.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// MprapiTunnelConfigParams3 structure represents MPRAPI_TUNNEL_CONFIG_PARAMS_3 RPC structure.
-type MprapiTunnelConfigParams3 struct {
+// TunnelConfigParams3 structure represents MPRAPI_TUNNEL_CONFIG_PARAMS_3 RPC structure.
+type TunnelConfigParams3 struct {
 	IKEConfigParams  *IKEv2ConfigParams3 `idl:"name:IkeConfigParams" json:"ike_config_params"`
 	PPTPConfigParams *PPTPConfigParams1  `idl:"name:PptpConfigParams" json:"pptp_config_params"`
-	L2tpConfigParams *L2tpConfigParams2  `idl:"name:L2tpConfigParams" json:"l2tp_config_params"`
-	SstpConfigParams *SstpConfigParams1  `idl:"name:SstpConfigParams" json:"sstp_config_params"`
+	L2TPConfigParams *L2TPConfigParams2  `idl:"name:L2tpConfigParams" json:"l2tp_config_params"`
+	SSTPConfigParams *SSTPConfigParams1  `idl:"name:SstpConfigParams" json:"sstp_config_params"`
 }
 
-func (o *MprapiTunnelConfigParams3) xxx_PreparePayload(ctx context.Context) error {
+func (o *TunnelConfigParams3) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -5102,7 +5102,7 @@ func (o *MprapiTunnelConfigParams3) xxx_PreparePayload(ctx context.Context) erro
 	}
 	return nil
 }
-func (o *MprapiTunnelConfigParams3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *TunnelConfigParams3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -5127,27 +5127,27 @@ func (o *MprapiTunnelConfigParams3) MarshalNDR(ctx context.Context, w ndr.Writer
 			return err
 		}
 	}
-	if o.L2tpConfigParams != nil {
-		if err := o.L2tpConfigParams.MarshalNDR(ctx, w); err != nil {
+	if o.L2TPConfigParams != nil {
+		if err := o.L2TPConfigParams.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&L2tpConfigParams2{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&L2TPConfigParams2{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
-	if o.SstpConfigParams != nil {
-		if err := o.SstpConfigParams.MarshalNDR(ctx, w); err != nil {
+	if o.SSTPConfigParams != nil {
+		if err := o.SSTPConfigParams.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&SstpConfigParams1{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&SSTPConfigParams1{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MprapiTunnelConfigParams3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *TunnelConfigParams3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -5163,33 +5163,33 @@ func (o *MprapiTunnelConfigParams3) UnmarshalNDR(ctx context.Context, w ndr.Read
 	if err := o.PPTPConfigParams.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.L2tpConfigParams == nil {
-		o.L2tpConfigParams = &L2tpConfigParams2{}
+	if o.L2TPConfigParams == nil {
+		o.L2TPConfigParams = &L2TPConfigParams2{}
 	}
-	if err := o.L2tpConfigParams.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.L2TPConfigParams.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.SstpConfigParams == nil {
-		o.SstpConfigParams = &SstpConfigParams1{}
+	if o.SSTPConfigParams == nil {
+		o.SSTPConfigParams = &SSTPConfigParams1{}
 	}
-	if err := o.SstpConfigParams.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.SSTPConfigParams.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// MprServerEx1 structure represents MPR_SERVER_EX_1 RPC structure.
-type MprServerEx1 struct {
-	Header       *MprapiObjectHeaderIDL     `idl:"name:Header" json:"header"`
-	LANOnlyMode  bool                       `idl:"name:fLanOnlyMode" json:"lan_only_mode"`
-	UpTime       uint32                     `idl:"name:dwUpTime" json:"up_time"`
-	TotalPorts   uint32                     `idl:"name:dwTotalPorts" json:"total_ports"`
-	PortsInUse   uint32                     `idl:"name:dwPortsInUse" json:"ports_in_use"`
-	_            uint32                     `idl:"name:Reserved"`
-	ConfigParams *MprapiTunnelConfigParams1 `idl:"name:ConfigParams" json:"config_params"`
+// ServerEx1 structure represents MPR_SERVER_EX_1 RPC structure.
+type ServerEx1 struct {
+	Header       *ObjectHeaderIDL     `idl:"name:Header" json:"header"`
+	LANOnlyMode  bool                 `idl:"name:fLanOnlyMode" json:"lan_only_mode"`
+	UpTime       uint32               `idl:"name:dwUpTime" json:"up_time"`
+	TotalPorts   uint32               `idl:"name:dwTotalPorts" json:"total_ports"`
+	PortsInUse   uint32               `idl:"name:dwPortsInUse" json:"ports_in_use"`
+	_            uint32               `idl:"name:Reserved"`
+	ConfigParams *TunnelConfigParams1 `idl:"name:ConfigParams" json:"config_params"`
 }
 
-func (o *MprServerEx1) xxx_PreparePayload(ctx context.Context) error {
+func (o *ServerEx1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -5198,7 +5198,7 @@ func (o *MprServerEx1) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MprServerEx1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerEx1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -5210,7 +5210,7 @@ func (o *MprServerEx1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&MprapiObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -5241,18 +5241,18 @@ func (o *MprServerEx1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&MprapiTunnelConfigParams1{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&TunnelConfigParams1{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MprServerEx1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ServerEx1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
 	if o.Header == nil {
-		o.Header = &MprapiObjectHeaderIDL{}
+		o.Header = &ObjectHeaderIDL{}
 	}
 	if err := o.Header.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5277,7 +5277,7 @@ func (o *MprServerEx1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if o.ConfigParams == nil {
-		o.ConfigParams = &MprapiTunnelConfigParams1{}
+		o.ConfigParams = &TunnelConfigParams1{}
 	}
 	if err := o.ConfigParams.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5285,18 +5285,18 @@ func (o *MprServerEx1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MprServerEx2 structure represents MPR_SERVER_EX_2 RPC structure.
-type MprServerEx2 struct {
-	Header       *MprapiObjectHeaderIDL     `idl:"name:Header" json:"header"`
-	LANOnlyMode  bool                       `idl:"name:fLanOnlyMode" json:"lan_only_mode"`
-	UpTime       uint32                     `idl:"name:dwUpTime" json:"up_time"`
-	TotalPorts   uint32                     `idl:"name:dwTotalPorts" json:"total_ports"`
-	PortsInUse   uint32                     `idl:"name:dwPortsInUse" json:"ports_in_use"`
-	_            uint32                     `idl:"name:Reserved"`
-	ConfigParams *MprapiTunnelConfigParams2 `idl:"name:ConfigParams" json:"config_params"`
+// ServerEx2 structure represents MPR_SERVER_EX_2 RPC structure.
+type ServerEx2 struct {
+	Header       *ObjectHeaderIDL     `idl:"name:Header" json:"header"`
+	LANOnlyMode  bool                 `idl:"name:fLanOnlyMode" json:"lan_only_mode"`
+	UpTime       uint32               `idl:"name:dwUpTime" json:"up_time"`
+	TotalPorts   uint32               `idl:"name:dwTotalPorts" json:"total_ports"`
+	PortsInUse   uint32               `idl:"name:dwPortsInUse" json:"ports_in_use"`
+	_            uint32               `idl:"name:Reserved"`
+	ConfigParams *TunnelConfigParams2 `idl:"name:ConfigParams" json:"config_params"`
 }
 
-func (o *MprServerEx2) xxx_PreparePayload(ctx context.Context) error {
+func (o *ServerEx2) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -5305,7 +5305,7 @@ func (o *MprServerEx2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MprServerEx2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerEx2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -5317,7 +5317,7 @@ func (o *MprServerEx2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&MprapiObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -5348,18 +5348,18 @@ func (o *MprServerEx2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&MprapiTunnelConfigParams2{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&TunnelConfigParams2{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MprServerEx2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ServerEx2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
 	if o.Header == nil {
-		o.Header = &MprapiObjectHeaderIDL{}
+		o.Header = &ObjectHeaderIDL{}
 	}
 	if err := o.Header.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5384,7 +5384,7 @@ func (o *MprServerEx2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if o.ConfigParams == nil {
-		o.ConfigParams = &MprapiTunnelConfigParams2{}
+		o.ConfigParams = &TunnelConfigParams2{}
 	}
 	if err := o.ConfigParams.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5392,18 +5392,18 @@ func (o *MprServerEx2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MprServerEx3 structure represents MPR_SERVER_EX_3 RPC structure.
-type MprServerEx3 struct {
-	Header       *MprapiObjectHeaderIDL     `idl:"name:Header" json:"header"`
-	LANOnlyMode  bool                       `idl:"name:fLanOnlyMode" json:"lan_only_mode"`
-	UpTime       uint32                     `idl:"name:dwUpTime" json:"up_time"`
-	TotalPorts   uint32                     `idl:"name:dwTotalPorts" json:"total_ports"`
-	PortsInUse   uint32                     `idl:"name:dwPortsInUse" json:"ports_in_use"`
-	_            uint32                     `idl:"name:Reserved"`
-	ConfigParams *MprapiTunnelConfigParams3 `idl:"name:ConfigParams" json:"config_params"`
+// ServerEx3 structure represents MPR_SERVER_EX_3 RPC structure.
+type ServerEx3 struct {
+	Header       *ObjectHeaderIDL     `idl:"name:Header" json:"header"`
+	LANOnlyMode  bool                 `idl:"name:fLanOnlyMode" json:"lan_only_mode"`
+	UpTime       uint32               `idl:"name:dwUpTime" json:"up_time"`
+	TotalPorts   uint32               `idl:"name:dwTotalPorts" json:"total_ports"`
+	PortsInUse   uint32               `idl:"name:dwPortsInUse" json:"ports_in_use"`
+	_            uint32               `idl:"name:Reserved"`
+	ConfigParams *TunnelConfigParams3 `idl:"name:ConfigParams" json:"config_params"`
 }
 
-func (o *MprServerEx3) xxx_PreparePayload(ctx context.Context) error {
+func (o *ServerEx3) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -5412,7 +5412,7 @@ func (o *MprServerEx3) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MprServerEx3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerEx3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -5424,7 +5424,7 @@ func (o *MprServerEx3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&MprapiObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -5455,18 +5455,18 @@ func (o *MprServerEx3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&MprapiTunnelConfigParams3{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&TunnelConfigParams3{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MprServerEx3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ServerEx3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
 	if o.Header == nil {
-		o.Header = &MprapiObjectHeaderIDL{}
+		o.Header = &ObjectHeaderIDL{}
 	}
 	if err := o.Header.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5491,7 +5491,7 @@ func (o *MprServerEx3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if o.ConfigParams == nil {
-		o.ConfigParams = &MprapiTunnelConfigParams3{}
+		o.ConfigParams = &TunnelConfigParams3{}
 	}
 	if err := o.ConfigParams.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5499,31 +5499,31 @@ func (o *MprServerEx3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MprServerExIDL structure represents MPR_SERVER_EX_IDL RPC union.
-type MprServerExIDL struct {
+// ServerExIDL structure represents MPR_SERVER_EX_IDL RPC union.
+type ServerExIDL struct {
 	Revision uint8
 	// Types that are assignable to Value
 	//
-	// *MprServerExIDL_ServerConfig1
-	// *MprServerExIDL_ServerConfig2
-	// *MprServerExIDL_ServerConfig3
-	Value is_MprServerExIDL `json:"value"`
+	// *ServerExIDL_ServerConfig1
+	// *ServerExIDL_ServerConfig2
+	// *ServerExIDL_ServerConfig3
+	Value is_ServerExIDL `json:"value"`
 }
 
-func (o *MprServerExIDL) GetValue() any {
+func (o *ServerExIDL) GetValue() any {
 	if o == nil {
 		return nil
 	}
 	switch value := (interface{})(o.Value).(type) {
-	case *MprServerExIDL_ServerConfig1:
+	case *ServerExIDL_ServerConfig1:
 		if value != nil {
 			return value.ServerConfig1
 		}
-	case *MprServerExIDL_ServerConfig2:
+	case *ServerExIDL_ServerConfig2:
 		if value != nil {
 			return value.ServerConfig2
 		}
-	case *MprServerExIDL_ServerConfig3:
+	case *ServerExIDL_ServerConfig3:
 		if value != nil {
 			return value.ServerConfig3
 		}
@@ -5531,13 +5531,13 @@ func (o *MprServerExIDL) GetValue() any {
 	return nil
 }
 
-type is_MprServerExIDL interface {
+type is_ServerExIDL interface {
 	ndr.Marshaler
 	ndr.Unmarshaler
-	is_MprServerExIDL()
+	is_ServerExIDL()
 }
 
-func (o *MprServerExIDL) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerExIDL) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteUnionAlign(9); err != nil {
 		return err
 	}
@@ -5549,35 +5549,35 @@ func (o *MprServerExIDL) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	switch o.Revision {
 	case uint8(1):
-		_o, _ := o.Value.(*MprServerExIDL_ServerConfig1)
+		_o, _ := o.Value.(*ServerExIDL_ServerConfig1)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&MprServerExIDL_ServerConfig1{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ServerExIDL_ServerConfig1{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint8(2):
-		_o, _ := o.Value.(*MprServerExIDL_ServerConfig2)
+		_o, _ := o.Value.(*ServerExIDL_ServerConfig2)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&MprServerExIDL_ServerConfig2{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ServerExIDL_ServerConfig2{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint8(3):
-		_o, _ := o.Value.(*MprServerExIDL_ServerConfig3)
+		_o, _ := o.Value.(*ServerExIDL_ServerConfig3)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&MprServerExIDL_ServerConfig3{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ServerExIDL_ServerConfig3{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -5587,7 +5587,7 @@ func (o *MprServerExIDL) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return nil
 }
 
-func (o *MprServerExIDL) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ServerExIDL) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
@@ -5599,17 +5599,17 @@ func (o *MprServerExIDL) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	}
 	switch o.Revision {
 	case uint8(1):
-		o.Value = &MprServerExIDL_ServerConfig1{}
+		o.Value = &ServerExIDL_ServerConfig1{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint8(2):
-		o.Value = &MprServerExIDL_ServerConfig2{}
+		o.Value = &ServerExIDL_ServerConfig2{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint8(3):
-		o.Value = &MprServerExIDL_ServerConfig3{}
+		o.Value = &ServerExIDL_ServerConfig3{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -5619,30 +5619,30 @@ func (o *MprServerExIDL) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MprServerExIDL_ServerConfig1 structure represents MPR_SERVER_EX_IDL RPC union arm.
+// ServerExIDL_ServerConfig1 structure represents MPR_SERVER_EX_IDL RPC union arm.
 //
 // It has following labels: 1
-type MprServerExIDL_ServerConfig1 struct {
-	ServerConfig1 *MprServerEx1 `idl:"name:ServerConfig1" json:"server_config1"`
+type ServerExIDL_ServerConfig1 struct {
+	ServerConfig1 *ServerEx1 `idl:"name:ServerConfig1" json:"server_config1"`
 }
 
-func (*MprServerExIDL_ServerConfig1) is_MprServerExIDL() {}
+func (*ServerExIDL_ServerConfig1) is_ServerExIDL() {}
 
-func (o *MprServerExIDL_ServerConfig1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerExIDL_ServerConfig1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.ServerConfig1 != nil {
 		if err := o.ServerConfig1.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&MprServerEx1{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ServerEx1{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MprServerExIDL_ServerConfig1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ServerExIDL_ServerConfig1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.ServerConfig1 == nil {
-		o.ServerConfig1 = &MprServerEx1{}
+		o.ServerConfig1 = &ServerEx1{}
 	}
 	if err := o.ServerConfig1.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5650,30 +5650,30 @@ func (o *MprServerExIDL_ServerConfig1) UnmarshalNDR(ctx context.Context, w ndr.R
 	return nil
 }
 
-// MprServerExIDL_ServerConfig2 structure represents MPR_SERVER_EX_IDL RPC union arm.
+// ServerExIDL_ServerConfig2 structure represents MPR_SERVER_EX_IDL RPC union arm.
 //
 // It has following labels: 2
-type MprServerExIDL_ServerConfig2 struct {
-	ServerConfig2 *MprServerEx2 `idl:"name:ServerConfig2" json:"server_config2"`
+type ServerExIDL_ServerConfig2 struct {
+	ServerConfig2 *ServerEx2 `idl:"name:ServerConfig2" json:"server_config2"`
 }
 
-func (*MprServerExIDL_ServerConfig2) is_MprServerExIDL() {}
+func (*ServerExIDL_ServerConfig2) is_ServerExIDL() {}
 
-func (o *MprServerExIDL_ServerConfig2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerExIDL_ServerConfig2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.ServerConfig2 != nil {
 		if err := o.ServerConfig2.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&MprServerEx2{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ServerEx2{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MprServerExIDL_ServerConfig2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ServerExIDL_ServerConfig2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.ServerConfig2 == nil {
-		o.ServerConfig2 = &MprServerEx2{}
+		o.ServerConfig2 = &ServerEx2{}
 	}
 	if err := o.ServerConfig2.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5681,30 +5681,30 @@ func (o *MprServerExIDL_ServerConfig2) UnmarshalNDR(ctx context.Context, w ndr.R
 	return nil
 }
 
-// MprServerExIDL_ServerConfig3 structure represents MPR_SERVER_EX_IDL RPC union arm.
+// ServerExIDL_ServerConfig3 structure represents MPR_SERVER_EX_IDL RPC union arm.
 //
 // It has following labels: 3
-type MprServerExIDL_ServerConfig3 struct {
-	ServerConfig3 *MprServerEx3 `idl:"name:ServerConfig3" json:"server_config3"`
+type ServerExIDL_ServerConfig3 struct {
+	ServerConfig3 *ServerEx3 `idl:"name:ServerConfig3" json:"server_config3"`
 }
 
-func (*MprServerExIDL_ServerConfig3) is_MprServerExIDL() {}
+func (*ServerExIDL_ServerConfig3) is_ServerExIDL() {}
 
-func (o *MprServerExIDL_ServerConfig3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerExIDL_ServerConfig3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.ServerConfig3 != nil {
 		if err := o.ServerConfig3.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&MprServerEx3{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ServerEx3{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MprServerExIDL_ServerConfig3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ServerExIDL_ServerConfig3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.ServerConfig3 == nil {
-		o.ServerConfig3 = &MprServerEx3{}
+		o.ServerConfig3 = &ServerEx3{}
 	}
 	if err := o.ServerConfig3.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5712,14 +5712,14 @@ func (o *MprServerExIDL_ServerConfig3) UnmarshalNDR(ctx context.Context, w ndr.R
 	return nil
 }
 
-// MprServerSetConfigEx1 structure represents MPR_SERVER_SET_CONFIG_EX_1 RPC structure.
-type MprServerSetConfigEx1 struct {
-	Header                *MprapiObjectHeaderIDL     `idl:"name:Header" json:"header"`
-	SetConfigForProtocols uint32                     `idl:"name:setConfigForProtocols" json:"set_config_for_protocols"`
-	ConfigParams          *MprapiTunnelConfigParams1 `idl:"name:ConfigParams" json:"config_params"`
+// ServerSetConfigEx1 structure represents MPR_SERVER_SET_CONFIG_EX_1 RPC structure.
+type ServerSetConfigEx1 struct {
+	Header                *ObjectHeaderIDL     `idl:"name:Header" json:"header"`
+	SetConfigForProtocols uint32               `idl:"name:setConfigForProtocols" json:"set_config_for_protocols"`
+	ConfigParams          *TunnelConfigParams1 `idl:"name:ConfigParams" json:"config_params"`
 }
 
-func (o *MprServerSetConfigEx1) xxx_PreparePayload(ctx context.Context) error {
+func (o *ServerSetConfigEx1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -5728,7 +5728,7 @@ func (o *MprServerSetConfigEx1) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MprServerSetConfigEx1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerSetConfigEx1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -5740,7 +5740,7 @@ func (o *MprServerSetConfigEx1) MarshalNDR(ctx context.Context, w ndr.Writer) er
 			return err
 		}
 	} else {
-		if err := (&MprapiObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -5752,18 +5752,18 @@ func (o *MprServerSetConfigEx1) MarshalNDR(ctx context.Context, w ndr.Writer) er
 			return err
 		}
 	} else {
-		if err := (&MprapiTunnelConfigParams1{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&TunnelConfigParams1{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MprServerSetConfigEx1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ServerSetConfigEx1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
 	if o.Header == nil {
-		o.Header = &MprapiObjectHeaderIDL{}
+		o.Header = &ObjectHeaderIDL{}
 	}
 	if err := o.Header.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5772,7 +5772,7 @@ func (o *MprServerSetConfigEx1) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		return err
 	}
 	if o.ConfigParams == nil {
-		o.ConfigParams = &MprapiTunnelConfigParams1{}
+		o.ConfigParams = &TunnelConfigParams1{}
 	}
 	if err := o.ConfigParams.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5780,14 +5780,14 @@ func (o *MprServerSetConfigEx1) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	return nil
 }
 
-// MprServerSetConfigEx2 structure represents MPR_SERVER_SET_CONFIG_EX_2 RPC structure.
-type MprServerSetConfigEx2 struct {
-	Header                *MprapiObjectHeaderIDL     `idl:"name:Header" json:"header"`
-	SetConfigForProtocols uint32                     `idl:"name:setConfigForProtocols" json:"set_config_for_protocols"`
-	ConfigParams          *MprapiTunnelConfigParams2 `idl:"name:ConfigParams" json:"config_params"`
+// ServerSetConfigEx2 structure represents MPR_SERVER_SET_CONFIG_EX_2 RPC structure.
+type ServerSetConfigEx2 struct {
+	Header                *ObjectHeaderIDL     `idl:"name:Header" json:"header"`
+	SetConfigForProtocols uint32               `idl:"name:setConfigForProtocols" json:"set_config_for_protocols"`
+	ConfigParams          *TunnelConfigParams2 `idl:"name:ConfigParams" json:"config_params"`
 }
 
-func (o *MprServerSetConfigEx2) xxx_PreparePayload(ctx context.Context) error {
+func (o *ServerSetConfigEx2) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -5796,7 +5796,7 @@ func (o *MprServerSetConfigEx2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MprServerSetConfigEx2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerSetConfigEx2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -5808,7 +5808,7 @@ func (o *MprServerSetConfigEx2) MarshalNDR(ctx context.Context, w ndr.Writer) er
 			return err
 		}
 	} else {
-		if err := (&MprapiObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -5820,18 +5820,18 @@ func (o *MprServerSetConfigEx2) MarshalNDR(ctx context.Context, w ndr.Writer) er
 			return err
 		}
 	} else {
-		if err := (&MprapiTunnelConfigParams2{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&TunnelConfigParams2{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MprServerSetConfigEx2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ServerSetConfigEx2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
 	if o.Header == nil {
-		o.Header = &MprapiObjectHeaderIDL{}
+		o.Header = &ObjectHeaderIDL{}
 	}
 	if err := o.Header.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5840,7 +5840,7 @@ func (o *MprServerSetConfigEx2) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		return err
 	}
 	if o.ConfigParams == nil {
-		o.ConfigParams = &MprapiTunnelConfigParams2{}
+		o.ConfigParams = &TunnelConfigParams2{}
 	}
 	if err := o.ConfigParams.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5848,14 +5848,14 @@ func (o *MprServerSetConfigEx2) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	return nil
 }
 
-// MprServerSetConfigEx3 structure represents MPR_SERVER_SET_CONFIG_EX_3 RPC structure.
-type MprServerSetConfigEx3 struct {
-	Header                *MprapiObjectHeaderIDL     `idl:"name:Header" json:"header"`
-	SetConfigForProtocols uint32                     `idl:"name:setConfigForProtocols" json:"set_config_for_protocols"`
-	ConfigParams          *MprapiTunnelConfigParams3 `idl:"name:ConfigParams" json:"config_params"`
+// ServerSetConfigEx3 structure represents MPR_SERVER_SET_CONFIG_EX_3 RPC structure.
+type ServerSetConfigEx3 struct {
+	Header                *ObjectHeaderIDL     `idl:"name:Header" json:"header"`
+	SetConfigForProtocols uint32               `idl:"name:setConfigForProtocols" json:"set_config_for_protocols"`
+	ConfigParams          *TunnelConfigParams3 `idl:"name:ConfigParams" json:"config_params"`
 }
 
-func (o *MprServerSetConfigEx3) xxx_PreparePayload(ctx context.Context) error {
+func (o *ServerSetConfigEx3) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -5864,7 +5864,7 @@ func (o *MprServerSetConfigEx3) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MprServerSetConfigEx3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerSetConfigEx3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -5876,7 +5876,7 @@ func (o *MprServerSetConfigEx3) MarshalNDR(ctx context.Context, w ndr.Writer) er
 			return err
 		}
 	} else {
-		if err := (&MprapiObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -5888,18 +5888,18 @@ func (o *MprServerSetConfigEx3) MarshalNDR(ctx context.Context, w ndr.Writer) er
 			return err
 		}
 	} else {
-		if err := (&MprapiTunnelConfigParams3{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&TunnelConfigParams3{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MprServerSetConfigEx3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ServerSetConfigEx3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
 	if o.Header == nil {
-		o.Header = &MprapiObjectHeaderIDL{}
+		o.Header = &ObjectHeaderIDL{}
 	}
 	if err := o.Header.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5908,7 +5908,7 @@ func (o *MprServerSetConfigEx3) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		return err
 	}
 	if o.ConfigParams == nil {
-		o.ConfigParams = &MprapiTunnelConfigParams3{}
+		o.ConfigParams = &TunnelConfigParams3{}
 	}
 	if err := o.ConfigParams.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5916,31 +5916,31 @@ func (o *MprServerSetConfigEx3) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	return nil
 }
 
-// MprServerSetConfigExIDL structure represents MPR_SERVER_SET_CONFIG_EX_IDL RPC union.
-type MprServerSetConfigExIDL struct {
+// ServerSetConfigExIDL structure represents MPR_SERVER_SET_CONFIG_EX_IDL RPC union.
+type ServerSetConfigExIDL struct {
 	Revision uint8
 	// Types that are assignable to Value
 	//
-	// *MprServerSetConfigExIDL_ServerSetConfig1
-	// *MprServerSetConfigExIDL_ServerSetConfig2
-	// *MprServerSetConfigExIDL_ServerSetConfig3
-	Value is_MprServerSetConfigExIDL `json:"value"`
+	// *ServerSetConfigExIDL_ServerSetConfig1
+	// *ServerSetConfigExIDL_ServerSetConfig2
+	// *ServerSetConfigExIDL_ServerSetConfig3
+	Value is_ServerSetConfigExIDL `json:"value"`
 }
 
-func (o *MprServerSetConfigExIDL) GetValue() any {
+func (o *ServerSetConfigExIDL) GetValue() any {
 	if o == nil {
 		return nil
 	}
 	switch value := (interface{})(o.Value).(type) {
-	case *MprServerSetConfigExIDL_ServerSetConfig1:
+	case *ServerSetConfigExIDL_ServerSetConfig1:
 		if value != nil {
 			return value.ServerSetConfig1
 		}
-	case *MprServerSetConfigExIDL_ServerSetConfig2:
+	case *ServerSetConfigExIDL_ServerSetConfig2:
 		if value != nil {
 			return value.ServerSetConfig2
 		}
-	case *MprServerSetConfigExIDL_ServerSetConfig3:
+	case *ServerSetConfigExIDL_ServerSetConfig3:
 		if value != nil {
 			return value.ServerSetConfig3
 		}
@@ -5948,13 +5948,13 @@ func (o *MprServerSetConfigExIDL) GetValue() any {
 	return nil
 }
 
-type is_MprServerSetConfigExIDL interface {
+type is_ServerSetConfigExIDL interface {
 	ndr.Marshaler
 	ndr.Unmarshaler
-	is_MprServerSetConfigExIDL()
+	is_ServerSetConfigExIDL()
 }
 
-func (o *MprServerSetConfigExIDL) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerSetConfigExIDL) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteUnionAlign(9); err != nil {
 		return err
 	}
@@ -5966,35 +5966,35 @@ func (o *MprServerSetConfigExIDL) MarshalNDR(ctx context.Context, w ndr.Writer) 
 	}
 	switch o.Revision {
 	case uint8(1):
-		_o, _ := o.Value.(*MprServerSetConfigExIDL_ServerSetConfig1)
+		_o, _ := o.Value.(*ServerSetConfigExIDL_ServerSetConfig1)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&MprServerSetConfigExIDL_ServerSetConfig1{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ServerSetConfigExIDL_ServerSetConfig1{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint8(2):
-		_o, _ := o.Value.(*MprServerSetConfigExIDL_ServerSetConfig2)
+		_o, _ := o.Value.(*ServerSetConfigExIDL_ServerSetConfig2)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&MprServerSetConfigExIDL_ServerSetConfig2{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ServerSetConfigExIDL_ServerSetConfig2{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint8(3):
-		_o, _ := o.Value.(*MprServerSetConfigExIDL_ServerSetConfig3)
+		_o, _ := o.Value.(*ServerSetConfigExIDL_ServerSetConfig3)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&MprServerSetConfigExIDL_ServerSetConfig3{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ServerSetConfigExIDL_ServerSetConfig3{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -6004,7 +6004,7 @@ func (o *MprServerSetConfigExIDL) MarshalNDR(ctx context.Context, w ndr.Writer) 
 	return nil
 }
 
-func (o *MprServerSetConfigExIDL) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ServerSetConfigExIDL) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
@@ -6016,17 +6016,17 @@ func (o *MprServerSetConfigExIDL) UnmarshalNDR(ctx context.Context, w ndr.Reader
 	}
 	switch o.Revision {
 	case uint8(1):
-		o.Value = &MprServerSetConfigExIDL_ServerSetConfig1{}
+		o.Value = &ServerSetConfigExIDL_ServerSetConfig1{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint8(2):
-		o.Value = &MprServerSetConfigExIDL_ServerSetConfig2{}
+		o.Value = &ServerSetConfigExIDL_ServerSetConfig2{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint8(3):
-		o.Value = &MprServerSetConfigExIDL_ServerSetConfig3{}
+		o.Value = &ServerSetConfigExIDL_ServerSetConfig3{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -6036,30 +6036,30 @@ func (o *MprServerSetConfigExIDL) UnmarshalNDR(ctx context.Context, w ndr.Reader
 	return nil
 }
 
-// MprServerSetConfigExIDL_ServerSetConfig1 structure represents MPR_SERVER_SET_CONFIG_EX_IDL RPC union arm.
+// ServerSetConfigExIDL_ServerSetConfig1 structure represents MPR_SERVER_SET_CONFIG_EX_IDL RPC union arm.
 //
 // It has following labels: 1
-type MprServerSetConfigExIDL_ServerSetConfig1 struct {
-	ServerSetConfig1 *MprServerSetConfigEx1 `idl:"name:ServerSetConfig1" json:"server_set_config1"`
+type ServerSetConfigExIDL_ServerSetConfig1 struct {
+	ServerSetConfig1 *ServerSetConfigEx1 `idl:"name:ServerSetConfig1" json:"server_set_config1"`
 }
 
-func (*MprServerSetConfigExIDL_ServerSetConfig1) is_MprServerSetConfigExIDL() {}
+func (*ServerSetConfigExIDL_ServerSetConfig1) is_ServerSetConfigExIDL() {}
 
-func (o *MprServerSetConfigExIDL_ServerSetConfig1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerSetConfigExIDL_ServerSetConfig1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.ServerSetConfig1 != nil {
 		if err := o.ServerSetConfig1.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&MprServerSetConfigEx1{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ServerSetConfigEx1{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MprServerSetConfigExIDL_ServerSetConfig1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ServerSetConfigExIDL_ServerSetConfig1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.ServerSetConfig1 == nil {
-		o.ServerSetConfig1 = &MprServerSetConfigEx1{}
+		o.ServerSetConfig1 = &ServerSetConfigEx1{}
 	}
 	if err := o.ServerSetConfig1.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -6067,30 +6067,30 @@ func (o *MprServerSetConfigExIDL_ServerSetConfig1) UnmarshalNDR(ctx context.Cont
 	return nil
 }
 
-// MprServerSetConfigExIDL_ServerSetConfig2 structure represents MPR_SERVER_SET_CONFIG_EX_IDL RPC union arm.
+// ServerSetConfigExIDL_ServerSetConfig2 structure represents MPR_SERVER_SET_CONFIG_EX_IDL RPC union arm.
 //
 // It has following labels: 2
-type MprServerSetConfigExIDL_ServerSetConfig2 struct {
-	ServerSetConfig2 *MprServerSetConfigEx2 `idl:"name:ServerSetConfig2" json:"server_set_config2"`
+type ServerSetConfigExIDL_ServerSetConfig2 struct {
+	ServerSetConfig2 *ServerSetConfigEx2 `idl:"name:ServerSetConfig2" json:"server_set_config2"`
 }
 
-func (*MprServerSetConfigExIDL_ServerSetConfig2) is_MprServerSetConfigExIDL() {}
+func (*ServerSetConfigExIDL_ServerSetConfig2) is_ServerSetConfigExIDL() {}
 
-func (o *MprServerSetConfigExIDL_ServerSetConfig2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerSetConfigExIDL_ServerSetConfig2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.ServerSetConfig2 != nil {
 		if err := o.ServerSetConfig2.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&MprServerSetConfigEx2{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ServerSetConfigEx2{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MprServerSetConfigExIDL_ServerSetConfig2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ServerSetConfigExIDL_ServerSetConfig2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.ServerSetConfig2 == nil {
-		o.ServerSetConfig2 = &MprServerSetConfigEx2{}
+		o.ServerSetConfig2 = &ServerSetConfigEx2{}
 	}
 	if err := o.ServerSetConfig2.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -6098,30 +6098,30 @@ func (o *MprServerSetConfigExIDL_ServerSetConfig2) UnmarshalNDR(ctx context.Cont
 	return nil
 }
 
-// MprServerSetConfigExIDL_ServerSetConfig3 structure represents MPR_SERVER_SET_CONFIG_EX_IDL RPC union arm.
+// ServerSetConfigExIDL_ServerSetConfig3 structure represents MPR_SERVER_SET_CONFIG_EX_IDL RPC union arm.
 //
 // It has following labels: 3
-type MprServerSetConfigExIDL_ServerSetConfig3 struct {
-	ServerSetConfig3 *MprServerSetConfigEx3 `idl:"name:ServerSetConfig3" json:"server_set_config3"`
+type ServerSetConfigExIDL_ServerSetConfig3 struct {
+	ServerSetConfig3 *ServerSetConfigEx3 `idl:"name:ServerSetConfig3" json:"server_set_config3"`
 }
 
-func (*MprServerSetConfigExIDL_ServerSetConfig3) is_MprServerSetConfigExIDL() {}
+func (*ServerSetConfigExIDL_ServerSetConfig3) is_ServerSetConfigExIDL() {}
 
-func (o *MprServerSetConfigExIDL_ServerSetConfig3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerSetConfigExIDL_ServerSetConfig3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.ServerSetConfig3 != nil {
 		if err := o.ServerSetConfig3.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&MprServerSetConfigEx3{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ServerSetConfigEx3{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MprServerSetConfigExIDL_ServerSetConfig3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ServerSetConfigExIDL_ServerSetConfig3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.ServerSetConfig3 == nil {
-		o.ServerSetConfig3 = &MprServerSetConfigEx3{}
+		o.ServerSetConfig3 = &ServerSetConfigEx3{}
 	}
 	if err := o.ServerSetConfig3.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -6131,9 +6131,9 @@ func (o *MprServerSetConfigExIDL_ServerSetConfig3) UnmarshalNDR(ctx context.Cont
 
 // RASUpdateConnection1IDL structure represents RAS_UPDATE_CONNECTION_1_IDL RPC structure.
 type RASUpdateConnection1IDL struct {
-	Header                *MprapiObjectHeaderIDL `idl:"name:Header" json:"header"`
-	InterfaceIndex        uint32                 `idl:"name:dwIfIndex" json:"interface_index"`
-	RemoteEndpointAddress []uint16               `idl:"name:wszRemoteEndpointAddress" json:"remote_endpoint_address"`
+	Header                *ObjectHeaderIDL `idl:"name:Header" json:"header"`
+	InterfaceIndex        uint32           `idl:"name:dwIfIndex" json:"interface_index"`
+	RemoteEndpointAddress []uint16         `idl:"name:wszRemoteEndpointAddress" json:"remote_endpoint_address"`
 }
 
 func (o *RASUpdateConnection1IDL) xxx_PreparePayload(ctx context.Context) error {
@@ -6157,7 +6157,7 @@ func (o *RASUpdateConnection1IDL) MarshalNDR(ctx context.Context, w ndr.Writer) 
 			return err
 		}
 	} else {
-		if err := (&MprapiObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -6188,7 +6188,7 @@ func (o *RASUpdateConnection1IDL) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		return err
 	}
 	if o.Header == nil {
-		o.Header = &MprapiObjectHeaderIDL{}
+		o.Header = &ObjectHeaderIDL{}
 	}
 	if err := o.Header.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -6318,8 +6318,8 @@ func (o *RASUpdateConnectionIDL_UpdateConnection1) UnmarshalNDR(ctx context.Cont
 	return nil
 }
 
-// DimInterfaceContainer structure represents DIM_INTERFACE_CONTAINER RPC structure.
-type DimInterfaceContainer struct {
+// InterfaceContainer structure represents DIM_INTERFACE_CONTAINER RPC structure.
+type InterfaceContainer struct {
 	GetInterfaceInfo  uint32 `idl:"name:fGetInterfaceInfo" json:"get_interface_info"`
 	InterfaceInfoSize uint32 `idl:"name:dwInterfaceInfoSize" json:"interface_info_size"`
 	InterfaceInfo     []byte `idl:"name:pInterfaceInfo;size_is:(dwInterfaceInfoSize)" json:"interface_info"`
@@ -6328,7 +6328,7 @@ type DimInterfaceContainer struct {
 	GlobalInfo        []byte `idl:"name:pGlobalInfo;size_is:(dwGlobalInfoSize)" json:"global_info"`
 }
 
-func (o *DimInterfaceContainer) xxx_PreparePayload(ctx context.Context) error {
+func (o *InterfaceContainer) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -6343,7 +6343,7 @@ func (o *DimInterfaceContainer) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *DimInterfaceContainer) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *InterfaceContainer) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -6430,7 +6430,7 @@ func (o *DimInterfaceContainer) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	}
 	return nil
 }
-func (o *DimInterfaceContainer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *InterfaceContainer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -6507,15 +6507,15 @@ func (o *DimInterfaceContainer) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	return nil
 }
 
-// RtrTocEntry structure represents RTR_TOC_ENTRY RPC structure.
-type RtrTocEntry struct {
+// RouterTOCEntry structure represents RTR_TOC_ENTRY RPC structure.
+type RouterTOCEntry struct {
 	InfoType uint32 `idl:"name:InfoType" json:"info_type"`
 	InfoSize uint32 `idl:"name:InfoSize" json:"info_size"`
 	Count    uint32 `idl:"name:Count" json:"count"`
 	Offset   uint32 `idl:"name:Offset" json:"offset"`
 }
 
-func (o *RtrTocEntry) xxx_PreparePayload(ctx context.Context) error {
+func (o *RouterTOCEntry) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -6524,7 +6524,7 @@ func (o *RtrTocEntry) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RtrTocEntry) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RouterTOCEntry) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -6545,7 +6545,7 @@ func (o *RtrTocEntry) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *RtrTocEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RouterTOCEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -6564,15 +6564,15 @@ func (o *RtrTocEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// RtrInfoBlockHeader structure represents RTR_INFO_BLOCK_HEADER RPC structure.
-type RtrInfoBlockHeader struct {
-	Version         uint32         `idl:"name:Version" json:"version"`
-	Size            uint32         `idl:"name:Size" json:"size"`
-	TocEntriesCount uint32         `idl:"name:TocEntriesCount" json:"toc_entries_count"`
-	TocEntry        []*RtrTocEntry `idl:"name:TocEntry" json:"toc_entry"`
+// RouterInfoBlockHeader structure represents RTR_INFO_BLOCK_HEADER RPC structure.
+type RouterInfoBlockHeader struct {
+	Version         uint32            `idl:"name:Version" json:"version"`
+	Size            uint32            `idl:"name:Size" json:"size"`
+	TOCEntriesCount uint32            `idl:"name:TocEntriesCount" json:"toc_entries_count"`
+	TOCEntry        []*RouterTOCEntry `idl:"name:TocEntry" json:"toc_entry"`
 }
 
-func (o *RtrInfoBlockHeader) xxx_PreparePayload(ctx context.Context) error {
+func (o *RouterInfoBlockHeader) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -6581,7 +6581,7 @@ func (o *RtrInfoBlockHeader) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RtrInfoBlockHeader) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RouterInfoBlockHeader) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -6594,32 +6594,32 @@ func (o *RtrInfoBlockHeader) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.Size); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.TocEntriesCount); err != nil {
+	if err := w.WriteData(o.TOCEntriesCount); err != nil {
 		return err
 	}
-	for i1 := range o.TocEntry {
+	for i1 := range o.TOCEntry {
 		i1 := i1
 		if uint64(i1) >= 1 {
 			break
 		}
-		if o.TocEntry[i1] != nil {
-			if err := o.TocEntry[i1].MarshalNDR(ctx, w); err != nil {
+		if o.TOCEntry[i1] != nil {
+			if err := o.TOCEntry[i1].MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&RtrTocEntry{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&RouterTOCEntry{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
-	for i1 := len(o.TocEntry); uint64(i1) < 1; i1++ {
-		if err := (&RtrTocEntry{}).MarshalNDR(ctx, w); err != nil {
+	for i1 := len(o.TOCEntry); uint64(i1) < 1; i1++ {
+		if err := (&RouterTOCEntry{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *RtrInfoBlockHeader) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RouterInfoBlockHeader) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -6629,16 +6629,16 @@ func (o *RtrInfoBlockHeader) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	if err := w.ReadData(&o.Size); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.TocEntriesCount); err != nil {
+	if err := w.ReadData(&o.TOCEntriesCount); err != nil {
 		return err
 	}
-	o.TocEntry = make([]*RtrTocEntry, 1)
-	for i1 := range o.TocEntry {
+	o.TOCEntry = make([]*RouterTOCEntry, 1)
+	for i1 := range o.TOCEntry {
 		i1 := i1
-		if o.TocEntry[i1] == nil {
-			o.TocEntry[i1] = &RtrTocEntry{}
+		if o.TOCEntry[i1] == nil {
+			o.TOCEntry[i1] = &RouterTOCEntry{}
 		}
-		if err := o.TocEntry[i1].UnmarshalNDR(ctx, w); err != nil {
+		if err := o.TOCEntry[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -6738,10 +6738,10 @@ func (o *FilterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 
 // FilterDescriptor structure represents FILTER_DESCRIPTOR RPC structure.
 type FilterDescriptor struct {
-	Version         uint32        `idl:"name:dwVersion" json:"version"`
-	FiltersLength   uint32        `idl:"name:dwNumFilters" json:"filters_length"`
-	FaDefaultAction ForwardAction `idl:"name:faDefaultAction" json:"fa_default_action"`
-	FiFilter        []*FilterInfo `idl:"name:fiFilter" json:"fi_filter"`
+	Version       uint32        `idl:"name:dwVersion" json:"version"`
+	FiltersLength uint32        `idl:"name:dwNumFilters" json:"filters_length"`
+	DefaultAction ForwardAction `idl:"name:faDefaultAction" json:"default_action"`
+	Filter        []*FilterInfo `idl:"name:fiFilter" json:"filter"`
 }
 
 func (o *FilterDescriptor) xxx_PreparePayload(ctx context.Context) error {
@@ -6766,16 +6766,16 @@ func (o *FilterDescriptor) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.FiltersLength); err != nil {
 		return err
 	}
-	if err := w.WriteEnum(uint16(o.FaDefaultAction)); err != nil {
+	if err := w.WriteEnum(uint16(o.DefaultAction)); err != nil {
 		return err
 	}
-	for i1 := range o.FiFilter {
+	for i1 := range o.Filter {
 		i1 := i1
 		if uint64(i1) >= 1 {
 			break
 		}
-		if o.FiFilter[i1] != nil {
-			if err := o.FiFilter[i1].MarshalNDR(ctx, w); err != nil {
+		if o.Filter[i1] != nil {
+			if err := o.Filter[i1].MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -6784,7 +6784,7 @@ func (o *FilterDescriptor) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			}
 		}
 	}
-	for i1 := len(o.FiFilter); uint64(i1) < 1; i1++ {
+	for i1 := len(o.Filter); uint64(i1) < 1; i1++ {
 		if err := (&FilterInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -6801,16 +6801,16 @@ func (o *FilterDescriptor) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	if err := w.ReadData(&o.FiltersLength); err != nil {
 		return err
 	}
-	if err := w.ReadEnum((*uint16)(&o.FaDefaultAction)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.DefaultAction)); err != nil {
 		return err
 	}
-	o.FiFilter = make([]*FilterInfo, 1)
-	for i1 := range o.FiFilter {
+	o.Filter = make([]*FilterInfo, 1)
+	for i1 := range o.Filter {
 		i1 := i1
-		if o.FiFilter[i1] == nil {
-			o.FiFilter[i1] = &FilterInfo{}
+		if o.Filter[i1] == nil {
+			o.Filter[i1] = &FilterInfo{}
 		}
-		if err := o.FiFilter[i1].UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Filter[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -6940,10 +6940,10 @@ func (o *FilterInfoV6) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 
 // FilterDescriptorV6 structure represents FILTER_DESCRIPTOR_V6 RPC structure.
 type FilterDescriptorV6 struct {
-	Version         uint32          `idl:"name:dwVersion" json:"version"`
-	FiltersLength   uint32          `idl:"name:dwNumFilters" json:"filters_length"`
-	FaDefaultAction ForwardAction   `idl:"name:faDefaultAction" json:"fa_default_action"`
-	FiFilter        []*FilterInfoV6 `idl:"name:fiFilter" json:"fi_filter"`
+	Version       uint32          `idl:"name:dwVersion" json:"version"`
+	FiltersLength uint32          `idl:"name:dwNumFilters" json:"filters_length"`
+	DefaultAction ForwardAction   `idl:"name:faDefaultAction" json:"default_action"`
+	Filter        []*FilterInfoV6 `idl:"name:fiFilter" json:"filter"`
 }
 
 func (o *FilterDescriptorV6) xxx_PreparePayload(ctx context.Context) error {
@@ -6968,16 +6968,16 @@ func (o *FilterDescriptorV6) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.FiltersLength); err != nil {
 		return err
 	}
-	if err := w.WriteEnum(uint16(o.FaDefaultAction)); err != nil {
+	if err := w.WriteEnum(uint16(o.DefaultAction)); err != nil {
 		return err
 	}
-	for i1 := range o.FiFilter {
+	for i1 := range o.Filter {
 		i1 := i1
 		if uint64(i1) >= 1 {
 			break
 		}
-		if o.FiFilter[i1] != nil {
-			if err := o.FiFilter[i1].MarshalNDR(ctx, w); err != nil {
+		if o.Filter[i1] != nil {
+			if err := o.Filter[i1].MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -6986,7 +6986,7 @@ func (o *FilterDescriptorV6) MarshalNDR(ctx context.Context, w ndr.Writer) error
 			}
 		}
 	}
-	for i1 := len(o.FiFilter); uint64(i1) < 1; i1++ {
+	for i1 := len(o.Filter); uint64(i1) < 1; i1++ {
 		if err := (&FilterInfoV6{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -7003,16 +7003,16 @@ func (o *FilterDescriptorV6) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	if err := w.ReadData(&o.FiltersLength); err != nil {
 		return err
 	}
-	if err := w.ReadEnum((*uint16)(&o.FaDefaultAction)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.DefaultAction)); err != nil {
 		return err
 	}
-	o.FiFilter = make([]*FilterInfoV6, 1)
-	for i1 := range o.FiFilter {
+	o.Filter = make([]*FilterInfoV6, 1)
+	for i1 := range o.Filter {
 		i1 := i1
-		if o.FiFilter[i1] == nil {
-			o.FiFilter[i1] = &FilterInfoV6{}
+		if o.Filter[i1] == nil {
+			o.Filter[i1] = &FilterInfoV6{}
 		}
-		if err := o.FiFilter[i1].UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Filter[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -7251,9 +7251,9 @@ func (o *InterfaceRouteInfo_Field1_Field1) UnmarshalNDR(ctx context.Context, w n
 
 // InterfaceRouteInfo_Field1_Field2 structure represents INTERFACE_ROUTE_INFO structure anonymous member.
 type InterfaceRouteInfo_Field1_Field2 struct {
-	DestinationPrefix       *In6Addr `idl:"name:DestinationPrefix" json:"destination_prefix"`
+	DestinationPrefix       *IN6Addr `idl:"name:DestinationPrefix" json:"destination_prefix"`
 	DestinationPrefixLength uint32   `idl:"name:DestPrefixLength" json:"destination_prefix_length"`
-	NextHopAddress          *In6Addr `idl:"name:NextHopAddress" json:"next_hop_address"`
+	NextHopAddress          *IN6Addr `idl:"name:NextHopAddress" json:"next_hop_address"`
 	ValidLifeTime           uint32   `idl:"name:ValidLifeTime" json:"valid_life_time"`
 	Flags                   uint32   `idl:"name:Flags" json:"flags"`
 	Metric                  uint32   `idl:"name:Metric" json:"metric"`
@@ -7280,7 +7280,7 @@ func (o *InterfaceRouteInfo_Field1_Field2) MarshalNDR(ctx context.Context, w ndr
 			return err
 		}
 	} else {
-		if err := (&In6Addr{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&IN6Addr{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -7292,7 +7292,7 @@ func (o *InterfaceRouteInfo_Field1_Field2) MarshalNDR(ctx context.Context, w ndr
 			return err
 		}
 	} else {
-		if err := (&In6Addr{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&IN6Addr{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -7312,7 +7312,7 @@ func (o *InterfaceRouteInfo_Field1_Field2) UnmarshalNDR(ctx context.Context, w n
 		return err
 	}
 	if o.DestinationPrefix == nil {
-		o.DestinationPrefix = &In6Addr{}
+		o.DestinationPrefix = &IN6Addr{}
 	}
 	if err := o.DestinationPrefix.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -7321,7 +7321,7 @@ func (o *InterfaceRouteInfo_Field1_Field2) UnmarshalNDR(ctx context.Context, w n
 		return err
 	}
 	if o.NextHopAddress == nil {
-		o.NextHopAddress = &In6Addr{}
+		o.NextHopAddress = &IN6Addr{}
 	}
 	if err := o.NextHopAddress.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -7383,8 +7383,8 @@ func (o *ProtocolMetric) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 
 // PriorityInfo structure represents PRIORITY_INFO RPC structure.
 type PriorityInfo struct {
-	ProtocolsLength   uint32            `idl:"name:dwNumProtocols" json:"protocols_length"`
-	PpmProtocolMetric []*ProtocolMetric `idl:"name:ppmProtocolMetric" json:"ppm_protocol_metric"`
+	ProtocolsLength uint32            `idl:"name:dwNumProtocols" json:"protocols_length"`
+	ProtocolMetric  []*ProtocolMetric `idl:"name:ppmProtocolMetric" json:"protocol_metric"`
 }
 
 func (o *PriorityInfo) xxx_PreparePayload(ctx context.Context) error {
@@ -7406,13 +7406,13 @@ func (o *PriorityInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.ProtocolsLength); err != nil {
 		return err
 	}
-	for i1 := range o.PpmProtocolMetric {
+	for i1 := range o.ProtocolMetric {
 		i1 := i1
 		if uint64(i1) >= 1 {
 			break
 		}
-		if o.PpmProtocolMetric[i1] != nil {
-			if err := o.PpmProtocolMetric[i1].MarshalNDR(ctx, w); err != nil {
+		if o.ProtocolMetric[i1] != nil {
+			if err := o.ProtocolMetric[i1].MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -7421,7 +7421,7 @@ func (o *PriorityInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			}
 		}
 	}
-	for i1 := len(o.PpmProtocolMetric); uint64(i1) < 1; i1++ {
+	for i1 := len(o.ProtocolMetric); uint64(i1) < 1; i1++ {
 		if err := (&ProtocolMetric{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -7435,13 +7435,13 @@ func (o *PriorityInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.ProtocolsLength); err != nil {
 		return err
 	}
-	o.PpmProtocolMetric = make([]*ProtocolMetric, 1)
-	for i1 := range o.PpmProtocolMetric {
+	o.ProtocolMetric = make([]*ProtocolMetric, 1)
+	for i1 := range o.ProtocolMetric {
 		i1 := i1
-		if o.PpmProtocolMetric[i1] == nil {
-			o.PpmProtocolMetric[i1] = &ProtocolMetric{}
+		if o.ProtocolMetric[i1] == nil {
+			o.ProtocolMetric[i1] = &ProtocolMetric{}
 		}
-		if err := o.PpmProtocolMetric[i1].UnmarshalNDR(ctx, w); err != nil {
+		if err := o.ProtocolMetric[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -7500,8 +7500,8 @@ func (o *ProtocolMetricEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 
 // PriorityInfoEx structure represents PRIORITY_INFO_EX RPC structure.
 type PriorityInfoEx struct {
-	ProtocolsLength   uint32              `idl:"name:dwNumProtocols" json:"protocols_length"`
-	PpmProtocolMetric []*ProtocolMetricEx `idl:"name:ppmProtocolMetric" json:"ppm_protocol_metric"`
+	ProtocolsLength uint32              `idl:"name:dwNumProtocols" json:"protocols_length"`
+	ProtocolMetric  []*ProtocolMetricEx `idl:"name:ppmProtocolMetric" json:"protocol_metric"`
 }
 
 func (o *PriorityInfoEx) xxx_PreparePayload(ctx context.Context) error {
@@ -7523,13 +7523,13 @@ func (o *PriorityInfoEx) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.ProtocolsLength); err != nil {
 		return err
 	}
-	for i1 := range o.PpmProtocolMetric {
+	for i1 := range o.ProtocolMetric {
 		i1 := i1
 		if uint64(i1) >= 1 {
 			break
 		}
-		if o.PpmProtocolMetric[i1] != nil {
-			if err := o.PpmProtocolMetric[i1].MarshalNDR(ctx, w); err != nil {
+		if o.ProtocolMetric[i1] != nil {
+			if err := o.ProtocolMetric[i1].MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -7538,7 +7538,7 @@ func (o *PriorityInfoEx) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			}
 		}
 	}
-	for i1 := len(o.PpmProtocolMetric); uint64(i1) < 1; i1++ {
+	for i1 := len(o.ProtocolMetric); uint64(i1) < 1; i1++ {
 		if err := (&ProtocolMetricEx{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -7552,29 +7552,29 @@ func (o *PriorityInfoEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.ProtocolsLength); err != nil {
 		return err
 	}
-	o.PpmProtocolMetric = make([]*ProtocolMetricEx, 1)
-	for i1 := range o.PpmProtocolMetric {
+	o.ProtocolMetric = make([]*ProtocolMetricEx, 1)
+	for i1 := range o.ProtocolMetric {
 		i1 := i1
-		if o.PpmProtocolMetric[i1] == nil {
-			o.PpmProtocolMetric[i1] = &ProtocolMetricEx{}
+		if o.ProtocolMetric[i1] == nil {
+			o.ProtocolMetric[i1] = &ProtocolMetricEx{}
 		}
-		if err := o.PpmProtocolMetric[i1].UnmarshalNDR(ctx, w); err != nil {
+		if err := o.ProtocolMetric[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-// RtrDiscInfo structure represents RTR_DISC_INFO RPC structure.
-type RtrDiscInfo struct {
-	MaxAdvtInterval uint16 `idl:"name:wMaxAdvtInterval" json:"max_advt_interval"`
-	MinAdvtInterval uint16 `idl:"name:wMinAdvtInterval" json:"min_advt_interval"`
-	AdvtLifetime    uint16 `idl:"name:wAdvtLifetime" json:"advt_lifetime"`
-	Advertise       bool   `idl:"name:bAdvertise" json:"advertise"`
-	PrefLevel       int32  `idl:"name:lPrefLevel" json:"pref_level"`
+// RouterDiscInfo structure represents RTR_DISC_INFO RPC structure.
+type RouterDiscInfo struct {
+	MaxAdvertiseInterval uint16 `idl:"name:wMaxAdvtInterval" json:"max_advertise_interval"`
+	MinAdvertiseInterval uint16 `idl:"name:wMinAdvtInterval" json:"min_advertise_interval"`
+	AdvertiseLifetime    uint16 `idl:"name:wAdvtLifetime" json:"advertise_lifetime"`
+	Advertise            bool   `idl:"name:bAdvertise" json:"advertise"`
+	PrefLevel            int32  `idl:"name:lPrefLevel" json:"pref_level"`
 }
 
-func (o *RtrDiscInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *RouterDiscInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -7583,20 +7583,20 @@ func (o *RtrDiscInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RtrDiscInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RouterDiscInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.MaxAdvtInterval); err != nil {
+	if err := w.WriteData(o.MaxAdvertiseInterval); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.MinAdvtInterval); err != nil {
+	if err := w.WriteData(o.MinAdvertiseInterval); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.AdvtLifetime); err != nil {
+	if err := w.WriteData(o.AdvertiseLifetime); err != nil {
 		return err
 	}
 	if !o.Advertise {
@@ -7613,17 +7613,17 @@ func (o *RtrDiscInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *RtrDiscInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RouterDiscInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.MaxAdvtInterval); err != nil {
+	if err := w.ReadData(&o.MaxAdvertiseInterval); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.MinAdvtInterval); err != nil {
+	if err := w.ReadData(&o.MinAdvertiseInterval); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.AdvtLifetime); err != nil {
+	if err := w.ReadData(&o.AdvertiseLifetime); err != nil {
 		return err
 	}
 	var _bAdvertise int32
@@ -7637,8 +7637,8 @@ func (o *RtrDiscInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MCastHbeatInfo structure represents MCAST_HBEAT_INFO RPC structure.
-type MCastHbeatInfo struct {
+// MulticastHBeatInfo structure represents MCAST_HBEAT_INFO RPC structure.
+type MulticastHBeatInfo struct {
 	Group        []uint16 `idl:"name:pwszGroup" json:"group"`
 	Active       bool     `idl:"name:bActive" json:"active"`
 	DeadInterval uint32   `idl:"name:ulDeadInterval" json:"dead_interval"`
@@ -7646,7 +7646,7 @@ type MCastHbeatInfo struct {
 	Port         uint16   `idl:"name:wPort" json:"port"`
 }
 
-func (o *MCastHbeatInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *MulticastHBeatInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -7655,7 +7655,7 @@ func (o *MCastHbeatInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MCastHbeatInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MulticastHBeatInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -7699,7 +7699,7 @@ func (o *MCastHbeatInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MCastHbeatInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MulticastHBeatInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -7730,13 +7730,13 @@ func (o *MCastHbeatInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MIBMCastLimitRow structure represents MIB_MCAST_LIMIT_ROW RPC structure.
-type MIBMCastLimitRow struct {
+// MIBMulticastLimitRow structure represents MIB_MCAST_LIMIT_ROW RPC structure.
+type MIBMulticastLimitRow struct {
 	TTL       uint32 `idl:"name:dwTtl" json:"ttl"`
 	RateLimit uint32 `idl:"name:dwRateLimit" json:"rate_limit"`
 }
 
-func (o *MIBMCastLimitRow) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBMulticastLimitRow) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -7745,7 +7745,7 @@ func (o *MIBMCastLimitRow) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBMCastLimitRow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBMulticastLimitRow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -7760,7 +7760,7 @@ func (o *MIBMCastLimitRow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBMCastLimitRow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBMulticastLimitRow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -7773,14 +7773,14 @@ func (o *MIBMCastLimitRow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	return nil
 }
 
-// IpinipConfigInfo structure represents IPINIP_CONFIG_INFO RPC structure.
-type IpinipConfigInfo struct {
+// IPInIPConfigInfo structure represents IPINIP_CONFIG_INFO RPC structure.
+type IPInIPConfigInfo struct {
 	RemoteAddress uint32 `idl:"name:dwRemoteAddress" json:"remote_address"`
 	LocalAddress  uint32 `idl:"name:dwLocalAddress" json:"local_address"`
 	ByTTL         uint8  `idl:"name:byTtl" json:"by_ttl"`
 }
 
-func (o *IpinipConfigInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPInIPConfigInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -7789,7 +7789,7 @@ func (o *IpinipConfigInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpinipConfigInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPInIPConfigInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -7810,7 +7810,7 @@ func (o *IpinipConfigInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *IpinipConfigInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPInIPConfigInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -7865,15 +7865,15 @@ func (o *InterfaceStatusInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	return nil
 }
 
-// DimMIBEntryContainer structure represents DIM_MIB_ENTRY_CONTAINER RPC structure.
-type DimMIBEntryContainer struct {
+// MIBEntryContainer structure represents DIM_MIB_ENTRY_CONTAINER RPC structure.
+type MIBEntryContainer struct {
 	MIBInEntrySize  uint32 `idl:"name:dwMibInEntrySize" json:"mib_in_entry_size"`
 	MIBInEntry      []byte `idl:"name:pMibInEntry;size_is:(dwMibInEntrySize)" json:"mib_in_entry"`
 	MIBOutEntrySize uint32 `idl:"name:dwMibOutEntrySize" json:"mib_out_entry_size"`
 	MIBOutEntry     []byte `idl:"name:pMibOutEntry;size_is:(dwMibOutEntrySize)" json:"mib_out_entry"`
 }
 
-func (o *DimMIBEntryContainer) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBEntryContainer) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -7888,7 +7888,7 @@ func (o *DimMIBEntryContainer) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *DimMIBEntryContainer) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBEntryContainer) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -7969,7 +7969,7 @@ func (o *DimMIBEntryContainer) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	}
 	return nil
 }
-func (o *DimMIBEntryContainer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBEntryContainer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -8040,15 +8040,15 @@ func (o *DimMIBEntryContainer) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 	return nil
 }
 
-// MIBIpforwardrow structure represents MIB_IPFORWARDROW RPC structure.
-type MIBIpforwardrow struct {
+// MIBIPForwardRow structure represents MIB_IPFORWARDROW RPC structure.
+type MIBIPForwardRow struct {
 	ForwardDestination    uint32            `idl:"name:dwForwardDest" json:"forward_destination"`
 	ForwardMask           uint32            `idl:"name:dwForwardMask" json:"forward_mask"`
 	ForwardPolicy         uint32            `idl:"name:dwForwardPolicy" json:"forward_policy"`
 	ForwardNextHop        uint32            `idl:"name:dwForwardNextHop" json:"forward_next_hop"`
 	ForwardInterfaceIndex uint32            `idl:"name:dwForwardIfIndex" json:"forward_interface_index"`
-	ForwardType           MIBIpforwardType  `idl:"name:ForwardType" json:"forward_type"`
-	ForwardProto          MIBIpforwardProto `idl:"name:ForwardProto" json:"forward_proto"`
+	ForwardType           MIBIPForwardType  `idl:"name:ForwardType" json:"forward_type"`
+	ForwardProto          MIBIPForwardProto `idl:"name:ForwardProto" json:"forward_proto"`
 	ForwardAge            uint32            `idl:"name:dwForwardAge" json:"forward_age"`
 	ForwardNextHopAs      uint32            `idl:"name:dwForwardNextHopAS" json:"forward_next_hop_as"`
 	ForwardMetric1        uint32            `idl:"name:dwForwardMetric1" json:"forward_metric1"`
@@ -8058,7 +8058,7 @@ type MIBIpforwardrow struct {
 	ForwardMetric5        uint32            `idl:"name:dwForwardMetric5" json:"forward_metric5"`
 }
 
-func (o *MIBIpforwardrow) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBIPForwardRow) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -8067,7 +8067,7 @@ func (o *MIBIpforwardrow) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIpforwardrow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBIPForwardRow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -8118,7 +8118,7 @@ func (o *MIBIpforwardrow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBIpforwardrow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBIPForwardRow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -8167,14 +8167,14 @@ func (o *MIBIpforwardrow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	return nil
 }
 
-// MIBIpdestrow structure represents MIB_IPDESTROW RPC structure.
-type MIBIpdestrow struct {
-	ForwardRow        *MIBIpforwardrow `idl:"name:ForwardRow" json:"forward_row"`
+// MIBIPDestinationRow structure represents MIB_IPDESTROW RPC structure.
+type MIBIPDestinationRow struct {
+	ForwardRow        *MIBIPForwardRow `idl:"name:ForwardRow" json:"forward_row"`
 	ForwardPreference uint32           `idl:"name:dwForwardPreference" json:"forward_preference"`
 	ForwardViewSet    uint32           `idl:"name:dwForwardViewSet" json:"forward_view_set"`
 }
 
-func (o *MIBIpdestrow) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBIPDestinationRow) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -8183,7 +8183,7 @@ func (o *MIBIpdestrow) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIpdestrow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBIPDestinationRow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -8195,7 +8195,7 @@ func (o *MIBIpdestrow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&MIBIpforwardrow{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MIBIPForwardRow{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -8207,12 +8207,12 @@ func (o *MIBIpdestrow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBIpdestrow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBIPDestinationRow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if o.ForwardRow == nil {
-		o.ForwardRow = &MIBIpforwardrow{}
+		o.ForwardRow = &MIBIPForwardRow{}
 	}
 	if err := o.ForwardRow.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -8226,13 +8226,13 @@ func (o *MIBIpdestrow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MIBIpdesttable structure represents MIB_IPDESTTABLE RPC structure.
-type MIBIpdesttable struct {
-	EntriesLength uint32          `idl:"name:dwNumEntries" json:"entries_length"`
-	Table         []*MIBIpdestrow `idl:"name:table" json:"table"`
+// MIBIPDestinationTable structure represents MIB_IPDESTTABLE RPC structure.
+type MIBIPDestinationTable struct {
+	EntriesLength uint32                 `idl:"name:dwNumEntries" json:"entries_length"`
+	Table         []*MIBIPDestinationRow `idl:"name:table" json:"table"`
 }
 
-func (o *MIBIpdesttable) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBIPDestinationTable) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -8241,7 +8241,7 @@ func (o *MIBIpdesttable) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIpdesttable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBIPDestinationTable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -8261,30 +8261,30 @@ func (o *MIBIpdesttable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 				return err
 			}
 		} else {
-			if err := (&MIBIpdestrow{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&MIBIPDestinationRow{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
 	for i1 := len(o.Table); uint64(i1) < 1; i1++ {
-		if err := (&MIBIpdestrow{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MIBIPDestinationRow{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MIBIpdesttable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBIPDestinationTable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.EntriesLength); err != nil {
 		return err
 	}
-	o.Table = make([]*MIBIpdestrow, 1)
+	o.Table = make([]*MIBIPDestinationRow, 1)
 	for i1 := range o.Table {
 		i1 := i1
 		if o.Table[i1] == nil {
-			o.Table[i1] = &MIBIpdestrow{}
+			o.Table[i1] = &MIBIPDestinationRow{}
 		}
 		if err := o.Table[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -8293,12 +8293,12 @@ func (o *MIBIpdesttable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MIBRoutestate structure represents MIB_ROUTESTATE RPC structure.
-type MIBRoutestate struct {
+// MIBRouteState structure represents MIB_ROUTESTATE RPC structure.
+type MIBRouteState struct {
 	RoutesSetToStack bool `idl:"name:bRoutesSetToStack" json:"routes_set_to_stack"`
 }
 
-func (o *MIBRoutestate) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBRouteState) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -8307,7 +8307,7 @@ func (o *MIBRoutestate) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBRoutestate) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBRouteState) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -8325,7 +8325,7 @@ func (o *MIBRoutestate) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBRoutestate) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBRouteState) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -8423,8 +8423,8 @@ func (o *MIBBoundaryrow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// Mibicmpstats structure represents MIBICMPSTATS RPC structure.
-type Mibicmpstats struct {
+// MIBICMPStats structure represents MIBICMPSTATS RPC structure.
+type MIBICMPStats struct {
 	Msgs                uint32 `idl:"name:dwMsgs" json:"msgs"`
 	Errors              uint32 `idl:"name:dwErrors" json:"errors"`
 	DestinationUnreachs uint32 `idl:"name:dwDestUnreachs" json:"destination_unreachs"`
@@ -8440,7 +8440,7 @@ type Mibicmpstats struct {
 	AddrMaskReps        uint32 `idl:"name:dwAddrMaskReps" json:"addr_mask_reps"`
 }
 
-func (o *Mibicmpstats) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBICMPStats) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -8449,7 +8449,7 @@ func (o *Mibicmpstats) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *Mibicmpstats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBICMPStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -8497,7 +8497,7 @@ func (o *Mibicmpstats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *Mibicmpstats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBICMPStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -8543,13 +8543,13 @@ func (o *Mibicmpstats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// Mibicmpinfo structure represents MIBICMPINFO RPC structure.
-type Mibicmpinfo struct {
-	ICMPInStats  *Mibicmpstats `idl:"name:icmpInStats" json:"icmp_in_stats"`
-	ICMPOutStats *Mibicmpstats `idl:"name:icmpOutStats" json:"icmp_out_stats"`
+// MIBICMPInfo structure represents MIBICMPINFO RPC structure.
+type MIBICMPInfo struct {
+	ICMPInStats  *MIBICMPStats `idl:"name:icmpInStats" json:"icmp_in_stats"`
+	ICMPOutStats *MIBICMPStats `idl:"name:icmpOutStats" json:"icmp_out_stats"`
 }
 
-func (o *Mibicmpinfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBICMPInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -8558,7 +8558,7 @@ func (o *Mibicmpinfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *Mibicmpinfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBICMPInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -8570,7 +8570,7 @@ func (o *Mibicmpinfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&Mibicmpstats{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MIBICMPStats{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -8579,24 +8579,24 @@ func (o *Mibicmpinfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&Mibicmpstats{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MIBICMPStats{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *Mibicmpinfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBICMPInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if o.ICMPInStats == nil {
-		o.ICMPInStats = &Mibicmpstats{}
+		o.ICMPInStats = &MIBICMPStats{}
 	}
 	if err := o.ICMPInStats.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.ICMPOutStats == nil {
-		o.ICMPOutStats = &Mibicmpstats{}
+		o.ICMPOutStats = &MIBICMPStats{}
 	}
 	if err := o.ICMPOutStats.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -8606,7 +8606,7 @@ func (o *Mibicmpinfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 
 // MIBICMP structure represents MIB_ICMP RPC structure.
 type MIBICMP struct {
-	Stats *Mibicmpinfo `idl:"name:stats" json:"stats"`
+	Stats *MIBICMPInfo `idl:"name:stats" json:"stats"`
 }
 
 func (o *MIBICMP) xxx_PreparePayload(ctx context.Context) error {
@@ -8630,7 +8630,7 @@ func (o *MIBICMP) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&Mibicmpinfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MIBICMPInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -8641,7 +8641,7 @@ func (o *MIBICMP) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if o.Stats == nil {
-		o.Stats = &Mibicmpinfo{}
+		o.Stats = &MIBICMPInfo{}
 	}
 	if err := o.Stats.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -8649,12 +8649,12 @@ func (o *MIBICMP) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MIBIfnumber structure represents MIB_IFNUMBER RPC structure.
-type MIBIfnumber struct {
+// MIBInterfaceNumber structure represents MIB_IFNUMBER RPC structure.
+type MIBInterfaceNumber struct {
 	Value uint32 `idl:"name:dwValue" json:"value"`
 }
 
-func (o *MIBIfnumber) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBInterfaceNumber) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -8663,7 +8663,7 @@ func (o *MIBIfnumber) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIfnumber) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBInterfaceNumber) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -8675,7 +8675,7 @@ func (o *MIBIfnumber) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBIfnumber) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBInterfaceNumber) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -8685,35 +8685,35 @@ func (o *MIBIfnumber) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MIBIfrow structure represents MIB_IFROW RPC structure.
-type MIBIfrow struct {
-	Name              []uint16 `idl:"name:wszName" json:"name"`
-	Index             uint32   `idl:"name:dwIndex" json:"index"`
-	Type              uint32   `idl:"name:dwType" json:"type"`
-	Mtu               uint32   `idl:"name:dwMtu" json:"mtu"`
-	Speed             uint32   `idl:"name:dwSpeed" json:"speed"`
-	PhysAddrLength    uint32   `idl:"name:dwPhysAddrLen" json:"phys_addr_length"`
-	PhysAddr          []byte   `idl:"name:bPhysAddr" json:"phys_addr"`
-	AdminStatus       uint32   `idl:"name:dwAdminStatus" json:"admin_status"`
-	OperatorStatus    uint32   `idl:"name:dwOperStatus" json:"operator_status"`
-	LastChange        uint32   `idl:"name:dwLastChange" json:"last_change"`
-	InOctets          uint32   `idl:"name:dwInOctets" json:"in_octets"`
-	InUcastPkts       uint32   `idl:"name:dwInUcastPkts" json:"in_ucast_pkts"`
-	InNUcastPkts      uint32   `idl:"name:dwInNUcastPkts" json:"in_n_ucast_pkts"`
-	InDiscards        uint32   `idl:"name:dwInDiscards" json:"in_discards"`
-	InErrors          uint32   `idl:"name:dwInErrors" json:"in_errors"`
-	InUnknownProtos   uint32   `idl:"name:dwInUnknownProtos" json:"in_unknown_protos"`
-	OutOctets         uint32   `idl:"name:dwOutOctets" json:"out_octets"`
-	OutUcastPkts      uint32   `idl:"name:dwOutUcastPkts" json:"out_ucast_pkts"`
-	OutNUcastPkts     uint32   `idl:"name:dwOutNUcastPkts" json:"out_n_ucast_pkts"`
-	OutDiscards       uint32   `idl:"name:dwOutDiscards" json:"out_discards"`
-	OutErrors         uint32   `idl:"name:dwOutErrors" json:"out_errors"`
-	OutQLength        uint32   `idl:"name:dwOutQLen" json:"out_q_length"`
-	DescriptionLength uint32   `idl:"name:dwDescrLen" json:"description_length"`
-	Description       []byte   `idl:"name:bDescr" json:"description"`
+// MIBInterfaceRow structure represents MIB_IFROW RPC structure.
+type MIBInterfaceRow struct {
+	Name               []uint16 `idl:"name:wszName" json:"name"`
+	Index              uint32   `idl:"name:dwIndex" json:"index"`
+	Type               uint32   `idl:"name:dwType" json:"type"`
+	MTU                uint32   `idl:"name:dwMtu" json:"mtu"`
+	Speed              uint32   `idl:"name:dwSpeed" json:"speed"`
+	PhysicalAddrLength uint32   `idl:"name:dwPhysAddrLen" json:"physical_addr_length"`
+	PhysicalAddr       []byte   `idl:"name:bPhysAddr" json:"physical_addr"`
+	AdminStatus        uint32   `idl:"name:dwAdminStatus" json:"admin_status"`
+	OperatorStatus     uint32   `idl:"name:dwOperStatus" json:"operator_status"`
+	LastChange         uint32   `idl:"name:dwLastChange" json:"last_change"`
+	InOctets           uint32   `idl:"name:dwInOctets" json:"in_octets"`
+	InUcastPackets     uint32   `idl:"name:dwInUcastPkts" json:"in_ucast_packets"`
+	InNUcastPackets    uint32   `idl:"name:dwInNUcastPkts" json:"in_n_ucast_packets"`
+	InDiscards         uint32   `idl:"name:dwInDiscards" json:"in_discards"`
+	InErrors           uint32   `idl:"name:dwInErrors" json:"in_errors"`
+	InUnknownProtos    uint32   `idl:"name:dwInUnknownProtos" json:"in_unknown_protos"`
+	OutOctets          uint32   `idl:"name:dwOutOctets" json:"out_octets"`
+	OutUcastPackets    uint32   `idl:"name:dwOutUcastPkts" json:"out_ucast_packets"`
+	OutNUcastPackets   uint32   `idl:"name:dwOutNUcastPkts" json:"out_n_ucast_packets"`
+	OutDiscards        uint32   `idl:"name:dwOutDiscards" json:"out_discards"`
+	OutErrors          uint32   `idl:"name:dwOutErrors" json:"out_errors"`
+	OutQLength         uint32   `idl:"name:dwOutQLen" json:"out_q_length"`
+	DescriptionLength  uint32   `idl:"name:dwDescrLen" json:"description_length"`
+	Description        []byte   `idl:"name:bDescr" json:"description"`
 }
 
-func (o *MIBIfrow) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBInterfaceRow) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -8722,7 +8722,7 @@ func (o *MIBIfrow) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIfrow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBInterfaceRow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -8749,25 +8749,25 @@ func (o *MIBIfrow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Type); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.Mtu); err != nil {
+	if err := w.WriteData(o.MTU); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Speed); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.PhysAddrLength); err != nil {
+	if err := w.WriteData(o.PhysicalAddrLength); err != nil {
 		return err
 	}
-	for i1 := range o.PhysAddr {
+	for i1 := range o.PhysicalAddr {
 		i1 := i1
 		if uint64(i1) >= 8 {
 			break
 		}
-		if err := w.WriteData(o.PhysAddr[i1]); err != nil {
+		if err := w.WriteData(o.PhysicalAddr[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.PhysAddr); uint64(i1) < 8; i1++ {
+	for i1 := len(o.PhysicalAddr); uint64(i1) < 8; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
@@ -8784,10 +8784,10 @@ func (o *MIBIfrow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.InOctets); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.InUcastPkts); err != nil {
+	if err := w.WriteData(o.InUcastPackets); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.InNUcastPkts); err != nil {
+	if err := w.WriteData(o.InNUcastPackets); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.InDiscards); err != nil {
@@ -8802,10 +8802,10 @@ func (o *MIBIfrow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.OutOctets); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.OutUcastPkts); err != nil {
+	if err := w.WriteData(o.OutUcastPackets); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.OutNUcastPkts); err != nil {
+	if err := w.WriteData(o.OutNUcastPackets); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.OutDiscards); err != nil {
@@ -8839,7 +8839,7 @@ func (o *MIBIfrow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBIfrow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBInterfaceRow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -8856,19 +8856,19 @@ func (o *MIBIfrow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Type); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.Mtu); err != nil {
+	if err := w.ReadData(&o.MTU); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Speed); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.PhysAddrLength); err != nil {
+	if err := w.ReadData(&o.PhysicalAddrLength); err != nil {
 		return err
 	}
-	o.PhysAddr = make([]byte, 8)
-	for i1 := range o.PhysAddr {
+	o.PhysicalAddr = make([]byte, 8)
+	for i1 := range o.PhysicalAddr {
 		i1 := i1
-		if err := w.ReadData(&o.PhysAddr[i1]); err != nil {
+		if err := w.ReadData(&o.PhysicalAddr[i1]); err != nil {
 			return err
 		}
 	}
@@ -8884,10 +8884,10 @@ func (o *MIBIfrow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.InOctets); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.InUcastPkts); err != nil {
+	if err := w.ReadData(&o.InUcastPackets); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.InNUcastPkts); err != nil {
+	if err := w.ReadData(&o.InNUcastPackets); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.InDiscards); err != nil {
@@ -8902,10 +8902,10 @@ func (o *MIBIfrow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.OutOctets); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.OutUcastPkts); err != nil {
+	if err := w.ReadData(&o.OutUcastPackets); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.OutNUcastPkts); err != nil {
+	if err := w.ReadData(&o.OutNUcastPackets); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.OutDiscards); err != nil {
@@ -8933,16 +8933,16 @@ func (o *MIBIfrow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MIBIfstatus structure represents MIB_IFSTATUS RPC structure.
-type MIBIfstatus struct {
+// MIBInterfaceStatus structure represents MIB_IFSTATUS RPC structure.
+type MIBInterfaceStatus struct {
 	InterfaceIndex    uint32 `idl:"name:dwIfIndex" json:"interface_index"`
 	AdminStatus       uint32 `idl:"name:dwAdminStatus" json:"admin_status"`
 	OperationalStatus uint32 `idl:"name:dwOperationalStatus" json:"operational_status"`
-	MHbeatActive      bool   `idl:"name:bMHbeatActive" json:"m_hbeat_active"`
-	MHbeatAlive       bool   `idl:"name:bMHbeatAlive" json:"m_hbeat_alive"`
+	MHBeatActive      bool   `idl:"name:bMHbeatActive" json:"m_hbeat_active"`
+	MHBeatAlive       bool   `idl:"name:bMHbeatAlive" json:"m_hbeat_alive"`
 }
 
-func (o *MIBIfstatus) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBInterfaceStatus) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -8951,7 +8951,7 @@ func (o *MIBIfstatus) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIfstatus) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBInterfaceStatus) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -8967,7 +8967,7 @@ func (o *MIBIfstatus) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.OperationalStatus); err != nil {
 		return err
 	}
-	if !o.MHbeatActive {
+	if !o.MHBeatActive {
 		if err := w.WriteData(int32(0)); err != nil {
 			return err
 		}
@@ -8976,7 +8976,7 @@ func (o *MIBIfstatus) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if !o.MHbeatAlive {
+	if !o.MHBeatAlive {
 		if err := w.WriteData(int32(0)); err != nil {
 			return err
 		}
@@ -8987,7 +8987,7 @@ func (o *MIBIfstatus) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBIfstatus) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBInterfaceStatus) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -9000,26 +9000,26 @@ func (o *MIBIfstatus) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.OperationalStatus); err != nil {
 		return err
 	}
-	var _bMHbeatActive int32
-	if err := w.ReadData(&_bMHbeatActive); err != nil {
+	var _bMHBeatActive int32
+	if err := w.ReadData(&_bMHBeatActive); err != nil {
 		return err
 	}
-	o.MHbeatActive = _bMHbeatActive != 0
-	var _bMHbeatAlive int32
-	if err := w.ReadData(&_bMHbeatAlive); err != nil {
+	o.MHBeatActive = _bMHBeatActive != 0
+	var _bMHBeatAlive int32
+	if err := w.ReadData(&_bMHBeatAlive); err != nil {
 		return err
 	}
-	o.MHbeatAlive = _bMHbeatAlive != 0
+	o.MHBeatAlive = _bMHBeatAlive != 0
 	return nil
 }
 
-// MIBIftable structure represents MIB_IFTABLE RPC structure.
-type MIBIftable struct {
-	EntriesLength uint32      `idl:"name:dwNumEntries" json:"entries_length"`
-	Table         []*MIBIfrow `idl:"name:table" json:"table"`
+// MIBInterfaceTable structure represents MIB_IFTABLE RPC structure.
+type MIBInterfaceTable struct {
+	EntriesLength uint32             `idl:"name:dwNumEntries" json:"entries_length"`
+	Table         []*MIBInterfaceRow `idl:"name:table" json:"table"`
 }
 
-func (o *MIBIftable) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBInterfaceTable) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -9028,7 +9028,7 @@ func (o *MIBIftable) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIftable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBInterfaceTable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -9048,30 +9048,30 @@ func (o *MIBIftable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 				return err
 			}
 		} else {
-			if err := (&MIBIfrow{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&MIBInterfaceRow{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
 	for i1 := len(o.Table); uint64(i1) < 1; i1++ {
-		if err := (&MIBIfrow{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MIBInterfaceRow{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MIBIftable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBInterfaceTable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.EntriesLength); err != nil {
 		return err
 	}
-	o.Table = make([]*MIBIfrow, 1)
+	o.Table = make([]*MIBInterfaceRow, 1)
 	for i1 := range o.Table {
 		i1 := i1
 		if o.Table[i1] == nil {
-			o.Table[i1] = &MIBIfrow{}
+			o.Table[i1] = &MIBInterfaceRow{}
 		}
 		if err := o.Table[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -9080,8 +9080,8 @@ func (o *MIBIftable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MIBIpaddrrow structure represents MIB_IPADDRROW RPC structure.
-type MIBIpaddrrow struct {
+// MIBIPAddrRow structure represents MIB_IPADDRROW RPC structure.
+type MIBIPAddrRow struct {
 	Addr      uint32 `idl:"name:dwAddr" json:"addr"`
 	Index     uint32 `idl:"name:dwIndex" json:"index"`
 	Mask      uint32 `idl:"name:dwMask" json:"mask"`
@@ -9091,7 +9091,7 @@ type MIBIpaddrrow struct {
 	Type      uint16 `idl:"name:wType" json:"type"`
 }
 
-func (o *MIBIpaddrrow) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBIPAddrRow) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -9100,7 +9100,7 @@ func (o *MIBIpaddrrow) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIpaddrrow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBIPAddrRow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -9134,7 +9134,7 @@ func (o *MIBIpaddrrow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBIpaddrrow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBIPAddrRow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -9167,13 +9167,13 @@ func (o *MIBIpaddrrow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MIBIpaddrtable structure represents MIB_IPADDRTABLE RPC structure.
-type MIBIpaddrtable struct {
+// MIBIPAddrTable structure represents MIB_IPADDRTABLE RPC structure.
+type MIBIPAddrTable struct {
 	EntriesLength uint32          `idl:"name:dwNumEntries" json:"entries_length"`
-	Table         []*MIBIpaddrrow `idl:"name:table" json:"table"`
+	Table         []*MIBIPAddrRow `idl:"name:table" json:"table"`
 }
 
-func (o *MIBIpaddrtable) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBIPAddrTable) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -9182,7 +9182,7 @@ func (o *MIBIpaddrtable) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIpaddrtable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBIPAddrTable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -9202,30 +9202,30 @@ func (o *MIBIpaddrtable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 				return err
 			}
 		} else {
-			if err := (&MIBIpaddrrow{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&MIBIPAddrRow{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
 	for i1 := len(o.Table); uint64(i1) < 1; i1++ {
-		if err := (&MIBIpaddrrow{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MIBIPAddrRow{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MIBIpaddrtable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBIPAddrTable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.EntriesLength); err != nil {
 		return err
 	}
-	o.Table = make([]*MIBIpaddrrow, 1)
+	o.Table = make([]*MIBIPAddrRow, 1)
 	for i1 := range o.Table {
 		i1 := i1
 		if o.Table[i1] == nil {
-			o.Table[i1] = &MIBIpaddrrow{}
+			o.Table[i1] = &MIBIPAddrRow{}
 		}
 		if err := o.Table[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -9234,12 +9234,12 @@ func (o *MIBIpaddrtable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MIBIpforwardnumber structure represents MIB_IPFORWARDNUMBER RPC structure.
-type MIBIpforwardnumber struct {
+// MIBIPForwardNumber structure represents MIB_IPFORWARDNUMBER RPC structure.
+type MIBIPForwardNumber struct {
 	Value uint32 `idl:"name:dwValue" json:"value"`
 }
 
-func (o *MIBIpforwardnumber) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBIPForwardNumber) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -9248,7 +9248,7 @@ func (o *MIBIpforwardnumber) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIpforwardnumber) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBIPForwardNumber) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -9260,7 +9260,7 @@ func (o *MIBIpforwardnumber) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	}
 	return nil
 }
-func (o *MIBIpforwardnumber) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBIPForwardNumber) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -9270,14 +9270,14 @@ func (o *MIBIpforwardnumber) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	return nil
 }
 
-// MIBIpforwardtable structure represents MIB_IPFORWARDTABLE RPC structure.
-type MIBIpforwardtable struct {
+// MIBIPForwardTable structure represents MIB_IPFORWARDTABLE RPC structure.
+type MIBIPForwardTable struct {
 	EntriesLength uint32             `idl:"name:dwNumEntries" json:"entries_length"`
-	Table         []*MIBIpforwardrow `idl:"name:table" json:"table"`
+	Table         []*MIBIPForwardRow `idl:"name:table" json:"table"`
 	_             []byte             `idl:"name:reserved"`
 }
 
-func (o *MIBIpforwardtable) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBIPForwardTable) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -9286,7 +9286,7 @@ func (o *MIBIpforwardtable) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIpforwardtable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBIPForwardTable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -9306,13 +9306,13 @@ func (o *MIBIpforwardtable) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 				return err
 			}
 		} else {
-			if err := (&MIBIpforwardrow{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&MIBIPForwardRow{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
 	for i1 := len(o.Table); uint64(i1) < 1; i1++ {
-		if err := (&MIBIpforwardrow{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MIBIPForwardRow{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -9327,18 +9327,18 @@ func (o *MIBIpforwardtable) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	}
 	return nil
 }
-func (o *MIBIpforwardtable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBIPForwardTable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.EntriesLength); err != nil {
 		return err
 	}
-	o.Table = make([]*MIBIpforwardrow, 1)
+	o.Table = make([]*MIBIPForwardRow, 1)
 	for i1 := range o.Table {
 		i1 := i1
 		if o.Table[i1] == nil {
-			o.Table[i1] = &MIBIpforwardrow{}
+			o.Table[i1] = &MIBIPForwardRow{}
 		}
 		if err := o.Table[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -9359,15 +9359,15 @@ func (o *MIBIpforwardtable) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	return nil
 }
 
-// MIBIpmcastBoundary structure represents MIB_IPMCAST_BOUNDARY RPC structure.
-type MIBIpmcastBoundary struct {
+// MIBIPMulticastBoundary structure represents MIB_IPMCAST_BOUNDARY RPC structure.
+type MIBIPMulticastBoundary struct {
 	InterfaceIndex uint32 `idl:"name:dwIfIndex" json:"interface_index"`
 	GroupAddress   uint32 `idl:"name:dwGroupAddress" json:"group_address"`
 	GroupMask      uint32 `idl:"name:dwGroupMask" json:"group_mask"`
 	Status         uint32 `idl:"name:dwStatus" json:"status"`
 }
 
-func (o *MIBIpmcastBoundary) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBIPMulticastBoundary) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -9376,7 +9376,7 @@ func (o *MIBIpmcastBoundary) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIpmcastBoundary) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBIPMulticastBoundary) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -9397,7 +9397,7 @@ func (o *MIBIpmcastBoundary) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	}
 	return nil
 }
-func (o *MIBIpmcastBoundary) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBIPMulticastBoundary) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -9416,13 +9416,13 @@ func (o *MIBIpmcastBoundary) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	return nil
 }
 
-// MIBIpmcastBoundaryTable structure represents MIB_IPMCAST_BOUNDARY_TABLE RPC structure.
-type MIBIpmcastBoundaryTable struct {
-	EntriesLength uint32                `idl:"name:dwNumEntries" json:"entries_length"`
-	Table         []*MIBIpmcastBoundary `idl:"name:table" json:"table"`
+// MIBIPMulticastBoundaryTable structure represents MIB_IPMCAST_BOUNDARY_TABLE RPC structure.
+type MIBIPMulticastBoundaryTable struct {
+	EntriesLength uint32                    `idl:"name:dwNumEntries" json:"entries_length"`
+	Table         []*MIBIPMulticastBoundary `idl:"name:table" json:"table"`
 }
 
-func (o *MIBIpmcastBoundaryTable) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBIPMulticastBoundaryTable) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -9431,7 +9431,7 @@ func (o *MIBIpmcastBoundaryTable) xxx_PreparePayload(ctx context.Context) error 
 	}
 	return nil
 }
-func (o *MIBIpmcastBoundaryTable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBIPMulticastBoundaryTable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -9451,30 +9451,30 @@ func (o *MIBIpmcastBoundaryTable) MarshalNDR(ctx context.Context, w ndr.Writer) 
 				return err
 			}
 		} else {
-			if err := (&MIBIpmcastBoundary{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&MIBIPMulticastBoundary{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
 	for i1 := len(o.Table); uint64(i1) < 1; i1++ {
-		if err := (&MIBIpmcastBoundary{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MIBIPMulticastBoundary{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MIBIpmcastBoundaryTable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBIPMulticastBoundaryTable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.EntriesLength); err != nil {
 		return err
 	}
-	o.Table = make([]*MIBIpmcastBoundary, 1)
+	o.Table = make([]*MIBIPMulticastBoundary, 1)
 	for i1 := range o.Table {
 		i1 := i1
 		if o.Table[i1] == nil {
-			o.Table[i1] = &MIBIpmcastBoundary{}
+			o.Table[i1] = &MIBIPMulticastBoundary{}
 		}
 		if err := o.Table[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -9483,12 +9483,12 @@ func (o *MIBIpmcastBoundaryTable) UnmarshalNDR(ctx context.Context, w ndr.Reader
 	return nil
 }
 
-// MIBIpmcastGlobal structure represents MIB_IPMCAST_GLOBAL RPC structure.
-type MIBIpmcastGlobal struct {
+// MIBIPMulticastGlobal structure represents MIB_IPMCAST_GLOBAL RPC structure.
+type MIBIPMulticastGlobal struct {
 	Enable uint32 `idl:"name:dwEnable" json:"enable"`
 }
 
-func (o *MIBIpmcastGlobal) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBIPMulticastGlobal) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -9497,7 +9497,7 @@ func (o *MIBIpmcastGlobal) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIpmcastGlobal) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBIPMulticastGlobal) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -9509,7 +9509,7 @@ func (o *MIBIpmcastGlobal) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBIpmcastGlobal) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBIPMulticastGlobal) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -9519,17 +9519,17 @@ func (o *MIBIpmcastGlobal) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	return nil
 }
 
-// MIBIpmcastInterfaceEntry structure represents MIB_IPMCAST_IF_ENTRY RPC structure.
-type MIBIpmcastInterfaceEntry struct {
-	InterfaceIndex uint32 `idl:"name:dwIfIndex" json:"interface_index"`
-	TTL            uint32 `idl:"name:dwTtl" json:"ttl"`
-	Protocol       uint32 `idl:"name:dwProtocol" json:"protocol"`
-	RateLimit      uint32 `idl:"name:dwRateLimit" json:"rate_limit"`
-	InMCastOctets  uint32 `idl:"name:ulInMcastOctets" json:"in_mcast_octets"`
-	OutMCastOctets uint32 `idl:"name:ulOutMcastOctets" json:"out_mcast_octets"`
+// MIBIPMulticastInterfaceEntry structure represents MIB_IPMCAST_IF_ENTRY RPC structure.
+type MIBIPMulticastInterfaceEntry struct {
+	InterfaceIndex     uint32 `idl:"name:dwIfIndex" json:"interface_index"`
+	TTL                uint32 `idl:"name:dwTtl" json:"ttl"`
+	Protocol           uint32 `idl:"name:dwProtocol" json:"protocol"`
+	RateLimit          uint32 `idl:"name:dwRateLimit" json:"rate_limit"`
+	InMulticastOctets  uint32 `idl:"name:ulInMcastOctets" json:"in_multicast_octets"`
+	OutMulticastOctets uint32 `idl:"name:ulOutMcastOctets" json:"out_multicast_octets"`
 }
 
-func (o *MIBIpmcastInterfaceEntry) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBIPMulticastInterfaceEntry) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -9538,7 +9538,7 @@ func (o *MIBIpmcastInterfaceEntry) xxx_PreparePayload(ctx context.Context) error
 	}
 	return nil
 }
-func (o *MIBIpmcastInterfaceEntry) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBIPMulticastInterfaceEntry) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -9557,15 +9557,15 @@ func (o *MIBIpmcastInterfaceEntry) MarshalNDR(ctx context.Context, w ndr.Writer)
 	if err := w.WriteData(o.RateLimit); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.InMCastOctets); err != nil {
+	if err := w.WriteData(o.InMulticastOctets); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.OutMCastOctets); err != nil {
+	if err := w.WriteData(o.OutMulticastOctets); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *MIBIpmcastInterfaceEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBIPMulticastInterfaceEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -9581,22 +9581,22 @@ func (o *MIBIpmcastInterfaceEntry) UnmarshalNDR(ctx context.Context, w ndr.Reade
 	if err := w.ReadData(&o.RateLimit); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.InMCastOctets); err != nil {
+	if err := w.ReadData(&o.InMulticastOctets); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.OutMCastOctets); err != nil {
+	if err := w.ReadData(&o.OutMulticastOctets); err != nil {
 		return err
 	}
 	return nil
 }
 
-// MIBIpmcastInterfaceTable structure represents MIB_IPMCAST_IF_TABLE RPC structure.
-type MIBIpmcastInterfaceTable struct {
-	EntriesLength uint32                      `idl:"name:dwNumEntries" json:"entries_length"`
-	Table         []*MIBIpmcastInterfaceEntry `idl:"name:table" json:"table"`
+// MIBIPMulticastInterfaceTable structure represents MIB_IPMCAST_IF_TABLE RPC structure.
+type MIBIPMulticastInterfaceTable struct {
+	EntriesLength uint32                          `idl:"name:dwNumEntries" json:"entries_length"`
+	Table         []*MIBIPMulticastInterfaceEntry `idl:"name:table" json:"table"`
 }
 
-func (o *MIBIpmcastInterfaceTable) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBIPMulticastInterfaceTable) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -9605,7 +9605,7 @@ func (o *MIBIpmcastInterfaceTable) xxx_PreparePayload(ctx context.Context) error
 	}
 	return nil
 }
-func (o *MIBIpmcastInterfaceTable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBIPMulticastInterfaceTable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -9625,30 +9625,30 @@ func (o *MIBIpmcastInterfaceTable) MarshalNDR(ctx context.Context, w ndr.Writer)
 				return err
 			}
 		} else {
-			if err := (&MIBIpmcastInterfaceEntry{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&MIBIPMulticastInterfaceEntry{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
 	for i1 := len(o.Table); uint64(i1) < 1; i1++ {
-		if err := (&MIBIpmcastInterfaceEntry{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MIBIPMulticastInterfaceEntry{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MIBIpmcastInterfaceTable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBIPMulticastInterfaceTable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.EntriesLength); err != nil {
 		return err
 	}
-	o.Table = make([]*MIBIpmcastInterfaceEntry, 1)
+	o.Table = make([]*MIBIPMulticastInterfaceEntry, 1)
 	for i1 := range o.Table {
 		i1 := i1
 		if o.Table[i1] == nil {
-			o.Table[i1] = &MIBIpmcastInterfaceEntry{}
+			o.Table[i1] = &MIBIPMulticastInterfaceEntry{}
 		}
 		if err := o.Table[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -9657,15 +9657,15 @@ func (o *MIBIpmcastInterfaceTable) UnmarshalNDR(ctx context.Context, w ndr.Reade
 	return nil
 }
 
-// MIBIpmcastOif structure represents MIB_IPMCAST_OIF RPC structure.
-type MIBIpmcastOif struct {
+// MIBIPMulticastOutgoingInterface structure represents MIB_IPMCAST_OIF RPC structure.
+type MIBIPMulticastOutgoingInterface struct {
 	OutInterfaceIndex uint32 `idl:"name:dwOutIfIndex" json:"out_interface_index"`
 	NextHopAddr       uint32 `idl:"name:dwNextHopAddr" json:"next_hop_addr"`
 	_                 []byte `idl:"name:pvReserved"`
 	_                 uint32 `idl:"name:dwReserved"`
 }
 
-func (o *MIBIpmcastOif) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBIPMulticastOutgoingInterface) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -9674,7 +9674,7 @@ func (o *MIBIpmcastOif) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIpmcastOif) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBIPMulticastOutgoingInterface) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -9700,7 +9700,7 @@ func (o *MIBIpmcastOif) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBIpmcastOif) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBIPMulticastOutgoingInterface) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -9731,27 +9731,27 @@ func (o *MIBIpmcastOif) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MIBIpmcastMfe structure represents MIB_IPMCAST_MFE RPC structure.
-type MIBIpmcastMfe struct {
-	Group               uint32           `idl:"name:dwGroup" json:"group"`
-	Source              uint32           `idl:"name:dwSource" json:"source"`
-	SourceMask          uint32           `idl:"name:dwSrcMask" json:"source_mask"`
-	UpStrmNgbr          uint32           `idl:"name:dwUpStrmNgbr" json:"up_strm_ngbr"`
-	InInterfaceIndex    uint32           `idl:"name:dwInIfIndex" json:"in_interface_index"`
-	InInterfaceProtocol uint32           `idl:"name:dwInIfProtocol" json:"in_interface_protocol"`
-	RouteProtocol       uint32           `idl:"name:dwRouteProtocol" json:"route_protocol"`
-	RouteNetwork        uint32           `idl:"name:dwRouteNetwork" json:"route_network"`
-	RouteMask           uint32           `idl:"name:dwRouteMask" json:"route_mask"`
-	UpTime              uint32           `idl:"name:ulUpTime" json:"up_time"`
-	ExpiryTime          uint32           `idl:"name:ulExpiryTime" json:"expiry_time"`
-	Timeout             uint32           `idl:"name:ulTimeOut" json:"timeout"`
-	NumOutInterface     uint32           `idl:"name:ulNumOutIf" json:"num_out_interface"`
-	Flags               uint32           `idl:"name:fFlags" json:"flags"`
-	_                   uint32           `idl:"name:dwReserved"`
-	RgmioOutInfo        []*MIBIpmcastOif `idl:"name:rgmioOutInfo" json:"rgmio_out_info"`
+// MIBIPMulticastMulticastForwardingEntry structure represents MIB_IPMCAST_MFE RPC structure.
+type MIBIPMulticastMulticastForwardingEntry struct {
+	Group               uint32                             `idl:"name:dwGroup" json:"group"`
+	Source              uint32                             `idl:"name:dwSource" json:"source"`
+	SourceMask          uint32                             `idl:"name:dwSrcMask" json:"source_mask"`
+	UpstreamNeighbor    uint32                             `idl:"name:dwUpStrmNgbr" json:"upstream_neighbor"`
+	InInterfaceIndex    uint32                             `idl:"name:dwInIfIndex" json:"in_interface_index"`
+	InInterfaceProtocol uint32                             `idl:"name:dwInIfProtocol" json:"in_interface_protocol"`
+	RouteProtocol       uint32                             `idl:"name:dwRouteProtocol" json:"route_protocol"`
+	RouteNetwork        uint32                             `idl:"name:dwRouteNetwork" json:"route_network"`
+	RouteMask           uint32                             `idl:"name:dwRouteMask" json:"route_mask"`
+	UpTime              uint32                             `idl:"name:ulUpTime" json:"up_time"`
+	ExpiryTime          uint32                             `idl:"name:ulExpiryTime" json:"expiry_time"`
+	Timeout             uint32                             `idl:"name:ulTimeOut" json:"timeout"`
+	NumOutInterface     uint32                             `idl:"name:ulNumOutIf" json:"num_out_interface"`
+	Flags               uint32                             `idl:"name:fFlags" json:"flags"`
+	_                   uint32                             `idl:"name:dwReserved"`
+	RgmioOutInfo        []*MIBIPMulticastOutgoingInterface `idl:"name:rgmioOutInfo" json:"rgmio_out_info"`
 }
 
-func (o *MIBIpmcastMfe) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBIPMulticastMulticastForwardingEntry) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -9760,7 +9760,7 @@ func (o *MIBIpmcastMfe) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIpmcastMfe) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBIPMulticastMulticastForwardingEntry) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -9776,7 +9776,7 @@ func (o *MIBIpmcastMfe) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.SourceMask); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.UpStrmNgbr); err != nil {
+	if err := w.WriteData(o.UpstreamNeighbor); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.InInterfaceIndex); err != nil {
@@ -9823,19 +9823,19 @@ func (o *MIBIpmcastMfe) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 				return err
 			}
 		} else {
-			if err := (&MIBIpmcastOif{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&MIBIPMulticastOutgoingInterface{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
 	for i1 := len(o.RgmioOutInfo); uint64(i1) < 1; i1++ {
-		if err := (&MIBIpmcastOif{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MIBIPMulticastOutgoingInterface{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MIBIpmcastMfe) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBIPMulticastMulticastForwardingEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -9848,7 +9848,7 @@ func (o *MIBIpmcastMfe) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.SourceMask); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.UpStrmNgbr); err != nil {
+	if err := w.ReadData(&o.UpstreamNeighbor); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.InInterfaceIndex); err != nil {
@@ -9886,11 +9886,11 @@ func (o *MIBIpmcastMfe) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&_dwReserved); err != nil {
 		return err
 	}
-	o.RgmioOutInfo = make([]*MIBIpmcastOif, 1)
+	o.RgmioOutInfo = make([]*MIBIPMulticastOutgoingInterface, 1)
 	for i1 := range o.RgmioOutInfo {
 		i1 := i1
 		if o.RgmioOutInfo[i1] == nil {
-			o.RgmioOutInfo[i1] = &MIBIpmcastOif{}
+			o.RgmioOutInfo[i1] = &MIBIPMulticastOutgoingInterface{}
 		}
 		if err := o.RgmioOutInfo[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -9899,8 +9899,8 @@ func (o *MIBIpmcastMfe) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MIBIpmcastOifStats structure represents MIB_IPMCAST_OIF_STATS RPC structure.
-type MIBIpmcastOifStats struct {
+// MIBIPMulticastOutgoingInterfaceStats structure represents MIB_IPMCAST_OIF_STATS RPC structure.
+type MIBIPMulticastOutgoingInterfaceStats struct {
 	OutInterfaceIndex uint32 `idl:"name:dwOutIfIndex" json:"out_interface_index"`
 	NextHopAddr       uint32 `idl:"name:dwNextHopAddr" json:"next_hop_addr"`
 	DialContext       []byte `idl:"name:pvDialContext" json:"dial_context"`
@@ -9910,7 +9910,7 @@ type MIBIpmcastOifStats struct {
 	OutDiscards       uint32 `idl:"name:ulOutDiscards" json:"out_discards"`
 }
 
-func (o *MIBIpmcastOifStats) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBIPMulticastOutgoingInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -9919,7 +9919,7 @@ func (o *MIBIpmcastOifStats) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIpmcastOifStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBIPMulticastOutgoingInterfaceStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -9962,7 +9962,7 @@ func (o *MIBIpmcastOifStats) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	}
 	return nil
 }
-func (o *MIBIpmcastOifStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBIPMulticastOutgoingInterfaceStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -9998,28 +9998,28 @@ func (o *MIBIpmcastOifStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	return nil
 }
 
-// MIBIpmcastMfeStats structure represents MIB_IPMCAST_MFE_STATS RPC structure.
-type MIBIpmcastMfeStats struct {
-	Group                  uint32                `idl:"name:dwGroup" json:"group"`
-	Source                 uint32                `idl:"name:dwSource" json:"source"`
-	SourceMask             uint32                `idl:"name:dwSrcMask" json:"source_mask"`
-	UpStrmNgbr             uint32                `idl:"name:dwUpStrmNgbr" json:"up_strm_ngbr"`
-	InInterfaceIndex       uint32                `idl:"name:dwInIfIndex" json:"in_interface_index"`
-	InInterfaceProtocol    uint32                `idl:"name:dwInIfProtocol" json:"in_interface_protocol"`
-	RouteProtocol          uint32                `idl:"name:dwRouteProtocol" json:"route_protocol"`
-	RouteNetwork           uint32                `idl:"name:dwRouteNetwork" json:"route_network"`
-	RouteMask              uint32                `idl:"name:dwRouteMask" json:"route_mask"`
-	UpTime                 uint32                `idl:"name:ulUpTime" json:"up_time"`
-	ExpiryTime             uint32                `idl:"name:ulExpiryTime" json:"expiry_time"`
-	NumOutInterface        uint32                `idl:"name:ulNumOutIf" json:"num_out_interface"`
-	InPkts                 uint32                `idl:"name:ulInPkts" json:"in_pkts"`
-	InOctets               uint32                `idl:"name:ulInOctets" json:"in_octets"`
-	PktsDifferentInterface uint32                `idl:"name:ulPktsDifferentIf" json:"pkts_different_interface"`
-	QueueOverflow          uint32                `idl:"name:ulQueueOverflow" json:"queue_overflow"`
-	RgmiosOutStats         []*MIBIpmcastOifStats `idl:"name:rgmiosOutStats" json:"rgmios_out_stats"`
+// MIBIPMulticastMulticastForwardingEntryStats structure represents MIB_IPMCAST_MFE_STATS RPC structure.
+type MIBIPMulticastMulticastForwardingEntryStats struct {
+	Group                     uint32                                  `idl:"name:dwGroup" json:"group"`
+	Source                    uint32                                  `idl:"name:dwSource" json:"source"`
+	SourceMask                uint32                                  `idl:"name:dwSrcMask" json:"source_mask"`
+	UpstreamNeighbor          uint32                                  `idl:"name:dwUpStrmNgbr" json:"upstream_neighbor"`
+	InInterfaceIndex          uint32                                  `idl:"name:dwInIfIndex" json:"in_interface_index"`
+	InInterfaceProtocol       uint32                                  `idl:"name:dwInIfProtocol" json:"in_interface_protocol"`
+	RouteProtocol             uint32                                  `idl:"name:dwRouteProtocol" json:"route_protocol"`
+	RouteNetwork              uint32                                  `idl:"name:dwRouteNetwork" json:"route_network"`
+	RouteMask                 uint32                                  `idl:"name:dwRouteMask" json:"route_mask"`
+	UpTime                    uint32                                  `idl:"name:ulUpTime" json:"up_time"`
+	ExpiryTime                uint32                                  `idl:"name:ulExpiryTime" json:"expiry_time"`
+	NumOutInterface           uint32                                  `idl:"name:ulNumOutIf" json:"num_out_interface"`
+	InPackets                 uint32                                  `idl:"name:ulInPkts" json:"in_packets"`
+	InOctets                  uint32                                  `idl:"name:ulInOctets" json:"in_octets"`
+	PacketsDifferentInterface uint32                                  `idl:"name:ulPktsDifferentIf" json:"packets_different_interface"`
+	QueueOverflow             uint32                                  `idl:"name:ulQueueOverflow" json:"queue_overflow"`
+	OutStats                  []*MIBIPMulticastOutgoingInterfaceStats `idl:"name:rgmiosOutStats" json:"out_stats"`
 }
 
-func (o *MIBIpmcastMfeStats) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBIPMulticastMulticastForwardingEntryStats) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -10028,7 +10028,7 @@ func (o *MIBIpmcastMfeStats) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIpmcastMfeStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBIPMulticastMulticastForwardingEntryStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -10044,7 +10044,7 @@ func (o *MIBIpmcastMfeStats) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.SourceMask); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.UpStrmNgbr); err != nil {
+	if err := w.WriteData(o.UpstreamNeighbor); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.InInterfaceIndex); err != nil {
@@ -10071,41 +10071,41 @@ func (o *MIBIpmcastMfeStats) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.NumOutInterface); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.InPkts); err != nil {
+	if err := w.WriteData(o.InPackets); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.InOctets); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.PktsDifferentInterface); err != nil {
+	if err := w.WriteData(o.PacketsDifferentInterface); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.QueueOverflow); err != nil {
 		return err
 	}
-	for i1 := range o.RgmiosOutStats {
+	for i1 := range o.OutStats {
 		i1 := i1
 		if uint64(i1) >= 1 {
 			break
 		}
-		if o.RgmiosOutStats[i1] != nil {
-			if err := o.RgmiosOutStats[i1].MarshalNDR(ctx, w); err != nil {
+		if o.OutStats[i1] != nil {
+			if err := o.OutStats[i1].MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&MIBIpmcastOifStats{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&MIBIPMulticastOutgoingInterfaceStats{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
-	for i1 := len(o.RgmiosOutStats); uint64(i1) < 1; i1++ {
-		if err := (&MIBIpmcastOifStats{}).MarshalNDR(ctx, w); err != nil {
+	for i1 := len(o.OutStats); uint64(i1) < 1; i1++ {
+		if err := (&MIBIPMulticastOutgoingInterfaceStats{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MIBIpmcastMfeStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBIPMulticastMulticastForwardingEntryStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -10118,7 +10118,7 @@ func (o *MIBIpmcastMfeStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	if err := w.ReadData(&o.SourceMask); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.UpStrmNgbr); err != nil {
+	if err := w.ReadData(&o.UpstreamNeighbor); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.InInterfaceIndex); err != nil {
@@ -10145,41 +10145,41 @@ func (o *MIBIpmcastMfeStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	if err := w.ReadData(&o.NumOutInterface); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.InPkts); err != nil {
+	if err := w.ReadData(&o.InPackets); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.InOctets); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.PktsDifferentInterface); err != nil {
+	if err := w.ReadData(&o.PacketsDifferentInterface); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.QueueOverflow); err != nil {
 		return err
 	}
-	o.RgmiosOutStats = make([]*MIBIpmcastOifStats, 1)
-	for i1 := range o.RgmiosOutStats {
+	o.OutStats = make([]*MIBIPMulticastOutgoingInterfaceStats, 1)
+	for i1 := range o.OutStats {
 		i1 := i1
-		if o.RgmiosOutStats[i1] == nil {
-			o.RgmiosOutStats[i1] = &MIBIpmcastOifStats{}
+		if o.OutStats[i1] == nil {
+			o.OutStats[i1] = &MIBIPMulticastOutgoingInterfaceStats{}
 		}
-		if err := o.RgmiosOutStats[i1].UnmarshalNDR(ctx, w); err != nil {
+		if err := o.OutStats[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-// MIBIpmcastScope structure represents MIB_IPMCAST_SCOPE RPC structure.
-type MIBIpmcastScope struct {
+// MIBIPMulticastScope structure represents MIB_IPMCAST_SCOPE RPC structure.
+type MIBIPMulticastScope struct {
 	GroupAddress uint32   `idl:"name:dwGroupAddress" json:"group_address"`
 	GroupMask    uint32   `idl:"name:dwGroupMask" json:"group_mask"`
-	SnNameBuffer []uint16 `idl:"name:snNameBuffer" json:"sn_name_buffer"`
+	NameBuffer   []uint16 `idl:"name:snNameBuffer" json:"name_buffer"`
 	Status       uint32   `idl:"name:dwStatus" json:"status"`
 	_            []byte   `idl:"name:reserved"`
 }
 
-func (o *MIBIpmcastScope) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBIPMulticastScope) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -10188,7 +10188,7 @@ func (o *MIBIpmcastScope) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIpmcastScope) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBIPMulticastScope) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -10201,16 +10201,16 @@ func (o *MIBIpmcastScope) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.GroupMask); err != nil {
 		return err
 	}
-	for i1 := range o.SnNameBuffer {
+	for i1 := range o.NameBuffer {
 		i1 := i1
 		if uint64(i1) >= 256 {
 			break
 		}
-		if err := w.WriteData(o.SnNameBuffer[i1]); err != nil {
+		if err := w.WriteData(o.NameBuffer[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.SnNameBuffer); uint64(i1) < 256; i1++ {
+	for i1 := len(o.NameBuffer); uint64(i1) < 256; i1++ {
 		if err := w.WriteData(uint16(0)); err != nil {
 			return err
 		}
@@ -10229,7 +10229,7 @@ func (o *MIBIpmcastScope) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBIpmcastScope) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBIPMulticastScope) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -10239,10 +10239,10 @@ func (o *MIBIpmcastScope) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	if err := w.ReadData(&o.GroupMask); err != nil {
 		return err
 	}
-	o.SnNameBuffer = make([]uint16, 256)
-	for i1 := range o.SnNameBuffer {
+	o.NameBuffer = make([]uint16, 256)
+	for i1 := range o.NameBuffer {
 		i1 := i1
-		if err := w.ReadData(&o.SnNameBuffer[i1]); err != nil {
+		if err := w.ReadData(&o.NameBuffer[i1]); err != nil {
 			return err
 		}
 	}
@@ -10264,16 +10264,16 @@ func (o *MIBIpmcastScope) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	return nil
 }
 
-// MIBIpnetrow structure represents MIB_IPNETROW RPC structure.
-type MIBIpnetrow struct {
-	Index          uint32 `idl:"name:dwIndex" json:"index"`
-	PhysAddrLength uint32 `idl:"name:dwPhysAddrLen" json:"phys_addr_length"`
-	PhysAddr       []byte `idl:"name:bPhysAddr" json:"phys_addr"`
-	Addr           uint32 `idl:"name:dwAddr" json:"addr"`
-	Type           uint32 `idl:"name:dwType" json:"type"`
+// MIBIPNetRow structure represents MIB_IPNETROW RPC structure.
+type MIBIPNetRow struct {
+	Index              uint32 `idl:"name:dwIndex" json:"index"`
+	PhysicalAddrLength uint32 `idl:"name:dwPhysAddrLen" json:"physical_addr_length"`
+	PhysicalAddr       []byte `idl:"name:bPhysAddr" json:"physical_addr"`
+	Addr               uint32 `idl:"name:dwAddr" json:"addr"`
+	Type               uint32 `idl:"name:dwType" json:"type"`
 }
 
-func (o *MIBIpnetrow) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBIPNetRow) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -10282,7 +10282,7 @@ func (o *MIBIpnetrow) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIpnetrow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBIPNetRow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -10292,19 +10292,19 @@ func (o *MIBIpnetrow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Index); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.PhysAddrLength); err != nil {
+	if err := w.WriteData(o.PhysicalAddrLength); err != nil {
 		return err
 	}
-	for i1 := range o.PhysAddr {
+	for i1 := range o.PhysicalAddr {
 		i1 := i1
 		if uint64(i1) >= 8 {
 			break
 		}
-		if err := w.WriteData(o.PhysAddr[i1]); err != nil {
+		if err := w.WriteData(o.PhysicalAddr[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.PhysAddr); uint64(i1) < 8; i1++ {
+	for i1 := len(o.PhysicalAddr); uint64(i1) < 8; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
@@ -10317,20 +10317,20 @@ func (o *MIBIpnetrow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBIpnetrow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBIPNetRow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Index); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.PhysAddrLength); err != nil {
+	if err := w.ReadData(&o.PhysicalAddrLength); err != nil {
 		return err
 	}
-	o.PhysAddr = make([]byte, 8)
-	for i1 := range o.PhysAddr {
+	o.PhysicalAddr = make([]byte, 8)
+	for i1 := range o.PhysicalAddr {
 		i1 := i1
-		if err := w.ReadData(&o.PhysAddr[i1]); err != nil {
+		if err := w.ReadData(&o.PhysicalAddr[i1]); err != nil {
 			return err
 		}
 	}
@@ -10343,14 +10343,14 @@ func (o *MIBIpnetrow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MIBIpnettable structure represents MIB_IPNETTABLE RPC structure.
-type MIBIpnettable struct {
+// MIBIPNetTable structure represents MIB_IPNETTABLE RPC structure.
+type MIBIPNetTable struct {
 	EntriesLength uint32         `idl:"name:dwNumEntries" json:"entries_length"`
-	Table         []*MIBIpnetrow `idl:"name:table" json:"table"`
+	Table         []*MIBIPNetRow `idl:"name:table" json:"table"`
 	_             []byte         `idl:"name:reserved"`
 }
 
-func (o *MIBIpnettable) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBIPNetTable) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -10359,7 +10359,7 @@ func (o *MIBIpnettable) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBIpnettable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBIPNetTable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -10379,13 +10379,13 @@ func (o *MIBIpnettable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 				return err
 			}
 		} else {
-			if err := (&MIBIpnetrow{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&MIBIPNetRow{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
 	for i1 := len(o.Table); uint64(i1) < 1; i1++ {
-		if err := (&MIBIpnetrow{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MIBIPNetRow{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -10400,18 +10400,18 @@ func (o *MIBIpnettable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBIpnettable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBIPNetTable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.EntriesLength); err != nil {
 		return err
 	}
-	o.Table = make([]*MIBIpnetrow, 1)
+	o.Table = make([]*MIBIPNetRow, 1)
 	for i1 := range o.Table {
 		i1 := i1
 		if o.Table[i1] == nil {
-			o.Table[i1] = &MIBIpnetrow{}
+			o.Table[i1] = &MIBIPNetRow{}
 		}
 		if err := o.Table[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -10449,9 +10449,9 @@ type MIBIPStats struct {
 	OutNoRoutes     uint32               `idl:"name:dwOutNoRoutes" json:"out_no_routes"`
 	ReasmTimeout    uint32               `idl:"name:dwReasmTimeout" json:"reasm_timeout"`
 	ReasmReqds      uint32               `idl:"name:dwReasmReqds" json:"reasm_reqds"`
-	ReasmOks        uint32               `idl:"name:dwReasmOks" json:"reasm_oks"`
+	ReasmOKs        uint32               `idl:"name:dwReasmOks" json:"reasm_oks"`
 	ReasmFails      uint32               `idl:"name:dwReasmFails" json:"reasm_fails"`
-	FragOks         uint32               `idl:"name:dwFragOks" json:"frag_oks"`
+	FragOKs         uint32               `idl:"name:dwFragOks" json:"frag_oks"`
 	FragFails       uint32               `idl:"name:dwFragFails" json:"frag_fails"`
 	FragCreates     uint32               `idl:"name:dwFragCreates" json:"frag_creates"`
 	InterfaceLength uint32               `idl:"name:dwNumIf" json:"interface_length"`
@@ -10520,13 +10520,13 @@ func (o *MIBIPStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.ReasmReqds); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ReasmOks); err != nil {
+	if err := w.WriteData(o.ReasmOKs); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.ReasmFails); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.FragOks); err != nil {
+	if err := w.WriteData(o.FragOKs); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.FragFails); err != nil {
@@ -10595,13 +10595,13 @@ func (o *MIBIPStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.ReasmReqds); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ReasmOks); err != nil {
+	if err := w.ReadData(&o.ReasmOKs); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.ReasmFails); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.FragOks); err != nil {
+	if err := w.ReadData(&o.FragOKs); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.FragFails); err != nil {
@@ -10622,13 +10622,13 @@ func (o *MIBIPStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MIBMfeStatsTable structure represents MIB_MFE_STATS_TABLE RPC structure.
-type MIBMfeStatsTable struct {
-	EntriesLength uint32                `idl:"name:dwNumEntries" json:"entries_length"`
-	Table         []*MIBIpmcastMfeStats `idl:"name:table" json:"table"`
+// MIBMulticastForwardingEntryStatsTable structure represents MIB_MFE_STATS_TABLE RPC structure.
+type MIBMulticastForwardingEntryStatsTable struct {
+	EntriesLength uint32                                         `idl:"name:dwNumEntries" json:"entries_length"`
+	Table         []*MIBIPMulticastMulticastForwardingEntryStats `idl:"name:table" json:"table"`
 }
 
-func (o *MIBMfeStatsTable) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBMulticastForwardingEntryStatsTable) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -10637,7 +10637,7 @@ func (o *MIBMfeStatsTable) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBMfeStatsTable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBMulticastForwardingEntryStatsTable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -10657,30 +10657,30 @@ func (o *MIBMfeStatsTable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 				return err
 			}
 		} else {
-			if err := (&MIBIpmcastMfeStats{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&MIBIPMulticastMulticastForwardingEntryStats{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
 	for i1 := len(o.Table); uint64(i1) < 1; i1++ {
-		if err := (&MIBIpmcastMfeStats{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MIBIPMulticastMulticastForwardingEntryStats{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MIBMfeStatsTable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBMulticastForwardingEntryStatsTable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.EntriesLength); err != nil {
 		return err
 	}
-	o.Table = make([]*MIBIpmcastMfeStats, 1)
+	o.Table = make([]*MIBIPMulticastMulticastForwardingEntryStats, 1)
 	for i1 := range o.Table {
 		i1 := i1
 		if o.Table[i1] == nil {
-			o.Table[i1] = &MIBIpmcastMfeStats{}
+			o.Table[i1] = &MIBIPMulticastMulticastForwardingEntryStats{}
 		}
 		if err := o.Table[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -10689,13 +10689,13 @@ func (o *MIBMfeStatsTable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	return nil
 }
 
-// MIBMfeTable structure represents MIB_MFE_TABLE RPC structure.
-type MIBMfeTable struct {
-	EntriesLength uint32           `idl:"name:dwNumEntries" json:"entries_length"`
-	Table         []*MIBIpmcastMfe `idl:"name:table" json:"table"`
+// MIBMulticastForwardingEntryTable structure represents MIB_MFE_TABLE RPC structure.
+type MIBMulticastForwardingEntryTable struct {
+	EntriesLength uint32                                    `idl:"name:dwNumEntries" json:"entries_length"`
+	Table         []*MIBIPMulticastMulticastForwardingEntry `idl:"name:table" json:"table"`
 }
 
-func (o *MIBMfeTable) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBMulticastForwardingEntryTable) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -10704,7 +10704,7 @@ func (o *MIBMfeTable) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBMfeTable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBMulticastForwardingEntryTable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -10724,30 +10724,30 @@ func (o *MIBMfeTable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 				return err
 			}
 		} else {
-			if err := (&MIBIpmcastMfe{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&MIBIPMulticastMulticastForwardingEntry{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
 	for i1 := len(o.Table); uint64(i1) < 1; i1++ {
-		if err := (&MIBIpmcastMfe{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MIBIPMulticastMulticastForwardingEntry{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *MIBMfeTable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBMulticastForwardingEntryTable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.EntriesLength); err != nil {
 		return err
 	}
-	o.Table = make([]*MIBIpmcastMfe, 1)
+	o.Table = make([]*MIBIPMulticastMulticastForwardingEntry, 1)
 	for i1 := range o.Table {
 		i1 := i1
 		if o.Table[i1] == nil {
-			o.Table[i1] = &MIBIpmcastMfe{}
+			o.Table[i1] = &MIBIPMulticastMulticastForwardingEntry{}
 		}
 		if err := o.Table[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -10801,8 +10801,8 @@ func (o *MIBOpaqueInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 
 // MIBOpaqueQuery structure represents MIB_OPAQUE_QUERY RPC structure.
 type MIBOpaqueQuery struct {
-	VarID        uint32   `idl:"name:dwVarId" json:"var_id"`
-	RgdwVarIndex []uint32 `idl:"name:rgdwVarIndex" json:"rgdw_var_index"`
+	VarID    uint32   `idl:"name:dwVarId" json:"var_id"`
+	VarIndex []uint32 `idl:"name:rgdwVarIndex" json:"var_index"`
 }
 
 func (o *MIBOpaqueQuery) xxx_PreparePayload(ctx context.Context) error {
@@ -10824,16 +10824,16 @@ func (o *MIBOpaqueQuery) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.VarID); err != nil {
 		return err
 	}
-	for i1 := range o.RgdwVarIndex {
+	for i1 := range o.VarIndex {
 		i1 := i1
 		if uint64(i1) >= 1 {
 			break
 		}
-		if err := w.WriteData(o.RgdwVarIndex[i1]); err != nil {
+		if err := w.WriteData(o.VarIndex[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.RgdwVarIndex); uint64(i1) < 1; i1++ {
+	for i1 := len(o.VarIndex); uint64(i1) < 1; i1++ {
 		if err := w.WriteData(uint32(0)); err != nil {
 			return err
 		}
@@ -10847,24 +10847,24 @@ func (o *MIBOpaqueQuery) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.VarID); err != nil {
 		return err
 	}
-	o.RgdwVarIndex = make([]uint32, 1)
-	for i1 := range o.RgdwVarIndex {
+	o.VarIndex = make([]uint32, 1)
+	for i1 := range o.VarIndex {
 		i1 := i1
-		if err := w.ReadData(&o.RgdwVarIndex[i1]); err != nil {
+		if err := w.ReadData(&o.VarIndex[i1]); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-// MIBProxyarp structure represents MIB_PROXYARP RPC structure.
-type MIBProxyarp struct {
+// MIBProxyArp structure represents MIB_PROXYARP RPC structure.
+type MIBProxyArp struct {
 	Address        uint32 `idl:"name:dwAddress" json:"address"`
 	Mask           uint32 `idl:"name:dwMask" json:"mask"`
 	InterfaceIndex uint32 `idl:"name:dwIfIndex" json:"interface_index"`
 }
 
-func (o *MIBProxyarp) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBProxyArp) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -10873,7 +10873,7 @@ func (o *MIBProxyarp) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBProxyarp) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBProxyArp) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -10891,7 +10891,7 @@ func (o *MIBProxyarp) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBProxyarp) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBProxyArp) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -10907,8 +10907,8 @@ func (o *MIBProxyarp) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MIBTcprow structure represents MIB_TCPROW RPC structure.
-type MIBTcprow struct {
+// MIBTCPRow structure represents MIB_TCPROW RPC structure.
+type MIBTCPRow struct {
 	State      MIBTCPState `idl:"name:State" json:"state"`
 	LocalAddr  uint32      `idl:"name:dwLocalAddr" json:"local_addr"`
 	LocalPort  uint32      `idl:"name:dwLocalPort" json:"local_port"`
@@ -10916,7 +10916,7 @@ type MIBTcprow struct {
 	RemotePort uint32      `idl:"name:dwRemotePort" json:"remote_port"`
 }
 
-func (o *MIBTcprow) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBTCPRow) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -10925,7 +10925,7 @@ func (o *MIBTcprow) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBTcprow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBTCPRow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -10949,7 +10949,7 @@ func (o *MIBTcprow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBTcprow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBTCPRow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -10971,26 +10971,26 @@ func (o *MIBTcprow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MIBTcpstats structure represents MIB_TCPSTATS RPC structure.
-type MIBTcpstats struct {
-	RtoAlgorithm TCPRtoAlgorithm `idl:"name:RtoAlgorithm" json:"rto_algorithm"`
-	RtoMin       uint32          `idl:"name:dwRtoMin" json:"rto_min"`
-	RtoMax       uint32          `idl:"name:dwRtoMax" json:"rto_max"`
-	MaxConn      uint32          `idl:"name:dwMaxConn" json:"max_conn"`
-	ActiveOpens  uint32          `idl:"name:dwActiveOpens" json:"active_opens"`
-	PassiveOpens uint32          `idl:"name:dwPassiveOpens" json:"passive_opens"`
-	AttemptFails uint32          `idl:"name:dwAttemptFails" json:"attempt_fails"`
-	EstabResets  uint32          `idl:"name:dwEstabResets" json:"estab_resets"`
-	CurrEstab    uint32          `idl:"name:dwCurrEstab" json:"curr_estab"`
-	InSegs       uint32          `idl:"name:dwInSegs" json:"in_segs"`
-	OutSegs      uint32          `idl:"name:dwOutSegs" json:"out_segs"`
-	RetransSegs  uint32          `idl:"name:dwRetransSegs" json:"retrans_segs"`
-	InErrs       uint32          `idl:"name:dwInErrs" json:"in_errs"`
-	OutRsts      uint32          `idl:"name:dwOutRsts" json:"out_rsts"`
-	ConnsLength  uint32          `idl:"name:dwNumConns" json:"conns_length"`
+// MIBTCPStats structure represents MIB_TCPSTATS RPC structure.
+type MIBTCPStats struct {
+	RTOAlgorithm    TCPRTOAlgorithm `idl:"name:RtoAlgorithm" json:"rto_algorithm"`
+	RTOMin          uint32          `idl:"name:dwRtoMin" json:"rto_min"`
+	RTOMax          uint32          `idl:"name:dwRtoMax" json:"rto_max"`
+	MaxConn         uint32          `idl:"name:dwMaxConn" json:"max_conn"`
+	ActiveOpens     uint32          `idl:"name:dwActiveOpens" json:"active_opens"`
+	PassiveOpens    uint32          `idl:"name:dwPassiveOpens" json:"passive_opens"`
+	AttemptFails    uint32          `idl:"name:dwAttemptFails" json:"attempt_fails"`
+	EstabResets     uint32          `idl:"name:dwEstabResets" json:"estab_resets"`
+	CurrentEstab    uint32          `idl:"name:dwCurrEstab" json:"current_estab"`
+	InSegs          uint32          `idl:"name:dwInSegs" json:"in_segs"`
+	OutSegs         uint32          `idl:"name:dwOutSegs" json:"out_segs"`
+	RetransimitSegs uint32          `idl:"name:dwRetransSegs" json:"retransimit_segs"`
+	InErrs          uint32          `idl:"name:dwInErrs" json:"in_errs"`
+	OutRsts         uint32          `idl:"name:dwOutRsts" json:"out_rsts"`
+	ConnsLength     uint32          `idl:"name:dwNumConns" json:"conns_length"`
 }
 
-func (o *MIBTcpstats) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBTCPStats) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -10999,20 +10999,20 @@ func (o *MIBTcpstats) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBTcpstats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBTCPStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteEnum(uint16(o.RtoAlgorithm)); err != nil {
+	if err := w.WriteEnum(uint16(o.RTOAlgorithm)); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RtoMin); err != nil {
+	if err := w.WriteData(o.RTOMin); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RtoMax); err != nil {
+	if err := w.WriteData(o.RTOMax); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.MaxConn); err != nil {
@@ -11030,7 +11030,7 @@ func (o *MIBTcpstats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.EstabResets); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.CurrEstab); err != nil {
+	if err := w.WriteData(o.CurrentEstab); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.InSegs); err != nil {
@@ -11039,7 +11039,7 @@ func (o *MIBTcpstats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.OutSegs); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RetransSegs); err != nil {
+	if err := w.WriteData(o.RetransimitSegs); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.InErrs); err != nil {
@@ -11053,17 +11053,17 @@ func (o *MIBTcpstats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBTcpstats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBTCPStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadEnum((*uint16)(&o.RtoAlgorithm)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.RTOAlgorithm)); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RtoMin); err != nil {
+	if err := w.ReadData(&o.RTOMin); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RtoMax); err != nil {
+	if err := w.ReadData(&o.RTOMax); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.MaxConn); err != nil {
@@ -11081,7 +11081,7 @@ func (o *MIBTcpstats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.EstabResets); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.CurrEstab); err != nil {
+	if err := w.ReadData(&o.CurrentEstab); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.InSegs); err != nil {
@@ -11090,7 +11090,7 @@ func (o *MIBTcpstats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.OutSegs); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RetransSegs); err != nil {
+	if err := w.ReadData(&o.RetransimitSegs); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.InErrs); err != nil {
@@ -11105,14 +11105,14 @@ func (o *MIBTcpstats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MIBTcptable structure represents MIB_TCPTABLE RPC structure.
-type MIBTcptable struct {
+// MIBTCPTable structure represents MIB_TCPTABLE RPC structure.
+type MIBTCPTable struct {
 	EntriesLength uint32       `idl:"name:dwNumEntries" json:"entries_length"`
-	Table         []*MIBTcprow `idl:"name:table" json:"table"`
+	Table         []*MIBTCPRow `idl:"name:table" json:"table"`
 	_             []byte       `idl:"name:reserved"`
 }
 
-func (o *MIBTcptable) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBTCPTable) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -11121,7 +11121,7 @@ func (o *MIBTcptable) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBTcptable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBTCPTable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -11141,13 +11141,13 @@ func (o *MIBTcptable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 				return err
 			}
 		} else {
-			if err := (&MIBTcprow{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&MIBTCPRow{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
 	for i1 := len(o.Table); uint64(i1) < 1; i1++ {
-		if err := (&MIBTcprow{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MIBTCPRow{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -11162,18 +11162,18 @@ func (o *MIBTcptable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBTcptable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBTCPTable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.EntriesLength); err != nil {
 		return err
 	}
-	o.Table = make([]*MIBTcprow, 1)
+	o.Table = make([]*MIBTCPRow, 1)
 	for i1 := range o.Table {
 		i1 := i1
 		if o.Table[i1] == nil {
-			o.Table[i1] = &MIBTcprow{}
+			o.Table[i1] = &MIBTCPRow{}
 		}
 		if err := o.Table[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -11194,13 +11194,13 @@ func (o *MIBTcptable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MIBUdprow structure represents MIB_UDPROW RPC structure.
-type MIBUdprow struct {
+// MIBUDPRow structure represents MIB_UDPROW RPC structure.
+type MIBUDPRow struct {
 	LocalAddr uint32 `idl:"name:dwLocalAddr" json:"local_addr"`
 	LocalPort uint32 `idl:"name:dwLocalPort" json:"local_port"`
 }
 
-func (o *MIBUdprow) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBUDPRow) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -11209,7 +11209,7 @@ func (o *MIBUdprow) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBUdprow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBUDPRow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -11224,7 +11224,7 @@ func (o *MIBUdprow) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBUdprow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBUDPRow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -11237,8 +11237,8 @@ func (o *MIBUdprow) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MIBUdpstats structure represents MIB_UDPSTATS RPC structure.
-type MIBUdpstats struct {
+// MIBUDPStats structure represents MIB_UDPSTATS RPC structure.
+type MIBUDPStats struct {
 	InDatagrams  uint32 `idl:"name:dwInDatagrams" json:"in_datagrams"`
 	NoPorts      uint32 `idl:"name:dwNoPorts" json:"no_ports"`
 	InErrors     uint32 `idl:"name:dwInErrors" json:"in_errors"`
@@ -11246,7 +11246,7 @@ type MIBUdpstats struct {
 	AddrsLength  uint32 `idl:"name:dwNumAddrs" json:"addrs_length"`
 }
 
-func (o *MIBUdpstats) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBUDPStats) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -11255,7 +11255,7 @@ func (o *MIBUdpstats) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBUdpstats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBUDPStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -11279,7 +11279,7 @@ func (o *MIBUdpstats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBUdpstats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBUDPStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -11301,14 +11301,14 @@ func (o *MIBUdpstats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MIBUdptable structure represents MIB_UDPTABLE RPC structure.
-type MIBUdptable struct {
+// MIBUDPTable structure represents MIB_UDPTABLE RPC structure.
+type MIBUDPTable struct {
 	EntriesLength uint32       `idl:"name:dwNumEntries" json:"entries_length"`
-	Table         []*MIBUdprow `idl:"name:table" json:"table"`
+	Table         []*MIBUDPRow `idl:"name:table" json:"table"`
 	_             []byte       `idl:"name:reserved"`
 }
 
-func (o *MIBUdptable) xxx_PreparePayload(ctx context.Context) error {
+func (o *MIBUDPTable) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -11317,7 +11317,7 @@ func (o *MIBUdptable) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MIBUdptable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBUDPTable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -11337,13 +11337,13 @@ func (o *MIBUdptable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 				return err
 			}
 		} else {
-			if err := (&MIBUdprow{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&MIBUDPRow{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
 	for i1 := len(o.Table); uint64(i1) < 1; i1++ {
-		if err := (&MIBUdprow{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MIBUDPRow{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -11358,18 +11358,18 @@ func (o *MIBUdptable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MIBUdptable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MIBUDPTable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.EntriesLength); err != nil {
 		return err
 	}
-	o.Table = make([]*MIBUdprow, 1)
+	o.Table = make([]*MIBUDPRow, 1)
 	for i1 := range o.Table {
 		i1 := i1
 		if o.Table[i1] == nil {
-			o.Table[i1] = &MIBUdprow{}
+			o.Table[i1] = &MIBUDPRow{}
 		}
 		if err := o.Table[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -11390,15 +11390,15 @@ func (o *MIBUdptable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MprServer0 structure represents MPR_SERVER_0 RPC structure.
-type MprServer0 struct {
+// Server0 structure represents MPR_SERVER_0 RPC structure.
+type Server0 struct {
 	LANOnlyMode bool   `idl:"name:fLanOnlyMode" json:"lan_only_mode"`
 	UpTime      uint32 `idl:"name:dwUpTime" json:"up_time"`
 	TotalPorts  uint32 `idl:"name:dwTotalPorts" json:"total_ports"`
 	PortsInUse  uint32 `idl:"name:dwPortsInUse" json:"ports_in_use"`
 }
 
-func (o *MprServer0) xxx_PreparePayload(ctx context.Context) error {
+func (o *Server0) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -11407,7 +11407,7 @@ func (o *MprServer0) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MprServer0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Server0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -11434,7 +11434,7 @@ func (o *MprServer0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MprServer0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Server0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -11455,15 +11455,15 @@ func (o *MprServer0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MprServer1 structure represents MPR_SERVER_1 RPC structure.
-type MprServer1 struct {
+// Server1 structure represents MPR_SERVER_1 RPC structure.
+type Server1 struct {
 	PPTPPortsLength uint32 `idl:"name:dwNumPptpPorts" json:"pptp_ports_length"`
 	PPTPPortFlags   uint32 `idl:"name:dwPptpPortFlags" json:"pptp_port_flags"`
-	L2tpPortsLength uint32 `idl:"name:dwNumL2tpPorts" json:"l2tp_ports_length"`
-	L2tpPortFlags   uint32 `idl:"name:dwL2tpPortFlags" json:"l2tp_port_flags"`
+	L2TPPortsLength uint32 `idl:"name:dwNumL2tpPorts" json:"l2tp_ports_length"`
+	L2TPPortFlags   uint32 `idl:"name:dwL2tpPortFlags" json:"l2tp_port_flags"`
 }
 
-func (o *MprServer1) xxx_PreparePayload(ctx context.Context) error {
+func (o *Server1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -11472,7 +11472,7 @@ func (o *MprServer1) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MprServer1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Server1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -11485,15 +11485,15 @@ func (o *MprServer1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.PPTPPortFlags); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.L2tpPortsLength); err != nil {
+	if err := w.WriteData(o.L2TPPortsLength); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.L2tpPortFlags); err != nil {
+	if err := w.WriteData(o.L2TPPortFlags); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *MprServer1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Server1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -11503,26 +11503,26 @@ func (o *MprServer1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.PPTPPortFlags); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.L2tpPortsLength); err != nil {
+	if err := w.ReadData(&o.L2TPPortsLength); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.L2tpPortFlags); err != nil {
+	if err := w.ReadData(&o.L2TPPortFlags); err != nil {
 		return err
 	}
 	return nil
 }
 
-// MprServer2 structure represents MPR_SERVER_2 RPC structure.
-type MprServer2 struct {
+// Server2 structure represents MPR_SERVER_2 RPC structure.
+type Server2 struct {
 	PPTPPortsLength uint32 `idl:"name:dwNumPptpPorts" json:"pptp_ports_length"`
 	PPTPPortFlags   uint32 `idl:"name:dwPptpPortFlags" json:"pptp_port_flags"`
-	L2tpPortsLength uint32 `idl:"name:dwNumL2tpPorts" json:"l2tp_ports_length"`
-	L2tpPortFlags   uint32 `idl:"name:dwL2tpPortFlags" json:"l2tp_port_flags"`
-	SstpPortsLength uint32 `idl:"name:dwNumSstpPorts" json:"sstp_ports_length"`
-	SstpPortFlags   uint32 `idl:"name:dwSstpPortFlags" json:"sstp_port_flags"`
+	L2TPPortsLength uint32 `idl:"name:dwNumL2tpPorts" json:"l2tp_ports_length"`
+	L2TPPortFlags   uint32 `idl:"name:dwL2tpPortFlags" json:"l2tp_port_flags"`
+	SSTPPortsLength uint32 `idl:"name:dwNumSstpPorts" json:"sstp_ports_length"`
+	SSTPPortFlags   uint32 `idl:"name:dwSstpPortFlags" json:"sstp_port_flags"`
 }
 
-func (o *MprServer2) xxx_PreparePayload(ctx context.Context) error {
+func (o *Server2) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -11531,7 +11531,7 @@ func (o *MprServer2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MprServer2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Server2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -11544,21 +11544,21 @@ func (o *MprServer2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.PPTPPortFlags); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.L2tpPortsLength); err != nil {
+	if err := w.WriteData(o.L2TPPortsLength); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.L2tpPortFlags); err != nil {
+	if err := w.WriteData(o.L2TPPortFlags); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.SstpPortsLength); err != nil {
+	if err := w.WriteData(o.SSTPPortsLength); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.SstpPortFlags); err != nil {
+	if err := w.WriteData(o.SSTPPortFlags); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *MprServer2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Server2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -11568,28 +11568,28 @@ func (o *MprServer2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.PPTPPortFlags); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.L2tpPortsLength); err != nil {
+	if err := w.ReadData(&o.L2TPPortsLength); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.L2tpPortFlags); err != nil {
+	if err := w.ReadData(&o.L2TPPortFlags); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.SstpPortsLength); err != nil {
+	if err := w.ReadData(&o.SSTPPortsLength); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.SstpPortFlags); err != nil {
+	if err := w.ReadData(&o.SSTPPortFlags); err != nil {
 		return err
 	}
 	return nil
 }
 
-// PppNbfcpInfo structure represents PPP_NBFCP_INFO RPC structure.
-type PppNbfcpInfo struct {
+// PPPNbfcpInfo structure represents PPP_NBFCP_INFO RPC structure.
+type PPPNbfcpInfo struct {
 	Error       uint32   `idl:"name:dwError" json:"error"`
 	Workstation []uint16 `idl:"name:wszWksta" json:"workstation"`
 }
 
-func (o *PppNbfcpInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *PPPNbfcpInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -11598,7 +11598,7 @@ func (o *PppNbfcpInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *PppNbfcpInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PPPNbfcpInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -11627,7 +11627,7 @@ func (o *PppNbfcpInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *PppNbfcpInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *PPPNbfcpInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -11647,14 +11647,14 @@ func (o *PppNbfcpInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// PppIpcpInfo structure represents PPP_IPCP_INFO RPC structure.
-type PppIpcpInfo struct {
+// PPPIPCPInfo structure represents PPP_IPCP_INFO RPC structure.
+type PPPIPCPInfo struct {
 	Error         uint32   `idl:"name:dwError" json:"error"`
 	Address       []uint16 `idl:"name:wszAddress" json:"address"`
 	RemoteAddress []uint16 `idl:"name:wszRemoteAddress" json:"remote_address"`
 }
 
-func (o *PppIpcpInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *PPPIPCPInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -11663,7 +11663,7 @@ func (o *PppIpcpInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *PppIpcpInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PPPIPCPInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -11706,7 +11706,7 @@ func (o *PppIpcpInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *PppIpcpInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *PPPIPCPInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -11733,8 +11733,8 @@ func (o *PppIpcpInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// PppIpcpInfo2 structure represents PPP_IPCP_INFO2 RPC structure.
-type PppIpcpInfo2 struct {
+// PPPIPCPInfo2 structure represents PPP_IPCP_INFO2 RPC structure.
+type PPPIPCPInfo2 struct {
 	Error         uint32   `idl:"name:dwError" json:"error"`
 	Address       []uint16 `idl:"name:wszAddress" json:"address"`
 	RemoteAddress []uint16 `idl:"name:wszRemoteAddress" json:"remote_address"`
@@ -11742,7 +11742,7 @@ type PppIpcpInfo2 struct {
 	RemoteOptons  uint32   `idl:"name:dwRemoteOptons" json:"remote_optons"`
 }
 
-func (o *PppIpcpInfo2) xxx_PreparePayload(ctx context.Context) error {
+func (o *PPPIPCPInfo2) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -11751,7 +11751,7 @@ func (o *PppIpcpInfo2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *PppIpcpInfo2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PPPIPCPInfo2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -11797,7 +11797,7 @@ func (o *PppIpcpInfo2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *PppIpcpInfo2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *PPPIPCPInfo2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -11827,13 +11827,13 @@ func (o *PppIpcpInfo2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// PppIpxcpInfo structure represents PPP_IPXCP_INFO RPC structure.
-type PppIpxcpInfo struct {
+// PPPIpxcpInfo structure represents PPP_IPXCP_INFO RPC structure.
+type PPPIpxcpInfo struct {
 	Error   uint32   `idl:"name:dwError" json:"error"`
 	Address []uint16 `idl:"name:wszAddress" json:"address"`
 }
 
-func (o *PppIpxcpInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *PPPIpxcpInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -11842,7 +11842,7 @@ func (o *PppIpxcpInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *PppIpxcpInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PPPIpxcpInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -11871,7 +11871,7 @@ func (o *PppIpxcpInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *PppIpxcpInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *PPPIpxcpInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -11891,8 +11891,8 @@ func (o *PppIpxcpInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// PppIPv6CreatePartitionInfo structure represents PPP_IPV6_CP_INFO RPC structure.
-type PppIPv6CreatePartitionInfo struct {
+// PPPIPv6CreatePartitionInfo structure represents PPP_IPV6_CP_INFO RPC structure.
+type PPPIPv6CreatePartitionInfo struct {
 	Version           uint32 `idl:"name:dwVersion" json:"version"`
 	Size              uint32 `idl:"name:dwSize" json:"size"`
 	Error             uint32 `idl:"name:dwError" json:"error"`
@@ -11904,7 +11904,7 @@ type PppIPv6CreatePartitionInfo struct {
 	PrefixLength      uint32 `idl:"name:dwPrefixLength" json:"prefix_length"`
 }
 
-func (o *PppIPv6CreatePartitionInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *PPPIPv6CreatePartitionInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -11913,7 +11913,7 @@ func (o *PppIPv6CreatePartitionInfo) xxx_PreparePayload(ctx context.Context) err
 	}
 	return nil
 }
-func (o *PppIPv6CreatePartitionInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PPPIPv6CreatePartitionInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -11982,7 +11982,7 @@ func (o *PppIPv6CreatePartitionInfo) MarshalNDR(ctx context.Context, w ndr.Write
 	}
 	return nil
 }
-func (o *PppIPv6CreatePartitionInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *PPPIPv6CreatePartitionInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -12028,13 +12028,13 @@ func (o *PppIPv6CreatePartitionInfo) UnmarshalNDR(ctx context.Context, w ndr.Rea
 	return nil
 }
 
-// PppAtcpInfo structure represents PPP_ATCP_INFO RPC structure.
-type PppAtcpInfo struct {
+// PPPATCPInfo structure represents PPP_ATCP_INFO RPC structure.
+type PPPATCPInfo struct {
 	Error   uint32   `idl:"name:dwError" json:"error"`
 	Address []uint16 `idl:"name:wszAddress" json:"address"`
 }
 
-func (o *PppAtcpInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *PPPATCPInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -12043,7 +12043,7 @@ func (o *PppAtcpInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *PppAtcpInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PPPATCPInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -12072,7 +12072,7 @@ func (o *PppAtcpInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *PppAtcpInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *PPPATCPInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -12092,8 +12092,8 @@ func (o *PppAtcpInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// PppCcpInfo structure represents PPP_CCP_INFO RPC structure.
-type PppCcpInfo struct {
+// PPPCCPInfo structure represents PPP_CCP_INFO RPC structure.
+type PPPCCPInfo struct {
 	Error                      uint32 `idl:"name:dwError" json:"error"`
 	CompressionAlgorithm       uint32 `idl:"name:dwCompressionAlgorithm" json:"compression_algorithm"`
 	Options                    uint32 `idl:"name:dwOptions" json:"options"`
@@ -12101,7 +12101,7 @@ type PppCcpInfo struct {
 	RemoteOptions              uint32 `idl:"name:dwRemoteOptions" json:"remote_options"`
 }
 
-func (o *PppCcpInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *PPPCCPInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -12110,7 +12110,7 @@ func (o *PppCcpInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *PppCcpInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PPPCCPInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -12134,7 +12134,7 @@ func (o *PppCcpInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *PppCcpInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *PPPCCPInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -12156,8 +12156,8 @@ func (o *PppCcpInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// PppLcpInfo structure represents PPP_LCP_INFO RPC structure.
-type PppLcpInfo struct {
+// PPPLCPInfo structure represents PPP_LCP_INFO RPC structure.
+type PPPLCPInfo struct {
 	Error                        uint32 `idl:"name:dwError" json:"error"`
 	AuthenticationProtocol       uint32 `idl:"name:dwAuthenticationProtocol" json:"authentication_protocol"`
 	AuthenticationData           uint32 `idl:"name:dwAuthenticationData" json:"authentication_data"`
@@ -12167,11 +12167,11 @@ type PppLcpInfo struct {
 	RemoteTerminateReason        uint32 `idl:"name:dwRemoteTerminateReason" json:"remote_terminate_reason"`
 	Options                      uint32 `idl:"name:dwOptions" json:"options"`
 	RemoteOptions                uint32 `idl:"name:dwRemoteOptions" json:"remote_options"`
-	EapTypeID                    uint32 `idl:"name:dwEapTypeId" json:"eap_type_id"`
-	RemoteEapTypeID              uint32 `idl:"name:dwRemoteEapTypeId" json:"remote_eap_type_id"`
+	EAPTypeID                    uint32 `idl:"name:dwEapTypeId" json:"eap_type_id"`
+	RemoteEAPTypeID              uint32 `idl:"name:dwRemoteEapTypeId" json:"remote_eap_type_id"`
 }
 
-func (o *PppLcpInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *PPPLCPInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -12180,7 +12180,7 @@ func (o *PppLcpInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *PppLcpInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PPPLCPInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -12214,15 +12214,15 @@ func (o *PppLcpInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.RemoteOptions); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.EapTypeID); err != nil {
+	if err := w.WriteData(o.EAPTypeID); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RemoteEapTypeID); err != nil {
+	if err := w.WriteData(o.RemoteEAPTypeID); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *PppLcpInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *PPPLCPInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -12253,24 +12253,24 @@ func (o *PppLcpInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.RemoteOptions); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.EapTypeID); err != nil {
+	if err := w.ReadData(&o.EAPTypeID); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RemoteEapTypeID); err != nil {
+	if err := w.ReadData(&o.RemoteEAPTypeID); err != nil {
 		return err
 	}
 	return nil
 }
 
-// PppInfo structure represents PPP_INFO RPC structure.
-type PppInfo struct {
-	Nbf *PppNbfcpInfo `idl:"name:nbf" json:"nbf"`
-	IP  *PppIpcpInfo  `idl:"name:ip" json:"ip"`
-	Ipx *PppIpxcpInfo `idl:"name:ipx" json:"ipx"`
-	AT  *PppAtcpInfo  `idl:"name:at" json:"at"`
+// PPPInfo structure represents PPP_INFO RPC structure.
+type PPPInfo struct {
+	NBF *PPPNbfcpInfo `idl:"name:nbf" json:"nbf"`
+	IP  *PPPIPCPInfo  `idl:"name:ip" json:"ip"`
+	IPX *PPPIpxcpInfo `idl:"name:ipx" json:"ipx"`
+	AT  *PPPATCPInfo  `idl:"name:at" json:"at"`
 }
 
-func (o *PppInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *PPPInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -12279,19 +12279,19 @@ func (o *PppInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *PppInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PPPInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if o.Nbf != nil {
-		if err := o.Nbf.MarshalNDR(ctx, w); err != nil {
+	if o.NBF != nil {
+		if err := o.NBF.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&PppNbfcpInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPNbfcpInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -12300,16 +12300,16 @@ func (o *PppInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&PppIpcpInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPIPCPInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
-	if o.Ipx != nil {
-		if err := o.Ipx.MarshalNDR(ctx, w); err != nil {
+	if o.IPX != nil {
+		if err := o.IPX.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&PppIpxcpInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPIpxcpInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -12318,36 +12318,36 @@ func (o *PppInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&PppAtcpInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPATCPInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *PppInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *PPPInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if o.Nbf == nil {
-		o.Nbf = &PppNbfcpInfo{}
+	if o.NBF == nil {
+		o.NBF = &PPPNbfcpInfo{}
 	}
-	if err := o.Nbf.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.NBF.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.IP == nil {
-		o.IP = &PppIpcpInfo{}
+		o.IP = &PPPIPCPInfo{}
 	}
 	if err := o.IP.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.Ipx == nil {
-		o.Ipx = &PppIpxcpInfo{}
+	if o.IPX == nil {
+		o.IPX = &PPPIpxcpInfo{}
 	}
-	if err := o.Ipx.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.IPX.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.AT == nil {
-		o.AT = &PppAtcpInfo{}
+		o.AT = &PPPATCPInfo{}
 	}
 	if err := o.AT.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -12355,17 +12355,17 @@ func (o *PppInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// PppInfo2 structure represents PPP_INFO_2 RPC structure.
-type PppInfo2 struct {
-	Nbf *PppNbfcpInfo `idl:"name:nbf" json:"nbf"`
-	IP  *PppIpcpInfo2 `idl:"name:ip" json:"ip"`
-	Ipx *PppIpxcpInfo `idl:"name:ipx" json:"ipx"`
-	AT  *PppAtcpInfo  `idl:"name:at" json:"at"`
-	Ccp *PppCcpInfo   `idl:"name:ccp" json:"ccp"`
-	Lcp *PppLcpInfo   `idl:"name:lcp" json:"lcp"`
+// PPPInfo2 structure represents PPP_INFO_2 RPC structure.
+type PPPInfo2 struct {
+	NBF *PPPNbfcpInfo `idl:"name:nbf" json:"nbf"`
+	IP  *PPPIPCPInfo2 `idl:"name:ip" json:"ip"`
+	IPX *PPPIpxcpInfo `idl:"name:ipx" json:"ipx"`
+	AT  *PPPATCPInfo  `idl:"name:at" json:"at"`
+	CCP *PPPCCPInfo   `idl:"name:ccp" json:"ccp"`
+	LCP *PPPLCPInfo   `idl:"name:lcp" json:"lcp"`
 }
 
-func (o *PppInfo2) xxx_PreparePayload(ctx context.Context) error {
+func (o *PPPInfo2) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -12374,19 +12374,19 @@ func (o *PppInfo2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *PppInfo2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PPPInfo2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if o.Nbf != nil {
-		if err := o.Nbf.MarshalNDR(ctx, w); err != nil {
+	if o.NBF != nil {
+		if err := o.NBF.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&PppNbfcpInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPNbfcpInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -12395,16 +12395,16 @@ func (o *PppInfo2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&PppIpcpInfo2{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPIPCPInfo2{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
-	if o.Ipx != nil {
-		if err := o.Ipx.MarshalNDR(ctx, w); err != nil {
+	if o.IPX != nil {
+		if err := o.IPX.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&PppIpxcpInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPIpxcpInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -12413,83 +12413,83 @@ func (o *PppInfo2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&PppAtcpInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPATCPInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
-	if o.Ccp != nil {
-		if err := o.Ccp.MarshalNDR(ctx, w); err != nil {
+	if o.CCP != nil {
+		if err := o.CCP.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&PppCcpInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPCCPInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
-	if o.Lcp != nil {
-		if err := o.Lcp.MarshalNDR(ctx, w); err != nil {
+	if o.LCP != nil {
+		if err := o.LCP.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&PppLcpInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPLCPInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *PppInfo2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *PPPInfo2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if o.Nbf == nil {
-		o.Nbf = &PppNbfcpInfo{}
+	if o.NBF == nil {
+		o.NBF = &PPPNbfcpInfo{}
 	}
-	if err := o.Nbf.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.NBF.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.IP == nil {
-		o.IP = &PppIpcpInfo2{}
+		o.IP = &PPPIPCPInfo2{}
 	}
 	if err := o.IP.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.Ipx == nil {
-		o.Ipx = &PppIpxcpInfo{}
+	if o.IPX == nil {
+		o.IPX = &PPPIpxcpInfo{}
 	}
-	if err := o.Ipx.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.IPX.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.AT == nil {
-		o.AT = &PppAtcpInfo{}
+		o.AT = &PPPATCPInfo{}
 	}
 	if err := o.AT.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.Ccp == nil {
-		o.Ccp = &PppCcpInfo{}
+	if o.CCP == nil {
+		o.CCP = &PPPCCPInfo{}
 	}
-	if err := o.Ccp.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.CCP.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.Lcp == nil {
-		o.Lcp = &PppLcpInfo{}
+	if o.LCP == nil {
+		o.LCP = &PPPLCPInfo{}
 	}
-	if err := o.Lcp.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.LCP.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// PppInfo3 structure represents PPP_INFO_3 RPC structure.
-type PppInfo3 struct {
-	Nbf  *PppNbfcpInfo               `idl:"name:nbf" json:"nbf"`
-	IP   *PppIpcpInfo2               `idl:"name:ip" json:"ip"`
-	IPv6 *PppIPv6CreatePartitionInfo `idl:"name:ipv6" json:"ipv6"`
-	Ccp  *PppCcpInfo                 `idl:"name:ccp" json:"ccp"`
-	Lcp  *PppLcpInfo                 `idl:"name:lcp" json:"lcp"`
+// PPPInfo3 structure represents PPP_INFO_3 RPC structure.
+type PPPInfo3 struct {
+	NBF  *PPPNbfcpInfo               `idl:"name:nbf" json:"nbf"`
+	IP   *PPPIPCPInfo2               `idl:"name:ip" json:"ip"`
+	IPv6 *PPPIPv6CreatePartitionInfo `idl:"name:ipv6" json:"ipv6"`
+	CCP  *PPPCCPInfo                 `idl:"name:ccp" json:"ccp"`
+	LCP  *PPPLCPInfo                 `idl:"name:lcp" json:"lcp"`
 }
 
-func (o *PppInfo3) xxx_PreparePayload(ctx context.Context) error {
+func (o *PPPInfo3) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -12498,19 +12498,19 @@ func (o *PppInfo3) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *PppInfo3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PPPInfo3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if o.Nbf != nil {
-		if err := o.Nbf.MarshalNDR(ctx, w); err != nil {
+	if o.NBF != nil {
+		if err := o.NBF.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&PppNbfcpInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPNbfcpInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -12519,7 +12519,7 @@ func (o *PppInfo3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&PppIpcpInfo2{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPIPCPInfo2{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -12528,69 +12528,69 @@ func (o *PppInfo3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&PppIPv6CreatePartitionInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPIPv6CreatePartitionInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
-	if o.Ccp != nil {
-		if err := o.Ccp.MarshalNDR(ctx, w); err != nil {
+	if o.CCP != nil {
+		if err := o.CCP.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&PppCcpInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPCCPInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
-	if o.Lcp != nil {
-		if err := o.Lcp.MarshalNDR(ctx, w); err != nil {
+	if o.LCP != nil {
+		if err := o.LCP.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&PppLcpInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPLCPInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *PppInfo3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *PPPInfo3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if o.Nbf == nil {
-		o.Nbf = &PppNbfcpInfo{}
+	if o.NBF == nil {
+		o.NBF = &PPPNbfcpInfo{}
 	}
-	if err := o.Nbf.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.NBF.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.IP == nil {
-		o.IP = &PppIpcpInfo2{}
+		o.IP = &PPPIPCPInfo2{}
 	}
 	if err := o.IP.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.IPv6 == nil {
-		o.IPv6 = &PppIPv6CreatePartitionInfo{}
+		o.IPv6 = &PPPIPv6CreatePartitionInfo{}
 	}
 	if err := o.IPv6.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.Ccp == nil {
-		o.Ccp = &PppCcpInfo{}
+	if o.CCP == nil {
+		o.CCP = &PPPCCPInfo{}
 	}
-	if err := o.Ccp.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.CCP.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.Lcp == nil {
-		o.Lcp = &PppLcpInfo{}
+	if o.LCP == nil {
+		o.LCP = &PPPLCPInfo{}
 	}
-	if err := o.Lcp.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.LCP.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// RasiPort0 structure represents RASI_PORT_0 RPC structure.
-type RasiPort0 struct {
+// RASIPort0 structure represents RASI_PORT_0 RPC structure.
+type RASIPort0 struct {
 	Port               uint32           `idl:"name:dwPort" json:"port"`
 	Connection         uint32           `idl:"name:dwConnection" json:"connection"`
 	PortCondition      RASPortCondition `idl:"name:dwPortCondition" json:"port_condition"`
@@ -12602,7 +12602,7 @@ type RasiPort0 struct {
 	DeviceType         []uint16         `idl:"name:wszDeviceType" json:"device_type"`
 }
 
-func (o *RasiPort0) xxx_PreparePayload(ctx context.Context) error {
+func (o *RASIPort0) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -12611,7 +12611,7 @@ func (o *RasiPort0) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RasiPort0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RASIPort0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -12694,7 +12694,7 @@ func (o *RasiPort0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *RasiPort0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RASIPort0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -12747,8 +12747,8 @@ func (o *RasiPort0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// RasiPort1 structure represents RASI_PORT_1 RPC structure.
-type RasiPort1 struct {
+// RASIPort1 structure represents RASI_PORT_1 RPC structure.
+type RASIPort1 struct {
 	Port                 uint32               `idl:"name:dwPort" json:"port"`
 	Connection           uint32               `idl:"name:dwConnection" json:"connection"`
 	HardwareCondition    RASHardwareCondition `idl:"name:dwHardwareCondition" json:"hardware_condition"`
@@ -12767,7 +12767,7 @@ type RasiPort1 struct {
 	CompressionRatioOut  uint32               `idl:"name:dwCompressionRatioOut" json:"compression_ratio_out"`
 }
 
-func (o *RasiPort1) xxx_PreparePayload(ctx context.Context) error {
+func (o *RASIPort1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -12776,7 +12776,7 @@ func (o *RasiPort1) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RasiPort1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RASIPort1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -12833,7 +12833,7 @@ func (o *RasiPort1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *RasiPort1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RASIPort1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -12888,8 +12888,8 @@ func (o *RasiPort1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// RasiConnection0 structure represents RASI_CONNECTION_0 RPC structure.
-type RasiConnection0 struct {
+// RASIConnection0 structure represents RASI_CONNECTION_0 RPC structure.
+type RASIConnection0 struct {
 	Connection      uint32              `idl:"name:dwConnection" json:"connection"`
 	Interface       uint32              `idl:"name:dwInterface" json:"interface"`
 	ConnectDuration uint32              `idl:"name:dwConnectDuration" json:"connect_duration"`
@@ -12901,7 +12901,7 @@ type RasiConnection0 struct {
 	RemoteComputer  []uint16            `idl:"name:wszRemoteComputer" json:"remote_computer"`
 }
 
-func (o *RasiConnection0) xxx_PreparePayload(ctx context.Context) error {
+func (o *RASIConnection0) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -12910,7 +12910,7 @@ func (o *RasiConnection0) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RasiConnection0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RASIConnection0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -12993,7 +12993,7 @@ func (o *RasiConnection0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *RasiConnection0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RASIConnection0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -13046,11 +13046,11 @@ func (o *RasiConnection0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	return nil
 }
 
-// RasiConnection1 structure represents RASI_CONNECTION_1 RPC structure.
-type RasiConnection1 struct {
+// RASIConnection1 structure represents RASI_CONNECTION_1 RPC structure.
+type RASIConnection1 struct {
 	Connection           uint32   `idl:"name:dwConnection" json:"connection"`
 	Interface            uint32   `idl:"name:dwInterface" json:"interface"`
-	PppInfo              *PppInfo `idl:"name:PppInfo" json:"ppp_info"`
+	PPPInfo              *PPPInfo `idl:"name:PppInfo" json:"ppp_info"`
 	BytesXmited          uint32   `idl:"name:dwBytesXmited" json:"bytes_xmited"`
 	BytesRcved           uint32   `idl:"name:dwBytesRcved" json:"bytes_rcved"`
 	FramesXmited         uint32   `idl:"name:dwFramesXmited" json:"frames_xmited"`
@@ -13065,7 +13065,7 @@ type RasiConnection1 struct {
 	CompressionRatioOut  uint32   `idl:"name:dwCompressionRatioOut" json:"compression_ratio_out"`
 }
 
-func (o *RasiConnection1) xxx_PreparePayload(ctx context.Context) error {
+func (o *RASIConnection1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -13074,7 +13074,7 @@ func (o *RasiConnection1) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RasiConnection1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RASIConnection1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -13087,12 +13087,12 @@ func (o *RasiConnection1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Interface); err != nil {
 		return err
 	}
-	if o.PppInfo != nil {
-		if err := o.PppInfo.MarshalNDR(ctx, w); err != nil {
+	if o.PPPInfo != nil {
+		if err := o.PPPInfo.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&PppInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -13134,7 +13134,7 @@ func (o *RasiConnection1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *RasiConnection1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RASIConnection1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -13144,10 +13144,10 @@ func (o *RasiConnection1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	if err := w.ReadData(&o.Interface); err != nil {
 		return err
 	}
-	if o.PppInfo == nil {
-		o.PppInfo = &PppInfo{}
+	if o.PPPInfo == nil {
+		o.PPPInfo = &PPPInfo{}
 	}
-	if err := o.PppInfo.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.PPPInfo.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.BytesXmited); err != nil {
@@ -13189,16 +13189,16 @@ func (o *RasiConnection1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	return nil
 }
 
-// RasiConnection2 structure represents RASI_CONNECTION_2 RPC structure.
-type RasiConnection2 struct {
+// RASIConnection2 structure represents RASI_CONNECTION_2 RPC structure.
+type RASIConnection2 struct {
 	Connection    uint32              `idl:"name:dwConnection" json:"connection"`
 	UserName      []uint16            `idl:"name:wszUserName" json:"user_name"`
 	InterfaceType RouterInterfaceType `idl:"name:dwInterfaceType" json:"interface_type"`
 	GUID          *dtyp.GUID          `idl:"name:guid" json:"guid"`
-	PppInfo2      *PppInfo2           `idl:"name:PppInfo2" json:"ppp_info2"`
+	PPPInfo2      *PPPInfo2           `idl:"name:PppInfo2" json:"ppp_info2"`
 }
 
-func (o *RasiConnection2) xxx_PreparePayload(ctx context.Context) error {
+func (o *RASIConnection2) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -13207,7 +13207,7 @@ func (o *RasiConnection2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RasiConnection2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RASIConnection2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -13243,18 +13243,18 @@ func (o *RasiConnection2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.PppInfo2 != nil {
-		if err := o.PppInfo2.MarshalNDR(ctx, w); err != nil {
+	if o.PPPInfo2 != nil {
+		if err := o.PPPInfo2.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&PppInfo2{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPInfo2{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *RasiConnection2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RASIConnection2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -13277,29 +13277,29 @@ func (o *RasiConnection2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	if err := o.GUID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.PppInfo2 == nil {
-		o.PppInfo2 = &PppInfo2{}
+	if o.PPPInfo2 == nil {
+		o.PPPInfo2 = &PPPInfo2{}
 	}
-	if err := o.PppInfo2.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.PPPInfo2.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// RasiConnection3 structure represents RASI_CONNECTION_3 RPC structure.
-type RasiConnection3 struct {
+// RASIConnection3 structure represents RASI_CONNECTION_3 RPC structure.
+type RASIConnection3 struct {
 	Version            uint32              `idl:"name:dwVersion" json:"version"`
 	Size               uint32              `idl:"name:dwSize" json:"size"`
 	Connection         uint32              `idl:"name:dwConnection" json:"connection"`
 	UserName           []uint16            `idl:"name:wszUserName" json:"user_name"`
 	InterfaceType      RouterInterfaceType `idl:"name:dwInterfaceType" json:"interface_type"`
 	GUID               *dtyp.GUID          `idl:"name:guid" json:"guid"`
-	PppInfo3           *PppInfo3           `idl:"name:PppInfo3" json:"ppp_info3"`
+	PPPInfo3           *PPPInfo3           `idl:"name:PppInfo3" json:"ppp_info3"`
 	RASQuarantineState RASQuarantineState  `idl:"name:rasQuarState" json:"ras_quarantine_state"`
 	Timer              *dtyp.Filetime      `idl:"name:timer" json:"timer"`
 }
 
-func (o *RasiConnection3) xxx_PreparePayload(ctx context.Context) error {
+func (o *RASIConnection3) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -13308,7 +13308,7 @@ func (o *RasiConnection3) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RasiConnection3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RASIConnection3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -13350,12 +13350,12 @@ func (o *RasiConnection3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.PppInfo3 != nil {
-		if err := o.PppInfo3.MarshalNDR(ctx, w); err != nil {
+	if o.PPPInfo3 != nil {
+		if err := o.PPPInfo3.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&PppInfo3{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PPPInfo3{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -13373,7 +13373,7 @@ func (o *RasiConnection3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *RasiConnection3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RASIConnection3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -13402,10 +13402,10 @@ func (o *RasiConnection3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	if err := o.GUID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.PppInfo3 == nil {
-		o.PppInfo3 = &PppInfo3{}
+	if o.PPPInfo3 == nil {
+		o.PPPInfo3 = &PPPInfo3{}
 	}
-	if err := o.PppInfo3.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.PPPInfo3.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if err := w.ReadEnum((*uint16)(&o.RASQuarantineState)); err != nil {
@@ -13420,8 +13420,8 @@ func (o *RasiConnection3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	return nil
 }
 
-// MpriInterface0 structure represents MPRI_INTERFACE_0 RPC structure.
-type MpriInterface0 struct {
+// Interface0 structure represents MPRI_INTERFACE_0 RPC structure.
+type Interface0 struct {
 	InterfaceName         []uint16              `idl:"name:wszInterfaceName" json:"interface_name"`
 	Interface             uint32                `idl:"name:dwInterface" json:"interface"`
 	Enabled               bool                  `idl:"name:fEnabled" json:"enabled"`
@@ -13431,7 +13431,7 @@ type MpriInterface0 struct {
 	LastError             uint32                `idl:"name:dwLastError" json:"last_error"`
 }
 
-func (o *MpriInterface0) xxx_PreparePayload(ctx context.Context) error {
+func (o *Interface0) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -13440,7 +13440,7 @@ func (o *MpriInterface0) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MpriInterface0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Interface0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -13487,7 +13487,7 @@ func (o *MpriInterface0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MpriInterface0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Interface0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -13521,19 +13521,19 @@ func (o *MpriInterface0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MpriInterface1 structure represents MPRI_INTERFACE_1 RPC structure.
-type MpriInterface1 struct {
-	InterfaceName               []uint16              `idl:"name:wszInterfaceName" json:"interface_name"`
-	Interface                   uint32                `idl:"name:dwInterface" json:"interface"`
-	Enabled                     bool                  `idl:"name:fEnabled" json:"enabled"`
-	InterfaceType               RouterInterfaceType   `idl:"name:dwIfType" json:"interface_type"`
-	ConnectionState             RouterConnectionState `idl:"name:dwConnectionState" json:"connection_state"`
-	UnReachabilityReasons       uint32                `idl:"name:fUnReachabilityReasons" json:"un_reachability_reasons"`
-	LastError                   uint32                `idl:"name:dwLastError" json:"last_error"`
-	LpwsDialoutHoursRestriction string                `idl:"name:lpwsDialoutHoursRestriction" json:"lpws_dialout_hours_restriction"`
+// Interface1 structure represents MPRI_INTERFACE_1 RPC structure.
+type Interface1 struct {
+	InterfaceName           []uint16              `idl:"name:wszInterfaceName" json:"interface_name"`
+	Interface               uint32                `idl:"name:dwInterface" json:"interface"`
+	Enabled                 bool                  `idl:"name:fEnabled" json:"enabled"`
+	InterfaceType           RouterInterfaceType   `idl:"name:dwIfType" json:"interface_type"`
+	ConnectionState         RouterConnectionState `idl:"name:dwConnectionState" json:"connection_state"`
+	UnReachabilityReasons   uint32                `idl:"name:fUnReachabilityReasons" json:"un_reachability_reasons"`
+	LastError               uint32                `idl:"name:dwLastError" json:"last_error"`
+	DialoutHoursRestriction string                `idl:"name:lpwsDialoutHoursRestriction" json:"dialout_hours_restriction"`
 }
 
-func (o *MpriInterface1) xxx_PreparePayload(ctx context.Context) error {
+func (o *Interface1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -13542,7 +13542,7 @@ func (o *MpriInterface1) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MpriInterface1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Interface1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -13587,14 +13587,14 @@ func (o *MpriInterface1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.LastError); err != nil {
 		return err
 	}
-	if o.LpwsDialoutHoursRestriction != "" {
+	if o.DialoutHoursRestriction != "" {
 		_ptr_lpwsDialoutHoursRestriction := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := ndr.WriteUTF16String(ctx, w, o.LpwsDialoutHoursRestriction); err != nil {
+			if err := ndr.WriteUTF16String(ctx, w, o.DialoutHoursRestriction); err != nil {
 				return err
 			}
 			return nil
 		})
-		if err := w.WritePointer(&o.LpwsDialoutHoursRestriction, _ptr_lpwsDialoutHoursRestriction); err != nil {
+		if err := w.WritePointer(&o.DialoutHoursRestriction, _ptr_lpwsDialoutHoursRestriction); err != nil {
 			return err
 		}
 	} else {
@@ -13604,7 +13604,7 @@ func (o *MpriInterface1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MpriInterface1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Interface1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -13636,20 +13636,20 @@ func (o *MpriInterface1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	_ptr_lpwsDialoutHoursRestriction := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		if err := ndr.ReadUTF16String(ctx, w, &o.LpwsDialoutHoursRestriction); err != nil {
+		if err := ndr.ReadUTF16String(ctx, w, &o.DialoutHoursRestriction); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_lpwsDialoutHoursRestriction := func(ptr interface{}) { o.LpwsDialoutHoursRestriction = *ptr.(*string) }
-	if err := w.ReadPointer(&o.LpwsDialoutHoursRestriction, _s_lpwsDialoutHoursRestriction, _ptr_lpwsDialoutHoursRestriction); err != nil {
+	_s_lpwsDialoutHoursRestriction := func(ptr interface{}) { o.DialoutHoursRestriction = *ptr.(*string) }
+	if err := w.ReadPointer(&o.DialoutHoursRestriction, _s_lpwsDialoutHoursRestriction, _ptr_lpwsDialoutHoursRestriction); err != nil {
 		return err
 	}
 	return nil
 }
 
-// MpriInterface2 structure represents MPRI_INTERFACE_2 RPC structure.
-type MpriInterface2 struct {
+// Interface2 structure represents MPRI_INTERFACE_2 RPC structure.
+type Interface2 struct {
 	InterfaceName            []uint16              `idl:"name:wszInterfaceName" json:"interface_name"`
 	Interface                uint32                `idl:"name:dwInterface" json:"interface"`
 	Enabled                  bool                  `idl:"name:fEnabled" json:"enabled"`
@@ -13657,15 +13657,15 @@ type MpriInterface2 struct {
 	ConnectionState          RouterConnectionState `idl:"name:dwConnectionState" json:"connection_state"`
 	UnReachabilityReasons    uint32                `idl:"name:fUnReachabilityReasons" json:"un_reachability_reasons"`
 	LastError                uint32                `idl:"name:dwLastError" json:"last_error"`
-	DwfOptions               uint32                `idl:"name:dwfOptions" json:"dwf_options"`
+	Options                  uint32                `idl:"name:dwfOptions" json:"options"`
 	LocalPhoneNumber         []uint16              `idl:"name:szLocalPhoneNumber" json:"local_phone_number"`
 	Alternates               string                `idl:"name:szAlternates" json:"alternates"`
-	Ipaddr                   uint32                `idl:"name:ipaddr" json:"ipaddr"`
-	IpaddrDNS                uint32                `idl:"name:ipaddrDns" json:"ipaddr_dns"`
-	IpaddrDNSAlt             uint32                `idl:"name:ipaddrDnsAlt" json:"ipaddr_dns_alt"`
-	IpaddrWINS               uint32                `idl:"name:ipaddrWins" json:"ipaddr_wins"`
-	IpaddrWINSAlt            uint32                `idl:"name:ipaddrWinsAlt" json:"ipaddr_wins_alt"`
-	DwfNetProtocols          uint32                `idl:"name:dwfNetProtocols" json:"dwf_net_protocols"`
+	IPAddr                   uint32                `idl:"name:ipaddr" json:"ip_addr"`
+	IPAddrDNS                uint32                `idl:"name:ipaddrDns" json:"ip_addr_dns"`
+	IPAddrDNSAlt             uint32                `idl:"name:ipaddrDnsAlt" json:"ip_addr_dns_alt"`
+	IPAddrWINS               uint32                `idl:"name:ipaddrWins" json:"ip_addr_wins"`
+	IPAddrWINSAlt            uint32                `idl:"name:ipaddrWinsAlt" json:"ip_addr_wins_alt"`
+	NetProtocols             uint32                `idl:"name:dwfNetProtocols" json:"net_protocols"`
 	DeviceType               []uint16              `idl:"name:szDeviceType" json:"device_type"`
 	DeviceName               []uint16              `idl:"name:szDeviceName" json:"device_name"`
 	X25PadType               []uint16              `idl:"name:szX25PadType" json:"x25_pad_type"`
@@ -13686,10 +13686,10 @@ type MpriInterface2 struct {
 	CustomAuthDataSize       uint32                `idl:"name:dwCustomAuthDataSize" json:"custom_auth_data_size"`
 	CustomAuthData           uint8                 `idl:"name:lpbCustomAuthData" json:"custom_auth_data"`
 	ID                       *dtyp.GUID            `idl:"name:guidId" json:"id"`
-	VpnStrategy              uint32                `idl:"name:dwVpnStrategy" json:"vpn_strategy"`
+	VPNStrategy              uint32                `idl:"name:dwVpnStrategy" json:"vpn_strategy"`
 }
 
-func (o *MpriInterface2) xxx_PreparePayload(ctx context.Context) error {
+func (o *Interface2) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -13698,7 +13698,7 @@ func (o *MpriInterface2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MpriInterface2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Interface2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -13743,7 +13743,7 @@ func (o *MpriInterface2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.LastError); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.DwfOptions); err != nil {
+	if err := w.WriteData(o.Options); err != nil {
 		return err
 	}
 	for i1 := range o.LocalPhoneNumber {
@@ -13775,22 +13775,22 @@ func (o *MpriInterface2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(o.Ipaddr); err != nil {
+	if err := w.WriteData(o.IPAddr); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IpaddrDNS); err != nil {
+	if err := w.WriteData(o.IPAddrDNS); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IpaddrDNSAlt); err != nil {
+	if err := w.WriteData(o.IPAddrDNSAlt); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IpaddrWINS); err != nil {
+	if err := w.WriteData(o.IPAddrWINS); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IpaddrWINSAlt); err != nil {
+	if err := w.WriteData(o.IPAddrWINSAlt); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.DwfNetProtocols); err != nil {
+	if err := w.WriteData(o.NetProtocols); err != nil {
 		return err
 	}
 	for i1 := range o.DeviceType {
@@ -13933,7 +13933,7 @@ func (o *MpriInterface2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(o.VpnStrategy); err != nil {
+	if err := w.WriteData(o.VPNStrategy); err != nil {
 		return err
 	}
 	if err := w.WriteTrailingGap(9); err != nil {
@@ -13941,7 +13941,7 @@ func (o *MpriInterface2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MpriInterface2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Interface2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -13972,7 +13972,7 @@ func (o *MpriInterface2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.LastError); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.DwfOptions); err != nil {
+	if err := w.ReadData(&o.Options); err != nil {
 		return err
 	}
 	o.LocalPhoneNumber = make([]uint16, 129)
@@ -13992,22 +13992,22 @@ func (o *MpriInterface2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.Alternates, _s_szAlternates, _ptr_szAlternates); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.Ipaddr); err != nil {
+	if err := w.ReadData(&o.IPAddr); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IpaddrDNS); err != nil {
+	if err := w.ReadData(&o.IPAddrDNS); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IpaddrDNSAlt); err != nil {
+	if err := w.ReadData(&o.IPAddrDNSAlt); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IpaddrWINS); err != nil {
+	if err := w.ReadData(&o.IPAddrWINS); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IpaddrWINSAlt); err != nil {
+	if err := w.ReadData(&o.IPAddrWINSAlt); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.DwfNetProtocols); err != nil {
+	if err := w.ReadData(&o.NetProtocols); err != nil {
 		return err
 	}
 	o.DeviceType = make([]uint16, 17)
@@ -14104,7 +14104,7 @@ func (o *MpriInterface2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.ID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.VpnStrategy); err != nil {
+	if err := w.ReadData(&o.VPNStrategy); err != nil {
 		return err
 	}
 	if err := w.ReadTrailingGap(9); err != nil {
@@ -14113,8 +14113,8 @@ func (o *MpriInterface2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MpriInterface3 structure represents MPRI_INTERFACE_3 RPC structure.
-type MpriInterface3 struct {
+// Interface3 structure represents MPRI_INTERFACE_3 RPC structure.
+type Interface3 struct {
 	InterfaceName            []uint16              `idl:"name:wszInterfaceName" json:"interface_name"`
 	Interface                uint32                `idl:"name:dwInterface" json:"interface"`
 	Enabled                  bool                  `idl:"name:fEnabled" json:"enabled"`
@@ -14122,15 +14122,15 @@ type MpriInterface3 struct {
 	ConnectionState          RouterConnectionState `idl:"name:dwConnectionState" json:"connection_state"`
 	UnReachabilityReasons    uint32                `idl:"name:fUnReachabilityReasons" json:"un_reachability_reasons"`
 	LastError                uint32                `idl:"name:dwLastError" json:"last_error"`
-	DwfOptions               uint32                `idl:"name:dwfOptions" json:"dwf_options"`
+	Options                  uint32                `idl:"name:dwfOptions" json:"options"`
 	LocalPhoneNumber         []uint16              `idl:"name:szLocalPhoneNumber" json:"local_phone_number"`
 	Alternates               string                `idl:"name:szAlternates" json:"alternates"`
-	Ipaddr                   uint32                `idl:"name:ipaddr" json:"ipaddr"`
-	IpaddrDNS                uint32                `idl:"name:ipaddrDns" json:"ipaddr_dns"`
-	IpaddrDNSAlt             uint32                `idl:"name:ipaddrDnsAlt" json:"ipaddr_dns_alt"`
-	IpaddrWINS               uint32                `idl:"name:ipaddrWins" json:"ipaddr_wins"`
-	IpaddrWINSAlt            uint32                `idl:"name:ipaddrWinsAlt" json:"ipaddr_wins_alt"`
-	DwfNetProtocols          uint32                `idl:"name:dwfNetProtocols" json:"dwf_net_protocols"`
+	IPAddr                   uint32                `idl:"name:ipaddr" json:"ip_addr"`
+	IPAddrDNS                uint32                `idl:"name:ipaddrDns" json:"ip_addr_dns"`
+	IPAddrDNSAlt             uint32                `idl:"name:ipaddrDnsAlt" json:"ip_addr_dns_alt"`
+	IPAddrWINS               uint32                `idl:"name:ipaddrWins" json:"ip_addr_wins"`
+	IPAddrWINSAlt            uint32                `idl:"name:ipaddrWinsAlt" json:"ip_addr_wins_alt"`
+	NetProtocols             uint32                `idl:"name:dwfNetProtocols" json:"net_protocols"`
 	DeviceType               []uint16              `idl:"name:szDeviceType" json:"device_type"`
 	DeviceName               []uint16              `idl:"name:szDeviceName" json:"device_name"`
 	X25PadType               []uint16              `idl:"name:szX25PadType" json:"x25_pad_type"`
@@ -14151,14 +14151,14 @@ type MpriInterface3 struct {
 	CustomAuthDataSize       uint32                `idl:"name:dwCustomAuthDataSize" json:"custom_auth_data_size"`
 	CustomAuthData           uint8                 `idl:"name:lpbCustomAuthData" json:"custom_auth_data"`
 	ID                       *dtyp.GUID            `idl:"name:guidId" json:"id"`
-	VpnStrategy              uint32                `idl:"name:dwVpnStrategy" json:"vpn_strategy"`
+	VPNStrategy              uint32                `idl:"name:dwVpnStrategy" json:"vpn_strategy"`
 	AddressCount             uint32                `idl:"name:AddressCount" json:"address_count"`
-	Ipv6addrDNS              *In6Addr              `idl:"name:ipv6addrDns" json:"ipv6addr_dns"`
-	Ipv6addrDNSAlt           *In6Addr              `idl:"name:ipv6addrDnsAlt" json:"ipv6addr_dns_alt"`
-	Ipv6addr                 *In6Addr              `idl:"name:ipv6addr" json:"ipv6addr"`
+	Ipv6addrDNS              *IN6Addr              `idl:"name:ipv6addrDns" json:"ipv6addr_dns"`
+	Ipv6addrDNSAlt           *IN6Addr              `idl:"name:ipv6addrDnsAlt" json:"ipv6addr_dns_alt"`
+	Ipv6addr                 *IN6Addr              `idl:"name:ipv6addr" json:"ipv6addr"`
 }
 
-func (o *MpriInterface3) xxx_PreparePayload(ctx context.Context) error {
+func (o *Interface3) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -14167,7 +14167,7 @@ func (o *MpriInterface3) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MpriInterface3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Interface3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -14212,7 +14212,7 @@ func (o *MpriInterface3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.LastError); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.DwfOptions); err != nil {
+	if err := w.WriteData(o.Options); err != nil {
 		return err
 	}
 	for i1 := range o.LocalPhoneNumber {
@@ -14244,22 +14244,22 @@ func (o *MpriInterface3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(o.Ipaddr); err != nil {
+	if err := w.WriteData(o.IPAddr); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IpaddrDNS); err != nil {
+	if err := w.WriteData(o.IPAddrDNS); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IpaddrDNSAlt); err != nil {
+	if err := w.WriteData(o.IPAddrDNSAlt); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IpaddrWINS); err != nil {
+	if err := w.WriteData(o.IPAddrWINS); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IpaddrWINSAlt); err != nil {
+	if err := w.WriteData(o.IPAddrWINSAlt); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.DwfNetProtocols); err != nil {
+	if err := w.WriteData(o.NetProtocols); err != nil {
 		return err
 	}
 	for i1 := range o.DeviceType {
@@ -14402,7 +14402,7 @@ func (o *MpriInterface3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(o.VpnStrategy); err != nil {
+	if err := w.WriteData(o.VPNStrategy); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.AddressCount); err != nil {
@@ -14413,7 +14413,7 @@ func (o *MpriInterface3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&In6Addr{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&IN6Addr{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -14422,7 +14422,7 @@ func (o *MpriInterface3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&In6Addr{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&IN6Addr{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -14433,7 +14433,7 @@ func (o *MpriInterface3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 					return err
 				}
 			} else {
-				if err := (&In6Addr{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&IN6Addr{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
@@ -14449,7 +14449,7 @@ func (o *MpriInterface3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MpriInterface3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Interface3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -14480,7 +14480,7 @@ func (o *MpriInterface3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.LastError); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.DwfOptions); err != nil {
+	if err := w.ReadData(&o.Options); err != nil {
 		return err
 	}
 	o.LocalPhoneNumber = make([]uint16, 129)
@@ -14500,22 +14500,22 @@ func (o *MpriInterface3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.Alternates, _s_szAlternates, _ptr_szAlternates); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.Ipaddr); err != nil {
+	if err := w.ReadData(&o.IPAddr); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IpaddrDNS); err != nil {
+	if err := w.ReadData(&o.IPAddrDNS); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IpaddrDNSAlt); err != nil {
+	if err := w.ReadData(&o.IPAddrDNSAlt); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IpaddrWINS); err != nil {
+	if err := w.ReadData(&o.IPAddrWINS); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IpaddrWINSAlt); err != nil {
+	if err := w.ReadData(&o.IPAddrWINSAlt); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.DwfNetProtocols); err != nil {
+	if err := w.ReadData(&o.NetProtocols); err != nil {
 		return err
 	}
 	o.DeviceType = make([]uint16, 17)
@@ -14612,47 +14612,47 @@ func (o *MpriInterface3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.ID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.VpnStrategy); err != nil {
+	if err := w.ReadData(&o.VPNStrategy); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.AddressCount); err != nil {
 		return err
 	}
 	if o.Ipv6addrDNS == nil {
-		o.Ipv6addrDNS = &In6Addr{}
+		o.Ipv6addrDNS = &IN6Addr{}
 	}
 	if err := o.Ipv6addrDNS.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.Ipv6addrDNSAlt == nil {
-		o.Ipv6addrDNSAlt = &In6Addr{}
+		o.Ipv6addrDNSAlt = &IN6Addr{}
 	}
 	if err := o.Ipv6addrDNSAlt.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	_ptr_ipv6addr := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if o.Ipv6addr == nil {
-			o.Ipv6addr = &In6Addr{}
+			o.Ipv6addr = &IN6Addr{}
 		}
 		if err := o.Ipv6addr.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_ipv6addr := func(ptr interface{}) { o.Ipv6addr = *ptr.(**In6Addr) }
+	_s_ipv6addr := func(ptr interface{}) { o.Ipv6addr = *ptr.(**IN6Addr) }
 	if err := w.ReadPointer(&o.Ipv6addr, _s_ipv6addr, _ptr_ipv6addr); err != nil {
 		return err
 	}
 	return nil
 }
 
-// MprDevice0 structure represents MPR_DEVICE_0 RPC structure.
-type MprDevice0 struct {
+// Device0 structure represents MPR_DEVICE_0 RPC structure.
+type Device0 struct {
 	DeviceType []uint16 `idl:"name:szDeviceType" json:"device_type"`
 	DeviceName []uint16 `idl:"name:szDeviceName" json:"device_name"`
 }
 
-func (o *MprDevice0) xxx_PreparePayload(ctx context.Context) error {
+func (o *Device0) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -14661,7 +14661,7 @@ func (o *MprDevice0) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MprDevice0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Device0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -14698,7 +14698,7 @@ func (o *MprDevice0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MprDevice0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Device0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(2); err != nil {
 		return err
 	}
@@ -14719,15 +14719,15 @@ func (o *MprDevice0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MprDevice1 structure represents MPR_DEVICE_1 RPC structure.
-type MprDevice1 struct {
+// Device1 structure represents MPR_DEVICE_1 RPC structure.
+type Device1 struct {
 	DeviceType       []uint16 `idl:"name:szDeviceType" json:"device_type"`
 	DeviceName       []uint16 `idl:"name:szDeviceName" json:"device_name"`
 	LocalPhoneNumber []uint16 `idl:"name:szLocalPhoneNumber" json:"local_phone_number"`
 	Alternates       string   `idl:"name:szAlternates" json:"alternates"`
 }
 
-func (o *MprDevice1) xxx_PreparePayload(ctx context.Context) error {
+func (o *Device1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -14736,7 +14736,7 @@ func (o *MprDevice1) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MprDevice1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Device1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -14802,7 +14802,7 @@ func (o *MprDevice1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MprDevice1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Device1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(7); err != nil {
 		return err
 	}
@@ -14840,14 +14840,14 @@ func (o *MprDevice1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MprCredentialsex1 structure represents MPR_CREDENTIALSEX_1 RPC structure.
-type MprCredentialsex1 struct {
+// Credentialsex1 structure represents MPR_CREDENTIALSEX_1 RPC structure.
+type Credentialsex1 struct {
 	Size   uint32 `idl:"name:dwSize" json:"size"`
 	Offset uint32 `idl:"name:dwOffset" json:"offset"`
 	Data   []byte `idl:"name:bData" json:"data"`
 }
 
-func (o *MprCredentialsex1) xxx_PreparePayload(ctx context.Context) error {
+func (o *Credentialsex1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -14856,7 +14856,7 @@ func (o *MprCredentialsex1) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MprCredentialsex1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Credentialsex1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -14888,7 +14888,7 @@ func (o *MprCredentialsex1) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	}
 	return nil
 }
-func (o *MprCredentialsex1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Credentialsex1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -14911,12 +14911,12 @@ func (o *MprCredentialsex1) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	return nil
 }
 
-// IffilterInfo structure represents IFFILTER_INFO RPC structure.
-type IffilterInfo struct {
+// InterfaceFilterInfo structure represents IFFILTER_INFO RPC structure.
+type InterfaceFilterInfo struct {
 	EnableFragChk bool `idl:"name:bEnableFragChk" json:"enable_frag_chk"`
 }
 
-func (o *IffilterInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *InterfaceFilterInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -14925,7 +14925,7 @@ func (o *IffilterInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IffilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *InterfaceFilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -14943,7 +14943,7 @@ func (o *IffilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *IffilterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *InterfaceFilterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -14955,12 +14955,12 @@ func (o *IffilterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// MprFilter0 structure represents MPR_FILTER_0 RPC structure.
-type MprFilter0 struct {
+// Filter0 structure represents MPR_FILTER_0 RPC structure.
+type Filter0 struct {
 	Enable bool `idl:"name:fEnable" json:"enable"`
 }
 
-func (o *MprFilter0) xxx_PreparePayload(ctx context.Context) error {
+func (o *Filter0) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -14969,7 +14969,7 @@ func (o *MprFilter0) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *MprFilter0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Filter0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -14987,7 +14987,7 @@ func (o *MprFilter0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *MprFilter0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Filter0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -14999,13 +14999,13 @@ func (o *MprFilter0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// IpxGlobalInfo structure represents IPX_GLOBAL_INFO RPC structure.
-type IpxGlobalInfo struct {
+// IPXGlobalInfo structure represents IPX_GLOBAL_INFO RPC structure.
+type IPXGlobalInfo struct {
 	RoutingTableHashSize uint32 `idl:"name:RoutingTableHashSize" json:"routing_table_hash_size"`
 	EventLogMask         uint32 `idl:"name:EventLogMask" json:"event_log_mask"`
 }
 
-func (o *IpxGlobalInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPXGlobalInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -15014,7 +15014,7 @@ func (o *IpxGlobalInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpxGlobalInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPXGlobalInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -15029,7 +15029,7 @@ func (o *IpxGlobalInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *IpxGlobalInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPXGlobalInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -15042,14 +15042,14 @@ func (o *IpxGlobalInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// IpxInterfaceInfo structure represents IPX_IF_INFO RPC structure.
-type IpxInterfaceInfo struct {
+// IPXInterfaceInfo structure represents IPX_IF_INFO RPC structure.
+type IPXInterfaceInfo struct {
 	AdministratorState uint32 `idl:"name:AdministratorState" json:"administrator_state"`
 	NetBIOSAccept      uint32 `idl:"name:NetbiosAccept" json:"netbios_accept"`
 	NetBIOSDeliver     uint32 `idl:"name:NetbiosDeliver" json:"netbios_deliver"`
 }
 
-func (o *IpxInterfaceInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPXInterfaceInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -15058,7 +15058,7 @@ func (o *IpxInterfaceInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpxInterfaceInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPXInterfaceInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -15076,7 +15076,7 @@ func (o *IpxInterfaceInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *IpxInterfaceInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPXInterfaceInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -15128,15 +15128,15 @@ func (o *IpxwanInterfaceInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	return nil
 }
 
-// IpxStaticRouteInfo structure represents IPX_STATIC_ROUTE_INFO RPC structure.
-type IpxStaticRouteInfo struct {
-	Field1            *IpxStaticRouteInfo_Field1 `idl:"name:" json:""`
+// IPXStaticRouteInfo structure represents IPX_STATIC_ROUTE_INFO RPC structure.
+type IPXStaticRouteInfo struct {
+	Field1            *IPXStaticRouteInfo_Field1 `idl:"name:" json:""`
 	TickCount         uint16                     `idl:"name:TickCount" json:"tick_count"`
 	HopCount          uint16                     `idl:"name:HopCount" json:"hop_count"`
 	NextHopMACAddress []byte                     `idl:"name:NextHopMacAddress" json:"next_hop_mac_address"`
 }
 
-func (o *IpxStaticRouteInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPXStaticRouteInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -15145,7 +15145,7 @@ func (o *IpxStaticRouteInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpxStaticRouteInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPXStaticRouteInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -15178,7 +15178,7 @@ func (o *IpxStaticRouteInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	}
 	return nil
 }
-func (o *IpxStaticRouteInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPXStaticRouteInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -15202,17 +15202,17 @@ func (o *IpxStaticRouteInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	return nil
 }
 
-type IpxStaticRouteInfo_Field1 struct {
+type IPXStaticRouteInfo_Field1 struct {
 	DwordAlign uint32 `idl:"name:DwordAlign" json:"dword_align"`
 	Network    []byte `idl:"name:Network" json:"network"`
 }
 
-// IpxStaticServiceInfo structure represents IPX_STATIC_SERVICE_INFO RPC structure.
-type IpxStaticServiceInfo IpxServerEntry
+// IPXStaticServiceInfo structure represents IPX_STATIC_SERVICE_INFO RPC structure.
+type IPXStaticServiceInfo IPXServerEntry
 
-func (o *IpxStaticServiceInfo) IpxServerEntry() *IpxServerEntry { return (*IpxServerEntry)(o) }
+func (o *IPXStaticServiceInfo) IPXServerEntry() *IPXServerEntry { return (*IPXServerEntry)(o) }
 
-func (o *IpxStaticServiceInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPXStaticServiceInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -15221,7 +15221,7 @@ func (o *IpxStaticServiceInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpxStaticServiceInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPXStaticServiceInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -15292,7 +15292,7 @@ func (o *IpxStaticServiceInfo) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	}
 	return nil
 }
-func (o *IpxStaticServiceInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPXStaticServiceInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(2); err != nil {
 		return err
 	}
@@ -15333,8 +15333,8 @@ func (o *IpxStaticServiceInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 	return nil
 }
 
-// IpxServerEntry structure represents IPX_SERVER_ENTRY RPC structure.
-type IpxServerEntry struct {
+// IPXServerEntry structure represents IPX_SERVER_ENTRY RPC structure.
+type IPXServerEntry struct {
 	Type     uint16 `idl:"name:Type" json:"type"`
 	Name     []byte `idl:"name:Name" json:"name"`
 	Network  []byte `idl:"name:Network" json:"network"`
@@ -15343,7 +15343,7 @@ type IpxServerEntry struct {
 	HopCount uint16 `idl:"name:HopCount" json:"hop_count"`
 }
 
-func (o *IpxServerEntry) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPXServerEntry) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -15352,7 +15352,7 @@ func (o *IpxServerEntry) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpxServerEntry) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPXServerEntry) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -15423,7 +15423,7 @@ func (o *IpxServerEntry) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *IpxServerEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPXServerEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(2); err != nil {
 		return err
 	}
@@ -15464,12 +15464,12 @@ func (o *IpxServerEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// IpxStaticNetBIOSNameInfo structure represents IPX_STATIC_NETBIOS_NAME_INFO RPC structure.
-type IpxStaticNetBIOSNameInfo struct {
-	Field1 *IpxStaticNetBIOSNameInfo_Field1 `idl:"name:" json:""`
+// IPXStaticNetBIOSNameInfo structure represents IPX_STATIC_NETBIOS_NAME_INFO RPC structure.
+type IPXStaticNetBIOSNameInfo struct {
+	Field1 *IPXStaticNetBIOSNameInfo_Field1 `idl:"name:" json:""`
 }
 
-func (o *IpxStaticNetBIOSNameInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPXStaticNetBIOSNameInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -15478,7 +15478,7 @@ func (o *IpxStaticNetBIOSNameInfo) xxx_PreparePayload(ctx context.Context) error
 	}
 	return nil
 }
-func (o *IpxStaticNetBIOSNameInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPXStaticNetBIOSNameInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -15488,7 +15488,7 @@ func (o *IpxStaticNetBIOSNameInfo) MarshalNDR(ctx context.Context, w ndr.Writer)
 	// FIXME unknown type
 	return nil
 }
-func (o *IpxStaticNetBIOSNameInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPXStaticNetBIOSNameInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -15496,18 +15496,18 @@ func (o *IpxStaticNetBIOSNameInfo) UnmarshalNDR(ctx context.Context, w ndr.Reade
 	return nil
 }
 
-type IpxStaticNetBIOSNameInfo_Field1 struct {
+type IPXStaticNetBIOSNameInfo_Field1 struct {
 	DwordAlign uint32 `idl:"name:DwordAlign" json:"dword_align"`
 	Name       []byte `idl:"name:Name" json:"name"`
 }
 
-// IpxAdapterInfo structure represents IPX_ADAPTER_INFO RPC structure.
-type IpxAdapterInfo struct {
+// IPXAdapterInfo structure represents IPX_ADAPTER_INFO RPC structure.
+type IPXAdapterInfo struct {
 	PacketType  uint32   `idl:"name:PacketType" json:"packet_type"`
 	AdapterName []uint16 `idl:"name:AdapterName" json:"adapter_name"`
 }
 
-func (o *IpxAdapterInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPXAdapterInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -15516,7 +15516,7 @@ func (o *IpxAdapterInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpxAdapterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPXAdapterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -15545,7 +15545,7 @@ func (o *IpxAdapterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *IpxAdapterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPXAdapterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -15565,12 +15565,12 @@ func (o *IpxAdapterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// IpxTrafficFilterGlobalInfo structure represents IPX_TRAFFIC_FILTER_GLOBAL_INFO RPC structure.
-type IpxTrafficFilterGlobalInfo struct {
+// IPXTrafficFilterGlobalInfo structure represents IPX_TRAFFIC_FILTER_GLOBAL_INFO RPC structure.
+type IPXTrafficFilterGlobalInfo struct {
 	FilterAction uint32 `idl:"name:FilterAction" json:"filter_action"`
 }
 
-func (o *IpxTrafficFilterGlobalInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPXTrafficFilterGlobalInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -15579,7 +15579,7 @@ func (o *IpxTrafficFilterGlobalInfo) xxx_PreparePayload(ctx context.Context) err
 	}
 	return nil
 }
-func (o *IpxTrafficFilterGlobalInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPXTrafficFilterGlobalInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -15591,7 +15591,7 @@ func (o *IpxTrafficFilterGlobalInfo) MarshalNDR(ctx context.Context, w ndr.Write
 	}
 	return nil
 }
-func (o *IpxTrafficFilterGlobalInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPXTrafficFilterGlobalInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -15601,8 +15601,8 @@ func (o *IpxTrafficFilterGlobalInfo) UnmarshalNDR(ctx context.Context, w ndr.Rea
 	return nil
 }
 
-// IpxTrafficFilterInfo structure represents IPX_TRAFFIC_FILTER_INFO RPC structure.
-type IpxTrafficFilterInfo struct {
+// IPXTrafficFilterInfo structure represents IPX_TRAFFIC_FILTER_INFO RPC structure.
+type IPXTrafficFilterInfo struct {
 	FilterDefinition       uint32 `idl:"name:FilterDefinition" json:"filter_definition"`
 	DestinationNetwork     []byte `idl:"name:DestinationNetwork" json:"destination_network"`
 	DestinationNetworkMask []byte `idl:"name:DestinationNetworkMask" json:"destination_network_mask"`
@@ -15615,7 +15615,7 @@ type IpxTrafficFilterInfo struct {
 	PacketType             uint8  `idl:"name:PacketType" json:"packet_type"`
 }
 
-func (o *IpxTrafficFilterInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPXTrafficFilterInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -15624,7 +15624,7 @@ func (o *IpxTrafficFilterInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpxTrafficFilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPXTrafficFilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -15754,7 +15754,7 @@ func (o *IpxTrafficFilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	}
 	return nil
 }
-func (o *IpxTrafficFilterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPXTrafficFilterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -16106,7 +16106,7 @@ func (o *StaticServicesTableIndex) UnmarshalNDR(ctx context.Context, w ndr.Reade
 	return nil
 }
 
-type IpxMIBIndex struct {
+type IPXMIBIndex struct {
 	InterfaceTableIndex      *InterfaceTableIndex      `idl:"name:InterfaceTableIndex" json:"interface_table_index"`
 	RoutingTableIndex        *RoutingTableIndex        `idl:"name:RoutingTableIndex" json:"routing_table_index"`
 	StaticRoutesTableIndex   *StaticRoutesTableIndex   `idl:"name:StaticRoutesTableIndex" json:"static_routes_table_index"`
@@ -16114,13 +16114,13 @@ type IpxMIBIndex struct {
 	StaticServicesTableIndex *StaticServicesTableIndex `idl:"name:StaticServicesTableIndex" json:"static_services_table_index"`
 }
 
-// IpxMIBGetInputData structure represents IPX_MIB_GET_INPUT_DATA RPC structure.
-type IpxMIBGetInputData struct {
+// IPXMIBGetInputData structure represents IPX_MIB_GET_INPUT_DATA RPC structure.
+type IPXMIBGetInputData struct {
 	TableID  uint32       `idl:"name:TableId" json:"table_id"`
-	MIBIndex *IpxMIBIndex `idl:"name:MibIndex" json:"mib_index"`
+	MIBIndex *IPXMIBIndex `idl:"name:MibIndex" json:"mib_index"`
 }
 
-func (o *IpxMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPXMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -16129,7 +16129,7 @@ func (o *IpxMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpxMIBGetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPXMIBGetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -16142,7 +16142,7 @@ func (o *IpxMIBGetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	// FIXME unknown type MibIndex
 	return nil
 }
-func (o *IpxMIBGetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPXMIBGetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -16283,8 +16283,8 @@ func (o *IpxmibBase) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// IpxInterfaceStats structure represents IPX_IF_STATS RPC structure.
-type IpxInterfaceStats struct {
+// IPXInterfaceStats structure represents IPX_IF_STATS RPC structure.
+type IPXInterfaceStats struct {
 	InterfaceOperatorState uint32 `idl:"name:IfOperState" json:"interface_operator_state"`
 	MaxPacketSize          uint32 `idl:"name:MaxPacketSize" json:"max_packet_size"`
 	InHdrErrors            uint32 `idl:"name:InHdrErrors" json:"in_hdr_errors"`
@@ -16299,7 +16299,7 @@ type IpxInterfaceStats struct {
 	NetBIOSSent            uint32 `idl:"name:NetbiosSent" json:"netbios_sent"`
 }
 
-func (o *IpxInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPXInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -16308,7 +16308,7 @@ func (o *IpxInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpxInterfaceStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPXInterfaceStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -16353,7 +16353,7 @@ func (o *IpxInterfaceStats) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	}
 	return nil
 }
-func (o *IpxInterfaceStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPXInterfaceStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -16396,8 +16396,8 @@ func (o *IpxInterfaceStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	return nil
 }
 
-// IpxInterface structure represents IPX_INTERFACE RPC structure.
-type IpxInterface struct {
+// IPXInterface structure represents IPX_INTERFACE RPC structure.
+type IPXInterface struct {
 	InterfaceIndex          uint32             `idl:"name:InterfaceIndex" json:"interface_index"`
 	AdministratorState      uint32             `idl:"name:AdministratorState" json:"administrator_state"`
 	AdapterIndex            uint32             `idl:"name:AdapterIndex" json:"adapter_index"`
@@ -16410,11 +16410,11 @@ type IpxInterface struct {
 	Throughput              uint32             `idl:"name:Throughput" json:"throughput"`
 	NetBIOSAccept           uint32             `idl:"name:NetbiosAccept" json:"netbios_accept"`
 	NetBIOSDeliver          uint32             `idl:"name:NetbiosDeliver" json:"netbios_deliver"`
-	EnableIpxWANNegotiation uint32             `idl:"name:EnableIpxWanNegotiation" json:"enable_ipx_wan_negotiation"`
-	InterfaceStats          *IpxInterfaceStats `idl:"name:IfStats" json:"interface_stats"`
+	EnableIPXWANNegotiation uint32             `idl:"name:EnableIpxWanNegotiation" json:"enable_ipx_wan_negotiation"`
+	InterfaceStats          *IPXInterfaceStats `idl:"name:IfStats" json:"interface_stats"`
 }
 
-func (o *IpxInterface) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPXInterface) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -16423,7 +16423,7 @@ func (o *IpxInterface) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpxInterface) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPXInterface) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -16499,7 +16499,7 @@ func (o *IpxInterface) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.NetBIOSDeliver); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.EnableIpxWANNegotiation); err != nil {
+	if err := w.WriteData(o.EnableIPXWANNegotiation); err != nil {
 		return err
 	}
 	if o.InterfaceStats != nil {
@@ -16507,13 +16507,13 @@ func (o *IpxInterface) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&IpxInterfaceStats{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&IPXInterfaceStats{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *IpxInterface) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPXInterface) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -16565,11 +16565,11 @@ func (o *IpxInterface) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.NetBIOSDeliver); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.EnableIpxWANNegotiation); err != nil {
+	if err := w.ReadData(&o.EnableIPXWANNegotiation); err != nil {
 		return err
 	}
 	if o.InterfaceStats == nil {
-		o.InterfaceStats = &IpxInterfaceStats{}
+		o.InterfaceStats = &IPXInterfaceStats{}
 	}
 	if err := o.InterfaceStats.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -16577,8 +16577,8 @@ func (o *IpxInterface) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// IpxRoute structure represents IPX_ROUTE RPC structure.
-type IpxRoute struct {
+// IPXRoute structure represents IPX_ROUTE RPC structure.
+type IPXRoute struct {
 	InterfaceIndex    uint32 `idl:"name:InterfaceIndex" json:"interface_index"`
 	Protocol          uint32 `idl:"name:Protocol" json:"protocol"`
 	Network           []byte `idl:"name:Network" json:"network"`
@@ -16588,7 +16588,7 @@ type IpxRoute struct {
 	Flags             uint32 `idl:"name:Flags" json:"flags"`
 }
 
-func (o *IpxRoute) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPXRoute) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -16597,7 +16597,7 @@ func (o *IpxRoute) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpxRoute) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPXRoute) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -16649,7 +16649,7 @@ func (o *IpxRoute) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *IpxRoute) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPXRoute) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -16685,14 +16685,14 @@ func (o *IpxRoute) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// IpxService structure represents IPX_SERVICE RPC structure.
-type IpxService struct {
+// IPXService structure represents IPX_SERVICE RPC structure.
+type IPXService struct {
 	InterfaceIndex uint32          `idl:"name:InterfaceIndex" json:"interface_index"`
 	Protocol       uint32          `idl:"name:Protocol" json:"protocol"`
-	Server         *IpxServerEntry `idl:"name:Server" json:"server"`
+	Server         *IPXServerEntry `idl:"name:Server" json:"server"`
 }
 
-func (o *IpxService) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPXService) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -16701,7 +16701,7 @@ func (o *IpxService) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpxService) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPXService) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -16719,7 +16719,7 @@ func (o *IpxService) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&IpxServerEntry{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&IPXServerEntry{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -16728,7 +16728,7 @@ func (o *IpxService) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *IpxService) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPXService) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -16739,7 +16739,7 @@ func (o *IpxService) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if o.Server == nil {
-		o.Server = &IpxServerEntry{}
+		o.Server = &IPXServerEntry{}
 	}
 	if err := o.Server.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -16750,19 +16750,19 @@ func (o *IpxService) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-type IpxMIBRow struct {
-	Interface *IpxInterface `idl:"name:Interface" json:"interface"`
-	Route     *IpxRoute     `idl:"name:Route" json:"route"`
-	Service   *IpxService   `idl:"name:Service" json:"service"`
+type IPXMIBRow struct {
+	Interface *IPXInterface `idl:"name:Interface" json:"interface"`
+	Route     *IPXRoute     `idl:"name:Route" json:"route"`
+	Service   *IPXService   `idl:"name:Service" json:"service"`
 }
 
-// IpxMIBSetInputData structure represents IPX_MIB_SET_INPUT_DATA RPC structure.
-type IpxMIBSetInputData struct {
+// IPXMIBSetInputData structure represents IPX_MIB_SET_INPUT_DATA RPC structure.
+type IPXMIBSetInputData struct {
 	TableID uint32     `idl:"name:TableId" json:"table_id"`
-	MIBRow  *IpxMIBRow `idl:"name:MibRow" json:"mib_row"`
+	MIBRow  *IPXMIBRow `idl:"name:MibRow" json:"mib_row"`
 }
 
-func (o *IpxMIBSetInputData) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPXMIBSetInputData) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -16771,7 +16771,7 @@ func (o *IpxMIBSetInputData) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpxMIBSetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPXMIBSetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -16784,7 +16784,7 @@ func (o *IpxMIBSetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	// FIXME unknown type MibRow
 	return nil
 }
-func (o *IpxMIBSetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPXMIBSetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -16795,13 +16795,13 @@ func (o *IpxMIBSetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	return nil
 }
 
-// SapServiceFilterInfo structure represents SAP_SERVICE_FILTER_INFO RPC structure.
-type SapServiceFilterInfo struct {
-	Field1      *SapServiceFilterInfo_Field1 `idl:"name:" json:""`
+// SAPServiceFilterInfo structure represents SAP_SERVICE_FILTER_INFO RPC structure.
+type SAPServiceFilterInfo struct {
+	Field1      *SAPServiceFilterInfo_Field1 `idl:"name:" json:""`
 	ServiceName []byte                       `idl:"name:ServiceName" json:"service_name"`
 }
 
-func (o *SapServiceFilterInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *SAPServiceFilterInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -16810,7 +16810,7 @@ func (o *SapServiceFilterInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *SapServiceFilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SAPServiceFilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -16837,7 +16837,7 @@ func (o *SapServiceFilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	}
 	return nil
 }
-func (o *SapServiceFilterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *SAPServiceFilterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(2); err != nil {
 		return err
 	}
@@ -16855,21 +16855,21 @@ func (o *SapServiceFilterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 	return nil
 }
 
-type SapServiceFilterInfo_Field1 struct {
+type SAPServiceFilterInfo_Field1 struct {
 	ServiceType      uint16 `idl:"name:ServiceType" json:"service_type"`
 	ServiceTypeAlign uint32 `idl:"name:ServiceType_align" json:"service_type_align"`
 }
 
-// SapInterfaceFilters structure represents SAP_IF_FILTERS RPC structure.
-type SapInterfaceFilters struct {
+// SAPInterfaceFilters structure represents SAP_IF_FILTERS RPC structure.
+type SAPInterfaceFilters struct {
 	SupplyFilterAction uint32                  `idl:"name:SupplyFilterAction" json:"supply_filter_action"`
 	SupplyFilterCount  uint32                  `idl:"name:SupplyFilterCount" json:"supply_filter_count"`
 	ListenFilterAction uint32                  `idl:"name:ListenFilterAction" json:"listen_filter_action"`
 	ListenFilterCount  uint32                  `idl:"name:ListenFilterCount" json:"listen_filter_count"`
-	ServiceFilter      []*SapServiceFilterInfo `idl:"name:ServiceFilter" json:"service_filter"`
+	ServiceFilter      []*SAPServiceFilterInfo `idl:"name:ServiceFilter" json:"service_filter"`
 }
 
-func (o *SapInterfaceFilters) xxx_PreparePayload(ctx context.Context) error {
+func (o *SAPInterfaceFilters) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -16878,7 +16878,7 @@ func (o *SapInterfaceFilters) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *SapInterfaceFilters) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SAPInterfaceFilters) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -16907,13 +16907,13 @@ func (o *SapInterfaceFilters) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 				return err
 			}
 		} else {
-			if err := (&SapServiceFilterInfo{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&SAPServiceFilterInfo{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
 	for i1 := len(o.ServiceFilter); uint64(i1) < 1; i1++ {
-		if err := (&SapServiceFilterInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&SAPServiceFilterInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -16922,7 +16922,7 @@ func (o *SapInterfaceFilters) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	}
 	return nil
 }
-func (o *SapInterfaceFilters) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *SAPInterfaceFilters) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -16938,11 +16938,11 @@ func (o *SapInterfaceFilters) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	if err := w.ReadData(&o.ListenFilterCount); err != nil {
 		return err
 	}
-	o.ServiceFilter = make([]*SapServiceFilterInfo, 1)
+	o.ServiceFilter = make([]*SAPServiceFilterInfo, 1)
 	for i1 := range o.ServiceFilter {
 		i1 := i1
 		if o.ServiceFilter[i1] == nil {
-			o.ServiceFilter[i1] = &SapServiceFilterInfo{}
+			o.ServiceFilter[i1] = &SAPServiceFilterInfo{}
 		}
 		if err := o.ServiceFilter[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -16954,8 +16954,8 @@ func (o *SapInterfaceFilters) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	return nil
 }
 
-// SapInterfaceInfo structure represents SAP_IF_INFO RPC structure.
-type SapInterfaceInfo struct {
+// SAPInterfaceInfo structure represents SAP_IF_INFO RPC structure.
+type SAPInterfaceInfo struct {
 	AdminState             uint32 `idl:"name:AdminState" json:"admin_state"`
 	UpdateMode             uint32 `idl:"name:UpdateMode" json:"update_mode"`
 	PacketType             uint32 `idl:"name:PacketType" json:"packet_type"`
@@ -16966,7 +16966,7 @@ type SapInterfaceInfo struct {
 	AgeIntervalMultiplier  uint32 `idl:"name:AgeIntervalMultiplier" json:"age_interval_multiplier"`
 }
 
-func (o *SapInterfaceInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *SAPInterfaceInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -16975,7 +16975,7 @@ func (o *SapInterfaceInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *SapInterfaceInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SAPInterfaceInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -17008,7 +17008,7 @@ func (o *SapInterfaceInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *SapInterfaceInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *SAPInterfaceInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -17039,13 +17039,13 @@ func (o *SapInterfaceInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	return nil
 }
 
-// SapInterfaceConfig structure represents SAP_IF_CONFIG RPC structure.
-type SapInterfaceConfig struct {
-	SapInterfaceInfo    *SapInterfaceInfo    `idl:"name:SapIfInfo" json:"sap_interface_info"`
-	SapInterfaceFilters *SapInterfaceFilters `idl:"name:SapIfFilters" json:"sap_interface_filters"`
+// SAPInterfaceConfig structure represents SAP_IF_CONFIG RPC structure.
+type SAPInterfaceConfig struct {
+	SAPInterfaceInfo    *SAPInterfaceInfo    `idl:"name:SapIfInfo" json:"sap_interface_info"`
+	SAPInterfaceFilters *SAPInterfaceFilters `idl:"name:SapIfFilters" json:"sap_interface_filters"`
 }
 
-func (o *SapInterfaceConfig) xxx_PreparePayload(ctx context.Context) error {
+func (o *SAPInterfaceConfig) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -17054,58 +17054,58 @@ func (o *SapInterfaceConfig) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *SapInterfaceConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SAPInterfaceConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if o.SapInterfaceInfo != nil {
-		if err := o.SapInterfaceInfo.MarshalNDR(ctx, w); err != nil {
+	if o.SAPInterfaceInfo != nil {
+		if err := o.SAPInterfaceInfo.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&SapInterfaceInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&SAPInterfaceInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
-	if o.SapInterfaceFilters != nil {
-		if err := o.SapInterfaceFilters.MarshalNDR(ctx, w); err != nil {
+	if o.SAPInterfaceFilters != nil {
+		if err := o.SAPInterfaceFilters.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&SapInterfaceFilters{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&SAPInterfaceFilters{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *SapInterfaceConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *SAPInterfaceConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if o.SapInterfaceInfo == nil {
-		o.SapInterfaceInfo = &SapInterfaceInfo{}
+	if o.SAPInterfaceInfo == nil {
+		o.SAPInterfaceInfo = &SAPInterfaceInfo{}
 	}
-	if err := o.SapInterfaceInfo.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.SAPInterfaceInfo.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.SapInterfaceFilters == nil {
-		o.SapInterfaceFilters = &SapInterfaceFilters{}
+	if o.SAPInterfaceFilters == nil {
+		o.SAPInterfaceFilters = &SAPInterfaceFilters{}
 	}
-	if err := o.SapInterfaceFilters.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.SAPInterfaceFilters.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// SapMIBBase structure represents SAP_MIB_BASE RPC structure.
-type SapMIBBase struct {
-	SapOperatorState uint32 `idl:"name:SapOperState" json:"sap_operator_state"`
+// SAPMIBBase structure represents SAP_MIB_BASE RPC structure.
+type SAPMIBBase struct {
+	SAPOperatorState uint32 `idl:"name:SapOperState" json:"sap_operator_state"`
 }
 
-func (o *SapMIBBase) xxx_PreparePayload(ctx context.Context) error {
+func (o *SAPMIBBase) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -17114,36 +17114,36 @@ func (o *SapMIBBase) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *SapMIBBase) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SAPMIBBase) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.SapOperatorState); err != nil {
+	if err := w.WriteData(o.SAPOperatorState); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *SapMIBBase) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *SAPMIBBase) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.SapOperatorState); err != nil {
+	if err := w.ReadData(&o.SAPOperatorState); err != nil {
 		return err
 	}
 	return nil
 }
 
-// SapInterfaceStats structure represents SAP_IF_STATS RPC structure.
-type SapInterfaceStats struct {
-	SapInterfaceOperatorState uint32 `idl:"name:SapIfOperState" json:"sap_interface_operator_state"`
-	SapInterfaceInputPackets  uint32 `idl:"name:SapIfInputPackets" json:"sap_interface_input_packets"`
-	SapInterfaceOutputPackets uint32 `idl:"name:SapIfOutputPackets" json:"sap_interface_output_packets"`
+// SAPInterfaceStats structure represents SAP_IF_STATS RPC structure.
+type SAPInterfaceStats struct {
+	SAPInterfaceOperatorState uint32 `idl:"name:SapIfOperState" json:"sap_interface_operator_state"`
+	SAPInterfaceInputPackets  uint32 `idl:"name:SapIfInputPackets" json:"sap_interface_input_packets"`
+	SAPInterfaceOutputPackets uint32 `idl:"name:SapIfOutputPackets" json:"sap_interface_output_packets"`
 }
 
-func (o *SapInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
+func (o *SAPInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -17152,48 +17152,48 @@ func (o *SapInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *SapInterfaceStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SAPInterfaceStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.SapInterfaceOperatorState); err != nil {
+	if err := w.WriteData(o.SAPInterfaceOperatorState); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.SapInterfaceInputPackets); err != nil {
+	if err := w.WriteData(o.SAPInterfaceInputPackets); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.SapInterfaceOutputPackets); err != nil {
+	if err := w.WriteData(o.SAPInterfaceOutputPackets); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *SapInterfaceStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *SAPInterfaceStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.SapInterfaceOperatorState); err != nil {
+	if err := w.ReadData(&o.SAPInterfaceOperatorState); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.SapInterfaceInputPackets); err != nil {
+	if err := w.ReadData(&o.SAPInterfaceInputPackets); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.SapInterfaceOutputPackets); err != nil {
+	if err := w.ReadData(&o.SAPInterfaceOutputPackets); err != nil {
 		return err
 	}
 	return nil
 }
 
-// SapInterface structure represents SAP_INTERFACE RPC structure.
-type SapInterface struct {
+// SAPInterface structure represents SAP_INTERFACE RPC structure.
+type SAPInterface struct {
 	InterfaceIndex    uint32             `idl:"name:InterfaceIndex" json:"interface_index"`
-	SapInterfaceInfo  *SapInterfaceInfo  `idl:"name:SapIfInfo" json:"sap_interface_info"`
-	SapInterfaceStats *SapInterfaceStats `idl:"name:SapIfStats" json:"sap_interface_stats"`
+	SAPInterfaceInfo  *SAPInterfaceInfo  `idl:"name:SapIfInfo" json:"sap_interface_info"`
+	SAPInterfaceStats *SAPInterfaceStats `idl:"name:SapIfStats" json:"sap_interface_stats"`
 }
 
-func (o *SapInterface) xxx_PreparePayload(ctx context.Context) error {
+func (o *SAPInterface) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -17202,7 +17202,7 @@ func (o *SapInterface) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *SapInterface) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SAPInterface) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -17212,55 +17212,55 @@ func (o *SapInterface) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.InterfaceIndex); err != nil {
 		return err
 	}
-	if o.SapInterfaceInfo != nil {
-		if err := o.SapInterfaceInfo.MarshalNDR(ctx, w); err != nil {
+	if o.SAPInterfaceInfo != nil {
+		if err := o.SAPInterfaceInfo.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&SapInterfaceInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&SAPInterfaceInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
-	if o.SapInterfaceStats != nil {
-		if err := o.SapInterfaceStats.MarshalNDR(ctx, w); err != nil {
+	if o.SAPInterfaceStats != nil {
+		if err := o.SAPInterfaceStats.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&SapInterfaceStats{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&SAPInterfaceStats{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *SapInterface) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *SAPInterface) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.InterfaceIndex); err != nil {
 		return err
 	}
-	if o.SapInterfaceInfo == nil {
-		o.SapInterfaceInfo = &SapInterfaceInfo{}
+	if o.SAPInterfaceInfo == nil {
+		o.SAPInterfaceInfo = &SAPInterfaceInfo{}
 	}
-	if err := o.SapInterfaceInfo.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.SAPInterfaceInfo.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.SapInterfaceStats == nil {
-		o.SapInterfaceStats = &SapInterfaceStats{}
+	if o.SAPInterfaceStats == nil {
+		o.SAPInterfaceStats = &SAPInterfaceStats{}
 	}
-	if err := o.SapInterfaceStats.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.SAPInterfaceStats.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// SapMIBGetInputData structure represents SAP_MIB_GET_INPUT_DATA RPC structure.
-type SapMIBGetInputData struct {
+// SAPMIBGetInputData structure represents SAP_MIB_GET_INPUT_DATA RPC structure.
+type SAPMIBGetInputData struct {
 	TableID        uint32 `idl:"name:TableId" json:"table_id"`
 	InterfaceIndex uint32 `idl:"name:InterfaceIndex" json:"interface_index"`
 }
 
-func (o *SapMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
+func (o *SAPMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -17269,7 +17269,7 @@ func (o *SapMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *SapMIBGetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SAPMIBGetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -17284,7 +17284,7 @@ func (o *SapMIBGetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	}
 	return nil
 }
-func (o *SapMIBGetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *SAPMIBGetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -17297,13 +17297,13 @@ func (o *SapMIBGetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	return nil
 }
 
-// SapMIBSetInputData structure represents SAP_MIB_SET_INPUT_DATA RPC structure.
-type SapMIBSetInputData struct {
+// SAPMIBSetInputData structure represents SAP_MIB_SET_INPUT_DATA RPC structure.
+type SAPMIBSetInputData struct {
 	TableID      uint32        `idl:"name:TableId" json:"table_id"`
-	SapInterface *SapInterface `idl:"name:SapInterface" json:"sap_interface"`
+	SAPInterface *SAPInterface `idl:"name:SapInterface" json:"sap_interface"`
 }
 
-func (o *SapMIBSetInputData) xxx_PreparePayload(ctx context.Context) error {
+func (o *SAPMIBSetInputData) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -17312,7 +17312,7 @@ func (o *SapMIBSetInputData) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *SapMIBSetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SAPMIBSetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -17322,39 +17322,39 @@ func (o *SapMIBSetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.TableID); err != nil {
 		return err
 	}
-	if o.SapInterface != nil {
-		if err := o.SapInterface.MarshalNDR(ctx, w); err != nil {
+	if o.SAPInterface != nil {
+		if err := o.SAPInterface.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&SapInterface{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&SAPInterface{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *SapMIBSetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *SAPMIBSetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.TableID); err != nil {
 		return err
 	}
-	if o.SapInterface == nil {
-		o.SapInterface = &SapInterface{}
+	if o.SAPInterface == nil {
+		o.SAPInterface = &SAPInterface{}
 	}
-	if err := o.SapInterface.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.SAPInterface.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// RipmibBase structure represents RIPMIB_BASE RPC structure.
-type RipmibBase struct {
-	RipOperatorState uint32 `idl:"name:RIPOperState" json:"rip_operator_state"`
+// RIPMIBBase structure represents RIPMIB_BASE RPC structure.
+type RIPMIBBase struct {
+	RIPOperatorState uint32 `idl:"name:RIPOperState" json:"rip_operator_state"`
 }
 
-func (o *RipmibBase) xxx_PreparePayload(ctx context.Context) error {
+func (o *RIPMIBBase) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -17363,36 +17363,36 @@ func (o *RipmibBase) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RipmibBase) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RIPMIBBase) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RipOperatorState); err != nil {
+	if err := w.WriteData(o.RIPOperatorState); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *RipmibBase) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RIPMIBBase) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RipOperatorState); err != nil {
+	if err := w.ReadData(&o.RIPOperatorState); err != nil {
 		return err
 	}
 	return nil
 }
 
-// RipInterfaceStats structure represents RIP_IF_STATS RPC structure.
-type RipInterfaceStats struct {
-	RipInterfaceOperatorState uint32 `idl:"name:RipIfOperState" json:"rip_interface_operator_state"`
-	RipInterfaceInputPackets  uint32 `idl:"name:RipIfInputPackets" json:"rip_interface_input_packets"`
-	RipInterfaceOutputPackets uint32 `idl:"name:RipIfOutputPackets" json:"rip_interface_output_packets"`
+// RIPInterfaceStats structure represents RIP_IF_STATS RPC structure.
+type RIPInterfaceStats struct {
+	RIPInterfaceOperatorState uint32 `idl:"name:RipIfOperState" json:"rip_interface_operator_state"`
+	RIPInterfaceInputPackets  uint32 `idl:"name:RipIfInputPackets" json:"rip_interface_input_packets"`
+	RIPInterfaceOutputPackets uint32 `idl:"name:RipIfOutputPackets" json:"rip_interface_output_packets"`
 }
 
-func (o *RipInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
+func (o *RIPInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -17401,42 +17401,42 @@ func (o *RipInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RipInterfaceStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RIPInterfaceStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RipInterfaceOperatorState); err != nil {
+	if err := w.WriteData(o.RIPInterfaceOperatorState); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RipInterfaceInputPackets); err != nil {
+	if err := w.WriteData(o.RIPInterfaceInputPackets); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RipInterfaceOutputPackets); err != nil {
+	if err := w.WriteData(o.RIPInterfaceOutputPackets); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *RipInterfaceStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RIPInterfaceStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RipInterfaceOperatorState); err != nil {
+	if err := w.ReadData(&o.RIPInterfaceOperatorState); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RipInterfaceInputPackets); err != nil {
+	if err := w.ReadData(&o.RIPInterfaceInputPackets); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RipInterfaceOutputPackets); err != nil {
+	if err := w.ReadData(&o.RIPInterfaceOutputPackets); err != nil {
 		return err
 	}
 	return nil
 }
 
-// RipInterfaceInfo structure represents RIP_IF_INFO RPC structure.
-type RipInterfaceInfo struct {
+// RIPInterfaceInfo structure represents RIP_IF_INFO RPC structure.
+type RIPInterfaceInfo struct {
 	AdminState             uint32 `idl:"name:AdminState" json:"admin_state"`
 	UpdateMode             uint32 `idl:"name:UpdateMode" json:"update_mode"`
 	PacketType             uint32 `idl:"name:PacketType" json:"packet_type"`
@@ -17446,7 +17446,7 @@ type RipInterfaceInfo struct {
 	AgeIntervalMultiplier  uint32 `idl:"name:AgeIntervalMultiplier" json:"age_interval_multiplier"`
 }
 
-func (o *RipInterfaceInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *RIPInterfaceInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -17455,7 +17455,7 @@ func (o *RipInterfaceInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RipInterfaceInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RIPInterfaceInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -17485,7 +17485,7 @@ func (o *RipInterfaceInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *RipInterfaceInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RIPInterfaceInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -17513,14 +17513,14 @@ func (o *RipInterfaceInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	return nil
 }
 
-// RipInterface structure represents RIP_INTERFACE RPC structure.
-type RipInterface struct {
+// RIPInterface structure represents RIP_INTERFACE RPC structure.
+type RIPInterface struct {
 	InterfaceIndex    uint32             `idl:"name:InterfaceIndex" json:"interface_index"`
-	RipInterfaceInfo  *RipInterfaceInfo  `idl:"name:RipIfInfo" json:"rip_interface_info"`
-	RipInterfaceStats *RipInterfaceStats `idl:"name:RipIfStats" json:"rip_interface_stats"`
+	RIPInterfaceInfo  *RIPInterfaceInfo  `idl:"name:RipIfInfo" json:"rip_interface_info"`
+	RIPInterfaceStats *RIPInterfaceStats `idl:"name:RipIfStats" json:"rip_interface_stats"`
 }
 
-func (o *RipInterface) xxx_PreparePayload(ctx context.Context) error {
+func (o *RIPInterface) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -17529,7 +17529,7 @@ func (o *RipInterface) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RipInterface) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RIPInterface) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -17539,55 +17539,55 @@ func (o *RipInterface) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.InterfaceIndex); err != nil {
 		return err
 	}
-	if o.RipInterfaceInfo != nil {
-		if err := o.RipInterfaceInfo.MarshalNDR(ctx, w); err != nil {
+	if o.RIPInterfaceInfo != nil {
+		if err := o.RIPInterfaceInfo.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&RipInterfaceInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&RIPInterfaceInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
-	if o.RipInterfaceStats != nil {
-		if err := o.RipInterfaceStats.MarshalNDR(ctx, w); err != nil {
+	if o.RIPInterfaceStats != nil {
+		if err := o.RIPInterfaceStats.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&RipInterfaceStats{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&RIPInterfaceStats{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *RipInterface) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RIPInterface) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.InterfaceIndex); err != nil {
 		return err
 	}
-	if o.RipInterfaceInfo == nil {
-		o.RipInterfaceInfo = &RipInterfaceInfo{}
+	if o.RIPInterfaceInfo == nil {
+		o.RIPInterfaceInfo = &RIPInterfaceInfo{}
 	}
-	if err := o.RipInterfaceInfo.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.RIPInterfaceInfo.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.RipInterfaceStats == nil {
-		o.RipInterfaceStats = &RipInterfaceStats{}
+	if o.RIPInterfaceStats == nil {
+		o.RIPInterfaceStats = &RIPInterfaceStats{}
 	}
-	if err := o.RipInterfaceStats.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.RIPInterfaceStats.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// RipMIBGetInputData structure represents RIP_MIB_GET_INPUT_DATA RPC structure.
-type RipMIBGetInputData struct {
+// RIPMIBGetInputData structure represents RIP_MIB_GET_INPUT_DATA RPC structure.
+type RIPMIBGetInputData struct {
 	TableID        uint32 `idl:"name:TableId" json:"table_id"`
 	InterfaceIndex uint32 `idl:"name:InterfaceIndex" json:"interface_index"`
 }
 
-func (o *RipMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
+func (o *RIPMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -17596,7 +17596,7 @@ func (o *RipMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RipMIBGetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RIPMIBGetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -17611,7 +17611,7 @@ func (o *RipMIBGetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	}
 	return nil
 }
-func (o *RipMIBGetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RIPMIBGetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -17624,13 +17624,13 @@ func (o *RipMIBGetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	return nil
 }
 
-// RipMIBSetInputData structure represents RIP_MIB_SET_INPUT_DATA RPC structure.
-type RipMIBSetInputData struct {
+// RIPMIBSetInputData structure represents RIP_MIB_SET_INPUT_DATA RPC structure.
+type RIPMIBSetInputData struct {
 	TableID      uint32        `idl:"name:TableId" json:"table_id"`
-	RipInterface *RipInterface `idl:"name:RipInterface" json:"rip_interface"`
+	RIPInterface *RIPInterface `idl:"name:RipInterface" json:"rip_interface"`
 }
 
-func (o *RipMIBSetInputData) xxx_PreparePayload(ctx context.Context) error {
+func (o *RIPMIBSetInputData) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -17639,7 +17639,7 @@ func (o *RipMIBSetInputData) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RipMIBSetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RIPMIBSetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -17649,40 +17649,40 @@ func (o *RipMIBSetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.TableID); err != nil {
 		return err
 	}
-	if o.RipInterface != nil {
-		if err := o.RipInterface.MarshalNDR(ctx, w); err != nil {
+	if o.RIPInterface != nil {
+		if err := o.RIPInterface.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&RipInterface{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&RIPInterface{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *RipMIBSetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RIPMIBSetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.TableID); err != nil {
 		return err
 	}
-	if o.RipInterface == nil {
-		o.RipInterface = &RipInterface{}
+	if o.RIPInterface == nil {
+		o.RIPInterface = &RIPInterface{}
 	}
-	if err := o.RipInterface.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.RIPInterface.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// EaptlsHash structure represents EAPTLS_HASH RPC structure.
-type EaptlsHash struct {
+// EAPTLSHash structure represents EAPTLS_HASH RPC structure.
+type EAPTLSHash struct {
 	HashLength uint32 `idl:"name:cbHash" json:"hash_length"`
 	Hash       []byte `idl:"name:pbHash" json:"hash"`
 }
 
-func (o *EaptlsHash) xxx_PreparePayload(ctx context.Context) error {
+func (o *EAPTLSHash) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -17691,7 +17691,7 @@ func (o *EaptlsHash) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *EaptlsHash) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *EAPTLSHash) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -17720,7 +17720,7 @@ func (o *EaptlsHash) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *EaptlsHash) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *EAPTLSHash) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -17740,23 +17740,23 @@ func (o *EaptlsHash) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// EaptlsUserProperties structure represents EAPTLS_USER_PROPERTIES RPC structure.
-type EaptlsUserProperties struct {
+// EAPTLSUserProperties structure represents EAPTLS_USER_PROPERTIES RPC structure.
+type EAPTLSUserProperties struct {
 	_             uint32      `idl:"name:reserved"`
 	Version       uint32      `idl:"name:dwVersion" json:"version"`
 	Size          uint32      `idl:"name:dwSize" json:"size"`
 	Flags         uint32      `idl:"name:fFlags" json:"flags"`
-	Hash          *EaptlsHash `idl:"name:Hash" json:"hash"`
+	Hash          *EAPTLSHash `idl:"name:Hash" json:"hash"`
 	DiffUser      string      `idl:"name:pwszDiffUser" json:"diff_user"`
-	PinOffset     uint32      `idl:"name:dwPinOffset" json:"pin_offset"`
-	Pin           string      `idl:"name:pwszPin" json:"pin"`
+	PINOffset     uint32      `idl:"name:dwPinOffset" json:"pin_offset"`
+	PIN           string      `idl:"name:pwszPin" json:"pin"`
 	Length        uint16      `idl:"name:usLength" json:"length"`
 	MaximumLength uint16      `idl:"name:usMaximumLength" json:"maximum_length"`
-	UcSeed        uint8       `idl:"name:ucSeed" json:"uc_seed"`
-	AwszString    []uint16    `idl:"name:awszString" json:"awsz_string"`
+	Seed          uint8       `idl:"name:ucSeed" json:"seed"`
+	String        []uint16    `idl:"name:awszString" json:"string"`
 }
 
-func (o *EaptlsUserProperties) xxx_PreparePayload(ctx context.Context) error {
+func (o *EAPTLSUserProperties) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -17765,7 +17765,7 @@ func (o *EaptlsUserProperties) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *EaptlsUserProperties) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *EAPTLSUserProperties) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -17790,7 +17790,7 @@ func (o *EaptlsUserProperties) MarshalNDR(ctx context.Context, w ndr.Writer) err
 			return err
 		}
 	} else {
-		if err := (&EaptlsHash{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&EAPTLSHash{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -17809,17 +17809,17 @@ func (o *EaptlsUserProperties) MarshalNDR(ctx context.Context, w ndr.Writer) err
 			return err
 		}
 	}
-	if err := w.WriteData(o.PinOffset); err != nil {
+	if err := w.WriteData(o.PINOffset); err != nil {
 		return err
 	}
-	if o.Pin != "" {
+	if o.PIN != "" {
 		_ptr_pwszPin := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := ndr.WriteUTF16String(ctx, w, o.Pin); err != nil {
+			if err := ndr.WriteUTF16String(ctx, w, o.PIN); err != nil {
 				return err
 			}
 			return nil
 		})
-		if err := w.WritePointer(&o.Pin, _ptr_pwszPin); err != nil {
+		if err := w.WritePointer(&o.PIN, _ptr_pwszPin); err != nil {
 			return err
 		}
 	} else {
@@ -17833,19 +17833,19 @@ func (o *EaptlsUserProperties) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	if err := w.WriteData(o.MaximumLength); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.UcSeed); err != nil {
+	if err := w.WriteData(o.Seed); err != nil {
 		return err
 	}
-	for i1 := range o.AwszString {
+	for i1 := range o.String {
 		i1 := i1
 		if uint64(i1) >= 1 {
 			break
 		}
-		if err := w.WriteData(o.AwszString[i1]); err != nil {
+		if err := w.WriteData(o.String[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.AwszString); uint64(i1) < 1; i1++ {
+	for i1 := len(o.String); uint64(i1) < 1; i1++ {
 		if err := w.WriteData(uint16(0)); err != nil {
 			return err
 		}
@@ -17855,7 +17855,7 @@ func (o *EaptlsUserProperties) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	}
 	return nil
 }
-func (o *EaptlsUserProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *EAPTLSUserProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -17874,7 +17874,7 @@ func (o *EaptlsUserProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		return err
 	}
 	if o.Hash == nil {
-		o.Hash = &EaptlsHash{}
+		o.Hash = &EAPTLSHash{}
 	}
 	if err := o.Hash.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -17889,17 +17889,17 @@ func (o *EaptlsUserProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 	if err := w.ReadPointer(&o.DiffUser, _s_pwszDiffUser, _ptr_pwszDiffUser); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.PinOffset); err != nil {
+	if err := w.ReadData(&o.PINOffset); err != nil {
 		return err
 	}
 	_ptr_pwszPin := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		if err := ndr.ReadUTF16String(ctx, w, &o.Pin); err != nil {
+		if err := ndr.ReadUTF16String(ctx, w, &o.PIN); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pwszPin := func(ptr interface{}) { o.Pin = *ptr.(*string) }
-	if err := w.ReadPointer(&o.Pin, _s_pwszPin, _ptr_pwszPin); err != nil {
+	_s_pwszPin := func(ptr interface{}) { o.PIN = *ptr.(*string) }
+	if err := w.ReadPointer(&o.PIN, _s_pwszPin, _ptr_pwszPin); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Length); err != nil {
@@ -17908,13 +17908,13 @@ func (o *EaptlsUserProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 	if err := w.ReadData(&o.MaximumLength); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.UcSeed); err != nil {
+	if err := w.ReadData(&o.Seed); err != nil {
 		return err
 	}
-	o.AwszString = make([]uint16, 1)
-	for i1 := range o.AwszString {
+	o.String = make([]uint16, 1)
+	for i1 := range o.String {
 		i1 := i1
-		if err := w.ReadData(&o.AwszString[i1]); err != nil {
+		if err := w.ReadData(&o.String[i1]); err != nil {
 			return err
 		}
 	}
@@ -17924,14 +17924,14 @@ func (o *EaptlsUserProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 	return nil
 }
 
-// IpbootpGlobalConfig structure represents IPBOOTP_GLOBAL_CONFIG RPC structure.
-type IpbootpGlobalConfig struct {
-	GCLoggingLevel     uint32 `idl:"name:GC_LoggingLevel" json:"gc_logging_level"`
-	GCMaxRecvQueueSize uint32 `idl:"name:GC_MaxRecvQueueSize" json:"gc_max_recv_queue_size"`
-	GCServerCount      uint32 `idl:"name:GC_ServerCount" json:"gc_server_count"`
+// IPBOOTPGlobalConfig structure represents IPBOOTP_GLOBAL_CONFIG RPC structure.
+type IPBOOTPGlobalConfig struct {
+	LoggingLevel     uint32 `idl:"name:GC_LoggingLevel" json:"logging_level"`
+	MaxRecvQueueSize uint32 `idl:"name:GC_MaxRecvQueueSize" json:"max_recv_queue_size"`
+	ServerCount      uint32 `idl:"name:GC_ServerCount" json:"server_count"`
 }
 
-func (o *IpbootpGlobalConfig) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPBOOTPGlobalConfig) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -17940,49 +17940,49 @@ func (o *IpbootpGlobalConfig) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpbootpGlobalConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPBOOTPGlobalConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.GCLoggingLevel); err != nil {
+	if err := w.WriteData(o.LoggingLevel); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.GCMaxRecvQueueSize); err != nil {
+	if err := w.WriteData(o.MaxRecvQueueSize); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.GCServerCount); err != nil {
+	if err := w.WriteData(o.ServerCount); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *IpbootpGlobalConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPBOOTPGlobalConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GCLoggingLevel); err != nil {
+	if err := w.ReadData(&o.LoggingLevel); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GCMaxRecvQueueSize); err != nil {
+	if err := w.ReadData(&o.MaxRecvQueueSize); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GCServerCount); err != nil {
+	if err := w.ReadData(&o.ServerCount); err != nil {
 		return err
 	}
 	return nil
 }
 
-// IpbootpInterfaceConfig structure represents IPBOOTP_IF_CONFIG RPC structure.
-type IpbootpInterfaceConfig struct {
-	ICState               uint32 `idl:"name:IC_State" json:"ic_state"`
-	ICRelayMode           uint32 `idl:"name:IC_RelayMode" json:"ic_relay_mode"`
-	ICMaxHopCount         uint32 `idl:"name:IC_MaxHopCount" json:"ic_max_hop_count"`
-	ICMinSecondsSinceBoot uint32 `idl:"name:IC_MinSecondsSinceBoot" json:"ic_min_seconds_since_boot"`
+// IPBOOTPInterfaceConfig structure represents IPBOOTP_IF_CONFIG RPC structure.
+type IPBOOTPInterfaceConfig struct {
+	State               uint32 `idl:"name:IC_State" json:"state"`
+	RelayMode           uint32 `idl:"name:IC_RelayMode" json:"relay_mode"`
+	MaxHopCount         uint32 `idl:"name:IC_MaxHopCount" json:"max_hop_count"`
+	MinSecondsSinceBoot uint32 `idl:"name:IC_MinSecondsSinceBoot" json:"min_seconds_since_boot"`
 }
 
-func (o *IpbootpInterfaceConfig) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPBOOTPInterfaceConfig) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -17991,53 +17991,53 @@ func (o *IpbootpInterfaceConfig) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpbootpInterfaceConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPBOOTPInterfaceConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICState); err != nil {
+	if err := w.WriteData(o.State); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICRelayMode); err != nil {
+	if err := w.WriteData(o.RelayMode); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICMaxHopCount); err != nil {
+	if err := w.WriteData(o.MaxHopCount); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICMinSecondsSinceBoot); err != nil {
+	if err := w.WriteData(o.MinSecondsSinceBoot); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *IpbootpInterfaceConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPBOOTPInterfaceConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICState); err != nil {
+	if err := w.ReadData(&o.State); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICRelayMode); err != nil {
+	if err := w.ReadData(&o.RelayMode); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICMaxHopCount); err != nil {
+	if err := w.ReadData(&o.MaxHopCount); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICMinSecondsSinceBoot); err != nil {
+	if err := w.ReadData(&o.MinSecondsSinceBoot); err != nil {
 		return err
 	}
 	return nil
 }
 
-// IpbootpMIBGetInputData structure represents IPBOOTP_MIB_GET_INPUT_DATA RPC structure.
-type IpbootpMIBGetInputData struct {
-	ImgidTypeID         uint32 `idl:"name:IMGID_TypeID" json:"imgid_type_id"`
-	ImgidInterfaceIndex uint32 `idl:"name:IMGID_IfIndex" json:"imgid_interface_index"`
+// IPBOOTPMIBGetInputData structure represents IPBOOTP_MIB_GET_INPUT_DATA RPC structure.
+type IPBOOTPMIBGetInputData struct {
+	TypeID         uint32 `idl:"name:IMGID_TypeID" json:"type_id"`
+	InterfaceIndex uint32 `idl:"name:IMGID_IfIndex" json:"interface_index"`
 }
 
-func (o *IpbootpMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPBOOTPMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -18046,42 +18046,42 @@ func (o *IpbootpMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpbootpMIBGetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPBOOTPMIBGetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ImgidTypeID); err != nil {
+	if err := w.WriteData(o.TypeID); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ImgidInterfaceIndex); err != nil {
+	if err := w.WriteData(o.InterfaceIndex); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *IpbootpMIBGetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPBOOTPMIBGetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ImgidTypeID); err != nil {
+	if err := w.ReadData(&o.TypeID); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ImgidInterfaceIndex); err != nil {
+	if err := w.ReadData(&o.InterfaceIndex); err != nil {
 		return err
 	}
 	return nil
 }
 
-// IpbootpMIBGetOutputData structure represents IPBOOTP_MIB_GET_OUTPUT_DATA RPC structure.
-type IpbootpMIBGetOutputData struct {
-	ImgodTypeID         uint32 `idl:"name:IMGOD_TypeID" json:"imgod_type_id"`
-	ImgodInterfaceIndex uint32 `idl:"name:IMGOD_IfIndex" json:"imgod_interface_index"`
-	ImgodBuffer         []byte `idl:"name:IMGOD_Buffer" json:"imgod_buffer"`
+// IPBOOTPMIBGetOutputData structure represents IPBOOTP_MIB_GET_OUTPUT_DATA RPC structure.
+type IPBOOTPMIBGetOutputData struct {
+	TypeID         uint32 `idl:"name:IMGOD_TypeID" json:"type_id"`
+	InterfaceIndex uint32 `idl:"name:IMGOD_IfIndex" json:"interface_index"`
+	Buffer         []byte `idl:"name:IMGOD_Buffer" json:"buffer"`
 }
 
-func (o *IpbootpMIBGetOutputData) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPBOOTPMIBGetOutputData) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -18090,29 +18090,29 @@ func (o *IpbootpMIBGetOutputData) xxx_PreparePayload(ctx context.Context) error 
 	}
 	return nil
 }
-func (o *IpbootpMIBGetOutputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPBOOTPMIBGetOutputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ImgodTypeID); err != nil {
+	if err := w.WriteData(o.TypeID); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ImgodInterfaceIndex); err != nil {
+	if err := w.WriteData(o.InterfaceIndex); err != nil {
 		return err
 	}
-	for i1 := range o.ImgodBuffer {
+	for i1 := range o.Buffer {
 		i1 := i1
 		if uint64(i1) >= 1 {
 			break
 		}
-		if err := w.WriteData(o.ImgodBuffer[i1]); err != nil {
+		if err := w.WriteData(o.Buffer[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.ImgodBuffer); uint64(i1) < 1; i1++ {
+	for i1 := len(o.Buffer); uint64(i1) < 1; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
@@ -18122,20 +18122,20 @@ func (o *IpbootpMIBGetOutputData) MarshalNDR(ctx context.Context, w ndr.Writer) 
 	}
 	return nil
 }
-func (o *IpbootpMIBGetOutputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPBOOTPMIBGetOutputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ImgodTypeID); err != nil {
+	if err := w.ReadData(&o.TypeID); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ImgodInterfaceIndex); err != nil {
+	if err := w.ReadData(&o.InterfaceIndex); err != nil {
 		return err
 	}
-	o.ImgodBuffer = make([]byte, 1)
-	for i1 := range o.ImgodBuffer {
+	o.Buffer = make([]byte, 1)
+	for i1 := range o.Buffer {
 		i1 := i1
-		if err := w.ReadData(&o.ImgodBuffer[i1]); err != nil {
+		if err := w.ReadData(&o.Buffer[i1]); err != nil {
 			return err
 		}
 	}
@@ -18145,19 +18145,19 @@ func (o *IpbootpMIBGetOutputData) UnmarshalNDR(ctx context.Context, w ndr.Reader
 	return nil
 }
 
-// IpbootpInterfaceStats structure represents IPBOOTP_IF_STATS RPC structure.
-type IpbootpInterfaceStats struct {
-	IsState             uint32 `idl:"name:IS_State" json:"is_state"`
-	IsSendFailures      uint32 `idl:"name:IS_SendFailures" json:"is_send_failures"`
-	IsReceiveFailures   uint32 `idl:"name:IS_ReceiveFailures" json:"is_receive_failures"`
-	IsArpUpdateFailures uint32 `idl:"name:IS_ArpUpdateFailures" json:"is_arp_update_failures"`
-	IsRequestsReceived  uint32 `idl:"name:IS_RequestsReceived" json:"is_requests_received"`
-	IsRequestsDiscarded uint32 `idl:"name:IS_RequestsDiscarded" json:"is_requests_discarded"`
-	IsRepliesReceived   uint32 `idl:"name:IS_RepliesReceived" json:"is_replies_received"`
-	IsRepliesDiscarded  uint32 `idl:"name:IS_RepliesDiscarded" json:"is_replies_discarded"`
+// IPBOOTPInterfaceStats structure represents IPBOOTP_IF_STATS RPC structure.
+type IPBOOTPInterfaceStats struct {
+	State             uint32 `idl:"name:IS_State" json:"state"`
+	SendFailures      uint32 `idl:"name:IS_SendFailures" json:"send_failures"`
+	ReceiveFailures   uint32 `idl:"name:IS_ReceiveFailures" json:"receive_failures"`
+	ArpUpdateFailures uint32 `idl:"name:IS_ArpUpdateFailures" json:"arp_update_failures"`
+	RequestsReceived  uint32 `idl:"name:IS_RequestsReceived" json:"requests_received"`
+	RequestsDiscarded uint32 `idl:"name:IS_RequestsDiscarded" json:"requests_discarded"`
+	RepliesReceived   uint32 `idl:"name:IS_RepliesReceived" json:"replies_received"`
+	RepliesDiscarded  uint32 `idl:"name:IS_RepliesDiscarded" json:"replies_discarded"`
 }
 
-func (o *IpbootpInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPBOOTPInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -18166,77 +18166,77 @@ func (o *IpbootpInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpbootpInterfaceStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPBOOTPInterfaceStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsState); err != nil {
+	if err := w.WriteData(o.State); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsSendFailures); err != nil {
+	if err := w.WriteData(o.SendFailures); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsReceiveFailures); err != nil {
+	if err := w.WriteData(o.ReceiveFailures); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsArpUpdateFailures); err != nil {
+	if err := w.WriteData(o.ArpUpdateFailures); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsRequestsReceived); err != nil {
+	if err := w.WriteData(o.RequestsReceived); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsRequestsDiscarded); err != nil {
+	if err := w.WriteData(o.RequestsDiscarded); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsRepliesReceived); err != nil {
+	if err := w.WriteData(o.RepliesReceived); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsRepliesDiscarded); err != nil {
+	if err := w.WriteData(o.RepliesDiscarded); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *IpbootpInterfaceStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPBOOTPInterfaceStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsState); err != nil {
+	if err := w.ReadData(&o.State); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsSendFailures); err != nil {
+	if err := w.ReadData(&o.SendFailures); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsReceiveFailures); err != nil {
+	if err := w.ReadData(&o.ReceiveFailures); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsArpUpdateFailures); err != nil {
+	if err := w.ReadData(&o.ArpUpdateFailures); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsRequestsReceived); err != nil {
+	if err := w.ReadData(&o.RequestsReceived); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsRequestsDiscarded); err != nil {
+	if err := w.ReadData(&o.RequestsDiscarded); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsRepliesReceived); err != nil {
+	if err := w.ReadData(&o.RepliesReceived); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsRepliesDiscarded); err != nil {
+	if err := w.ReadData(&o.RepliesDiscarded); err != nil {
 		return err
 	}
 	return nil
 }
 
-// IpbootpInterfaceBinding structure represents IPBOOTP_IF_BINDING RPC structure.
-type IpbootpInterfaceBinding struct {
-	IbState     uint32 `idl:"name:IB_State" json:"ib_state"`
-	IbAddrCount uint32 `idl:"name:IB_AddrCount" json:"ib_addr_count"`
+// IPBOOTPInterfaceBinding structure represents IPBOOTP_IF_BINDING RPC structure.
+type IPBOOTPInterfaceBinding struct {
+	State     uint32 `idl:"name:IB_State" json:"state"`
+	AddrCount uint32 `idl:"name:IB_AddrCount" json:"addr_count"`
 }
 
-func (o *IpbootpInterfaceBinding) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPBOOTPInterfaceBinding) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -18245,41 +18245,41 @@ func (o *IpbootpInterfaceBinding) xxx_PreparePayload(ctx context.Context) error 
 	}
 	return nil
 }
-func (o *IpbootpInterfaceBinding) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPBOOTPInterfaceBinding) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IbState); err != nil {
+	if err := w.WriteData(o.State); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IbAddrCount); err != nil {
+	if err := w.WriteData(o.AddrCount); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *IpbootpInterfaceBinding) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPBOOTPInterfaceBinding) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IbState); err != nil {
+	if err := w.ReadData(&o.State); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IbAddrCount); err != nil {
+	if err := w.ReadData(&o.AddrCount); err != nil {
 		return err
 	}
 	return nil
 }
 
-// IpbootpIPAddress structure represents IPBOOTP_IP_ADDRESS RPC structure.
-type IpbootpIPAddress struct {
-	IaAddress uint32 `idl:"name:IA_Address" json:"ia_address"`
-	IaNetmask uint32 `idl:"name:IA_Netmask" json:"ia_netmask"`
+// IPBOOTPIPAddress structure represents IPBOOTP_IP_ADDRESS RPC structure.
+type IPBOOTPIPAddress struct {
+	Address uint32 `idl:"name:IA_Address" json:"address"`
+	Netmask uint32 `idl:"name:IA_Netmask" json:"netmask"`
 }
 
-func (o *IpbootpIPAddress) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPBOOTPIPAddress) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -18288,42 +18288,42 @@ func (o *IpbootpIPAddress) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpbootpIPAddress) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPBOOTPIPAddress) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IaAddress); err != nil {
+	if err := w.WriteData(o.Address); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IaNetmask); err != nil {
+	if err := w.WriteData(o.Netmask); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *IpbootpIPAddress) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPBOOTPIPAddress) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IaAddress); err != nil {
+	if err := w.ReadData(&o.Address); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IaNetmask); err != nil {
+	if err := w.ReadData(&o.Netmask); err != nil {
 		return err
 	}
 	return nil
 }
 
-// V6rMIBGetOutputData structure represents DHCPV6R_MIB_GET_OUTPUT_DATA RPC structure.
-type V6rMIBGetOutputData struct {
-	ImgodTypeID         uint32 `idl:"name:IMGOD_TypeID" json:"imgod_type_id"`
-	ImgodInterfaceIndex uint32 `idl:"name:IMGOD_IfIndex" json:"imgod_interface_index"`
-	ImgodBuffer         []byte `idl:"name:IMGOD_Buffer" json:"imgod_buffer"`
+// DHCPV6RMIBGetOutputData structure represents DHCPV6R_MIB_GET_OUTPUT_DATA RPC structure.
+type DHCPV6RMIBGetOutputData struct {
+	TypeID         uint32 `idl:"name:IMGOD_TypeID" json:"type_id"`
+	InterfaceIndex uint32 `idl:"name:IMGOD_IfIndex" json:"interface_index"`
+	Buffer         []byte `idl:"name:IMGOD_Buffer" json:"buffer"`
 }
 
-func (o *V6rMIBGetOutputData) xxx_PreparePayload(ctx context.Context) error {
+func (o *DHCPV6RMIBGetOutputData) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -18332,29 +18332,29 @@ func (o *V6rMIBGetOutputData) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *V6rMIBGetOutputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *DHCPV6RMIBGetOutputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ImgodTypeID); err != nil {
+	if err := w.WriteData(o.TypeID); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ImgodInterfaceIndex); err != nil {
+	if err := w.WriteData(o.InterfaceIndex); err != nil {
 		return err
 	}
-	for i1 := range o.ImgodBuffer {
+	for i1 := range o.Buffer {
 		i1 := i1
 		if uint64(i1) >= 1 {
 			break
 		}
-		if err := w.WriteData(o.ImgodBuffer[i1]); err != nil {
+		if err := w.WriteData(o.Buffer[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.ImgodBuffer); uint64(i1) < 1; i1++ {
+	for i1 := len(o.Buffer); uint64(i1) < 1; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
@@ -18364,20 +18364,20 @@ func (o *V6rMIBGetOutputData) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	}
 	return nil
 }
-func (o *V6rMIBGetOutputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *DHCPV6RMIBGetOutputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ImgodTypeID); err != nil {
+	if err := w.ReadData(&o.TypeID); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ImgodInterfaceIndex); err != nil {
+	if err := w.ReadData(&o.InterfaceIndex); err != nil {
 		return err
 	}
-	o.ImgodBuffer = make([]byte, 1)
-	for i1 := range o.ImgodBuffer {
+	o.Buffer = make([]byte, 1)
+	for i1 := range o.Buffer {
 		i1 := i1
-		if err := w.ReadData(&o.ImgodBuffer[i1]); err != nil {
+		if err := w.ReadData(&o.Buffer[i1]); err != nil {
 			return err
 		}
 	}
@@ -18387,18 +18387,18 @@ func (o *V6rMIBGetOutputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	return nil
 }
 
-// V6rInterfaceStats structure represents DHCPV6R_IF_STATS RPC structure.
-type V6rInterfaceStats struct {
-	IsState             uint32 `idl:"name:IS_State" json:"is_state"`
-	IsSendFailures      uint32 `idl:"name:IS_SendFailures" json:"is_send_failures"`
-	IsReceiveFailures   uint32 `idl:"name:IS_ReceiveFailures" json:"is_receive_failures"`
-	IsRequestsReceived  uint32 `idl:"name:IS_RequestsReceived" json:"is_requests_received"`
-	IsRequestsDiscarded uint32 `idl:"name:IS_RequestsDiscarded" json:"is_requests_discarded"`
-	IsRepliesReceived   uint32 `idl:"name:IS_RepliesReceived" json:"is_replies_received"`
-	IsRepliesDiscarded  uint32 `idl:"name:IS_RepliesDiscarded" json:"is_replies_discarded"`
+// DHCPV6RInterfaceStats structure represents DHCPV6R_IF_STATS RPC structure.
+type DHCPV6RInterfaceStats struct {
+	State             uint32 `idl:"name:IS_State" json:"state"`
+	SendFailures      uint32 `idl:"name:IS_SendFailures" json:"send_failures"`
+	ReceiveFailures   uint32 `idl:"name:IS_ReceiveFailures" json:"receive_failures"`
+	RequestsReceived  uint32 `idl:"name:IS_RequestsReceived" json:"requests_received"`
+	RequestsDiscarded uint32 `idl:"name:IS_RequestsDiscarded" json:"requests_discarded"`
+	RepliesReceived   uint32 `idl:"name:IS_RepliesReceived" json:"replies_received"`
+	RepliesDiscarded  uint32 `idl:"name:IS_RepliesDiscarded" json:"replies_discarded"`
 }
 
-func (o *V6rInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
+func (o *DHCPV6RInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -18407,71 +18407,71 @@ func (o *V6rInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *V6rInterfaceStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *DHCPV6RInterfaceStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsState); err != nil {
+	if err := w.WriteData(o.State); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsSendFailures); err != nil {
+	if err := w.WriteData(o.SendFailures); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsReceiveFailures); err != nil {
+	if err := w.WriteData(o.ReceiveFailures); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsRequestsReceived); err != nil {
+	if err := w.WriteData(o.RequestsReceived); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsRequestsDiscarded); err != nil {
+	if err := w.WriteData(o.RequestsDiscarded); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsRepliesReceived); err != nil {
+	if err := w.WriteData(o.RepliesReceived); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsRepliesDiscarded); err != nil {
+	if err := w.WriteData(o.RepliesDiscarded); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *V6rInterfaceStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *DHCPV6RInterfaceStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsState); err != nil {
+	if err := w.ReadData(&o.State); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsSendFailures); err != nil {
+	if err := w.ReadData(&o.SendFailures); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsReceiveFailures); err != nil {
+	if err := w.ReadData(&o.ReceiveFailures); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsRequestsReceived); err != nil {
+	if err := w.ReadData(&o.RequestsReceived); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsRequestsDiscarded); err != nil {
+	if err := w.ReadData(&o.RequestsDiscarded); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsRepliesReceived); err != nil {
+	if err := w.ReadData(&o.RepliesReceived); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsRepliesDiscarded); err != nil {
+	if err := w.ReadData(&o.RepliesDiscarded); err != nil {
 		return err
 	}
 	return nil
 }
 
-// V6rMIBGetInputData structure represents DHCPV6R_MIB_GET_INPUT_DATA RPC structure.
-type V6rMIBGetInputData struct {
-	ImgidTypeID         uint32 `idl:"name:IMGID_TypeID" json:"imgid_type_id"`
-	ImgidInterfaceIndex uint32 `idl:"name:IMGID_IfIndex" json:"imgid_interface_index"`
+// DHCPV6RMIBGetInputData structure represents DHCPV6R_MIB_GET_INPUT_DATA RPC structure.
+type DHCPV6RMIBGetInputData struct {
+	TypeID         uint32 `idl:"name:IMGID_TypeID" json:"type_id"`
+	InterfaceIndex uint32 `idl:"name:IMGID_IfIndex" json:"interface_index"`
 }
 
-func (o *V6rMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
+func (o *DHCPV6RMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -18480,42 +18480,42 @@ func (o *V6rMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *V6rMIBGetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *DHCPV6RMIBGetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ImgidTypeID); err != nil {
+	if err := w.WriteData(o.TypeID); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ImgidInterfaceIndex); err != nil {
+	if err := w.WriteData(o.InterfaceIndex); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *V6rMIBGetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *DHCPV6RMIBGetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ImgidTypeID); err != nil {
+	if err := w.ReadData(&o.TypeID); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ImgidInterfaceIndex); err != nil {
+	if err := w.ReadData(&o.InterfaceIndex); err != nil {
 		return err
 	}
 	return nil
 }
 
-// V6rGlobalConfig structure represents DHCPV6R_GLOBAL_CONFIG RPC structure.
-type V6rGlobalConfig struct {
-	GCLoggingLevel     uint32 `idl:"name:GC_LoggingLevel" json:"gc_logging_level"`
-	GCMaxRecvQueueSize uint32 `idl:"name:GC_MaxRecvQueueSize" json:"gc_max_recv_queue_size"`
-	GCServerCount      uint32 `idl:"name:GC_ServerCount" json:"gc_server_count"`
+// DHCPV6RGlobalConfig structure represents DHCPV6R_GLOBAL_CONFIG RPC structure.
+type DHCPV6RGlobalConfig struct {
+	LoggingLevel     uint32 `idl:"name:GC_LoggingLevel" json:"logging_level"`
+	MaxRecvQueueSize uint32 `idl:"name:GC_MaxRecvQueueSize" json:"max_recv_queue_size"`
+	ServerCount      uint32 `idl:"name:GC_ServerCount" json:"server_count"`
 }
 
-func (o *V6rGlobalConfig) xxx_PreparePayload(ctx context.Context) error {
+func (o *DHCPV6RGlobalConfig) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -18524,49 +18524,49 @@ func (o *V6rGlobalConfig) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *V6rGlobalConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *DHCPV6RGlobalConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.GCLoggingLevel); err != nil {
+	if err := w.WriteData(o.LoggingLevel); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.GCMaxRecvQueueSize); err != nil {
+	if err := w.WriteData(o.MaxRecvQueueSize); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.GCServerCount); err != nil {
+	if err := w.WriteData(o.ServerCount); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *V6rGlobalConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *DHCPV6RGlobalConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GCLoggingLevel); err != nil {
+	if err := w.ReadData(&o.LoggingLevel); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GCMaxRecvQueueSize); err != nil {
+	if err := w.ReadData(&o.MaxRecvQueueSize); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GCServerCount); err != nil {
+	if err := w.ReadData(&o.ServerCount); err != nil {
 		return err
 	}
 	return nil
 }
 
-// V6rInterfaceConfig structure represents DHCPV6R_IF_CONFIG RPC structure.
-type V6rInterfaceConfig struct {
-	ICState          uint32 `idl:"name:IC_State" json:"ic_state"`
-	ICRelayMode      uint32 `idl:"name:IC_RelayMode" json:"ic_relay_mode"`
-	ICMaxHopCount    uint32 `idl:"name:IC_MaxHopCount" json:"ic_max_hop_count"`
-	ICMinElapsedTime uint32 `idl:"name:IC_MinElapsedTime" json:"ic_min_elapsed_time"`
+// DHCPV6RInterfaceConfig structure represents DHCPV6R_IF_CONFIG RPC structure.
+type DHCPV6RInterfaceConfig struct {
+	State          uint32 `idl:"name:IC_State" json:"state"`
+	RelayMode      uint32 `idl:"name:IC_RelayMode" json:"relay_mode"`
+	MaxHopCount    uint32 `idl:"name:IC_MaxHopCount" json:"max_hop_count"`
+	MinElapsedTime uint32 `idl:"name:IC_MinElapsedTime" json:"min_elapsed_time"`
 }
 
-func (o *V6rInterfaceConfig) xxx_PreparePayload(ctx context.Context) error {
+func (o *DHCPV6RInterfaceConfig) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -18575,53 +18575,53 @@ func (o *V6rInterfaceConfig) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *V6rInterfaceConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *DHCPV6RInterfaceConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICState); err != nil {
+	if err := w.WriteData(o.State); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICRelayMode); err != nil {
+	if err := w.WriteData(o.RelayMode); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICMaxHopCount); err != nil {
+	if err := w.WriteData(o.MaxHopCount); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICMinElapsedTime); err != nil {
+	if err := w.WriteData(o.MinElapsedTime); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *V6rInterfaceConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *DHCPV6RInterfaceConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICState); err != nil {
+	if err := w.ReadData(&o.State); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICRelayMode); err != nil {
+	if err := w.ReadData(&o.RelayMode); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICMaxHopCount); err != nil {
+	if err := w.ReadData(&o.MaxHopCount); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICMinElapsedTime); err != nil {
+	if err := w.ReadData(&o.MinElapsedTime); err != nil {
 		return err
 	}
 	return nil
 }
 
-// IpripMIBGetInputData structure represents IPRIP_MIB_GET_INPUT_DATA RPC structure.
-type IpripMIBGetInputData struct {
-	ImgidTypeID uint32                       `idl:"name:IMGID_TypeID" json:"imgid_type_id"`
-	Field2      *IpripMIBGetInputData_Field2 `idl:"name:" json:""`
+// IPRIPMIBGetInputData structure represents IPRIP_MIB_GET_INPUT_DATA RPC structure.
+type IPRIPMIBGetInputData struct {
+	TypeID uint32                       `idl:"name:IMGID_TypeID" json:"type_id"`
+	Field2 *IPRIPMIBGetInputData_Field2 `idl:"name:" json:""`
 }
 
-func (o *IpripMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPRIPMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -18630,43 +18630,43 @@ func (o *IpripMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpripMIBGetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPRIPMIBGetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ImgidTypeID); err != nil {
+	if err := w.WriteData(o.TypeID); err != nil {
 		return err
 	}
 	// FIXME unknown type
 	return nil
 }
-func (o *IpripMIBGetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPRIPMIBGetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ImgidTypeID); err != nil {
+	if err := w.ReadData(&o.TypeID); err != nil {
 		return err
 	}
 	// FIXME: unknown type
 	return nil
 }
 
-type IpripMIBGetInputData_Field2 struct {
-	ImgidInterfaceIndex uint32 `idl:"name:IMGID_IfIndex" json:"imgid_interface_index"`
-	ImgidPeerAddress    uint32 `idl:"name:IMGID_PeerAddress" json:"imgid_peer_address"`
+type IPRIPMIBGetInputData_Field2 struct {
+	InterfaceIndex uint32 `idl:"name:IMGID_IfIndex" json:"interface_index"`
+	PeerAddress    uint32 `idl:"name:IMGID_PeerAddress" json:"peer_address"`
 }
 
-// IpripMIBGetOutputData structure represents IPRIP_MIB_GET_OUTPUT_DATA RPC structure.
-type IpripMIBGetOutputData struct {
-	ImgodTypeID uint32                        `idl:"name:IMGOD_TypeID" json:"imgod_type_id"`
-	Field2      *IpripMIBGetOutputData_Field2 `idl:"name:" json:""`
-	ImgodBuffer []byte                        `idl:"name:IMGOD_Buffer" json:"imgod_buffer"`
+// IPRIPMIBGetOutputData structure represents IPRIP_MIB_GET_OUTPUT_DATA RPC structure.
+type IPRIPMIBGetOutputData struct {
+	TypeID uint32                        `idl:"name:IMGOD_TypeID" json:"type_id"`
+	Field2 *IPRIPMIBGetOutputData_Field2 `idl:"name:" json:""`
+	Buffer []byte                        `idl:"name:IMGOD_Buffer" json:"buffer"`
 }
 
-func (o *IpripMIBGetOutputData) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPRIPMIBGetOutputData) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -18675,27 +18675,27 @@ func (o *IpripMIBGetOutputData) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpripMIBGetOutputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPRIPMIBGetOutputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ImgodTypeID); err != nil {
+	if err := w.WriteData(o.TypeID); err != nil {
 		return err
 	}
 	// FIXME unknown type
-	for i1 := range o.ImgodBuffer {
+	for i1 := range o.Buffer {
 		i1 := i1
 		if uint64(i1) >= 1 {
 			break
 		}
-		if err := w.WriteData(o.ImgodBuffer[i1]); err != nil {
+		if err := w.WriteData(o.Buffer[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.ImgodBuffer); uint64(i1) < 1; i1++ {
+	for i1 := len(o.Buffer); uint64(i1) < 1; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
@@ -18705,18 +18705,18 @@ func (o *IpripMIBGetOutputData) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	}
 	return nil
 }
-func (o *IpripMIBGetOutputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPRIPMIBGetOutputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ImgodTypeID); err != nil {
+	if err := w.ReadData(&o.TypeID); err != nil {
 		return err
 	}
 	// FIXME: unknown type
-	o.ImgodBuffer = make([]byte, 1)
-	for i1 := range o.ImgodBuffer {
+	o.Buffer = make([]byte, 1)
+	for i1 := range o.Buffer {
 		i1 := i1
-		if err := w.ReadData(&o.ImgodBuffer[i1]); err != nil {
+		if err := w.ReadData(&o.Buffer[i1]); err != nil {
 			return err
 		}
 	}
@@ -18726,18 +18726,18 @@ func (o *IpripMIBGetOutputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	return nil
 }
 
-type IpripMIBGetOutputData_Field2 struct {
-	ImgodInterfaceIndex uint32 `idl:"name:IMGOD_IfIndex" json:"imgod_interface_index"`
-	ImgodPeerAddress    uint32 `idl:"name:IMGOD_PeerAddress" json:"imgod_peer_address"`
+type IPRIPMIBGetOutputData_Field2 struct {
+	InterfaceIndex uint32 `idl:"name:IMGOD_IfIndex" json:"interface_index"`
+	PeerAddress    uint32 `idl:"name:IMGOD_PeerAddress" json:"peer_address"`
 }
 
-// IpripGlobalStats structure represents IPRIP_GLOBAL_STATS RPC structure.
-type IpripGlobalStats struct {
+// IPRIPGlobalStats structure represents IPRIP_GLOBAL_STATS RPC structure.
+type IPRIPGlobalStats struct {
 	GsSystemRouteChanges uint32 `idl:"name:GS_SystemRouteChanges" json:"gs_system_route_changes"`
 	GsTotalResponsesSent uint32 `idl:"name:GS_TotalResponsesSent" json:"gs_total_responses_sent"`
 }
 
-func (o *IpripGlobalStats) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPRIPGlobalStats) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -18746,7 +18746,7 @@ func (o *IpripGlobalStats) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpripGlobalStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPRIPGlobalStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -18761,7 +18761,7 @@ func (o *IpripGlobalStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *IpripGlobalStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPRIPGlobalStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -18774,17 +18774,17 @@ func (o *IpripGlobalStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	return nil
 }
 
-// IpripGlobalConfig structure represents IPRIP_GLOBAL_CONFIG RPC structure.
-type IpripGlobalConfig struct {
-	GCLoggingLevel               uint32 `idl:"name:GC_LoggingLevel" json:"gc_logging_level"`
-	GCMaxRecvQueueSize           uint32 `idl:"name:GC_MaxRecvQueueSize" json:"gc_max_recv_queue_size"`
-	GCMaxSendQueueSize           uint32 `idl:"name:GC_MaxSendQueueSize" json:"gc_max_send_queue_size"`
-	GCMinTriggeredUpdateInterval uint32 `idl:"name:GC_MinTriggeredUpdateInterval" json:"gc_min_triggered_update_interval"`
-	GCPeerFilterMode             uint32 `idl:"name:GC_PeerFilterMode" json:"gc_peer_filter_mode"`
-	GCPeerFilterCount            uint32 `idl:"name:GC_PeerFilterCount" json:"gc_peer_filter_count"`
+// IPRIPGlobalConfig structure represents IPRIP_GLOBAL_CONFIG RPC structure.
+type IPRIPGlobalConfig struct {
+	LoggingLevel               uint32 `idl:"name:GC_LoggingLevel" json:"logging_level"`
+	MaxRecvQueueSize           uint32 `idl:"name:GC_MaxRecvQueueSize" json:"max_recv_queue_size"`
+	MaxSendQueueSize           uint32 `idl:"name:GC_MaxSendQueueSize" json:"max_send_queue_size"`
+	MinTriggeredUpdateInterval uint32 `idl:"name:GC_MinTriggeredUpdateInterval" json:"min_triggered_update_interval"`
+	PeerFilterMode             uint32 `idl:"name:GC_PeerFilterMode" json:"peer_filter_mode"`
+	PeerFilterCount            uint32 `idl:"name:GC_PeerFilterCount" json:"peer_filter_count"`
 }
 
-func (o *IpripGlobalConfig) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPRIPGlobalConfig) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -18793,73 +18793,73 @@ func (o *IpripGlobalConfig) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpripGlobalConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPRIPGlobalConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.GCLoggingLevel); err != nil {
+	if err := w.WriteData(o.LoggingLevel); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.GCMaxRecvQueueSize); err != nil {
+	if err := w.WriteData(o.MaxRecvQueueSize); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.GCMaxSendQueueSize); err != nil {
+	if err := w.WriteData(o.MaxSendQueueSize); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.GCMinTriggeredUpdateInterval); err != nil {
+	if err := w.WriteData(o.MinTriggeredUpdateInterval); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.GCPeerFilterMode); err != nil {
+	if err := w.WriteData(o.PeerFilterMode); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.GCPeerFilterCount); err != nil {
+	if err := w.WriteData(o.PeerFilterCount); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *IpripGlobalConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPRIPGlobalConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GCLoggingLevel); err != nil {
+	if err := w.ReadData(&o.LoggingLevel); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GCMaxRecvQueueSize); err != nil {
+	if err := w.ReadData(&o.MaxRecvQueueSize); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GCMaxSendQueueSize); err != nil {
+	if err := w.ReadData(&o.MaxSendQueueSize); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GCMinTriggeredUpdateInterval); err != nil {
+	if err := w.ReadData(&o.MinTriggeredUpdateInterval); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GCPeerFilterMode); err != nil {
+	if err := w.ReadData(&o.PeerFilterMode); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GCPeerFilterCount); err != nil {
+	if err := w.ReadData(&o.PeerFilterCount); err != nil {
 		return err
 	}
 	return nil
 }
 
-// IpripInterfaceStats structure represents IPRIP_IF_STATS RPC structure.
-type IpripInterfaceStats struct {
-	IsState                      uint32 `idl:"name:IS_State" json:"is_state"`
-	IsSendFailures               uint32 `idl:"name:IS_SendFailures" json:"is_send_failures"`
-	IsReceiveFailures            uint32 `idl:"name:IS_ReceiveFailures" json:"is_receive_failures"`
-	IsRequestsSent               uint32 `idl:"name:IS_RequestsSent" json:"is_requests_sent"`
-	IsRequestsReceived           uint32 `idl:"name:IS_RequestsReceived" json:"is_requests_received"`
-	IsResponsesSent              uint32 `idl:"name:IS_ResponsesSent" json:"is_responses_sent"`
-	IsResponsesReceived          uint32 `idl:"name:IS_ResponsesReceived" json:"is_responses_received"`
-	IsBadResponsePacketsReceived uint32 `idl:"name:IS_BadResponsePacketsReceived" json:"is_bad_response_packets_received"`
-	IsBadResponseEntriesReceived uint32 `idl:"name:IS_BadResponseEntriesReceived" json:"is_bad_response_entries_received"`
-	IsTriggeredUpdatesSent       uint32 `idl:"name:IS_TriggeredUpdatesSent" json:"is_triggered_updates_sent"`
+// IPRIPInterfaceStats structure represents IPRIP_IF_STATS RPC structure.
+type IPRIPInterfaceStats struct {
+	State                      uint32 `idl:"name:IS_State" json:"state"`
+	SendFailures               uint32 `idl:"name:IS_SendFailures" json:"send_failures"`
+	ReceiveFailures            uint32 `idl:"name:IS_ReceiveFailures" json:"receive_failures"`
+	RequestsSent               uint32 `idl:"name:IS_RequestsSent" json:"requests_sent"`
+	RequestsReceived           uint32 `idl:"name:IS_RequestsReceived" json:"requests_received"`
+	ResponsesSent              uint32 `idl:"name:IS_ResponsesSent" json:"responses_sent"`
+	ResponsesReceived          uint32 `idl:"name:IS_ResponsesReceived" json:"responses_received"`
+	BadResponsePacketsReceived uint32 `idl:"name:IS_BadResponsePacketsReceived" json:"bad_response_packets_received"`
+	BadResponseEntriesReceived uint32 `idl:"name:IS_BadResponseEntriesReceived" json:"bad_response_entries_received"`
+	TriggeredUpdatesSent       uint32 `idl:"name:IS_TriggeredUpdatesSent" json:"triggered_updates_sent"`
 }
 
-func (o *IpripInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPRIPInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -18868,105 +18868,105 @@ func (o *IpripInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpripInterfaceStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPRIPInterfaceStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsState); err != nil {
+	if err := w.WriteData(o.State); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsSendFailures); err != nil {
+	if err := w.WriteData(o.SendFailures); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsReceiveFailures); err != nil {
+	if err := w.WriteData(o.ReceiveFailures); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsRequestsSent); err != nil {
+	if err := w.WriteData(o.RequestsSent); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsRequestsReceived); err != nil {
+	if err := w.WriteData(o.RequestsReceived); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsResponsesSent); err != nil {
+	if err := w.WriteData(o.ResponsesSent); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsResponsesReceived); err != nil {
+	if err := w.WriteData(o.ResponsesReceived); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsBadResponsePacketsReceived); err != nil {
+	if err := w.WriteData(o.BadResponsePacketsReceived); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsBadResponseEntriesReceived); err != nil {
+	if err := w.WriteData(o.BadResponseEntriesReceived); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IsTriggeredUpdatesSent); err != nil {
+	if err := w.WriteData(o.TriggeredUpdatesSent); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *IpripInterfaceStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPRIPInterfaceStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsState); err != nil {
+	if err := w.ReadData(&o.State); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsSendFailures); err != nil {
+	if err := w.ReadData(&o.SendFailures); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsReceiveFailures); err != nil {
+	if err := w.ReadData(&o.ReceiveFailures); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsRequestsSent); err != nil {
+	if err := w.ReadData(&o.RequestsSent); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsRequestsReceived); err != nil {
+	if err := w.ReadData(&o.RequestsReceived); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsResponsesSent); err != nil {
+	if err := w.ReadData(&o.ResponsesSent); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsResponsesReceived); err != nil {
+	if err := w.ReadData(&o.ResponsesReceived); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsBadResponsePacketsReceived); err != nil {
+	if err := w.ReadData(&o.BadResponsePacketsReceived); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsBadResponseEntriesReceived); err != nil {
+	if err := w.ReadData(&o.BadResponseEntriesReceived); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IsTriggeredUpdatesSent); err != nil {
+	if err := w.ReadData(&o.TriggeredUpdatesSent); err != nil {
 		return err
 	}
 	return nil
 }
 
-// IpripInterfaceConfig structure represents IPRIP_IF_CONFIG RPC structure.
-type IpripInterfaceConfig struct {
-	ICState                   uint32 `idl:"name:IC_State" json:"ic_state"`
-	ICMetric                  uint32 `idl:"name:IC_Metric" json:"ic_metric"`
-	ICUpdateMode              uint32 `idl:"name:IC_UpdateMode" json:"ic_update_mode"`
-	ICAcceptMode              uint32 `idl:"name:IC_AcceptMode" json:"ic_accept_mode"`
-	ICAnnounceMode            uint32 `idl:"name:IC_AnnounceMode" json:"ic_announce_mode"`
-	ICProtocolFlags           uint32 `idl:"name:IC_ProtocolFlags" json:"ic_protocol_flags"`
-	ICRouteExpirationInterval uint32 `idl:"name:IC_RouteExpirationInterval" json:"ic_route_expiration_interval"`
-	ICRouteRemovalInterval    uint32 `idl:"name:IC_RouteRemovalInterval" json:"ic_route_removal_interval"`
-	ICFullUpdateInterval      uint32 `idl:"name:IC_FullUpdateInterval" json:"ic_full_update_interval"`
-	ICAuthenticationType      uint32 `idl:"name:IC_AuthenticationType" json:"ic_authentication_type"`
-	ICAuthenticationKey       []byte `idl:"name:IC_AuthenticationKey" json:"ic_authentication_key"`
-	ICRouteTag                uint16 `idl:"name:IC_RouteTag" json:"ic_route_tag"`
-	ICUnicastPeerMode         uint32 `idl:"name:IC_UnicastPeerMode" json:"ic_unicast_peer_mode"`
-	ICAcceptFilterMode        uint32 `idl:"name:IC_AcceptFilterMode" json:"ic_accept_filter_mode"`
-	ICAnnounceFilterMode      uint32 `idl:"name:IC_AnnounceFilterMode" json:"ic_announce_filter_mode"`
-	ICUnicastPeerCount        uint32 `idl:"name:IC_UnicastPeerCount" json:"ic_unicast_peer_count"`
-	ICAcceptFilterCount       uint32 `idl:"name:IC_AcceptFilterCount" json:"ic_accept_filter_count"`
-	ICAnnounceFilterCount     uint32 `idl:"name:IC_AnnounceFilterCount" json:"ic_announce_filter_count"`
+// IPRIPInterfaceConfig structure represents IPRIP_IF_CONFIG RPC structure.
+type IPRIPInterfaceConfig struct {
+	State                   uint32 `idl:"name:IC_State" json:"state"`
+	Metric                  uint32 `idl:"name:IC_Metric" json:"metric"`
+	UpdateMode              uint32 `idl:"name:IC_UpdateMode" json:"update_mode"`
+	AcceptMode              uint32 `idl:"name:IC_AcceptMode" json:"accept_mode"`
+	AnnounceMode            uint32 `idl:"name:IC_AnnounceMode" json:"announce_mode"`
+	ProtocolFlags           uint32 `idl:"name:IC_ProtocolFlags" json:"protocol_flags"`
+	RouteExpirationInterval uint32 `idl:"name:IC_RouteExpirationInterval" json:"route_expiration_interval"`
+	RouteRemovalInterval    uint32 `idl:"name:IC_RouteRemovalInterval" json:"route_removal_interval"`
+	FullUpdateInterval      uint32 `idl:"name:IC_FullUpdateInterval" json:"full_update_interval"`
+	AuthenticationType      uint32 `idl:"name:IC_AuthenticationType" json:"authentication_type"`
+	AuthenticationKey       []byte `idl:"name:IC_AuthenticationKey" json:"authentication_key"`
+	RouteTag                uint16 `idl:"name:IC_RouteTag" json:"route_tag"`
+	UnicastPeerMode         uint32 `idl:"name:IC_UnicastPeerMode" json:"unicast_peer_mode"`
+	AcceptFilterMode        uint32 `idl:"name:IC_AcceptFilterMode" json:"accept_filter_mode"`
+	AnnounceFilterMode      uint32 `idl:"name:IC_AnnounceFilterMode" json:"announce_filter_mode"`
+	UnicastPeerCount        uint32 `idl:"name:IC_UnicastPeerCount" json:"unicast_peer_count"`
+	AcceptFilterCount       uint32 `idl:"name:IC_AcceptFilterCount" json:"accept_filter_count"`
+	AnnounceFilterCount     uint32 `idl:"name:IC_AnnounceFilterCount" json:"announce_filter_count"`
 }
 
-func (o *IpripInterfaceConfig) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPRIPInterfaceConfig) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -18975,152 +18975,152 @@ func (o *IpripInterfaceConfig) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpripInterfaceConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPRIPInterfaceConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICState); err != nil {
+	if err := w.WriteData(o.State); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICMetric); err != nil {
+	if err := w.WriteData(o.Metric); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICUpdateMode); err != nil {
+	if err := w.WriteData(o.UpdateMode); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICAcceptMode); err != nil {
+	if err := w.WriteData(o.AcceptMode); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICAnnounceMode); err != nil {
+	if err := w.WriteData(o.AnnounceMode); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICProtocolFlags); err != nil {
+	if err := w.WriteData(o.ProtocolFlags); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICRouteExpirationInterval); err != nil {
+	if err := w.WriteData(o.RouteExpirationInterval); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICRouteRemovalInterval); err != nil {
+	if err := w.WriteData(o.RouteRemovalInterval); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICFullUpdateInterval); err != nil {
+	if err := w.WriteData(o.FullUpdateInterval); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICAuthenticationType); err != nil {
+	if err := w.WriteData(o.AuthenticationType); err != nil {
 		return err
 	}
-	for i1 := range o.ICAuthenticationKey {
+	for i1 := range o.AuthenticationKey {
 		i1 := i1
 		if uint64(i1) >= 16 {
 			break
 		}
-		if err := w.WriteData(o.ICAuthenticationKey[i1]); err != nil {
+		if err := w.WriteData(o.AuthenticationKey[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.ICAuthenticationKey); uint64(i1) < 16; i1++ {
+	for i1 := len(o.AuthenticationKey); uint64(i1) < 16; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
 	}
-	if err := w.WriteData(o.ICRouteTag); err != nil {
+	if err := w.WriteData(o.RouteTag); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICUnicastPeerMode); err != nil {
+	if err := w.WriteData(o.UnicastPeerMode); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICAcceptFilterMode); err != nil {
+	if err := w.WriteData(o.AcceptFilterMode); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICAnnounceFilterMode); err != nil {
+	if err := w.WriteData(o.AnnounceFilterMode); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICUnicastPeerCount); err != nil {
+	if err := w.WriteData(o.UnicastPeerCount); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICAcceptFilterCount); err != nil {
+	if err := w.WriteData(o.AcceptFilterCount); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ICAnnounceFilterCount); err != nil {
+	if err := w.WriteData(o.AnnounceFilterCount); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *IpripInterfaceConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPRIPInterfaceConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICState); err != nil {
+	if err := w.ReadData(&o.State); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICMetric); err != nil {
+	if err := w.ReadData(&o.Metric); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICUpdateMode); err != nil {
+	if err := w.ReadData(&o.UpdateMode); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICAcceptMode); err != nil {
+	if err := w.ReadData(&o.AcceptMode); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICAnnounceMode); err != nil {
+	if err := w.ReadData(&o.AnnounceMode); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICProtocolFlags); err != nil {
+	if err := w.ReadData(&o.ProtocolFlags); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICRouteExpirationInterval); err != nil {
+	if err := w.ReadData(&o.RouteExpirationInterval); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICRouteRemovalInterval); err != nil {
+	if err := w.ReadData(&o.RouteRemovalInterval); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICFullUpdateInterval); err != nil {
+	if err := w.ReadData(&o.FullUpdateInterval); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICAuthenticationType); err != nil {
+	if err := w.ReadData(&o.AuthenticationType); err != nil {
 		return err
 	}
-	o.ICAuthenticationKey = make([]byte, 16)
-	for i1 := range o.ICAuthenticationKey {
+	o.AuthenticationKey = make([]byte, 16)
+	for i1 := range o.AuthenticationKey {
 		i1 := i1
-		if err := w.ReadData(&o.ICAuthenticationKey[i1]); err != nil {
+		if err := w.ReadData(&o.AuthenticationKey[i1]); err != nil {
 			return err
 		}
 	}
-	if err := w.ReadData(&o.ICRouteTag); err != nil {
+	if err := w.ReadData(&o.RouteTag); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICUnicastPeerMode); err != nil {
+	if err := w.ReadData(&o.UnicastPeerMode); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICAcceptFilterMode); err != nil {
+	if err := w.ReadData(&o.AcceptFilterMode); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICAnnounceFilterMode); err != nil {
+	if err := w.ReadData(&o.AnnounceFilterMode); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICUnicastPeerCount); err != nil {
+	if err := w.ReadData(&o.UnicastPeerCount); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICAcceptFilterCount); err != nil {
+	if err := w.ReadData(&o.AcceptFilterCount); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ICAnnounceFilterCount); err != nil {
+	if err := w.ReadData(&o.AnnounceFilterCount); err != nil {
 		return err
 	}
 	return nil
 }
 
-// IpripRouteFilter structure represents IPRIP_ROUTE_FILTER RPC structure.
-type IpripRouteFilter struct {
+// IPRIPRouteFilter structure represents IPRIP_ROUTE_FILTER RPC structure.
+type IPRIPRouteFilter struct {
 	RfLoAddress uint32 `idl:"name:RF_LoAddress" json:"rf_lo_address"`
 	RfHiAddress uint32 `idl:"name:RF_HiAddress" json:"rf_hi_address"`
 }
 
-func (o *IpripRouteFilter) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPRIPRouteFilter) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -19129,7 +19129,7 @@ func (o *IpripRouteFilter) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpripRouteFilter) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPRIPRouteFilter) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -19144,7 +19144,7 @@ func (o *IpripRouteFilter) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *IpripRouteFilter) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPRIPRouteFilter) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -19157,13 +19157,13 @@ func (o *IpripRouteFilter) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	return nil
 }
 
-// IpripInterfaceBinding structure represents IPRIP_IF_BINDING RPC structure.
-type IpripInterfaceBinding struct {
-	IbState     uint32 `idl:"name:IB_State" json:"ib_state"`
-	IbAddrCount uint32 `idl:"name:IB_AddrCount" json:"ib_addr_count"`
+// IPRIPInterfaceBinding structure represents IPRIP_IF_BINDING RPC structure.
+type IPRIPInterfaceBinding struct {
+	State     uint32 `idl:"name:IB_State" json:"state"`
+	AddrCount uint32 `idl:"name:IB_AddrCount" json:"addr_count"`
 }
 
-func (o *IpripInterfaceBinding) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPRIPInterfaceBinding) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -19172,41 +19172,41 @@ func (o *IpripInterfaceBinding) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpripInterfaceBinding) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPRIPInterfaceBinding) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IbState); err != nil {
+	if err := w.WriteData(o.State); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IbAddrCount); err != nil {
+	if err := w.WriteData(o.AddrCount); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *IpripInterfaceBinding) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPRIPInterfaceBinding) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IbState); err != nil {
+	if err := w.ReadData(&o.State); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IbAddrCount); err != nil {
+	if err := w.ReadData(&o.AddrCount); err != nil {
 		return err
 	}
 	return nil
 }
 
-// IpripIPAddress structure represents IPRIP_IP_ADDRESS RPC structure.
-type IpripIPAddress struct {
-	IaAddress uint32 `idl:"name:IA_Address" json:"ia_address"`
-	IaNetmask uint32 `idl:"name:IA_Netmask" json:"ia_netmask"`
+// IPRIPIPAddress structure represents IPRIP_IP_ADDRESS RPC structure.
+type IPRIPIPAddress struct {
+	Address uint32 `idl:"name:IA_Address" json:"address"`
+	Netmask uint32 `idl:"name:IA_Netmask" json:"netmask"`
 }
 
-func (o *IpripIPAddress) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPRIPIPAddress) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -19215,36 +19215,36 @@ func (o *IpripIPAddress) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpripIPAddress) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPRIPIPAddress) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IaAddress); err != nil {
+	if err := w.WriteData(o.Address); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IaNetmask); err != nil {
+	if err := w.WriteData(o.Netmask); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *IpripIPAddress) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPRIPIPAddress) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IaAddress); err != nil {
+	if err := w.ReadData(&o.Address); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IaNetmask); err != nil {
+	if err := w.ReadData(&o.Netmask); err != nil {
 		return err
 	}
 	return nil
 }
 
-// IpripPeerStats structure represents IPRIP_PEER_STATS RPC structure.
-type IpripPeerStats struct {
+// IPRIPPeerStats structure represents IPRIP_PEER_STATS RPC structure.
+type IPRIPPeerStats struct {
 	PsLastPeerRouteTag           uint32 `idl:"name:PS_LastPeerRouteTag" json:"ps_last_peer_route_tag"`
 	PsLastPeerUpdateTickCount    uint32 `idl:"name:PS_LastPeerUpdateTickCount" json:"ps_last_peer_update_tick_count"`
 	PsLastPeerUpdateVersion      uint32 `idl:"name:PS_LastPeerUpdateVersion" json:"ps_last_peer_update_version"`
@@ -19252,7 +19252,7 @@ type IpripPeerStats struct {
 	PsBadResponseEntriesFromPeer uint32 `idl:"name:PS_BadResponseEntriesFromPeer" json:"ps_bad_response_entries_from_peer"`
 }
 
-func (o *IpripPeerStats) xxx_PreparePayload(ctx context.Context) error {
+func (o *IPRIPPeerStats) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -19261,7 +19261,7 @@ func (o *IpripPeerStats) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IpripPeerStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IPRIPPeerStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -19285,7 +19285,7 @@ func (o *IpripPeerStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *IpripPeerStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IPRIPPeerStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -19307,8 +19307,8 @@ func (o *IpripPeerStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// IgmpMIBGetInputData structure represents IGMP_MIB_GET_INPUT_DATA RPC structure.
-type IgmpMIBGetInputData struct {
+// IGMPMIBGetInputData structure represents IGMP_MIB_GET_INPUT_DATA RPC structure.
+type IGMPMIBGetInputData struct {
 	TypeID         uint32 `idl:"name:TypeId" json:"type_id"`
 	Flags          uint16 `idl:"name:Flags" json:"flags"`
 	Signature      uint16 `idl:"name:Signature" json:"signature"`
@@ -19318,7 +19318,7 @@ type IgmpMIBGetInputData struct {
 	Count          uint32 `idl:"name:Count" json:"count"`
 }
 
-func (o *IgmpMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
+func (o *IGMPMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -19327,7 +19327,7 @@ func (o *IgmpMIBGetInputData) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IgmpMIBGetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IGMPMIBGetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -19357,7 +19357,7 @@ func (o *IgmpMIBGetInputData) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	}
 	return nil
 }
-func (o *IgmpMIBGetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IGMPMIBGetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -19385,15 +19385,15 @@ func (o *IgmpMIBGetInputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	return nil
 }
 
-// IgmpMIBGetOutputData structure represents IGMP_MIB_GET_OUTPUT_DATA RPC structure.
-type IgmpMIBGetOutputData struct {
+// IGMPMIBGetOutputData structure represents IGMP_MIB_GET_OUTPUT_DATA RPC structure.
+type IGMPMIBGetOutputData struct {
 	TypeID uint32 `idl:"name:TypeId" json:"type_id"`
 	Flags  uint32 `idl:"name:Flags" json:"flags"`
 	Count  uint32 `idl:"name:Count" json:"count"`
 	Buffer []byte `idl:"name:Buffer" json:"buffer"`
 }
 
-func (o *IgmpMIBGetOutputData) xxx_PreparePayload(ctx context.Context) error {
+func (o *IGMPMIBGetOutputData) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -19402,7 +19402,7 @@ func (o *IgmpMIBGetOutputData) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IgmpMIBGetOutputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IGMPMIBGetOutputData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -19437,7 +19437,7 @@ func (o *IgmpMIBGetOutputData) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	}
 	return nil
 }
-func (o *IgmpMIBGetOutputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IGMPMIBGetOutputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -19463,14 +19463,14 @@ func (o *IgmpMIBGetOutputData) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 	return nil
 }
 
-// IgmpMIBGlobalConfig structure represents IGMP_MIB_GLOBAL_CONFIG RPC structure.
-type IgmpMIBGlobalConfig struct {
+// IGMPMIBGlobalConfig structure represents IGMP_MIB_GLOBAL_CONFIG RPC structure.
+type IGMPMIBGlobalConfig struct {
 	Version        uint32 `idl:"name:Version" json:"version"`
 	LoggingLevel   uint32 `idl:"name:LoggingLevel" json:"logging_level"`
 	RASClientStats uint32 `idl:"name:RasClientStats" json:"ras_client_stats"`
 }
 
-func (o *IgmpMIBGlobalConfig) xxx_PreparePayload(ctx context.Context) error {
+func (o *IGMPMIBGlobalConfig) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -19479,7 +19479,7 @@ func (o *IgmpMIBGlobalConfig) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IgmpMIBGlobalConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IGMPMIBGlobalConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -19497,7 +19497,7 @@ func (o *IgmpMIBGlobalConfig) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	}
 	return nil
 }
-func (o *IgmpMIBGlobalConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IGMPMIBGlobalConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -19513,13 +19513,13 @@ func (o *IgmpMIBGlobalConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	return nil
 }
 
-// IgmpMIBGlobalStats structure represents IGMP_MIB_GLOBAL_STATS RPC structure.
-type IgmpMIBGlobalStats struct {
+// IGMPMIBGlobalStats structure represents IGMP_MIB_GLOBAL_STATS RPC structure.
+type IGMPMIBGlobalStats struct {
 	CurrentGroupMemberships uint32 `idl:"name:CurrentGroupMemberships" json:"current_group_memberships"`
 	GroupMembershipsAdded   uint32 `idl:"name:GroupMembershipsAdded" json:"group_memberships_added"`
 }
 
-func (o *IgmpMIBGlobalStats) xxx_PreparePayload(ctx context.Context) error {
+func (o *IGMPMIBGlobalStats) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -19528,7 +19528,7 @@ func (o *IgmpMIBGlobalStats) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IgmpMIBGlobalStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IGMPMIBGlobalStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -19543,7 +19543,7 @@ func (o *IgmpMIBGlobalStats) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	}
 	return nil
 }
-func (o *IgmpMIBGlobalStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IGMPMIBGlobalStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -19556,15 +19556,15 @@ func (o *IgmpMIBGlobalStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	return nil
 }
 
-// IgmpMIBInterfaceBinding structure represents IGMP_MIB_IF_BINDING RPC structure.
-type IgmpMIBInterfaceBinding struct {
+// IGMPMIBInterfaceBinding structure represents IGMP_MIB_IF_BINDING RPC structure.
+type IGMPMIBInterfaceBinding struct {
 	InterfaceIndex uint32 `idl:"name:IfIndex" json:"interface_index"`
 	InterfaceType  uint32 `idl:"name:IfType" json:"interface_type"`
 	State          uint32 `idl:"name:State" json:"state"`
 	AddrCount      uint32 `idl:"name:AddrCount" json:"addr_count"`
 }
 
-func (o *IgmpMIBInterfaceBinding) xxx_PreparePayload(ctx context.Context) error {
+func (o *IGMPMIBInterfaceBinding) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -19573,7 +19573,7 @@ func (o *IgmpMIBInterfaceBinding) xxx_PreparePayload(ctx context.Context) error 
 	}
 	return nil
 }
-func (o *IgmpMIBInterfaceBinding) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IGMPMIBInterfaceBinding) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -19594,7 +19594,7 @@ func (o *IgmpMIBInterfaceBinding) MarshalNDR(ctx context.Context, w ndr.Writer) 
 	}
 	return nil
 }
-func (o *IgmpMIBInterfaceBinding) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IGMPMIBInterfaceBinding) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -19613,14 +19613,14 @@ func (o *IgmpMIBInterfaceBinding) UnmarshalNDR(ctx context.Context, w ndr.Reader
 	return nil
 }
 
-// IgmpMIBInterfaceConfig structure represents IGMP_MIB_IF_CONFIG RPC structure.
-type IgmpMIBInterfaceConfig struct {
+// IGMPMIBInterfaceConfig structure represents IGMP_MIB_IF_CONFIG RPC structure.
+type IGMPMIBInterfaceConfig struct {
 	Version                     uint32 `idl:"name:Version" json:"version"`
 	InterfaceIndex              uint32 `idl:"name:IfIndex" json:"interface_index"`
 	IPAddr                      uint32 `idl:"name:IpAddr" json:"ip_addr"`
 	InterfaceType               uint32 `idl:"name:IfType" json:"interface_type"`
 	Flags                       uint32 `idl:"name:Flags" json:"flags"`
-	IgmpProtocolType            uint32 `idl:"name:IgmpProtocolType" json:"igmp_protocol_type"`
+	IGMPProtocolType            uint32 `idl:"name:IgmpProtocolType" json:"igmp_protocol_type"`
 	RobustnessVariable          uint32 `idl:"name:RobustnessVariable" json:"robustness_variable"`
 	StartupQueryInterval        uint32 `idl:"name:StartupQueryInterval" json:"startup_query_interval"`
 	StartupQueryCount           uint32 `idl:"name:StartupQueryCount" json:"startup_query_count"`
@@ -19633,7 +19633,7 @@ type IgmpMIBInterfaceConfig struct {
 	StaticGroupsLength          uint32 `idl:"name:NumStaticGroups" json:"static_groups_length"`
 }
 
-func (o *IgmpMIBInterfaceConfig) xxx_PreparePayload(ctx context.Context) error {
+func (o *IGMPMIBInterfaceConfig) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -19642,7 +19642,7 @@ func (o *IgmpMIBInterfaceConfig) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IgmpMIBInterfaceConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IGMPMIBInterfaceConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -19664,7 +19664,7 @@ func (o *IgmpMIBInterfaceConfig) MarshalNDR(ctx context.Context, w ndr.Writer) e
 	if err := w.WriteData(o.Flags); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IgmpProtocolType); err != nil {
+	if err := w.WriteData(o.IGMPProtocolType); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.RobustnessVariable); err != nil {
@@ -19699,7 +19699,7 @@ func (o *IgmpMIBInterfaceConfig) MarshalNDR(ctx context.Context, w ndr.Writer) e
 	}
 	return nil
 }
-func (o *IgmpMIBInterfaceConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IGMPMIBInterfaceConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -19718,7 +19718,7 @@ func (o *IgmpMIBInterfaceConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 	if err := w.ReadData(&o.Flags); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IgmpProtocolType); err != nil {
+	if err := w.ReadData(&o.IGMPProtocolType); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.RobustnessVariable); err != nil {
@@ -19754,8 +19754,8 @@ func (o *IgmpMIBInterfaceConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 	return nil
 }
 
-// IgmpMIBInterfaceGroupsList structure represents IGMP_MIB_IF_GROUPS_LIST RPC structure.
-type IgmpMIBInterfaceGroupsList struct {
+// IGMPMIBInterfaceGroupsList structure represents IGMP_MIB_IF_GROUPS_LIST RPC structure.
+type IGMPMIBInterfaceGroupsList struct {
 	InterfaceIndex uint32 `idl:"name:IfIndex" json:"interface_index"`
 	IPAddr         uint32 `idl:"name:IpAddr" json:"ip_addr"`
 	InterfaceType  uint32 `idl:"name:IfType" json:"interface_type"`
@@ -19763,7 +19763,7 @@ type IgmpMIBInterfaceGroupsList struct {
 	Buffer         []byte `idl:"name:Buffer" json:"buffer"`
 }
 
-func (o *IgmpMIBInterfaceGroupsList) xxx_PreparePayload(ctx context.Context) error {
+func (o *IGMPMIBInterfaceGroupsList) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -19772,7 +19772,7 @@ func (o *IgmpMIBInterfaceGroupsList) xxx_PreparePayload(ctx context.Context) err
 	}
 	return nil
 }
-func (o *IgmpMIBInterfaceGroupsList) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IGMPMIBInterfaceGroupsList) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -19810,7 +19810,7 @@ func (o *IgmpMIBInterfaceGroupsList) MarshalNDR(ctx context.Context, w ndr.Write
 	}
 	return nil
 }
-func (o *IgmpMIBInterfaceGroupsList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IGMPMIBInterfaceGroupsList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -19839,9 +19839,9 @@ func (o *IgmpMIBInterfaceGroupsList) UnmarshalNDR(ctx context.Context, w ndr.Rea
 	return nil
 }
 
-// IgmpMIBGroupInfo structure represents IGMP_MIB_GROUP_INFO RPC structure.
-type IgmpMIBGroupInfo struct {
-	Field1                *IgmpMIBGroupInfo_Field1 `idl:"name:" json:""`
+// IGMPMIBGroupInfo structure represents IGMP_MIB_GROUP_INFO RPC structure.
+type IGMPMIBGroupInfo struct {
+	Field1                *IGMPMIBGroupInfo_Field1 `idl:"name:" json:""`
 	IPAddr                uint32                   `idl:"name:IpAddr" json:"ip_addr"`
 	GroupUpTime           uint32                   `idl:"name:GroupUpTime" json:"group_up_time"`
 	GroupExpiryTime       uint32                   `idl:"name:GroupExpiryTime" json:"group_expiry_time"`
@@ -19850,7 +19850,7 @@ type IgmpMIBGroupInfo struct {
 	Flags                 uint32                   `idl:"name:Flags" json:"flags"`
 }
 
-func (o *IgmpMIBGroupInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *IGMPMIBGroupInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -19859,7 +19859,7 @@ func (o *IgmpMIBGroupInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IgmpMIBGroupInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IGMPMIBGroupInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -19887,7 +19887,7 @@ func (o *IgmpMIBGroupInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *IgmpMIBGroupInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IGMPMIBGroupInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -19913,27 +19913,27 @@ func (o *IgmpMIBGroupInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	return nil
 }
 
-type IgmpMIBGroupInfo_Field1 struct {
+type IGMPMIBGroupInfo_Field1 struct {
 	InterfaceIndex uint32 `idl:"name:IfIndex" json:"interface_index"`
 	GroupAddr      uint32 `idl:"name:GroupAddr" json:"group_addr"`
 }
 
-// IgmpMIBInterfaceStats structure represents IGMP_MIB_IF_STATS RPC structure.
-type IgmpMIBInterfaceStats struct {
+// IGMPMIBInterfaceStats structure represents IGMP_MIB_IF_STATS RPC structure.
+type IGMPMIBInterfaceStats struct {
 	InterfaceIndex            uint32 `idl:"name:IfIndex" json:"interface_index"`
 	IPAddr                    uint32 `idl:"name:IpAddr" json:"ip_addr"`
 	InterfaceType             uint32 `idl:"name:IfType" json:"interface_type"`
 	State                     uint8  `idl:"name:State" json:"state"`
 	QuerierState              uint8  `idl:"name:QuerierState" json:"querier_state"`
-	IgmpProtocolType          uint32 `idl:"name:IgmpProtocolType" json:"igmp_protocol_type"`
+	IGMPProtocolType          uint32 `idl:"name:IgmpProtocolType" json:"igmp_protocol_type"`
 	QuerierIPAddr             uint32 `idl:"name:QuerierIpAddr" json:"querier_ip_addr"`
 	ProxyInterfaceIndex       uint32 `idl:"name:ProxyIfIndex" json:"proxy_interface_index"`
 	QuerierPresentTimeLeft    uint32 `idl:"name:QuerierPresentTimeLeft" json:"querier_present_time_left"`
 	LastQuerierChangeTime     uint32 `idl:"name:LastQuerierChangeTime" json:"last_querier_change_time"`
 	V1QuerierPresentTimeLeft  uint32 `idl:"name:V1QuerierPresentTimeLeft" json:"v1_querier_present_time_left"`
-	Uptime                    uint32 `idl:"name:Uptime" json:"uptime"`
-	TotalIgmpPacketsReceived  uint32 `idl:"name:TotalIgmpPacketsReceived" json:"total_igmp_packets_received"`
-	TotalIgmpPacketsForRouter uint32 `idl:"name:TotalIgmpPacketsForRouter" json:"total_igmp_packets_for_router"`
+	UpTime                    uint32 `idl:"name:Uptime" json:"up_time"`
+	TotalIGMPPacketsReceived  uint32 `idl:"name:TotalIgmpPacketsReceived" json:"total_igmp_packets_received"`
+	TotalIGMPPacketsForRouter uint32 `idl:"name:TotalIgmpPacketsForRouter" json:"total_igmp_packets_for_router"`
 	GeneralQueriesReceived    uint32 `idl:"name:GeneralQueriesReceived" json:"general_queries_received"`
 	WrongVersionQueries       uint32 `idl:"name:WrongVersionQueries" json:"wrong_version_queries"`
 	JoinsReceived             uint32 `idl:"name:JoinsReceived" json:"joins_received"`
@@ -19943,10 +19943,10 @@ type IgmpMIBInterfaceStats struct {
 	WrongChecksumPackets      uint32 `idl:"name:WrongChecksumPackets" json:"wrong_checksum_packets"`
 	ShortPacketsReceived      uint32 `idl:"name:ShortPacketsReceived" json:"short_packets_received"`
 	LongPacketsReceived       uint32 `idl:"name:LongPacketsReceived" json:"long_packets_received"`
-	PacketsWithoutRtrAlert    uint32 `idl:"name:PacketsWithoutRtrAlert" json:"packets_without_rtr_alert"`
+	PacketsWithoutRouterAlert uint32 `idl:"name:PacketsWithoutRtrAlert" json:"packets_without_router_alert"`
 }
 
-func (o *IgmpMIBInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
+func (o *IGMPMIBInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -19955,7 +19955,7 @@ func (o *IgmpMIBInterfaceStats) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IgmpMIBInterfaceStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IGMPMIBInterfaceStats) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -19977,7 +19977,7 @@ func (o *IgmpMIBInterfaceStats) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	if err := w.WriteData(o.QuerierState); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.IgmpProtocolType); err != nil {
+	if err := w.WriteData(o.IGMPProtocolType); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.QuerierIPAddr); err != nil {
@@ -19995,13 +19995,13 @@ func (o *IgmpMIBInterfaceStats) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	if err := w.WriteData(o.V1QuerierPresentTimeLeft); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.Uptime); err != nil {
+	if err := w.WriteData(o.UpTime); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.TotalIgmpPacketsReceived); err != nil {
+	if err := w.WriteData(o.TotalIGMPPacketsReceived); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.TotalIgmpPacketsForRouter); err != nil {
+	if err := w.WriteData(o.TotalIGMPPacketsForRouter); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.GeneralQueriesReceived); err != nil {
@@ -20031,12 +20031,12 @@ func (o *IgmpMIBInterfaceStats) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	if err := w.WriteData(o.LongPacketsReceived); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.PacketsWithoutRtrAlert); err != nil {
+	if err := w.WriteData(o.PacketsWithoutRouterAlert); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *IgmpMIBInterfaceStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IGMPMIBInterfaceStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -20055,7 +20055,7 @@ func (o *IgmpMIBInterfaceStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	if err := w.ReadData(&o.QuerierState); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.IgmpProtocolType); err != nil {
+	if err := w.ReadData(&o.IGMPProtocolType); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.QuerierIPAddr); err != nil {
@@ -20073,13 +20073,13 @@ func (o *IgmpMIBInterfaceStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	if err := w.ReadData(&o.V1QuerierPresentTimeLeft); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.Uptime); err != nil {
+	if err := w.ReadData(&o.UpTime); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.TotalIgmpPacketsReceived); err != nil {
+	if err := w.ReadData(&o.TotalIGMPPacketsReceived); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.TotalIgmpPacketsForRouter); err != nil {
+	if err := w.ReadData(&o.TotalIGMPPacketsForRouter); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.GeneralQueriesReceived); err != nil {
@@ -20109,20 +20109,20 @@ func (o *IgmpMIBInterfaceStats) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	if err := w.ReadData(&o.LongPacketsReceived); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.PacketsWithoutRtrAlert); err != nil {
+	if err := w.ReadData(&o.PacketsWithoutRouterAlert); err != nil {
 		return err
 	}
 	return nil
 }
 
-// IgmpMIBGroupInterfacesList structure represents IGMP_MIB_GROUP_IFS_LIST RPC structure.
-type IgmpMIBGroupInterfacesList struct {
+// IGMPMIBGroupInterfacesList structure represents IGMP_MIB_GROUP_IFS_LIST RPC structure.
+type IGMPMIBGroupInterfacesList struct {
 	GroupAddr        uint32 `idl:"name:GroupAddr" json:"group_addr"`
 	InterfacesLength uint32 `idl:"name:NumInterfaces" json:"interfaces_length"`
 	Buffer           []byte `idl:"name:Buffer" json:"buffer"`
 }
 
-func (o *IgmpMIBGroupInterfacesList) xxx_PreparePayload(ctx context.Context) error {
+func (o *IGMPMIBGroupInterfacesList) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -20131,7 +20131,7 @@ func (o *IgmpMIBGroupInterfacesList) xxx_PreparePayload(ctx context.Context) err
 	}
 	return nil
 }
-func (o *IgmpMIBGroupInterfacesList) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IGMPMIBGroupInterfacesList) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -20163,7 +20163,7 @@ func (o *IgmpMIBGroupInterfacesList) MarshalNDR(ctx context.Context, w ndr.Write
 	}
 	return nil
 }
-func (o *IgmpMIBGroupInterfacesList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IGMPMIBGroupInterfacesList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -20186,15 +20186,15 @@ func (o *IgmpMIBGroupInterfacesList) UnmarshalNDR(ctx context.Context, w ndr.Rea
 	return nil
 }
 
-// IgmpMIBGroupSourceInfoV3 structure represents IGMP_MIB_GROUP_SOURCE_INFO_V3 RPC structure.
-type IgmpMIBGroupSourceInfoV3 struct {
+// IGMPMIBGroupSourceInfoV3 structure represents IGMP_MIB_GROUP_SOURCE_INFO_V3 RPC structure.
+type IGMPMIBGroupSourceInfoV3 struct {
 	Source           uint32 `idl:"name:Source" json:"source"`
 	SourceExpiryTime uint32 `idl:"name:SourceExpiryTime" json:"source_expiry_time"`
 	SourceUpTime     uint32 `idl:"name:SourceUpTime" json:"source_up_time"`
 	Flags            uint32 `idl:"name:Flags" json:"flags"`
 }
 
-func (o *IgmpMIBGroupSourceInfoV3) xxx_PreparePayload(ctx context.Context) error {
+func (o *IGMPMIBGroupSourceInfoV3) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -20203,7 +20203,7 @@ func (o *IgmpMIBGroupSourceInfoV3) xxx_PreparePayload(ctx context.Context) error
 	}
 	return nil
 }
-func (o *IgmpMIBGroupSourceInfoV3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IGMPMIBGroupSourceInfoV3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -20224,7 +20224,7 @@ func (o *IgmpMIBGroupSourceInfoV3) MarshalNDR(ctx context.Context, w ndr.Writer)
 	}
 	return nil
 }
-func (o *IgmpMIBGroupSourceInfoV3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IGMPMIBGroupSourceInfoV3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -20243,9 +20243,9 @@ func (o *IgmpMIBGroupSourceInfoV3) UnmarshalNDR(ctx context.Context, w ndr.Reade
 	return nil
 }
 
-// IgmpMIBGroupInfoV3 structure represents IGMP_MIB_GROUP_INFO_V3 RPC structure.
-type IgmpMIBGroupInfoV3 struct {
-	Field1                *IgmpMIBGroupInfoV3_Field1 `idl:"name:" json:""`
+// IGMPMIBGroupInfoV3 structure represents IGMP_MIB_GROUP_INFO_V3 RPC structure.
+type IGMPMIBGroupInfoV3 struct {
+	Field1                *IGMPMIBGroupInfoV3_Field1 `idl:"name:" json:""`
 	IPAddr                uint32                     `idl:"name:IpAddr" json:"ip_addr"`
 	GroupUpTime           uint32                     `idl:"name:GroupUpTime" json:"group_up_time"`
 	GroupExpiryTime       uint32                     `idl:"name:GroupExpiryTime" json:"group_expiry_time"`
@@ -20259,7 +20259,7 @@ type IgmpMIBGroupInfoV3 struct {
 	SourcesLength         uint32                     `idl:"name:NumSources" json:"sources_length"`
 }
 
-func (o *IgmpMIBGroupInfoV3) xxx_PreparePayload(ctx context.Context) error {
+func (o *IGMPMIBGroupInfoV3) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -20268,7 +20268,7 @@ func (o *IgmpMIBGroupInfoV3) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *IgmpMIBGroupInfoV3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IGMPMIBGroupInfoV3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -20311,7 +20311,7 @@ func (o *IgmpMIBGroupInfoV3) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	}
 	return nil
 }
-func (o *IgmpMIBGroupInfoV3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IGMPMIBGroupInfoV3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -20352,7 +20352,7 @@ func (o *IgmpMIBGroupInfoV3) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	return nil
 }
 
-type IgmpMIBGroupInfoV3_Field1 struct {
+type IGMPMIBGroupInfoV3_Field1 struct {
 	InterfaceIndex uint32 `idl:"name:IfIndex" json:"interface_index"`
 	GroupAddr      uint32 `idl:"name:GroupAddr" json:"group_addr"`
 }
@@ -21016,11 +21016,11 @@ func (o *IPAutoDHCPStatistics) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 type MIBDaMessage struct {
 	OperationCode uint32   `idl:"name:op_code" json:"operation_code"`
 	ReturnCode    uint32   `idl:"name:ret_code" json:"return_code"`
-	InSnmpID      []uint32 `idl:"name:in_snmp_id" json:"in_snmp_id"`
+	InSNMPID      []uint32 `idl:"name:in_snmp_id" json:"in_snmp_id"`
 	ObjectID      []uint32 `idl:"name:obj_id" json:"object_id"`
 	AttributeID   uint32   `idl:"name:attr_id" json:"attribute_id"`
 	InstanceID    []uint32 `idl:"name:inst_id" json:"instance_id"`
-	NextSnmpID    []uint32 `idl:"name:next_snmp_id" json:"next_snmp_id"`
+	NextSNMPID    []uint32 `idl:"name:next_snmp_id" json:"next_snmp_id"`
 	Creator       uint32   `idl:"name:creator" json:"creator"`
 	AttributeType uint32   `idl:"name:attr_type" json:"attribute_type"`
 	InstanceCnt   uint32   `idl:"name:inst_cnt" json:"instance_cnt"`
@@ -21050,16 +21050,16 @@ func (o *MIBDaMessage) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.ReturnCode); err != nil {
 		return err
 	}
-	for i1 := range o.InSnmpID {
+	for i1 := range o.InSNMPID {
 		i1 := i1
 		if uint64(i1) >= 44 {
 			break
 		}
-		if err := w.WriteData(o.InSnmpID[i1]); err != nil {
+		if err := w.WriteData(o.InSNMPID[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.InSnmpID); uint64(i1) < 44; i1++ {
+	for i1 := len(o.InSNMPID); uint64(i1) < 44; i1++ {
 		if err := w.WriteData(uint32(0)); err != nil {
 			return err
 		}
@@ -21095,16 +21095,16 @@ func (o *MIBDaMessage) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	for i1 := range o.NextSnmpID {
+	for i1 := range o.NextSNMPID {
 		i1 := i1
 		if uint64(i1) >= 44 {
 			break
 		}
-		if err := w.WriteData(o.NextSnmpID[i1]); err != nil {
+		if err := w.WriteData(o.NextSNMPID[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.NextSnmpID); uint64(i1) < 44; i1++ {
+	for i1 := len(o.NextSNMPID); uint64(i1) < 44; i1++ {
 		if err := w.WriteData(uint32(0)); err != nil {
 			return err
 		}
@@ -21147,10 +21147,10 @@ func (o *MIBDaMessage) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.ReturnCode); err != nil {
 		return err
 	}
-	o.InSnmpID = make([]uint32, 44)
-	for i1 := range o.InSnmpID {
+	o.InSNMPID = make([]uint32, 44)
+	for i1 := range o.InSNMPID {
 		i1 := i1
-		if err := w.ReadData(&o.InSnmpID[i1]); err != nil {
+		if err := w.ReadData(&o.InSNMPID[i1]); err != nil {
 			return err
 		}
 	}
@@ -21171,10 +21171,10 @@ func (o *MIBDaMessage) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 			return err
 		}
 	}
-	o.NextSnmpID = make([]uint32, 44)
-	for i1 := range o.NextSnmpID {
+	o.NextSNMPID = make([]uint32, 44)
+	for i1 := range o.NextSNMPID {
 		i1 := i1
-		if err := w.ReadData(&o.NextSnmpID[i1]); err != nil {
+		if err := w.ReadData(&o.NextSNMPID[i1]); err != nil {
 			return err
 		}
 	}
@@ -21402,9 +21402,9 @@ func (o *IPDNSProxyInterfaceInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader
 
 // IPNATGlobalInfo structure represents IP_NAT_GLOBAL_INFO RPC structure.
 type IPNATGlobalInfo struct {
-	LoggingLevel uint32              `idl:"name:LoggingLevel" json:"logging_level"`
-	Flags        uint32              `idl:"name:Flags" json:"flags"`
-	Header       *RtrInfoBlockHeader `idl:"name:Header" json:"header"`
+	LoggingLevel uint32                 `idl:"name:LoggingLevel" json:"logging_level"`
+	Flags        uint32                 `idl:"name:Flags" json:"flags"`
+	Header       *RouterInfoBlockHeader `idl:"name:Header" json:"header"`
 }
 
 func (o *IPNATGlobalInfo) xxx_PreparePayload(ctx context.Context) error {
@@ -21434,7 +21434,7 @@ func (o *IPNATGlobalInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&RtrInfoBlockHeader{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&RouterInfoBlockHeader{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -21451,7 +21451,7 @@ func (o *IPNATGlobalInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		return err
 	}
 	if o.Header == nil {
-		o.Header = &RtrInfoBlockHeader{}
+		o.Header = &RouterInfoBlockHeader{}
 	}
 	if err := o.Header.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -21504,9 +21504,9 @@ func (o *IPNATTimeout) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 
 // IPNATInterfaceInfo structure represents IP_NAT_INTERFACE_INFO RPC structure.
 type IPNATInterfaceInfo struct {
-	Index  uint32              `idl:"name:Index" json:"index"`
-	Flags  uint32              `idl:"name:Flags" json:"flags"`
-	Header *RtrInfoBlockHeader `idl:"name:Header" json:"header"`
+	Index  uint32                 `idl:"name:Index" json:"index"`
+	Flags  uint32                 `idl:"name:Flags" json:"flags"`
+	Header *RouterInfoBlockHeader `idl:"name:Header" json:"header"`
 }
 
 func (o *IPNATInterfaceInfo) xxx_PreparePayload(ctx context.Context) error {
@@ -21536,7 +21536,7 @@ func (o *IPNATInterfaceInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error
 			return err
 		}
 	} else {
-		if err := (&RtrInfoBlockHeader{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&RouterInfoBlockHeader{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -21553,7 +21553,7 @@ func (o *IPNATInterfaceInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		return err
 	}
 	if o.Header == nil {
-		o.Header = &RtrInfoBlockHeader{}
+		o.Header = &RouterInfoBlockHeader{}
 	}
 	if err := o.Header.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -21774,12 +21774,12 @@ func (o *IPAlgorithmGlobalInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	return nil
 }
 
-// RipGlobalInfo structure represents RIP_GLOBAL_INFO RPC structure.
-type RipGlobalInfo struct {
+// RIPGlobalInfo structure represents RIP_GLOBAL_INFO RPC structure.
+type RIPGlobalInfo struct {
 	EventLogMask uint32 `idl:"name:EventLogMask" json:"event_log_mask"`
 }
 
-func (o *RipGlobalInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *RIPGlobalInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -21788,7 +21788,7 @@ func (o *RipGlobalInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RipGlobalInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RIPGlobalInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -21800,7 +21800,7 @@ func (o *RipGlobalInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *RipGlobalInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RIPGlobalInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -21810,13 +21810,13 @@ func (o *RipGlobalInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// RipRouteFilterInfo structure represents RIP_ROUTE_FILTER_INFO RPC structure.
-type RipRouteFilterInfo struct {
+// RIPRouteFilterInfo structure represents RIP_ROUTE_FILTER_INFO RPC structure.
+type RIPRouteFilterInfo struct {
 	Network []byte `idl:"name:Network" json:"network"`
 	Mask    []byte `idl:"name:Mask" json:"mask"`
 }
 
-func (o *RipRouteFilterInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *RIPRouteFilterInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -21825,7 +21825,7 @@ func (o *RipRouteFilterInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RipRouteFilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RIPRouteFilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -21859,7 +21859,7 @@ func (o *RipRouteFilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	}
 	return nil
 }
-func (o *RipRouteFilterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RIPRouteFilterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	o.Network = make([]byte, 4)
 	for i1 := range o.Network {
 		i1 := i1
@@ -21877,16 +21877,16 @@ func (o *RipRouteFilterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	return nil
 }
 
-// RipInterfaceFilters structure represents RIP_IF_FILTERS RPC structure.
-type RipInterfaceFilters struct {
+// RIPInterfaceFilters structure represents RIP_IF_FILTERS RPC structure.
+type RIPInterfaceFilters struct {
 	SupplyFilterAction uint32                `idl:"name:SupplyFilterAction" json:"supply_filter_action"`
 	SupplyFilterCount  uint32                `idl:"name:SupplyFilterCount" json:"supply_filter_count"`
 	ListenFilterAction uint32                `idl:"name:ListenFilterAction" json:"listen_filter_action"`
 	ListenFilterCount  uint32                `idl:"name:ListenFilterCount" json:"listen_filter_count"`
-	RouteFilter        []*RipRouteFilterInfo `idl:"name:RouteFilter" json:"route_filter"`
+	RouteFilter        []*RIPRouteFilterInfo `idl:"name:RouteFilter" json:"route_filter"`
 }
 
-func (o *RipInterfaceFilters) xxx_PreparePayload(ctx context.Context) error {
+func (o *RIPInterfaceFilters) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -21895,7 +21895,7 @@ func (o *RipInterfaceFilters) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RipInterfaceFilters) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RIPInterfaceFilters) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -21924,13 +21924,13 @@ func (o *RipInterfaceFilters) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 				return err
 			}
 		} else {
-			if err := (&RipRouteFilterInfo{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&RIPRouteFilterInfo{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
 	for i1 := len(o.RouteFilter); uint64(i1) < 1; i1++ {
-		if err := (&RipRouteFilterInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&RIPRouteFilterInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -21939,7 +21939,7 @@ func (o *RipInterfaceFilters) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	}
 	return nil
 }
-func (o *RipInterfaceFilters) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RIPInterfaceFilters) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -21955,11 +21955,11 @@ func (o *RipInterfaceFilters) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	if err := w.ReadData(&o.ListenFilterCount); err != nil {
 		return err
 	}
-	o.RouteFilter = make([]*RipRouteFilterInfo, 1)
+	o.RouteFilter = make([]*RIPRouteFilterInfo, 1)
 	for i1 := range o.RouteFilter {
 		i1 := i1
 		if o.RouteFilter[i1] == nil {
-			o.RouteFilter[i1] = &RipRouteFilterInfo{}
+			o.RouteFilter[i1] = &RIPRouteFilterInfo{}
 		}
 		if err := o.RouteFilter[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -21971,13 +21971,13 @@ func (o *RipInterfaceFilters) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	return nil
 }
 
-// RipInterfaceConfig structure represents RIP_IF_CONFIG RPC structure.
-type RipInterfaceConfig struct {
-	RipInterfaceInfo    *RipInterfaceInfo    `idl:"name:RipIfInfo" json:"rip_interface_info"`
-	RipInterfaceFilters *RipInterfaceFilters `idl:"name:RipIfFilters" json:"rip_interface_filters"`
+// RIPInterfaceConfig structure represents RIP_IF_CONFIG RPC structure.
+type RIPInterfaceConfig struct {
+	RIPInterfaceInfo    *RIPInterfaceInfo    `idl:"name:RipIfInfo" json:"rip_interface_info"`
+	RIPInterfaceFilters *RIPInterfaceFilters `idl:"name:RipIfFilters" json:"rip_interface_filters"`
 }
 
-func (o *RipInterfaceConfig) xxx_PreparePayload(ctx context.Context) error {
+func (o *RIPInterfaceConfig) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -21986,58 +21986,58 @@ func (o *RipInterfaceConfig) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RipInterfaceConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RIPInterfaceConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if o.RipInterfaceInfo != nil {
-		if err := o.RipInterfaceInfo.MarshalNDR(ctx, w); err != nil {
+	if o.RIPInterfaceInfo != nil {
+		if err := o.RIPInterfaceInfo.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&RipInterfaceInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&RIPInterfaceInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
-	if o.RipInterfaceFilters != nil {
-		if err := o.RipInterfaceFilters.MarshalNDR(ctx, w); err != nil {
+	if o.RIPInterfaceFilters != nil {
+		if err := o.RIPInterfaceFilters.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&RipInterfaceFilters{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&RIPInterfaceFilters{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *RipInterfaceConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RIPInterfaceConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if o.RipInterfaceInfo == nil {
-		o.RipInterfaceInfo = &RipInterfaceInfo{}
+	if o.RIPInterfaceInfo == nil {
+		o.RIPInterfaceInfo = &RIPInterfaceInfo{}
 	}
-	if err := o.RipInterfaceInfo.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.RIPInterfaceInfo.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.RipInterfaceFilters == nil {
-		o.RipInterfaceFilters = &RipInterfaceFilters{}
+	if o.RIPInterfaceFilters == nil {
+		o.RIPInterfaceFilters = &RIPInterfaceFilters{}
 	}
-	if err := o.RipInterfaceFilters.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.RIPInterfaceFilters.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// SapGlobalInfo structure represents SAP_GLOBAL_INFO RPC structure.
-type SapGlobalInfo struct {
+// SAPGlobalInfo structure represents SAP_GLOBAL_INFO RPC structure.
+type SAPGlobalInfo struct {
 	EventLogMask uint32 `idl:"name:EventLogMask" json:"event_log_mask"`
 }
 
-func (o *SapGlobalInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *SAPGlobalInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -22046,7 +22046,7 @@ func (o *SapGlobalInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *SapGlobalInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SAPGlobalInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -22058,7 +22058,7 @@ func (o *SapGlobalInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *SapGlobalInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *SAPGlobalInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -22068,13 +22068,13 @@ func (o *SapGlobalInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// OspfRouteFilter structure represents OSPF_ROUTE_FILTER RPC structure.
-type OspfRouteFilter struct {
+// OSPFRouteFilter structure represents OSPF_ROUTE_FILTER RPC structure.
+type OSPFRouteFilter struct {
 	Address uint32 `idl:"name:dwAddress" json:"address"`
 	Mask    uint32 `idl:"name:dwMask" json:"mask"`
 }
 
-func (o *OspfRouteFilter) xxx_PreparePayload(ctx context.Context) error {
+func (o *OSPFRouteFilter) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -22083,7 +22083,7 @@ func (o *OspfRouteFilter) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *OspfRouteFilter) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *OSPFRouteFilter) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -22098,7 +22098,7 @@ func (o *OspfRouteFilter) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *OspfRouteFilter) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *OSPFRouteFilter) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -22111,33 +22111,33 @@ func (o *OspfRouteFilter) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	return nil
 }
 
-// OspfFilterAction type represents OSPF_FILTER_ACTION RPC enumeration.
-type OspfFilterAction uint16
+// OSPFFilterAction type represents OSPF_FILTER_ACTION RPC enumeration.
+type OSPFFilterAction uint16
 
 var (
-	OspfFilterActionDrop   OspfFilterAction = 0
-	OspfFilterActionAccept OspfFilterAction = 1
+	OSPFFilterActionDrop   OSPFFilterAction = 0
+	OSPFFilterActionAccept OSPFFilterAction = 1
 )
 
-func (o OspfFilterAction) String() string {
+func (o OSPFFilterAction) String() string {
 	switch o {
-	case OspfFilterActionDrop:
-		return "OspfFilterActionDrop"
-	case OspfFilterActionAccept:
-		return "OspfFilterActionAccept"
+	case OSPFFilterActionDrop:
+		return "OSPFFilterActionDrop"
+	case OSPFFilterActionAccept:
+		return "OSPFFilterActionAccept"
 	}
 	return "Invalid"
 }
 
-// OspfRouteFilterInfo structure represents OSPF_ROUTE_FILTER_INFO RPC structure.
-type OspfRouteFilterInfo struct {
-	Type             uint32             `idl:"name:type" json:"type"`
-	OfaActionOnMatch OspfFilterAction   `idl:"name:ofaActionOnMatch" json:"ofa_action_on_match"`
-	FiltersLength    uint32             `idl:"name:dwNumFilters" json:"filters_length"`
-	Filters          []*OspfRouteFilter `idl:"name:pFilters" json:"filters"`
+// OSPFRouteFilterInfo structure represents OSPF_ROUTE_FILTER_INFO RPC structure.
+type OSPFRouteFilterInfo struct {
+	Type          uint32             `idl:"name:type" json:"type"`
+	ActionOnMatch OSPFFilterAction   `idl:"name:ofaActionOnMatch" json:"action_on_match"`
+	FiltersLength uint32             `idl:"name:dwNumFilters" json:"filters_length"`
+	Filters       []*OSPFRouteFilter `idl:"name:pFilters" json:"filters"`
 }
 
-func (o *OspfRouteFilterInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *OSPFRouteFilterInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -22146,7 +22146,7 @@ func (o *OspfRouteFilterInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *OspfRouteFilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *OSPFRouteFilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -22156,7 +22156,7 @@ func (o *OspfRouteFilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	if err := w.WriteData(o.Type); err != nil {
 		return err
 	}
-	if err := w.WriteEnum(uint16(o.OfaActionOnMatch)); err != nil {
+	if err := w.WriteEnum(uint16(o.ActionOnMatch)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.FiltersLength); err != nil {
@@ -22172,36 +22172,36 @@ func (o *OspfRouteFilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 				return err
 			}
 		} else {
-			if err := (&OspfRouteFilter{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&OSPFRouteFilter{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
 	for i1 := len(o.Filters); uint64(i1) < 1; i1++ {
-		if err := (&OspfRouteFilter{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&OSPFRouteFilter{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *OspfRouteFilterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *OSPFRouteFilterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Type); err != nil {
 		return err
 	}
-	if err := w.ReadEnum((*uint16)(&o.OfaActionOnMatch)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.ActionOnMatch)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.FiltersLength); err != nil {
 		return err
 	}
-	o.Filters = make([]*OspfRouteFilter, 1)
+	o.Filters = make([]*OSPFRouteFilter, 1)
 	for i1 := range o.Filters {
 		i1 := i1
 		if o.Filters[i1] == nil {
-			o.Filters[i1] = &OspfRouteFilter{}
+			o.Filters[i1] = &OSPFRouteFilter{}
 		}
 		if err := o.Filters[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -22210,15 +22210,15 @@ func (o *OspfRouteFilterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	return nil
 }
 
-// OspfProtoFilterInfo structure represents OSPF_PROTO_FILTER_INFO RPC structure.
-type OspfProtoFilterInfo struct {
-	Type             uint32           `idl:"name:type" json:"type"`
-	OfaActionOnMatch OspfFilterAction `idl:"name:ofaActionOnMatch" json:"ofa_action_on_match"`
-	ProtoIDsLength   uint32           `idl:"name:dwNumProtoIds" json:"proto_ids_length"`
-	ProtoID          []uint32         `idl:"name:pdwProtoId" json:"proto_id"`
+// OSPFProtoFilterInfo structure represents OSPF_PROTO_FILTER_INFO RPC structure.
+type OSPFProtoFilterInfo struct {
+	Type           uint32           `idl:"name:type" json:"type"`
+	ActionOnMatch  OSPFFilterAction `idl:"name:ofaActionOnMatch" json:"action_on_match"`
+	ProtoIDsLength uint32           `idl:"name:dwNumProtoIds" json:"proto_ids_length"`
+	ProtoID        []uint32         `idl:"name:pdwProtoId" json:"proto_id"`
 }
 
-func (o *OspfProtoFilterInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *OSPFProtoFilterInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -22227,7 +22227,7 @@ func (o *OspfProtoFilterInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *OspfProtoFilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *OSPFProtoFilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -22237,7 +22237,7 @@ func (o *OspfProtoFilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	if err := w.WriteData(o.Type); err != nil {
 		return err
 	}
-	if err := w.WriteEnum(uint16(o.OfaActionOnMatch)); err != nil {
+	if err := w.WriteEnum(uint16(o.ActionOnMatch)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.ProtoIDsLength); err != nil {
@@ -22259,14 +22259,14 @@ func (o *OspfProtoFilterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	}
 	return nil
 }
-func (o *OspfProtoFilterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *OSPFProtoFilterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Type); err != nil {
 		return err
 	}
-	if err := w.ReadEnum((*uint16)(&o.OfaActionOnMatch)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.ActionOnMatch)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.ProtoIDsLength); err != nil {
@@ -22282,17 +22282,17 @@ func (o *OspfProtoFilterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	return nil
 }
 
-// OspfGlobalParam structure represents OSPF_GLOBAL_PARAM RPC structure.
-type OspfGlobalParam struct {
-	Type      uint32 `idl:"name:type" json:"type"`
-	Create    uint32 `idl:"name:create" json:"create"`
-	Enable    uint32 `idl:"name:enable" json:"enable"`
-	RouterID  uint32 `idl:"name:routerId" json:"router_id"`
-	AsBrdrRtr uint32 `idl:"name:ASBrdrRtr" json:"as_brdr_rtr"`
-	LogLevel  uint32 `idl:"name:logLevel" json:"log_level"`
+// OSPFGlobalParam structure represents OSPF_GLOBAL_PARAM RPC structure.
+type OSPFGlobalParam struct {
+	Type           uint32 `idl:"name:type" json:"type"`
+	Create         uint32 `idl:"name:create" json:"create"`
+	Enable         uint32 `idl:"name:enable" json:"enable"`
+	RouterID       uint32 `idl:"name:routerId" json:"router_id"`
+	ASBorderRouter uint32 `idl:"name:ASBrdrRtr" json:"as_border_router"`
+	LogLevel       uint32 `idl:"name:logLevel" json:"log_level"`
 }
 
-func (o *OspfGlobalParam) xxx_PreparePayload(ctx context.Context) error {
+func (o *OSPFGlobalParam) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -22301,7 +22301,7 @@ func (o *OspfGlobalParam) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *OspfGlobalParam) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *OSPFGlobalParam) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -22320,7 +22320,7 @@ func (o *OspfGlobalParam) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.RouterID); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.AsBrdrRtr); err != nil {
+	if err := w.WriteData(o.ASBorderRouter); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.LogLevel); err != nil {
@@ -22328,7 +22328,7 @@ func (o *OspfGlobalParam) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *OspfGlobalParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *OSPFGlobalParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -22344,7 +22344,7 @@ func (o *OspfGlobalParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	if err := w.ReadData(&o.RouterID); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.AsBrdrRtr); err != nil {
+	if err := w.ReadData(&o.ASBorderRouter); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.LogLevel); err != nil {
@@ -22353,8 +22353,8 @@ func (o *OspfGlobalParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	return nil
 }
 
-// OspfAreaParam structure represents OSPF_AREA_PARAM RPC structure.
-type OspfAreaParam struct {
+// OSPFAreaParam structure represents OSPF_AREA_PARAM RPC structure.
+type OSPFAreaParam struct {
 	Type           uint32 `idl:"name:type" json:"type"`
 	Create         uint32 `idl:"name:create" json:"create"`
 	Enable         uint32 `idl:"name:enable" json:"enable"`
@@ -22365,7 +22365,7 @@ type OspfAreaParam struct {
 	ImportSumAdv   uint32 `idl:"name:importSumAdv" json:"import_sum_adv"`
 }
 
-func (o *OspfAreaParam) xxx_PreparePayload(ctx context.Context) error {
+func (o *OSPFAreaParam) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -22374,7 +22374,7 @@ func (o *OspfAreaParam) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *OspfAreaParam) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *OSPFAreaParam) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -22407,7 +22407,7 @@ func (o *OspfAreaParam) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *OspfAreaParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *OSPFAreaParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -22438,8 +22438,8 @@ func (o *OspfAreaParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// OspfAreaRangeParam structure represents OSPF_AREA_RANGE_PARAM RPC structure.
-type OspfAreaRangeParam struct {
+// OSPFAreaRangeParam structure represents OSPF_AREA_RANGE_PARAM RPC structure.
+type OSPFAreaRangeParam struct {
 	Type      uint32 `idl:"name:type" json:"type"`
 	Create    uint32 `idl:"name:create" json:"create"`
 	Enable    uint32 `idl:"name:enable" json:"enable"`
@@ -22448,7 +22448,7 @@ type OspfAreaRangeParam struct {
 	RangeMask uint32 `idl:"name:rangeMask" json:"range_mask"`
 }
 
-func (o *OspfAreaRangeParam) xxx_PreparePayload(ctx context.Context) error {
+func (o *OSPFAreaRangeParam) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -22457,7 +22457,7 @@ func (o *OspfAreaRangeParam) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *OspfAreaRangeParam) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *OSPFAreaRangeParam) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -22484,7 +22484,7 @@ func (o *OspfAreaRangeParam) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	}
 	return nil
 }
-func (o *OspfAreaRangeParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *OSPFAreaRangeParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -22509,21 +22509,21 @@ func (o *OspfAreaRangeParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	return nil
 }
 
-// OspfVirtInterfaceParam structure represents OSPF_VIRT_INTERFACE_PARAM RPC structure.
-type OspfVirtInterfaceParam struct {
-	Type                 uint32 `idl:"name:type" json:"type"`
-	Create               uint32 `idl:"name:create" json:"create"`
-	Enable               uint32 `idl:"name:enable" json:"enable"`
-	TransitAreaID        uint32 `idl:"name:transitAreaId" json:"transit_area_id"`
-	VirtNeighborRouterID uint32 `idl:"name:virtNeighborRouterId" json:"virt_neighbor_router_id"`
-	TransitDelay         uint32 `idl:"name:transitDelay" json:"transit_delay"`
-	RetransInterval      uint32 `idl:"name:retransInterval" json:"retrans_interval"`
-	HelloInterval        uint32 `idl:"name:helloInterval" json:"hello_interval"`
-	DeadInterval         uint32 `idl:"name:deadInterval" json:"dead_interval"`
-	Password             []byte `idl:"name:password" json:"password"`
+// OSPFVirtualInterfaceParam structure represents OSPF_VIRT_INTERFACE_PARAM RPC structure.
+type OSPFVirtualInterfaceParam struct {
+	Type                    uint32 `idl:"name:type" json:"type"`
+	Create                  uint32 `idl:"name:create" json:"create"`
+	Enable                  uint32 `idl:"name:enable" json:"enable"`
+	TransitAreaID           uint32 `idl:"name:transitAreaId" json:"transit_area_id"`
+	VirtualNeighborRouterID uint32 `idl:"name:virtNeighborRouterId" json:"virtual_neighbor_router_id"`
+	TransitDelay            uint32 `idl:"name:transitDelay" json:"transit_delay"`
+	RetransimitInterval     uint32 `idl:"name:retransInterval" json:"retransimit_interval"`
+	HelloInterval           uint32 `idl:"name:helloInterval" json:"hello_interval"`
+	DeadInterval            uint32 `idl:"name:deadInterval" json:"dead_interval"`
+	Password                []byte `idl:"name:password" json:"password"`
 }
 
-func (o *OspfVirtInterfaceParam) xxx_PreparePayload(ctx context.Context) error {
+func (o *OSPFVirtualInterfaceParam) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -22532,7 +22532,7 @@ func (o *OspfVirtInterfaceParam) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *OspfVirtInterfaceParam) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *OSPFVirtualInterfaceParam) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -22551,13 +22551,13 @@ func (o *OspfVirtInterfaceParam) MarshalNDR(ctx context.Context, w ndr.Writer) e
 	if err := w.WriteData(o.TransitAreaID); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.VirtNeighborRouterID); err != nil {
+	if err := w.WriteData(o.VirtualNeighborRouterID); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.TransitDelay); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RetransInterval); err != nil {
+	if err := w.WriteData(o.RetransimitInterval); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.HelloInterval); err != nil {
@@ -22585,7 +22585,7 @@ func (o *OspfVirtInterfaceParam) MarshalNDR(ctx context.Context, w ndr.Writer) e
 	}
 	return nil
 }
-func (o *OspfVirtInterfaceParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *OSPFVirtualInterfaceParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -22601,13 +22601,13 @@ func (o *OspfVirtInterfaceParam) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 	if err := w.ReadData(&o.TransitAreaID); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.VirtNeighborRouterID); err != nil {
+	if err := w.ReadData(&o.VirtualNeighborRouterID); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.TransitDelay); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RetransInterval); err != nil {
+	if err := w.ReadData(&o.RetransimitInterval); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.HelloInterval); err != nil {
@@ -22629,8 +22629,8 @@ func (o *OspfVirtInterfaceParam) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 	return nil
 }
 
-// OspfInterfaceParam structure represents OSPF_INTERFACE_PARAM RPC structure.
-type OspfInterfaceParam struct {
+// OSPFInterfaceParam structure represents OSPF_INTERFACE_PARAM RPC structure.
+type OSPFInterfaceParam struct {
 	Type                uint32 `idl:"name:type" json:"type"`
 	Create              uint32 `idl:"name:create" json:"create"`
 	Enable              uint32 `idl:"name:enable" json:"enable"`
@@ -22640,16 +22640,16 @@ type OspfInterfaceParam struct {
 	InterfaceType       uint32 `idl:"name:intfType" json:"interface_type"`
 	RouterPriority      uint32 `idl:"name:routerPriority" json:"router_priority"`
 	TransitDelay        uint32 `idl:"name:transitDelay" json:"transit_delay"`
-	RetransInterval     uint32 `idl:"name:retransInterval" json:"retrans_interval"`
+	RetransimitInterval uint32 `idl:"name:retransInterval" json:"retransimit_interval"`
 	HelloInterval       uint32 `idl:"name:helloInterval" json:"hello_interval"`
 	DeadInterval        uint32 `idl:"name:deadInterval" json:"dead_interval"`
 	PollInterval        uint32 `idl:"name:pollInterval" json:"poll_interval"`
 	MetricCost          uint32 `idl:"name:metricCost" json:"metric_cost"`
 	Password            []byte `idl:"name:password" json:"password"`
-	MtuSize             uint32 `idl:"name:mtuSize" json:"mtu_size"`
+	MTUSize             uint32 `idl:"name:mtuSize" json:"mtu_size"`
 }
 
-func (o *OspfInterfaceParam) xxx_PreparePayload(ctx context.Context) error {
+func (o *OSPFInterfaceParam) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -22658,7 +22658,7 @@ func (o *OspfInterfaceParam) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *OspfInterfaceParam) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *OSPFInterfaceParam) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -22692,7 +22692,7 @@ func (o *OspfInterfaceParam) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.TransitDelay); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RetransInterval); err != nil {
+	if err := w.WriteData(o.RetransimitInterval); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.HelloInterval); err != nil {
@@ -22721,12 +22721,12 @@ func (o *OspfInterfaceParam) MarshalNDR(ctx context.Context, w ndr.Writer) error
 			return err
 		}
 	}
-	if err := w.WriteData(o.MtuSize); err != nil {
+	if err := w.WriteData(o.MTUSize); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *OspfInterfaceParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *OSPFInterfaceParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -22757,7 +22757,7 @@ func (o *OspfInterfaceParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	if err := w.ReadData(&o.TransitDelay); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RetransInterval); err != nil {
+	if err := w.ReadData(&o.RetransimitInterval); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.HelloInterval); err != nil {
@@ -22779,14 +22779,14 @@ func (o *OspfInterfaceParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 			return err
 		}
 	}
-	if err := w.ReadData(&o.MtuSize); err != nil {
+	if err := w.ReadData(&o.MTUSize); err != nil {
 		return err
 	}
 	return nil
 }
 
-// OspfNbmaNeighborParam structure represents OSPF_NBMA_NEIGHBOR_PARAM RPC structure.
-type OspfNbmaNeighborParam struct {
+// OSPFNBMANeighborParam structure represents OSPF_NBMA_NEIGHBOR_PARAM RPC structure.
+type OSPFNBMANeighborParam struct {
 	Type             uint32 `idl:"name:type" json:"type"`
 	Create           uint32 `idl:"name:create" json:"create"`
 	Enable           uint32 `idl:"name:enable" json:"enable"`
@@ -22795,7 +22795,7 @@ type OspfNbmaNeighborParam struct {
 	NeighborPriority uint32 `idl:"name:neighborPriority" json:"neighbor_priority"`
 }
 
-func (o *OspfNbmaNeighborParam) xxx_PreparePayload(ctx context.Context) error {
+func (o *OSPFNBMANeighborParam) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -22804,7 +22804,7 @@ func (o *OspfNbmaNeighborParam) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *OspfNbmaNeighborParam) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *OSPFNBMANeighborParam) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -22831,7 +22831,7 @@ func (o *OspfNbmaNeighborParam) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	}
 	return nil
 }
-func (o *OspfNbmaNeighborParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *OSPFNBMANeighborParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -22856,98 +22856,98 @@ func (o *OspfNbmaNeighborParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	return nil
 }
 
-// Rasdevicetype type represents RASDEVICETYPE RPC enumeration.
-type Rasdevicetype uint32
+// RASDeviceType type represents RASDEVICETYPE RPC enumeration.
+type RASDeviceType uint32
 
 var (
-	RasdevicetypeRdtModem       Rasdevicetype = 0
-	RasdevicetypeRdtX25         Rasdevicetype = 1
-	RasdevicetypeRdtISDN        Rasdevicetype = 2
-	RasdevicetypeRdtSerial      Rasdevicetype = 3
-	RasdevicetypeRdtFrameRelay  Rasdevicetype = 4
-	RasdevicetypeRdtAtm         Rasdevicetype = 5
-	RasdevicetypeRdtSonet       Rasdevicetype = 6
-	RasdevicetypeRdtSw56        Rasdevicetype = 7
-	RasdevicetypeRdtTunnelPPTP  Rasdevicetype = 8
-	RasdevicetypeRdtTunnelL2tp  Rasdevicetype = 9
-	RasdevicetypeRdtIrda        Rasdevicetype = 10
-	RasdevicetypeRdtParallel    Rasdevicetype = 11
-	RasdevicetypeRdtOther       Rasdevicetype = 12
-	RasdevicetypeRdtPpPoE       Rasdevicetype = 13
-	RasdevicetypeRdtTunnelSstp  Rasdevicetype = 14
-	RasdevicetypeRdtTunnelIKEv2 Rasdevicetype = 15
-	RasdevicetypeRdtTunnel      Rasdevicetype = 65536
-	RasdevicetypeRdtDirect      Rasdevicetype = 131072
-	RasdevicetypeRdtNullModem   Rasdevicetype = 262144
-	RasdevicetypeRdtBroadband   Rasdevicetype = 524288
+	RASDeviceTypeModem       RASDeviceType = 0
+	RASDeviceTypeX25         RASDeviceType = 1
+	RASDeviceTypeISDN        RASDeviceType = 2
+	RASDeviceTypeSerial      RASDeviceType = 3
+	RASDeviceTypeFrameRelay  RASDeviceType = 4
+	RASDeviceTypeATM         RASDeviceType = 5
+	RASDeviceTypeSONET       RASDeviceType = 6
+	RASDeviceTypeSW56        RASDeviceType = 7
+	RASDeviceTypeTunnelPPTP  RASDeviceType = 8
+	RASDeviceTypeTunnelL2TP  RASDeviceType = 9
+	RASDeviceTypeIRDA        RASDeviceType = 10
+	RASDeviceTypeParallel    RASDeviceType = 11
+	RASDeviceTypeOther       RASDeviceType = 12
+	RASDeviceTypePPPoE       RASDeviceType = 13
+	RASDeviceTypeTunnelSSTP  RASDeviceType = 14
+	RASDeviceTypeTunnelIKEv2 RASDeviceType = 15
+	RASDeviceTypeTunnel      RASDeviceType = 65536
+	RASDeviceTypeDirect      RASDeviceType = 131072
+	RASDeviceTypeNullModem   RASDeviceType = 262144
+	RASDeviceTypeBroadband   RASDeviceType = 524288
 )
 
-func (o Rasdevicetype) String() string {
+func (o RASDeviceType) String() string {
 	switch o {
-	case RasdevicetypeRdtModem:
-		return "RasdevicetypeRdtModem"
-	case RasdevicetypeRdtX25:
-		return "RasdevicetypeRdtX25"
-	case RasdevicetypeRdtISDN:
-		return "RasdevicetypeRdtISDN"
-	case RasdevicetypeRdtSerial:
-		return "RasdevicetypeRdtSerial"
-	case RasdevicetypeRdtFrameRelay:
-		return "RasdevicetypeRdtFrameRelay"
-	case RasdevicetypeRdtAtm:
-		return "RasdevicetypeRdtAtm"
-	case RasdevicetypeRdtSonet:
-		return "RasdevicetypeRdtSonet"
-	case RasdevicetypeRdtSw56:
-		return "RasdevicetypeRdtSw56"
-	case RasdevicetypeRdtTunnelPPTP:
-		return "RasdevicetypeRdtTunnelPPTP"
-	case RasdevicetypeRdtTunnelL2tp:
-		return "RasdevicetypeRdtTunnelL2tp"
-	case RasdevicetypeRdtIrda:
-		return "RasdevicetypeRdtIrda"
-	case RasdevicetypeRdtParallel:
-		return "RasdevicetypeRdtParallel"
-	case RasdevicetypeRdtOther:
-		return "RasdevicetypeRdtOther"
-	case RasdevicetypeRdtPpPoE:
-		return "RasdevicetypeRdtPpPoE"
-	case RasdevicetypeRdtTunnelSstp:
-		return "RasdevicetypeRdtTunnelSstp"
-	case RasdevicetypeRdtTunnelIKEv2:
-		return "RasdevicetypeRdtTunnelIKEv2"
-	case RasdevicetypeRdtTunnel:
-		return "RasdevicetypeRdtTunnel"
-	case RasdevicetypeRdtDirect:
-		return "RasdevicetypeRdtDirect"
-	case RasdevicetypeRdtNullModem:
-		return "RasdevicetypeRdtNullModem"
-	case RasdevicetypeRdtBroadband:
-		return "RasdevicetypeRdtBroadband"
+	case RASDeviceTypeModem:
+		return "RASDeviceTypeModem"
+	case RASDeviceTypeX25:
+		return "RASDeviceTypeX25"
+	case RASDeviceTypeISDN:
+		return "RASDeviceTypeISDN"
+	case RASDeviceTypeSerial:
+		return "RASDeviceTypeSerial"
+	case RASDeviceTypeFrameRelay:
+		return "RASDeviceTypeFrameRelay"
+	case RASDeviceTypeATM:
+		return "RASDeviceTypeATM"
+	case RASDeviceTypeSONET:
+		return "RASDeviceTypeSONET"
+	case RASDeviceTypeSW56:
+		return "RASDeviceTypeSW56"
+	case RASDeviceTypeTunnelPPTP:
+		return "RASDeviceTypeTunnelPPTP"
+	case RASDeviceTypeTunnelL2TP:
+		return "RASDeviceTypeTunnelL2TP"
+	case RASDeviceTypeIRDA:
+		return "RASDeviceTypeIRDA"
+	case RASDeviceTypeParallel:
+		return "RASDeviceTypeParallel"
+	case RASDeviceTypeOther:
+		return "RASDeviceTypeOther"
+	case RASDeviceTypePPPoE:
+		return "RASDeviceTypePPPoE"
+	case RASDeviceTypeTunnelSSTP:
+		return "RASDeviceTypeTunnelSSTP"
+	case RASDeviceTypeTunnelIKEv2:
+		return "RASDeviceTypeTunnelIKEv2"
+	case RASDeviceTypeTunnel:
+		return "RASDeviceTypeTunnel"
+	case RASDeviceTypeDirect:
+		return "RASDeviceTypeDirect"
+	case RASDeviceTypeNullModem:
+		return "RASDeviceTypeNullModem"
+	case RASDeviceTypeBroadband:
+		return "RASDeviceTypeBroadband"
 	}
 	return "Invalid"
 }
 
-// RasmanStatus type represents RASMAN_STATUS RPC enumeration.
-type RasmanStatus uint16
+// RASMANStatus type represents RASMAN_STATUS RPC enumeration.
+type RASMANStatus uint16
 
 var (
-	RasmanStatusOpen        RasmanStatus = 0
-	RasmanStatusClosed      RasmanStatus = 1
-	RasmanStatusUnavailable RasmanStatus = 2
-	RasmanStatusRemoved     RasmanStatus = 3
+	RASMANStatusOpen        RASMANStatus = 0
+	RASMANStatusClosed      RASMANStatus = 1
+	RASMANStatusUnavailable RASMANStatus = 2
+	RASMANStatusRemoved     RASMANStatus = 3
 )
 
-func (o RasmanStatus) String() string {
+func (o RASMANStatus) String() string {
 	switch o {
-	case RasmanStatusOpen:
-		return "RasmanStatusOpen"
-	case RasmanStatusClosed:
-		return "RasmanStatusClosed"
-	case RasmanStatusUnavailable:
-		return "RasmanStatusUnavailable"
-	case RasmanStatusRemoved:
-		return "RasmanStatusRemoved"
+	case RASMANStatusOpen:
+		return "RASMANStatusOpen"
+	case RASMANStatusClosed:
+		return "RASMANStatusClosed"
+	case RASMANStatusUnavailable:
+		return "RASMANStatusUnavailable"
+	case RASMANStatusRemoved:
+		return "RASMANStatusRemoved"
 	}
 	return "Invalid"
 }
@@ -22956,136 +22956,136 @@ func (o RasmanStatus) String() string {
 type RequestTypes uint16
 
 var (
-	RequestTypesReqtypePortenum             RequestTypes = 21
-	RequestTypesReqtypeGetinfo              RequestTypes = 22
-	RequestTypesReqtypeGetdevconfig         RequestTypes = 73
-	RequestTypesReqtypeSetdeviceconfiginfo  RequestTypes = 94
-	RequestTypesReqtypeGetdeviceconfiginfo  RequestTypes = 95
-	RequestTypesReqtypeGetcalledid          RequestTypes = 105
-	RequestTypesReqtypeSetcalledid          RequestTypes = 106
-	RequestTypesReqtypeGetndiswandrivercaps RequestTypes = 111
+	RequestTypesPortEnum             RequestTypes = 21
+	RequestTypesGetInfo              RequestTypes = 22
+	RequestTypesGetDeviceConfig      RequestTypes = 73
+	RequestTypesSetDeviceConfigInfo  RequestTypes = 94
+	RequestTypesGetDeviceConfigInfo  RequestTypes = 95
+	RequestTypesGetCalledID          RequestTypes = 105
+	RequestTypesSetCalledID          RequestTypes = 106
+	RequestTypesGetNDISWANDriverCaps RequestTypes = 111
 )
 
 func (o RequestTypes) String() string {
 	switch o {
-	case RequestTypesReqtypePortenum:
-		return "RequestTypesReqtypePortenum"
-	case RequestTypesReqtypeGetinfo:
-		return "RequestTypesReqtypeGetinfo"
-	case RequestTypesReqtypeGetdevconfig:
-		return "RequestTypesReqtypeGetdevconfig"
-	case RequestTypesReqtypeSetdeviceconfiginfo:
-		return "RequestTypesReqtypeSetdeviceconfiginfo"
-	case RequestTypesReqtypeGetdeviceconfiginfo:
-		return "RequestTypesReqtypeGetdeviceconfiginfo"
-	case RequestTypesReqtypeGetcalledid:
-		return "RequestTypesReqtypeGetcalledid"
-	case RequestTypesReqtypeSetcalledid:
-		return "RequestTypesReqtypeSetcalledid"
-	case RequestTypesReqtypeGetndiswandrivercaps:
-		return "RequestTypesReqtypeGetndiswandrivercaps"
+	case RequestTypesPortEnum:
+		return "RequestTypesPortEnum"
+	case RequestTypesGetInfo:
+		return "RequestTypesGetInfo"
+	case RequestTypesGetDeviceConfig:
+		return "RequestTypesGetDeviceConfig"
+	case RequestTypesSetDeviceConfigInfo:
+		return "RequestTypesSetDeviceConfigInfo"
+	case RequestTypesGetDeviceConfigInfo:
+		return "RequestTypesGetDeviceConfigInfo"
+	case RequestTypesGetCalledID:
+		return "RequestTypesGetCalledID"
+	case RequestTypesSetCalledID:
+		return "RequestTypesSetCalledID"
+	case RequestTypesGetNDISWANDriverCaps:
+		return "RequestTypesGetNDISWANDriverCaps"
 	}
 	return "Invalid"
 }
 
-// RasmanState type represents RASMAN_STATE RPC enumeration.
-type RasmanState uint16
+// RASMANState type represents RASMAN_STATE RPC enumeration.
+type RASMANState uint16
 
 var (
-	RasmanStateConnecting      RasmanState = 0
-	RasmanStateListening       RasmanState = 1
-	RasmanStateConnected       RasmanState = 2
-	RasmanStateDisconnecting   RasmanState = 3
-	RasmanStateDisconnected    RasmanState = 4
-	RasmanStateListencompleted RasmanState = 5
+	RASMANStateConnecting      RASMANState = 0
+	RASMANStateListening       RASMANState = 1
+	RASMANStateConnected       RASMANState = 2
+	RASMANStateDisconnecting   RASMANState = 3
+	RASMANStateDisconnected    RASMANState = 4
+	RASMANStateListenCompleted RASMANState = 5
 )
 
-func (o RasmanState) String() string {
+func (o RASMANState) String() string {
 	switch o {
-	case RasmanStateConnecting:
-		return "RasmanStateConnecting"
-	case RasmanStateListening:
-		return "RasmanStateListening"
-	case RasmanStateConnected:
-		return "RasmanStateConnected"
-	case RasmanStateDisconnecting:
-		return "RasmanStateDisconnecting"
-	case RasmanStateDisconnected:
-		return "RasmanStateDisconnected"
-	case RasmanStateListencompleted:
-		return "RasmanStateListencompleted"
+	case RASMANStateConnecting:
+		return "RASMANStateConnecting"
+	case RASMANStateListening:
+		return "RASMANStateListening"
+	case RASMANStateConnected:
+		return "RASMANStateConnected"
+	case RASMANStateDisconnecting:
+		return "RASMANStateDisconnecting"
+	case RASMANStateDisconnected:
+		return "RASMANStateDisconnected"
+	case RASMANStateListenCompleted:
+		return "RASMANStateListenCompleted"
 	}
 	return "Invalid"
 }
 
-// RasmanDisconnectType type represents RASMAN_DISCONNECT_TYPE RPC enumeration.
-type RasmanDisconnectType uint16
+// RASMANDisconnectType type represents RASMAN_DISCONNECT_TYPE RPC enumeration.
+type RASMANDisconnectType uint16
 
 var (
-	RasmanDisconnectTypeUserRequested       RasmanDisconnectType = 0
-	RasmanDisconnectTypeRemoteDisconnection RasmanDisconnectType = 1
-	RasmanDisconnectTypeHardwareFailure     RasmanDisconnectType = 2
-	RasmanDisconnectTypeNotDisconnected     RasmanDisconnectType = 3
+	RASMANDisconnectTypeUserRequested       RASMANDisconnectType = 0
+	RASMANDisconnectTypeRemoteDisconnection RASMANDisconnectType = 1
+	RASMANDisconnectTypeHardwareFailure     RASMANDisconnectType = 2
+	RASMANDisconnectTypeNotDisconnected     RASMANDisconnectType = 3
 )
 
-func (o RasmanDisconnectType) String() string {
+func (o RASMANDisconnectType) String() string {
 	switch o {
-	case RasmanDisconnectTypeUserRequested:
-		return "RasmanDisconnectTypeUserRequested"
-	case RasmanDisconnectTypeRemoteDisconnection:
-		return "RasmanDisconnectTypeRemoteDisconnection"
-	case RasmanDisconnectTypeHardwareFailure:
-		return "RasmanDisconnectTypeHardwareFailure"
-	case RasmanDisconnectTypeNotDisconnected:
-		return "RasmanDisconnectTypeNotDisconnected"
+	case RASMANDisconnectTypeUserRequested:
+		return "RASMANDisconnectTypeUserRequested"
+	case RASMANDisconnectTypeRemoteDisconnection:
+		return "RASMANDisconnectTypeRemoteDisconnection"
+	case RASMANDisconnectTypeHardwareFailure:
+		return "RASMANDisconnectTypeHardwareFailure"
+	case RASMANDisconnectTypeNotDisconnected:
+		return "RASMANDisconnectTypeNotDisconnected"
 	}
 	return "Invalid"
 }
 
-// RasmanUsage type represents RASMAN_USAGE RPC enumeration.
-type RasmanUsage uint16
+// RASMANUsage type represents RASMAN_USAGE RPC enumeration.
+type RASMANUsage uint16
 
 var (
-	RasmanUsageCallNone           RasmanUsage = 0
-	RasmanUsageCallIn             RasmanUsage = 1
-	RasmanUsageCallOut            RasmanUsage = 2
-	RasmanUsageCallRouter         RasmanUsage = 4
-	RasmanUsageCallLogon          RasmanUsage = 8
-	RasmanUsageCallOutOnly        RasmanUsage = 16
-	RasmanUsageCallInOnly         RasmanUsage = 32
-	RasmanUsageCallOutboundRouter RasmanUsage = 64
+	RASMANUsageCallNone           RASMANUsage = 0
+	RASMANUsageCallIn             RASMANUsage = 1
+	RASMANUsageCallOut            RASMANUsage = 2
+	RASMANUsageCallRouter         RASMANUsage = 4
+	RASMANUsageCallLogon          RASMANUsage = 8
+	RASMANUsageCallOutOnly        RASMANUsage = 16
+	RASMANUsageCallInOnly         RASMANUsage = 32
+	RASMANUsageCallOutboundRouter RASMANUsage = 64
 )
 
-func (o RasmanUsage) String() string {
+func (o RASMANUsage) String() string {
 	switch o {
-	case RasmanUsageCallNone:
-		return "RasmanUsageCallNone"
-	case RasmanUsageCallIn:
-		return "RasmanUsageCallIn"
-	case RasmanUsageCallOut:
-		return "RasmanUsageCallOut"
-	case RasmanUsageCallRouter:
-		return "RasmanUsageCallRouter"
-	case RasmanUsageCallLogon:
-		return "RasmanUsageCallLogon"
-	case RasmanUsageCallOutOnly:
-		return "RasmanUsageCallOutOnly"
-	case RasmanUsageCallInOnly:
-		return "RasmanUsageCallInOnly"
-	case RasmanUsageCallOutboundRouter:
-		return "RasmanUsageCallOutboundRouter"
+	case RASMANUsageCallNone:
+		return "RASMANUsageCallNone"
+	case RASMANUsageCallIn:
+		return "RASMANUsageCallIn"
+	case RASMANUsageCallOut:
+		return "RASMANUsageCallOut"
+	case RASMANUsageCallRouter:
+		return "RASMANUsageCallRouter"
+	case RASMANUsageCallLogon:
+		return "RASMANUsageCallLogon"
+	case RASMANUsageCallOutOnly:
+		return "RASMANUsageCallOutOnly"
+	case RASMANUsageCallInOnly:
+		return "RASMANUsageCallInOnly"
+	case RASMANUsageCallOutboundRouter:
+		return "RASMANUsageCallOutboundRouter"
 	}
 	return "Invalid"
 }
 
 // RequestBuffer structure represents RequestBuffer RPC structure.
 type RequestBuffer struct {
-	RbPcbIndex uint32       `idl:"name:RB_PCBIndex" json:"rb_pcb_index"`
-	RbReqtype  RequestTypes `idl:"name:RB_Reqtype" json:"rb_reqtype"`
-	RbDummy    uint32       `idl:"name:RB_Dummy" json:"rb_dummy"`
-	RbDone     uint32       `idl:"name:RB_Done" json:"rb_done"`
-	Alignment  int64        `idl:"name:Alignment" json:"alignment"`
-	RbBuffer   []byte       `idl:"name:RB_Buffer" json:"rb_buffer"`
+	Index       uint32       `idl:"name:RB_PCBIndex" json:"index"`
+	RequestType RequestTypes `idl:"name:RB_Reqtype" json:"request_type"`
+	_           uint32       `idl:"name:RB_Dummy"`
+	Done        uint32       `idl:"name:RB_Done" json:"done"`
+	Alignment   int64        `idl:"name:Alignment" json:"alignment"`
+	Buffer      []byte       `idl:"name:RB_Buffer" json:"buffer"`
 }
 
 func (o *RequestBuffer) xxx_PreparePayload(ctx context.Context) error {
@@ -23104,31 +23104,32 @@ func (o *RequestBuffer) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(8); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RbPcbIndex); err != nil {
+	if err := w.WriteData(o.Index); err != nil {
 		return err
 	}
-	if err := w.WriteEnum(uint16(o.RbReqtype)); err != nil {
+	if err := w.WriteEnum(uint16(o.RequestType)); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RbDummy); err != nil {
+	// reserved RB_Dummy
+	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RbDone); err != nil {
+	if err := w.WriteData(o.Done); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Alignment); err != nil {
 		return err
 	}
-	for i1 := range o.RbBuffer {
+	for i1 := range o.Buffer {
 		i1 := i1
 		if uint64(i1) >= 1 {
 			break
 		}
-		if err := w.WriteData(o.RbBuffer[i1]); err != nil {
+		if err := w.WriteData(o.Buffer[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.RbBuffer); uint64(i1) < 1; i1++ {
+	for i1 := len(o.Buffer); uint64(i1) < 1; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
@@ -23142,25 +23143,27 @@ func (o *RequestBuffer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RbPcbIndex); err != nil {
+	if err := w.ReadData(&o.Index); err != nil {
 		return err
 	}
-	if err := w.ReadEnum((*uint16)(&o.RbReqtype)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.RequestType)); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RbDummy); err != nil {
+	// reserved RB_Dummy
+	var _RB_Dummy uint32
+	if err := w.ReadData(&_RB_Dummy); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RbDone); err != nil {
+	if err := w.ReadData(&o.Done); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Alignment); err != nil {
 		return err
 	}
-	o.RbBuffer = make([]byte, 1)
-	for i1 := range o.RbBuffer {
+	o.Buffer = make([]byte, 1)
+	for i1 := range o.Buffer {
 		i1 := i1
-		if err := w.ReadData(&o.RbBuffer[i1]); err != nil {
+		if err := w.ReadData(&o.Buffer[i1]); err != nil {
 			return err
 		}
 	}
@@ -23172,11 +23175,11 @@ func (o *RequestBuffer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 
 // DeviceConfigInfo structure represents DeviceConfigInfo RPC structure.
 type DeviceConfigInfo struct {
-	Retcode      uint32 `idl:"name:retcode" json:"retcode"`
+	ReturnCode   uint32 `idl:"name:retcode" json:"return_code"`
 	Version      uint32 `idl:"name:dwVersion" json:"version"`
 	BufferLength uint32 `idl:"name:cbBuffer" json:"buffer_length"`
 	EntriesCount uint32 `idl:"name:cEntries" json:"entries_count"`
-	Abdata       []byte `idl:"name:abdata" json:"abdata"`
+	Data         []byte `idl:"name:abdata" json:"data"`
 }
 
 func (o *DeviceConfigInfo) xxx_PreparePayload(ctx context.Context) error {
@@ -23195,7 +23198,7 @@ func (o *DeviceConfigInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.Retcode); err != nil {
+	if err := w.WriteData(o.ReturnCode); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Version); err != nil {
@@ -23207,16 +23210,16 @@ func (o *DeviceConfigInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.EntriesCount); err != nil {
 		return err
 	}
-	for i1 := range o.Abdata {
+	for i1 := range o.Data {
 		i1 := i1
 		if uint64(i1) >= 1 {
 			break
 		}
-		if err := w.WriteData(o.Abdata[i1]); err != nil {
+		if err := w.WriteData(o.Data[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.Abdata); uint64(i1) < 1; i1++ {
+	for i1 := len(o.Data); uint64(i1) < 1; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
@@ -23230,7 +23233,7 @@ func (o *DeviceConfigInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.Retcode); err != nil {
+	if err := w.ReadData(&o.ReturnCode); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Version); err != nil {
@@ -23242,10 +23245,10 @@ func (o *DeviceConfigInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	if err := w.ReadData(&o.EntriesCount); err != nil {
 		return err
 	}
-	o.Abdata = make([]byte, 1)
-	for i1 := range o.Abdata {
+	o.Data = make([]byte, 1)
+	for i1 := range o.Data {
 		i1 := i1
-		if err := w.ReadData(&o.Abdata[i1]); err != nil {
+		if err := w.ReadData(&o.Data[i1]); err != nil {
 			return err
 		}
 	}
@@ -23264,12 +23267,12 @@ type RASDeviceInfo struct {
 	RouterOutboundEnabled bool          `idl:"name:fRouterOutboundEnabled" json:"router_outbound_enabled"`
 	TAPILineID            uint32        `idl:"name:dwTapiLineId" json:"tapi_line_id"`
 	Error                 uint32        `idl:"name:dwError" json:"error"`
-	EndPointsLength       uint32        `idl:"name:dwNumEndPoints" json:"end_points_length"`
+	EndpointsLength       uint32        `idl:"name:dwNumEndPoints" json:"endpoints_length"`
 	MaxOutCalls           uint32        `idl:"name:dwMaxOutCalls" json:"max_out_calls"`
 	MaxInCalls            uint32        `idl:"name:dwMaxInCalls" json:"max_in_calls"`
-	MinWANEndPoints       uint32        `idl:"name:dwMinWanEndPoints" json:"min_wan_end_points"`
-	MaxWANEndPoints       uint32        `idl:"name:dwMaxWanEndPoints" json:"max_wan_end_points"`
-	DeviceType            Rasdevicetype `idl:"name:eDeviceType" json:"device_type"`
+	MinWANEndpoints       uint32        `idl:"name:dwMinWanEndPoints" json:"min_wan_endpoints"`
+	MaxWANEndpoints       uint32        `idl:"name:dwMaxWanEndPoints" json:"max_wan_endpoints"`
+	DeviceType            RASDeviceType `idl:"name:eDeviceType" json:"device_type"`
 	Device                *dtyp.GUID    `idl:"name:guidDevice" json:"device"`
 	PortName              []byte        `idl:"name:szPortName" json:"port_name"`
 	DeviceName            []byte        `idl:"name:szDeviceName" json:"device_name"`
@@ -23337,7 +23340,7 @@ func (o *RASDeviceInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Error); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.EndPointsLength); err != nil {
+	if err := w.WriteData(o.EndpointsLength); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.MaxOutCalls); err != nil {
@@ -23346,10 +23349,10 @@ func (o *RASDeviceInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.MaxInCalls); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.MinWANEndPoints); err != nil {
+	if err := w.WriteData(o.MinWANEndpoints); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.MaxWANEndPoints); err != nil {
+	if err := w.WriteData(o.MaxWANEndpoints); err != nil {
 		return err
 	}
 	if err := w.WriteEnum(uint16(o.DeviceType)); err != nil {
@@ -23444,7 +23447,7 @@ func (o *RASDeviceInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Error); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.EndPointsLength); err != nil {
+	if err := w.ReadData(&o.EndpointsLength); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.MaxOutCalls); err != nil {
@@ -23453,17 +23456,17 @@ func (o *RASDeviceInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.MaxInCalls); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.MinWANEndPoints); err != nil {
+	if err := w.ReadData(&o.MinWANEndpoints); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.MaxWANEndPoints); err != nil {
+	if err := w.ReadData(&o.MaxWANEndpoints); err != nil {
 		return err
 	}
 	_eDeviceType := uint16(o.DeviceType)
 	if err := w.ReadEnum(&_eDeviceType); err != nil {
 		return err
 	}
-	o.DeviceType = Rasdevicetype(_eDeviceType)
+	o.DeviceType = RASDeviceType(_eDeviceType)
 	if o.Device == nil {
 		o.Device = &dtyp.GUID{}
 	}
@@ -23563,12 +23566,12 @@ func (o *RASCalledidInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 
 // GetSetCalledID structure represents GetSetCalledId RPC structure.
 type GetSetCalledID struct {
-	Retcode uint32           `idl:"name:retcode" json:"retcode"`
-	Write   bool             `idl:"name:fWrite" json:"write"`
-	Size    uint32           `idl:"name:dwSize" json:"size"`
-	Device  *dtyp.GUID       `idl:"name:guidDevice" json:"device"`
-	Rdi     *RASDeviceInfo   `idl:"name:rdi" json:"rdi"`
-	RciInfo *RASCalledidInfo `idl:"name:rciInfo" json:"rci_info"`
+	ReturnCode    uint32           `idl:"name:retcode" json:"return_code"`
+	Write         bool             `idl:"name:fWrite" json:"write"`
+	Size          uint32           `idl:"name:dwSize" json:"size"`
+	Device        *dtyp.GUID       `idl:"name:guidDevice" json:"device"`
+	RASDeviceInfo *RASDeviceInfo   `idl:"name:rdi" json:"ras_device_info"`
+	Info          *RASCalledidInfo `idl:"name:rciInfo" json:"info"`
 }
 
 func (o *GetSetCalledID) xxx_PreparePayload(ctx context.Context) error {
@@ -23587,7 +23590,7 @@ func (o *GetSetCalledID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.Retcode); err != nil {
+	if err := w.WriteData(o.ReturnCode); err != nil {
 		return err
 	}
 	if !o.Write {
@@ -23611,8 +23614,8 @@ func (o *GetSetCalledID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.Rdi != nil {
-		if err := o.Rdi.MarshalNDR(ctx, w); err != nil {
+	if o.RASDeviceInfo != nil {
+		if err := o.RASDeviceInfo.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
@@ -23620,8 +23623,8 @@ func (o *GetSetCalledID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.RciInfo != nil {
-		if err := o.RciInfo.MarshalNDR(ctx, w); err != nil {
+	if o.Info != nil {
+		if err := o.Info.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
@@ -23635,7 +23638,7 @@ func (o *GetSetCalledID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.Retcode); err != nil {
+	if err := w.ReadData(&o.ReturnCode); err != nil {
 		return err
 	}
 	var _bWrite int32
@@ -23652,28 +23655,28 @@ func (o *GetSetCalledID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.Device.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.Rdi == nil {
-		o.Rdi = &RASDeviceInfo{}
+	if o.RASDeviceInfo == nil {
+		o.RASDeviceInfo = &RASDeviceInfo{}
 	}
-	if err := o.Rdi.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.RASDeviceInfo.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.RciInfo == nil {
-		o.RciInfo = &RASCalledidInfo{}
+	if o.Info == nil {
+		o.Info = &RASCalledidInfo{}
 	}
-	if err := o.RciInfo.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// RASNdiswanDriverInfo structure represents RAS_NDISWAN_DRIVER_INFO RPC structure.
-type RASNdiswanDriverInfo struct {
+// RASNDISWANDriverInfo structure represents RAS_NDISWAN_DRIVER_INFO RPC structure.
+type RASNDISWANDriverInfo struct {
 	DriverCaps uint32 `idl:"name:DriverCaps" json:"driver_caps"`
 	_          uint32 `idl:"name:Reserved"`
 }
 
-func (o *RASNdiswanDriverInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *RASNDISWANDriverInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -23682,7 +23685,7 @@ func (o *RASNdiswanDriverInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RASNdiswanDriverInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RASNDISWANDriverInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -23698,7 +23701,7 @@ func (o *RASNdiswanDriverInfo) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	}
 	return nil
 }
-func (o *RASNdiswanDriverInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RASNDISWANDriverInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -23713,13 +23716,13 @@ func (o *RASNdiswanDriverInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 	return nil
 }
 
-// GetNdiswanDriverCaps structure represents GetNdiswanDriverCapsStruct RPC structure.
-type GetNdiswanDriverCaps struct {
-	Retcode           uint32                `idl:"name:retcode" json:"retcode"`
-	NdiswanDriverInfo *RASNdiswanDriverInfo `idl:"name:NdiswanDriverInfo" json:"ndiswan_driver_info"`
+// GetNDISWANDriverCaps structure represents GetNdiswanDriverCapsStruct RPC structure.
+type GetNDISWANDriverCaps struct {
+	ReturnCode        uint32                `idl:"name:retcode" json:"return_code"`
+	NDISWANDriverInfo *RASNDISWANDriverInfo `idl:"name:NdiswanDriverInfo" json:"ndiswan_driver_info"`
 }
 
-func (o *GetNdiswanDriverCaps) xxx_PreparePayload(ctx context.Context) error {
+func (o *GetNDISWANDriverCaps) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -23728,38 +23731,38 @@ func (o *GetNdiswanDriverCaps) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *GetNdiswanDriverCaps) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetNDISWANDriverCaps) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.Retcode); err != nil {
+	if err := w.WriteData(o.ReturnCode); err != nil {
 		return err
 	}
-	if o.NdiswanDriverInfo != nil {
-		if err := o.NdiswanDriverInfo.MarshalNDR(ctx, w); err != nil {
+	if o.NDISWANDriverInfo != nil {
+		if err := o.NDISWANDriverInfo.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&RASNdiswanDriverInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&RASNDISWANDriverInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *GetNdiswanDriverCaps) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *GetNDISWANDriverCaps) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.Retcode); err != nil {
+	if err := w.ReadData(&o.ReturnCode); err != nil {
 		return err
 	}
-	if o.NdiswanDriverInfo == nil {
-		o.NdiswanDriverInfo = &RASNdiswanDriverInfo{}
+	if o.NDISWANDriverInfo == nil {
+		o.NDISWANDriverInfo = &RASNDISWANDriverInfo{}
 	}
-	if err := o.NdiswanDriverInfo.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.NDISWANDriverInfo.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
@@ -23767,7 +23770,7 @@ func (o *GetNdiswanDriverCaps) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 
 // GetDevConfig structure represents GetDevConfigStruct RPC structure.
 type GetDevConfig struct {
-	Retcode    uint32 `idl:"name:retcode" json:"retcode"`
+	ReturnCode uint32 `idl:"name:retcode" json:"return_code"`
 	DeviceType []byte `idl:"name:devicetype" json:"device_type"`
 	Size       uint32 `idl:"name:size" json:"size"`
 	Config     []byte `idl:"name:config" json:"config"`
@@ -23789,7 +23792,7 @@ func (o *GetDevConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.Retcode); err != nil {
+	if err := w.WriteData(o.ReturnCode); err != nil {
 		return err
 	}
 	for i1 := range o.DeviceType {
@@ -23832,7 +23835,7 @@ func (o *GetDevConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.Retcode); err != nil {
+	if err := w.ReadData(&o.ReturnCode); err != nil {
 		return err
 	}
 	o.DeviceType = make([]byte, 17)
@@ -23860,10 +23863,10 @@ func (o *GetDevConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 
 // Enum structure represents Enum RPC structure.
 type Enum struct {
-	Retcode uint32 `idl:"name:retcode" json:"retcode"`
-	Size    uint32 `idl:"name:size" json:"size"`
-	Entries uint32 `idl:"name:entries" json:"entries"`
-	Buffer  []byte `idl:"name:buffer" json:"buffer"`
+	ReturnCode uint32 `idl:"name:retcode" json:"return_code"`
+	Size       uint32 `idl:"name:size" json:"size"`
+	Entries    uint32 `idl:"name:entries" json:"entries"`
+	Buffer     []byte `idl:"name:buffer" json:"buffer"`
 }
 
 func (o *Enum) xxx_PreparePayload(ctx context.Context) error {
@@ -23882,7 +23885,7 @@ func (o *Enum) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.Retcode); err != nil {
+	if err := w.WriteData(o.ReturnCode); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Size); err != nil {
@@ -23914,7 +23917,7 @@ func (o *Enum) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.Retcode); err != nil {
+	if err := w.ReadData(&o.ReturnCode); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Size); err != nil {
@@ -23936,22 +23939,22 @@ func (o *Enum) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// RasmanPort32 structure represents RASMAN_PORT_32 RPC structure.
-type RasmanPort32 struct {
-	PPort            uint32        `idl:"name:P_Port" json:"p_port"`
-	PPortName        []byte        `idl:"name:P_PortName" json:"p_port_name"`
-	PStatus          RasmanStatus  `idl:"name:P_Status" json:"p_status"`
-	PRdtDeviceType   Rasdevicetype `idl:"name:P_rdtDeviceType" json:"p_rdt_device_type"`
-	PConfiguredUsage RasmanUsage   `idl:"name:P_ConfiguredUsage" json:"p_configured_usage"`
-	PCurrentUsage    RasmanUsage   `idl:"name:P_CurrentUsage" json:"p_current_usage"`
-	PMediaName       []byte        `idl:"name:P_MediaName" json:"p_media_name"`
-	PDeviceType      []byte        `idl:"name:P_DeviceType" json:"p_device_type"`
-	PDeviceName      []byte        `idl:"name:P_DeviceName" json:"p_device_name"`
-	PLineDeviceID    uint32        `idl:"name:P_LineDeviceId" json:"p_line_device_id"`
-	PAddressID       uint32        `idl:"name:P_AddressId" json:"p_address_id"`
+// RASMANPort32 structure represents RASMAN_PORT_32 RPC structure.
+type RASMANPort32 struct {
+	Port            uint32        `idl:"name:P_Port" json:"port"`
+	PortName        []byte        `idl:"name:P_PortName" json:"port_name"`
+	Status          RASMANStatus  `idl:"name:P_Status" json:"status"`
+	RASDeviceType   RASDeviceType `idl:"name:P_rdtDeviceType" json:"ras_device_type"`
+	ConfiguredUsage RASMANUsage   `idl:"name:P_ConfiguredUsage" json:"configured_usage"`
+	CurrentUsage    RASMANUsage   `idl:"name:P_CurrentUsage" json:"current_usage"`
+	MediaName       []byte        `idl:"name:P_MediaName" json:"media_name"`
+	DeviceType      []byte        `idl:"name:P_DeviceType" json:"device_type"`
+	DeviceName      []byte        `idl:"name:P_DeviceName" json:"device_name"`
+	LineDeviceID    uint32        `idl:"name:P_LineDeviceId" json:"line_device_id"`
+	AddressID       uint32        `idl:"name:P_AddressId" json:"address_id"`
 }
 
-func (o *RasmanPort32) xxx_PreparePayload(ctx context.Context) error {
+func (o *RASMANPort32) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -23960,178 +23963,178 @@ func (o *RasmanPort32) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RasmanPort32) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RASMANPort32) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.PPort); err != nil {
+	if err := w.WriteData(o.Port); err != nil {
 		return err
 	}
-	for i1 := range o.PPortName {
+	for i1 := range o.PortName {
 		i1 := i1
 		if uint64(i1) >= 16 {
 			break
 		}
-		if err := w.WriteData(o.PPortName[i1]); err != nil {
+		if err := w.WriteData(o.PortName[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.PPortName); uint64(i1) < 16; i1++ {
+	for i1 := len(o.PortName); uint64(i1) < 16; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
 	}
-	if err := w.WriteEnum(uint16(o.PStatus)); err != nil {
+	if err := w.WriteEnum(uint16(o.Status)); err != nil {
 		return err
 	}
-	if err := w.WriteEnum(uint16(o.PRdtDeviceType)); err != nil {
+	if err := w.WriteEnum(uint16(o.RASDeviceType)); err != nil {
 		return err
 	}
-	if err := w.WriteEnum(uint16(o.PConfiguredUsage)); err != nil {
+	if err := w.WriteEnum(uint16(o.ConfiguredUsage)); err != nil {
 		return err
 	}
-	if err := w.WriteEnum(uint16(o.PCurrentUsage)); err != nil {
+	if err := w.WriteEnum(uint16(o.CurrentUsage)); err != nil {
 		return err
 	}
-	for i1 := range o.PMediaName {
+	for i1 := range o.MediaName {
 		i1 := i1
 		if uint64(i1) >= 16 {
 			break
 		}
-		if err := w.WriteData(o.PMediaName[i1]); err != nil {
+		if err := w.WriteData(o.MediaName[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.PMediaName); uint64(i1) < 16; i1++ {
+	for i1 := len(o.MediaName); uint64(i1) < 16; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
 	}
-	for i1 := range o.PDeviceType {
+	for i1 := range o.DeviceType {
 		i1 := i1
 		if uint64(i1) >= 16 {
 			break
 		}
-		if err := w.WriteData(o.PDeviceType[i1]); err != nil {
+		if err := w.WriteData(o.DeviceType[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.PDeviceType); uint64(i1) < 16; i1++ {
+	for i1 := len(o.DeviceType); uint64(i1) < 16; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
 	}
-	for i1 := range o.PDeviceName {
+	for i1 := range o.DeviceName {
 		i1 := i1
 		if uint64(i1) >= 129 {
 			break
 		}
-		if err := w.WriteData(o.PDeviceName[i1]); err != nil {
+		if err := w.WriteData(o.DeviceName[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.PDeviceName); uint64(i1) < 129; i1++ {
+	for i1 := len(o.DeviceName); uint64(i1) < 129; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
 	}
-	if err := w.WriteData(o.PLineDeviceID); err != nil {
+	if err := w.WriteData(o.LineDeviceID); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.PAddressID); err != nil {
+	if err := w.WriteData(o.AddressID); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *RasmanPort32) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RASMANPort32) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.PPort); err != nil {
+	if err := w.ReadData(&o.Port); err != nil {
 		return err
 	}
-	o.PPortName = make([]byte, 16)
-	for i1 := range o.PPortName {
+	o.PortName = make([]byte, 16)
+	for i1 := range o.PortName {
 		i1 := i1
-		if err := w.ReadData(&o.PPortName[i1]); err != nil {
+		if err := w.ReadData(&o.PortName[i1]); err != nil {
 			return err
 		}
 	}
-	if err := w.ReadEnum((*uint16)(&o.PStatus)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
 		return err
 	}
-	_ePRdtDeviceType := uint16(o.PRdtDeviceType)
-	if err := w.ReadEnum(&_ePRdtDeviceType); err != nil {
+	_eRASDeviceType := uint16(o.RASDeviceType)
+	if err := w.ReadEnum(&_eRASDeviceType); err != nil {
 		return err
 	}
-	o.PRdtDeviceType = Rasdevicetype(_ePRdtDeviceType)
-	if err := w.ReadEnum((*uint16)(&o.PConfiguredUsage)); err != nil {
+	o.RASDeviceType = RASDeviceType(_eRASDeviceType)
+	if err := w.ReadEnum((*uint16)(&o.ConfiguredUsage)); err != nil {
 		return err
 	}
-	if err := w.ReadEnum((*uint16)(&o.PCurrentUsage)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.CurrentUsage)); err != nil {
 		return err
 	}
-	o.PMediaName = make([]byte, 16)
-	for i1 := range o.PMediaName {
+	o.MediaName = make([]byte, 16)
+	for i1 := range o.MediaName {
 		i1 := i1
-		if err := w.ReadData(&o.PMediaName[i1]); err != nil {
+		if err := w.ReadData(&o.MediaName[i1]); err != nil {
 			return err
 		}
 	}
-	o.PDeviceType = make([]byte, 16)
-	for i1 := range o.PDeviceType {
+	o.DeviceType = make([]byte, 16)
+	for i1 := range o.DeviceType {
 		i1 := i1
-		if err := w.ReadData(&o.PDeviceType[i1]); err != nil {
+		if err := w.ReadData(&o.DeviceType[i1]); err != nil {
 			return err
 		}
 	}
-	o.PDeviceName = make([]byte, 129)
-	for i1 := range o.PDeviceName {
+	o.DeviceName = make([]byte, 129)
+	for i1 := range o.DeviceName {
 		i1 := i1
-		if err := w.ReadData(&o.PDeviceName[i1]); err != nil {
+		if err := w.ReadData(&o.DeviceName[i1]); err != nil {
 			return err
 		}
 	}
-	if err := w.ReadData(&o.PLineDeviceID); err != nil {
+	if err := w.ReadData(&o.LineDeviceID); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.PAddressID); err != nil {
+	if err := w.ReadData(&o.AddressID); err != nil {
 		return err
 	}
 	return nil
 }
 
-// RasmanInfo structure represents RASMAN_INFO RPC structure.
-type RasmanInfo struct {
-	RiPortStatus           RasmanStatus         `idl:"name:RI_PortStatus" json:"ri_port_status"`
-	RiConnState            RasmanState          `idl:"name:RI_ConnState" json:"ri_conn_state"`
-	RiLinkSpeed            uint32               `idl:"name:RI_LinkSpeed" json:"ri_link_speed"`
-	RiLastError            uint32               `idl:"name:RI_LastError" json:"ri_last_error"`
-	RiCurrentUsage         RasmanUsage          `idl:"name:RI_CurrentUsage" json:"ri_current_usage"`
-	RiDeviceTypeConnecting []byte               `idl:"name:RI_DeviceTypeConnecting" json:"ri_device_type_connecting"`
-	RiDeviceConnecting     []byte               `idl:"name:RI_DeviceConnecting" json:"ri_device_connecting"`
-	RiStringDeviceType     []byte               `idl:"name:RI_szDeviceType" json:"ri_string_device_type"`
-	RiStringDeviceName     []byte               `idl:"name:RI_szDeviceName" json:"ri_string_device_name"`
-	RiStringPortName       []byte               `idl:"name:RI_szPortName" json:"ri_string_port_name"`
-	RiDisconnectType       RasmanDisconnectType `idl:"name:RI_DisconnectType" json:"ri_disconnect_type"`
-	RiOwnershipFlag        uint32               `idl:"name:RI_OwnershipFlag" json:"ri_ownership_flag"`
-	RiConnectDuration      uint32               `idl:"name:RI_ConnectDuration" json:"ri_connect_duration"`
-	RiBytesReceived        uint32               `idl:"name:RI_BytesReceived" json:"ri_bytes_received"`
-	RiPhonebook            []byte               `idl:"name:RI_Phonebook" json:"ri_phonebook"`
-	RiPhoneEntry           []byte               `idl:"name:RI_PhoneEntry" json:"ri_phone_entry"`
-	RiConnectionHandle     []byte               `idl:"name:RI_ConnectionHandle" json:"ri_connection_handle"`
-	RiSubEntry             uint32               `idl:"name:RI_SubEntry" json:"ri_sub_entry"`
-	RiRdtDeviceType        Rasdevicetype        `idl:"name:RI_rdtDeviceType" json:"ri_rdt_device_type"`
-	RiGUIDEntry            *dtyp.GUID           `idl:"name:RI_GuidEntry" json:"ri_guid_entry"`
-	RiDwSessionID          uint32               `idl:"name:RI_dwSessionId" json:"ri_dw_session_id"`
-	RiDwFlags              uint32               `idl:"name:RI_dwFlags" json:"ri_dw_flags"`
-	RiCorrelationGUID      *dtyp.GUID           `idl:"name:RI_CorrelationGuid" json:"ri_correlation_guid"`
+// RASMANInfo structure represents RASMAN_INFO RPC structure.
+type RASMANInfo struct {
+	PortStatus           RASMANStatus         `idl:"name:RI_PortStatus" json:"port_status"`
+	ConnState            RASMANState          `idl:"name:RI_ConnState" json:"conn_state"`
+	LinkSpeed            uint32               `idl:"name:RI_LinkSpeed" json:"link_speed"`
+	LastError            uint32               `idl:"name:RI_LastError" json:"last_error"`
+	CurrentUsage         RASMANUsage          `idl:"name:RI_CurrentUsage" json:"current_usage"`
+	DeviceTypeConnecting []byte               `idl:"name:RI_DeviceTypeConnecting" json:"device_type_connecting"`
+	DeviceConnecting     []byte               `idl:"name:RI_DeviceConnecting" json:"device_connecting"`
+	DeviceType           []byte               `idl:"name:RI_szDeviceType" json:"device_type"`
+	DeviceName           []byte               `idl:"name:RI_szDeviceName" json:"device_name"`
+	PortName             []byte               `idl:"name:RI_szPortName" json:"port_name"`
+	DisconnectType       RASMANDisconnectType `idl:"name:RI_DisconnectType" json:"disconnect_type"`
+	OwnershipFlag        uint32               `idl:"name:RI_OwnershipFlag" json:"ownership_flag"`
+	ConnectDuration      uint32               `idl:"name:RI_ConnectDuration" json:"connect_duration"`
+	BytesReceived        uint32               `idl:"name:RI_BytesReceived" json:"bytes_received"`
+	Phonebook            []byte               `idl:"name:RI_Phonebook" json:"phonebook"`
+	PhoneEntry           []byte               `idl:"name:RI_PhoneEntry" json:"phone_entry"`
+	ConnectionHandle     []byte               `idl:"name:RI_ConnectionHandle" json:"connection_handle"`
+	SubEntry             uint32               `idl:"name:RI_SubEntry" json:"sub_entry"`
+	RASDeviceType        RASDeviceType        `idl:"name:RI_rdtDeviceType" json:"ras_device_type"`
+	GUIDEntry            *dtyp.GUID           `idl:"name:RI_GuidEntry" json:"guid_entry"`
+	SessionID            uint32               `idl:"name:RI_dwSessionId" json:"session_id"`
+	Flags                uint32               `idl:"name:RI_dwFlags" json:"flags"`
+	CorrelationGUID      *dtyp.GUID           `idl:"name:RI_CorrelationGuid" json:"correlation_guid"`
 }
 
-func (o *RasmanInfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *RASMANInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -24140,144 +24143,144 @@ func (o *RasmanInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RasmanInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RASMANInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
-	if err := w.WriteEnum(uint16(o.RiPortStatus)); err != nil {
+	if err := w.WriteEnum(uint16(o.PortStatus)); err != nil {
 		return err
 	}
-	if err := w.WriteEnum(uint16(o.RiConnState)); err != nil {
+	if err := w.WriteEnum(uint16(o.ConnState)); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RiLinkSpeed); err != nil {
+	if err := w.WriteData(o.LinkSpeed); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RiLastError); err != nil {
+	if err := w.WriteData(o.LastError); err != nil {
 		return err
 	}
-	if err := w.WriteEnum(uint16(o.RiCurrentUsage)); err != nil {
+	if err := w.WriteEnum(uint16(o.CurrentUsage)); err != nil {
 		return err
 	}
-	for i1 := range o.RiDeviceTypeConnecting {
+	for i1 := range o.DeviceTypeConnecting {
 		i1 := i1
 		if uint64(i1) >= 16 {
 			break
 		}
-		if err := w.WriteData(o.RiDeviceTypeConnecting[i1]); err != nil {
+		if err := w.WriteData(o.DeviceTypeConnecting[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.RiDeviceTypeConnecting); uint64(i1) < 16; i1++ {
+	for i1 := len(o.DeviceTypeConnecting); uint64(i1) < 16; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
 	}
-	for i1 := range o.RiDeviceConnecting {
+	for i1 := range o.DeviceConnecting {
 		i1 := i1
 		if uint64(i1) >= 129 {
 			break
 		}
-		if err := w.WriteData(o.RiDeviceConnecting[i1]); err != nil {
+		if err := w.WriteData(o.DeviceConnecting[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.RiDeviceConnecting); uint64(i1) < 129; i1++ {
+	for i1 := len(o.DeviceConnecting); uint64(i1) < 129; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
 	}
-	for i1 := range o.RiStringDeviceType {
+	for i1 := range o.DeviceType {
 		i1 := i1
 		if uint64(i1) >= 16 {
 			break
 		}
-		if err := w.WriteData(o.RiStringDeviceType[i1]); err != nil {
+		if err := w.WriteData(o.DeviceType[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.RiStringDeviceType); uint64(i1) < 16; i1++ {
+	for i1 := len(o.DeviceType); uint64(i1) < 16; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
 	}
-	for i1 := range o.RiStringDeviceName {
+	for i1 := range o.DeviceName {
 		i1 := i1
 		if uint64(i1) >= 129 {
 			break
 		}
-		if err := w.WriteData(o.RiStringDeviceName[i1]); err != nil {
+		if err := w.WriteData(o.DeviceName[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.RiStringDeviceName); uint64(i1) < 129; i1++ {
+	for i1 := len(o.DeviceName); uint64(i1) < 129; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
 	}
-	for i1 := range o.RiStringPortName {
+	for i1 := range o.PortName {
 		i1 := i1
 		if uint64(i1) >= 17 {
 			break
 		}
-		if err := w.WriteData(o.RiStringPortName[i1]); err != nil {
+		if err := w.WriteData(o.PortName[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.RiStringPortName); uint64(i1) < 17; i1++ {
+	for i1 := len(o.PortName); uint64(i1) < 17; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
 	}
-	if err := w.WriteEnum(uint16(o.RiDisconnectType)); err != nil {
+	if err := w.WriteEnum(uint16(o.DisconnectType)); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RiOwnershipFlag); err != nil {
+	if err := w.WriteData(o.OwnershipFlag); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RiConnectDuration); err != nil {
+	if err := w.WriteData(o.ConnectDuration); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RiBytesReceived); err != nil {
+	if err := w.WriteData(o.BytesReceived); err != nil {
 		return err
 	}
-	for i1 := range o.RiPhonebook {
+	for i1 := range o.Phonebook {
 		i1 := i1
 		if uint64(i1) >= 261 {
 			break
 		}
-		if err := w.WriteData(o.RiPhonebook[i1]); err != nil {
+		if err := w.WriteData(o.Phonebook[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.RiPhonebook); uint64(i1) < 261; i1++ {
+	for i1 := len(o.Phonebook); uint64(i1) < 261; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
 	}
-	for i1 := range o.RiPhoneEntry {
+	for i1 := range o.PhoneEntry {
 		i1 := i1
 		if uint64(i1) >= 257 {
 			break
 		}
-		if err := w.WriteData(o.RiPhoneEntry[i1]); err != nil {
+		if err := w.WriteData(o.PhoneEntry[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.RiPhoneEntry); uint64(i1) < 257; i1++ {
+	for i1 := len(o.PhoneEntry); uint64(i1) < 257; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
 	}
-	if o.RiConnectionHandle != nil {
+	if o.ConnectionHandle != nil {
 		_ptr_RI_ConnectionHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			// FIXME unknown type RI_ConnectionHandle
 			return nil
 		})
-		if err := w.WritePointer(&o.RiConnectionHandle, _ptr_RI_ConnectionHandle); err != nil {
+		if err := w.WritePointer(&o.ConnectionHandle, _ptr_RI_ConnectionHandle); err != nil {
 			return err
 		}
 	} else {
@@ -24285,14 +24288,14 @@ func (o *RasmanInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(o.RiSubEntry); err != nil {
+	if err := w.WriteData(o.SubEntry); err != nil {
 		return err
 	}
-	if err := w.WriteEnum(uint16(o.RiRdtDeviceType)); err != nil {
+	if err := w.WriteEnum(uint16(o.RASDeviceType)); err != nil {
 		return err
 	}
-	if o.RiGUIDEntry != nil {
-		if err := o.RiGUIDEntry.MarshalNDR(ctx, w); err != nil {
+	if o.GUIDEntry != nil {
+		if err := o.GUIDEntry.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
@@ -24300,14 +24303,14 @@ func (o *RasmanInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(o.RiDwSessionID); err != nil {
+	if err := w.WriteData(o.SessionID); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RiDwFlags); err != nil {
+	if err := w.WriteData(o.Flags); err != nil {
 		return err
 	}
-	if o.RiCorrelationGUID != nil {
-		if err := o.RiCorrelationGUID.MarshalNDR(ctx, w); err != nil {
+	if o.CorrelationGUID != nil {
+		if err := o.CorrelationGUID.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
@@ -24320,83 +24323,83 @@ func (o *RasmanInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *RasmanInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RASMANInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
-	if err := w.ReadEnum((*uint16)(&o.RiPortStatus)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.PortStatus)); err != nil {
 		return err
 	}
-	if err := w.ReadEnum((*uint16)(&o.RiConnState)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.ConnState)); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RiLinkSpeed); err != nil {
+	if err := w.ReadData(&o.LinkSpeed); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RiLastError); err != nil {
+	if err := w.ReadData(&o.LastError); err != nil {
 		return err
 	}
-	if err := w.ReadEnum((*uint16)(&o.RiCurrentUsage)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.CurrentUsage)); err != nil {
 		return err
 	}
-	o.RiDeviceTypeConnecting = make([]byte, 16)
-	for i1 := range o.RiDeviceTypeConnecting {
+	o.DeviceTypeConnecting = make([]byte, 16)
+	for i1 := range o.DeviceTypeConnecting {
 		i1 := i1
-		if err := w.ReadData(&o.RiDeviceTypeConnecting[i1]); err != nil {
+		if err := w.ReadData(&o.DeviceTypeConnecting[i1]); err != nil {
 			return err
 		}
 	}
-	o.RiDeviceConnecting = make([]byte, 129)
-	for i1 := range o.RiDeviceConnecting {
+	o.DeviceConnecting = make([]byte, 129)
+	for i1 := range o.DeviceConnecting {
 		i1 := i1
-		if err := w.ReadData(&o.RiDeviceConnecting[i1]); err != nil {
+		if err := w.ReadData(&o.DeviceConnecting[i1]); err != nil {
 			return err
 		}
 	}
-	o.RiStringDeviceType = make([]byte, 16)
-	for i1 := range o.RiStringDeviceType {
+	o.DeviceType = make([]byte, 16)
+	for i1 := range o.DeviceType {
 		i1 := i1
-		if err := w.ReadData(&o.RiStringDeviceType[i1]); err != nil {
+		if err := w.ReadData(&o.DeviceType[i1]); err != nil {
 			return err
 		}
 	}
-	o.RiStringDeviceName = make([]byte, 129)
-	for i1 := range o.RiStringDeviceName {
+	o.DeviceName = make([]byte, 129)
+	for i1 := range o.DeviceName {
 		i1 := i1
-		if err := w.ReadData(&o.RiStringDeviceName[i1]); err != nil {
+		if err := w.ReadData(&o.DeviceName[i1]); err != nil {
 			return err
 		}
 	}
-	o.RiStringPortName = make([]byte, 17)
-	for i1 := range o.RiStringPortName {
+	o.PortName = make([]byte, 17)
+	for i1 := range o.PortName {
 		i1 := i1
-		if err := w.ReadData(&o.RiStringPortName[i1]); err != nil {
+		if err := w.ReadData(&o.PortName[i1]); err != nil {
 			return err
 		}
 	}
-	if err := w.ReadEnum((*uint16)(&o.RiDisconnectType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.DisconnectType)); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RiOwnershipFlag); err != nil {
+	if err := w.ReadData(&o.OwnershipFlag); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RiConnectDuration); err != nil {
+	if err := w.ReadData(&o.ConnectDuration); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RiBytesReceived); err != nil {
+	if err := w.ReadData(&o.BytesReceived); err != nil {
 		return err
 	}
-	o.RiPhonebook = make([]byte, 261)
-	for i1 := range o.RiPhonebook {
+	o.Phonebook = make([]byte, 261)
+	for i1 := range o.Phonebook {
 		i1 := i1
-		if err := w.ReadData(&o.RiPhonebook[i1]); err != nil {
+		if err := w.ReadData(&o.Phonebook[i1]); err != nil {
 			return err
 		}
 	}
-	o.RiPhoneEntry = make([]byte, 257)
-	for i1 := range o.RiPhoneEntry {
+	o.PhoneEntry = make([]byte, 257)
+	for i1 := range o.PhoneEntry {
 		i1 := i1
-		if err := w.ReadData(&o.RiPhoneEntry[i1]); err != nil {
+		if err := w.ReadData(&o.PhoneEntry[i1]); err != nil {
 			return err
 		}
 	}
@@ -24404,34 +24407,34 @@ func (o *RasmanInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		// FIXME: unknown type RI_ConnectionHandle
 		return nil
 	})
-	_s_RI_ConnectionHandle := func(ptr interface{}) { o.RiConnectionHandle = *ptr.(*[]byte) }
-	if err := w.ReadPointer(&o.RiConnectionHandle, _s_RI_ConnectionHandle, _ptr_RI_ConnectionHandle); err != nil {
+	_s_RI_ConnectionHandle := func(ptr interface{}) { o.ConnectionHandle = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.ConnectionHandle, _s_RI_ConnectionHandle, _ptr_RI_ConnectionHandle); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RiSubEntry); err != nil {
+	if err := w.ReadData(&o.SubEntry); err != nil {
 		return err
 	}
-	_eRiRdtDeviceType := uint16(o.RiRdtDeviceType)
-	if err := w.ReadEnum(&_eRiRdtDeviceType); err != nil {
+	_eRASDeviceType := uint16(o.RASDeviceType)
+	if err := w.ReadEnum(&_eRASDeviceType); err != nil {
 		return err
 	}
-	o.RiRdtDeviceType = Rasdevicetype(_eRiRdtDeviceType)
-	if o.RiGUIDEntry == nil {
-		o.RiGUIDEntry = &dtyp.GUID{}
+	o.RASDeviceType = RASDeviceType(_eRASDeviceType)
+	if o.GUIDEntry == nil {
+		o.GUIDEntry = &dtyp.GUID{}
 	}
-	if err := o.RiGUIDEntry.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.GUIDEntry.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RiDwSessionID); err != nil {
+	if err := w.ReadData(&o.SessionID); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RiDwFlags); err != nil {
+	if err := w.ReadData(&o.Flags); err != nil {
 		return err
 	}
-	if o.RiCorrelationGUID == nil {
-		o.RiCorrelationGUID = &dtyp.GUID{}
+	if o.CorrelationGUID == nil {
+		o.CorrelationGUID = &dtyp.GUID{}
 	}
-	if err := o.RiCorrelationGUID.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.CorrelationGUID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if err := w.ReadTrailingGap(9); err != nil {
@@ -24443,7 +24446,7 @@ func (o *RasmanInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 // Info structure represents Info RPC structure.
 type Info struct {
 	Field1 *Info_Field1 `idl:"name:" json:""`
-	Info   *RasmanInfo  `idl:"name:info" json:"info"`
+	Info   *RASMANInfo  `idl:"name:info" json:"info"`
 }
 
 func (o *Info) xxx_PreparePayload(ctx context.Context) error {
@@ -24468,7 +24471,7 @@ func (o *Info) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&RasmanInfo{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&RASMANInfo{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -24480,7 +24483,7 @@ func (o *Info) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	}
 	// FIXME: unknown type
 	if o.Info == nil {
-		o.Info = &RasmanInfo{}
+		o.Info = &RASMANInfo{}
 	}
 	if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -24489,20 +24492,20 @@ func (o *Info) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 type Info_Field1 struct {
-	Retcode      uint32 `idl:"name:retcode" json:"retcode"`
+	ReturnCode   uint32 `idl:"name:retcode" json:"return_code"`
 	PaddingField []byte `idl:"name:paddingField" json:"padding_field"`
 }
 
-// RasrpcCallbacklist structure represents RASRPC_CALLBACKLIST RPC structure.
-type RasrpcCallbacklist struct {
-	PortName   []uint16            `idl:"name:pszPortName" json:"port_name"`
-	DeviceName []uint16            `idl:"name:pszDeviceName" json:"device_name"`
-	Number     []uint16            `idl:"name:pszNumber" json:"number"`
-	DeviceType uint32              `idl:"name:dwDeviceType" json:"device_type"`
-	Next       *RasrpcCallbacklist `idl:"name:pNext;pointer:unique" json:"next"`
+// CallbackList structure represents RASRPC_CALLBACKLIST RPC structure.
+type CallbackList struct {
+	PortName   []uint16      `idl:"name:pszPortName" json:"port_name"`
+	DeviceName []uint16      `idl:"name:pszDeviceName" json:"device_name"`
+	Number     []uint16      `idl:"name:pszNumber" json:"number"`
+	DeviceType uint32        `idl:"name:dwDeviceType" json:"device_type"`
+	Next       *CallbackList `idl:"name:pNext;pointer:unique" json:"next"`
 }
 
-func (o *RasrpcCallbacklist) xxx_PreparePayload(ctx context.Context) error {
+func (o *CallbackList) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -24511,7 +24514,7 @@ func (o *RasrpcCallbacklist) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RasrpcCallbacklist) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *CallbackList) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -24570,7 +24573,7 @@ func (o *RasrpcCallbacklist) MarshalNDR(ctx context.Context, w ndr.Writer) error
 					return err
 				}
 			} else {
-				if err := (&RasrpcCallbacklist{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&CallbackList{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
@@ -24586,7 +24589,7 @@ func (o *RasrpcCallbacklist) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	}
 	return nil
 }
-func (o *RasrpcCallbacklist) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *CallbackList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -24616,27 +24619,27 @@ func (o *RasrpcCallbacklist) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	}
 	_ptr_pNext := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if o.Next == nil {
-			o.Next = &RasrpcCallbacklist{}
+			o.Next = &CallbackList{}
 		}
 		if err := o.Next.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pNext := func(ptr interface{}) { o.Next = *ptr.(**RasrpcCallbacklist) }
+	_s_pNext := func(ptr interface{}) { o.Next = *ptr.(**CallbackList) }
 	if err := w.ReadPointer(&o.Next, _s_pNext, _ptr_pNext); err != nil {
 		return err
 	}
 	return nil
 }
 
-// RasrpcStringlist structure represents RASRPC_STRINGLIST RPC structure.
-type RasrpcStringlist struct {
-	Psz  []uint16          `idl:"name:psz" json:"psz"`
-	Next *RasrpcStringlist `idl:"name:pNext;pointer:unique" json:"next"`
+// StringList structure represents RASRPC_STRINGLIST RPC structure.
+type StringList struct {
+	String []uint16    `idl:"name:psz" json:"string"`
+	Next   *StringList `idl:"name:pNext;pointer:unique" json:"next"`
 }
 
-func (o *RasrpcStringlist) xxx_PreparePayload(ctx context.Context) error {
+func (o *StringList) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -24645,23 +24648,23 @@ func (o *RasrpcStringlist) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RasrpcStringlist) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *StringList) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(7); err != nil {
 		return err
 	}
-	for i1 := range o.Psz {
+	for i1 := range o.String {
 		i1 := i1
 		if uint64(i1) >= 256 {
 			break
 		}
-		if err := w.WriteData(o.Psz[i1]); err != nil {
+		if err := w.WriteData(o.String[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.Psz); uint64(i1) < 256; i1++ {
+	for i1 := len(o.String); uint64(i1) < 256; i1++ {
 		if err := w.WriteData(uint16(0)); err != nil {
 			return err
 		}
@@ -24673,7 +24676,7 @@ func (o *RasrpcStringlist) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 					return err
 				}
 			} else {
-				if err := (&RasrpcStringlist{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&StringList{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
@@ -24689,42 +24692,42 @@ func (o *RasrpcStringlist) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *RasrpcStringlist) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *StringList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(7); err != nil {
 		return err
 	}
-	o.Psz = make([]uint16, 256)
-	for i1 := range o.Psz {
+	o.String = make([]uint16, 256)
+	for i1 := range o.String {
 		i1 := i1
-		if err := w.ReadData(&o.Psz[i1]); err != nil {
+		if err := w.ReadData(&o.String[i1]); err != nil {
 			return err
 		}
 	}
 	_ptr_pNext := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if o.Next == nil {
-			o.Next = &RasrpcStringlist{}
+			o.Next = &StringList{}
 		}
 		if err := o.Next.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pNext := func(ptr interface{}) { o.Next = *ptr.(**RasrpcStringlist) }
+	_s_pNext := func(ptr interface{}) { o.Next = *ptr.(**StringList) }
 	if err := w.ReadPointer(&o.Next, _s_pNext, _ptr_pNext); err != nil {
 		return err
 	}
 	return nil
 }
 
-// RasrpcLocationlist structure represents RASRPC_LOCATIONLIST RPC structure.
-type RasrpcLocationlist struct {
-	LocationID uint32              `idl:"name:dwLocationId" json:"location_id"`
-	Prefix     uint32              `idl:"name:iPrefix" json:"prefix"`
-	Suffix     uint32              `idl:"name:iSuffix" json:"suffix"`
-	Next       *RasrpcLocationlist `idl:"name:pNext;pointer:unique" json:"next"`
+// Locationlist structure represents RASRPC_LOCATIONLIST RPC structure.
+type Locationlist struct {
+	LocationID uint32        `idl:"name:dwLocationId" json:"location_id"`
+	Prefix     uint32        `idl:"name:iPrefix" json:"prefix"`
+	Suffix     uint32        `idl:"name:iSuffix" json:"suffix"`
+	Next       *Locationlist `idl:"name:pNext;pointer:unique" json:"next"`
 }
 
-func (o *RasrpcLocationlist) xxx_PreparePayload(ctx context.Context) error {
+func (o *Locationlist) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -24733,7 +24736,7 @@ func (o *RasrpcLocationlist) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RasrpcLocationlist) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Locationlist) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -24756,7 +24759,7 @@ func (o *RasrpcLocationlist) MarshalNDR(ctx context.Context, w ndr.Writer) error
 					return err
 				}
 			} else {
-				if err := (&RasrpcLocationlist{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&Locationlist{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
@@ -24772,7 +24775,7 @@ func (o *RasrpcLocationlist) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	}
 	return nil
 }
-func (o *RasrpcLocationlist) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Locationlist) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -24787,58 +24790,58 @@ func (o *RasrpcLocationlist) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	}
 	_ptr_pNext := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if o.Next == nil {
-			o.Next = &RasrpcLocationlist{}
+			o.Next = &Locationlist{}
 		}
 		if err := o.Next.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pNext := func(ptr interface{}) { o.Next = *ptr.(**RasrpcLocationlist) }
+	_s_pNext := func(ptr interface{}) { o.Next = *ptr.(**Locationlist) }
 	if err := w.ReadPointer(&o.Next, _s_pNext, _ptr_pNext); err != nil {
 		return err
 	}
 	return nil
 }
 
-// RasrpcPbuser structure represents RASRPC_PBUSER RPC structure.
-type RasrpcPbuser struct {
-	OperatorDial             bool                `idl:"name:fOperatorDial" json:"operator_dial"`
-	PreviewPhoneNumber       bool                `idl:"name:fPreviewPhoneNumber" json:"preview_phone_number"`
-	UseLocation              bool                `idl:"name:fUseLocation" json:"use_location"`
-	ShowLights               bool                `idl:"name:fShowLights" json:"show_lights"`
-	ShowConnectStatus        bool                `idl:"name:fShowConnectStatus" json:"show_connect_status"`
-	CloseOnDial              bool                `idl:"name:fCloseOnDial" json:"close_on_dial"`
-	AllowLogonPhonebookEdits bool                `idl:"name:fAllowLogonPhonebookEdits" json:"allow_logon_phonebook_edits"`
-	AllowLogonLocationEdits  bool                `idl:"name:fAllowLogonLocationEdits" json:"allow_logon_location_edits"`
-	SkipConnectComplete      bool                `idl:"name:fSkipConnectComplete" json:"skip_connect_complete"`
-	NewEntryWizard           bool                `idl:"name:fNewEntryWizard" json:"new_entry_wizard"`
-	RedialAttempts           uint32              `idl:"name:dwRedialAttempts" json:"redial_attempts"`
-	RedialSeconds            uint32              `idl:"name:dwRedialSeconds" json:"redial_seconds"`
-	IdleDisconnectSeconds    uint32              `idl:"name:dwIdleDisconnectSeconds" json:"idle_disconnect_seconds"`
-	RedialOnLinkFailure      bool                `idl:"name:fRedialOnLinkFailure" json:"redial_on_link_failure"`
-	PopupOnTopWhenRedialing  bool                `idl:"name:fPopupOnTopWhenRedialing" json:"popup_on_top_when_redialing"`
-	ExpandAutoDialQuery      bool                `idl:"name:fExpandAutoDialQuery" json:"expand_auto_dial_query"`
-	CallbackMode             uint32              `idl:"name:dwCallbackMode" json:"callback_mode"`
-	Callbacks                *RasrpcCallbacklist `idl:"name:pCallbacks;pointer:unique" json:"callbacks"`
-	LastCallbackByCaller     []uint16            `idl:"name:pszLastCallbackByCaller" json:"last_callback_by_caller"`
-	PhonebookMode            uint32              `idl:"name:dwPhonebookMode" json:"phonebook_mode"`
-	PersonalFile             []uint16            `idl:"name:pszPersonalFile" json:"personal_file"`
-	AlternatePath            []uint16            `idl:"name:pszAlternatePath" json:"alternate_path"`
-	Phonebooks               *RasrpcStringlist   `idl:"name:pPhonebooks;pointer:unique" json:"phonebooks"`
-	AreaCodes                *RasrpcStringlist   `idl:"name:pAreaCodes;pointer:unique" json:"area_codes"`
-	UseAreaAndCountry        bool                `idl:"name:fUseAreaAndCountry" json:"use_area_and_country"`
-	Prefixes                 *RasrpcStringlist   `idl:"name:pPrefixes;pointer:unique" json:"prefixes"`
-	Suffixes                 *RasrpcStringlist   `idl:"name:pSuffixes;pointer:unique" json:"suffixes"`
-	Locations                *RasrpcLocationlist `idl:"name:pLocations;pointer:unique" json:"locations"`
-	XPhonebook               uint32              `idl:"name:dwXPhonebook" json:"x_phonebook"`
-	YPhonebook               uint32              `idl:"name:dwYPhonebook" json:"y_phonebook"`
-	DefaultEntry             []uint16            `idl:"name:pszDefaultEntry" json:"default_entry"`
-	Initialized              bool                `idl:"name:fInitialized" json:"initialized"`
-	Dirty                    bool                `idl:"name:fDirty" json:"dirty"`
+// User structure represents RASRPC_PBUSER RPC structure.
+type User struct {
+	OperatorDial             bool          `idl:"name:fOperatorDial" json:"operator_dial"`
+	PreviewPhoneNumber       bool          `idl:"name:fPreviewPhoneNumber" json:"preview_phone_number"`
+	UseLocation              bool          `idl:"name:fUseLocation" json:"use_location"`
+	ShowLights               bool          `idl:"name:fShowLights" json:"show_lights"`
+	ShowConnectStatus        bool          `idl:"name:fShowConnectStatus" json:"show_connect_status"`
+	CloseOnDial              bool          `idl:"name:fCloseOnDial" json:"close_on_dial"`
+	AllowLogonPhonebookEdits bool          `idl:"name:fAllowLogonPhonebookEdits" json:"allow_logon_phonebook_edits"`
+	AllowLogonLocationEdits  bool          `idl:"name:fAllowLogonLocationEdits" json:"allow_logon_location_edits"`
+	SkipConnectComplete      bool          `idl:"name:fSkipConnectComplete" json:"skip_connect_complete"`
+	NewEntryWizard           bool          `idl:"name:fNewEntryWizard" json:"new_entry_wizard"`
+	RedialAttempts           uint32        `idl:"name:dwRedialAttempts" json:"redial_attempts"`
+	RedialSeconds            uint32        `idl:"name:dwRedialSeconds" json:"redial_seconds"`
+	IdleDisconnectSeconds    uint32        `idl:"name:dwIdleDisconnectSeconds" json:"idle_disconnect_seconds"`
+	RedialOnLinkFailure      bool          `idl:"name:fRedialOnLinkFailure" json:"redial_on_link_failure"`
+	PopupOnTopWhenRedialing  bool          `idl:"name:fPopupOnTopWhenRedialing" json:"popup_on_top_when_redialing"`
+	ExpandAutoDialQuery      bool          `idl:"name:fExpandAutoDialQuery" json:"expand_auto_dial_query"`
+	CallbackMode             uint32        `idl:"name:dwCallbackMode" json:"callback_mode"`
+	Callbacks                *CallbackList `idl:"name:pCallbacks;pointer:unique" json:"callbacks"`
+	LastCallbackByCaller     []uint16      `idl:"name:pszLastCallbackByCaller" json:"last_callback_by_caller"`
+	PhonebookMode            uint32        `idl:"name:dwPhonebookMode" json:"phonebook_mode"`
+	PersonalFile             []uint16      `idl:"name:pszPersonalFile" json:"personal_file"`
+	AlternatePath            []uint16      `idl:"name:pszAlternatePath" json:"alternate_path"`
+	Phonebooks               *StringList   `idl:"name:pPhonebooks;pointer:unique" json:"phonebooks"`
+	AreaCodes                *StringList   `idl:"name:pAreaCodes;pointer:unique" json:"area_codes"`
+	UseAreaAndCountry        bool          `idl:"name:fUseAreaAndCountry" json:"use_area_and_country"`
+	Prefixes                 *StringList   `idl:"name:pPrefixes;pointer:unique" json:"prefixes"`
+	Suffixes                 *StringList   `idl:"name:pSuffixes;pointer:unique" json:"suffixes"`
+	Locations                *Locationlist `idl:"name:pLocations;pointer:unique" json:"locations"`
+	XPhonebook               uint32        `idl:"name:dwXPhonebook" json:"x_phonebook"`
+	YPhonebook               uint32        `idl:"name:dwYPhonebook" json:"y_phonebook"`
+	DefaultEntry             []uint16      `idl:"name:pszDefaultEntry" json:"default_entry"`
+	Initialized              bool          `idl:"name:fInitialized" json:"initialized"`
+	Dirty                    bool          `idl:"name:fDirty" json:"dirty"`
 }
 
-func (o *RasrpcPbuser) xxx_PreparePayload(ctx context.Context) error {
+func (o *User) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -24847,7 +24850,7 @@ func (o *RasrpcPbuser) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RasrpcPbuser) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *User) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -24990,7 +24993,7 @@ func (o *RasrpcPbuser) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 					return err
 				}
 			} else {
-				if err := (&RasrpcCallbacklist{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&CallbackList{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
@@ -25056,7 +25059,7 @@ func (o *RasrpcPbuser) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 					return err
 				}
 			} else {
-				if err := (&RasrpcStringlist{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&StringList{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
@@ -25077,7 +25080,7 @@ func (o *RasrpcPbuser) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 					return err
 				}
 			} else {
-				if err := (&RasrpcStringlist{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&StringList{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
@@ -25107,7 +25110,7 @@ func (o *RasrpcPbuser) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 					return err
 				}
 			} else {
-				if err := (&RasrpcStringlist{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&StringList{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
@@ -25128,7 +25131,7 @@ func (o *RasrpcPbuser) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 					return err
 				}
 			} else {
-				if err := (&RasrpcStringlist{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&StringList{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
@@ -25149,7 +25152,7 @@ func (o *RasrpcPbuser) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 					return err
 				}
 			} else {
-				if err := (&RasrpcLocationlist{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&Locationlist{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
@@ -25206,7 +25209,7 @@ func (o *RasrpcPbuser) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *RasrpcPbuser) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *User) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -25289,14 +25292,14 @@ func (o *RasrpcPbuser) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	}
 	_ptr_pCallbacks := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if o.Callbacks == nil {
-			o.Callbacks = &RasrpcCallbacklist{}
+			o.Callbacks = &CallbackList{}
 		}
 		if err := o.Callbacks.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pCallbacks := func(ptr interface{}) { o.Callbacks = *ptr.(**RasrpcCallbacklist) }
+	_s_pCallbacks := func(ptr interface{}) { o.Callbacks = *ptr.(**CallbackList) }
 	if err := w.ReadPointer(&o.Callbacks, _s_pCallbacks, _ptr_pCallbacks); err != nil {
 		return err
 	}
@@ -25326,27 +25329,27 @@ func (o *RasrpcPbuser) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	}
 	_ptr_pPhonebooks := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if o.Phonebooks == nil {
-			o.Phonebooks = &RasrpcStringlist{}
+			o.Phonebooks = &StringList{}
 		}
 		if err := o.Phonebooks.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pPhonebooks := func(ptr interface{}) { o.Phonebooks = *ptr.(**RasrpcStringlist) }
+	_s_pPhonebooks := func(ptr interface{}) { o.Phonebooks = *ptr.(**StringList) }
 	if err := w.ReadPointer(&o.Phonebooks, _s_pPhonebooks, _ptr_pPhonebooks); err != nil {
 		return err
 	}
 	_ptr_pAreaCodes := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if o.AreaCodes == nil {
-			o.AreaCodes = &RasrpcStringlist{}
+			o.AreaCodes = &StringList{}
 		}
 		if err := o.AreaCodes.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pAreaCodes := func(ptr interface{}) { o.AreaCodes = *ptr.(**RasrpcStringlist) }
+	_s_pAreaCodes := func(ptr interface{}) { o.AreaCodes = *ptr.(**StringList) }
 	if err := w.ReadPointer(&o.AreaCodes, _s_pAreaCodes, _ptr_pAreaCodes); err != nil {
 		return err
 	}
@@ -25357,40 +25360,40 @@ func (o *RasrpcPbuser) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	o.UseAreaAndCountry = _bUseAreaAndCountry != 0
 	_ptr_pPrefixes := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if o.Prefixes == nil {
-			o.Prefixes = &RasrpcStringlist{}
+			o.Prefixes = &StringList{}
 		}
 		if err := o.Prefixes.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pPrefixes := func(ptr interface{}) { o.Prefixes = *ptr.(**RasrpcStringlist) }
+	_s_pPrefixes := func(ptr interface{}) { o.Prefixes = *ptr.(**StringList) }
 	if err := w.ReadPointer(&o.Prefixes, _s_pPrefixes, _ptr_pPrefixes); err != nil {
 		return err
 	}
 	_ptr_pSuffixes := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if o.Suffixes == nil {
-			o.Suffixes = &RasrpcStringlist{}
+			o.Suffixes = &StringList{}
 		}
 		if err := o.Suffixes.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pSuffixes := func(ptr interface{}) { o.Suffixes = *ptr.(**RasrpcStringlist) }
+	_s_pSuffixes := func(ptr interface{}) { o.Suffixes = *ptr.(**StringList) }
 	if err := w.ReadPointer(&o.Suffixes, _s_pSuffixes, _ptr_pSuffixes); err != nil {
 		return err
 	}
 	_ptr_pLocations := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if o.Locations == nil {
-			o.Locations = &RasrpcLocationlist{}
+			o.Locations = &Locationlist{}
 		}
 		if err := o.Locations.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pLocations := func(ptr interface{}) { o.Locations = *ptr.(**RasrpcLocationlist) }
+	_s_pLocations := func(ptr interface{}) { o.Locations = *ptr.(**Locationlist) }
 	if err := w.ReadPointer(&o.Locations, _s_pLocations, _ptr_pLocations); err != nil {
 		return err
 	}
@@ -25615,14 +25618,14 @@ func (o *RemoteIPv6Config) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	return nil
 }
 
-// RemoteIcficsConfig structure represents IRemoteICFICSConfig RPC structure.
-type RemoteIcficsConfig dcom.InterfacePointer
+// RemoteICFICSConfig structure represents IRemoteICFICSConfig RPC structure.
+type RemoteICFICSConfig dcom.InterfacePointer
 
-func (o *RemoteIcficsConfig) InterfacePointer() *dcom.InterfacePointer {
+func (o *RemoteICFICSConfig) InterfacePointer() *dcom.InterfacePointer {
 	return (*dcom.InterfacePointer)(o)
 }
 
-func (o *RemoteIcficsConfig) xxx_PreparePayload(ctx context.Context) error {
+func (o *RemoteICFICSConfig) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -25635,13 +25638,13 @@ func (o *RemoteIcficsConfig) xxx_PreparePayload(ctx context.Context) error {
 	return nil
 }
 
-func (o *RemoteIcficsConfig) NDRSizeInfo() []uint64 {
+func (o *RemoteICFICSConfig) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *RemoteIcficsConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RemoteICFICSConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -25677,7 +25680,7 @@ func (o *RemoteIcficsConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	}
 	return nil
 }
-func (o *RemoteIcficsConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RemoteICFICSConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()
@@ -25711,14 +25714,14 @@ func (o *RemoteIcficsConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	return nil
 }
 
-// RemoteSstpCertCheck structure represents IRemoteSstpCertCheck RPC structure.
-type RemoteSstpCertCheck dcom.InterfacePointer
+// RemoteSSTPCertCheck structure represents IRemoteSstpCertCheck RPC structure.
+type RemoteSSTPCertCheck dcom.InterfacePointer
 
-func (o *RemoteSstpCertCheck) InterfacePointer() *dcom.InterfacePointer {
+func (o *RemoteSSTPCertCheck) InterfacePointer() *dcom.InterfacePointer {
 	return (*dcom.InterfacePointer)(o)
 }
 
-func (o *RemoteSstpCertCheck) xxx_PreparePayload(ctx context.Context) error {
+func (o *RemoteSSTPCertCheck) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -25731,13 +25734,13 @@ func (o *RemoteSstpCertCheck) xxx_PreparePayload(ctx context.Context) error {
 	return nil
 }
 
-func (o *RemoteSstpCertCheck) NDRSizeInfo() []uint64 {
+func (o *RemoteSSTPCertCheck) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *RemoteSstpCertCheck) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RemoteSSTPCertCheck) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -25773,7 +25776,7 @@ func (o *RemoteSstpCertCheck) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	}
 	return nil
 }
-func (o *RemoteSstpCertCheck) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RemoteSSTPCertCheck) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()

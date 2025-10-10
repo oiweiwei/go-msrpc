@@ -36,13 +36,13 @@ var (
 
 var (
 	// Syntax UUID
-	FrsTransportSyntaxUUID = &uuid.UUID{TimeLow: 0x897e2e5f, TimeMid: 0x93f3, TimeHiAndVersion: 0x4376, ClockSeqHiAndReserved: 0x9c, ClockSeqLow: 0x9c, Node: [6]uint8{0xfd, 0x22, 0x77, 0x49, 0x5c, 0x27}}
+	TransportSyntaxUUID = &uuid.UUID{TimeLow: 0x897e2e5f, TimeMid: 0x93f3, TimeHiAndVersion: 0x4376, ClockSeqHiAndReserved: 0x9c, ClockSeqLow: 0x9c, Node: [6]uint8{0xfd, 0x22, 0x77, 0x49, 0x5c, 0x27}}
 	// Syntax ID
-	FrsTransportSyntaxV1_0 = &dcerpc.SyntaxID{IfUUID: FrsTransportSyntaxUUID, IfVersionMajor: 1, IfVersionMinor: 0}
+	TransportSyntaxV1_0 = &dcerpc.SyntaxID{IfUUID: TransportSyntaxUUID, IfVersionMajor: 1, IfVersionMinor: 0}
 )
 
 // FrsTransport interface.
-type FrsTransportClient interface {
+type TransportClient interface {
 	CheckConnectivity(context.Context, *CheckConnectivityRequest, ...dcerpc.CallOption) (*CheckConnectivityResponse, error)
 
 	EstablishConnection(context.Context, *EstablishConnectionRequest, ...dcerpc.CallOption) (*EstablishConnectionResponse, error)
@@ -61,13 +61,13 @@ type FrsTransportClient interface {
 
 	RawGetFileData(context.Context, *RawGetFileDataRequest, ...dcerpc.CallOption) (*RawGetFileDataResponse, error)
 
-	RdcGetSignatures(context.Context, *RdcGetSignaturesRequest, ...dcerpc.CallOption) (*RdcGetSignaturesResponse, error)
+	GetSignatures(context.Context, *GetSignaturesRequest, ...dcerpc.CallOption) (*GetSignaturesResponse, error)
 
-	RdcPushSourceNeeds(context.Context, *RdcPushSourceNeedsRequest, ...dcerpc.CallOption) (*RdcPushSourceNeedsResponse, error)
+	PushSourceNeeds(context.Context, *PushSourceNeedsRequest, ...dcerpc.CallOption) (*PushSourceNeedsResponse, error)
 
-	RdcGetFileData(context.Context, *RdcGetFileDataRequest, ...dcerpc.CallOption) (*RdcGetFileDataResponse, error)
+	GetFileData(context.Context, *GetFileDataRequest, ...dcerpc.CallOption) (*GetFileDataResponse, error)
 
-	RdcClose(context.Context, *RdcCloseRequest, ...dcerpc.CallOption) (*RdcCloseResponse, error)
+	Close(context.Context, *CloseRequest, ...dcerpc.CallOption) (*CloseResponse, error)
 
 	InitializeFileTransferAsync(context.Context, *InitializeFileTransferAsyncRequest, ...dcerpc.CallOption) (*InitializeFileTransferAsyncResponse, error)
 
@@ -76,9 +76,9 @@ type FrsTransportClient interface {
 
 	RawGetFileDataAsync(context.Context, *RawGetFileDataAsyncRequest, ...dcerpc.CallOption) (*RawGetFileDataAsyncResponse, error)
 
-	RdcGetFileDataAsync(context.Context, *RdcGetFileDataAsyncRequest, ...dcerpc.CallOption) (*RdcGetFileDataAsyncResponse, error)
+	GetFileDataAsync(context.Context, *GetFileDataAsyncRequest, ...dcerpc.CallOption) (*GetFileDataAsyncResponse, error)
 
-	RdcFileDataTransferKeepAlive(context.Context, *RdcFileDataTransferKeepAliveRequest, ...dcerpc.CallOption) (*RdcFileDataTransferKeepAliveResponse, error)
+	FileDataTransferKeepAlive(context.Context, *FileDataTransferKeepAliveRequest, ...dcerpc.CallOption) (*FileDataTransferKeepAliveResponse, error)
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
@@ -87,14 +87,12 @@ type FrsTransportClient interface {
 	Conn() dcerpc.Conn
 }
 
-// PfrsServerContext structure represents PFRS_SERVER_CONTEXT RPC structure.
-type PfrsServerContext dcetypes.ContextHandle
+// ServerContext structure represents PFRS_SERVER_CONTEXT RPC structure.
+type ServerContext dcetypes.ContextHandle
 
-func (o *PfrsServerContext) ContextHandle() *dcetypes.ContextHandle {
-	return (*dcetypes.ContextHandle)(o)
-}
+func (o *ServerContext) ContextHandle() *dcetypes.ContextHandle { return (*dcetypes.ContextHandle)(o) }
 
-func (o *PfrsServerContext) xxx_PreparePayload(ctx context.Context) error {
+func (o *ServerContext) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -103,7 +101,7 @@ func (o *PfrsServerContext) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *PfrsServerContext) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerContext) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -124,7 +122,7 @@ func (o *PfrsServerContext) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	}
 	return nil
 }
-func (o *PfrsServerContext) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ServerContext) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -140,11 +138,11 @@ func (o *PfrsServerContext) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	return nil
 }
 
-type xxx_DefaultFrsTransportClient struct {
+type xxx_DefaultTransportClient struct {
 	cc dcerpc.Conn
 }
 
-func (o *xxx_DefaultFrsTransportClient) CheckConnectivity(ctx context.Context, in *CheckConnectivityRequest, opts ...dcerpc.CallOption) (*CheckConnectivityResponse, error) {
+func (o *xxx_DefaultTransportClient) CheckConnectivity(ctx context.Context, in *CheckConnectivityRequest, opts ...dcerpc.CallOption) (*CheckConnectivityResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
@@ -157,7 +155,7 @@ func (o *xxx_DefaultFrsTransportClient) CheckConnectivity(ctx context.Context, i
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsTransportClient) EstablishConnection(ctx context.Context, in *EstablishConnectionRequest, opts ...dcerpc.CallOption) (*EstablishConnectionResponse, error) {
+func (o *xxx_DefaultTransportClient) EstablishConnection(ctx context.Context, in *EstablishConnectionRequest, opts ...dcerpc.CallOption) (*EstablishConnectionResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
@@ -170,7 +168,7 @@ func (o *xxx_DefaultFrsTransportClient) EstablishConnection(ctx context.Context,
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsTransportClient) EstablishSession(ctx context.Context, in *EstablishSessionRequest, opts ...dcerpc.CallOption) (*EstablishSessionResponse, error) {
+func (o *xxx_DefaultTransportClient) EstablishSession(ctx context.Context, in *EstablishSessionRequest, opts ...dcerpc.CallOption) (*EstablishSessionResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
@@ -183,7 +181,7 @@ func (o *xxx_DefaultFrsTransportClient) EstablishSession(ctx context.Context, in
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsTransportClient) RequestUpdates(ctx context.Context, in *RequestUpdatesRequest, opts ...dcerpc.CallOption) (*RequestUpdatesResponse, error) {
+func (o *xxx_DefaultTransportClient) RequestUpdates(ctx context.Context, in *RequestUpdatesRequest, opts ...dcerpc.CallOption) (*RequestUpdatesResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
@@ -196,7 +194,7 @@ func (o *xxx_DefaultFrsTransportClient) RequestUpdates(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsTransportClient) RequestVersionVector(ctx context.Context, in *RequestVersionVectorRequest, opts ...dcerpc.CallOption) (*RequestVersionVectorResponse, error) {
+func (o *xxx_DefaultTransportClient) RequestVersionVector(ctx context.Context, in *RequestVersionVectorRequest, opts ...dcerpc.CallOption) (*RequestVersionVectorResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
@@ -209,7 +207,7 @@ func (o *xxx_DefaultFrsTransportClient) RequestVersionVector(ctx context.Context
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsTransportClient) AsyncPoll(ctx context.Context, in *AsyncPollRequest, opts ...dcerpc.CallOption) (*AsyncPollResponse, error) {
+func (o *xxx_DefaultTransportClient) AsyncPoll(ctx context.Context, in *AsyncPollRequest, opts ...dcerpc.CallOption) (*AsyncPollResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
@@ -222,7 +220,7 @@ func (o *xxx_DefaultFrsTransportClient) AsyncPoll(ctx context.Context, in *Async
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsTransportClient) RequestRecords(ctx context.Context, in *RequestRecordsRequest, opts ...dcerpc.CallOption) (*RequestRecordsResponse, error) {
+func (o *xxx_DefaultTransportClient) RequestRecords(ctx context.Context, in *RequestRecordsRequest, opts ...dcerpc.CallOption) (*RequestRecordsResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
@@ -235,7 +233,7 @@ func (o *xxx_DefaultFrsTransportClient) RequestRecords(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsTransportClient) UpdateCancel(ctx context.Context, in *UpdateCancelRequest, opts ...dcerpc.CallOption) (*UpdateCancelResponse, error) {
+func (o *xxx_DefaultTransportClient) UpdateCancel(ctx context.Context, in *UpdateCancelRequest, opts ...dcerpc.CallOption) (*UpdateCancelResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
@@ -248,7 +246,7 @@ func (o *xxx_DefaultFrsTransportClient) UpdateCancel(ctx context.Context, in *Up
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsTransportClient) RawGetFileData(ctx context.Context, in *RawGetFileDataRequest, opts ...dcerpc.CallOption) (*RawGetFileDataResponse, error) {
+func (o *xxx_DefaultTransportClient) RawGetFileData(ctx context.Context, in *RawGetFileDataRequest, opts ...dcerpc.CallOption) (*RawGetFileDataResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
@@ -261,12 +259,12 @@ func (o *xxx_DefaultFrsTransportClient) RawGetFileData(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsTransportClient) RdcGetSignatures(ctx context.Context, in *RdcGetSignaturesRequest, opts ...dcerpc.CallOption) (*RdcGetSignaturesResponse, error) {
+func (o *xxx_DefaultTransportClient) GetSignatures(ctx context.Context, in *GetSignaturesRequest, opts ...dcerpc.CallOption) (*GetSignaturesResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RdcGetSignaturesResponse{}
+	out := &GetSignaturesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -274,12 +272,12 @@ func (o *xxx_DefaultFrsTransportClient) RdcGetSignatures(ctx context.Context, in
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsTransportClient) RdcPushSourceNeeds(ctx context.Context, in *RdcPushSourceNeedsRequest, opts ...dcerpc.CallOption) (*RdcPushSourceNeedsResponse, error) {
+func (o *xxx_DefaultTransportClient) PushSourceNeeds(ctx context.Context, in *PushSourceNeedsRequest, opts ...dcerpc.CallOption) (*PushSourceNeedsResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RdcPushSourceNeedsResponse{}
+	out := &PushSourceNeedsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -287,12 +285,12 @@ func (o *xxx_DefaultFrsTransportClient) RdcPushSourceNeeds(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsTransportClient) RdcGetFileData(ctx context.Context, in *RdcGetFileDataRequest, opts ...dcerpc.CallOption) (*RdcGetFileDataResponse, error) {
+func (o *xxx_DefaultTransportClient) GetFileData(ctx context.Context, in *GetFileDataRequest, opts ...dcerpc.CallOption) (*GetFileDataResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RdcGetFileDataResponse{}
+	out := &GetFileDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -300,12 +298,12 @@ func (o *xxx_DefaultFrsTransportClient) RdcGetFileData(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsTransportClient) RdcClose(ctx context.Context, in *RdcCloseRequest, opts ...dcerpc.CallOption) (*RdcCloseResponse, error) {
+func (o *xxx_DefaultTransportClient) Close(ctx context.Context, in *CloseRequest, opts ...dcerpc.CallOption) (*CloseResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RdcCloseResponse{}
+	out := &CloseResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -313,7 +311,7 @@ func (o *xxx_DefaultFrsTransportClient) RdcClose(ctx context.Context, in *RdcClo
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsTransportClient) InitializeFileTransferAsync(ctx context.Context, in *InitializeFileTransferAsyncRequest, opts ...dcerpc.CallOption) (*InitializeFileTransferAsyncResponse, error) {
+func (o *xxx_DefaultTransportClient) InitializeFileTransferAsync(ctx context.Context, in *InitializeFileTransferAsyncRequest, opts ...dcerpc.CallOption) (*InitializeFileTransferAsyncResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
@@ -326,7 +324,7 @@ func (o *xxx_DefaultFrsTransportClient) InitializeFileTransferAsync(ctx context.
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsTransportClient) RawGetFileDataAsync(ctx context.Context, in *RawGetFileDataAsyncRequest, opts ...dcerpc.CallOption) (*RawGetFileDataAsyncResponse, error) {
+func (o *xxx_DefaultTransportClient) RawGetFileDataAsync(ctx context.Context, in *RawGetFileDataAsyncRequest, opts ...dcerpc.CallOption) (*RawGetFileDataAsyncResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
@@ -339,12 +337,12 @@ func (o *xxx_DefaultFrsTransportClient) RawGetFileDataAsync(ctx context.Context,
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsTransportClient) RdcGetFileDataAsync(ctx context.Context, in *RdcGetFileDataAsyncRequest, opts ...dcerpc.CallOption) (*RdcGetFileDataAsyncResponse, error) {
+func (o *xxx_DefaultTransportClient) GetFileDataAsync(ctx context.Context, in *GetFileDataAsyncRequest, opts ...dcerpc.CallOption) (*GetFileDataAsyncResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RdcGetFileDataAsyncResponse{}
+	out := &GetFileDataAsyncResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -352,12 +350,12 @@ func (o *xxx_DefaultFrsTransportClient) RdcGetFileDataAsync(ctx context.Context,
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsTransportClient) RdcFileDataTransferKeepAlive(ctx context.Context, in *RdcFileDataTransferKeepAliveRequest, opts ...dcerpc.CallOption) (*RdcFileDataTransferKeepAliveResponse, error) {
+func (o *xxx_DefaultTransportClient) FileDataTransferKeepAlive(ctx context.Context, in *FileDataTransferKeepAliveRequest, opts ...dcerpc.CallOption) (*FileDataTransferKeepAliveResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RdcFileDataTransferKeepAliveResponse{}
+	out := &FileDataTransferKeepAliveResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -365,27 +363,27 @@ func (o *xxx_DefaultFrsTransportClient) RdcFileDataTransferKeepAlive(ctx context
 	return out, nil
 }
 
-func (o *xxx_DefaultFrsTransportClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultTransportClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultFrsTransportClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultTransportClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func NewFrsTransportClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (FrsTransportClient, error) {
-	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(FrsTransportSyntaxV1_0))...)
+func NewTransportClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (TransportClient, error) {
+	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(TransportSyntaxV1_0))...)
 	if err != nil {
 		return nil, err
 	}
-	return &xxx_DefaultFrsTransportClient{cc: cc}, nil
+	return &xxx_DefaultTransportClient{cc: cc}, nil
 }
 
 // xxx_CheckConnectivityOperation structure represents the CheckConnectivity operation
 type xxx_CheckConnectivityOperation struct {
-	SetIDReplica *frs2.FrsReplicaSetID `idl:"name:replicaSetId" json:"set_id_replica"`
-	ConnectionID *frs2.FrsConnectionID `idl:"name:connectionId" json:"connection_id"`
-	Return       uint32                `idl:"name:Return" json:"return"`
+	SetIDReplica *frs2.ReplicaSetID `idl:"name:replicaSetId" json:"set_id_replica"`
+	ConnectionID *frs2.ConnectionID `idl:"name:connectionId" json:"connection_id"`
+	Return       uint32             `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_CheckConnectivityOperation) OpNum() int { return 0 }
@@ -412,7 +410,7 @@ func (o *xxx_CheckConnectivityOperation) MarshalNDRRequest(ctx context.Context, 
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsReplicaSetID{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.ReplicaSetID{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -424,7 +422,7 @@ func (o *xxx_CheckConnectivityOperation) MarshalNDRRequest(ctx context.Context, 
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsConnectionID{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.ConnectionID{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -436,7 +434,7 @@ func (o *xxx_CheckConnectivityOperation) UnmarshalNDRRequest(ctx context.Context
 	// replicaSetId {in} (1:{alias=FRS_REPLICA_SET_ID, names=GUID}(struct))
 	{
 		if o.SetIDReplica == nil {
-			o.SetIDReplica = &frs2.FrsReplicaSetID{}
+			o.SetIDReplica = &frs2.ReplicaSetID{}
 		}
 		if err := o.SetIDReplica.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -445,7 +443,7 @@ func (o *xxx_CheckConnectivityOperation) UnmarshalNDRRequest(ctx context.Context
 	// connectionId {in} (1:{alias=FRS_CONNECTION_ID, names=GUID}(struct))
 	{
 		if o.ConnectionID == nil {
-			o.ConnectionID = &frs2.FrsConnectionID{}
+			o.ConnectionID = &frs2.ConnectionID{}
 		}
 		if err := o.ConnectionID.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -488,8 +486,8 @@ func (o *xxx_CheckConnectivityOperation) UnmarshalNDRResponse(ctx context.Contex
 
 // CheckConnectivityRequest structure represents the CheckConnectivity operation request
 type CheckConnectivityRequest struct {
-	SetIDReplica *frs2.FrsReplicaSetID `idl:"name:replicaSetId" json:"set_id_replica"`
-	ConnectionID *frs2.FrsConnectionID `idl:"name:connectionId" json:"connection_id"`
+	SetIDReplica *frs2.ReplicaSetID `idl:"name:replicaSetId" json:"set_id_replica"`
+	ConnectionID *frs2.ConnectionID `idl:"name:connectionId" json:"connection_id"`
 }
 
 func (o *CheckConnectivityRequest) xxx_ToOp(ctx context.Context, op *xxx_CheckConnectivityOperation) *xxx_CheckConnectivityOperation {
@@ -560,13 +558,13 @@ func (o *CheckConnectivityResponse) UnmarshalNDR(ctx context.Context, r ndr.Read
 
 // xxx_EstablishConnectionOperation structure represents the EstablishConnection operation
 type xxx_EstablishConnectionOperation struct {
-	SetIDReplica              *frs2.FrsReplicaSetID `idl:"name:replicaSetId" json:"set_id_replica"`
-	ConnectionID              *frs2.FrsConnectionID `idl:"name:connectionId" json:"connection_id"`
-	DownstreamProtocolVersion uint32                `idl:"name:downstreamProtocolVersion" json:"downstream_protocol_version"`
-	DownstreamFlags           uint32                `idl:"name:downstreamFlags" json:"downstream_flags"`
-	UpstreamProtocolVersion   uint32                `idl:"name:upstreamProtocolVersion" json:"upstream_protocol_version"`
-	UpstreamFlags             uint32                `idl:"name:upstreamFlags" json:"upstream_flags"`
-	Return                    uint32                `idl:"name:Return" json:"return"`
+	SetIDReplica              *frs2.ReplicaSetID `idl:"name:replicaSetId" json:"set_id_replica"`
+	ConnectionID              *frs2.ConnectionID `idl:"name:connectionId" json:"connection_id"`
+	DownstreamProtocolVersion uint32             `idl:"name:downstreamProtocolVersion" json:"downstream_protocol_version"`
+	DownstreamFlags           uint32             `idl:"name:downstreamFlags" json:"downstream_flags"`
+	UpstreamProtocolVersion   uint32             `idl:"name:upstreamProtocolVersion" json:"upstream_protocol_version"`
+	UpstreamFlags             uint32             `idl:"name:upstreamFlags" json:"upstream_flags"`
+	Return                    uint32             `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_EstablishConnectionOperation) OpNum() int { return 1 }
@@ -595,7 +593,7 @@ func (o *xxx_EstablishConnectionOperation) MarshalNDRRequest(ctx context.Context
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsReplicaSetID{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.ReplicaSetID{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -607,7 +605,7 @@ func (o *xxx_EstablishConnectionOperation) MarshalNDRRequest(ctx context.Context
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsConnectionID{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.ConnectionID{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -631,7 +629,7 @@ func (o *xxx_EstablishConnectionOperation) UnmarshalNDRRequest(ctx context.Conte
 	// replicaSetId {in} (1:{alias=FRS_REPLICA_SET_ID, names=GUID}(struct))
 	{
 		if o.SetIDReplica == nil {
-			o.SetIDReplica = &frs2.FrsReplicaSetID{}
+			o.SetIDReplica = &frs2.ReplicaSetID{}
 		}
 		if err := o.SetIDReplica.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -640,7 +638,7 @@ func (o *xxx_EstablishConnectionOperation) UnmarshalNDRRequest(ctx context.Conte
 	// connectionId {in} (1:{alias=FRS_CONNECTION_ID, names=GUID}(struct))
 	{
 		if o.ConnectionID == nil {
-			o.ConnectionID = &frs2.FrsConnectionID{}
+			o.ConnectionID = &frs2.ConnectionID{}
 		}
 		if err := o.ConnectionID.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -719,10 +717,10 @@ func (o *xxx_EstablishConnectionOperation) UnmarshalNDRResponse(ctx context.Cont
 
 // EstablishConnectionRequest structure represents the EstablishConnection operation request
 type EstablishConnectionRequest struct {
-	SetIDReplica              *frs2.FrsReplicaSetID `idl:"name:replicaSetId" json:"set_id_replica"`
-	ConnectionID              *frs2.FrsConnectionID `idl:"name:connectionId" json:"connection_id"`
-	DownstreamProtocolVersion uint32                `idl:"name:downstreamProtocolVersion" json:"downstream_protocol_version"`
-	DownstreamFlags           uint32                `idl:"name:downstreamFlags" json:"downstream_flags"`
+	SetIDReplica              *frs2.ReplicaSetID `idl:"name:replicaSetId" json:"set_id_replica"`
+	ConnectionID              *frs2.ConnectionID `idl:"name:connectionId" json:"connection_id"`
+	DownstreamProtocolVersion uint32             `idl:"name:downstreamProtocolVersion" json:"downstream_protocol_version"`
+	DownstreamFlags           uint32             `idl:"name:downstreamFlags" json:"downstream_flags"`
 }
 
 func (o *EstablishConnectionRequest) xxx_ToOp(ctx context.Context, op *xxx_EstablishConnectionOperation) *xxx_EstablishConnectionOperation {
@@ -803,9 +801,9 @@ func (o *EstablishConnectionResponse) UnmarshalNDR(ctx context.Context, r ndr.Re
 
 // xxx_EstablishSessionOperation structure represents the EstablishSession operation
 type xxx_EstablishSessionOperation struct {
-	ConnectionID *frs2.FrsConnectionID `idl:"name:connectionId" json:"connection_id"`
-	ContentSetID *frs2.FrsContentSetID `idl:"name:contentSetId" json:"content_set_id"`
-	Return       uint32                `idl:"name:Return" json:"return"`
+	ConnectionID *frs2.ConnectionID `idl:"name:connectionId" json:"connection_id"`
+	ContentSetID *frs2.ContentSetID `idl:"name:contentSetId" json:"content_set_id"`
+	Return       uint32             `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_EstablishSessionOperation) OpNum() int { return 2 }
@@ -832,7 +830,7 @@ func (o *xxx_EstablishSessionOperation) MarshalNDRRequest(ctx context.Context, w
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsConnectionID{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.ConnectionID{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -844,7 +842,7 @@ func (o *xxx_EstablishSessionOperation) MarshalNDRRequest(ctx context.Context, w
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsContentSetID{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.ContentSetID{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -856,7 +854,7 @@ func (o *xxx_EstablishSessionOperation) UnmarshalNDRRequest(ctx context.Context,
 	// connectionId {in} (1:{alias=FRS_CONNECTION_ID, names=GUID}(struct))
 	{
 		if o.ConnectionID == nil {
-			o.ConnectionID = &frs2.FrsConnectionID{}
+			o.ConnectionID = &frs2.ConnectionID{}
 		}
 		if err := o.ConnectionID.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -865,7 +863,7 @@ func (o *xxx_EstablishSessionOperation) UnmarshalNDRRequest(ctx context.Context,
 	// contentSetId {in} (1:{alias=FRS_CONTENT_SET_ID, names=GUID}(struct))
 	{
 		if o.ContentSetID == nil {
-			o.ContentSetID = &frs2.FrsContentSetID{}
+			o.ContentSetID = &frs2.ContentSetID{}
 		}
 		if err := o.ContentSetID.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -908,8 +906,8 @@ func (o *xxx_EstablishSessionOperation) UnmarshalNDRResponse(ctx context.Context
 
 // EstablishSessionRequest structure represents the EstablishSession operation request
 type EstablishSessionRequest struct {
-	ConnectionID *frs2.FrsConnectionID `idl:"name:connectionId" json:"connection_id"`
-	ContentSetID *frs2.FrsContentSetID `idl:"name:contentSetId" json:"content_set_id"`
+	ConnectionID *frs2.ConnectionID `idl:"name:connectionId" json:"connection_id"`
+	ContentSetID *frs2.ContentSetID `idl:"name:contentSetId" json:"content_set_id"`
 }
 
 func (o *EstablishSessionRequest) xxx_ToOp(ctx context.Context, op *xxx_EstablishSessionOperation) *xxx_EstablishSessionOperation {
@@ -980,19 +978,19 @@ func (o *EstablishSessionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // xxx_RequestUpdatesOperation structure represents the RequestUpdates operation
 type xxx_RequestUpdatesOperation struct {
-	ConnectionID           *frs2.FrsConnectionID    `idl:"name:connectionId" json:"connection_id"`
-	ContentSetID           *frs2.FrsContentSetID    `idl:"name:contentSetId" json:"content_set_id"`
-	CreditsAvailable       uint32                   `idl:"name:creditsAvailable" json:"credits_available"`
-	HashRequested          int32                    `idl:"name:hashRequested" json:"hash_requested"`
-	UpdateRequestType      frs2.UpdateRequestType   `idl:"name:updateRequestType" json:"update_request_type"`
-	VersionVectorDiffCount uint32                   `idl:"name:versionVectorDiffCount" json:"version_vector_diff_count"`
-	VersionVectorDiff      []*frs2.FrsVersionVector `idl:"name:versionVectorDiff;size_is:(versionVectorDiffCount)" json:"version_vector_diff"`
-	FrsUpdate              []*frs2.FrsUpdate        `idl:"name:frsUpdate;size_is:(creditsAvailable);length_is:(updateCount)" json:"frs_update"`
-	UpdateCount            uint32                   `idl:"name:updateCount" json:"update_count"`
-	UpdateStatus           frs2.UpdateStatus        `idl:"name:updateStatus" json:"update_status"`
-	GvsnDBGUID             *dtyp.GUID               `idl:"name:gvsnDbGuid" json:"gvsn_db_guid"`
-	GvsnVersion            uint64                   `idl:"name:gvsnVersion" json:"gvsn_version"`
-	Return                 uint32                   `idl:"name:Return" json:"return"`
+	ConnectionID           *frs2.ConnectionID     `idl:"name:connectionId" json:"connection_id"`
+	ContentSetID           *frs2.ContentSetID     `idl:"name:contentSetId" json:"content_set_id"`
+	CreditsAvailable       uint32                 `idl:"name:creditsAvailable" json:"credits_available"`
+	HashRequested          int32                  `idl:"name:hashRequested" json:"hash_requested"`
+	UpdateRequestType      frs2.UpdateRequestType `idl:"name:updateRequestType" json:"update_request_type"`
+	VersionVectorDiffCount uint32                 `idl:"name:versionVectorDiffCount" json:"version_vector_diff_count"`
+	VersionVectorDiff      []*frs2.VersionVector  `idl:"name:versionVectorDiff;size_is:(versionVectorDiffCount)" json:"version_vector_diff"`
+	Update                 []*frs2.Update         `idl:"name:frsUpdate;size_is:(creditsAvailable);length_is:(updateCount)" json:"update"`
+	UpdateCount            uint32                 `idl:"name:updateCount" json:"update_count"`
+	UpdateStatus           frs2.UpdateStatus      `idl:"name:updateStatus" json:"update_status"`
+	GVSNDBGUID             *dtyp.GUID             `idl:"name:gvsnDbGuid" json:"gvsn_db_guid"`
+	GVSNVersion            uint64                 `idl:"name:gvsnVersion" json:"gvsn_version"`
+	Return                 uint32                 `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RequestUpdatesOperation) OpNum() int { return 3 }
@@ -1031,7 +1029,7 @@ func (o *xxx_RequestUpdatesOperation) MarshalNDRRequest(ctx context.Context, w n
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsConnectionID{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.ConnectionID{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1043,7 +1041,7 @@ func (o *xxx_RequestUpdatesOperation) MarshalNDRRequest(ctx context.Context, w n
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsContentSetID{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.ContentSetID{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1091,13 +1089,13 @@ func (o *xxx_RequestUpdatesOperation) MarshalNDRRequest(ctx context.Context, w n
 					return err
 				}
 			} else {
-				if err := (&frs2.FrsVersionVector{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&frs2.VersionVector{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
 		}
 		for i1 := len(o.VersionVectorDiff); uint64(i1) < sizeInfo[0]; i1++ {
-			if err := (&frs2.FrsVersionVector{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.VersionVector{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1109,7 +1107,7 @@ func (o *xxx_RequestUpdatesOperation) UnmarshalNDRRequest(ctx context.Context, w
 	// connectionId {in} (1:{alias=FRS_CONNECTION_ID, names=GUID}(struct))
 	{
 		if o.ConnectionID == nil {
-			o.ConnectionID = &frs2.FrsConnectionID{}
+			o.ConnectionID = &frs2.ConnectionID{}
 		}
 		if err := o.ConnectionID.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -1118,7 +1116,7 @@ func (o *xxx_RequestUpdatesOperation) UnmarshalNDRRequest(ctx context.Context, w
 	// contentSetId {in} (1:{alias=FRS_CONTENT_SET_ID, names=GUID}(struct))
 	{
 		if o.ContentSetID == nil {
-			o.ContentSetID = &frs2.FrsContentSetID{}
+			o.ContentSetID = &frs2.ContentSetID{}
 		}
 		if err := o.ContentSetID.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -1161,11 +1159,11 @@ func (o *xxx_RequestUpdatesOperation) UnmarshalNDRRequest(ctx context.Context, w
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
 			return fmt.Errorf("buffer overflow for size %d of array o.VersionVectorDiff", sizeInfo[0])
 		}
-		o.VersionVectorDiff = make([]*frs2.FrsVersionVector, sizeInfo[0])
+		o.VersionVectorDiff = make([]*frs2.VersionVector, sizeInfo[0])
 		for i1 := range o.VersionVectorDiff {
 			i1 := i1
 			if o.VersionVectorDiff[i1] == nil {
-				o.VersionVectorDiff[i1] = &frs2.FrsVersionVector{}
+				o.VersionVectorDiff[i1] = &frs2.VersionVector{}
 			}
 			if err := o.VersionVectorDiff[i1].UnmarshalNDR(ctx, w); err != nil {
 				return err
@@ -1176,8 +1174,8 @@ func (o *xxx_RequestUpdatesOperation) UnmarshalNDRRequest(ctx context.Context, w
 }
 
 func (o *xxx_RequestUpdatesOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
-	if o.FrsUpdate != nil && o.UpdateCount == 0 {
-		o.UpdateCount = uint32(len(o.FrsUpdate))
+	if o.Update != nil && o.UpdateCount == 0 {
+		o.UpdateCount = uint32(len(o.Update))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
@@ -1212,23 +1210,23 @@ func (o *xxx_RequestUpdatesOperation) MarshalNDRResponse(ctx context.Context, w 
 		if err := w.WriteSize(dimLength1); err != nil {
 			return err
 		}
-		for i1 := range o.FrsUpdate {
+		for i1 := range o.Update {
 			i1 := i1
 			if uint64(i1) >= sizeInfo[0] {
 				break
 			}
-			if o.FrsUpdate[i1] != nil {
-				if err := o.FrsUpdate[i1].MarshalNDR(ctx, w); err != nil {
+			if o.Update[i1] != nil {
+				if err := o.Update[i1].MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			} else {
-				if err := (&frs2.FrsUpdate{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&frs2.Update{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
 		}
-		for i1 := len(o.FrsUpdate); uint64(i1) < sizeInfo[0]; i1++ {
-			if err := (&frs2.FrsUpdate{}).MarshalNDR(ctx, w); err != nil {
+		for i1 := len(o.Update); uint64(i1) < sizeInfo[0]; i1++ {
+			if err := (&frs2.Update{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1247,8 +1245,8 @@ func (o *xxx_RequestUpdatesOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// gvsnDbGuid {out} (1:{pointer=ref}*(1))(2:{alias=GUID}(struct))
 	{
-		if o.GvsnDBGUID != nil {
-			if err := o.GvsnDBGUID.MarshalNDR(ctx, w); err != nil {
+		if o.GVSNDBGUID != nil {
+			if err := o.GVSNDBGUID.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -1259,7 +1257,7 @@ func (o *xxx_RequestUpdatesOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// gvsnVersion {out} (1:{pointer=ref}*(1))(2:{alias=DWORDLONG, names=ULONGLONG}(uint64))
 	{
-		if err := w.WriteData(o.GvsnVersion); err != nil {
+		if err := w.WriteData(o.GVSNVersion); err != nil {
 			return err
 		}
 	}
@@ -1292,15 +1290,15 @@ func (o *xxx_RequestUpdatesOperation) UnmarshalNDRResponse(ctx context.Context, 
 			}
 		}
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-			return fmt.Errorf("buffer overflow for size %d of array o.FrsUpdate", sizeInfo[0])
+			return fmt.Errorf("buffer overflow for size %d of array o.Update", sizeInfo[0])
 		}
-		o.FrsUpdate = make([]*frs2.FrsUpdate, sizeInfo[0])
-		for i1 := range o.FrsUpdate {
+		o.Update = make([]*frs2.Update, sizeInfo[0])
+		for i1 := range o.Update {
 			i1 := i1
-			if o.FrsUpdate[i1] == nil {
-				o.FrsUpdate[i1] = &frs2.FrsUpdate{}
+			if o.Update[i1] == nil {
+				o.Update[i1] = &frs2.Update{}
 			}
-			if err := o.FrsUpdate[i1].UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Update[i1].UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1319,16 +1317,16 @@ func (o *xxx_RequestUpdatesOperation) UnmarshalNDRResponse(ctx context.Context, 
 	}
 	// gvsnDbGuid {out} (1:{pointer=ref}*(1))(2:{alias=GUID}(struct))
 	{
-		if o.GvsnDBGUID == nil {
-			o.GvsnDBGUID = &dtyp.GUID{}
+		if o.GVSNDBGUID == nil {
+			o.GVSNDBGUID = &dtyp.GUID{}
 		}
-		if err := o.GvsnDBGUID.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.GVSNDBGUID.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	// gvsnVersion {out} (1:{pointer=ref}*(1))(2:{alias=DWORDLONG, names=ULONGLONG}(uint64))
 	{
-		if err := w.ReadData(&o.GvsnVersion); err != nil {
+		if err := w.ReadData(&o.GVSNVersion); err != nil {
 			return err
 		}
 	}
@@ -1343,13 +1341,13 @@ func (o *xxx_RequestUpdatesOperation) UnmarshalNDRResponse(ctx context.Context, 
 
 // RequestUpdatesRequest structure represents the RequestUpdates operation request
 type RequestUpdatesRequest struct {
-	ConnectionID           *frs2.FrsConnectionID    `idl:"name:connectionId" json:"connection_id"`
-	ContentSetID           *frs2.FrsContentSetID    `idl:"name:contentSetId" json:"content_set_id"`
-	CreditsAvailable       uint32                   `idl:"name:creditsAvailable" json:"credits_available"`
-	HashRequested          int32                    `idl:"name:hashRequested" json:"hash_requested"`
-	UpdateRequestType      frs2.UpdateRequestType   `idl:"name:updateRequestType" json:"update_request_type"`
-	VersionVectorDiffCount uint32                   `idl:"name:versionVectorDiffCount" json:"version_vector_diff_count"`
-	VersionVectorDiff      []*frs2.FrsVersionVector `idl:"name:versionVectorDiff;size_is:(versionVectorDiffCount)" json:"version_vector_diff"`
+	ConnectionID           *frs2.ConnectionID     `idl:"name:connectionId" json:"connection_id"`
+	ContentSetID           *frs2.ContentSetID     `idl:"name:contentSetId" json:"content_set_id"`
+	CreditsAvailable       uint32                 `idl:"name:creditsAvailable" json:"credits_available"`
+	HashRequested          int32                  `idl:"name:hashRequested" json:"hash_requested"`
+	UpdateRequestType      frs2.UpdateRequestType `idl:"name:updateRequestType" json:"update_request_type"`
+	VersionVectorDiffCount uint32                 `idl:"name:versionVectorDiffCount" json:"version_vector_diff_count"`
+	VersionVectorDiff      []*frs2.VersionVector  `idl:"name:versionVectorDiff;size_is:(versionVectorDiffCount)" json:"version_vector_diff"`
 }
 
 func (o *RequestUpdatesRequest) xxx_ToOp(ctx context.Context, op *xxx_RequestUpdatesOperation) *xxx_RequestUpdatesOperation {
@@ -1398,11 +1396,11 @@ type RequestUpdatesResponse struct {
 	// XXX: creditsAvailable is an implicit input depedency for output parameters
 	CreditsAvailable uint32 `idl:"name:creditsAvailable" json:"credits_available"`
 
-	FrsUpdate    []*frs2.FrsUpdate `idl:"name:frsUpdate;size_is:(creditsAvailable);length_is:(updateCount)" json:"frs_update"`
+	Update       []*frs2.Update    `idl:"name:frsUpdate;size_is:(creditsAvailable);length_is:(updateCount)" json:"update"`
 	UpdateCount  uint32            `idl:"name:updateCount" json:"update_count"`
 	UpdateStatus frs2.UpdateStatus `idl:"name:updateStatus" json:"update_status"`
-	GvsnDBGUID   *dtyp.GUID        `idl:"name:gvsnDbGuid" json:"gvsn_db_guid"`
-	GvsnVersion  uint64            `idl:"name:gvsnVersion" json:"gvsn_version"`
+	GVSNDBGUID   *dtyp.GUID        `idl:"name:gvsnDbGuid" json:"gvsn_db_guid"`
+	GVSNVersion  uint64            `idl:"name:gvsnVersion" json:"gvsn_version"`
 	// Return: The RequestUpdates return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -1419,11 +1417,11 @@ func (o *RequestUpdatesResponse) xxx_ToOp(ctx context.Context, op *xxx_RequestUp
 		op.CreditsAvailable = o.CreditsAvailable
 	}
 
-	op.FrsUpdate = o.FrsUpdate
+	op.Update = o.Update
 	op.UpdateCount = o.UpdateCount
 	op.UpdateStatus = o.UpdateStatus
-	op.GvsnDBGUID = o.GvsnDBGUID
-	op.GvsnVersion = o.GvsnVersion
+	op.GVSNDBGUID = o.GVSNDBGUID
+	op.GVSNVersion = o.GVSNVersion
 	op.Return = o.Return
 	return op
 }
@@ -1435,11 +1433,11 @@ func (o *RequestUpdatesResponse) xxx_FromOp(ctx context.Context, op *xxx_Request
 	// XXX: implicit input dependencies for output parameters
 	o.CreditsAvailable = op.CreditsAvailable
 
-	o.FrsUpdate = op.FrsUpdate
+	o.Update = op.Update
 	o.UpdateCount = op.UpdateCount
 	o.UpdateStatus = op.UpdateStatus
-	o.GvsnDBGUID = op.GvsnDBGUID
-	o.GvsnVersion = op.GvsnVersion
+	o.GVSNDBGUID = op.GVSNDBGUID
+	o.GVSNVersion = op.GVSNVersion
 	o.Return = op.Return
 }
 func (o *RequestUpdatesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -1457,11 +1455,11 @@ func (o *RequestUpdatesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // xxx_RequestVersionVectorOperation structure represents the RequestVersionVector operation
 type xxx_RequestVersionVectorOperation struct {
 	SequenceNumber uint32                  `idl:"name:sequenceNumber" json:"sequence_number"`
-	ConnectionID   *frs2.FrsConnectionID   `idl:"name:connectionId" json:"connection_id"`
-	ContentSetID   *frs2.FrsContentSetID   `idl:"name:contentSetId" json:"content_set_id"`
+	ConnectionID   *frs2.ConnectionID      `idl:"name:connectionId" json:"connection_id"`
+	ContentSetID   *frs2.ContentSetID      `idl:"name:contentSetId" json:"content_set_id"`
 	RequestType    frs2.VersionRequestType `idl:"name:requestType" json:"request_type"`
 	ChangeType     frs2.VersionChangeType  `idl:"name:changeType" json:"change_type"`
-	VvGeneration   uint64                  `idl:"name:vvGeneration" json:"vv_generation"`
+	Generation     uint64                  `idl:"name:vvGeneration" json:"generation"`
 	Return         uint32                  `idl:"name:Return" json:"return"`
 }
 
@@ -1503,7 +1501,7 @@ func (o *xxx_RequestVersionVectorOperation) MarshalNDRRequest(ctx context.Contex
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsConnectionID{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.ConnectionID{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1515,7 +1513,7 @@ func (o *xxx_RequestVersionVectorOperation) MarshalNDRRequest(ctx context.Contex
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsContentSetID{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.ContentSetID{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1534,7 +1532,7 @@ func (o *xxx_RequestVersionVectorOperation) MarshalNDRRequest(ctx context.Contex
 	}
 	// vvGeneration {in} (1:{alias=ULONGLONG}(uint64))
 	{
-		if err := w.WriteData(o.VvGeneration); err != nil {
+		if err := w.WriteData(o.Generation); err != nil {
 			return err
 		}
 	}
@@ -1551,7 +1549,7 @@ func (o *xxx_RequestVersionVectorOperation) UnmarshalNDRRequest(ctx context.Cont
 	// connectionId {in} (1:{alias=FRS_CONNECTION_ID, names=GUID}(struct))
 	{
 		if o.ConnectionID == nil {
-			o.ConnectionID = &frs2.FrsConnectionID{}
+			o.ConnectionID = &frs2.ConnectionID{}
 		}
 		if err := o.ConnectionID.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -1560,7 +1558,7 @@ func (o *xxx_RequestVersionVectorOperation) UnmarshalNDRRequest(ctx context.Cont
 	// contentSetId {in} (1:{alias=FRS_CONTENT_SET_ID, names=GUID}(struct))
 	{
 		if o.ContentSetID == nil {
-			o.ContentSetID = &frs2.FrsContentSetID{}
+			o.ContentSetID = &frs2.ContentSetID{}
 		}
 		if err := o.ContentSetID.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -1580,7 +1578,7 @@ func (o *xxx_RequestVersionVectorOperation) UnmarshalNDRRequest(ctx context.Cont
 	}
 	// vvGeneration {in} (1:{alias=ULONGLONG}(uint64))
 	{
-		if err := w.ReadData(&o.VvGeneration); err != nil {
+		if err := w.ReadData(&o.Generation); err != nil {
 			return err
 		}
 	}
@@ -1622,11 +1620,11 @@ func (o *xxx_RequestVersionVectorOperation) UnmarshalNDRResponse(ctx context.Con
 // RequestVersionVectorRequest structure represents the RequestVersionVector operation request
 type RequestVersionVectorRequest struct {
 	SequenceNumber uint32                  `idl:"name:sequenceNumber" json:"sequence_number"`
-	ConnectionID   *frs2.FrsConnectionID   `idl:"name:connectionId" json:"connection_id"`
-	ContentSetID   *frs2.FrsContentSetID   `idl:"name:contentSetId" json:"content_set_id"`
+	ConnectionID   *frs2.ConnectionID      `idl:"name:connectionId" json:"connection_id"`
+	ContentSetID   *frs2.ContentSetID      `idl:"name:contentSetId" json:"content_set_id"`
 	RequestType    frs2.VersionRequestType `idl:"name:requestType" json:"request_type"`
 	ChangeType     frs2.VersionChangeType  `idl:"name:changeType" json:"change_type"`
-	VvGeneration   uint64                  `idl:"name:vvGeneration" json:"vv_generation"`
+	Generation     uint64                  `idl:"name:vvGeneration" json:"generation"`
 }
 
 func (o *RequestVersionVectorRequest) xxx_ToOp(ctx context.Context, op *xxx_RequestVersionVectorOperation) *xxx_RequestVersionVectorOperation {
@@ -1641,7 +1639,7 @@ func (o *RequestVersionVectorRequest) xxx_ToOp(ctx context.Context, op *xxx_Requ
 	op.ContentSetID = o.ContentSetID
 	op.RequestType = o.RequestType
 	op.ChangeType = o.ChangeType
-	op.VvGeneration = o.VvGeneration
+	op.Generation = o.Generation
 	return op
 }
 
@@ -1654,7 +1652,7 @@ func (o *RequestVersionVectorRequest) xxx_FromOp(ctx context.Context, op *xxx_Re
 	o.ContentSetID = op.ContentSetID
 	o.RequestType = op.RequestType
 	o.ChangeType = op.ChangeType
-	o.VvGeneration = op.VvGeneration
+	o.Generation = op.Generation
 }
 func (o *RequestVersionVectorRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -1705,9 +1703,9 @@ func (o *RequestVersionVectorResponse) UnmarshalNDR(ctx context.Context, r ndr.R
 
 // xxx_AsyncPollOperation structure represents the AsyncPoll operation
 type xxx_AsyncPollOperation struct {
-	ConnectionID *frs2.FrsConnectionID         `idl:"name:connectionId" json:"connection_id"`
-	Response     *frs2.FrsAsyncResponseContext `idl:"name:response" json:"response"`
-	Return       uint32                        `idl:"name:Return" json:"return"`
+	ConnectionID *frs2.ConnectionID         `idl:"name:connectionId" json:"connection_id"`
+	Response     *frs2.AsyncResponseContext `idl:"name:response" json:"response"`
+	Return       uint32                     `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_AsyncPollOperation) OpNum() int { return 5 }
@@ -1734,7 +1732,7 @@ func (o *xxx_AsyncPollOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsConnectionID{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.ConnectionID{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1746,7 +1744,7 @@ func (o *xxx_AsyncPollOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 	// connectionId {in} (1:{alias=FRS_CONNECTION_ID, names=GUID}(struct))
 	{
 		if o.ConnectionID == nil {
-			o.ConnectionID = &frs2.FrsConnectionID{}
+			o.ConnectionID = &frs2.ConnectionID{}
 		}
 		if err := o.ConnectionID.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -1775,7 +1773,7 @@ func (o *xxx_AsyncPollOperation) MarshalNDRResponse(ctx context.Context, w ndr.W
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsAsyncResponseContext{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.AsyncResponseContext{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1796,7 +1794,7 @@ func (o *xxx_AsyncPollOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 	// response {out} (1:{pointer=ref}*(1))(2:{alias=FRS_ASYNC_RESPONSE_CONTEXT}(struct))
 	{
 		if o.Response == nil {
-			o.Response = &frs2.FrsAsyncResponseContext{}
+			o.Response = &frs2.AsyncResponseContext{}
 		}
 		if err := o.Response.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -1816,7 +1814,7 @@ func (o *xxx_AsyncPollOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 
 // AsyncPollRequest structure represents the AsyncPoll operation request
 type AsyncPollRequest struct {
-	ConnectionID *frs2.FrsConnectionID `idl:"name:connectionId" json:"connection_id"`
+	ConnectionID *frs2.ConnectionID `idl:"name:connectionId" json:"connection_id"`
 }
 
 func (o *AsyncPollRequest) xxx_ToOp(ctx context.Context, op *xxx_AsyncPollOperation) *xxx_AsyncPollOperation {
@@ -1850,7 +1848,7 @@ func (o *AsyncPollRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 
 // AsyncPollResponse structure represents the AsyncPoll operation response
 type AsyncPollResponse struct {
-	Response *frs2.FrsAsyncResponseContext `idl:"name:response" json:"response"`
+	Response *frs2.AsyncResponseContext `idl:"name:response" json:"response"`
 	// Return: The AsyncPoll return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -1888,16 +1886,16 @@ func (o *AsyncPollResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 
 // xxx_RequestRecordsOperation structure represents the RequestRecords operation
 type xxx_RequestRecordsOperation struct {
-	ConnectionID      *frs2.FrsConnectionID `idl:"name:connectionId" json:"connection_id"`
-	ContentSetID      *frs2.FrsContentSetID `idl:"name:contentSetId" json:"content_set_id"`
-	UIDDBGUID         *frs2.FrsDatabaseID   `idl:"name:uidDbGuid" json:"uid_db_guid"`
-	UIDVersion        uint64                `idl:"name:uidVersion" json:"uid_version"`
-	MaxRecords        uint32                `idl:"name:maxRecords" json:"max_records"`
-	RecordsLength     uint32                `idl:"name:numRecords" json:"records_length"`
-	BytesLength       uint32                `idl:"name:numBytes" json:"bytes_length"`
-	CompressedRecords []byte                `idl:"name:compressedRecords;size_is:(, numBytes)" json:"compressed_records"`
-	RecordsStatus     frs2.RecordsStatus    `idl:"name:recordsStatus" json:"records_status"`
-	Return            uint32                `idl:"name:Return" json:"return"`
+	ConnectionID      *frs2.ConnectionID `idl:"name:connectionId" json:"connection_id"`
+	ContentSetID      *frs2.ContentSetID `idl:"name:contentSetId" json:"content_set_id"`
+	UIDDBGUID         *frs2.DatabaseID   `idl:"name:uidDbGuid" json:"uid_db_guid"`
+	UIDVersion        uint64             `idl:"name:uidVersion" json:"uid_version"`
+	MaxRecords        uint32             `idl:"name:maxRecords" json:"max_records"`
+	RecordsLength     uint32             `idl:"name:numRecords" json:"records_length"`
+	BytesLength       uint32             `idl:"name:numBytes" json:"bytes_length"`
+	CompressedRecords []byte             `idl:"name:compressedRecords;size_is:(, numBytes)" json:"compressed_records"`
+	RecordsStatus     frs2.RecordsStatus `idl:"name:recordsStatus" json:"records_status"`
+	Return            uint32             `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RequestRecordsOperation) OpNum() int { return 6 }
@@ -1924,7 +1922,7 @@ func (o *xxx_RequestRecordsOperation) MarshalNDRRequest(ctx context.Context, w n
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsConnectionID{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.ConnectionID{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1936,7 +1934,7 @@ func (o *xxx_RequestRecordsOperation) MarshalNDRRequest(ctx context.Context, w n
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsContentSetID{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.ContentSetID{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1948,7 +1946,7 @@ func (o *xxx_RequestRecordsOperation) MarshalNDRRequest(ctx context.Context, w n
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsDatabaseID{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.DatabaseID{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1972,7 +1970,7 @@ func (o *xxx_RequestRecordsOperation) UnmarshalNDRRequest(ctx context.Context, w
 	// connectionId {in} (1:{alias=FRS_CONNECTION_ID, names=GUID}(struct))
 	{
 		if o.ConnectionID == nil {
-			o.ConnectionID = &frs2.FrsConnectionID{}
+			o.ConnectionID = &frs2.ConnectionID{}
 		}
 		if err := o.ConnectionID.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -1981,7 +1979,7 @@ func (o *xxx_RequestRecordsOperation) UnmarshalNDRRequest(ctx context.Context, w
 	// contentSetId {in} (1:{alias=FRS_CONTENT_SET_ID, names=GUID}(struct))
 	{
 		if o.ContentSetID == nil {
-			o.ContentSetID = &frs2.FrsContentSetID{}
+			o.ContentSetID = &frs2.ContentSetID{}
 		}
 		if err := o.ContentSetID.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -1990,7 +1988,7 @@ func (o *xxx_RequestRecordsOperation) UnmarshalNDRRequest(ctx context.Context, w
 	// uidDbGuid {in} (1:{alias=FRS_DATABASE_ID, names=GUID}(struct))
 	{
 		if o.UIDDBGUID == nil {
-			o.UIDDBGUID = &frs2.FrsDatabaseID{}
+			o.UIDDBGUID = &frs2.DatabaseID{}
 		}
 		if err := o.UIDDBGUID.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -2166,11 +2164,11 @@ func (o *xxx_RequestRecordsOperation) UnmarshalNDRResponse(ctx context.Context, 
 
 // RequestRecordsRequest structure represents the RequestRecords operation request
 type RequestRecordsRequest struct {
-	ConnectionID *frs2.FrsConnectionID `idl:"name:connectionId" json:"connection_id"`
-	ContentSetID *frs2.FrsContentSetID `idl:"name:contentSetId" json:"content_set_id"`
-	UIDDBGUID    *frs2.FrsDatabaseID   `idl:"name:uidDbGuid" json:"uid_db_guid"`
-	UIDVersion   uint64                `idl:"name:uidVersion" json:"uid_version"`
-	MaxRecords   uint32                `idl:"name:maxRecords" json:"max_records"`
+	ConnectionID *frs2.ConnectionID `idl:"name:connectionId" json:"connection_id"`
+	ContentSetID *frs2.ContentSetID `idl:"name:contentSetId" json:"content_set_id"`
+	UIDDBGUID    *frs2.DatabaseID   `idl:"name:uidDbGuid" json:"uid_db_guid"`
+	UIDVersion   uint64             `idl:"name:uidVersion" json:"uid_version"`
+	MaxRecords   uint32             `idl:"name:maxRecords" json:"max_records"`
 }
 
 func (o *RequestRecordsRequest) xxx_ToOp(ctx context.Context, op *xxx_RequestRecordsOperation) *xxx_RequestRecordsOperation {
@@ -2262,9 +2260,9 @@ func (o *RequestRecordsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // xxx_UpdateCancelOperation structure represents the UpdateCancel operation
 type xxx_UpdateCancelOperation struct {
-	ConnectionID *frs2.FrsConnectionID     `idl:"name:connectionId" json:"connection_id"`
-	CancelData   *frs2.FrsUpdateCancelData `idl:"name:cancelData" json:"cancel_data"`
-	Return       uint32                    `idl:"name:Return" json:"return"`
+	ConnectionID *frs2.ConnectionID     `idl:"name:connectionId" json:"connection_id"`
+	CancelData   *frs2.UpdateCancelData `idl:"name:cancelData" json:"cancel_data"`
+	Return       uint32                 `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_UpdateCancelOperation) OpNum() int { return 7 }
@@ -2291,7 +2289,7 @@ func (o *xxx_UpdateCancelOperation) MarshalNDRRequest(ctx context.Context, w ndr
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsConnectionID{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.ConnectionID{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -2303,7 +2301,7 @@ func (o *xxx_UpdateCancelOperation) MarshalNDRRequest(ctx context.Context, w ndr
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsUpdateCancelData{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.UpdateCancelData{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -2315,7 +2313,7 @@ func (o *xxx_UpdateCancelOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	// connectionId {in} (1:{alias=FRS_CONNECTION_ID, names=GUID}(struct))
 	{
 		if o.ConnectionID == nil {
-			o.ConnectionID = &frs2.FrsConnectionID{}
+			o.ConnectionID = &frs2.ConnectionID{}
 		}
 		if err := o.ConnectionID.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -2324,7 +2322,7 @@ func (o *xxx_UpdateCancelOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	// cancelData {in} (1:{alias=FRS_UPDATE_CANCEL_DATA}(struct))
 	{
 		if o.CancelData == nil {
-			o.CancelData = &frs2.FrsUpdateCancelData{}
+			o.CancelData = &frs2.UpdateCancelData{}
 		}
 		if err := o.CancelData.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -2367,8 +2365,8 @@ func (o *xxx_UpdateCancelOperation) UnmarshalNDRResponse(ctx context.Context, w 
 
 // UpdateCancelRequest structure represents the UpdateCancel operation request
 type UpdateCancelRequest struct {
-	ConnectionID *frs2.FrsConnectionID     `idl:"name:connectionId" json:"connection_id"`
-	CancelData   *frs2.FrsUpdateCancelData `idl:"name:cancelData" json:"cancel_data"`
+	ConnectionID *frs2.ConnectionID     `idl:"name:connectionId" json:"connection_id"`
+	CancelData   *frs2.UpdateCancelData `idl:"name:cancelData" json:"cancel_data"`
 }
 
 func (o *UpdateCancelRequest) xxx_ToOp(ctx context.Context, op *xxx_UpdateCancelOperation) *xxx_UpdateCancelOperation {
@@ -2439,12 +2437,12 @@ func (o *UpdateCancelResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 
 // xxx_RawGetFileDataOperation structure represents the RawGetFileData operation
 type xxx_RawGetFileDataOperation struct {
-	ServerContext *PfrsServerContext `idl:"name:serverContext" json:"server_context"`
-	DataBuffer    []byte             `idl:"name:dataBuffer;size_is:(bufferSize);length_is:(sizeRead)" json:"data_buffer"`
-	BufferSize    uint32             `idl:"name:bufferSize" json:"buffer_size"`
-	SizeRead      uint32             `idl:"name:sizeRead" json:"size_read"`
-	IsEndOfFile   int32              `idl:"name:isEndOfFile" json:"is_end_of_file"`
-	Return        uint32             `idl:"name:Return" json:"return"`
+	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
+	DataBuffer    []byte         `idl:"name:dataBuffer;size_is:(bufferSize);length_is:(sizeRead)" json:"data_buffer"`
+	BufferSize    uint32         `idl:"name:bufferSize" json:"buffer_size"`
+	SizeRead      uint32         `idl:"name:sizeRead" json:"size_read"`
+	IsEndOfFile   int32          `idl:"name:isEndOfFile" json:"is_end_of_file"`
+	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RawGetFileDataOperation) OpNum() int { return 8 }
@@ -2474,7 +2472,7 @@ func (o *xxx_RawGetFileDataOperation) MarshalNDRRequest(ctx context.Context, w n
 				return err
 			}
 		} else {
-			if err := (&PfrsServerContext{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ServerContext{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -2492,7 +2490,7 @@ func (o *xxx_RawGetFileDataOperation) UnmarshalNDRRequest(ctx context.Context, w
 	// serverContext {in, out} (1:{pointer=ref}*(1))(2:{context_handle, alias=PFRS_SERVER_CONTEXT, names=ndr_context_handle}(struct))
 	{
 		if o.ServerContext == nil {
-			o.ServerContext = &PfrsServerContext{}
+			o.ServerContext = &ServerContext{}
 		}
 		if err := o.ServerContext.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -2530,7 +2528,7 @@ func (o *xxx_RawGetFileDataOperation) MarshalNDRResponse(ctx context.Context, w 
 				return err
 			}
 		} else {
-			if err := (&PfrsServerContext{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ServerContext{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -2596,7 +2594,7 @@ func (o *xxx_RawGetFileDataOperation) UnmarshalNDRResponse(ctx context.Context, 
 	// serverContext {in, out} (1:{pointer=ref}*(1))(2:{context_handle, alias=PFRS_SERVER_CONTEXT, names=ndr_context_handle}(struct))
 	{
 		if o.ServerContext == nil {
-			o.ServerContext = &PfrsServerContext{}
+			o.ServerContext = &ServerContext{}
 		}
 		if err := o.ServerContext.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -2654,8 +2652,8 @@ func (o *xxx_RawGetFileDataOperation) UnmarshalNDRResponse(ctx context.Context, 
 
 // RawGetFileDataRequest structure represents the RawGetFileData operation request
 type RawGetFileDataRequest struct {
-	ServerContext *PfrsServerContext `idl:"name:serverContext" json:"server_context"`
-	BufferSize    uint32             `idl:"name:bufferSize" json:"buffer_size"`
+	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
+	BufferSize    uint32         `idl:"name:bufferSize" json:"buffer_size"`
 }
 
 func (o *RawGetFileDataRequest) xxx_ToOp(ctx context.Context, op *xxx_RawGetFileDataOperation) *xxx_RawGetFileDataOperation {
@@ -2694,10 +2692,10 @@ type RawGetFileDataResponse struct {
 	// XXX: bufferSize is an implicit input depedency for output parameters
 	BufferSize uint32 `idl:"name:bufferSize" json:"buffer_size"`
 
-	ServerContext *PfrsServerContext `idl:"name:serverContext" json:"server_context"`
-	DataBuffer    []byte             `idl:"name:dataBuffer;size_is:(bufferSize);length_is:(sizeRead)" json:"data_buffer"`
-	SizeRead      uint32             `idl:"name:sizeRead" json:"size_read"`
-	IsEndOfFile   int32              `idl:"name:isEndOfFile" json:"is_end_of_file"`
+	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
+	DataBuffer    []byte         `idl:"name:dataBuffer;size_is:(bufferSize);length_is:(sizeRead)" json:"data_buffer"`
+	SizeRead      uint32         `idl:"name:sizeRead" json:"size_read"`
+	IsEndOfFile   int32          `idl:"name:isEndOfFile" json:"is_end_of_file"`
 	// Return: The RawGetFileData return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -2747,22 +2745,22 @@ func (o *RawGetFileDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
-// xxx_RdcGetSignaturesOperation structure represents the RdcGetSignatures operation
-type xxx_RdcGetSignaturesOperation struct {
-	ServerContext *PfrsServerContext `idl:"name:serverContext" json:"server_context"`
-	Level         uint8              `idl:"name:level" json:"level"`
-	Offset        uint64             `idl:"name:offset" json:"offset"`
-	Buffer        []byte             `idl:"name:buffer;size_is:(length);length_is:(sizeRead)" json:"buffer"`
-	Length        uint32             `idl:"name:length" json:"length"`
-	SizeRead      uint32             `idl:"name:sizeRead" json:"size_read"`
-	Return        uint32             `idl:"name:Return" json:"return"`
+// xxx_GetSignaturesOperation structure represents the RdcGetSignatures operation
+type xxx_GetSignaturesOperation struct {
+	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
+	Level         uint8          `idl:"name:level" json:"level"`
+	Offset        uint64         `idl:"name:offset" json:"offset"`
+	Buffer        []byte         `idl:"name:buffer;size_is:(length);length_is:(sizeRead)" json:"buffer"`
+	Length        uint32         `idl:"name:length" json:"length"`
+	SizeRead      uint32         `idl:"name:sizeRead" json:"size_read"`
+	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RdcGetSignaturesOperation) OpNum() int { return 9 }
+func (o *xxx_GetSignaturesOperation) OpNum() int { return 9 }
 
-func (o *xxx_RdcGetSignaturesOperation) OpName() string { return "/FrsTransport/v1/RdcGetSignatures" }
+func (o *xxx_GetSignaturesOperation) OpName() string { return "/FrsTransport/v1/RdcGetSignatures" }
 
-func (o *xxx_RdcGetSignaturesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetSignaturesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if o.Level < uint8(1) || o.Level > uint8(8) {
 		return fmt.Errorf("Level is out of range")
 	}
@@ -2777,7 +2775,7 @@ func (o *xxx_RdcGetSignaturesOperation) xxx_PrepareRequestPayload(ctx context.Co
 	return nil
 }
 
-func (o *xxx_RdcGetSignaturesOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetSignaturesOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -2788,7 +2786,7 @@ func (o *xxx_RdcGetSignaturesOperation) MarshalNDRRequest(ctx context.Context, w
 				return err
 			}
 		} else {
-			if err := (&PfrsServerContext{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ServerContext{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -2814,11 +2812,11 @@ func (o *xxx_RdcGetSignaturesOperation) MarshalNDRRequest(ctx context.Context, w
 	return nil
 }
 
-func (o *xxx_RdcGetSignaturesOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetSignaturesOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// serverContext {in} (1:{context_handle, alias=PFRS_SERVER_CONTEXT, names=ndr_context_handle}(struct))
 	{
 		if o.ServerContext == nil {
-			o.ServerContext = &PfrsServerContext{}
+			o.ServerContext = &ServerContext{}
 		}
 		if err := o.ServerContext.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -2845,7 +2843,7 @@ func (o *xxx_RdcGetSignaturesOperation) UnmarshalNDRRequest(ctx context.Context,
 	return nil
 }
 
-func (o *xxx_RdcGetSignaturesOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetSignaturesOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if o.Buffer != nil && o.SizeRead == 0 {
 		o.SizeRead = uint32(len(o.Buffer))
 	}
@@ -2857,7 +2855,7 @@ func (o *xxx_RdcGetSignaturesOperation) xxx_PrepareResponsePayload(ctx context.C
 	return nil
 }
 
-func (o *xxx_RdcGetSignaturesOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetSignaturesOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -2912,7 +2910,7 @@ func (o *xxx_RdcGetSignaturesOperation) MarshalNDRResponse(ctx context.Context, 
 	return nil
 }
 
-func (o *xxx_RdcGetSignaturesOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetSignaturesOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// buffer {out} (1:{pointer=ref}*(1)[dim:0,size_is=length,length_is=sizeRead](uint8))
 	{
 		sizeInfo := []uint64{
@@ -2957,17 +2955,17 @@ func (o *xxx_RdcGetSignaturesOperation) UnmarshalNDRResponse(ctx context.Context
 	return nil
 }
 
-// RdcGetSignaturesRequest structure represents the RdcGetSignatures operation request
-type RdcGetSignaturesRequest struct {
-	ServerContext *PfrsServerContext `idl:"name:serverContext" json:"server_context"`
-	Level         uint8              `idl:"name:level" json:"level"`
-	Offset        uint64             `idl:"name:offset" json:"offset"`
-	Length        uint32             `idl:"name:length" json:"length"`
+// GetSignaturesRequest structure represents the RdcGetSignatures operation request
+type GetSignaturesRequest struct {
+	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
+	Level         uint8          `idl:"name:level" json:"level"`
+	Offset        uint64         `idl:"name:offset" json:"offset"`
+	Length        uint32         `idl:"name:length" json:"length"`
 }
 
-func (o *RdcGetSignaturesRequest) xxx_ToOp(ctx context.Context, op *xxx_RdcGetSignaturesOperation) *xxx_RdcGetSignaturesOperation {
+func (o *GetSignaturesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSignaturesOperation) *xxx_GetSignaturesOperation {
 	if op == nil {
-		op = &xxx_RdcGetSignaturesOperation{}
+		op = &xxx_GetSignaturesOperation{}
 	}
 	if o == nil {
 		return op
@@ -2979,7 +2977,7 @@ func (o *RdcGetSignaturesRequest) xxx_ToOp(ctx context.Context, op *xxx_RdcGetSi
 	return op
 }
 
-func (o *RdcGetSignaturesRequest) xxx_FromOp(ctx context.Context, op *xxx_RdcGetSignaturesOperation) {
+func (o *GetSignaturesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSignaturesOperation) {
 	if o == nil {
 		return
 	}
@@ -2988,11 +2986,11 @@ func (o *RdcGetSignaturesRequest) xxx_FromOp(ctx context.Context, op *xxx_RdcGet
 	o.Offset = op.Offset
 	o.Length = op.Length
 }
-func (o *RdcGetSignaturesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetSignaturesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RdcGetSignaturesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RdcGetSignaturesOperation{}
+func (o *GetSignaturesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetSignaturesOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -3000,8 +2998,8 @@ func (o *RdcGetSignaturesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
-// RdcGetSignaturesResponse structure represents the RdcGetSignatures operation response
-type RdcGetSignaturesResponse struct {
+// GetSignaturesResponse structure represents the RdcGetSignatures operation response
+type GetSignaturesResponse struct {
 	// XXX: length is an implicit input depedency for output parameters
 	Length uint32 `idl:"name:length" json:"length"`
 
@@ -3011,9 +3009,9 @@ type RdcGetSignaturesResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RdcGetSignaturesResponse) xxx_ToOp(ctx context.Context, op *xxx_RdcGetSignaturesOperation) *xxx_RdcGetSignaturesOperation {
+func (o *GetSignaturesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSignaturesOperation) *xxx_GetSignaturesOperation {
 	if op == nil {
-		op = &xxx_RdcGetSignaturesOperation{}
+		op = &xxx_GetSignaturesOperation{}
 	}
 	if o == nil {
 		return op
@@ -3029,7 +3027,7 @@ func (o *RdcGetSignaturesResponse) xxx_ToOp(ctx context.Context, op *xxx_RdcGetS
 	return op
 }
 
-func (o *RdcGetSignaturesResponse) xxx_FromOp(ctx context.Context, op *xxx_RdcGetSignaturesOperation) {
+func (o *GetSignaturesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSignaturesOperation) {
 	if o == nil {
 		return
 	}
@@ -3040,11 +3038,11 @@ func (o *RdcGetSignaturesResponse) xxx_FromOp(ctx context.Context, op *xxx_RdcGe
 	o.SizeRead = op.SizeRead
 	o.Return = op.Return
 }
-func (o *RdcGetSignaturesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetSignaturesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RdcGetSignaturesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RdcGetSignaturesOperation{}
+func (o *GetSignaturesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetSignaturesOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -3052,21 +3050,19 @@ func (o *RdcGetSignaturesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
-// xxx_RdcPushSourceNeedsOperation structure represents the RdcPushSourceNeeds operation
-type xxx_RdcPushSourceNeedsOperation struct {
-	ServerContext *PfrsServerContext       `idl:"name:serverContext" json:"server_context"`
-	SourceNeeds   []*frs2.FrsRdcSourceNeed `idl:"name:sourceNeeds;size_is:(needCount)" json:"source_needs"`
-	NeedCount     uint32                   `idl:"name:needCount" json:"need_count"`
-	Return        uint32                   `idl:"name:Return" json:"return"`
+// xxx_PushSourceNeedsOperation structure represents the RdcPushSourceNeeds operation
+type xxx_PushSourceNeedsOperation struct {
+	ServerContext *ServerContext     `idl:"name:serverContext" json:"server_context"`
+	SourceNeeds   []*frs2.SourceNeed `idl:"name:sourceNeeds;size_is:(needCount)" json:"source_needs"`
+	NeedCount     uint32             `idl:"name:needCount" json:"need_count"`
+	Return        uint32             `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RdcPushSourceNeedsOperation) OpNum() int { return 10 }
+func (o *xxx_PushSourceNeedsOperation) OpNum() int { return 10 }
 
-func (o *xxx_RdcPushSourceNeedsOperation) OpName() string {
-	return "/FrsTransport/v1/RdcPushSourceNeeds"
-}
+func (o *xxx_PushSourceNeedsOperation) OpName() string { return "/FrsTransport/v1/RdcPushSourceNeeds" }
 
-func (o *xxx_RdcPushSourceNeedsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_PushSourceNeedsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if o.SourceNeeds != nil && o.NeedCount == 0 {
 		o.NeedCount = uint32(len(o.SourceNeeds))
 	}
@@ -3081,7 +3077,7 @@ func (o *xxx_RdcPushSourceNeedsOperation) xxx_PrepareRequestPayload(ctx context.
 	return nil
 }
 
-func (o *xxx_RdcPushSourceNeedsOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_PushSourceNeedsOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -3092,7 +3088,7 @@ func (o *xxx_RdcPushSourceNeedsOperation) MarshalNDRRequest(ctx context.Context,
 				return err
 			}
 		} else {
-			if err := (&PfrsServerContext{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ServerContext{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -3116,13 +3112,13 @@ func (o *xxx_RdcPushSourceNeedsOperation) MarshalNDRRequest(ctx context.Context,
 					return err
 				}
 			} else {
-				if err := (&frs2.FrsRdcSourceNeed{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&frs2.SourceNeed{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
 		}
 		for i1 := len(o.SourceNeeds); uint64(i1) < sizeInfo[0]; i1++ {
-			if err := (&frs2.FrsRdcSourceNeed{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.SourceNeed{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -3136,11 +3132,11 @@ func (o *xxx_RdcPushSourceNeedsOperation) MarshalNDRRequest(ctx context.Context,
 	return nil
 }
 
-func (o *xxx_RdcPushSourceNeedsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_PushSourceNeedsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// serverContext {in} (1:{context_handle, alias=PFRS_SERVER_CONTEXT, names=ndr_context_handle}(struct))
 	{
 		if o.ServerContext == nil {
-			o.ServerContext = &PfrsServerContext{}
+			o.ServerContext = &ServerContext{}
 		}
 		if err := o.ServerContext.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -3159,11 +3155,11 @@ func (o *xxx_RdcPushSourceNeedsOperation) UnmarshalNDRRequest(ctx context.Contex
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
 			return fmt.Errorf("buffer overflow for size %d of array o.SourceNeeds", sizeInfo[0])
 		}
-		o.SourceNeeds = make([]*frs2.FrsRdcSourceNeed, sizeInfo[0])
+		o.SourceNeeds = make([]*frs2.SourceNeed, sizeInfo[0])
 		for i1 := range o.SourceNeeds {
 			i1 := i1
 			if o.SourceNeeds[i1] == nil {
-				o.SourceNeeds[i1] = &frs2.FrsRdcSourceNeed{}
+				o.SourceNeeds[i1] = &frs2.SourceNeed{}
 			}
 			if err := o.SourceNeeds[i1].UnmarshalNDR(ctx, w); err != nil {
 				return err
@@ -3179,7 +3175,7 @@ func (o *xxx_RdcPushSourceNeedsOperation) UnmarshalNDRRequest(ctx context.Contex
 	return nil
 }
 
-func (o *xxx_RdcPushSourceNeedsOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_PushSourceNeedsOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -3188,7 +3184,7 @@ func (o *xxx_RdcPushSourceNeedsOperation) xxx_PrepareResponsePayload(ctx context
 	return nil
 }
 
-func (o *xxx_RdcPushSourceNeedsOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_PushSourceNeedsOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -3201,7 +3197,7 @@ func (o *xxx_RdcPushSourceNeedsOperation) MarshalNDRResponse(ctx context.Context
 	return nil
 }
 
-func (o *xxx_RdcPushSourceNeedsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_PushSourceNeedsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -3211,16 +3207,16 @@ func (o *xxx_RdcPushSourceNeedsOperation) UnmarshalNDRResponse(ctx context.Conte
 	return nil
 }
 
-// RdcPushSourceNeedsRequest structure represents the RdcPushSourceNeeds operation request
-type RdcPushSourceNeedsRequest struct {
-	ServerContext *PfrsServerContext       `idl:"name:serverContext" json:"server_context"`
-	SourceNeeds   []*frs2.FrsRdcSourceNeed `idl:"name:sourceNeeds;size_is:(needCount)" json:"source_needs"`
-	NeedCount     uint32                   `idl:"name:needCount" json:"need_count"`
+// PushSourceNeedsRequest structure represents the RdcPushSourceNeeds operation request
+type PushSourceNeedsRequest struct {
+	ServerContext *ServerContext     `idl:"name:serverContext" json:"server_context"`
+	SourceNeeds   []*frs2.SourceNeed `idl:"name:sourceNeeds;size_is:(needCount)" json:"source_needs"`
+	NeedCount     uint32             `idl:"name:needCount" json:"need_count"`
 }
 
-func (o *RdcPushSourceNeedsRequest) xxx_ToOp(ctx context.Context, op *xxx_RdcPushSourceNeedsOperation) *xxx_RdcPushSourceNeedsOperation {
+func (o *PushSourceNeedsRequest) xxx_ToOp(ctx context.Context, op *xxx_PushSourceNeedsOperation) *xxx_PushSourceNeedsOperation {
 	if op == nil {
-		op = &xxx_RdcPushSourceNeedsOperation{}
+		op = &xxx_PushSourceNeedsOperation{}
 	}
 	if o == nil {
 		return op
@@ -3231,7 +3227,7 @@ func (o *RdcPushSourceNeedsRequest) xxx_ToOp(ctx context.Context, op *xxx_RdcPus
 	return op
 }
 
-func (o *RdcPushSourceNeedsRequest) xxx_FromOp(ctx context.Context, op *xxx_RdcPushSourceNeedsOperation) {
+func (o *PushSourceNeedsRequest) xxx_FromOp(ctx context.Context, op *xxx_PushSourceNeedsOperation) {
 	if o == nil {
 		return
 	}
@@ -3239,11 +3235,11 @@ func (o *RdcPushSourceNeedsRequest) xxx_FromOp(ctx context.Context, op *xxx_RdcP
 	o.SourceNeeds = op.SourceNeeds
 	o.NeedCount = op.NeedCount
 }
-func (o *RdcPushSourceNeedsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PushSourceNeedsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RdcPushSourceNeedsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RdcPushSourceNeedsOperation{}
+func (o *PushSourceNeedsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_PushSourceNeedsOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -3251,15 +3247,15 @@ func (o *RdcPushSourceNeedsRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
-// RdcPushSourceNeedsResponse structure represents the RdcPushSourceNeeds operation response
-type RdcPushSourceNeedsResponse struct {
+// PushSourceNeedsResponse structure represents the RdcPushSourceNeeds operation response
+type PushSourceNeedsResponse struct {
 	// Return: The RdcPushSourceNeeds return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RdcPushSourceNeedsResponse) xxx_ToOp(ctx context.Context, op *xxx_RdcPushSourceNeedsOperation) *xxx_RdcPushSourceNeedsOperation {
+func (o *PushSourceNeedsResponse) xxx_ToOp(ctx context.Context, op *xxx_PushSourceNeedsOperation) *xxx_PushSourceNeedsOperation {
 	if op == nil {
-		op = &xxx_RdcPushSourceNeedsOperation{}
+		op = &xxx_PushSourceNeedsOperation{}
 	}
 	if o == nil {
 		return op
@@ -3268,17 +3264,17 @@ func (o *RdcPushSourceNeedsResponse) xxx_ToOp(ctx context.Context, op *xxx_RdcPu
 	return op
 }
 
-func (o *RdcPushSourceNeedsResponse) xxx_FromOp(ctx context.Context, op *xxx_RdcPushSourceNeedsOperation) {
+func (o *PushSourceNeedsResponse) xxx_FromOp(ctx context.Context, op *xxx_PushSourceNeedsOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *RdcPushSourceNeedsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PushSourceNeedsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RdcPushSourceNeedsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RdcPushSourceNeedsOperation{}
+func (o *PushSourceNeedsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_PushSourceNeedsOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -3286,20 +3282,20 @@ func (o *RdcPushSourceNeedsResponse) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
-// xxx_RdcGetFileDataOperation structure represents the RdcGetFileData operation
-type xxx_RdcGetFileDataOperation struct {
-	ServerContext *PfrsServerContext `idl:"name:serverContext" json:"server_context"`
-	DataBuffer    []byte             `idl:"name:dataBuffer;size_is:(bufferSize);length_is:(sizeReturned)" json:"data_buffer"`
-	BufferSize    uint32             `idl:"name:bufferSize" json:"buffer_size"`
-	SizeReturned  uint32             `idl:"name:sizeReturned" json:"size_returned"`
-	Return        uint32             `idl:"name:Return" json:"return"`
+// xxx_GetFileDataOperation structure represents the RdcGetFileData operation
+type xxx_GetFileDataOperation struct {
+	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
+	DataBuffer    []byte         `idl:"name:dataBuffer;size_is:(bufferSize);length_is:(sizeReturned)" json:"data_buffer"`
+	BufferSize    uint32         `idl:"name:bufferSize" json:"buffer_size"`
+	SizeReturned  uint32         `idl:"name:sizeReturned" json:"size_returned"`
+	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RdcGetFileDataOperation) OpNum() int { return 11 }
+func (o *xxx_GetFileDataOperation) OpNum() int { return 11 }
 
-func (o *xxx_RdcGetFileDataOperation) OpName() string { return "/FrsTransport/v1/RdcGetFileData" }
+func (o *xxx_GetFileDataOperation) OpName() string { return "/FrsTransport/v1/RdcGetFileData" }
 
-func (o *xxx_RdcGetFileDataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetFileDataOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if o.BufferSize > uint32(262144) {
 		return fmt.Errorf("BufferSize is out of range")
 	}
@@ -3311,7 +3307,7 @@ func (o *xxx_RdcGetFileDataOperation) xxx_PrepareRequestPayload(ctx context.Cont
 	return nil
 }
 
-func (o *xxx_RdcGetFileDataOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetFileDataOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -3322,7 +3318,7 @@ func (o *xxx_RdcGetFileDataOperation) MarshalNDRRequest(ctx context.Context, w n
 				return err
 			}
 		} else {
-			if err := (&PfrsServerContext{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ServerContext{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -3336,11 +3332,11 @@ func (o *xxx_RdcGetFileDataOperation) MarshalNDRRequest(ctx context.Context, w n
 	return nil
 }
 
-func (o *xxx_RdcGetFileDataOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetFileDataOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// serverContext {in} (1:{context_handle, alias=PFRS_SERVER_CONTEXT, names=ndr_context_handle}(struct))
 	{
 		if o.ServerContext == nil {
-			o.ServerContext = &PfrsServerContext{}
+			o.ServerContext = &ServerContext{}
 		}
 		if err := o.ServerContext.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -3355,7 +3351,7 @@ func (o *xxx_RdcGetFileDataOperation) UnmarshalNDRRequest(ctx context.Context, w
 	return nil
 }
 
-func (o *xxx_RdcGetFileDataOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetFileDataOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if o.DataBuffer != nil && o.SizeReturned == 0 {
 		o.SizeReturned = uint32(len(o.DataBuffer))
 	}
@@ -3367,7 +3363,7 @@ func (o *xxx_RdcGetFileDataOperation) xxx_PrepareResponsePayload(ctx context.Con
 	return nil
 }
 
-func (o *xxx_RdcGetFileDataOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetFileDataOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -3422,7 +3418,7 @@ func (o *xxx_RdcGetFileDataOperation) MarshalNDRResponse(ctx context.Context, w 
 	return nil
 }
 
-func (o *xxx_RdcGetFileDataOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetFileDataOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// dataBuffer {out} (1:{pointer=ref}*(1)[dim:0,size_is=bufferSize,length_is=sizeReturned](uint8))
 	{
 		sizeInfo := []uint64{
@@ -3467,15 +3463,15 @@ func (o *xxx_RdcGetFileDataOperation) UnmarshalNDRResponse(ctx context.Context, 
 	return nil
 }
 
-// RdcGetFileDataRequest structure represents the RdcGetFileData operation request
-type RdcGetFileDataRequest struct {
-	ServerContext *PfrsServerContext `idl:"name:serverContext" json:"server_context"`
-	BufferSize    uint32             `idl:"name:bufferSize" json:"buffer_size"`
+// GetFileDataRequest structure represents the RdcGetFileData operation request
+type GetFileDataRequest struct {
+	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
+	BufferSize    uint32         `idl:"name:bufferSize" json:"buffer_size"`
 }
 
-func (o *RdcGetFileDataRequest) xxx_ToOp(ctx context.Context, op *xxx_RdcGetFileDataOperation) *xxx_RdcGetFileDataOperation {
+func (o *GetFileDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFileDataOperation) *xxx_GetFileDataOperation {
 	if op == nil {
-		op = &xxx_RdcGetFileDataOperation{}
+		op = &xxx_GetFileDataOperation{}
 	}
 	if o == nil {
 		return op
@@ -3485,18 +3481,18 @@ func (o *RdcGetFileDataRequest) xxx_ToOp(ctx context.Context, op *xxx_RdcGetFile
 	return op
 }
 
-func (o *RdcGetFileDataRequest) xxx_FromOp(ctx context.Context, op *xxx_RdcGetFileDataOperation) {
+func (o *GetFileDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFileDataOperation) {
 	if o == nil {
 		return
 	}
 	o.ServerContext = op.ServerContext
 	o.BufferSize = op.BufferSize
 }
-func (o *RdcGetFileDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetFileDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RdcGetFileDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RdcGetFileDataOperation{}
+func (o *GetFileDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetFileDataOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -3504,8 +3500,8 @@ func (o *RdcGetFileDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
-// RdcGetFileDataResponse structure represents the RdcGetFileData operation response
-type RdcGetFileDataResponse struct {
+// GetFileDataResponse structure represents the RdcGetFileData operation response
+type GetFileDataResponse struct {
 	// XXX: bufferSize is an implicit input depedency for output parameters
 	BufferSize uint32 `idl:"name:bufferSize" json:"buffer_size"`
 
@@ -3515,9 +3511,9 @@ type RdcGetFileDataResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RdcGetFileDataResponse) xxx_ToOp(ctx context.Context, op *xxx_RdcGetFileDataOperation) *xxx_RdcGetFileDataOperation {
+func (o *GetFileDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFileDataOperation) *xxx_GetFileDataOperation {
 	if op == nil {
-		op = &xxx_RdcGetFileDataOperation{}
+		op = &xxx_GetFileDataOperation{}
 	}
 	if o == nil {
 		return op
@@ -3533,7 +3529,7 @@ func (o *RdcGetFileDataResponse) xxx_ToOp(ctx context.Context, op *xxx_RdcGetFil
 	return op
 }
 
-func (o *RdcGetFileDataResponse) xxx_FromOp(ctx context.Context, op *xxx_RdcGetFileDataOperation) {
+func (o *GetFileDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFileDataOperation) {
 	if o == nil {
 		return
 	}
@@ -3544,11 +3540,11 @@ func (o *RdcGetFileDataResponse) xxx_FromOp(ctx context.Context, op *xxx_RdcGetF
 	o.SizeReturned = op.SizeReturned
 	o.Return = op.Return
 }
-func (o *RdcGetFileDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetFileDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RdcGetFileDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RdcGetFileDataOperation{}
+func (o *GetFileDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetFileDataOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -3556,17 +3552,17 @@ func (o *RdcGetFileDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
-// xxx_RdcCloseOperation structure represents the RdcClose operation
-type xxx_RdcCloseOperation struct {
-	ServerContext *PfrsServerContext `idl:"name:serverContext" json:"server_context"`
-	Return        uint32             `idl:"name:Return" json:"return"`
+// xxx_CloseOperation structure represents the RdcClose operation
+type xxx_CloseOperation struct {
+	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
+	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RdcCloseOperation) OpNum() int { return 12 }
+func (o *xxx_CloseOperation) OpNum() int { return 12 }
 
-func (o *xxx_RdcCloseOperation) OpName() string { return "/FrsTransport/v1/RdcClose" }
+func (o *xxx_CloseOperation) OpName() string { return "/FrsTransport/v1/RdcClose" }
 
-func (o *xxx_RdcCloseOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_CloseOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -3575,7 +3571,7 @@ func (o *xxx_RdcCloseOperation) xxx_PrepareRequestPayload(ctx context.Context) e
 	return nil
 }
 
-func (o *xxx_RdcCloseOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_CloseOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -3586,7 +3582,7 @@ func (o *xxx_RdcCloseOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wri
 				return err
 			}
 		} else {
-			if err := (&PfrsServerContext{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ServerContext{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -3594,11 +3590,11 @@ func (o *xxx_RdcCloseOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wri
 	return nil
 }
 
-func (o *xxx_RdcCloseOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_CloseOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// serverContext {in, out} (1:{pointer=ref}*(1))(2:{context_handle, alias=PFRS_SERVER_CONTEXT, names=ndr_context_handle}(struct))
 	{
 		if o.ServerContext == nil {
-			o.ServerContext = &PfrsServerContext{}
+			o.ServerContext = &ServerContext{}
 		}
 		if err := o.ServerContext.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -3607,7 +3603,7 @@ func (o *xxx_RdcCloseOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 	return nil
 }
 
-func (o *xxx_RdcCloseOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_CloseOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -3616,7 +3612,7 @@ func (o *xxx_RdcCloseOperation) xxx_PrepareResponsePayload(ctx context.Context) 
 	return nil
 }
 
-func (o *xxx_RdcCloseOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_CloseOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -3627,7 +3623,7 @@ func (o *xxx_RdcCloseOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wr
 				return err
 			}
 		} else {
-			if err := (&PfrsServerContext{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ServerContext{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -3641,11 +3637,11 @@ func (o *xxx_RdcCloseOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wr
 	return nil
 }
 
-func (o *xxx_RdcCloseOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_CloseOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// serverContext {in, out} (1:{pointer=ref}*(1))(2:{context_handle, alias=PFRS_SERVER_CONTEXT, names=ndr_context_handle}(struct))
 	{
 		if o.ServerContext == nil {
-			o.ServerContext = &PfrsServerContext{}
+			o.ServerContext = &ServerContext{}
 		}
 		if err := o.ServerContext.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -3660,14 +3656,14 @@ func (o *xxx_RdcCloseOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 	return nil
 }
 
-// RdcCloseRequest structure represents the RdcClose operation request
-type RdcCloseRequest struct {
-	ServerContext *PfrsServerContext `idl:"name:serverContext" json:"server_context"`
+// CloseRequest structure represents the RdcClose operation request
+type CloseRequest struct {
+	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
 }
 
-func (o *RdcCloseRequest) xxx_ToOp(ctx context.Context, op *xxx_RdcCloseOperation) *xxx_RdcCloseOperation {
+func (o *CloseRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseOperation) *xxx_CloseOperation {
 	if op == nil {
-		op = &xxx_RdcCloseOperation{}
+		op = &xxx_CloseOperation{}
 	}
 	if o == nil {
 		return op
@@ -3676,17 +3672,17 @@ func (o *RdcCloseRequest) xxx_ToOp(ctx context.Context, op *xxx_RdcCloseOperatio
 	return op
 }
 
-func (o *RdcCloseRequest) xxx_FromOp(ctx context.Context, op *xxx_RdcCloseOperation) {
+func (o *CloseRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseOperation) {
 	if o == nil {
 		return
 	}
 	o.ServerContext = op.ServerContext
 }
-func (o *RdcCloseRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *CloseRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RdcCloseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RdcCloseOperation{}
+func (o *CloseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_CloseOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -3694,16 +3690,16 @@ func (o *RdcCloseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
-// RdcCloseResponse structure represents the RdcClose operation response
-type RdcCloseResponse struct {
-	ServerContext *PfrsServerContext `idl:"name:serverContext" json:"server_context"`
+// CloseResponse structure represents the RdcClose operation response
+type CloseResponse struct {
+	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
 	// Return: The RdcClose return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RdcCloseResponse) xxx_ToOp(ctx context.Context, op *xxx_RdcCloseOperation) *xxx_RdcCloseOperation {
+func (o *CloseResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseOperation) *xxx_CloseOperation {
 	if op == nil {
-		op = &xxx_RdcCloseOperation{}
+		op = &xxx_CloseOperation{}
 	}
 	if o == nil {
 		return op
@@ -3713,18 +3709,18 @@ func (o *RdcCloseResponse) xxx_ToOp(ctx context.Context, op *xxx_RdcCloseOperati
 	return op
 }
 
-func (o *RdcCloseResponse) xxx_FromOp(ctx context.Context, op *xxx_RdcCloseOperation) {
+func (o *CloseResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseOperation) {
 	if o == nil {
 		return
 	}
 	o.ServerContext = op.ServerContext
 	o.Return = op.Return
 }
-func (o *RdcCloseResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *CloseResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RdcCloseResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RdcCloseOperation{}
+func (o *CloseResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_CloseOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -3734,17 +3730,17 @@ func (o *RdcCloseResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 
 // xxx_InitializeFileTransferAsyncOperation structure represents the InitializeFileTransferAsync operation
 type xxx_InitializeFileTransferAsyncOperation struct {
-	ConnectionID  *frs2.FrsConnectionID          `idl:"name:connectionId" json:"connection_id"`
-	FrsUpdate     *frs2.FrsUpdate                `idl:"name:frsUpdate" json:"frs_update"`
-	RdcDesired    int32                          `idl:"name:rdcDesired" json:"rdc_desired"`
-	StagingPolicy frs2.FrsRequestedStagingPolicy `idl:"name:stagingPolicy" json:"staging_policy"`
-	ServerContext *PfrsServerContext             `idl:"name:serverContext" json:"server_context"`
-	RdcFileInfo   *frs2.FrsRdcFileinfo           `idl:"name:rdcFileInfo" json:"rdc_file_info"`
-	DataBuffer    []byte                         `idl:"name:dataBuffer;size_is:(bufferSize);length_is:(sizeRead)" json:"data_buffer"`
-	BufferSize    uint32                         `idl:"name:bufferSize" json:"buffer_size"`
-	SizeRead      uint32                         `idl:"name:sizeRead" json:"size_read"`
-	IsEndOfFile   int32                          `idl:"name:isEndOfFile" json:"is_end_of_file"`
-	Return        uint32                         `idl:"name:Return" json:"return"`
+	ConnectionID  *frs2.ConnectionID          `idl:"name:connectionId" json:"connection_id"`
+	Update        *frs2.Update                `idl:"name:frsUpdate" json:"update"`
+	Desired       int32                       `idl:"name:rdcDesired" json:"desired"`
+	StagingPolicy frs2.RequestedStagingPolicy `idl:"name:stagingPolicy" json:"staging_policy"`
+	ServerContext *ServerContext              `idl:"name:serverContext" json:"server_context"`
+	FileInfo      *frs2.FileInfo              `idl:"name:rdcFileInfo" json:"file_info"`
+	DataBuffer    []byte                      `idl:"name:dataBuffer;size_is:(bufferSize);length_is:(sizeRead)" json:"data_buffer"`
+	BufferSize    uint32                      `idl:"name:bufferSize" json:"buffer_size"`
+	SizeRead      uint32                      `idl:"name:sizeRead" json:"size_read"`
+	IsEndOfFile   int32                       `idl:"name:isEndOfFile" json:"is_end_of_file"`
+	Return        uint32                      `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_InitializeFileTransferAsyncOperation) OpNum() int { return 13 }
@@ -3754,8 +3750,8 @@ func (o *xxx_InitializeFileTransferAsyncOperation) OpName() string {
 }
 
 func (o *xxx_InitializeFileTransferAsyncOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
-	if o.RdcDesired < int32(0) || o.RdcDesired > int32(1) {
-		return fmt.Errorf("RdcDesired is out of range")
+	if o.Desired < int32(0) || o.Desired > int32(1) {
+		return fmt.Errorf("Desired is out of range")
 	}
 	if o.BufferSize > uint32(262144) {
 		return fmt.Errorf("BufferSize is out of range")
@@ -3779,26 +3775,26 @@ func (o *xxx_InitializeFileTransferAsyncOperation) MarshalNDRRequest(ctx context
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsConnectionID{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.ConnectionID{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
 	// frsUpdate {in, out} (1:{pointer=ref}*(1))(2:{alias=FRS_UPDATE}(struct))
 	{
-		if o.FrsUpdate != nil {
-			if err := o.FrsUpdate.MarshalNDR(ctx, w); err != nil {
+		if o.Update != nil {
+			if err := o.Update.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsUpdate{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.Update{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
 	// rdcDesired {in} (1:{range=(0,1)}(int32))
 	{
-		if err := w.WriteData(o.RdcDesired); err != nil {
+		if err := w.WriteData(o.Desired); err != nil {
 			return err
 		}
 	}
@@ -3821,7 +3817,7 @@ func (o *xxx_InitializeFileTransferAsyncOperation) UnmarshalNDRRequest(ctx conte
 	// connectionId {in} (1:{alias=FRS_CONNECTION_ID, names=GUID}(struct))
 	{
 		if o.ConnectionID == nil {
-			o.ConnectionID = &frs2.FrsConnectionID{}
+			o.ConnectionID = &frs2.ConnectionID{}
 		}
 		if err := o.ConnectionID.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -3829,16 +3825,16 @@ func (o *xxx_InitializeFileTransferAsyncOperation) UnmarshalNDRRequest(ctx conte
 	}
 	// frsUpdate {in, out} (1:{pointer=ref}*(1))(2:{alias=FRS_UPDATE}(struct))
 	{
-		if o.FrsUpdate == nil {
-			o.FrsUpdate = &frs2.FrsUpdate{}
+		if o.Update == nil {
+			o.Update = &frs2.Update{}
 		}
-		if err := o.FrsUpdate.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Update.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	// rdcDesired {in} (1:{range=(0,1)}(int32))
 	{
-		if err := w.ReadData(&o.RdcDesired); err != nil {
+		if err := w.ReadData(&o.Desired); err != nil {
 			return err
 		}
 	}
@@ -3875,12 +3871,12 @@ func (o *xxx_InitializeFileTransferAsyncOperation) MarshalNDRResponse(ctx contex
 	}
 	// frsUpdate {in, out} (1:{pointer=ref}*(1))(2:{alias=FRS_UPDATE}(struct))
 	{
-		if o.FrsUpdate != nil {
-			if err := o.FrsUpdate.MarshalNDR(ctx, w); err != nil {
+		if o.Update != nil {
+			if err := o.Update.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&frs2.FrsUpdate{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&frs2.Update{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -3898,27 +3894,27 @@ func (o *xxx_InitializeFileTransferAsyncOperation) MarshalNDRResponse(ctx contex
 				return err
 			}
 		} else {
-			if err := (&PfrsServerContext{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ServerContext{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
 	// rdcFileInfo {out} (1:{pointer=ref}*(2)*(1))(2:{alias=FRS_RDC_FILEINFO}(struct))
 	{
-		if o.RdcFileInfo != nil {
+		if o.FileInfo != nil {
 			_ptr_rdcFileInfo := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.RdcFileInfo != nil {
-					if err := o.RdcFileInfo.MarshalNDR(ctx, w); err != nil {
+				if o.FileInfo != nil {
+					if err := o.FileInfo.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&frs2.FrsRdcFileinfo{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&frs2.FileInfo{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.RdcFileInfo, _ptr_rdcFileInfo); err != nil {
+			if err := w.WritePointer(&o.FileInfo, _ptr_rdcFileInfo); err != nil {
 				return err
 			}
 		} else {
@@ -3990,10 +3986,10 @@ func (o *xxx_InitializeFileTransferAsyncOperation) MarshalNDRResponse(ctx contex
 func (o *xxx_InitializeFileTransferAsyncOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// frsUpdate {in, out} (1:{pointer=ref}*(1))(2:{alias=FRS_UPDATE}(struct))
 	{
-		if o.FrsUpdate == nil {
-			o.FrsUpdate = &frs2.FrsUpdate{}
+		if o.Update == nil {
+			o.Update = &frs2.Update{}
 		}
-		if err := o.FrsUpdate.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Update.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -4006,7 +4002,7 @@ func (o *xxx_InitializeFileTransferAsyncOperation) UnmarshalNDRResponse(ctx cont
 	// serverContext {out} (1:{pointer=ref}*(1))(2:{context_handle, alias=PFRS_SERVER_CONTEXT, names=ndr_context_handle}(struct))
 	{
 		if o.ServerContext == nil {
-			o.ServerContext = &PfrsServerContext{}
+			o.ServerContext = &ServerContext{}
 		}
 		if err := o.ServerContext.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -4015,16 +4011,16 @@ func (o *xxx_InitializeFileTransferAsyncOperation) UnmarshalNDRResponse(ctx cont
 	// rdcFileInfo {out} (1:{pointer=ref}*(2)*(1))(2:{alias=FRS_RDC_FILEINFO}(struct))
 	{
 		_ptr_rdcFileInfo := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.RdcFileInfo == nil {
-				o.RdcFileInfo = &frs2.FrsRdcFileinfo{}
+			if o.FileInfo == nil {
+				o.FileInfo = &frs2.FileInfo{}
 			}
-			if err := o.RdcFileInfo.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.FileInfo.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_rdcFileInfo := func(ptr interface{}) { o.RdcFileInfo = *ptr.(**frs2.FrsRdcFileinfo) }
-		if err := w.ReadPointer(&o.RdcFileInfo, _s_rdcFileInfo, _ptr_rdcFileInfo); err != nil {
+		_s_rdcFileInfo := func(ptr interface{}) { o.FileInfo = *ptr.(**frs2.FileInfo) }
+		if err := w.ReadPointer(&o.FileInfo, _s_rdcFileInfo, _ptr_rdcFileInfo); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4083,11 +4079,11 @@ func (o *xxx_InitializeFileTransferAsyncOperation) UnmarshalNDRResponse(ctx cont
 
 // InitializeFileTransferAsyncRequest structure represents the InitializeFileTransferAsync operation request
 type InitializeFileTransferAsyncRequest struct {
-	ConnectionID  *frs2.FrsConnectionID          `idl:"name:connectionId" json:"connection_id"`
-	FrsUpdate     *frs2.FrsUpdate                `idl:"name:frsUpdate" json:"frs_update"`
-	RdcDesired    int32                          `idl:"name:rdcDesired" json:"rdc_desired"`
-	StagingPolicy frs2.FrsRequestedStagingPolicy `idl:"name:stagingPolicy" json:"staging_policy"`
-	BufferSize    uint32                         `idl:"name:bufferSize" json:"buffer_size"`
+	ConnectionID  *frs2.ConnectionID          `idl:"name:connectionId" json:"connection_id"`
+	Update        *frs2.Update                `idl:"name:frsUpdate" json:"update"`
+	Desired       int32                       `idl:"name:rdcDesired" json:"desired"`
+	StagingPolicy frs2.RequestedStagingPolicy `idl:"name:stagingPolicy" json:"staging_policy"`
+	BufferSize    uint32                      `idl:"name:bufferSize" json:"buffer_size"`
 }
 
 func (o *InitializeFileTransferAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_InitializeFileTransferAsyncOperation) *xxx_InitializeFileTransferAsyncOperation {
@@ -4098,8 +4094,8 @@ func (o *InitializeFileTransferAsyncRequest) xxx_ToOp(ctx context.Context, op *x
 		return op
 	}
 	op.ConnectionID = o.ConnectionID
-	op.FrsUpdate = o.FrsUpdate
-	op.RdcDesired = o.RdcDesired
+	op.Update = o.Update
+	op.Desired = o.Desired
 	op.StagingPolicy = o.StagingPolicy
 	op.BufferSize = o.BufferSize
 	return op
@@ -4110,8 +4106,8 @@ func (o *InitializeFileTransferAsyncRequest) xxx_FromOp(ctx context.Context, op 
 		return
 	}
 	o.ConnectionID = op.ConnectionID
-	o.FrsUpdate = op.FrsUpdate
-	o.RdcDesired = op.RdcDesired
+	o.Update = op.Update
+	o.Desired = op.Desired
 	o.StagingPolicy = op.StagingPolicy
 	o.BufferSize = op.BufferSize
 }
@@ -4132,13 +4128,13 @@ type InitializeFileTransferAsyncResponse struct {
 	// XXX: bufferSize is an implicit input depedency for output parameters
 	BufferSize uint32 `idl:"name:bufferSize" json:"buffer_size"`
 
-	FrsUpdate     *frs2.FrsUpdate                `idl:"name:frsUpdate" json:"frs_update"`
-	StagingPolicy frs2.FrsRequestedStagingPolicy `idl:"name:stagingPolicy" json:"staging_policy"`
-	ServerContext *PfrsServerContext             `idl:"name:serverContext" json:"server_context"`
-	RdcFileInfo   *frs2.FrsRdcFileinfo           `idl:"name:rdcFileInfo" json:"rdc_file_info"`
-	DataBuffer    []byte                         `idl:"name:dataBuffer;size_is:(bufferSize);length_is:(sizeRead)" json:"data_buffer"`
-	SizeRead      uint32                         `idl:"name:sizeRead" json:"size_read"`
-	IsEndOfFile   int32                          `idl:"name:isEndOfFile" json:"is_end_of_file"`
+	Update        *frs2.Update                `idl:"name:frsUpdate" json:"update"`
+	StagingPolicy frs2.RequestedStagingPolicy `idl:"name:stagingPolicy" json:"staging_policy"`
+	ServerContext *ServerContext              `idl:"name:serverContext" json:"server_context"`
+	FileInfo      *frs2.FileInfo              `idl:"name:rdcFileInfo" json:"file_info"`
+	DataBuffer    []byte                      `idl:"name:dataBuffer;size_is:(bufferSize);length_is:(sizeRead)" json:"data_buffer"`
+	SizeRead      uint32                      `idl:"name:sizeRead" json:"size_read"`
+	IsEndOfFile   int32                       `idl:"name:isEndOfFile" json:"is_end_of_file"`
 	// Return: The InitializeFileTransferAsync return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -4155,10 +4151,10 @@ func (o *InitializeFileTransferAsyncResponse) xxx_ToOp(ctx context.Context, op *
 		op.BufferSize = o.BufferSize
 	}
 
-	op.FrsUpdate = o.FrsUpdate
+	op.Update = o.Update
 	op.StagingPolicy = o.StagingPolicy
 	op.ServerContext = o.ServerContext
-	op.RdcFileInfo = o.RdcFileInfo
+	op.FileInfo = o.FileInfo
 	op.DataBuffer = o.DataBuffer
 	op.SizeRead = o.SizeRead
 	op.IsEndOfFile = o.IsEndOfFile
@@ -4173,10 +4169,10 @@ func (o *InitializeFileTransferAsyncResponse) xxx_FromOp(ctx context.Context, op
 	// XXX: implicit input dependencies for output parameters
 	o.BufferSize = op.BufferSize
 
-	o.FrsUpdate = op.FrsUpdate
+	o.Update = op.Update
 	o.StagingPolicy = op.StagingPolicy
 	o.ServerContext = op.ServerContext
-	o.RdcFileInfo = op.RdcFileInfo
+	o.FileInfo = op.FileInfo
 	o.DataBuffer = op.DataBuffer
 	o.SizeRead = op.SizeRead
 	o.IsEndOfFile = op.IsEndOfFile
@@ -4196,9 +4192,9 @@ func (o *InitializeFileTransferAsyncResponse) UnmarshalNDR(ctx context.Context, 
 
 // xxx_RawGetFileDataAsyncOperation structure represents the RawGetFileDataAsync operation
 type xxx_RawGetFileDataAsyncOperation struct {
-	ServerContext *PfrsServerContext `idl:"name:serverContext" json:"server_context"`
-	BytePipe      frs2.BytePipe      `idl:"name:bytePipe" json:"byte_pipe"`
-	Return        uint32             `idl:"name:Return" json:"return"`
+	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
+	BytePipe      frs2.BytePipe  `idl:"name:bytePipe" json:"byte_pipe"`
+	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RawGetFileDataAsyncOperation) OpNum() int { return 15 }
@@ -4227,7 +4223,7 @@ func (o *xxx_RawGetFileDataAsyncOperation) MarshalNDRRequest(ctx context.Context
 				return err
 			}
 		} else {
-			if err := (&PfrsServerContext{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ServerContext{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -4239,7 +4235,7 @@ func (o *xxx_RawGetFileDataAsyncOperation) UnmarshalNDRRequest(ctx context.Conte
 	// serverContext {in} (1:{context_handle, alias=PFRS_SERVER_CONTEXT, names=ndr_context_handle}(struct))
 	{
 		if o.ServerContext == nil {
-			o.ServerContext = &PfrsServerContext{}
+			o.ServerContext = &ServerContext{}
 		}
 		if err := o.ServerContext.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -4345,7 +4341,7 @@ func (o *xxx_RawGetFileDataAsyncOperation) UnmarshalNDRResponse(ctx context.Cont
 
 // RawGetFileDataAsyncRequest structure represents the RawGetFileDataAsync operation request
 type RawGetFileDataAsyncRequest struct {
-	ServerContext *PfrsServerContext `idl:"name:serverContext" json:"server_context"`
+	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
 }
 
 func (o *RawGetFileDataAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_RawGetFileDataAsyncOperation) *xxx_RawGetFileDataAsyncOperation {
@@ -4415,20 +4411,20 @@ func (o *RawGetFileDataAsyncResponse) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
-// xxx_RdcGetFileDataAsyncOperation structure represents the RdcGetFileDataAsync operation
-type xxx_RdcGetFileDataAsyncOperation struct {
-	ServerContext *PfrsServerContext `idl:"name:serverContext" json:"server_context"`
-	BytePipe      frs2.BytePipe      `idl:"name:bytePipe" json:"byte_pipe"`
-	Return        uint32             `idl:"name:Return" json:"return"`
+// xxx_GetFileDataAsyncOperation structure represents the RdcGetFileDataAsync operation
+type xxx_GetFileDataAsyncOperation struct {
+	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
+	BytePipe      frs2.BytePipe  `idl:"name:bytePipe" json:"byte_pipe"`
+	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RdcGetFileDataAsyncOperation) OpNum() int { return 16 }
+func (o *xxx_GetFileDataAsyncOperation) OpNum() int { return 16 }
 
-func (o *xxx_RdcGetFileDataAsyncOperation) OpName() string {
+func (o *xxx_GetFileDataAsyncOperation) OpName() string {
 	return "/FrsTransport/v1/RdcGetFileDataAsync"
 }
 
-func (o *xxx_RdcGetFileDataAsyncOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetFileDataAsyncOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -4437,7 +4433,7 @@ func (o *xxx_RdcGetFileDataAsyncOperation) xxx_PrepareRequestPayload(ctx context
 	return nil
 }
 
-func (o *xxx_RdcGetFileDataAsyncOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetFileDataAsyncOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -4448,7 +4444,7 @@ func (o *xxx_RdcGetFileDataAsyncOperation) MarshalNDRRequest(ctx context.Context
 				return err
 			}
 		} else {
-			if err := (&PfrsServerContext{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ServerContext{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -4456,11 +4452,11 @@ func (o *xxx_RdcGetFileDataAsyncOperation) MarshalNDRRequest(ctx context.Context
 	return nil
 }
 
-func (o *xxx_RdcGetFileDataAsyncOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetFileDataAsyncOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// serverContext {in} (1:{context_handle, alias=PFRS_SERVER_CONTEXT, names=ndr_context_handle}(struct))
 	{
 		if o.ServerContext == nil {
-			o.ServerContext = &PfrsServerContext{}
+			o.ServerContext = &ServerContext{}
 		}
 		if err := o.ServerContext.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -4469,7 +4465,7 @@ func (o *xxx_RdcGetFileDataAsyncOperation) UnmarshalNDRRequest(ctx context.Conte
 	return nil
 }
 
-func (o *xxx_RdcGetFileDataAsyncOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetFileDataAsyncOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -4478,7 +4474,7 @@ func (o *xxx_RdcGetFileDataAsyncOperation) xxx_PrepareResponsePayload(ctx contex
 	return nil
 }
 
-func (o *xxx_RdcGetFileDataAsyncOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetFileDataAsyncOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -4523,7 +4519,7 @@ func (o *xxx_RdcGetFileDataAsyncOperation) MarshalNDRResponse(ctx context.Contex
 	return nil
 }
 
-func (o *xxx_RdcGetFileDataAsyncOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetFileDataAsyncOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// bytePipe {out} (1:{pointer=ref}*(1))(2:{alias=BYTE_PIPE}(pipe)(uint8))
 	{
 		if o.BytePipe == nil {
@@ -4564,14 +4560,14 @@ func (o *xxx_RdcGetFileDataAsyncOperation) UnmarshalNDRResponse(ctx context.Cont
 	return nil
 }
 
-// RdcGetFileDataAsyncRequest structure represents the RdcGetFileDataAsync operation request
-type RdcGetFileDataAsyncRequest struct {
-	ServerContext *PfrsServerContext `idl:"name:serverContext" json:"server_context"`
+// GetFileDataAsyncRequest structure represents the RdcGetFileDataAsync operation request
+type GetFileDataAsyncRequest struct {
+	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
 }
 
-func (o *RdcGetFileDataAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_RdcGetFileDataAsyncOperation) *xxx_RdcGetFileDataAsyncOperation {
+func (o *GetFileDataAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFileDataAsyncOperation) *xxx_GetFileDataAsyncOperation {
 	if op == nil {
-		op = &xxx_RdcGetFileDataAsyncOperation{}
+		op = &xxx_GetFileDataAsyncOperation{}
 	}
 	if o == nil {
 		return op
@@ -4580,17 +4576,17 @@ func (o *RdcGetFileDataAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_RdcGe
 	return op
 }
 
-func (o *RdcGetFileDataAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_RdcGetFileDataAsyncOperation) {
+func (o *GetFileDataAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFileDataAsyncOperation) {
 	if o == nil {
 		return
 	}
 	o.ServerContext = op.ServerContext
 }
-func (o *RdcGetFileDataAsyncRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetFileDataAsyncRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RdcGetFileDataAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RdcGetFileDataAsyncOperation{}
+func (o *GetFileDataAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetFileDataAsyncOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -4598,16 +4594,16 @@ func (o *RdcGetFileDataAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
-// RdcGetFileDataAsyncResponse structure represents the RdcGetFileDataAsync operation response
-type RdcGetFileDataAsyncResponse struct {
+// GetFileDataAsyncResponse structure represents the RdcGetFileDataAsync operation response
+type GetFileDataAsyncResponse struct {
 	BytePipe frs2.BytePipe `idl:"name:bytePipe" json:"byte_pipe"`
 	// Return: The RdcGetFileDataAsync return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RdcGetFileDataAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_RdcGetFileDataAsyncOperation) *xxx_RdcGetFileDataAsyncOperation {
+func (o *GetFileDataAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFileDataAsyncOperation) *xxx_GetFileDataAsyncOperation {
 	if op == nil {
-		op = &xxx_RdcGetFileDataAsyncOperation{}
+		op = &xxx_GetFileDataAsyncOperation{}
 	}
 	if o == nil {
 		return op
@@ -4617,18 +4613,18 @@ func (o *RdcGetFileDataAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_RdcG
 	return op
 }
 
-func (o *RdcGetFileDataAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_RdcGetFileDataAsyncOperation) {
+func (o *GetFileDataAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFileDataAsyncOperation) {
 	if o == nil {
 		return
 	}
 	o.BytePipe = op.BytePipe
 	o.Return = op.Return
 }
-func (o *RdcGetFileDataAsyncResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetFileDataAsyncResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RdcGetFileDataAsyncResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RdcGetFileDataAsyncOperation{}
+func (o *GetFileDataAsyncResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetFileDataAsyncOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -4636,19 +4632,19 @@ func (o *RdcGetFileDataAsyncResponse) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
-// xxx_RdcFileDataTransferKeepAliveOperation structure represents the RdcFileDataTransferKeepAlive operation
-type xxx_RdcFileDataTransferKeepAliveOperation struct {
-	ServerContext *PfrsServerContext `idl:"name:serverContext" json:"server_context"`
-	Return        uint32             `idl:"name:Return" json:"return"`
+// xxx_FileDataTransferKeepAliveOperation structure represents the RdcFileDataTransferKeepAlive operation
+type xxx_FileDataTransferKeepAliveOperation struct {
+	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
+	Return        uint32         `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RdcFileDataTransferKeepAliveOperation) OpNum() int { return 17 }
+func (o *xxx_FileDataTransferKeepAliveOperation) OpNum() int { return 17 }
 
-func (o *xxx_RdcFileDataTransferKeepAliveOperation) OpName() string {
+func (o *xxx_FileDataTransferKeepAliveOperation) OpName() string {
 	return "/FrsTransport/v1/RdcFileDataTransferKeepAlive"
 }
 
-func (o *xxx_RdcFileDataTransferKeepAliveOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_FileDataTransferKeepAliveOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -4657,7 +4653,7 @@ func (o *xxx_RdcFileDataTransferKeepAliveOperation) xxx_PrepareRequestPayload(ct
 	return nil
 }
 
-func (o *xxx_RdcFileDataTransferKeepAliveOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_FileDataTransferKeepAliveOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -4668,7 +4664,7 @@ func (o *xxx_RdcFileDataTransferKeepAliveOperation) MarshalNDRRequest(ctx contex
 				return err
 			}
 		} else {
-			if err := (&PfrsServerContext{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ServerContext{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -4676,11 +4672,11 @@ func (o *xxx_RdcFileDataTransferKeepAliveOperation) MarshalNDRRequest(ctx contex
 	return nil
 }
 
-func (o *xxx_RdcFileDataTransferKeepAliveOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_FileDataTransferKeepAliveOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// serverContext {in} (1:{context_handle, alias=PFRS_SERVER_CONTEXT, names=ndr_context_handle}(struct))
 	{
 		if o.ServerContext == nil {
-			o.ServerContext = &PfrsServerContext{}
+			o.ServerContext = &ServerContext{}
 		}
 		if err := o.ServerContext.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -4689,7 +4685,7 @@ func (o *xxx_RdcFileDataTransferKeepAliveOperation) UnmarshalNDRRequest(ctx cont
 	return nil
 }
 
-func (o *xxx_RdcFileDataTransferKeepAliveOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_FileDataTransferKeepAliveOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -4698,7 +4694,7 @@ func (o *xxx_RdcFileDataTransferKeepAliveOperation) xxx_PrepareResponsePayload(c
 	return nil
 }
 
-func (o *xxx_RdcFileDataTransferKeepAliveOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_FileDataTransferKeepAliveOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -4711,7 +4707,7 @@ func (o *xxx_RdcFileDataTransferKeepAliveOperation) MarshalNDRResponse(ctx conte
 	return nil
 }
 
-func (o *xxx_RdcFileDataTransferKeepAliveOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_FileDataTransferKeepAliveOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -4721,14 +4717,14 @@ func (o *xxx_RdcFileDataTransferKeepAliveOperation) UnmarshalNDRResponse(ctx con
 	return nil
 }
 
-// RdcFileDataTransferKeepAliveRequest structure represents the RdcFileDataTransferKeepAlive operation request
-type RdcFileDataTransferKeepAliveRequest struct {
-	ServerContext *PfrsServerContext `idl:"name:serverContext" json:"server_context"`
+// FileDataTransferKeepAliveRequest structure represents the RdcFileDataTransferKeepAlive operation request
+type FileDataTransferKeepAliveRequest struct {
+	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
 }
 
-func (o *RdcFileDataTransferKeepAliveRequest) xxx_ToOp(ctx context.Context, op *xxx_RdcFileDataTransferKeepAliveOperation) *xxx_RdcFileDataTransferKeepAliveOperation {
+func (o *FileDataTransferKeepAliveRequest) xxx_ToOp(ctx context.Context, op *xxx_FileDataTransferKeepAliveOperation) *xxx_FileDataTransferKeepAliveOperation {
 	if op == nil {
-		op = &xxx_RdcFileDataTransferKeepAliveOperation{}
+		op = &xxx_FileDataTransferKeepAliveOperation{}
 	}
 	if o == nil {
 		return op
@@ -4737,17 +4733,17 @@ func (o *RdcFileDataTransferKeepAliveRequest) xxx_ToOp(ctx context.Context, op *
 	return op
 }
 
-func (o *RdcFileDataTransferKeepAliveRequest) xxx_FromOp(ctx context.Context, op *xxx_RdcFileDataTransferKeepAliveOperation) {
+func (o *FileDataTransferKeepAliveRequest) xxx_FromOp(ctx context.Context, op *xxx_FileDataTransferKeepAliveOperation) {
 	if o == nil {
 		return
 	}
 	o.ServerContext = op.ServerContext
 }
-func (o *RdcFileDataTransferKeepAliveRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *FileDataTransferKeepAliveRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RdcFileDataTransferKeepAliveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RdcFileDataTransferKeepAliveOperation{}
+func (o *FileDataTransferKeepAliveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_FileDataTransferKeepAliveOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -4755,15 +4751,15 @@ func (o *RdcFileDataTransferKeepAliveRequest) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
-// RdcFileDataTransferKeepAliveResponse structure represents the RdcFileDataTransferKeepAlive operation response
-type RdcFileDataTransferKeepAliveResponse struct {
+// FileDataTransferKeepAliveResponse structure represents the RdcFileDataTransferKeepAlive operation response
+type FileDataTransferKeepAliveResponse struct {
 	// Return: The RdcFileDataTransferKeepAlive return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RdcFileDataTransferKeepAliveResponse) xxx_ToOp(ctx context.Context, op *xxx_RdcFileDataTransferKeepAliveOperation) *xxx_RdcFileDataTransferKeepAliveOperation {
+func (o *FileDataTransferKeepAliveResponse) xxx_ToOp(ctx context.Context, op *xxx_FileDataTransferKeepAliveOperation) *xxx_FileDataTransferKeepAliveOperation {
 	if op == nil {
-		op = &xxx_RdcFileDataTransferKeepAliveOperation{}
+		op = &xxx_FileDataTransferKeepAliveOperation{}
 	}
 	if o == nil {
 		return op
@@ -4772,17 +4768,17 @@ func (o *RdcFileDataTransferKeepAliveResponse) xxx_ToOp(ctx context.Context, op 
 	return op
 }
 
-func (o *RdcFileDataTransferKeepAliveResponse) xxx_FromOp(ctx context.Context, op *xxx_RdcFileDataTransferKeepAliveOperation) {
+func (o *FileDataTransferKeepAliveResponse) xxx_FromOp(ctx context.Context, op *xxx_FileDataTransferKeepAliveOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *RdcFileDataTransferKeepAliveResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *FileDataTransferKeepAliveResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RdcFileDataTransferKeepAliveResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RdcFileDataTransferKeepAliveOperation{}
+func (o *FileDataTransferKeepAliveResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_FileDataTransferKeepAliveOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

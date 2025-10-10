@@ -36,18 +36,18 @@ var (
 
 var (
 	// IMSMQApplication3 interface identifier eba96b1f-2168-11d3-898c-00e02c074f6b
-	ImsmqApplication3IID = &dcom.IID{Data1: 0xeba96b1f, Data2: 0x2168, Data3: 0x11d3, Data4: []byte{0x89, 0x8c, 0x00, 0xe0, 0x2c, 0x07, 0x4f, 0x6b}}
+	Application3IID = &dcom.IID{Data1: 0xeba96b1f, Data2: 0x2168, Data3: 0x11d3, Data4: []byte{0x89, 0x8c, 0x00, 0xe0, 0x2c, 0x07, 0x4f, 0x6b}}
 	// Syntax UUID
-	ImsmqApplication3SyntaxUUID = &uuid.UUID{TimeLow: 0xeba96b1f, TimeMid: 0x2168, TimeHiAndVersion: 0x11d3, ClockSeqHiAndReserved: 0x89, ClockSeqLow: 0x8c, Node: [6]uint8{0x0, 0xe0, 0x2c, 0x7, 0x4f, 0x6b}}
+	Application3SyntaxUUID = &uuid.UUID{TimeLow: 0xeba96b1f, TimeMid: 0x2168, TimeHiAndVersion: 0x11d3, ClockSeqHiAndReserved: 0x89, ClockSeqLow: 0x8c, Node: [6]uint8{0x0, 0xe0, 0x2c, 0x7, 0x4f, 0x6b}}
 	// Syntax ID
-	ImsmqApplication3SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ImsmqApplication3SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	Application3SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: Application3SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IMSMQApplication3 interface.
-type ImsmqApplication3Client interface {
+type Application3Client interface {
 
 	// IMSMQApplication2 retrieval method.
-	ImsmqApplication2() imsmqapplication2.ImsmqApplication2Client
+	Application2() imsmqapplication2.Application2Client
 
 	// ActiveQueues operation.
 	ActiveQueues(context.Context, *ActiveQueuesRequest, ...dcerpc.CallOption) (*ActiveQueuesResponse, error)
@@ -86,20 +86,20 @@ type ImsmqApplication3Client interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) ImsmqApplication3Client
+	IPID(context.Context, *dcom.IPID) Application3Client
 }
 
-type xxx_DefaultImsmqApplication3Client struct {
-	imsmqapplication2.ImsmqApplication2Client
+type xxx_DefaultApplication3Client struct {
+	imsmqapplication2.Application2Client
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultImsmqApplication3Client) ImsmqApplication2() imsmqapplication2.ImsmqApplication2Client {
-	return o.ImsmqApplication2Client
+func (o *xxx_DefaultApplication3Client) Application2() imsmqapplication2.Application2Client {
+	return o.Application2Client
 }
 
-func (o *xxx_DefaultImsmqApplication3Client) ActiveQueues(ctx context.Context, in *ActiveQueuesRequest, opts ...dcerpc.CallOption) (*ActiveQueuesResponse, error) {
+func (o *xxx_DefaultApplication3Client) ActiveQueues(ctx context.Context, in *ActiveQueuesRequest, opts ...dcerpc.CallOption) (*ActiveQueuesResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -119,7 +119,7 @@ func (o *xxx_DefaultImsmqApplication3Client) ActiveQueues(ctx context.Context, i
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqApplication3Client) GetPrivateQueues(ctx context.Context, in *GetPrivateQueuesRequest, opts ...dcerpc.CallOption) (*GetPrivateQueuesResponse, error) {
+func (o *xxx_DefaultApplication3Client) GetPrivateQueues(ctx context.Context, in *GetPrivateQueuesRequest, opts ...dcerpc.CallOption) (*GetPrivateQueuesResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -139,7 +139,7 @@ func (o *xxx_DefaultImsmqApplication3Client) GetPrivateQueues(ctx context.Contex
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqApplication3Client) GetDirectoryServiceServer(ctx context.Context, in *GetDirectoryServiceServerRequest, opts ...dcerpc.CallOption) (*GetDirectoryServiceServerResponse, error) {
+func (o *xxx_DefaultApplication3Client) GetDirectoryServiceServer(ctx context.Context, in *GetDirectoryServiceServerRequest, opts ...dcerpc.CallOption) (*GetDirectoryServiceServerResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -159,7 +159,7 @@ func (o *xxx_DefaultImsmqApplication3Client) GetDirectoryServiceServer(ctx conte
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqApplication3Client) GetIsConnected(ctx context.Context, in *GetIsConnectedRequest, opts ...dcerpc.CallOption) (*GetIsConnectedResponse, error) {
+func (o *xxx_DefaultApplication3Client) GetIsConnected(ctx context.Context, in *GetIsConnectedRequest, opts ...dcerpc.CallOption) (*GetIsConnectedResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -179,7 +179,7 @@ func (o *xxx_DefaultImsmqApplication3Client) GetIsConnected(ctx context.Context,
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqApplication3Client) GetBytesInAllQueues(ctx context.Context, in *GetBytesInAllQueuesRequest, opts ...dcerpc.CallOption) (*GetBytesInAllQueuesResponse, error) {
+func (o *xxx_DefaultApplication3Client) GetBytesInAllQueues(ctx context.Context, in *GetBytesInAllQueuesRequest, opts ...dcerpc.CallOption) (*GetBytesInAllQueuesResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -199,7 +199,7 @@ func (o *xxx_DefaultImsmqApplication3Client) GetBytesInAllQueues(ctx context.Con
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqApplication3Client) SetMachine(ctx context.Context, in *SetMachineRequest, opts ...dcerpc.CallOption) (*SetMachineResponse, error) {
+func (o *xxx_DefaultApplication3Client) SetMachine(ctx context.Context, in *SetMachineRequest, opts ...dcerpc.CallOption) (*SetMachineResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -219,7 +219,7 @@ func (o *xxx_DefaultImsmqApplication3Client) SetMachine(ctx context.Context, in 
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqApplication3Client) GetMachine(ctx context.Context, in *GetMachineRequest, opts ...dcerpc.CallOption) (*GetMachineResponse, error) {
+func (o *xxx_DefaultApplication3Client) GetMachine(ctx context.Context, in *GetMachineRequest, opts ...dcerpc.CallOption) (*GetMachineResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -239,7 +239,7 @@ func (o *xxx_DefaultImsmqApplication3Client) GetMachine(ctx context.Context, in 
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqApplication3Client) Connect(ctx context.Context, in *ConnectRequest, opts ...dcerpc.CallOption) (*ConnectResponse, error) {
+func (o *xxx_DefaultApplication3Client) Connect(ctx context.Context, in *ConnectRequest, opts ...dcerpc.CallOption) (*ConnectResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -259,7 +259,7 @@ func (o *xxx_DefaultImsmqApplication3Client) Connect(ctx context.Context, in *Co
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqApplication3Client) Disconnect(ctx context.Context, in *DisconnectRequest, opts ...dcerpc.CallOption) (*DisconnectResponse, error) {
+func (o *xxx_DefaultApplication3Client) Disconnect(ctx context.Context, in *DisconnectRequest, opts ...dcerpc.CallOption) (*DisconnectResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -279,7 +279,7 @@ func (o *xxx_DefaultImsmqApplication3Client) Disconnect(ctx context.Context, in 
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqApplication3Client) Tidy(ctx context.Context, in *TidyRequest, opts ...dcerpc.CallOption) (*TidyResponse, error) {
+func (o *xxx_DefaultApplication3Client) Tidy(ctx context.Context, in *TidyRequest, opts ...dcerpc.CallOption) (*TidyResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -299,34 +299,34 @@ func (o *xxx_DefaultImsmqApplication3Client) Tidy(ctx context.Context, in *TidyR
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqApplication3Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultApplication3Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultImsmqApplication3Client) Conn() dcerpc.Conn {
+func (o *xxx_DefaultApplication3Client) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultImsmqApplication3Client) IPID(ctx context.Context, ipid *dcom.IPID) ImsmqApplication3Client {
+func (o *xxx_DefaultApplication3Client) IPID(ctx context.Context, ipid *dcom.IPID) Application3Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultImsmqApplication3Client{
-		ImsmqApplication2Client: o.ImsmqApplication2Client.IPID(ctx, ipid),
-		cc:                      o.cc,
-		ipid:                    ipid,
+	return &xxx_DefaultApplication3Client{
+		Application2Client: o.Application2Client.IPID(ctx, ipid),
+		cc:                 o.cc,
+		ipid:               ipid,
 	}
 }
 
-func NewImsmqApplication3Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ImsmqApplication3Client, error) {
+func NewApplication3Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Application3Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ImsmqApplication3SyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(Application3SyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
 	}
-	base, err := imsmqapplication2.NewImsmqApplication2Client(ctx, cc, append(opts, dcom.Superclass(cc))...)
+	base, err := imsmqapplication2.NewApplication2Client(ctx, cc, append(opts, dcom.Superclass(cc))...)
 	if err != nil {
 		return nil, err
 	}
@@ -334,10 +334,10 @@ func NewImsmqApplication3Client(ctx context.Context, cc dcerpc.Conn, opts ...dce
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultImsmqApplication3Client{
-		ImsmqApplication2Client: base,
-		cc:                      cc,
-		ipid:                    ipid,
+	return &xxx_DefaultApplication3Client{
+		Application2Client: base,
+		cc:                 cc,
+		ipid:               ipid,
 	}, nil
 }
 

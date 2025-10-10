@@ -71,13 +71,13 @@ type EnumConnectionsClient interface {
 	IPID(context.Context, *dcom.IPID) EnumConnectionsClient
 }
 
-// Connectdata structure represents CONNECTDATA RPC structure.
-type Connectdata struct {
+// ConnectData structure represents CONNECTDATA RPC structure.
+type ConnectData struct {
 	Unknown *dcom.Unknown `idl:"name:pUnk" json:"unknown"`
 	Cookie  uint32        `idl:"name:dwCookie" json:"cookie"`
 }
 
-func (o *Connectdata) xxx_PreparePayload(ctx context.Context) error {
+func (o *ConnectData) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -86,7 +86,7 @@ func (o *Connectdata) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *Connectdata) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ConnectData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -122,7 +122,7 @@ func (o *Connectdata) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *Connectdata) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ConnectData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -285,7 +285,7 @@ type xxx_NextOperation struct {
 	This             *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That             *dcom.ORPCThat `idl:"name:That" json:"that"`
 	ConnectionsCount uint32         `idl:"name:cConnections" json:"connections_count"`
-	Rgcd             []*Connectdata `idl:"name:rgcd;size_is:(cConnections);length_is:(pcFetched)" json:"rgcd"`
+	ConnectDataArray []*ConnectData `idl:"name:rgcd;size_is:(cConnections);length_is:(pcFetched)" json:"connect_data_array"`
 	FetchedCount     uint32         `idl:"name:pcFetched" json:"fetched_count"`
 	Return           int32          `idl:"name:Return" json:"return"`
 }
@@ -354,8 +354,8 @@ func (o *xxx_NextOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 }
 
 func (o *xxx_NextOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
-	if o.Rgcd != nil && o.FetchedCount == 0 {
-		o.FetchedCount = uint32(len(o.Rgcd))
+	if o.ConnectDataArray != nil && o.FetchedCount == 0 {
+		o.FetchedCount = uint32(len(o.ConnectDataArray))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
@@ -405,23 +405,23 @@ func (o *xxx_NextOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 		if err := w.WriteSize(dimLength1); err != nil {
 			return err
 		}
-		for i1 := range o.Rgcd {
+		for i1 := range o.ConnectDataArray {
 			i1 := i1
 			if uint64(i1) >= sizeInfo[0] {
 				break
 			}
-			if o.Rgcd[i1] != nil {
-				if err := o.Rgcd[i1].MarshalNDR(ctx, w); err != nil {
+			if o.ConnectDataArray[i1] != nil {
+				if err := o.ConnectDataArray[i1].MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			} else {
-				if err := (&Connectdata{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&ConnectData{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
 		}
-		for i1 := len(o.Rgcd); uint64(i1) < sizeInfo[0]; i1++ {
-			if err := (&Connectdata{}).MarshalNDR(ctx, w); err != nil {
+		for i1 := len(o.ConnectDataArray); uint64(i1) < sizeInfo[0]; i1++ {
+			if err := (&ConnectData{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -476,15 +476,15 @@ func (o *xxx_NextOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 			}
 		}
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-			return fmt.Errorf("buffer overflow for size %d of array o.Rgcd", sizeInfo[0])
+			return fmt.Errorf("buffer overflow for size %d of array o.ConnectDataArray", sizeInfo[0])
 		}
-		o.Rgcd = make([]*Connectdata, sizeInfo[0])
-		for i1 := range o.Rgcd {
+		o.ConnectDataArray = make([]*ConnectData, sizeInfo[0])
+		for i1 := range o.ConnectDataArray {
 			i1 := i1
-			if o.Rgcd[i1] == nil {
-				o.Rgcd[i1] = &Connectdata{}
+			if o.ConnectDataArray[i1] == nil {
+				o.ConnectDataArray[i1] = &ConnectData{}
 			}
-			if err := o.Rgcd[i1].UnmarshalNDR(ctx, w); err != nil {
+			if err := o.ConnectDataArray[i1].UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -551,9 +551,9 @@ type NextResponse struct {
 	ConnectionsCount uint32 `idl:"name:cConnections" json:"connections_count"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Rgcd         []*Connectdata `idl:"name:rgcd;size_is:(cConnections);length_is:(pcFetched)" json:"rgcd"`
-	FetchedCount uint32         `idl:"name:pcFetched" json:"fetched_count"`
+	That             *dcom.ORPCThat `idl:"name:That" json:"that"`
+	ConnectDataArray []*ConnectData `idl:"name:rgcd;size_is:(cConnections);length_is:(pcFetched)" json:"connect_data_array"`
+	FetchedCount     uint32         `idl:"name:pcFetched" json:"fetched_count"`
 	// Return: The Next return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -571,7 +571,7 @@ func (o *NextResponse) xxx_ToOp(ctx context.Context, op *xxx_NextOperation) *xxx
 	}
 
 	op.That = o.That
-	op.Rgcd = o.Rgcd
+	op.ConnectDataArray = o.ConnectDataArray
 	op.FetchedCount = o.FetchedCount
 	op.Return = o.Return
 	return op
@@ -585,7 +585,7 @@ func (o *NextResponse) xxx_FromOp(ctx context.Context, op *xxx_NextOperation) {
 	o.ConnectionsCount = op.ConnectionsCount
 
 	o.That = op.That
-	o.Rgcd = op.Rgcd
+	o.ConnectDataArray = op.ConnectDataArray
 	o.FetchedCount = op.FetchedCount
 	o.Return = op.Return
 }

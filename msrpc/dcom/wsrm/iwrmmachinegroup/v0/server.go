@@ -26,7 +26,7 @@ var (
 )
 
 // IWRMMachineGroup server interface.
-type IwrmMachineGroupServer interface {
+type MachineGroupServer interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -50,17 +50,17 @@ type IwrmMachineGroupServer interface {
 	DeleteMachine(context.Context, *DeleteMachineRequest) (*DeleteMachineResponse, error)
 }
 
-func RegisterIwrmMachineGroupServer(conn dcerpc.Conn, o IwrmMachineGroupServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewIwrmMachineGroupServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(IwrmMachineGroupSyntaxV0_0))...)
+func RegisterMachineGroupServer(conn dcerpc.Conn, o MachineGroupServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewMachineGroupServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(MachineGroupSyntaxV0_0))...)
 }
 
-func NewIwrmMachineGroupServerHandle(o IwrmMachineGroupServer) dcerpc.ServerHandle {
+func NewMachineGroupServerHandle(o MachineGroupServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return IwrmMachineGroupServerHandle(ctx, o, opNum, r)
+		return MachineGroupServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func IwrmMachineGroupServerHandle(ctx context.Context, o IwrmMachineGroupServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func MachineGroupServerHandle(ctx context.Context, o MachineGroupServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -152,36 +152,36 @@ func IwrmMachineGroupServerHandle(ctx context.Context, o IwrmMachineGroupServer,
 }
 
 // Unimplemented IWRMMachineGroup
-type UnimplementedIwrmMachineGroupServer struct {
+type UnimplementedMachineGroupServer struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedIwrmMachineGroupServer) CreateMachineGroup(context.Context, *CreateMachineGroupRequest) (*CreateMachineGroupResponse, error) {
+func (UnimplementedMachineGroupServer) CreateMachineGroup(context.Context, *CreateMachineGroupRequest) (*CreateMachineGroupResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmMachineGroupServer) GetMachineGroupInfo(context.Context, *GetMachineGroupInfoRequest) (*GetMachineGroupInfoResponse, error) {
+func (UnimplementedMachineGroupServer) GetMachineGroupInfo(context.Context, *GetMachineGroupInfoRequest) (*GetMachineGroupInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmMachineGroupServer) ModifyMachineGroup(context.Context, *ModifyMachineGroupRequest) (*ModifyMachineGroupResponse, error) {
+func (UnimplementedMachineGroupServer) ModifyMachineGroup(context.Context, *ModifyMachineGroupRequest) (*ModifyMachineGroupResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmMachineGroupServer) DeleteMachineGroup(context.Context, *DeleteMachineGroupRequest) (*DeleteMachineGroupResponse, error) {
+func (UnimplementedMachineGroupServer) DeleteMachineGroup(context.Context, *DeleteMachineGroupRequest) (*DeleteMachineGroupResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmMachineGroupServer) RenameMachineGroup(context.Context, *RenameMachineGroupRequest) (*RenameMachineGroupResponse, error) {
+func (UnimplementedMachineGroupServer) RenameMachineGroup(context.Context, *RenameMachineGroupRequest) (*RenameMachineGroupResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmMachineGroupServer) AddMachine(context.Context, *AddMachineRequest) (*AddMachineResponse, error) {
+func (UnimplementedMachineGroupServer) AddMachine(context.Context, *AddMachineRequest) (*AddMachineResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmMachineGroupServer) GetMachineInfo(context.Context, *GetMachineInfoRequest) (*GetMachineInfoResponse, error) {
+func (UnimplementedMachineGroupServer) GetMachineInfo(context.Context, *GetMachineInfoRequest) (*GetMachineInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmMachineGroupServer) ModifyMachineInfo(context.Context, *ModifyMachineInfoRequest) (*ModifyMachineInfoResponse, error) {
+func (UnimplementedMachineGroupServer) ModifyMachineInfo(context.Context, *ModifyMachineInfoRequest) (*ModifyMachineInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmMachineGroupServer) DeleteMachine(context.Context, *DeleteMachineRequest) (*DeleteMachineResponse, error) {
+func (UnimplementedMachineGroupServer) DeleteMachine(context.Context, *DeleteMachineRequest) (*DeleteMachineResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ IwrmMachineGroupServer = (*UnimplementedIwrmMachineGroupServer)(nil)
+var _ MachineGroupServer = (*UnimplementedMachineGroupServer)(nil)

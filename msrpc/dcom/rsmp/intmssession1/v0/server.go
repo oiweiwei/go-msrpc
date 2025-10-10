@@ -26,7 +26,7 @@ var (
 )
 
 // INtmsSession1 server interface.
-type NTMSSession1Server interface {
+type Session1Server interface {
 
 	// IUnknown base class.
 	iunknown.UnknownServer
@@ -61,17 +61,17 @@ type NTMSSession1Server interface {
 	DispatchNotification(context.Context, *DispatchNotificationRequest) (*DispatchNotificationResponse, error)
 }
 
-func RegisterNTMSSession1Server(conn dcerpc.Conn, o NTMSSession1Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewNTMSSession1ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(NTMSSession1SyntaxV0_0))...)
+func RegisterSession1Server(conn dcerpc.Conn, o Session1Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewSession1ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(Session1SyntaxV0_0))...)
 }
 
-func NewNTMSSession1ServerHandle(o NTMSSession1Server) dcerpc.ServerHandle {
+func NewSession1ServerHandle(o Session1Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return NTMSSession1ServerHandle(ctx, o, opNum, r)
+		return Session1ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func NTMSSession1ServerHandle(ctx context.Context, o NTMSSession1Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func Session1ServerHandle(ctx context.Context, o Session1Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // OpenNtmsServerSessionW
 		op := &xxx_OpenNTMSServerSessionWOperation{}
@@ -198,48 +198,48 @@ func NTMSSession1ServerHandle(ctx context.Context, o NTMSSession1Server, opNum i
 }
 
 // Unimplemented INtmsSession1
-type UnimplementedNTMSSession1Server struct {
+type UnimplementedSession1Server struct {
 	iunknown.UnimplementedUnknownServer
 }
 
-func (UnimplementedNTMSSession1Server) OpenNTMSServerSessionW(context.Context, *OpenNTMSServerSessionWRequest) (*OpenNTMSServerSessionWResponse, error) {
+func (UnimplementedSession1Server) OpenNTMSServerSessionW(context.Context, *OpenNTMSServerSessionWRequest) (*OpenNTMSServerSessionWResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSSession1Server) OpenNTMSServerSessionA(context.Context, *OpenNTMSServerSessionARequest) (*OpenNTMSServerSessionAResponse, error) {
+func (UnimplementedSession1Server) OpenNTMSServerSessionA(context.Context, *OpenNTMSServerSessionARequest) (*OpenNTMSServerSessionAResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSSession1Server) CloseNTMSSession(context.Context, *CloseNTMSSessionRequest) (*CloseNTMSSessionResponse, error) {
+func (UnimplementedSession1Server) CloseNTMSSession(context.Context, *CloseNTMSSessionRequest) (*CloseNTMSSessionResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSSession1Server) SubmitNTMSOperatorRequestW(context.Context, *SubmitNTMSOperatorRequestWRequest) (*SubmitNTMSOperatorRequestWResponse, error) {
+func (UnimplementedSession1Server) SubmitNTMSOperatorRequestW(context.Context, *SubmitNTMSOperatorRequestWRequest) (*SubmitNTMSOperatorRequestWResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSSession1Server) SubmitNTMSOperatorRequestA(context.Context, *SubmitNTMSOperatorRequestARequest) (*SubmitNTMSOperatorRequestAResponse, error) {
+func (UnimplementedSession1Server) SubmitNTMSOperatorRequestA(context.Context, *SubmitNTMSOperatorRequestARequest) (*SubmitNTMSOperatorRequestAResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSSession1Server) WaitForNTMSOperatorRequest(context.Context, *WaitForNTMSOperatorRequestRequest) (*WaitForNTMSOperatorRequestResponse, error) {
+func (UnimplementedSession1Server) WaitForNTMSOperatorRequest(context.Context, *WaitForNTMSOperatorRequestRequest) (*WaitForNTMSOperatorRequestResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSSession1Server) CancelNTMSOperatorRequest(context.Context, *CancelNTMSOperatorRequestRequest) (*CancelNTMSOperatorRequestResponse, error) {
+func (UnimplementedSession1Server) CancelNTMSOperatorRequest(context.Context, *CancelNTMSOperatorRequestRequest) (*CancelNTMSOperatorRequestResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSSession1Server) SatisfyNTMSOperatorRequest(context.Context, *SatisfyNTMSOperatorRequestRequest) (*SatisfyNTMSOperatorRequestResponse, error) {
+func (UnimplementedSession1Server) SatisfyNTMSOperatorRequest(context.Context, *SatisfyNTMSOperatorRequestRequest) (*SatisfyNTMSOperatorRequestResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSSession1Server) ImportNTMSDatabase(context.Context, *ImportNTMSDatabaseRequest) (*ImportNTMSDatabaseResponse, error) {
+func (UnimplementedSession1Server) ImportNTMSDatabase(context.Context, *ImportNTMSDatabaseRequest) (*ImportNTMSDatabaseResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSSession1Server) ExportNTMSDatabase(context.Context, *ExportNTMSDatabaseRequest) (*ExportNTMSDatabaseResponse, error) {
+func (UnimplementedSession1Server) ExportNTMSDatabase(context.Context, *ExportNTMSDatabaseRequest) (*ExportNTMSDatabaseResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSSession1Server) AddNotification(context.Context, *AddNotificationRequest) (*AddNotificationResponse, error) {
+func (UnimplementedSession1Server) AddNotification(context.Context, *AddNotificationRequest) (*AddNotificationResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSSession1Server) RemoveNotification(context.Context, *RemoveNotificationRequest) (*RemoveNotificationResponse, error) {
+func (UnimplementedSession1Server) RemoveNotification(context.Context, *RemoveNotificationRequest) (*RemoveNotificationResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSSession1Server) DispatchNotification(context.Context, *DispatchNotificationRequest) (*DispatchNotificationResponse, error) {
+func (UnimplementedSession1Server) DispatchNotification(context.Context, *DispatchNotificationRequest) (*DispatchNotificationResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ NTMSSession1Server = (*UnimplementedNTMSSession1Server)(nil)
+var _ Session1Server = (*UnimplementedSession1Server)(nil)

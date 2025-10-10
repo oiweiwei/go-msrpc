@@ -26,7 +26,7 @@ var (
 )
 
 // IVssEnumMgmtObject server interface.
-type VSSEnumManagementObjectServer interface {
+type EnumManagementObjectServer interface {
 
 	// IUnknown base class.
 	iunknown.UnknownServer
@@ -44,17 +44,17 @@ type VSSEnumManagementObjectServer interface {
 	Clone(context.Context, *CloneRequest) (*CloneResponse, error)
 }
 
-func RegisterVSSEnumManagementObjectServer(conn dcerpc.Conn, o VSSEnumManagementObjectServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewVSSEnumManagementObjectServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(VSSEnumManagementObjectSyntaxV0_0))...)
+func RegisterEnumManagementObjectServer(conn dcerpc.Conn, o EnumManagementObjectServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewEnumManagementObjectServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(EnumManagementObjectSyntaxV0_0))...)
 }
 
-func NewVSSEnumManagementObjectServerHandle(o VSSEnumManagementObjectServer) dcerpc.ServerHandle {
+func NewEnumManagementObjectServerHandle(o EnumManagementObjectServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return VSSEnumManagementObjectServerHandle(ctx, o, opNum, r)
+		return EnumManagementObjectServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func VSSEnumManagementObjectServerHandle(ctx context.Context, o VSSEnumManagementObjectServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func EnumManagementObjectServerHandle(ctx context.Context, o EnumManagementObjectServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 3 {
 		// IUnknown base method.
 		return iunknown.UnknownServerHandle(ctx, o, opNum, r)
@@ -101,21 +101,21 @@ func VSSEnumManagementObjectServerHandle(ctx context.Context, o VSSEnumManagemen
 }
 
 // Unimplemented IVssEnumMgmtObject
-type UnimplementedVSSEnumManagementObjectServer struct {
+type UnimplementedEnumManagementObjectServer struct {
 	iunknown.UnimplementedUnknownServer
 }
 
-func (UnimplementedVSSEnumManagementObjectServer) Next(context.Context, *NextRequest) (*NextResponse, error) {
+func (UnimplementedEnumManagementObjectServer) Next(context.Context, *NextRequest) (*NextResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedVSSEnumManagementObjectServer) Skip(context.Context, *SkipRequest) (*SkipResponse, error) {
+func (UnimplementedEnumManagementObjectServer) Skip(context.Context, *SkipRequest) (*SkipResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedVSSEnumManagementObjectServer) Reset(context.Context, *ResetRequest) (*ResetResponse, error) {
+func (UnimplementedEnumManagementObjectServer) Reset(context.Context, *ResetRequest) (*ResetResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedVSSEnumManagementObjectServer) Clone(context.Context, *CloneRequest) (*CloneResponse, error) {
+func (UnimplementedEnumManagementObjectServer) Clone(context.Context, *CloneRequest) (*CloneResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ VSSEnumManagementObjectServer = (*UnimplementedVSSEnumManagementObjectServer)(nil)
+var _ EnumManagementObjectServer = (*UnimplementedEnumManagementObjectServer)(nil)

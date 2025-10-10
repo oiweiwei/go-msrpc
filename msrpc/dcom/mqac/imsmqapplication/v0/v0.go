@@ -36,15 +36,15 @@ var (
 
 var (
 	// IMSMQApplication interface identifier d7d6e085-dccd-11d0-aa4b-0060970debae
-	ImsmqApplicationIID = &dcom.IID{Data1: 0xd7d6e085, Data2: 0xdccd, Data3: 0x11d0, Data4: []byte{0xaa, 0x4b, 0x00, 0x60, 0x97, 0x0d, 0xeb, 0xae}}
+	ApplicationIID = &dcom.IID{Data1: 0xd7d6e085, Data2: 0xdccd, Data3: 0x11d0, Data4: []byte{0xaa, 0x4b, 0x00, 0x60, 0x97, 0x0d, 0xeb, 0xae}}
 	// Syntax UUID
-	ImsmqApplicationSyntaxUUID = &uuid.UUID{TimeLow: 0xd7d6e085, TimeMid: 0xdccd, TimeHiAndVersion: 0x11d0, ClockSeqHiAndReserved: 0xaa, ClockSeqLow: 0x4b, Node: [6]uint8{0x0, 0x60, 0x97, 0xd, 0xeb, 0xae}}
+	ApplicationSyntaxUUID = &uuid.UUID{TimeLow: 0xd7d6e085, TimeMid: 0xdccd, TimeHiAndVersion: 0x11d0, ClockSeqHiAndReserved: 0xaa, ClockSeqLow: 0x4b, Node: [6]uint8{0x0, 0x60, 0x97, 0xd, 0xeb, 0xae}}
 	// Syntax ID
-	ImsmqApplicationSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ImsmqApplicationSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	ApplicationSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ApplicationSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IMSMQApplication interface.
-type ImsmqApplicationClient interface {
+type ApplicationClient interface {
 
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
@@ -59,20 +59,20 @@ type ImsmqApplicationClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) ImsmqApplicationClient
+	IPID(context.Context, *dcom.IPID) ApplicationClient
 }
 
-type xxx_DefaultImsmqApplicationClient struct {
+type xxx_DefaultApplicationClient struct {
 	idispatch.DispatchClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultImsmqApplicationClient) Dispatch() idispatch.DispatchClient {
+func (o *xxx_DefaultApplicationClient) Dispatch() idispatch.DispatchClient {
 	return o.DispatchClient
 }
 
-func (o *xxx_DefaultImsmqApplicationClient) MachineIDOfMachineName(ctx context.Context, in *MachineIDOfMachineNameRequest, opts ...dcerpc.CallOption) (*MachineIDOfMachineNameResponse, error) {
+func (o *xxx_DefaultApplicationClient) MachineIDOfMachineName(ctx context.Context, in *MachineIDOfMachineNameRequest, opts ...dcerpc.CallOption) (*MachineIDOfMachineNameResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -92,29 +92,29 @@ func (o *xxx_DefaultImsmqApplicationClient) MachineIDOfMachineName(ctx context.C
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqApplicationClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultApplicationClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultImsmqApplicationClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultApplicationClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultImsmqApplicationClient) IPID(ctx context.Context, ipid *dcom.IPID) ImsmqApplicationClient {
+func (o *xxx_DefaultApplicationClient) IPID(ctx context.Context, ipid *dcom.IPID) ApplicationClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultImsmqApplicationClient{
+	return &xxx_DefaultApplicationClient{
 		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
 		cc:             o.cc,
 		ipid:           ipid,
 	}
 }
 
-func NewImsmqApplicationClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ImsmqApplicationClient, error) {
+func NewApplicationClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ApplicationClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ImsmqApplicationSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ApplicationSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -127,7 +127,7 @@ func NewImsmqApplicationClient(ctx context.Context, cc dcerpc.Conn, opts ...dcer
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultImsmqApplicationClient{
+	return &xxx_DefaultApplicationClient{
 		DispatchClient: base,
 		cc:             cc,
 		ipid:           ipid,

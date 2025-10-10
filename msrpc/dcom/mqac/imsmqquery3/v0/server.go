@@ -26,7 +26,7 @@ var (
 )
 
 // IMSMQQuery3 server interface.
-type ImsmqQuery3Server interface {
+type Query3Server interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -41,17 +41,17 @@ type ImsmqQuery3Server interface {
 	LookupQueue(context.Context, *LookupQueueRequest) (*LookupQueueResponse, error)
 }
 
-func RegisterImsmqQuery3Server(conn dcerpc.Conn, o ImsmqQuery3Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqQuery3ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqQuery3SyntaxV0_0))...)
+func RegisterQuery3Server(conn dcerpc.Conn, o Query3Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewQuery3ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(Query3SyntaxV0_0))...)
 }
 
-func NewImsmqQuery3ServerHandle(o ImsmqQuery3Server) dcerpc.ServerHandle {
+func NewQuery3ServerHandle(o Query3Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqQuery3ServerHandle(ctx, o, opNum, r)
+		return Query3ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqQuery3ServerHandle(ctx context.Context, o ImsmqQuery3Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func Query3ServerHandle(ctx context.Context, o Query3Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -89,18 +89,18 @@ func ImsmqQuery3ServerHandle(ctx context.Context, o ImsmqQuery3Server, opNum int
 }
 
 // Unimplemented IMSMQQuery3
-type UnimplementedImsmqQuery3Server struct {
+type UnimplementedQuery3Server struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedImsmqQuery3Server) LookupQueueV2(context.Context, *LookupQueueV2Request) (*LookupQueueV2Response, error) {
+func (UnimplementedQuery3Server) LookupQueueV2(context.Context, *LookupQueueV2Request) (*LookupQueueV2Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQuery3Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+func (UnimplementedQuery3Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQuery3Server) LookupQueue(context.Context, *LookupQueueRequest) (*LookupQueueResponse, error) {
+func (UnimplementedQuery3Server) LookupQueue(context.Context, *LookupQueueRequest) (*LookupQueueResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqQuery3Server = (*UnimplementedImsmqQuery3Server)(nil)
+var _ Query3Server = (*UnimplementedQuery3Server)(nil)

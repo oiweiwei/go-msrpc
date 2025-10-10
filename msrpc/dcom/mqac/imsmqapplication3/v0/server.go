@@ -26,10 +26,10 @@ var (
 )
 
 // IMSMQApplication3 server interface.
-type ImsmqApplication3Server interface {
+type Application3Server interface {
 
 	// IMSMQApplication2 base class.
-	imsmqapplication2.ImsmqApplication2Server
+	imsmqapplication2.Application2Server
 
 	// ActiveQueues operation.
 	ActiveQueues(context.Context, *ActiveQueuesRequest) (*ActiveQueuesResponse, error)
@@ -62,20 +62,20 @@ type ImsmqApplication3Server interface {
 	Tidy(context.Context, *TidyRequest) (*TidyResponse, error)
 }
 
-func RegisterImsmqApplication3Server(conn dcerpc.Conn, o ImsmqApplication3Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqApplication3ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqApplication3SyntaxV0_0))...)
+func RegisterApplication3Server(conn dcerpc.Conn, o Application3Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewApplication3ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(Application3SyntaxV0_0))...)
 }
 
-func NewImsmqApplication3ServerHandle(o ImsmqApplication3Server) dcerpc.ServerHandle {
+func NewApplication3ServerHandle(o Application3Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqApplication3ServerHandle(ctx, o, opNum, r)
+		return Application3ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqApplication3ServerHandle(ctx context.Context, o ImsmqApplication3Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func Application3ServerHandle(ctx context.Context, o Application3Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 15 {
 		// IMSMQApplication2 base method.
-		return imsmqapplication2.ImsmqApplication2ServerHandle(ctx, o, opNum, r)
+		return imsmqapplication2.Application2ServerHandle(ctx, o, opNum, r)
 	}
 	switch opNum {
 	case 15: // ActiveQueues
@@ -173,39 +173,39 @@ func ImsmqApplication3ServerHandle(ctx context.Context, o ImsmqApplication3Serve
 }
 
 // Unimplemented IMSMQApplication3
-type UnimplementedImsmqApplication3Server struct {
-	imsmqapplication2.UnimplementedImsmqApplication2Server
+type UnimplementedApplication3Server struct {
+	imsmqapplication2.UnimplementedApplication2Server
 }
 
-func (UnimplementedImsmqApplication3Server) ActiveQueues(context.Context, *ActiveQueuesRequest) (*ActiveQueuesResponse, error) {
+func (UnimplementedApplication3Server) ActiveQueues(context.Context, *ActiveQueuesRequest) (*ActiveQueuesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqApplication3Server) GetPrivateQueues(context.Context, *GetPrivateQueuesRequest) (*GetPrivateQueuesResponse, error) {
+func (UnimplementedApplication3Server) GetPrivateQueues(context.Context, *GetPrivateQueuesRequest) (*GetPrivateQueuesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqApplication3Server) GetDirectoryServiceServer(context.Context, *GetDirectoryServiceServerRequest) (*GetDirectoryServiceServerResponse, error) {
+func (UnimplementedApplication3Server) GetDirectoryServiceServer(context.Context, *GetDirectoryServiceServerRequest) (*GetDirectoryServiceServerResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqApplication3Server) GetIsConnected(context.Context, *GetIsConnectedRequest) (*GetIsConnectedResponse, error) {
+func (UnimplementedApplication3Server) GetIsConnected(context.Context, *GetIsConnectedRequest) (*GetIsConnectedResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqApplication3Server) GetBytesInAllQueues(context.Context, *GetBytesInAllQueuesRequest) (*GetBytesInAllQueuesResponse, error) {
+func (UnimplementedApplication3Server) GetBytesInAllQueues(context.Context, *GetBytesInAllQueuesRequest) (*GetBytesInAllQueuesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqApplication3Server) SetMachine(context.Context, *SetMachineRequest) (*SetMachineResponse, error) {
+func (UnimplementedApplication3Server) SetMachine(context.Context, *SetMachineRequest) (*SetMachineResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqApplication3Server) GetMachine(context.Context, *GetMachineRequest) (*GetMachineResponse, error) {
+func (UnimplementedApplication3Server) GetMachine(context.Context, *GetMachineRequest) (*GetMachineResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqApplication3Server) Connect(context.Context, *ConnectRequest) (*ConnectResponse, error) {
+func (UnimplementedApplication3Server) Connect(context.Context, *ConnectRequest) (*ConnectResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqApplication3Server) Disconnect(context.Context, *DisconnectRequest) (*DisconnectResponse, error) {
+func (UnimplementedApplication3Server) Disconnect(context.Context, *DisconnectRequest) (*DisconnectResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqApplication3Server) Tidy(context.Context, *TidyRequest) (*TidyResponse, error) {
+func (UnimplementedApplication3Server) Tidy(context.Context, *TidyRequest) (*TidyResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqApplication3Server = (*UnimplementedImsmqApplication3Server)(nil)
+var _ Application3Server = (*UnimplementedApplication3Server)(nil)

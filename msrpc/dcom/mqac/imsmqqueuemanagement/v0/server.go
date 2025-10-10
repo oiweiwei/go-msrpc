@@ -26,10 +26,10 @@ var (
 )
 
 // IMSMQQueueManagement server interface.
-type ImsmqQueueManagementServer interface {
+type QueueManagementServer interface {
 
 	// IMSMQManagement base class.
-	imsmqmanagement.ImsmqManagementServer
+	imsmqmanagement.ManagementServer
 
 	// JournalMessageCount operation.
 	GetJournalMessageCount(context.Context, *GetJournalMessageCountRequest) (*GetJournalMessageCountResponse, error)
@@ -38,23 +38,23 @@ type ImsmqQueueManagementServer interface {
 	GetBytesInJournal(context.Context, *GetBytesInJournalRequest) (*GetBytesInJournalResponse, error)
 
 	// EodGetReceiveInfo operation.
-	EodGetReceiveInfo(context.Context, *EodGetReceiveInfoRequest) (*EodGetReceiveInfoResponse, error)
+	EODGetReceiveInfo(context.Context, *EODGetReceiveInfoRequest) (*EODGetReceiveInfoResponse, error)
 }
 
-func RegisterImsmqQueueManagementServer(conn dcerpc.Conn, o ImsmqQueueManagementServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqQueueManagementServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqQueueManagementSyntaxV0_0))...)
+func RegisterQueueManagementServer(conn dcerpc.Conn, o QueueManagementServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewQueueManagementServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(QueueManagementSyntaxV0_0))...)
 }
 
-func NewImsmqQueueManagementServerHandle(o ImsmqQueueManagementServer) dcerpc.ServerHandle {
+func NewQueueManagementServerHandle(o QueueManagementServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqQueueManagementServerHandle(ctx, o, opNum, r)
+		return QueueManagementServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqQueueManagementServerHandle(ctx context.Context, o ImsmqQueueManagementServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func QueueManagementServerHandle(ctx context.Context, o QueueManagementServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 16 {
 		// IMSMQManagement base method.
-		return imsmqmanagement.ImsmqManagementServerHandle(ctx, o, opNum, r)
+		return imsmqmanagement.ManagementServerHandle(ctx, o, opNum, r)
 	}
 	switch opNum {
 	case 16: // JournalMessageCount
@@ -76,31 +76,31 @@ func ImsmqQueueManagementServerHandle(ctx context.Context, o ImsmqQueueManagemen
 		resp, err := o.GetBytesInJournal(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 18: // EodGetReceiveInfo
-		op := &xxx_EodGetReceiveInfoOperation{}
+		op := &xxx_EODGetReceiveInfoOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &EodGetReceiveInfoRequest{}
+		req := &EODGetReceiveInfoRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.EodGetReceiveInfo(ctx, req)
+		resp, err := o.EODGetReceiveInfo(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
 
 // Unimplemented IMSMQQueueManagement
-type UnimplementedImsmqQueueManagementServer struct {
-	imsmqmanagement.UnimplementedImsmqManagementServer
+type UnimplementedQueueManagementServer struct {
+	imsmqmanagement.UnimplementedManagementServer
 }
 
-func (UnimplementedImsmqQueueManagementServer) GetJournalMessageCount(context.Context, *GetJournalMessageCountRequest) (*GetJournalMessageCountResponse, error) {
+func (UnimplementedQueueManagementServer) GetJournalMessageCount(context.Context, *GetJournalMessageCountRequest) (*GetJournalMessageCountResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueManagementServer) GetBytesInJournal(context.Context, *GetBytesInJournalRequest) (*GetBytesInJournalResponse, error) {
+func (UnimplementedQueueManagementServer) GetBytesInJournal(context.Context, *GetBytesInJournalRequest) (*GetBytesInJournalResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueManagementServer) EodGetReceiveInfo(context.Context, *EodGetReceiveInfoRequest) (*EodGetReceiveInfoResponse, error) {
+func (UnimplementedQueueManagementServer) EODGetReceiveInfo(context.Context, *EODGetReceiveInfoRequest) (*EODGetReceiveInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqQueueManagementServer = (*UnimplementedImsmqQueueManagementServer)(nil)
+var _ QueueManagementServer = (*UnimplementedQueueManagementServer)(nil)

@@ -24,7 +24,7 @@ var (
 )
 
 // FrsTransport server interface.
-type FrsTransportServer interface {
+type TransportServer interface {
 	CheckConnectivity(context.Context, *CheckConnectivityRequest) (*CheckConnectivityResponse, error)
 
 	EstablishConnection(context.Context, *EstablishConnectionRequest) (*EstablishConnectionResponse, error)
@@ -43,13 +43,13 @@ type FrsTransportServer interface {
 
 	RawGetFileData(context.Context, *RawGetFileDataRequest) (*RawGetFileDataResponse, error)
 
-	RdcGetSignatures(context.Context, *RdcGetSignaturesRequest) (*RdcGetSignaturesResponse, error)
+	GetSignatures(context.Context, *GetSignaturesRequest) (*GetSignaturesResponse, error)
 
-	RdcPushSourceNeeds(context.Context, *RdcPushSourceNeedsRequest) (*RdcPushSourceNeedsResponse, error)
+	PushSourceNeeds(context.Context, *PushSourceNeedsRequest) (*PushSourceNeedsResponse, error)
 
-	RdcGetFileData(context.Context, *RdcGetFileDataRequest) (*RdcGetFileDataResponse, error)
+	GetFileData(context.Context, *GetFileDataRequest) (*GetFileDataResponse, error)
 
-	RdcClose(context.Context, *RdcCloseRequest) (*RdcCloseResponse, error)
+	Close(context.Context, *CloseRequest) (*CloseResponse, error)
 
 	InitializeFileTransferAsync(context.Context, *InitializeFileTransferAsyncRequest) (*InitializeFileTransferAsyncResponse, error)
 
@@ -58,22 +58,22 @@ type FrsTransportServer interface {
 
 	RawGetFileDataAsync(context.Context, *RawGetFileDataAsyncRequest) (*RawGetFileDataAsyncResponse, error)
 
-	RdcGetFileDataAsync(context.Context, *RdcGetFileDataAsyncRequest) (*RdcGetFileDataAsyncResponse, error)
+	GetFileDataAsync(context.Context, *GetFileDataAsyncRequest) (*GetFileDataAsyncResponse, error)
 
-	RdcFileDataTransferKeepAlive(context.Context, *RdcFileDataTransferKeepAliveRequest) (*RdcFileDataTransferKeepAliveResponse, error)
+	FileDataTransferKeepAlive(context.Context, *FileDataTransferKeepAliveRequest) (*FileDataTransferKeepAliveResponse, error)
 }
 
-func RegisterFrsTransportServer(conn dcerpc.Conn, o FrsTransportServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewFrsTransportServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(FrsTransportSyntaxV1_0))...)
+func RegisterTransportServer(conn dcerpc.Conn, o TransportServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewTransportServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(TransportSyntaxV1_0))...)
 }
 
-func NewFrsTransportServerHandle(o FrsTransportServer) dcerpc.ServerHandle {
+func NewTransportServerHandle(o TransportServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return FrsTransportServerHandle(ctx, o, opNum, r)
+		return TransportServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func FrsTransportServerHandle(ctx context.Context, o FrsTransportServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func TransportServerHandle(ctx context.Context, o TransportServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // CheckConnectivity
 		op := &xxx_CheckConnectivityOperation{}
@@ -157,40 +157,40 @@ func FrsTransportServerHandle(ctx context.Context, o FrsTransportServer, opNum i
 		resp, err := o.RawGetFileData(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 9: // RdcGetSignatures
-		op := &xxx_RdcGetSignaturesOperation{}
+		op := &xxx_GetSignaturesOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RdcGetSignaturesRequest{}
+		req := &GetSignaturesRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RdcGetSignatures(ctx, req)
+		resp, err := o.GetSignatures(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 10: // RdcPushSourceNeeds
-		op := &xxx_RdcPushSourceNeedsOperation{}
+		op := &xxx_PushSourceNeedsOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RdcPushSourceNeedsRequest{}
+		req := &PushSourceNeedsRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RdcPushSourceNeeds(ctx, req)
+		resp, err := o.PushSourceNeeds(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 11: // RdcGetFileData
-		op := &xxx_RdcGetFileDataOperation{}
+		op := &xxx_GetFileDataOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RdcGetFileDataRequest{}
+		req := &GetFileDataRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RdcGetFileData(ctx, req)
+		resp, err := o.GetFileData(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 12: // RdcClose
-		op := &xxx_RdcCloseOperation{}
+		op := &xxx_CloseOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RdcCloseRequest{}
+		req := &CloseRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RdcClose(ctx, req)
+		resp, err := o.Close(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 13: // InitializeFileTransferAsync
 		op := &xxx_InitializeFileTransferAsyncOperation{}
@@ -214,81 +214,81 @@ func FrsTransportServerHandle(ctx context.Context, o FrsTransportServer, opNum i
 		resp, err := o.RawGetFileDataAsync(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 16: // RdcGetFileDataAsync
-		op := &xxx_RdcGetFileDataAsyncOperation{}
+		op := &xxx_GetFileDataAsyncOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RdcGetFileDataAsyncRequest{}
+		req := &GetFileDataAsyncRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RdcGetFileDataAsync(ctx, req)
+		resp, err := o.GetFileDataAsync(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 17: // RdcFileDataTransferKeepAlive
-		op := &xxx_RdcFileDataTransferKeepAliveOperation{}
+		op := &xxx_FileDataTransferKeepAliveOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RdcFileDataTransferKeepAliveRequest{}
+		req := &FileDataTransferKeepAliveRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RdcFileDataTransferKeepAlive(ctx, req)
+		resp, err := o.FileDataTransferKeepAlive(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
 
 // Unimplemented FrsTransport
-type UnimplementedFrsTransportServer struct {
+type UnimplementedTransportServer struct {
 }
 
-func (UnimplementedFrsTransportServer) CheckConnectivity(context.Context, *CheckConnectivityRequest) (*CheckConnectivityResponse, error) {
+func (UnimplementedTransportServer) CheckConnectivity(context.Context, *CheckConnectivityRequest) (*CheckConnectivityResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedFrsTransportServer) EstablishConnection(context.Context, *EstablishConnectionRequest) (*EstablishConnectionResponse, error) {
+func (UnimplementedTransportServer) EstablishConnection(context.Context, *EstablishConnectionRequest) (*EstablishConnectionResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedFrsTransportServer) EstablishSession(context.Context, *EstablishSessionRequest) (*EstablishSessionResponse, error) {
+func (UnimplementedTransportServer) EstablishSession(context.Context, *EstablishSessionRequest) (*EstablishSessionResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedFrsTransportServer) RequestUpdates(context.Context, *RequestUpdatesRequest) (*RequestUpdatesResponse, error) {
+func (UnimplementedTransportServer) RequestUpdates(context.Context, *RequestUpdatesRequest) (*RequestUpdatesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedFrsTransportServer) RequestVersionVector(context.Context, *RequestVersionVectorRequest) (*RequestVersionVectorResponse, error) {
+func (UnimplementedTransportServer) RequestVersionVector(context.Context, *RequestVersionVectorRequest) (*RequestVersionVectorResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedFrsTransportServer) AsyncPoll(context.Context, *AsyncPollRequest) (*AsyncPollResponse, error) {
+func (UnimplementedTransportServer) AsyncPoll(context.Context, *AsyncPollRequest) (*AsyncPollResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedFrsTransportServer) RequestRecords(context.Context, *RequestRecordsRequest) (*RequestRecordsResponse, error) {
+func (UnimplementedTransportServer) RequestRecords(context.Context, *RequestRecordsRequest) (*RequestRecordsResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedFrsTransportServer) UpdateCancel(context.Context, *UpdateCancelRequest) (*UpdateCancelResponse, error) {
+func (UnimplementedTransportServer) UpdateCancel(context.Context, *UpdateCancelRequest) (*UpdateCancelResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedFrsTransportServer) RawGetFileData(context.Context, *RawGetFileDataRequest) (*RawGetFileDataResponse, error) {
+func (UnimplementedTransportServer) RawGetFileData(context.Context, *RawGetFileDataRequest) (*RawGetFileDataResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedFrsTransportServer) RdcGetSignatures(context.Context, *RdcGetSignaturesRequest) (*RdcGetSignaturesResponse, error) {
+func (UnimplementedTransportServer) GetSignatures(context.Context, *GetSignaturesRequest) (*GetSignaturesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedFrsTransportServer) RdcPushSourceNeeds(context.Context, *RdcPushSourceNeedsRequest) (*RdcPushSourceNeedsResponse, error) {
+func (UnimplementedTransportServer) PushSourceNeeds(context.Context, *PushSourceNeedsRequest) (*PushSourceNeedsResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedFrsTransportServer) RdcGetFileData(context.Context, *RdcGetFileDataRequest) (*RdcGetFileDataResponse, error) {
+func (UnimplementedTransportServer) GetFileData(context.Context, *GetFileDataRequest) (*GetFileDataResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedFrsTransportServer) RdcClose(context.Context, *RdcCloseRequest) (*RdcCloseResponse, error) {
+func (UnimplementedTransportServer) Close(context.Context, *CloseRequest) (*CloseResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedFrsTransportServer) InitializeFileTransferAsync(context.Context, *InitializeFileTransferAsyncRequest) (*InitializeFileTransferAsyncResponse, error) {
+func (UnimplementedTransportServer) InitializeFileTransferAsync(context.Context, *InitializeFileTransferAsyncRequest) (*InitializeFileTransferAsyncResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedFrsTransportServer) RawGetFileDataAsync(context.Context, *RawGetFileDataAsyncRequest) (*RawGetFileDataAsyncResponse, error) {
+func (UnimplementedTransportServer) RawGetFileDataAsync(context.Context, *RawGetFileDataAsyncRequest) (*RawGetFileDataAsyncResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedFrsTransportServer) RdcGetFileDataAsync(context.Context, *RdcGetFileDataAsyncRequest) (*RdcGetFileDataAsyncResponse, error) {
+func (UnimplementedTransportServer) GetFileDataAsync(context.Context, *GetFileDataAsyncRequest) (*GetFileDataAsyncResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedFrsTransportServer) RdcFileDataTransferKeepAlive(context.Context, *RdcFileDataTransferKeepAliveRequest) (*RdcFileDataTransferKeepAliveResponse, error) {
+func (UnimplementedTransportServer) FileDataTransferKeepAlive(context.Context, *FileDataTransferKeepAliveRequest) (*FileDataTransferKeepAliveResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ FrsTransportServer = (*UnimplementedFrsTransportServer)(nil)
+var _ TransportServer = (*UnimplementedTransportServer)(nil)

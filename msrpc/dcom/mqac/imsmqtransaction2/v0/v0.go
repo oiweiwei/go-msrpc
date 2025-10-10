@@ -36,18 +36,18 @@ var (
 
 var (
 	// IMSMQTransaction2 interface identifier 2ce0c5b0-6e67-11d2-b0e6-00e02c074f6b
-	ImsmqTransaction2IID = &dcom.IID{Data1: 0x2ce0c5b0, Data2: 0x6e67, Data3: 0x11d2, Data4: []byte{0xb0, 0xe6, 0x00, 0xe0, 0x2c, 0x07, 0x4f, 0x6b}}
+	Transaction2IID = &dcom.IID{Data1: 0x2ce0c5b0, Data2: 0x6e67, Data3: 0x11d2, Data4: []byte{0xb0, 0xe6, 0x00, 0xe0, 0x2c, 0x07, 0x4f, 0x6b}}
 	// Syntax UUID
-	ImsmqTransaction2SyntaxUUID = &uuid.UUID{TimeLow: 0x2ce0c5b0, TimeMid: 0x6e67, TimeHiAndVersion: 0x11d2, ClockSeqHiAndReserved: 0xb0, ClockSeqLow: 0xe6, Node: [6]uint8{0x0, 0xe0, 0x2c, 0x7, 0x4f, 0x6b}}
+	Transaction2SyntaxUUID = &uuid.UUID{TimeLow: 0x2ce0c5b0, TimeMid: 0x6e67, TimeHiAndVersion: 0x11d2, ClockSeqHiAndReserved: 0xb0, ClockSeqLow: 0xe6, Node: [6]uint8{0x0, 0xe0, 0x2c, 0x7, 0x4f, 0x6b}}
 	// Syntax ID
-	ImsmqTransaction2SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ImsmqTransaction2SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	Transaction2SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: Transaction2SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IMSMQTransaction2 interface.
-type ImsmqTransaction2Client interface {
+type Transaction2Client interface {
 
 	// IMSMQTransaction retrieval method.
-	ImsmqTransaction() imsmqtransaction.ImsmqTransactionClient
+	Transaction() imsmqtransaction.TransactionClient
 
 	// InitNew operation.
 	InitNew(context.Context, *InitNewRequest, ...dcerpc.CallOption) (*InitNewResponse, error)
@@ -62,20 +62,20 @@ type ImsmqTransaction2Client interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) ImsmqTransaction2Client
+	IPID(context.Context, *dcom.IPID) Transaction2Client
 }
 
-type xxx_DefaultImsmqTransaction2Client struct {
-	imsmqtransaction.ImsmqTransactionClient
+type xxx_DefaultTransaction2Client struct {
+	imsmqtransaction.TransactionClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultImsmqTransaction2Client) ImsmqTransaction() imsmqtransaction.ImsmqTransactionClient {
-	return o.ImsmqTransactionClient
+func (o *xxx_DefaultTransaction2Client) Transaction() imsmqtransaction.TransactionClient {
+	return o.TransactionClient
 }
 
-func (o *xxx_DefaultImsmqTransaction2Client) InitNew(ctx context.Context, in *InitNewRequest, opts ...dcerpc.CallOption) (*InitNewResponse, error) {
+func (o *xxx_DefaultTransaction2Client) InitNew(ctx context.Context, in *InitNewRequest, opts ...dcerpc.CallOption) (*InitNewResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -95,7 +95,7 @@ func (o *xxx_DefaultImsmqTransaction2Client) InitNew(ctx context.Context, in *In
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqTransaction2Client) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
+func (o *xxx_DefaultTransaction2Client) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -115,34 +115,34 @@ func (o *xxx_DefaultImsmqTransaction2Client) GetProperties(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqTransaction2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultTransaction2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultImsmqTransaction2Client) Conn() dcerpc.Conn {
+func (o *xxx_DefaultTransaction2Client) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultImsmqTransaction2Client) IPID(ctx context.Context, ipid *dcom.IPID) ImsmqTransaction2Client {
+func (o *xxx_DefaultTransaction2Client) IPID(ctx context.Context, ipid *dcom.IPID) Transaction2Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultImsmqTransaction2Client{
-		ImsmqTransactionClient: o.ImsmqTransactionClient.IPID(ctx, ipid),
-		cc:                     o.cc,
-		ipid:                   ipid,
+	return &xxx_DefaultTransaction2Client{
+		TransactionClient: o.TransactionClient.IPID(ctx, ipid),
+		cc:                o.cc,
+		ipid:              ipid,
 	}
 }
 
-func NewImsmqTransaction2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ImsmqTransaction2Client, error) {
+func NewTransaction2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Transaction2Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ImsmqTransaction2SyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(Transaction2SyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
 	}
-	base, err := imsmqtransaction.NewImsmqTransactionClient(ctx, cc, append(opts, dcom.Superclass(cc))...)
+	base, err := imsmqtransaction.NewTransactionClient(ctx, cc, append(opts, dcom.Superclass(cc))...)
 	if err != nil {
 		return nil, err
 	}
@@ -150,19 +150,19 @@ func NewImsmqTransaction2Client(ctx context.Context, cc dcerpc.Conn, opts ...dce
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultImsmqTransaction2Client{
-		ImsmqTransactionClient: base,
-		cc:                     cc,
-		ipid:                   ipid,
+	return &xxx_DefaultTransaction2Client{
+		TransactionClient: base,
+		cc:                cc,
+		ipid:              ipid,
 	}, nil
 }
 
 // xxx_InitNewOperation structure represents the InitNew operation
 type xxx_InitNewOperation struct {
-	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
-	VarTransaction *oaut.Variant  `idl:"name:varTransaction" json:"var_transaction"`
-	Return         int32          `idl:"name:Return" json:"return"`
+	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Transaction *oaut.Variant  `idl:"name:varTransaction" json:"transaction"`
+	Return      int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_InitNewOperation) OpNum() int { return 10 }
@@ -199,8 +199,8 @@ func (o *xxx_InitNewOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 	}
 	// varTransaction {in} (1:{alias=VARIANT}*(1))(2:{alias=_VARIANT}(struct))
 	{
-		if o.VarTransaction != nil {
-			if err := o.VarTransaction.MarshalNDR(ctx, w); err != nil {
+		if o.Transaction != nil {
+			if err := o.Transaction.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -230,10 +230,10 @@ func (o *xxx_InitNewOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 	}
 	// varTransaction {in} (1:{alias=VARIANT,pointer=ref}*(1))(2:{alias=_VARIANT}(struct))
 	{
-		if o.VarTransaction == nil {
-			o.VarTransaction = &oaut.Variant{}
+		if o.Transaction == nil {
+			o.Transaction = &oaut.Variant{}
 		}
-		if err := o.VarTransaction.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Transaction.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -305,8 +305,8 @@ func (o *xxx_InitNewOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 // InitNewRequest structure represents the InitNew operation request
 type InitNewRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	VarTransaction *oaut.Variant  `idl:"name:varTransaction" json:"var_transaction"`
+	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
+	Transaction *oaut.Variant  `idl:"name:varTransaction" json:"transaction"`
 }
 
 func (o *InitNewRequest) xxx_ToOp(ctx context.Context, op *xxx_InitNewOperation) *xxx_InitNewOperation {
@@ -317,7 +317,7 @@ func (o *InitNewRequest) xxx_ToOp(ctx context.Context, op *xxx_InitNewOperation)
 		return op
 	}
 	op.This = o.This
-	op.VarTransaction = o.VarTransaction
+	op.Transaction = o.Transaction
 	return op
 }
 
@@ -326,7 +326,7 @@ func (o *InitNewRequest) xxx_FromOp(ctx context.Context, op *xxx_InitNewOperatio
 		return
 	}
 	o.This = op.This
-	o.VarTransaction = op.VarTransaction
+	o.Transaction = op.Transaction
 }
 func (o *InitNewRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -381,10 +381,10 @@ func (o *InitNewResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 
 // xxx_GetPropertiesOperation structure represents the Properties operation
 type xxx_GetPropertiesOperation struct {
-	This            *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PpcolProperties *oaut.Dispatch `idl:"name:ppcolProperties" json:"ppcol_properties"`
-	Return          int32          `idl:"name:Return" json:"return"`
+	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Properties *oaut.Dispatch `idl:"name:ppcolProperties" json:"properties"`
+	Return     int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetPropertiesOperation) OpNum() int { return 11 }
@@ -468,10 +468,10 @@ func (o *xxx_GetPropertiesOperation) MarshalNDRResponse(ctx context.Context, w n
 	}
 	// ppcolProperties {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IDispatch}(interface))
 	{
-		if o.PpcolProperties != nil {
+		if o.Properties != nil {
 			_ptr_ppcolProperties := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PpcolProperties != nil {
-					if err := o.PpcolProperties.MarshalNDR(ctx, w); err != nil {
+				if o.Properties != nil {
+					if err := o.Properties.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -481,7 +481,7 @@ func (o *xxx_GetPropertiesOperation) MarshalNDRResponse(ctx context.Context, w n
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PpcolProperties, _ptr_ppcolProperties); err != nil {
+			if err := w.WritePointer(&o.Properties, _ptr_ppcolProperties); err != nil {
 				return err
 			}
 		} else {
@@ -518,16 +518,16 @@ func (o *xxx_GetPropertiesOperation) UnmarshalNDRResponse(ctx context.Context, w
 	// ppcolProperties {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IDispatch}(interface))
 	{
 		_ptr_ppcolProperties := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PpcolProperties == nil {
-				o.PpcolProperties = &oaut.Dispatch{}
+			if o.Properties == nil {
+				o.Properties = &oaut.Dispatch{}
 			}
-			if err := o.PpcolProperties.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Properties.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppcolProperties := func(ptr interface{}) { o.PpcolProperties = *ptr.(**oaut.Dispatch) }
-		if err := w.ReadPointer(&o.PpcolProperties, _s_ppcolProperties, _ptr_ppcolProperties); err != nil {
+		_s_ppcolProperties := func(ptr interface{}) { o.Properties = *ptr.(**oaut.Dispatch) }
+		if err := w.ReadPointer(&o.Properties, _s_ppcolProperties, _ptr_ppcolProperties); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -581,8 +581,8 @@ func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetPropertiesResponse structure represents the Properties operation response
 type GetPropertiesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PpcolProperties *oaut.Dispatch `idl:"name:ppcolProperties" json:"ppcol_properties"`
+	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Properties *oaut.Dispatch `idl:"name:ppcolProperties" json:"properties"`
 	// Return: The Properties return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -595,7 +595,7 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 		return op
 	}
 	op.That = o.That
-	op.PpcolProperties = o.PpcolProperties
+	op.Properties = o.Properties
 	op.Return = o.Return
 	return op
 }
@@ -605,7 +605,7 @@ func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrope
 		return
 	}
 	o.That = op.That
-	o.PpcolProperties = op.PpcolProperties
+	o.Properties = op.Properties
 	o.Return = op.Return
 }
 func (o *GetPropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {

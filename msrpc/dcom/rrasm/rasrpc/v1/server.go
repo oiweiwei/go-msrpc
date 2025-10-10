@@ -41,7 +41,7 @@ type RasrpcServer interface {
 	// Opnum4NotUsedOnWire operation.
 	// Opnum4NotUsedOnWire
 
-	RASRPCDeleteEntry(context.Context, *RASRPCDeleteEntryRequest) (*RASRPCDeleteEntryResponse, error)
+	DeleteEntry(context.Context, *DeleteEntryRequest) (*DeleteEntryResponse, error)
 
 	// Opnum6NotUsedOnWire operation.
 	// Opnum6NotUsedOnWire
@@ -52,20 +52,20 @@ type RasrpcServer interface {
 	// Opnum8NotUsedOnWire operation.
 	// Opnum8NotUsedOnWire
 
-	RASRPCGetUserPreferences(context.Context, *RASRPCGetUserPreferencesRequest) (*RASRPCGetUserPreferencesResponse, error)
+	GetUserPreferences(context.Context, *GetUserPreferencesRequest) (*GetUserPreferencesResponse, error)
 
-	RASRPCSetUserPreferences(context.Context, *RASRPCSetUserPreferencesRequest) (*RASRPCSetUserPreferencesResponse, error)
+	SetUserPreferences(context.Context, *SetUserPreferencesRequest) (*SetUserPreferencesResponse, error)
 
-	RASRPCGetSystemDirectory(context.Context, *RASRPCGetSystemDirectoryRequest) (*RASRPCGetSystemDirectoryResponse, error)
+	GetSystemDirectory(context.Context, *GetSystemDirectoryRequest) (*GetSystemDirectoryResponse, error)
 
-	RASRPCSubmitRequest(context.Context, *RASRPCSubmitRequestRequest) (*RASRPCSubmitRequestResponse, error)
+	SubmitRequest(context.Context, *SubmitRequestRequest) (*SubmitRequestResponse, error)
 
 	// Opnum13NotUsedOnWire operation.
 	// Opnum13NotUsedOnWire
 
-	RASRPCGetInstalledProtocolsEx(context.Context, *RASRPCGetInstalledProtocolsExRequest) (*RASRPCGetInstalledProtocolsExResponse, error)
+	GetInstalledProtocolsEx(context.Context, *GetInstalledProtocolsExRequest) (*GetInstalledProtocolsExResponse, error)
 
-	RASRPCGetVersion(context.Context, *RASRPCGetVersionRequest) (*RASRPCGetVersionResponse, error)
+	GetVersion(context.Context, *GetVersionRequest) (*GetVersionResponse, error)
 
 	// Opnum16NotUsedOnWire operation.
 	// Opnum16NotUsedOnWire
@@ -99,13 +99,13 @@ func RasrpcServerHandle(ctx context.Context, o RasrpcServer, opNum int, r ndr.Re
 		// Opnum4NotUsedOnWire
 		return nil, nil
 	case 5: // RasRpcDeleteEntry
-		op := &xxx_RASRPCDeleteEntryOperation{}
+		op := &xxx_DeleteEntryOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASRPCDeleteEntryRequest{}
+		req := &DeleteEntryRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASRPCDeleteEntry(ctx, req)
+		resp, err := o.DeleteEntry(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 6: // Opnum6NotUsedOnWire
 		// Opnum6NotUsedOnWire
@@ -117,61 +117,61 @@ func RasrpcServerHandle(ctx context.Context, o RasrpcServer, opNum int, r ndr.Re
 		// Opnum8NotUsedOnWire
 		return nil, nil
 	case 9: // RasRpcGetUserPreferences
-		op := &xxx_RASRPCGetUserPreferencesOperation{}
+		op := &xxx_GetUserPreferencesOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASRPCGetUserPreferencesRequest{}
+		req := &GetUserPreferencesRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASRPCGetUserPreferences(ctx, req)
+		resp, err := o.GetUserPreferences(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 10: // RasRpcSetUserPreferences
-		op := &xxx_RASRPCSetUserPreferencesOperation{}
+		op := &xxx_SetUserPreferencesOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASRPCSetUserPreferencesRequest{}
+		req := &SetUserPreferencesRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASRPCSetUserPreferences(ctx, req)
+		resp, err := o.SetUserPreferences(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 11: // RasRpcGetSystemDirectory
-		op := &xxx_RASRPCGetSystemDirectoryOperation{}
+		op := &xxx_GetSystemDirectoryOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASRPCGetSystemDirectoryRequest{}
+		req := &GetSystemDirectoryRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASRPCGetSystemDirectory(ctx, req)
+		resp, err := o.GetSystemDirectory(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 12: // RasRpcSubmitRequest
-		op := &xxx_RASRPCSubmitRequestOperation{}
+		op := &xxx_SubmitRequestOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASRPCSubmitRequestRequest{}
+		req := &SubmitRequestRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASRPCSubmitRequest(ctx, req)
+		resp, err := o.SubmitRequest(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 13: // Opnum13NotUsedOnWire
 		// Opnum13NotUsedOnWire
 		return nil, nil
 	case 14: // RasRpcGetInstalledProtocolsEx
-		op := &xxx_RASRPCGetInstalledProtocolsExOperation{}
+		op := &xxx_GetInstalledProtocolsExOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASRPCGetInstalledProtocolsExRequest{}
+		req := &GetInstalledProtocolsExRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASRPCGetInstalledProtocolsEx(ctx, req)
+		resp, err := o.GetInstalledProtocolsEx(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 15: // RasRpcGetVersion
-		op := &xxx_RASRPCGetVersionOperation{}
+		op := &xxx_GetVersionOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASRPCGetVersionRequest{}
+		req := &GetVersionRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASRPCGetVersion(ctx, req)
+		resp, err := o.GetVersion(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 16: // Opnum16NotUsedOnWire
 		// Opnum16NotUsedOnWire
@@ -184,25 +184,25 @@ func RasrpcServerHandle(ctx context.Context, o RasrpcServer, opNum int, r ndr.Re
 type UnimplementedRasrpcServer struct {
 }
 
-func (UnimplementedRasrpcServer) RASRPCDeleteEntry(context.Context, *RASRPCDeleteEntryRequest) (*RASRPCDeleteEntryResponse, error) {
+func (UnimplementedRasrpcServer) DeleteEntry(context.Context, *DeleteEntryRequest) (*DeleteEntryResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedRasrpcServer) RASRPCGetUserPreferences(context.Context, *RASRPCGetUserPreferencesRequest) (*RASRPCGetUserPreferencesResponse, error) {
+func (UnimplementedRasrpcServer) GetUserPreferences(context.Context, *GetUserPreferencesRequest) (*GetUserPreferencesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedRasrpcServer) RASRPCSetUserPreferences(context.Context, *RASRPCSetUserPreferencesRequest) (*RASRPCSetUserPreferencesResponse, error) {
+func (UnimplementedRasrpcServer) SetUserPreferences(context.Context, *SetUserPreferencesRequest) (*SetUserPreferencesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedRasrpcServer) RASRPCGetSystemDirectory(context.Context, *RASRPCGetSystemDirectoryRequest) (*RASRPCGetSystemDirectoryResponse, error) {
+func (UnimplementedRasrpcServer) GetSystemDirectory(context.Context, *GetSystemDirectoryRequest) (*GetSystemDirectoryResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedRasrpcServer) RASRPCSubmitRequest(context.Context, *RASRPCSubmitRequestRequest) (*RASRPCSubmitRequestResponse, error) {
+func (UnimplementedRasrpcServer) SubmitRequest(context.Context, *SubmitRequestRequest) (*SubmitRequestResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedRasrpcServer) RASRPCGetInstalledProtocolsEx(context.Context, *RASRPCGetInstalledProtocolsExRequest) (*RASRPCGetInstalledProtocolsExResponse, error) {
+func (UnimplementedRasrpcServer) GetInstalledProtocolsEx(context.Context, *GetInstalledProtocolsExRequest) (*GetInstalledProtocolsExResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedRasrpcServer) RASRPCGetVersion(context.Context, *RASRPCGetVersionRequest) (*RASRPCGetVersionResponse, error) {
+func (UnimplementedRasrpcServer) GetVersion(context.Context, *GetVersionRequest) (*GetVersionResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 

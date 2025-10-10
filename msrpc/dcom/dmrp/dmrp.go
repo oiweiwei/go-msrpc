@@ -266,8 +266,8 @@ const VolumeCorrupt = 0x00004000
 // VolumeHasCrashDump represents the VOLUME_HAS_CRASHDUMP RPC constant
 const VolumeHasCrashDump = 0x00008000
 
-// VolumeIsCurrBootVolume represents the VOLUME_IS_CURR_BOOT_VOLUME RPC constant
-const VolumeIsCurrBootVolume = 0x00010000
+// VolumeIsCurrentBootVolume represents the VOLUME_IS_CURR_BOOT_VOLUME RPC constant
+const VolumeIsCurrentBootVolume = 0x00010000
 
 // VolumeHasHibernation represents the VOLUME_HAS_HIBERNATION RPC constant
 const VolumeHasHibernation = 0x00020000
@@ -1948,7 +1948,7 @@ type RegionInfo struct {
 	DiskID int64 `idl:"name:diskId" json:"disk_id"`
 	// volId:  Specifies the OID of the volume on the region, if any. The value of this
 	// field is nonzero if it is valid.
-	VolID int64 `idl:"name:volId" json:"vol_id"`
+	VolumeID int64 `idl:"name:volId" json:"volume_id"`
 	// fsId:  Specifies the OID of the file system on the region, if any. The value of this
 	// field is nonzero if it is valid.
 	FSID int64 `idl:"name:fsId" json:"fs_id"`
@@ -2055,7 +2055,7 @@ func (o *RegionInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.DiskID); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.VolID); err != nil {
+	if err := w.WriteData(o.VolumeID); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.FSID); err != nil {
@@ -2106,7 +2106,7 @@ func (o *RegionInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.DiskID); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.VolID); err != nil {
+	if err := w.ReadData(&o.VolumeID); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.FSID); err != nil {
@@ -4221,7 +4221,7 @@ type RegionInfoEx struct {
 	// diskId:   Specifies the OID of the disk on which the region resides.
 	DiskID int64 `idl:"name:diskId" json:"disk_id"`
 	// volId:  Specifies the OID of the volume on the region, if any.
-	VolID int64 `idl:"name:volId" json:"vol_id"`
+	VolumeID int64 `idl:"name:volId" json:"volume_id"`
 	// fsId:  Specifies the OID of the file system on the region, if any.
 	FSID int64 `idl:"name:fsId" json:"fs_id"`
 	// start:  Byte offset of the region on the disk.
@@ -4298,7 +4298,7 @@ func (o *RegionInfoEx) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.DiskID); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.VolID); err != nil {
+	if err := w.WriteData(o.VolumeID); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.FSID); err != nil {
@@ -4396,7 +4396,7 @@ func (o *RegionInfoEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.DiskID); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.VolID); err != nil {
+	if err := w.ReadData(&o.VolumeID); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.FSID); err != nil {

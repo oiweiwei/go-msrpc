@@ -327,3 +327,31 @@ trim:
   - pstm
   - dlib
   - plib
+  - ppcol
+  - pvar
+  - pqinfo
+  - ppqinfo
+  - ps
+  - ppdest
+  - pdest
+  - pboid
+  - pinfo
+  - ofa
+  - ppm
+  - awsz
+  - uc
+  - fa
+  - fi
+  - rci
+  - rdi
+  - dwf
+  - rgmios
+  - sn
+  - rgdw
+  - rdt
+  - lpws
+  - dwcb
+  - ll
+  - vv
+  - rdc
+  - frs

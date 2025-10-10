@@ -26,10 +26,10 @@ var (
 )
 
 // IMSMQOutgoingQueueManagement server interface.
-type ImsmqOutgoingQueueManagementServer interface {
+type OutgoingQueueManagementServer interface {
 
 	// IMSMQManagement base class.
-	imsmqmanagement.ImsmqManagementServer
+	imsmqmanagement.ManagementServer
 
 	// State operation.
 	GetState(context.Context, *GetStateRequest) (*GetStateResponse, error)
@@ -38,7 +38,7 @@ type ImsmqOutgoingQueueManagementServer interface {
 	GetNextHops(context.Context, *GetNextHopsRequest) (*GetNextHopsResponse, error)
 
 	// EodGetSendInfo operation.
-	EodGetSendInfo(context.Context, *EodGetSendInfoRequest) (*EodGetSendInfoResponse, error)
+	EODGetSendInfo(context.Context, *EODGetSendInfoRequest) (*EODGetSendInfoResponse, error)
 
 	// Resume operation.
 	Resume(context.Context, *ResumeRequest) (*ResumeResponse, error)
@@ -47,23 +47,23 @@ type ImsmqOutgoingQueueManagementServer interface {
 	Pause(context.Context, *PauseRequest) (*PauseResponse, error)
 
 	// EodResend operation.
-	EodResend(context.Context, *EodResendRequest) (*EodResendResponse, error)
+	EODResend(context.Context, *EODResendRequest) (*EODResendResponse, error)
 }
 
-func RegisterImsmqOutgoingQueueManagementServer(conn dcerpc.Conn, o ImsmqOutgoingQueueManagementServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqOutgoingQueueManagementServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqOutgoingQueueManagementSyntaxV0_0))...)
+func RegisterOutgoingQueueManagementServer(conn dcerpc.Conn, o OutgoingQueueManagementServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewOutgoingQueueManagementServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(OutgoingQueueManagementSyntaxV0_0))...)
 }
 
-func NewImsmqOutgoingQueueManagementServerHandle(o ImsmqOutgoingQueueManagementServer) dcerpc.ServerHandle {
+func NewOutgoingQueueManagementServerHandle(o OutgoingQueueManagementServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqOutgoingQueueManagementServerHandle(ctx, o, opNum, r)
+		return OutgoingQueueManagementServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqOutgoingQueueManagementServerHandle(ctx context.Context, o ImsmqOutgoingQueueManagementServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func OutgoingQueueManagementServerHandle(ctx context.Context, o OutgoingQueueManagementServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 16 {
 		// IMSMQManagement base method.
-		return imsmqmanagement.ImsmqManagementServerHandle(ctx, o, opNum, r)
+		return imsmqmanagement.ManagementServerHandle(ctx, o, opNum, r)
 	}
 	switch opNum {
 	case 16: // State
@@ -85,13 +85,13 @@ func ImsmqOutgoingQueueManagementServerHandle(ctx context.Context, o ImsmqOutgoi
 		resp, err := o.GetNextHops(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 18: // EodGetSendInfo
-		op := &xxx_EodGetSendInfoOperation{}
+		op := &xxx_EODGetSendInfoOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &EodGetSendInfoRequest{}
+		req := &EODGetSendInfoRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.EodGetSendInfo(ctx, req)
+		resp, err := o.EODGetSendInfo(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 19: // Resume
 		op := &xxx_ResumeOperation{}
@@ -112,40 +112,40 @@ func ImsmqOutgoingQueueManagementServerHandle(ctx context.Context, o ImsmqOutgoi
 		resp, err := o.Pause(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 21: // EodResend
-		op := &xxx_EodResendOperation{}
+		op := &xxx_EODResendOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &EodResendRequest{}
+		req := &EODResendRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.EodResend(ctx, req)
+		resp, err := o.EODResend(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
 
 // Unimplemented IMSMQOutgoingQueueManagement
-type UnimplementedImsmqOutgoingQueueManagementServer struct {
-	imsmqmanagement.UnimplementedImsmqManagementServer
+type UnimplementedOutgoingQueueManagementServer struct {
+	imsmqmanagement.UnimplementedManagementServer
 }
 
-func (UnimplementedImsmqOutgoingQueueManagementServer) GetState(context.Context, *GetStateRequest) (*GetStateResponse, error) {
+func (UnimplementedOutgoingQueueManagementServer) GetState(context.Context, *GetStateRequest) (*GetStateResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqOutgoingQueueManagementServer) GetNextHops(context.Context, *GetNextHopsRequest) (*GetNextHopsResponse, error) {
+func (UnimplementedOutgoingQueueManagementServer) GetNextHops(context.Context, *GetNextHopsRequest) (*GetNextHopsResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqOutgoingQueueManagementServer) EodGetSendInfo(context.Context, *EodGetSendInfoRequest) (*EodGetSendInfoResponse, error) {
+func (UnimplementedOutgoingQueueManagementServer) EODGetSendInfo(context.Context, *EODGetSendInfoRequest) (*EODGetSendInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqOutgoingQueueManagementServer) Resume(context.Context, *ResumeRequest) (*ResumeResponse, error) {
+func (UnimplementedOutgoingQueueManagementServer) Resume(context.Context, *ResumeRequest) (*ResumeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqOutgoingQueueManagementServer) Pause(context.Context, *PauseRequest) (*PauseResponse, error) {
+func (UnimplementedOutgoingQueueManagementServer) Pause(context.Context, *PauseRequest) (*PauseResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqOutgoingQueueManagementServer) EodResend(context.Context, *EodResendRequest) (*EodResendResponse, error) {
+func (UnimplementedOutgoingQueueManagementServer) EODResend(context.Context, *EODResendRequest) (*EODResendResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqOutgoingQueueManagementServer = (*UnimplementedImsmqOutgoingQueueManagementServer)(nil)
+var _ OutgoingQueueManagementServer = (*UnimplementedOutgoingQueueManagementServer)(nil)

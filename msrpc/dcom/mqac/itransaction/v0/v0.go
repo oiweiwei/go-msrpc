@@ -421,12 +421,12 @@ func (o *CommitResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_AbortOperation structure represents the Abort operation
 type xxx_AbortOperation struct {
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PboidReason *mqac.Boid     `idl:"name:pboidReason;pointer:unique" json:"pboid_reason"`
-	Retaining   int16          `idl:"name:fRetaining" json:"retaining"`
-	Async       int16          `idl:"name:fAsync" json:"async"`
-	Return      int32          `idl:"name:Return" json:"return"`
+	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Reason    *mqac.BOID     `idl:"name:pboidReason;pointer:unique" json:"reason"`
+	Retaining int16          `idl:"name:fRetaining" json:"retaining"`
+	Async     int16          `idl:"name:fAsync" json:"async"`
+	Return    int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_AbortOperation) OpNum() int { return 4 }
@@ -463,20 +463,20 @@ func (o *xxx_AbortOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer
 	}
 	// pboidReason {in} (1:{pointer=unique}*(1))(2:{alias=BOID}(struct))
 	{
-		if o.PboidReason != nil {
+		if o.Reason != nil {
 			_ptr_pboidReason := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PboidReason != nil {
-					if err := o.PboidReason.MarshalNDR(ctx, w); err != nil {
+				if o.Reason != nil {
+					if err := o.Reason.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.Boid{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.BOID{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PboidReason, _ptr_pboidReason); err != nil {
+			if err := w.WritePointer(&o.Reason, _ptr_pboidReason); err != nil {
 				return err
 			}
 		} else {
@@ -519,16 +519,16 @@ func (o *xxx_AbortOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Read
 	// pboidReason {in} (1:{pointer=unique}*(1))(2:{alias=BOID}(struct))
 	{
 		_ptr_pboidReason := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PboidReason == nil {
-				o.PboidReason = &mqac.Boid{}
+			if o.Reason == nil {
+				o.Reason = &mqac.BOID{}
 			}
-			if err := o.PboidReason.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Reason.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pboidReason := func(ptr interface{}) { o.PboidReason = *ptr.(**mqac.Boid) }
-		if err := w.ReadPointer(&o.PboidReason, _s_pboidReason, _ptr_pboidReason); err != nil {
+		_s_pboidReason := func(ptr interface{}) { o.Reason = *ptr.(**mqac.BOID) }
+		if err := w.ReadPointer(&o.Reason, _s_pboidReason, _ptr_pboidReason); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -612,10 +612,10 @@ func (o *xxx_AbortOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 // AbortRequest structure represents the Abort operation request
 type AbortRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PboidReason *mqac.Boid     `idl:"name:pboidReason;pointer:unique" json:"pboid_reason"`
-	Retaining   int16          `idl:"name:fRetaining" json:"retaining"`
-	Async       int16          `idl:"name:fAsync" json:"async"`
+	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
+	Reason    *mqac.BOID     `idl:"name:pboidReason;pointer:unique" json:"reason"`
+	Retaining int16          `idl:"name:fRetaining" json:"retaining"`
+	Async     int16          `idl:"name:fAsync" json:"async"`
 }
 
 func (o *AbortRequest) xxx_ToOp(ctx context.Context, op *xxx_AbortOperation) *xxx_AbortOperation {
@@ -626,7 +626,7 @@ func (o *AbortRequest) xxx_ToOp(ctx context.Context, op *xxx_AbortOperation) *xx
 		return op
 	}
 	op.This = o.This
-	op.PboidReason = o.PboidReason
+	op.Reason = o.Reason
 	op.Retaining = o.Retaining
 	op.Async = o.Async
 	return op
@@ -637,7 +637,7 @@ func (o *AbortRequest) xxx_FromOp(ctx context.Context, op *xxx_AbortOperation) {
 		return
 	}
 	o.This = op.This
-	o.PboidReason = op.PboidReason
+	o.Reason = op.Reason
 	o.Retaining = op.Retaining
 	o.Async = op.Async
 }
@@ -694,10 +694,10 @@ func (o *AbortResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_GetTransactionInfoOperation structure represents the GetTransactionInfo operation
 type xxx_GetTransactionInfoOperation struct {
-	This   *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That   *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Pinfo  *mqac.Xacttransinfo `idl:"name:pinfo" json:"pinfo"`
-	Return int32               `idl:"name:Return" json:"return"`
+	This   *dcom.ORPCThis        `idl:"name:This" json:"this"`
+	That   *dcom.ORPCThat        `idl:"name:That" json:"that"`
+	Info   *mqac.TransactionInfo `idl:"name:pinfo" json:"info"`
+	Return int32                 `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetTransactionInfoOperation) OpNum() int { return 5 }
@@ -783,12 +783,12 @@ func (o *xxx_GetTransactionInfoOperation) MarshalNDRResponse(ctx context.Context
 	}
 	// pinfo {out} (1:{pointer=ref}*(1))(2:{alias=XACTTRANSINFO}(struct))
 	{
-		if o.Pinfo != nil {
-			if err := o.Pinfo.MarshalNDR(ctx, w); err != nil {
+		if o.Info != nil {
+			if err := o.Info.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&mqac.Xacttransinfo{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&mqac.TransactionInfo{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -817,10 +817,10 @@ func (o *xxx_GetTransactionInfoOperation) UnmarshalNDRResponse(ctx context.Conte
 	}
 	// pinfo {out} (1:{pointer=ref}*(1))(2:{alias=XACTTRANSINFO}(struct))
 	{
-		if o.Pinfo == nil {
-			o.Pinfo = &mqac.Xacttransinfo{}
+		if o.Info == nil {
+			o.Info = &mqac.TransactionInfo{}
 		}
-		if err := o.Pinfo.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -871,8 +871,8 @@ func (o *GetTransactionInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 // GetTransactionInfoResponse structure represents the GetTransactionInfo operation response
 type GetTransactionInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Pinfo *mqac.Xacttransinfo `idl:"name:pinfo" json:"pinfo"`
+	That *dcom.ORPCThat        `idl:"name:That" json:"that"`
+	Info *mqac.TransactionInfo `idl:"name:pinfo" json:"info"`
 	// Return: The GetTransactionInfo return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -885,7 +885,7 @@ func (o *GetTransactionInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTr
 		return op
 	}
 	op.That = o.That
-	op.Pinfo = o.Pinfo
+	op.Info = o.Info
 	op.Return = o.Return
 	return op
 }
@@ -895,7 +895,7 @@ func (o *GetTransactionInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_Get
 		return
 	}
 	o.That = op.That
-	o.Pinfo = op.Pinfo
+	o.Info = op.Info
 	o.Return = op.Return
 }
 func (o *GetTransactionInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {

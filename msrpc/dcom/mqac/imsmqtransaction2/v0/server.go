@@ -26,10 +26,10 @@ var (
 )
 
 // IMSMQTransaction2 server interface.
-type ImsmqTransaction2Server interface {
+type Transaction2Server interface {
 
 	// IMSMQTransaction base class.
-	imsmqtransaction.ImsmqTransactionServer
+	imsmqtransaction.TransactionServer
 
 	// InitNew operation.
 	InitNew(context.Context, *InitNewRequest) (*InitNewResponse, error)
@@ -38,20 +38,20 @@ type ImsmqTransaction2Server interface {
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 }
 
-func RegisterImsmqTransaction2Server(conn dcerpc.Conn, o ImsmqTransaction2Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqTransaction2ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqTransaction2SyntaxV0_0))...)
+func RegisterTransaction2Server(conn dcerpc.Conn, o Transaction2Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewTransaction2ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(Transaction2SyntaxV0_0))...)
 }
 
-func NewImsmqTransaction2ServerHandle(o ImsmqTransaction2Server) dcerpc.ServerHandle {
+func NewTransaction2ServerHandle(o Transaction2Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqTransaction2ServerHandle(ctx, o, opNum, r)
+		return Transaction2ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqTransaction2ServerHandle(ctx context.Context, o ImsmqTransaction2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func Transaction2ServerHandle(ctx context.Context, o Transaction2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 10 {
 		// IMSMQTransaction base method.
-		return imsmqtransaction.ImsmqTransactionServerHandle(ctx, o, opNum, r)
+		return imsmqtransaction.TransactionServerHandle(ctx, o, opNum, r)
 	}
 	switch opNum {
 	case 10: // InitNew
@@ -77,15 +77,15 @@ func ImsmqTransaction2ServerHandle(ctx context.Context, o ImsmqTransaction2Serve
 }
 
 // Unimplemented IMSMQTransaction2
-type UnimplementedImsmqTransaction2Server struct {
-	imsmqtransaction.UnimplementedImsmqTransactionServer
+type UnimplementedTransaction2Server struct {
+	imsmqtransaction.UnimplementedTransactionServer
 }
 
-func (UnimplementedImsmqTransaction2Server) InitNew(context.Context, *InitNewRequest) (*InitNewResponse, error) {
+func (UnimplementedTransaction2Server) InitNew(context.Context, *InitNewRequest) (*InitNewResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqTransaction2Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+func (UnimplementedTransaction2Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqTransaction2Server = (*UnimplementedImsmqTransaction2Server)(nil)
+var _ Transaction2Server = (*UnimplementedTransaction2Server)(nil)

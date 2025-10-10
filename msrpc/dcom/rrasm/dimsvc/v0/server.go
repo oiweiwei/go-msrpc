@@ -25,23 +25,23 @@ var (
 
 // dimsvc server interface.
 type DimsvcServer interface {
-	MprAdminServerGetInfo(context.Context, *MprAdminServerGetInfoRequest) (*MprAdminServerGetInfoResponse, error)
+	ServerGetInfo(context.Context, *ServerGetInfoRequest) (*ServerGetInfoResponse, error)
 
-	RASAdminConnectionEnum(context.Context, *RASAdminConnectionEnumRequest) (*RASAdminConnectionEnumResponse, error)
+	ConnectionEnum(context.Context, *ConnectionEnumRequest) (*ConnectionEnumResponse, error)
 
-	RASAdminConnectionGetInfo(context.Context, *RASAdminConnectionGetInfoRequest) (*RASAdminConnectionGetInfoResponse, error)
+	ConnectionGetInfo(context.Context, *ConnectionGetInfoRequest) (*ConnectionGetInfoResponse, error)
 
-	RASAdminConnectionClearStats(context.Context, *RASAdminConnectionClearStatsRequest) (*RASAdminConnectionClearStatsResponse, error)
+	ConnectionClearStats(context.Context, *ConnectionClearStatsRequest) (*ConnectionClearStatsResponse, error)
 
-	RASAdminPortEnum(context.Context, *RASAdminPortEnumRequest) (*RASAdminPortEnumResponse, error)
+	PortEnum(context.Context, *PortEnumRequest) (*PortEnumResponse, error)
 
-	RASAdminPortGetInfo(context.Context, *RASAdminPortGetInfoRequest) (*RASAdminPortGetInfoResponse, error)
+	PortGetInfo(context.Context, *PortGetInfoRequest) (*PortGetInfoResponse, error)
 
-	RASAdminPortClearStats(context.Context, *RASAdminPortClearStatsRequest) (*RASAdminPortClearStatsResponse, error)
+	PortClearStats(context.Context, *PortClearStatsRequest) (*PortClearStatsResponse, error)
 
-	RASAdminPortReset(context.Context, *RASAdminPortResetRequest) (*RASAdminPortResetResponse, error)
+	PortReset(context.Context, *PortResetRequest) (*PortResetResponse, error)
 
-	RASAdminPortDisconnect(context.Context, *RASAdminPortDisconnectRequest) (*RASAdminPortDisconnectResponse, error)
+	PortDisconnect(context.Context, *PortDisconnectRequest) (*PortDisconnectResponse, error)
 
 	RouterInterfaceTransportSetGlobalInfo(context.Context, *RouterInterfaceTransportSetGlobalInfoRequest) (*RouterInterfaceTransportSetGlobalInfoResponse, error)
 
@@ -77,25 +77,25 @@ type DimsvcServer interface {
 
 	RouterInterfaceUpdatePhonebookInfo(context.Context, *RouterInterfaceUpdatePhonebookInfoRequest) (*RouterInterfaceUpdatePhonebookInfoResponse, error)
 
-	RmibEntryCreate(context.Context, *RmibEntryCreateRequest) (*RmibEntryCreateResponse, error)
+	MIBEntryCreate(context.Context, *MIBEntryCreateRequest) (*MIBEntryCreateResponse, error)
 
-	RmibEntryDelete(context.Context, *RmibEntryDeleteRequest) (*RmibEntryDeleteResponse, error)
+	MIBEntryDelete(context.Context, *MIBEntryDeleteRequest) (*MIBEntryDeleteResponse, error)
 
-	RmibEntrySet(context.Context, *RmibEntrySetRequest) (*RmibEntrySetResponse, error)
+	MIBEntrySet(context.Context, *MIBEntrySetRequest) (*MIBEntrySetResponse, error)
 
-	RmibEntryGet(context.Context, *RmibEntryGetRequest) (*RmibEntryGetResponse, error)
+	MIBEntryGet(context.Context, *MIBEntryGetRequest) (*MIBEntryGetResponse, error)
 
-	RmibEntryGetFirst(context.Context, *RmibEntryGetFirstRequest) (*RmibEntryGetFirstResponse, error)
+	MIBEntryGetFirst(context.Context, *MIBEntryGetFirstRequest) (*MIBEntryGetFirstResponse, error)
 
-	RmibEntryGetNext(context.Context, *RmibEntryGetNextRequest) (*RmibEntryGetNextResponse, error)
+	MIBEntryGetNext(context.Context, *MIBEntryGetNextRequest) (*MIBEntryGetNextResponse, error)
 
-	RmibGetTrapInfo(context.Context, *RmibGetTrapInfoRequest) (*RmibGetTrapInfoResponse, error)
+	MIBGetTrapInfo(context.Context, *MIBGetTrapInfoRequest) (*MIBGetTrapInfoResponse, error)
 
-	RmibSetTrapInfo(context.Context, *RmibSetTrapInfoRequest) (*RmibSetTrapInfoResponse, error)
+	MIBSetTrapInfo(context.Context, *MIBSetTrapInfoRequest) (*MIBSetTrapInfoResponse, error)
 
-	RASAdminConnectionNotification(context.Context, *RASAdminConnectionNotificationRequest) (*RASAdminConnectionNotificationResponse, error)
+	ConnectionNotification(context.Context, *ConnectionNotificationRequest) (*ConnectionNotificationResponse, error)
 
-	RASAdminSendUserMessage(context.Context, *RASAdminSendUserMessageRequest) (*RASAdminSendUserMessageResponse, error)
+	SendUserMessage(context.Context, *SendUserMessageRequest) (*SendUserMessageResponse, error)
 
 	RouterDeviceEnum(context.Context, *RouterDeviceEnumRequest) (*RouterDeviceEnumResponse, error)
 
@@ -109,19 +109,19 @@ type DimsvcServer interface {
 
 	RouterInterfaceGetCredentialsEx(context.Context, *RouterInterfaceGetCredentialsExRequest) (*RouterInterfaceGetCredentialsExResponse, error)
 
-	RASAdminConnectionRemoveQuarantine(context.Context, *RASAdminConnectionRemoveQuarantineRequest) (*RASAdminConnectionRemoveQuarantineResponse, error)
+	ConnectionRemoveQuarantine(context.Context, *ConnectionRemoveQuarantineRequest) (*ConnectionRemoveQuarantineResponse, error)
 
-	MprAdminServerSetInfo(context.Context, *MprAdminServerSetInfoRequest) (*MprAdminServerSetInfoResponse, error)
+	ServerSetInfo(context.Context, *ServerSetInfoRequest) (*ServerSetInfoResponse, error)
 
-	MprAdminServerGetInfoEx(context.Context, *MprAdminServerGetInfoExRequest) (*MprAdminServerGetInfoExResponse, error)
+	ServerGetInfoEx(context.Context, *ServerGetInfoExRequest) (*ServerGetInfoExResponse, error)
 
-	RASAdminConnectionEnumEx(context.Context, *RASAdminConnectionEnumExRequest) (*RASAdminConnectionEnumExResponse, error)
+	ConnectionEnumEx(context.Context, *ConnectionEnumExRequest) (*ConnectionEnumExResponse, error)
 
-	RASAdminConnectionGetInfoEx(context.Context, *RASAdminConnectionGetInfoExRequest) (*RASAdminConnectionGetInfoExResponse, error)
+	ConnectionGetInfoEx(context.Context, *ConnectionGetInfoExRequest) (*ConnectionGetInfoExResponse, error)
 
-	MprAdminServerSetInfoEx(context.Context, *MprAdminServerSetInfoExRequest) (*MprAdminServerSetInfoExResponse, error)
+	ServerSetInfoEx(context.Context, *ServerSetInfoExRequest) (*ServerSetInfoExResponse, error)
 
-	RASAdminUpdateConnection(context.Context, *RASAdminUpdateConnectionRequest) (*RASAdminUpdateConnectionResponse, error)
+	UpdateConnection(context.Context, *UpdateConnectionRequest) (*UpdateConnectionResponse, error)
 
 	RouterInterfaceSetCredentialsLocal(context.Context, *RouterInterfaceSetCredentialsLocalRequest) (*RouterInterfaceSetCredentialsLocalResponse, error)
 
@@ -145,85 +145,85 @@ func NewDimsvcServerHandle(o DimsvcServer) dcerpc.ServerHandle {
 func DimsvcServerHandle(ctx context.Context, o DimsvcServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // RMprAdminServerGetInfo
-		op := &xxx_MprAdminServerGetInfoOperation{}
+		op := &xxx_ServerGetInfoOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &MprAdminServerGetInfoRequest{}
+		req := &ServerGetInfoRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.MprAdminServerGetInfo(ctx, req)
+		resp, err := o.ServerGetInfo(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 1: // RRasAdminConnectionEnum
-		op := &xxx_RASAdminConnectionEnumOperation{}
+		op := &xxx_ConnectionEnumOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASAdminConnectionEnumRequest{}
+		req := &ConnectionEnumRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASAdminConnectionEnum(ctx, req)
+		resp, err := o.ConnectionEnum(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 2: // RRasAdminConnectionGetInfo
-		op := &xxx_RASAdminConnectionGetInfoOperation{}
+		op := &xxx_ConnectionGetInfoOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASAdminConnectionGetInfoRequest{}
+		req := &ConnectionGetInfoRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASAdminConnectionGetInfo(ctx, req)
+		resp, err := o.ConnectionGetInfo(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 3: // RRasAdminConnectionClearStats
-		op := &xxx_RASAdminConnectionClearStatsOperation{}
+		op := &xxx_ConnectionClearStatsOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASAdminConnectionClearStatsRequest{}
+		req := &ConnectionClearStatsRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASAdminConnectionClearStats(ctx, req)
+		resp, err := o.ConnectionClearStats(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 4: // RRasAdminPortEnum
-		op := &xxx_RASAdminPortEnumOperation{}
+		op := &xxx_PortEnumOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASAdminPortEnumRequest{}
+		req := &PortEnumRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASAdminPortEnum(ctx, req)
+		resp, err := o.PortEnum(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 5: // RRasAdminPortGetInfo
-		op := &xxx_RASAdminPortGetInfoOperation{}
+		op := &xxx_PortGetInfoOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASAdminPortGetInfoRequest{}
+		req := &PortGetInfoRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASAdminPortGetInfo(ctx, req)
+		resp, err := o.PortGetInfo(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 6: // RRasAdminPortClearStats
-		op := &xxx_RASAdminPortClearStatsOperation{}
+		op := &xxx_PortClearStatsOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASAdminPortClearStatsRequest{}
+		req := &PortClearStatsRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASAdminPortClearStats(ctx, req)
+		resp, err := o.PortClearStats(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 7: // RRasAdminPortReset
-		op := &xxx_RASAdminPortResetOperation{}
+		op := &xxx_PortResetOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASAdminPortResetRequest{}
+		req := &PortResetRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASAdminPortReset(ctx, req)
+		resp, err := o.PortReset(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 8: // RRasAdminPortDisconnect
-		op := &xxx_RASAdminPortDisconnectOperation{}
+		op := &xxx_PortDisconnectOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASAdminPortDisconnectRequest{}
+		req := &PortDisconnectRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASAdminPortDisconnect(ctx, req)
+		resp, err := o.PortDisconnect(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 9: // RRouterInterfaceTransportSetGlobalInfo
 		op := &xxx_RouterInterfaceTransportSetGlobalInfoOperation{}
@@ -379,94 +379,94 @@ func DimsvcServerHandle(ctx context.Context, o DimsvcServer, opNum int, r ndr.Re
 		resp, err := o.RouterInterfaceUpdatePhonebookInfo(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 26: // RMIBEntryCreate
-		op := &xxx_RmibEntryCreateOperation{}
+		op := &xxx_MIBEntryCreateOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RmibEntryCreateRequest{}
+		req := &MIBEntryCreateRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RmibEntryCreate(ctx, req)
+		resp, err := o.MIBEntryCreate(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 27: // RMIBEntryDelete
-		op := &xxx_RmibEntryDeleteOperation{}
+		op := &xxx_MIBEntryDeleteOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RmibEntryDeleteRequest{}
+		req := &MIBEntryDeleteRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RmibEntryDelete(ctx, req)
+		resp, err := o.MIBEntryDelete(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 28: // RMIBEntrySet
-		op := &xxx_RmibEntrySetOperation{}
+		op := &xxx_MIBEntrySetOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RmibEntrySetRequest{}
+		req := &MIBEntrySetRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RmibEntrySet(ctx, req)
+		resp, err := o.MIBEntrySet(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 29: // RMIBEntryGet
-		op := &xxx_RmibEntryGetOperation{}
+		op := &xxx_MIBEntryGetOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RmibEntryGetRequest{}
+		req := &MIBEntryGetRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RmibEntryGet(ctx, req)
+		resp, err := o.MIBEntryGet(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 30: // RMIBEntryGetFirst
-		op := &xxx_RmibEntryGetFirstOperation{}
+		op := &xxx_MIBEntryGetFirstOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RmibEntryGetFirstRequest{}
+		req := &MIBEntryGetFirstRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RmibEntryGetFirst(ctx, req)
+		resp, err := o.MIBEntryGetFirst(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 31: // RMIBEntryGetNext
-		op := &xxx_RmibEntryGetNextOperation{}
+		op := &xxx_MIBEntryGetNextOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RmibEntryGetNextRequest{}
+		req := &MIBEntryGetNextRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RmibEntryGetNext(ctx, req)
+		resp, err := o.MIBEntryGetNext(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 32: // RMIBGetTrapInfo
-		op := &xxx_RmibGetTrapInfoOperation{}
+		op := &xxx_MIBGetTrapInfoOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RmibGetTrapInfoRequest{}
+		req := &MIBGetTrapInfoRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RmibGetTrapInfo(ctx, req)
+		resp, err := o.MIBGetTrapInfo(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 33: // RMIBSetTrapInfo
-		op := &xxx_RmibSetTrapInfoOperation{}
+		op := &xxx_MIBSetTrapInfoOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RmibSetTrapInfoRequest{}
+		req := &MIBSetTrapInfoRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RmibSetTrapInfo(ctx, req)
+		resp, err := o.MIBSetTrapInfo(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 34: // RRasAdminConnectionNotification
-		op := &xxx_RASAdminConnectionNotificationOperation{}
+		op := &xxx_ConnectionNotificationOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASAdminConnectionNotificationRequest{}
+		req := &ConnectionNotificationRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASAdminConnectionNotification(ctx, req)
+		resp, err := o.ConnectionNotification(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 35: // RRasAdminSendUserMessage
-		op := &xxx_RASAdminSendUserMessageOperation{}
+		op := &xxx_SendUserMessageOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASAdminSendUserMessageRequest{}
+		req := &SendUserMessageRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASAdminSendUserMessage(ctx, req)
+		resp, err := o.SendUserMessage(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 36: // RRouterDeviceEnum
 		op := &xxx_RouterDeviceEnumOperation{}
@@ -523,67 +523,67 @@ func DimsvcServerHandle(ctx context.Context, o DimsvcServer, opNum int, r ndr.Re
 		resp, err := o.RouterInterfaceGetCredentialsEx(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 42: // RRasAdminConnectionRemoveQuarantine
-		op := &xxx_RASAdminConnectionRemoveQuarantineOperation{}
+		op := &xxx_ConnectionRemoveQuarantineOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASAdminConnectionRemoveQuarantineRequest{}
+		req := &ConnectionRemoveQuarantineRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASAdminConnectionRemoveQuarantine(ctx, req)
+		resp, err := o.ConnectionRemoveQuarantine(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 43: // RMprAdminServerSetInfo
-		op := &xxx_MprAdminServerSetInfoOperation{}
+		op := &xxx_ServerSetInfoOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &MprAdminServerSetInfoRequest{}
+		req := &ServerSetInfoRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.MprAdminServerSetInfo(ctx, req)
+		resp, err := o.ServerSetInfo(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 44: // RMprAdminServerGetInfoEx
-		op := &xxx_MprAdminServerGetInfoExOperation{}
+		op := &xxx_ServerGetInfoExOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &MprAdminServerGetInfoExRequest{}
+		req := &ServerGetInfoExRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.MprAdminServerGetInfoEx(ctx, req)
+		resp, err := o.ServerGetInfoEx(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 45: // RRasAdminConnectionEnumEx
-		op := &xxx_RASAdminConnectionEnumExOperation{}
+		op := &xxx_ConnectionEnumExOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASAdminConnectionEnumExRequest{}
+		req := &ConnectionEnumExRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASAdminConnectionEnumEx(ctx, req)
+		resp, err := o.ConnectionEnumEx(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 46: // RRasAdminConnectionGetInfoEx
-		op := &xxx_RASAdminConnectionGetInfoExOperation{}
+		op := &xxx_ConnectionGetInfoExOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASAdminConnectionGetInfoExRequest{}
+		req := &ConnectionGetInfoExRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASAdminConnectionGetInfoEx(ctx, req)
+		resp, err := o.ConnectionGetInfoEx(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 47: // RMprAdminServerSetInfoEx
-		op := &xxx_MprAdminServerSetInfoExOperation{}
+		op := &xxx_ServerSetInfoExOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &MprAdminServerSetInfoExRequest{}
+		req := &ServerSetInfoExRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.MprAdminServerSetInfoEx(ctx, req)
+		resp, err := o.ServerSetInfoEx(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 48: // RRasAdminUpdateConnection
-		op := &xxx_RASAdminUpdateConnectionOperation{}
+		op := &xxx_UpdateConnectionOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RASAdminUpdateConnectionRequest{}
+		req := &UpdateConnectionRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RASAdminUpdateConnection(ctx, req)
+		resp, err := o.UpdateConnection(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 49: // RRouterInterfaceSetCredentialsLocal
 		op := &xxx_RouterInterfaceSetCredentialsLocalOperation{}
@@ -629,31 +629,31 @@ func DimsvcServerHandle(ctx context.Context, o DimsvcServer, opNum int, r ndr.Re
 type UnimplementedDimsvcServer struct {
 }
 
-func (UnimplementedDimsvcServer) MprAdminServerGetInfo(context.Context, *MprAdminServerGetInfoRequest) (*MprAdminServerGetInfoResponse, error) {
+func (UnimplementedDimsvcServer) ServerGetInfo(context.Context, *ServerGetInfoRequest) (*ServerGetInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RASAdminConnectionEnum(context.Context, *RASAdminConnectionEnumRequest) (*RASAdminConnectionEnumResponse, error) {
+func (UnimplementedDimsvcServer) ConnectionEnum(context.Context, *ConnectionEnumRequest) (*ConnectionEnumResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RASAdminConnectionGetInfo(context.Context, *RASAdminConnectionGetInfoRequest) (*RASAdminConnectionGetInfoResponse, error) {
+func (UnimplementedDimsvcServer) ConnectionGetInfo(context.Context, *ConnectionGetInfoRequest) (*ConnectionGetInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RASAdminConnectionClearStats(context.Context, *RASAdminConnectionClearStatsRequest) (*RASAdminConnectionClearStatsResponse, error) {
+func (UnimplementedDimsvcServer) ConnectionClearStats(context.Context, *ConnectionClearStatsRequest) (*ConnectionClearStatsResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RASAdminPortEnum(context.Context, *RASAdminPortEnumRequest) (*RASAdminPortEnumResponse, error) {
+func (UnimplementedDimsvcServer) PortEnum(context.Context, *PortEnumRequest) (*PortEnumResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RASAdminPortGetInfo(context.Context, *RASAdminPortGetInfoRequest) (*RASAdminPortGetInfoResponse, error) {
+func (UnimplementedDimsvcServer) PortGetInfo(context.Context, *PortGetInfoRequest) (*PortGetInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RASAdminPortClearStats(context.Context, *RASAdminPortClearStatsRequest) (*RASAdminPortClearStatsResponse, error) {
+func (UnimplementedDimsvcServer) PortClearStats(context.Context, *PortClearStatsRequest) (*PortClearStatsResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RASAdminPortReset(context.Context, *RASAdminPortResetRequest) (*RASAdminPortResetResponse, error) {
+func (UnimplementedDimsvcServer) PortReset(context.Context, *PortResetRequest) (*PortResetResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RASAdminPortDisconnect(context.Context, *RASAdminPortDisconnectRequest) (*RASAdminPortDisconnectResponse, error) {
+func (UnimplementedDimsvcServer) PortDisconnect(context.Context, *PortDisconnectRequest) (*PortDisconnectResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 func (UnimplementedDimsvcServer) RouterInterfaceTransportSetGlobalInfo(context.Context, *RouterInterfaceTransportSetGlobalInfoRequest) (*RouterInterfaceTransportSetGlobalInfoResponse, error) {
@@ -707,34 +707,34 @@ func (UnimplementedDimsvcServer) RouterInterfaceQueryUpdateResult(context.Contex
 func (UnimplementedDimsvcServer) RouterInterfaceUpdatePhonebookInfo(context.Context, *RouterInterfaceUpdatePhonebookInfoRequest) (*RouterInterfaceUpdatePhonebookInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RmibEntryCreate(context.Context, *RmibEntryCreateRequest) (*RmibEntryCreateResponse, error) {
+func (UnimplementedDimsvcServer) MIBEntryCreate(context.Context, *MIBEntryCreateRequest) (*MIBEntryCreateResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RmibEntryDelete(context.Context, *RmibEntryDeleteRequest) (*RmibEntryDeleteResponse, error) {
+func (UnimplementedDimsvcServer) MIBEntryDelete(context.Context, *MIBEntryDeleteRequest) (*MIBEntryDeleteResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RmibEntrySet(context.Context, *RmibEntrySetRequest) (*RmibEntrySetResponse, error) {
+func (UnimplementedDimsvcServer) MIBEntrySet(context.Context, *MIBEntrySetRequest) (*MIBEntrySetResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RmibEntryGet(context.Context, *RmibEntryGetRequest) (*RmibEntryGetResponse, error) {
+func (UnimplementedDimsvcServer) MIBEntryGet(context.Context, *MIBEntryGetRequest) (*MIBEntryGetResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RmibEntryGetFirst(context.Context, *RmibEntryGetFirstRequest) (*RmibEntryGetFirstResponse, error) {
+func (UnimplementedDimsvcServer) MIBEntryGetFirst(context.Context, *MIBEntryGetFirstRequest) (*MIBEntryGetFirstResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RmibEntryGetNext(context.Context, *RmibEntryGetNextRequest) (*RmibEntryGetNextResponse, error) {
+func (UnimplementedDimsvcServer) MIBEntryGetNext(context.Context, *MIBEntryGetNextRequest) (*MIBEntryGetNextResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RmibGetTrapInfo(context.Context, *RmibGetTrapInfoRequest) (*RmibGetTrapInfoResponse, error) {
+func (UnimplementedDimsvcServer) MIBGetTrapInfo(context.Context, *MIBGetTrapInfoRequest) (*MIBGetTrapInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RmibSetTrapInfo(context.Context, *RmibSetTrapInfoRequest) (*RmibSetTrapInfoResponse, error) {
+func (UnimplementedDimsvcServer) MIBSetTrapInfo(context.Context, *MIBSetTrapInfoRequest) (*MIBSetTrapInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RASAdminConnectionNotification(context.Context, *RASAdminConnectionNotificationRequest) (*RASAdminConnectionNotificationResponse, error) {
+func (UnimplementedDimsvcServer) ConnectionNotification(context.Context, *ConnectionNotificationRequest) (*ConnectionNotificationResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RASAdminSendUserMessage(context.Context, *RASAdminSendUserMessageRequest) (*RASAdminSendUserMessageResponse, error) {
+func (UnimplementedDimsvcServer) SendUserMessage(context.Context, *SendUserMessageRequest) (*SendUserMessageResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 func (UnimplementedDimsvcServer) RouterDeviceEnum(context.Context, *RouterDeviceEnumRequest) (*RouterDeviceEnumResponse, error) {
@@ -755,25 +755,25 @@ func (UnimplementedDimsvcServer) RouterInterfaceSetCredentialsEx(context.Context
 func (UnimplementedDimsvcServer) RouterInterfaceGetCredentialsEx(context.Context, *RouterInterfaceGetCredentialsExRequest) (*RouterInterfaceGetCredentialsExResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RASAdminConnectionRemoveQuarantine(context.Context, *RASAdminConnectionRemoveQuarantineRequest) (*RASAdminConnectionRemoveQuarantineResponse, error) {
+func (UnimplementedDimsvcServer) ConnectionRemoveQuarantine(context.Context, *ConnectionRemoveQuarantineRequest) (*ConnectionRemoveQuarantineResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) MprAdminServerSetInfo(context.Context, *MprAdminServerSetInfoRequest) (*MprAdminServerSetInfoResponse, error) {
+func (UnimplementedDimsvcServer) ServerSetInfo(context.Context, *ServerSetInfoRequest) (*ServerSetInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) MprAdminServerGetInfoEx(context.Context, *MprAdminServerGetInfoExRequest) (*MprAdminServerGetInfoExResponse, error) {
+func (UnimplementedDimsvcServer) ServerGetInfoEx(context.Context, *ServerGetInfoExRequest) (*ServerGetInfoExResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RASAdminConnectionEnumEx(context.Context, *RASAdminConnectionEnumExRequest) (*RASAdminConnectionEnumExResponse, error) {
+func (UnimplementedDimsvcServer) ConnectionEnumEx(context.Context, *ConnectionEnumExRequest) (*ConnectionEnumExResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RASAdminConnectionGetInfoEx(context.Context, *RASAdminConnectionGetInfoExRequest) (*RASAdminConnectionGetInfoExResponse, error) {
+func (UnimplementedDimsvcServer) ConnectionGetInfoEx(context.Context, *ConnectionGetInfoExRequest) (*ConnectionGetInfoExResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) MprAdminServerSetInfoEx(context.Context, *MprAdminServerSetInfoExRequest) (*MprAdminServerSetInfoExResponse, error) {
+func (UnimplementedDimsvcServer) ServerSetInfoEx(context.Context, *ServerSetInfoExRequest) (*ServerSetInfoExResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedDimsvcServer) RASAdminUpdateConnection(context.Context, *RASAdminUpdateConnectionRequest) (*RASAdminUpdateConnectionResponse, error) {
+func (UnimplementedDimsvcServer) UpdateConnection(context.Context, *UpdateConnectionRequest) (*UpdateConnectionResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 func (UnimplementedDimsvcServer) RouterInterfaceSetCredentialsLocal(context.Context, *RouterInterfaceSetCredentialsLocalRequest) (*RouterInterfaceSetCredentialsLocalResponse, error) {

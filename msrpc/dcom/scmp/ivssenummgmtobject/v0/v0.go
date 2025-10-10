@@ -36,15 +36,15 @@ var (
 
 var (
 	// IVssEnumMgmtObject interface identifier 01954e6b-9254-4e6e-808c-c9e05d007696
-	VSSEnumManagementObjectIID = &dcom.IID{Data1: 0x01954e6b, Data2: 0x9254, Data3: 0x4e6e, Data4: []byte{0x80, 0x8c, 0xc9, 0xe0, 0x5d, 0x00, 0x76, 0x96}}
+	EnumManagementObjectIID = &dcom.IID{Data1: 0x01954e6b, Data2: 0x9254, Data3: 0x4e6e, Data4: []byte{0x80, 0x8c, 0xc9, 0xe0, 0x5d, 0x00, 0x76, 0x96}}
 	// Syntax UUID
-	VSSEnumManagementObjectSyntaxUUID = &uuid.UUID{TimeLow: 0x1954e6b, TimeMid: 0x9254, TimeHiAndVersion: 0x4e6e, ClockSeqHiAndReserved: 0x80, ClockSeqLow: 0x8c, Node: [6]uint8{0xc9, 0xe0, 0x5d, 0x0, 0x76, 0x96}}
+	EnumManagementObjectSyntaxUUID = &uuid.UUID{TimeLow: 0x1954e6b, TimeMid: 0x9254, TimeHiAndVersion: 0x4e6e, ClockSeqHiAndReserved: 0x80, ClockSeqLow: 0x8c, Node: [6]uint8{0xc9, 0xe0, 0x5d, 0x0, 0x76, 0x96}}
 	// Syntax ID
-	VSSEnumManagementObjectSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: VSSEnumManagementObjectSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	EnumManagementObjectSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: EnumManagementObjectSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IVssEnumMgmtObject interface.
-type VSSEnumManagementObjectClient interface {
+type EnumManagementObjectClient interface {
 
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
@@ -68,20 +68,20 @@ type VSSEnumManagementObjectClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) VSSEnumManagementObjectClient
+	IPID(context.Context, *dcom.IPID) EnumManagementObjectClient
 }
 
-type xxx_DefaultVSSEnumManagementObjectClient struct {
+type xxx_DefaultEnumManagementObjectClient struct {
 	iunknown.UnknownClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultVSSEnumManagementObjectClient) Unknown() iunknown.UnknownClient {
+func (o *xxx_DefaultEnumManagementObjectClient) Unknown() iunknown.UnknownClient {
 	return o.UnknownClient
 }
 
-func (o *xxx_DefaultVSSEnumManagementObjectClient) Next(ctx context.Context, in *NextRequest, opts ...dcerpc.CallOption) (*NextResponse, error) {
+func (o *xxx_DefaultEnumManagementObjectClient) Next(ctx context.Context, in *NextRequest, opts ...dcerpc.CallOption) (*NextResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -101,7 +101,7 @@ func (o *xxx_DefaultVSSEnumManagementObjectClient) Next(ctx context.Context, in 
 	return out, nil
 }
 
-func (o *xxx_DefaultVSSEnumManagementObjectClient) Skip(ctx context.Context, in *SkipRequest, opts ...dcerpc.CallOption) (*SkipResponse, error) {
+func (o *xxx_DefaultEnumManagementObjectClient) Skip(ctx context.Context, in *SkipRequest, opts ...dcerpc.CallOption) (*SkipResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -121,7 +121,7 @@ func (o *xxx_DefaultVSSEnumManagementObjectClient) Skip(ctx context.Context, in 
 	return out, nil
 }
 
-func (o *xxx_DefaultVSSEnumManagementObjectClient) Reset(ctx context.Context, in *ResetRequest, opts ...dcerpc.CallOption) (*ResetResponse, error) {
+func (o *xxx_DefaultEnumManagementObjectClient) Reset(ctx context.Context, in *ResetRequest, opts ...dcerpc.CallOption) (*ResetResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -141,7 +141,7 @@ func (o *xxx_DefaultVSSEnumManagementObjectClient) Reset(ctx context.Context, in
 	return out, nil
 }
 
-func (o *xxx_DefaultVSSEnumManagementObjectClient) Clone(ctx context.Context, in *CloneRequest, opts ...dcerpc.CallOption) (*CloneResponse, error) {
+func (o *xxx_DefaultEnumManagementObjectClient) Clone(ctx context.Context, in *CloneRequest, opts ...dcerpc.CallOption) (*CloneResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -161,29 +161,29 @@ func (o *xxx_DefaultVSSEnumManagementObjectClient) Clone(ctx context.Context, in
 	return out, nil
 }
 
-func (o *xxx_DefaultVSSEnumManagementObjectClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultEnumManagementObjectClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultVSSEnumManagementObjectClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultEnumManagementObjectClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultVSSEnumManagementObjectClient) IPID(ctx context.Context, ipid *dcom.IPID) VSSEnumManagementObjectClient {
+func (o *xxx_DefaultEnumManagementObjectClient) IPID(ctx context.Context, ipid *dcom.IPID) EnumManagementObjectClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultVSSEnumManagementObjectClient{
+	return &xxx_DefaultEnumManagementObjectClient{
 		UnknownClient: o.UnknownClient.IPID(ctx, ipid),
 		cc:            o.cc,
 		ipid:          ipid,
 	}
 }
 
-func NewVSSEnumManagementObjectClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (VSSEnumManagementObjectClient, error) {
+func NewEnumManagementObjectClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (EnumManagementObjectClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(VSSEnumManagementObjectSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(EnumManagementObjectSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -196,7 +196,7 @@ func NewVSSEnumManagementObjectClient(ctx context.Context, cc dcerpc.Conn, opts 
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultVSSEnumManagementObjectClient{
+	return &xxx_DefaultEnumManagementObjectClient{
 		UnknownClient: base,
 		cc:            cc,
 		ipid:          ipid,
@@ -205,12 +205,12 @@ func NewVSSEnumManagementObjectClient(ctx context.Context, cc dcerpc.Conn, opts 
 
 // xxx_NextOperation structure represents the Next operation
 type xxx_NextOperation struct {
-	This    *dcom.ORPCThis                      `idl:"name:This" json:"this"`
-	That    *dcom.ORPCThat                      `idl:"name:That" json:"that"`
-	Count   uint32                              `idl:"name:celt" json:"count"`
-	Entries []*scmp.VSSManagementObjectProperty `idl:"name:rgelt;size_is:(celt);length_is:(pceltFetched)" json:"entries"`
-	Fetched uint32                              `idl:"name:pceltFetched" json:"fetched"`
-	Return  int32                               `idl:"name:Return" json:"return"`
+	This    *dcom.ORPCThis                   `idl:"name:This" json:"this"`
+	That    *dcom.ORPCThat                   `idl:"name:That" json:"that"`
+	Count   uint32                           `idl:"name:celt" json:"count"`
+	Entries []*scmp.ManagementObjectProperty `idl:"name:rgelt;size_is:(celt);length_is:(pceltFetched)" json:"entries"`
+	Fetched uint32                           `idl:"name:pceltFetched" json:"fetched"`
+	Return  int32                            `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_NextOperation) OpNum() int { return 3 }
@@ -338,13 +338,13 @@ func (o *xxx_NextOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 					return err
 				}
 			} else {
-				if err := (&scmp.VSSManagementObjectProperty{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&scmp.ManagementObjectProperty{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
 		}
 		for i1 := len(o.Entries); uint64(i1) < sizeInfo[0]; i1++ {
-			if err := (&scmp.VSSManagementObjectProperty{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&scmp.ManagementObjectProperty{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -401,11 +401,11 @@ func (o *xxx_NextOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
 			return fmt.Errorf("buffer overflow for size %d of array o.Entries", sizeInfo[0])
 		}
-		o.Entries = make([]*scmp.VSSManagementObjectProperty, sizeInfo[0])
+		o.Entries = make([]*scmp.ManagementObjectProperty, sizeInfo[0])
 		for i1 := range o.Entries {
 			i1 := i1
 			if o.Entries[i1] == nil {
-				o.Entries[i1] = &scmp.VSSManagementObjectProperty{}
+				o.Entries[i1] = &scmp.ManagementObjectProperty{}
 			}
 			if err := o.Entries[i1].UnmarshalNDR(ctx, w); err != nil {
 				return err
@@ -474,9 +474,9 @@ type NextResponse struct {
 	Count uint32 `idl:"name:celt" json:"count"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat                      `idl:"name:That" json:"that"`
-	Entries []*scmp.VSSManagementObjectProperty `idl:"name:rgelt;size_is:(celt);length_is:(pceltFetched)" json:"entries"`
-	Fetched uint32                              `idl:"name:pceltFetched" json:"fetched"`
+	That    *dcom.ORPCThat                   `idl:"name:That" json:"that"`
+	Entries []*scmp.ManagementObjectProperty `idl:"name:rgelt;size_is:(celt);length_is:(pceltFetched)" json:"entries"`
+	Fetched uint32                           `idl:"name:pceltFetched" json:"fetched"`
 	// Return: The Next return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -924,10 +924,10 @@ func (o *ResetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_CloneOperation structure represents the Clone operation
 type xxx_CloneOperation struct {
-	This   *dcom.ORPCThis                `idl:"name:This" json:"this"`
-	That   *dcom.ORPCThat                `idl:"name:That" json:"that"`
-	Enum   *scmp.VSSEnumManagementObject `idl:"name:ppenum" json:"enum"`
-	Return int32                         `idl:"name:Return" json:"return"`
+	This   *dcom.ORPCThis             `idl:"name:This" json:"this"`
+	That   *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	Enum   *scmp.EnumManagementObject `idl:"name:ppenum" json:"enum"`
+	Return int32                      `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_CloneOperation) OpNum() int { return 6 }
@@ -971,7 +971,7 @@ func (o *xxx_CloneOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer
 						return err
 					}
 				} else {
-					if err := (&scmp.VSSEnumManagementObject{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&scmp.EnumManagementObject{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
@@ -1009,14 +1009,14 @@ func (o *xxx_CloneOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Read
 	{
 		_ptr_ppenum := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if o.Enum == nil {
-				o.Enum = &scmp.VSSEnumManagementObject{}
+				o.Enum = &scmp.EnumManagementObject{}
 			}
 			if err := o.Enum.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppenum := func(ptr interface{}) { o.Enum = *ptr.(**scmp.VSSEnumManagementObject) }
+		_s_ppenum := func(ptr interface{}) { o.Enum = *ptr.(**scmp.EnumManagementObject) }
 		if err := w.ReadPointer(&o.Enum, _s_ppenum, _ptr_ppenum); err != nil {
 			return err
 		}
@@ -1064,7 +1064,7 @@ func (o *xxx_CloneOperation) MarshalNDRResponse(ctx context.Context, w ndr.Write
 						return err
 					}
 				} else {
-					if err := (&scmp.VSSEnumManagementObject{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&scmp.EnumManagementObject{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
@@ -1108,14 +1108,14 @@ func (o *xxx_CloneOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 	{
 		_ptr_ppenum := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if o.Enum == nil {
-				o.Enum = &scmp.VSSEnumManagementObject{}
+				o.Enum = &scmp.EnumManagementObject{}
 			}
 			if err := o.Enum.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppenum := func(ptr interface{}) { o.Enum = *ptr.(**scmp.VSSEnumManagementObject) }
+		_s_ppenum := func(ptr interface{}) { o.Enum = *ptr.(**scmp.EnumManagementObject) }
 		if err := w.ReadPointer(&o.Enum, _s_ppenum, _ptr_ppenum); err != nil {
 			return err
 		}
@@ -1135,8 +1135,8 @@ func (o *xxx_CloneOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 // CloneRequest structure represents the Clone operation request
 type CloneRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This *dcom.ORPCThis                `idl:"name:This" json:"this"`
-	Enum *scmp.VSSEnumManagementObject `idl:"name:ppenum" json:"enum"`
+	This *dcom.ORPCThis             `idl:"name:This" json:"this"`
+	Enum *scmp.EnumManagementObject `idl:"name:ppenum" json:"enum"`
 }
 
 func (o *CloneRequest) xxx_ToOp(ctx context.Context, op *xxx_CloneOperation) *xxx_CloneOperation {
@@ -1173,8 +1173,8 @@ func (o *CloneRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // CloneResponse structure represents the Clone operation response
 type CloneResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat                `idl:"name:That" json:"that"`
-	Enum *scmp.VSSEnumManagementObject `idl:"name:ppenum" json:"enum"`
+	That *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	Enum *scmp.EnumManagementObject `idl:"name:ppenum" json:"enum"`
 	// Return: The Clone return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

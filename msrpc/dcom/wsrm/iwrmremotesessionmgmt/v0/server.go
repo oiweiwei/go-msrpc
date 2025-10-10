@@ -26,7 +26,7 @@ var (
 )
 
 // IWRMRemoteSessionMgmt server interface.
-type IwrmRemoteSessionManagementServer interface {
+type RemoteSessionManagementServer interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -38,17 +38,17 @@ type IwrmRemoteSessionManagementServer interface {
 	RefreshRemoteSessionWeights(context.Context, *RefreshRemoteSessionWeightsRequest) (*RefreshRemoteSessionWeightsResponse, error)
 }
 
-func RegisterIwrmRemoteSessionManagementServer(conn dcerpc.Conn, o IwrmRemoteSessionManagementServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewIwrmRemoteSessionManagementServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(IwrmRemoteSessionManagementSyntaxV0_0))...)
+func RegisterRemoteSessionManagementServer(conn dcerpc.Conn, o RemoteSessionManagementServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewRemoteSessionManagementServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(RemoteSessionManagementSyntaxV0_0))...)
 }
 
-func NewIwrmRemoteSessionManagementServerHandle(o IwrmRemoteSessionManagementServer) dcerpc.ServerHandle {
+func NewRemoteSessionManagementServerHandle(o RemoteSessionManagementServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return IwrmRemoteSessionManagementServerHandle(ctx, o, opNum, r)
+		return RemoteSessionManagementServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func IwrmRemoteSessionManagementServerHandle(ctx context.Context, o IwrmRemoteSessionManagementServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func RemoteSessionManagementServerHandle(ctx context.Context, o RemoteSessionManagementServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -86,18 +86,18 @@ func IwrmRemoteSessionManagementServerHandle(ctx context.Context, o IwrmRemoteSe
 }
 
 // Unimplemented IWRMRemoteSessionMgmt
-type UnimplementedIwrmRemoteSessionManagementServer struct {
+type UnimplementedRemoteSessionManagementServer struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedIwrmRemoteSessionManagementServer) GetRemoteUserCategories(context.Context, *GetRemoteUserCategoriesRequest) (*GetRemoteUserCategoriesResponse, error) {
+func (UnimplementedRemoteSessionManagementServer) GetRemoteUserCategories(context.Context, *GetRemoteUserCategoriesRequest) (*GetRemoteUserCategoriesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmRemoteSessionManagementServer) SetRemoteUserCategories(context.Context, *SetRemoteUserCategoriesRequest) (*SetRemoteUserCategoriesResponse, error) {
+func (UnimplementedRemoteSessionManagementServer) SetRemoteUserCategories(context.Context, *SetRemoteUserCategoriesRequest) (*SetRemoteUserCategoriesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmRemoteSessionManagementServer) RefreshRemoteSessionWeights(context.Context, *RefreshRemoteSessionWeightsRequest) (*RefreshRemoteSessionWeightsResponse, error) {
+func (UnimplementedRemoteSessionManagementServer) RefreshRemoteSessionWeights(context.Context, *RefreshRemoteSessionWeightsRequest) (*RefreshRemoteSessionWeightsResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ IwrmRemoteSessionManagementServer = (*UnimplementedIwrmRemoteSessionManagementServer)(nil)
+var _ RemoteSessionManagementServer = (*UnimplementedRemoteSessionManagementServer)(nil)
