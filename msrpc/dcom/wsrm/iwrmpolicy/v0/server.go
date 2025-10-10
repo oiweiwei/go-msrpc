@@ -26,7 +26,7 @@ var (
 )
 
 // IWRMPolicy server interface.
-type IwrmPolicyServer interface {
+type PolicyServer interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -62,17 +62,17 @@ type IwrmPolicyServer interface {
 	SetConditionalPolicy(context.Context, *SetConditionalPolicyRequest) (*SetConditionalPolicyResponse, error)
 }
 
-func RegisterIwrmPolicyServer(conn dcerpc.Conn, o IwrmPolicyServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewIwrmPolicyServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(IwrmPolicySyntaxV0_0))...)
+func RegisterPolicyServer(conn dcerpc.Conn, o PolicyServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewPolicyServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(PolicySyntaxV0_0))...)
 }
 
-func NewIwrmPolicyServerHandle(o IwrmPolicyServer) dcerpc.ServerHandle {
+func NewPolicyServerHandle(o PolicyServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return IwrmPolicyServerHandle(ctx, o, opNum, r)
+		return PolicyServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func IwrmPolicyServerHandle(ctx context.Context, o IwrmPolicyServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func PolicyServerHandle(ctx context.Context, o PolicyServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -218,54 +218,54 @@ func IwrmPolicyServerHandle(ctx context.Context, o IwrmPolicyServer, opNum int, 
 }
 
 // Unimplemented IWRMPolicy
-type UnimplementedIwrmPolicyServer struct {
+type UnimplementedPolicyServer struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedIwrmPolicyServer) GetPolicyInfo(context.Context, *GetPolicyInfoRequest) (*GetPolicyInfoResponse, error) {
+func (UnimplementedPolicyServer) GetPolicyInfo(context.Context, *GetPolicyInfoRequest) (*GetPolicyInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmPolicyServer) CreatePolicy(context.Context, *CreatePolicyRequest) (*CreatePolicyResponse, error) {
+func (UnimplementedPolicyServer) CreatePolicy(context.Context, *CreatePolicyRequest) (*CreatePolicyResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmPolicyServer) ModifyPolicy(context.Context, *ModifyPolicyRequest) (*ModifyPolicyResponse, error) {
+func (UnimplementedPolicyServer) ModifyPolicy(context.Context, *ModifyPolicyRequest) (*ModifyPolicyResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmPolicyServer) DeletePolicy(context.Context, *DeletePolicyRequest) (*DeletePolicyResponse, error) {
+func (UnimplementedPolicyServer) DeletePolicy(context.Context, *DeletePolicyRequest) (*DeletePolicyResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmPolicyServer) RenameAllocationPolicy(context.Context, *RenameAllocationPolicyRequest) (*RenameAllocationPolicyResponse, error) {
+func (UnimplementedPolicyServer) RenameAllocationPolicy(context.Context, *RenameAllocationPolicyRequest) (*RenameAllocationPolicyResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmPolicyServer) MoveBefore(context.Context, *MoveBeforeRequest) (*MoveBeforeResponse, error) {
+func (UnimplementedPolicyServer) MoveBefore(context.Context, *MoveBeforeRequest) (*MoveBeforeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmPolicyServer) MoveAfter(context.Context, *MoveAfterRequest) (*MoveAfterResponse, error) {
+func (UnimplementedPolicyServer) MoveAfter(context.Context, *MoveAfterRequest) (*MoveAfterResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmPolicyServer) SetCALDefaultPolicyName(context.Context, *SetCALDefaultPolicyNameRequest) (*SetCALDefaultPolicyNameResponse, error) {
+func (UnimplementedPolicyServer) SetCALDefaultPolicyName(context.Context, *SetCALDefaultPolicyNameRequest) (*SetCALDefaultPolicyNameResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmPolicyServer) GetCALDefaultPolicyName(context.Context, *GetCALDefaultPolicyNameRequest) (*GetCALDefaultPolicyNameResponse, error) {
+func (UnimplementedPolicyServer) GetCALDefaultPolicyName(context.Context, *GetCALDefaultPolicyNameRequest) (*GetCALDefaultPolicyNameResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmPolicyServer) GetProcessList(context.Context, *GetProcessListRequest) (*GetProcessListResponse, error) {
+func (UnimplementedPolicyServer) GetProcessList(context.Context, *GetProcessListRequest) (*GetProcessListResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmPolicyServer) GetCurrentPolicy(context.Context, *GetCurrentPolicyRequest) (*GetCurrentPolicyResponse, error) {
+func (UnimplementedPolicyServer) GetCurrentPolicy(context.Context, *GetCurrentPolicyRequest) (*GetCurrentPolicyResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmPolicyServer) SetCurrentPolicy(context.Context, *SetCurrentPolicyRequest) (*SetCurrentPolicyResponse, error) {
+func (UnimplementedPolicyServer) SetCurrentPolicy(context.Context, *SetCurrentPolicyRequest) (*SetCurrentPolicyResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmPolicyServer) GetCurrentStateAndActivePolicyName(context.Context, *GetCurrentStateAndActivePolicyNameRequest) (*GetCurrentStateAndActivePolicyNameResponse, error) {
+func (UnimplementedPolicyServer) GetCurrentStateAndActivePolicyName(context.Context, *GetCurrentStateAndActivePolicyNameRequest) (*GetCurrentStateAndActivePolicyNameResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmPolicyServer) GetConditionalPolicy(context.Context, *GetConditionalPolicyRequest) (*GetConditionalPolicyResponse, error) {
+func (UnimplementedPolicyServer) GetConditionalPolicy(context.Context, *GetConditionalPolicyRequest) (*GetConditionalPolicyResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmPolicyServer) SetConditionalPolicy(context.Context, *SetConditionalPolicyRequest) (*SetConditionalPolicyResponse, error) {
+func (UnimplementedPolicyServer) SetConditionalPolicy(context.Context, *SetConditionalPolicyRequest) (*SetConditionalPolicyResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ IwrmPolicyServer = (*UnimplementedIwrmPolicyServer)(nil)
+var _ PolicyServer = (*UnimplementedPolicyServer)(nil)

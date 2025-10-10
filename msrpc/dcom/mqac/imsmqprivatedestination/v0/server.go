@@ -26,7 +26,7 @@ var (
 )
 
 // IMSMQPrivateDestination server interface.
-type ImsmqPrivateDestinationServer interface {
+type PrivateDestinationServer interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -38,17 +38,17 @@ type ImsmqPrivateDestinationServer interface {
 	SetHandle(context.Context, *SetHandleRequest) (*SetHandleResponse, error)
 }
 
-func RegisterImsmqPrivateDestinationServer(conn dcerpc.Conn, o ImsmqPrivateDestinationServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqPrivateDestinationServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqPrivateDestinationSyntaxV0_0))...)
+func RegisterPrivateDestinationServer(conn dcerpc.Conn, o PrivateDestinationServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewPrivateDestinationServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(PrivateDestinationSyntaxV0_0))...)
 }
 
-func NewImsmqPrivateDestinationServerHandle(o ImsmqPrivateDestinationServer) dcerpc.ServerHandle {
+func NewPrivateDestinationServerHandle(o PrivateDestinationServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqPrivateDestinationServerHandle(ctx, o, opNum, r)
+		return PrivateDestinationServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqPrivateDestinationServerHandle(ctx context.Context, o ImsmqPrivateDestinationServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func PrivateDestinationServerHandle(ctx context.Context, o PrivateDestinationServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -77,15 +77,15 @@ func ImsmqPrivateDestinationServerHandle(ctx context.Context, o ImsmqPrivateDest
 }
 
 // Unimplemented IMSMQPrivateDestination
-type UnimplementedImsmqPrivateDestinationServer struct {
+type UnimplementedPrivateDestinationServer struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedImsmqPrivateDestinationServer) GetHandle(context.Context, *GetHandleRequest) (*GetHandleResponse, error) {
+func (UnimplementedPrivateDestinationServer) GetHandle(context.Context, *GetHandleRequest) (*GetHandleResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqPrivateDestinationServer) SetHandle(context.Context, *SetHandleRequest) (*SetHandleResponse, error) {
+func (UnimplementedPrivateDestinationServer) SetHandle(context.Context, *SetHandleRequest) (*SetHandleResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqPrivateDestinationServer = (*UnimplementedImsmqPrivateDestinationServer)(nil)
+var _ PrivateDestinationServer = (*UnimplementedPrivateDestinationServer)(nil)

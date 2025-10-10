@@ -36,15 +36,15 @@ var (
 
 var (
 	// IRemoteSstpCertCheck interface identifier 5ff9bdf6-bd91-4d8b-a614-d6317acc8dd8
-	RemoteSstpCertCheckIID = &dcom.IID{Data1: 0x5ff9bdf6, Data2: 0xbd91, Data3: 0x4d8b, Data4: []byte{0xa6, 0x14, 0xd6, 0x31, 0x7a, 0xcc, 0x8d, 0xd8}}
+	RemoteSSTPCertCheckIID = &dcom.IID{Data1: 0x5ff9bdf6, Data2: 0xbd91, Data3: 0x4d8b, Data4: []byte{0xa6, 0x14, 0xd6, 0x31, 0x7a, 0xcc, 0x8d, 0xd8}}
 	// Syntax UUID
-	RemoteSstpCertCheckSyntaxUUID = &uuid.UUID{TimeLow: 0x5ff9bdf6, TimeMid: 0xbd91, TimeHiAndVersion: 0x4d8b, ClockSeqHiAndReserved: 0xa6, ClockSeqLow: 0x14, Node: [6]uint8{0xd6, 0x31, 0x7a, 0xcc, 0x8d, 0xd8}}
+	RemoteSSTPCertCheckSyntaxUUID = &uuid.UUID{TimeLow: 0x5ff9bdf6, TimeMid: 0xbd91, TimeHiAndVersion: 0x4d8b, ClockSeqHiAndReserved: 0xa6, ClockSeqLow: 0x14, Node: [6]uint8{0xd6, 0x31, 0x7a, 0xcc, 0x8d, 0xd8}}
 	// Syntax ID
-	RemoteSstpCertCheckSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: RemoteSstpCertCheckSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	RemoteSSTPCertCheckSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: RemoteSSTPCertCheckSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IRemoteSstpCertCheck interface.
-type RemoteSstpCertCheckClient interface {
+type RemoteSSTPCertCheckClient interface {
 
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
@@ -59,20 +59,20 @@ type RemoteSstpCertCheckClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) RemoteSstpCertCheckClient
+	IPID(context.Context, *dcom.IPID) RemoteSSTPCertCheckClient
 }
 
-type xxx_DefaultRemoteSstpCertCheckClient struct {
+type xxx_DefaultRemoteSSTPCertCheckClient struct {
 	iunknown.UnknownClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultRemoteSstpCertCheckClient) Unknown() iunknown.UnknownClient {
+func (o *xxx_DefaultRemoteSSTPCertCheckClient) Unknown() iunknown.UnknownClient {
 	return o.UnknownClient
 }
 
-func (o *xxx_DefaultRemoteSstpCertCheckClient) CheckInterfaceCertificateAllowedRR(ctx context.Context, in *CheckInterfaceCertificateAllowedRRRequest, opts ...dcerpc.CallOption) (*CheckInterfaceCertificateAllowedRRResponse, error) {
+func (o *xxx_DefaultRemoteSSTPCertCheckClient) CheckInterfaceCertificateAllowedRR(ctx context.Context, in *CheckInterfaceCertificateAllowedRRRequest, opts ...dcerpc.CallOption) (*CheckInterfaceCertificateAllowedRRResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -92,29 +92,29 @@ func (o *xxx_DefaultRemoteSstpCertCheckClient) CheckInterfaceCertificateAllowedR
 	return out, nil
 }
 
-func (o *xxx_DefaultRemoteSstpCertCheckClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultRemoteSSTPCertCheckClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultRemoteSstpCertCheckClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultRemoteSSTPCertCheckClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultRemoteSstpCertCheckClient) IPID(ctx context.Context, ipid *dcom.IPID) RemoteSstpCertCheckClient {
+func (o *xxx_DefaultRemoteSSTPCertCheckClient) IPID(ctx context.Context, ipid *dcom.IPID) RemoteSSTPCertCheckClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultRemoteSstpCertCheckClient{
+	return &xxx_DefaultRemoteSSTPCertCheckClient{
 		UnknownClient: o.UnknownClient.IPID(ctx, ipid),
 		cc:            o.cc,
 		ipid:          ipid,
 	}
 }
 
-func NewRemoteSstpCertCheckClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (RemoteSstpCertCheckClient, error) {
+func NewRemoteSSTPCertCheckClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (RemoteSSTPCertCheckClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(RemoteSstpCertCheckSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(RemoteSSTPCertCheckSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -127,7 +127,7 @@ func NewRemoteSstpCertCheckClient(ctx context.Context, cc dcerpc.Conn, opts ...d
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultRemoteSstpCertCheckClient{
+	return &xxx_DefaultRemoteSSTPCertCheckClient{
 		UnknownClient: base,
 		cc:            cc,
 		ipid:          ipid,
@@ -139,8 +139,8 @@ type xxx_CheckInterfaceCertificateAllowedRROperation struct {
 	This          *dcom.ORPCThis       `idl:"name:This" json:"this"`
 	That          *dcom.ORPCThat       `idl:"name:That" json:"that"`
 	AdminCertName string               `idl:"name:adminCertName" json:"admin_cert_name"`
-	CertSHA1      *rrasm.SstpCertInfo1 `idl:"name:certSha1" json:"cert_sha1"`
-	CertSHA256    *rrasm.SstpCertInfo1 `idl:"name:certSha256" json:"cert_sha256"`
+	CertSHA1      *rrasm.SSTPCertInfo1 `idl:"name:certSha1" json:"cert_sha1"`
+	CertSHA256    *rrasm.SSTPCertInfo1 `idl:"name:certSha256" json:"cert_sha256"`
 	Return        int32                `idl:"name:Return" json:"return"`
 }
 
@@ -191,7 +191,7 @@ func (o *xxx_CheckInterfaceCertificateAllowedRROperation) MarshalNDRRequest(ctx 
 				return err
 			}
 		} else {
-			if err := (&rrasm.SstpCertInfo1{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.SSTPCertInfo1{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -206,7 +206,7 @@ func (o *xxx_CheckInterfaceCertificateAllowedRROperation) MarshalNDRRequest(ctx 
 				return err
 			}
 		} else {
-			if err := (&rrasm.SstpCertInfo1{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.SSTPCertInfo1{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -239,7 +239,7 @@ func (o *xxx_CheckInterfaceCertificateAllowedRROperation) UnmarshalNDRRequest(ct
 	// certSha1 {in, out} (1:{alias=PSSTP_CERT_INFO_1,pointer=ref}*(1))(2:{alias=SSTP_CERT_INFO_1}(struct))
 	{
 		if o.CertSHA1 == nil {
-			o.CertSHA1 = &rrasm.SstpCertInfo1{}
+			o.CertSHA1 = &rrasm.SSTPCertInfo1{}
 		}
 		if err := o.CertSHA1.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -251,7 +251,7 @@ func (o *xxx_CheckInterfaceCertificateAllowedRROperation) UnmarshalNDRRequest(ct
 	// certSha256 {in, out} (1:{alias=PSSTP_CERT_INFO_1,pointer=ref}*(1))(2:{alias=SSTP_CERT_INFO_1}(struct))
 	{
 		if o.CertSHA256 == nil {
-			o.CertSHA256 = &rrasm.SstpCertInfo1{}
+			o.CertSHA256 = &rrasm.SSTPCertInfo1{}
 		}
 		if err := o.CertSHA256.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -298,7 +298,7 @@ func (o *xxx_CheckInterfaceCertificateAllowedRROperation) MarshalNDRResponse(ctx
 				return err
 			}
 		} else {
-			if err := (&rrasm.SstpCertInfo1{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.SSTPCertInfo1{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -313,7 +313,7 @@ func (o *xxx_CheckInterfaceCertificateAllowedRROperation) MarshalNDRResponse(ctx
 				return err
 			}
 		} else {
-			if err := (&rrasm.SstpCertInfo1{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.SSTPCertInfo1{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -346,7 +346,7 @@ func (o *xxx_CheckInterfaceCertificateAllowedRROperation) UnmarshalNDRResponse(c
 	// certSha1 {in, out} (1:{alias=PSSTP_CERT_INFO_1,pointer=ref}*(1))(2:{alias=SSTP_CERT_INFO_1}(struct))
 	{
 		if o.CertSHA1 == nil {
-			o.CertSHA1 = &rrasm.SstpCertInfo1{}
+			o.CertSHA1 = &rrasm.SSTPCertInfo1{}
 		}
 		if err := o.CertSHA1.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -358,7 +358,7 @@ func (o *xxx_CheckInterfaceCertificateAllowedRROperation) UnmarshalNDRResponse(c
 	// certSha256 {in, out} (1:{alias=PSSTP_CERT_INFO_1,pointer=ref}*(1))(2:{alias=SSTP_CERT_INFO_1}(struct))
 	{
 		if o.CertSHA256 == nil {
-			o.CertSHA256 = &rrasm.SstpCertInfo1{}
+			o.CertSHA256 = &rrasm.SSTPCertInfo1{}
 		}
 		if err := o.CertSHA256.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -381,8 +381,8 @@ type CheckInterfaceCertificateAllowedRRRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This          *dcom.ORPCThis       `idl:"name:This" json:"this"`
 	AdminCertName string               `idl:"name:adminCertName" json:"admin_cert_name"`
-	CertSHA1      *rrasm.SstpCertInfo1 `idl:"name:certSha1" json:"cert_sha1"`
-	CertSHA256    *rrasm.SstpCertInfo1 `idl:"name:certSha256" json:"cert_sha256"`
+	CertSHA1      *rrasm.SSTPCertInfo1 `idl:"name:certSha1" json:"cert_sha1"`
+	CertSHA256    *rrasm.SSTPCertInfo1 `idl:"name:certSha256" json:"cert_sha256"`
 }
 
 func (o *CheckInterfaceCertificateAllowedRRRequest) xxx_ToOp(ctx context.Context, op *xxx_CheckInterfaceCertificateAllowedRROperation) *xxx_CheckInterfaceCertificateAllowedRROperation {
@@ -424,8 +424,8 @@ func (o *CheckInterfaceCertificateAllowedRRRequest) UnmarshalNDR(ctx context.Con
 type CheckInterfaceCertificateAllowedRRResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That       *dcom.ORPCThat       `idl:"name:That" json:"that"`
-	CertSHA1   *rrasm.SstpCertInfo1 `idl:"name:certSha1" json:"cert_sha1"`
-	CertSHA256 *rrasm.SstpCertInfo1 `idl:"name:certSha256" json:"cert_sha256"`
+	CertSHA1   *rrasm.SSTPCertInfo1 `idl:"name:certSha1" json:"cert_sha1"`
+	CertSHA256 *rrasm.SSTPCertInfo1 `idl:"name:certSha256" json:"cert_sha256"`
 	// Return: The CheckIfCertificateAllowedRR return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

@@ -35,23 +35,23 @@ var (
 	GoPackage = "dcom/wsrm"
 )
 
-// Configtype type represents CONFIGTYPE RPC enumeration.
-type Configtype uint32
+// ConfigType type represents CONFIGTYPE RPC enumeration.
+type ConfigType uint32
 
 var (
-	ConfigtypeAccounting   Configtype = 1
-	ConfigtypeNotification Configtype = 2
-	ConfigtypeCalendaring  Configtype = 3
+	ConfigTypeAccounting   ConfigType = 1
+	ConfigTypeNotification ConfigType = 2
+	ConfigTypeCalendaring  ConfigType = 3
 )
 
-func (o Configtype) String() string {
+func (o ConfigType) String() string {
 	switch o {
-	case ConfigtypeAccounting:
-		return "ConfigtypeAccounting"
-	case ConfigtypeNotification:
-		return "ConfigtypeNotification"
-	case ConfigtypeCalendaring:
-		return "ConfigtypeCalendaring"
+	case ConfigTypeAccounting:
+		return "ConfigTypeAccounting"
+	case ConfigTypeNotification:
+		return "ConfigTypeNotification"
+	case ConfigTypeCalendaring:
+		return "ConfigTypeCalendaring"
 	}
 	return "Invalid"
 }
@@ -284,12 +284,12 @@ func (o *ResourceManager2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	return nil
 }
 
-// IwrmPolicy structure represents IWRMPolicy RPC structure.
-type IwrmPolicy dcom.InterfacePointer
+// Policy structure represents IWRMPolicy RPC structure.
+type Policy dcom.InterfacePointer
 
-func (o *IwrmPolicy) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
+func (o *Policy) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
-func (o *IwrmPolicy) xxx_PreparePayload(ctx context.Context) error {
+func (o *Policy) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -302,13 +302,13 @@ func (o *IwrmPolicy) xxx_PreparePayload(ctx context.Context) error {
 	return nil
 }
 
-func (o *IwrmPolicy) NDRSizeInfo() []uint64 {
+func (o *Policy) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *IwrmPolicy) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Policy) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -344,7 +344,7 @@ func (o *IwrmPolicy) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *IwrmPolicy) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Policy) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()
@@ -474,14 +474,296 @@ func (o *ResourceManager) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	return nil
 }
 
-// IwrmAccounting structure represents IWRMAccounting RPC structure.
-type IwrmAccounting dcom.InterfacePointer
+// Accounting structure represents IWRMAccounting RPC structure.
+type Accounting dcom.InterfacePointer
 
-func (o *IwrmAccounting) InterfacePointer() *dcom.InterfacePointer {
+func (o *Accounting) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
+
+func (o *Accounting) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.Data != nil && o.DataCount == 0 {
+		o.DataCount = uint32(len(o.Data))
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Accounting) NDRSizeInfo() []uint64 {
+	dimSize1 := uint64(o.DataCount)
+	return []uint64{
+		dimSize1,
+	}
+}
+func (o *Accounting) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
+	if !ok {
+		sizeInfo = o.NDRSizeInfo()
+		for sz1 := range sizeInfo {
+			if err := w.WriteSize(sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.DataCount); err != nil {
+		return err
+	}
+	for i1 := range o.Data {
+		i1 := i1
+		if uint64(i1) >= sizeInfo[0] {
+			break
+		}
+		if err := w.WriteData(o.Data[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.Data); uint64(i1) < sizeInfo[0]; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Accounting) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
+	if !ok {
+		sizeInfo = o.NDRSizeInfo()
+		for i1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[i1]); err != nil {
+				return err
+			}
+		}
+		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
+	}
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.DataCount); err != nil {
+		return err
+	}
+	// XXX: for opaque unmarshaling
+	if o.DataCount > 0 && sizeInfo[0] == 0 {
+		sizeInfo[0] = uint64(o.DataCount)
+	}
+	if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+		return fmt.Errorf("buffer overflow for size %d of array o.Data", sizeInfo[0])
+	}
+	o.Data = make([]byte, sizeInfo[0])
+	for i1 := range o.Data {
+		i1 := i1
+		if err := w.ReadData(&o.Data[i1]); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// Config structure represents IWRMConfig RPC structure.
+type Config dcom.InterfacePointer
+
+func (o *Config) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
+
+func (o *Config) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.Data != nil && o.DataCount == 0 {
+		o.DataCount = uint32(len(o.Data))
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Config) NDRSizeInfo() []uint64 {
+	dimSize1 := uint64(o.DataCount)
+	return []uint64{
+		dimSize1,
+	}
+}
+func (o *Config) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
+	if !ok {
+		sizeInfo = o.NDRSizeInfo()
+		for sz1 := range sizeInfo {
+			if err := w.WriteSize(sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.DataCount); err != nil {
+		return err
+	}
+	for i1 := range o.Data {
+		i1 := i1
+		if uint64(i1) >= sizeInfo[0] {
+			break
+		}
+		if err := w.WriteData(o.Data[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.Data); uint64(i1) < sizeInfo[0]; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Config) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
+	if !ok {
+		sizeInfo = o.NDRSizeInfo()
+		for i1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[i1]); err != nil {
+				return err
+			}
+		}
+		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
+	}
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.DataCount); err != nil {
+		return err
+	}
+	// XXX: for opaque unmarshaling
+	if o.DataCount > 0 && sizeInfo[0] == 0 {
+		sizeInfo[0] = uint64(o.DataCount)
+	}
+	if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+		return fmt.Errorf("buffer overflow for size %d of array o.Data", sizeInfo[0])
+	}
+	o.Data = make([]byte, sizeInfo[0])
+	for i1 := range o.Data {
+		i1 := i1
+		if err := w.ReadData(&o.Data[i1]); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// Calendar structure represents IWRMCalendar RPC structure.
+type Calendar dcom.InterfacePointer
+
+func (o *Calendar) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
+
+func (o *Calendar) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.Data != nil && o.DataCount == 0 {
+		o.DataCount = uint32(len(o.Data))
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Calendar) NDRSizeInfo() []uint64 {
+	dimSize1 := uint64(o.DataCount)
+	return []uint64{
+		dimSize1,
+	}
+}
+func (o *Calendar) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
+	if !ok {
+		sizeInfo = o.NDRSizeInfo()
+		for sz1 := range sizeInfo {
+			if err := w.WriteSize(sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.DataCount); err != nil {
+		return err
+	}
+	for i1 := range o.Data {
+		i1 := i1
+		if uint64(i1) >= sizeInfo[0] {
+			break
+		}
+		if err := w.WriteData(o.Data[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.Data); uint64(i1) < sizeInfo[0]; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Calendar) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
+	if !ok {
+		sizeInfo = o.NDRSizeInfo()
+		for i1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[i1]); err != nil {
+				return err
+			}
+		}
+		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
+	}
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.DataCount); err != nil {
+		return err
+	}
+	// XXX: for opaque unmarshaling
+	if o.DataCount > 0 && sizeInfo[0] == 0 {
+		sizeInfo[0] = uint64(o.DataCount)
+	}
+	if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+		return fmt.Errorf("buffer overflow for size %d of array o.Data", sizeInfo[0])
+	}
+	o.Data = make([]byte, sizeInfo[0])
+	for i1 := range o.Data {
+		i1 := i1
+		if err := w.ReadData(&o.Data[i1]); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// RemoteSessionManagement structure represents IWRMRemoteSessionMgmt RPC structure.
+type RemoteSessionManagement dcom.InterfacePointer
+
+func (o *RemoteSessionManagement) InterfacePointer() *dcom.InterfacePointer {
 	return (*dcom.InterfacePointer)(o)
 }
 
-func (o *IwrmAccounting) xxx_PreparePayload(ctx context.Context) error {
+func (o *RemoteSessionManagement) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -494,13 +776,13 @@ func (o *IwrmAccounting) xxx_PreparePayload(ctx context.Context) error {
 	return nil
 }
 
-func (o *IwrmAccounting) NDRSizeInfo() []uint64 {
+func (o *RemoteSessionManagement) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *IwrmAccounting) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RemoteSessionManagement) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -536,7 +818,7 @@ func (o *IwrmAccounting) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *IwrmAccounting) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RemoteSessionManagement) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()
@@ -570,12 +852,12 @@ func (o *IwrmAccounting) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// IwrmConfig structure represents IWRMConfig RPC structure.
-type IwrmConfig dcom.InterfacePointer
+// Protocol structure represents IWRMProtocol RPC structure.
+type Protocol dcom.InterfacePointer
 
-func (o *IwrmConfig) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
+func (o *Protocol) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
-func (o *IwrmConfig) xxx_PreparePayload(ctx context.Context) error {
+func (o *Protocol) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -588,13 +870,13 @@ func (o *IwrmConfig) xxx_PreparePayload(ctx context.Context) error {
 	return nil
 }
 
-func (o *IwrmConfig) NDRSizeInfo() []uint64 {
+func (o *Protocol) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *IwrmConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Protocol) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -630,7 +912,7 @@ func (o *IwrmConfig) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *IwrmConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Protocol) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()
@@ -664,12 +946,12 @@ func (o *IwrmConfig) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// IwrmCalendar structure represents IWRMCalendar RPC structure.
-type IwrmCalendar dcom.InterfacePointer
+// ResourceGroup structure represents IWRMResourceGroup RPC structure.
+type ResourceGroup dcom.InterfacePointer
 
-func (o *IwrmCalendar) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
+func (o *ResourceGroup) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
-func (o *IwrmCalendar) xxx_PreparePayload(ctx context.Context) error {
+func (o *ResourceGroup) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -682,13 +964,13 @@ func (o *IwrmCalendar) xxx_PreparePayload(ctx context.Context) error {
 	return nil
 }
 
-func (o *IwrmCalendar) NDRSizeInfo() []uint64 {
+func (o *ResourceGroup) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *IwrmCalendar) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ResourceGroup) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -724,7 +1006,7 @@ func (o *IwrmCalendar) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *IwrmCalendar) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ResourceGroup) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()
@@ -758,14 +1040,12 @@ func (o *IwrmCalendar) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// IwrmRemoteSessionManagement structure represents IWRMRemoteSessionMgmt RPC structure.
-type IwrmRemoteSessionManagement dcom.InterfacePointer
+// MachineGroup structure represents IWRMMachineGroup RPC structure.
+type MachineGroup dcom.InterfacePointer
 
-func (o *IwrmRemoteSessionManagement) InterfacePointer() *dcom.InterfacePointer {
-	return (*dcom.InterfacePointer)(o)
-}
+func (o *MachineGroup) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
-func (o *IwrmRemoteSessionManagement) xxx_PreparePayload(ctx context.Context) error {
+func (o *MachineGroup) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -778,13 +1058,13 @@ func (o *IwrmRemoteSessionManagement) xxx_PreparePayload(ctx context.Context) er
 	return nil
 }
 
-func (o *IwrmRemoteSessionManagement) NDRSizeInfo() []uint64 {
+func (o *MachineGroup) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *IwrmRemoteSessionManagement) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MachineGroup) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -820,293 +1100,7 @@ func (o *IwrmRemoteSessionManagement) MarshalNDR(ctx context.Context, w ndr.Writ
 	}
 	return nil
 }
-func (o *IwrmRemoteSessionManagement) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
-	if !ok {
-		sizeInfo = o.NDRSizeInfo()
-		for i1 := range sizeInfo {
-			if err := w.ReadSize(&sizeInfo[i1]); err != nil {
-				return err
-			}
-		}
-		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
-	}
-	if err := w.ReadAlign(4); err != nil {
-		return err
-	}
-	if err := w.ReadData(&o.DataCount); err != nil {
-		return err
-	}
-	// XXX: for opaque unmarshaling
-	if o.DataCount > 0 && sizeInfo[0] == 0 {
-		sizeInfo[0] = uint64(o.DataCount)
-	}
-	if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-		return fmt.Errorf("buffer overflow for size %d of array o.Data", sizeInfo[0])
-	}
-	o.Data = make([]byte, sizeInfo[0])
-	for i1 := range o.Data {
-		i1 := i1
-		if err := w.ReadData(&o.Data[i1]); err != nil {
-			return err
-		}
-	}
-	return nil
-}
-
-// IwrmProtocol structure represents IWRMProtocol RPC structure.
-type IwrmProtocol dcom.InterfacePointer
-
-func (o *IwrmProtocol) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
-
-func (o *IwrmProtocol) xxx_PreparePayload(ctx context.Context) error {
-	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
-		return err
-	}
-	if o.Data != nil && o.DataCount == 0 {
-		o.DataCount = uint32(len(o.Data))
-	}
-	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *IwrmProtocol) NDRSizeInfo() []uint64 {
-	dimSize1 := uint64(o.DataCount)
-	return []uint64{
-		dimSize1,
-	}
-}
-func (o *IwrmProtocol) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if err := o.xxx_PreparePayload(ctx); err != nil {
-		return err
-	}
-	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
-	if !ok {
-		sizeInfo = o.NDRSizeInfo()
-		for sz1 := range sizeInfo {
-			if err := w.WriteSize(sizeInfo[sz1]); err != nil {
-				return err
-			}
-		}
-		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
-	}
-	if err := w.WriteAlign(4); err != nil {
-		return err
-	}
-	if err := w.WriteData(o.DataCount); err != nil {
-		return err
-	}
-	for i1 := range o.Data {
-		i1 := i1
-		if uint64(i1) >= sizeInfo[0] {
-			break
-		}
-		if err := w.WriteData(o.Data[i1]); err != nil {
-			return err
-		}
-	}
-	for i1 := len(o.Data); uint64(i1) < sizeInfo[0]; i1++ {
-		if err := w.WriteData(uint8(0)); err != nil {
-			return err
-		}
-	}
-	return nil
-}
-func (o *IwrmProtocol) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
-	if !ok {
-		sizeInfo = o.NDRSizeInfo()
-		for i1 := range sizeInfo {
-			if err := w.ReadSize(&sizeInfo[i1]); err != nil {
-				return err
-			}
-		}
-		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
-	}
-	if err := w.ReadAlign(4); err != nil {
-		return err
-	}
-	if err := w.ReadData(&o.DataCount); err != nil {
-		return err
-	}
-	// XXX: for opaque unmarshaling
-	if o.DataCount > 0 && sizeInfo[0] == 0 {
-		sizeInfo[0] = uint64(o.DataCount)
-	}
-	if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-		return fmt.Errorf("buffer overflow for size %d of array o.Data", sizeInfo[0])
-	}
-	o.Data = make([]byte, sizeInfo[0])
-	for i1 := range o.Data {
-		i1 := i1
-		if err := w.ReadData(&o.Data[i1]); err != nil {
-			return err
-		}
-	}
-	return nil
-}
-
-// IwrmResourceGroup structure represents IWRMResourceGroup RPC structure.
-type IwrmResourceGroup dcom.InterfacePointer
-
-func (o *IwrmResourceGroup) InterfacePointer() *dcom.InterfacePointer {
-	return (*dcom.InterfacePointer)(o)
-}
-
-func (o *IwrmResourceGroup) xxx_PreparePayload(ctx context.Context) error {
-	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
-		return err
-	}
-	if o.Data != nil && o.DataCount == 0 {
-		o.DataCount = uint32(len(o.Data))
-	}
-	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *IwrmResourceGroup) NDRSizeInfo() []uint64 {
-	dimSize1 := uint64(o.DataCount)
-	return []uint64{
-		dimSize1,
-	}
-}
-func (o *IwrmResourceGroup) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if err := o.xxx_PreparePayload(ctx); err != nil {
-		return err
-	}
-	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
-	if !ok {
-		sizeInfo = o.NDRSizeInfo()
-		for sz1 := range sizeInfo {
-			if err := w.WriteSize(sizeInfo[sz1]); err != nil {
-				return err
-			}
-		}
-		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
-	}
-	if err := w.WriteAlign(4); err != nil {
-		return err
-	}
-	if err := w.WriteData(o.DataCount); err != nil {
-		return err
-	}
-	for i1 := range o.Data {
-		i1 := i1
-		if uint64(i1) >= sizeInfo[0] {
-			break
-		}
-		if err := w.WriteData(o.Data[i1]); err != nil {
-			return err
-		}
-	}
-	for i1 := len(o.Data); uint64(i1) < sizeInfo[0]; i1++ {
-		if err := w.WriteData(uint8(0)); err != nil {
-			return err
-		}
-	}
-	return nil
-}
-func (o *IwrmResourceGroup) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
-	if !ok {
-		sizeInfo = o.NDRSizeInfo()
-		for i1 := range sizeInfo {
-			if err := w.ReadSize(&sizeInfo[i1]); err != nil {
-				return err
-			}
-		}
-		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
-	}
-	if err := w.ReadAlign(4); err != nil {
-		return err
-	}
-	if err := w.ReadData(&o.DataCount); err != nil {
-		return err
-	}
-	// XXX: for opaque unmarshaling
-	if o.DataCount > 0 && sizeInfo[0] == 0 {
-		sizeInfo[0] = uint64(o.DataCount)
-	}
-	if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-		return fmt.Errorf("buffer overflow for size %d of array o.Data", sizeInfo[0])
-	}
-	o.Data = make([]byte, sizeInfo[0])
-	for i1 := range o.Data {
-		i1 := i1
-		if err := w.ReadData(&o.Data[i1]); err != nil {
-			return err
-		}
-	}
-	return nil
-}
-
-// IwrmMachineGroup structure represents IWRMMachineGroup RPC structure.
-type IwrmMachineGroup dcom.InterfacePointer
-
-func (o *IwrmMachineGroup) InterfacePointer() *dcom.InterfacePointer {
-	return (*dcom.InterfacePointer)(o)
-}
-
-func (o *IwrmMachineGroup) xxx_PreparePayload(ctx context.Context) error {
-	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
-		return err
-	}
-	if o.Data != nil && o.DataCount == 0 {
-		o.DataCount = uint32(len(o.Data))
-	}
-	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *IwrmMachineGroup) NDRSizeInfo() []uint64 {
-	dimSize1 := uint64(o.DataCount)
-	return []uint64{
-		dimSize1,
-	}
-}
-func (o *IwrmMachineGroup) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if err := o.xxx_PreparePayload(ctx); err != nil {
-		return err
-	}
-	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
-	if !ok {
-		sizeInfo = o.NDRSizeInfo()
-		for sz1 := range sizeInfo {
-			if err := w.WriteSize(sizeInfo[sz1]); err != nil {
-				return err
-			}
-		}
-		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
-	}
-	if err := w.WriteAlign(4); err != nil {
-		return err
-	}
-	if err := w.WriteData(o.DataCount); err != nil {
-		return err
-	}
-	for i1 := range o.Data {
-		i1 := i1
-		if uint64(i1) >= sizeInfo[0] {
-			break
-		}
-		if err := w.WriteData(o.Data[i1]); err != nil {
-			return err
-		}
-	}
-	for i1 := len(o.Data); uint64(i1) < sizeInfo[0]; i1++ {
-		if err := w.WriteData(uint8(0)); err != nil {
-			return err
-		}
-	}
-	return nil
-}
-func (o *IwrmMachineGroup) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MachineGroup) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()

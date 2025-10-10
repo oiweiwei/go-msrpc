@@ -37,24 +37,24 @@ var (
 	GoPackage = "dcom/rsmp"
 )
 
-// NTMSGenericRead represents the NTMS_GENERIC_READ RPC constant
-var NTMSGenericRead = 1
+// GenericRead represents the NTMS_GENERIC_READ RPC constant
+var GenericRead = 1
 
-// NTMSGenericWrite represents the NTMS_GENERIC_WRITE RPC constant
-var NTMSGenericWrite = 3
+// GenericWrite represents the NTMS_GENERIC_WRITE RPC constant
+var GenericWrite = 3
 
-// NTMSGenericExecute represents the NTMS_GENERIC_EXECUTE RPC constant
-var NTMSGenericExecute = 3
+// GenericExecute represents the NTMS_GENERIC_EXECUTE RPC constant
+var GenericExecute = 3
 
-// NTMSGenericAll represents the NTMS_GENERIC_ALL RPC constant
-var NTMSGenericAll = 3
+// GenericAll represents the NTMS_GENERIC_ALL RPC constant
+var GenericAll = 3
 
-// NTMSGUID structure represents NTMS_GUID RPC structure.
-type NTMSGUID dtyp.GUID
+// GUID structure represents NTMS_GUID RPC structure.
+type GUID dtyp.GUID
 
-func (o *NTMSGUID) GUID() *dtyp.GUID { return (*dtyp.GUID)(o) }
+func (o *GUID) GUID() *dtyp.GUID { return (*dtyp.GUID)(o) }
 
-func (o *NTMSGUID) xxx_PreparePayload(ctx context.Context) error {
+func (o *GUID) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -63,7 +63,7 @@ func (o *NTMSGUID) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *NTMSGUID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GUID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -98,7 +98,7 @@ func (o *NTMSGUID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *NTMSGUID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *GUID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -124,11 +124,11 @@ func (o *NTMSGUID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// NTMSLibraryinformation structure represents NTMS_LIBRARYINFORMATION RPC structure.
-type NTMSLibraryinformation struct {
+// LibraryInformation structure represents NTMS_LIBRARYINFORMATION RPC structure.
+type LibraryInformation struct {
 	LibraryType                  uint32     `idl:"name:LibraryType" json:"library_type"`
-	CleanerSlot                  *NTMSGUID  `idl:"name:CleanerSlot" json:"cleaner_slot"`
-	CleanerSlotDefault           *NTMSGUID  `idl:"name:CleanerSlotDefault" json:"cleaner_slot_default"`
+	CleanerSlot                  *GUID      `idl:"name:CleanerSlot" json:"cleaner_slot"`
+	CleanerSlotDefault           *GUID      `idl:"name:CleanerSlotDefault" json:"cleaner_slot_default"`
 	LibrarySupportsDriveCleaning bool       `idl:"name:LibrarySupportsDriveCleaning" json:"library_supports_drive_cleaning"`
 	BarCodeReaderInstalled       bool       `idl:"name:BarCodeReaderInstalled" json:"bar_code_reader_installed"`
 	InventoryMethod              uint32     `idl:"name:InventoryMethod" json:"inventory_method"`
@@ -151,7 +151,7 @@ type NTMSLibraryinformation struct {
 	Flags                        uint32     `idl:"name:dwFlags" json:"flags"`
 }
 
-func (o *NTMSLibraryinformation) xxx_PreparePayload(ctx context.Context) error {
+func (o *LibraryInformation) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -160,7 +160,7 @@ func (o *NTMSLibraryinformation) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *NTMSLibraryinformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *LibraryInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -175,7 +175,7 @@ func (o *NTMSLibraryinformation) MarshalNDR(ctx context.Context, w ndr.Writer) e
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -184,7 +184,7 @@ func (o *NTMSLibraryinformation) MarshalNDR(ctx context.Context, w ndr.Writer) e
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -269,7 +269,7 @@ func (o *NTMSLibraryinformation) MarshalNDR(ctx context.Context, w ndr.Writer) e
 	}
 	return nil
 }
-func (o *NTMSLibraryinformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *LibraryInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -277,13 +277,13 @@ func (o *NTMSLibraryinformation) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		return err
 	}
 	if o.CleanerSlot == nil {
-		o.CleanerSlot = &NTMSGUID{}
+		o.CleanerSlot = &GUID{}
 	}
 	if err := o.CleanerSlot.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.CleanerSlotDefault == nil {
-		o.CleanerSlotDefault = &NTMSGUID{}
+		o.CleanerSlotDefault = &GUID{}
 	}
 	if err := o.CleanerSlotDefault.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -492,14 +492,14 @@ func (o *SecurityAttributesNTMS) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 	return nil
 }
 
-// NTMSAllocationInformation structure represents NTMS_ALLOCATION_INFORMATION RPC structure.
-type NTMSAllocationInformation struct {
-	Size          uint32    `idl:"name:dwSize" json:"size"`
-	_             uint8     `idl:"name:lpReserved"`
-	AllocatedFrom *NTMSGUID `idl:"name:AllocatedFrom" json:"allocated_from"`
+// AllocationInformation structure represents NTMS_ALLOCATION_INFORMATION RPC structure.
+type AllocationInformation struct {
+	Size          uint32 `idl:"name:dwSize" json:"size"`
+	_             uint8  `idl:"name:lpReserved"`
+	AllocatedFrom *GUID  `idl:"name:AllocatedFrom" json:"allocated_from"`
 }
 
-func (o *NTMSAllocationInformation) xxx_PreparePayload(ctx context.Context) error {
+func (o *AllocationInformation) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -508,7 +508,7 @@ func (o *NTMSAllocationInformation) xxx_PreparePayload(ctx context.Context) erro
 	}
 	return nil
 }
-func (o *NTMSAllocationInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *AllocationInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -527,7 +527,7 @@ func (o *NTMSAllocationInformation) MarshalNDR(ctx context.Context, w ndr.Writer
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -536,7 +536,7 @@ func (o *NTMSAllocationInformation) MarshalNDR(ctx context.Context, w ndr.Writer
 	}
 	return nil
 }
-func (o *NTMSAllocationInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *AllocationInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -556,7 +556,7 @@ func (o *NTMSAllocationInformation) UnmarshalNDR(ctx context.Context, w ndr.Read
 		return err
 	}
 	if o.AllocatedFrom == nil {
-		o.AllocatedFrom = &NTMSGUID{}
+		o.AllocatedFrom = &GUID{}
 	}
 	if err := o.AllocatedFrom.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -567,18 +567,18 @@ func (o *NTMSAllocationInformation) UnmarshalNDR(ctx context.Context, w ndr.Read
 	return nil
 }
 
-// NTMSAsyncIO structure represents NTMS_ASYNC_IO RPC structure.
-type NTMSAsyncIO struct {
-	OperationID   *NTMSGUID `idl:"name:OperationId" json:"operation_id"`
-	EventID       *NTMSGUID `idl:"name:EventId" json:"event_id"`
-	OperationType uint32    `idl:"name:dwOperationType" json:"operation_type"`
-	Result        uint32    `idl:"name:dwResult" json:"result"`
-	AsyncState    uint32    `idl:"name:dwAsyncState" json:"async_state"`
-	HEvent        uint64    `idl:"name:hEvent" json:"h_event"`
-	OnStateChange bool      `idl:"name:bOnStateChange" json:"on_state_change"`
+// AsyncIO structure represents NTMS_ASYNC_IO RPC structure.
+type AsyncIO struct {
+	OperationID   *GUID  `idl:"name:OperationId" json:"operation_id"`
+	EventID       *GUID  `idl:"name:EventId" json:"event_id"`
+	OperationType uint32 `idl:"name:dwOperationType" json:"operation_type"`
+	Result        uint32 `idl:"name:dwResult" json:"result"`
+	AsyncState    uint32 `idl:"name:dwAsyncState" json:"async_state"`
+	Event         uint64 `idl:"name:hEvent" json:"event"`
+	OnStateChange bool   `idl:"name:bOnStateChange" json:"on_state_change"`
 }
 
-func (o *NTMSAsyncIO) xxx_PreparePayload(ctx context.Context) error {
+func (o *AsyncIO) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -587,7 +587,7 @@ func (o *NTMSAsyncIO) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *NTMSAsyncIO) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *AsyncIO) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -599,7 +599,7 @@ func (o *NTMSAsyncIO) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -608,7 +608,7 @@ func (o *NTMSAsyncIO) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -621,7 +621,7 @@ func (o *NTMSAsyncIO) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.AsyncState); err != nil {
 		return err
 	}
-	if err := w.WriteData(ndr.Uint3264(o.HEvent)); err != nil {
+	if err := w.WriteData(ndr.Uint3264(o.Event)); err != nil {
 		return err
 	}
 	if !o.OnStateChange {
@@ -635,18 +635,18 @@ func (o *NTMSAsyncIO) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *NTMSAsyncIO) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *AsyncIO) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if o.OperationID == nil {
-		o.OperationID = &NTMSGUID{}
+		o.OperationID = &GUID{}
 	}
 	if err := o.OperationID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.EventID == nil {
-		o.EventID = &NTMSGUID{}
+		o.EventID = &GUID{}
 	}
 	if err := o.EventID.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -660,7 +660,7 @@ func (o *NTMSAsyncIO) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.AsyncState); err != nil {
 		return err
 	}
-	if err := w.ReadData((*ndr.Uint3264)(&o.HEvent)); err != nil {
+	if err := w.ReadData((*ndr.Uint3264)(&o.Event)); err != nil {
 		return err
 	}
 	var _bOnStateChange int32
@@ -671,13 +671,13 @@ func (o *NTMSAsyncIO) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// NTMSMountInformation structure represents NTMS_MOUNT_INFORMATION RPC structure.
-type NTMSMountInformation struct {
-	Size uint32       `idl:"name:dwSize" json:"size"`
-	_    *NTMSAsyncIO `idl:"name:lpReserved;pointer:ptr"`
+// MountInformation structure represents NTMS_MOUNT_INFORMATION RPC structure.
+type MountInformation struct {
+	Size uint32   `idl:"name:dwSize" json:"size"`
+	_    *AsyncIO `idl:"name:lpReserved;pointer:ptr"`
 }
 
-func (o *NTMSMountInformation) xxx_PreparePayload(ctx context.Context) error {
+func (o *MountInformation) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -686,7 +686,7 @@ func (o *NTMSMountInformation) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *NTMSMountInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MountInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -702,7 +702,7 @@ func (o *NTMSMountInformation) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	}
 	return nil
 }
-func (o *NTMSMountInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MountInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -710,38 +710,38 @@ func (o *NTMSMountInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		return err
 	}
 	// reserved lpReserved
-	var _lpReserved *NTMSAsyncIO
+	var _lpReserved *AsyncIO
 	_ptr_lpReserved := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if _lpReserved == nil {
-			_lpReserved = &NTMSAsyncIO{}
+			_lpReserved = &AsyncIO{}
 		}
 		if err := _lpReserved.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_lpReserved := func(ptr interface{}) { _lpReserved = *ptr.(**NTMSAsyncIO) }
+	_s_lpReserved := func(ptr interface{}) { _lpReserved = *ptr.(**AsyncIO) }
 	if err := w.ReadPointer(&_lpReserved, _s_lpReserved, _ptr_lpReserved); err != nil {
 		return err
 	}
 	return nil
 }
 
-// NTMSChangerinformationa structure represents NTMS_CHANGERINFORMATIONA RPC structure.
-type NTMSChangerinformationa struct {
-	Number       uint32    `idl:"name:Number" json:"number"`
-	ChangerType  *NTMSGUID `idl:"name:ChangerType" json:"changer_type"`
-	SerialNumber []byte    `idl:"name:szSerialNumber" json:"serial_number"`
-	Revision     []byte    `idl:"name:szRevision" json:"revision"`
-	DeviceName   []byte    `idl:"name:szDeviceName" json:"device_name"`
-	SCSIPort     uint16    `idl:"name:ScsiPort" json:"scsi_port"`
-	SCSIBus      uint16    `idl:"name:ScsiBus" json:"scsi_bus"`
-	SCSITarget   uint16    `idl:"name:ScsiTarget" json:"scsi_target"`
-	SCSILUN      uint16    `idl:"name:ScsiLun" json:"scsi_lun"`
-	Library      *NTMSGUID `idl:"name:Library" json:"library"`
+// ChangerInformationA structure represents NTMS_CHANGERINFORMATIONA RPC structure.
+type ChangerInformationA struct {
+	Number       uint32 `idl:"name:Number" json:"number"`
+	ChangerType  *GUID  `idl:"name:ChangerType" json:"changer_type"`
+	SerialNumber []byte `idl:"name:szSerialNumber" json:"serial_number"`
+	Revision     []byte `idl:"name:szRevision" json:"revision"`
+	DeviceName   []byte `idl:"name:szDeviceName" json:"device_name"`
+	SCSIPort     uint16 `idl:"name:ScsiPort" json:"scsi_port"`
+	SCSIBus      uint16 `idl:"name:ScsiBus" json:"scsi_bus"`
+	SCSITarget   uint16 `idl:"name:ScsiTarget" json:"scsi_target"`
+	SCSILUN      uint16 `idl:"name:ScsiLun" json:"scsi_lun"`
+	Library      *GUID  `idl:"name:Library" json:"library"`
 }
 
-func (o *NTMSChangerinformationa) xxx_PreparePayload(ctx context.Context) error {
+func (o *ChangerInformationA) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -750,7 +750,7 @@ func (o *NTMSChangerinformationa) xxx_PreparePayload(ctx context.Context) error 
 	}
 	return nil
 }
-func (o *NTMSChangerinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ChangerInformationA) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -765,7 +765,7 @@ func (o *NTMSChangerinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) 
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -828,13 +828,13 @@ func (o *NTMSChangerinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) 
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSChangerinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ChangerInformationA) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -842,7 +842,7 @@ func (o *NTMSChangerinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		return err
 	}
 	if o.ChangerType == nil {
-		o.ChangerType = &NTMSGUID{}
+		o.ChangerType = &GUID{}
 	}
 	if err := o.ChangerType.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -881,7 +881,7 @@ func (o *NTMSChangerinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		return err
 	}
 	if o.Library == nil {
-		o.Library = &NTMSGUID{}
+		o.Library = &GUID{}
 	}
 	if err := o.Library.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -889,21 +889,21 @@ func (o *NTMSChangerinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader
 	return nil
 }
 
-// NTMSChangerinformationw structure represents NTMS_CHANGERINFORMATIONW RPC structure.
-type NTMSChangerinformationw struct {
-	Number       uint32    `idl:"name:Number" json:"number"`
-	ChangerType  *NTMSGUID `idl:"name:ChangerType" json:"changer_type"`
-	SerialNumber string    `idl:"name:szSerialNumber;string" json:"serial_number"`
-	Revision     string    `idl:"name:szRevision;string" json:"revision"`
-	DeviceName   string    `idl:"name:szDeviceName;string" json:"device_name"`
-	SCSIPort     uint16    `idl:"name:ScsiPort" json:"scsi_port"`
-	SCSIBus      uint16    `idl:"name:ScsiBus" json:"scsi_bus"`
-	SCSITarget   uint16    `idl:"name:ScsiTarget" json:"scsi_target"`
-	SCSILUN      uint16    `idl:"name:ScsiLun" json:"scsi_lun"`
-	Library      *NTMSGUID `idl:"name:Library" json:"library"`
+// ChangerInformationW structure represents NTMS_CHANGERINFORMATIONW RPC structure.
+type ChangerInformationW struct {
+	Number       uint32 `idl:"name:Number" json:"number"`
+	ChangerType  *GUID  `idl:"name:ChangerType" json:"changer_type"`
+	SerialNumber string `idl:"name:szSerialNumber;string" json:"serial_number"`
+	Revision     string `idl:"name:szRevision;string" json:"revision"`
+	DeviceName   string `idl:"name:szDeviceName;string" json:"device_name"`
+	SCSIPort     uint16 `idl:"name:ScsiPort" json:"scsi_port"`
+	SCSIBus      uint16 `idl:"name:ScsiBus" json:"scsi_bus"`
+	SCSITarget   uint16 `idl:"name:ScsiTarget" json:"scsi_target"`
+	SCSILUN      uint16 `idl:"name:ScsiLun" json:"scsi_lun"`
+	Library      *GUID  `idl:"name:Library" json:"library"`
 }
 
-func (o *NTMSChangerinformationw) xxx_PreparePayload(ctx context.Context) error {
+func (o *ChangerInformationW) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -912,7 +912,7 @@ func (o *NTMSChangerinformationw) xxx_PreparePayload(ctx context.Context) error 
 	}
 	return nil
 }
-func (o *NTMSChangerinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ChangerInformationW) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -927,7 +927,7 @@ func (o *NTMSChangerinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) 
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -1011,7 +1011,7 @@ func (o *NTMSChangerinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) 
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -1020,7 +1020,7 @@ func (o *NTMSChangerinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) 
 	}
 	return nil
 }
-func (o *NTMSChangerinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ChangerInformationW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -1028,7 +1028,7 @@ func (o *NTMSChangerinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		return err
 	}
 	if o.ChangerType == nil {
-		o.ChangerType = &NTMSGUID{}
+		o.ChangerType = &GUID{}
 	}
 	if err := o.ChangerType.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -1073,7 +1073,7 @@ func (o *NTMSChangerinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		return err
 	}
 	if o.Library == nil {
-		o.Library = &NTMSGUID{}
+		o.Library = &GUID{}
 	}
 	if err := o.Library.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -1084,14 +1084,14 @@ func (o *NTMSChangerinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader
 	return nil
 }
 
-// NTMSChangertypeinformationa structure represents NTMS_CHANGERTYPEINFORMATIONA RPC structure.
-type NTMSChangertypeinformationa struct {
+// ChangerTypeInformationA structure represents NTMS_CHANGERTYPEINFORMATIONA RPC structure.
+type ChangerTypeInformationA struct {
 	Vendor     []byte `idl:"name:szVendor" json:"vendor"`
 	Product    []byte `idl:"name:szProduct" json:"product"`
 	DeviceType uint32 `idl:"name:DeviceType" json:"device_type"`
 }
 
-func (o *NTMSChangertypeinformationa) xxx_PreparePayload(ctx context.Context) error {
+func (o *ChangerTypeInformationA) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -1100,7 +1100,7 @@ func (o *NTMSChangertypeinformationa) xxx_PreparePayload(ctx context.Context) er
 	}
 	return nil
 }
-func (o *NTMSChangertypeinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ChangerTypeInformationA) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -1140,7 +1140,7 @@ func (o *NTMSChangertypeinformationa) MarshalNDR(ctx context.Context, w ndr.Writ
 	}
 	return nil
 }
-func (o *NTMSChangertypeinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ChangerTypeInformationA) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -1164,14 +1164,14 @@ func (o *NTMSChangertypeinformationa) UnmarshalNDR(ctx context.Context, w ndr.Re
 	return nil
 }
 
-// NTMSChangertypeinformationw structure represents NTMS_CHANGERTYPEINFORMATIONW RPC structure.
-type NTMSChangertypeinformationw struct {
+// ChangerTypeInformationW structure represents NTMS_CHANGERTYPEINFORMATIONW RPC structure.
+type ChangerTypeInformationW struct {
 	Vendor     string `idl:"name:szVendor;string" json:"vendor"`
 	Product    string `idl:"name:szProduct;string" json:"product"`
 	DeviceType uint32 `idl:"name:DeviceType" json:"device_type"`
 }
 
-func (o *NTMSChangertypeinformationw) xxx_PreparePayload(ctx context.Context) error {
+func (o *ChangerTypeInformationW) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -1180,7 +1180,7 @@ func (o *NTMSChangertypeinformationw) xxx_PreparePayload(ctx context.Context) er
 	}
 	return nil
 }
-func (o *NTMSChangertypeinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ChangerTypeInformationW) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -1237,7 +1237,7 @@ func (o *NTMSChangertypeinformationw) MarshalNDR(ctx context.Context, w ndr.Writ
 	}
 	return nil
 }
-func (o *NTMSChangertypeinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ChangerTypeInformationW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -1268,11 +1268,11 @@ func (o *NTMSChangertypeinformationw) UnmarshalNDR(ctx context.Context, w ndr.Re
 	return nil
 }
 
-// NTMSDriveinformationa structure represents NTMS_DRIVEINFORMATIONA RPC structure.
-type NTMSDriveinformationa struct {
+// DriveInformationA structure represents NTMS_DRIVEINFORMATIONA RPC structure.
+type DriveInformationA struct {
 	Number             uint32           `idl:"name:Number" json:"number"`
 	State              uint32           `idl:"name:State" json:"state"`
-	DriveType          *NTMSGUID        `idl:"name:DriveType" json:"drive_type"`
+	DriveType          *GUID            `idl:"name:DriveType" json:"drive_type"`
 	DeviceName         []byte           `idl:"name:szDeviceName" json:"device_name"`
 	SerialNumber       []byte           `idl:"name:szSerialNumber" json:"serial_number"`
 	Revision           []byte           `idl:"name:szRevision" json:"revision"`
@@ -1282,13 +1282,13 @@ type NTMSDriveinformationa struct {
 	SCSILUN            uint16           `idl:"name:ScsiLun" json:"scsi_lun"`
 	MountCount         uint32           `idl:"name:dwMountCount" json:"mount_count"`
 	LastCleanedTS      *dtyp.SystemTime `idl:"name:LastCleanedTs" json:"last_cleaned_ts"`
-	SavedPartitionID   *NTMSGUID        `idl:"name:SavedPartitionId" json:"saved_partition_id"`
-	Library            *NTMSGUID        `idl:"name:Library" json:"library"`
+	SavedPartitionID   *GUID            `idl:"name:SavedPartitionId" json:"saved_partition_id"`
+	Library            *GUID            `idl:"name:Library" json:"library"`
 	_                  *dtyp.GUID       `idl:"name:Reserved"`
 	DeferDismountDelay uint32           `idl:"name:dwDeferDismountDelay" json:"defer_dismount_delay"`
 }
 
-func (o *NTMSDriveinformationa) xxx_PreparePayload(ctx context.Context) error {
+func (o *DriveInformationA) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -1297,7 +1297,7 @@ func (o *NTMSDriveinformationa) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *NTMSDriveinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *DriveInformationA) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -1315,7 +1315,7 @@ func (o *NTMSDriveinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) er
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -1390,7 +1390,7 @@ func (o *NTMSDriveinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) er
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -1399,7 +1399,7 @@ func (o *NTMSDriveinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) er
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -1412,7 +1412,7 @@ func (o *NTMSDriveinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	}
 	return nil
 }
-func (o *NTMSDriveinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *DriveInformationA) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -1423,7 +1423,7 @@ func (o *NTMSDriveinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		return err
 	}
 	if o.DriveType == nil {
-		o.DriveType = &NTMSGUID{}
+		o.DriveType = &GUID{}
 	}
 	if err := o.DriveType.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -1471,13 +1471,13 @@ func (o *NTMSDriveinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		return err
 	}
 	if o.SavedPartitionID == nil {
-		o.SavedPartitionID = &NTMSGUID{}
+		o.SavedPartitionID = &GUID{}
 	}
 	if err := o.SavedPartitionID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.Library == nil {
-		o.Library = &NTMSGUID{}
+		o.Library = &GUID{}
 	}
 	if err := o.Library.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -1496,11 +1496,11 @@ func (o *NTMSDriveinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	return nil
 }
 
-// NTMSDriveinformationw structure represents NTMS_DRIVEINFORMATIONW RPC structure.
-type NTMSDriveinformationw struct {
+// DriveInformationW structure represents NTMS_DRIVEINFORMATIONW RPC structure.
+type DriveInformationW struct {
 	Number             uint32           `idl:"name:Number" json:"number"`
 	State              uint32           `idl:"name:State" json:"state"`
-	DriveType          *NTMSGUID        `idl:"name:DriveType" json:"drive_type"`
+	DriveType          *GUID            `idl:"name:DriveType" json:"drive_type"`
 	DeviceName         string           `idl:"name:szDeviceName;string" json:"device_name"`
 	SerialNumber       string           `idl:"name:szSerialNumber;string" json:"serial_number"`
 	Revision           string           `idl:"name:szRevision;string" json:"revision"`
@@ -1510,13 +1510,13 @@ type NTMSDriveinformationw struct {
 	SCSILUN            uint16           `idl:"name:ScsiLun" json:"scsi_lun"`
 	MountCount         uint32           `idl:"name:dwMountCount" json:"mount_count"`
 	LastCleanedTS      *dtyp.SystemTime `idl:"name:LastCleanedTs" json:"last_cleaned_ts"`
-	SavedPartitionID   *NTMSGUID        `idl:"name:SavedPartitionId" json:"saved_partition_id"`
-	Library            *NTMSGUID        `idl:"name:Library" json:"library"`
+	SavedPartitionID   *GUID            `idl:"name:SavedPartitionId" json:"saved_partition_id"`
+	Library            *GUID            `idl:"name:Library" json:"library"`
 	_                  *dtyp.GUID       `idl:"name:Reserved"`
 	DeferDismountDelay uint32           `idl:"name:dwDeferDismountDelay" json:"defer_dismount_delay"`
 }
 
-func (o *NTMSDriveinformationw) xxx_PreparePayload(ctx context.Context) error {
+func (o *DriveInformationW) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -1525,7 +1525,7 @@ func (o *NTMSDriveinformationw) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *NTMSDriveinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *DriveInformationW) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -1543,7 +1543,7 @@ func (o *NTMSDriveinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) er
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -1639,7 +1639,7 @@ func (o *NTMSDriveinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) er
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -1648,7 +1648,7 @@ func (o *NTMSDriveinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) er
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -1664,7 +1664,7 @@ func (o *NTMSDriveinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	}
 	return nil
 }
-func (o *NTMSDriveinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *DriveInformationW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -1675,7 +1675,7 @@ func (o *NTMSDriveinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		return err
 	}
 	if o.DriveType == nil {
-		o.DriveType = &NTMSGUID{}
+		o.DriveType = &GUID{}
 	}
 	if err := o.DriveType.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -1729,13 +1729,13 @@ func (o *NTMSDriveinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		return err
 	}
 	if o.SavedPartitionID == nil {
-		o.SavedPartitionID = &NTMSGUID{}
+		o.SavedPartitionID = &GUID{}
 	}
 	if err := o.SavedPartitionID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.Library == nil {
-		o.Library = &NTMSGUID{}
+		o.Library = &GUID{}
 	}
 	if err := o.Library.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -1757,15 +1757,15 @@ func (o *NTMSDriveinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	return nil
 }
 
-// NTMSDrivetypeinformationa structure represents NTMS_DRIVETYPEINFORMATIONA RPC structure.
-type NTMSDrivetypeinformationa struct {
+// DriveTypeInformationA structure represents NTMS_DRIVETYPEINFORMATIONA RPC structure.
+type DriveTypeInformationA struct {
 	Vendor        []byte `idl:"name:szVendor" json:"vendor"`
 	Product       []byte `idl:"name:szProduct" json:"product"`
 	NumberOfHeads uint32 `idl:"name:NumberOfHeads" json:"number_of_heads"`
 	DeviceType    uint32 `idl:"name:DeviceType" json:"device_type"`
 }
 
-func (o *NTMSDrivetypeinformationa) xxx_PreparePayload(ctx context.Context) error {
+func (o *DriveTypeInformationA) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -1774,7 +1774,7 @@ func (o *NTMSDrivetypeinformationa) xxx_PreparePayload(ctx context.Context) erro
 	}
 	return nil
 }
-func (o *NTMSDrivetypeinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *DriveTypeInformationA) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -1817,7 +1817,7 @@ func (o *NTMSDrivetypeinformationa) MarshalNDR(ctx context.Context, w ndr.Writer
 	}
 	return nil
 }
-func (o *NTMSDrivetypeinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *DriveTypeInformationA) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -1844,15 +1844,15 @@ func (o *NTMSDrivetypeinformationa) UnmarshalNDR(ctx context.Context, w ndr.Read
 	return nil
 }
 
-// NTMSDrivetypeinformationw structure represents NTMS_DRIVETYPEINFORMATIONW RPC structure.
-type NTMSDrivetypeinformationw struct {
+// DriveTypeInformationW structure represents NTMS_DRIVETYPEINFORMATIONW RPC structure.
+type DriveTypeInformationW struct {
 	Vendor        string `idl:"name:szVendor;string" json:"vendor"`
 	Product       string `idl:"name:szProduct;string" json:"product"`
 	NumberOfHeads uint32 `idl:"name:NumberOfHeads" json:"number_of_heads"`
 	DeviceType    uint32 `idl:"name:DeviceType" json:"device_type"`
 }
 
-func (o *NTMSDrivetypeinformationw) xxx_PreparePayload(ctx context.Context) error {
+func (o *DriveTypeInformationW) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -1861,7 +1861,7 @@ func (o *NTMSDrivetypeinformationw) xxx_PreparePayload(ctx context.Context) erro
 	}
 	return nil
 }
-func (o *NTMSDrivetypeinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *DriveTypeInformationW) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -1921,7 +1921,7 @@ func (o *NTMSDrivetypeinformationw) MarshalNDR(ctx context.Context, w ndr.Writer
 	}
 	return nil
 }
-func (o *NTMSDrivetypeinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *DriveTypeInformationW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -1955,27 +1955,27 @@ func (o *NTMSDrivetypeinformationw) UnmarshalNDR(ctx context.Context, w ndr.Read
 	return nil
 }
 
-// NTMSLibrequestinformationa structure represents NTMS_LIBREQUESTINFORMATIONA RPC structure.
-type NTMSLibrequestinformationa struct {
+// LibraryRequestInformationA structure represents NTMS_LIBREQUESTINFORMATIONA RPC structure.
+type LibraryRequestInformationA struct {
 	OperationCode   uint32           `idl:"name:OperationCode" json:"operation_code"`
 	OperationOption uint32           `idl:"name:OperationOption" json:"operation_option"`
 	State           uint32           `idl:"name:State" json:"state"`
-	PartitionID     *NTMSGUID        `idl:"name:PartitionId" json:"partition_id"`
-	DriveID         *NTMSGUID        `idl:"name:DriveId" json:"drive_id"`
-	PhysMediaID     *NTMSGUID        `idl:"name:PhysMediaId" json:"phys_media_id"`
-	Library         *NTMSGUID        `idl:"name:Library" json:"library"`
-	SlotID          *NTMSGUID        `idl:"name:SlotId" json:"slot_id"`
+	PartitionID     *GUID            `idl:"name:PartitionId" json:"partition_id"`
+	DriveID         *GUID            `idl:"name:DriveId" json:"drive_id"`
+	PhysicalMediaID *GUID            `idl:"name:PhysMediaId" json:"physical_media_id"`
+	Library         *GUID            `idl:"name:Library" json:"library"`
+	SlotID          *GUID            `idl:"name:SlotId" json:"slot_id"`
 	TimeQueued      *dtyp.SystemTime `idl:"name:TimeQueued" json:"time_queued"`
 	TimeCompleted   *dtyp.SystemTime `idl:"name:TimeCompleted" json:"time_completed"`
 	Application     []byte           `idl:"name:szApplication" json:"application"`
 	User            []byte           `idl:"name:szUser" json:"user"`
 	Computer        []byte           `idl:"name:szComputer" json:"computer"`
 	ErrorCode       uint32           `idl:"name:dwErrorCode" json:"error_code"`
-	WorkItemID      *NTMSGUID        `idl:"name:WorkItemId" json:"work_item_id"`
+	WorkItemID      *GUID            `idl:"name:WorkItemId" json:"work_item_id"`
 	Priority        uint32           `idl:"name:dwPriority" json:"priority"`
 }
 
-func (o *NTMSLibrequestinformationa) xxx_PreparePayload(ctx context.Context) error {
+func (o *LibraryRequestInformationA) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -1984,7 +1984,7 @@ func (o *NTMSLibrequestinformationa) xxx_PreparePayload(ctx context.Context) err
 	}
 	return nil
 }
-func (o *NTMSLibrequestinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *LibraryRequestInformationA) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -2005,7 +2005,7 @@ func (o *NTMSLibrequestinformationa) MarshalNDR(ctx context.Context, w ndr.Write
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -2014,16 +2014,16 @@ func (o *NTMSLibrequestinformationa) MarshalNDR(ctx context.Context, w ndr.Write
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
-	if o.PhysMediaID != nil {
-		if err := o.PhysMediaID.MarshalNDR(ctx, w); err != nil {
+	if o.PhysicalMediaID != nil {
+		if err := o.PhysicalMediaID.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -2032,7 +2032,7 @@ func (o *NTMSLibrequestinformationa) MarshalNDR(ctx context.Context, w ndr.Write
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -2041,7 +2041,7 @@ func (o *NTMSLibrequestinformationa) MarshalNDR(ctx context.Context, w ndr.Write
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -2113,7 +2113,7 @@ func (o *NTMSLibrequestinformationa) MarshalNDR(ctx context.Context, w ndr.Write
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -2122,7 +2122,7 @@ func (o *NTMSLibrequestinformationa) MarshalNDR(ctx context.Context, w ndr.Write
 	}
 	return nil
 }
-func (o *NTMSLibrequestinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *LibraryRequestInformationA) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -2136,31 +2136,31 @@ func (o *NTMSLibrequestinformationa) UnmarshalNDR(ctx context.Context, w ndr.Rea
 		return err
 	}
 	if o.PartitionID == nil {
-		o.PartitionID = &NTMSGUID{}
+		o.PartitionID = &GUID{}
 	}
 	if err := o.PartitionID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.DriveID == nil {
-		o.DriveID = &NTMSGUID{}
+		o.DriveID = &GUID{}
 	}
 	if err := o.DriveID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.PhysMediaID == nil {
-		o.PhysMediaID = &NTMSGUID{}
+	if o.PhysicalMediaID == nil {
+		o.PhysicalMediaID = &GUID{}
 	}
-	if err := o.PhysMediaID.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.PhysicalMediaID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.Library == nil {
-		o.Library = &NTMSGUID{}
+		o.Library = &GUID{}
 	}
 	if err := o.Library.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.SlotID == nil {
-		o.SlotID = &NTMSGUID{}
+		o.SlotID = &GUID{}
 	}
 	if err := o.SlotID.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -2202,7 +2202,7 @@ func (o *NTMSLibrequestinformationa) UnmarshalNDR(ctx context.Context, w ndr.Rea
 		return err
 	}
 	if o.WorkItemID == nil {
-		o.WorkItemID = &NTMSGUID{}
+		o.WorkItemID = &GUID{}
 	}
 	if err := o.WorkItemID.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -2213,27 +2213,27 @@ func (o *NTMSLibrequestinformationa) UnmarshalNDR(ctx context.Context, w ndr.Rea
 	return nil
 }
 
-// NTMSLibrequestinformationw structure represents NTMS_LIBREQUESTINFORMATIONW RPC structure.
-type NTMSLibrequestinformationw struct {
+// LibraryRequestInformationW structure represents NTMS_LIBREQUESTINFORMATIONW RPC structure.
+type LibraryRequestInformationW struct {
 	OperationCode   uint32           `idl:"name:OperationCode" json:"operation_code"`
 	OperationOption uint32           `idl:"name:OperationOption" json:"operation_option"`
 	State           uint32           `idl:"name:State" json:"state"`
-	PartitionID     *NTMSGUID        `idl:"name:PartitionId" json:"partition_id"`
-	DriveID         *NTMSGUID        `idl:"name:DriveId" json:"drive_id"`
-	PhysMediaID     *NTMSGUID        `idl:"name:PhysMediaId" json:"phys_media_id"`
-	Library         *NTMSGUID        `idl:"name:Library" json:"library"`
-	SlotID          *NTMSGUID        `idl:"name:SlotId" json:"slot_id"`
+	PartitionID     *GUID            `idl:"name:PartitionId" json:"partition_id"`
+	DriveID         *GUID            `idl:"name:DriveId" json:"drive_id"`
+	PhysicalMediaID *GUID            `idl:"name:PhysMediaId" json:"physical_media_id"`
+	Library         *GUID            `idl:"name:Library" json:"library"`
+	SlotID          *GUID            `idl:"name:SlotId" json:"slot_id"`
 	TimeQueued      *dtyp.SystemTime `idl:"name:TimeQueued" json:"time_queued"`
 	TimeCompleted   *dtyp.SystemTime `idl:"name:TimeCompleted" json:"time_completed"`
 	Application     string           `idl:"name:szApplication;string" json:"application"`
 	User            string           `idl:"name:szUser;string" json:"user"`
 	Computer        string           `idl:"name:szComputer;string" json:"computer"`
 	ErrorCode       uint32           `idl:"name:dwErrorCode" json:"error_code"`
-	WorkItemID      *NTMSGUID        `idl:"name:WorkItemId" json:"work_item_id"`
+	WorkItemID      *GUID            `idl:"name:WorkItemId" json:"work_item_id"`
 	Priority        uint32           `idl:"name:dwPriority" json:"priority"`
 }
 
-func (o *NTMSLibrequestinformationw) xxx_PreparePayload(ctx context.Context) error {
+func (o *LibraryRequestInformationW) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -2242,7 +2242,7 @@ func (o *NTMSLibrequestinformationw) xxx_PreparePayload(ctx context.Context) err
 	}
 	return nil
 }
-func (o *NTMSLibrequestinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *LibraryRequestInformationW) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -2263,7 +2263,7 @@ func (o *NTMSLibrequestinformationw) MarshalNDR(ctx context.Context, w ndr.Write
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -2272,16 +2272,16 @@ func (o *NTMSLibrequestinformationw) MarshalNDR(ctx context.Context, w ndr.Write
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
-	if o.PhysMediaID != nil {
-		if err := o.PhysMediaID.MarshalNDR(ctx, w); err != nil {
+	if o.PhysicalMediaID != nil {
+		if err := o.PhysicalMediaID.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -2290,7 +2290,7 @@ func (o *NTMSLibrequestinformationw) MarshalNDR(ctx context.Context, w ndr.Write
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -2299,7 +2299,7 @@ func (o *NTMSLibrequestinformationw) MarshalNDR(ctx context.Context, w ndr.Write
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -2392,7 +2392,7 @@ func (o *NTMSLibrequestinformationw) MarshalNDR(ctx context.Context, w ndr.Write
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -2404,7 +2404,7 @@ func (o *NTMSLibrequestinformationw) MarshalNDR(ctx context.Context, w ndr.Write
 	}
 	return nil
 }
-func (o *NTMSLibrequestinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *LibraryRequestInformationW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -2418,31 +2418,31 @@ func (o *NTMSLibrequestinformationw) UnmarshalNDR(ctx context.Context, w ndr.Rea
 		return err
 	}
 	if o.PartitionID == nil {
-		o.PartitionID = &NTMSGUID{}
+		o.PartitionID = &GUID{}
 	}
 	if err := o.PartitionID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.DriveID == nil {
-		o.DriveID = &NTMSGUID{}
+		o.DriveID = &GUID{}
 	}
 	if err := o.DriveID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.PhysMediaID == nil {
-		o.PhysMediaID = &NTMSGUID{}
+	if o.PhysicalMediaID == nil {
+		o.PhysicalMediaID = &GUID{}
 	}
-	if err := o.PhysMediaID.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.PhysicalMediaID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.Library == nil {
-		o.Library = &NTMSGUID{}
+		o.Library = &GUID{}
 	}
 	if err := o.Library.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.SlotID == nil {
-		o.SlotID = &NTMSGUID{}
+		o.SlotID = &GUID{}
 	}
 	if err := o.SlotID.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -2490,7 +2490,7 @@ func (o *NTMSLibrequestinformationw) UnmarshalNDR(ctx context.Context, w ndr.Rea
 		return err
 	}
 	if o.WorkItemID == nil {
-		o.WorkItemID = &NTMSGUID{}
+		o.WorkItemID = &GUID{}
 	}
 	if err := o.WorkItemID.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -2504,20 +2504,20 @@ func (o *NTMSLibrequestinformationw) UnmarshalNDR(ctx context.Context, w ndr.Rea
 	return nil
 }
 
-// NTMSMediapoolinformation structure represents NTMS_MEDIAPOOLINFORMATION RPC structure.
-type NTMSMediapoolinformation struct {
-	PoolType              uint32    `idl:"name:PoolType" json:"pool_type"`
-	MediaType             *NTMSGUID `idl:"name:MediaType" json:"media_type"`
-	Parent                *NTMSGUID `idl:"name:Parent" json:"parent"`
-	AllocationPolicy      uint32    `idl:"name:AllocationPolicy" json:"allocation_policy"`
-	DeallocationPolicy    uint32    `idl:"name:DeallocationPolicy" json:"deallocation_policy"`
-	MaxAllocates          uint32    `idl:"name:dwMaxAllocates" json:"max_allocates"`
-	NumberOfPhysicalMedia uint32    `idl:"name:dwNumberOfPhysicalMedia" json:"number_of_physical_media"`
-	NumberOfLogicalMedia  uint32    `idl:"name:dwNumberOfLogicalMedia" json:"number_of_logical_media"`
-	NumberOfMediaPools    uint32    `idl:"name:dwNumberOfMediaPools" json:"number_of_media_pools"`
+// MediaPoolInformation structure represents NTMS_MEDIAPOOLINFORMATION RPC structure.
+type MediaPoolInformation struct {
+	PoolType              uint32 `idl:"name:PoolType" json:"pool_type"`
+	MediaType             *GUID  `idl:"name:MediaType" json:"media_type"`
+	Parent                *GUID  `idl:"name:Parent" json:"parent"`
+	AllocationPolicy      uint32 `idl:"name:AllocationPolicy" json:"allocation_policy"`
+	DeallocationPolicy    uint32 `idl:"name:DeallocationPolicy" json:"deallocation_policy"`
+	MaxAllocates          uint32 `idl:"name:dwMaxAllocates" json:"max_allocates"`
+	NumberOfPhysicalMedia uint32 `idl:"name:dwNumberOfPhysicalMedia" json:"number_of_physical_media"`
+	NumberOfLogicalMedia  uint32 `idl:"name:dwNumberOfLogicalMedia" json:"number_of_logical_media"`
+	NumberOfMediaPools    uint32 `idl:"name:dwNumberOfMediaPools" json:"number_of_media_pools"`
 }
 
-func (o *NTMSMediapoolinformation) xxx_PreparePayload(ctx context.Context) error {
+func (o *MediaPoolInformation) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -2526,7 +2526,7 @@ func (o *NTMSMediapoolinformation) xxx_PreparePayload(ctx context.Context) error
 	}
 	return nil
 }
-func (o *NTMSMediapoolinformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MediaPoolInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -2541,7 +2541,7 @@ func (o *NTMSMediapoolinformation) MarshalNDR(ctx context.Context, w ndr.Writer)
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -2550,7 +2550,7 @@ func (o *NTMSMediapoolinformation) MarshalNDR(ctx context.Context, w ndr.Writer)
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -2574,7 +2574,7 @@ func (o *NTMSMediapoolinformation) MarshalNDR(ctx context.Context, w ndr.Writer)
 	}
 	return nil
 }
-func (o *NTMSMediapoolinformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MediaPoolInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -2582,13 +2582,13 @@ func (o *NTMSMediapoolinformation) UnmarshalNDR(ctx context.Context, w ndr.Reade
 		return err
 	}
 	if o.MediaType == nil {
-		o.MediaType = &NTMSGUID{}
+		o.MediaType = &GUID{}
 	}
 	if err := o.MediaType.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.Parent == nil {
-		o.Parent = &NTMSGUID{}
+		o.Parent = &GUID{}
 	}
 	if err := o.Parent.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -2614,15 +2614,15 @@ func (o *NTMSMediapoolinformation) UnmarshalNDR(ctx context.Context, w ndr.Reade
 	return nil
 }
 
-// NTMSMediatypeinformation structure represents NTMS_MEDIATYPEINFORMATION RPC structure.
-type NTMSMediatypeinformation struct {
+// MediaTypeInformation structure represents NTMS_MEDIATYPEINFORMATION RPC structure.
+type MediaTypeInformation struct {
 	MediaType                uint32 `idl:"name:MediaType" json:"media_type"`
 	NumberOfSides            uint32 `idl:"name:NumberOfSides" json:"number_of_sides"`
 	ReadWriteCharacteristics uint32 `idl:"name:ReadWriteCharacteristics" json:"read_write_characteristics"`
 	DeviceType               uint32 `idl:"name:DeviceType" json:"device_type"`
 }
 
-func (o *NTMSMediatypeinformation) xxx_PreparePayload(ctx context.Context) error {
+func (o *MediaTypeInformation) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -2631,7 +2631,7 @@ func (o *NTMSMediatypeinformation) xxx_PreparePayload(ctx context.Context) error
 	}
 	return nil
 }
-func (o *NTMSMediatypeinformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MediaTypeInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -2652,7 +2652,7 @@ func (o *NTMSMediatypeinformation) MarshalNDR(ctx context.Context, w ndr.Writer)
 	}
 	return nil
 }
-func (o *NTMSMediatypeinformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MediaTypeInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -2671,14 +2671,14 @@ func (o *NTMSMediatypeinformation) UnmarshalNDR(ctx context.Context, w ndr.Reade
 	return nil
 }
 
-// NTMSStorageslotinformation structure represents NTMS_STORAGESLOTINFORMATION RPC structure.
-type NTMSStorageslotinformation struct {
-	Number  uint32    `idl:"name:Number" json:"number"`
-	State   uint32    `idl:"name:State" json:"state"`
-	Library *NTMSGUID `idl:"name:Library" json:"library"`
+// StorageSlotInformation structure represents NTMS_STORAGESLOTINFORMATION RPC structure.
+type StorageSlotInformation struct {
+	Number  uint32 `idl:"name:Number" json:"number"`
+	State   uint32 `idl:"name:State" json:"state"`
+	Library *GUID  `idl:"name:Library" json:"library"`
 }
 
-func (o *NTMSStorageslotinformation) xxx_PreparePayload(ctx context.Context) error {
+func (o *StorageSlotInformation) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -2687,7 +2687,7 @@ func (o *NTMSStorageslotinformation) xxx_PreparePayload(ctx context.Context) err
 	}
 	return nil
 }
-func (o *NTMSStorageslotinformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *StorageSlotInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -2705,13 +2705,13 @@ func (o *NTMSStorageslotinformation) MarshalNDR(ctx context.Context, w ndr.Write
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSStorageslotinformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *StorageSlotInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -2722,7 +2722,7 @@ func (o *NTMSStorageslotinformation) UnmarshalNDR(ctx context.Context, w ndr.Rea
 		return err
 	}
 	if o.Library == nil {
-		o.Library = &NTMSGUID{}
+		o.Library = &GUID{}
 	}
 	if err := o.Library.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -2730,15 +2730,15 @@ func (o *NTMSStorageslotinformation) UnmarshalNDR(ctx context.Context, w ndr.Rea
 	return nil
 }
 
-// NTMSIedoorinformation structure represents NTMS_IEDOORINFORMATION RPC structure.
-type NTMSIedoorinformation struct {
-	Number      uint32    `idl:"name:Number" json:"number"`
-	State       uint32    `idl:"name:State" json:"state"`
-	MaxOpenSecs uint16    `idl:"name:MaxOpenSecs" json:"max_open_secs"`
-	Library     *NTMSGUID `idl:"name:Library" json:"library"`
+// IEDoorInformation structure represents NTMS_IEDOORINFORMATION RPC structure.
+type IEDoorInformation struct {
+	Number      uint32 `idl:"name:Number" json:"number"`
+	State       uint32 `idl:"name:State" json:"state"`
+	MaxOpenSecs uint16 `idl:"name:MaxOpenSecs" json:"max_open_secs"`
+	Library     *GUID  `idl:"name:Library" json:"library"`
 }
 
-func (o *NTMSIedoorinformation) xxx_PreparePayload(ctx context.Context) error {
+func (o *IEDoorInformation) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -2747,7 +2747,7 @@ func (o *NTMSIedoorinformation) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *NTMSIedoorinformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IEDoorInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -2768,13 +2768,13 @@ func (o *NTMSIedoorinformation) MarshalNDR(ctx context.Context, w ndr.Writer) er
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSIedoorinformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IEDoorInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -2788,7 +2788,7 @@ func (o *NTMSIedoorinformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		return err
 	}
 	if o.Library == nil {
-		o.Library = &NTMSGUID{}
+		o.Library = &GUID{}
 	}
 	if err := o.Library.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -2796,16 +2796,16 @@ func (o *NTMSIedoorinformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	return nil
 }
 
-// NTMSIeportinformation structure represents NTMS_IEPORTINFORMATION RPC structure.
-type NTMSIeportinformation struct {
-	Number        uint32    `idl:"name:Number" json:"number"`
-	Content       uint32    `idl:"name:Content" json:"content"`
-	Position      uint32    `idl:"name:Position" json:"position"`
-	MaxExtendSecs uint16    `idl:"name:MaxExtendSecs" json:"max_extend_secs"`
-	Library       *NTMSGUID `idl:"name:Library" json:"library"`
+// IEPortInformation structure represents NTMS_IEPORTINFORMATION RPC structure.
+type IEPortInformation struct {
+	Number        uint32 `idl:"name:Number" json:"number"`
+	Content       uint32 `idl:"name:Content" json:"content"`
+	Position      uint32 `idl:"name:Position" json:"position"`
+	MaxExtendSecs uint16 `idl:"name:MaxExtendSecs" json:"max_extend_secs"`
+	Library       *GUID  `idl:"name:Library" json:"library"`
 }
 
-func (o *NTMSIeportinformation) xxx_PreparePayload(ctx context.Context) error {
+func (o *IEPortInformation) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -2814,7 +2814,7 @@ func (o *NTMSIeportinformation) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *NTMSIeportinformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IEPortInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -2838,13 +2838,13 @@ func (o *NTMSIeportinformation) MarshalNDR(ctx context.Context, w ndr.Writer) er
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSIeportinformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IEPortInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -2861,7 +2861,7 @@ func (o *NTMSIeportinformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		return err
 	}
 	if o.Library == nil {
-		o.Library = &NTMSGUID{}
+		o.Library = &GUID{}
 	}
 	if err := o.Library.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -2869,13 +2869,13 @@ func (o *NTMSIeportinformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	return nil
 }
 
-// NTMSLmidinformation structure represents NTMS_LMIDINFORMATION RPC structure.
-type NTMSLmidinformation struct {
-	MediaPool          *NTMSGUID `idl:"name:MediaPool" json:"media_pool"`
-	NumberOfPartitions uint32    `idl:"name:dwNumberOfPartitions" json:"number_of_partitions"`
+// LMIDInformation structure represents NTMS_LMIDINFORMATION RPC structure.
+type LMIDInformation struct {
+	MediaPool          *GUID  `idl:"name:MediaPool" json:"media_pool"`
+	NumberOfPartitions uint32 `idl:"name:dwNumberOfPartitions" json:"number_of_partitions"`
 }
 
-func (o *NTMSLmidinformation) xxx_PreparePayload(ctx context.Context) error {
+func (o *LMIDInformation) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -2884,7 +2884,7 @@ func (o *NTMSLmidinformation) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *NTMSLmidinformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *LMIDInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -2896,7 +2896,7 @@ func (o *NTMSLmidinformation) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -2905,12 +2905,12 @@ func (o *NTMSLmidinformation) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	}
 	return nil
 }
-func (o *NTMSLmidinformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *LMIDInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if o.MediaPool == nil {
-		o.MediaPool = &NTMSGUID{}
+		o.MediaPool = &GUID{}
 	}
 	if err := o.MediaPool.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -2921,8 +2921,8 @@ func (o *NTMSLmidinformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	return nil
 }
 
-// NTMSComputerinformation structure represents NTMS_COMPUTERINFORMATION RPC structure.
-type NTMSComputerinformation struct {
+// ComputerInformation structure represents NTMS_COMPUTERINFORMATION RPC structure.
+type ComputerInformation struct {
 	LibRequestPurgeTime       uint32 `idl:"name:dwLibRequestPurgeTime" json:"lib_request_purge_time"`
 	OperationRequestPurgeTime uint32 `idl:"name:dwOpRequestPurgeTime" json:"operation_request_purge_time"`
 	LibRequestFlags           uint32 `idl:"name:dwLibRequestFlags" json:"lib_request_flags"`
@@ -2930,7 +2930,7 @@ type NTMSComputerinformation struct {
 	MediaPoolPolicy           uint32 `idl:"name:dwMediaPoolPolicy" json:"media_pool_policy"`
 }
 
-func (o *NTMSComputerinformation) xxx_PreparePayload(ctx context.Context) error {
+func (o *ComputerInformation) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -2939,7 +2939,7 @@ func (o *NTMSComputerinformation) xxx_PreparePayload(ctx context.Context) error 
 	}
 	return nil
 }
-func (o *NTMSComputerinformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ComputerInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -2963,7 +2963,7 @@ func (o *NTMSComputerinformation) MarshalNDR(ctx context.Context, w ndr.Writer) 
 	}
 	return nil
 }
-func (o *NTMSComputerinformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ComputerInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -2985,22 +2985,22 @@ func (o *NTMSComputerinformation) UnmarshalNDR(ctx context.Context, w ndr.Reader
 	return nil
 }
 
-// NTMSOprequestinformationa structure represents NTMS_OPREQUESTINFORMATIONA RPC structure.
-type NTMSOprequestinformationa struct {
+// OperationRequestInformationA structure represents NTMS_OPREQUESTINFORMATIONA RPC structure.
+type OperationRequestInformationA struct {
 	Request     uint32           `idl:"name:Request" json:"request"`
 	Submitted   *dtyp.SystemTime `idl:"name:Submitted" json:"submitted"`
 	State       uint32           `idl:"name:State" json:"state"`
 	Message     []byte           `idl:"name:szMessage" json:"message"`
 	Arg1Type    uint32           `idl:"name:Arg1Type" json:"arg1_type"`
-	Arg1        *NTMSGUID        `idl:"name:Arg1" json:"arg1"`
+	Arg1        *GUID            `idl:"name:Arg1" json:"arg1"`
 	Arg2Type    uint32           `idl:"name:Arg2Type" json:"arg2_type"`
-	Arg2        *NTMSGUID        `idl:"name:Arg2" json:"arg2"`
+	Arg2        *GUID            `idl:"name:Arg2" json:"arg2"`
 	Application []byte           `idl:"name:szApplication" json:"application"`
 	User        []byte           `idl:"name:szUser" json:"user"`
 	Computer    []byte           `idl:"name:szComputer" json:"computer"`
 }
 
-func (o *NTMSOprequestinformationa) xxx_PreparePayload(ctx context.Context) error {
+func (o *OperationRequestInformationA) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -3009,7 +3009,7 @@ func (o *NTMSOprequestinformationa) xxx_PreparePayload(ctx context.Context) erro
 	}
 	return nil
 }
-func (o *NTMSOprequestinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *OperationRequestInformationA) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -3053,7 +3053,7 @@ func (o *NTMSOprequestinformationa) MarshalNDR(ctx context.Context, w ndr.Writer
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -3065,7 +3065,7 @@ func (o *NTMSOprequestinformationa) MarshalNDR(ctx context.Context, w ndr.Writer
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -3116,7 +3116,7 @@ func (o *NTMSOprequestinformationa) MarshalNDR(ctx context.Context, w ndr.Writer
 	}
 	return nil
 }
-func (o *NTMSOprequestinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *OperationRequestInformationA) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -3143,7 +3143,7 @@ func (o *NTMSOprequestinformationa) UnmarshalNDR(ctx context.Context, w ndr.Read
 		return err
 	}
 	if o.Arg1 == nil {
-		o.Arg1 = &NTMSGUID{}
+		o.Arg1 = &GUID{}
 	}
 	if err := o.Arg1.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -3152,7 +3152,7 @@ func (o *NTMSOprequestinformationa) UnmarshalNDR(ctx context.Context, w ndr.Read
 		return err
 	}
 	if o.Arg2 == nil {
-		o.Arg2 = &NTMSGUID{}
+		o.Arg2 = &GUID{}
 	}
 	if err := o.Arg2.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -3184,22 +3184,22 @@ func (o *NTMSOprequestinformationa) UnmarshalNDR(ctx context.Context, w ndr.Read
 	return nil
 }
 
-// NTMSOprequestinformationw structure represents NTMS_OPREQUESTINFORMATIONW RPC structure.
-type NTMSOprequestinformationw struct {
+// OperationRequestInformationW structure represents NTMS_OPREQUESTINFORMATIONW RPC structure.
+type OperationRequestInformationW struct {
 	Request     uint32           `idl:"name:Request" json:"request"`
 	Submitted   *dtyp.SystemTime `idl:"name:Submitted" json:"submitted"`
 	State       uint32           `idl:"name:State" json:"state"`
 	Message     string           `idl:"name:szMessage;string" json:"message"`
 	Arg1Type    uint32           `idl:"name:Arg1Type" json:"arg1_type"`
-	Arg1        *NTMSGUID        `idl:"name:Arg1" json:"arg1"`
+	Arg1        *GUID            `idl:"name:Arg1" json:"arg1"`
 	Arg2Type    uint32           `idl:"name:Arg2Type" json:"arg2_type"`
-	Arg2        *NTMSGUID        `idl:"name:Arg2" json:"arg2"`
+	Arg2        *GUID            `idl:"name:Arg2" json:"arg2"`
 	Application string           `idl:"name:szApplication;string" json:"application"`
 	User        string           `idl:"name:szUser;string" json:"user"`
 	Computer    string           `idl:"name:szComputer;string" json:"computer"`
 }
 
-func (o *NTMSOprequestinformationw) xxx_PreparePayload(ctx context.Context) error {
+func (o *OperationRequestInformationW) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -3208,7 +3208,7 @@ func (o *NTMSOprequestinformationw) xxx_PreparePayload(ctx context.Context) erro
 	}
 	return nil
 }
-func (o *NTMSOprequestinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *OperationRequestInformationW) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -3259,7 +3259,7 @@ func (o *NTMSOprequestinformationw) MarshalNDR(ctx context.Context, w ndr.Writer
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -3271,7 +3271,7 @@ func (o *NTMSOprequestinformationw) MarshalNDR(ctx context.Context, w ndr.Writer
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -3346,7 +3346,7 @@ func (o *NTMSOprequestinformationw) MarshalNDR(ctx context.Context, w ndr.Writer
 	}
 	return nil
 }
-func (o *NTMSOprequestinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *OperationRequestInformationW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -3375,7 +3375,7 @@ func (o *NTMSOprequestinformationw) UnmarshalNDR(ctx context.Context, w ndr.Read
 		return err
 	}
 	if o.Arg1 == nil {
-		o.Arg1 = &NTMSGUID{}
+		o.Arg1 = &GUID{}
 	}
 	if err := o.Arg1.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -3384,7 +3384,7 @@ func (o *NTMSOprequestinformationw) UnmarshalNDR(ctx context.Context, w ndr.Read
 		return err
 	}
 	if o.Arg2 == nil {
-		o.Arg2 = &NTMSGUID{}
+		o.Arg2 = &GUID{}
 	}
 	if err := o.Arg2.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -3433,22 +3433,22 @@ func (o *NTMSOprequestinformationw) UnmarshalNDR(ctx context.Context, w ndr.Read
 	return nil
 }
 
-// NTMSPartitioninformationa structure represents NTMS_PARTITIONINFORMATIONA RPC structure.
-type NTMSPartitioninformationa struct {
-	PhysicalMedia     *NTMSGUID          `idl:"name:PhysicalMedia" json:"physical_media"`
-	LogicalMedia      *NTMSGUID          `idl:"name:LogicalMedia" json:"logical_media"`
+// PartitionInformationA structure represents NTMS_PARTITIONINFORMATIONA RPC structure.
+type PartitionInformationA struct {
+	PhysicalMedia     *GUID              `idl:"name:PhysicalMedia" json:"physical_media"`
+	LogicalMedia      *GUID              `idl:"name:LogicalMedia" json:"logical_media"`
 	State             uint32             `idl:"name:State" json:"state"`
 	Side              uint16             `idl:"name:Side" json:"side"`
-	OmidLabelIDLength uint32             `idl:"name:dwOmidLabelIdLength" json:"omid_label_id_length"`
-	OmidLabelID       []byte             `idl:"name:OmidLabelId" json:"omid_label_id"`
-	OmidLabelType     []byte             `idl:"name:szOmidLabelType" json:"omid_label_type"`
-	OmidLabelInfo     []byte             `idl:"name:szOmidLabelInfo" json:"omid_label_info"`
+	OMIDLabelIDLength uint32             `idl:"name:dwOmidLabelIdLength" json:"omid_label_id_length"`
+	OMIDLabelID       []byte             `idl:"name:OmidLabelId" json:"omid_label_id"`
+	OMIDLabelType     []byte             `idl:"name:szOmidLabelType" json:"omid_label_type"`
+	OMIDLabelInfo     []byte             `idl:"name:szOmidLabelInfo" json:"omid_label_info"`
 	MountCount        uint32             `idl:"name:dwMountCount" json:"mount_count"`
 	AllocateCount     uint32             `idl:"name:dwAllocateCount" json:"allocate_count"`
 	Capacity          *dtyp.LargeInteger `idl:"name:Capacity" json:"capacity"`
 }
 
-func (o *NTMSPartitioninformationa) xxx_PreparePayload(ctx context.Context) error {
+func (o *PartitionInformationA) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -3457,7 +3457,7 @@ func (o *NTMSPartitioninformationa) xxx_PreparePayload(ctx context.Context) erro
 	}
 	return nil
 }
-func (o *NTMSPartitioninformationa) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PartitionInformationA) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -3469,7 +3469,7 @@ func (o *NTMSPartitioninformationa) MarshalNDR(ctx context.Context, w ndr.Writer
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -3478,7 +3478,7 @@ func (o *NTMSPartitioninformationa) MarshalNDR(ctx context.Context, w ndr.Writer
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -3488,47 +3488,47 @@ func (o *NTMSPartitioninformationa) MarshalNDR(ctx context.Context, w ndr.Writer
 	if err := w.WriteData(o.Side); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.OmidLabelIDLength); err != nil {
+	if err := w.WriteData(o.OMIDLabelIDLength); err != nil {
 		return err
 	}
-	for i1 := range o.OmidLabelID {
+	for i1 := range o.OMIDLabelID {
 		i1 := i1
 		if uint64(i1) >= 255 {
 			break
 		}
-		if err := w.WriteData(o.OmidLabelID[i1]); err != nil {
+		if err := w.WriteData(o.OMIDLabelID[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.OmidLabelID); uint64(i1) < 255; i1++ {
+	for i1 := len(o.OMIDLabelID); uint64(i1) < 255; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
 	}
-	for i1 := range o.OmidLabelType {
+	for i1 := range o.OMIDLabelType {
 		i1 := i1
 		if uint64(i1) >= 64 {
 			break
 		}
-		if err := w.WriteData(o.OmidLabelType[i1]); err != nil {
+		if err := w.WriteData(o.OMIDLabelType[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.OmidLabelType); uint64(i1) < 64; i1++ {
+	for i1 := len(o.OMIDLabelType); uint64(i1) < 64; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
 	}
-	for i1 := range o.OmidLabelInfo {
+	for i1 := range o.OMIDLabelInfo {
 		i1 := i1
 		if uint64(i1) >= 256 {
 			break
 		}
-		if err := w.WriteData(o.OmidLabelInfo[i1]); err != nil {
+		if err := w.WriteData(o.OMIDLabelInfo[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.OmidLabelInfo); uint64(i1) < 256; i1++ {
+	for i1 := len(o.OMIDLabelInfo); uint64(i1) < 256; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
@@ -3550,18 +3550,18 @@ func (o *NTMSPartitioninformationa) MarshalNDR(ctx context.Context, w ndr.Writer
 	}
 	return nil
 }
-func (o *NTMSPartitioninformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *PartitionInformationA) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
 	if o.PhysicalMedia == nil {
-		o.PhysicalMedia = &NTMSGUID{}
+		o.PhysicalMedia = &GUID{}
 	}
 	if err := o.PhysicalMedia.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.LogicalMedia == nil {
-		o.LogicalMedia = &NTMSGUID{}
+		o.LogicalMedia = &GUID{}
 	}
 	if err := o.LogicalMedia.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -3572,27 +3572,27 @@ func (o *NTMSPartitioninformationa) UnmarshalNDR(ctx context.Context, w ndr.Read
 	if err := w.ReadData(&o.Side); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.OmidLabelIDLength); err != nil {
+	if err := w.ReadData(&o.OMIDLabelIDLength); err != nil {
 		return err
 	}
-	o.OmidLabelID = make([]byte, 255)
-	for i1 := range o.OmidLabelID {
+	o.OMIDLabelID = make([]byte, 255)
+	for i1 := range o.OMIDLabelID {
 		i1 := i1
-		if err := w.ReadData(&o.OmidLabelID[i1]); err != nil {
+		if err := w.ReadData(&o.OMIDLabelID[i1]); err != nil {
 			return err
 		}
 	}
-	o.OmidLabelType = make([]byte, 64)
-	for i1 := range o.OmidLabelType {
+	o.OMIDLabelType = make([]byte, 64)
+	for i1 := range o.OMIDLabelType {
 		i1 := i1
-		if err := w.ReadData(&o.OmidLabelType[i1]); err != nil {
+		if err := w.ReadData(&o.OMIDLabelType[i1]); err != nil {
 			return err
 		}
 	}
-	o.OmidLabelInfo = make([]byte, 256)
-	for i1 := range o.OmidLabelInfo {
+	o.OMIDLabelInfo = make([]byte, 256)
+	for i1 := range o.OMIDLabelInfo {
 		i1 := i1
-		if err := w.ReadData(&o.OmidLabelInfo[i1]); err != nil {
+		if err := w.ReadData(&o.OMIDLabelInfo[i1]); err != nil {
 			return err
 		}
 	}
@@ -3611,22 +3611,22 @@ func (o *NTMSPartitioninformationa) UnmarshalNDR(ctx context.Context, w ndr.Read
 	return nil
 }
 
-// NTMSPartitioninformationw structure represents NTMS_PARTITIONINFORMATIONW RPC structure.
-type NTMSPartitioninformationw struct {
-	PhysicalMedia     *NTMSGUID          `idl:"name:PhysicalMedia" json:"physical_media"`
-	LogicalMedia      *NTMSGUID          `idl:"name:LogicalMedia" json:"logical_media"`
+// PartitionInformationW structure represents NTMS_PARTITIONINFORMATIONW RPC structure.
+type PartitionInformationW struct {
+	PhysicalMedia     *GUID              `idl:"name:PhysicalMedia" json:"physical_media"`
+	LogicalMedia      *GUID              `idl:"name:LogicalMedia" json:"logical_media"`
 	State             uint32             `idl:"name:State" json:"state"`
 	Side              uint16             `idl:"name:Side" json:"side"`
-	OmidLabelIDLength uint32             `idl:"name:dwOmidLabelIdLength" json:"omid_label_id_length"`
-	OmidLabelID       []byte             `idl:"name:OmidLabelId" json:"omid_label_id"`
-	OmidLabelType     string             `idl:"name:szOmidLabelType;string" json:"omid_label_type"`
-	OmidLabelInfo     string             `idl:"name:szOmidLabelInfo;string" json:"omid_label_info"`
+	OMIDLabelIDLength uint32             `idl:"name:dwOmidLabelIdLength" json:"omid_label_id_length"`
+	OMIDLabelID       []byte             `idl:"name:OmidLabelId" json:"omid_label_id"`
+	OMIDLabelType     string             `idl:"name:szOmidLabelType;string" json:"omid_label_type"`
+	OMIDLabelInfo     string             `idl:"name:szOmidLabelInfo;string" json:"omid_label_info"`
 	MountCount        uint32             `idl:"name:dwMountCount" json:"mount_count"`
 	AllocateCount     uint32             `idl:"name:dwAllocateCount" json:"allocate_count"`
 	Capacity          *dtyp.LargeInteger `idl:"name:Capacity" json:"capacity"`
 }
 
-func (o *NTMSPartitioninformationw) xxx_PreparePayload(ctx context.Context) error {
+func (o *PartitionInformationW) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -3635,7 +3635,7 @@ func (o *NTMSPartitioninformationw) xxx_PreparePayload(ctx context.Context) erro
 	}
 	return nil
 }
-func (o *NTMSPartitioninformationw) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PartitionInformationW) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -3647,7 +3647,7 @@ func (o *NTMSPartitioninformationw) MarshalNDR(ctx context.Context, w ndr.Writer
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -3656,7 +3656,7 @@ func (o *NTMSPartitioninformationw) MarshalNDR(ctx context.Context, w ndr.Writer
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -3666,61 +3666,61 @@ func (o *NTMSPartitioninformationw) MarshalNDR(ctx context.Context, w ndr.Writer
 	if err := w.WriteData(o.Side); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.OmidLabelIDLength); err != nil {
+	if err := w.WriteData(o.OMIDLabelIDLength); err != nil {
 		return err
 	}
-	for i1 := range o.OmidLabelID {
+	for i1 := range o.OMIDLabelID {
 		i1 := i1
 		if uint64(i1) >= 255 {
 			break
 		}
-		if err := w.WriteData(o.OmidLabelID[i1]); err != nil {
+		if err := w.WriteData(o.OMIDLabelID[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.OmidLabelID); uint64(i1) < 255; i1++ {
+	for i1 := len(o.OMIDLabelID); uint64(i1) < 255; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
 	}
-	_OmidLabelType_buf := utf16.Encode([]rune(o.OmidLabelType))
-	if uint64(len(_OmidLabelType_buf)) > 64-1 {
-		_OmidLabelType_buf = _OmidLabelType_buf[:64-1]
+	_OMIDLabelType_buf := utf16.Encode([]rune(o.OMIDLabelType))
+	if uint64(len(_OMIDLabelType_buf)) > 64-1 {
+		_OMIDLabelType_buf = _OMIDLabelType_buf[:64-1]
 	}
-	if o.OmidLabelType != ndr.ZeroString {
-		_OmidLabelType_buf = append(_OmidLabelType_buf, uint16(0))
+	if o.OMIDLabelType != ndr.ZeroString {
+		_OMIDLabelType_buf = append(_OMIDLabelType_buf, uint16(0))
 	}
-	for i1 := range _OmidLabelType_buf {
+	for i1 := range _OMIDLabelType_buf {
 		i1 := i1
 		if uint64(i1) >= 64 {
 			break
 		}
-		if err := w.WriteData(_OmidLabelType_buf[i1]); err != nil {
+		if err := w.WriteData(_OMIDLabelType_buf[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(_OmidLabelType_buf); uint64(i1) < 64; i1++ {
+	for i1 := len(_OMIDLabelType_buf); uint64(i1) < 64; i1++ {
 		if err := w.WriteData(uint16(0)); err != nil {
 			return err
 		}
 	}
-	_OmidLabelInfo_buf := utf16.Encode([]rune(o.OmidLabelInfo))
-	if uint64(len(_OmidLabelInfo_buf)) > 256-1 {
-		_OmidLabelInfo_buf = _OmidLabelInfo_buf[:256-1]
+	_OMIDLabelInfo_buf := utf16.Encode([]rune(o.OMIDLabelInfo))
+	if uint64(len(_OMIDLabelInfo_buf)) > 256-1 {
+		_OMIDLabelInfo_buf = _OMIDLabelInfo_buf[:256-1]
 	}
-	if o.OmidLabelInfo != ndr.ZeroString {
-		_OmidLabelInfo_buf = append(_OmidLabelInfo_buf, uint16(0))
+	if o.OMIDLabelInfo != ndr.ZeroString {
+		_OMIDLabelInfo_buf = append(_OMIDLabelInfo_buf, uint16(0))
 	}
-	for i1 := range _OmidLabelInfo_buf {
+	for i1 := range _OMIDLabelInfo_buf {
 		i1 := i1
 		if uint64(i1) >= 256 {
 			break
 		}
-		if err := w.WriteData(_OmidLabelInfo_buf[i1]); err != nil {
+		if err := w.WriteData(_OMIDLabelInfo_buf[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(_OmidLabelInfo_buf); uint64(i1) < 256; i1++ {
+	for i1 := len(_OMIDLabelInfo_buf); uint64(i1) < 256; i1++ {
 		if err := w.WriteData(uint16(0)); err != nil {
 			return err
 		}
@@ -3742,18 +3742,18 @@ func (o *NTMSPartitioninformationw) MarshalNDR(ctx context.Context, w ndr.Writer
 	}
 	return nil
 }
-func (o *NTMSPartitioninformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *PartitionInformationW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
 	if o.PhysicalMedia == nil {
-		o.PhysicalMedia = &NTMSGUID{}
+		o.PhysicalMedia = &GUID{}
 	}
 	if err := o.PhysicalMedia.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.LogicalMedia == nil {
-		o.LogicalMedia = &NTMSGUID{}
+		o.LogicalMedia = &GUID{}
 	}
 	if err := o.LogicalMedia.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -3764,34 +3764,34 @@ func (o *NTMSPartitioninformationw) UnmarshalNDR(ctx context.Context, w ndr.Read
 	if err := w.ReadData(&o.Side); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.OmidLabelIDLength); err != nil {
+	if err := w.ReadData(&o.OMIDLabelIDLength); err != nil {
 		return err
 	}
-	o.OmidLabelID = make([]byte, 255)
-	for i1 := range o.OmidLabelID {
+	o.OMIDLabelID = make([]byte, 255)
+	for i1 := range o.OMIDLabelID {
 		i1 := i1
-		if err := w.ReadData(&o.OmidLabelID[i1]); err != nil {
+		if err := w.ReadData(&o.OMIDLabelID[i1]); err != nil {
 			return err
 		}
 	}
-	var _OmidLabelType_buf []uint16
-	_OmidLabelType_buf = make([]uint16, 64)
-	for i1 := range _OmidLabelType_buf {
+	var _OMIDLabelType_buf []uint16
+	_OMIDLabelType_buf = make([]uint16, 64)
+	for i1 := range _OMIDLabelType_buf {
 		i1 := i1
-		if err := w.ReadData(&_OmidLabelType_buf[i1]); err != nil {
+		if err := w.ReadData(&_OMIDLabelType_buf[i1]); err != nil {
 			return err
 		}
 	}
-	o.OmidLabelType = strings.TrimRight(string(utf16.Decode(_OmidLabelType_buf)), ndr.ZeroString)
-	var _OmidLabelInfo_buf []uint16
-	_OmidLabelInfo_buf = make([]uint16, 256)
-	for i1 := range _OmidLabelInfo_buf {
+	o.OMIDLabelType = strings.TrimRight(string(utf16.Decode(_OMIDLabelType_buf)), ndr.ZeroString)
+	var _OMIDLabelInfo_buf []uint16
+	_OMIDLabelInfo_buf = make([]uint16, 256)
+	for i1 := range _OMIDLabelInfo_buf {
 		i1 := i1
-		if err := w.ReadData(&_OmidLabelInfo_buf[i1]); err != nil {
+		if err := w.ReadData(&_OMIDLabelInfo_buf[i1]); err != nil {
 			return err
 		}
 	}
-	o.OmidLabelInfo = strings.TrimRight(string(utf16.Decode(_OmidLabelInfo_buf)), ndr.ZeroString)
+	o.OMIDLabelInfo = strings.TrimRight(string(utf16.Decode(_OMIDLabelInfo_buf)), ndr.ZeroString)
 	if err := w.ReadData(&o.MountCount); err != nil {
 		return err
 	}
@@ -3807,25 +3807,25 @@ func (o *NTMSPartitioninformationw) UnmarshalNDR(ctx context.Context, w ndr.Read
 	return nil
 }
 
-// NTMSPmidinformationa structure represents NTMS_PMIDINFORMATIONA RPC structure.
-type NTMSPmidinformationa struct {
-	CurrentLibrary     *NTMSGUID `idl:"name:CurrentLibrary" json:"current_library"`
-	MediaPool          *NTMSGUID `idl:"name:MediaPool" json:"media_pool"`
-	Location           *NTMSGUID `idl:"name:Location" json:"location"`
-	LocationType       uint32    `idl:"name:LocationType" json:"location_type"`
-	MediaType          *NTMSGUID `idl:"name:MediaType" json:"media_type"`
-	HomeSlot           *NTMSGUID `idl:"name:HomeSlot" json:"home_slot"`
-	BarCode            []byte    `idl:"name:szBarCode" json:"bar_code"`
-	BarCodeState       uint32    `idl:"name:BarCodeState" json:"bar_code_state"`
-	SequenceNumber     []byte    `idl:"name:szSequenceNumber" json:"sequence_number"`
-	MediaState         uint32    `idl:"name:MediaState" json:"media_state"`
-	NumberOfPartitions uint32    `idl:"name:dwNumberOfPartitions" json:"number_of_partitions"`
-	MediaTypeCode      uint32    `idl:"name:dwMediaTypeCode" json:"media_type_code"`
-	DensityCode        uint32    `idl:"name:dwDensityCode" json:"density_code"`
-	MountedPartition   *NTMSGUID `idl:"name:MountedPartition" json:"mounted_partition"`
+// PMIDInformationA structure represents NTMS_PMIDINFORMATIONA RPC structure.
+type PMIDInformationA struct {
+	CurrentLibrary     *GUID  `idl:"name:CurrentLibrary" json:"current_library"`
+	MediaPool          *GUID  `idl:"name:MediaPool" json:"media_pool"`
+	Location           *GUID  `idl:"name:Location" json:"location"`
+	LocationType       uint32 `idl:"name:LocationType" json:"location_type"`
+	MediaType          *GUID  `idl:"name:MediaType" json:"media_type"`
+	HomeSlot           *GUID  `idl:"name:HomeSlot" json:"home_slot"`
+	BarCode            []byte `idl:"name:szBarCode" json:"bar_code"`
+	BarCodeState       uint32 `idl:"name:BarCodeState" json:"bar_code_state"`
+	SequenceNumber     []byte `idl:"name:szSequenceNumber" json:"sequence_number"`
+	MediaState         uint32 `idl:"name:MediaState" json:"media_state"`
+	NumberOfPartitions uint32 `idl:"name:dwNumberOfPartitions" json:"number_of_partitions"`
+	MediaTypeCode      uint32 `idl:"name:dwMediaTypeCode" json:"media_type_code"`
+	DensityCode        uint32 `idl:"name:dwDensityCode" json:"density_code"`
+	MountedPartition   *GUID  `idl:"name:MountedPartition" json:"mounted_partition"`
 }
 
-func (o *NTMSPmidinformationa) xxx_PreparePayload(ctx context.Context) error {
+func (o *PMIDInformationA) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -3834,7 +3834,7 @@ func (o *NTMSPmidinformationa) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *NTMSPmidinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PMIDInformationA) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -3846,7 +3846,7 @@ func (o *NTMSPmidinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) err
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -3855,7 +3855,7 @@ func (o *NTMSPmidinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) err
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -3864,7 +3864,7 @@ func (o *NTMSPmidinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) err
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -3876,7 +3876,7 @@ func (o *NTMSPmidinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) err
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -3885,7 +3885,7 @@ func (o *NTMSPmidinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) err
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -3937,30 +3937,30 @@ func (o *NTMSPmidinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) err
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSPmidinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *PMIDInformationA) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if o.CurrentLibrary == nil {
-		o.CurrentLibrary = &NTMSGUID{}
+		o.CurrentLibrary = &GUID{}
 	}
 	if err := o.CurrentLibrary.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.MediaPool == nil {
-		o.MediaPool = &NTMSGUID{}
+		o.MediaPool = &GUID{}
 	}
 	if err := o.MediaPool.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.Location == nil {
-		o.Location = &NTMSGUID{}
+		o.Location = &GUID{}
 	}
 	if err := o.Location.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -3969,13 +3969,13 @@ func (o *NTMSPmidinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		return err
 	}
 	if o.MediaType == nil {
-		o.MediaType = &NTMSGUID{}
+		o.MediaType = &GUID{}
 	}
 	if err := o.MediaType.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.HomeSlot == nil {
-		o.HomeSlot = &NTMSGUID{}
+		o.HomeSlot = &GUID{}
 	}
 	if err := o.HomeSlot.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -4010,7 +4010,7 @@ func (o *NTMSPmidinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		return err
 	}
 	if o.MountedPartition == nil {
-		o.MountedPartition = &NTMSGUID{}
+		o.MountedPartition = &GUID{}
 	}
 	if err := o.MountedPartition.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -4018,25 +4018,25 @@ func (o *NTMSPmidinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 	return nil
 }
 
-// NTMSPmidinformationw structure represents NTMS_PMIDINFORMATIONW RPC structure.
-type NTMSPmidinformationw struct {
-	CurrentLibrary     *NTMSGUID `idl:"name:CurrentLibrary" json:"current_library"`
-	MediaPool          *NTMSGUID `idl:"name:MediaPool" json:"media_pool"`
-	Location           *NTMSGUID `idl:"name:Location" json:"location"`
-	LocationType       uint32    `idl:"name:LocationType" json:"location_type"`
-	MediaType          *NTMSGUID `idl:"name:MediaType" json:"media_type"`
-	HomeSlot           *NTMSGUID `idl:"name:HomeSlot" json:"home_slot"`
-	BarCode            string    `idl:"name:szBarCode;string" json:"bar_code"`
-	BarCodeState       uint32    `idl:"name:BarCodeState" json:"bar_code_state"`
-	SequenceNumber     string    `idl:"name:szSequenceNumber;string" json:"sequence_number"`
-	MediaState         uint32    `idl:"name:MediaState" json:"media_state"`
-	NumberOfPartitions uint32    `idl:"name:dwNumberOfPartitions" json:"number_of_partitions"`
-	MediaTypeCode      uint32    `idl:"name:dwMediaTypeCode" json:"media_type_code"`
-	DensityCode        uint32    `idl:"name:dwDensityCode" json:"density_code"`
-	MountedPartition   *NTMSGUID `idl:"name:MountedPartition" json:"mounted_partition"`
+// PMIDInformationW structure represents NTMS_PMIDINFORMATIONW RPC structure.
+type PMIDInformationW struct {
+	CurrentLibrary     *GUID  `idl:"name:CurrentLibrary" json:"current_library"`
+	MediaPool          *GUID  `idl:"name:MediaPool" json:"media_pool"`
+	Location           *GUID  `idl:"name:Location" json:"location"`
+	LocationType       uint32 `idl:"name:LocationType" json:"location_type"`
+	MediaType          *GUID  `idl:"name:MediaType" json:"media_type"`
+	HomeSlot           *GUID  `idl:"name:HomeSlot" json:"home_slot"`
+	BarCode            string `idl:"name:szBarCode;string" json:"bar_code"`
+	BarCodeState       uint32 `idl:"name:BarCodeState" json:"bar_code_state"`
+	SequenceNumber     string `idl:"name:szSequenceNumber;string" json:"sequence_number"`
+	MediaState         uint32 `idl:"name:MediaState" json:"media_state"`
+	NumberOfPartitions uint32 `idl:"name:dwNumberOfPartitions" json:"number_of_partitions"`
+	MediaTypeCode      uint32 `idl:"name:dwMediaTypeCode" json:"media_type_code"`
+	DensityCode        uint32 `idl:"name:dwDensityCode" json:"density_code"`
+	MountedPartition   *GUID  `idl:"name:MountedPartition" json:"mounted_partition"`
 }
 
-func (o *NTMSPmidinformationw) xxx_PreparePayload(ctx context.Context) error {
+func (o *PMIDInformationW) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -4045,7 +4045,7 @@ func (o *NTMSPmidinformationw) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *NTMSPmidinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PMIDInformationW) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -4057,7 +4057,7 @@ func (o *NTMSPmidinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) err
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -4066,7 +4066,7 @@ func (o *NTMSPmidinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) err
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -4075,7 +4075,7 @@ func (o *NTMSPmidinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) err
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -4087,7 +4087,7 @@ func (o *NTMSPmidinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) err
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -4096,7 +4096,7 @@ func (o *NTMSPmidinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) err
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -4162,7 +4162,7 @@ func (o *NTMSPmidinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) err
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -4171,24 +4171,24 @@ func (o *NTMSPmidinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	}
 	return nil
 }
-func (o *NTMSPmidinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *PMIDInformationW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
 	if o.CurrentLibrary == nil {
-		o.CurrentLibrary = &NTMSGUID{}
+		o.CurrentLibrary = &GUID{}
 	}
 	if err := o.CurrentLibrary.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.MediaPool == nil {
-		o.MediaPool = &NTMSGUID{}
+		o.MediaPool = &GUID{}
 	}
 	if err := o.MediaPool.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.Location == nil {
-		o.Location = &NTMSGUID{}
+		o.Location = &GUID{}
 	}
 	if err := o.Location.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -4197,13 +4197,13 @@ func (o *NTMSPmidinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		return err
 	}
 	if o.MediaType == nil {
-		o.MediaType = &NTMSGUID{}
+		o.MediaType = &GUID{}
 	}
 	if err := o.MediaType.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.HomeSlot == nil {
-		o.HomeSlot = &NTMSGUID{}
+		o.HomeSlot = &GUID{}
 	}
 	if err := o.HomeSlot.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -4242,7 +4242,7 @@ func (o *NTMSPmidinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		return err
 	}
 	if o.MountedPartition == nil {
-		o.MountedPartition = &NTMSGUID{}
+		o.MountedPartition = &GUID{}
 	}
 	if err := o.MountedPartition.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -4253,8 +4253,8 @@ func (o *NTMSPmidinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 	return nil
 }
 
-// RsmMessage structure represents RSM_MESSAGE RPC structure.
-type RsmMessage struct {
+// RSMMessage structure represents RSM_MESSAGE RPC structure.
+type RSMMessage struct {
 	LpguidOperation *dtyp.GUID `idl:"name:lpguidOperation;pointer:unique" json:"lpguid_operation"`
 	NTMSType        uint32     `idl:"name:dwNtmsType" json:"ntms_type"`
 	State           uint32     `idl:"name:dwState" json:"state"`
@@ -4268,7 +4268,7 @@ type RsmMessage struct {
 	Message         string     `idl:"name:lpszMessage;string" json:"message"`
 }
 
-func (o *RsmMessage) xxx_PreparePayload(ctx context.Context) error {
+func (o *RSMMessage) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -4277,7 +4277,7 @@ func (o *RsmMessage) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *RsmMessage) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RSMMessage) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -4397,7 +4397,7 @@ func (o *RsmMessage) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *RsmMessage) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *RSMMessage) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -4482,21 +4482,21 @@ func (o *RsmMessage) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// NTMSObjectinformationa structure represents NTMS_OBJECTINFORMATIONA RPC structure.
-type NTMSObjectinformationa struct {
-	Size             uint32                       `idl:"name:dwSize" json:"size"`
-	Type             uint32                       `idl:"name:dwType" json:"type"`
-	Created          *dtyp.SystemTime             `idl:"name:Created" json:"created"`
-	Modified         *dtyp.SystemTime             `idl:"name:Modified" json:"modified"`
-	ObjectGUID       *NTMSGUID                    `idl:"name:ObjectGuid" json:"object_guid"`
-	Enabled          bool                         `idl:"name:Enabled" json:"enabled"`
-	OperationalState uint32                       `idl:"name:dwOperationalState" json:"operational_state"`
-	Name             []byte                       `idl:"name:szName" json:"name"`
-	Description      []byte                       `idl:"name:szDescription" json:"description"`
-	Info             *NTMSObjectinformationa_Info `idl:"name:Info;switch_is:dwType" json:"info"`
+// ObjectInformationA structure represents NTMS_OBJECTINFORMATIONA RPC structure.
+type ObjectInformationA struct {
+	Size             uint32                   `idl:"name:dwSize" json:"size"`
+	Type             uint32                   `idl:"name:dwType" json:"type"`
+	Created          *dtyp.SystemTime         `idl:"name:Created" json:"created"`
+	Modified         *dtyp.SystemTime         `idl:"name:Modified" json:"modified"`
+	ObjectGUID       *GUID                    `idl:"name:ObjectGuid" json:"object_guid"`
+	Enabled          bool                     `idl:"name:Enabled" json:"enabled"`
+	OperationalState uint32                   `idl:"name:dwOperationalState" json:"operational_state"`
+	Name             []byte                   `idl:"name:szName" json:"name"`
+	Description      []byte                   `idl:"name:szDescription" json:"description"`
+	Info             *ObjectInformationA_Info `idl:"name:Info;switch_is:dwType" json:"info"`
 }
 
-func (o *NTMSObjectinformationa) xxx_PreparePayload(ctx context.Context) error {
+func (o *ObjectInformationA) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -4505,7 +4505,7 @@ func (o *NTMSObjectinformationa) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *NTMSObjectinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationA) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -4541,7 +4541,7 @@ func (o *NTMSObjectinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) e
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -4591,13 +4591,13 @@ func (o *NTMSObjectinformationa) MarshalNDR(ctx context.Context, w ndr.Writer) e
 			return err
 		}
 	} else {
-		if err := (&NTMSObjectinformationa_Info{}).MarshalUnionNDR(ctx, w, _swInfo); err != nil {
+		if err := (&ObjectInformationA_Info{}).MarshalUnionNDR(ctx, w, _swInfo); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationA) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
@@ -4620,7 +4620,7 @@ func (o *NTMSObjectinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		return err
 	}
 	if o.ObjectGUID == nil {
-		o.ObjectGUID = &NTMSGUID{}
+		o.ObjectGUID = &GUID{}
 	}
 	if err := o.ObjectGUID.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -4648,7 +4648,7 @@ func (o *NTMSObjectinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		}
 	}
 	if o.Info == nil {
-		o.Info = &NTMSObjectinformationa_Info{}
+		o.Info = &ObjectInformationA_Info{}
 	}
 	_swInfo := uint32(o.Type)
 	if err := o.Info.UnmarshalUnionNDR(ctx, w, _swInfo); err != nil {
@@ -4657,95 +4657,95 @@ func (o *NTMSObjectinformationa) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 	return nil
 }
 
-// NTMSObjectinformationa_Info structure represents NTMS_OBJECTINFORMATIONA union anonymous member.
-type NTMSObjectinformationa_Info struct {
+// ObjectInformationA_Info structure represents NTMS_OBJECTINFORMATIONA union anonymous member.
+type ObjectInformationA_Info struct {
 	// Types that are assignable to Value
 	//
-	// *NTMSObjectinformationa_Info_Drive
-	// *NTMSObjectinformationa_Info_DriveType
-	// *NTMSObjectinformationa_Info_Library
-	// *NTMSObjectinformationa_Info_Changer
-	// *NTMSObjectinformationa_Info_ChangerType
-	// *NTMSObjectinformationa_Info_StorageSlot
-	// *NTMSObjectinformationa_Info_IeDoor
-	// *NTMSObjectinformationa_Info_IePort
-	// *NTMSObjectinformationa_Info_PhysicalMedia
-	// *NTMSObjectinformationa_Info_LogicalMedia
-	// *NTMSObjectinformationa_Info_Partition
-	// *NTMSObjectinformationa_Info_MediaPool
-	// *NTMSObjectinformationa_Info_MediaType
-	// *NTMSObjectinformationa_Info_LibRequest
-	// *NTMSObjectinformationa_Info_OperationRequest
-	// *NTMSObjectinformationa_Info_Computer
-	Value is_NTMSObjectinformationa_Info `json:"value"`
+	// *ObjectInformationA_Drive
+	// *ObjectInformationA_DriveType
+	// *ObjectInformationA_Library
+	// *ObjectInformationA_Changer
+	// *ObjectInformationA_ChangerType
+	// *ObjectInformationA_StorageSlot
+	// *ObjectInformationA_IEDoor
+	// *ObjectInformationA_IEPort
+	// *ObjectInformationA_PhysicalMedia
+	// *ObjectInformationA_LogicalMedia
+	// *ObjectInformationA_Partition
+	// *ObjectInformationA_MediaPool
+	// *ObjectInformationA_MediaType
+	// *ObjectInformationA_LibRequest
+	// *ObjectInformationA_OperationRequest
+	// *ObjectInformationA_Computer
+	Value is_ObjectInformationA_Info `json:"value"`
 }
 
-func (o *NTMSObjectinformationa_Info) GetValue() any {
+func (o *ObjectInformationA_Info) GetValue() any {
 	if o == nil {
 		return nil
 	}
 	switch value := (interface{})(o.Value).(type) {
-	case *NTMSObjectinformationa_Info_Drive:
+	case *ObjectInformationA_Drive:
 		if value != nil {
 			return value.Drive
 		}
-	case *NTMSObjectinformationa_Info_DriveType:
+	case *ObjectInformationA_DriveType:
 		if value != nil {
 			return value.DriveType
 		}
-	case *NTMSObjectinformationa_Info_Library:
+	case *ObjectInformationA_Library:
 		if value != nil {
 			return value.Library
 		}
-	case *NTMSObjectinformationa_Info_Changer:
+	case *ObjectInformationA_Changer:
 		if value != nil {
 			return value.Changer
 		}
-	case *NTMSObjectinformationa_Info_ChangerType:
+	case *ObjectInformationA_ChangerType:
 		if value != nil {
 			return value.ChangerType
 		}
-	case *NTMSObjectinformationa_Info_StorageSlot:
+	case *ObjectInformationA_StorageSlot:
 		if value != nil {
 			return value.StorageSlot
 		}
-	case *NTMSObjectinformationa_Info_IeDoor:
+	case *ObjectInformationA_IEDoor:
 		if value != nil {
-			return value.IeDoor
+			return value.IEDoor
 		}
-	case *NTMSObjectinformationa_Info_IePort:
+	case *ObjectInformationA_IEPort:
 		if value != nil {
-			return value.IePort
+			return value.IEPort
 		}
-	case *NTMSObjectinformationa_Info_PhysicalMedia:
+	case *ObjectInformationA_PhysicalMedia:
 		if value != nil {
 			return value.PhysicalMedia
 		}
-	case *NTMSObjectinformationa_Info_LogicalMedia:
+	case *ObjectInformationA_LogicalMedia:
 		if value != nil {
 			return value.LogicalMedia
 		}
-	case *NTMSObjectinformationa_Info_Partition:
+	case *ObjectInformationA_Partition:
 		if value != nil {
 			return value.Partition
 		}
-	case *NTMSObjectinformationa_Info_MediaPool:
+	case *ObjectInformationA_MediaPool:
 		if value != nil {
 			return value.MediaPool
 		}
-	case *NTMSObjectinformationa_Info_MediaType:
+	case *ObjectInformationA_MediaType:
 		if value != nil {
 			return value.MediaType
 		}
-	case *NTMSObjectinformationa_Info_LibRequest:
+	case *ObjectInformationA_LibRequest:
 		if value != nil {
 			return value.LibRequest
 		}
-	case *NTMSObjectinformationa_Info_OperationRequest:
+	case *ObjectInformationA_OperationRequest:
 		if value != nil {
 			return value.OperationRequest
 		}
-	case *NTMSObjectinformationa_Info_Computer:
+	case *ObjectInformationA_Computer:
 		if value != nil {
 			return value.Computer
 		}
@@ -4753,54 +4753,54 @@ func (o *NTMSObjectinformationa_Info) GetValue() any {
 	return nil
 }
 
-type is_NTMSObjectinformationa_Info interface {
+type is_ObjectInformationA_Info interface {
 	ndr.Marshaler
 	ndr.Unmarshaler
-	is_NTMSObjectinformationa_Info()
+	is_ObjectInformationA_Info()
 }
 
-func (o *NTMSObjectinformationa_Info) NDRSwitchValue(sw uint32) uint32 {
+func (o *ObjectInformationA_Info) NDRSwitchValue(sw uint32) uint32 {
 	if o == nil {
 		return uint32(0)
 	}
 	switch (interface{})(o.Value).(type) {
-	case *NTMSObjectinformationa_Info_Drive:
+	case *ObjectInformationA_Drive:
 		return uint32(5)
-	case *NTMSObjectinformationa_Info_DriveType:
+	case *ObjectInformationA_DriveType:
 		return uint32(6)
-	case *NTMSObjectinformationa_Info_Library:
+	case *ObjectInformationA_Library:
 		return uint32(9)
-	case *NTMSObjectinformationa_Info_Changer:
+	case *ObjectInformationA_Changer:
 		return uint32(2)
-	case *NTMSObjectinformationa_Info_ChangerType:
+	case *ObjectInformationA_ChangerType:
 		return uint32(3)
-	case *NTMSObjectinformationa_Info_StorageSlot:
+	case *ObjectInformationA_StorageSlot:
 		return uint32(16)
-	case *NTMSObjectinformationa_Info_IeDoor:
+	case *ObjectInformationA_IEDoor:
 		return uint32(7)
-	case *NTMSObjectinformationa_Info_IePort:
+	case *ObjectInformationA_IEPort:
 		return uint32(8)
-	case *NTMSObjectinformationa_Info_PhysicalMedia:
+	case *ObjectInformationA_PhysicalMedia:
 		return uint32(15)
-	case *NTMSObjectinformationa_Info_LogicalMedia:
+	case *ObjectInformationA_LogicalMedia:
 		return uint32(11)
-	case *NTMSObjectinformationa_Info_Partition:
+	case *ObjectInformationA_Partition:
 		return uint32(14)
-	case *NTMSObjectinformationa_Info_MediaPool:
+	case *ObjectInformationA_MediaPool:
 		return uint32(12)
-	case *NTMSObjectinformationa_Info_MediaType:
+	case *ObjectInformationA_MediaType:
 		return uint32(13)
-	case *NTMSObjectinformationa_Info_LibRequest:
+	case *ObjectInformationA_LibRequest:
 		return uint32(10)
-	case *NTMSObjectinformationa_Info_OperationRequest:
+	case *ObjectInformationA_OperationRequest:
 		return uint32(17)
-	case *NTMSObjectinformationa_Info_Computer:
+	case *ObjectInformationA_Computer:
 		return uint32(4)
 	}
 	return uint32(0)
 }
 
-func (o *NTMSObjectinformationa_Info) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+func (o *ObjectInformationA_Info) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
 	if err := w.WriteUnionAlign(8); err != nil {
 		return err
 	}
@@ -4812,178 +4812,178 @@ func (o *NTMSObjectinformationa_Info) MarshalUnionNDR(ctx context.Context, w ndr
 	}
 	switch sw {
 	case uint32(5):
-		_o, _ := o.Value.(*NTMSObjectinformationa_Info_Drive)
+		_o, _ := o.Value.(*ObjectInformationA_Drive)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationa_Info_Drive{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationA_Drive{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(6):
-		_o, _ := o.Value.(*NTMSObjectinformationa_Info_DriveType)
+		_o, _ := o.Value.(*ObjectInformationA_DriveType)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationa_Info_DriveType{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationA_DriveType{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(9):
-		_o, _ := o.Value.(*NTMSObjectinformationa_Info_Library)
+		_o, _ := o.Value.(*ObjectInformationA_Library)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationa_Info_Library{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationA_Library{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(2):
-		_o, _ := o.Value.(*NTMSObjectinformationa_Info_Changer)
+		_o, _ := o.Value.(*ObjectInformationA_Changer)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationa_Info_Changer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationA_Changer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(3):
-		_o, _ := o.Value.(*NTMSObjectinformationa_Info_ChangerType)
+		_o, _ := o.Value.(*ObjectInformationA_ChangerType)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationa_Info_ChangerType{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationA_ChangerType{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(16):
-		_o, _ := o.Value.(*NTMSObjectinformationa_Info_StorageSlot)
+		_o, _ := o.Value.(*ObjectInformationA_StorageSlot)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationa_Info_StorageSlot{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationA_StorageSlot{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(7):
-		_o, _ := o.Value.(*NTMSObjectinformationa_Info_IeDoor)
+		_o, _ := o.Value.(*ObjectInformationA_IEDoor)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationa_Info_IeDoor{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationA_IEDoor{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(8):
-		_o, _ := o.Value.(*NTMSObjectinformationa_Info_IePort)
+		_o, _ := o.Value.(*ObjectInformationA_IEPort)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationa_Info_IePort{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationA_IEPort{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(15):
-		_o, _ := o.Value.(*NTMSObjectinformationa_Info_PhysicalMedia)
+		_o, _ := o.Value.(*ObjectInformationA_PhysicalMedia)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationa_Info_PhysicalMedia{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationA_PhysicalMedia{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(11):
-		_o, _ := o.Value.(*NTMSObjectinformationa_Info_LogicalMedia)
+		_o, _ := o.Value.(*ObjectInformationA_LogicalMedia)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationa_Info_LogicalMedia{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationA_LogicalMedia{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(14):
-		_o, _ := o.Value.(*NTMSObjectinformationa_Info_Partition)
+		_o, _ := o.Value.(*ObjectInformationA_Partition)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationa_Info_Partition{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationA_Partition{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(12):
-		_o, _ := o.Value.(*NTMSObjectinformationa_Info_MediaPool)
+		_o, _ := o.Value.(*ObjectInformationA_MediaPool)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationa_Info_MediaPool{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationA_MediaPool{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(13):
-		_o, _ := o.Value.(*NTMSObjectinformationa_Info_MediaType)
+		_o, _ := o.Value.(*ObjectInformationA_MediaType)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationa_Info_MediaType{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationA_MediaType{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(10):
-		_o, _ := o.Value.(*NTMSObjectinformationa_Info_LibRequest)
+		_o, _ := o.Value.(*ObjectInformationA_LibRequest)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationa_Info_LibRequest{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationA_LibRequest{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(17):
-		_o, _ := o.Value.(*NTMSObjectinformationa_Info_OperationRequest)
+		_o, _ := o.Value.(*ObjectInformationA_OperationRequest)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationa_Info_OperationRequest{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationA_OperationRequest{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(4):
-		_o, _ := o.Value.(*NTMSObjectinformationa_Info_Computer)
+		_o, _ := o.Value.(*ObjectInformationA_Computer)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationa_Info_Computer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationA_Computer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -4993,7 +4993,7 @@ func (o *NTMSObjectinformationa_Info) MarshalUnionNDR(ctx context.Context, w ndr
 	return nil
 }
 
-func (o *NTMSObjectinformationa_Info) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+func (o *ObjectInformationA_Info) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadUnionAlign(8); err != nil {
 		return err
 	}
@@ -5005,82 +5005,82 @@ func (o *NTMSObjectinformationa_Info) UnmarshalUnionNDR(ctx context.Context, w n
 	}
 	switch sw {
 	case uint32(5):
-		o.Value = &NTMSObjectinformationa_Info_Drive{}
+		o.Value = &ObjectInformationA_Drive{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(6):
-		o.Value = &NTMSObjectinformationa_Info_DriveType{}
+		o.Value = &ObjectInformationA_DriveType{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(9):
-		o.Value = &NTMSObjectinformationa_Info_Library{}
+		o.Value = &ObjectInformationA_Library{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(2):
-		o.Value = &NTMSObjectinformationa_Info_Changer{}
+		o.Value = &ObjectInformationA_Changer{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(3):
-		o.Value = &NTMSObjectinformationa_Info_ChangerType{}
+		o.Value = &ObjectInformationA_ChangerType{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(16):
-		o.Value = &NTMSObjectinformationa_Info_StorageSlot{}
+		o.Value = &ObjectInformationA_StorageSlot{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(7):
-		o.Value = &NTMSObjectinformationa_Info_IeDoor{}
+		o.Value = &ObjectInformationA_IEDoor{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(8):
-		o.Value = &NTMSObjectinformationa_Info_IePort{}
+		o.Value = &ObjectInformationA_IEPort{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(15):
-		o.Value = &NTMSObjectinformationa_Info_PhysicalMedia{}
+		o.Value = &ObjectInformationA_PhysicalMedia{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(11):
-		o.Value = &NTMSObjectinformationa_Info_LogicalMedia{}
+		o.Value = &ObjectInformationA_LogicalMedia{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(14):
-		o.Value = &NTMSObjectinformationa_Info_Partition{}
+		o.Value = &ObjectInformationA_Partition{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(12):
-		o.Value = &NTMSObjectinformationa_Info_MediaPool{}
+		o.Value = &ObjectInformationA_MediaPool{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(13):
-		o.Value = &NTMSObjectinformationa_Info_MediaType{}
+		o.Value = &ObjectInformationA_MediaType{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(10):
-		o.Value = &NTMSObjectinformationa_Info_LibRequest{}
+		o.Value = &ObjectInformationA_LibRequest{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(17):
-		o.Value = &NTMSObjectinformationa_Info_OperationRequest{}
+		o.Value = &ObjectInformationA_OperationRequest{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(4):
-		o.Value = &NTMSObjectinformationa_Info_Computer{}
+		o.Value = &ObjectInformationA_Computer{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -5090,30 +5090,30 @@ func (o *NTMSObjectinformationa_Info) UnmarshalUnionNDR(ctx context.Context, w n
 	return nil
 }
 
-// NTMSObjectinformationa_Info_Drive structure represents NTMSObjectinformationa_Info RPC union arm.
+// ObjectInformationA_Drive structure represents ObjectInformationA_Info RPC union arm.
 //
 // It has following labels: 5
-type NTMSObjectinformationa_Info_Drive struct {
-	Drive *NTMSDriveinformationa `idl:"name:Drive" json:"drive"`
+type ObjectInformationA_Drive struct {
+	Drive *DriveInformationA `idl:"name:Drive" json:"drive"`
 }
 
-func (*NTMSObjectinformationa_Info_Drive) is_NTMSObjectinformationa_Info() {}
+func (*ObjectInformationA_Drive) is_ObjectInformationA_Info() {}
 
-func (o *NTMSObjectinformationa_Info_Drive) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationA_Drive) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.Drive != nil {
 		if err := o.Drive.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSDriveinformationa{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&DriveInformationA{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationa_Info_Drive) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationA_Drive) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.Drive == nil {
-		o.Drive = &NTMSDriveinformationa{}
+		o.Drive = &DriveInformationA{}
 	}
 	if err := o.Drive.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5121,30 +5121,30 @@ func (o *NTMSObjectinformationa_Info_Drive) UnmarshalNDR(ctx context.Context, w 
 	return nil
 }
 
-// NTMSObjectinformationa_Info_DriveType structure represents NTMSObjectinformationa_Info RPC union arm.
+// ObjectInformationA_DriveType structure represents ObjectInformationA_Info RPC union arm.
 //
 // It has following labels: 6
-type NTMSObjectinformationa_Info_DriveType struct {
-	DriveType *NTMSDrivetypeinformationa `idl:"name:DriveType" json:"drive_type"`
+type ObjectInformationA_DriveType struct {
+	DriveType *DriveTypeInformationA `idl:"name:DriveType" json:"drive_type"`
 }
 
-func (*NTMSObjectinformationa_Info_DriveType) is_NTMSObjectinformationa_Info() {}
+func (*ObjectInformationA_DriveType) is_ObjectInformationA_Info() {}
 
-func (o *NTMSObjectinformationa_Info_DriveType) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationA_DriveType) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.DriveType != nil {
 		if err := o.DriveType.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSDrivetypeinformationa{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&DriveTypeInformationA{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationa_Info_DriveType) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationA_DriveType) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.DriveType == nil {
-		o.DriveType = &NTMSDrivetypeinformationa{}
+		o.DriveType = &DriveTypeInformationA{}
 	}
 	if err := o.DriveType.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5152,30 +5152,30 @@ func (o *NTMSObjectinformationa_Info_DriveType) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
-// NTMSObjectinformationa_Info_Library structure represents NTMSObjectinformationa_Info RPC union arm.
+// ObjectInformationA_Library structure represents ObjectInformationA_Info RPC union arm.
 //
 // It has following labels: 9
-type NTMSObjectinformationa_Info_Library struct {
-	Library *NTMSLibraryinformation `idl:"name:Library" json:"library"`
+type ObjectInformationA_Library struct {
+	Library *LibraryInformation `idl:"name:Library" json:"library"`
 }
 
-func (*NTMSObjectinformationa_Info_Library) is_NTMSObjectinformationa_Info() {}
+func (*ObjectInformationA_Library) is_ObjectInformationA_Info() {}
 
-func (o *NTMSObjectinformationa_Info_Library) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationA_Library) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.Library != nil {
 		if err := o.Library.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSLibraryinformation{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&LibraryInformation{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationa_Info_Library) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationA_Library) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.Library == nil {
-		o.Library = &NTMSLibraryinformation{}
+		o.Library = &LibraryInformation{}
 	}
 	if err := o.Library.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5183,30 +5183,30 @@ func (o *NTMSObjectinformationa_Info_Library) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
-// NTMSObjectinformationa_Info_Changer structure represents NTMSObjectinformationa_Info RPC union arm.
+// ObjectInformationA_Changer structure represents ObjectInformationA_Info RPC union arm.
 //
 // It has following labels: 2
-type NTMSObjectinformationa_Info_Changer struct {
-	Changer *NTMSChangerinformationa `idl:"name:Changer" json:"changer"`
+type ObjectInformationA_Changer struct {
+	Changer *ChangerInformationA `idl:"name:Changer" json:"changer"`
 }
 
-func (*NTMSObjectinformationa_Info_Changer) is_NTMSObjectinformationa_Info() {}
+func (*ObjectInformationA_Changer) is_ObjectInformationA_Info() {}
 
-func (o *NTMSObjectinformationa_Info_Changer) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationA_Changer) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.Changer != nil {
 		if err := o.Changer.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSChangerinformationa{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ChangerInformationA{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationa_Info_Changer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationA_Changer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.Changer == nil {
-		o.Changer = &NTMSChangerinformationa{}
+		o.Changer = &ChangerInformationA{}
 	}
 	if err := o.Changer.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5214,30 +5214,30 @@ func (o *NTMSObjectinformationa_Info_Changer) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
-// NTMSObjectinformationa_Info_ChangerType structure represents NTMSObjectinformationa_Info RPC union arm.
+// ObjectInformationA_ChangerType structure represents ObjectInformationA_Info RPC union arm.
 //
 // It has following labels: 3
-type NTMSObjectinformationa_Info_ChangerType struct {
-	ChangerType *NTMSChangertypeinformationa `idl:"name:ChangerType" json:"changer_type"`
+type ObjectInformationA_ChangerType struct {
+	ChangerType *ChangerTypeInformationA `idl:"name:ChangerType" json:"changer_type"`
 }
 
-func (*NTMSObjectinformationa_Info_ChangerType) is_NTMSObjectinformationa_Info() {}
+func (*ObjectInformationA_ChangerType) is_ObjectInformationA_Info() {}
 
-func (o *NTMSObjectinformationa_Info_ChangerType) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationA_ChangerType) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.ChangerType != nil {
 		if err := o.ChangerType.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSChangertypeinformationa{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ChangerTypeInformationA{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationa_Info_ChangerType) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationA_ChangerType) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.ChangerType == nil {
-		o.ChangerType = &NTMSChangertypeinformationa{}
+		o.ChangerType = &ChangerTypeInformationA{}
 	}
 	if err := o.ChangerType.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5245,30 +5245,30 @@ func (o *NTMSObjectinformationa_Info_ChangerType) UnmarshalNDR(ctx context.Conte
 	return nil
 }
 
-// NTMSObjectinformationa_Info_StorageSlot structure represents NTMSObjectinformationa_Info RPC union arm.
+// ObjectInformationA_StorageSlot structure represents ObjectInformationA_Info RPC union arm.
 //
 // It has following labels: 16
-type NTMSObjectinformationa_Info_StorageSlot struct {
-	StorageSlot *NTMSStorageslotinformation `idl:"name:StorageSlot" json:"storage_slot"`
+type ObjectInformationA_StorageSlot struct {
+	StorageSlot *StorageSlotInformation `idl:"name:StorageSlot" json:"storage_slot"`
 }
 
-func (*NTMSObjectinformationa_Info_StorageSlot) is_NTMSObjectinformationa_Info() {}
+func (*ObjectInformationA_StorageSlot) is_ObjectInformationA_Info() {}
 
-func (o *NTMSObjectinformationa_Info_StorageSlot) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationA_StorageSlot) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.StorageSlot != nil {
 		if err := o.StorageSlot.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSStorageslotinformation{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&StorageSlotInformation{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationa_Info_StorageSlot) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationA_StorageSlot) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.StorageSlot == nil {
-		o.StorageSlot = &NTMSStorageslotinformation{}
+		o.StorageSlot = &StorageSlotInformation{}
 	}
 	if err := o.StorageSlot.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5276,92 +5276,92 @@ func (o *NTMSObjectinformationa_Info_StorageSlot) UnmarshalNDR(ctx context.Conte
 	return nil
 }
 
-// NTMSObjectinformationa_Info_IeDoor structure represents NTMSObjectinformationa_Info RPC union arm.
+// ObjectInformationA_IEDoor structure represents ObjectInformationA_Info RPC union arm.
 //
 // It has following labels: 7
-type NTMSObjectinformationa_Info_IeDoor struct {
-	IeDoor *NTMSIedoorinformation `idl:"name:IEDoor" json:"ie_door"`
+type ObjectInformationA_IEDoor struct {
+	IEDoor *IEDoorInformation `idl:"name:IEDoor" json:"ie_door"`
 }
 
-func (*NTMSObjectinformationa_Info_IeDoor) is_NTMSObjectinformationa_Info() {}
+func (*ObjectInformationA_IEDoor) is_ObjectInformationA_Info() {}
 
-func (o *NTMSObjectinformationa_Info_IeDoor) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.IeDoor != nil {
-		if err := o.IeDoor.MarshalNDR(ctx, w); err != nil {
+func (o *ObjectInformationA_IEDoor) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.IEDoor != nil {
+		if err := o.IEDoor.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSIedoorinformation{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&IEDoorInformation{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationa_Info_IeDoor) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.IeDoor == nil {
-		o.IeDoor = &NTMSIedoorinformation{}
+func (o *ObjectInformationA_IEDoor) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.IEDoor == nil {
+		o.IEDoor = &IEDoorInformation{}
 	}
-	if err := o.IeDoor.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.IEDoor.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// NTMSObjectinformationa_Info_IePort structure represents NTMSObjectinformationa_Info RPC union arm.
+// ObjectInformationA_IEPort structure represents ObjectInformationA_Info RPC union arm.
 //
 // It has following labels: 8
-type NTMSObjectinformationa_Info_IePort struct {
-	IePort *NTMSIeportinformation `idl:"name:IEPort" json:"ie_port"`
+type ObjectInformationA_IEPort struct {
+	IEPort *IEPortInformation `idl:"name:IEPort" json:"ie_port"`
 }
 
-func (*NTMSObjectinformationa_Info_IePort) is_NTMSObjectinformationa_Info() {}
+func (*ObjectInformationA_IEPort) is_ObjectInformationA_Info() {}
 
-func (o *NTMSObjectinformationa_Info_IePort) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.IePort != nil {
-		if err := o.IePort.MarshalNDR(ctx, w); err != nil {
+func (o *ObjectInformationA_IEPort) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.IEPort != nil {
+		if err := o.IEPort.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSIeportinformation{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&IEPortInformation{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationa_Info_IePort) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.IePort == nil {
-		o.IePort = &NTMSIeportinformation{}
+func (o *ObjectInformationA_IEPort) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.IEPort == nil {
+		o.IEPort = &IEPortInformation{}
 	}
-	if err := o.IePort.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.IEPort.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// NTMSObjectinformationa_Info_PhysicalMedia structure represents NTMSObjectinformationa_Info RPC union arm.
+// ObjectInformationA_PhysicalMedia structure represents ObjectInformationA_Info RPC union arm.
 //
 // It has following labels: 15
-type NTMSObjectinformationa_Info_PhysicalMedia struct {
-	PhysicalMedia *NTMSPmidinformationa `idl:"name:PhysicalMedia" json:"physical_media"`
+type ObjectInformationA_PhysicalMedia struct {
+	PhysicalMedia *PMIDInformationA `idl:"name:PhysicalMedia" json:"physical_media"`
 }
 
-func (*NTMSObjectinformationa_Info_PhysicalMedia) is_NTMSObjectinformationa_Info() {}
+func (*ObjectInformationA_PhysicalMedia) is_ObjectInformationA_Info() {}
 
-func (o *NTMSObjectinformationa_Info_PhysicalMedia) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationA_PhysicalMedia) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.PhysicalMedia != nil {
 		if err := o.PhysicalMedia.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSPmidinformationa{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PMIDInformationA{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationa_Info_PhysicalMedia) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationA_PhysicalMedia) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.PhysicalMedia == nil {
-		o.PhysicalMedia = &NTMSPmidinformationa{}
+		o.PhysicalMedia = &PMIDInformationA{}
 	}
 	if err := o.PhysicalMedia.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5369,30 +5369,30 @@ func (o *NTMSObjectinformationa_Info_PhysicalMedia) UnmarshalNDR(ctx context.Con
 	return nil
 }
 
-// NTMSObjectinformationa_Info_LogicalMedia structure represents NTMSObjectinformationa_Info RPC union arm.
+// ObjectInformationA_LogicalMedia structure represents ObjectInformationA_Info RPC union arm.
 //
 // It has following labels: 11
-type NTMSObjectinformationa_Info_LogicalMedia struct {
-	LogicalMedia *NTMSLmidinformation `idl:"name:LogicalMedia" json:"logical_media"`
+type ObjectInformationA_LogicalMedia struct {
+	LogicalMedia *LMIDInformation `idl:"name:LogicalMedia" json:"logical_media"`
 }
 
-func (*NTMSObjectinformationa_Info_LogicalMedia) is_NTMSObjectinformationa_Info() {}
+func (*ObjectInformationA_LogicalMedia) is_ObjectInformationA_Info() {}
 
-func (o *NTMSObjectinformationa_Info_LogicalMedia) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationA_LogicalMedia) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.LogicalMedia != nil {
 		if err := o.LogicalMedia.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSLmidinformation{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&LMIDInformation{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationa_Info_LogicalMedia) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationA_LogicalMedia) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.LogicalMedia == nil {
-		o.LogicalMedia = &NTMSLmidinformation{}
+		o.LogicalMedia = &LMIDInformation{}
 	}
 	if err := o.LogicalMedia.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5400,30 +5400,30 @@ func (o *NTMSObjectinformationa_Info_LogicalMedia) UnmarshalNDR(ctx context.Cont
 	return nil
 }
 
-// NTMSObjectinformationa_Info_Partition structure represents NTMSObjectinformationa_Info RPC union arm.
+// ObjectInformationA_Partition structure represents ObjectInformationA_Info RPC union arm.
 //
 // It has following labels: 14
-type NTMSObjectinformationa_Info_Partition struct {
-	Partition *NTMSPartitioninformationa `idl:"name:Partition" json:"partition"`
+type ObjectInformationA_Partition struct {
+	Partition *PartitionInformationA `idl:"name:Partition" json:"partition"`
 }
 
-func (*NTMSObjectinformationa_Info_Partition) is_NTMSObjectinformationa_Info() {}
+func (*ObjectInformationA_Partition) is_ObjectInformationA_Info() {}
 
-func (o *NTMSObjectinformationa_Info_Partition) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationA_Partition) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.Partition != nil {
 		if err := o.Partition.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSPartitioninformationa{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PartitionInformationA{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationa_Info_Partition) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationA_Partition) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.Partition == nil {
-		o.Partition = &NTMSPartitioninformationa{}
+		o.Partition = &PartitionInformationA{}
 	}
 	if err := o.Partition.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5431,30 +5431,30 @@ func (o *NTMSObjectinformationa_Info_Partition) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
-// NTMSObjectinformationa_Info_MediaPool structure represents NTMSObjectinformationa_Info RPC union arm.
+// ObjectInformationA_MediaPool structure represents ObjectInformationA_Info RPC union arm.
 //
 // It has following labels: 12
-type NTMSObjectinformationa_Info_MediaPool struct {
-	MediaPool *NTMSMediapoolinformation `idl:"name:MediaPool" json:"media_pool"`
+type ObjectInformationA_MediaPool struct {
+	MediaPool *MediaPoolInformation `idl:"name:MediaPool" json:"media_pool"`
 }
 
-func (*NTMSObjectinformationa_Info_MediaPool) is_NTMSObjectinformationa_Info() {}
+func (*ObjectInformationA_MediaPool) is_ObjectInformationA_Info() {}
 
-func (o *NTMSObjectinformationa_Info_MediaPool) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationA_MediaPool) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.MediaPool != nil {
 		if err := o.MediaPool.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSMediapoolinformation{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MediaPoolInformation{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationa_Info_MediaPool) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationA_MediaPool) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.MediaPool == nil {
-		o.MediaPool = &NTMSMediapoolinformation{}
+		o.MediaPool = &MediaPoolInformation{}
 	}
 	if err := o.MediaPool.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5462,30 +5462,30 @@ func (o *NTMSObjectinformationa_Info_MediaPool) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
-// NTMSObjectinformationa_Info_MediaType structure represents NTMSObjectinformationa_Info RPC union arm.
+// ObjectInformationA_MediaType structure represents ObjectInformationA_Info RPC union arm.
 //
 // It has following labels: 13
-type NTMSObjectinformationa_Info_MediaType struct {
-	MediaType *NTMSMediatypeinformation `idl:"name:MediaType" json:"media_type"`
+type ObjectInformationA_MediaType struct {
+	MediaType *MediaTypeInformation `idl:"name:MediaType" json:"media_type"`
 }
 
-func (*NTMSObjectinformationa_Info_MediaType) is_NTMSObjectinformationa_Info() {}
+func (*ObjectInformationA_MediaType) is_ObjectInformationA_Info() {}
 
-func (o *NTMSObjectinformationa_Info_MediaType) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationA_MediaType) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.MediaType != nil {
 		if err := o.MediaType.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSMediatypeinformation{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MediaTypeInformation{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationa_Info_MediaType) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationA_MediaType) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.MediaType == nil {
-		o.MediaType = &NTMSMediatypeinformation{}
+		o.MediaType = &MediaTypeInformation{}
 	}
 	if err := o.MediaType.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5493,30 +5493,30 @@ func (o *NTMSObjectinformationa_Info_MediaType) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
-// NTMSObjectinformationa_Info_LibRequest structure represents NTMSObjectinformationa_Info RPC union arm.
+// ObjectInformationA_LibRequest structure represents ObjectInformationA_Info RPC union arm.
 //
 // It has following labels: 10
-type NTMSObjectinformationa_Info_LibRequest struct {
-	LibRequest *NTMSLibrequestinformationa `idl:"name:LibRequest" json:"lib_request"`
+type ObjectInformationA_LibRequest struct {
+	LibRequest *LibraryRequestInformationA `idl:"name:LibRequest" json:"lib_request"`
 }
 
-func (*NTMSObjectinformationa_Info_LibRequest) is_NTMSObjectinformationa_Info() {}
+func (*ObjectInformationA_LibRequest) is_ObjectInformationA_Info() {}
 
-func (o *NTMSObjectinformationa_Info_LibRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationA_LibRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.LibRequest != nil {
 		if err := o.LibRequest.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSLibrequestinformationa{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&LibraryRequestInformationA{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationa_Info_LibRequest) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationA_LibRequest) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.LibRequest == nil {
-		o.LibRequest = &NTMSLibrequestinformationa{}
+		o.LibRequest = &LibraryRequestInformationA{}
 	}
 	if err := o.LibRequest.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5524,30 +5524,30 @@ func (o *NTMSObjectinformationa_Info_LibRequest) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
-// NTMSObjectinformationa_Info_OperationRequest structure represents NTMSObjectinformationa_Info RPC union arm.
+// ObjectInformationA_OperationRequest structure represents ObjectInformationA_Info RPC union arm.
 //
 // It has following labels: 17
-type NTMSObjectinformationa_Info_OperationRequest struct {
-	OperationRequest *NTMSOprequestinformationa `idl:"name:OpRequest" json:"operation_request"`
+type ObjectInformationA_OperationRequest struct {
+	OperationRequest *OperationRequestInformationA `idl:"name:OpRequest" json:"operation_request"`
 }
 
-func (*NTMSObjectinformationa_Info_OperationRequest) is_NTMSObjectinformationa_Info() {}
+func (*ObjectInformationA_OperationRequest) is_ObjectInformationA_Info() {}
 
-func (o *NTMSObjectinformationa_Info_OperationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationA_OperationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.OperationRequest != nil {
 		if err := o.OperationRequest.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSOprequestinformationa{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&OperationRequestInformationA{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationa_Info_OperationRequest) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationA_OperationRequest) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.OperationRequest == nil {
-		o.OperationRequest = &NTMSOprequestinformationa{}
+		o.OperationRequest = &OperationRequestInformationA{}
 	}
 	if err := o.OperationRequest.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5555,30 +5555,30 @@ func (o *NTMSObjectinformationa_Info_OperationRequest) UnmarshalNDR(ctx context.
 	return nil
 }
 
-// NTMSObjectinformationa_Info_Computer structure represents NTMSObjectinformationa_Info RPC union arm.
+// ObjectInformationA_Computer structure represents ObjectInformationA_Info RPC union arm.
 //
 // It has following labels: 4
-type NTMSObjectinformationa_Info_Computer struct {
-	Computer *NTMSComputerinformation `idl:"name:Computer" json:"computer"`
+type ObjectInformationA_Computer struct {
+	Computer *ComputerInformation `idl:"name:Computer" json:"computer"`
 }
 
-func (*NTMSObjectinformationa_Info_Computer) is_NTMSObjectinformationa_Info() {}
+func (*ObjectInformationA_Computer) is_ObjectInformationA_Info() {}
 
-func (o *NTMSObjectinformationa_Info_Computer) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationA_Computer) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.Computer != nil {
 		if err := o.Computer.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSComputerinformation{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ComputerInformation{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationa_Info_Computer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationA_Computer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.Computer == nil {
-		o.Computer = &NTMSComputerinformation{}
+		o.Computer = &ComputerInformation{}
 	}
 	if err := o.Computer.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5586,21 +5586,21 @@ func (o *NTMSObjectinformationa_Info_Computer) UnmarshalNDR(ctx context.Context,
 	return nil
 }
 
-// NTMSObjectinformationw structure represents NTMS_OBJECTINFORMATIONW RPC structure.
-type NTMSObjectinformationw struct {
-	Size             uint32                       `idl:"name:dwSize" json:"size"`
-	Type             uint32                       `idl:"name:dwType" json:"type"`
-	Created          *dtyp.SystemTime             `idl:"name:Created" json:"created"`
-	Modified         *dtyp.SystemTime             `idl:"name:Modified" json:"modified"`
-	ObjectGUID       *NTMSGUID                    `idl:"name:ObjectGuid" json:"object_guid"`
-	Enabled          bool                         `idl:"name:Enabled" json:"enabled"`
-	OperationalState uint32                       `idl:"name:dwOperationalState" json:"operational_state"`
-	Name             string                       `idl:"name:szName;string" json:"name"`
-	Description      string                       `idl:"name:szDescription;string" json:"description"`
-	Info             *NTMSObjectinformationw_Info `idl:"name:Info;switch_is:dwType" json:"info"`
+// ObjectInformationW structure represents NTMS_OBJECTINFORMATIONW RPC structure.
+type ObjectInformationW struct {
+	Size             uint32                   `idl:"name:dwSize" json:"size"`
+	Type             uint32                   `idl:"name:dwType" json:"type"`
+	Created          *dtyp.SystemTime         `idl:"name:Created" json:"created"`
+	Modified         *dtyp.SystemTime         `idl:"name:Modified" json:"modified"`
+	ObjectGUID       *GUID                    `idl:"name:ObjectGuid" json:"object_guid"`
+	Enabled          bool                     `idl:"name:Enabled" json:"enabled"`
+	OperationalState uint32                   `idl:"name:dwOperationalState" json:"operational_state"`
+	Name             string                   `idl:"name:szName;string" json:"name"`
+	Description      string                   `idl:"name:szDescription;string" json:"description"`
+	Info             *ObjectInformationW_Info `idl:"name:Info;switch_is:dwType" json:"info"`
 }
 
-func (o *NTMSObjectinformationw) xxx_PreparePayload(ctx context.Context) error {
+func (o *ObjectInformationW) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -5609,7 +5609,7 @@ func (o *NTMSObjectinformationw) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *NTMSObjectinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationW) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -5645,7 +5645,7 @@ func (o *NTMSObjectinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) e
 			return err
 		}
 	} else {
-		if err := (&NTMSGUID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -5709,13 +5709,13 @@ func (o *NTMSObjectinformationw) MarshalNDR(ctx context.Context, w ndr.Writer) e
 			return err
 		}
 	} else {
-		if err := (&NTMSObjectinformationw_Info{}).MarshalUnionNDR(ctx, w, _swInfo); err != nil {
+		if err := (&ObjectInformationW_Info{}).MarshalUnionNDR(ctx, w, _swInfo); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
@@ -5738,7 +5738,7 @@ func (o *NTMSObjectinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		return err
 	}
 	if o.ObjectGUID == nil {
-		o.ObjectGUID = &NTMSGUID{}
+		o.ObjectGUID = &GUID{}
 	}
 	if err := o.ObjectGUID.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -5770,7 +5770,7 @@ func (o *NTMSObjectinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 	}
 	o.Description = strings.TrimRight(string(utf16.Decode(_Description_buf)), ndr.ZeroString)
 	if o.Info == nil {
-		o.Info = &NTMSObjectinformationw_Info{}
+		o.Info = &ObjectInformationW_Info{}
 	}
 	_swInfo := uint32(o.Type)
 	if err := o.Info.UnmarshalUnionNDR(ctx, w, _swInfo); err != nil {
@@ -5779,95 +5779,95 @@ func (o *NTMSObjectinformationw) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 	return nil
 }
 
-// NTMSObjectinformationw_Info structure represents NTMS_OBJECTINFORMATIONW union anonymous member.
-type NTMSObjectinformationw_Info struct {
+// ObjectInformationW_Info structure represents NTMS_OBJECTINFORMATIONW union anonymous member.
+type ObjectInformationW_Info struct {
 	// Types that are assignable to Value
 	//
-	// *NTMSObjectinformationw_Info_Drive
-	// *NTMSObjectinformationw_Info_DriveType
-	// *NTMSObjectinformationw_Info_Library
-	// *NTMSObjectinformationw_Info_Changer
-	// *NTMSObjectinformationw_Info_ChangerType
-	// *NTMSObjectinformationw_Info_StorageSlot
-	// *NTMSObjectinformationw_Info_IeDoor
-	// *NTMSObjectinformationw_Info_IePort
-	// *NTMSObjectinformationw_Info_PhysicalMedia
-	// *NTMSObjectinformationw_Info_LogicalMedia
-	// *NTMSObjectinformationw_Info_Partition
-	// *NTMSObjectinformationw_Info_MediaPool
-	// *NTMSObjectinformationw_Info_MediaType
-	// *NTMSObjectinformationw_Info_LibRequest
-	// *NTMSObjectinformationw_Info_OperationRequest
-	// *NTMSObjectinformationw_Info_Computer
-	Value is_NTMSObjectinformationw_Info `json:"value"`
+	// *ObjectInformationW_Drive
+	// *ObjectInformationW_DriveType
+	// *ObjectInformationW_Library
+	// *ObjectInformationW_Changer
+	// *ObjectInformationW_ChangerType
+	// *ObjectInformationW_StorageSlot
+	// *ObjectInformationW_IEDoor
+	// *ObjectInformationW_IEPort
+	// *ObjectInformationW_PhysicalMedia
+	// *ObjectInformationW_LogicalMedia
+	// *ObjectInformationW_Partition
+	// *ObjectInformationW_MediaPool
+	// *ObjectInformationW_MediaType
+	// *ObjectInformationW_LibRequest
+	// *ObjectInformationW_OperationRequest
+	// *ObjectInformationW_Computer
+	Value is_ObjectInformationW_Info `json:"value"`
 }
 
-func (o *NTMSObjectinformationw_Info) GetValue() any {
+func (o *ObjectInformationW_Info) GetValue() any {
 	if o == nil {
 		return nil
 	}
 	switch value := (interface{})(o.Value).(type) {
-	case *NTMSObjectinformationw_Info_Drive:
+	case *ObjectInformationW_Drive:
 		if value != nil {
 			return value.Drive
 		}
-	case *NTMSObjectinformationw_Info_DriveType:
+	case *ObjectInformationW_DriveType:
 		if value != nil {
 			return value.DriveType
 		}
-	case *NTMSObjectinformationw_Info_Library:
+	case *ObjectInformationW_Library:
 		if value != nil {
 			return value.Library
 		}
-	case *NTMSObjectinformationw_Info_Changer:
+	case *ObjectInformationW_Changer:
 		if value != nil {
 			return value.Changer
 		}
-	case *NTMSObjectinformationw_Info_ChangerType:
+	case *ObjectInformationW_ChangerType:
 		if value != nil {
 			return value.ChangerType
 		}
-	case *NTMSObjectinformationw_Info_StorageSlot:
+	case *ObjectInformationW_StorageSlot:
 		if value != nil {
 			return value.StorageSlot
 		}
-	case *NTMSObjectinformationw_Info_IeDoor:
+	case *ObjectInformationW_IEDoor:
 		if value != nil {
-			return value.IeDoor
+			return value.IEDoor
 		}
-	case *NTMSObjectinformationw_Info_IePort:
+	case *ObjectInformationW_IEPort:
 		if value != nil {
-			return value.IePort
+			return value.IEPort
 		}
-	case *NTMSObjectinformationw_Info_PhysicalMedia:
+	case *ObjectInformationW_PhysicalMedia:
 		if value != nil {
 			return value.PhysicalMedia
 		}
-	case *NTMSObjectinformationw_Info_LogicalMedia:
+	case *ObjectInformationW_LogicalMedia:
 		if value != nil {
 			return value.LogicalMedia
 		}
-	case *NTMSObjectinformationw_Info_Partition:
+	case *ObjectInformationW_Partition:
 		if value != nil {
 			return value.Partition
 		}
-	case *NTMSObjectinformationw_Info_MediaPool:
+	case *ObjectInformationW_MediaPool:
 		if value != nil {
 			return value.MediaPool
 		}
-	case *NTMSObjectinformationw_Info_MediaType:
+	case *ObjectInformationW_MediaType:
 		if value != nil {
 			return value.MediaType
 		}
-	case *NTMSObjectinformationw_Info_LibRequest:
+	case *ObjectInformationW_LibRequest:
 		if value != nil {
 			return value.LibRequest
 		}
-	case *NTMSObjectinformationw_Info_OperationRequest:
+	case *ObjectInformationW_OperationRequest:
 		if value != nil {
 			return value.OperationRequest
 		}
-	case *NTMSObjectinformationw_Info_Computer:
+	case *ObjectInformationW_Computer:
 		if value != nil {
 			return value.Computer
 		}
@@ -5875,54 +5875,54 @@ func (o *NTMSObjectinformationw_Info) GetValue() any {
 	return nil
 }
 
-type is_NTMSObjectinformationw_Info interface {
+type is_ObjectInformationW_Info interface {
 	ndr.Marshaler
 	ndr.Unmarshaler
-	is_NTMSObjectinformationw_Info()
+	is_ObjectInformationW_Info()
 }
 
-func (o *NTMSObjectinformationw_Info) NDRSwitchValue(sw uint32) uint32 {
+func (o *ObjectInformationW_Info) NDRSwitchValue(sw uint32) uint32 {
 	if o == nil {
 		return uint32(0)
 	}
 	switch (interface{})(o.Value).(type) {
-	case *NTMSObjectinformationw_Info_Drive:
+	case *ObjectInformationW_Drive:
 		return uint32(5)
-	case *NTMSObjectinformationw_Info_DriveType:
+	case *ObjectInformationW_DriveType:
 		return uint32(6)
-	case *NTMSObjectinformationw_Info_Library:
+	case *ObjectInformationW_Library:
 		return uint32(9)
-	case *NTMSObjectinformationw_Info_Changer:
+	case *ObjectInformationW_Changer:
 		return uint32(2)
-	case *NTMSObjectinformationw_Info_ChangerType:
+	case *ObjectInformationW_ChangerType:
 		return uint32(3)
-	case *NTMSObjectinformationw_Info_StorageSlot:
+	case *ObjectInformationW_StorageSlot:
 		return uint32(16)
-	case *NTMSObjectinformationw_Info_IeDoor:
+	case *ObjectInformationW_IEDoor:
 		return uint32(7)
-	case *NTMSObjectinformationw_Info_IePort:
+	case *ObjectInformationW_IEPort:
 		return uint32(8)
-	case *NTMSObjectinformationw_Info_PhysicalMedia:
+	case *ObjectInformationW_PhysicalMedia:
 		return uint32(15)
-	case *NTMSObjectinformationw_Info_LogicalMedia:
+	case *ObjectInformationW_LogicalMedia:
 		return uint32(11)
-	case *NTMSObjectinformationw_Info_Partition:
+	case *ObjectInformationW_Partition:
 		return uint32(14)
-	case *NTMSObjectinformationw_Info_MediaPool:
+	case *ObjectInformationW_MediaPool:
 		return uint32(12)
-	case *NTMSObjectinformationw_Info_MediaType:
+	case *ObjectInformationW_MediaType:
 		return uint32(13)
-	case *NTMSObjectinformationw_Info_LibRequest:
+	case *ObjectInformationW_LibRequest:
 		return uint32(10)
-	case *NTMSObjectinformationw_Info_OperationRequest:
+	case *ObjectInformationW_OperationRequest:
 		return uint32(17)
-	case *NTMSObjectinformationw_Info_Computer:
+	case *ObjectInformationW_Computer:
 		return uint32(4)
 	}
 	return uint32(0)
 }
 
-func (o *NTMSObjectinformationw_Info) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+func (o *ObjectInformationW_Info) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
 	if err := w.WriteUnionAlign(8); err != nil {
 		return err
 	}
@@ -5934,178 +5934,178 @@ func (o *NTMSObjectinformationw_Info) MarshalUnionNDR(ctx context.Context, w ndr
 	}
 	switch sw {
 	case uint32(5):
-		_o, _ := o.Value.(*NTMSObjectinformationw_Info_Drive)
+		_o, _ := o.Value.(*ObjectInformationW_Drive)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationw_Info_Drive{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationW_Drive{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(6):
-		_o, _ := o.Value.(*NTMSObjectinformationw_Info_DriveType)
+		_o, _ := o.Value.(*ObjectInformationW_DriveType)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationw_Info_DriveType{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationW_DriveType{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(9):
-		_o, _ := o.Value.(*NTMSObjectinformationw_Info_Library)
+		_o, _ := o.Value.(*ObjectInformationW_Library)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationw_Info_Library{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationW_Library{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(2):
-		_o, _ := o.Value.(*NTMSObjectinformationw_Info_Changer)
+		_o, _ := o.Value.(*ObjectInformationW_Changer)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationw_Info_Changer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationW_Changer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(3):
-		_o, _ := o.Value.(*NTMSObjectinformationw_Info_ChangerType)
+		_o, _ := o.Value.(*ObjectInformationW_ChangerType)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationw_Info_ChangerType{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationW_ChangerType{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(16):
-		_o, _ := o.Value.(*NTMSObjectinformationw_Info_StorageSlot)
+		_o, _ := o.Value.(*ObjectInformationW_StorageSlot)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationw_Info_StorageSlot{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationW_StorageSlot{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(7):
-		_o, _ := o.Value.(*NTMSObjectinformationw_Info_IeDoor)
+		_o, _ := o.Value.(*ObjectInformationW_IEDoor)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationw_Info_IeDoor{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationW_IEDoor{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(8):
-		_o, _ := o.Value.(*NTMSObjectinformationw_Info_IePort)
+		_o, _ := o.Value.(*ObjectInformationW_IEPort)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationw_Info_IePort{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationW_IEPort{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(15):
-		_o, _ := o.Value.(*NTMSObjectinformationw_Info_PhysicalMedia)
+		_o, _ := o.Value.(*ObjectInformationW_PhysicalMedia)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationw_Info_PhysicalMedia{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationW_PhysicalMedia{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(11):
-		_o, _ := o.Value.(*NTMSObjectinformationw_Info_LogicalMedia)
+		_o, _ := o.Value.(*ObjectInformationW_LogicalMedia)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationw_Info_LogicalMedia{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationW_LogicalMedia{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(14):
-		_o, _ := o.Value.(*NTMSObjectinformationw_Info_Partition)
+		_o, _ := o.Value.(*ObjectInformationW_Partition)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationw_Info_Partition{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationW_Partition{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(12):
-		_o, _ := o.Value.(*NTMSObjectinformationw_Info_MediaPool)
+		_o, _ := o.Value.(*ObjectInformationW_MediaPool)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationw_Info_MediaPool{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationW_MediaPool{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(13):
-		_o, _ := o.Value.(*NTMSObjectinformationw_Info_MediaType)
+		_o, _ := o.Value.(*ObjectInformationW_MediaType)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationw_Info_MediaType{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationW_MediaType{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(10):
-		_o, _ := o.Value.(*NTMSObjectinformationw_Info_LibRequest)
+		_o, _ := o.Value.(*ObjectInformationW_LibRequest)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationw_Info_LibRequest{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationW_LibRequest{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(17):
-		_o, _ := o.Value.(*NTMSObjectinformationw_Info_OperationRequest)
+		_o, _ := o.Value.(*ObjectInformationW_OperationRequest)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationw_Info_OperationRequest{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationW_OperationRequest{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint32(4):
-		_o, _ := o.Value.(*NTMSObjectinformationw_Info_Computer)
+		_o, _ := o.Value.(*ObjectInformationW_Computer)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&NTMSObjectinformationw_Info_Computer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&ObjectInformationW_Computer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -6115,7 +6115,7 @@ func (o *NTMSObjectinformationw_Info) MarshalUnionNDR(ctx context.Context, w ndr
 	return nil
 }
 
-func (o *NTMSObjectinformationw_Info) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+func (o *ObjectInformationW_Info) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadUnionAlign(8); err != nil {
 		return err
 	}
@@ -6127,82 +6127,82 @@ func (o *NTMSObjectinformationw_Info) UnmarshalUnionNDR(ctx context.Context, w n
 	}
 	switch sw {
 	case uint32(5):
-		o.Value = &NTMSObjectinformationw_Info_Drive{}
+		o.Value = &ObjectInformationW_Drive{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(6):
-		o.Value = &NTMSObjectinformationw_Info_DriveType{}
+		o.Value = &ObjectInformationW_DriveType{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(9):
-		o.Value = &NTMSObjectinformationw_Info_Library{}
+		o.Value = &ObjectInformationW_Library{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(2):
-		o.Value = &NTMSObjectinformationw_Info_Changer{}
+		o.Value = &ObjectInformationW_Changer{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(3):
-		o.Value = &NTMSObjectinformationw_Info_ChangerType{}
+		o.Value = &ObjectInformationW_ChangerType{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(16):
-		o.Value = &NTMSObjectinformationw_Info_StorageSlot{}
+		o.Value = &ObjectInformationW_StorageSlot{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(7):
-		o.Value = &NTMSObjectinformationw_Info_IeDoor{}
+		o.Value = &ObjectInformationW_IEDoor{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(8):
-		o.Value = &NTMSObjectinformationw_Info_IePort{}
+		o.Value = &ObjectInformationW_IEPort{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(15):
-		o.Value = &NTMSObjectinformationw_Info_PhysicalMedia{}
+		o.Value = &ObjectInformationW_PhysicalMedia{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(11):
-		o.Value = &NTMSObjectinformationw_Info_LogicalMedia{}
+		o.Value = &ObjectInformationW_LogicalMedia{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(14):
-		o.Value = &NTMSObjectinformationw_Info_Partition{}
+		o.Value = &ObjectInformationW_Partition{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(12):
-		o.Value = &NTMSObjectinformationw_Info_MediaPool{}
+		o.Value = &ObjectInformationW_MediaPool{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(13):
-		o.Value = &NTMSObjectinformationw_Info_MediaType{}
+		o.Value = &ObjectInformationW_MediaType{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(10):
-		o.Value = &NTMSObjectinformationw_Info_LibRequest{}
+		o.Value = &ObjectInformationW_LibRequest{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(17):
-		o.Value = &NTMSObjectinformationw_Info_OperationRequest{}
+		o.Value = &ObjectInformationW_OperationRequest{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint32(4):
-		o.Value = &NTMSObjectinformationw_Info_Computer{}
+		o.Value = &ObjectInformationW_Computer{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -6212,30 +6212,30 @@ func (o *NTMSObjectinformationw_Info) UnmarshalUnionNDR(ctx context.Context, w n
 	return nil
 }
 
-// NTMSObjectinformationw_Info_Drive structure represents NTMSObjectinformationw_Info RPC union arm.
+// ObjectInformationW_Drive structure represents ObjectInformationW_Info RPC union arm.
 //
 // It has following labels: 5
-type NTMSObjectinformationw_Info_Drive struct {
-	Drive *NTMSDriveinformationw `idl:"name:Drive" json:"drive"`
+type ObjectInformationW_Drive struct {
+	Drive *DriveInformationW `idl:"name:Drive" json:"drive"`
 }
 
-func (*NTMSObjectinformationw_Info_Drive) is_NTMSObjectinformationw_Info() {}
+func (*ObjectInformationW_Drive) is_ObjectInformationW_Info() {}
 
-func (o *NTMSObjectinformationw_Info_Drive) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationW_Drive) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.Drive != nil {
 		if err := o.Drive.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSDriveinformationw{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&DriveInformationW{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationw_Info_Drive) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationW_Drive) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.Drive == nil {
-		o.Drive = &NTMSDriveinformationw{}
+		o.Drive = &DriveInformationW{}
 	}
 	if err := o.Drive.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -6243,30 +6243,30 @@ func (o *NTMSObjectinformationw_Info_Drive) UnmarshalNDR(ctx context.Context, w 
 	return nil
 }
 
-// NTMSObjectinformationw_Info_DriveType structure represents NTMSObjectinformationw_Info RPC union arm.
+// ObjectInformationW_DriveType structure represents ObjectInformationW_Info RPC union arm.
 //
 // It has following labels: 6
-type NTMSObjectinformationw_Info_DriveType struct {
-	DriveType *NTMSDrivetypeinformationw `idl:"name:DriveType" json:"drive_type"`
+type ObjectInformationW_DriveType struct {
+	DriveType *DriveTypeInformationW `idl:"name:DriveType" json:"drive_type"`
 }
 
-func (*NTMSObjectinformationw_Info_DriveType) is_NTMSObjectinformationw_Info() {}
+func (*ObjectInformationW_DriveType) is_ObjectInformationW_Info() {}
 
-func (o *NTMSObjectinformationw_Info_DriveType) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationW_DriveType) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.DriveType != nil {
 		if err := o.DriveType.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSDrivetypeinformationw{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&DriveTypeInformationW{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationw_Info_DriveType) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationW_DriveType) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.DriveType == nil {
-		o.DriveType = &NTMSDrivetypeinformationw{}
+		o.DriveType = &DriveTypeInformationW{}
 	}
 	if err := o.DriveType.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -6274,30 +6274,30 @@ func (o *NTMSObjectinformationw_Info_DriveType) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
-// NTMSObjectinformationw_Info_Library structure represents NTMSObjectinformationw_Info RPC union arm.
+// ObjectInformationW_Library structure represents ObjectInformationW_Info RPC union arm.
 //
 // It has following labels: 9
-type NTMSObjectinformationw_Info_Library struct {
-	Library *NTMSLibraryinformation `idl:"name:Library" json:"library"`
+type ObjectInformationW_Library struct {
+	Library *LibraryInformation `idl:"name:Library" json:"library"`
 }
 
-func (*NTMSObjectinformationw_Info_Library) is_NTMSObjectinformationw_Info() {}
+func (*ObjectInformationW_Library) is_ObjectInformationW_Info() {}
 
-func (o *NTMSObjectinformationw_Info_Library) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationW_Library) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.Library != nil {
 		if err := o.Library.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSLibraryinformation{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&LibraryInformation{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationw_Info_Library) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationW_Library) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.Library == nil {
-		o.Library = &NTMSLibraryinformation{}
+		o.Library = &LibraryInformation{}
 	}
 	if err := o.Library.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -6305,30 +6305,30 @@ func (o *NTMSObjectinformationw_Info_Library) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
-// NTMSObjectinformationw_Info_Changer structure represents NTMSObjectinformationw_Info RPC union arm.
+// ObjectInformationW_Changer structure represents ObjectInformationW_Info RPC union arm.
 //
 // It has following labels: 2
-type NTMSObjectinformationw_Info_Changer struct {
-	Changer *NTMSChangerinformationw `idl:"name:Changer" json:"changer"`
+type ObjectInformationW_Changer struct {
+	Changer *ChangerInformationW `idl:"name:Changer" json:"changer"`
 }
 
-func (*NTMSObjectinformationw_Info_Changer) is_NTMSObjectinformationw_Info() {}
+func (*ObjectInformationW_Changer) is_ObjectInformationW_Info() {}
 
-func (o *NTMSObjectinformationw_Info_Changer) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationW_Changer) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.Changer != nil {
 		if err := o.Changer.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSChangerinformationw{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ChangerInformationW{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationw_Info_Changer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationW_Changer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.Changer == nil {
-		o.Changer = &NTMSChangerinformationw{}
+		o.Changer = &ChangerInformationW{}
 	}
 	if err := o.Changer.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -6336,30 +6336,30 @@ func (o *NTMSObjectinformationw_Info_Changer) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
-// NTMSObjectinformationw_Info_ChangerType structure represents NTMSObjectinformationw_Info RPC union arm.
+// ObjectInformationW_ChangerType structure represents ObjectInformationW_Info RPC union arm.
 //
 // It has following labels: 3
-type NTMSObjectinformationw_Info_ChangerType struct {
-	ChangerType *NTMSChangertypeinformationw `idl:"name:ChangerType" json:"changer_type"`
+type ObjectInformationW_ChangerType struct {
+	ChangerType *ChangerTypeInformationW `idl:"name:ChangerType" json:"changer_type"`
 }
 
-func (*NTMSObjectinformationw_Info_ChangerType) is_NTMSObjectinformationw_Info() {}
+func (*ObjectInformationW_ChangerType) is_ObjectInformationW_Info() {}
 
-func (o *NTMSObjectinformationw_Info_ChangerType) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationW_ChangerType) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.ChangerType != nil {
 		if err := o.ChangerType.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSChangertypeinformationw{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ChangerTypeInformationW{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationw_Info_ChangerType) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationW_ChangerType) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.ChangerType == nil {
-		o.ChangerType = &NTMSChangertypeinformationw{}
+		o.ChangerType = &ChangerTypeInformationW{}
 	}
 	if err := o.ChangerType.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -6367,30 +6367,30 @@ func (o *NTMSObjectinformationw_Info_ChangerType) UnmarshalNDR(ctx context.Conte
 	return nil
 }
 
-// NTMSObjectinformationw_Info_StorageSlot structure represents NTMSObjectinformationw_Info RPC union arm.
+// ObjectInformationW_StorageSlot structure represents ObjectInformationW_Info RPC union arm.
 //
 // It has following labels: 16
-type NTMSObjectinformationw_Info_StorageSlot struct {
-	StorageSlot *NTMSStorageslotinformation `idl:"name:StorageSlot" json:"storage_slot"`
+type ObjectInformationW_StorageSlot struct {
+	StorageSlot *StorageSlotInformation `idl:"name:StorageSlot" json:"storage_slot"`
 }
 
-func (*NTMSObjectinformationw_Info_StorageSlot) is_NTMSObjectinformationw_Info() {}
+func (*ObjectInformationW_StorageSlot) is_ObjectInformationW_Info() {}
 
-func (o *NTMSObjectinformationw_Info_StorageSlot) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationW_StorageSlot) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.StorageSlot != nil {
 		if err := o.StorageSlot.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSStorageslotinformation{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&StorageSlotInformation{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationw_Info_StorageSlot) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationW_StorageSlot) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.StorageSlot == nil {
-		o.StorageSlot = &NTMSStorageslotinformation{}
+		o.StorageSlot = &StorageSlotInformation{}
 	}
 	if err := o.StorageSlot.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -6398,92 +6398,92 @@ func (o *NTMSObjectinformationw_Info_StorageSlot) UnmarshalNDR(ctx context.Conte
 	return nil
 }
 
-// NTMSObjectinformationw_Info_IeDoor structure represents NTMSObjectinformationw_Info RPC union arm.
+// ObjectInformationW_IEDoor structure represents ObjectInformationW_Info RPC union arm.
 //
 // It has following labels: 7
-type NTMSObjectinformationw_Info_IeDoor struct {
-	IeDoor *NTMSIedoorinformation `idl:"name:IEDoor" json:"ie_door"`
+type ObjectInformationW_IEDoor struct {
+	IEDoor *IEDoorInformation `idl:"name:IEDoor" json:"ie_door"`
 }
 
-func (*NTMSObjectinformationw_Info_IeDoor) is_NTMSObjectinformationw_Info() {}
+func (*ObjectInformationW_IEDoor) is_ObjectInformationW_Info() {}
 
-func (o *NTMSObjectinformationw_Info_IeDoor) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.IeDoor != nil {
-		if err := o.IeDoor.MarshalNDR(ctx, w); err != nil {
+func (o *ObjectInformationW_IEDoor) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.IEDoor != nil {
+		if err := o.IEDoor.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSIedoorinformation{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&IEDoorInformation{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationw_Info_IeDoor) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.IeDoor == nil {
-		o.IeDoor = &NTMSIedoorinformation{}
+func (o *ObjectInformationW_IEDoor) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.IEDoor == nil {
+		o.IEDoor = &IEDoorInformation{}
 	}
-	if err := o.IeDoor.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.IEDoor.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// NTMSObjectinformationw_Info_IePort structure represents NTMSObjectinformationw_Info RPC union arm.
+// ObjectInformationW_IEPort structure represents ObjectInformationW_Info RPC union arm.
 //
 // It has following labels: 8
-type NTMSObjectinformationw_Info_IePort struct {
-	IePort *NTMSIeportinformation `idl:"name:IEPort" json:"ie_port"`
+type ObjectInformationW_IEPort struct {
+	IEPort *IEPortInformation `idl:"name:IEPort" json:"ie_port"`
 }
 
-func (*NTMSObjectinformationw_Info_IePort) is_NTMSObjectinformationw_Info() {}
+func (*ObjectInformationW_IEPort) is_ObjectInformationW_Info() {}
 
-func (o *NTMSObjectinformationw_Info_IePort) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.IePort != nil {
-		if err := o.IePort.MarshalNDR(ctx, w); err != nil {
+func (o *ObjectInformationW_IEPort) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.IEPort != nil {
+		if err := o.IEPort.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSIeportinformation{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&IEPortInformation{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationw_Info_IePort) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.IePort == nil {
-		o.IePort = &NTMSIeportinformation{}
+func (o *ObjectInformationW_IEPort) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.IEPort == nil {
+		o.IEPort = &IEPortInformation{}
 	}
-	if err := o.IePort.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.IEPort.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
 }
 
-// NTMSObjectinformationw_Info_PhysicalMedia structure represents NTMSObjectinformationw_Info RPC union arm.
+// ObjectInformationW_PhysicalMedia structure represents ObjectInformationW_Info RPC union arm.
 //
 // It has following labels: 15
-type NTMSObjectinformationw_Info_PhysicalMedia struct {
-	PhysicalMedia *NTMSPmidinformationw `idl:"name:PhysicalMedia" json:"physical_media"`
+type ObjectInformationW_PhysicalMedia struct {
+	PhysicalMedia *PMIDInformationW `idl:"name:PhysicalMedia" json:"physical_media"`
 }
 
-func (*NTMSObjectinformationw_Info_PhysicalMedia) is_NTMSObjectinformationw_Info() {}
+func (*ObjectInformationW_PhysicalMedia) is_ObjectInformationW_Info() {}
 
-func (o *NTMSObjectinformationw_Info_PhysicalMedia) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationW_PhysicalMedia) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.PhysicalMedia != nil {
 		if err := o.PhysicalMedia.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSPmidinformationw{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PMIDInformationW{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationw_Info_PhysicalMedia) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationW_PhysicalMedia) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.PhysicalMedia == nil {
-		o.PhysicalMedia = &NTMSPmidinformationw{}
+		o.PhysicalMedia = &PMIDInformationW{}
 	}
 	if err := o.PhysicalMedia.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -6491,30 +6491,30 @@ func (o *NTMSObjectinformationw_Info_PhysicalMedia) UnmarshalNDR(ctx context.Con
 	return nil
 }
 
-// NTMSObjectinformationw_Info_LogicalMedia structure represents NTMSObjectinformationw_Info RPC union arm.
+// ObjectInformationW_LogicalMedia structure represents ObjectInformationW_Info RPC union arm.
 //
 // It has following labels: 11
-type NTMSObjectinformationw_Info_LogicalMedia struct {
-	LogicalMedia *NTMSLmidinformation `idl:"name:LogicalMedia" json:"logical_media"`
+type ObjectInformationW_LogicalMedia struct {
+	LogicalMedia *LMIDInformation `idl:"name:LogicalMedia" json:"logical_media"`
 }
 
-func (*NTMSObjectinformationw_Info_LogicalMedia) is_NTMSObjectinformationw_Info() {}
+func (*ObjectInformationW_LogicalMedia) is_ObjectInformationW_Info() {}
 
-func (o *NTMSObjectinformationw_Info_LogicalMedia) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationW_LogicalMedia) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.LogicalMedia != nil {
 		if err := o.LogicalMedia.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSLmidinformation{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&LMIDInformation{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationw_Info_LogicalMedia) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationW_LogicalMedia) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.LogicalMedia == nil {
-		o.LogicalMedia = &NTMSLmidinformation{}
+		o.LogicalMedia = &LMIDInformation{}
 	}
 	if err := o.LogicalMedia.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -6522,30 +6522,30 @@ func (o *NTMSObjectinformationw_Info_LogicalMedia) UnmarshalNDR(ctx context.Cont
 	return nil
 }
 
-// NTMSObjectinformationw_Info_Partition structure represents NTMSObjectinformationw_Info RPC union arm.
+// ObjectInformationW_Partition structure represents ObjectInformationW_Info RPC union arm.
 //
 // It has following labels: 14
-type NTMSObjectinformationw_Info_Partition struct {
-	Partition *NTMSPartitioninformationw `idl:"name:Partition" json:"partition"`
+type ObjectInformationW_Partition struct {
+	Partition *PartitionInformationW `idl:"name:Partition" json:"partition"`
 }
 
-func (*NTMSObjectinformationw_Info_Partition) is_NTMSObjectinformationw_Info() {}
+func (*ObjectInformationW_Partition) is_ObjectInformationW_Info() {}
 
-func (o *NTMSObjectinformationw_Info_Partition) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationW_Partition) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.Partition != nil {
 		if err := o.Partition.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSPartitioninformationw{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&PartitionInformationW{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationw_Info_Partition) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationW_Partition) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.Partition == nil {
-		o.Partition = &NTMSPartitioninformationw{}
+		o.Partition = &PartitionInformationW{}
 	}
 	if err := o.Partition.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -6553,30 +6553,30 @@ func (o *NTMSObjectinformationw_Info_Partition) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
-// NTMSObjectinformationw_Info_MediaPool structure represents NTMSObjectinformationw_Info RPC union arm.
+// ObjectInformationW_MediaPool structure represents ObjectInformationW_Info RPC union arm.
 //
 // It has following labels: 12
-type NTMSObjectinformationw_Info_MediaPool struct {
-	MediaPool *NTMSMediapoolinformation `idl:"name:MediaPool" json:"media_pool"`
+type ObjectInformationW_MediaPool struct {
+	MediaPool *MediaPoolInformation `idl:"name:MediaPool" json:"media_pool"`
 }
 
-func (*NTMSObjectinformationw_Info_MediaPool) is_NTMSObjectinformationw_Info() {}
+func (*ObjectInformationW_MediaPool) is_ObjectInformationW_Info() {}
 
-func (o *NTMSObjectinformationw_Info_MediaPool) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationW_MediaPool) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.MediaPool != nil {
 		if err := o.MediaPool.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSMediapoolinformation{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MediaPoolInformation{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationw_Info_MediaPool) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationW_MediaPool) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.MediaPool == nil {
-		o.MediaPool = &NTMSMediapoolinformation{}
+		o.MediaPool = &MediaPoolInformation{}
 	}
 	if err := o.MediaPool.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -6584,30 +6584,30 @@ func (o *NTMSObjectinformationw_Info_MediaPool) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
-// NTMSObjectinformationw_Info_MediaType structure represents NTMSObjectinformationw_Info RPC union arm.
+// ObjectInformationW_MediaType structure represents ObjectInformationW_Info RPC union arm.
 //
 // It has following labels: 13
-type NTMSObjectinformationw_Info_MediaType struct {
-	MediaType *NTMSMediatypeinformation `idl:"name:MediaType" json:"media_type"`
+type ObjectInformationW_MediaType struct {
+	MediaType *MediaTypeInformation `idl:"name:MediaType" json:"media_type"`
 }
 
-func (*NTMSObjectinformationw_Info_MediaType) is_NTMSObjectinformationw_Info() {}
+func (*ObjectInformationW_MediaType) is_ObjectInformationW_Info() {}
 
-func (o *NTMSObjectinformationw_Info_MediaType) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationW_MediaType) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.MediaType != nil {
 		if err := o.MediaType.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSMediatypeinformation{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&MediaTypeInformation{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationw_Info_MediaType) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationW_MediaType) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.MediaType == nil {
-		o.MediaType = &NTMSMediatypeinformation{}
+		o.MediaType = &MediaTypeInformation{}
 	}
 	if err := o.MediaType.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -6615,30 +6615,30 @@ func (o *NTMSObjectinformationw_Info_MediaType) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
-// NTMSObjectinformationw_Info_LibRequest structure represents NTMSObjectinformationw_Info RPC union arm.
+// ObjectInformationW_LibRequest structure represents ObjectInformationW_Info RPC union arm.
 //
 // It has following labels: 10
-type NTMSObjectinformationw_Info_LibRequest struct {
-	LibRequest *NTMSLibrequestinformationw `idl:"name:LibRequest" json:"lib_request"`
+type ObjectInformationW_LibRequest struct {
+	LibRequest *LibraryRequestInformationW `idl:"name:LibRequest" json:"lib_request"`
 }
 
-func (*NTMSObjectinformationw_Info_LibRequest) is_NTMSObjectinformationw_Info() {}
+func (*ObjectInformationW_LibRequest) is_ObjectInformationW_Info() {}
 
-func (o *NTMSObjectinformationw_Info_LibRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationW_LibRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.LibRequest != nil {
 		if err := o.LibRequest.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSLibrequestinformationw{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&LibraryRequestInformationW{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationw_Info_LibRequest) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationW_LibRequest) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.LibRequest == nil {
-		o.LibRequest = &NTMSLibrequestinformationw{}
+		o.LibRequest = &LibraryRequestInformationW{}
 	}
 	if err := o.LibRequest.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -6646,30 +6646,30 @@ func (o *NTMSObjectinformationw_Info_LibRequest) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
-// NTMSObjectinformationw_Info_OperationRequest structure represents NTMSObjectinformationw_Info RPC union arm.
+// ObjectInformationW_OperationRequest structure represents ObjectInformationW_Info RPC union arm.
 //
 // It has following labels: 17
-type NTMSObjectinformationw_Info_OperationRequest struct {
-	OperationRequest *NTMSOprequestinformationw `idl:"name:OpRequest" json:"operation_request"`
+type ObjectInformationW_OperationRequest struct {
+	OperationRequest *OperationRequestInformationW `idl:"name:OpRequest" json:"operation_request"`
 }
 
-func (*NTMSObjectinformationw_Info_OperationRequest) is_NTMSObjectinformationw_Info() {}
+func (*ObjectInformationW_OperationRequest) is_ObjectInformationW_Info() {}
 
-func (o *NTMSObjectinformationw_Info_OperationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationW_OperationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.OperationRequest != nil {
 		if err := o.OperationRequest.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSOprequestinformationw{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&OperationRequestInformationW{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationw_Info_OperationRequest) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationW_OperationRequest) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.OperationRequest == nil {
-		o.OperationRequest = &NTMSOprequestinformationw{}
+		o.OperationRequest = &OperationRequestInformationW{}
 	}
 	if err := o.OperationRequest.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -6677,30 +6677,30 @@ func (o *NTMSObjectinformationw_Info_OperationRequest) UnmarshalNDR(ctx context.
 	return nil
 }
 
-// NTMSObjectinformationw_Info_Computer structure represents NTMSObjectinformationw_Info RPC union arm.
+// ObjectInformationW_Computer structure represents ObjectInformationW_Info RPC union arm.
 //
 // It has following labels: 4
-type NTMSObjectinformationw_Info_Computer struct {
-	Computer *NTMSComputerinformation `idl:"name:Computer" json:"computer"`
+type ObjectInformationW_Computer struct {
+	Computer *ComputerInformation `idl:"name:Computer" json:"computer"`
 }
 
-func (*NTMSObjectinformationw_Info_Computer) is_NTMSObjectinformationw_Info() {}
+func (*ObjectInformationW_Computer) is_ObjectInformationW_Info() {}
 
-func (o *NTMSObjectinformationw_Info_Computer) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInformationW_Computer) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.Computer != nil {
 		if err := o.Computer.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&NTMSComputerinformation{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ComputerInformation{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *NTMSObjectinformationw_Info_Computer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInformationW_Computer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.Computer == nil {
-		o.Computer = &NTMSComputerinformation{}
+		o.Computer = &ComputerInformation{}
 	}
 	if err := o.Computer.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -6708,14 +6708,14 @@ func (o *NTMSObjectinformationw_Info_Computer) UnmarshalNDR(ctx context.Context,
 	return nil
 }
 
-// NTMSObjectManagement2 structure represents INtmsObjectManagement2 RPC structure.
-type NTMSObjectManagement2 dcom.InterfacePointer
+// ObjectManagement2 structure represents INtmsObjectManagement2 RPC structure.
+type ObjectManagement2 dcom.InterfacePointer
 
-func (o *NTMSObjectManagement2) InterfacePointer() *dcom.InterfacePointer {
+func (o *ObjectManagement2) InterfacePointer() *dcom.InterfacePointer {
 	return (*dcom.InterfacePointer)(o)
 }
 
-func (o *NTMSObjectManagement2) xxx_PreparePayload(ctx context.Context) error {
+func (o *ObjectManagement2) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -6728,13 +6728,13 @@ func (o *NTMSObjectManagement2) xxx_PreparePayload(ctx context.Context) error {
 	return nil
 }
 
-func (o *NTMSObjectManagement2) NDRSizeInfo() []uint64 {
+func (o *ObjectManagement2) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *NTMSObjectManagement2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectManagement2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -6770,7 +6770,7 @@ func (o *NTMSObjectManagement2) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	}
 	return nil
 }
-func (o *NTMSObjectManagement2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectManagement2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()
@@ -6804,14 +6804,14 @@ func (o *NTMSObjectManagement2) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	return nil
 }
 
-// NTMSObjectManagement3 structure represents INtmsObjectManagement3 RPC structure.
-type NTMSObjectManagement3 dcom.InterfacePointer
+// ObjectManagement3 structure represents INtmsObjectManagement3 RPC structure.
+type ObjectManagement3 dcom.InterfacePointer
 
-func (o *NTMSObjectManagement3) InterfacePointer() *dcom.InterfacePointer {
+func (o *ObjectManagement3) InterfacePointer() *dcom.InterfacePointer {
 	return (*dcom.InterfacePointer)(o)
 }
 
-func (o *NTMSObjectManagement3) xxx_PreparePayload(ctx context.Context) error {
+func (o *ObjectManagement3) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -6824,13 +6824,13 @@ func (o *NTMSObjectManagement3) xxx_PreparePayload(ctx context.Context) error {
 	return nil
 }
 
-func (o *NTMSObjectManagement3) NDRSizeInfo() []uint64 {
+func (o *ObjectManagement3) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *NTMSObjectManagement3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectManagement3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -6866,7 +6866,7 @@ func (o *NTMSObjectManagement3) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	}
 	return nil
 }
-func (o *NTMSObjectManagement3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectManagement3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()
@@ -6900,14 +6900,14 @@ func (o *NTMSObjectManagement3) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	return nil
 }
 
-// NTMSLibraryControl1 structure represents INtmsLibraryControl1 RPC structure.
-type NTMSLibraryControl1 dcom.InterfacePointer
+// LibraryControl1 structure represents INtmsLibraryControl1 RPC structure.
+type LibraryControl1 dcom.InterfacePointer
 
-func (o *NTMSLibraryControl1) InterfacePointer() *dcom.InterfacePointer {
+func (o *LibraryControl1) InterfacePointer() *dcom.InterfacePointer {
 	return (*dcom.InterfacePointer)(o)
 }
 
-func (o *NTMSLibraryControl1) xxx_PreparePayload(ctx context.Context) error {
+func (o *LibraryControl1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -6920,13 +6920,13 @@ func (o *NTMSLibraryControl1) xxx_PreparePayload(ctx context.Context) error {
 	return nil
 }
 
-func (o *NTMSLibraryControl1) NDRSizeInfo() []uint64 {
+func (o *LibraryControl1) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *NTMSLibraryControl1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *LibraryControl1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -6962,7 +6962,7 @@ func (o *NTMSLibraryControl1) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	}
 	return nil
 }
-func (o *NTMSLibraryControl1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *LibraryControl1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()
@@ -6996,14 +6996,14 @@ func (o *NTMSLibraryControl1) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	return nil
 }
 
-// NTMSObjectManagement1 structure represents INtmsObjectManagement1 RPC structure.
-type NTMSObjectManagement1 dcom.InterfacePointer
+// ObjectManagement1 structure represents INtmsObjectManagement1 RPC structure.
+type ObjectManagement1 dcom.InterfacePointer
 
-func (o *NTMSObjectManagement1) InterfacePointer() *dcom.InterfacePointer {
+func (o *ObjectManagement1) InterfacePointer() *dcom.InterfacePointer {
 	return (*dcom.InterfacePointer)(o)
 }
 
-func (o *NTMSObjectManagement1) xxx_PreparePayload(ctx context.Context) error {
+func (o *ObjectManagement1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -7016,13 +7016,13 @@ func (o *NTMSObjectManagement1) xxx_PreparePayload(ctx context.Context) error {
 	return nil
 }
 
-func (o *NTMSObjectManagement1) NDRSizeInfo() []uint64 {
+func (o *ObjectManagement1) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *NTMSObjectManagement1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectManagement1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -7058,7 +7058,7 @@ func (o *NTMSObjectManagement1) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	}
 	return nil
 }
-func (o *NTMSObjectManagement1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectManagement1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()
@@ -7092,14 +7092,14 @@ func (o *NTMSObjectManagement1) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	return nil
 }
 
-// NTMSMediaServices1 structure represents INtmsMediaServices1 RPC structure.
-type NTMSMediaServices1 dcom.InterfacePointer
+// MediaServices1 structure represents INtmsMediaServices1 RPC structure.
+type MediaServices1 dcom.InterfacePointer
 
-func (o *NTMSMediaServices1) InterfacePointer() *dcom.InterfacePointer {
+func (o *MediaServices1) InterfacePointer() *dcom.InterfacePointer {
 	return (*dcom.InterfacePointer)(o)
 }
 
-func (o *NTMSMediaServices1) xxx_PreparePayload(ctx context.Context) error {
+func (o *MediaServices1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -7112,13 +7112,13 @@ func (o *NTMSMediaServices1) xxx_PreparePayload(ctx context.Context) error {
 	return nil
 }
 
-func (o *NTMSMediaServices1) NDRSizeInfo() []uint64 {
+func (o *MediaServices1) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *NTMSMediaServices1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MediaServices1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -7154,7 +7154,7 @@ func (o *NTMSMediaServices1) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	}
 	return nil
 }
-func (o *NTMSMediaServices1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MediaServices1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()
@@ -7378,12 +7378,12 @@ func (o *RobustNTMSMediaServices1) UnmarshalNDR(ctx context.Context, w ndr.Reade
 	return nil
 }
 
-// NTMSSession1 structure represents INtmsSession1 RPC structure.
-type NTMSSession1 dcom.InterfacePointer
+// Session1 structure represents INtmsSession1 RPC structure.
+type Session1 dcom.InterfacePointer
 
-func (o *NTMSSession1) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
+func (o *Session1) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
-func (o *NTMSSession1) xxx_PreparePayload(ctx context.Context) error {
+func (o *Session1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -7396,13 +7396,13 @@ func (o *NTMSSession1) xxx_PreparePayload(ctx context.Context) error {
 	return nil
 }
 
-func (o *NTMSSession1) NDRSizeInfo() []uint64 {
+func (o *Session1) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *NTMSSession1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Session1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -7438,7 +7438,7 @@ func (o *NTMSSession1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *NTMSSession1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Session1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()
@@ -7566,14 +7566,12 @@ func (o *Unknown) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// NTMSNotifySink structure represents INtmsNotifySink RPC structure.
-type NTMSNotifySink dcom.InterfacePointer
+// NotifySink structure represents INtmsNotifySink RPC structure.
+type NotifySink dcom.InterfacePointer
 
-func (o *NTMSNotifySink) InterfacePointer() *dcom.InterfacePointer {
-	return (*dcom.InterfacePointer)(o)
-}
+func (o *NotifySink) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
-func (o *NTMSNotifySink) xxx_PreparePayload(ctx context.Context) error {
+func (o *NotifySink) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -7586,13 +7584,13 @@ func (o *NTMSNotifySink) xxx_PreparePayload(ctx context.Context) error {
 	return nil
 }
 
-func (o *NTMSNotifySink) NDRSizeInfo() []uint64 {
+func (o *NotifySink) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *NTMSNotifySink) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *NotifySink) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -7628,7 +7626,7 @@ func (o *NTMSNotifySink) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *NTMSNotifySink) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *NotifySink) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()
@@ -7756,14 +7754,12 @@ func (o *Messenger) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// NTMSObjectInfo1 structure represents INtmsObjectInfo1 RPC structure.
-type NTMSObjectInfo1 dcom.InterfacePointer
+// ObjectInfo1 structure represents INtmsObjectInfo1 RPC structure.
+type ObjectInfo1 dcom.InterfacePointer
 
-func (o *NTMSObjectInfo1) InterfacePointer() *dcom.InterfacePointer {
-	return (*dcom.InterfacePointer)(o)
-}
+func (o *ObjectInfo1) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
-func (o *NTMSObjectInfo1) xxx_PreparePayload(ctx context.Context) error {
+func (o *ObjectInfo1) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -7776,13 +7772,13 @@ func (o *NTMSObjectInfo1) xxx_PreparePayload(ctx context.Context) error {
 	return nil
 }
 
-func (o *NTMSObjectInfo1) NDRSizeInfo() []uint64 {
+func (o *ObjectInfo1) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *NTMSObjectInfo1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ObjectInfo1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -7818,7 +7814,7 @@ func (o *NTMSObjectInfo1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *NTMSObjectInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ObjectInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()
@@ -7852,14 +7848,14 @@ func (o *NTMSObjectInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	return nil
 }
 
-// NTMSLibraryControl2 structure represents INtmsLibraryControl2 RPC structure.
-type NTMSLibraryControl2 dcom.InterfacePointer
+// LibraryControl2 structure represents INtmsLibraryControl2 RPC structure.
+type LibraryControl2 dcom.InterfacePointer
 
-func (o *NTMSLibraryControl2) InterfacePointer() *dcom.InterfacePointer {
+func (o *LibraryControl2) InterfacePointer() *dcom.InterfacePointer {
 	return (*dcom.InterfacePointer)(o)
 }
 
-func (o *NTMSLibraryControl2) xxx_PreparePayload(ctx context.Context) error {
+func (o *LibraryControl2) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -7872,13 +7868,13 @@ func (o *NTMSLibraryControl2) xxx_PreparePayload(ctx context.Context) error {
 	return nil
 }
 
-func (o *NTMSLibraryControl2) NDRSizeInfo() []uint64 {
+func (o *LibraryControl2) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *NTMSLibraryControl2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *LibraryControl2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -7914,7 +7910,7 @@ func (o *NTMSLibraryControl2) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	}
 	return nil
 }
-func (o *NTMSLibraryControl2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *LibraryControl2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()

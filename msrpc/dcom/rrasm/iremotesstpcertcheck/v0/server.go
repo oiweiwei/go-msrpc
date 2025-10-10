@@ -26,7 +26,7 @@ var (
 )
 
 // IRemoteSstpCertCheck server interface.
-type RemoteSstpCertCheckServer interface {
+type RemoteSSTPCertCheckServer interface {
 
 	// IUnknown base class.
 	iunknown.UnknownServer
@@ -35,17 +35,17 @@ type RemoteSstpCertCheckServer interface {
 	CheckInterfaceCertificateAllowedRR(context.Context, *CheckInterfaceCertificateAllowedRRRequest) (*CheckInterfaceCertificateAllowedRRResponse, error)
 }
 
-func RegisterRemoteSstpCertCheckServer(conn dcerpc.Conn, o RemoteSstpCertCheckServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewRemoteSstpCertCheckServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(RemoteSstpCertCheckSyntaxV0_0))...)
+func RegisterRemoteSSTPCertCheckServer(conn dcerpc.Conn, o RemoteSSTPCertCheckServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewRemoteSSTPCertCheckServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(RemoteSSTPCertCheckSyntaxV0_0))...)
 }
 
-func NewRemoteSstpCertCheckServerHandle(o RemoteSstpCertCheckServer) dcerpc.ServerHandle {
+func NewRemoteSSTPCertCheckServerHandle(o RemoteSSTPCertCheckServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return RemoteSstpCertCheckServerHandle(ctx, o, opNum, r)
+		return RemoteSSTPCertCheckServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func RemoteSstpCertCheckServerHandle(ctx context.Context, o RemoteSstpCertCheckServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func RemoteSSTPCertCheckServerHandle(ctx context.Context, o RemoteSSTPCertCheckServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 3 {
 		// IUnknown base method.
 		return iunknown.UnknownServerHandle(ctx, o, opNum, r)
@@ -65,12 +65,12 @@ func RemoteSstpCertCheckServerHandle(ctx context.Context, o RemoteSstpCertCheckS
 }
 
 // Unimplemented IRemoteSstpCertCheck
-type UnimplementedRemoteSstpCertCheckServer struct {
+type UnimplementedRemoteSSTPCertCheckServer struct {
 	iunknown.UnimplementedUnknownServer
 }
 
-func (UnimplementedRemoteSstpCertCheckServer) CheckInterfaceCertificateAllowedRR(context.Context, *CheckInterfaceCertificateAllowedRRRequest) (*CheckInterfaceCertificateAllowedRRResponse, error) {
+func (UnimplementedRemoteSSTPCertCheckServer) CheckInterfaceCertificateAllowedRR(context.Context, *CheckInterfaceCertificateAllowedRRRequest) (*CheckInterfaceCertificateAllowedRRResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ RemoteSstpCertCheckServer = (*UnimplementedRemoteSstpCertCheckServer)(nil)
+var _ RemoteSSTPCertCheckServer = (*UnimplementedRemoteSSTPCertCheckServer)(nil)

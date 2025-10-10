@@ -139,46 +139,46 @@ type Client interface {
 	ConnectionPoint() iconnectionpoint.ConnectionPointClient
 	EnumConnectionPoints() ienumconnectionpoints.EnumConnectionPointsClient
 	ConnectionPointContainer() iconnectionpointcontainer.ConnectionPointContainerClient
-	ImsmqQuery() imsmqquery.ImsmqQueryClient
-	ImsmqQuery2() imsmqquery2.ImsmqQuery2Client
-	ImsmqQuery3() imsmqquery3.ImsmqQuery3Client
-	ImsmqQuery4() imsmqquery4.ImsmqQuery4Client
-	ImsmqMessage() imsmqmessage.ImsmqMessageClient
-	ImsmqMessage2() imsmqmessage2.ImsmqMessage2Client
-	ImsmqMessage3() imsmqmessage3.ImsmqMessage3Client
-	ImsmqMessage4() imsmqmessage4.ImsmqMessage4Client
-	ImsmqQueue() imsmqqueue.ImsmqQueueClient
-	ImsmqQueue2() imsmqqueue2.ImsmqQueue2Client
-	ImsmqQueue3() imsmqqueue3.ImsmqQueue3Client
-	ImsmqQueue4() imsmqqueue4.ImsmqQueue4Client
-	ImsmqPrivateEvent() imsmqprivateevent.ImsmqPrivateEventClient
-	ImsmqEvent2() imsmqevent2.ImsmqEvent2Client
-	ImsmqQueueInfo() imsmqqueueinfo.ImsmqQueueInfoClient
-	ImsmqQueueInfo2() imsmqqueueinfo2.ImsmqQueueInfo2Client
-	ImsmqQueueInfo3() imsmqqueueinfo3.ImsmqQueueInfo3Client
-	ImsmqQueueInfo4() imsmqqueueinfo4.ImsmqQueueInfo4Client
-	ImsmqQueueInfos() imsmqqueueinfos.ImsmqQueueInfosClient
-	ImsmqQueueInfos2() imsmqqueueinfos2.ImsmqQueueInfos2Client
-	ImsmqQueueInfos3() imsmqqueueinfos3.ImsmqQueueInfos3Client
-	ImsmqQueueInfos4() imsmqqueueinfos4.ImsmqQueueInfos4Client
-	ImsmqTransaction() imsmqtransaction.ImsmqTransactionClient
-	ImsmqTransaction2() imsmqtransaction2.ImsmqTransaction2Client
-	ImsmqTransaction3() imsmqtransaction3.ImsmqTransaction3Client
-	ImsmqCoordinatedTransactionDispenser() imsmqcoordinatedtransactiondispenser.ImsmqCoordinatedTransactionDispenserClient
-	ImsmqCoordinatedTransactionDispenser2() imsmqcoordinatedtransactiondispenser2.ImsmqCoordinatedTransactionDispenser2Client
-	ImsmqCoordinatedTransactionDispenser3() imsmqcoordinatedtransactiondispenser3.ImsmqCoordinatedTransactionDispenser3Client
-	ImsmqTransactionDispenser() imsmqtransactiondispenser.ImsmqTransactionDispenserClient
-	ImsmqTransactionDispenser2() imsmqtransactiondispenser2.ImsmqTransactionDispenser2Client
-	ImsmqTransactionDispenser3() imsmqtransactiondispenser3.ImsmqTransactionDispenser3Client
-	ImsmqApplication() imsmqapplication.ImsmqApplicationClient
-	ImsmqApplication2() imsmqapplication2.ImsmqApplication2Client
-	ImsmqApplication3() imsmqapplication3.ImsmqApplication3Client
-	ImsmqDestination() imsmqdestination.ImsmqDestinationClient
-	ImsmqPrivateDestination() imsmqprivatedestination.ImsmqPrivateDestinationClient
-	ImsmqCollection() imsmqcollection.ImsmqCollectionClient
-	ImsmqManagement() imsmqmanagement.ImsmqManagementClient
-	ImsmqOutgoingQueueManagement() imsmqoutgoingqueuemanagement.ImsmqOutgoingQueueManagementClient
-	ImsmqQueueManagement() imsmqqueuemanagement.ImsmqQueueManagementClient
+	Query() imsmqquery.QueryClient
+	Query2() imsmqquery2.Query2Client
+	Query3() imsmqquery3.Query3Client
+	Query4() imsmqquery4.Query4Client
+	Message() imsmqmessage.MessageClient
+	Message2() imsmqmessage2.Message2Client
+	Message3() imsmqmessage3.Message3Client
+	Message4() imsmqmessage4.Message4Client
+	Queue() imsmqqueue.QueueClient
+	Queue2() imsmqqueue2.Queue2Client
+	Queue3() imsmqqueue3.Queue3Client
+	Queue4() imsmqqueue4.Queue4Client
+	PrivateEvent() imsmqprivateevent.PrivateEventClient
+	Event2() imsmqevent2.Event2Client
+	QueueInfo() imsmqqueueinfo.QueueInfoClient
+	QueueInfo2() imsmqqueueinfo2.QueueInfo2Client
+	QueueInfo3() imsmqqueueinfo3.QueueInfo3Client
+	QueueInfo4() imsmqqueueinfo4.QueueInfo4Client
+	QueueInfos() imsmqqueueinfos.QueueInfosClient
+	QueueInfos2() imsmqqueueinfos2.QueueInfos2Client
+	QueueInfos3() imsmqqueueinfos3.QueueInfos3Client
+	QueueInfos4() imsmqqueueinfos4.QueueInfos4Client
+	Transaction() imsmqtransaction.TransactionClient
+	Transaction2() imsmqtransaction2.Transaction2Client
+	Transaction3() imsmqtransaction3.Transaction3Client
+	CoordinatedTransactionDispenser() imsmqcoordinatedtransactiondispenser.CoordinatedTransactionDispenserClient
+	CoordinatedTransactionDispenser2() imsmqcoordinatedtransactiondispenser2.CoordinatedTransactionDispenser2Client
+	CoordinatedTransactionDispenser3() imsmqcoordinatedtransactiondispenser3.CoordinatedTransactionDispenser3Client
+	TransactionDispenser() imsmqtransactiondispenser.TransactionDispenserClient
+	TransactionDispenser2() imsmqtransactiondispenser2.TransactionDispenser2Client
+	TransactionDispenser3() imsmqtransactiondispenser3.TransactionDispenser3Client
+	Application() imsmqapplication.ApplicationClient
+	Application2() imsmqapplication2.Application2Client
+	Application3() imsmqapplication3.Application3Client
+	Destination() imsmqdestination.DestinationClient
+	PrivateDestination() imsmqprivatedestination.PrivateDestinationClient
+	Collection() imsmqcollection.CollectionClient
+	Management() imsmqmanagement.ManagementClient
+	OutgoingQueueManagement() imsmqoutgoingqueuemanagement.OutgoingQueueManagementClient
+	QueueManagement() imsmqqueuemanagement.QueueManagementClient
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
@@ -193,51 +193,51 @@ type xxx_DefaultClient struct {
 
 	dcomClient dcom_client.Client
 
-	itransaction                          itransaction.ITransactionClient
-	enumConnections                       ienumconnections.EnumConnectionsClient
-	connectionPoint                       iconnectionpoint.ConnectionPointClient
-	enumConnectionPoints                  ienumconnectionpoints.EnumConnectionPointsClient
-	connectionPointContainer              iconnectionpointcontainer.ConnectionPointContainerClient
-	imsmqQuery                            imsmqquery.ImsmqQueryClient
-	imsmqQuery2                           imsmqquery2.ImsmqQuery2Client
-	imsmqQuery3                           imsmqquery3.ImsmqQuery3Client
-	imsmqQuery4                           imsmqquery4.ImsmqQuery4Client
-	imsmqMessage                          imsmqmessage.ImsmqMessageClient
-	imsmqMessage2                         imsmqmessage2.ImsmqMessage2Client
-	imsmqMessage3                         imsmqmessage3.ImsmqMessage3Client
-	imsmqMessage4                         imsmqmessage4.ImsmqMessage4Client
-	imsmqQueue                            imsmqqueue.ImsmqQueueClient
-	imsmqQueue2                           imsmqqueue2.ImsmqQueue2Client
-	imsmqQueue3                           imsmqqueue3.ImsmqQueue3Client
-	imsmqQueue4                           imsmqqueue4.ImsmqQueue4Client
-	imsmqPrivateEvent                     imsmqprivateevent.ImsmqPrivateEventClient
-	imsmqEvent2                           imsmqevent2.ImsmqEvent2Client
-	imsmqQueueInfo                        imsmqqueueinfo.ImsmqQueueInfoClient
-	imsmqQueueInfo2                       imsmqqueueinfo2.ImsmqQueueInfo2Client
-	imsmqQueueInfo3                       imsmqqueueinfo3.ImsmqQueueInfo3Client
-	imsmqQueueInfo4                       imsmqqueueinfo4.ImsmqQueueInfo4Client
-	imsmqQueueInfos                       imsmqqueueinfos.ImsmqQueueInfosClient
-	imsmqQueueInfos2                      imsmqqueueinfos2.ImsmqQueueInfos2Client
-	imsmqQueueInfos3                      imsmqqueueinfos3.ImsmqQueueInfos3Client
-	imsmqQueueInfos4                      imsmqqueueinfos4.ImsmqQueueInfos4Client
-	imsmqTransaction                      imsmqtransaction.ImsmqTransactionClient
-	imsmqTransaction2                     imsmqtransaction2.ImsmqTransaction2Client
-	imsmqTransaction3                     imsmqtransaction3.ImsmqTransaction3Client
-	imsmqCoordinatedTransactionDispenser  imsmqcoordinatedtransactiondispenser.ImsmqCoordinatedTransactionDispenserClient
-	imsmqCoordinatedTransactionDispenser2 imsmqcoordinatedtransactiondispenser2.ImsmqCoordinatedTransactionDispenser2Client
-	imsmqCoordinatedTransactionDispenser3 imsmqcoordinatedtransactiondispenser3.ImsmqCoordinatedTransactionDispenser3Client
-	imsmqTransactionDispenser             imsmqtransactiondispenser.ImsmqTransactionDispenserClient
-	imsmqTransactionDispenser2            imsmqtransactiondispenser2.ImsmqTransactionDispenser2Client
-	imsmqTransactionDispenser3            imsmqtransactiondispenser3.ImsmqTransactionDispenser3Client
-	imsmqApplication                      imsmqapplication.ImsmqApplicationClient
-	imsmqApplication2                     imsmqapplication2.ImsmqApplication2Client
-	imsmqApplication3                     imsmqapplication3.ImsmqApplication3Client
-	imsmqDestination                      imsmqdestination.ImsmqDestinationClient
-	imsmqPrivateDestination               imsmqprivatedestination.ImsmqPrivateDestinationClient
-	imsmqCollection                       imsmqcollection.ImsmqCollectionClient
-	imsmqManagement                       imsmqmanagement.ImsmqManagementClient
-	imsmqOutgoingQueueManagement          imsmqoutgoingqueuemanagement.ImsmqOutgoingQueueManagementClient
-	imsmqQueueManagement                  imsmqqueuemanagement.ImsmqQueueManagementClient
+	itransaction                     itransaction.ITransactionClient
+	enumConnections                  ienumconnections.EnumConnectionsClient
+	connectionPoint                  iconnectionpoint.ConnectionPointClient
+	enumConnectionPoints             ienumconnectionpoints.EnumConnectionPointsClient
+	connectionPointContainer         iconnectionpointcontainer.ConnectionPointContainerClient
+	query                            imsmqquery.QueryClient
+	query2                           imsmqquery2.Query2Client
+	query3                           imsmqquery3.Query3Client
+	query4                           imsmqquery4.Query4Client
+	message                          imsmqmessage.MessageClient
+	message2                         imsmqmessage2.Message2Client
+	message3                         imsmqmessage3.Message3Client
+	message4                         imsmqmessage4.Message4Client
+	queue                            imsmqqueue.QueueClient
+	queue2                           imsmqqueue2.Queue2Client
+	queue3                           imsmqqueue3.Queue3Client
+	queue4                           imsmqqueue4.Queue4Client
+	privateEvent                     imsmqprivateevent.PrivateEventClient
+	event2                           imsmqevent2.Event2Client
+	queueInfo                        imsmqqueueinfo.QueueInfoClient
+	queueInfo2                       imsmqqueueinfo2.QueueInfo2Client
+	queueInfo3                       imsmqqueueinfo3.QueueInfo3Client
+	queueInfo4                       imsmqqueueinfo4.QueueInfo4Client
+	queueInfos                       imsmqqueueinfos.QueueInfosClient
+	queueInfos2                      imsmqqueueinfos2.QueueInfos2Client
+	queueInfos3                      imsmqqueueinfos3.QueueInfos3Client
+	queueInfos4                      imsmqqueueinfos4.QueueInfos4Client
+	transaction                      imsmqtransaction.TransactionClient
+	transaction2                     imsmqtransaction2.Transaction2Client
+	transaction3                     imsmqtransaction3.Transaction3Client
+	coordinatedTransactionDispenser  imsmqcoordinatedtransactiondispenser.CoordinatedTransactionDispenserClient
+	coordinatedTransactionDispenser2 imsmqcoordinatedtransactiondispenser2.CoordinatedTransactionDispenser2Client
+	coordinatedTransactionDispenser3 imsmqcoordinatedtransactiondispenser3.CoordinatedTransactionDispenser3Client
+	transactionDispenser             imsmqtransactiondispenser.TransactionDispenserClient
+	transactionDispenser2            imsmqtransactiondispenser2.TransactionDispenser2Client
+	transactionDispenser3            imsmqtransactiondispenser3.TransactionDispenser3Client
+	application                      imsmqapplication.ApplicationClient
+	application2                     imsmqapplication2.Application2Client
+	application3                     imsmqapplication3.Application3Client
+	destination                      imsmqdestination.DestinationClient
+	privateDestination               imsmqprivatedestination.PrivateDestinationClient
+	collection                       imsmqcollection.CollectionClient
+	management                       imsmqmanagement.ManagementClient
+	outgoingQueueManagement          imsmqoutgoingqueuemanagement.OutgoingQueueManagementClient
+	queueManagement                  imsmqqueuemanagement.QueueManagementClient
 }
 
 func (o *xxx_DefaultClient) RemoteUnknown() iremunknown.RemoteUnknownClient {
@@ -268,164 +268,164 @@ func (o *xxx_DefaultClient) ConnectionPointContainer() iconnectionpointcontainer
 	return o.connectionPointContainer
 }
 
-func (o *xxx_DefaultClient) ImsmqQuery() imsmqquery.ImsmqQueryClient {
-	return o.imsmqQuery
+func (o *xxx_DefaultClient) Query() imsmqquery.QueryClient {
+	return o.query
 }
 
-func (o *xxx_DefaultClient) ImsmqQuery2() imsmqquery2.ImsmqQuery2Client {
-	return o.imsmqQuery2
+func (o *xxx_DefaultClient) Query2() imsmqquery2.Query2Client {
+	return o.query2
 }
 
-func (o *xxx_DefaultClient) ImsmqQuery3() imsmqquery3.ImsmqQuery3Client {
-	return o.imsmqQuery3
+func (o *xxx_DefaultClient) Query3() imsmqquery3.Query3Client {
+	return o.query3
 }
 
-func (o *xxx_DefaultClient) ImsmqQuery4() imsmqquery4.ImsmqQuery4Client {
-	return o.imsmqQuery4
+func (o *xxx_DefaultClient) Query4() imsmqquery4.Query4Client {
+	return o.query4
 }
 
-func (o *xxx_DefaultClient) ImsmqMessage() imsmqmessage.ImsmqMessageClient {
-	return o.imsmqMessage
+func (o *xxx_DefaultClient) Message() imsmqmessage.MessageClient {
+	return o.message
 }
 
-func (o *xxx_DefaultClient) ImsmqMessage2() imsmqmessage2.ImsmqMessage2Client {
-	return o.imsmqMessage2
+func (o *xxx_DefaultClient) Message2() imsmqmessage2.Message2Client {
+	return o.message2
 }
 
-func (o *xxx_DefaultClient) ImsmqMessage3() imsmqmessage3.ImsmqMessage3Client {
-	return o.imsmqMessage3
+func (o *xxx_DefaultClient) Message3() imsmqmessage3.Message3Client {
+	return o.message3
 }
 
-func (o *xxx_DefaultClient) ImsmqMessage4() imsmqmessage4.ImsmqMessage4Client {
-	return o.imsmqMessage4
+func (o *xxx_DefaultClient) Message4() imsmqmessage4.Message4Client {
+	return o.message4
 }
 
-func (o *xxx_DefaultClient) ImsmqQueue() imsmqqueue.ImsmqQueueClient {
-	return o.imsmqQueue
+func (o *xxx_DefaultClient) Queue() imsmqqueue.QueueClient {
+	return o.queue
 }
 
-func (o *xxx_DefaultClient) ImsmqQueue2() imsmqqueue2.ImsmqQueue2Client {
-	return o.imsmqQueue2
+func (o *xxx_DefaultClient) Queue2() imsmqqueue2.Queue2Client {
+	return o.queue2
 }
 
-func (o *xxx_DefaultClient) ImsmqQueue3() imsmqqueue3.ImsmqQueue3Client {
-	return o.imsmqQueue3
+func (o *xxx_DefaultClient) Queue3() imsmqqueue3.Queue3Client {
+	return o.queue3
 }
 
-func (o *xxx_DefaultClient) ImsmqQueue4() imsmqqueue4.ImsmqQueue4Client {
-	return o.imsmqQueue4
+func (o *xxx_DefaultClient) Queue4() imsmqqueue4.Queue4Client {
+	return o.queue4
 }
 
-func (o *xxx_DefaultClient) ImsmqPrivateEvent() imsmqprivateevent.ImsmqPrivateEventClient {
-	return o.imsmqPrivateEvent
+func (o *xxx_DefaultClient) PrivateEvent() imsmqprivateevent.PrivateEventClient {
+	return o.privateEvent
 }
 
-func (o *xxx_DefaultClient) ImsmqEvent2() imsmqevent2.ImsmqEvent2Client {
-	return o.imsmqEvent2
+func (o *xxx_DefaultClient) Event2() imsmqevent2.Event2Client {
+	return o.event2
 }
 
-func (o *xxx_DefaultClient) ImsmqQueueInfo() imsmqqueueinfo.ImsmqQueueInfoClient {
-	return o.imsmqQueueInfo
+func (o *xxx_DefaultClient) QueueInfo() imsmqqueueinfo.QueueInfoClient {
+	return o.queueInfo
 }
 
-func (o *xxx_DefaultClient) ImsmqQueueInfo2() imsmqqueueinfo2.ImsmqQueueInfo2Client {
-	return o.imsmqQueueInfo2
+func (o *xxx_DefaultClient) QueueInfo2() imsmqqueueinfo2.QueueInfo2Client {
+	return o.queueInfo2
 }
 
-func (o *xxx_DefaultClient) ImsmqQueueInfo3() imsmqqueueinfo3.ImsmqQueueInfo3Client {
-	return o.imsmqQueueInfo3
+func (o *xxx_DefaultClient) QueueInfo3() imsmqqueueinfo3.QueueInfo3Client {
+	return o.queueInfo3
 }
 
-func (o *xxx_DefaultClient) ImsmqQueueInfo4() imsmqqueueinfo4.ImsmqQueueInfo4Client {
-	return o.imsmqQueueInfo4
+func (o *xxx_DefaultClient) QueueInfo4() imsmqqueueinfo4.QueueInfo4Client {
+	return o.queueInfo4
 }
 
-func (o *xxx_DefaultClient) ImsmqQueueInfos() imsmqqueueinfos.ImsmqQueueInfosClient {
-	return o.imsmqQueueInfos
+func (o *xxx_DefaultClient) QueueInfos() imsmqqueueinfos.QueueInfosClient {
+	return o.queueInfos
 }
 
-func (o *xxx_DefaultClient) ImsmqQueueInfos2() imsmqqueueinfos2.ImsmqQueueInfos2Client {
-	return o.imsmqQueueInfos2
+func (o *xxx_DefaultClient) QueueInfos2() imsmqqueueinfos2.QueueInfos2Client {
+	return o.queueInfos2
 }
 
-func (o *xxx_DefaultClient) ImsmqQueueInfos3() imsmqqueueinfos3.ImsmqQueueInfos3Client {
-	return o.imsmqQueueInfos3
+func (o *xxx_DefaultClient) QueueInfos3() imsmqqueueinfos3.QueueInfos3Client {
+	return o.queueInfos3
 }
 
-func (o *xxx_DefaultClient) ImsmqQueueInfos4() imsmqqueueinfos4.ImsmqQueueInfos4Client {
-	return o.imsmqQueueInfos4
+func (o *xxx_DefaultClient) QueueInfos4() imsmqqueueinfos4.QueueInfos4Client {
+	return o.queueInfos4
 }
 
-func (o *xxx_DefaultClient) ImsmqTransaction() imsmqtransaction.ImsmqTransactionClient {
-	return o.imsmqTransaction
+func (o *xxx_DefaultClient) Transaction() imsmqtransaction.TransactionClient {
+	return o.transaction
 }
 
-func (o *xxx_DefaultClient) ImsmqTransaction2() imsmqtransaction2.ImsmqTransaction2Client {
-	return o.imsmqTransaction2
+func (o *xxx_DefaultClient) Transaction2() imsmqtransaction2.Transaction2Client {
+	return o.transaction2
 }
 
-func (o *xxx_DefaultClient) ImsmqTransaction3() imsmqtransaction3.ImsmqTransaction3Client {
-	return o.imsmqTransaction3
+func (o *xxx_DefaultClient) Transaction3() imsmqtransaction3.Transaction3Client {
+	return o.transaction3
 }
 
-func (o *xxx_DefaultClient) ImsmqCoordinatedTransactionDispenser() imsmqcoordinatedtransactiondispenser.ImsmqCoordinatedTransactionDispenserClient {
-	return o.imsmqCoordinatedTransactionDispenser
+func (o *xxx_DefaultClient) CoordinatedTransactionDispenser() imsmqcoordinatedtransactiondispenser.CoordinatedTransactionDispenserClient {
+	return o.coordinatedTransactionDispenser
 }
 
-func (o *xxx_DefaultClient) ImsmqCoordinatedTransactionDispenser2() imsmqcoordinatedtransactiondispenser2.ImsmqCoordinatedTransactionDispenser2Client {
-	return o.imsmqCoordinatedTransactionDispenser2
+func (o *xxx_DefaultClient) CoordinatedTransactionDispenser2() imsmqcoordinatedtransactiondispenser2.CoordinatedTransactionDispenser2Client {
+	return o.coordinatedTransactionDispenser2
 }
 
-func (o *xxx_DefaultClient) ImsmqCoordinatedTransactionDispenser3() imsmqcoordinatedtransactiondispenser3.ImsmqCoordinatedTransactionDispenser3Client {
-	return o.imsmqCoordinatedTransactionDispenser3
+func (o *xxx_DefaultClient) CoordinatedTransactionDispenser3() imsmqcoordinatedtransactiondispenser3.CoordinatedTransactionDispenser3Client {
+	return o.coordinatedTransactionDispenser3
 }
 
-func (o *xxx_DefaultClient) ImsmqTransactionDispenser() imsmqtransactiondispenser.ImsmqTransactionDispenserClient {
-	return o.imsmqTransactionDispenser
+func (o *xxx_DefaultClient) TransactionDispenser() imsmqtransactiondispenser.TransactionDispenserClient {
+	return o.transactionDispenser
 }
 
-func (o *xxx_DefaultClient) ImsmqTransactionDispenser2() imsmqtransactiondispenser2.ImsmqTransactionDispenser2Client {
-	return o.imsmqTransactionDispenser2
+func (o *xxx_DefaultClient) TransactionDispenser2() imsmqtransactiondispenser2.TransactionDispenser2Client {
+	return o.transactionDispenser2
 }
 
-func (o *xxx_DefaultClient) ImsmqTransactionDispenser3() imsmqtransactiondispenser3.ImsmqTransactionDispenser3Client {
-	return o.imsmqTransactionDispenser3
+func (o *xxx_DefaultClient) TransactionDispenser3() imsmqtransactiondispenser3.TransactionDispenser3Client {
+	return o.transactionDispenser3
 }
 
-func (o *xxx_DefaultClient) ImsmqApplication() imsmqapplication.ImsmqApplicationClient {
-	return o.imsmqApplication
+func (o *xxx_DefaultClient) Application() imsmqapplication.ApplicationClient {
+	return o.application
 }
 
-func (o *xxx_DefaultClient) ImsmqApplication2() imsmqapplication2.ImsmqApplication2Client {
-	return o.imsmqApplication2
+func (o *xxx_DefaultClient) Application2() imsmqapplication2.Application2Client {
+	return o.application2
 }
 
-func (o *xxx_DefaultClient) ImsmqApplication3() imsmqapplication3.ImsmqApplication3Client {
-	return o.imsmqApplication3
+func (o *xxx_DefaultClient) Application3() imsmqapplication3.Application3Client {
+	return o.application3
 }
 
-func (o *xxx_DefaultClient) ImsmqDestination() imsmqdestination.ImsmqDestinationClient {
-	return o.imsmqDestination
+func (o *xxx_DefaultClient) Destination() imsmqdestination.DestinationClient {
+	return o.destination
 }
 
-func (o *xxx_DefaultClient) ImsmqPrivateDestination() imsmqprivatedestination.ImsmqPrivateDestinationClient {
-	return o.imsmqPrivateDestination
+func (o *xxx_DefaultClient) PrivateDestination() imsmqprivatedestination.PrivateDestinationClient {
+	return o.privateDestination
 }
 
-func (o *xxx_DefaultClient) ImsmqCollection() imsmqcollection.ImsmqCollectionClient {
-	return o.imsmqCollection
+func (o *xxx_DefaultClient) Collection() imsmqcollection.CollectionClient {
+	return o.collection
 }
 
-func (o *xxx_DefaultClient) ImsmqManagement() imsmqmanagement.ImsmqManagementClient {
-	return o.imsmqManagement
+func (o *xxx_DefaultClient) Management() imsmqmanagement.ManagementClient {
+	return o.management
 }
 
-func (o *xxx_DefaultClient) ImsmqOutgoingQueueManagement() imsmqoutgoingqueuemanagement.ImsmqOutgoingQueueManagementClient {
-	return o.imsmqOutgoingQueueManagement
+func (o *xxx_DefaultClient) OutgoingQueueManagement() imsmqoutgoingqueuemanagement.OutgoingQueueManagementClient {
+	return o.outgoingQueueManagement
 }
 
-func (o *xxx_DefaultClient) ImsmqQueueManagement() imsmqqueuemanagement.ImsmqQueueManagementClient {
-	return o.imsmqQueueManagement
+func (o *xxx_DefaultClient) QueueManagement() imsmqqueuemanagement.QueueManagementClient {
+	return o.queueManagement
 }
 
 func NewClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Client, error) {
@@ -436,46 +436,46 @@ func NewClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Clie
 		dcerpc.WithAbstractSyntax(iconnectionpoint.ConnectionPointSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(ienumconnectionpoints.EnumConnectionPointsSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iconnectionpointcontainer.ConnectionPointContainerSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqquery.ImsmqQuerySyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqquery2.ImsmqQuery2SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqquery3.ImsmqQuery3SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqquery4.ImsmqQuery4SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqmessage.ImsmqMessageSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqmessage2.ImsmqMessage2SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqmessage3.ImsmqMessage3SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqmessage4.ImsmqMessage4SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqqueue.ImsmqQueueSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqqueue2.ImsmqQueue2SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqqueue3.ImsmqQueue3SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqqueue4.ImsmqQueue4SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqprivateevent.ImsmqPrivateEventSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqevent2.ImsmqEvent2SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqqueueinfo.ImsmqQueueInfoSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqqueueinfo2.ImsmqQueueInfo2SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqqueueinfo3.ImsmqQueueInfo3SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqqueueinfo4.ImsmqQueueInfo4SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqqueueinfos.ImsmqQueueInfosSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqqueueinfos2.ImsmqQueueInfos2SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqqueueinfos3.ImsmqQueueInfos3SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqqueueinfos4.ImsmqQueueInfos4SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqtransaction.ImsmqTransactionSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqtransaction2.ImsmqTransaction2SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqtransaction3.ImsmqTransaction3SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqcoordinatedtransactiondispenser.ImsmqCoordinatedTransactionDispenserSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqcoordinatedtransactiondispenser2.ImsmqCoordinatedTransactionDispenser2SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqcoordinatedtransactiondispenser3.ImsmqCoordinatedTransactionDispenser3SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqtransactiondispenser.ImsmqTransactionDispenserSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqtransactiondispenser2.ImsmqTransactionDispenser2SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqtransactiondispenser3.ImsmqTransactionDispenser3SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqapplication.ImsmqApplicationSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqapplication2.ImsmqApplication2SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqapplication3.ImsmqApplication3SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqdestination.ImsmqDestinationSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqprivatedestination.ImsmqPrivateDestinationSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqcollection.ImsmqCollectionSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqmanagement.ImsmqManagementSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqoutgoingqueuemanagement.ImsmqOutgoingQueueManagementSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(imsmqqueuemanagement.ImsmqQueueManagementSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqquery.QuerySyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqquery2.Query2SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqquery3.Query3SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqquery4.Query4SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqmessage.MessageSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqmessage2.Message2SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqmessage3.Message3SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqmessage4.Message4SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqqueue.QueueSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqqueue2.Queue2SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqqueue3.Queue3SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqqueue4.Queue4SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqprivateevent.PrivateEventSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqevent2.Event2SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqqueueinfo.QueueInfoSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqqueueinfo2.QueueInfo2SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqqueueinfo3.QueueInfo3SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqqueueinfo4.QueueInfo4SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqqueueinfos.QueueInfosSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqqueueinfos2.QueueInfos2SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqqueueinfos3.QueueInfos3SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqqueueinfos4.QueueInfos4SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqtransaction.TransactionSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqtransaction2.Transaction2SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqtransaction3.Transaction3SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqcoordinatedtransactiondispenser.CoordinatedTransactionDispenserSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqcoordinatedtransactiondispenser2.CoordinatedTransactionDispenser2SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqcoordinatedtransactiondispenser3.CoordinatedTransactionDispenser3SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqtransactiondispenser.TransactionDispenserSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqtransactiondispenser2.TransactionDispenser2SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqtransactiondispenser3.TransactionDispenser3SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqapplication.ApplicationSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqapplication2.Application2SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqapplication3.Application3SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqdestination.DestinationSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqprivatedestination.PrivateDestinationSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqcollection.CollectionSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqmanagement.ManagementSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqoutgoingqueuemanagement.OutgoingQueueManagementSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(imsmqqueuemanagement.QueueManagementSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iremunknown.RemoteUnknownSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iremunknown2.RemoteUnknown2SyntaxV0_0),
 	)
@@ -543,365 +543,365 @@ func NewClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Clie
 
 	o.connectionPointContainer, err = iconnectionpointcontainer.NewConnectionPointContainerClient(ctx, connectionPointContainerSubConn, append(opts, dcerpc.WithNoBind(connectionPointContainerSubConn))...)
 
-	imsmqQuerySubConn, err := sub.SubConn(ctx, imsmqquery.ImsmqQuerySyntaxV0_0)
+	querySubConn, err := sub.SubConn(ctx, imsmqquery.QuerySyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqQuerySubConn = sub
+		querySubConn = sub
 	}
 
-	o.imsmqQuery, err = imsmqquery.NewImsmqQueryClient(ctx, imsmqQuerySubConn, append(opts, dcerpc.WithNoBind(imsmqQuerySubConn))...)
+	o.query, err = imsmqquery.NewQueryClient(ctx, querySubConn, append(opts, dcerpc.WithNoBind(querySubConn))...)
 
-	imsmqQuery2SubConn, err := sub.SubConn(ctx, imsmqquery2.ImsmqQuery2SyntaxV0_0)
+	query2SubConn, err := sub.SubConn(ctx, imsmqquery2.Query2SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqQuery2SubConn = sub
+		query2SubConn = sub
 	}
 
-	o.imsmqQuery2, err = imsmqquery2.NewImsmqQuery2Client(ctx, imsmqQuery2SubConn, append(opts, dcerpc.WithNoBind(imsmqQuery2SubConn))...)
+	o.query2, err = imsmqquery2.NewQuery2Client(ctx, query2SubConn, append(opts, dcerpc.WithNoBind(query2SubConn))...)
 
-	imsmqQuery3SubConn, err := sub.SubConn(ctx, imsmqquery3.ImsmqQuery3SyntaxV0_0)
+	query3SubConn, err := sub.SubConn(ctx, imsmqquery3.Query3SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqQuery3SubConn = sub
+		query3SubConn = sub
 	}
 
-	o.imsmqQuery3, err = imsmqquery3.NewImsmqQuery3Client(ctx, imsmqQuery3SubConn, append(opts, dcerpc.WithNoBind(imsmqQuery3SubConn))...)
+	o.query3, err = imsmqquery3.NewQuery3Client(ctx, query3SubConn, append(opts, dcerpc.WithNoBind(query3SubConn))...)
 
-	imsmqQuery4SubConn, err := sub.SubConn(ctx, imsmqquery4.ImsmqQuery4SyntaxV0_0)
+	query4SubConn, err := sub.SubConn(ctx, imsmqquery4.Query4SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqQuery4SubConn = sub
+		query4SubConn = sub
 	}
 
-	o.imsmqQuery4, err = imsmqquery4.NewImsmqQuery4Client(ctx, imsmqQuery4SubConn, append(opts, dcerpc.WithNoBind(imsmqQuery4SubConn))...)
+	o.query4, err = imsmqquery4.NewQuery4Client(ctx, query4SubConn, append(opts, dcerpc.WithNoBind(query4SubConn))...)
 
-	imsmqMessageSubConn, err := sub.SubConn(ctx, imsmqmessage.ImsmqMessageSyntaxV0_0)
+	messageSubConn, err := sub.SubConn(ctx, imsmqmessage.MessageSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqMessageSubConn = sub
+		messageSubConn = sub
 	}
 
-	o.imsmqMessage, err = imsmqmessage.NewImsmqMessageClient(ctx, imsmqMessageSubConn, append(opts, dcerpc.WithNoBind(imsmqMessageSubConn))...)
+	o.message, err = imsmqmessage.NewMessageClient(ctx, messageSubConn, append(opts, dcerpc.WithNoBind(messageSubConn))...)
 
-	imsmqMessage2SubConn, err := sub.SubConn(ctx, imsmqmessage2.ImsmqMessage2SyntaxV0_0)
+	message2SubConn, err := sub.SubConn(ctx, imsmqmessage2.Message2SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqMessage2SubConn = sub
+		message2SubConn = sub
 	}
 
-	o.imsmqMessage2, err = imsmqmessage2.NewImsmqMessage2Client(ctx, imsmqMessage2SubConn, append(opts, dcerpc.WithNoBind(imsmqMessage2SubConn))...)
+	o.message2, err = imsmqmessage2.NewMessage2Client(ctx, message2SubConn, append(opts, dcerpc.WithNoBind(message2SubConn))...)
 
-	imsmqMessage3SubConn, err := sub.SubConn(ctx, imsmqmessage3.ImsmqMessage3SyntaxV0_0)
+	message3SubConn, err := sub.SubConn(ctx, imsmqmessage3.Message3SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqMessage3SubConn = sub
+		message3SubConn = sub
 	}
 
-	o.imsmqMessage3, err = imsmqmessage3.NewImsmqMessage3Client(ctx, imsmqMessage3SubConn, append(opts, dcerpc.WithNoBind(imsmqMessage3SubConn))...)
+	o.message3, err = imsmqmessage3.NewMessage3Client(ctx, message3SubConn, append(opts, dcerpc.WithNoBind(message3SubConn))...)
 
-	imsmqMessage4SubConn, err := sub.SubConn(ctx, imsmqmessage4.ImsmqMessage4SyntaxV0_0)
+	message4SubConn, err := sub.SubConn(ctx, imsmqmessage4.Message4SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqMessage4SubConn = sub
+		message4SubConn = sub
 	}
 
-	o.imsmqMessage4, err = imsmqmessage4.NewImsmqMessage4Client(ctx, imsmqMessage4SubConn, append(opts, dcerpc.WithNoBind(imsmqMessage4SubConn))...)
+	o.message4, err = imsmqmessage4.NewMessage4Client(ctx, message4SubConn, append(opts, dcerpc.WithNoBind(message4SubConn))...)
 
-	imsmqQueueSubConn, err := sub.SubConn(ctx, imsmqqueue.ImsmqQueueSyntaxV0_0)
+	queueSubConn, err := sub.SubConn(ctx, imsmqqueue.QueueSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqQueueSubConn = sub
+		queueSubConn = sub
 	}
 
-	o.imsmqQueue, err = imsmqqueue.NewImsmqQueueClient(ctx, imsmqQueueSubConn, append(opts, dcerpc.WithNoBind(imsmqQueueSubConn))...)
+	o.queue, err = imsmqqueue.NewQueueClient(ctx, queueSubConn, append(opts, dcerpc.WithNoBind(queueSubConn))...)
 
-	imsmqQueue2SubConn, err := sub.SubConn(ctx, imsmqqueue2.ImsmqQueue2SyntaxV0_0)
+	queue2SubConn, err := sub.SubConn(ctx, imsmqqueue2.Queue2SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqQueue2SubConn = sub
+		queue2SubConn = sub
 	}
 
-	o.imsmqQueue2, err = imsmqqueue2.NewImsmqQueue2Client(ctx, imsmqQueue2SubConn, append(opts, dcerpc.WithNoBind(imsmqQueue2SubConn))...)
+	o.queue2, err = imsmqqueue2.NewQueue2Client(ctx, queue2SubConn, append(opts, dcerpc.WithNoBind(queue2SubConn))...)
 
-	imsmqQueue3SubConn, err := sub.SubConn(ctx, imsmqqueue3.ImsmqQueue3SyntaxV0_0)
+	queue3SubConn, err := sub.SubConn(ctx, imsmqqueue3.Queue3SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqQueue3SubConn = sub
+		queue3SubConn = sub
 	}
 
-	o.imsmqQueue3, err = imsmqqueue3.NewImsmqQueue3Client(ctx, imsmqQueue3SubConn, append(opts, dcerpc.WithNoBind(imsmqQueue3SubConn))...)
+	o.queue3, err = imsmqqueue3.NewQueue3Client(ctx, queue3SubConn, append(opts, dcerpc.WithNoBind(queue3SubConn))...)
 
-	imsmqQueue4SubConn, err := sub.SubConn(ctx, imsmqqueue4.ImsmqQueue4SyntaxV0_0)
+	queue4SubConn, err := sub.SubConn(ctx, imsmqqueue4.Queue4SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqQueue4SubConn = sub
+		queue4SubConn = sub
 	}
 
-	o.imsmqQueue4, err = imsmqqueue4.NewImsmqQueue4Client(ctx, imsmqQueue4SubConn, append(opts, dcerpc.WithNoBind(imsmqQueue4SubConn))...)
+	o.queue4, err = imsmqqueue4.NewQueue4Client(ctx, queue4SubConn, append(opts, dcerpc.WithNoBind(queue4SubConn))...)
 
-	imsmqPrivateEventSubConn, err := sub.SubConn(ctx, imsmqprivateevent.ImsmqPrivateEventSyntaxV0_0)
+	privateEventSubConn, err := sub.SubConn(ctx, imsmqprivateevent.PrivateEventSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqPrivateEventSubConn = sub
+		privateEventSubConn = sub
 	}
 
-	o.imsmqPrivateEvent, err = imsmqprivateevent.NewImsmqPrivateEventClient(ctx, imsmqPrivateEventSubConn, append(opts, dcerpc.WithNoBind(imsmqPrivateEventSubConn))...)
+	o.privateEvent, err = imsmqprivateevent.NewPrivateEventClient(ctx, privateEventSubConn, append(opts, dcerpc.WithNoBind(privateEventSubConn))...)
 
-	imsmqEvent2SubConn, err := sub.SubConn(ctx, imsmqevent2.ImsmqEvent2SyntaxV0_0)
+	event2SubConn, err := sub.SubConn(ctx, imsmqevent2.Event2SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqEvent2SubConn = sub
+		event2SubConn = sub
 	}
 
-	o.imsmqEvent2, err = imsmqevent2.NewImsmqEvent2Client(ctx, imsmqEvent2SubConn, append(opts, dcerpc.WithNoBind(imsmqEvent2SubConn))...)
+	o.event2, err = imsmqevent2.NewEvent2Client(ctx, event2SubConn, append(opts, dcerpc.WithNoBind(event2SubConn))...)
 
-	imsmqQueueInfoSubConn, err := sub.SubConn(ctx, imsmqqueueinfo.ImsmqQueueInfoSyntaxV0_0)
+	queueInfoSubConn, err := sub.SubConn(ctx, imsmqqueueinfo.QueueInfoSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqQueueInfoSubConn = sub
+		queueInfoSubConn = sub
 	}
 
-	o.imsmqQueueInfo, err = imsmqqueueinfo.NewImsmqQueueInfoClient(ctx, imsmqQueueInfoSubConn, append(opts, dcerpc.WithNoBind(imsmqQueueInfoSubConn))...)
+	o.queueInfo, err = imsmqqueueinfo.NewQueueInfoClient(ctx, queueInfoSubConn, append(opts, dcerpc.WithNoBind(queueInfoSubConn))...)
 
-	imsmqQueueInfo2SubConn, err := sub.SubConn(ctx, imsmqqueueinfo2.ImsmqQueueInfo2SyntaxV0_0)
+	queueInfo2SubConn, err := sub.SubConn(ctx, imsmqqueueinfo2.QueueInfo2SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqQueueInfo2SubConn = sub
+		queueInfo2SubConn = sub
 	}
 
-	o.imsmqQueueInfo2, err = imsmqqueueinfo2.NewImsmqQueueInfo2Client(ctx, imsmqQueueInfo2SubConn, append(opts, dcerpc.WithNoBind(imsmqQueueInfo2SubConn))...)
+	o.queueInfo2, err = imsmqqueueinfo2.NewQueueInfo2Client(ctx, queueInfo2SubConn, append(opts, dcerpc.WithNoBind(queueInfo2SubConn))...)
 
-	imsmqQueueInfo3SubConn, err := sub.SubConn(ctx, imsmqqueueinfo3.ImsmqQueueInfo3SyntaxV0_0)
+	queueInfo3SubConn, err := sub.SubConn(ctx, imsmqqueueinfo3.QueueInfo3SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqQueueInfo3SubConn = sub
+		queueInfo3SubConn = sub
 	}
 
-	o.imsmqQueueInfo3, err = imsmqqueueinfo3.NewImsmqQueueInfo3Client(ctx, imsmqQueueInfo3SubConn, append(opts, dcerpc.WithNoBind(imsmqQueueInfo3SubConn))...)
+	o.queueInfo3, err = imsmqqueueinfo3.NewQueueInfo3Client(ctx, queueInfo3SubConn, append(opts, dcerpc.WithNoBind(queueInfo3SubConn))...)
 
-	imsmqQueueInfo4SubConn, err := sub.SubConn(ctx, imsmqqueueinfo4.ImsmqQueueInfo4SyntaxV0_0)
+	queueInfo4SubConn, err := sub.SubConn(ctx, imsmqqueueinfo4.QueueInfo4SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqQueueInfo4SubConn = sub
+		queueInfo4SubConn = sub
 	}
 
-	o.imsmqQueueInfo4, err = imsmqqueueinfo4.NewImsmqQueueInfo4Client(ctx, imsmqQueueInfo4SubConn, append(opts, dcerpc.WithNoBind(imsmqQueueInfo4SubConn))...)
+	o.queueInfo4, err = imsmqqueueinfo4.NewQueueInfo4Client(ctx, queueInfo4SubConn, append(opts, dcerpc.WithNoBind(queueInfo4SubConn))...)
 
-	imsmqQueueInfosSubConn, err := sub.SubConn(ctx, imsmqqueueinfos.ImsmqQueueInfosSyntaxV0_0)
+	queueInfosSubConn, err := sub.SubConn(ctx, imsmqqueueinfos.QueueInfosSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqQueueInfosSubConn = sub
+		queueInfosSubConn = sub
 	}
 
-	o.imsmqQueueInfos, err = imsmqqueueinfos.NewImsmqQueueInfosClient(ctx, imsmqQueueInfosSubConn, append(opts, dcerpc.WithNoBind(imsmqQueueInfosSubConn))...)
+	o.queueInfos, err = imsmqqueueinfos.NewQueueInfosClient(ctx, queueInfosSubConn, append(opts, dcerpc.WithNoBind(queueInfosSubConn))...)
 
-	imsmqQueueInfos2SubConn, err := sub.SubConn(ctx, imsmqqueueinfos2.ImsmqQueueInfos2SyntaxV0_0)
+	queueInfos2SubConn, err := sub.SubConn(ctx, imsmqqueueinfos2.QueueInfos2SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqQueueInfos2SubConn = sub
+		queueInfos2SubConn = sub
 	}
 
-	o.imsmqQueueInfos2, err = imsmqqueueinfos2.NewImsmqQueueInfos2Client(ctx, imsmqQueueInfos2SubConn, append(opts, dcerpc.WithNoBind(imsmqQueueInfos2SubConn))...)
+	o.queueInfos2, err = imsmqqueueinfos2.NewQueueInfos2Client(ctx, queueInfos2SubConn, append(opts, dcerpc.WithNoBind(queueInfos2SubConn))...)
 
-	imsmqQueueInfos3SubConn, err := sub.SubConn(ctx, imsmqqueueinfos3.ImsmqQueueInfos3SyntaxV0_0)
+	queueInfos3SubConn, err := sub.SubConn(ctx, imsmqqueueinfos3.QueueInfos3SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqQueueInfos3SubConn = sub
+		queueInfos3SubConn = sub
 	}
 
-	o.imsmqQueueInfos3, err = imsmqqueueinfos3.NewImsmqQueueInfos3Client(ctx, imsmqQueueInfos3SubConn, append(opts, dcerpc.WithNoBind(imsmqQueueInfos3SubConn))...)
+	o.queueInfos3, err = imsmqqueueinfos3.NewQueueInfos3Client(ctx, queueInfos3SubConn, append(opts, dcerpc.WithNoBind(queueInfos3SubConn))...)
 
-	imsmqQueueInfos4SubConn, err := sub.SubConn(ctx, imsmqqueueinfos4.ImsmqQueueInfos4SyntaxV0_0)
+	queueInfos4SubConn, err := sub.SubConn(ctx, imsmqqueueinfos4.QueueInfos4SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqQueueInfos4SubConn = sub
+		queueInfos4SubConn = sub
 	}
 
-	o.imsmqQueueInfos4, err = imsmqqueueinfos4.NewImsmqQueueInfos4Client(ctx, imsmqQueueInfos4SubConn, append(opts, dcerpc.WithNoBind(imsmqQueueInfos4SubConn))...)
+	o.queueInfos4, err = imsmqqueueinfos4.NewQueueInfos4Client(ctx, queueInfos4SubConn, append(opts, dcerpc.WithNoBind(queueInfos4SubConn))...)
 
-	imsmqTransactionSubConn, err := sub.SubConn(ctx, imsmqtransaction.ImsmqTransactionSyntaxV0_0)
+	transactionSubConn, err := sub.SubConn(ctx, imsmqtransaction.TransactionSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqTransactionSubConn = sub
+		transactionSubConn = sub
 	}
 
-	o.imsmqTransaction, err = imsmqtransaction.NewImsmqTransactionClient(ctx, imsmqTransactionSubConn, append(opts, dcerpc.WithNoBind(imsmqTransactionSubConn))...)
+	o.transaction, err = imsmqtransaction.NewTransactionClient(ctx, transactionSubConn, append(opts, dcerpc.WithNoBind(transactionSubConn))...)
 
-	imsmqTransaction2SubConn, err := sub.SubConn(ctx, imsmqtransaction2.ImsmqTransaction2SyntaxV0_0)
+	transaction2SubConn, err := sub.SubConn(ctx, imsmqtransaction2.Transaction2SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqTransaction2SubConn = sub
+		transaction2SubConn = sub
 	}
 
-	o.imsmqTransaction2, err = imsmqtransaction2.NewImsmqTransaction2Client(ctx, imsmqTransaction2SubConn, append(opts, dcerpc.WithNoBind(imsmqTransaction2SubConn))...)
+	o.transaction2, err = imsmqtransaction2.NewTransaction2Client(ctx, transaction2SubConn, append(opts, dcerpc.WithNoBind(transaction2SubConn))...)
 
-	imsmqTransaction3SubConn, err := sub.SubConn(ctx, imsmqtransaction3.ImsmqTransaction3SyntaxV0_0)
+	transaction3SubConn, err := sub.SubConn(ctx, imsmqtransaction3.Transaction3SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqTransaction3SubConn = sub
+		transaction3SubConn = sub
 	}
 
-	o.imsmqTransaction3, err = imsmqtransaction3.NewImsmqTransaction3Client(ctx, imsmqTransaction3SubConn, append(opts, dcerpc.WithNoBind(imsmqTransaction3SubConn))...)
+	o.transaction3, err = imsmqtransaction3.NewTransaction3Client(ctx, transaction3SubConn, append(opts, dcerpc.WithNoBind(transaction3SubConn))...)
 
-	imsmqCoordinatedTransactionDispenserSubConn, err := sub.SubConn(ctx, imsmqcoordinatedtransactiondispenser.ImsmqCoordinatedTransactionDispenserSyntaxV0_0)
+	coordinatedTransactionDispenserSubConn, err := sub.SubConn(ctx, imsmqcoordinatedtransactiondispenser.CoordinatedTransactionDispenserSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqCoordinatedTransactionDispenserSubConn = sub
+		coordinatedTransactionDispenserSubConn = sub
 	}
 
-	o.imsmqCoordinatedTransactionDispenser, err = imsmqcoordinatedtransactiondispenser.NewImsmqCoordinatedTransactionDispenserClient(ctx, imsmqCoordinatedTransactionDispenserSubConn, append(opts, dcerpc.WithNoBind(imsmqCoordinatedTransactionDispenserSubConn))...)
+	o.coordinatedTransactionDispenser, err = imsmqcoordinatedtransactiondispenser.NewCoordinatedTransactionDispenserClient(ctx, coordinatedTransactionDispenserSubConn, append(opts, dcerpc.WithNoBind(coordinatedTransactionDispenserSubConn))...)
 
-	imsmqCoordinatedTransactionDispenser2SubConn, err := sub.SubConn(ctx, imsmqcoordinatedtransactiondispenser2.ImsmqCoordinatedTransactionDispenser2SyntaxV0_0)
+	coordinatedTransactionDispenser2SubConn, err := sub.SubConn(ctx, imsmqcoordinatedtransactiondispenser2.CoordinatedTransactionDispenser2SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqCoordinatedTransactionDispenser2SubConn = sub
+		coordinatedTransactionDispenser2SubConn = sub
 	}
 
-	o.imsmqCoordinatedTransactionDispenser2, err = imsmqcoordinatedtransactiondispenser2.NewImsmqCoordinatedTransactionDispenser2Client(ctx, imsmqCoordinatedTransactionDispenser2SubConn, append(opts, dcerpc.WithNoBind(imsmqCoordinatedTransactionDispenser2SubConn))...)
+	o.coordinatedTransactionDispenser2, err = imsmqcoordinatedtransactiondispenser2.NewCoordinatedTransactionDispenser2Client(ctx, coordinatedTransactionDispenser2SubConn, append(opts, dcerpc.WithNoBind(coordinatedTransactionDispenser2SubConn))...)
 
-	imsmqCoordinatedTransactionDispenser3SubConn, err := sub.SubConn(ctx, imsmqcoordinatedtransactiondispenser3.ImsmqCoordinatedTransactionDispenser3SyntaxV0_0)
+	coordinatedTransactionDispenser3SubConn, err := sub.SubConn(ctx, imsmqcoordinatedtransactiondispenser3.CoordinatedTransactionDispenser3SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqCoordinatedTransactionDispenser3SubConn = sub
+		coordinatedTransactionDispenser3SubConn = sub
 	}
 
-	o.imsmqCoordinatedTransactionDispenser3, err = imsmqcoordinatedtransactiondispenser3.NewImsmqCoordinatedTransactionDispenser3Client(ctx, imsmqCoordinatedTransactionDispenser3SubConn, append(opts, dcerpc.WithNoBind(imsmqCoordinatedTransactionDispenser3SubConn))...)
+	o.coordinatedTransactionDispenser3, err = imsmqcoordinatedtransactiondispenser3.NewCoordinatedTransactionDispenser3Client(ctx, coordinatedTransactionDispenser3SubConn, append(opts, dcerpc.WithNoBind(coordinatedTransactionDispenser3SubConn))...)
 
-	imsmqTransactionDispenserSubConn, err := sub.SubConn(ctx, imsmqtransactiondispenser.ImsmqTransactionDispenserSyntaxV0_0)
+	transactionDispenserSubConn, err := sub.SubConn(ctx, imsmqtransactiondispenser.TransactionDispenserSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqTransactionDispenserSubConn = sub
+		transactionDispenserSubConn = sub
 	}
 
-	o.imsmqTransactionDispenser, err = imsmqtransactiondispenser.NewImsmqTransactionDispenserClient(ctx, imsmqTransactionDispenserSubConn, append(opts, dcerpc.WithNoBind(imsmqTransactionDispenserSubConn))...)
+	o.transactionDispenser, err = imsmqtransactiondispenser.NewTransactionDispenserClient(ctx, transactionDispenserSubConn, append(opts, dcerpc.WithNoBind(transactionDispenserSubConn))...)
 
-	imsmqTransactionDispenser2SubConn, err := sub.SubConn(ctx, imsmqtransactiondispenser2.ImsmqTransactionDispenser2SyntaxV0_0)
+	transactionDispenser2SubConn, err := sub.SubConn(ctx, imsmqtransactiondispenser2.TransactionDispenser2SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqTransactionDispenser2SubConn = sub
+		transactionDispenser2SubConn = sub
 	}
 
-	o.imsmqTransactionDispenser2, err = imsmqtransactiondispenser2.NewImsmqTransactionDispenser2Client(ctx, imsmqTransactionDispenser2SubConn, append(opts, dcerpc.WithNoBind(imsmqTransactionDispenser2SubConn))...)
+	o.transactionDispenser2, err = imsmqtransactiondispenser2.NewTransactionDispenser2Client(ctx, transactionDispenser2SubConn, append(opts, dcerpc.WithNoBind(transactionDispenser2SubConn))...)
 
-	imsmqTransactionDispenser3SubConn, err := sub.SubConn(ctx, imsmqtransactiondispenser3.ImsmqTransactionDispenser3SyntaxV0_0)
+	transactionDispenser3SubConn, err := sub.SubConn(ctx, imsmqtransactiondispenser3.TransactionDispenser3SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqTransactionDispenser3SubConn = sub
+		transactionDispenser3SubConn = sub
 	}
 
-	o.imsmqTransactionDispenser3, err = imsmqtransactiondispenser3.NewImsmqTransactionDispenser3Client(ctx, imsmqTransactionDispenser3SubConn, append(opts, dcerpc.WithNoBind(imsmqTransactionDispenser3SubConn))...)
+	o.transactionDispenser3, err = imsmqtransactiondispenser3.NewTransactionDispenser3Client(ctx, transactionDispenser3SubConn, append(opts, dcerpc.WithNoBind(transactionDispenser3SubConn))...)
 
-	imsmqApplicationSubConn, err := sub.SubConn(ctx, imsmqapplication.ImsmqApplicationSyntaxV0_0)
+	applicationSubConn, err := sub.SubConn(ctx, imsmqapplication.ApplicationSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqApplicationSubConn = sub
+		applicationSubConn = sub
 	}
 
-	o.imsmqApplication, err = imsmqapplication.NewImsmqApplicationClient(ctx, imsmqApplicationSubConn, append(opts, dcerpc.WithNoBind(imsmqApplicationSubConn))...)
+	o.application, err = imsmqapplication.NewApplicationClient(ctx, applicationSubConn, append(opts, dcerpc.WithNoBind(applicationSubConn))...)
 
-	imsmqApplication2SubConn, err := sub.SubConn(ctx, imsmqapplication2.ImsmqApplication2SyntaxV0_0)
+	application2SubConn, err := sub.SubConn(ctx, imsmqapplication2.Application2SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqApplication2SubConn = sub
+		application2SubConn = sub
 	}
 
-	o.imsmqApplication2, err = imsmqapplication2.NewImsmqApplication2Client(ctx, imsmqApplication2SubConn, append(opts, dcerpc.WithNoBind(imsmqApplication2SubConn))...)
+	o.application2, err = imsmqapplication2.NewApplication2Client(ctx, application2SubConn, append(opts, dcerpc.WithNoBind(application2SubConn))...)
 
-	imsmqApplication3SubConn, err := sub.SubConn(ctx, imsmqapplication3.ImsmqApplication3SyntaxV0_0)
+	application3SubConn, err := sub.SubConn(ctx, imsmqapplication3.Application3SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqApplication3SubConn = sub
+		application3SubConn = sub
 	}
 
-	o.imsmqApplication3, err = imsmqapplication3.NewImsmqApplication3Client(ctx, imsmqApplication3SubConn, append(opts, dcerpc.WithNoBind(imsmqApplication3SubConn))...)
+	o.application3, err = imsmqapplication3.NewApplication3Client(ctx, application3SubConn, append(opts, dcerpc.WithNoBind(application3SubConn))...)
 
-	imsmqDestinationSubConn, err := sub.SubConn(ctx, imsmqdestination.ImsmqDestinationSyntaxV0_0)
+	destinationSubConn, err := sub.SubConn(ctx, imsmqdestination.DestinationSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqDestinationSubConn = sub
+		destinationSubConn = sub
 	}
 
-	o.imsmqDestination, err = imsmqdestination.NewImsmqDestinationClient(ctx, imsmqDestinationSubConn, append(opts, dcerpc.WithNoBind(imsmqDestinationSubConn))...)
+	o.destination, err = imsmqdestination.NewDestinationClient(ctx, destinationSubConn, append(opts, dcerpc.WithNoBind(destinationSubConn))...)
 
-	imsmqPrivateDestinationSubConn, err := sub.SubConn(ctx, imsmqprivatedestination.ImsmqPrivateDestinationSyntaxV0_0)
+	privateDestinationSubConn, err := sub.SubConn(ctx, imsmqprivatedestination.PrivateDestinationSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqPrivateDestinationSubConn = sub
+		privateDestinationSubConn = sub
 	}
 
-	o.imsmqPrivateDestination, err = imsmqprivatedestination.NewImsmqPrivateDestinationClient(ctx, imsmqPrivateDestinationSubConn, append(opts, dcerpc.WithNoBind(imsmqPrivateDestinationSubConn))...)
+	o.privateDestination, err = imsmqprivatedestination.NewPrivateDestinationClient(ctx, privateDestinationSubConn, append(opts, dcerpc.WithNoBind(privateDestinationSubConn))...)
 
-	imsmqCollectionSubConn, err := sub.SubConn(ctx, imsmqcollection.ImsmqCollectionSyntaxV0_0)
+	collectionSubConn, err := sub.SubConn(ctx, imsmqcollection.CollectionSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqCollectionSubConn = sub
+		collectionSubConn = sub
 	}
 
-	o.imsmqCollection, err = imsmqcollection.NewImsmqCollectionClient(ctx, imsmqCollectionSubConn, append(opts, dcerpc.WithNoBind(imsmqCollectionSubConn))...)
+	o.collection, err = imsmqcollection.NewCollectionClient(ctx, collectionSubConn, append(opts, dcerpc.WithNoBind(collectionSubConn))...)
 
-	imsmqManagementSubConn, err := sub.SubConn(ctx, imsmqmanagement.ImsmqManagementSyntaxV0_0)
+	managementSubConn, err := sub.SubConn(ctx, imsmqmanagement.ManagementSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqManagementSubConn = sub
+		managementSubConn = sub
 	}
 
-	o.imsmqManagement, err = imsmqmanagement.NewImsmqManagementClient(ctx, imsmqManagementSubConn, append(opts, dcerpc.WithNoBind(imsmqManagementSubConn))...)
+	o.management, err = imsmqmanagement.NewManagementClient(ctx, managementSubConn, append(opts, dcerpc.WithNoBind(managementSubConn))...)
 
-	imsmqOutgoingQueueManagementSubConn, err := sub.SubConn(ctx, imsmqoutgoingqueuemanagement.ImsmqOutgoingQueueManagementSyntaxV0_0)
+	outgoingQueueManagementSubConn, err := sub.SubConn(ctx, imsmqoutgoingqueuemanagement.OutgoingQueueManagementSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqOutgoingQueueManagementSubConn = sub
+		outgoingQueueManagementSubConn = sub
 	}
 
-	o.imsmqOutgoingQueueManagement, err = imsmqoutgoingqueuemanagement.NewImsmqOutgoingQueueManagementClient(ctx, imsmqOutgoingQueueManagementSubConn, append(opts, dcerpc.WithNoBind(imsmqOutgoingQueueManagementSubConn))...)
+	o.outgoingQueueManagement, err = imsmqoutgoingqueuemanagement.NewOutgoingQueueManagementClient(ctx, outgoingQueueManagementSubConn, append(opts, dcerpc.WithNoBind(outgoingQueueManagementSubConn))...)
 
-	imsmqQueueManagementSubConn, err := sub.SubConn(ctx, imsmqqueuemanagement.ImsmqQueueManagementSyntaxV0_0)
+	queueManagementSubConn, err := sub.SubConn(ctx, imsmqqueuemanagement.QueueManagementSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		imsmqQueueManagementSubConn = sub
+		queueManagementSubConn = sub
 	}
 
-	o.imsmqQueueManagement, err = imsmqqueuemanagement.NewImsmqQueueManagementClient(ctx, imsmqQueueManagementSubConn, append(opts, dcerpc.WithNoBind(imsmqQueueManagementSubConn))...)
+	o.queueManagement, err = imsmqqueuemanagement.NewQueueManagementClient(ctx, queueManagementSubConn, append(opts, dcerpc.WithNoBind(queueManagementSubConn))...)
 	return o, nil
 }
 
@@ -918,52 +918,52 @@ func (o *xxx_DefaultClient) IPID(ctx context.Context, ipid *dcom.IPID) Client {
 		ipid = &dcom.IPID{}
 	}
 	return &xxx_DefaultClient{
-		dcomClient:                            o.dcomClient.IPID(ctx, ipid),
-		itransaction:                          o.itransaction.IPID(ctx, ipid),
-		enumConnections:                       o.enumConnections.IPID(ctx, ipid),
-		connectionPoint:                       o.connectionPoint.IPID(ctx, ipid),
-		enumConnectionPoints:                  o.enumConnectionPoints.IPID(ctx, ipid),
-		connectionPointContainer:              o.connectionPointContainer.IPID(ctx, ipid),
-		imsmqQuery:                            o.imsmqQuery.IPID(ctx, ipid),
-		imsmqQuery2:                           o.imsmqQuery2.IPID(ctx, ipid),
-		imsmqQuery3:                           o.imsmqQuery3.IPID(ctx, ipid),
-		imsmqQuery4:                           o.imsmqQuery4.IPID(ctx, ipid),
-		imsmqMessage:                          o.imsmqMessage.IPID(ctx, ipid),
-		imsmqMessage2:                         o.imsmqMessage2.IPID(ctx, ipid),
-		imsmqMessage3:                         o.imsmqMessage3.IPID(ctx, ipid),
-		imsmqMessage4:                         o.imsmqMessage4.IPID(ctx, ipid),
-		imsmqQueue:                            o.imsmqQueue.IPID(ctx, ipid),
-		imsmqQueue2:                           o.imsmqQueue2.IPID(ctx, ipid),
-		imsmqQueue3:                           o.imsmqQueue3.IPID(ctx, ipid),
-		imsmqQueue4:                           o.imsmqQueue4.IPID(ctx, ipid),
-		imsmqPrivateEvent:                     o.imsmqPrivateEvent.IPID(ctx, ipid),
-		imsmqEvent2:                           o.imsmqEvent2.IPID(ctx, ipid),
-		imsmqQueueInfo:                        o.imsmqQueueInfo.IPID(ctx, ipid),
-		imsmqQueueInfo2:                       o.imsmqQueueInfo2.IPID(ctx, ipid),
-		imsmqQueueInfo3:                       o.imsmqQueueInfo3.IPID(ctx, ipid),
-		imsmqQueueInfo4:                       o.imsmqQueueInfo4.IPID(ctx, ipid),
-		imsmqQueueInfos:                       o.imsmqQueueInfos.IPID(ctx, ipid),
-		imsmqQueueInfos2:                      o.imsmqQueueInfos2.IPID(ctx, ipid),
-		imsmqQueueInfos3:                      o.imsmqQueueInfos3.IPID(ctx, ipid),
-		imsmqQueueInfos4:                      o.imsmqQueueInfos4.IPID(ctx, ipid),
-		imsmqTransaction:                      o.imsmqTransaction.IPID(ctx, ipid),
-		imsmqTransaction2:                     o.imsmqTransaction2.IPID(ctx, ipid),
-		imsmqTransaction3:                     o.imsmqTransaction3.IPID(ctx, ipid),
-		imsmqCoordinatedTransactionDispenser:  o.imsmqCoordinatedTransactionDispenser.IPID(ctx, ipid),
-		imsmqCoordinatedTransactionDispenser2: o.imsmqCoordinatedTransactionDispenser2.IPID(ctx, ipid),
-		imsmqCoordinatedTransactionDispenser3: o.imsmqCoordinatedTransactionDispenser3.IPID(ctx, ipid),
-		imsmqTransactionDispenser:             o.imsmqTransactionDispenser.IPID(ctx, ipid),
-		imsmqTransactionDispenser2:            o.imsmqTransactionDispenser2.IPID(ctx, ipid),
-		imsmqTransactionDispenser3:            o.imsmqTransactionDispenser3.IPID(ctx, ipid),
-		imsmqApplication:                      o.imsmqApplication.IPID(ctx, ipid),
-		imsmqApplication2:                     o.imsmqApplication2.IPID(ctx, ipid),
-		imsmqApplication3:                     o.imsmqApplication3.IPID(ctx, ipid),
-		imsmqDestination:                      o.imsmqDestination.IPID(ctx, ipid),
-		imsmqPrivateDestination:               o.imsmqPrivateDestination.IPID(ctx, ipid),
-		imsmqCollection:                       o.imsmqCollection.IPID(ctx, ipid),
-		imsmqManagement:                       o.imsmqManagement.IPID(ctx, ipid),
-		imsmqOutgoingQueueManagement:          o.imsmqOutgoingQueueManagement.IPID(ctx, ipid),
-		imsmqQueueManagement:                  o.imsmqQueueManagement.IPID(ctx, ipid),
-		cc:                                    o.cc,
+		dcomClient:                       o.dcomClient.IPID(ctx, ipid),
+		itransaction:                     o.itransaction.IPID(ctx, ipid),
+		enumConnections:                  o.enumConnections.IPID(ctx, ipid),
+		connectionPoint:                  o.connectionPoint.IPID(ctx, ipid),
+		enumConnectionPoints:             o.enumConnectionPoints.IPID(ctx, ipid),
+		connectionPointContainer:         o.connectionPointContainer.IPID(ctx, ipid),
+		query:                            o.query.IPID(ctx, ipid),
+		query2:                           o.query2.IPID(ctx, ipid),
+		query3:                           o.query3.IPID(ctx, ipid),
+		query4:                           o.query4.IPID(ctx, ipid),
+		message:                          o.message.IPID(ctx, ipid),
+		message2:                         o.message2.IPID(ctx, ipid),
+		message3:                         o.message3.IPID(ctx, ipid),
+		message4:                         o.message4.IPID(ctx, ipid),
+		queue:                            o.queue.IPID(ctx, ipid),
+		queue2:                           o.queue2.IPID(ctx, ipid),
+		queue3:                           o.queue3.IPID(ctx, ipid),
+		queue4:                           o.queue4.IPID(ctx, ipid),
+		privateEvent:                     o.privateEvent.IPID(ctx, ipid),
+		event2:                           o.event2.IPID(ctx, ipid),
+		queueInfo:                        o.queueInfo.IPID(ctx, ipid),
+		queueInfo2:                       o.queueInfo2.IPID(ctx, ipid),
+		queueInfo3:                       o.queueInfo3.IPID(ctx, ipid),
+		queueInfo4:                       o.queueInfo4.IPID(ctx, ipid),
+		queueInfos:                       o.queueInfos.IPID(ctx, ipid),
+		queueInfos2:                      o.queueInfos2.IPID(ctx, ipid),
+		queueInfos3:                      o.queueInfos3.IPID(ctx, ipid),
+		queueInfos4:                      o.queueInfos4.IPID(ctx, ipid),
+		transaction:                      o.transaction.IPID(ctx, ipid),
+		transaction2:                     o.transaction2.IPID(ctx, ipid),
+		transaction3:                     o.transaction3.IPID(ctx, ipid),
+		coordinatedTransactionDispenser:  o.coordinatedTransactionDispenser.IPID(ctx, ipid),
+		coordinatedTransactionDispenser2: o.coordinatedTransactionDispenser2.IPID(ctx, ipid),
+		coordinatedTransactionDispenser3: o.coordinatedTransactionDispenser3.IPID(ctx, ipid),
+		transactionDispenser:             o.transactionDispenser.IPID(ctx, ipid),
+		transactionDispenser2:            o.transactionDispenser2.IPID(ctx, ipid),
+		transactionDispenser3:            o.transactionDispenser3.IPID(ctx, ipid),
+		application:                      o.application.IPID(ctx, ipid),
+		application2:                     o.application2.IPID(ctx, ipid),
+		application3:                     o.application3.IPID(ctx, ipid),
+		destination:                      o.destination.IPID(ctx, ipid),
+		privateDestination:               o.privateDestination.IPID(ctx, ipid),
+		collection:                       o.collection.IPID(ctx, ipid),
+		management:                       o.management.IPID(ctx, ipid),
+		outgoingQueueManagement:          o.outgoingQueueManagement.IPID(ctx, ipid),
+		queueManagement:                  o.queueManagement.IPID(ctx, ipid),
+		cc:                               o.cc,
 	}
 }

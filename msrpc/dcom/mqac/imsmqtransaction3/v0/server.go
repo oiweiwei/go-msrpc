@@ -26,29 +26,29 @@ var (
 )
 
 // IMSMQTransaction3 server interface.
-type ImsmqTransaction3Server interface {
+type Transaction3Server interface {
 
 	// IMSMQTransaction2 base class.
-	imsmqtransaction2.ImsmqTransaction2Server
+	imsmqtransaction2.Transaction2Server
 
 	// ITransaction operation.
 	GetITransaction(context.Context, *GetITransactionRequest) (*GetITransactionResponse, error)
 }
 
-func RegisterImsmqTransaction3Server(conn dcerpc.Conn, o ImsmqTransaction3Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqTransaction3ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqTransaction3SyntaxV0_0))...)
+func RegisterTransaction3Server(conn dcerpc.Conn, o Transaction3Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewTransaction3ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(Transaction3SyntaxV0_0))...)
 }
 
-func NewImsmqTransaction3ServerHandle(o ImsmqTransaction3Server) dcerpc.ServerHandle {
+func NewTransaction3ServerHandle(o Transaction3Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqTransaction3ServerHandle(ctx, o, opNum, r)
+		return Transaction3ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqTransaction3ServerHandle(ctx context.Context, o ImsmqTransaction3Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func Transaction3ServerHandle(ctx context.Context, o Transaction3Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 12 {
 		// IMSMQTransaction2 base method.
-		return imsmqtransaction2.ImsmqTransaction2ServerHandle(ctx, o, opNum, r)
+		return imsmqtransaction2.Transaction2ServerHandle(ctx, o, opNum, r)
 	}
 	switch opNum {
 	case 12: // ITransaction
@@ -65,12 +65,12 @@ func ImsmqTransaction3ServerHandle(ctx context.Context, o ImsmqTransaction3Serve
 }
 
 // Unimplemented IMSMQTransaction3
-type UnimplementedImsmqTransaction3Server struct {
-	imsmqtransaction2.UnimplementedImsmqTransaction2Server
+type UnimplementedTransaction3Server struct {
+	imsmqtransaction2.UnimplementedTransaction2Server
 }
 
-func (UnimplementedImsmqTransaction3Server) GetITransaction(context.Context, *GetITransactionRequest) (*GetITransactionResponse, error) {
+func (UnimplementedTransaction3Server) GetITransaction(context.Context, *GetITransactionRequest) (*GetITransactionResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqTransaction3Server = (*UnimplementedImsmqTransaction3Server)(nil)
+var _ Transaction3Server = (*UnimplementedTransaction3Server)(nil)

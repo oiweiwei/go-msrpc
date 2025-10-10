@@ -36,15 +36,15 @@ var (
 
 var (
 	// INtmsLibraryControl1 interface identifier 4e934f30-341a-11d1-8fb1-00a024cb6019
-	NTMSLibraryControl1IID = &dcom.IID{Data1: 0x4e934f30, Data2: 0x341a, Data3: 0x11d1, Data4: []byte{0x8f, 0xb1, 0x00, 0xa0, 0x24, 0xcb, 0x60, 0x19}}
+	LibraryControl1IID = &dcom.IID{Data1: 0x4e934f30, Data2: 0x341a, Data3: 0x11d1, Data4: []byte{0x8f, 0xb1, 0x00, 0xa0, 0x24, 0xcb, 0x60, 0x19}}
 	// Syntax UUID
-	NTMSLibraryControl1SyntaxUUID = &uuid.UUID{TimeLow: 0x4e934f30, TimeMid: 0x341a, TimeHiAndVersion: 0x11d1, ClockSeqHiAndReserved: 0x8f, ClockSeqLow: 0xb1, Node: [6]uint8{0x0, 0xa0, 0x24, 0xcb, 0x60, 0x19}}
+	LibraryControl1SyntaxUUID = &uuid.UUID{TimeLow: 0x4e934f30, TimeMid: 0x341a, TimeHiAndVersion: 0x11d1, ClockSeqHiAndReserved: 0x8f, ClockSeqLow: 0xb1, Node: [6]uint8{0x0, 0xa0, 0x24, 0xcb, 0x60, 0x19}}
 	// Syntax ID
-	NTMSLibraryControl1SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: NTMSLibraryControl1SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	LibraryControl1SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: LibraryControl1SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // INtmsLibraryControl1 interface.
-type NTMSLibraryControl1Client interface {
+type LibraryControl1Client interface {
 
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
@@ -62,7 +62,7 @@ type NTMSLibraryControl1Client interface {
 	InventoryNTMSLibrary(context.Context, *InventoryNTMSLibraryRequest, ...dcerpc.CallOption) (*InventoryNTMSLibraryResponse, error)
 
 	// INtmsLibraryControl1_LocalOnlyOpnum09 operation.
-	NTMSLibraryControl1LocalOnlyOpnum09(context.Context, *NTMSLibraryControl1LocalOnlyOpnum09Request, ...dcerpc.CallOption) (*NTMSLibraryControl1LocalOnlyOpnum09Response, error)
+	LibraryControl1LocalOnlyOpnum09(context.Context, *LibraryControl1LocalOnlyOpnum09Request, ...dcerpc.CallOption) (*LibraryControl1LocalOnlyOpnum09Response, error)
 
 	CancelNTMSLibraryRequest(context.Context, *CancelNTMSLibraryRequestRequest, ...dcerpc.CallOption) (*CancelNTMSLibraryRequestResponse, error)
 
@@ -97,20 +97,20 @@ type NTMSLibraryControl1Client interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) NTMSLibraryControl1Client
+	IPID(context.Context, *dcom.IPID) LibraryControl1Client
 }
 
-type xxx_DefaultNTMSLibraryControl1Client struct {
+type xxx_DefaultLibraryControl1Client struct {
 	iunknown.UnknownClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) Unknown() iunknown.UnknownClient {
+func (o *xxx_DefaultLibraryControl1Client) Unknown() iunknown.UnknownClient {
 	return o.UnknownClient
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) EjectNTMSMedia(ctx context.Context, in *EjectNTMSMediaRequest, opts ...dcerpc.CallOption) (*EjectNTMSMediaResponse, error) {
+func (o *xxx_DefaultLibraryControl1Client) EjectNTMSMedia(ctx context.Context, in *EjectNTMSMediaRequest, opts ...dcerpc.CallOption) (*EjectNTMSMediaResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -130,7 +130,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) EjectNTMSMedia(ctx context.Contex
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) InjectNTMSMedia(ctx context.Context, in *InjectNTMSMediaRequest, opts ...dcerpc.CallOption) (*InjectNTMSMediaResponse, error) {
+func (o *xxx_DefaultLibraryControl1Client) InjectNTMSMedia(ctx context.Context, in *InjectNTMSMediaRequest, opts ...dcerpc.CallOption) (*InjectNTMSMediaResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -150,7 +150,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) InjectNTMSMedia(ctx context.Conte
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) AccessNTMSLibraryDoor(ctx context.Context, in *AccessNTMSLibraryDoorRequest, opts ...dcerpc.CallOption) (*AccessNTMSLibraryDoorResponse, error) {
+func (o *xxx_DefaultLibraryControl1Client) AccessNTMSLibraryDoor(ctx context.Context, in *AccessNTMSLibraryDoorRequest, opts ...dcerpc.CallOption) (*AccessNTMSLibraryDoorResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -170,7 +170,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) AccessNTMSLibraryDoor(ctx context
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) CleanNTMSDrive(ctx context.Context, in *CleanNTMSDriveRequest, opts ...dcerpc.CallOption) (*CleanNTMSDriveResponse, error) {
+func (o *xxx_DefaultLibraryControl1Client) CleanNTMSDrive(ctx context.Context, in *CleanNTMSDriveRequest, opts ...dcerpc.CallOption) (*CleanNTMSDriveResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -190,7 +190,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) CleanNTMSDrive(ctx context.Contex
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) DismountNTMSDrive(ctx context.Context, in *DismountNTMSDriveRequest, opts ...dcerpc.CallOption) (*DismountNTMSDriveResponse, error) {
+func (o *xxx_DefaultLibraryControl1Client) DismountNTMSDrive(ctx context.Context, in *DismountNTMSDriveRequest, opts ...dcerpc.CallOption) (*DismountNTMSDriveResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -210,7 +210,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) DismountNTMSDrive(ctx context.Con
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) InventoryNTMSLibrary(ctx context.Context, in *InventoryNTMSLibraryRequest, opts ...dcerpc.CallOption) (*InventoryNTMSLibraryResponse, error) {
+func (o *xxx_DefaultLibraryControl1Client) InventoryNTMSLibrary(ctx context.Context, in *InventoryNTMSLibraryRequest, opts ...dcerpc.CallOption) (*InventoryNTMSLibraryResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -230,7 +230,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) InventoryNTMSLibrary(ctx context.
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) NTMSLibraryControl1LocalOnlyOpnum09(ctx context.Context, in *NTMSLibraryControl1LocalOnlyOpnum09Request, opts ...dcerpc.CallOption) (*NTMSLibraryControl1LocalOnlyOpnum09Response, error) {
+func (o *xxx_DefaultLibraryControl1Client) LibraryControl1LocalOnlyOpnum09(ctx context.Context, in *LibraryControl1LocalOnlyOpnum09Request, opts ...dcerpc.CallOption) (*LibraryControl1LocalOnlyOpnum09Response, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -242,7 +242,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) NTMSLibraryControl1LocalOnlyOpnum
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &NTMSLibraryControl1LocalOnlyOpnum09Response{}
+	out := &LibraryControl1LocalOnlyOpnum09Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -250,7 +250,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) NTMSLibraryControl1LocalOnlyOpnum
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) CancelNTMSLibraryRequest(ctx context.Context, in *CancelNTMSLibraryRequestRequest, opts ...dcerpc.CallOption) (*CancelNTMSLibraryRequestResponse, error) {
+func (o *xxx_DefaultLibraryControl1Client) CancelNTMSLibraryRequest(ctx context.Context, in *CancelNTMSLibraryRequestRequest, opts ...dcerpc.CallOption) (*CancelNTMSLibraryRequestResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -270,7 +270,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) CancelNTMSLibraryRequest(ctx cont
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) ReserveNTMSCleanerSlot(ctx context.Context, in *ReserveNTMSCleanerSlotRequest, opts ...dcerpc.CallOption) (*ReserveNTMSCleanerSlotResponse, error) {
+func (o *xxx_DefaultLibraryControl1Client) ReserveNTMSCleanerSlot(ctx context.Context, in *ReserveNTMSCleanerSlotRequest, opts ...dcerpc.CallOption) (*ReserveNTMSCleanerSlotResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -290,7 +290,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) ReserveNTMSCleanerSlot(ctx contex
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) ReleaseNTMSCleanerSlot(ctx context.Context, in *ReleaseNTMSCleanerSlotRequest, opts ...dcerpc.CallOption) (*ReleaseNTMSCleanerSlotResponse, error) {
+func (o *xxx_DefaultLibraryControl1Client) ReleaseNTMSCleanerSlot(ctx context.Context, in *ReleaseNTMSCleanerSlotRequest, opts ...dcerpc.CallOption) (*ReleaseNTMSCleanerSlotResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -310,7 +310,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) ReleaseNTMSCleanerSlot(ctx contex
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) InjectNTMSCleaner(ctx context.Context, in *InjectNTMSCleanerRequest, opts ...dcerpc.CallOption) (*InjectNTMSCleanerResponse, error) {
+func (o *xxx_DefaultLibraryControl1Client) InjectNTMSCleaner(ctx context.Context, in *InjectNTMSCleanerRequest, opts ...dcerpc.CallOption) (*InjectNTMSCleanerResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -330,7 +330,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) InjectNTMSCleaner(ctx context.Con
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) EjectNTMSCleaner(ctx context.Context, in *EjectNTMSCleanerRequest, opts ...dcerpc.CallOption) (*EjectNTMSCleanerResponse, error) {
+func (o *xxx_DefaultLibraryControl1Client) EjectNTMSCleaner(ctx context.Context, in *EjectNTMSCleanerRequest, opts ...dcerpc.CallOption) (*EjectNTMSCleanerResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -350,7 +350,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) EjectNTMSCleaner(ctx context.Cont
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) DeleteNTMSLibrary(ctx context.Context, in *DeleteNTMSLibraryRequest, opts ...dcerpc.CallOption) (*DeleteNTMSLibraryResponse, error) {
+func (o *xxx_DefaultLibraryControl1Client) DeleteNTMSLibrary(ctx context.Context, in *DeleteNTMSLibraryRequest, opts ...dcerpc.CallOption) (*DeleteNTMSLibraryResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -370,7 +370,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) DeleteNTMSLibrary(ctx context.Con
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) DeleteNTMSDrive(ctx context.Context, in *DeleteNTMSDriveRequest, opts ...dcerpc.CallOption) (*DeleteNTMSDriveResponse, error) {
+func (o *xxx_DefaultLibraryControl1Client) DeleteNTMSDrive(ctx context.Context, in *DeleteNTMSDriveRequest, opts ...dcerpc.CallOption) (*DeleteNTMSDriveResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -390,7 +390,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) DeleteNTMSDrive(ctx context.Conte
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) GetNTMSRequestOrder(ctx context.Context, in *GetNTMSRequestOrderRequest, opts ...dcerpc.CallOption) (*GetNTMSRequestOrderResponse, error) {
+func (o *xxx_DefaultLibraryControl1Client) GetNTMSRequestOrder(ctx context.Context, in *GetNTMSRequestOrderRequest, opts ...dcerpc.CallOption) (*GetNTMSRequestOrderResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -410,7 +410,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) GetNTMSRequestOrder(ctx context.C
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) SetNTMSRequestOrder(ctx context.Context, in *SetNTMSRequestOrderRequest, opts ...dcerpc.CallOption) (*SetNTMSRequestOrderResponse, error) {
+func (o *xxx_DefaultLibraryControl1Client) SetNTMSRequestOrder(ctx context.Context, in *SetNTMSRequestOrderRequest, opts ...dcerpc.CallOption) (*SetNTMSRequestOrderResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -430,7 +430,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) SetNTMSRequestOrder(ctx context.C
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) DeleteNTMSRequests(ctx context.Context, in *DeleteNTMSRequestsRequest, opts ...dcerpc.CallOption) (*DeleteNTMSRequestsResponse, error) {
+func (o *xxx_DefaultLibraryControl1Client) DeleteNTMSRequests(ctx context.Context, in *DeleteNTMSRequestsRequest, opts ...dcerpc.CallOption) (*DeleteNTMSRequestsResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -450,7 +450,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) DeleteNTMSRequests(ctx context.Co
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) BeginNTMSDeviceChangeDetection(ctx context.Context, in *BeginNTMSDeviceChangeDetectionRequest, opts ...dcerpc.CallOption) (*BeginNTMSDeviceChangeDetectionResponse, error) {
+func (o *xxx_DefaultLibraryControl1Client) BeginNTMSDeviceChangeDetection(ctx context.Context, in *BeginNTMSDeviceChangeDetectionRequest, opts ...dcerpc.CallOption) (*BeginNTMSDeviceChangeDetectionResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -470,7 +470,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) BeginNTMSDeviceChangeDetection(ct
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) SetNTMSDeviceChangeDetection(ctx context.Context, in *SetNTMSDeviceChangeDetectionRequest, opts ...dcerpc.CallOption) (*SetNTMSDeviceChangeDetectionResponse, error) {
+func (o *xxx_DefaultLibraryControl1Client) SetNTMSDeviceChangeDetection(ctx context.Context, in *SetNTMSDeviceChangeDetectionRequest, opts ...dcerpc.CallOption) (*SetNTMSDeviceChangeDetectionResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -490,7 +490,7 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) SetNTMSDeviceChangeDetection(ctx 
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) EndNTMSDeviceChangeDetection(ctx context.Context, in *EndNTMSDeviceChangeDetectionRequest, opts ...dcerpc.CallOption) (*EndNTMSDeviceChangeDetectionResponse, error) {
+func (o *xxx_DefaultLibraryControl1Client) EndNTMSDeviceChangeDetection(ctx context.Context, in *EndNTMSDeviceChangeDetectionRequest, opts ...dcerpc.CallOption) (*EndNTMSDeviceChangeDetectionResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -510,29 +510,29 @@ func (o *xxx_DefaultNTMSLibraryControl1Client) EndNTMSDeviceChangeDetection(ctx 
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultLibraryControl1Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) Conn() dcerpc.Conn {
+func (o *xxx_DefaultLibraryControl1Client) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultNTMSLibraryControl1Client) IPID(ctx context.Context, ipid *dcom.IPID) NTMSLibraryControl1Client {
+func (o *xxx_DefaultLibraryControl1Client) IPID(ctx context.Context, ipid *dcom.IPID) LibraryControl1Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultNTMSLibraryControl1Client{
+	return &xxx_DefaultLibraryControl1Client{
 		UnknownClient: o.UnknownClient.IPID(ctx, ipid),
 		cc:            o.cc,
 		ipid:          ipid,
 	}
 }
 
-func NewNTMSLibraryControl1Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (NTMSLibraryControl1Client, error) {
+func NewLibraryControl1Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (LibraryControl1Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(NTMSLibraryControl1SyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(LibraryControl1SyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -545,7 +545,7 @@ func NewNTMSLibraryControl1Client(ctx context.Context, cc dcerpc.Conn, opts ...d
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultNTMSLibraryControl1Client{
+	return &xxx_DefaultLibraryControl1Client{
 		UnknownClient: base,
 		cc:            cc,
 		ipid:          ipid,
@@ -2047,20 +2047,20 @@ func (o *InventoryNTMSLibraryResponse) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
-// xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation structure represents the INtmsLibraryControl1_LocalOnlyOpnum09 operation
-type xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation struct {
+// xxx_LibraryControl1LocalOnlyOpnum09Operation structure represents the INtmsLibraryControl1_LocalOnlyOpnum09 operation
+type xxx_LibraryControl1LocalOnlyOpnum09Operation struct {
 	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation) OpNum() int { return 6 }
+func (o *xxx_LibraryControl1LocalOnlyOpnum09Operation) OpNum() int { return 6 }
 
-func (o *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation) OpName() string {
+func (o *xxx_LibraryControl1LocalOnlyOpnum09Operation) OpName() string {
 	return "/INtmsLibraryControl1/v0/INtmsLibraryControl1_LocalOnlyOpnum09"
 }
 
-func (o *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_LibraryControl1LocalOnlyOpnum09Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -2069,7 +2069,7 @@ func (o *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation) xxx_PrepareRequestPay
 	return nil
 }
 
-func (o *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_LibraryControl1LocalOnlyOpnum09Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -2091,7 +2091,7 @@ func (o *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation) MarshalNDRRequest(ctx
 	return nil
 }
 
-func (o *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_LibraryControl1LocalOnlyOpnum09Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -2107,7 +2107,7 @@ func (o *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation) UnmarshalNDRRequest(c
 	return nil
 }
 
-func (o *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_LibraryControl1LocalOnlyOpnum09Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -2116,7 +2116,7 @@ func (o *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation) xxx_PrepareResponsePa
 	return nil
 }
 
-func (o *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_LibraryControl1LocalOnlyOpnum09Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -2144,7 +2144,7 @@ func (o *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation) MarshalNDRResponse(ct
 	return nil
 }
 
-func (o *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_LibraryControl1LocalOnlyOpnum09Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -2166,15 +2166,15 @@ func (o *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation) UnmarshalNDRResponse(
 	return nil
 }
 
-// NTMSLibraryControl1LocalOnlyOpnum09Request structure represents the INtmsLibraryControl1_LocalOnlyOpnum09 operation request
-type NTMSLibraryControl1LocalOnlyOpnum09Request struct {
+// LibraryControl1LocalOnlyOpnum09Request structure represents the INtmsLibraryControl1_LocalOnlyOpnum09 operation request
+type LibraryControl1LocalOnlyOpnum09Request struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *NTMSLibraryControl1LocalOnlyOpnum09Request) xxx_ToOp(ctx context.Context, op *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation) *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation {
+func (o *LibraryControl1LocalOnlyOpnum09Request) xxx_ToOp(ctx context.Context, op *xxx_LibraryControl1LocalOnlyOpnum09Operation) *xxx_LibraryControl1LocalOnlyOpnum09Operation {
 	if op == nil {
-		op = &xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation{}
+		op = &xxx_LibraryControl1LocalOnlyOpnum09Operation{}
 	}
 	if o == nil {
 		return op
@@ -2183,17 +2183,17 @@ func (o *NTMSLibraryControl1LocalOnlyOpnum09Request) xxx_ToOp(ctx context.Contex
 	return op
 }
 
-func (o *NTMSLibraryControl1LocalOnlyOpnum09Request) xxx_FromOp(ctx context.Context, op *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation) {
+func (o *LibraryControl1LocalOnlyOpnum09Request) xxx_FromOp(ctx context.Context, op *xxx_LibraryControl1LocalOnlyOpnum09Operation) {
 	if o == nil {
 		return
 	}
 	o.This = op.This
 }
-func (o *NTMSLibraryControl1LocalOnlyOpnum09Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *LibraryControl1LocalOnlyOpnum09Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *NTMSLibraryControl1LocalOnlyOpnum09Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation{}
+func (o *LibraryControl1LocalOnlyOpnum09Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_LibraryControl1LocalOnlyOpnum09Operation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -2201,17 +2201,17 @@ func (o *NTMSLibraryControl1LocalOnlyOpnum09Request) UnmarshalNDR(ctx context.Co
 	return nil
 }
 
-// NTMSLibraryControl1LocalOnlyOpnum09Response structure represents the INtmsLibraryControl1_LocalOnlyOpnum09 operation response
-type NTMSLibraryControl1LocalOnlyOpnum09Response struct {
+// LibraryControl1LocalOnlyOpnum09Response structure represents the INtmsLibraryControl1_LocalOnlyOpnum09 operation response
+type LibraryControl1LocalOnlyOpnum09Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// Return: The INtmsLibraryControl1_LocalOnlyOpnum09 return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *NTMSLibraryControl1LocalOnlyOpnum09Response) xxx_ToOp(ctx context.Context, op *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation) *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation {
+func (o *LibraryControl1LocalOnlyOpnum09Response) xxx_ToOp(ctx context.Context, op *xxx_LibraryControl1LocalOnlyOpnum09Operation) *xxx_LibraryControl1LocalOnlyOpnum09Operation {
 	if op == nil {
-		op = &xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation{}
+		op = &xxx_LibraryControl1LocalOnlyOpnum09Operation{}
 	}
 	if o == nil {
 		return op
@@ -2221,18 +2221,18 @@ func (o *NTMSLibraryControl1LocalOnlyOpnum09Response) xxx_ToOp(ctx context.Conte
 	return op
 }
 
-func (o *NTMSLibraryControl1LocalOnlyOpnum09Response) xxx_FromOp(ctx context.Context, op *xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation) {
+func (o *LibraryControl1LocalOnlyOpnum09Response) xxx_FromOp(ctx context.Context, op *xxx_LibraryControl1LocalOnlyOpnum09Operation) {
 	if o == nil {
 		return
 	}
 	o.That = op.That
 	o.Return = op.Return
 }
-func (o *NTMSLibraryControl1LocalOnlyOpnum09Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *LibraryControl1LocalOnlyOpnum09Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *NTMSLibraryControl1LocalOnlyOpnum09Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation{}
+func (o *LibraryControl1LocalOnlyOpnum09Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_LibraryControl1LocalOnlyOpnum09Operation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

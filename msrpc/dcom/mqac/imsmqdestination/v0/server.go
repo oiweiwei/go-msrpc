@@ -26,7 +26,7 @@ var (
 )
 
 // IMSMQDestination server interface.
-type ImsmqDestinationServer interface {
+type DestinationServer interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -41,16 +41,16 @@ type ImsmqDestinationServer interface {
 	GetIsOpen(context.Context, *GetIsOpenRequest) (*GetIsOpenResponse, error)
 
 	// IADs operation.
-	GetIaDS(context.Context, *GetIaDSRequest) (*GetIaDSResponse, error)
+	GetIADs(context.Context, *GetIADsRequest) (*GetIADsResponse, error)
 
 	// IADs operation.
-	SetByRefIaDS(context.Context, *SetByRefIaDSRequest) (*SetByRefIaDSResponse, error)
+	SetByRefIADs(context.Context, *SetByRefIADsRequest) (*SetByRefIADsResponse, error)
 
 	// ADsPath operation.
-	GetADSPath(context.Context, *GetADSPathRequest) (*GetADSPathResponse, error)
+	GetADsPath(context.Context, *GetADsPathRequest) (*GetADsPathResponse, error)
 
 	// ADsPath operation.
-	SetADSPath(context.Context, *SetADSPathRequest) (*SetADSPathResponse, error)
+	SetADsPath(context.Context, *SetADsPathRequest) (*SetADsPathResponse, error)
 
 	// PathName operation.
 	GetPathName(context.Context, *GetPathNameRequest) (*GetPathNameResponse, error)
@@ -74,17 +74,17 @@ type ImsmqDestinationServer interface {
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 }
 
-func RegisterImsmqDestinationServer(conn dcerpc.Conn, o ImsmqDestinationServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqDestinationServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqDestinationSyntaxV0_0))...)
+func RegisterDestinationServer(conn dcerpc.Conn, o DestinationServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewDestinationServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(DestinationSyntaxV0_0))...)
 }
 
-func NewImsmqDestinationServerHandle(o ImsmqDestinationServer) dcerpc.ServerHandle {
+func NewDestinationServerHandle(o DestinationServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqDestinationServerHandle(ctx, o, opNum, r)
+		return DestinationServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqDestinationServerHandle(ctx context.Context, o ImsmqDestinationServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func DestinationServerHandle(ctx context.Context, o DestinationServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -118,40 +118,40 @@ func ImsmqDestinationServerHandle(ctx context.Context, o ImsmqDestinationServer,
 		resp, err := o.GetIsOpen(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 10: // IADs
-		op := &xxx_GetIaDSOperation{}
+		op := &xxx_GetIADsOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &GetIaDSRequest{}
+		req := &GetIADsRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.GetIaDS(ctx, req)
+		resp, err := o.GetIADs(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 11: // IADs
-		op := &xxx_SetByRefIaDSOperation{}
+		op := &xxx_SetByRefIADsOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &SetByRefIaDSRequest{}
+		req := &SetByRefIADsRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.SetByRefIaDS(ctx, req)
+		resp, err := o.SetByRefIADs(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 12: // ADsPath
-		op := &xxx_GetADSPathOperation{}
+		op := &xxx_GetADsPathOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &GetADSPathRequest{}
+		req := &GetADsPathRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.GetADSPath(ctx, req)
+		resp, err := o.GetADsPath(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 13: // ADsPath
-		op := &xxx_SetADSPathOperation{}
+		op := &xxx_SetADsPathOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &SetADSPathRequest{}
+		req := &SetADsPathRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.SetADSPath(ctx, req)
+		resp, err := o.SetADsPath(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 14: // PathName
 		op := &xxx_GetPathNameOperation{}
@@ -221,51 +221,51 @@ func ImsmqDestinationServerHandle(ctx context.Context, o ImsmqDestinationServer,
 }
 
 // Unimplemented IMSMQDestination
-type UnimplementedImsmqDestinationServer struct {
+type UnimplementedDestinationServer struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedImsmqDestinationServer) Open(context.Context, *OpenRequest) (*OpenResponse, error) {
+func (UnimplementedDestinationServer) Open(context.Context, *OpenRequest) (*OpenResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqDestinationServer) Close(context.Context, *CloseRequest) (*CloseResponse, error) {
+func (UnimplementedDestinationServer) Close(context.Context, *CloseRequest) (*CloseResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqDestinationServer) GetIsOpen(context.Context, *GetIsOpenRequest) (*GetIsOpenResponse, error) {
+func (UnimplementedDestinationServer) GetIsOpen(context.Context, *GetIsOpenRequest) (*GetIsOpenResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqDestinationServer) GetIaDS(context.Context, *GetIaDSRequest) (*GetIaDSResponse, error) {
+func (UnimplementedDestinationServer) GetIADs(context.Context, *GetIADsRequest) (*GetIADsResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqDestinationServer) SetByRefIaDS(context.Context, *SetByRefIaDSRequest) (*SetByRefIaDSResponse, error) {
+func (UnimplementedDestinationServer) SetByRefIADs(context.Context, *SetByRefIADsRequest) (*SetByRefIADsResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqDestinationServer) GetADSPath(context.Context, *GetADSPathRequest) (*GetADSPathResponse, error) {
+func (UnimplementedDestinationServer) GetADsPath(context.Context, *GetADsPathRequest) (*GetADsPathResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqDestinationServer) SetADSPath(context.Context, *SetADSPathRequest) (*SetADSPathResponse, error) {
+func (UnimplementedDestinationServer) SetADsPath(context.Context, *SetADsPathRequest) (*SetADsPathResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqDestinationServer) GetPathName(context.Context, *GetPathNameRequest) (*GetPathNameResponse, error) {
+func (UnimplementedDestinationServer) GetPathName(context.Context, *GetPathNameRequest) (*GetPathNameResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqDestinationServer) SetPathName(context.Context, *SetPathNameRequest) (*SetPathNameResponse, error) {
+func (UnimplementedDestinationServer) SetPathName(context.Context, *SetPathNameRequest) (*SetPathNameResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqDestinationServer) GetFormatName(context.Context, *GetFormatNameRequest) (*GetFormatNameResponse, error) {
+func (UnimplementedDestinationServer) GetFormatName(context.Context, *GetFormatNameRequest) (*GetFormatNameResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqDestinationServer) SetFormatName(context.Context, *SetFormatNameRequest) (*SetFormatNameResponse, error) {
+func (UnimplementedDestinationServer) SetFormatName(context.Context, *SetFormatNameRequest) (*SetFormatNameResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqDestinationServer) GetDestinations(context.Context, *GetDestinationsRequest) (*GetDestinationsResponse, error) {
+func (UnimplementedDestinationServer) GetDestinations(context.Context, *GetDestinationsRequest) (*GetDestinationsResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqDestinationServer) SetByRefDestinations(context.Context, *SetByRefDestinationsRequest) (*SetByRefDestinationsResponse, error) {
+func (UnimplementedDestinationServer) SetByRefDestinations(context.Context, *SetByRefDestinationsRequest) (*SetByRefDestinationsResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqDestinationServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+func (UnimplementedDestinationServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqDestinationServer = (*UnimplementedImsmqDestinationServer)(nil)
+var _ DestinationServer = (*UnimplementedDestinationServer)(nil)

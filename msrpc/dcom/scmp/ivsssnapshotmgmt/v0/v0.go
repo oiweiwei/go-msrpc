@@ -36,15 +36,15 @@ var (
 
 var (
 	// IVssSnapshotMgmt interface identifier fa7df749-66e7-4986-a27f-e2f04ae53772
-	VSSSnapshotManagementIID = &dcom.IID{Data1: 0xfa7df749, Data2: 0x66e7, Data3: 0x4986, Data4: []byte{0xa2, 0x7f, 0xe2, 0xf0, 0x4a, 0xe5, 0x37, 0x72}}
+	SnapshotManagementIID = &dcom.IID{Data1: 0xfa7df749, Data2: 0x66e7, Data3: 0x4986, Data4: []byte{0xa2, 0x7f, 0xe2, 0xf0, 0x4a, 0xe5, 0x37, 0x72}}
 	// Syntax UUID
-	VSSSnapshotManagementSyntaxUUID = &uuid.UUID{TimeLow: 0xfa7df749, TimeMid: 0x66e7, TimeHiAndVersion: 0x4986, ClockSeqHiAndReserved: 0xa2, ClockSeqLow: 0x7f, Node: [6]uint8{0xe2, 0xf0, 0x4a, 0xe5, 0x37, 0x72}}
+	SnapshotManagementSyntaxUUID = &uuid.UUID{TimeLow: 0xfa7df749, TimeMid: 0x66e7, TimeHiAndVersion: 0x4986, ClockSeqHiAndReserved: 0xa2, ClockSeqLow: 0x7f, Node: [6]uint8{0xe2, 0xf0, 0x4a, 0xe5, 0x37, 0x72}}
 	// Syntax ID
-	VSSSnapshotManagementSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: VSSSnapshotManagementSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	SnapshotManagementSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: SnapshotManagementSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IVssSnapshotMgmt interface.
-type VSSSnapshotManagementClient interface {
+type SnapshotManagementClient interface {
 
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
@@ -62,20 +62,20 @@ type VSSSnapshotManagementClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) VSSSnapshotManagementClient
+	IPID(context.Context, *dcom.IPID) SnapshotManagementClient
 }
 
-type xxx_DefaultVSSSnapshotManagementClient struct {
+type xxx_DefaultSnapshotManagementClient struct {
 	iunknown.UnknownClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultVSSSnapshotManagementClient) Unknown() iunknown.UnknownClient {
+func (o *xxx_DefaultSnapshotManagementClient) Unknown() iunknown.UnknownClient {
 	return o.UnknownClient
 }
 
-func (o *xxx_DefaultVSSSnapshotManagementClient) GetProviderManagementInterface(ctx context.Context, in *GetProviderManagementInterfaceRequest, opts ...dcerpc.CallOption) (*GetProviderManagementInterfaceResponse, error) {
+func (o *xxx_DefaultSnapshotManagementClient) GetProviderManagementInterface(ctx context.Context, in *GetProviderManagementInterfaceRequest, opts ...dcerpc.CallOption) (*GetProviderManagementInterfaceResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -95,7 +95,7 @@ func (o *xxx_DefaultVSSSnapshotManagementClient) GetProviderManagementInterface(
 	return out, nil
 }
 
-func (o *xxx_DefaultVSSSnapshotManagementClient) QueryVolumesSupportedForSnapshots(ctx context.Context, in *QueryVolumesSupportedForSnapshotsRequest, opts ...dcerpc.CallOption) (*QueryVolumesSupportedForSnapshotsResponse, error) {
+func (o *xxx_DefaultSnapshotManagementClient) QueryVolumesSupportedForSnapshots(ctx context.Context, in *QueryVolumesSupportedForSnapshotsRequest, opts ...dcerpc.CallOption) (*QueryVolumesSupportedForSnapshotsResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -115,7 +115,7 @@ func (o *xxx_DefaultVSSSnapshotManagementClient) QueryVolumesSupportedForSnapsho
 	return out, nil
 }
 
-func (o *xxx_DefaultVSSSnapshotManagementClient) QuerySnapshotsByVolume(ctx context.Context, in *QuerySnapshotsByVolumeRequest, opts ...dcerpc.CallOption) (*QuerySnapshotsByVolumeResponse, error) {
+func (o *xxx_DefaultSnapshotManagementClient) QuerySnapshotsByVolume(ctx context.Context, in *QuerySnapshotsByVolumeRequest, opts ...dcerpc.CallOption) (*QuerySnapshotsByVolumeResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -135,29 +135,29 @@ func (o *xxx_DefaultVSSSnapshotManagementClient) QuerySnapshotsByVolume(ctx cont
 	return out, nil
 }
 
-func (o *xxx_DefaultVSSSnapshotManagementClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultSnapshotManagementClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultVSSSnapshotManagementClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultSnapshotManagementClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultVSSSnapshotManagementClient) IPID(ctx context.Context, ipid *dcom.IPID) VSSSnapshotManagementClient {
+func (o *xxx_DefaultSnapshotManagementClient) IPID(ctx context.Context, ipid *dcom.IPID) SnapshotManagementClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultVSSSnapshotManagementClient{
+	return &xxx_DefaultSnapshotManagementClient{
 		UnknownClient: o.UnknownClient.IPID(ctx, ipid),
 		cc:            o.cc,
 		ipid:          ipid,
 	}
 }
 
-func NewVSSSnapshotManagementClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (VSSSnapshotManagementClient, error) {
+func NewSnapshotManagementClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (SnapshotManagementClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(VSSSnapshotManagementSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(SnapshotManagementSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -170,7 +170,7 @@ func NewVSSSnapshotManagementClient(ctx context.Context, cc dcerpc.Conn, opts ..
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultVSSSnapshotManagementClient{
+	return &xxx_DefaultSnapshotManagementClient{
 		UnknownClient: base,
 		cc:            cc,
 		ipid:          ipid,
@@ -181,7 +181,7 @@ func NewVSSSnapshotManagementClient(ctx context.Context, cc dcerpc.Conn, opts ..
 type xxx_GetProviderManagementInterfaceOperation struct {
 	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ProviderID  *scmp.VSSID    `idl:"name:ProviderId" json:"provider_id"`
+	ProviderID  *scmp.ID       `idl:"name:ProviderId" json:"provider_id"`
 	InterfaceID *dcom.IID      `idl:"name:InterfaceId" json:"interface_id"`
 	Interface   *dcom.Unknown  `idl:"name:ppItf" json:"interface"`
 	Return      int32          `idl:"name:Return" json:"return"`
@@ -228,7 +228,7 @@ func (o *xxx_GetProviderManagementInterfaceOperation) MarshalNDRRequest(ctx cont
 				return err
 			}
 		} else {
-			if err := (&scmp.VSSID{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&scmp.ID{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -264,7 +264,7 @@ func (o *xxx_GetProviderManagementInterfaceOperation) UnmarshalNDRRequest(ctx co
 	// ProviderId {in} (1:{alias=VSS_ID, names=GUID}(struct))
 	{
 		if o.ProviderID == nil {
-			o.ProviderID = &scmp.VSSID{}
+			o.ProviderID = &scmp.ID{}
 		}
 		if err := o.ProviderID.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -391,7 +391,7 @@ func (o *xxx_GetProviderManagementInterfaceOperation) UnmarshalNDRResponse(ctx c
 type GetProviderManagementInterfaceRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ProviderID  *scmp.VSSID    `idl:"name:ProviderId" json:"provider_id"`
+	ProviderID  *scmp.ID       `idl:"name:ProviderId" json:"provider_id"`
 	InterfaceID *dcom.IID      `idl:"name:InterfaceId" json:"interface_id"`
 }
 
@@ -472,12 +472,12 @@ func (o *GetProviderManagementInterfaceResponse) UnmarshalNDR(ctx context.Contex
 
 // xxx_QueryVolumesSupportedForSnapshotsOperation structure represents the QueryVolumesSupportedForSnapshots operation
 type xxx_QueryVolumesSupportedForSnapshotsOperation struct {
-	This       *dcom.ORPCThis                `idl:"name:This" json:"this"`
-	That       *dcom.ORPCThat                `idl:"name:That" json:"that"`
-	ProviderID *scmp.VSSID                   `idl:"name:ProviderId" json:"provider_id"`
-	Context    int32                         `idl:"name:lContext" json:"context"`
-	Enum       *scmp.VSSEnumManagementObject `idl:"name:ppEnum" json:"enum"`
-	Return     int32                         `idl:"name:Return" json:"return"`
+	This       *dcom.ORPCThis             `idl:"name:This" json:"this"`
+	That       *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	ProviderID *scmp.ID                   `idl:"name:ProviderId" json:"provider_id"`
+	Context    int32                      `idl:"name:lContext" json:"context"`
+	Enum       *scmp.EnumManagementObject `idl:"name:ppEnum" json:"enum"`
+	Return     int32                      `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_QueryVolumesSupportedForSnapshotsOperation) OpNum() int { return 4 }
@@ -521,7 +521,7 @@ func (o *xxx_QueryVolumesSupportedForSnapshotsOperation) MarshalNDRRequest(ctx c
 				return err
 			}
 		} else {
-			if err := (&scmp.VSSID{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&scmp.ID{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -551,7 +551,7 @@ func (o *xxx_QueryVolumesSupportedForSnapshotsOperation) UnmarshalNDRRequest(ctx
 	// ProviderId {in} (1:{alias=VSS_ID, names=GUID}(struct))
 	{
 		if o.ProviderID == nil {
-			o.ProviderID = &scmp.VSSID{}
+			o.ProviderID = &scmp.ID{}
 		}
 		if err := o.ProviderID.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -603,7 +603,7 @@ func (o *xxx_QueryVolumesSupportedForSnapshotsOperation) MarshalNDRResponse(ctx 
 						return err
 					}
 				} else {
-					if err := (&scmp.VSSEnumManagementObject{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&scmp.EnumManagementObject{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
@@ -647,14 +647,14 @@ func (o *xxx_QueryVolumesSupportedForSnapshotsOperation) UnmarshalNDRResponse(ct
 	{
 		_ptr_ppEnum := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if o.Enum == nil {
-				o.Enum = &scmp.VSSEnumManagementObject{}
+				o.Enum = &scmp.EnumManagementObject{}
 			}
 			if err := o.Enum.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**scmp.VSSEnumManagementObject) }
+		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**scmp.EnumManagementObject) }
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}
@@ -675,7 +675,7 @@ func (o *xxx_QueryVolumesSupportedForSnapshotsOperation) UnmarshalNDRResponse(ct
 type QueryVolumesSupportedForSnapshotsRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ProviderID *scmp.VSSID    `idl:"name:ProviderId" json:"provider_id"`
+	ProviderID *scmp.ID       `idl:"name:ProviderId" json:"provider_id"`
 	Context    int32          `idl:"name:lContext" json:"context"`
 }
 
@@ -715,8 +715,8 @@ func (o *QueryVolumesSupportedForSnapshotsRequest) UnmarshalNDR(ctx context.Cont
 // QueryVolumesSupportedForSnapshotsResponse structure represents the QueryVolumesSupportedForSnapshots operation response
 type QueryVolumesSupportedForSnapshotsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat                `idl:"name:That" json:"that"`
-	Enum *scmp.VSSEnumManagementObject `idl:"name:ppEnum" json:"enum"`
+	That *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	Enum *scmp.EnumManagementObject `idl:"name:ppEnum" json:"enum"`
 	// Return: The QueryVolumesSupportedForSnapshots return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -756,12 +756,12 @@ func (o *QueryVolumesSupportedForSnapshotsResponse) UnmarshalNDR(ctx context.Con
 
 // xxx_QuerySnapshotsByVolumeOperation structure represents the QuerySnapshotsByVolume operation
 type xxx_QuerySnapshotsByVolumeOperation struct {
-	This       *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That       *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	VolumeName string              `idl:"name:pwszVolumeName" json:"volume_name"`
-	ProviderID *scmp.VSSID         `idl:"name:ProviderId" json:"provider_id"`
-	Enum       *scmp.VSSEnumObject `idl:"name:ppEnum" json:"enum"`
-	Return     int32               `idl:"name:Return" json:"return"`
+	This       *dcom.ORPCThis   `idl:"name:This" json:"this"`
+	That       *dcom.ORPCThat   `idl:"name:That" json:"that"`
+	VolumeName string           `idl:"name:pwszVolumeName" json:"volume_name"`
+	ProviderID *scmp.ID         `idl:"name:ProviderId" json:"provider_id"`
+	Enum       *scmp.EnumObject `idl:"name:ppEnum" json:"enum"`
+	Return     int32            `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_QuerySnapshotsByVolumeOperation) OpNum() int { return 5 }
@@ -826,7 +826,7 @@ func (o *xxx_QuerySnapshotsByVolumeOperation) MarshalNDRRequest(ctx context.Cont
 				return err
 			}
 		} else {
-			if err := (&scmp.VSSID{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&scmp.ID{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -866,7 +866,7 @@ func (o *xxx_QuerySnapshotsByVolumeOperation) UnmarshalNDRRequest(ctx context.Co
 	// ProviderId {in} (1:{alias=VSS_ID, names=GUID}(struct))
 	{
 		if o.ProviderID == nil {
-			o.ProviderID = &scmp.VSSID{}
+			o.ProviderID = &scmp.ID{}
 		}
 		if err := o.ProviderID.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -912,7 +912,7 @@ func (o *xxx_QuerySnapshotsByVolumeOperation) MarshalNDRResponse(ctx context.Con
 						return err
 					}
 				} else {
-					if err := (&scmp.VSSEnumObject{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&scmp.EnumObject{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
@@ -956,14 +956,14 @@ func (o *xxx_QuerySnapshotsByVolumeOperation) UnmarshalNDRResponse(ctx context.C
 	{
 		_ptr_ppEnum := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if o.Enum == nil {
-				o.Enum = &scmp.VSSEnumObject{}
+				o.Enum = &scmp.EnumObject{}
 			}
 			if err := o.Enum.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**scmp.VSSEnumObject) }
+		_s_ppEnum := func(ptr interface{}) { o.Enum = *ptr.(**scmp.EnumObject) }
 		if err := w.ReadPointer(&o.Enum, _s_ppEnum, _ptr_ppEnum); err != nil {
 			return err
 		}
@@ -985,7 +985,7 @@ type QuerySnapshotsByVolumeRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
 	VolumeName string         `idl:"name:pwszVolumeName" json:"volume_name"`
-	ProviderID *scmp.VSSID    `idl:"name:ProviderId" json:"provider_id"`
+	ProviderID *scmp.ID       `idl:"name:ProviderId" json:"provider_id"`
 }
 
 func (o *QuerySnapshotsByVolumeRequest) xxx_ToOp(ctx context.Context, op *xxx_QuerySnapshotsByVolumeOperation) *xxx_QuerySnapshotsByVolumeOperation {
@@ -1024,8 +1024,8 @@ func (o *QuerySnapshotsByVolumeRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // QuerySnapshotsByVolumeResponse structure represents the QuerySnapshotsByVolume operation response
 type QuerySnapshotsByVolumeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Enum *scmp.VSSEnumObject `idl:"name:ppEnum" json:"enum"`
+	That *dcom.ORPCThat   `idl:"name:That" json:"that"`
+	Enum *scmp.EnumObject `idl:"name:ppEnum" json:"enum"`
 	// Return: The QuerySnapshotsByVolume return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

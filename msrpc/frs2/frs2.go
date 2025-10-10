@@ -35,69 +35,69 @@ var (
 	GoPackage = "frs2"
 )
 
-// FrsCommunicationProtocolVersionW2k3r2 represents the FRS_COMMUNICATION_PROTOCOL_VERSION_W2K3R2 RPC constant
-var FrsCommunicationProtocolVersionW2k3r2 = 327680
+// CommunicationProtocolVersionW2K3R2 represents the FRS_COMMUNICATION_PROTOCOL_VERSION_W2K3R2 RPC constant
+var CommunicationProtocolVersionW2K3R2 = 327680
 
-// FrsCommunicationProtocolVersionLonghornServer represents the FRS_COMMUNICATION_PROTOCOL_VERSION_LONGHORN_SERVER RPC constant
-var FrsCommunicationProtocolVersionLonghornServer = 327682
+// CommunicationProtocolVersionLonghornServer represents the FRS_COMMUNICATION_PROTOCOL_VERSION_LONGHORN_SERVER RPC constant
+var CommunicationProtocolVersionLonghornServer = 327682
 
-// FrsCommunicationProtocolWin8Server represents the FRS_COMMUNICATION_PROTOCOL_WIN8_SERVER RPC constant
-var FrsCommunicationProtocolWin8Server = 327683
+// CommunicationProtocolWin8Server represents the FRS_COMMUNICATION_PROTOCOL_WIN8_SERVER RPC constant
+var CommunicationProtocolWin8Server = 327683
 
-// FrsCommunicationProtocolWinblueServer represents the FRS_COMMUNICATION_PROTOCOL_WINBLUE_SERVER RPC constant
-var FrsCommunicationProtocolWinblueServer = 327684
+// CommunicationProtocolWinBlueServer represents the FRS_COMMUNICATION_PROTOCOL_WINBLUE_SERVER RPC constant
+var CommunicationProtocolWinBlueServer = 327684
 
-// ConfigRdcVersion represents the CONFIG_RDC_VERSION RPC constant
-var ConfigRdcVersion = 1
+// ConfigRDCVersion represents the CONFIG_RDC_VERSION RPC constant
+var ConfigRDCVersion = 1
 
-// ConfigRdcVersionCompatible represents the CONFIG_RDC_VERSION_COMPATIBLE RPC constant
-var ConfigRdcVersionCompatible = 1
+// ConfigRDCVersionCompatible represents the CONFIG_RDC_VERSION_COMPATIBLE RPC constant
+var ConfigRDCVersionCompatible = 1
 
-// ConfigFilehashDatasize represents the CONFIG_FILEHASH_DATASIZE RPC constant
-var ConfigFilehashDatasize = 20
+// ConfigFileHashDataSize represents the CONFIG_FILEHASH_DATASIZE RPC constant
+var ConfigFileHashDataSize = 20
 
-// ConfigRdcSimilarityDatasize represents the CONFIG_RDC_SIMILARITY_DATASIZE RPC constant
-var ConfigRdcSimilarityDatasize = 16
+// ConfigRDCSimilarityDataSize represents the CONFIG_RDC_SIMILARITY_DATASIZE RPC constant
+var ConfigRDCSimilarityDataSize = 16
 
-// ConfigRdcHorizonsizeMin represents the CONFIG_RDC_HORIZONSIZE_MIN RPC constant
-var ConfigRdcHorizonsizeMin = 128
+// ConfigRDCHorizonSizeMin represents the CONFIG_RDC_HORIZONSIZE_MIN RPC constant
+var ConfigRDCHorizonSizeMin = 128
 
-// ConfigRdcHorizonsizeMax represents the CONFIG_RDC_HORIZONSIZE_MAX RPC constant
-var ConfigRdcHorizonsizeMax = 16384
+// ConfigRDCHorizonSizeMax represents the CONFIG_RDC_HORIZONSIZE_MAX RPC constant
+var ConfigRDCHorizonSizeMax = 16384
 
-// ConfigRdcHashwindowsizeMin represents the CONFIG_RDC_HASHWINDOWSIZE_MIN RPC constant
-var ConfigRdcHashwindowsizeMin = 2
+// ConfigRDCHashWindowSizeMin represents the CONFIG_RDC_HASHWINDOWSIZE_MIN RPC constant
+var ConfigRDCHashWindowSizeMin = 2
 
-// ConfigRdcHashwindowsizeMax represents the CONFIG_RDC_HASHWINDOWSIZE_MAX RPC constant
-var ConfigRdcHashwindowsizeMax = 96
+// ConfigRDCHashWindowSizeMax represents the CONFIG_RDC_HASHWINDOWSIZE_MAX RPC constant
+var ConfigRDCHashWindowSizeMax = 96
 
-// ConfigRdcMaxLevels represents the CONFIG_RDC_MAX_LEVELS RPC constant
-var ConfigRdcMaxLevels = 8
+// ConfigRDCMaxLevels represents the CONFIG_RDC_MAX_LEVELS RPC constant
+var ConfigRDCMaxLevels = 8
 
-// ConfigRdcMaxNeedlength represents the CONFIG_RDC_MAX_NEEDLENGTH RPC constant
-var ConfigRdcMaxNeedlength = 65536
+// ConfigRDCMaxNeedLength represents the CONFIG_RDC_MAX_NEEDLENGTH RPC constant
+var ConfigRDCMaxNeedLength = 65536
 
 // ConfigTransportMaxBufferSize represents the CONFIG_TRANSPORT_MAX_BUFFER_SIZE RPC constant
 var ConfigTransportMaxBufferSize = 262144
 
-// ConfigRdcNeedQueueSize represents the CONFIG_RDC_NEED_QUEUE_SIZE RPC constant
-var ConfigRdcNeedQueueSize = 20
+// ConfigRDCNeedQueueSize represents the CONFIG_RDC_NEED_QUEUE_SIZE RPC constant
+var ConfigRDCNeedQueueSize = 20
 
-// FrsUpdateFlagGhostedHeader represents the FRS_UPDATE_FLAG_GHOSTED_HEADER RPC constant
-var FrsUpdateFlagGhostedHeader = 4
+// UpdateFlagGhostedHeader represents the FRS_UPDATE_FLAG_GHOSTED_HEADER RPC constant
+var UpdateFlagGhostedHeader = 4
 
-// FrsUpdateFlagData represents the FRS_UPDATE_FLAG_DATA RPC constant
-var FrsUpdateFlagData = 8
+// UpdateFlagData represents the FRS_UPDATE_FLAG_DATA RPC constant
+var UpdateFlagData = 8
 
-// FrsUpdateFlagClockDecremented represents the FRS_UPDATE_FLAG_CLOCK_DECREMENTED RPC constant
-var FrsUpdateFlagClockDecremented = 16
+// UpdateFlagClockDecremented represents the FRS_UPDATE_FLAG_CLOCK_DECREMENTED RPC constant
+var UpdateFlagClockDecremented = 16
 
-// FrsReplicaSetID structure represents FRS_REPLICA_SET_ID RPC structure.
-type FrsReplicaSetID dtyp.GUID
+// ReplicaSetID structure represents FRS_REPLICA_SET_ID RPC structure.
+type ReplicaSetID dtyp.GUID
 
-func (o *FrsReplicaSetID) GUID() *dtyp.GUID { return (*dtyp.GUID)(o) }
+func (o *ReplicaSetID) GUID() *dtyp.GUID { return (*dtyp.GUID)(o) }
 
-func (o *FrsReplicaSetID) xxx_PreparePayload(ctx context.Context) error {
+func (o *ReplicaSetID) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -106,7 +106,7 @@ func (o *FrsReplicaSetID) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *FrsReplicaSetID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ReplicaSetID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -141,7 +141,7 @@ func (o *FrsReplicaSetID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *FrsReplicaSetID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ReplicaSetID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -167,12 +167,12 @@ func (o *FrsReplicaSetID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	return nil
 }
 
-// FrsContentSetID structure represents FRS_CONTENT_SET_ID RPC structure.
-type FrsContentSetID dtyp.GUID
+// ContentSetID structure represents FRS_CONTENT_SET_ID RPC structure.
+type ContentSetID dtyp.GUID
 
-func (o *FrsContentSetID) GUID() *dtyp.GUID { return (*dtyp.GUID)(o) }
+func (o *ContentSetID) GUID() *dtyp.GUID { return (*dtyp.GUID)(o) }
 
-func (o *FrsContentSetID) xxx_PreparePayload(ctx context.Context) error {
+func (o *ContentSetID) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -181,7 +181,7 @@ func (o *FrsContentSetID) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *FrsContentSetID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ContentSetID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -216,7 +216,7 @@ func (o *FrsContentSetID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *FrsContentSetID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ContentSetID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -242,12 +242,12 @@ func (o *FrsContentSetID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	return nil
 }
 
-// FrsDatabaseID structure represents FRS_DATABASE_ID RPC structure.
-type FrsDatabaseID dtyp.GUID
+// DatabaseID structure represents FRS_DATABASE_ID RPC structure.
+type DatabaseID dtyp.GUID
 
-func (o *FrsDatabaseID) GUID() *dtyp.GUID { return (*dtyp.GUID)(o) }
+func (o *DatabaseID) GUID() *dtyp.GUID { return (*dtyp.GUID)(o) }
 
-func (o *FrsDatabaseID) xxx_PreparePayload(ctx context.Context) error {
+func (o *DatabaseID) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -256,7 +256,7 @@ func (o *FrsDatabaseID) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *FrsDatabaseID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *DatabaseID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -291,7 +291,7 @@ func (o *FrsDatabaseID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *FrsDatabaseID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *DatabaseID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -317,12 +317,12 @@ func (o *FrsDatabaseID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// FrsMemberID structure represents FRS_MEMBER_ID RPC structure.
-type FrsMemberID dtyp.GUID
+// MemberID structure represents FRS_MEMBER_ID RPC structure.
+type MemberID dtyp.GUID
 
-func (o *FrsMemberID) GUID() *dtyp.GUID { return (*dtyp.GUID)(o) }
+func (o *MemberID) GUID() *dtyp.GUID { return (*dtyp.GUID)(o) }
 
-func (o *FrsMemberID) xxx_PreparePayload(ctx context.Context) error {
+func (o *MemberID) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -331,7 +331,7 @@ func (o *FrsMemberID) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *FrsMemberID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MemberID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -366,7 +366,7 @@ func (o *FrsMemberID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *FrsMemberID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *MemberID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -392,12 +392,12 @@ func (o *FrsMemberID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// FrsConnectionID structure represents FRS_CONNECTION_ID RPC structure.
-type FrsConnectionID dtyp.GUID
+// ConnectionID structure represents FRS_CONNECTION_ID RPC structure.
+type ConnectionID dtyp.GUID
 
-func (o *FrsConnectionID) GUID() *dtyp.GUID { return (*dtyp.GUID)(o) }
+func (o *ConnectionID) GUID() *dtyp.GUID { return (*dtyp.GUID)(o) }
 
-func (o *FrsConnectionID) xxx_PreparePayload(ctx context.Context) error {
+func (o *ConnectionID) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -406,7 +406,7 @@ func (o *FrsConnectionID) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *FrsConnectionID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ConnectionID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -441,7 +441,7 @@ func (o *FrsConnectionID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *FrsConnectionID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ConnectionID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -545,14 +545,14 @@ func (o *Epoque) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// FrsVersionVector structure represents FRS_VERSION_VECTOR RPC structure.
-type FrsVersionVector struct {
+// VersionVector structure represents FRS_VERSION_VECTOR RPC structure.
+type VersionVector struct {
 	DBGUID *dtyp.GUID `idl:"name:dbGuid" json:"db_guid"`
 	Low    uint64     `idl:"name:low" json:"low"`
 	High   uint64     `idl:"name:high" json:"high"`
 }
 
-func (o *FrsVersionVector) xxx_PreparePayload(ctx context.Context) error {
+func (o *VersionVector) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -561,7 +561,7 @@ func (o *FrsVersionVector) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *FrsVersionVector) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *VersionVector) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -585,7 +585,7 @@ func (o *FrsVersionVector) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *FrsVersionVector) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *VersionVector) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
@@ -604,13 +604,13 @@ func (o *FrsVersionVector) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	return nil
 }
 
-// FrsEpoqueVector structure represents FRS_EPOQUE_VECTOR RPC structure.
-type FrsEpoqueVector struct {
+// EpoqueVector structure represents FRS_EPOQUE_VECTOR RPC structure.
+type EpoqueVector struct {
 	Machine *dtyp.GUID `idl:"name:machine" json:"machine"`
 	Epoque  *Epoque    `idl:"name:epoque" json:"epoque"`
 }
 
-func (o *FrsEpoqueVector) xxx_PreparePayload(ctx context.Context) error {
+func (o *EpoqueVector) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -619,7 +619,7 @@ func (o *FrsEpoqueVector) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *FrsEpoqueVector) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *EpoqueVector) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -649,7 +649,7 @@ func (o *FrsEpoqueVector) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *FrsEpoqueVector) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *EpoqueVector) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
@@ -671,15 +671,15 @@ func (o *FrsEpoqueVector) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	return nil
 }
 
-// FrsIDGvsn structure represents FRS_ID_GVSN RPC structure.
-type FrsIDGvsn struct {
+// IDGVSN structure represents FRS_ID_GVSN RPC structure.
+type IDGVSN struct {
 	UIDDBGUID   *dtyp.GUID `idl:"name:uidDbGuid" json:"uid_db_guid"`
 	UIDVersion  uint64     `idl:"name:uidVersion" json:"uid_version"`
-	GvsnDBGUID  *dtyp.GUID `idl:"name:gvsnDbGuid" json:"gvsn_db_guid"`
-	GvsnVersion uint64     `idl:"name:gvsnVersion" json:"gvsn_version"`
+	GVSNDBGUID  *dtyp.GUID `idl:"name:gvsnDbGuid" json:"gvsn_db_guid"`
+	GVSNVersion uint64     `idl:"name:gvsnVersion" json:"gvsn_version"`
 }
 
-func (o *FrsIDGvsn) xxx_PreparePayload(ctx context.Context) error {
+func (o *IDGVSN) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -688,7 +688,7 @@ func (o *FrsIDGvsn) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *FrsIDGvsn) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IDGVSN) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -707,8 +707,8 @@ func (o *FrsIDGvsn) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.UIDVersion); err != nil {
 		return err
 	}
-	if o.GvsnDBGUID != nil {
-		if err := o.GvsnDBGUID.MarshalNDR(ctx, w); err != nil {
+	if o.GVSNDBGUID != nil {
+		if err := o.GVSNDBGUID.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
@@ -716,12 +716,12 @@ func (o *FrsIDGvsn) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(o.GvsnVersion); err != nil {
+	if err := w.WriteData(o.GVSNVersion); err != nil {
 		return err
 	}
 	return nil
 }
-func (o *FrsIDGvsn) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *IDGVSN) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
@@ -734,40 +734,40 @@ func (o *FrsIDGvsn) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.UIDVersion); err != nil {
 		return err
 	}
-	if o.GvsnDBGUID == nil {
-		o.GvsnDBGUID = &dtyp.GUID{}
+	if o.GVSNDBGUID == nil {
+		o.GVSNDBGUID = &dtyp.GUID{}
 	}
-	if err := o.GvsnDBGUID.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.GVSNDBGUID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GvsnVersion); err != nil {
+	if err := w.ReadData(&o.GVSNVersion); err != nil {
 		return err
 	}
 	return nil
 }
 
-// FrsUpdate structure represents FRS_UPDATE RPC structure.
-type FrsUpdate struct {
-	Present       int32            `idl:"name:present" json:"present"`
-	Conflict      int32            `idl:"name:nameConflict" json:"conflict"`
-	Attributes    uint32           `idl:"name:attributes" json:"attributes"`
-	Fence         *dtyp.Filetime   `idl:"name:fence" json:"fence"`
-	Clock         *dtyp.Filetime   `idl:"name:clock" json:"clock"`
-	CreateTime    *dtyp.Filetime   `idl:"name:createTime" json:"create_time"`
-	ContentSetID  *FrsContentSetID `idl:"name:contentSetId" json:"content_set_id"`
-	Hash          []byte           `idl:"name:hash" json:"hash"`
-	RdcSimilarity []byte           `idl:"name:rdcSimilarity" json:"rdc_similarity"`
-	UIDDBGUID     *dtyp.GUID       `idl:"name:uidDbGuid" json:"uid_db_guid"`
-	UIDVersion    uint64           `idl:"name:uidVersion" json:"uid_version"`
-	GvsnDBGUID    *dtyp.GUID       `idl:"name:gvsnDbGuid" json:"gvsn_db_guid"`
-	GvsnVersion   uint64           `idl:"name:gvsnVersion" json:"gvsn_version"`
-	ParentDBGUID  *dtyp.GUID       `idl:"name:parentDbGuid" json:"parent_db_guid"`
-	ParentVersion uint64           `idl:"name:parentVersion" json:"parent_version"`
-	Name          string           `idl:"name:name;string" json:"name"`
-	Flags         int32            `idl:"name:flags" json:"flags"`
+// Update structure represents FRS_UPDATE RPC structure.
+type Update struct {
+	Present       int32          `idl:"name:present" json:"present"`
+	Conflict      int32          `idl:"name:nameConflict" json:"conflict"`
+	Attributes    uint32         `idl:"name:attributes" json:"attributes"`
+	Fence         *dtyp.Filetime `idl:"name:fence" json:"fence"`
+	Clock         *dtyp.Filetime `idl:"name:clock" json:"clock"`
+	CreateTime    *dtyp.Filetime `idl:"name:createTime" json:"create_time"`
+	ContentSetID  *ContentSetID  `idl:"name:contentSetId" json:"content_set_id"`
+	Hash          []byte         `idl:"name:hash" json:"hash"`
+	Similarity    []byte         `idl:"name:rdcSimilarity" json:"similarity"`
+	UIDDBGUID     *dtyp.GUID     `idl:"name:uidDbGuid" json:"uid_db_guid"`
+	UIDVersion    uint64         `idl:"name:uidVersion" json:"uid_version"`
+	GVSNDBGUID    *dtyp.GUID     `idl:"name:gvsnDbGuid" json:"gvsn_db_guid"`
+	GVSNVersion   uint64         `idl:"name:gvsnVersion" json:"gvsn_version"`
+	ParentDBGUID  *dtyp.GUID     `idl:"name:parentDbGuid" json:"parent_db_guid"`
+	ParentVersion uint64         `idl:"name:parentVersion" json:"parent_version"`
+	Name          string         `idl:"name:name;string" json:"name"`
+	Flags         int32          `idl:"name:flags" json:"flags"`
 }
 
-func (o *FrsUpdate) xxx_PreparePayload(ctx context.Context) error {
+func (o *Update) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -776,7 +776,7 @@ func (o *FrsUpdate) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *FrsUpdate) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Update) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -824,7 +824,7 @@ func (o *FrsUpdate) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	} else {
-		if err := (&FrsContentSetID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ContentSetID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -842,16 +842,16 @@ func (o *FrsUpdate) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	for i1 := range o.RdcSimilarity {
+	for i1 := range o.Similarity {
 		i1 := i1
 		if uint64(i1) >= 16 {
 			break
 		}
-		if err := w.WriteData(o.RdcSimilarity[i1]); err != nil {
+		if err := w.WriteData(o.Similarity[i1]); err != nil {
 			return err
 		}
 	}
-	for i1 := len(o.RdcSimilarity); uint64(i1) < 16; i1++ {
+	for i1 := len(o.Similarity); uint64(i1) < 16; i1++ {
 		if err := w.WriteData(uint8(0)); err != nil {
 			return err
 		}
@@ -868,8 +868,8 @@ func (o *FrsUpdate) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.UIDVersion); err != nil {
 		return err
 	}
-	if o.GvsnDBGUID != nil {
-		if err := o.GvsnDBGUID.MarshalNDR(ctx, w); err != nil {
+	if o.GVSNDBGUID != nil {
+		if err := o.GVSNDBGUID.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
@@ -877,7 +877,7 @@ func (o *FrsUpdate) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(o.GvsnVersion); err != nil {
+	if err := w.WriteData(o.GVSNVersion); err != nil {
 		return err
 	}
 	if o.ParentDBGUID != nil {
@@ -921,7 +921,7 @@ func (o *FrsUpdate) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *FrsUpdate) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Update) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
@@ -953,7 +953,7 @@ func (o *FrsUpdate) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if o.ContentSetID == nil {
-		o.ContentSetID = &FrsContentSetID{}
+		o.ContentSetID = &ContentSetID{}
 	}
 	if err := o.ContentSetID.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -965,10 +965,10 @@ func (o *FrsUpdate) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 			return err
 		}
 	}
-	o.RdcSimilarity = make([]byte, 16)
-	for i1 := range o.RdcSimilarity {
+	o.Similarity = make([]byte, 16)
+	for i1 := range o.Similarity {
 		i1 := i1
-		if err := w.ReadData(&o.RdcSimilarity[i1]); err != nil {
+		if err := w.ReadData(&o.Similarity[i1]); err != nil {
 			return err
 		}
 	}
@@ -981,13 +981,13 @@ func (o *FrsUpdate) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.UIDVersion); err != nil {
 		return err
 	}
-	if o.GvsnDBGUID == nil {
-		o.GvsnDBGUID = &dtyp.GUID{}
+	if o.GVSNDBGUID == nil {
+		o.GVSNDBGUID = &dtyp.GUID{}
 	}
-	if err := o.GvsnDBGUID.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.GVSNDBGUID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GvsnVersion); err != nil {
+	if err := w.ReadData(&o.GVSNVersion); err != nil {
 		return err
 	}
 	if o.ParentDBGUID == nil {
@@ -1017,23 +1017,23 @@ func (o *FrsUpdate) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// FrsUpdateCancelData structure represents FRS_UPDATE_CANCEL_DATA RPC structure.
-type FrsUpdateCancelData struct {
-	BlockingUpdate   *FrsUpdate       `idl:"name:blockingUpdate" json:"blocking_update"`
-	ContentSetID     *FrsContentSetID `idl:"name:contentSetId" json:"content_set_id"`
-	GvsnDatabaseID   *FrsDatabaseID   `idl:"name:gvsnDatabaseId" json:"gvsn_database_id"`
-	UIDDatabaseID    *FrsDatabaseID   `idl:"name:uidDatabaseId" json:"uid_database_id"`
-	ParentDatabaseID *FrsDatabaseID   `idl:"name:parentDatabaseId" json:"parent_database_id"`
-	GvsnVersion      uint64           `idl:"name:gvsnVersion" json:"gvsn_version"`
-	UIDVersion       uint64           `idl:"name:uidVersion" json:"uid_version"`
-	ParentVersion    uint64           `idl:"name:parentVersion" json:"parent_version"`
-	CancelType       uint32           `idl:"name:cancelType" json:"cancel_type"`
-	IsUIDValid       int32            `idl:"name:isUidValid" json:"is_uid_valid"`
-	IsParentUIDValid int32            `idl:"name:isParentUidValid" json:"is_parent_uid_valid"`
-	IsBlockerValid   int32            `idl:"name:isBlockerValid" json:"is_blocker_valid"`
+// UpdateCancelData structure represents FRS_UPDATE_CANCEL_DATA RPC structure.
+type UpdateCancelData struct {
+	BlockingUpdate   *Update       `idl:"name:blockingUpdate" json:"blocking_update"`
+	ContentSetID     *ContentSetID `idl:"name:contentSetId" json:"content_set_id"`
+	GVSNDatabaseID   *DatabaseID   `idl:"name:gvsnDatabaseId" json:"gvsn_database_id"`
+	UIDDatabaseID    *DatabaseID   `idl:"name:uidDatabaseId" json:"uid_database_id"`
+	ParentDatabaseID *DatabaseID   `idl:"name:parentDatabaseId" json:"parent_database_id"`
+	GVSNVersion      uint64        `idl:"name:gvsnVersion" json:"gvsn_version"`
+	UIDVersion       uint64        `idl:"name:uidVersion" json:"uid_version"`
+	ParentVersion    uint64        `idl:"name:parentVersion" json:"parent_version"`
+	CancelType       uint32        `idl:"name:cancelType" json:"cancel_type"`
+	IsUIDValid       int32         `idl:"name:isUidValid" json:"is_uid_valid"`
+	IsParentUIDValid int32         `idl:"name:isParentUidValid" json:"is_parent_uid_valid"`
+	IsBlockerValid   int32         `idl:"name:isBlockerValid" json:"is_blocker_valid"`
 }
 
-func (o *FrsUpdateCancelData) xxx_PreparePayload(ctx context.Context) error {
+func (o *UpdateCancelData) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -1042,7 +1042,7 @@ func (o *FrsUpdateCancelData) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *FrsUpdateCancelData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *UpdateCancelData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -1054,7 +1054,7 @@ func (o *FrsUpdateCancelData) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 			return err
 		}
 	} else {
-		if err := (&FrsUpdate{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&Update{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -1063,16 +1063,16 @@ func (o *FrsUpdateCancelData) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 			return err
 		}
 	} else {
-		if err := (&FrsContentSetID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ContentSetID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
-	if o.GvsnDatabaseID != nil {
-		if err := o.GvsnDatabaseID.MarshalNDR(ctx, w); err != nil {
+	if o.GVSNDatabaseID != nil {
+		if err := o.GVSNDatabaseID.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&FrsDatabaseID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&DatabaseID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -1081,7 +1081,7 @@ func (o *FrsUpdateCancelData) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 			return err
 		}
 	} else {
-		if err := (&FrsDatabaseID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&DatabaseID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -1090,11 +1090,11 @@ func (o *FrsUpdateCancelData) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 			return err
 		}
 	} else {
-		if err := (&FrsDatabaseID{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&DatabaseID{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
-	if err := w.WriteData(o.GvsnVersion); err != nil {
+	if err := w.WriteData(o.GVSNVersion); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.UIDVersion); err != nil {
@@ -1120,41 +1120,41 @@ func (o *FrsUpdateCancelData) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	}
 	return nil
 }
-func (o *FrsUpdateCancelData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *UpdateCancelData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
 	if o.BlockingUpdate == nil {
-		o.BlockingUpdate = &FrsUpdate{}
+		o.BlockingUpdate = &Update{}
 	}
 	if err := o.BlockingUpdate.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.ContentSetID == nil {
-		o.ContentSetID = &FrsContentSetID{}
+		o.ContentSetID = &ContentSetID{}
 	}
 	if err := o.ContentSetID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.GvsnDatabaseID == nil {
-		o.GvsnDatabaseID = &FrsDatabaseID{}
+	if o.GVSNDatabaseID == nil {
+		o.GVSNDatabaseID = &DatabaseID{}
 	}
-	if err := o.GvsnDatabaseID.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.GVSNDatabaseID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.UIDDatabaseID == nil {
-		o.UIDDatabaseID = &FrsDatabaseID{}
+		o.UIDDatabaseID = &DatabaseID{}
 	}
 	if err := o.UIDDatabaseID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	if o.ParentDatabaseID == nil {
-		o.ParentDatabaseID = &FrsDatabaseID{}
+		o.ParentDatabaseID = &DatabaseID{}
 	}
 	if err := o.ParentDatabaseID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GvsnVersion); err != nil {
+	if err := w.ReadData(&o.GVSNVersion); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.UIDVersion); err != nil {
@@ -1181,13 +1181,13 @@ func (o *FrsUpdateCancelData) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	return nil
 }
 
-// FrsRdcSourceNeed structure represents FRS_RDC_SOURCE_NEED RPC structure.
-type FrsRdcSourceNeed struct {
+// SourceNeed structure represents FRS_RDC_SOURCE_NEED RPC structure.
+type SourceNeed struct {
 	NeedOffset uint64 `idl:"name:needOffset" json:"need_offset"`
 	NeedSize   uint64 `idl:"name:needSize" json:"need_size"`
 }
 
-func (o *FrsRdcSourceNeed) xxx_PreparePayload(ctx context.Context) error {
+func (o *SourceNeed) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -1196,7 +1196,7 @@ func (o *FrsRdcSourceNeed) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *FrsRdcSourceNeed) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SourceNeed) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -1211,7 +1211,7 @@ func (o *FrsRdcSourceNeed) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *FrsRdcSourceNeed) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *SourceNeed) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
@@ -1228,55 +1228,55 @@ func (o *FrsRdcSourceNeed) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 type TransportFlags uint16
 
 var (
-	TransportFlagsSupportsRdcSimilarity TransportFlags = 1
+	TransportFlagsSupportsRDCSimilarity TransportFlags = 1
 )
 
 func (o TransportFlags) String() string {
 	switch o {
-	case TransportFlagsSupportsRdcSimilarity:
-		return "TransportFlagsSupportsRdcSimilarity"
+	case TransportFlagsSupportsRDCSimilarity:
+		return "TransportFlagsSupportsRDCSimilarity"
 	}
 	return "Invalid"
 }
 
-// RdcFileCompressionTypes type represents RDC_FILE_COMPRESSION_TYPES RPC enumeration.
-type RdcFileCompressionTypes uint16
+// FileCompressionTypes type represents RDC_FILE_COMPRESSION_TYPES RPC enumeration.
+type FileCompressionTypes uint16
 
 var (
-	RdcFileCompressionTypesUncompressed RdcFileCompressionTypes = 0
-	RdcFileCompressionTypesXPress       RdcFileCompressionTypes = 1
+	FileCompressionTypesUncompressed FileCompressionTypes = 0
+	FileCompressionTypesXPress       FileCompressionTypes = 1
 )
 
-func (o RdcFileCompressionTypes) String() string {
+func (o FileCompressionTypes) String() string {
 	switch o {
-	case RdcFileCompressionTypesUncompressed:
-		return "RdcFileCompressionTypesUncompressed"
-	case RdcFileCompressionTypesXPress:
-		return "RdcFileCompressionTypesXPress"
+	case FileCompressionTypesUncompressed:
+		return "FileCompressionTypesUncompressed"
+	case FileCompressionTypesXPress:
+		return "FileCompressionTypesXPress"
 	}
 	return "Invalid"
 }
 
-// RdcChunkerAlgorithm type represents RDC_CHUNKER_ALGORITHM RPC enumeration.
-type RdcChunkerAlgorithm uint16
+// ChunkerAlgorithm type represents RDC_CHUNKER_ALGORITHM RPC enumeration.
+type ChunkerAlgorithm uint16
 
 var (
-	RdcChunkerAlgorithmFiltergeneric RdcChunkerAlgorithm = 0
-	RdcChunkerAlgorithmFiltermax     RdcChunkerAlgorithm = 1
-	RdcChunkerAlgorithmFilterpoint   RdcChunkerAlgorithm = 2
-	RdcChunkerAlgorithmMaxalgorithm  RdcChunkerAlgorithm = 3
+	ChunkerAlgorithmFiltergeneric ChunkerAlgorithm = 0
+	ChunkerAlgorithmFilterMax     ChunkerAlgorithm = 1
+	ChunkerAlgorithmFilterPoint   ChunkerAlgorithm = 2
+	ChunkerAlgorithmMaxalgorithm  ChunkerAlgorithm = 3
 )
 
-func (o RdcChunkerAlgorithm) String() string {
+func (o ChunkerAlgorithm) String() string {
 	switch o {
-	case RdcChunkerAlgorithmFiltergeneric:
-		return "RdcChunkerAlgorithmFiltergeneric"
-	case RdcChunkerAlgorithmFiltermax:
-		return "RdcChunkerAlgorithmFiltermax"
-	case RdcChunkerAlgorithmFilterpoint:
-		return "RdcChunkerAlgorithmFilterpoint"
-	case RdcChunkerAlgorithmMaxalgorithm:
-		return "RdcChunkerAlgorithmMaxalgorithm"
+	case ChunkerAlgorithmFiltergeneric:
+		return "ChunkerAlgorithmFiltergeneric"
+	case ChunkerAlgorithmFilterMax:
+		return "ChunkerAlgorithmFilterMax"
+	case ChunkerAlgorithmFilterPoint:
+		return "ChunkerAlgorithmFilterPoint"
+	case ChunkerAlgorithmMaxalgorithm:
+		return "ChunkerAlgorithmMaxalgorithm"
 	}
 	return "Invalid"
 }
@@ -1377,34 +1377,34 @@ func (o VersionChangeType) String() string {
 	return "Invalid"
 }
 
-// FrsRequestedStagingPolicy type represents FRS_REQUESTED_STAGING_POLICY RPC enumeration.
-type FrsRequestedStagingPolicy uint16
+// RequestedStagingPolicy type represents FRS_REQUESTED_STAGING_POLICY RPC enumeration.
+type RequestedStagingPolicy uint16
 
 var (
-	FrsRequestedStagingPolicyServerDefault     FrsRequestedStagingPolicy = 0
-	FrsRequestedStagingPolicyRequired          FrsRequestedStagingPolicy = 1
-	FrsRequestedStagingPolicyRestagingRequired FrsRequestedStagingPolicy = 2
+	RequestedStagingPolicyServerDefault     RequestedStagingPolicy = 0
+	RequestedStagingPolicyRequired          RequestedStagingPolicy = 1
+	RequestedStagingPolicyRestagingRequired RequestedStagingPolicy = 2
 )
 
-func (o FrsRequestedStagingPolicy) String() string {
+func (o RequestedStagingPolicy) String() string {
 	switch o {
-	case FrsRequestedStagingPolicyServerDefault:
-		return "FrsRequestedStagingPolicyServerDefault"
-	case FrsRequestedStagingPolicyRequired:
-		return "FrsRequestedStagingPolicyRequired"
-	case FrsRequestedStagingPolicyRestagingRequired:
-		return "FrsRequestedStagingPolicyRestagingRequired"
+	case RequestedStagingPolicyServerDefault:
+		return "RequestedStagingPolicyServerDefault"
+	case RequestedStagingPolicyRequired:
+		return "RequestedStagingPolicyRequired"
+	case RequestedStagingPolicyRestagingRequired:
+		return "RequestedStagingPolicyRestagingRequired"
 	}
 	return "Invalid"
 }
 
-// FrsRdcParametersFiltermax structure represents FRS_RDC_PARAMETERS_FILTERMAX RPC structure.
-type FrsRdcParametersFiltermax struct {
+// ParametersFilterMax structure represents FRS_RDC_PARAMETERS_FILTERMAX RPC structure.
+type ParametersFilterMax struct {
 	HorizonSize uint16 `idl:"name:horizonSize" json:"horizon_size"`
 	WindowSize  uint16 `idl:"name:windowSize" json:"window_size"`
 }
 
-func (o *FrsRdcParametersFiltermax) xxx_PreparePayload(ctx context.Context) error {
+func (o *ParametersFilterMax) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -1419,7 +1419,7 @@ func (o *FrsRdcParametersFiltermax) xxx_PreparePayload(ctx context.Context) erro
 	}
 	return nil
 }
-func (o *FrsRdcParametersFiltermax) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ParametersFilterMax) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -1434,7 +1434,7 @@ func (o *FrsRdcParametersFiltermax) MarshalNDR(ctx context.Context, w ndr.Writer
 	}
 	return nil
 }
-func (o *FrsRdcParametersFiltermax) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ParametersFilterMax) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(2); err != nil {
 		return err
 	}
@@ -1447,13 +1447,13 @@ func (o *FrsRdcParametersFiltermax) UnmarshalNDR(ctx context.Context, w ndr.Read
 	return nil
 }
 
-// FrsRdcParametersFilterpoint structure represents FRS_RDC_PARAMETERS_FILTERPOINT RPC structure.
-type FrsRdcParametersFilterpoint struct {
+// ParametersFilterPoint structure represents FRS_RDC_PARAMETERS_FILTERPOINT RPC structure.
+type ParametersFilterPoint struct {
 	MinChunkSize uint16 `idl:"name:minChunkSize" json:"min_chunk_size"`
 	MaxChunkSize uint16 `idl:"name:maxChunkSize" json:"max_chunk_size"`
 }
 
-func (o *FrsRdcParametersFilterpoint) xxx_PreparePayload(ctx context.Context) error {
+func (o *ParametersFilterPoint) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -1462,7 +1462,7 @@ func (o *FrsRdcParametersFilterpoint) xxx_PreparePayload(ctx context.Context) er
 	}
 	return nil
 }
-func (o *FrsRdcParametersFilterpoint) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ParametersFilterPoint) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -1477,7 +1477,7 @@ func (o *FrsRdcParametersFilterpoint) MarshalNDR(ctx context.Context, w ndr.Writ
 	}
 	return nil
 }
-func (o *FrsRdcParametersFilterpoint) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ParametersFilterPoint) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(2); err != nil {
 		return err
 	}
@@ -1490,13 +1490,13 @@ func (o *FrsRdcParametersFilterpoint) UnmarshalNDR(ctx context.Context, w ndr.Re
 	return nil
 }
 
-// FrsRdcParametersGeneric structure represents FRS_RDC_PARAMETERS_GENERIC RPC structure.
-type FrsRdcParametersGeneric struct {
+// ParametersGeneric structure represents FRS_RDC_PARAMETERS_GENERIC RPC structure.
+type ParametersGeneric struct {
 	ChunkerType       uint16 `idl:"name:chunkerType" json:"chunker_type"`
 	ChunkerParameters []byte `idl:"name:chunkerParameters" json:"chunker_parameters"`
 }
 
-func (o *FrsRdcParametersGeneric) xxx_PreparePayload(ctx context.Context) error {
+func (o *ParametersGeneric) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -1505,7 +1505,7 @@ func (o *FrsRdcParametersGeneric) xxx_PreparePayload(ctx context.Context) error 
 	}
 	return nil
 }
-func (o *FrsRdcParametersGeneric) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ParametersGeneric) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -1534,7 +1534,7 @@ func (o *FrsRdcParametersGeneric) MarshalNDR(ctx context.Context, w ndr.Writer) 
 	}
 	return nil
 }
-func (o *FrsRdcParametersGeneric) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ParametersGeneric) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(2); err != nil {
 		return err
 	}
@@ -1554,13 +1554,13 @@ func (o *FrsRdcParametersGeneric) UnmarshalNDR(ctx context.Context, w ndr.Reader
 	return nil
 }
 
-// FrsRdcParameters structure represents FRS_RDC_PARAMETERS RPC structure.
-type FrsRdcParameters struct {
-	RdcChunkerAlgorithm uint16                  `idl:"name:rdcChunkerAlgorithm" json:"rdc_chunker_algorithm"`
-	Union               *FrsRdcParameters_Union `idl:"name:u;switch_is:rdcChunkerAlgorithm" json:"union"`
+// Parameters structure represents FRS_RDC_PARAMETERS RPC structure.
+type Parameters struct {
+	ChunkerAlgorithm uint16            `idl:"name:rdcChunkerAlgorithm" json:"chunker_algorithm"`
+	Union            *Parameters_Union `idl:"name:u;switch_is:rdcChunkerAlgorithm" json:"union"`
 }
 
-func (o *FrsRdcParameters) xxx_PreparePayload(ctx context.Context) error {
+func (o *Parameters) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -1569,69 +1569,69 @@ func (o *FrsRdcParameters) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *FrsRdcParameters) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Parameters) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(2); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RdcChunkerAlgorithm); err != nil {
+	if err := w.WriteData(o.ChunkerAlgorithm); err != nil {
 		return err
 	}
-	_swUnion := uint16(o.RdcChunkerAlgorithm)
+	_swUnion := uint16(o.ChunkerAlgorithm)
 	if o.Union != nil {
 		if err := o.Union.MarshalUnionNDR(ctx, w, _swUnion); err != nil {
 			return err
 		}
 	} else {
-		if err := (&FrsRdcParameters_Union{}).MarshalUnionNDR(ctx, w, _swUnion); err != nil {
+		if err := (&Parameters_Union{}).MarshalUnionNDR(ctx, w, _swUnion); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *FrsRdcParameters) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Parameters) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(2); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RdcChunkerAlgorithm); err != nil {
+	if err := w.ReadData(&o.ChunkerAlgorithm); err != nil {
 		return err
 	}
 	if o.Union == nil {
-		o.Union = &FrsRdcParameters_Union{}
+		o.Union = &Parameters_Union{}
 	}
-	_swUnion := uint16(o.RdcChunkerAlgorithm)
+	_swUnion := uint16(o.ChunkerAlgorithm)
 	if err := o.Union.UnmarshalUnionNDR(ctx, w, _swUnion); err != nil {
 		return err
 	}
 	return nil
 }
 
-// FrsRdcParameters_Union structure represents FRS_RDC_PARAMETERS union anonymous member.
-type FrsRdcParameters_Union struct {
+// Parameters_Union structure represents FRS_RDC_PARAMETERS union anonymous member.
+type Parameters_Union struct {
 	// Types that are assignable to Value
 	//
-	// *FrsRdcParameters_Union_FilterGeneric
-	// *FrsRdcParameters_Union_FilterMax
-	// *FrsRdcParameters_Union_FilterPoint
-	Value is_FrsRdcParameters_Union `json:"value"`
+	// *Parameters_Union_FilterGeneric
+	// *Parameters_Union_FilterMax
+	// *Parameters_Union_FilterPoint
+	Value is_Parameters_Union `json:"value"`
 }
 
-func (o *FrsRdcParameters_Union) GetValue() any {
+func (o *Parameters_Union) GetValue() any {
 	if o == nil {
 		return nil
 	}
 	switch value := (interface{})(o.Value).(type) {
-	case *FrsRdcParameters_Union_FilterGeneric:
+	case *Parameters_Union_FilterGeneric:
 		if value != nil {
 			return value.FilterGeneric
 		}
-	case *FrsRdcParameters_Union_FilterMax:
+	case *Parameters_Union_FilterMax:
 		if value != nil {
 			return value.FilterMax
 		}
-	case *FrsRdcParameters_Union_FilterPoint:
+	case *Parameters_Union_FilterPoint:
 		if value != nil {
 			return value.FilterPoint
 		}
@@ -1639,28 +1639,28 @@ func (o *FrsRdcParameters_Union) GetValue() any {
 	return nil
 }
 
-type is_FrsRdcParameters_Union interface {
+type is_Parameters_Union interface {
 	ndr.Marshaler
 	ndr.Unmarshaler
-	is_FrsRdcParameters_Union()
+	is_Parameters_Union()
 }
 
-func (o *FrsRdcParameters_Union) NDRSwitchValue(sw uint16) uint16 {
+func (o *Parameters_Union) NDRSwitchValue(sw uint16) uint16 {
 	if o == nil {
 		return uint16(0)
 	}
 	switch (interface{})(o.Value).(type) {
-	case *FrsRdcParameters_Union_FilterGeneric:
+	case *Parameters_Union_FilterGeneric:
 		return uint16(0)
-	case *FrsRdcParameters_Union_FilterMax:
+	case *Parameters_Union_FilterMax:
 		return uint16(1)
-	case *FrsRdcParameters_Union_FilterPoint:
+	case *Parameters_Union_FilterPoint:
 		return uint16(2)
 	}
 	return uint16(0)
 }
 
-func (o *FrsRdcParameters_Union) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+func (o *Parameters_Union) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
 	if err := w.WriteUnionAlign(2); err != nil {
 		return err
 	}
@@ -1672,35 +1672,35 @@ func (o *FrsRdcParameters_Union) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 	}
 	switch sw {
 	case uint16(0):
-		_o, _ := o.Value.(*FrsRdcParameters_Union_FilterGeneric)
+		_o, _ := o.Value.(*Parameters_Union_FilterGeneric)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&FrsRdcParameters_Union_FilterGeneric{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&Parameters_Union_FilterGeneric{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint16(1):
-		_o, _ := o.Value.(*FrsRdcParameters_Union_FilterMax)
+		_o, _ := o.Value.(*Parameters_Union_FilterMax)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&FrsRdcParameters_Union_FilterMax{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&Parameters_Union_FilterMax{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	case uint16(2):
-		_o, _ := o.Value.(*FrsRdcParameters_Union_FilterPoint)
+		_o, _ := o.Value.(*Parameters_Union_FilterPoint)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&FrsRdcParameters_Union_FilterPoint{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&Parameters_Union_FilterPoint{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1710,7 +1710,7 @@ func (o *FrsRdcParameters_Union) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 	return nil
 }
 
-func (o *FrsRdcParameters_Union) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+func (o *Parameters_Union) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
 	if err := w.ReadUnionAlign(2); err != nil {
 		return err
 	}
@@ -1722,17 +1722,17 @@ func (o *FrsRdcParameters_Union) UnmarshalUnionNDR(ctx context.Context, w ndr.Re
 	}
 	switch sw {
 	case uint16(0):
-		o.Value = &FrsRdcParameters_Union_FilterGeneric{}
+		o.Value = &Parameters_Union_FilterGeneric{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint16(1):
-		o.Value = &FrsRdcParameters_Union_FilterMax{}
+		o.Value = &Parameters_Union_FilterMax{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	case uint16(2):
-		o.Value = &FrsRdcParameters_Union_FilterPoint{}
+		o.Value = &Parameters_Union_FilterPoint{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -1742,30 +1742,30 @@ func (o *FrsRdcParameters_Union) UnmarshalUnionNDR(ctx context.Context, w ndr.Re
 	return nil
 }
 
-// FrsRdcParameters_Union_FilterGeneric structure represents FrsRdcParameters_Union RPC union arm.
+// Parameters_Union_FilterGeneric structure represents Parameters_Union RPC union arm.
 //
 // It has following labels: 0
-type FrsRdcParameters_Union_FilterGeneric struct {
-	FilterGeneric *FrsRdcParametersGeneric `idl:"name:filterGeneric" json:"filter_generic"`
+type Parameters_Union_FilterGeneric struct {
+	FilterGeneric *ParametersGeneric `idl:"name:filterGeneric" json:"filter_generic"`
 }
 
-func (*FrsRdcParameters_Union_FilterGeneric) is_FrsRdcParameters_Union() {}
+func (*Parameters_Union_FilterGeneric) is_Parameters_Union() {}
 
-func (o *FrsRdcParameters_Union_FilterGeneric) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Parameters_Union_FilterGeneric) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.FilterGeneric != nil {
 		if err := o.FilterGeneric.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&FrsRdcParametersGeneric{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ParametersGeneric{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *FrsRdcParameters_Union_FilterGeneric) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Parameters_Union_FilterGeneric) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.FilterGeneric == nil {
-		o.FilterGeneric = &FrsRdcParametersGeneric{}
+		o.FilterGeneric = &ParametersGeneric{}
 	}
 	if err := o.FilterGeneric.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -1773,30 +1773,30 @@ func (o *FrsRdcParameters_Union_FilterGeneric) UnmarshalNDR(ctx context.Context,
 	return nil
 }
 
-// FrsRdcParameters_Union_FilterMax structure represents FrsRdcParameters_Union RPC union arm.
+// Parameters_Union_FilterMax structure represents Parameters_Union RPC union arm.
 //
 // It has following labels: 1
-type FrsRdcParameters_Union_FilterMax struct {
-	FilterMax *FrsRdcParametersFiltermax `idl:"name:filterMax" json:"filter_max"`
+type Parameters_Union_FilterMax struct {
+	FilterMax *ParametersFilterMax `idl:"name:filterMax" json:"filter_max"`
 }
 
-func (*FrsRdcParameters_Union_FilterMax) is_FrsRdcParameters_Union() {}
+func (*Parameters_Union_FilterMax) is_Parameters_Union() {}
 
-func (o *FrsRdcParameters_Union_FilterMax) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Parameters_Union_FilterMax) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.FilterMax != nil {
 		if err := o.FilterMax.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&FrsRdcParametersFiltermax{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ParametersFilterMax{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *FrsRdcParameters_Union_FilterMax) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Parameters_Union_FilterMax) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.FilterMax == nil {
-		o.FilterMax = &FrsRdcParametersFiltermax{}
+		o.FilterMax = &ParametersFilterMax{}
 	}
 	if err := o.FilterMax.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -1804,30 +1804,30 @@ func (o *FrsRdcParameters_Union_FilterMax) UnmarshalNDR(ctx context.Context, w n
 	return nil
 }
 
-// FrsRdcParameters_Union_FilterPoint structure represents FrsRdcParameters_Union RPC union arm.
+// Parameters_Union_FilterPoint structure represents Parameters_Union RPC union arm.
 //
 // It has following labels: 2
-type FrsRdcParameters_Union_FilterPoint struct {
-	FilterPoint *FrsRdcParametersFilterpoint `idl:"name:filterPoint" json:"filter_point"`
+type Parameters_Union_FilterPoint struct {
+	FilterPoint *ParametersFilterPoint `idl:"name:filterPoint" json:"filter_point"`
 }
 
-func (*FrsRdcParameters_Union_FilterPoint) is_FrsRdcParameters_Union() {}
+func (*Parameters_Union_FilterPoint) is_Parameters_Union() {}
 
-func (o *FrsRdcParameters_Union_FilterPoint) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *Parameters_Union_FilterPoint) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if o.FilterPoint != nil {
 		if err := o.FilterPoint.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&FrsRdcParametersFilterpoint{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&ParametersFilterPoint{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *FrsRdcParameters_Union_FilterPoint) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *Parameters_Union_FilterPoint) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if o.FilterPoint == nil {
-		o.FilterPoint = &FrsRdcParametersFilterpoint{}
+		o.FilterPoint = &ParametersFilterPoint{}
 	}
 	if err := o.FilterPoint.UnmarshalNDR(ctx, w); err != nil {
 		return err
@@ -1835,26 +1835,26 @@ func (o *FrsRdcParameters_Union_FilterPoint) UnmarshalNDR(ctx context.Context, w
 	return nil
 }
 
-// FrsRdcFileinfo structure represents FRS_RDC_FILEINFO RPC structure.
-type FrsRdcFileinfo struct {
-	OnDiskFileSize              uint64                  `idl:"name:onDiskFileSize" json:"on_disk_file_size"`
-	FileSizeEstimate            uint64                  `idl:"name:fileSizeEstimate" json:"file_size_estimate"`
-	RdcVersion                  uint16                  `idl:"name:rdcVersion" json:"rdc_version"`
-	RdcMinimumCompatibleVersion uint16                  `idl:"name:rdcMinimumCompatibleVersion" json:"rdc_minimum_compatible_version"`
-	RdcSignatureLevels          uint8                   `idl:"name:rdcSignatureLevels" json:"rdc_signature_levels"`
-	CompressionAlgorithm        RdcFileCompressionTypes `idl:"name:compressionAlgorithm" json:"compression_algorithm"`
-	RdcFilterParameters         []*FrsRdcParameters     `idl:"name:rdcFilterParameters;size_is:(rdcSignatureLevels)" json:"rdc_filter_parameters"`
+// FileInfo structure represents FRS_RDC_FILEINFO RPC structure.
+type FileInfo struct {
+	OnDiskFileSize           uint64               `idl:"name:onDiskFileSize" json:"on_disk_file_size"`
+	FileSizeEstimate         uint64               `idl:"name:fileSizeEstimate" json:"file_size_estimate"`
+	Version                  uint16               `idl:"name:rdcVersion" json:"version"`
+	MinimumCompatibleVersion uint16               `idl:"name:rdcMinimumCompatibleVersion" json:"minimum_compatible_version"`
+	SignatureLevels          uint8                `idl:"name:rdcSignatureLevels" json:"signature_levels"`
+	CompressionAlgorithm     FileCompressionTypes `idl:"name:compressionAlgorithm" json:"compression_algorithm"`
+	FilterParameters         []*Parameters        `idl:"name:rdcFilterParameters;size_is:(rdcSignatureLevels)" json:"filter_parameters"`
 }
 
-func (o *FrsRdcFileinfo) xxx_PreparePayload(ctx context.Context) error {
+func (o *FileInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
-	if o.RdcFilterParameters != nil && o.RdcSignatureLevels == 0 {
-		o.RdcSignatureLevels = uint8(len(o.RdcFilterParameters))
+	if o.FilterParameters != nil && o.SignatureLevels == 0 {
+		o.SignatureLevels = uint8(len(o.FilterParameters))
 	}
-	if o.RdcSignatureLevels > uint8(8) {
-		return fmt.Errorf("RdcSignatureLevels is out of range")
+	if o.SignatureLevels > uint8(8) {
+		return fmt.Errorf("SignatureLevels is out of range")
 	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
 		return err
@@ -1862,13 +1862,13 @@ func (o *FrsRdcFileinfo) xxx_PreparePayload(ctx context.Context) error {
 	return nil
 }
 
-func (o *FrsRdcFileinfo) NDRSizeInfo() []uint64 {
-	dimSize1 := uint64(o.RdcSignatureLevels)
+func (o *FileInfo) NDRSizeInfo() []uint64 {
+	dimSize1 := uint64(o.SignatureLevels)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *FrsRdcFileinfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *FileInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -1891,13 +1891,13 @@ func (o *FrsRdcFileinfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.FileSizeEstimate); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RdcVersion); err != nil {
+	if err := w.WriteData(o.Version); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RdcMinimumCompatibleVersion); err != nil {
+	if err := w.WriteData(o.MinimumCompatibleVersion); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.RdcSignatureLevels); err != nil {
+	if err := w.WriteData(o.SignatureLevels); err != nil {
 		return err
 	}
 	if err := w.WriteEnum(uint16(o.CompressionAlgorithm)); err != nil {
@@ -1906,29 +1906,29 @@ func (o *FrsRdcFileinfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteTrailingGap(8); err != nil {
 		return err
 	}
-	for i1 := range o.RdcFilterParameters {
+	for i1 := range o.FilterParameters {
 		i1 := i1
 		if uint64(i1) >= sizeInfo[0] {
 			break
 		}
-		if o.RdcFilterParameters[i1] != nil {
-			if err := o.RdcFilterParameters[i1].MarshalNDR(ctx, w); err != nil {
+		if o.FilterParameters[i1] != nil {
+			if err := o.FilterParameters[i1].MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&FrsRdcParameters{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&Parameters{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
 	}
-	for i1 := len(o.RdcFilterParameters); uint64(i1) < sizeInfo[0]; i1++ {
-		if err := (&FrsRdcParameters{}).MarshalNDR(ctx, w); err != nil {
+	for i1 := len(o.FilterParameters); uint64(i1) < sizeInfo[0]; i1++ {
+		if err := (&Parameters{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *FrsRdcFileinfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *FileInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()
@@ -1948,13 +1948,13 @@ func (o *FrsRdcFileinfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.FileSizeEstimate); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RdcVersion); err != nil {
+	if err := w.ReadData(&o.Version); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RdcMinimumCompatibleVersion); err != nil {
+	if err := w.ReadData(&o.MinimumCompatibleVersion); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.RdcSignatureLevels); err != nil {
+	if err := w.ReadData(&o.SignatureLevels); err != nil {
 		return err
 	}
 	if err := w.ReadEnum((*uint16)(&o.CompressionAlgorithm)); err != nil {
@@ -1964,35 +1964,35 @@ func (o *FrsRdcFileinfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	// XXX: for opaque unmarshaling
-	if o.RdcSignatureLevels > 0 && sizeInfo[0] == 0 {
-		sizeInfo[0] = uint64(o.RdcSignatureLevels)
+	if o.SignatureLevels > 0 && sizeInfo[0] == 0 {
+		sizeInfo[0] = uint64(o.SignatureLevels)
 	}
 	if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-		return fmt.Errorf("buffer overflow for size %d of array o.RdcFilterParameters", sizeInfo[0])
+		return fmt.Errorf("buffer overflow for size %d of array o.FilterParameters", sizeInfo[0])
 	}
-	o.RdcFilterParameters = make([]*FrsRdcParameters, sizeInfo[0])
-	for i1 := range o.RdcFilterParameters {
+	o.FilterParameters = make([]*Parameters, sizeInfo[0])
+	for i1 := range o.FilterParameters {
 		i1 := i1
-		if o.RdcFilterParameters[i1] == nil {
-			o.RdcFilterParameters[i1] = &FrsRdcParameters{}
+		if o.FilterParameters[i1] == nil {
+			o.FilterParameters[i1] = &Parameters{}
 		}
-		if err := o.RdcFilterParameters[i1].UnmarshalNDR(ctx, w); err != nil {
+		if err := o.FilterParameters[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-// FrsAsyncVersionVectorResponse structure represents FRS_ASYNC_VERSION_VECTOR_RESPONSE RPC structure.
-type FrsAsyncVersionVectorResponse struct {
-	VvGeneration       uint64              `idl:"name:vvGeneration" json:"vv_generation"`
-	VersionVectorCount uint32              `idl:"name:versionVectorCount" json:"version_vector_count"`
-	VersionVector      []*FrsVersionVector `idl:"name:versionVector;size_is:(versionVectorCount)" json:"version_vector"`
-	EpoqueVectorCount  uint32              `idl:"name:epoqueVectorCount" json:"epoque_vector_count"`
-	EpoqueVector       []*FrsEpoqueVector  `idl:"name:epoqueVector;size_is:(epoqueVectorCount)" json:"epoque_vector"`
+// AsyncVersionVectorResponse structure represents FRS_ASYNC_VERSION_VECTOR_RESPONSE RPC structure.
+type AsyncVersionVectorResponse struct {
+	Generation         uint64           `idl:"name:vvGeneration" json:"generation"`
+	VersionVectorCount uint32           `idl:"name:versionVectorCount" json:"version_vector_count"`
+	VersionVector      []*VersionVector `idl:"name:versionVector;size_is:(versionVectorCount)" json:"version_vector"`
+	EpoqueVectorCount  uint32           `idl:"name:epoqueVectorCount" json:"epoque_vector_count"`
+	EpoqueVector       []*EpoqueVector  `idl:"name:epoqueVector;size_is:(epoqueVectorCount)" json:"epoque_vector"`
 }
 
-func (o *FrsAsyncVersionVectorResponse) xxx_PreparePayload(ctx context.Context) error {
+func (o *AsyncVersionVectorResponse) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -2007,14 +2007,14 @@ func (o *FrsAsyncVersionVectorResponse) xxx_PreparePayload(ctx context.Context) 
 	}
 	return nil
 }
-func (o *FrsAsyncVersionVectorResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *AsyncVersionVectorResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
 	if err := w.WriteAlign(8); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.VvGeneration); err != nil {
+	if err := w.WriteData(o.Generation); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.VersionVectorCount); err != nil {
@@ -2039,13 +2039,13 @@ func (o *FrsAsyncVersionVectorResponse) MarshalNDR(ctx context.Context, w ndr.Wr
 						return err
 					}
 				} else {
-					if err := (&FrsVersionVector{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&VersionVector{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 			}
 			for i1 := len(o.VersionVector); uint64(i1) < sizeInfo[0]; i1++ {
-				if err := (&FrsVersionVector{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&VersionVector{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
@@ -2081,13 +2081,13 @@ func (o *FrsAsyncVersionVectorResponse) MarshalNDR(ctx context.Context, w ndr.Wr
 						return err
 					}
 				} else {
-					if err := (&FrsEpoqueVector{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&EpoqueVector{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 			}
 			for i1 := len(o.EpoqueVector); uint64(i1) < sizeInfo[0]; i1++ {
-				if err := (&FrsEpoqueVector{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&EpoqueVector{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
@@ -2106,11 +2106,11 @@ func (o *FrsAsyncVersionVectorResponse) MarshalNDR(ctx context.Context, w ndr.Wr
 	}
 	return nil
 }
-func (o *FrsAsyncVersionVectorResponse) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *AsyncVersionVectorResponse) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.VvGeneration); err != nil {
+	if err := w.ReadData(&o.Generation); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.VersionVectorCount); err != nil {
@@ -2132,11 +2132,11 @@ func (o *FrsAsyncVersionVectorResponse) UnmarshalNDR(ctx context.Context, w ndr.
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
 			return fmt.Errorf("buffer overflow for size %d of array o.VersionVector", sizeInfo[0])
 		}
-		o.VersionVector = make([]*FrsVersionVector, sizeInfo[0])
+		o.VersionVector = make([]*VersionVector, sizeInfo[0])
 		for i1 := range o.VersionVector {
 			i1 := i1
 			if o.VersionVector[i1] == nil {
-				o.VersionVector[i1] = &FrsVersionVector{}
+				o.VersionVector[i1] = &VersionVector{}
 			}
 			if err := o.VersionVector[i1].UnmarshalNDR(ctx, w); err != nil {
 				return err
@@ -2144,7 +2144,7 @@ func (o *FrsAsyncVersionVectorResponse) UnmarshalNDR(ctx context.Context, w ndr.
 		}
 		return nil
 	})
-	_s_versionVector := func(ptr interface{}) { o.VersionVector = *ptr.(*[]*FrsVersionVector) }
+	_s_versionVector := func(ptr interface{}) { o.VersionVector = *ptr.(*[]*VersionVector) }
 	if err := w.ReadPointer(&o.VersionVector, _s_versionVector, _ptr_versionVector); err != nil {
 		return err
 	}
@@ -2167,11 +2167,11 @@ func (o *FrsAsyncVersionVectorResponse) UnmarshalNDR(ctx context.Context, w ndr.
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
 			return fmt.Errorf("buffer overflow for size %d of array o.EpoqueVector", sizeInfo[0])
 		}
-		o.EpoqueVector = make([]*FrsEpoqueVector, sizeInfo[0])
+		o.EpoqueVector = make([]*EpoqueVector, sizeInfo[0])
 		for i1 := range o.EpoqueVector {
 			i1 := i1
 			if o.EpoqueVector[i1] == nil {
-				o.EpoqueVector[i1] = &FrsEpoqueVector{}
+				o.EpoqueVector[i1] = &EpoqueVector{}
 			}
 			if err := o.EpoqueVector[i1].UnmarshalNDR(ctx, w); err != nil {
 				return err
@@ -2179,7 +2179,7 @@ func (o *FrsAsyncVersionVectorResponse) UnmarshalNDR(ctx context.Context, w ndr.
 		}
 		return nil
 	})
-	_s_epoqueVector := func(ptr interface{}) { o.EpoqueVector = *ptr.(*[]*FrsEpoqueVector) }
+	_s_epoqueVector := func(ptr interface{}) { o.EpoqueVector = *ptr.(*[]*EpoqueVector) }
 	if err := w.ReadPointer(&o.EpoqueVector, _s_epoqueVector, _ptr_epoqueVector); err != nil {
 		return err
 	}
@@ -2189,14 +2189,14 @@ func (o *FrsAsyncVersionVectorResponse) UnmarshalNDR(ctx context.Context, w ndr.
 	return nil
 }
 
-// FrsAsyncResponseContext structure represents FRS_ASYNC_RESPONSE_CONTEXT RPC structure.
-type FrsAsyncResponseContext struct {
-	SequenceNumber uint32                         `idl:"name:sequenceNumber" json:"sequence_number"`
-	Status         uint32                         `idl:"name:status" json:"status"`
-	Result         *FrsAsyncVersionVectorResponse `idl:"name:result" json:"result"`
+// AsyncResponseContext structure represents FRS_ASYNC_RESPONSE_CONTEXT RPC structure.
+type AsyncResponseContext struct {
+	SequenceNumber uint32                      `idl:"name:sequenceNumber" json:"sequence_number"`
+	Status         uint32                      `idl:"name:status" json:"status"`
+	Result         *AsyncVersionVectorResponse `idl:"name:result" json:"result"`
 }
 
-func (o *FrsAsyncResponseContext) xxx_PreparePayload(ctx context.Context) error {
+func (o *AsyncResponseContext) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -2205,7 +2205,7 @@ func (o *FrsAsyncResponseContext) xxx_PreparePayload(ctx context.Context) error 
 	}
 	return nil
 }
-func (o *FrsAsyncResponseContext) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *AsyncResponseContext) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -2223,13 +2223,13 @@ func (o *FrsAsyncResponseContext) MarshalNDR(ctx context.Context, w ndr.Writer) 
 			return err
 		}
 	} else {
-		if err := (&FrsAsyncVersionVectorResponse{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&AsyncVersionVectorResponse{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
-func (o *FrsAsyncResponseContext) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *AsyncResponseContext) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
@@ -2240,7 +2240,7 @@ func (o *FrsAsyncResponseContext) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		return err
 	}
 	if o.Result == nil {
-		o.Result = &FrsAsyncVersionVectorResponse{}
+		o.Result = &AsyncVersionVectorResponse{}
 	}
 	if err := o.Result.UnmarshalNDR(ctx, w); err != nil {
 		return err

@@ -36,7 +36,7 @@ type UpdateServiceManagerServer interface {
 	// Opnum9NotUsedOnWire operation.
 	// Opnum9NotUsedOnWire
 
-	RegisterServiceWithAu(context.Context, *RegisterServiceWithAuRequest) (*RegisterServiceWithAuResponse, error)
+	RegisterServiceWithAU(context.Context, *RegisterServiceWithAURequest) (*RegisterServiceWithAUResponse, error)
 
 	RemoveService(context.Context, *RemoveServiceRequest) (*RemoveServiceResponse, error)
 
@@ -77,13 +77,13 @@ func UpdateServiceManagerServerHandle(ctx context.Context, o UpdateServiceManage
 		// Opnum9NotUsedOnWire
 		return nil, nil
 	case 9: // RegisterServiceWithAU
-		op := &xxx_RegisterServiceWithAuOperation{}
+		op := &xxx_RegisterServiceWithAUOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &RegisterServiceWithAuRequest{}
+		req := &RegisterServiceWithAURequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.RegisterServiceWithAu(ctx, req)
+		resp, err := o.RegisterServiceWithAU(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 10: // RemoveService
 		op := &xxx_RemoveServiceOperation{}
@@ -127,7 +127,7 @@ type UnimplementedUpdateServiceManagerServer struct {
 func (UnimplementedUpdateServiceManagerServer) GetServices(context.Context, *GetServicesRequest) (*GetServicesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedUpdateServiceManagerServer) RegisterServiceWithAu(context.Context, *RegisterServiceWithAuRequest) (*RegisterServiceWithAuResponse, error) {
+func (UnimplementedUpdateServiceManagerServer) RegisterServiceWithAU(context.Context, *RegisterServiceWithAURequest) (*RegisterServiceWithAUResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 func (UnimplementedUpdateServiceManagerServer) RemoveService(context.Context, *RemoveServiceRequest) (*RemoveServiceResponse, error) {

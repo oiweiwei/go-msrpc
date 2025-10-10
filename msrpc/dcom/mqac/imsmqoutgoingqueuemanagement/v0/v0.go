@@ -38,18 +38,18 @@ var (
 
 var (
 	// IMSMQOutgoingQueueManagement interface identifier 64c478fb-f9b0-4695-8a7f-439ac94326d3
-	ImsmqOutgoingQueueManagementIID = &dcom.IID{Data1: 0x64c478fb, Data2: 0xf9b0, Data3: 0x4695, Data4: []byte{0x8a, 0x7f, 0x43, 0x9a, 0xc9, 0x43, 0x26, 0xd3}}
+	OutgoingQueueManagementIID = &dcom.IID{Data1: 0x64c478fb, Data2: 0xf9b0, Data3: 0x4695, Data4: []byte{0x8a, 0x7f, 0x43, 0x9a, 0xc9, 0x43, 0x26, 0xd3}}
 	// Syntax UUID
-	ImsmqOutgoingQueueManagementSyntaxUUID = &uuid.UUID{TimeLow: 0x64c478fb, TimeMid: 0xf9b0, TimeHiAndVersion: 0x4695, ClockSeqHiAndReserved: 0x8a, ClockSeqLow: 0x7f, Node: [6]uint8{0x43, 0x9a, 0xc9, 0x43, 0x26, 0xd3}}
+	OutgoingQueueManagementSyntaxUUID = &uuid.UUID{TimeLow: 0x64c478fb, TimeMid: 0xf9b0, TimeHiAndVersion: 0x4695, ClockSeqHiAndReserved: 0x8a, ClockSeqLow: 0x7f, Node: [6]uint8{0x43, 0x9a, 0xc9, 0x43, 0x26, 0xd3}}
 	// Syntax ID
-	ImsmqOutgoingQueueManagementSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ImsmqOutgoingQueueManagementSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	OutgoingQueueManagementSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: OutgoingQueueManagementSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IMSMQOutgoingQueueManagement interface.
-type ImsmqOutgoingQueueManagementClient interface {
+type OutgoingQueueManagementClient interface {
 
 	// IMSMQManagement retrieval method.
-	ImsmqManagement() imsmqmanagement.ImsmqManagementClient
+	Management() imsmqmanagement.ManagementClient
 
 	// State operation.
 	GetState(context.Context, *GetStateRequest, ...dcerpc.CallOption) (*GetStateResponse, error)
@@ -58,7 +58,7 @@ type ImsmqOutgoingQueueManagementClient interface {
 	GetNextHops(context.Context, *GetNextHopsRequest, ...dcerpc.CallOption) (*GetNextHopsResponse, error)
 
 	// EodGetSendInfo operation.
-	EodGetSendInfo(context.Context, *EodGetSendInfoRequest, ...dcerpc.CallOption) (*EodGetSendInfoResponse, error)
+	EODGetSendInfo(context.Context, *EODGetSendInfoRequest, ...dcerpc.CallOption) (*EODGetSendInfoResponse, error)
 
 	// Resume operation.
 	Resume(context.Context, *ResumeRequest, ...dcerpc.CallOption) (*ResumeResponse, error)
@@ -67,7 +67,7 @@ type ImsmqOutgoingQueueManagementClient interface {
 	Pause(context.Context, *PauseRequest, ...dcerpc.CallOption) (*PauseResponse, error)
 
 	// EodResend operation.
-	EodResend(context.Context, *EodResendRequest, ...dcerpc.CallOption) (*EodResendResponse, error)
+	EODResend(context.Context, *EODResendRequest, ...dcerpc.CallOption) (*EODResendResponse, error)
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
@@ -76,20 +76,20 @@ type ImsmqOutgoingQueueManagementClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) ImsmqOutgoingQueueManagementClient
+	IPID(context.Context, *dcom.IPID) OutgoingQueueManagementClient
 }
 
-type xxx_DefaultImsmqOutgoingQueueManagementClient struct {
-	imsmqmanagement.ImsmqManagementClient
+type xxx_DefaultOutgoingQueueManagementClient struct {
+	imsmqmanagement.ManagementClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultImsmqOutgoingQueueManagementClient) ImsmqManagement() imsmqmanagement.ImsmqManagementClient {
-	return o.ImsmqManagementClient
+func (o *xxx_DefaultOutgoingQueueManagementClient) Management() imsmqmanagement.ManagementClient {
+	return o.ManagementClient
 }
 
-func (o *xxx_DefaultImsmqOutgoingQueueManagementClient) GetState(ctx context.Context, in *GetStateRequest, opts ...dcerpc.CallOption) (*GetStateResponse, error) {
+func (o *xxx_DefaultOutgoingQueueManagementClient) GetState(ctx context.Context, in *GetStateRequest, opts ...dcerpc.CallOption) (*GetStateResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -109,7 +109,7 @@ func (o *xxx_DefaultImsmqOutgoingQueueManagementClient) GetState(ctx context.Con
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqOutgoingQueueManagementClient) GetNextHops(ctx context.Context, in *GetNextHopsRequest, opts ...dcerpc.CallOption) (*GetNextHopsResponse, error) {
+func (o *xxx_DefaultOutgoingQueueManagementClient) GetNextHops(ctx context.Context, in *GetNextHopsRequest, opts ...dcerpc.CallOption) (*GetNextHopsResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -129,7 +129,7 @@ func (o *xxx_DefaultImsmqOutgoingQueueManagementClient) GetNextHops(ctx context.
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqOutgoingQueueManagementClient) EodGetSendInfo(ctx context.Context, in *EodGetSendInfoRequest, opts ...dcerpc.CallOption) (*EodGetSendInfoResponse, error) {
+func (o *xxx_DefaultOutgoingQueueManagementClient) EODGetSendInfo(ctx context.Context, in *EODGetSendInfoRequest, opts ...dcerpc.CallOption) (*EODGetSendInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -141,7 +141,7 @@ func (o *xxx_DefaultImsmqOutgoingQueueManagementClient) EodGetSendInfo(ctx conte
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &EodGetSendInfoResponse{}
+	out := &EODGetSendInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -149,7 +149,7 @@ func (o *xxx_DefaultImsmqOutgoingQueueManagementClient) EodGetSendInfo(ctx conte
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqOutgoingQueueManagementClient) Resume(ctx context.Context, in *ResumeRequest, opts ...dcerpc.CallOption) (*ResumeResponse, error) {
+func (o *xxx_DefaultOutgoingQueueManagementClient) Resume(ctx context.Context, in *ResumeRequest, opts ...dcerpc.CallOption) (*ResumeResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -169,7 +169,7 @@ func (o *xxx_DefaultImsmqOutgoingQueueManagementClient) Resume(ctx context.Conte
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqOutgoingQueueManagementClient) Pause(ctx context.Context, in *PauseRequest, opts ...dcerpc.CallOption) (*PauseResponse, error) {
+func (o *xxx_DefaultOutgoingQueueManagementClient) Pause(ctx context.Context, in *PauseRequest, opts ...dcerpc.CallOption) (*PauseResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -189,7 +189,7 @@ func (o *xxx_DefaultImsmqOutgoingQueueManagementClient) Pause(ctx context.Contex
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqOutgoingQueueManagementClient) EodResend(ctx context.Context, in *EodResendRequest, opts ...dcerpc.CallOption) (*EodResendResponse, error) {
+func (o *xxx_DefaultOutgoingQueueManagementClient) EODResend(ctx context.Context, in *EODResendRequest, opts ...dcerpc.CallOption) (*EODResendResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -201,7 +201,7 @@ func (o *xxx_DefaultImsmqOutgoingQueueManagementClient) EodResend(ctx context.Co
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &EodResendResponse{}
+	out := &EODResendResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -209,34 +209,34 @@ func (o *xxx_DefaultImsmqOutgoingQueueManagementClient) EodResend(ctx context.Co
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqOutgoingQueueManagementClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultOutgoingQueueManagementClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultImsmqOutgoingQueueManagementClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultOutgoingQueueManagementClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultImsmqOutgoingQueueManagementClient) IPID(ctx context.Context, ipid *dcom.IPID) ImsmqOutgoingQueueManagementClient {
+func (o *xxx_DefaultOutgoingQueueManagementClient) IPID(ctx context.Context, ipid *dcom.IPID) OutgoingQueueManagementClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultImsmqOutgoingQueueManagementClient{
-		ImsmqManagementClient: o.ImsmqManagementClient.IPID(ctx, ipid),
-		cc:                    o.cc,
-		ipid:                  ipid,
+	return &xxx_DefaultOutgoingQueueManagementClient{
+		ManagementClient: o.ManagementClient.IPID(ctx, ipid),
+		cc:               o.cc,
+		ipid:             ipid,
 	}
 }
 
-func NewImsmqOutgoingQueueManagementClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ImsmqOutgoingQueueManagementClient, error) {
+func NewOutgoingQueueManagementClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (OutgoingQueueManagementClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ImsmqOutgoingQueueManagementSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(OutgoingQueueManagementSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
 	}
-	base, err := imsmqmanagement.NewImsmqManagementClient(ctx, cc, append(opts, dcom.Superclass(cc))...)
+	base, err := imsmqmanagement.NewManagementClient(ctx, cc, append(opts, dcom.Superclass(cc))...)
 	if err != nil {
 		return nil, err
 	}
@@ -244,10 +244,10 @@ func NewImsmqOutgoingQueueManagementClient(ctx context.Context, cc dcerpc.Conn, 
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultImsmqOutgoingQueueManagementClient{
-		ImsmqManagementClient: base,
-		cc:                    cc,
-		ipid:                  ipid,
+	return &xxx_DefaultOutgoingQueueManagementClient{
+		ManagementClient: base,
+		cc:               cc,
+		ipid:             ipid,
 	}, nil
 }
 
@@ -701,21 +701,21 @@ func (o *GetNextHopsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
-// xxx_EodGetSendInfoOperation structure represents the EodGetSendInfo operation
-type xxx_EodGetSendInfoOperation struct {
-	This       *dcom.ORPCThis        `idl:"name:This" json:"this"`
-	That       *dcom.ORPCThat        `idl:"name:That" json:"that"`
-	Collection *mqac.ImsmqCollection `idl:"name:ppCollection" json:"collection"`
-	Return     int32                 `idl:"name:Return" json:"return"`
+// xxx_EODGetSendInfoOperation structure represents the EodGetSendInfo operation
+type xxx_EODGetSendInfoOperation struct {
+	This       *dcom.ORPCThis   `idl:"name:This" json:"this"`
+	That       *dcom.ORPCThat   `idl:"name:That" json:"that"`
+	Collection *mqac.Collection `idl:"name:ppCollection" json:"collection"`
+	Return     int32            `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_EodGetSendInfoOperation) OpNum() int { return 18 }
+func (o *xxx_EODGetSendInfoOperation) OpNum() int { return 18 }
 
-func (o *xxx_EodGetSendInfoOperation) OpName() string {
+func (o *xxx_EODGetSendInfoOperation) OpName() string {
 	return "/IMSMQOutgoingQueueManagement/v0/EodGetSendInfo"
 }
 
-func (o *xxx_EodGetSendInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_EODGetSendInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -724,7 +724,7 @@ func (o *xxx_EodGetSendInfoOperation) xxx_PrepareRequestPayload(ctx context.Cont
 	return nil
 }
 
-func (o *xxx_EodGetSendInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_EODGetSendInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -746,7 +746,7 @@ func (o *xxx_EodGetSendInfoOperation) MarshalNDRRequest(ctx context.Context, w n
 	return nil
 }
 
-func (o *xxx_EodGetSendInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_EODGetSendInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -762,7 +762,7 @@ func (o *xxx_EodGetSendInfoOperation) UnmarshalNDRRequest(ctx context.Context, w
 	return nil
 }
 
-func (o *xxx_EodGetSendInfoOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_EODGetSendInfoOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -771,7 +771,7 @@ func (o *xxx_EodGetSendInfoOperation) xxx_PrepareResponsePayload(ctx context.Con
 	return nil
 }
 
-func (o *xxx_EodGetSendInfoOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_EODGetSendInfoOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -799,7 +799,7 @@ func (o *xxx_EodGetSendInfoOperation) MarshalNDRResponse(ctx context.Context, w 
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqCollection{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Collection{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
@@ -826,7 +826,7 @@ func (o *xxx_EodGetSendInfoOperation) MarshalNDRResponse(ctx context.Context, w 
 	return nil
 }
 
-func (o *xxx_EodGetSendInfoOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_EODGetSendInfoOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -843,14 +843,14 @@ func (o *xxx_EodGetSendInfoOperation) UnmarshalNDRResponse(ctx context.Context, 
 	{
 		_ptr_ppCollection := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if o.Collection == nil {
-				o.Collection = &mqac.ImsmqCollection{}
+				o.Collection = &mqac.Collection{}
 			}
 			if err := o.Collection.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppCollection := func(ptr interface{}) { o.Collection = *ptr.(**mqac.ImsmqCollection) }
+		_s_ppCollection := func(ptr interface{}) { o.Collection = *ptr.(**mqac.Collection) }
 		if err := w.ReadPointer(&o.Collection, _s_ppCollection, _ptr_ppCollection); err != nil {
 			return err
 		}
@@ -867,15 +867,15 @@ func (o *xxx_EodGetSendInfoOperation) UnmarshalNDRResponse(ctx context.Context, 
 	return nil
 }
 
-// EodGetSendInfoRequest structure represents the EodGetSendInfo operation request
-type EodGetSendInfoRequest struct {
+// EODGetSendInfoRequest structure represents the EodGetSendInfo operation request
+type EODGetSendInfoRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *EodGetSendInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_EodGetSendInfoOperation) *xxx_EodGetSendInfoOperation {
+func (o *EODGetSendInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_EODGetSendInfoOperation) *xxx_EODGetSendInfoOperation {
 	if op == nil {
-		op = &xxx_EodGetSendInfoOperation{}
+		op = &xxx_EODGetSendInfoOperation{}
 	}
 	if o == nil {
 		return op
@@ -884,17 +884,17 @@ func (o *EodGetSendInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_EodGetSend
 	return op
 }
 
-func (o *EodGetSendInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_EodGetSendInfoOperation) {
+func (o *EODGetSendInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_EODGetSendInfoOperation) {
 	if o == nil {
 		return
 	}
 	o.This = op.This
 }
-func (o *EodGetSendInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *EODGetSendInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *EodGetSendInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_EodGetSendInfoOperation{}
+func (o *EODGetSendInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_EODGetSendInfoOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -902,18 +902,18 @@ func (o *EodGetSendInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
-// EodGetSendInfoResponse structure represents the EodGetSendInfo operation response
-type EodGetSendInfoResponse struct {
+// EODGetSendInfoResponse structure represents the EodGetSendInfo operation response
+type EODGetSendInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat        `idl:"name:That" json:"that"`
-	Collection *mqac.ImsmqCollection `idl:"name:ppCollection" json:"collection"`
+	That       *dcom.ORPCThat   `idl:"name:That" json:"that"`
+	Collection *mqac.Collection `idl:"name:ppCollection" json:"collection"`
 	// Return: The EodGetSendInfo return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EodGetSendInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_EodGetSendInfoOperation) *xxx_EodGetSendInfoOperation {
+func (o *EODGetSendInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_EODGetSendInfoOperation) *xxx_EODGetSendInfoOperation {
 	if op == nil {
-		op = &xxx_EodGetSendInfoOperation{}
+		op = &xxx_EODGetSendInfoOperation{}
 	}
 	if o == nil {
 		return op
@@ -924,7 +924,7 @@ func (o *EodGetSendInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_EodGetSen
 	return op
 }
 
-func (o *EodGetSendInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_EodGetSendInfoOperation) {
+func (o *EODGetSendInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_EODGetSendInfoOperation) {
 	if o == nil {
 		return
 	}
@@ -932,11 +932,11 @@ func (o *EodGetSendInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_EodGetS
 	o.Collection = op.Collection
 	o.Return = op.Return
 }
-func (o *EodGetSendInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *EODGetSendInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *EodGetSendInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_EodGetSendInfoOperation{}
+func (o *EODGetSendInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_EODGetSendInfoOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -1326,18 +1326,18 @@ func (o *PauseResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
-// xxx_EodResendOperation structure represents the EodResend operation
-type xxx_EodResendOperation struct {
+// xxx_EODResendOperation structure represents the EodResend operation
+type xxx_EODResendOperation struct {
 	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_EodResendOperation) OpNum() int { return 21 }
+func (o *xxx_EODResendOperation) OpNum() int { return 21 }
 
-func (o *xxx_EodResendOperation) OpName() string { return "/IMSMQOutgoingQueueManagement/v0/EodResend" }
+func (o *xxx_EODResendOperation) OpName() string { return "/IMSMQOutgoingQueueManagement/v0/EodResend" }
 
-func (o *xxx_EodResendOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_EODResendOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -1346,7 +1346,7 @@ func (o *xxx_EodResendOperation) xxx_PrepareRequestPayload(ctx context.Context) 
 	return nil
 }
 
-func (o *xxx_EodResendOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_EODResendOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -1368,7 +1368,7 @@ func (o *xxx_EodResendOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 	return nil
 }
 
-func (o *xxx_EodResendOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_EODResendOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -1384,7 +1384,7 @@ func (o *xxx_EodResendOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 	return nil
 }
 
-func (o *xxx_EodResendOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_EODResendOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1393,7 +1393,7 @@ func (o *xxx_EodResendOperation) xxx_PrepareResponsePayload(ctx context.Context)
 	return nil
 }
 
-func (o *xxx_EodResendOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_EODResendOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1421,7 +1421,7 @@ func (o *xxx_EodResendOperation) MarshalNDRResponse(ctx context.Context, w ndr.W
 	return nil
 }
 
-func (o *xxx_EodResendOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_EODResendOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -1443,15 +1443,15 @@ func (o *xxx_EodResendOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 	return nil
 }
 
-// EodResendRequest structure represents the EodResend operation request
-type EodResendRequest struct {
+// EODResendRequest structure represents the EodResend operation request
+type EODResendRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *EodResendRequest) xxx_ToOp(ctx context.Context, op *xxx_EodResendOperation) *xxx_EodResendOperation {
+func (o *EODResendRequest) xxx_ToOp(ctx context.Context, op *xxx_EODResendOperation) *xxx_EODResendOperation {
 	if op == nil {
-		op = &xxx_EodResendOperation{}
+		op = &xxx_EODResendOperation{}
 	}
 	if o == nil {
 		return op
@@ -1460,17 +1460,17 @@ func (o *EodResendRequest) xxx_ToOp(ctx context.Context, op *xxx_EodResendOperat
 	return op
 }
 
-func (o *EodResendRequest) xxx_FromOp(ctx context.Context, op *xxx_EodResendOperation) {
+func (o *EODResendRequest) xxx_FromOp(ctx context.Context, op *xxx_EODResendOperation) {
 	if o == nil {
 		return
 	}
 	o.This = op.This
 }
-func (o *EodResendRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *EODResendRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *EodResendRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_EodResendOperation{}
+func (o *EODResendRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_EODResendOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1478,17 +1478,17 @@ func (o *EodResendRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
-// EodResendResponse structure represents the EodResend operation response
-type EodResendResponse struct {
+// EODResendResponse structure represents the EodResend operation response
+type EODResendResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// Return: The EodResend return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EodResendResponse) xxx_ToOp(ctx context.Context, op *xxx_EodResendOperation) *xxx_EodResendOperation {
+func (o *EODResendResponse) xxx_ToOp(ctx context.Context, op *xxx_EODResendOperation) *xxx_EODResendOperation {
 	if op == nil {
-		op = &xxx_EodResendOperation{}
+		op = &xxx_EODResendOperation{}
 	}
 	if o == nil {
 		return op
@@ -1498,18 +1498,18 @@ func (o *EodResendResponse) xxx_ToOp(ctx context.Context, op *xxx_EodResendOpera
 	return op
 }
 
-func (o *EodResendResponse) xxx_FromOp(ctx context.Context, op *xxx_EodResendOperation) {
+func (o *EODResendResponse) xxx_FromOp(ctx context.Context, op *xxx_EODResendOperation) {
 	if o == nil {
 		return
 	}
 	o.That = op.That
 	o.Return = op.Return
 }
-func (o *EodResendResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *EODResendResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *EodResendResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_EodResendOperation{}
+func (o *EODResendResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_EODResendOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

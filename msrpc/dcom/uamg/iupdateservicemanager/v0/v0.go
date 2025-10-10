@@ -56,7 +56,7 @@ type UpdateServiceManagerClient interface {
 	// Opnum9NotUsedOnWire operation.
 	// Opnum9NotUsedOnWire
 
-	RegisterServiceWithAu(context.Context, *RegisterServiceWithAuRequest, ...dcerpc.CallOption) (*RegisterServiceWithAuResponse, error)
+	RegisterServiceWithAU(context.Context, *RegisterServiceWithAURequest, ...dcerpc.CallOption) (*RegisterServiceWithAUResponse, error)
 
 	RemoveService(context.Context, *RemoveServiceRequest, ...dcerpc.CallOption) (*RemoveServiceResponse, error)
 
@@ -107,7 +107,7 @@ func (o *xxx_DefaultUpdateServiceManagerClient) GetServices(ctx context.Context,
 	return out, nil
 }
 
-func (o *xxx_DefaultUpdateServiceManagerClient) RegisterServiceWithAu(ctx context.Context, in *RegisterServiceWithAuRequest, opts ...dcerpc.CallOption) (*RegisterServiceWithAuResponse, error) {
+func (o *xxx_DefaultUpdateServiceManagerClient) RegisterServiceWithAU(ctx context.Context, in *RegisterServiceWithAURequest, opts ...dcerpc.CallOption) (*RegisterServiceWithAUResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -119,7 +119,7 @@ func (o *xxx_DefaultUpdateServiceManagerClient) RegisterServiceWithAu(ctx contex
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RegisterServiceWithAuResponse{}
+	out := &RegisterServiceWithAUResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -470,21 +470,21 @@ func (o *GetServicesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
-// xxx_RegisterServiceWithAuOperation structure represents the RegisterServiceWithAU operation
-type xxx_RegisterServiceWithAuOperation struct {
+// xxx_RegisterServiceWithAUOperation structure represents the RegisterServiceWithAU operation
+type xxx_RegisterServiceWithAUOperation struct {
 	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
 	ServiceID *oaut.String   `idl:"name:serviceID" json:"service_id"`
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RegisterServiceWithAuOperation) OpNum() int { return 9 }
+func (o *xxx_RegisterServiceWithAUOperation) OpNum() int { return 9 }
 
-func (o *xxx_RegisterServiceWithAuOperation) OpName() string {
+func (o *xxx_RegisterServiceWithAUOperation) OpName() string {
 	return "/IUpdateServiceManager/v0/RegisterServiceWithAU"
 }
 
-func (o *xxx_RegisterServiceWithAuOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_RegisterServiceWithAUOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -493,7 +493,7 @@ func (o *xxx_RegisterServiceWithAuOperation) xxx_PrepareRequestPayload(ctx conte
 	return nil
 }
 
-func (o *xxx_RegisterServiceWithAuOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_RegisterServiceWithAUOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -542,7 +542,7 @@ func (o *xxx_RegisterServiceWithAuOperation) MarshalNDRRequest(ctx context.Conte
 	return nil
 }
 
-func (o *xxx_RegisterServiceWithAuOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_RegisterServiceWithAUOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -577,7 +577,7 @@ func (o *xxx_RegisterServiceWithAuOperation) UnmarshalNDRRequest(ctx context.Con
 	return nil
 }
 
-func (o *xxx_RegisterServiceWithAuOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_RegisterServiceWithAUOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -586,7 +586,7 @@ func (o *xxx_RegisterServiceWithAuOperation) xxx_PrepareResponsePayload(ctx cont
 	return nil
 }
 
-func (o *xxx_RegisterServiceWithAuOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_RegisterServiceWithAUOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -614,7 +614,7 @@ func (o *xxx_RegisterServiceWithAuOperation) MarshalNDRResponse(ctx context.Cont
 	return nil
 }
 
-func (o *xxx_RegisterServiceWithAuOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_RegisterServiceWithAUOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -636,16 +636,16 @@ func (o *xxx_RegisterServiceWithAuOperation) UnmarshalNDRResponse(ctx context.Co
 	return nil
 }
 
-// RegisterServiceWithAuRequest structure represents the RegisterServiceWithAU operation request
-type RegisterServiceWithAuRequest struct {
+// RegisterServiceWithAURequest structure represents the RegisterServiceWithAU operation request
+type RegisterServiceWithAURequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
 	ServiceID *oaut.String   `idl:"name:serviceID" json:"service_id"`
 }
 
-func (o *RegisterServiceWithAuRequest) xxx_ToOp(ctx context.Context, op *xxx_RegisterServiceWithAuOperation) *xxx_RegisterServiceWithAuOperation {
+func (o *RegisterServiceWithAURequest) xxx_ToOp(ctx context.Context, op *xxx_RegisterServiceWithAUOperation) *xxx_RegisterServiceWithAUOperation {
 	if op == nil {
-		op = &xxx_RegisterServiceWithAuOperation{}
+		op = &xxx_RegisterServiceWithAUOperation{}
 	}
 	if o == nil {
 		return op
@@ -655,18 +655,18 @@ func (o *RegisterServiceWithAuRequest) xxx_ToOp(ctx context.Context, op *xxx_Reg
 	return op
 }
 
-func (o *RegisterServiceWithAuRequest) xxx_FromOp(ctx context.Context, op *xxx_RegisterServiceWithAuOperation) {
+func (o *RegisterServiceWithAURequest) xxx_FromOp(ctx context.Context, op *xxx_RegisterServiceWithAUOperation) {
 	if o == nil {
 		return
 	}
 	o.This = op.This
 	o.ServiceID = op.ServiceID
 }
-func (o *RegisterServiceWithAuRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RegisterServiceWithAURequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RegisterServiceWithAuRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RegisterServiceWithAuOperation{}
+func (o *RegisterServiceWithAURequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_RegisterServiceWithAUOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -674,17 +674,17 @@ func (o *RegisterServiceWithAuRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
-// RegisterServiceWithAuResponse structure represents the RegisterServiceWithAU operation response
-type RegisterServiceWithAuResponse struct {
+// RegisterServiceWithAUResponse structure represents the RegisterServiceWithAU operation response
+type RegisterServiceWithAUResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// Return: The RegisterServiceWithAU return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RegisterServiceWithAuResponse) xxx_ToOp(ctx context.Context, op *xxx_RegisterServiceWithAuOperation) *xxx_RegisterServiceWithAuOperation {
+func (o *RegisterServiceWithAUResponse) xxx_ToOp(ctx context.Context, op *xxx_RegisterServiceWithAUOperation) *xxx_RegisterServiceWithAUOperation {
 	if op == nil {
-		op = &xxx_RegisterServiceWithAuOperation{}
+		op = &xxx_RegisterServiceWithAUOperation{}
 	}
 	if o == nil {
 		return op
@@ -694,18 +694,18 @@ func (o *RegisterServiceWithAuResponse) xxx_ToOp(ctx context.Context, op *xxx_Re
 	return op
 }
 
-func (o *RegisterServiceWithAuResponse) xxx_FromOp(ctx context.Context, op *xxx_RegisterServiceWithAuOperation) {
+func (o *RegisterServiceWithAUResponse) xxx_FromOp(ctx context.Context, op *xxx_RegisterServiceWithAUOperation) {
 	if o == nil {
 		return
 	}
 	o.That = op.That
 	o.Return = op.Return
 }
-func (o *RegisterServiceWithAuResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *RegisterServiceWithAUResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RegisterServiceWithAuResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RegisterServiceWithAuOperation{}
+func (o *RegisterServiceWithAUResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_RegisterServiceWithAUOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

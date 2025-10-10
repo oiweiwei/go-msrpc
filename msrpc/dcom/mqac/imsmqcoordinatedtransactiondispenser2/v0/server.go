@@ -26,7 +26,7 @@ var (
 )
 
 // IMSMQCoordinatedTransactionDispenser2 server interface.
-type ImsmqCoordinatedTransactionDispenser2Server interface {
+type CoordinatedTransactionDispenser2Server interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -38,17 +38,17 @@ type ImsmqCoordinatedTransactionDispenser2Server interface {
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 }
 
-func RegisterImsmqCoordinatedTransactionDispenser2Server(conn dcerpc.Conn, o ImsmqCoordinatedTransactionDispenser2Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqCoordinatedTransactionDispenser2ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqCoordinatedTransactionDispenser2SyntaxV0_0))...)
+func RegisterCoordinatedTransactionDispenser2Server(conn dcerpc.Conn, o CoordinatedTransactionDispenser2Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewCoordinatedTransactionDispenser2ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(CoordinatedTransactionDispenser2SyntaxV0_0))...)
 }
 
-func NewImsmqCoordinatedTransactionDispenser2ServerHandle(o ImsmqCoordinatedTransactionDispenser2Server) dcerpc.ServerHandle {
+func NewCoordinatedTransactionDispenser2ServerHandle(o CoordinatedTransactionDispenser2Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqCoordinatedTransactionDispenser2ServerHandle(ctx, o, opNum, r)
+		return CoordinatedTransactionDispenser2ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqCoordinatedTransactionDispenser2ServerHandle(ctx context.Context, o ImsmqCoordinatedTransactionDispenser2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func CoordinatedTransactionDispenser2ServerHandle(ctx context.Context, o CoordinatedTransactionDispenser2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -77,15 +77,15 @@ func ImsmqCoordinatedTransactionDispenser2ServerHandle(ctx context.Context, o Im
 }
 
 // Unimplemented IMSMQCoordinatedTransactionDispenser2
-type UnimplementedImsmqCoordinatedTransactionDispenser2Server struct {
+type UnimplementedCoordinatedTransactionDispenser2Server struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedImsmqCoordinatedTransactionDispenser2Server) BeginTransaction(context.Context, *BeginTransactionRequest) (*BeginTransactionResponse, error) {
+func (UnimplementedCoordinatedTransactionDispenser2Server) BeginTransaction(context.Context, *BeginTransactionRequest) (*BeginTransactionResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqCoordinatedTransactionDispenser2Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+func (UnimplementedCoordinatedTransactionDispenser2Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqCoordinatedTransactionDispenser2Server = (*UnimplementedImsmqCoordinatedTransactionDispenser2Server)(nil)
+var _ CoordinatedTransactionDispenser2Server = (*UnimplementedCoordinatedTransactionDispenser2Server)(nil)

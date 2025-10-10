@@ -36,15 +36,15 @@ var (
 
 var (
 	// IMSMQDestination interface identifier eba96b16-2168-11d3-898c-00e02c074f6b
-	ImsmqDestinationIID = &dcom.IID{Data1: 0xeba96b16, Data2: 0x2168, Data3: 0x11d3, Data4: []byte{0x89, 0x8c, 0x00, 0xe0, 0x2c, 0x07, 0x4f, 0x6b}}
+	DestinationIID = &dcom.IID{Data1: 0xeba96b16, Data2: 0x2168, Data3: 0x11d3, Data4: []byte{0x89, 0x8c, 0x00, 0xe0, 0x2c, 0x07, 0x4f, 0x6b}}
 	// Syntax UUID
-	ImsmqDestinationSyntaxUUID = &uuid.UUID{TimeLow: 0xeba96b16, TimeMid: 0x2168, TimeHiAndVersion: 0x11d3, ClockSeqHiAndReserved: 0x89, ClockSeqLow: 0x8c, Node: [6]uint8{0x0, 0xe0, 0x2c, 0x7, 0x4f, 0x6b}}
+	DestinationSyntaxUUID = &uuid.UUID{TimeLow: 0xeba96b16, TimeMid: 0x2168, TimeHiAndVersion: 0x11d3, ClockSeqHiAndReserved: 0x89, ClockSeqLow: 0x8c, Node: [6]uint8{0x0, 0xe0, 0x2c, 0x7, 0x4f, 0x6b}}
 	// Syntax ID
-	ImsmqDestinationSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ImsmqDestinationSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	DestinationSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: DestinationSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IMSMQDestination interface.
-type ImsmqDestinationClient interface {
+type DestinationClient interface {
 
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
@@ -59,16 +59,16 @@ type ImsmqDestinationClient interface {
 	GetIsOpen(context.Context, *GetIsOpenRequest, ...dcerpc.CallOption) (*GetIsOpenResponse, error)
 
 	// IADs operation.
-	GetIaDS(context.Context, *GetIaDSRequest, ...dcerpc.CallOption) (*GetIaDSResponse, error)
+	GetIADs(context.Context, *GetIADsRequest, ...dcerpc.CallOption) (*GetIADsResponse, error)
 
 	// IADs operation.
-	SetByRefIaDS(context.Context, *SetByRefIaDSRequest, ...dcerpc.CallOption) (*SetByRefIaDSResponse, error)
+	SetByRefIADs(context.Context, *SetByRefIADsRequest, ...dcerpc.CallOption) (*SetByRefIADsResponse, error)
 
 	// ADsPath operation.
-	GetADSPath(context.Context, *GetADSPathRequest, ...dcerpc.CallOption) (*GetADSPathResponse, error)
+	GetADsPath(context.Context, *GetADsPathRequest, ...dcerpc.CallOption) (*GetADsPathResponse, error)
 
 	// ADsPath operation.
-	SetADSPath(context.Context, *SetADSPathRequest, ...dcerpc.CallOption) (*SetADSPathResponse, error)
+	SetADsPath(context.Context, *SetADsPathRequest, ...dcerpc.CallOption) (*SetADsPathResponse, error)
 
 	// PathName operation.
 	GetPathName(context.Context, *GetPathNameRequest, ...dcerpc.CallOption) (*GetPathNameResponse, error)
@@ -98,20 +98,20 @@ type ImsmqDestinationClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) ImsmqDestinationClient
+	IPID(context.Context, *dcom.IPID) DestinationClient
 }
 
-type xxx_DefaultImsmqDestinationClient struct {
+type xxx_DefaultDestinationClient struct {
 	idispatch.DispatchClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultImsmqDestinationClient) Dispatch() idispatch.DispatchClient {
+func (o *xxx_DefaultDestinationClient) Dispatch() idispatch.DispatchClient {
 	return o.DispatchClient
 }
 
-func (o *xxx_DefaultImsmqDestinationClient) Open(ctx context.Context, in *OpenRequest, opts ...dcerpc.CallOption) (*OpenResponse, error) {
+func (o *xxx_DefaultDestinationClient) Open(ctx context.Context, in *OpenRequest, opts ...dcerpc.CallOption) (*OpenResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -131,7 +131,7 @@ func (o *xxx_DefaultImsmqDestinationClient) Open(ctx context.Context, in *OpenRe
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqDestinationClient) Close(ctx context.Context, in *CloseRequest, opts ...dcerpc.CallOption) (*CloseResponse, error) {
+func (o *xxx_DefaultDestinationClient) Close(ctx context.Context, in *CloseRequest, opts ...dcerpc.CallOption) (*CloseResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -151,7 +151,7 @@ func (o *xxx_DefaultImsmqDestinationClient) Close(ctx context.Context, in *Close
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqDestinationClient) GetIsOpen(ctx context.Context, in *GetIsOpenRequest, opts ...dcerpc.CallOption) (*GetIsOpenResponse, error) {
+func (o *xxx_DefaultDestinationClient) GetIsOpen(ctx context.Context, in *GetIsOpenRequest, opts ...dcerpc.CallOption) (*GetIsOpenResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -171,7 +171,7 @@ func (o *xxx_DefaultImsmqDestinationClient) GetIsOpen(ctx context.Context, in *G
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqDestinationClient) GetIaDS(ctx context.Context, in *GetIaDSRequest, opts ...dcerpc.CallOption) (*GetIaDSResponse, error) {
+func (o *xxx_DefaultDestinationClient) GetIADs(ctx context.Context, in *GetIADsRequest, opts ...dcerpc.CallOption) (*GetIADsResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -183,7 +183,7 @@ func (o *xxx_DefaultImsmqDestinationClient) GetIaDS(ctx context.Context, in *Get
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &GetIaDSResponse{}
+	out := &GetIADsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -191,7 +191,7 @@ func (o *xxx_DefaultImsmqDestinationClient) GetIaDS(ctx context.Context, in *Get
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqDestinationClient) SetByRefIaDS(ctx context.Context, in *SetByRefIaDSRequest, opts ...dcerpc.CallOption) (*SetByRefIaDSResponse, error) {
+func (o *xxx_DefaultDestinationClient) SetByRefIADs(ctx context.Context, in *SetByRefIADsRequest, opts ...dcerpc.CallOption) (*SetByRefIADsResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -203,7 +203,7 @@ func (o *xxx_DefaultImsmqDestinationClient) SetByRefIaDS(ctx context.Context, in
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &SetByRefIaDSResponse{}
+	out := &SetByRefIADsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -211,7 +211,7 @@ func (o *xxx_DefaultImsmqDestinationClient) SetByRefIaDS(ctx context.Context, in
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqDestinationClient) GetADSPath(ctx context.Context, in *GetADSPathRequest, opts ...dcerpc.CallOption) (*GetADSPathResponse, error) {
+func (o *xxx_DefaultDestinationClient) GetADsPath(ctx context.Context, in *GetADsPathRequest, opts ...dcerpc.CallOption) (*GetADsPathResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -223,7 +223,7 @@ func (o *xxx_DefaultImsmqDestinationClient) GetADSPath(ctx context.Context, in *
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &GetADSPathResponse{}
+	out := &GetADsPathResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -231,7 +231,7 @@ func (o *xxx_DefaultImsmqDestinationClient) GetADSPath(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqDestinationClient) SetADSPath(ctx context.Context, in *SetADSPathRequest, opts ...dcerpc.CallOption) (*SetADSPathResponse, error) {
+func (o *xxx_DefaultDestinationClient) SetADsPath(ctx context.Context, in *SetADsPathRequest, opts ...dcerpc.CallOption) (*SetADsPathResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -243,7 +243,7 @@ func (o *xxx_DefaultImsmqDestinationClient) SetADSPath(ctx context.Context, in *
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &SetADSPathResponse{}
+	out := &SetADsPathResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -251,7 +251,7 @@ func (o *xxx_DefaultImsmqDestinationClient) SetADSPath(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqDestinationClient) GetPathName(ctx context.Context, in *GetPathNameRequest, opts ...dcerpc.CallOption) (*GetPathNameResponse, error) {
+func (o *xxx_DefaultDestinationClient) GetPathName(ctx context.Context, in *GetPathNameRequest, opts ...dcerpc.CallOption) (*GetPathNameResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -271,7 +271,7 @@ func (o *xxx_DefaultImsmqDestinationClient) GetPathName(ctx context.Context, in 
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqDestinationClient) SetPathName(ctx context.Context, in *SetPathNameRequest, opts ...dcerpc.CallOption) (*SetPathNameResponse, error) {
+func (o *xxx_DefaultDestinationClient) SetPathName(ctx context.Context, in *SetPathNameRequest, opts ...dcerpc.CallOption) (*SetPathNameResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -291,7 +291,7 @@ func (o *xxx_DefaultImsmqDestinationClient) SetPathName(ctx context.Context, in 
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqDestinationClient) GetFormatName(ctx context.Context, in *GetFormatNameRequest, opts ...dcerpc.CallOption) (*GetFormatNameResponse, error) {
+func (o *xxx_DefaultDestinationClient) GetFormatName(ctx context.Context, in *GetFormatNameRequest, opts ...dcerpc.CallOption) (*GetFormatNameResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -311,7 +311,7 @@ func (o *xxx_DefaultImsmqDestinationClient) GetFormatName(ctx context.Context, i
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqDestinationClient) SetFormatName(ctx context.Context, in *SetFormatNameRequest, opts ...dcerpc.CallOption) (*SetFormatNameResponse, error) {
+func (o *xxx_DefaultDestinationClient) SetFormatName(ctx context.Context, in *SetFormatNameRequest, opts ...dcerpc.CallOption) (*SetFormatNameResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -331,7 +331,7 @@ func (o *xxx_DefaultImsmqDestinationClient) SetFormatName(ctx context.Context, i
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqDestinationClient) GetDestinations(ctx context.Context, in *GetDestinationsRequest, opts ...dcerpc.CallOption) (*GetDestinationsResponse, error) {
+func (o *xxx_DefaultDestinationClient) GetDestinations(ctx context.Context, in *GetDestinationsRequest, opts ...dcerpc.CallOption) (*GetDestinationsResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -351,7 +351,7 @@ func (o *xxx_DefaultImsmqDestinationClient) GetDestinations(ctx context.Context,
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqDestinationClient) SetByRefDestinations(ctx context.Context, in *SetByRefDestinationsRequest, opts ...dcerpc.CallOption) (*SetByRefDestinationsResponse, error) {
+func (o *xxx_DefaultDestinationClient) SetByRefDestinations(ctx context.Context, in *SetByRefDestinationsRequest, opts ...dcerpc.CallOption) (*SetByRefDestinationsResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -371,7 +371,7 @@ func (o *xxx_DefaultImsmqDestinationClient) SetByRefDestinations(ctx context.Con
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqDestinationClient) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
+func (o *xxx_DefaultDestinationClient) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -391,29 +391,29 @@ func (o *xxx_DefaultImsmqDestinationClient) GetProperties(ctx context.Context, i
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqDestinationClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultDestinationClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultImsmqDestinationClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultDestinationClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultImsmqDestinationClient) IPID(ctx context.Context, ipid *dcom.IPID) ImsmqDestinationClient {
+func (o *xxx_DefaultDestinationClient) IPID(ctx context.Context, ipid *dcom.IPID) DestinationClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultImsmqDestinationClient{
+	return &xxx_DefaultDestinationClient{
 		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
 		cc:             o.cc,
 		ipid:           ipid,
 	}
 }
 
-func NewImsmqDestinationClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ImsmqDestinationClient, error) {
+func NewDestinationClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (DestinationClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ImsmqDestinationSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(DestinationSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -426,7 +426,7 @@ func NewImsmqDestinationClient(ctx context.Context, cc dcerpc.Conn, opts ...dcer
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultImsmqDestinationClient{
+	return &xxx_DefaultDestinationClient{
 		DispatchClient: base,
 		cc:             cc,
 		ipid:           ipid,
@@ -1022,19 +1022,19 @@ func (o *GetIsOpenResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
-// xxx_GetIaDSOperation structure represents the IADs operation
-type xxx_GetIaDSOperation struct {
+// xxx_GetIADsOperation structure represents the IADs operation
+type xxx_GetIADsOperation struct {
 	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IaDS   *oaut.Dispatch `idl:"name:ppIADs" json:"ia_ds"`
+	IADs   *oaut.Dispatch `idl:"name:ppIADs" json:"iads"`
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_GetIaDSOperation) OpNum() int { return 10 }
+func (o *xxx_GetIADsOperation) OpNum() int { return 10 }
 
-func (o *xxx_GetIaDSOperation) OpName() string { return "/IMSMQDestination/v0/IADs" }
+func (o *xxx_GetIADsOperation) OpName() string { return "/IMSMQDestination/v0/IADs" }
 
-func (o *xxx_GetIaDSOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetIADsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -1043,7 +1043,7 @@ func (o *xxx_GetIaDSOperation) xxx_PrepareRequestPayload(ctx context.Context) er
 	return nil
 }
 
-func (o *xxx_GetIaDSOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetIADsOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -1065,7 +1065,7 @@ func (o *xxx_GetIaDSOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 	return nil
 }
 
-func (o *xxx_GetIaDSOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetIADsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -1081,7 +1081,7 @@ func (o *xxx_GetIaDSOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 	return nil
 }
 
-func (o *xxx_GetIaDSOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetIADsOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1090,7 +1090,7 @@ func (o *xxx_GetIaDSOperation) xxx_PrepareResponsePayload(ctx context.Context) e
 	return nil
 }
 
-func (o *xxx_GetIaDSOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetIADsOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1111,10 +1111,10 @@ func (o *xxx_GetIaDSOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 	}
 	// ppIADs {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IDispatch}(interface))
 	{
-		if o.IaDS != nil {
+		if o.IADs != nil {
 			_ptr_ppIADs := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.IaDS != nil {
-					if err := o.IaDS.MarshalNDR(ctx, w); err != nil {
+				if o.IADs != nil {
+					if err := o.IADs.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1124,7 +1124,7 @@ func (o *xxx_GetIaDSOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.IaDS, _ptr_ppIADs); err != nil {
+			if err := w.WritePointer(&o.IADs, _ptr_ppIADs); err != nil {
 				return err
 			}
 		} else {
@@ -1145,7 +1145,7 @@ func (o *xxx_GetIaDSOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 	return nil
 }
 
-func (o *xxx_GetIaDSOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetIADsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -1161,16 +1161,16 @@ func (o *xxx_GetIaDSOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 	// ppIADs {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IDispatch}(interface))
 	{
 		_ptr_ppIADs := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.IaDS == nil {
-				o.IaDS = &oaut.Dispatch{}
+			if o.IADs == nil {
+				o.IADs = &oaut.Dispatch{}
 			}
-			if err := o.IaDS.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.IADs.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppIADs := func(ptr interface{}) { o.IaDS = *ptr.(**oaut.Dispatch) }
-		if err := w.ReadPointer(&o.IaDS, _s_ppIADs, _ptr_ppIADs); err != nil {
+		_s_ppIADs := func(ptr interface{}) { o.IADs = *ptr.(**oaut.Dispatch) }
+		if err := w.ReadPointer(&o.IADs, _s_ppIADs, _ptr_ppIADs); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1186,15 +1186,15 @@ func (o *xxx_GetIaDSOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 	return nil
 }
 
-// GetIaDSRequest structure represents the IADs operation request
-type GetIaDSRequest struct {
+// GetIADsRequest structure represents the IADs operation request
+type GetIADsRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetIaDSRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIaDSOperation) *xxx_GetIaDSOperation {
+func (o *GetIADsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIADsOperation) *xxx_GetIADsOperation {
 	if op == nil {
-		op = &xxx_GetIaDSOperation{}
+		op = &xxx_GetIADsOperation{}
 	}
 	if o == nil {
 		return op
@@ -1203,17 +1203,17 @@ func (o *GetIaDSRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIaDSOperation)
 	return op
 }
 
-func (o *GetIaDSRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIaDSOperation) {
+func (o *GetIADsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIADsOperation) {
 	if o == nil {
 		return
 	}
 	o.This = op.This
 }
-func (o *GetIaDSRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetIADsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *GetIaDSRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetIaDSOperation{}
+func (o *GetIADsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetIADsOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1221,41 +1221,41 @@ func (o *GetIaDSRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	return nil
 }
 
-// GetIaDSResponse structure represents the IADs operation response
-type GetIaDSResponse struct {
+// GetIADsResponse structure represents the IADs operation response
+type GetIADsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IaDS *oaut.Dispatch `idl:"name:ppIADs" json:"ia_ds"`
+	IADs *oaut.Dispatch `idl:"name:ppIADs" json:"iads"`
 	// Return: The IADs return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetIaDSResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIaDSOperation) *xxx_GetIaDSOperation {
+func (o *GetIADsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIADsOperation) *xxx_GetIADsOperation {
 	if op == nil {
-		op = &xxx_GetIaDSOperation{}
+		op = &xxx_GetIADsOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.That = o.That
-	op.IaDS = o.IaDS
+	op.IADs = o.IADs
 	op.Return = o.Return
 	return op
 }
 
-func (o *GetIaDSResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIaDSOperation) {
+func (o *GetIADsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIADsOperation) {
 	if o == nil {
 		return
 	}
 	o.That = op.That
-	o.IaDS = op.IaDS
+	o.IADs = op.IADs
 	o.Return = op.Return
 }
-func (o *GetIaDSResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetIADsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *GetIaDSResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetIaDSOperation{}
+func (o *GetIADsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetIADsOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -1263,19 +1263,19 @@ func (o *GetIaDSResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 	return nil
 }
 
-// xxx_SetByRefIaDSOperation structure represents the IADs operation
-type xxx_SetByRefIaDSOperation struct {
+// xxx_SetByRefIADsOperation structure represents the IADs operation
+type xxx_SetByRefIADsOperation struct {
 	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IaDS   *oaut.Dispatch `idl:"name:pIADs" json:"ia_ds"`
+	IADs   *oaut.Dispatch `idl:"name:pIADs" json:"iads"`
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_SetByRefIaDSOperation) OpNum() int { return 11 }
+func (o *xxx_SetByRefIADsOperation) OpNum() int { return 11 }
 
-func (o *xxx_SetByRefIaDSOperation) OpName() string { return "/IMSMQDestination/v0/IADs" }
+func (o *xxx_SetByRefIADsOperation) OpName() string { return "/IMSMQDestination/v0/IADs" }
 
-func (o *xxx_SetByRefIaDSOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_SetByRefIADsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -1284,7 +1284,7 @@ func (o *xxx_SetByRefIaDSOperation) xxx_PrepareRequestPayload(ctx context.Contex
 	return nil
 }
 
-func (o *xxx_SetByRefIaDSOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_SetByRefIADsOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -1305,10 +1305,10 @@ func (o *xxx_SetByRefIaDSOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// pIADs {in} (1:{pointer=ref}*(1))(2:{alias=IDispatch}(interface))
 	{
-		if o.IaDS != nil {
+		if o.IADs != nil {
 			_ptr_pIADs := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.IaDS != nil {
-					if err := o.IaDS.MarshalNDR(ctx, w); err != nil {
+				if o.IADs != nil {
+					if err := o.IADs.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1318,7 +1318,7 @@ func (o *xxx_SetByRefIaDSOperation) MarshalNDRRequest(ctx context.Context, w ndr
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.IaDS, _ptr_pIADs); err != nil {
+			if err := w.WritePointer(&o.IADs, _ptr_pIADs); err != nil {
 				return err
 			}
 		} else {
@@ -1333,7 +1333,7 @@ func (o *xxx_SetByRefIaDSOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	return nil
 }
 
-func (o *xxx_SetByRefIaDSOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_SetByRefIADsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -1349,16 +1349,16 @@ func (o *xxx_SetByRefIaDSOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	// pIADs {in} (1:{pointer=ref}*(1))(2:{alias=IDispatch}(interface))
 	{
 		_ptr_pIADs := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.IaDS == nil {
-				o.IaDS = &oaut.Dispatch{}
+			if o.IADs == nil {
+				o.IADs = &oaut.Dispatch{}
 			}
-			if err := o.IaDS.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.IADs.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pIADs := func(ptr interface{}) { o.IaDS = *ptr.(**oaut.Dispatch) }
-		if err := w.ReadPointer(&o.IaDS, _s_pIADs, _ptr_pIADs); err != nil {
+		_s_pIADs := func(ptr interface{}) { o.IADs = *ptr.(**oaut.Dispatch) }
+		if err := w.ReadPointer(&o.IADs, _s_pIADs, _ptr_pIADs); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1368,7 +1368,7 @@ func (o *xxx_SetByRefIaDSOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	return nil
 }
 
-func (o *xxx_SetByRefIaDSOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_SetByRefIADsOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1377,7 +1377,7 @@ func (o *xxx_SetByRefIaDSOperation) xxx_PrepareResponsePayload(ctx context.Conte
 	return nil
 }
 
-func (o *xxx_SetByRefIaDSOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_SetByRefIADsOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1405,7 +1405,7 @@ func (o *xxx_SetByRefIaDSOperation) MarshalNDRResponse(ctx context.Context, w nd
 	return nil
 }
 
-func (o *xxx_SetByRefIaDSOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_SetByRefIADsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -1427,37 +1427,37 @@ func (o *xxx_SetByRefIaDSOperation) UnmarshalNDRResponse(ctx context.Context, w 
 	return nil
 }
 
-// SetByRefIaDSRequest structure represents the IADs operation request
-type SetByRefIaDSRequest struct {
+// SetByRefIADsRequest structure represents the IADs operation request
+type SetByRefIADsRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
-	IaDS *oaut.Dispatch `idl:"name:pIADs" json:"ia_ds"`
+	IADs *oaut.Dispatch `idl:"name:pIADs" json:"iads"`
 }
 
-func (o *SetByRefIaDSRequest) xxx_ToOp(ctx context.Context, op *xxx_SetByRefIaDSOperation) *xxx_SetByRefIaDSOperation {
+func (o *SetByRefIADsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetByRefIADsOperation) *xxx_SetByRefIADsOperation {
 	if op == nil {
-		op = &xxx_SetByRefIaDSOperation{}
+		op = &xxx_SetByRefIADsOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.This = o.This
-	op.IaDS = o.IaDS
+	op.IADs = o.IADs
 	return op
 }
 
-func (o *SetByRefIaDSRequest) xxx_FromOp(ctx context.Context, op *xxx_SetByRefIaDSOperation) {
+func (o *SetByRefIADsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetByRefIADsOperation) {
 	if o == nil {
 		return
 	}
 	o.This = op.This
-	o.IaDS = op.IaDS
+	o.IADs = op.IADs
 }
-func (o *SetByRefIaDSRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SetByRefIADsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *SetByRefIaDSRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_SetByRefIaDSOperation{}
+func (o *SetByRefIADsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SetByRefIADsOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1465,17 +1465,17 @@ func (o *SetByRefIaDSRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
-// SetByRefIaDSResponse structure represents the IADs operation response
-type SetByRefIaDSResponse struct {
+// SetByRefIADsResponse structure represents the IADs operation response
+type SetByRefIADsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// Return: The IADs return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetByRefIaDSResponse) xxx_ToOp(ctx context.Context, op *xxx_SetByRefIaDSOperation) *xxx_SetByRefIaDSOperation {
+func (o *SetByRefIADsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetByRefIADsOperation) *xxx_SetByRefIADsOperation {
 	if op == nil {
-		op = &xxx_SetByRefIaDSOperation{}
+		op = &xxx_SetByRefIADsOperation{}
 	}
 	if o == nil {
 		return op
@@ -1485,18 +1485,18 @@ func (o *SetByRefIaDSResponse) xxx_ToOp(ctx context.Context, op *xxx_SetByRefIaD
 	return op
 }
 
-func (o *SetByRefIaDSResponse) xxx_FromOp(ctx context.Context, op *xxx_SetByRefIaDSOperation) {
+func (o *SetByRefIADsResponse) xxx_FromOp(ctx context.Context, op *xxx_SetByRefIADsOperation) {
 	if o == nil {
 		return
 	}
 	o.That = op.That
 	o.Return = op.Return
 }
-func (o *SetByRefIaDSResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SetByRefIADsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *SetByRefIaDSResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_SetByRefIaDSOperation{}
+func (o *SetByRefIADsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SetByRefIADsOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -1504,19 +1504,19 @@ func (o *SetByRefIaDSResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
-// xxx_GetADSPathOperation structure represents the ADsPath operation
-type xxx_GetADSPathOperation struct {
+// xxx_GetADsPathOperation structure represents the ADsPath operation
+type xxx_GetADsPathOperation struct {
 	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ADSPath *oaut.String   `idl:"name:pbstrADsPath" json:"a_ds_path"`
+	ADsPath *oaut.String   `idl:"name:pbstrADsPath" json:"ads_path"`
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_GetADSPathOperation) OpNum() int { return 12 }
+func (o *xxx_GetADsPathOperation) OpNum() int { return 12 }
 
-func (o *xxx_GetADSPathOperation) OpName() string { return "/IMSMQDestination/v0/ADsPath" }
+func (o *xxx_GetADsPathOperation) OpName() string { return "/IMSMQDestination/v0/ADsPath" }
 
-func (o *xxx_GetADSPathOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetADsPathOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -1525,7 +1525,7 @@ func (o *xxx_GetADSPathOperation) xxx_PrepareRequestPayload(ctx context.Context)
 	return nil
 }
 
-func (o *xxx_GetADSPathOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetADsPathOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -1547,7 +1547,7 @@ func (o *xxx_GetADSPathOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 	return nil
 }
 
-func (o *xxx_GetADSPathOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetADsPathOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -1563,7 +1563,7 @@ func (o *xxx_GetADSPathOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 	return nil
 }
 
-func (o *xxx_GetADSPathOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetADsPathOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1572,7 +1572,7 @@ func (o *xxx_GetADSPathOperation) xxx_PrepareResponsePayload(ctx context.Context
 	return nil
 }
 
-func (o *xxx_GetADSPathOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetADsPathOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1593,10 +1593,10 @@ func (o *xxx_GetADSPathOperation) MarshalNDRResponse(ctx context.Context, w ndr.
 	}
 	// pbstrADsPath {out, retval} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
-		if o.ADSPath != nil {
+		if o.ADsPath != nil {
 			_ptr_pbstrADsPath := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.ADSPath != nil {
-					if err := o.ADSPath.MarshalNDR(ctx, w); err != nil {
+				if o.ADsPath != nil {
+					if err := o.ADsPath.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1606,7 +1606,7 @@ func (o *xxx_GetADSPathOperation) MarshalNDRResponse(ctx context.Context, w ndr.
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.ADSPath, _ptr_pbstrADsPath); err != nil {
+			if err := w.WritePointer(&o.ADsPath, _ptr_pbstrADsPath); err != nil {
 				return err
 			}
 		} else {
@@ -1627,7 +1627,7 @@ func (o *xxx_GetADSPathOperation) MarshalNDRResponse(ctx context.Context, w ndr.
 	return nil
 }
 
-func (o *xxx_GetADSPathOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetADsPathOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -1643,16 +1643,16 @@ func (o *xxx_GetADSPathOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 	// pbstrADsPath {out, retval} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
 		_ptr_pbstrADsPath := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.ADSPath == nil {
-				o.ADSPath = &oaut.String{}
+			if o.ADsPath == nil {
+				o.ADsPath = &oaut.String{}
 			}
-			if err := o.ADSPath.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.ADsPath.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pbstrADsPath := func(ptr interface{}) { o.ADSPath = *ptr.(**oaut.String) }
-		if err := w.ReadPointer(&o.ADSPath, _s_pbstrADsPath, _ptr_pbstrADsPath); err != nil {
+		_s_pbstrADsPath := func(ptr interface{}) { o.ADsPath = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.ADsPath, _s_pbstrADsPath, _ptr_pbstrADsPath); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1668,15 +1668,15 @@ func (o *xxx_GetADSPathOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 	return nil
 }
 
-// GetADSPathRequest structure represents the ADsPath operation request
-type GetADSPathRequest struct {
+// GetADsPathRequest structure represents the ADsPath operation request
+type GetADsPathRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetADSPathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetADSPathOperation) *xxx_GetADSPathOperation {
+func (o *GetADsPathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetADsPathOperation) *xxx_GetADsPathOperation {
 	if op == nil {
-		op = &xxx_GetADSPathOperation{}
+		op = &xxx_GetADsPathOperation{}
 	}
 	if o == nil {
 		return op
@@ -1685,17 +1685,17 @@ func (o *GetADSPathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetADSPathOper
 	return op
 }
 
-func (o *GetADSPathRequest) xxx_FromOp(ctx context.Context, op *xxx_GetADSPathOperation) {
+func (o *GetADsPathRequest) xxx_FromOp(ctx context.Context, op *xxx_GetADsPathOperation) {
 	if o == nil {
 		return
 	}
 	o.This = op.This
 }
-func (o *GetADSPathRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetADsPathRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *GetADSPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetADSPathOperation{}
+func (o *GetADsPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetADsPathOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1703,41 +1703,41 @@ func (o *GetADSPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
-// GetADSPathResponse structure represents the ADsPath operation response
-type GetADSPathResponse struct {
+// GetADsPathResponse structure represents the ADsPath operation response
+type GetADsPathResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ADSPath *oaut.String   `idl:"name:pbstrADsPath" json:"a_ds_path"`
+	ADsPath *oaut.String   `idl:"name:pbstrADsPath" json:"ads_path"`
 	// Return: The ADsPath return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetADSPathResponse) xxx_ToOp(ctx context.Context, op *xxx_GetADSPathOperation) *xxx_GetADSPathOperation {
+func (o *GetADsPathResponse) xxx_ToOp(ctx context.Context, op *xxx_GetADsPathOperation) *xxx_GetADsPathOperation {
 	if op == nil {
-		op = &xxx_GetADSPathOperation{}
+		op = &xxx_GetADsPathOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.That = o.That
-	op.ADSPath = o.ADSPath
+	op.ADsPath = o.ADsPath
 	op.Return = o.Return
 	return op
 }
 
-func (o *GetADSPathResponse) xxx_FromOp(ctx context.Context, op *xxx_GetADSPathOperation) {
+func (o *GetADsPathResponse) xxx_FromOp(ctx context.Context, op *xxx_GetADsPathOperation) {
 	if o == nil {
 		return
 	}
 	o.That = op.That
-	o.ADSPath = op.ADSPath
+	o.ADsPath = op.ADsPath
 	o.Return = op.Return
 }
-func (o *GetADSPathResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetADsPathResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *GetADSPathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetADSPathOperation{}
+func (o *GetADsPathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetADsPathOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -1745,19 +1745,19 @@ func (o *GetADSPathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 	return nil
 }
 
-// xxx_SetADSPathOperation structure represents the ADsPath operation
-type xxx_SetADSPathOperation struct {
+// xxx_SetADsPathOperation structure represents the ADsPath operation
+type xxx_SetADsPathOperation struct {
 	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ADSPath *oaut.String   `idl:"name:bstrADsPath" json:"a_ds_path"`
+	ADsPath *oaut.String   `idl:"name:bstrADsPath" json:"ads_path"`
 	Return  int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_SetADSPathOperation) OpNum() int { return 13 }
+func (o *xxx_SetADsPathOperation) OpNum() int { return 13 }
 
-func (o *xxx_SetADSPathOperation) OpName() string { return "/IMSMQDestination/v0/ADsPath" }
+func (o *xxx_SetADsPathOperation) OpName() string { return "/IMSMQDestination/v0/ADsPath" }
 
-func (o *xxx_SetADSPathOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_SetADsPathOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -1766,7 +1766,7 @@ func (o *xxx_SetADSPathOperation) xxx_PrepareRequestPayload(ctx context.Context)
 	return nil
 }
 
-func (o *xxx_SetADSPathOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_SetADsPathOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -1787,10 +1787,10 @@ func (o *xxx_SetADSPathOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 	}
 	// bstrADsPath {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
-		if o.ADSPath != nil {
+		if o.ADsPath != nil {
 			_ptr_bstrADsPath := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.ADSPath != nil {
-					if err := o.ADSPath.MarshalNDR(ctx, w); err != nil {
+				if o.ADsPath != nil {
+					if err := o.ADsPath.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1800,7 +1800,7 @@ func (o *xxx_SetADSPathOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.ADSPath, _ptr_bstrADsPath); err != nil {
+			if err := w.WritePointer(&o.ADsPath, _ptr_bstrADsPath); err != nil {
 				return err
 			}
 		} else {
@@ -1815,7 +1815,7 @@ func (o *xxx_SetADSPathOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 	return nil
 }
 
-func (o *xxx_SetADSPathOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_SetADsPathOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -1831,16 +1831,16 @@ func (o *xxx_SetADSPathOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 	// bstrADsPath {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
 		_ptr_bstrADsPath := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.ADSPath == nil {
-				o.ADSPath = &oaut.String{}
+			if o.ADsPath == nil {
+				o.ADsPath = &oaut.String{}
 			}
-			if err := o.ADSPath.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.ADsPath.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_bstrADsPath := func(ptr interface{}) { o.ADSPath = *ptr.(**oaut.String) }
-		if err := w.ReadPointer(&o.ADSPath, _s_bstrADsPath, _ptr_bstrADsPath); err != nil {
+		_s_bstrADsPath := func(ptr interface{}) { o.ADsPath = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.ADsPath, _s_bstrADsPath, _ptr_bstrADsPath); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1850,7 +1850,7 @@ func (o *xxx_SetADSPathOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 	return nil
 }
 
-func (o *xxx_SetADSPathOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_SetADsPathOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1859,7 +1859,7 @@ func (o *xxx_SetADSPathOperation) xxx_PrepareResponsePayload(ctx context.Context
 	return nil
 }
 
-func (o *xxx_SetADSPathOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_SetADsPathOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1887,7 +1887,7 @@ func (o *xxx_SetADSPathOperation) MarshalNDRResponse(ctx context.Context, w ndr.
 	return nil
 }
 
-func (o *xxx_SetADSPathOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_SetADsPathOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -1909,37 +1909,37 @@ func (o *xxx_SetADSPathOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 	return nil
 }
 
-// SetADSPathRequest structure represents the ADsPath operation request
-type SetADSPathRequest struct {
+// SetADsPathRequest structure represents the ADsPath operation request
+type SetADsPathRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ADSPath *oaut.String   `idl:"name:bstrADsPath" json:"a_ds_path"`
+	ADsPath *oaut.String   `idl:"name:bstrADsPath" json:"ads_path"`
 }
 
-func (o *SetADSPathRequest) xxx_ToOp(ctx context.Context, op *xxx_SetADSPathOperation) *xxx_SetADSPathOperation {
+func (o *SetADsPathRequest) xxx_ToOp(ctx context.Context, op *xxx_SetADsPathOperation) *xxx_SetADsPathOperation {
 	if op == nil {
-		op = &xxx_SetADSPathOperation{}
+		op = &xxx_SetADsPathOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.This = o.This
-	op.ADSPath = o.ADSPath
+	op.ADsPath = o.ADsPath
 	return op
 }
 
-func (o *SetADSPathRequest) xxx_FromOp(ctx context.Context, op *xxx_SetADSPathOperation) {
+func (o *SetADsPathRequest) xxx_FromOp(ctx context.Context, op *xxx_SetADsPathOperation) {
 	if o == nil {
 		return
 	}
 	o.This = op.This
-	o.ADSPath = op.ADSPath
+	o.ADsPath = op.ADsPath
 }
-func (o *SetADSPathRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SetADsPathRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *SetADSPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_SetADSPathOperation{}
+func (o *SetADsPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SetADsPathOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1947,17 +1947,17 @@ func (o *SetADSPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 	return nil
 }
 
-// SetADSPathResponse structure represents the ADsPath operation response
-type SetADSPathResponse struct {
+// SetADsPathResponse structure represents the ADsPath operation response
+type SetADsPathResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// Return: The ADsPath return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetADSPathResponse) xxx_ToOp(ctx context.Context, op *xxx_SetADSPathOperation) *xxx_SetADSPathOperation {
+func (o *SetADsPathResponse) xxx_ToOp(ctx context.Context, op *xxx_SetADsPathOperation) *xxx_SetADsPathOperation {
 	if op == nil {
-		op = &xxx_SetADSPathOperation{}
+		op = &xxx_SetADsPathOperation{}
 	}
 	if o == nil {
 		return op
@@ -1967,18 +1967,18 @@ func (o *SetADSPathResponse) xxx_ToOp(ctx context.Context, op *xxx_SetADSPathOpe
 	return op
 }
 
-func (o *SetADSPathResponse) xxx_FromOp(ctx context.Context, op *xxx_SetADSPathOperation) {
+func (o *SetADsPathResponse) xxx_FromOp(ctx context.Context, op *xxx_SetADsPathOperation) {
 	if o == nil {
 		return
 	}
 	o.That = op.That
 	o.Return = op.Return
 }
-func (o *SetADSPathResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SetADsPathResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *SetADSPathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_SetADSPathOperation{}
+func (o *SetADsPathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SetADsPathOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -3436,10 +3436,10 @@ func (o *SetByRefDestinationsResponse) UnmarshalNDR(ctx context.Context, r ndr.R
 
 // xxx_GetPropertiesOperation structure represents the Properties operation
 type xxx_GetPropertiesOperation struct {
-	This            *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PpcolProperties *oaut.Dispatch `idl:"name:ppcolProperties" json:"ppcol_properties"`
-	Return          int32          `idl:"name:Return" json:"return"`
+	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Properties *oaut.Dispatch `idl:"name:ppcolProperties" json:"properties"`
+	Return     int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetPropertiesOperation) OpNum() int { return 20 }
@@ -3523,10 +3523,10 @@ func (o *xxx_GetPropertiesOperation) MarshalNDRResponse(ctx context.Context, w n
 	}
 	// ppcolProperties {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IDispatch}(interface))
 	{
-		if o.PpcolProperties != nil {
+		if o.Properties != nil {
 			_ptr_ppcolProperties := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PpcolProperties != nil {
-					if err := o.PpcolProperties.MarshalNDR(ctx, w); err != nil {
+				if o.Properties != nil {
+					if err := o.Properties.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -3536,7 +3536,7 @@ func (o *xxx_GetPropertiesOperation) MarshalNDRResponse(ctx context.Context, w n
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PpcolProperties, _ptr_ppcolProperties); err != nil {
+			if err := w.WritePointer(&o.Properties, _ptr_ppcolProperties); err != nil {
 				return err
 			}
 		} else {
@@ -3573,16 +3573,16 @@ func (o *xxx_GetPropertiesOperation) UnmarshalNDRResponse(ctx context.Context, w
 	// ppcolProperties {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IDispatch}(interface))
 	{
 		_ptr_ppcolProperties := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PpcolProperties == nil {
-				o.PpcolProperties = &oaut.Dispatch{}
+			if o.Properties == nil {
+				o.Properties = &oaut.Dispatch{}
 			}
-			if err := o.PpcolProperties.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Properties.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppcolProperties := func(ptr interface{}) { o.PpcolProperties = *ptr.(**oaut.Dispatch) }
-		if err := w.ReadPointer(&o.PpcolProperties, _s_ppcolProperties, _ptr_ppcolProperties); err != nil {
+		_s_ppcolProperties := func(ptr interface{}) { o.Properties = *ptr.(**oaut.Dispatch) }
+		if err := w.ReadPointer(&o.Properties, _s_ppcolProperties, _ptr_ppcolProperties); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -3636,8 +3636,8 @@ func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetPropertiesResponse structure represents the Properties operation response
 type GetPropertiesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PpcolProperties *oaut.Dispatch `idl:"name:ppcolProperties" json:"ppcol_properties"`
+	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Properties *oaut.Dispatch `idl:"name:ppcolProperties" json:"properties"`
 	// Return: The Properties return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3650,7 +3650,7 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 		return op
 	}
 	op.That = o.That
-	op.PpcolProperties = o.PpcolProperties
+	op.Properties = o.Properties
 	op.Return = o.Return
 	return op
 }
@@ -3660,7 +3660,7 @@ func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrope
 		return
 	}
 	o.That = op.That
-	o.PpcolProperties = op.PpcolProperties
+	o.Properties = op.Properties
 	o.Return = op.Return
 }
 func (o *GetPropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {

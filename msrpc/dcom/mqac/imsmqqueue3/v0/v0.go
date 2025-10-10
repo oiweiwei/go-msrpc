@@ -38,15 +38,15 @@ var (
 
 var (
 	// IMSMQQueue3 interface identifier eba96b1b-2168-11d3-898c-00e02c074f6b
-	ImsmqQueue3IID = &dcom.IID{Data1: 0xeba96b1b, Data2: 0x2168, Data3: 0x11d3, Data4: []byte{0x89, 0x8c, 0x00, 0xe0, 0x2c, 0x07, 0x4f, 0x6b}}
+	Queue3IID = &dcom.IID{Data1: 0xeba96b1b, Data2: 0x2168, Data3: 0x11d3, Data4: []byte{0x89, 0x8c, 0x00, 0xe0, 0x2c, 0x07, 0x4f, 0x6b}}
 	// Syntax UUID
-	ImsmqQueue3SyntaxUUID = &uuid.UUID{TimeLow: 0xeba96b1b, TimeMid: 0x2168, TimeHiAndVersion: 0x11d3, ClockSeqHiAndReserved: 0x89, ClockSeqLow: 0x8c, Node: [6]uint8{0x0, 0xe0, 0x2c, 0x7, 0x4f, 0x6b}}
+	Queue3SyntaxUUID = &uuid.UUID{TimeLow: 0xeba96b1b, TimeMid: 0x2168, TimeHiAndVersion: 0x11d3, ClockSeqHiAndReserved: 0x89, ClockSeqLow: 0x8c, Node: [6]uint8{0x0, 0xe0, 0x2c, 0x7, 0x4f, 0x6b}}
 	// Syntax ID
-	ImsmqQueue3SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ImsmqQueue3SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	Queue3SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: Queue3SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IMSMQQueue3 interface.
-type ImsmqQueue3Client interface {
+type Queue3Client interface {
 
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
@@ -154,20 +154,20 @@ type ImsmqQueue3Client interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) ImsmqQueue3Client
+	IPID(context.Context, *dcom.IPID) Queue3Client
 }
 
-type xxx_DefaultImsmqQueue3Client struct {
+type xxx_DefaultQueue3Client struct {
 	idispatch.DispatchClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) Dispatch() idispatch.DispatchClient {
+func (o *xxx_DefaultQueue3Client) Dispatch() idispatch.DispatchClient {
 	return o.DispatchClient
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) GetAccess(ctx context.Context, in *GetAccessRequest, opts ...dcerpc.CallOption) (*GetAccessResponse, error) {
+func (o *xxx_DefaultQueue3Client) GetAccess(ctx context.Context, in *GetAccessRequest, opts ...dcerpc.CallOption) (*GetAccessResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -187,7 +187,7 @@ func (o *xxx_DefaultImsmqQueue3Client) GetAccess(ctx context.Context, in *GetAcc
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) GetShareMode(ctx context.Context, in *GetShareModeRequest, opts ...dcerpc.CallOption) (*GetShareModeResponse, error) {
+func (o *xxx_DefaultQueue3Client) GetShareMode(ctx context.Context, in *GetShareModeRequest, opts ...dcerpc.CallOption) (*GetShareModeResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -207,7 +207,7 @@ func (o *xxx_DefaultImsmqQueue3Client) GetShareMode(ctx context.Context, in *Get
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) GetQueueInfo(ctx context.Context, in *GetQueueInfoRequest, opts ...dcerpc.CallOption) (*GetQueueInfoResponse, error) {
+func (o *xxx_DefaultQueue3Client) GetQueueInfo(ctx context.Context, in *GetQueueInfoRequest, opts ...dcerpc.CallOption) (*GetQueueInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -227,7 +227,7 @@ func (o *xxx_DefaultImsmqQueue3Client) GetQueueInfo(ctx context.Context, in *Get
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) GetHandle(ctx context.Context, in *GetHandleRequest, opts ...dcerpc.CallOption) (*GetHandleResponse, error) {
+func (o *xxx_DefaultQueue3Client) GetHandle(ctx context.Context, in *GetHandleRequest, opts ...dcerpc.CallOption) (*GetHandleResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -247,7 +247,7 @@ func (o *xxx_DefaultImsmqQueue3Client) GetHandle(ctx context.Context, in *GetHan
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) GetIsOpen(ctx context.Context, in *GetIsOpenRequest, opts ...dcerpc.CallOption) (*GetIsOpenResponse, error) {
+func (o *xxx_DefaultQueue3Client) GetIsOpen(ctx context.Context, in *GetIsOpenRequest, opts ...dcerpc.CallOption) (*GetIsOpenResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -267,7 +267,7 @@ func (o *xxx_DefaultImsmqQueue3Client) GetIsOpen(ctx context.Context, in *GetIsO
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) Close(ctx context.Context, in *CloseRequest, opts ...dcerpc.CallOption) (*CloseResponse, error) {
+func (o *xxx_DefaultQueue3Client) Close(ctx context.Context, in *CloseRequest, opts ...dcerpc.CallOption) (*CloseResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -287,7 +287,7 @@ func (o *xxx_DefaultImsmqQueue3Client) Close(ctx context.Context, in *CloseReque
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) ReceiveV1(ctx context.Context, in *ReceiveV1Request, opts ...dcerpc.CallOption) (*ReceiveV1Response, error) {
+func (o *xxx_DefaultQueue3Client) ReceiveV1(ctx context.Context, in *ReceiveV1Request, opts ...dcerpc.CallOption) (*ReceiveV1Response, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -307,7 +307,7 @@ func (o *xxx_DefaultImsmqQueue3Client) ReceiveV1(ctx context.Context, in *Receiv
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) PeekV1(ctx context.Context, in *PeekV1Request, opts ...dcerpc.CallOption) (*PeekV1Response, error) {
+func (o *xxx_DefaultQueue3Client) PeekV1(ctx context.Context, in *PeekV1Request, opts ...dcerpc.CallOption) (*PeekV1Response, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -327,7 +327,7 @@ func (o *xxx_DefaultImsmqQueue3Client) PeekV1(ctx context.Context, in *PeekV1Req
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) EnableNotification(ctx context.Context, in *EnableNotificationRequest, opts ...dcerpc.CallOption) (*EnableNotificationResponse, error) {
+func (o *xxx_DefaultQueue3Client) EnableNotification(ctx context.Context, in *EnableNotificationRequest, opts ...dcerpc.CallOption) (*EnableNotificationResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -347,7 +347,7 @@ func (o *xxx_DefaultImsmqQueue3Client) EnableNotification(ctx context.Context, i
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) Reset(ctx context.Context, in *ResetRequest, opts ...dcerpc.CallOption) (*ResetResponse, error) {
+func (o *xxx_DefaultQueue3Client) Reset(ctx context.Context, in *ResetRequest, opts ...dcerpc.CallOption) (*ResetResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -367,7 +367,7 @@ func (o *xxx_DefaultImsmqQueue3Client) Reset(ctx context.Context, in *ResetReque
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) ReceiveCurrentV1(ctx context.Context, in *ReceiveCurrentV1Request, opts ...dcerpc.CallOption) (*ReceiveCurrentV1Response, error) {
+func (o *xxx_DefaultQueue3Client) ReceiveCurrentV1(ctx context.Context, in *ReceiveCurrentV1Request, opts ...dcerpc.CallOption) (*ReceiveCurrentV1Response, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -387,7 +387,7 @@ func (o *xxx_DefaultImsmqQueue3Client) ReceiveCurrentV1(ctx context.Context, in 
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) PeekNextV1(ctx context.Context, in *PeekNextV1Request, opts ...dcerpc.CallOption) (*PeekNextV1Response, error) {
+func (o *xxx_DefaultQueue3Client) PeekNextV1(ctx context.Context, in *PeekNextV1Request, opts ...dcerpc.CallOption) (*PeekNextV1Response, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -407,7 +407,7 @@ func (o *xxx_DefaultImsmqQueue3Client) PeekNextV1(ctx context.Context, in *PeekN
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) PeekCurrentV1(ctx context.Context, in *PeekCurrentV1Request, opts ...dcerpc.CallOption) (*PeekCurrentV1Response, error) {
+func (o *xxx_DefaultQueue3Client) PeekCurrentV1(ctx context.Context, in *PeekCurrentV1Request, opts ...dcerpc.CallOption) (*PeekCurrentV1Response, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -427,7 +427,7 @@ func (o *xxx_DefaultImsmqQueue3Client) PeekCurrentV1(ctx context.Context, in *Pe
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) Receive(ctx context.Context, in *ReceiveRequest, opts ...dcerpc.CallOption) (*ReceiveResponse, error) {
+func (o *xxx_DefaultQueue3Client) Receive(ctx context.Context, in *ReceiveRequest, opts ...dcerpc.CallOption) (*ReceiveResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -447,7 +447,7 @@ func (o *xxx_DefaultImsmqQueue3Client) Receive(ctx context.Context, in *ReceiveR
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) Peek(ctx context.Context, in *PeekRequest, opts ...dcerpc.CallOption) (*PeekResponse, error) {
+func (o *xxx_DefaultQueue3Client) Peek(ctx context.Context, in *PeekRequest, opts ...dcerpc.CallOption) (*PeekResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -467,7 +467,7 @@ func (o *xxx_DefaultImsmqQueue3Client) Peek(ctx context.Context, in *PeekRequest
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) ReceiveCurrent(ctx context.Context, in *ReceiveCurrentRequest, opts ...dcerpc.CallOption) (*ReceiveCurrentResponse, error) {
+func (o *xxx_DefaultQueue3Client) ReceiveCurrent(ctx context.Context, in *ReceiveCurrentRequest, opts ...dcerpc.CallOption) (*ReceiveCurrentResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -487,7 +487,7 @@ func (o *xxx_DefaultImsmqQueue3Client) ReceiveCurrent(ctx context.Context, in *R
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) PeekNext(ctx context.Context, in *PeekNextRequest, opts ...dcerpc.CallOption) (*PeekNextResponse, error) {
+func (o *xxx_DefaultQueue3Client) PeekNext(ctx context.Context, in *PeekNextRequest, opts ...dcerpc.CallOption) (*PeekNextResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -507,7 +507,7 @@ func (o *xxx_DefaultImsmqQueue3Client) PeekNext(ctx context.Context, in *PeekNex
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) PeekCurrent(ctx context.Context, in *PeekCurrentRequest, opts ...dcerpc.CallOption) (*PeekCurrentResponse, error) {
+func (o *xxx_DefaultQueue3Client) PeekCurrent(ctx context.Context, in *PeekCurrentRequest, opts ...dcerpc.CallOption) (*PeekCurrentResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -527,7 +527,7 @@ func (o *xxx_DefaultImsmqQueue3Client) PeekCurrent(ctx context.Context, in *Peek
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
+func (o *xxx_DefaultQueue3Client) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -547,7 +547,7 @@ func (o *xxx_DefaultImsmqQueue3Client) GetProperties(ctx context.Context, in *Ge
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) GetHandle2(ctx context.Context, in *GetHandle2Request, opts ...dcerpc.CallOption) (*GetHandle2Response, error) {
+func (o *xxx_DefaultQueue3Client) GetHandle2(ctx context.Context, in *GetHandle2Request, opts ...dcerpc.CallOption) (*GetHandle2Response, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -567,7 +567,7 @@ func (o *xxx_DefaultImsmqQueue3Client) GetHandle2(ctx context.Context, in *GetHa
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) ReceiveByLookupID(ctx context.Context, in *ReceiveByLookupIDRequest, opts ...dcerpc.CallOption) (*ReceiveByLookupIDResponse, error) {
+func (o *xxx_DefaultQueue3Client) ReceiveByLookupID(ctx context.Context, in *ReceiveByLookupIDRequest, opts ...dcerpc.CallOption) (*ReceiveByLookupIDResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -587,7 +587,7 @@ func (o *xxx_DefaultImsmqQueue3Client) ReceiveByLookupID(ctx context.Context, in
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) ReceiveNextByLookupID(ctx context.Context, in *ReceiveNextByLookupIDRequest, opts ...dcerpc.CallOption) (*ReceiveNextByLookupIDResponse, error) {
+func (o *xxx_DefaultQueue3Client) ReceiveNextByLookupID(ctx context.Context, in *ReceiveNextByLookupIDRequest, opts ...dcerpc.CallOption) (*ReceiveNextByLookupIDResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -607,7 +607,7 @@ func (o *xxx_DefaultImsmqQueue3Client) ReceiveNextByLookupID(ctx context.Context
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) ReceivePreviousByLookupID(ctx context.Context, in *ReceivePreviousByLookupIDRequest, opts ...dcerpc.CallOption) (*ReceivePreviousByLookupIDResponse, error) {
+func (o *xxx_DefaultQueue3Client) ReceivePreviousByLookupID(ctx context.Context, in *ReceivePreviousByLookupIDRequest, opts ...dcerpc.CallOption) (*ReceivePreviousByLookupIDResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -627,7 +627,7 @@ func (o *xxx_DefaultImsmqQueue3Client) ReceivePreviousByLookupID(ctx context.Con
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) ReceiveFirstByLookupID(ctx context.Context, in *ReceiveFirstByLookupIDRequest, opts ...dcerpc.CallOption) (*ReceiveFirstByLookupIDResponse, error) {
+func (o *xxx_DefaultQueue3Client) ReceiveFirstByLookupID(ctx context.Context, in *ReceiveFirstByLookupIDRequest, opts ...dcerpc.CallOption) (*ReceiveFirstByLookupIDResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -647,7 +647,7 @@ func (o *xxx_DefaultImsmqQueue3Client) ReceiveFirstByLookupID(ctx context.Contex
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) ReceiveLastByLookupID(ctx context.Context, in *ReceiveLastByLookupIDRequest, opts ...dcerpc.CallOption) (*ReceiveLastByLookupIDResponse, error) {
+func (o *xxx_DefaultQueue3Client) ReceiveLastByLookupID(ctx context.Context, in *ReceiveLastByLookupIDRequest, opts ...dcerpc.CallOption) (*ReceiveLastByLookupIDResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -667,7 +667,7 @@ func (o *xxx_DefaultImsmqQueue3Client) ReceiveLastByLookupID(ctx context.Context
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) PeekByLookupID(ctx context.Context, in *PeekByLookupIDRequest, opts ...dcerpc.CallOption) (*PeekByLookupIDResponse, error) {
+func (o *xxx_DefaultQueue3Client) PeekByLookupID(ctx context.Context, in *PeekByLookupIDRequest, opts ...dcerpc.CallOption) (*PeekByLookupIDResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -687,7 +687,7 @@ func (o *xxx_DefaultImsmqQueue3Client) PeekByLookupID(ctx context.Context, in *P
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) PeekNextByLookupID(ctx context.Context, in *PeekNextByLookupIDRequest, opts ...dcerpc.CallOption) (*PeekNextByLookupIDResponse, error) {
+func (o *xxx_DefaultQueue3Client) PeekNextByLookupID(ctx context.Context, in *PeekNextByLookupIDRequest, opts ...dcerpc.CallOption) (*PeekNextByLookupIDResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -707,7 +707,7 @@ func (o *xxx_DefaultImsmqQueue3Client) PeekNextByLookupID(ctx context.Context, i
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) PeekPreviousByLookupID(ctx context.Context, in *PeekPreviousByLookupIDRequest, opts ...dcerpc.CallOption) (*PeekPreviousByLookupIDResponse, error) {
+func (o *xxx_DefaultQueue3Client) PeekPreviousByLookupID(ctx context.Context, in *PeekPreviousByLookupIDRequest, opts ...dcerpc.CallOption) (*PeekPreviousByLookupIDResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -727,7 +727,7 @@ func (o *xxx_DefaultImsmqQueue3Client) PeekPreviousByLookupID(ctx context.Contex
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) PeekFirstByLookupID(ctx context.Context, in *PeekFirstByLookupIDRequest, opts ...dcerpc.CallOption) (*PeekFirstByLookupIDResponse, error) {
+func (o *xxx_DefaultQueue3Client) PeekFirstByLookupID(ctx context.Context, in *PeekFirstByLookupIDRequest, opts ...dcerpc.CallOption) (*PeekFirstByLookupIDResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -747,7 +747,7 @@ func (o *xxx_DefaultImsmqQueue3Client) PeekFirstByLookupID(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) PeekLastByLookupID(ctx context.Context, in *PeekLastByLookupIDRequest, opts ...dcerpc.CallOption) (*PeekLastByLookupIDResponse, error) {
+func (o *xxx_DefaultQueue3Client) PeekLastByLookupID(ctx context.Context, in *PeekLastByLookupIDRequest, opts ...dcerpc.CallOption) (*PeekLastByLookupIDResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -767,7 +767,7 @@ func (o *xxx_DefaultImsmqQueue3Client) PeekLastByLookupID(ctx context.Context, i
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) Purge(ctx context.Context, in *PurgeRequest, opts ...dcerpc.CallOption) (*PurgeResponse, error) {
+func (o *xxx_DefaultQueue3Client) Purge(ctx context.Context, in *PurgeRequest, opts ...dcerpc.CallOption) (*PurgeResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -787,7 +787,7 @@ func (o *xxx_DefaultImsmqQueue3Client) Purge(ctx context.Context, in *PurgeReque
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) GetIsOpen2(ctx context.Context, in *GetIsOpen2Request, opts ...dcerpc.CallOption) (*GetIsOpen2Response, error) {
+func (o *xxx_DefaultQueue3Client) GetIsOpen2(ctx context.Context, in *GetIsOpen2Request, opts ...dcerpc.CallOption) (*GetIsOpen2Response, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -807,29 +807,29 @@ func (o *xxx_DefaultImsmqQueue3Client) GetIsOpen2(ctx context.Context, in *GetIs
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultQueue3Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) Conn() dcerpc.Conn {
+func (o *xxx_DefaultQueue3Client) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultImsmqQueue3Client) IPID(ctx context.Context, ipid *dcom.IPID) ImsmqQueue3Client {
+func (o *xxx_DefaultQueue3Client) IPID(ctx context.Context, ipid *dcom.IPID) Queue3Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultImsmqQueue3Client{
+	return &xxx_DefaultQueue3Client{
 		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
 		cc:             o.cc,
 		ipid:           ipid,
 	}
 }
 
-func NewImsmqQueue3Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ImsmqQueue3Client, error) {
+func NewQueue3Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Queue3Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ImsmqQueue3SyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(Queue3SyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -842,7 +842,7 @@ func NewImsmqQueue3Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Op
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultImsmqQueue3Client{
+	return &xxx_DefaultQueue3Client{
 		DispatchClient: base,
 		cc:             cc,
 		ipid:           ipid,
@@ -1265,10 +1265,10 @@ func (o *GetShareModeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 
 // xxx_GetQueueInfoOperation structure represents the QueueInfo operation
 type xxx_GetQueueInfoOperation struct {
-	This    *dcom.ORPCThis        `idl:"name:This" json:"this"`
-	That    *dcom.ORPCThat        `idl:"name:That" json:"that"`
-	Ppqinfo *mqac.ImsmqQueueInfo3 `idl:"name:ppqinfo" json:"ppqinfo"`
-	Return  int32                 `idl:"name:Return" json:"return"`
+	This      *dcom.ORPCThis   `idl:"name:This" json:"this"`
+	That      *dcom.ORPCThat   `idl:"name:That" json:"that"`
+	QueueInfo *mqac.QueueInfo3 `idl:"name:ppqinfo" json:"queue_info"`
+	Return    int32            `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetQueueInfoOperation) OpNum() int { return 9 }
@@ -1352,20 +1352,20 @@ func (o *xxx_GetQueueInfoOperation) MarshalNDRResponse(ctx context.Context, w nd
 	}
 	// ppqinfo {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQQueueInfo3}(interface))
 	{
-		if o.Ppqinfo != nil {
+		if o.QueueInfo != nil {
 			_ptr_ppqinfo := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppqinfo != nil {
-					if err := o.Ppqinfo.MarshalNDR(ctx, w); err != nil {
+				if o.QueueInfo != nil {
+					if err := o.QueueInfo.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqQueueInfo3{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.QueueInfo3{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppqinfo, _ptr_ppqinfo); err != nil {
+			if err := w.WritePointer(&o.QueueInfo, _ptr_ppqinfo); err != nil {
 				return err
 			}
 		} else {
@@ -1402,16 +1402,16 @@ func (o *xxx_GetQueueInfoOperation) UnmarshalNDRResponse(ctx context.Context, w 
 	// ppqinfo {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQQueueInfo3}(interface))
 	{
 		_ptr_ppqinfo := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppqinfo == nil {
-				o.Ppqinfo = &mqac.ImsmqQueueInfo3{}
+			if o.QueueInfo == nil {
+				o.QueueInfo = &mqac.QueueInfo3{}
 			}
-			if err := o.Ppqinfo.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.QueueInfo.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppqinfo := func(ptr interface{}) { o.Ppqinfo = *ptr.(**mqac.ImsmqQueueInfo3) }
-		if err := w.ReadPointer(&o.Ppqinfo, _s_ppqinfo, _ptr_ppqinfo); err != nil {
+		_s_ppqinfo := func(ptr interface{}) { o.QueueInfo = *ptr.(**mqac.QueueInfo3) }
+		if err := w.ReadPointer(&o.QueueInfo, _s_ppqinfo, _ptr_ppqinfo); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1465,8 +1465,8 @@ func (o *GetQueueInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 // GetQueueInfoResponse structure represents the QueueInfo operation response
 type GetQueueInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat        `idl:"name:That" json:"that"`
-	Ppqinfo *mqac.ImsmqQueueInfo3 `idl:"name:ppqinfo" json:"ppqinfo"`
+	That      *dcom.ORPCThat   `idl:"name:That" json:"that"`
+	QueueInfo *mqac.QueueInfo3 `idl:"name:ppqinfo" json:"queue_info"`
 	// Return: The QueueInfo return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1479,7 +1479,7 @@ func (o *GetQueueInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetQueueInf
 		return op
 	}
 	op.That = o.That
-	op.Ppqinfo = o.Ppqinfo
+	op.QueueInfo = o.QueueInfo
 	op.Return = o.Return
 	return op
 }
@@ -1489,7 +1489,7 @@ func (o *GetQueueInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetQueueI
 		return
 	}
 	o.That = op.That
-	o.Ppqinfo = op.Ppqinfo
+	o.QueueInfo = op.QueueInfo
 	o.Return = op.Return
 }
 func (o *GetQueueInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -1713,10 +1713,10 @@ func (o *GetHandleResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 
 // xxx_GetIsOpenOperation structure represents the IsOpen operation
 type xxx_GetIsOpenOperation struct {
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PisOpen int16          `idl:"name:pisOpen" json:"pis_open"`
-	Return  int32          `idl:"name:Return" json:"return"`
+	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
+	IsOpen int16          `idl:"name:pisOpen" json:"is_open"`
+	Return int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetIsOpenOperation) OpNum() int { return 11 }
@@ -1800,7 +1800,7 @@ func (o *xxx_GetIsOpenOperation) MarshalNDRResponse(ctx context.Context, w ndr.W
 	}
 	// pisOpen {out, retval} (1:{pointer=ref}*(1)(int16))
 	{
-		if err := w.WriteData(o.PisOpen); err != nil {
+		if err := w.WriteData(o.IsOpen); err != nil {
 			return err
 		}
 	}
@@ -1828,7 +1828,7 @@ func (o *xxx_GetIsOpenOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 	}
 	// pisOpen {out, retval} (1:{pointer=ref}*(1)(int16))
 	{
-		if err := w.ReadData(&o.PisOpen); err != nil {
+		if err := w.ReadData(&o.IsOpen); err != nil {
 			return err
 		}
 	}
@@ -1879,8 +1879,8 @@ func (o *GetIsOpenRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 // GetIsOpenResponse structure represents the IsOpen operation response
 type GetIsOpenResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PisOpen int16          `idl:"name:pisOpen" json:"pis_open"`
+	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
+	IsOpen int16          `idl:"name:pisOpen" json:"is_open"`
 	// Return: The IsOpen return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1893,7 +1893,7 @@ func (o *GetIsOpenResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIsOpenOpera
 		return op
 	}
 	op.That = o.That
-	op.PisOpen = o.PisOpen
+	op.IsOpen = o.IsOpen
 	op.Return = o.Return
 	return op
 }
@@ -1903,7 +1903,7 @@ func (o *GetIsOpenResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIsOpenOpe
 		return
 	}
 	o.That = op.That
-	o.PisOpen = op.PisOpen
+	o.IsOpen = op.IsOpen
 	o.Return = op.Return
 }
 func (o *GetIsOpenResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -2111,14 +2111,14 @@ func (o *CloseResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_ReceiveV1Operation structure represents the Receive_v1 operation
 type xxx_ReceiveV1Operation struct {
-	This                 *dcom.ORPCThis     `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat     `idl:"name:That" json:"that"`
-	Transaction          *oaut.Variant      `idl:"name:Transaction" json:"transaction"`
-	WantDestinationQueue *oaut.Variant      `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant      `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant      `idl:"name:ReceiveTimeout" json:"receive_timeout"`
-	Ppmsg                *mqac.ImsmqMessage `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32              `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Transaction          *oaut.Variant  `idl:"name:Transaction" json:"transaction"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	Message              *mqac.Message  `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_ReceiveV1Operation) OpNum() int { return 13 }
@@ -2386,20 +2386,20 @@ func (o *xxx_ReceiveV1Operation) MarshalNDRResponse(ctx context.Context, w ndr.W
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -2436,16 +2436,16 @@ func (o *xxx_ReceiveV1Operation) UnmarshalNDRResponse(ctx context.Context, w ndr
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage{}
+			if o.Message == nil {
+				o.Message = &mqac.Message{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -2511,8 +2511,8 @@ func (o *ReceiveV1Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 // ReceiveV1Response structure represents the Receive_v1 operation response
 type ReceiveV1Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat     `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message  `idl:"name:ppmsg" json:"message"`
 	// Return: The Receive_v1 return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2525,7 +2525,7 @@ func (o *ReceiveV1Response) xxx_ToOp(ctx context.Context, op *xxx_ReceiveV1Opera
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -2535,7 +2535,7 @@ func (o *ReceiveV1Response) xxx_FromOp(ctx context.Context, op *xxx_ReceiveV1Ope
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *ReceiveV1Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -2552,13 +2552,13 @@ func (o *ReceiveV1Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 
 // xxx_PeekV1Operation structure represents the Peek_v1 operation
 type xxx_PeekV1Operation struct {
-	This                 *dcom.ORPCThis     `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat     `idl:"name:That" json:"that"`
-	WantDestinationQueue *oaut.Variant      `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant      `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant      `idl:"name:ReceiveTimeout" json:"receive_timeout"`
-	Ppmsg                *mqac.ImsmqMessage `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32              `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	Message              *mqac.Message  `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_PeekV1Operation) OpNum() int { return 14 }
@@ -2780,20 +2780,20 @@ func (o *xxx_PeekV1Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writ
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -2830,16 +2830,16 @@ func (o *xxx_PeekV1Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage{}
+			if o.Message == nil {
+				o.Message = &mqac.Message{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -2902,8 +2902,8 @@ func (o *PeekV1Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // PeekV1Response structure represents the Peek_v1 operation response
 type PeekV1Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat     `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message  `idl:"name:ppmsg" json:"message"`
 	// Return: The Peek_v1 return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2916,7 +2916,7 @@ func (o *PeekV1Response) xxx_ToOp(ctx context.Context, op *xxx_PeekV1Operation) 
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -2926,7 +2926,7 @@ func (o *PeekV1Response) xxx_FromOp(ctx context.Context, op *xxx_PeekV1Operation
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *PeekV1Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -2943,12 +2943,12 @@ func (o *PeekV1Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_EnableNotificationOperation structure represents the EnableNotification operation
 type xxx_EnableNotificationOperation struct {
-	This           *dcom.ORPCThis    `idl:"name:This" json:"this"`
-	That           *dcom.ORPCThat    `idl:"name:That" json:"that"`
-	Event          *mqac.ImsmqEvent3 `idl:"name:Event" json:"event"`
-	Cursor         *oaut.Variant     `idl:"name:Cursor" json:"cursor"`
-	ReceiveTimeout *oaut.Variant     `idl:"name:ReceiveTimeout" json:"receive_timeout"`
-	Return         int32             `idl:"name:Return" json:"return"`
+	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Event          *mqac.Event3   `idl:"name:Event" json:"event"`
+	Cursor         *oaut.Variant  `idl:"name:Cursor" json:"cursor"`
+	ReceiveTimeout *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	Return         int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_EnableNotificationOperation) OpNum() int { return 15 }
@@ -2994,7 +2994,7 @@ func (o *xxx_EnableNotificationOperation) MarshalNDRRequest(ctx context.Context,
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqEvent3{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Event3{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
@@ -3086,14 +3086,14 @@ func (o *xxx_EnableNotificationOperation) UnmarshalNDRRequest(ctx context.Contex
 	{
 		_ptr_Event := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if o.Event == nil {
-				o.Event = &mqac.ImsmqEvent3{}
+				o.Event = &mqac.Event3{}
 			}
 			if err := o.Event.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_Event := func(ptr interface{}) { o.Event = *ptr.(**mqac.ImsmqEvent3) }
+		_s_Event := func(ptr interface{}) { o.Event = *ptr.(**mqac.Event3) }
 		if err := w.ReadPointer(&o.Event, _s_Event, _ptr_Event); err != nil {
 			return err
 		}
@@ -3204,10 +3204,10 @@ func (o *xxx_EnableNotificationOperation) UnmarshalNDRResponse(ctx context.Conte
 // EnableNotificationRequest structure represents the EnableNotification operation request
 type EnableNotificationRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis    `idl:"name:This" json:"this"`
-	Event          *mqac.ImsmqEvent3 `idl:"name:Event" json:"event"`
-	Cursor         *oaut.Variant     `idl:"name:Cursor" json:"cursor"`
-	ReceiveTimeout *oaut.Variant     `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
+	Event          *mqac.Event3   `idl:"name:Event" json:"event"`
+	Cursor         *oaut.Variant  `idl:"name:Cursor" json:"cursor"`
+	ReceiveTimeout *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
 }
 
 func (o *EnableNotificationRequest) xxx_ToOp(ctx context.Context, op *xxx_EnableNotificationOperation) *xxx_EnableNotificationOperation {
@@ -3477,14 +3477,14 @@ func (o *ResetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_ReceiveCurrentV1Operation structure represents the ReceiveCurrent_v1 operation
 type xxx_ReceiveCurrentV1Operation struct {
-	This                 *dcom.ORPCThis     `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat     `idl:"name:That" json:"that"`
-	Transaction          *oaut.Variant      `idl:"name:Transaction" json:"transaction"`
-	WantDestinationQueue *oaut.Variant      `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant      `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant      `idl:"name:ReceiveTimeout" json:"receive_timeout"`
-	Ppmsg                *mqac.ImsmqMessage `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32              `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Transaction          *oaut.Variant  `idl:"name:Transaction" json:"transaction"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	Message              *mqac.Message  `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_ReceiveCurrentV1Operation) OpNum() int { return 17 }
@@ -3752,20 +3752,20 @@ func (o *xxx_ReceiveCurrentV1Operation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -3802,16 +3802,16 @@ func (o *xxx_ReceiveCurrentV1Operation) UnmarshalNDRResponse(ctx context.Context
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage{}
+			if o.Message == nil {
+				o.Message = &mqac.Message{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -3877,8 +3877,8 @@ func (o *ReceiveCurrentV1Request) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // ReceiveCurrentV1Response structure represents the ReceiveCurrent_v1 operation response
 type ReceiveCurrentV1Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat     `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message  `idl:"name:ppmsg" json:"message"`
 	// Return: The ReceiveCurrent_v1 return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3891,7 +3891,7 @@ func (o *ReceiveCurrentV1Response) xxx_ToOp(ctx context.Context, op *xxx_Receive
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -3901,7 +3901,7 @@ func (o *ReceiveCurrentV1Response) xxx_FromOp(ctx context.Context, op *xxx_Recei
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *ReceiveCurrentV1Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -3918,13 +3918,13 @@ func (o *ReceiveCurrentV1Response) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // xxx_PeekNextV1Operation structure represents the PeekNext_v1 operation
 type xxx_PeekNextV1Operation struct {
-	This                 *dcom.ORPCThis     `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat     `idl:"name:That" json:"that"`
-	WantDestinationQueue *oaut.Variant      `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant      `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant      `idl:"name:ReceiveTimeout" json:"receive_timeout"`
-	Ppmsg                *mqac.ImsmqMessage `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32              `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	Message              *mqac.Message  `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_PeekNextV1Operation) OpNum() int { return 18 }
@@ -4146,20 +4146,20 @@ func (o *xxx_PeekNextV1Operation) MarshalNDRResponse(ctx context.Context, w ndr.
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -4196,16 +4196,16 @@ func (o *xxx_PeekNextV1Operation) UnmarshalNDRResponse(ctx context.Context, w nd
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage{}
+			if o.Message == nil {
+				o.Message = &mqac.Message{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4268,8 +4268,8 @@ func (o *PeekNextV1Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 // PeekNextV1Response structure represents the PeekNext_v1 operation response
 type PeekNextV1Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat     `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message  `idl:"name:ppmsg" json:"message"`
 	// Return: The PeekNext_v1 return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -4282,7 +4282,7 @@ func (o *PeekNextV1Response) xxx_ToOp(ctx context.Context, op *xxx_PeekNextV1Ope
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -4292,7 +4292,7 @@ func (o *PeekNextV1Response) xxx_FromOp(ctx context.Context, op *xxx_PeekNextV1O
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *PeekNextV1Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -4309,13 +4309,13 @@ func (o *PeekNextV1Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 
 // xxx_PeekCurrentV1Operation structure represents the PeekCurrent_v1 operation
 type xxx_PeekCurrentV1Operation struct {
-	This                 *dcom.ORPCThis     `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat     `idl:"name:That" json:"that"`
-	WantDestinationQueue *oaut.Variant      `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant      `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant      `idl:"name:ReceiveTimeout" json:"receive_timeout"`
-	Ppmsg                *mqac.ImsmqMessage `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32              `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	Message              *mqac.Message  `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_PeekCurrentV1Operation) OpNum() int { return 19 }
@@ -4537,20 +4537,20 @@ func (o *xxx_PeekCurrentV1Operation) MarshalNDRResponse(ctx context.Context, w n
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -4587,16 +4587,16 @@ func (o *xxx_PeekCurrentV1Operation) UnmarshalNDRResponse(ctx context.Context, w
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage{}
+			if o.Message == nil {
+				o.Message = &mqac.Message{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4659,8 +4659,8 @@ func (o *PeekCurrentV1Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // PeekCurrentV1Response structure represents the PeekCurrent_v1 operation response
 type PeekCurrentV1Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat     `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message  `idl:"name:ppmsg" json:"message"`
 	// Return: The PeekCurrent_v1 return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -4673,7 +4673,7 @@ func (o *PeekCurrentV1Response) xxx_ToOp(ctx context.Context, op *xxx_PeekCurren
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -4683,7 +4683,7 @@ func (o *PeekCurrentV1Response) xxx_FromOp(ctx context.Context, op *xxx_PeekCurr
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *PeekCurrentV1Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -4700,15 +4700,15 @@ func (o *PeekCurrentV1Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 
 // xxx_ReceiveOperation structure represents the Receive operation
 type xxx_ReceiveOperation struct {
-	This                 *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Transaction          *oaut.Variant       `idl:"name:Transaction" json:"transaction"`
-	WantDestinationQueue *oaut.Variant       `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant       `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant       `idl:"name:ReceiveTimeout" json:"receive_timeout"`
-	WantConnectorType    *oaut.Variant       `idl:"name:WantConnectorType" json:"want_connector_type"`
-	Ppmsg                *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32               `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Transaction          *oaut.Variant  `idl:"name:Transaction" json:"transaction"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	Message              *mqac.Message3 `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_ReceiveOperation) OpNum() int { return 20 }
@@ -5022,20 +5022,20 @@ func (o *xxx_ReceiveOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage3{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message3{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -5072,16 +5072,16 @@ func (o *xxx_ReceiveOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage3{}
+			if o.Message == nil {
+				o.Message = &mqac.Message3{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage3) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message3) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5150,8 +5150,8 @@ func (o *ReceiveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // ReceiveResponse structure represents the Receive operation response
 type ReceiveResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message3 `idl:"name:ppmsg" json:"message"`
 	// Return: The Receive return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -5164,7 +5164,7 @@ func (o *ReceiveResponse) xxx_ToOp(ctx context.Context, op *xxx_ReceiveOperation
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -5174,7 +5174,7 @@ func (o *ReceiveResponse) xxx_FromOp(ctx context.Context, op *xxx_ReceiveOperati
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *ReceiveResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -5191,14 +5191,14 @@ func (o *ReceiveResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 
 // xxx_PeekOperation structure represents the Peek operation
 type xxx_PeekOperation struct {
-	This                 *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	WantDestinationQueue *oaut.Variant       `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant       `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant       `idl:"name:ReceiveTimeout" json:"receive_timeout"`
-	WantConnectorType    *oaut.Variant       `idl:"name:WantConnectorType" json:"want_connector_type"`
-	Ppmsg                *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32               `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	Message              *mqac.Message3 `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_PeekOperation) OpNum() int { return 21 }
@@ -5466,20 +5466,20 @@ func (o *xxx_PeekOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage3{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message3{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -5516,16 +5516,16 @@ func (o *xxx_PeekOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage3{}
+			if o.Message == nil {
+				o.Message = &mqac.Message3{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage3) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message3) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5591,8 +5591,8 @@ func (o *PeekRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // PeekResponse structure represents the Peek operation response
 type PeekResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message3 `idl:"name:ppmsg" json:"message"`
 	// Return: The Peek return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -5605,7 +5605,7 @@ func (o *PeekResponse) xxx_ToOp(ctx context.Context, op *xxx_PeekOperation) *xxx
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -5615,7 +5615,7 @@ func (o *PeekResponse) xxx_FromOp(ctx context.Context, op *xxx_PeekOperation) {
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *PeekResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -5632,15 +5632,15 @@ func (o *PeekResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_ReceiveCurrentOperation structure represents the ReceiveCurrent operation
 type xxx_ReceiveCurrentOperation struct {
-	This                 *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Transaction          *oaut.Variant       `idl:"name:Transaction" json:"transaction"`
-	WantDestinationQueue *oaut.Variant       `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant       `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant       `idl:"name:ReceiveTimeout" json:"receive_timeout"`
-	WantConnectorType    *oaut.Variant       `idl:"name:WantConnectorType" json:"want_connector_type"`
-	Ppmsg                *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32               `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Transaction          *oaut.Variant  `idl:"name:Transaction" json:"transaction"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	Message              *mqac.Message3 `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_ReceiveCurrentOperation) OpNum() int { return 22 }
@@ -5954,20 +5954,20 @@ func (o *xxx_ReceiveCurrentOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage3{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message3{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -6004,16 +6004,16 @@ func (o *xxx_ReceiveCurrentOperation) UnmarshalNDRResponse(ctx context.Context, 
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage3{}
+			if o.Message == nil {
+				o.Message = &mqac.Message3{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage3) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message3) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6082,8 +6082,8 @@ func (o *ReceiveCurrentRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // ReceiveCurrentResponse structure represents the ReceiveCurrent operation response
 type ReceiveCurrentResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message3 `idl:"name:ppmsg" json:"message"`
 	// Return: The ReceiveCurrent return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -6096,7 +6096,7 @@ func (o *ReceiveCurrentResponse) xxx_ToOp(ctx context.Context, op *xxx_ReceiveCu
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -6106,7 +6106,7 @@ func (o *ReceiveCurrentResponse) xxx_FromOp(ctx context.Context, op *xxx_Receive
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *ReceiveCurrentResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -6123,14 +6123,14 @@ func (o *ReceiveCurrentResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // xxx_PeekNextOperation structure represents the PeekNext operation
 type xxx_PeekNextOperation struct {
-	This                 *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	WantDestinationQueue *oaut.Variant       `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant       `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant       `idl:"name:ReceiveTimeout" json:"receive_timeout"`
-	WantConnectorType    *oaut.Variant       `idl:"name:WantConnectorType" json:"want_connector_type"`
-	Ppmsg                *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32               `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	Message              *mqac.Message3 `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_PeekNextOperation) OpNum() int { return 23 }
@@ -6398,20 +6398,20 @@ func (o *xxx_PeekNextOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wr
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage3{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message3{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -6448,16 +6448,16 @@ func (o *xxx_PeekNextOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage3{}
+			if o.Message == nil {
+				o.Message = &mqac.Message3{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage3) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message3) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6523,8 +6523,8 @@ func (o *PeekNextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 // PeekNextResponse structure represents the PeekNext operation response
 type PeekNextResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message3 `idl:"name:ppmsg" json:"message"`
 	// Return: The PeekNext return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -6537,7 +6537,7 @@ func (o *PeekNextResponse) xxx_ToOp(ctx context.Context, op *xxx_PeekNextOperati
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -6547,7 +6547,7 @@ func (o *PeekNextResponse) xxx_FromOp(ctx context.Context, op *xxx_PeekNextOpera
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *PeekNextResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -6564,14 +6564,14 @@ func (o *PeekNextResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 
 // xxx_PeekCurrentOperation structure represents the PeekCurrent operation
 type xxx_PeekCurrentOperation struct {
-	This                 *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	WantDestinationQueue *oaut.Variant       `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant       `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant       `idl:"name:ReceiveTimeout" json:"receive_timeout"`
-	WantConnectorType    *oaut.Variant       `idl:"name:WantConnectorType" json:"want_connector_type"`
-	Ppmsg                *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32               `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	Message              *mqac.Message3 `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_PeekCurrentOperation) OpNum() int { return 24 }
@@ -6839,20 +6839,20 @@ func (o *xxx_PeekCurrentOperation) MarshalNDRResponse(ctx context.Context, w ndr
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage3{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message3{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -6889,16 +6889,16 @@ func (o *xxx_PeekCurrentOperation) UnmarshalNDRResponse(ctx context.Context, w n
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage3{}
+			if o.Message == nil {
+				o.Message = &mqac.Message3{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage3) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message3) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6964,8 +6964,8 @@ func (o *PeekCurrentRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // PeekCurrentResponse structure represents the PeekCurrent operation response
 type PeekCurrentResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message3 `idl:"name:ppmsg" json:"message"`
 	// Return: The PeekCurrent return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -6978,7 +6978,7 @@ func (o *PeekCurrentResponse) xxx_ToOp(ctx context.Context, op *xxx_PeekCurrentO
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -6988,7 +6988,7 @@ func (o *PeekCurrentResponse) xxx_FromOp(ctx context.Context, op *xxx_PeekCurren
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *PeekCurrentResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -7005,10 +7005,10 @@ func (o *PeekCurrentResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 
 // xxx_GetPropertiesOperation structure represents the Properties operation
 type xxx_GetPropertiesOperation struct {
-	This            *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PpcolProperties *oaut.Dispatch `idl:"name:ppcolProperties" json:"ppcol_properties"`
-	Return          int32          `idl:"name:Return" json:"return"`
+	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Properties *oaut.Dispatch `idl:"name:ppcolProperties" json:"properties"`
+	Return     int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetPropertiesOperation) OpNum() int { return 25 }
@@ -7092,10 +7092,10 @@ func (o *xxx_GetPropertiesOperation) MarshalNDRResponse(ctx context.Context, w n
 	}
 	// ppcolProperties {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IDispatch}(interface))
 	{
-		if o.PpcolProperties != nil {
+		if o.Properties != nil {
 			_ptr_ppcolProperties := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PpcolProperties != nil {
-					if err := o.PpcolProperties.MarshalNDR(ctx, w); err != nil {
+				if o.Properties != nil {
+					if err := o.Properties.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -7105,7 +7105,7 @@ func (o *xxx_GetPropertiesOperation) MarshalNDRResponse(ctx context.Context, w n
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PpcolProperties, _ptr_ppcolProperties); err != nil {
+			if err := w.WritePointer(&o.Properties, _ptr_ppcolProperties); err != nil {
 				return err
 			}
 		} else {
@@ -7142,16 +7142,16 @@ func (o *xxx_GetPropertiesOperation) UnmarshalNDRResponse(ctx context.Context, w
 	// ppcolProperties {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IDispatch}(interface))
 	{
 		_ptr_ppcolProperties := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PpcolProperties == nil {
-				o.PpcolProperties = &oaut.Dispatch{}
+			if o.Properties == nil {
+				o.Properties = &oaut.Dispatch{}
 			}
-			if err := o.PpcolProperties.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Properties.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppcolProperties := func(ptr interface{}) { o.PpcolProperties = *ptr.(**oaut.Dispatch) }
-		if err := w.ReadPointer(&o.PpcolProperties, _s_ppcolProperties, _ptr_ppcolProperties); err != nil {
+		_s_ppcolProperties := func(ptr interface{}) { o.Properties = *ptr.(**oaut.Dispatch) }
+		if err := w.ReadPointer(&o.Properties, _s_ppcolProperties, _ptr_ppcolProperties); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7205,8 +7205,8 @@ func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetPropertiesResponse structure represents the Properties operation response
 type GetPropertiesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PpcolProperties *oaut.Dispatch `idl:"name:ppcolProperties" json:"ppcol_properties"`
+	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Properties *oaut.Dispatch `idl:"name:ppcolProperties" json:"properties"`
 	// Return: The Properties return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -7219,7 +7219,7 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 		return op
 	}
 	op.That = o.That
-	op.PpcolProperties = o.PpcolProperties
+	op.Properties = o.Properties
 	op.Return = o.Return
 	return op
 }
@@ -7229,7 +7229,7 @@ func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrope
 		return
 	}
 	o.That = op.That
-	o.PpcolProperties = op.PpcolProperties
+	o.Properties = op.Properties
 	o.Return = op.Return
 }
 func (o *GetPropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -7246,10 +7246,10 @@ func (o *GetPropertiesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 
 // xxx_GetHandle2Operation structure represents the Handle2 operation
 type xxx_GetHandle2Operation struct {
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PvarHandle *oaut.Variant  `idl:"name:pvarHandle" json:"pvar_handle"`
-	Return     int32          `idl:"name:Return" json:"return"`
+	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Handle *oaut.Variant  `idl:"name:pvarHandle" json:"handle"`
+	Return int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetHandle2Operation) OpNum() int { return 26 }
@@ -7333,10 +7333,10 @@ func (o *xxx_GetHandle2Operation) MarshalNDRResponse(ctx context.Context, w ndr.
 	}
 	// pvarHandle {out, retval} (1:{pointer=ref}*(2))(2:{alias=VARIANT}*(1))(3:{alias=_VARIANT}(struct))
 	{
-		if o.PvarHandle != nil {
+		if o.Handle != nil {
 			_ptr_pvarHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PvarHandle != nil {
-					if err := o.PvarHandle.MarshalNDR(ctx, w); err != nil {
+				if o.Handle != nil {
+					if err := o.Handle.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -7346,7 +7346,7 @@ func (o *xxx_GetHandle2Operation) MarshalNDRResponse(ctx context.Context, w ndr.
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PvarHandle, _ptr_pvarHandle); err != nil {
+			if err := w.WritePointer(&o.Handle, _ptr_pvarHandle); err != nil {
 				return err
 			}
 		} else {
@@ -7383,16 +7383,16 @@ func (o *xxx_GetHandle2Operation) UnmarshalNDRResponse(ctx context.Context, w nd
 	// pvarHandle {out, retval} (1:{pointer=ref}*(2))(2:{alias=VARIANT,pointer=ref}*(1))(3:{alias=_VARIANT}(struct))
 	{
 		_ptr_pvarHandle := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PvarHandle == nil {
-				o.PvarHandle = &oaut.Variant{}
+			if o.Handle == nil {
+				o.Handle = &oaut.Variant{}
 			}
-			if err := o.PvarHandle.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Handle.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pvarHandle := func(ptr interface{}) { o.PvarHandle = *ptr.(**oaut.Variant) }
-		if err := w.ReadPointer(&o.PvarHandle, _s_pvarHandle, _ptr_pvarHandle); err != nil {
+		_s_pvarHandle := func(ptr interface{}) { o.Handle = *ptr.(**oaut.Variant) }
+		if err := w.ReadPointer(&o.Handle, _s_pvarHandle, _ptr_pvarHandle); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7446,8 +7446,8 @@ func (o *GetHandle2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 // GetHandle2Response structure represents the Handle2 operation response
 type GetHandle2Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PvarHandle *oaut.Variant  `idl:"name:pvarHandle" json:"pvar_handle"`
+	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Handle *oaut.Variant  `idl:"name:pvarHandle" json:"handle"`
 	// Return: The Handle2 return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -7460,7 +7460,7 @@ func (o *GetHandle2Response) xxx_ToOp(ctx context.Context, op *xxx_GetHandle2Ope
 		return op
 	}
 	op.That = o.That
-	op.PvarHandle = o.PvarHandle
+	op.Handle = o.Handle
 	op.Return = o.Return
 	return op
 }
@@ -7470,7 +7470,7 @@ func (o *GetHandle2Response) xxx_FromOp(ctx context.Context, op *xxx_GetHandle2O
 		return
 	}
 	o.That = op.That
-	o.PvarHandle = op.PvarHandle
+	o.Handle = op.Handle
 	o.Return = op.Return
 }
 func (o *GetHandle2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -7487,15 +7487,15 @@ func (o *GetHandle2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 
 // xxx_ReceiveByLookupIDOperation structure represents the ReceiveByLookupId operation
 type xxx_ReceiveByLookupIDOperation struct {
-	This                 *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	LookupID             *oaut.Variant       `idl:"name:LookupId" json:"lookup_id"`
-	Transaction          *oaut.Variant       `idl:"name:Transaction" json:"transaction"`
-	WantDestinationQueue *oaut.Variant       `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant       `idl:"name:WantBody" json:"want_body"`
-	WantConnectorType    *oaut.Variant       `idl:"name:WantConnectorType" json:"want_connector_type"`
-	Ppmsg                *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32               `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	LookupID             *oaut.Variant  `idl:"name:LookupId" json:"lookup_id"`
+	Transaction          *oaut.Variant  `idl:"name:Transaction" json:"transaction"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	Message              *mqac.Message3 `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_ReceiveByLookupIDOperation) OpNum() int { return 27 }
@@ -7790,20 +7790,20 @@ func (o *xxx_ReceiveByLookupIDOperation) MarshalNDRResponse(ctx context.Context,
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage3{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message3{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -7840,16 +7840,16 @@ func (o *xxx_ReceiveByLookupIDOperation) UnmarshalNDRResponse(ctx context.Contex
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage3{}
+			if o.Message == nil {
+				o.Message = &mqac.Message3{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage3) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message3) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7918,8 +7918,8 @@ func (o *ReceiveByLookupIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // ReceiveByLookupIDResponse structure represents the ReceiveByLookupId operation response
 type ReceiveByLookupIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message3 `idl:"name:ppmsg" json:"message"`
 	// Return: The ReceiveByLookupId return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -7932,7 +7932,7 @@ func (o *ReceiveByLookupIDResponse) xxx_ToOp(ctx context.Context, op *xxx_Receiv
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -7942,7 +7942,7 @@ func (o *ReceiveByLookupIDResponse) xxx_FromOp(ctx context.Context, op *xxx_Rece
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *ReceiveByLookupIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -7959,15 +7959,15 @@ func (o *ReceiveByLookupIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Read
 
 // xxx_ReceiveNextByLookupIDOperation structure represents the ReceiveNextByLookupId operation
 type xxx_ReceiveNextByLookupIDOperation struct {
-	This                 *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	LookupID             *oaut.Variant       `idl:"name:LookupId" json:"lookup_id"`
-	Transaction          *oaut.Variant       `idl:"name:Transaction" json:"transaction"`
-	WantDestinationQueue *oaut.Variant       `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant       `idl:"name:WantBody" json:"want_body"`
-	WantConnectorType    *oaut.Variant       `idl:"name:WantConnectorType" json:"want_connector_type"`
-	Ppmsg                *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32               `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	LookupID             *oaut.Variant  `idl:"name:LookupId" json:"lookup_id"`
+	Transaction          *oaut.Variant  `idl:"name:Transaction" json:"transaction"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	Message              *mqac.Message3 `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_ReceiveNextByLookupIDOperation) OpNum() int { return 28 }
@@ -8264,20 +8264,20 @@ func (o *xxx_ReceiveNextByLookupIDOperation) MarshalNDRResponse(ctx context.Cont
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage3{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message3{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -8314,16 +8314,16 @@ func (o *xxx_ReceiveNextByLookupIDOperation) UnmarshalNDRResponse(ctx context.Co
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage3{}
+			if o.Message == nil {
+				o.Message = &mqac.Message3{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage3) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message3) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -8392,8 +8392,8 @@ func (o *ReceiveNextByLookupIDRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 // ReceiveNextByLookupIDResponse structure represents the ReceiveNextByLookupId operation response
 type ReceiveNextByLookupIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message3 `idl:"name:ppmsg" json:"message"`
 	// Return: The ReceiveNextByLookupId return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -8406,7 +8406,7 @@ func (o *ReceiveNextByLookupIDResponse) xxx_ToOp(ctx context.Context, op *xxx_Re
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -8416,7 +8416,7 @@ func (o *ReceiveNextByLookupIDResponse) xxx_FromOp(ctx context.Context, op *xxx_
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *ReceiveNextByLookupIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -8433,15 +8433,15 @@ func (o *ReceiveNextByLookupIDResponse) UnmarshalNDR(ctx context.Context, r ndr.
 
 // xxx_ReceivePreviousByLookupIDOperation structure represents the ReceivePreviousByLookupId operation
 type xxx_ReceivePreviousByLookupIDOperation struct {
-	This                 *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	LookupID             *oaut.Variant       `idl:"name:LookupId" json:"lookup_id"`
-	Transaction          *oaut.Variant       `idl:"name:Transaction" json:"transaction"`
-	WantDestinationQueue *oaut.Variant       `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant       `idl:"name:WantBody" json:"want_body"`
-	WantConnectorType    *oaut.Variant       `idl:"name:WantConnectorType" json:"want_connector_type"`
-	Ppmsg                *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32               `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	LookupID             *oaut.Variant  `idl:"name:LookupId" json:"lookup_id"`
+	Transaction          *oaut.Variant  `idl:"name:Transaction" json:"transaction"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	Message              *mqac.Message3 `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_ReceivePreviousByLookupIDOperation) OpNum() int { return 29 }
@@ -8738,20 +8738,20 @@ func (o *xxx_ReceivePreviousByLookupIDOperation) MarshalNDRResponse(ctx context.
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage3{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message3{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -8788,16 +8788,16 @@ func (o *xxx_ReceivePreviousByLookupIDOperation) UnmarshalNDRResponse(ctx contex
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage3{}
+			if o.Message == nil {
+				o.Message = &mqac.Message3{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage3) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message3) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -8866,8 +8866,8 @@ func (o *ReceivePreviousByLookupIDRequest) UnmarshalNDR(ctx context.Context, r n
 // ReceivePreviousByLookupIDResponse structure represents the ReceivePreviousByLookupId operation response
 type ReceivePreviousByLookupIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message3 `idl:"name:ppmsg" json:"message"`
 	// Return: The ReceivePreviousByLookupId return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -8880,7 +8880,7 @@ func (o *ReceivePreviousByLookupIDResponse) xxx_ToOp(ctx context.Context, op *xx
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -8890,7 +8890,7 @@ func (o *ReceivePreviousByLookupIDResponse) xxx_FromOp(ctx context.Context, op *
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *ReceivePreviousByLookupIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -8907,14 +8907,14 @@ func (o *ReceivePreviousByLookupIDResponse) UnmarshalNDR(ctx context.Context, r 
 
 // xxx_ReceiveFirstByLookupIDOperation structure represents the ReceiveFirstByLookupId operation
 type xxx_ReceiveFirstByLookupIDOperation struct {
-	This                 *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Transaction          *oaut.Variant       `idl:"name:Transaction" json:"transaction"`
-	WantDestinationQueue *oaut.Variant       `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant       `idl:"name:WantBody" json:"want_body"`
-	WantConnectorType    *oaut.Variant       `idl:"name:WantConnectorType" json:"want_connector_type"`
-	Ppmsg                *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32               `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Transaction          *oaut.Variant  `idl:"name:Transaction" json:"transaction"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	Message              *mqac.Message3 `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_ReceiveFirstByLookupIDOperation) OpNum() int { return 30 }
@@ -9184,20 +9184,20 @@ func (o *xxx_ReceiveFirstByLookupIDOperation) MarshalNDRResponse(ctx context.Con
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage3{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message3{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -9234,16 +9234,16 @@ func (o *xxx_ReceiveFirstByLookupIDOperation) UnmarshalNDRResponse(ctx context.C
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage3{}
+			if o.Message == nil {
+				o.Message = &mqac.Message3{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage3) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message3) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -9309,8 +9309,8 @@ func (o *ReceiveFirstByLookupIDRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // ReceiveFirstByLookupIDResponse structure represents the ReceiveFirstByLookupId operation response
 type ReceiveFirstByLookupIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message3 `idl:"name:ppmsg" json:"message"`
 	// Return: The ReceiveFirstByLookupId return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -9323,7 +9323,7 @@ func (o *ReceiveFirstByLookupIDResponse) xxx_ToOp(ctx context.Context, op *xxx_R
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -9333,7 +9333,7 @@ func (o *ReceiveFirstByLookupIDResponse) xxx_FromOp(ctx context.Context, op *xxx
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *ReceiveFirstByLookupIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -9350,14 +9350,14 @@ func (o *ReceiveFirstByLookupIDResponse) UnmarshalNDR(ctx context.Context, r ndr
 
 // xxx_ReceiveLastByLookupIDOperation structure represents the ReceiveLastByLookupId operation
 type xxx_ReceiveLastByLookupIDOperation struct {
-	This                 *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Transaction          *oaut.Variant       `idl:"name:Transaction" json:"transaction"`
-	WantDestinationQueue *oaut.Variant       `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant       `idl:"name:WantBody" json:"want_body"`
-	WantConnectorType    *oaut.Variant       `idl:"name:WantConnectorType" json:"want_connector_type"`
-	Ppmsg                *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32               `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Transaction          *oaut.Variant  `idl:"name:Transaction" json:"transaction"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	Message              *mqac.Message3 `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_ReceiveLastByLookupIDOperation) OpNum() int { return 31 }
@@ -9627,20 +9627,20 @@ func (o *xxx_ReceiveLastByLookupIDOperation) MarshalNDRResponse(ctx context.Cont
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage3{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message3{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -9677,16 +9677,16 @@ func (o *xxx_ReceiveLastByLookupIDOperation) UnmarshalNDRResponse(ctx context.Co
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage3{}
+			if o.Message == nil {
+				o.Message = &mqac.Message3{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage3) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message3) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -9752,8 +9752,8 @@ func (o *ReceiveLastByLookupIDRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 // ReceiveLastByLookupIDResponse structure represents the ReceiveLastByLookupId operation response
 type ReceiveLastByLookupIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message3 `idl:"name:ppmsg" json:"message"`
 	// Return: The ReceiveLastByLookupId return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -9766,7 +9766,7 @@ func (o *ReceiveLastByLookupIDResponse) xxx_ToOp(ctx context.Context, op *xxx_Re
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -9776,7 +9776,7 @@ func (o *ReceiveLastByLookupIDResponse) xxx_FromOp(ctx context.Context, op *xxx_
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *ReceiveLastByLookupIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -9793,14 +9793,14 @@ func (o *ReceiveLastByLookupIDResponse) UnmarshalNDR(ctx context.Context, r ndr.
 
 // xxx_PeekByLookupIDOperation structure represents the PeekByLookupId operation
 type xxx_PeekByLookupIDOperation struct {
-	This                 *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	LookupID             *oaut.Variant       `idl:"name:LookupId" json:"lookup_id"`
-	WantDestinationQueue *oaut.Variant       `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant       `idl:"name:WantBody" json:"want_body"`
-	WantConnectorType    *oaut.Variant       `idl:"name:WantConnectorType" json:"want_connector_type"`
-	Ppmsg                *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32               `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	LookupID             *oaut.Variant  `idl:"name:LookupId" json:"lookup_id"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	Message              *mqac.Message3 `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_PeekByLookupIDOperation) OpNum() int { return 32 }
@@ -10049,20 +10049,20 @@ func (o *xxx_PeekByLookupIDOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage3{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message3{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -10099,16 +10099,16 @@ func (o *xxx_PeekByLookupIDOperation) UnmarshalNDRResponse(ctx context.Context, 
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage3{}
+			if o.Message == nil {
+				o.Message = &mqac.Message3{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage3) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message3) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -10174,8 +10174,8 @@ func (o *PeekByLookupIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // PeekByLookupIDResponse structure represents the PeekByLookupId operation response
 type PeekByLookupIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message3 `idl:"name:ppmsg" json:"message"`
 	// Return: The PeekByLookupId return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -10188,7 +10188,7 @@ func (o *PeekByLookupIDResponse) xxx_ToOp(ctx context.Context, op *xxx_PeekByLoo
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -10198,7 +10198,7 @@ func (o *PeekByLookupIDResponse) xxx_FromOp(ctx context.Context, op *xxx_PeekByL
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *PeekByLookupIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -10215,14 +10215,14 @@ func (o *PeekByLookupIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // xxx_PeekNextByLookupIDOperation structure represents the PeekNextByLookupId operation
 type xxx_PeekNextByLookupIDOperation struct {
-	This                 *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	LookupID             *oaut.Variant       `idl:"name:LookupId" json:"lookup_id"`
-	WantDestinationQueue *oaut.Variant       `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant       `idl:"name:WantBody" json:"want_body"`
-	WantConnectorType    *oaut.Variant       `idl:"name:WantConnectorType" json:"want_connector_type"`
-	Ppmsg                *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32               `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	LookupID             *oaut.Variant  `idl:"name:LookupId" json:"lookup_id"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	Message              *mqac.Message3 `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_PeekNextByLookupIDOperation) OpNum() int { return 33 }
@@ -10473,20 +10473,20 @@ func (o *xxx_PeekNextByLookupIDOperation) MarshalNDRResponse(ctx context.Context
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage3{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message3{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -10523,16 +10523,16 @@ func (o *xxx_PeekNextByLookupIDOperation) UnmarshalNDRResponse(ctx context.Conte
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage3{}
+			if o.Message == nil {
+				o.Message = &mqac.Message3{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage3) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message3) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -10598,8 +10598,8 @@ func (o *PeekNextByLookupIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 // PeekNextByLookupIDResponse structure represents the PeekNextByLookupId operation response
 type PeekNextByLookupIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message3 `idl:"name:ppmsg" json:"message"`
 	// Return: The PeekNextByLookupId return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -10612,7 +10612,7 @@ func (o *PeekNextByLookupIDResponse) xxx_ToOp(ctx context.Context, op *xxx_PeekN
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -10622,7 +10622,7 @@ func (o *PeekNextByLookupIDResponse) xxx_FromOp(ctx context.Context, op *xxx_Pee
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *PeekNextByLookupIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -10639,14 +10639,14 @@ func (o *PeekNextByLookupIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // xxx_PeekPreviousByLookupIDOperation structure represents the PeekPreviousByLookupId operation
 type xxx_PeekPreviousByLookupIDOperation struct {
-	This                 *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	LookupID             *oaut.Variant       `idl:"name:LookupId" json:"lookup_id"`
-	WantDestinationQueue *oaut.Variant       `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant       `idl:"name:WantBody" json:"want_body"`
-	WantConnectorType    *oaut.Variant       `idl:"name:WantConnectorType" json:"want_connector_type"`
-	Ppmsg                *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32               `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	LookupID             *oaut.Variant  `idl:"name:LookupId" json:"lookup_id"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	Message              *mqac.Message3 `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_PeekPreviousByLookupIDOperation) OpNum() int { return 34 }
@@ -10897,20 +10897,20 @@ func (o *xxx_PeekPreviousByLookupIDOperation) MarshalNDRResponse(ctx context.Con
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage3{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message3{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -10947,16 +10947,16 @@ func (o *xxx_PeekPreviousByLookupIDOperation) UnmarshalNDRResponse(ctx context.C
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage3{}
+			if o.Message == nil {
+				o.Message = &mqac.Message3{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage3) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message3) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -11022,8 +11022,8 @@ func (o *PeekPreviousByLookupIDRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // PeekPreviousByLookupIDResponse structure represents the PeekPreviousByLookupId operation response
 type PeekPreviousByLookupIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message3 `idl:"name:ppmsg" json:"message"`
 	// Return: The PeekPreviousByLookupId return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -11036,7 +11036,7 @@ func (o *PeekPreviousByLookupIDResponse) xxx_ToOp(ctx context.Context, op *xxx_P
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -11046,7 +11046,7 @@ func (o *PeekPreviousByLookupIDResponse) xxx_FromOp(ctx context.Context, op *xxx
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *PeekPreviousByLookupIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -11063,13 +11063,13 @@ func (o *PeekPreviousByLookupIDResponse) UnmarshalNDR(ctx context.Context, r ndr
 
 // xxx_PeekFirstByLookupIDOperation structure represents the PeekFirstByLookupId operation
 type xxx_PeekFirstByLookupIDOperation struct {
-	This                 *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	WantDestinationQueue *oaut.Variant       `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant       `idl:"name:WantBody" json:"want_body"`
-	WantConnectorType    *oaut.Variant       `idl:"name:WantConnectorType" json:"want_connector_type"`
-	Ppmsg                *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32               `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	Message              *mqac.Message3 `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_PeekFirstByLookupIDOperation) OpNum() int { return 35 }
@@ -11293,20 +11293,20 @@ func (o *xxx_PeekFirstByLookupIDOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage3{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message3{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -11343,16 +11343,16 @@ func (o *xxx_PeekFirstByLookupIDOperation) UnmarshalNDRResponse(ctx context.Cont
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage3{}
+			if o.Message == nil {
+				o.Message = &mqac.Message3{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage3) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message3) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -11415,8 +11415,8 @@ func (o *PeekFirstByLookupIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 // PeekFirstByLookupIDResponse structure represents the PeekFirstByLookupId operation response
 type PeekFirstByLookupIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message3 `idl:"name:ppmsg" json:"message"`
 	// Return: The PeekFirstByLookupId return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -11429,7 +11429,7 @@ func (o *PeekFirstByLookupIDResponse) xxx_ToOp(ctx context.Context, op *xxx_Peek
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -11439,7 +11439,7 @@ func (o *PeekFirstByLookupIDResponse) xxx_FromOp(ctx context.Context, op *xxx_Pe
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *PeekFirstByLookupIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -11456,13 +11456,13 @@ func (o *PeekFirstByLookupIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Re
 
 // xxx_PeekLastByLookupIDOperation structure represents the PeekLastByLookupId operation
 type xxx_PeekLastByLookupIDOperation struct {
-	This                 *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That                 *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	WantDestinationQueue *oaut.Variant       `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant       `idl:"name:WantBody" json:"want_body"`
-	WantConnectorType    *oaut.Variant       `idl:"name:WantConnectorType" json:"want_connector_type"`
-	Ppmsg                *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
-	Return               int32               `idl:"name:Return" json:"return"`
+	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
+	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
+	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	Message              *mqac.Message3 `idl:"name:ppmsg" json:"message"`
+	Return               int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_PeekLastByLookupIDOperation) OpNum() int { return 36 }
@@ -11686,20 +11686,20 @@ func (o *xxx_PeekLastByLookupIDOperation) MarshalNDRResponse(ctx context.Context
 	}
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
-		if o.Ppmsg != nil {
+		if o.Message != nil {
 			_ptr_ppmsg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmsg != nil {
-					if err := o.Ppmsg.MarshalNDR(ctx, w); err != nil {
+				if o.Message != nil {
+					if err := o.Message.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqMessage3{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Message3{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmsg, _ptr_ppmsg); err != nil {
+			if err := w.WritePointer(&o.Message, _ptr_ppmsg); err != nil {
 				return err
 			}
 		} else {
@@ -11736,16 +11736,16 @@ func (o *xxx_PeekLastByLookupIDOperation) UnmarshalNDRResponse(ctx context.Conte
 	// ppmsg {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQMessage3}(interface))
 	{
 		_ptr_ppmsg := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmsg == nil {
-				o.Ppmsg = &mqac.ImsmqMessage3{}
+			if o.Message == nil {
+				o.Message = &mqac.Message3{}
 			}
-			if err := o.Ppmsg.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Message.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmsg := func(ptr interface{}) { o.Ppmsg = *ptr.(**mqac.ImsmqMessage3) }
-		if err := w.ReadPointer(&o.Ppmsg, _s_ppmsg, _ptr_ppmsg); err != nil {
+		_s_ppmsg := func(ptr interface{}) { o.Message = *ptr.(**mqac.Message3) }
+		if err := w.ReadPointer(&o.Message, _s_ppmsg, _ptr_ppmsg); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -11808,8 +11808,8 @@ func (o *PeekLastByLookupIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 // PeekLastByLookupIDResponse structure represents the PeekLastByLookupId operation response
 type PeekLastByLookupIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Ppmsg *mqac.ImsmqMessage3 `idl:"name:ppmsg" json:"ppmsg"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Message *mqac.Message3 `idl:"name:ppmsg" json:"message"`
 	// Return: The PeekLastByLookupId return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -11822,7 +11822,7 @@ func (o *PeekLastByLookupIDResponse) xxx_ToOp(ctx context.Context, op *xxx_PeekL
 		return op
 	}
 	op.That = o.That
-	op.Ppmsg = o.Ppmsg
+	op.Message = o.Message
 	op.Return = o.Return
 	return op
 }
@@ -11832,7 +11832,7 @@ func (o *PeekLastByLookupIDResponse) xxx_FromOp(ctx context.Context, op *xxx_Pee
 		return
 	}
 	o.That = op.That
-	o.Ppmsg = op.Ppmsg
+	o.Message = op.Message
 	o.Return = op.Return
 }
 func (o *PeekLastByLookupIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -12040,10 +12040,10 @@ func (o *PurgeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_GetIsOpen2Operation structure represents the IsOpen2 operation
 type xxx_GetIsOpen2Operation struct {
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PisOpen int16          `idl:"name:pisOpen" json:"pis_open"`
-	Return  int32          `idl:"name:Return" json:"return"`
+	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
+	IsOpen int16          `idl:"name:pisOpen" json:"is_open"`
+	Return int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetIsOpen2Operation) OpNum() int { return 38 }
@@ -12127,7 +12127,7 @@ func (o *xxx_GetIsOpen2Operation) MarshalNDRResponse(ctx context.Context, w ndr.
 	}
 	// pisOpen {out, retval} (1:{pointer=ref}*(1))(2:{alias=VARIANT_BOOL}(int16))
 	{
-		if err := w.WriteData(o.PisOpen); err != nil {
+		if err := w.WriteData(o.IsOpen); err != nil {
 			return err
 		}
 	}
@@ -12155,7 +12155,7 @@ func (o *xxx_GetIsOpen2Operation) UnmarshalNDRResponse(ctx context.Context, w nd
 	}
 	// pisOpen {out, retval} (1:{pointer=ref}*(1))(2:{alias=VARIANT_BOOL}(int16))
 	{
-		if err := w.ReadData(&o.PisOpen); err != nil {
+		if err := w.ReadData(&o.IsOpen); err != nil {
 			return err
 		}
 	}
@@ -12206,8 +12206,8 @@ func (o *GetIsOpen2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 // GetIsOpen2Response structure represents the IsOpen2 operation response
 type GetIsOpen2Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PisOpen int16          `idl:"name:pisOpen" json:"pis_open"`
+	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
+	IsOpen int16          `idl:"name:pisOpen" json:"is_open"`
 	// Return: The IsOpen2 return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -12220,7 +12220,7 @@ func (o *GetIsOpen2Response) xxx_ToOp(ctx context.Context, op *xxx_GetIsOpen2Ope
 		return op
 	}
 	op.That = o.That
-	op.PisOpen = o.PisOpen
+	op.IsOpen = o.IsOpen
 	op.Return = o.Return
 	return op
 }
@@ -12230,7 +12230,7 @@ func (o *GetIsOpen2Response) xxx_FromOp(ctx context.Context, op *xxx_GetIsOpen2O
 		return
 	}
 	o.That = op.That
-	o.PisOpen = op.PisOpen
+	o.IsOpen = op.IsOpen
 	o.Return = op.Return
 }
 func (o *GetIsOpen2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {

@@ -36,18 +36,18 @@ var (
 
 var (
 	// IMSMQEvent2 interface identifier eba96b12-2168-11d3-898c-00e02c074f6b
-	ImsmqEvent2IID = &dcom.IID{Data1: 0xeba96b12, Data2: 0x2168, Data3: 0x11d3, Data4: []byte{0x89, 0x8c, 0x00, 0xe0, 0x2c, 0x07, 0x4f, 0x6b}}
+	Event2IID = &dcom.IID{Data1: 0xeba96b12, Data2: 0x2168, Data3: 0x11d3, Data4: []byte{0x89, 0x8c, 0x00, 0xe0, 0x2c, 0x07, 0x4f, 0x6b}}
 	// Syntax UUID
-	ImsmqEvent2SyntaxUUID = &uuid.UUID{TimeLow: 0xeba96b12, TimeMid: 0x2168, TimeHiAndVersion: 0x11d3, ClockSeqHiAndReserved: 0x89, ClockSeqLow: 0x8c, Node: [6]uint8{0x0, 0xe0, 0x2c, 0x7, 0x4f, 0x6b}}
+	Event2SyntaxUUID = &uuid.UUID{TimeLow: 0xeba96b12, TimeMid: 0x2168, TimeHiAndVersion: 0x11d3, ClockSeqHiAndReserved: 0x89, ClockSeqLow: 0x8c, Node: [6]uint8{0x0, 0xe0, 0x2c, 0x7, 0x4f, 0x6b}}
 	// Syntax ID
-	ImsmqEvent2SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ImsmqEvent2SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	Event2SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: Event2SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IMSMQEvent2 interface.
-type ImsmqEvent2Client interface {
+type Event2Client interface {
 
 	// IMSMQEvent retrieval method.
-	ImsmqEvent() imsmqevent.ImsmqEventClient
+	Event() imsmqevent.EventClient
 
 	// Properties operation.
 	GetProperties(context.Context, *GetPropertiesRequest, ...dcerpc.CallOption) (*GetPropertiesResponse, error)
@@ -59,20 +59,20 @@ type ImsmqEvent2Client interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) ImsmqEvent2Client
+	IPID(context.Context, *dcom.IPID) Event2Client
 }
 
-type xxx_DefaultImsmqEvent2Client struct {
-	imsmqevent.ImsmqEventClient
+type xxx_DefaultEvent2Client struct {
+	imsmqevent.EventClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultImsmqEvent2Client) ImsmqEvent() imsmqevent.ImsmqEventClient {
-	return o.ImsmqEventClient
+func (o *xxx_DefaultEvent2Client) Event() imsmqevent.EventClient {
+	return o.EventClient
 }
 
-func (o *xxx_DefaultImsmqEvent2Client) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
+func (o *xxx_DefaultEvent2Client) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -92,34 +92,34 @@ func (o *xxx_DefaultImsmqEvent2Client) GetProperties(ctx context.Context, in *Ge
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqEvent2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultEvent2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultImsmqEvent2Client) Conn() dcerpc.Conn {
+func (o *xxx_DefaultEvent2Client) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultImsmqEvent2Client) IPID(ctx context.Context, ipid *dcom.IPID) ImsmqEvent2Client {
+func (o *xxx_DefaultEvent2Client) IPID(ctx context.Context, ipid *dcom.IPID) Event2Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultImsmqEvent2Client{
-		ImsmqEventClient: o.ImsmqEventClient.IPID(ctx, ipid),
-		cc:               o.cc,
-		ipid:             ipid,
+	return &xxx_DefaultEvent2Client{
+		EventClient: o.EventClient.IPID(ctx, ipid),
+		cc:          o.cc,
+		ipid:        ipid,
 	}
 }
 
-func NewImsmqEvent2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ImsmqEvent2Client, error) {
+func NewEvent2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Event2Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ImsmqEvent2SyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(Event2SyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
 	}
-	base, err := imsmqevent.NewImsmqEventClient(ctx, cc, append(opts, dcom.Superclass(cc))...)
+	base, err := imsmqevent.NewEventClient(ctx, cc, append(opts, dcom.Superclass(cc))...)
 	if err != nil {
 		return nil, err
 	}
@@ -127,19 +127,19 @@ func NewImsmqEvent2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Op
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultImsmqEvent2Client{
-		ImsmqEventClient: base,
-		cc:               cc,
-		ipid:             ipid,
+	return &xxx_DefaultEvent2Client{
+		EventClient: base,
+		cc:          cc,
+		ipid:        ipid,
 	}, nil
 }
 
 // xxx_GetPropertiesOperation structure represents the Properties operation
 type xxx_GetPropertiesOperation struct {
-	This            *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PpcolProperties *oaut.Dispatch `idl:"name:ppcolProperties" json:"ppcol_properties"`
-	Return          int32          `idl:"name:Return" json:"return"`
+	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Properties *oaut.Dispatch `idl:"name:ppcolProperties" json:"properties"`
+	Return     int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetPropertiesOperation) OpNum() int { return 0 }
@@ -223,10 +223,10 @@ func (o *xxx_GetPropertiesOperation) MarshalNDRResponse(ctx context.Context, w n
 	}
 	// ppcolProperties {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IDispatch}(interface))
 	{
-		if o.PpcolProperties != nil {
+		if o.Properties != nil {
 			_ptr_ppcolProperties := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PpcolProperties != nil {
-					if err := o.PpcolProperties.MarshalNDR(ctx, w); err != nil {
+				if o.Properties != nil {
+					if err := o.Properties.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -236,7 +236,7 @@ func (o *xxx_GetPropertiesOperation) MarshalNDRResponse(ctx context.Context, w n
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PpcolProperties, _ptr_ppcolProperties); err != nil {
+			if err := w.WritePointer(&o.Properties, _ptr_ppcolProperties); err != nil {
 				return err
 			}
 		} else {
@@ -273,16 +273,16 @@ func (o *xxx_GetPropertiesOperation) UnmarshalNDRResponse(ctx context.Context, w
 	// ppcolProperties {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IDispatch}(interface))
 	{
 		_ptr_ppcolProperties := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PpcolProperties == nil {
-				o.PpcolProperties = &oaut.Dispatch{}
+			if o.Properties == nil {
+				o.Properties = &oaut.Dispatch{}
 			}
-			if err := o.PpcolProperties.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Properties.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppcolProperties := func(ptr interface{}) { o.PpcolProperties = *ptr.(**oaut.Dispatch) }
-		if err := w.ReadPointer(&o.PpcolProperties, _s_ppcolProperties, _ptr_ppcolProperties); err != nil {
+		_s_ppcolProperties := func(ptr interface{}) { o.Properties = *ptr.(**oaut.Dispatch) }
+		if err := w.ReadPointer(&o.Properties, _s_ppcolProperties, _ptr_ppcolProperties); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -336,8 +336,8 @@ func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetPropertiesResponse structure represents the Properties operation response
 type GetPropertiesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PpcolProperties *oaut.Dispatch `idl:"name:ppcolProperties" json:"ppcol_properties"`
+	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Properties *oaut.Dispatch `idl:"name:ppcolProperties" json:"properties"`
 	// Return: The Properties return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -350,7 +350,7 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 		return op
 	}
 	op.That = o.That
-	op.PpcolProperties = o.PpcolProperties
+	op.Properties = o.Properties
 	op.Return = o.Return
 	return op
 }
@@ -360,7 +360,7 @@ func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrope
 		return
 	}
 	o.That = op.That
-	o.PpcolProperties = op.PpcolProperties
+	o.Properties = op.Properties
 	o.Return = op.Return
 }
 func (o *GetPropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {

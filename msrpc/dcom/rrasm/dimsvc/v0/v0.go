@@ -39,23 +39,23 @@ var (
 
 // dimsvc interface.
 type DimsvcClient interface {
-	MprAdminServerGetInfo(context.Context, *MprAdminServerGetInfoRequest, ...dcerpc.CallOption) (*MprAdminServerGetInfoResponse, error)
+	ServerGetInfo(context.Context, *ServerGetInfoRequest, ...dcerpc.CallOption) (*ServerGetInfoResponse, error)
 
-	RASAdminConnectionEnum(context.Context, *RASAdminConnectionEnumRequest, ...dcerpc.CallOption) (*RASAdminConnectionEnumResponse, error)
+	ConnectionEnum(context.Context, *ConnectionEnumRequest, ...dcerpc.CallOption) (*ConnectionEnumResponse, error)
 
-	RASAdminConnectionGetInfo(context.Context, *RASAdminConnectionGetInfoRequest, ...dcerpc.CallOption) (*RASAdminConnectionGetInfoResponse, error)
+	ConnectionGetInfo(context.Context, *ConnectionGetInfoRequest, ...dcerpc.CallOption) (*ConnectionGetInfoResponse, error)
 
-	RASAdminConnectionClearStats(context.Context, *RASAdminConnectionClearStatsRequest, ...dcerpc.CallOption) (*RASAdminConnectionClearStatsResponse, error)
+	ConnectionClearStats(context.Context, *ConnectionClearStatsRequest, ...dcerpc.CallOption) (*ConnectionClearStatsResponse, error)
 
-	RASAdminPortEnum(context.Context, *RASAdminPortEnumRequest, ...dcerpc.CallOption) (*RASAdminPortEnumResponse, error)
+	PortEnum(context.Context, *PortEnumRequest, ...dcerpc.CallOption) (*PortEnumResponse, error)
 
-	RASAdminPortGetInfo(context.Context, *RASAdminPortGetInfoRequest, ...dcerpc.CallOption) (*RASAdminPortGetInfoResponse, error)
+	PortGetInfo(context.Context, *PortGetInfoRequest, ...dcerpc.CallOption) (*PortGetInfoResponse, error)
 
-	RASAdminPortClearStats(context.Context, *RASAdminPortClearStatsRequest, ...dcerpc.CallOption) (*RASAdminPortClearStatsResponse, error)
+	PortClearStats(context.Context, *PortClearStatsRequest, ...dcerpc.CallOption) (*PortClearStatsResponse, error)
 
-	RASAdminPortReset(context.Context, *RASAdminPortResetRequest, ...dcerpc.CallOption) (*RASAdminPortResetResponse, error)
+	PortReset(context.Context, *PortResetRequest, ...dcerpc.CallOption) (*PortResetResponse, error)
 
-	RASAdminPortDisconnect(context.Context, *RASAdminPortDisconnectRequest, ...dcerpc.CallOption) (*RASAdminPortDisconnectResponse, error)
+	PortDisconnect(context.Context, *PortDisconnectRequest, ...dcerpc.CallOption) (*PortDisconnectResponse, error)
 
 	RouterInterfaceTransportSetGlobalInfo(context.Context, *RouterInterfaceTransportSetGlobalInfoRequest, ...dcerpc.CallOption) (*RouterInterfaceTransportSetGlobalInfoResponse, error)
 
@@ -91,25 +91,25 @@ type DimsvcClient interface {
 
 	RouterInterfaceUpdatePhonebookInfo(context.Context, *RouterInterfaceUpdatePhonebookInfoRequest, ...dcerpc.CallOption) (*RouterInterfaceUpdatePhonebookInfoResponse, error)
 
-	RmibEntryCreate(context.Context, *RmibEntryCreateRequest, ...dcerpc.CallOption) (*RmibEntryCreateResponse, error)
+	MIBEntryCreate(context.Context, *MIBEntryCreateRequest, ...dcerpc.CallOption) (*MIBEntryCreateResponse, error)
 
-	RmibEntryDelete(context.Context, *RmibEntryDeleteRequest, ...dcerpc.CallOption) (*RmibEntryDeleteResponse, error)
+	MIBEntryDelete(context.Context, *MIBEntryDeleteRequest, ...dcerpc.CallOption) (*MIBEntryDeleteResponse, error)
 
-	RmibEntrySet(context.Context, *RmibEntrySetRequest, ...dcerpc.CallOption) (*RmibEntrySetResponse, error)
+	MIBEntrySet(context.Context, *MIBEntrySetRequest, ...dcerpc.CallOption) (*MIBEntrySetResponse, error)
 
-	RmibEntryGet(context.Context, *RmibEntryGetRequest, ...dcerpc.CallOption) (*RmibEntryGetResponse, error)
+	MIBEntryGet(context.Context, *MIBEntryGetRequest, ...dcerpc.CallOption) (*MIBEntryGetResponse, error)
 
-	RmibEntryGetFirst(context.Context, *RmibEntryGetFirstRequest, ...dcerpc.CallOption) (*RmibEntryGetFirstResponse, error)
+	MIBEntryGetFirst(context.Context, *MIBEntryGetFirstRequest, ...dcerpc.CallOption) (*MIBEntryGetFirstResponse, error)
 
-	RmibEntryGetNext(context.Context, *RmibEntryGetNextRequest, ...dcerpc.CallOption) (*RmibEntryGetNextResponse, error)
+	MIBEntryGetNext(context.Context, *MIBEntryGetNextRequest, ...dcerpc.CallOption) (*MIBEntryGetNextResponse, error)
 
-	RmibGetTrapInfo(context.Context, *RmibGetTrapInfoRequest, ...dcerpc.CallOption) (*RmibGetTrapInfoResponse, error)
+	MIBGetTrapInfo(context.Context, *MIBGetTrapInfoRequest, ...dcerpc.CallOption) (*MIBGetTrapInfoResponse, error)
 
-	RmibSetTrapInfo(context.Context, *RmibSetTrapInfoRequest, ...dcerpc.CallOption) (*RmibSetTrapInfoResponse, error)
+	MIBSetTrapInfo(context.Context, *MIBSetTrapInfoRequest, ...dcerpc.CallOption) (*MIBSetTrapInfoResponse, error)
 
-	RASAdminConnectionNotification(context.Context, *RASAdminConnectionNotificationRequest, ...dcerpc.CallOption) (*RASAdminConnectionNotificationResponse, error)
+	ConnectionNotification(context.Context, *ConnectionNotificationRequest, ...dcerpc.CallOption) (*ConnectionNotificationResponse, error)
 
-	RASAdminSendUserMessage(context.Context, *RASAdminSendUserMessageRequest, ...dcerpc.CallOption) (*RASAdminSendUserMessageResponse, error)
+	SendUserMessage(context.Context, *SendUserMessageRequest, ...dcerpc.CallOption) (*SendUserMessageResponse, error)
 
 	RouterDeviceEnum(context.Context, *RouterDeviceEnumRequest, ...dcerpc.CallOption) (*RouterDeviceEnumResponse, error)
 
@@ -123,19 +123,19 @@ type DimsvcClient interface {
 
 	RouterInterfaceGetCredentialsEx(context.Context, *RouterInterfaceGetCredentialsExRequest, ...dcerpc.CallOption) (*RouterInterfaceGetCredentialsExResponse, error)
 
-	RASAdminConnectionRemoveQuarantine(context.Context, *RASAdminConnectionRemoveQuarantineRequest, ...dcerpc.CallOption) (*RASAdminConnectionRemoveQuarantineResponse, error)
+	ConnectionRemoveQuarantine(context.Context, *ConnectionRemoveQuarantineRequest, ...dcerpc.CallOption) (*ConnectionRemoveQuarantineResponse, error)
 
-	MprAdminServerSetInfo(context.Context, *MprAdminServerSetInfoRequest, ...dcerpc.CallOption) (*MprAdminServerSetInfoResponse, error)
+	ServerSetInfo(context.Context, *ServerSetInfoRequest, ...dcerpc.CallOption) (*ServerSetInfoResponse, error)
 
-	MprAdminServerGetInfoEx(context.Context, *MprAdminServerGetInfoExRequest, ...dcerpc.CallOption) (*MprAdminServerGetInfoExResponse, error)
+	ServerGetInfoEx(context.Context, *ServerGetInfoExRequest, ...dcerpc.CallOption) (*ServerGetInfoExResponse, error)
 
-	RASAdminConnectionEnumEx(context.Context, *RASAdminConnectionEnumExRequest, ...dcerpc.CallOption) (*RASAdminConnectionEnumExResponse, error)
+	ConnectionEnumEx(context.Context, *ConnectionEnumExRequest, ...dcerpc.CallOption) (*ConnectionEnumExResponse, error)
 
-	RASAdminConnectionGetInfoEx(context.Context, *RASAdminConnectionGetInfoExRequest, ...dcerpc.CallOption) (*RASAdminConnectionGetInfoExResponse, error)
+	ConnectionGetInfoEx(context.Context, *ConnectionGetInfoExRequest, ...dcerpc.CallOption) (*ConnectionGetInfoExResponse, error)
 
-	MprAdminServerSetInfoEx(context.Context, *MprAdminServerSetInfoExRequest, ...dcerpc.CallOption) (*MprAdminServerSetInfoExResponse, error)
+	ServerSetInfoEx(context.Context, *ServerSetInfoExRequest, ...dcerpc.CallOption) (*ServerSetInfoExResponse, error)
 
-	RASAdminUpdateConnection(context.Context, *RASAdminUpdateConnectionRequest, ...dcerpc.CallOption) (*RASAdminUpdateConnectionResponse, error)
+	UpdateConnection(context.Context, *UpdateConnectionRequest, ...dcerpc.CallOption) (*UpdateConnectionResponse, error)
 
 	RouterInterfaceSetCredentialsLocal(context.Context, *RouterInterfaceSetCredentialsLocalRequest, ...dcerpc.CallOption) (*RouterInterfaceSetCredentialsLocalResponse, error)
 
@@ -156,12 +156,12 @@ type xxx_DefaultDimsvcClient struct {
 	cc dcerpc.Conn
 }
 
-func (o *xxx_DefaultDimsvcClient) MprAdminServerGetInfo(ctx context.Context, in *MprAdminServerGetInfoRequest, opts ...dcerpc.CallOption) (*MprAdminServerGetInfoResponse, error) {
+func (o *xxx_DefaultDimsvcClient) ServerGetInfo(ctx context.Context, in *ServerGetInfoRequest, opts ...dcerpc.CallOption) (*ServerGetInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &MprAdminServerGetInfoResponse{}
+	out := &ServerGetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -169,12 +169,12 @@ func (o *xxx_DefaultDimsvcClient) MprAdminServerGetInfo(ctx context.Context, in 
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RASAdminConnectionEnum(ctx context.Context, in *RASAdminConnectionEnumRequest, opts ...dcerpc.CallOption) (*RASAdminConnectionEnumResponse, error) {
+func (o *xxx_DefaultDimsvcClient) ConnectionEnum(ctx context.Context, in *ConnectionEnumRequest, opts ...dcerpc.CallOption) (*ConnectionEnumResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASAdminConnectionEnumResponse{}
+	out := &ConnectionEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -182,12 +182,12 @@ func (o *xxx_DefaultDimsvcClient) RASAdminConnectionEnum(ctx context.Context, in
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RASAdminConnectionGetInfo(ctx context.Context, in *RASAdminConnectionGetInfoRequest, opts ...dcerpc.CallOption) (*RASAdminConnectionGetInfoResponse, error) {
+func (o *xxx_DefaultDimsvcClient) ConnectionGetInfo(ctx context.Context, in *ConnectionGetInfoRequest, opts ...dcerpc.CallOption) (*ConnectionGetInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASAdminConnectionGetInfoResponse{}
+	out := &ConnectionGetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -195,12 +195,12 @@ func (o *xxx_DefaultDimsvcClient) RASAdminConnectionGetInfo(ctx context.Context,
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RASAdminConnectionClearStats(ctx context.Context, in *RASAdminConnectionClearStatsRequest, opts ...dcerpc.CallOption) (*RASAdminConnectionClearStatsResponse, error) {
+func (o *xxx_DefaultDimsvcClient) ConnectionClearStats(ctx context.Context, in *ConnectionClearStatsRequest, opts ...dcerpc.CallOption) (*ConnectionClearStatsResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASAdminConnectionClearStatsResponse{}
+	out := &ConnectionClearStatsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -208,12 +208,12 @@ func (o *xxx_DefaultDimsvcClient) RASAdminConnectionClearStats(ctx context.Conte
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RASAdminPortEnum(ctx context.Context, in *RASAdminPortEnumRequest, opts ...dcerpc.CallOption) (*RASAdminPortEnumResponse, error) {
+func (o *xxx_DefaultDimsvcClient) PortEnum(ctx context.Context, in *PortEnumRequest, opts ...dcerpc.CallOption) (*PortEnumResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASAdminPortEnumResponse{}
+	out := &PortEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -221,12 +221,12 @@ func (o *xxx_DefaultDimsvcClient) RASAdminPortEnum(ctx context.Context, in *RASA
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RASAdminPortGetInfo(ctx context.Context, in *RASAdminPortGetInfoRequest, opts ...dcerpc.CallOption) (*RASAdminPortGetInfoResponse, error) {
+func (o *xxx_DefaultDimsvcClient) PortGetInfo(ctx context.Context, in *PortGetInfoRequest, opts ...dcerpc.CallOption) (*PortGetInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASAdminPortGetInfoResponse{}
+	out := &PortGetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -234,12 +234,12 @@ func (o *xxx_DefaultDimsvcClient) RASAdminPortGetInfo(ctx context.Context, in *R
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RASAdminPortClearStats(ctx context.Context, in *RASAdminPortClearStatsRequest, opts ...dcerpc.CallOption) (*RASAdminPortClearStatsResponse, error) {
+func (o *xxx_DefaultDimsvcClient) PortClearStats(ctx context.Context, in *PortClearStatsRequest, opts ...dcerpc.CallOption) (*PortClearStatsResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASAdminPortClearStatsResponse{}
+	out := &PortClearStatsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -247,12 +247,12 @@ func (o *xxx_DefaultDimsvcClient) RASAdminPortClearStats(ctx context.Context, in
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RASAdminPortReset(ctx context.Context, in *RASAdminPortResetRequest, opts ...dcerpc.CallOption) (*RASAdminPortResetResponse, error) {
+func (o *xxx_DefaultDimsvcClient) PortReset(ctx context.Context, in *PortResetRequest, opts ...dcerpc.CallOption) (*PortResetResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASAdminPortResetResponse{}
+	out := &PortResetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -260,12 +260,12 @@ func (o *xxx_DefaultDimsvcClient) RASAdminPortReset(ctx context.Context, in *RAS
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RASAdminPortDisconnect(ctx context.Context, in *RASAdminPortDisconnectRequest, opts ...dcerpc.CallOption) (*RASAdminPortDisconnectResponse, error) {
+func (o *xxx_DefaultDimsvcClient) PortDisconnect(ctx context.Context, in *PortDisconnectRequest, opts ...dcerpc.CallOption) (*PortDisconnectResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASAdminPortDisconnectResponse{}
+	out := &PortDisconnectResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -494,12 +494,12 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceUpdatePhonebookInfo(ctx context
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RmibEntryCreate(ctx context.Context, in *RmibEntryCreateRequest, opts ...dcerpc.CallOption) (*RmibEntryCreateResponse, error) {
+func (o *xxx_DefaultDimsvcClient) MIBEntryCreate(ctx context.Context, in *MIBEntryCreateRequest, opts ...dcerpc.CallOption) (*MIBEntryCreateResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RmibEntryCreateResponse{}
+	out := &MIBEntryCreateResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -507,12 +507,12 @@ func (o *xxx_DefaultDimsvcClient) RmibEntryCreate(ctx context.Context, in *RmibE
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RmibEntryDelete(ctx context.Context, in *RmibEntryDeleteRequest, opts ...dcerpc.CallOption) (*RmibEntryDeleteResponse, error) {
+func (o *xxx_DefaultDimsvcClient) MIBEntryDelete(ctx context.Context, in *MIBEntryDeleteRequest, opts ...dcerpc.CallOption) (*MIBEntryDeleteResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RmibEntryDeleteResponse{}
+	out := &MIBEntryDeleteResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -520,12 +520,12 @@ func (o *xxx_DefaultDimsvcClient) RmibEntryDelete(ctx context.Context, in *RmibE
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RmibEntrySet(ctx context.Context, in *RmibEntrySetRequest, opts ...dcerpc.CallOption) (*RmibEntrySetResponse, error) {
+func (o *xxx_DefaultDimsvcClient) MIBEntrySet(ctx context.Context, in *MIBEntrySetRequest, opts ...dcerpc.CallOption) (*MIBEntrySetResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RmibEntrySetResponse{}
+	out := &MIBEntrySetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -533,12 +533,12 @@ func (o *xxx_DefaultDimsvcClient) RmibEntrySet(ctx context.Context, in *RmibEntr
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RmibEntryGet(ctx context.Context, in *RmibEntryGetRequest, opts ...dcerpc.CallOption) (*RmibEntryGetResponse, error) {
+func (o *xxx_DefaultDimsvcClient) MIBEntryGet(ctx context.Context, in *MIBEntryGetRequest, opts ...dcerpc.CallOption) (*MIBEntryGetResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RmibEntryGetResponse{}
+	out := &MIBEntryGetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -546,12 +546,12 @@ func (o *xxx_DefaultDimsvcClient) RmibEntryGet(ctx context.Context, in *RmibEntr
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RmibEntryGetFirst(ctx context.Context, in *RmibEntryGetFirstRequest, opts ...dcerpc.CallOption) (*RmibEntryGetFirstResponse, error) {
+func (o *xxx_DefaultDimsvcClient) MIBEntryGetFirst(ctx context.Context, in *MIBEntryGetFirstRequest, opts ...dcerpc.CallOption) (*MIBEntryGetFirstResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RmibEntryGetFirstResponse{}
+	out := &MIBEntryGetFirstResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -559,12 +559,12 @@ func (o *xxx_DefaultDimsvcClient) RmibEntryGetFirst(ctx context.Context, in *Rmi
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RmibEntryGetNext(ctx context.Context, in *RmibEntryGetNextRequest, opts ...dcerpc.CallOption) (*RmibEntryGetNextResponse, error) {
+func (o *xxx_DefaultDimsvcClient) MIBEntryGetNext(ctx context.Context, in *MIBEntryGetNextRequest, opts ...dcerpc.CallOption) (*MIBEntryGetNextResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RmibEntryGetNextResponse{}
+	out := &MIBEntryGetNextResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -572,12 +572,12 @@ func (o *xxx_DefaultDimsvcClient) RmibEntryGetNext(ctx context.Context, in *Rmib
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RmibGetTrapInfo(ctx context.Context, in *RmibGetTrapInfoRequest, opts ...dcerpc.CallOption) (*RmibGetTrapInfoResponse, error) {
+func (o *xxx_DefaultDimsvcClient) MIBGetTrapInfo(ctx context.Context, in *MIBGetTrapInfoRequest, opts ...dcerpc.CallOption) (*MIBGetTrapInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RmibGetTrapInfoResponse{}
+	out := &MIBGetTrapInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -585,12 +585,12 @@ func (o *xxx_DefaultDimsvcClient) RmibGetTrapInfo(ctx context.Context, in *RmibG
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RmibSetTrapInfo(ctx context.Context, in *RmibSetTrapInfoRequest, opts ...dcerpc.CallOption) (*RmibSetTrapInfoResponse, error) {
+func (o *xxx_DefaultDimsvcClient) MIBSetTrapInfo(ctx context.Context, in *MIBSetTrapInfoRequest, opts ...dcerpc.CallOption) (*MIBSetTrapInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RmibSetTrapInfoResponse{}
+	out := &MIBSetTrapInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -598,12 +598,12 @@ func (o *xxx_DefaultDimsvcClient) RmibSetTrapInfo(ctx context.Context, in *RmibS
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RASAdminConnectionNotification(ctx context.Context, in *RASAdminConnectionNotificationRequest, opts ...dcerpc.CallOption) (*RASAdminConnectionNotificationResponse, error) {
+func (o *xxx_DefaultDimsvcClient) ConnectionNotification(ctx context.Context, in *ConnectionNotificationRequest, opts ...dcerpc.CallOption) (*ConnectionNotificationResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASAdminConnectionNotificationResponse{}
+	out := &ConnectionNotificationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -611,12 +611,12 @@ func (o *xxx_DefaultDimsvcClient) RASAdminConnectionNotification(ctx context.Con
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RASAdminSendUserMessage(ctx context.Context, in *RASAdminSendUserMessageRequest, opts ...dcerpc.CallOption) (*RASAdminSendUserMessageResponse, error) {
+func (o *xxx_DefaultDimsvcClient) SendUserMessage(ctx context.Context, in *SendUserMessageRequest, opts ...dcerpc.CallOption) (*SendUserMessageResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASAdminSendUserMessageResponse{}
+	out := &SendUserMessageResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -702,12 +702,12 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceGetCredentialsEx(ctx context.Co
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RASAdminConnectionRemoveQuarantine(ctx context.Context, in *RASAdminConnectionRemoveQuarantineRequest, opts ...dcerpc.CallOption) (*RASAdminConnectionRemoveQuarantineResponse, error) {
+func (o *xxx_DefaultDimsvcClient) ConnectionRemoveQuarantine(ctx context.Context, in *ConnectionRemoveQuarantineRequest, opts ...dcerpc.CallOption) (*ConnectionRemoveQuarantineResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASAdminConnectionRemoveQuarantineResponse{}
+	out := &ConnectionRemoveQuarantineResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -715,12 +715,12 @@ func (o *xxx_DefaultDimsvcClient) RASAdminConnectionRemoveQuarantine(ctx context
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) MprAdminServerSetInfo(ctx context.Context, in *MprAdminServerSetInfoRequest, opts ...dcerpc.CallOption) (*MprAdminServerSetInfoResponse, error) {
+func (o *xxx_DefaultDimsvcClient) ServerSetInfo(ctx context.Context, in *ServerSetInfoRequest, opts ...dcerpc.CallOption) (*ServerSetInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &MprAdminServerSetInfoResponse{}
+	out := &ServerSetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -728,12 +728,12 @@ func (o *xxx_DefaultDimsvcClient) MprAdminServerSetInfo(ctx context.Context, in 
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) MprAdminServerGetInfoEx(ctx context.Context, in *MprAdminServerGetInfoExRequest, opts ...dcerpc.CallOption) (*MprAdminServerGetInfoExResponse, error) {
+func (o *xxx_DefaultDimsvcClient) ServerGetInfoEx(ctx context.Context, in *ServerGetInfoExRequest, opts ...dcerpc.CallOption) (*ServerGetInfoExResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &MprAdminServerGetInfoExResponse{}
+	out := &ServerGetInfoExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -741,12 +741,12 @@ func (o *xxx_DefaultDimsvcClient) MprAdminServerGetInfoEx(ctx context.Context, i
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RASAdminConnectionEnumEx(ctx context.Context, in *RASAdminConnectionEnumExRequest, opts ...dcerpc.CallOption) (*RASAdminConnectionEnumExResponse, error) {
+func (o *xxx_DefaultDimsvcClient) ConnectionEnumEx(ctx context.Context, in *ConnectionEnumExRequest, opts ...dcerpc.CallOption) (*ConnectionEnumExResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASAdminConnectionEnumExResponse{}
+	out := &ConnectionEnumExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -754,12 +754,12 @@ func (o *xxx_DefaultDimsvcClient) RASAdminConnectionEnumEx(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RASAdminConnectionGetInfoEx(ctx context.Context, in *RASAdminConnectionGetInfoExRequest, opts ...dcerpc.CallOption) (*RASAdminConnectionGetInfoExResponse, error) {
+func (o *xxx_DefaultDimsvcClient) ConnectionGetInfoEx(ctx context.Context, in *ConnectionGetInfoExRequest, opts ...dcerpc.CallOption) (*ConnectionGetInfoExResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASAdminConnectionGetInfoExResponse{}
+	out := &ConnectionGetInfoExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -767,12 +767,12 @@ func (o *xxx_DefaultDimsvcClient) RASAdminConnectionGetInfoEx(ctx context.Contex
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) MprAdminServerSetInfoEx(ctx context.Context, in *MprAdminServerSetInfoExRequest, opts ...dcerpc.CallOption) (*MprAdminServerSetInfoExResponse, error) {
+func (o *xxx_DefaultDimsvcClient) ServerSetInfoEx(ctx context.Context, in *ServerSetInfoExRequest, opts ...dcerpc.CallOption) (*ServerSetInfoExResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &MprAdminServerSetInfoExResponse{}
+	out := &ServerSetInfoExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -780,12 +780,12 @@ func (o *xxx_DefaultDimsvcClient) MprAdminServerSetInfoEx(ctx context.Context, i
 	return out, nil
 }
 
-func (o *xxx_DefaultDimsvcClient) RASAdminUpdateConnection(ctx context.Context, in *RASAdminUpdateConnectionRequest, opts ...dcerpc.CallOption) (*RASAdminUpdateConnectionResponse, error) {
+func (o *xxx_DefaultDimsvcClient) UpdateConnection(ctx context.Context, in *UpdateConnectionRequest, opts ...dcerpc.CallOption) (*UpdateConnectionResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &RASAdminUpdateConnectionResponse{}
+	out := &UpdateConnectionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -861,20 +861,18 @@ func NewDimsvcClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option)
 	return &xxx_DefaultDimsvcClient{cc: cc}, nil
 }
 
-// xxx_MprAdminServerGetInfoOperation structure represents the RMprAdminServerGetInfo operation
-type xxx_MprAdminServerGetInfoOperation struct {
-	Level  uint32                         `idl:"name:dwLevel" json:"level"`
-	Info   *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	Return uint32                         `idl:"name:Return" json:"return"`
+// xxx_ServerGetInfoOperation structure represents the RMprAdminServerGetInfo operation
+type xxx_ServerGetInfoOperation struct {
+	Level  uint32                      `idl:"name:dwLevel" json:"level"`
+	Info   *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Return uint32                      `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_MprAdminServerGetInfoOperation) OpNum() int { return 0 }
+func (o *xxx_ServerGetInfoOperation) OpNum() int { return 0 }
 
-func (o *xxx_MprAdminServerGetInfoOperation) OpName() string {
-	return "/dimsvc/v0/RMprAdminServerGetInfo"
-}
+func (o *xxx_ServerGetInfoOperation) OpName() string { return "/dimsvc/v0/RMprAdminServerGetInfo" }
 
-func (o *xxx_MprAdminServerGetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_ServerGetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -883,7 +881,7 @@ func (o *xxx_MprAdminServerGetInfoOperation) xxx_PrepareRequestPayload(ctx conte
 	return nil
 }
 
-func (o *xxx_MprAdminServerGetInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ServerGetInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -896,7 +894,7 @@ func (o *xxx_MprAdminServerGetInfoOperation) MarshalNDRRequest(ctx context.Conte
 	return nil
 }
 
-func (o *xxx_MprAdminServerGetInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ServerGetInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// dwLevel {in} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Level); err != nil {
@@ -906,7 +904,7 @@ func (o *xxx_MprAdminServerGetInfoOperation) UnmarshalNDRRequest(ctx context.Con
 	return nil
 }
 
-func (o *xxx_MprAdminServerGetInfoOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_ServerGetInfoOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -915,7 +913,7 @@ func (o *xxx_MprAdminServerGetInfoOperation) xxx_PrepareResponsePayload(ctx cont
 	return nil
 }
 
-func (o *xxx_MprAdminServerGetInfoOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ServerGetInfoOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -926,7 +924,7 @@ func (o *xxx_MprAdminServerGetInfoOperation) MarshalNDRResponse(ctx context.Cont
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -943,11 +941,11 @@ func (o *xxx_MprAdminServerGetInfoOperation) MarshalNDRResponse(ctx context.Cont
 	return nil
 }
 
-func (o *xxx_MprAdminServerGetInfoOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ServerGetInfoOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pInfoStruct {out} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -965,14 +963,14 @@ func (o *xxx_MprAdminServerGetInfoOperation) UnmarshalNDRResponse(ctx context.Co
 	return nil
 }
 
-// MprAdminServerGetInfoRequest structure represents the RMprAdminServerGetInfo operation request
-type MprAdminServerGetInfoRequest struct {
+// ServerGetInfoRequest structure represents the RMprAdminServerGetInfo operation request
+type ServerGetInfoRequest struct {
 	Level uint32 `idl:"name:dwLevel" json:"level"`
 }
 
-func (o *MprAdminServerGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_MprAdminServerGetInfoOperation) *xxx_MprAdminServerGetInfoOperation {
+func (o *ServerGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_ServerGetInfoOperation) *xxx_ServerGetInfoOperation {
 	if op == nil {
-		op = &xxx_MprAdminServerGetInfoOperation{}
+		op = &xxx_ServerGetInfoOperation{}
 	}
 	if o == nil {
 		return op
@@ -981,17 +979,17 @@ func (o *MprAdminServerGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_Mpr
 	return op
 }
 
-func (o *MprAdminServerGetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_MprAdminServerGetInfoOperation) {
+func (o *ServerGetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_ServerGetInfoOperation) {
 	if o == nil {
 		return
 	}
 	o.Level = op.Level
 }
-func (o *MprAdminServerGetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerGetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *MprAdminServerGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_MprAdminServerGetInfoOperation{}
+func (o *ServerGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ServerGetInfoOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -999,16 +997,16 @@ func (o *MprAdminServerGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
-// MprAdminServerGetInfoResponse structure represents the RMprAdminServerGetInfo operation response
-type MprAdminServerGetInfoResponse struct {
-	Info *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
+// ServerGetInfoResponse structure represents the RMprAdminServerGetInfo operation response
+type ServerGetInfoResponse struct {
+	Info *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
 	// Return: The RMprAdminServerGetInfo return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *MprAdminServerGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_MprAdminServerGetInfoOperation) *xxx_MprAdminServerGetInfoOperation {
+func (o *ServerGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_ServerGetInfoOperation) *xxx_ServerGetInfoOperation {
 	if op == nil {
-		op = &xxx_MprAdminServerGetInfoOperation{}
+		op = &xxx_ServerGetInfoOperation{}
 	}
 	if o == nil {
 		return op
@@ -1018,18 +1016,18 @@ func (o *MprAdminServerGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Mp
 	return op
 }
 
-func (o *MprAdminServerGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_MprAdminServerGetInfoOperation) {
+func (o *ServerGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_ServerGetInfoOperation) {
 	if o == nil {
 		return
 	}
 	o.Info = op.Info
 	o.Return = op.Return
 }
-func (o *MprAdminServerGetInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerGetInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *MprAdminServerGetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_MprAdminServerGetInfoOperation{}
+func (o *ServerGetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ServerGetInfoOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -1037,24 +1035,22 @@ func (o *MprAdminServerGetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
-// xxx_RASAdminConnectionEnumOperation structure represents the RRasAdminConnectionEnum operation
-type xxx_RASAdminConnectionEnumOperation struct {
-	Level                  uint32                         `idl:"name:dwLevel" json:"level"`
-	Info                   *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	PreferredMaximumLength uint32                         `idl:"name:dwPreferedMaximumLength" json:"preferred_maximum_length"`
-	EntriesRead            uint32                         `idl:"name:lpdwEntriesRead" json:"entries_read"`
-	TotalEntries           uint32                         `idl:"name:lpdwTotalEntries" json:"total_entries"`
-	Resume                 uint32                         `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
-	Return                 uint32                         `idl:"name:Return" json:"return"`
+// xxx_ConnectionEnumOperation structure represents the RRasAdminConnectionEnum operation
+type xxx_ConnectionEnumOperation struct {
+	Level                  uint32                      `idl:"name:dwLevel" json:"level"`
+	Info                   *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	PreferredMaximumLength uint32                      `idl:"name:dwPreferedMaximumLength" json:"preferred_maximum_length"`
+	EntriesRead            uint32                      `idl:"name:lpdwEntriesRead" json:"entries_read"`
+	TotalEntries           uint32                      `idl:"name:lpdwTotalEntries" json:"total_entries"`
+	Resume                 uint32                      `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
+	Return                 uint32                      `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASAdminConnectionEnumOperation) OpNum() int { return 1 }
+func (o *xxx_ConnectionEnumOperation) OpNum() int { return 1 }
 
-func (o *xxx_RASAdminConnectionEnumOperation) OpName() string {
-	return "/dimsvc/v0/RRasAdminConnectionEnum"
-}
+func (o *xxx_ConnectionEnumOperation) OpName() string { return "/dimsvc/v0/RRasAdminConnectionEnum" }
 
-func (o *xxx_RASAdminConnectionEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_ConnectionEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -1063,7 +1059,7 @@ func (o *xxx_RASAdminConnectionEnumOperation) xxx_PrepareRequestPayload(ctx cont
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionEnumOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ConnectionEnumOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -1080,7 +1076,7 @@ func (o *xxx_RASAdminConnectionEnumOperation) MarshalNDRRequest(ctx context.Cont
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1114,7 +1110,7 @@ func (o *xxx_RASAdminConnectionEnumOperation) MarshalNDRRequest(ctx context.Cont
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionEnumOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ConnectionEnumOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// dwLevel {in} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Level); err != nil {
@@ -1124,7 +1120,7 @@ func (o *xxx_RASAdminConnectionEnumOperation) UnmarshalNDRRequest(ctx context.Co
 	// pInfoStruct {in, out} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -1158,7 +1154,7 @@ func (o *xxx_RASAdminConnectionEnumOperation) UnmarshalNDRRequest(ctx context.Co
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionEnumOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_ConnectionEnumOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1167,7 +1163,7 @@ func (o *xxx_RASAdminConnectionEnumOperation) xxx_PrepareResponsePayload(ctx con
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionEnumOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ConnectionEnumOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1178,7 +1174,7 @@ func (o *xxx_RASAdminConnectionEnumOperation) MarshalNDRResponse(ctx context.Con
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1224,11 +1220,11 @@ func (o *xxx_RASAdminConnectionEnumOperation) MarshalNDRResponse(ctx context.Con
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionEnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ConnectionEnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pInfoStruct {in, out} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -1274,17 +1270,17 @@ func (o *xxx_RASAdminConnectionEnumOperation) UnmarshalNDRResponse(ctx context.C
 	return nil
 }
 
-// RASAdminConnectionEnumRequest structure represents the RRasAdminConnectionEnum operation request
-type RASAdminConnectionEnumRequest struct {
-	Level                  uint32                         `idl:"name:dwLevel" json:"level"`
-	Info                   *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	PreferredMaximumLength uint32                         `idl:"name:dwPreferedMaximumLength" json:"preferred_maximum_length"`
-	Resume                 uint32                         `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
+// ConnectionEnumRequest structure represents the RRasAdminConnectionEnum operation request
+type ConnectionEnumRequest struct {
+	Level                  uint32                      `idl:"name:dwLevel" json:"level"`
+	Info                   *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	PreferredMaximumLength uint32                      `idl:"name:dwPreferedMaximumLength" json:"preferred_maximum_length"`
+	Resume                 uint32                      `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
 }
 
-func (o *RASAdminConnectionEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_RASAdminConnectionEnumOperation) *xxx_RASAdminConnectionEnumOperation {
+func (o *ConnectionEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_ConnectionEnumOperation) *xxx_ConnectionEnumOperation {
 	if op == nil {
-		op = &xxx_RASAdminConnectionEnumOperation{}
+		op = &xxx_ConnectionEnumOperation{}
 	}
 	if o == nil {
 		return op
@@ -1296,7 +1292,7 @@ func (o *RASAdminConnectionEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_RA
 	return op
 }
 
-func (o *RASAdminConnectionEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_RASAdminConnectionEnumOperation) {
+func (o *ConnectionEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_ConnectionEnumOperation) {
 	if o == nil {
 		return
 	}
@@ -1305,11 +1301,11 @@ func (o *RASAdminConnectionEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.PreferredMaximumLength = op.PreferredMaximumLength
 	o.Resume = op.Resume
 }
-func (o *RASAdminConnectionEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ConnectionEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASAdminConnectionEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminConnectionEnumOperation{}
+func (o *ConnectionEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ConnectionEnumOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1317,19 +1313,19 @@ func (o *RASAdminConnectionEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
-// RASAdminConnectionEnumResponse structure represents the RRasAdminConnectionEnum operation response
-type RASAdminConnectionEnumResponse struct {
-	Info         *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	EntriesRead  uint32                         `idl:"name:lpdwEntriesRead" json:"entries_read"`
-	TotalEntries uint32                         `idl:"name:lpdwTotalEntries" json:"total_entries"`
-	Resume       uint32                         `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
+// ConnectionEnumResponse structure represents the RRasAdminConnectionEnum operation response
+type ConnectionEnumResponse struct {
+	Info         *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	EntriesRead  uint32                      `idl:"name:lpdwEntriesRead" json:"entries_read"`
+	TotalEntries uint32                      `idl:"name:lpdwTotalEntries" json:"total_entries"`
+	Resume       uint32                      `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
 	// Return: The RRasAdminConnectionEnum return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASAdminConnectionEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_RASAdminConnectionEnumOperation) *xxx_RASAdminConnectionEnumOperation {
+func (o *ConnectionEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_ConnectionEnumOperation) *xxx_ConnectionEnumOperation {
 	if op == nil {
-		op = &xxx_RASAdminConnectionEnumOperation{}
+		op = &xxx_ConnectionEnumOperation{}
 	}
 	if o == nil {
 		return op
@@ -1342,7 +1338,7 @@ func (o *RASAdminConnectionEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_R
 	return op
 }
 
-func (o *RASAdminConnectionEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_RASAdminConnectionEnumOperation) {
+func (o *ConnectionEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_ConnectionEnumOperation) {
 	if o == nil {
 		return
 	}
@@ -1352,11 +1348,11 @@ func (o *RASAdminConnectionEnumResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Resume = op.Resume
 	o.Return = op.Return
 }
-func (o *RASAdminConnectionEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ConnectionEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASAdminConnectionEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminConnectionEnumOperation{}
+func (o *ConnectionEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ConnectionEnumOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -1364,21 +1360,21 @@ func (o *RASAdminConnectionEnumResponse) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
-// xxx_RASAdminConnectionGetInfoOperation structure represents the RRasAdminConnectionGetInfo operation
-type xxx_RASAdminConnectionGetInfoOperation struct {
-	Level          uint32                         `idl:"name:dwLevel" json:"level"`
-	HDimConnection uint32                         `idl:"name:hDimConnection" json:"h_dim_connection"`
-	Info           *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	Return         uint32                         `idl:"name:Return" json:"return"`
+// xxx_ConnectionGetInfoOperation structure represents the RRasAdminConnectionGetInfo operation
+type xxx_ConnectionGetInfoOperation struct {
+	Level      uint32                      `idl:"name:dwLevel" json:"level"`
+	Connection uint32                      `idl:"name:hDimConnection" json:"connection"`
+	Info       *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Return     uint32                      `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASAdminConnectionGetInfoOperation) OpNum() int { return 2 }
+func (o *xxx_ConnectionGetInfoOperation) OpNum() int { return 2 }
 
-func (o *xxx_RASAdminConnectionGetInfoOperation) OpName() string {
+func (o *xxx_ConnectionGetInfoOperation) OpName() string {
 	return "/dimsvc/v0/RRasAdminConnectionGetInfo"
 }
 
-func (o *xxx_RASAdminConnectionGetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_ConnectionGetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -1387,7 +1383,7 @@ func (o *xxx_RASAdminConnectionGetInfoOperation) xxx_PrepareRequestPayload(ctx c
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionGetInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ConnectionGetInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -1399,14 +1395,14 @@ func (o *xxx_RASAdminConnectionGetInfoOperation) MarshalNDRRequest(ctx context.C
 	}
 	// hDimConnection {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HDimConnection); err != nil {
+		if err := w.WriteData(o.Connection); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionGetInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ConnectionGetInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// dwLevel {in} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Level); err != nil {
@@ -1415,14 +1411,14 @@ func (o *xxx_RASAdminConnectionGetInfoOperation) UnmarshalNDRRequest(ctx context
 	}
 	// hDimConnection {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HDimConnection); err != nil {
+		if err := w.ReadData(&o.Connection); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionGetInfoOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_ConnectionGetInfoOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1431,7 +1427,7 @@ func (o *xxx_RASAdminConnectionGetInfoOperation) xxx_PrepareResponsePayload(ctx 
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionGetInfoOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ConnectionGetInfoOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1442,7 +1438,7 @@ func (o *xxx_RASAdminConnectionGetInfoOperation) MarshalNDRResponse(ctx context.
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1459,11 +1455,11 @@ func (o *xxx_RASAdminConnectionGetInfoOperation) MarshalNDRResponse(ctx context.
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionGetInfoOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ConnectionGetInfoOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pInfoStruct {out} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -1481,36 +1477,36 @@ func (o *xxx_RASAdminConnectionGetInfoOperation) UnmarshalNDRResponse(ctx contex
 	return nil
 }
 
-// RASAdminConnectionGetInfoRequest structure represents the RRasAdminConnectionGetInfo operation request
-type RASAdminConnectionGetInfoRequest struct {
-	Level          uint32 `idl:"name:dwLevel" json:"level"`
-	HDimConnection uint32 `idl:"name:hDimConnection" json:"h_dim_connection"`
+// ConnectionGetInfoRequest structure represents the RRasAdminConnectionGetInfo operation request
+type ConnectionGetInfoRequest struct {
+	Level      uint32 `idl:"name:dwLevel" json:"level"`
+	Connection uint32 `idl:"name:hDimConnection" json:"connection"`
 }
 
-func (o *RASAdminConnectionGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_RASAdminConnectionGetInfoOperation) *xxx_RASAdminConnectionGetInfoOperation {
+func (o *ConnectionGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_ConnectionGetInfoOperation) *xxx_ConnectionGetInfoOperation {
 	if op == nil {
-		op = &xxx_RASAdminConnectionGetInfoOperation{}
+		op = &xxx_ConnectionGetInfoOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.Level = o.Level
-	op.HDimConnection = o.HDimConnection
+	op.Connection = o.Connection
 	return op
 }
 
-func (o *RASAdminConnectionGetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_RASAdminConnectionGetInfoOperation) {
+func (o *ConnectionGetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_ConnectionGetInfoOperation) {
 	if o == nil {
 		return
 	}
 	o.Level = op.Level
-	o.HDimConnection = op.HDimConnection
+	o.Connection = op.Connection
 }
-func (o *RASAdminConnectionGetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ConnectionGetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASAdminConnectionGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminConnectionGetInfoOperation{}
+func (o *ConnectionGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ConnectionGetInfoOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1518,16 +1514,16 @@ func (o *RASAdminConnectionGetInfoRequest) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
-// RASAdminConnectionGetInfoResponse structure represents the RRasAdminConnectionGetInfo operation response
-type RASAdminConnectionGetInfoResponse struct {
-	Info *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
+// ConnectionGetInfoResponse structure represents the RRasAdminConnectionGetInfo operation response
+type ConnectionGetInfoResponse struct {
+	Info *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
 	// Return: The RRasAdminConnectionGetInfo return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASAdminConnectionGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_RASAdminConnectionGetInfoOperation) *xxx_RASAdminConnectionGetInfoOperation {
+func (o *ConnectionGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_ConnectionGetInfoOperation) *xxx_ConnectionGetInfoOperation {
 	if op == nil {
-		op = &xxx_RASAdminConnectionGetInfoOperation{}
+		op = &xxx_ConnectionGetInfoOperation{}
 	}
 	if o == nil {
 		return op
@@ -1537,18 +1533,18 @@ func (o *RASAdminConnectionGetInfoResponse) xxx_ToOp(ctx context.Context, op *xx
 	return op
 }
 
-func (o *RASAdminConnectionGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_RASAdminConnectionGetInfoOperation) {
+func (o *ConnectionGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_ConnectionGetInfoOperation) {
 	if o == nil {
 		return
 	}
 	o.Info = op.Info
 	o.Return = op.Return
 }
-func (o *RASAdminConnectionGetInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ConnectionGetInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASAdminConnectionGetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminConnectionGetInfoOperation{}
+func (o *ConnectionGetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ConnectionGetInfoOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -1556,19 +1552,19 @@ func (o *RASAdminConnectionGetInfoResponse) UnmarshalNDR(ctx context.Context, r 
 	return nil
 }
 
-// xxx_RASAdminConnectionClearStatsOperation structure represents the RRasAdminConnectionClearStats operation
-type xxx_RASAdminConnectionClearStatsOperation struct {
-	HDimConnection uint32 `idl:"name:hDimConnection" json:"h_dim_connection"`
-	Return         uint32 `idl:"name:Return" json:"return"`
+// xxx_ConnectionClearStatsOperation structure represents the RRasAdminConnectionClearStats operation
+type xxx_ConnectionClearStatsOperation struct {
+	Connection uint32 `idl:"name:hDimConnection" json:"connection"`
+	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASAdminConnectionClearStatsOperation) OpNum() int { return 3 }
+func (o *xxx_ConnectionClearStatsOperation) OpNum() int { return 3 }
 
-func (o *xxx_RASAdminConnectionClearStatsOperation) OpName() string {
+func (o *xxx_ConnectionClearStatsOperation) OpName() string {
 	return "/dimsvc/v0/RRasAdminConnectionClearStats"
 }
 
-func (o *xxx_RASAdminConnectionClearStatsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_ConnectionClearStatsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -1577,30 +1573,30 @@ func (o *xxx_RASAdminConnectionClearStatsOperation) xxx_PrepareRequestPayload(ct
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionClearStatsOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ConnectionClearStatsOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
 	// hDimConnection {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HDimConnection); err != nil {
+		if err := w.WriteData(o.Connection); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionClearStatsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ConnectionClearStatsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hDimConnection {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HDimConnection); err != nil {
+		if err := w.ReadData(&o.Connection); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionClearStatsOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_ConnectionClearStatsOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1609,7 +1605,7 @@ func (o *xxx_RASAdminConnectionClearStatsOperation) xxx_PrepareResponsePayload(c
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionClearStatsOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ConnectionClearStatsOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1622,7 +1618,7 @@ func (o *xxx_RASAdminConnectionClearStatsOperation) MarshalNDRResponse(ctx conte
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionClearStatsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ConnectionClearStatsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -1632,33 +1628,33 @@ func (o *xxx_RASAdminConnectionClearStatsOperation) UnmarshalNDRResponse(ctx con
 	return nil
 }
 
-// RASAdminConnectionClearStatsRequest structure represents the RRasAdminConnectionClearStats operation request
-type RASAdminConnectionClearStatsRequest struct {
-	HDimConnection uint32 `idl:"name:hDimConnection" json:"h_dim_connection"`
+// ConnectionClearStatsRequest structure represents the RRasAdminConnectionClearStats operation request
+type ConnectionClearStatsRequest struct {
+	Connection uint32 `idl:"name:hDimConnection" json:"connection"`
 }
 
-func (o *RASAdminConnectionClearStatsRequest) xxx_ToOp(ctx context.Context, op *xxx_RASAdminConnectionClearStatsOperation) *xxx_RASAdminConnectionClearStatsOperation {
+func (o *ConnectionClearStatsRequest) xxx_ToOp(ctx context.Context, op *xxx_ConnectionClearStatsOperation) *xxx_ConnectionClearStatsOperation {
 	if op == nil {
-		op = &xxx_RASAdminConnectionClearStatsOperation{}
+		op = &xxx_ConnectionClearStatsOperation{}
 	}
 	if o == nil {
 		return op
 	}
-	op.HDimConnection = o.HDimConnection
+	op.Connection = o.Connection
 	return op
 }
 
-func (o *RASAdminConnectionClearStatsRequest) xxx_FromOp(ctx context.Context, op *xxx_RASAdminConnectionClearStatsOperation) {
+func (o *ConnectionClearStatsRequest) xxx_FromOp(ctx context.Context, op *xxx_ConnectionClearStatsOperation) {
 	if o == nil {
 		return
 	}
-	o.HDimConnection = op.HDimConnection
+	o.Connection = op.Connection
 }
-func (o *RASAdminConnectionClearStatsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ConnectionClearStatsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASAdminConnectionClearStatsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminConnectionClearStatsOperation{}
+func (o *ConnectionClearStatsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ConnectionClearStatsOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1666,15 +1662,15 @@ func (o *RASAdminConnectionClearStatsRequest) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
-// RASAdminConnectionClearStatsResponse structure represents the RRasAdminConnectionClearStats operation response
-type RASAdminConnectionClearStatsResponse struct {
+// ConnectionClearStatsResponse structure represents the RRasAdminConnectionClearStats operation response
+type ConnectionClearStatsResponse struct {
 	// Return: The RRasAdminConnectionClearStats return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASAdminConnectionClearStatsResponse) xxx_ToOp(ctx context.Context, op *xxx_RASAdminConnectionClearStatsOperation) *xxx_RASAdminConnectionClearStatsOperation {
+func (o *ConnectionClearStatsResponse) xxx_ToOp(ctx context.Context, op *xxx_ConnectionClearStatsOperation) *xxx_ConnectionClearStatsOperation {
 	if op == nil {
-		op = &xxx_RASAdminConnectionClearStatsOperation{}
+		op = &xxx_ConnectionClearStatsOperation{}
 	}
 	if o == nil {
 		return op
@@ -1683,17 +1679,17 @@ func (o *RASAdminConnectionClearStatsResponse) xxx_ToOp(ctx context.Context, op 
 	return op
 }
 
-func (o *RASAdminConnectionClearStatsResponse) xxx_FromOp(ctx context.Context, op *xxx_RASAdminConnectionClearStatsOperation) {
+func (o *ConnectionClearStatsResponse) xxx_FromOp(ctx context.Context, op *xxx_ConnectionClearStatsOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *RASAdminConnectionClearStatsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ConnectionClearStatsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASAdminConnectionClearStatsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminConnectionClearStatsOperation{}
+func (o *ConnectionClearStatsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ConnectionClearStatsOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -1701,23 +1697,23 @@ func (o *RASAdminConnectionClearStatsResponse) UnmarshalNDR(ctx context.Context,
 	return nil
 }
 
-// xxx_RASAdminPortEnumOperation structure represents the RRasAdminPortEnum operation
-type xxx_RASAdminPortEnumOperation struct {
-	Level                  uint32                         `idl:"name:dwLevel" json:"level"`
-	HRASConnection         uint32                         `idl:"name:hRasConnection" json:"h_ras_connection"`
-	Info                   *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	PreferredMaximumLength uint32                         `idl:"name:dwPreferedMaximumLength" json:"preferred_maximum_length"`
-	EntriesRead            uint32                         `idl:"name:lpdwEntriesRead" json:"entries_read"`
-	TotalEntries           uint32                         `idl:"name:lpdwTotalEntries" json:"total_entries"`
-	Resume                 uint32                         `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
-	Return                 uint32                         `idl:"name:Return" json:"return"`
+// xxx_PortEnumOperation structure represents the RRasAdminPortEnum operation
+type xxx_PortEnumOperation struct {
+	Level                  uint32                      `idl:"name:dwLevel" json:"level"`
+	Connection             uint32                      `idl:"name:hRasConnection" json:"connection"`
+	Info                   *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	PreferredMaximumLength uint32                      `idl:"name:dwPreferedMaximumLength" json:"preferred_maximum_length"`
+	EntriesRead            uint32                      `idl:"name:lpdwEntriesRead" json:"entries_read"`
+	TotalEntries           uint32                      `idl:"name:lpdwTotalEntries" json:"total_entries"`
+	Resume                 uint32                      `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
+	Return                 uint32                      `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASAdminPortEnumOperation) OpNum() int { return 4 }
+func (o *xxx_PortEnumOperation) OpNum() int { return 4 }
 
-func (o *xxx_RASAdminPortEnumOperation) OpName() string { return "/dimsvc/v0/RRasAdminPortEnum" }
+func (o *xxx_PortEnumOperation) OpName() string { return "/dimsvc/v0/RRasAdminPortEnum" }
 
-func (o *xxx_RASAdminPortEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_PortEnumOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -1726,7 +1722,7 @@ func (o *xxx_RASAdminPortEnumOperation) xxx_PrepareRequestPayload(ctx context.Co
 	return nil
 }
 
-func (o *xxx_RASAdminPortEnumOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_PortEnumOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -1738,7 +1734,7 @@ func (o *xxx_RASAdminPortEnumOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// hRasConnection {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HRASConnection); err != nil {
+		if err := w.WriteData(o.Connection); err != nil {
 			return err
 		}
 	}
@@ -1749,7 +1745,7 @@ func (o *xxx_RASAdminPortEnumOperation) MarshalNDRRequest(ctx context.Context, w
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1783,7 +1779,7 @@ func (o *xxx_RASAdminPortEnumOperation) MarshalNDRRequest(ctx context.Context, w
 	return nil
 }
 
-func (o *xxx_RASAdminPortEnumOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_PortEnumOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// dwLevel {in} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Level); err != nil {
@@ -1792,14 +1788,14 @@ func (o *xxx_RASAdminPortEnumOperation) UnmarshalNDRRequest(ctx context.Context,
 	}
 	// hRasConnection {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HRASConnection); err != nil {
+		if err := w.ReadData(&o.Connection); err != nil {
 			return err
 		}
 	}
 	// pInfoStruct {in, out} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -1833,7 +1829,7 @@ func (o *xxx_RASAdminPortEnumOperation) UnmarshalNDRRequest(ctx context.Context,
 	return nil
 }
 
-func (o *xxx_RASAdminPortEnumOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_PortEnumOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1842,7 +1838,7 @@ func (o *xxx_RASAdminPortEnumOperation) xxx_PrepareResponsePayload(ctx context.C
 	return nil
 }
 
-func (o *xxx_RASAdminPortEnumOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_PortEnumOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1853,7 +1849,7 @@ func (o *xxx_RASAdminPortEnumOperation) MarshalNDRResponse(ctx context.Context, 
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1899,11 +1895,11 @@ func (o *xxx_RASAdminPortEnumOperation) MarshalNDRResponse(ctx context.Context, 
 	return nil
 }
 
-func (o *xxx_RASAdminPortEnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_PortEnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pInfoStruct {in, out} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -1949,45 +1945,45 @@ func (o *xxx_RASAdminPortEnumOperation) UnmarshalNDRResponse(ctx context.Context
 	return nil
 }
 
-// RASAdminPortEnumRequest structure represents the RRasAdminPortEnum operation request
-type RASAdminPortEnumRequest struct {
-	Level                  uint32                         `idl:"name:dwLevel" json:"level"`
-	HRASConnection         uint32                         `idl:"name:hRasConnection" json:"h_ras_connection"`
-	Info                   *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	PreferredMaximumLength uint32                         `idl:"name:dwPreferedMaximumLength" json:"preferred_maximum_length"`
-	Resume                 uint32                         `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
+// PortEnumRequest structure represents the RRasAdminPortEnum operation request
+type PortEnumRequest struct {
+	Level                  uint32                      `idl:"name:dwLevel" json:"level"`
+	Connection             uint32                      `idl:"name:hRasConnection" json:"connection"`
+	Info                   *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	PreferredMaximumLength uint32                      `idl:"name:dwPreferedMaximumLength" json:"preferred_maximum_length"`
+	Resume                 uint32                      `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
 }
 
-func (o *RASAdminPortEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_RASAdminPortEnumOperation) *xxx_RASAdminPortEnumOperation {
+func (o *PortEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_PortEnumOperation) *xxx_PortEnumOperation {
 	if op == nil {
-		op = &xxx_RASAdminPortEnumOperation{}
+		op = &xxx_PortEnumOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.Level = o.Level
-	op.HRASConnection = o.HRASConnection
+	op.Connection = o.Connection
 	op.Info = o.Info
 	op.PreferredMaximumLength = o.PreferredMaximumLength
 	op.Resume = o.Resume
 	return op
 }
 
-func (o *RASAdminPortEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_RASAdminPortEnumOperation) {
+func (o *PortEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_PortEnumOperation) {
 	if o == nil {
 		return
 	}
 	o.Level = op.Level
-	o.HRASConnection = op.HRASConnection
+	o.Connection = op.Connection
 	o.Info = op.Info
 	o.PreferredMaximumLength = op.PreferredMaximumLength
 	o.Resume = op.Resume
 }
-func (o *RASAdminPortEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PortEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASAdminPortEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminPortEnumOperation{}
+func (o *PortEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_PortEnumOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1995,19 +1991,19 @@ func (o *RASAdminPortEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
-// RASAdminPortEnumResponse structure represents the RRasAdminPortEnum operation response
-type RASAdminPortEnumResponse struct {
-	Info         *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	EntriesRead  uint32                         `idl:"name:lpdwEntriesRead" json:"entries_read"`
-	TotalEntries uint32                         `idl:"name:lpdwTotalEntries" json:"total_entries"`
-	Resume       uint32                         `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
+// PortEnumResponse structure represents the RRasAdminPortEnum operation response
+type PortEnumResponse struct {
+	Info         *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	EntriesRead  uint32                      `idl:"name:lpdwEntriesRead" json:"entries_read"`
+	TotalEntries uint32                      `idl:"name:lpdwTotalEntries" json:"total_entries"`
+	Resume       uint32                      `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
 	// Return: The RRasAdminPortEnum return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASAdminPortEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_RASAdminPortEnumOperation) *xxx_RASAdminPortEnumOperation {
+func (o *PortEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_PortEnumOperation) *xxx_PortEnumOperation {
 	if op == nil {
-		op = &xxx_RASAdminPortEnumOperation{}
+		op = &xxx_PortEnumOperation{}
 	}
 	if o == nil {
 		return op
@@ -2020,7 +2016,7 @@ func (o *RASAdminPortEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_RASAdmi
 	return op
 }
 
-func (o *RASAdminPortEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_RASAdminPortEnumOperation) {
+func (o *PortEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_PortEnumOperation) {
 	if o == nil {
 		return
 	}
@@ -2030,11 +2026,11 @@ func (o *RASAdminPortEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_RASAd
 	o.Resume = op.Resume
 	o.Return = op.Return
 }
-func (o *RASAdminPortEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PortEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASAdminPortEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminPortEnumOperation{}
+func (o *PortEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_PortEnumOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -2042,19 +2038,19 @@ func (o *RASAdminPortEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
-// xxx_RASAdminPortGetInfoOperation structure represents the RRasAdminPortGetInfo operation
-type xxx_RASAdminPortGetInfoOperation struct {
-	Level  uint32                         `idl:"name:dwLevel" json:"level"`
-	HPort  uint32                         `idl:"name:hPort" json:"h_port"`
-	Info   *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	Return uint32                         `idl:"name:Return" json:"return"`
+// xxx_PortGetInfoOperation structure represents the RRasAdminPortGetInfo operation
+type xxx_PortGetInfoOperation struct {
+	Level  uint32                      `idl:"name:dwLevel" json:"level"`
+	Port   uint32                      `idl:"name:hPort" json:"port"`
+	Info   *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Return uint32                      `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASAdminPortGetInfoOperation) OpNum() int { return 5 }
+func (o *xxx_PortGetInfoOperation) OpNum() int { return 5 }
 
-func (o *xxx_RASAdminPortGetInfoOperation) OpName() string { return "/dimsvc/v0/RRasAdminPortGetInfo" }
+func (o *xxx_PortGetInfoOperation) OpName() string { return "/dimsvc/v0/RRasAdminPortGetInfo" }
 
-func (o *xxx_RASAdminPortGetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_PortGetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -2063,7 +2059,7 @@ func (o *xxx_RASAdminPortGetInfoOperation) xxx_PrepareRequestPayload(ctx context
 	return nil
 }
 
-func (o *xxx_RASAdminPortGetInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_PortGetInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -2075,14 +2071,14 @@ func (o *xxx_RASAdminPortGetInfoOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// hPort {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HPort); err != nil {
+		if err := w.WriteData(o.Port); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (o *xxx_RASAdminPortGetInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_PortGetInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// dwLevel {in} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Level); err != nil {
@@ -2091,14 +2087,14 @@ func (o *xxx_RASAdminPortGetInfoOperation) UnmarshalNDRRequest(ctx context.Conte
 	}
 	// hPort {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HPort); err != nil {
+		if err := w.ReadData(&o.Port); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (o *xxx_RASAdminPortGetInfoOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_PortGetInfoOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -2107,7 +2103,7 @@ func (o *xxx_RASAdminPortGetInfoOperation) xxx_PrepareResponsePayload(ctx contex
 	return nil
 }
 
-func (o *xxx_RASAdminPortGetInfoOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_PortGetInfoOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -2118,7 +2114,7 @@ func (o *xxx_RASAdminPortGetInfoOperation) MarshalNDRResponse(ctx context.Contex
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -2135,11 +2131,11 @@ func (o *xxx_RASAdminPortGetInfoOperation) MarshalNDRResponse(ctx context.Contex
 	return nil
 }
 
-func (o *xxx_RASAdminPortGetInfoOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_PortGetInfoOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pInfoStruct {out} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -2157,36 +2153,36 @@ func (o *xxx_RASAdminPortGetInfoOperation) UnmarshalNDRResponse(ctx context.Cont
 	return nil
 }
 
-// RASAdminPortGetInfoRequest structure represents the RRasAdminPortGetInfo operation request
-type RASAdminPortGetInfoRequest struct {
+// PortGetInfoRequest structure represents the RRasAdminPortGetInfo operation request
+type PortGetInfoRequest struct {
 	Level uint32 `idl:"name:dwLevel" json:"level"`
-	HPort uint32 `idl:"name:hPort" json:"h_port"`
+	Port  uint32 `idl:"name:hPort" json:"port"`
 }
 
-func (o *RASAdminPortGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_RASAdminPortGetInfoOperation) *xxx_RASAdminPortGetInfoOperation {
+func (o *PortGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_PortGetInfoOperation) *xxx_PortGetInfoOperation {
 	if op == nil {
-		op = &xxx_RASAdminPortGetInfoOperation{}
+		op = &xxx_PortGetInfoOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.Level = o.Level
-	op.HPort = o.HPort
+	op.Port = o.Port
 	return op
 }
 
-func (o *RASAdminPortGetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_RASAdminPortGetInfoOperation) {
+func (o *PortGetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_PortGetInfoOperation) {
 	if o == nil {
 		return
 	}
 	o.Level = op.Level
-	o.HPort = op.HPort
+	o.Port = op.Port
 }
-func (o *RASAdminPortGetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PortGetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASAdminPortGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminPortGetInfoOperation{}
+func (o *PortGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_PortGetInfoOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -2194,16 +2190,16 @@ func (o *RASAdminPortGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 	return nil
 }
 
-// RASAdminPortGetInfoResponse structure represents the RRasAdminPortGetInfo operation response
-type RASAdminPortGetInfoResponse struct {
-	Info *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
+// PortGetInfoResponse structure represents the RRasAdminPortGetInfo operation response
+type PortGetInfoResponse struct {
+	Info *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
 	// Return: The RRasAdminPortGetInfo return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASAdminPortGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_RASAdminPortGetInfoOperation) *xxx_RASAdminPortGetInfoOperation {
+func (o *PortGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_PortGetInfoOperation) *xxx_PortGetInfoOperation {
 	if op == nil {
-		op = &xxx_RASAdminPortGetInfoOperation{}
+		op = &xxx_PortGetInfoOperation{}
 	}
 	if o == nil {
 		return op
@@ -2213,18 +2209,18 @@ func (o *RASAdminPortGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_RASA
 	return op
 }
 
-func (o *RASAdminPortGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_RASAdminPortGetInfoOperation) {
+func (o *PortGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_PortGetInfoOperation) {
 	if o == nil {
 		return
 	}
 	o.Info = op.Info
 	o.Return = op.Return
 }
-func (o *RASAdminPortGetInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PortGetInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASAdminPortGetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminPortGetInfoOperation{}
+func (o *PortGetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_PortGetInfoOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -2232,19 +2228,17 @@ func (o *RASAdminPortGetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Re
 	return nil
 }
 
-// xxx_RASAdminPortClearStatsOperation structure represents the RRasAdminPortClearStats operation
-type xxx_RASAdminPortClearStatsOperation struct {
-	HPort  uint32 `idl:"name:hPort" json:"h_port"`
+// xxx_PortClearStatsOperation structure represents the RRasAdminPortClearStats operation
+type xxx_PortClearStatsOperation struct {
+	Port   uint32 `idl:"name:hPort" json:"port"`
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASAdminPortClearStatsOperation) OpNum() int { return 6 }
+func (o *xxx_PortClearStatsOperation) OpNum() int { return 6 }
 
-func (o *xxx_RASAdminPortClearStatsOperation) OpName() string {
-	return "/dimsvc/v0/RRasAdminPortClearStats"
-}
+func (o *xxx_PortClearStatsOperation) OpName() string { return "/dimsvc/v0/RRasAdminPortClearStats" }
 
-func (o *xxx_RASAdminPortClearStatsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_PortClearStatsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -2253,30 +2247,30 @@ func (o *xxx_RASAdminPortClearStatsOperation) xxx_PrepareRequestPayload(ctx cont
 	return nil
 }
 
-func (o *xxx_RASAdminPortClearStatsOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_PortClearStatsOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
 	// hPort {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HPort); err != nil {
+		if err := w.WriteData(o.Port); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (o *xxx_RASAdminPortClearStatsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_PortClearStatsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hPort {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HPort); err != nil {
+		if err := w.ReadData(&o.Port); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (o *xxx_RASAdminPortClearStatsOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_PortClearStatsOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -2285,7 +2279,7 @@ func (o *xxx_RASAdminPortClearStatsOperation) xxx_PrepareResponsePayload(ctx con
 	return nil
 }
 
-func (o *xxx_RASAdminPortClearStatsOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_PortClearStatsOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -2298,7 +2292,7 @@ func (o *xxx_RASAdminPortClearStatsOperation) MarshalNDRResponse(ctx context.Con
 	return nil
 }
 
-func (o *xxx_RASAdminPortClearStatsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_PortClearStatsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -2308,33 +2302,33 @@ func (o *xxx_RASAdminPortClearStatsOperation) UnmarshalNDRResponse(ctx context.C
 	return nil
 }
 
-// RASAdminPortClearStatsRequest structure represents the RRasAdminPortClearStats operation request
-type RASAdminPortClearStatsRequest struct {
-	HPort uint32 `idl:"name:hPort" json:"h_port"`
+// PortClearStatsRequest structure represents the RRasAdminPortClearStats operation request
+type PortClearStatsRequest struct {
+	Port uint32 `idl:"name:hPort" json:"port"`
 }
 
-func (o *RASAdminPortClearStatsRequest) xxx_ToOp(ctx context.Context, op *xxx_RASAdminPortClearStatsOperation) *xxx_RASAdminPortClearStatsOperation {
+func (o *PortClearStatsRequest) xxx_ToOp(ctx context.Context, op *xxx_PortClearStatsOperation) *xxx_PortClearStatsOperation {
 	if op == nil {
-		op = &xxx_RASAdminPortClearStatsOperation{}
+		op = &xxx_PortClearStatsOperation{}
 	}
 	if o == nil {
 		return op
 	}
-	op.HPort = o.HPort
+	op.Port = o.Port
 	return op
 }
 
-func (o *RASAdminPortClearStatsRequest) xxx_FromOp(ctx context.Context, op *xxx_RASAdminPortClearStatsOperation) {
+func (o *PortClearStatsRequest) xxx_FromOp(ctx context.Context, op *xxx_PortClearStatsOperation) {
 	if o == nil {
 		return
 	}
-	o.HPort = op.HPort
+	o.Port = op.Port
 }
-func (o *RASAdminPortClearStatsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PortClearStatsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASAdminPortClearStatsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminPortClearStatsOperation{}
+func (o *PortClearStatsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_PortClearStatsOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -2342,15 +2336,15 @@ func (o *RASAdminPortClearStatsRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
-// RASAdminPortClearStatsResponse structure represents the RRasAdminPortClearStats operation response
-type RASAdminPortClearStatsResponse struct {
+// PortClearStatsResponse structure represents the RRasAdminPortClearStats operation response
+type PortClearStatsResponse struct {
 	// Return: The RRasAdminPortClearStats return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASAdminPortClearStatsResponse) xxx_ToOp(ctx context.Context, op *xxx_RASAdminPortClearStatsOperation) *xxx_RASAdminPortClearStatsOperation {
+func (o *PortClearStatsResponse) xxx_ToOp(ctx context.Context, op *xxx_PortClearStatsOperation) *xxx_PortClearStatsOperation {
 	if op == nil {
-		op = &xxx_RASAdminPortClearStatsOperation{}
+		op = &xxx_PortClearStatsOperation{}
 	}
 	if o == nil {
 		return op
@@ -2359,17 +2353,17 @@ func (o *RASAdminPortClearStatsResponse) xxx_ToOp(ctx context.Context, op *xxx_R
 	return op
 }
 
-func (o *RASAdminPortClearStatsResponse) xxx_FromOp(ctx context.Context, op *xxx_RASAdminPortClearStatsOperation) {
+func (o *PortClearStatsResponse) xxx_FromOp(ctx context.Context, op *xxx_PortClearStatsOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *RASAdminPortClearStatsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PortClearStatsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASAdminPortClearStatsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminPortClearStatsOperation{}
+func (o *PortClearStatsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_PortClearStatsOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -2377,17 +2371,17 @@ func (o *RASAdminPortClearStatsResponse) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
-// xxx_RASAdminPortResetOperation structure represents the RRasAdminPortReset operation
-type xxx_RASAdminPortResetOperation struct {
-	HPort  uint32 `idl:"name:hPort" json:"h_port"`
+// xxx_PortResetOperation structure represents the RRasAdminPortReset operation
+type xxx_PortResetOperation struct {
+	Port   uint32 `idl:"name:hPort" json:"port"`
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASAdminPortResetOperation) OpNum() int { return 7 }
+func (o *xxx_PortResetOperation) OpNum() int { return 7 }
 
-func (o *xxx_RASAdminPortResetOperation) OpName() string { return "/dimsvc/v0/RRasAdminPortReset" }
+func (o *xxx_PortResetOperation) OpName() string { return "/dimsvc/v0/RRasAdminPortReset" }
 
-func (o *xxx_RASAdminPortResetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_PortResetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -2396,30 +2390,30 @@ func (o *xxx_RASAdminPortResetOperation) xxx_PrepareRequestPayload(ctx context.C
 	return nil
 }
 
-func (o *xxx_RASAdminPortResetOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_PortResetOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
 	// hPort {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HPort); err != nil {
+		if err := w.WriteData(o.Port); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (o *xxx_RASAdminPortResetOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_PortResetOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hPort {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HPort); err != nil {
+		if err := w.ReadData(&o.Port); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (o *xxx_RASAdminPortResetOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_PortResetOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -2428,7 +2422,7 @@ func (o *xxx_RASAdminPortResetOperation) xxx_PrepareResponsePayload(ctx context.
 	return nil
 }
 
-func (o *xxx_RASAdminPortResetOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_PortResetOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -2441,7 +2435,7 @@ func (o *xxx_RASAdminPortResetOperation) MarshalNDRResponse(ctx context.Context,
 	return nil
 }
 
-func (o *xxx_RASAdminPortResetOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_PortResetOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -2451,33 +2445,33 @@ func (o *xxx_RASAdminPortResetOperation) UnmarshalNDRResponse(ctx context.Contex
 	return nil
 }
 
-// RASAdminPortResetRequest structure represents the RRasAdminPortReset operation request
-type RASAdminPortResetRequest struct {
-	HPort uint32 `idl:"name:hPort" json:"h_port"`
+// PortResetRequest structure represents the RRasAdminPortReset operation request
+type PortResetRequest struct {
+	Port uint32 `idl:"name:hPort" json:"port"`
 }
 
-func (o *RASAdminPortResetRequest) xxx_ToOp(ctx context.Context, op *xxx_RASAdminPortResetOperation) *xxx_RASAdminPortResetOperation {
+func (o *PortResetRequest) xxx_ToOp(ctx context.Context, op *xxx_PortResetOperation) *xxx_PortResetOperation {
 	if op == nil {
-		op = &xxx_RASAdminPortResetOperation{}
+		op = &xxx_PortResetOperation{}
 	}
 	if o == nil {
 		return op
 	}
-	op.HPort = o.HPort
+	op.Port = o.Port
 	return op
 }
 
-func (o *RASAdminPortResetRequest) xxx_FromOp(ctx context.Context, op *xxx_RASAdminPortResetOperation) {
+func (o *PortResetRequest) xxx_FromOp(ctx context.Context, op *xxx_PortResetOperation) {
 	if o == nil {
 		return
 	}
-	o.HPort = op.HPort
+	o.Port = op.Port
 }
-func (o *RASAdminPortResetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PortResetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASAdminPortResetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminPortResetOperation{}
+func (o *PortResetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_PortResetOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -2485,15 +2479,15 @@ func (o *RASAdminPortResetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
-// RASAdminPortResetResponse structure represents the RRasAdminPortReset operation response
-type RASAdminPortResetResponse struct {
+// PortResetResponse structure represents the RRasAdminPortReset operation response
+type PortResetResponse struct {
 	// Return: The RRasAdminPortReset return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASAdminPortResetResponse) xxx_ToOp(ctx context.Context, op *xxx_RASAdminPortResetOperation) *xxx_RASAdminPortResetOperation {
+func (o *PortResetResponse) xxx_ToOp(ctx context.Context, op *xxx_PortResetOperation) *xxx_PortResetOperation {
 	if op == nil {
-		op = &xxx_RASAdminPortResetOperation{}
+		op = &xxx_PortResetOperation{}
 	}
 	if o == nil {
 		return op
@@ -2502,17 +2496,17 @@ func (o *RASAdminPortResetResponse) xxx_ToOp(ctx context.Context, op *xxx_RASAdm
 	return op
 }
 
-func (o *RASAdminPortResetResponse) xxx_FromOp(ctx context.Context, op *xxx_RASAdminPortResetOperation) {
+func (o *PortResetResponse) xxx_FromOp(ctx context.Context, op *xxx_PortResetOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *RASAdminPortResetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PortResetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASAdminPortResetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminPortResetOperation{}
+func (o *PortResetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_PortResetOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -2520,19 +2514,17 @@ func (o *RASAdminPortResetResponse) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
-// xxx_RASAdminPortDisconnectOperation structure represents the RRasAdminPortDisconnect operation
-type xxx_RASAdminPortDisconnectOperation struct {
-	HPort  uint32 `idl:"name:hPort" json:"h_port"`
+// xxx_PortDisconnectOperation structure represents the RRasAdminPortDisconnect operation
+type xxx_PortDisconnectOperation struct {
+	Port   uint32 `idl:"name:hPort" json:"port"`
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASAdminPortDisconnectOperation) OpNum() int { return 8 }
+func (o *xxx_PortDisconnectOperation) OpNum() int { return 8 }
 
-func (o *xxx_RASAdminPortDisconnectOperation) OpName() string {
-	return "/dimsvc/v0/RRasAdminPortDisconnect"
-}
+func (o *xxx_PortDisconnectOperation) OpName() string { return "/dimsvc/v0/RRasAdminPortDisconnect" }
 
-func (o *xxx_RASAdminPortDisconnectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_PortDisconnectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -2541,30 +2533,30 @@ func (o *xxx_RASAdminPortDisconnectOperation) xxx_PrepareRequestPayload(ctx cont
 	return nil
 }
 
-func (o *xxx_RASAdminPortDisconnectOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_PortDisconnectOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
 	// hPort {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HPort); err != nil {
+		if err := w.WriteData(o.Port); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (o *xxx_RASAdminPortDisconnectOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_PortDisconnectOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hPort {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HPort); err != nil {
+		if err := w.ReadData(&o.Port); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (o *xxx_RASAdminPortDisconnectOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_PortDisconnectOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -2573,7 +2565,7 @@ func (o *xxx_RASAdminPortDisconnectOperation) xxx_PrepareResponsePayload(ctx con
 	return nil
 }
 
-func (o *xxx_RASAdminPortDisconnectOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_PortDisconnectOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -2586,7 +2578,7 @@ func (o *xxx_RASAdminPortDisconnectOperation) MarshalNDRResponse(ctx context.Con
 	return nil
 }
 
-func (o *xxx_RASAdminPortDisconnectOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_PortDisconnectOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -2596,33 +2588,33 @@ func (o *xxx_RASAdminPortDisconnectOperation) UnmarshalNDRResponse(ctx context.C
 	return nil
 }
 
-// RASAdminPortDisconnectRequest structure represents the RRasAdminPortDisconnect operation request
-type RASAdminPortDisconnectRequest struct {
-	HPort uint32 `idl:"name:hPort" json:"h_port"`
+// PortDisconnectRequest structure represents the RRasAdminPortDisconnect operation request
+type PortDisconnectRequest struct {
+	Port uint32 `idl:"name:hPort" json:"port"`
 }
 
-func (o *RASAdminPortDisconnectRequest) xxx_ToOp(ctx context.Context, op *xxx_RASAdminPortDisconnectOperation) *xxx_RASAdminPortDisconnectOperation {
+func (o *PortDisconnectRequest) xxx_ToOp(ctx context.Context, op *xxx_PortDisconnectOperation) *xxx_PortDisconnectOperation {
 	if op == nil {
-		op = &xxx_RASAdminPortDisconnectOperation{}
+		op = &xxx_PortDisconnectOperation{}
 	}
 	if o == nil {
 		return op
 	}
-	op.HPort = o.HPort
+	op.Port = o.Port
 	return op
 }
 
-func (o *RASAdminPortDisconnectRequest) xxx_FromOp(ctx context.Context, op *xxx_RASAdminPortDisconnectOperation) {
+func (o *PortDisconnectRequest) xxx_FromOp(ctx context.Context, op *xxx_PortDisconnectOperation) {
 	if o == nil {
 		return
 	}
-	o.HPort = op.HPort
+	o.Port = op.Port
 }
-func (o *RASAdminPortDisconnectRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PortDisconnectRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASAdminPortDisconnectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminPortDisconnectOperation{}
+func (o *PortDisconnectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_PortDisconnectOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -2630,15 +2622,15 @@ func (o *RASAdminPortDisconnectRequest) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
-// RASAdminPortDisconnectResponse structure represents the RRasAdminPortDisconnect operation response
-type RASAdminPortDisconnectResponse struct {
+// PortDisconnectResponse structure represents the RRasAdminPortDisconnect operation response
+type PortDisconnectResponse struct {
 	// Return: The RRasAdminPortDisconnect return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASAdminPortDisconnectResponse) xxx_ToOp(ctx context.Context, op *xxx_RASAdminPortDisconnectOperation) *xxx_RASAdminPortDisconnectOperation {
+func (o *PortDisconnectResponse) xxx_ToOp(ctx context.Context, op *xxx_PortDisconnectOperation) *xxx_PortDisconnectOperation {
 	if op == nil {
-		op = &xxx_RASAdminPortDisconnectOperation{}
+		op = &xxx_PortDisconnectOperation{}
 	}
 	if o == nil {
 		return op
@@ -2647,17 +2639,17 @@ func (o *RASAdminPortDisconnectResponse) xxx_ToOp(ctx context.Context, op *xxx_R
 	return op
 }
 
-func (o *RASAdminPortDisconnectResponse) xxx_FromOp(ctx context.Context, op *xxx_RASAdminPortDisconnectOperation) {
+func (o *PortDisconnectResponse) xxx_FromOp(ctx context.Context, op *xxx_PortDisconnectOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *RASAdminPortDisconnectResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PortDisconnectResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASAdminPortDisconnectResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminPortDisconnectOperation{}
+func (o *PortDisconnectResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_PortDisconnectOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -2667,9 +2659,9 @@ func (o *RASAdminPortDisconnectResponse) UnmarshalNDR(ctx context.Context, r ndr
 
 // xxx_RouterInterfaceTransportSetGlobalInfoOperation structure represents the RRouterInterfaceTransportSetGlobalInfo operation
 type xxx_RouterInterfaceTransportSetGlobalInfoOperation struct {
-	TransportID uint32                       `idl:"name:dwTransportId" json:"transport_id"`
-	Info        *rrasm.DimInterfaceContainer `idl:"name:pInfoStruct" json:"info"`
-	Return      uint32                       `idl:"name:Return" json:"return"`
+	TransportID uint32                    `idl:"name:dwTransportId" json:"transport_id"`
+	Info        *rrasm.InterfaceContainer `idl:"name:pInfoStruct" json:"info"`
+	Return      uint32                    `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceTransportSetGlobalInfoOperation) OpNum() int { return 9 }
@@ -2704,7 +2696,7 @@ func (o *xxx_RouterInterfaceTransportSetGlobalInfoOperation) MarshalNDRRequest(c
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInterfaceContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InterfaceContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -2725,7 +2717,7 @@ func (o *xxx_RouterInterfaceTransportSetGlobalInfoOperation) UnmarshalNDRRequest
 	// pInfoStruct {in} (1:{alias=PDIM_INTERFACE_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INTERFACE_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInterfaceContainer{}
+			o.Info = &rrasm.InterfaceContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -2771,8 +2763,8 @@ func (o *xxx_RouterInterfaceTransportSetGlobalInfoOperation) UnmarshalNDRRespons
 
 // RouterInterfaceTransportSetGlobalInfoRequest structure represents the RRouterInterfaceTransportSetGlobalInfo operation request
 type RouterInterfaceTransportSetGlobalInfoRequest struct {
-	TransportID uint32                       `idl:"name:dwTransportId" json:"transport_id"`
-	Info        *rrasm.DimInterfaceContainer `idl:"name:pInfoStruct" json:"info"`
+	TransportID uint32                    `idl:"name:dwTransportId" json:"transport_id"`
+	Info        *rrasm.InterfaceContainer `idl:"name:pInfoStruct" json:"info"`
 }
 
 func (o *RouterInterfaceTransportSetGlobalInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceTransportSetGlobalInfoOperation) *xxx_RouterInterfaceTransportSetGlobalInfoOperation {
@@ -2843,9 +2835,9 @@ func (o *RouterInterfaceTransportSetGlobalInfoResponse) UnmarshalNDR(ctx context
 
 // xxx_RouterInterfaceTransportGetGlobalInfoOperation structure represents the RRouterInterfaceTransportGetGlobalInfo operation
 type xxx_RouterInterfaceTransportGetGlobalInfoOperation struct {
-	TransportID uint32                       `idl:"name:dwTransportId" json:"transport_id"`
-	Info        *rrasm.DimInterfaceContainer `idl:"name:pInfoStruct" json:"info"`
-	Return      uint32                       `idl:"name:Return" json:"return"`
+	TransportID uint32                    `idl:"name:dwTransportId" json:"transport_id"`
+	Info        *rrasm.InterfaceContainer `idl:"name:pInfoStruct" json:"info"`
+	Return      uint32                    `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceTransportGetGlobalInfoOperation) OpNum() int { return 10 }
@@ -2880,7 +2872,7 @@ func (o *xxx_RouterInterfaceTransportGetGlobalInfoOperation) MarshalNDRRequest(c
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInterfaceContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InterfaceContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -2901,7 +2893,7 @@ func (o *xxx_RouterInterfaceTransportGetGlobalInfoOperation) UnmarshalNDRRequest
 	// pInfoStruct {in, out} (1:{alias=PDIM_INTERFACE_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INTERFACE_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInterfaceContainer{}
+			o.Info = &rrasm.InterfaceContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -2933,7 +2925,7 @@ func (o *xxx_RouterInterfaceTransportGetGlobalInfoOperation) MarshalNDRResponse(
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInterfaceContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InterfaceContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -2954,7 +2946,7 @@ func (o *xxx_RouterInterfaceTransportGetGlobalInfoOperation) UnmarshalNDRRespons
 	// pInfoStruct {in, out} (1:{alias=PDIM_INTERFACE_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INTERFACE_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInterfaceContainer{}
+			o.Info = &rrasm.InterfaceContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -2974,8 +2966,8 @@ func (o *xxx_RouterInterfaceTransportGetGlobalInfoOperation) UnmarshalNDRRespons
 
 // RouterInterfaceTransportGetGlobalInfoRequest structure represents the RRouterInterfaceTransportGetGlobalInfo operation request
 type RouterInterfaceTransportGetGlobalInfoRequest struct {
-	TransportID uint32                       `idl:"name:dwTransportId" json:"transport_id"`
-	Info        *rrasm.DimInterfaceContainer `idl:"name:pInfoStruct" json:"info"`
+	TransportID uint32                    `idl:"name:dwTransportId" json:"transport_id"`
+	Info        *rrasm.InterfaceContainer `idl:"name:pInfoStruct" json:"info"`
 }
 
 func (o *RouterInterfaceTransportGetGlobalInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceTransportGetGlobalInfoOperation) *xxx_RouterInterfaceTransportGetGlobalInfoOperation {
@@ -3011,7 +3003,7 @@ func (o *RouterInterfaceTransportGetGlobalInfoRequest) UnmarshalNDR(ctx context.
 
 // RouterInterfaceTransportGetGlobalInfoResponse structure represents the RRouterInterfaceTransportGetGlobalInfo operation response
 type RouterInterfaceTransportGetGlobalInfoResponse struct {
-	Info *rrasm.DimInterfaceContainer `idl:"name:pInfoStruct" json:"info"`
+	Info *rrasm.InterfaceContainer `idl:"name:pInfoStruct" json:"info"`
 	// Return: The RRouterInterfaceTransportGetGlobalInfo return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -3049,7 +3041,7 @@ func (o *RouterInterfaceTransportGetGlobalInfoResponse) UnmarshalNDR(ctx context
 
 // xxx_RouterInterfaceGetHandleOperation structure represents the RRouterInterfaceGetHandle operation
 type xxx_RouterInterfaceGetHandleOperation struct {
-	LpwsInterfaceName       string `idl:"name:lpwsInterfaceName;string" json:"lpws_interface_name"`
+	InterfaceName           string `idl:"name:lpwsInterfaceName;string" json:"interface_name"`
 	Interface               uint32 `idl:"name:phInterface" json:"interface"`
 	IncludeClientInterfaces uint32 `idl:"name:fIncludeClientInterfaces" json:"include_client_interfaces"`
 	Return                  uint32 `idl:"name:Return" json:"return"`
@@ -3076,7 +3068,7 @@ func (o *xxx_RouterInterfaceGetHandleOperation) MarshalNDRRequest(ctx context.Co
 	}
 	// lpwsInterfaceName {in} (1:{string, alias=LPWSTR}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.WriteUTF16NString(ctx, w, o.LpwsInterfaceName); err != nil {
+		if err := ndr.WriteUTF16NString(ctx, w, o.InterfaceName); err != nil {
 			return err
 		}
 	}
@@ -3098,7 +3090,7 @@ func (o *xxx_RouterInterfaceGetHandleOperation) MarshalNDRRequest(ctx context.Co
 func (o *xxx_RouterInterfaceGetHandleOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// lpwsInterfaceName {in} (1:{string, alias=LPWSTR,pointer=ref}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.ReadUTF16NString(ctx, w, &o.LpwsInterfaceName); err != nil {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.InterfaceName); err != nil {
 			return err
 		}
 	}
@@ -3163,7 +3155,7 @@ func (o *xxx_RouterInterfaceGetHandleOperation) UnmarshalNDRResponse(ctx context
 
 // RouterInterfaceGetHandleRequest structure represents the RRouterInterfaceGetHandle operation request
 type RouterInterfaceGetHandleRequest struct {
-	LpwsInterfaceName       string `idl:"name:lpwsInterfaceName;string" json:"lpws_interface_name"`
+	InterfaceName           string `idl:"name:lpwsInterfaceName;string" json:"interface_name"`
 	Interface               uint32 `idl:"name:phInterface" json:"interface"`
 	IncludeClientInterfaces uint32 `idl:"name:fIncludeClientInterfaces" json:"include_client_interfaces"`
 }
@@ -3175,7 +3167,7 @@ func (o *RouterInterfaceGetHandleRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	op.LpwsInterfaceName = o.LpwsInterfaceName
+	op.InterfaceName = o.InterfaceName
 	op.Interface = o.Interface
 	op.IncludeClientInterfaces = o.IncludeClientInterfaces
 	return op
@@ -3185,7 +3177,7 @@ func (o *RouterInterfaceGetHandleRequest) xxx_FromOp(ctx context.Context, op *xx
 	if o == nil {
 		return
 	}
-	o.LpwsInterfaceName = op.LpwsInterfaceName
+	o.InterfaceName = op.InterfaceName
 	o.Interface = op.Interface
 	o.IncludeClientInterfaces = op.IncludeClientInterfaces
 }
@@ -3241,10 +3233,10 @@ func (o *RouterInterfaceGetHandleResponse) UnmarshalNDR(ctx context.Context, r n
 
 // xxx_RouterInterfaceCreateOperation structure represents the RRouterInterfaceCreate operation
 type xxx_RouterInterfaceCreateOperation struct {
-	Level     uint32                         `idl:"name:dwLevel" json:"level"`
-	Info      *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	Interface uint32                         `idl:"name:phInterface" json:"interface"`
-	Return    uint32                         `idl:"name:Return" json:"return"`
+	Level     uint32                      `idl:"name:dwLevel" json:"level"`
+	Info      *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Interface uint32                      `idl:"name:phInterface" json:"interface"`
+	Return    uint32                      `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceCreateOperation) OpNum() int { return 12 }
@@ -3279,7 +3271,7 @@ func (o *xxx_RouterInterfaceCreateOperation) MarshalNDRRequest(ctx context.Conte
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -3306,7 +3298,7 @@ func (o *xxx_RouterInterfaceCreateOperation) UnmarshalNDRRequest(ctx context.Con
 	// pInfoStruct {in} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -3370,9 +3362,9 @@ func (o *xxx_RouterInterfaceCreateOperation) UnmarshalNDRResponse(ctx context.Co
 
 // RouterInterfaceCreateRequest structure represents the RRouterInterfaceCreate operation request
 type RouterInterfaceCreateRequest struct {
-	Level     uint32                         `idl:"name:dwLevel" json:"level"`
-	Info      *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	Interface uint32                         `idl:"name:phInterface" json:"interface"`
+	Level     uint32                      `idl:"name:dwLevel" json:"level"`
+	Info      *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Interface uint32                      `idl:"name:phInterface" json:"interface"`
 }
 
 func (o *RouterInterfaceCreateRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceCreateOperation) *xxx_RouterInterfaceCreateOperation {
@@ -3448,10 +3440,10 @@ func (o *RouterInterfaceCreateResponse) UnmarshalNDR(ctx context.Context, r ndr.
 
 // xxx_RouterInterfaceGetInfoOperation structure represents the RRouterInterfaceGetInfo operation
 type xxx_RouterInterfaceGetInfoOperation struct {
-	Level      uint32                         `idl:"name:dwLevel" json:"level"`
-	Info       *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	HInterface uint32                         `idl:"name:hInterface" json:"h_interface"`
-	Return     uint32                         `idl:"name:Return" json:"return"`
+	Level     uint32                      `idl:"name:dwLevel" json:"level"`
+	Info      *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Interface uint32                      `idl:"name:hInterface" json:"interface"`
+	Return    uint32                      `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceGetInfoOperation) OpNum() int { return 13 }
@@ -3486,7 +3478,7 @@ func (o *xxx_RouterInterfaceGetInfoOperation) MarshalNDRRequest(ctx context.Cont
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -3496,7 +3488,7 @@ func (o *xxx_RouterInterfaceGetInfoOperation) MarshalNDRRequest(ctx context.Cont
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HInterface); err != nil {
+		if err := w.WriteData(o.Interface); err != nil {
 			return err
 		}
 	}
@@ -3513,7 +3505,7 @@ func (o *xxx_RouterInterfaceGetInfoOperation) UnmarshalNDRRequest(ctx context.Co
 	// pInfoStruct {in, out} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -3524,7 +3516,7 @@ func (o *xxx_RouterInterfaceGetInfoOperation) UnmarshalNDRRequest(ctx context.Co
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HInterface); err != nil {
+		if err := w.ReadData(&o.Interface); err != nil {
 			return err
 		}
 	}
@@ -3551,7 +3543,7 @@ func (o *xxx_RouterInterfaceGetInfoOperation) MarshalNDRResponse(ctx context.Con
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -3572,7 +3564,7 @@ func (o *xxx_RouterInterfaceGetInfoOperation) UnmarshalNDRResponse(ctx context.C
 	// pInfoStruct {in, out} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -3592,9 +3584,9 @@ func (o *xxx_RouterInterfaceGetInfoOperation) UnmarshalNDRResponse(ctx context.C
 
 // RouterInterfaceGetInfoRequest structure represents the RRouterInterfaceGetInfo operation request
 type RouterInterfaceGetInfoRequest struct {
-	Level      uint32                         `idl:"name:dwLevel" json:"level"`
-	Info       *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	HInterface uint32                         `idl:"name:hInterface" json:"h_interface"`
+	Level     uint32                      `idl:"name:dwLevel" json:"level"`
+	Info      *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Interface uint32                      `idl:"name:hInterface" json:"interface"`
 }
 
 func (o *RouterInterfaceGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceGetInfoOperation) *xxx_RouterInterfaceGetInfoOperation {
@@ -3606,7 +3598,7 @@ func (o *RouterInterfaceGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_Ro
 	}
 	op.Level = o.Level
 	op.Info = o.Info
-	op.HInterface = o.HInterface
+	op.Interface = o.Interface
 	return op
 }
 
@@ -3616,7 +3608,7 @@ func (o *RouterInterfaceGetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	}
 	o.Level = op.Level
 	o.Info = op.Info
-	o.HInterface = op.HInterface
+	o.Interface = op.Interface
 }
 func (o *RouterInterfaceGetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -3632,7 +3624,7 @@ func (o *RouterInterfaceGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.
 
 // RouterInterfaceGetInfoResponse structure represents the RRouterInterfaceGetInfo operation response
 type RouterInterfaceGetInfoResponse struct {
-	Info *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Info *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
 	// Return: The RRouterInterfaceGetInfo return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -3670,10 +3662,10 @@ func (o *RouterInterfaceGetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr
 
 // xxx_RouterInterfaceSetInfoOperation structure represents the RRouterInterfaceSetInfo operation
 type xxx_RouterInterfaceSetInfoOperation struct {
-	Level      uint32                         `idl:"name:dwLevel" json:"level"`
-	Info       *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	HInterface uint32                         `idl:"name:hInterface" json:"h_interface"`
-	Return     uint32                         `idl:"name:Return" json:"return"`
+	Level     uint32                      `idl:"name:dwLevel" json:"level"`
+	Info      *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Interface uint32                      `idl:"name:hInterface" json:"interface"`
+	Return    uint32                      `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceSetInfoOperation) OpNum() int { return 14 }
@@ -3708,7 +3700,7 @@ func (o *xxx_RouterInterfaceSetInfoOperation) MarshalNDRRequest(ctx context.Cont
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -3718,7 +3710,7 @@ func (o *xxx_RouterInterfaceSetInfoOperation) MarshalNDRRequest(ctx context.Cont
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HInterface); err != nil {
+		if err := w.WriteData(o.Interface); err != nil {
 			return err
 		}
 	}
@@ -3735,7 +3727,7 @@ func (o *xxx_RouterInterfaceSetInfoOperation) UnmarshalNDRRequest(ctx context.Co
 	// pInfoStruct {in} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -3746,7 +3738,7 @@ func (o *xxx_RouterInterfaceSetInfoOperation) UnmarshalNDRRequest(ctx context.Co
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HInterface); err != nil {
+		if err := w.ReadData(&o.Interface); err != nil {
 			return err
 		}
 	}
@@ -3787,9 +3779,9 @@ func (o *xxx_RouterInterfaceSetInfoOperation) UnmarshalNDRResponse(ctx context.C
 
 // RouterInterfaceSetInfoRequest structure represents the RRouterInterfaceSetInfo operation request
 type RouterInterfaceSetInfoRequest struct {
-	Level      uint32                         `idl:"name:dwLevel" json:"level"`
-	Info       *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	HInterface uint32                         `idl:"name:hInterface" json:"h_interface"`
+	Level     uint32                      `idl:"name:dwLevel" json:"level"`
+	Info      *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Interface uint32                      `idl:"name:hInterface" json:"interface"`
 }
 
 func (o *RouterInterfaceSetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceSetInfoOperation) *xxx_RouterInterfaceSetInfoOperation {
@@ -3801,7 +3793,7 @@ func (o *RouterInterfaceSetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_Ro
 	}
 	op.Level = o.Level
 	op.Info = o.Info
-	op.HInterface = o.HInterface
+	op.Interface = o.Interface
 	return op
 }
 
@@ -3811,7 +3803,7 @@ func (o *RouterInterfaceSetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	}
 	o.Level = op.Level
 	o.Info = op.Info
-	o.HInterface = op.HInterface
+	o.Interface = op.Interface
 }
 func (o *RouterInterfaceSetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -3862,8 +3854,8 @@ func (o *RouterInterfaceSetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr
 
 // xxx_RouterInterfaceDeleteOperation structure represents the RRouterInterfaceDelete operation
 type xxx_RouterInterfaceDeleteOperation struct {
-	HInterface uint32 `idl:"name:hInterface" json:"h_interface"`
-	Return     uint32 `idl:"name:Return" json:"return"`
+	Interface uint32 `idl:"name:hInterface" json:"interface"`
+	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceDeleteOperation) OpNum() int { return 15 }
@@ -3887,7 +3879,7 @@ func (o *xxx_RouterInterfaceDeleteOperation) MarshalNDRRequest(ctx context.Conte
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HInterface); err != nil {
+		if err := w.WriteData(o.Interface); err != nil {
 			return err
 		}
 	}
@@ -3897,7 +3889,7 @@ func (o *xxx_RouterInterfaceDeleteOperation) MarshalNDRRequest(ctx context.Conte
 func (o *xxx_RouterInterfaceDeleteOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HInterface); err != nil {
+		if err := w.ReadData(&o.Interface); err != nil {
 			return err
 		}
 	}
@@ -3938,7 +3930,7 @@ func (o *xxx_RouterInterfaceDeleteOperation) UnmarshalNDRResponse(ctx context.Co
 
 // RouterInterfaceDeleteRequest structure represents the RRouterInterfaceDelete operation request
 type RouterInterfaceDeleteRequest struct {
-	HInterface uint32 `idl:"name:hInterface" json:"h_interface"`
+	Interface uint32 `idl:"name:hInterface" json:"interface"`
 }
 
 func (o *RouterInterfaceDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceDeleteOperation) *xxx_RouterInterfaceDeleteOperation {
@@ -3948,7 +3940,7 @@ func (o *RouterInterfaceDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_Rou
 	if o == nil {
 		return op
 	}
-	op.HInterface = o.HInterface
+	op.Interface = o.Interface
 	return op
 }
 
@@ -3956,7 +3948,7 @@ func (o *RouterInterfaceDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_R
 	if o == nil {
 		return
 	}
-	o.HInterface = op.HInterface
+	o.Interface = op.Interface
 }
 func (o *RouterInterfaceDeleteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -4007,7 +3999,7 @@ func (o *RouterInterfaceDeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.
 
 // xxx_RouterInterfaceTransportRemoveOperation structure represents the RRouterInterfaceTransportRemove operation
 type xxx_RouterInterfaceTransportRemoveOperation struct {
-	HInterface  uint32 `idl:"name:hInterface" json:"h_interface"`
+	Interface   uint32 `idl:"name:hInterface" json:"interface"`
 	TransportID uint32 `idl:"name:dwTransportId" json:"transport_id"`
 	Return      uint32 `idl:"name:Return" json:"return"`
 }
@@ -4033,7 +4025,7 @@ func (o *xxx_RouterInterfaceTransportRemoveOperation) MarshalNDRRequest(ctx cont
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HInterface); err != nil {
+		if err := w.WriteData(o.Interface); err != nil {
 			return err
 		}
 	}
@@ -4049,7 +4041,7 @@ func (o *xxx_RouterInterfaceTransportRemoveOperation) MarshalNDRRequest(ctx cont
 func (o *xxx_RouterInterfaceTransportRemoveOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HInterface); err != nil {
+		if err := w.ReadData(&o.Interface); err != nil {
 			return err
 		}
 	}
@@ -4096,7 +4088,7 @@ func (o *xxx_RouterInterfaceTransportRemoveOperation) UnmarshalNDRResponse(ctx c
 
 // RouterInterfaceTransportRemoveRequest structure represents the RRouterInterfaceTransportRemove operation request
 type RouterInterfaceTransportRemoveRequest struct {
-	HInterface  uint32 `idl:"name:hInterface" json:"h_interface"`
+	Interface   uint32 `idl:"name:hInterface" json:"interface"`
 	TransportID uint32 `idl:"name:dwTransportId" json:"transport_id"`
 }
 
@@ -4107,7 +4099,7 @@ func (o *RouterInterfaceTransportRemoveRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	op.HInterface = o.HInterface
+	op.Interface = o.Interface
 	op.TransportID = o.TransportID
 	return op
 }
@@ -4116,7 +4108,7 @@ func (o *RouterInterfaceTransportRemoveRequest) xxx_FromOp(ctx context.Context, 
 	if o == nil {
 		return
 	}
-	o.HInterface = op.HInterface
+	o.Interface = op.Interface
 	o.TransportID = op.TransportID
 }
 func (o *RouterInterfaceTransportRemoveRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -4168,10 +4160,10 @@ func (o *RouterInterfaceTransportRemoveResponse) UnmarshalNDR(ctx context.Contex
 
 // xxx_RouterInterfaceTransportAddOperation structure represents the RRouterInterfaceTransportAdd operation
 type xxx_RouterInterfaceTransportAddOperation struct {
-	HInterface  uint32                       `idl:"name:hInterface" json:"h_interface"`
-	TransportID uint32                       `idl:"name:dwTransportId" json:"transport_id"`
-	Info        *rrasm.DimInterfaceContainer `idl:"name:pInfoStruct" json:"info"`
-	Return      uint32                       `idl:"name:Return" json:"return"`
+	Interface   uint32                    `idl:"name:hInterface" json:"interface"`
+	TransportID uint32                    `idl:"name:dwTransportId" json:"transport_id"`
+	Info        *rrasm.InterfaceContainer `idl:"name:pInfoStruct" json:"info"`
+	Return      uint32                    `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceTransportAddOperation) OpNum() int { return 17 }
@@ -4195,7 +4187,7 @@ func (o *xxx_RouterInterfaceTransportAddOperation) MarshalNDRRequest(ctx context
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HInterface); err != nil {
+		if err := w.WriteData(o.Interface); err != nil {
 			return err
 		}
 	}
@@ -4212,7 +4204,7 @@ func (o *xxx_RouterInterfaceTransportAddOperation) MarshalNDRRequest(ctx context
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInterfaceContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InterfaceContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -4226,7 +4218,7 @@ func (o *xxx_RouterInterfaceTransportAddOperation) MarshalNDRRequest(ctx context
 func (o *xxx_RouterInterfaceTransportAddOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HInterface); err != nil {
+		if err := w.ReadData(&o.Interface); err != nil {
 			return err
 		}
 	}
@@ -4239,7 +4231,7 @@ func (o *xxx_RouterInterfaceTransportAddOperation) UnmarshalNDRRequest(ctx conte
 	// pInfoStruct {in} (1:{alias=PDIM_INTERFACE_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INTERFACE_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInterfaceContainer{}
+			o.Info = &rrasm.InterfaceContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -4285,9 +4277,9 @@ func (o *xxx_RouterInterfaceTransportAddOperation) UnmarshalNDRResponse(ctx cont
 
 // RouterInterfaceTransportAddRequest structure represents the RRouterInterfaceTransportAdd operation request
 type RouterInterfaceTransportAddRequest struct {
-	HInterface  uint32                       `idl:"name:hInterface" json:"h_interface"`
-	TransportID uint32                       `idl:"name:dwTransportId" json:"transport_id"`
-	Info        *rrasm.DimInterfaceContainer `idl:"name:pInfoStruct" json:"info"`
+	Interface   uint32                    `idl:"name:hInterface" json:"interface"`
+	TransportID uint32                    `idl:"name:dwTransportId" json:"transport_id"`
+	Info        *rrasm.InterfaceContainer `idl:"name:pInfoStruct" json:"info"`
 }
 
 func (o *RouterInterfaceTransportAddRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceTransportAddOperation) *xxx_RouterInterfaceTransportAddOperation {
@@ -4297,7 +4289,7 @@ func (o *RouterInterfaceTransportAddRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	op.HInterface = o.HInterface
+	op.Interface = o.Interface
 	op.TransportID = o.TransportID
 	op.Info = o.Info
 	return op
@@ -4307,7 +4299,7 @@ func (o *RouterInterfaceTransportAddRequest) xxx_FromOp(ctx context.Context, op 
 	if o == nil {
 		return
 	}
-	o.HInterface = op.HInterface
+	o.Interface = op.Interface
 	o.TransportID = op.TransportID
 	o.Info = op.Info
 }
@@ -4360,10 +4352,10 @@ func (o *RouterInterfaceTransportAddResponse) UnmarshalNDR(ctx context.Context, 
 
 // xxx_RouterInterfaceTransportGetInfoOperation structure represents the RRouterInterfaceTransportGetInfo operation
 type xxx_RouterInterfaceTransportGetInfoOperation struct {
-	HInterface  uint32                       `idl:"name:hInterface" json:"h_interface"`
-	TransportID uint32                       `idl:"name:dwTransportId" json:"transport_id"`
-	Info        *rrasm.DimInterfaceContainer `idl:"name:pInfoStruct" json:"info"`
-	Return      uint32                       `idl:"name:Return" json:"return"`
+	Interface   uint32                    `idl:"name:hInterface" json:"interface"`
+	TransportID uint32                    `idl:"name:dwTransportId" json:"transport_id"`
+	Info        *rrasm.InterfaceContainer `idl:"name:pInfoStruct" json:"info"`
+	Return      uint32                    `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceTransportGetInfoOperation) OpNum() int { return 18 }
@@ -4387,7 +4379,7 @@ func (o *xxx_RouterInterfaceTransportGetInfoOperation) MarshalNDRRequest(ctx con
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HInterface); err != nil {
+		if err := w.WriteData(o.Interface); err != nil {
 			return err
 		}
 	}
@@ -4404,7 +4396,7 @@ func (o *xxx_RouterInterfaceTransportGetInfoOperation) MarshalNDRRequest(ctx con
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInterfaceContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InterfaceContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -4418,7 +4410,7 @@ func (o *xxx_RouterInterfaceTransportGetInfoOperation) MarshalNDRRequest(ctx con
 func (o *xxx_RouterInterfaceTransportGetInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HInterface); err != nil {
+		if err := w.ReadData(&o.Interface); err != nil {
 			return err
 		}
 	}
@@ -4431,7 +4423,7 @@ func (o *xxx_RouterInterfaceTransportGetInfoOperation) UnmarshalNDRRequest(ctx c
 	// pInfoStruct {in, out} (1:{alias=PDIM_INTERFACE_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INTERFACE_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInterfaceContainer{}
+			o.Info = &rrasm.InterfaceContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -4463,7 +4455,7 @@ func (o *xxx_RouterInterfaceTransportGetInfoOperation) MarshalNDRResponse(ctx co
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInterfaceContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InterfaceContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -4484,7 +4476,7 @@ func (o *xxx_RouterInterfaceTransportGetInfoOperation) UnmarshalNDRResponse(ctx 
 	// pInfoStruct {in, out} (1:{alias=PDIM_INTERFACE_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INTERFACE_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInterfaceContainer{}
+			o.Info = &rrasm.InterfaceContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -4504,9 +4496,9 @@ func (o *xxx_RouterInterfaceTransportGetInfoOperation) UnmarshalNDRResponse(ctx 
 
 // RouterInterfaceTransportGetInfoRequest structure represents the RRouterInterfaceTransportGetInfo operation request
 type RouterInterfaceTransportGetInfoRequest struct {
-	HInterface  uint32                       `idl:"name:hInterface" json:"h_interface"`
-	TransportID uint32                       `idl:"name:dwTransportId" json:"transport_id"`
-	Info        *rrasm.DimInterfaceContainer `idl:"name:pInfoStruct" json:"info"`
+	Interface   uint32                    `idl:"name:hInterface" json:"interface"`
+	TransportID uint32                    `idl:"name:dwTransportId" json:"transport_id"`
+	Info        *rrasm.InterfaceContainer `idl:"name:pInfoStruct" json:"info"`
 }
 
 func (o *RouterInterfaceTransportGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceTransportGetInfoOperation) *xxx_RouterInterfaceTransportGetInfoOperation {
@@ -4516,7 +4508,7 @@ func (o *RouterInterfaceTransportGetInfoRequest) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	op.HInterface = o.HInterface
+	op.Interface = o.Interface
 	op.TransportID = o.TransportID
 	op.Info = o.Info
 	return op
@@ -4526,7 +4518,7 @@ func (o *RouterInterfaceTransportGetInfoRequest) xxx_FromOp(ctx context.Context,
 	if o == nil {
 		return
 	}
-	o.HInterface = op.HInterface
+	o.Interface = op.Interface
 	o.TransportID = op.TransportID
 	o.Info = op.Info
 }
@@ -4544,7 +4536,7 @@ func (o *RouterInterfaceTransportGetInfoRequest) UnmarshalNDR(ctx context.Contex
 
 // RouterInterfaceTransportGetInfoResponse structure represents the RRouterInterfaceTransportGetInfo operation response
 type RouterInterfaceTransportGetInfoResponse struct {
-	Info *rrasm.DimInterfaceContainer `idl:"name:pInfoStruct" json:"info"`
+	Info *rrasm.InterfaceContainer `idl:"name:pInfoStruct" json:"info"`
 	// Return: The RRouterInterfaceTransportGetInfo return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -4582,10 +4574,10 @@ func (o *RouterInterfaceTransportGetInfoResponse) UnmarshalNDR(ctx context.Conte
 
 // xxx_RouterInterfaceTransportSetInfoOperation structure represents the RRouterInterfaceTransportSetInfo operation
 type xxx_RouterInterfaceTransportSetInfoOperation struct {
-	HInterface  uint32                       `idl:"name:hInterface" json:"h_interface"`
-	TransportID uint32                       `idl:"name:dwTransportId" json:"transport_id"`
-	Info        *rrasm.DimInterfaceContainer `idl:"name:pInfoStruct" json:"info"`
-	Return      uint32                       `idl:"name:Return" json:"return"`
+	Interface   uint32                    `idl:"name:hInterface" json:"interface"`
+	TransportID uint32                    `idl:"name:dwTransportId" json:"transport_id"`
+	Info        *rrasm.InterfaceContainer `idl:"name:pInfoStruct" json:"info"`
+	Return      uint32                    `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceTransportSetInfoOperation) OpNum() int { return 19 }
@@ -4609,7 +4601,7 @@ func (o *xxx_RouterInterfaceTransportSetInfoOperation) MarshalNDRRequest(ctx con
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HInterface); err != nil {
+		if err := w.WriteData(o.Interface); err != nil {
 			return err
 		}
 	}
@@ -4626,7 +4618,7 @@ func (o *xxx_RouterInterfaceTransportSetInfoOperation) MarshalNDRRequest(ctx con
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInterfaceContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InterfaceContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -4640,7 +4632,7 @@ func (o *xxx_RouterInterfaceTransportSetInfoOperation) MarshalNDRRequest(ctx con
 func (o *xxx_RouterInterfaceTransportSetInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HInterface); err != nil {
+		if err := w.ReadData(&o.Interface); err != nil {
 			return err
 		}
 	}
@@ -4653,7 +4645,7 @@ func (o *xxx_RouterInterfaceTransportSetInfoOperation) UnmarshalNDRRequest(ctx c
 	// pInfoStruct {in} (1:{alias=PDIM_INTERFACE_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INTERFACE_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInterfaceContainer{}
+			o.Info = &rrasm.InterfaceContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -4699,9 +4691,9 @@ func (o *xxx_RouterInterfaceTransportSetInfoOperation) UnmarshalNDRResponse(ctx 
 
 // RouterInterfaceTransportSetInfoRequest structure represents the RRouterInterfaceTransportSetInfo operation request
 type RouterInterfaceTransportSetInfoRequest struct {
-	HInterface  uint32                       `idl:"name:hInterface" json:"h_interface"`
-	TransportID uint32                       `idl:"name:dwTransportId" json:"transport_id"`
-	Info        *rrasm.DimInterfaceContainer `idl:"name:pInfoStruct" json:"info"`
+	Interface   uint32                    `idl:"name:hInterface" json:"interface"`
+	TransportID uint32                    `idl:"name:dwTransportId" json:"transport_id"`
+	Info        *rrasm.InterfaceContainer `idl:"name:pInfoStruct" json:"info"`
 }
 
 func (o *RouterInterfaceTransportSetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceTransportSetInfoOperation) *xxx_RouterInterfaceTransportSetInfoOperation {
@@ -4711,7 +4703,7 @@ func (o *RouterInterfaceTransportSetInfoRequest) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	op.HInterface = o.HInterface
+	op.Interface = o.Interface
 	op.TransportID = o.TransportID
 	op.Info = o.Info
 	return op
@@ -4721,7 +4713,7 @@ func (o *RouterInterfaceTransportSetInfoRequest) xxx_FromOp(ctx context.Context,
 	if o == nil {
 		return
 	}
-	o.HInterface = op.HInterface
+	o.Interface = op.Interface
 	o.TransportID = op.TransportID
 	o.Info = op.Info
 }
@@ -4774,13 +4766,13 @@ func (o *RouterInterfaceTransportSetInfoResponse) UnmarshalNDR(ctx context.Conte
 
 // xxx_RouterInterfaceEnumOperation structure represents the RRouterInterfaceEnum operation
 type xxx_RouterInterfaceEnumOperation struct {
-	Level                  uint32                         `idl:"name:dwLevel" json:"level"`
-	Info                   *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	PreferredMaximumLength uint32                         `idl:"name:dwPreferedMaximumLength" json:"preferred_maximum_length"`
-	EntriesRead            uint32                         `idl:"name:lpdwEntriesRead" json:"entries_read"`
-	TotalEntries           uint32                         `idl:"name:lpdwTotalEntries" json:"total_entries"`
-	Resume                 uint32                         `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
-	Return                 uint32                         `idl:"name:Return" json:"return"`
+	Level                  uint32                      `idl:"name:dwLevel" json:"level"`
+	Info                   *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	PreferredMaximumLength uint32                      `idl:"name:dwPreferedMaximumLength" json:"preferred_maximum_length"`
+	EntriesRead            uint32                      `idl:"name:lpdwEntriesRead" json:"entries_read"`
+	TotalEntries           uint32                      `idl:"name:lpdwTotalEntries" json:"total_entries"`
+	Resume                 uint32                      `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
+	Return                 uint32                      `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceEnumOperation) OpNum() int { return 20 }
@@ -4813,7 +4805,7 @@ func (o *xxx_RouterInterfaceEnumOperation) MarshalNDRRequest(ctx context.Context
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -4857,7 +4849,7 @@ func (o *xxx_RouterInterfaceEnumOperation) UnmarshalNDRRequest(ctx context.Conte
 	// pInfoStruct {in, out} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -4911,7 +4903,7 @@ func (o *xxx_RouterInterfaceEnumOperation) MarshalNDRResponse(ctx context.Contex
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -4961,7 +4953,7 @@ func (o *xxx_RouterInterfaceEnumOperation) UnmarshalNDRResponse(ctx context.Cont
 	// pInfoStruct {in, out} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -5009,10 +5001,10 @@ func (o *xxx_RouterInterfaceEnumOperation) UnmarshalNDRResponse(ctx context.Cont
 
 // RouterInterfaceEnumRequest structure represents the RRouterInterfaceEnum operation request
 type RouterInterfaceEnumRequest struct {
-	Level                  uint32                         `idl:"name:dwLevel" json:"level"`
-	Info                   *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	PreferredMaximumLength uint32                         `idl:"name:dwPreferedMaximumLength" json:"preferred_maximum_length"`
-	Resume                 uint32                         `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
+	Level                  uint32                      `idl:"name:dwLevel" json:"level"`
+	Info                   *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	PreferredMaximumLength uint32                      `idl:"name:dwPreferedMaximumLength" json:"preferred_maximum_length"`
+	Resume                 uint32                      `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
 }
 
 func (o *RouterInterfaceEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceEnumOperation) *xxx_RouterInterfaceEnumOperation {
@@ -5052,10 +5044,10 @@ func (o *RouterInterfaceEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // RouterInterfaceEnumResponse structure represents the RRouterInterfaceEnum operation response
 type RouterInterfaceEnumResponse struct {
-	Info         *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	EntriesRead  uint32                         `idl:"name:lpdwEntriesRead" json:"entries_read"`
-	TotalEntries uint32                         `idl:"name:lpdwTotalEntries" json:"total_entries"`
-	Resume       uint32                         `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
+	Info         *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	EntriesRead  uint32                      `idl:"name:lpdwEntriesRead" json:"entries_read"`
+	TotalEntries uint32                      `idl:"name:lpdwTotalEntries" json:"total_entries"`
+	Resume       uint32                      `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
 	// Return: The RRouterInterfaceEnum return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -5099,8 +5091,8 @@ func (o *RouterInterfaceEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Re
 
 // xxx_RouterInterfaceConnectOperation structure represents the RRouterInterfaceConnect operation
 type xxx_RouterInterfaceConnectOperation struct {
-	HInterface       uint32 `idl:"name:hInterface" json:"h_interface"`
-	HEvent           uint64 `idl:"name:hEvent" json:"h_event"`
+	Interface        uint32 `idl:"name:hInterface" json:"interface"`
+	Event            uint64 `idl:"name:hEvent" json:"event"`
 	Blocking         uint32 `idl:"name:fBlocking" json:"blocking"`
 	CallersProcessID uint32 `idl:"name:dwCallersProcessId" json:"callers_process_id"`
 	Return           uint32 `idl:"name:Return" json:"return"`
@@ -5127,13 +5119,13 @@ func (o *xxx_RouterInterfaceConnectOperation) MarshalNDRRequest(ctx context.Cont
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HInterface); err != nil {
+		if err := w.WriteData(o.Interface); err != nil {
 			return err
 		}
 	}
 	// hEvent {in} (1:{public, alias=ULONG_PTR}(uint32_64))
 	{
-		if err := w.WriteData(ndr.Uint3264(o.HEvent)); err != nil {
+		if err := w.WriteData(ndr.Uint3264(o.Event)); err != nil {
 			return err
 		}
 	}
@@ -5155,13 +5147,13 @@ func (o *xxx_RouterInterfaceConnectOperation) MarshalNDRRequest(ctx context.Cont
 func (o *xxx_RouterInterfaceConnectOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HInterface); err != nil {
+		if err := w.ReadData(&o.Interface); err != nil {
 			return err
 		}
 	}
 	// hEvent {in} (1:{public, alias=ULONG_PTR}(uint32_64))
 	{
-		if err := w.ReadData((*ndr.Uint3264)(&o.HEvent)); err != nil {
+		if err := w.ReadData((*ndr.Uint3264)(&o.Event)); err != nil {
 			return err
 		}
 	}
@@ -5214,8 +5206,8 @@ func (o *xxx_RouterInterfaceConnectOperation) UnmarshalNDRResponse(ctx context.C
 
 // RouterInterfaceConnectRequest structure represents the RRouterInterfaceConnect operation request
 type RouterInterfaceConnectRequest struct {
-	HInterface       uint32 `idl:"name:hInterface" json:"h_interface"`
-	HEvent           uint64 `idl:"name:hEvent" json:"h_event"`
+	Interface        uint32 `idl:"name:hInterface" json:"interface"`
+	Event            uint64 `idl:"name:hEvent" json:"event"`
 	Blocking         uint32 `idl:"name:fBlocking" json:"blocking"`
 	CallersProcessID uint32 `idl:"name:dwCallersProcessId" json:"callers_process_id"`
 }
@@ -5227,8 +5219,8 @@ func (o *RouterInterfaceConnectRequest) xxx_ToOp(ctx context.Context, op *xxx_Ro
 	if o == nil {
 		return op
 	}
-	op.HInterface = o.HInterface
-	op.HEvent = o.HEvent
+	op.Interface = o.Interface
+	op.Event = o.Event
 	op.Blocking = o.Blocking
 	op.CallersProcessID = o.CallersProcessID
 	return op
@@ -5238,8 +5230,8 @@ func (o *RouterInterfaceConnectRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return
 	}
-	o.HInterface = op.HInterface
-	o.HEvent = op.HEvent
+	o.Interface = op.Interface
+	o.Event = op.Event
 	o.Blocking = op.Blocking
 	o.CallersProcessID = op.CallersProcessID
 }
@@ -5292,8 +5284,8 @@ func (o *RouterInterfaceConnectResponse) UnmarshalNDR(ctx context.Context, r ndr
 
 // xxx_RouterInterfaceDisconnectOperation structure represents the RRouterInterfaceDisconnect operation
 type xxx_RouterInterfaceDisconnectOperation struct {
-	HInterface uint32 `idl:"name:hInterface" json:"h_interface"`
-	Return     uint32 `idl:"name:Return" json:"return"`
+	Interface uint32 `idl:"name:hInterface" json:"interface"`
+	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceDisconnectOperation) OpNum() int { return 22 }
@@ -5317,7 +5309,7 @@ func (o *xxx_RouterInterfaceDisconnectOperation) MarshalNDRRequest(ctx context.C
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HInterface); err != nil {
+		if err := w.WriteData(o.Interface); err != nil {
 			return err
 		}
 	}
@@ -5327,7 +5319,7 @@ func (o *xxx_RouterInterfaceDisconnectOperation) MarshalNDRRequest(ctx context.C
 func (o *xxx_RouterInterfaceDisconnectOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HInterface); err != nil {
+		if err := w.ReadData(&o.Interface); err != nil {
 			return err
 		}
 	}
@@ -5368,7 +5360,7 @@ func (o *xxx_RouterInterfaceDisconnectOperation) UnmarshalNDRResponse(ctx contex
 
 // RouterInterfaceDisconnectRequest structure represents the RRouterInterfaceDisconnect operation request
 type RouterInterfaceDisconnectRequest struct {
-	HInterface uint32 `idl:"name:hInterface" json:"h_interface"`
+	Interface uint32 `idl:"name:hInterface" json:"interface"`
 }
 
 func (o *RouterInterfaceDisconnectRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceDisconnectOperation) *xxx_RouterInterfaceDisconnectOperation {
@@ -5378,7 +5370,7 @@ func (o *RouterInterfaceDisconnectRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	op.HInterface = o.HInterface
+	op.Interface = o.Interface
 	return op
 }
 
@@ -5386,7 +5378,7 @@ func (o *RouterInterfaceDisconnectRequest) xxx_FromOp(ctx context.Context, op *x
 	if o == nil {
 		return
 	}
-	o.HInterface = op.HInterface
+	o.Interface = op.Interface
 }
 func (o *RouterInterfaceDisconnectRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -5437,9 +5429,9 @@ func (o *RouterInterfaceDisconnectResponse) UnmarshalNDR(ctx context.Context, r 
 
 // xxx_RouterInterfaceUpdateRoutesOperation structure represents the RRouterInterfaceUpdateRoutes operation
 type xxx_RouterInterfaceUpdateRoutesOperation struct {
-	HInterface      uint32 `idl:"name:hInterface" json:"h_interface"`
+	Interface       uint32 `idl:"name:hInterface" json:"interface"`
 	TransportID     uint32 `idl:"name:dwTransportId" json:"transport_id"`
-	HEvent          uint64 `idl:"name:hEvent" json:"h_event"`
+	Event           uint64 `idl:"name:hEvent" json:"event"`
 	ClientProcessID uint32 `idl:"name:dwClientProcessId" json:"client_process_id"`
 	Return          uint32 `idl:"name:Return" json:"return"`
 }
@@ -5465,7 +5457,7 @@ func (o *xxx_RouterInterfaceUpdateRoutesOperation) MarshalNDRRequest(ctx context
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HInterface); err != nil {
+		if err := w.WriteData(o.Interface); err != nil {
 			return err
 		}
 	}
@@ -5477,7 +5469,7 @@ func (o *xxx_RouterInterfaceUpdateRoutesOperation) MarshalNDRRequest(ctx context
 	}
 	// hEvent {in} (1:{public, alias=ULONG_PTR}(uint32_64))
 	{
-		if err := w.WriteData(ndr.Uint3264(o.HEvent)); err != nil {
+		if err := w.WriteData(ndr.Uint3264(o.Event)); err != nil {
 			return err
 		}
 	}
@@ -5493,7 +5485,7 @@ func (o *xxx_RouterInterfaceUpdateRoutesOperation) MarshalNDRRequest(ctx context
 func (o *xxx_RouterInterfaceUpdateRoutesOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HInterface); err != nil {
+		if err := w.ReadData(&o.Interface); err != nil {
 			return err
 		}
 	}
@@ -5505,7 +5497,7 @@ func (o *xxx_RouterInterfaceUpdateRoutesOperation) UnmarshalNDRRequest(ctx conte
 	}
 	// hEvent {in} (1:{public, alias=ULONG_PTR}(uint32_64))
 	{
-		if err := w.ReadData((*ndr.Uint3264)(&o.HEvent)); err != nil {
+		if err := w.ReadData((*ndr.Uint3264)(&o.Event)); err != nil {
 			return err
 		}
 	}
@@ -5552,9 +5544,9 @@ func (o *xxx_RouterInterfaceUpdateRoutesOperation) UnmarshalNDRResponse(ctx cont
 
 // RouterInterfaceUpdateRoutesRequest structure represents the RRouterInterfaceUpdateRoutes operation request
 type RouterInterfaceUpdateRoutesRequest struct {
-	HInterface      uint32 `idl:"name:hInterface" json:"h_interface"`
+	Interface       uint32 `idl:"name:hInterface" json:"interface"`
 	TransportID     uint32 `idl:"name:dwTransportId" json:"transport_id"`
-	HEvent          uint64 `idl:"name:hEvent" json:"h_event"`
+	Event           uint64 `idl:"name:hEvent" json:"event"`
 	ClientProcessID uint32 `idl:"name:dwClientProcessId" json:"client_process_id"`
 }
 
@@ -5565,9 +5557,9 @@ func (o *RouterInterfaceUpdateRoutesRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	op.HInterface = o.HInterface
+	op.Interface = o.Interface
 	op.TransportID = o.TransportID
-	op.HEvent = o.HEvent
+	op.Event = o.Event
 	op.ClientProcessID = o.ClientProcessID
 	return op
 }
@@ -5576,9 +5568,9 @@ func (o *RouterInterfaceUpdateRoutesRequest) xxx_FromOp(ctx context.Context, op 
 	if o == nil {
 		return
 	}
-	o.HInterface = op.HInterface
+	o.Interface = op.Interface
 	o.TransportID = op.TransportID
-	o.HEvent = op.HEvent
+	o.Event = op.Event
 	o.ClientProcessID = op.ClientProcessID
 }
 func (o *RouterInterfaceUpdateRoutesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -5630,7 +5622,7 @@ func (o *RouterInterfaceUpdateRoutesResponse) UnmarshalNDR(ctx context.Context, 
 
 // xxx_RouterInterfaceQueryUpdateResultOperation structure represents the RRouterInterfaceQueryUpdateResult operation
 type xxx_RouterInterfaceQueryUpdateResultOperation struct {
-	HInterface   uint32 `idl:"name:hInterface" json:"h_interface"`
+	Interface    uint32 `idl:"name:hInterface" json:"interface"`
 	TransportID  uint32 `idl:"name:dwTransportId" json:"transport_id"`
 	UpdateResult uint32 `idl:"name:pUpdateResult" json:"update_result"`
 	Return       uint32 `idl:"name:Return" json:"return"`
@@ -5657,7 +5649,7 @@ func (o *xxx_RouterInterfaceQueryUpdateResultOperation) MarshalNDRRequest(ctx co
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HInterface); err != nil {
+		if err := w.WriteData(o.Interface); err != nil {
 			return err
 		}
 	}
@@ -5673,7 +5665,7 @@ func (o *xxx_RouterInterfaceQueryUpdateResultOperation) MarshalNDRRequest(ctx co
 func (o *xxx_RouterInterfaceQueryUpdateResultOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HInterface); err != nil {
+		if err := w.ReadData(&o.Interface); err != nil {
 			return err
 		}
 	}
@@ -5732,7 +5724,7 @@ func (o *xxx_RouterInterfaceQueryUpdateResultOperation) UnmarshalNDRResponse(ctx
 
 // RouterInterfaceQueryUpdateResultRequest structure represents the RRouterInterfaceQueryUpdateResult operation request
 type RouterInterfaceQueryUpdateResultRequest struct {
-	HInterface  uint32 `idl:"name:hInterface" json:"h_interface"`
+	Interface   uint32 `idl:"name:hInterface" json:"interface"`
 	TransportID uint32 `idl:"name:dwTransportId" json:"transport_id"`
 }
 
@@ -5743,7 +5735,7 @@ func (o *RouterInterfaceQueryUpdateResultRequest) xxx_ToOp(ctx context.Context, 
 	if o == nil {
 		return op
 	}
-	op.HInterface = o.HInterface
+	op.Interface = o.Interface
 	op.TransportID = o.TransportID
 	return op
 }
@@ -5752,7 +5744,7 @@ func (o *RouterInterfaceQueryUpdateResultRequest) xxx_FromOp(ctx context.Context
 	if o == nil {
 		return
 	}
-	o.HInterface = op.HInterface
+	o.Interface = op.Interface
 	o.TransportID = op.TransportID
 }
 func (o *RouterInterfaceQueryUpdateResultRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -5807,8 +5799,8 @@ func (o *RouterInterfaceQueryUpdateResultResponse) UnmarshalNDR(ctx context.Cont
 
 // xxx_RouterInterfaceUpdatePhonebookInfoOperation structure represents the RRouterInterfaceUpdatePhonebookInfo operation
 type xxx_RouterInterfaceUpdatePhonebookInfoOperation struct {
-	HInterface uint32 `idl:"name:hInterface" json:"h_interface"`
-	Return     uint32 `idl:"name:Return" json:"return"`
+	Interface uint32 `idl:"name:hInterface" json:"interface"`
+	Return    uint32 `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceUpdatePhonebookInfoOperation) OpNum() int { return 25 }
@@ -5832,7 +5824,7 @@ func (o *xxx_RouterInterfaceUpdatePhonebookInfoOperation) MarshalNDRRequest(ctx 
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HInterface); err != nil {
+		if err := w.WriteData(o.Interface); err != nil {
 			return err
 		}
 	}
@@ -5842,7 +5834,7 @@ func (o *xxx_RouterInterfaceUpdatePhonebookInfoOperation) MarshalNDRRequest(ctx 
 func (o *xxx_RouterInterfaceUpdatePhonebookInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HInterface); err != nil {
+		if err := w.ReadData(&o.Interface); err != nil {
 			return err
 		}
 	}
@@ -5883,7 +5875,7 @@ func (o *xxx_RouterInterfaceUpdatePhonebookInfoOperation) UnmarshalNDRResponse(c
 
 // RouterInterfaceUpdatePhonebookInfoRequest structure represents the RRouterInterfaceUpdatePhonebookInfo operation request
 type RouterInterfaceUpdatePhonebookInfoRequest struct {
-	HInterface uint32 `idl:"name:hInterface" json:"h_interface"`
+	Interface uint32 `idl:"name:hInterface" json:"interface"`
 }
 
 func (o *RouterInterfaceUpdatePhonebookInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceUpdatePhonebookInfoOperation) *xxx_RouterInterfaceUpdatePhonebookInfoOperation {
@@ -5893,7 +5885,7 @@ func (o *RouterInterfaceUpdatePhonebookInfoRequest) xxx_ToOp(ctx context.Context
 	if o == nil {
 		return op
 	}
-	op.HInterface = o.HInterface
+	op.Interface = o.Interface
 	return op
 }
 
@@ -5901,7 +5893,7 @@ func (o *RouterInterfaceUpdatePhonebookInfoRequest) xxx_FromOp(ctx context.Conte
 	if o == nil {
 		return
 	}
-	o.HInterface = op.HInterface
+	o.Interface = op.Interface
 }
 func (o *RouterInterfaceUpdatePhonebookInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -5950,19 +5942,19 @@ func (o *RouterInterfaceUpdatePhonebookInfoResponse) UnmarshalNDR(ctx context.Co
 	return nil
 }
 
-// xxx_RmibEntryCreateOperation structure represents the RMIBEntryCreate operation
-type xxx_RmibEntryCreateOperation struct {
-	PID        uint32                      `idl:"name:dwPid" json:"pid"`
-	RoutingPID uint32                      `idl:"name:dwRoutingPid" json:"routing_pid"`
-	InfoStuct  *rrasm.DimMIBEntryContainer `idl:"name:pInfoStuct" json:"info_stuct"`
-	Return     uint32                      `idl:"name:Return" json:"return"`
+// xxx_MIBEntryCreateOperation structure represents the RMIBEntryCreate operation
+type xxx_MIBEntryCreateOperation struct {
+	PID        uint32                   `idl:"name:dwPid" json:"pid"`
+	RoutingPID uint32                   `idl:"name:dwRoutingPid" json:"routing_pid"`
+	Info       *rrasm.MIBEntryContainer `idl:"name:pInfoStuct" json:"info"`
+	Return     uint32                   `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RmibEntryCreateOperation) OpNum() int { return 26 }
+func (o *xxx_MIBEntryCreateOperation) OpNum() int { return 26 }
 
-func (o *xxx_RmibEntryCreateOperation) OpName() string { return "/dimsvc/v0/RMIBEntryCreate" }
+func (o *xxx_MIBEntryCreateOperation) OpName() string { return "/dimsvc/v0/RMIBEntryCreate" }
 
-func (o *xxx_RmibEntryCreateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_MIBEntryCreateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -5971,7 +5963,7 @@ func (o *xxx_RmibEntryCreateOperation) xxx_PrepareRequestPayload(ctx context.Con
 	return nil
 }
 
-func (o *xxx_RmibEntryCreateOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_MIBEntryCreateOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -5989,12 +5981,12 @@ func (o *xxx_RmibEntryCreateOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// pInfoStuct {in} (1:{alias=PDIM_MIB_ENTRY_CONTAINER}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
-		if o.InfoStuct != nil {
-			if err := o.InfoStuct.MarshalNDR(ctx, w); err != nil {
+		if o.Info != nil {
+			if err := o.Info.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimMIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.MIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -6005,7 +5997,7 @@ func (o *xxx_RmibEntryCreateOperation) MarshalNDRRequest(ctx context.Context, w 
 	return nil
 }
 
-func (o *xxx_RmibEntryCreateOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_MIBEntryCreateOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// dwPid {in} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.PID); err != nil {
@@ -6020,10 +6012,10 @@ func (o *xxx_RmibEntryCreateOperation) UnmarshalNDRRequest(ctx context.Context, 
 	}
 	// pInfoStuct {in} (1:{alias=PDIM_MIB_ENTRY_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
-		if o.InfoStuct == nil {
-			o.InfoStuct = &rrasm.DimMIBEntryContainer{}
+		if o.Info == nil {
+			o.Info = &rrasm.MIBEntryContainer{}
 		}
-		if err := o.InfoStuct.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6033,7 +6025,7 @@ func (o *xxx_RmibEntryCreateOperation) UnmarshalNDRRequest(ctx context.Context, 
 	return nil
 }
 
-func (o *xxx_RmibEntryCreateOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_MIBEntryCreateOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -6042,7 +6034,7 @@ func (o *xxx_RmibEntryCreateOperation) xxx_PrepareResponsePayload(ctx context.Co
 	return nil
 }
 
-func (o *xxx_RmibEntryCreateOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_MIBEntryCreateOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -6055,7 +6047,7 @@ func (o *xxx_RmibEntryCreateOperation) MarshalNDRResponse(ctx context.Context, w
 	return nil
 }
 
-func (o *xxx_RmibEntryCreateOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_MIBEntryCreateOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -6065,39 +6057,39 @@ func (o *xxx_RmibEntryCreateOperation) UnmarshalNDRResponse(ctx context.Context,
 	return nil
 }
 
-// RmibEntryCreateRequest structure represents the RMIBEntryCreate operation request
-type RmibEntryCreateRequest struct {
-	PID        uint32                      `idl:"name:dwPid" json:"pid"`
-	RoutingPID uint32                      `idl:"name:dwRoutingPid" json:"routing_pid"`
-	InfoStuct  *rrasm.DimMIBEntryContainer `idl:"name:pInfoStuct" json:"info_stuct"`
+// MIBEntryCreateRequest structure represents the RMIBEntryCreate operation request
+type MIBEntryCreateRequest struct {
+	PID        uint32                   `idl:"name:dwPid" json:"pid"`
+	RoutingPID uint32                   `idl:"name:dwRoutingPid" json:"routing_pid"`
+	Info       *rrasm.MIBEntryContainer `idl:"name:pInfoStuct" json:"info"`
 }
 
-func (o *RmibEntryCreateRequest) xxx_ToOp(ctx context.Context, op *xxx_RmibEntryCreateOperation) *xxx_RmibEntryCreateOperation {
+func (o *MIBEntryCreateRequest) xxx_ToOp(ctx context.Context, op *xxx_MIBEntryCreateOperation) *xxx_MIBEntryCreateOperation {
 	if op == nil {
-		op = &xxx_RmibEntryCreateOperation{}
+		op = &xxx_MIBEntryCreateOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.PID = o.PID
 	op.RoutingPID = o.RoutingPID
-	op.InfoStuct = o.InfoStuct
+	op.Info = o.Info
 	return op
 }
 
-func (o *RmibEntryCreateRequest) xxx_FromOp(ctx context.Context, op *xxx_RmibEntryCreateOperation) {
+func (o *MIBEntryCreateRequest) xxx_FromOp(ctx context.Context, op *xxx_MIBEntryCreateOperation) {
 	if o == nil {
 		return
 	}
 	o.PID = op.PID
 	o.RoutingPID = op.RoutingPID
-	o.InfoStuct = op.InfoStuct
+	o.Info = op.Info
 }
-func (o *RmibEntryCreateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBEntryCreateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RmibEntryCreateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RmibEntryCreateOperation{}
+func (o *MIBEntryCreateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_MIBEntryCreateOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -6105,15 +6097,15 @@ func (o *RmibEntryCreateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
-// RmibEntryCreateResponse structure represents the RMIBEntryCreate operation response
-type RmibEntryCreateResponse struct {
+// MIBEntryCreateResponse structure represents the RMIBEntryCreate operation response
+type MIBEntryCreateResponse struct {
 	// Return: The RMIBEntryCreate return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RmibEntryCreateResponse) xxx_ToOp(ctx context.Context, op *xxx_RmibEntryCreateOperation) *xxx_RmibEntryCreateOperation {
+func (o *MIBEntryCreateResponse) xxx_ToOp(ctx context.Context, op *xxx_MIBEntryCreateOperation) *xxx_MIBEntryCreateOperation {
 	if op == nil {
-		op = &xxx_RmibEntryCreateOperation{}
+		op = &xxx_MIBEntryCreateOperation{}
 	}
 	if o == nil {
 		return op
@@ -6122,17 +6114,17 @@ func (o *RmibEntryCreateResponse) xxx_ToOp(ctx context.Context, op *xxx_RmibEntr
 	return op
 }
 
-func (o *RmibEntryCreateResponse) xxx_FromOp(ctx context.Context, op *xxx_RmibEntryCreateOperation) {
+func (o *MIBEntryCreateResponse) xxx_FromOp(ctx context.Context, op *xxx_MIBEntryCreateOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *RmibEntryCreateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBEntryCreateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RmibEntryCreateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RmibEntryCreateOperation{}
+func (o *MIBEntryCreateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_MIBEntryCreateOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -6140,19 +6132,19 @@ func (o *RmibEntryCreateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
-// xxx_RmibEntryDeleteOperation structure represents the RMIBEntryDelete operation
-type xxx_RmibEntryDeleteOperation struct {
-	PID        uint32                      `idl:"name:dwPid" json:"pid"`
-	RoutingPID uint32                      `idl:"name:dwRoutingPid" json:"routing_pid"`
-	InfoStuct  *rrasm.DimMIBEntryContainer `idl:"name:pInfoStuct" json:"info_stuct"`
-	Return     uint32                      `idl:"name:Return" json:"return"`
+// xxx_MIBEntryDeleteOperation structure represents the RMIBEntryDelete operation
+type xxx_MIBEntryDeleteOperation struct {
+	PID        uint32                   `idl:"name:dwPid" json:"pid"`
+	RoutingPID uint32                   `idl:"name:dwRoutingPid" json:"routing_pid"`
+	Info       *rrasm.MIBEntryContainer `idl:"name:pInfoStuct" json:"info"`
+	Return     uint32                   `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RmibEntryDeleteOperation) OpNum() int { return 27 }
+func (o *xxx_MIBEntryDeleteOperation) OpNum() int { return 27 }
 
-func (o *xxx_RmibEntryDeleteOperation) OpName() string { return "/dimsvc/v0/RMIBEntryDelete" }
+func (o *xxx_MIBEntryDeleteOperation) OpName() string { return "/dimsvc/v0/RMIBEntryDelete" }
 
-func (o *xxx_RmibEntryDeleteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_MIBEntryDeleteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -6161,7 +6153,7 @@ func (o *xxx_RmibEntryDeleteOperation) xxx_PrepareRequestPayload(ctx context.Con
 	return nil
 }
 
-func (o *xxx_RmibEntryDeleteOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_MIBEntryDeleteOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -6179,12 +6171,12 @@ func (o *xxx_RmibEntryDeleteOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// pInfoStuct {in} (1:{alias=PDIM_MIB_ENTRY_CONTAINER}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
-		if o.InfoStuct != nil {
-			if err := o.InfoStuct.MarshalNDR(ctx, w); err != nil {
+		if o.Info != nil {
+			if err := o.Info.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimMIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.MIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -6195,7 +6187,7 @@ func (o *xxx_RmibEntryDeleteOperation) MarshalNDRRequest(ctx context.Context, w 
 	return nil
 }
 
-func (o *xxx_RmibEntryDeleteOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_MIBEntryDeleteOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// dwPid {in} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.PID); err != nil {
@@ -6210,10 +6202,10 @@ func (o *xxx_RmibEntryDeleteOperation) UnmarshalNDRRequest(ctx context.Context, 
 	}
 	// pInfoStuct {in} (1:{alias=PDIM_MIB_ENTRY_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
-		if o.InfoStuct == nil {
-			o.InfoStuct = &rrasm.DimMIBEntryContainer{}
+		if o.Info == nil {
+			o.Info = &rrasm.MIBEntryContainer{}
 		}
-		if err := o.InfoStuct.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6223,7 +6215,7 @@ func (o *xxx_RmibEntryDeleteOperation) UnmarshalNDRRequest(ctx context.Context, 
 	return nil
 }
 
-func (o *xxx_RmibEntryDeleteOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_MIBEntryDeleteOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -6232,7 +6224,7 @@ func (o *xxx_RmibEntryDeleteOperation) xxx_PrepareResponsePayload(ctx context.Co
 	return nil
 }
 
-func (o *xxx_RmibEntryDeleteOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_MIBEntryDeleteOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -6245,7 +6237,7 @@ func (o *xxx_RmibEntryDeleteOperation) MarshalNDRResponse(ctx context.Context, w
 	return nil
 }
 
-func (o *xxx_RmibEntryDeleteOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_MIBEntryDeleteOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -6255,39 +6247,39 @@ func (o *xxx_RmibEntryDeleteOperation) UnmarshalNDRResponse(ctx context.Context,
 	return nil
 }
 
-// RmibEntryDeleteRequest structure represents the RMIBEntryDelete operation request
-type RmibEntryDeleteRequest struct {
-	PID        uint32                      `idl:"name:dwPid" json:"pid"`
-	RoutingPID uint32                      `idl:"name:dwRoutingPid" json:"routing_pid"`
-	InfoStuct  *rrasm.DimMIBEntryContainer `idl:"name:pInfoStuct" json:"info_stuct"`
+// MIBEntryDeleteRequest structure represents the RMIBEntryDelete operation request
+type MIBEntryDeleteRequest struct {
+	PID        uint32                   `idl:"name:dwPid" json:"pid"`
+	RoutingPID uint32                   `idl:"name:dwRoutingPid" json:"routing_pid"`
+	Info       *rrasm.MIBEntryContainer `idl:"name:pInfoStuct" json:"info"`
 }
 
-func (o *RmibEntryDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_RmibEntryDeleteOperation) *xxx_RmibEntryDeleteOperation {
+func (o *MIBEntryDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_MIBEntryDeleteOperation) *xxx_MIBEntryDeleteOperation {
 	if op == nil {
-		op = &xxx_RmibEntryDeleteOperation{}
+		op = &xxx_MIBEntryDeleteOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.PID = o.PID
 	op.RoutingPID = o.RoutingPID
-	op.InfoStuct = o.InfoStuct
+	op.Info = o.Info
 	return op
 }
 
-func (o *RmibEntryDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_RmibEntryDeleteOperation) {
+func (o *MIBEntryDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_MIBEntryDeleteOperation) {
 	if o == nil {
 		return
 	}
 	o.PID = op.PID
 	o.RoutingPID = op.RoutingPID
-	o.InfoStuct = op.InfoStuct
+	o.Info = op.Info
 }
-func (o *RmibEntryDeleteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBEntryDeleteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RmibEntryDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RmibEntryDeleteOperation{}
+func (o *MIBEntryDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_MIBEntryDeleteOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -6295,15 +6287,15 @@ func (o *RmibEntryDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
-// RmibEntryDeleteResponse structure represents the RMIBEntryDelete operation response
-type RmibEntryDeleteResponse struct {
+// MIBEntryDeleteResponse structure represents the RMIBEntryDelete operation response
+type MIBEntryDeleteResponse struct {
 	// Return: The RMIBEntryDelete return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RmibEntryDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_RmibEntryDeleteOperation) *xxx_RmibEntryDeleteOperation {
+func (o *MIBEntryDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_MIBEntryDeleteOperation) *xxx_MIBEntryDeleteOperation {
 	if op == nil {
-		op = &xxx_RmibEntryDeleteOperation{}
+		op = &xxx_MIBEntryDeleteOperation{}
 	}
 	if o == nil {
 		return op
@@ -6312,17 +6304,17 @@ func (o *RmibEntryDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_RmibEntr
 	return op
 }
 
-func (o *RmibEntryDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_RmibEntryDeleteOperation) {
+func (o *MIBEntryDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_MIBEntryDeleteOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *RmibEntryDeleteResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBEntryDeleteResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RmibEntryDeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RmibEntryDeleteOperation{}
+func (o *MIBEntryDeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_MIBEntryDeleteOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -6330,19 +6322,19 @@ func (o *RmibEntryDeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
-// xxx_RmibEntrySetOperation structure represents the RMIBEntrySet operation
-type xxx_RmibEntrySetOperation struct {
-	PID        uint32                      `idl:"name:dwPid" json:"pid"`
-	RoutingPID uint32                      `idl:"name:dwRoutingPid" json:"routing_pid"`
-	InfoStuct  *rrasm.DimMIBEntryContainer `idl:"name:pInfoStuct" json:"info_stuct"`
-	Return     uint32                      `idl:"name:Return" json:"return"`
+// xxx_MIBEntrySetOperation structure represents the RMIBEntrySet operation
+type xxx_MIBEntrySetOperation struct {
+	PID        uint32                   `idl:"name:dwPid" json:"pid"`
+	RoutingPID uint32                   `idl:"name:dwRoutingPid" json:"routing_pid"`
+	Info       *rrasm.MIBEntryContainer `idl:"name:pInfoStuct" json:"info"`
+	Return     uint32                   `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RmibEntrySetOperation) OpNum() int { return 28 }
+func (o *xxx_MIBEntrySetOperation) OpNum() int { return 28 }
 
-func (o *xxx_RmibEntrySetOperation) OpName() string { return "/dimsvc/v0/RMIBEntrySet" }
+func (o *xxx_MIBEntrySetOperation) OpName() string { return "/dimsvc/v0/RMIBEntrySet" }
 
-func (o *xxx_RmibEntrySetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_MIBEntrySetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -6351,7 +6343,7 @@ func (o *xxx_RmibEntrySetOperation) xxx_PrepareRequestPayload(ctx context.Contex
 	return nil
 }
 
-func (o *xxx_RmibEntrySetOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_MIBEntrySetOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -6369,12 +6361,12 @@ func (o *xxx_RmibEntrySetOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// pInfoStuct {in} (1:{alias=PDIM_MIB_ENTRY_CONTAINER}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
-		if o.InfoStuct != nil {
-			if err := o.InfoStuct.MarshalNDR(ctx, w); err != nil {
+		if o.Info != nil {
+			if err := o.Info.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimMIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.MIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -6385,7 +6377,7 @@ func (o *xxx_RmibEntrySetOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	return nil
 }
 
-func (o *xxx_RmibEntrySetOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_MIBEntrySetOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// dwPid {in} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.PID); err != nil {
@@ -6400,10 +6392,10 @@ func (o *xxx_RmibEntrySetOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	}
 	// pInfoStuct {in} (1:{alias=PDIM_MIB_ENTRY_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
-		if o.InfoStuct == nil {
-			o.InfoStuct = &rrasm.DimMIBEntryContainer{}
+		if o.Info == nil {
+			o.Info = &rrasm.MIBEntryContainer{}
 		}
-		if err := o.InfoStuct.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6413,7 +6405,7 @@ func (o *xxx_RmibEntrySetOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	return nil
 }
 
-func (o *xxx_RmibEntrySetOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_MIBEntrySetOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -6422,7 +6414,7 @@ func (o *xxx_RmibEntrySetOperation) xxx_PrepareResponsePayload(ctx context.Conte
 	return nil
 }
 
-func (o *xxx_RmibEntrySetOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_MIBEntrySetOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -6435,7 +6427,7 @@ func (o *xxx_RmibEntrySetOperation) MarshalNDRResponse(ctx context.Context, w nd
 	return nil
 }
 
-func (o *xxx_RmibEntrySetOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_MIBEntrySetOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -6445,39 +6437,39 @@ func (o *xxx_RmibEntrySetOperation) UnmarshalNDRResponse(ctx context.Context, w 
 	return nil
 }
 
-// RmibEntrySetRequest structure represents the RMIBEntrySet operation request
-type RmibEntrySetRequest struct {
-	PID        uint32                      `idl:"name:dwPid" json:"pid"`
-	RoutingPID uint32                      `idl:"name:dwRoutingPid" json:"routing_pid"`
-	InfoStuct  *rrasm.DimMIBEntryContainer `idl:"name:pInfoStuct" json:"info_stuct"`
+// MIBEntrySetRequest structure represents the RMIBEntrySet operation request
+type MIBEntrySetRequest struct {
+	PID        uint32                   `idl:"name:dwPid" json:"pid"`
+	RoutingPID uint32                   `idl:"name:dwRoutingPid" json:"routing_pid"`
+	Info       *rrasm.MIBEntryContainer `idl:"name:pInfoStuct" json:"info"`
 }
 
-func (o *RmibEntrySetRequest) xxx_ToOp(ctx context.Context, op *xxx_RmibEntrySetOperation) *xxx_RmibEntrySetOperation {
+func (o *MIBEntrySetRequest) xxx_ToOp(ctx context.Context, op *xxx_MIBEntrySetOperation) *xxx_MIBEntrySetOperation {
 	if op == nil {
-		op = &xxx_RmibEntrySetOperation{}
+		op = &xxx_MIBEntrySetOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.PID = o.PID
 	op.RoutingPID = o.RoutingPID
-	op.InfoStuct = o.InfoStuct
+	op.Info = o.Info
 	return op
 }
 
-func (o *RmibEntrySetRequest) xxx_FromOp(ctx context.Context, op *xxx_RmibEntrySetOperation) {
+func (o *MIBEntrySetRequest) xxx_FromOp(ctx context.Context, op *xxx_MIBEntrySetOperation) {
 	if o == nil {
 		return
 	}
 	o.PID = op.PID
 	o.RoutingPID = op.RoutingPID
-	o.InfoStuct = op.InfoStuct
+	o.Info = op.Info
 }
-func (o *RmibEntrySetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBEntrySetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RmibEntrySetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RmibEntrySetOperation{}
+func (o *MIBEntrySetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_MIBEntrySetOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -6485,15 +6477,15 @@ func (o *RmibEntrySetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
-// RmibEntrySetResponse structure represents the RMIBEntrySet operation response
-type RmibEntrySetResponse struct {
+// MIBEntrySetResponse structure represents the RMIBEntrySet operation response
+type MIBEntrySetResponse struct {
 	// Return: The RMIBEntrySet return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RmibEntrySetResponse) xxx_ToOp(ctx context.Context, op *xxx_RmibEntrySetOperation) *xxx_RmibEntrySetOperation {
+func (o *MIBEntrySetResponse) xxx_ToOp(ctx context.Context, op *xxx_MIBEntrySetOperation) *xxx_MIBEntrySetOperation {
 	if op == nil {
-		op = &xxx_RmibEntrySetOperation{}
+		op = &xxx_MIBEntrySetOperation{}
 	}
 	if o == nil {
 		return op
@@ -6502,17 +6494,17 @@ func (o *RmibEntrySetResponse) xxx_ToOp(ctx context.Context, op *xxx_RmibEntrySe
 	return op
 }
 
-func (o *RmibEntrySetResponse) xxx_FromOp(ctx context.Context, op *xxx_RmibEntrySetOperation) {
+func (o *MIBEntrySetResponse) xxx_FromOp(ctx context.Context, op *xxx_MIBEntrySetOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *RmibEntrySetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBEntrySetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RmibEntrySetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RmibEntrySetOperation{}
+func (o *MIBEntrySetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_MIBEntrySetOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -6520,19 +6512,19 @@ func (o *RmibEntrySetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
-// xxx_RmibEntryGetOperation structure represents the RMIBEntryGet operation
-type xxx_RmibEntryGetOperation struct {
-	PID        uint32                      `idl:"name:dwPid" json:"pid"`
-	RoutingPID uint32                      `idl:"name:dwRoutingPid" json:"routing_pid"`
-	InfoStuct  *rrasm.DimMIBEntryContainer `idl:"name:pInfoStuct" json:"info_stuct"`
-	Return     uint32                      `idl:"name:Return" json:"return"`
+// xxx_MIBEntryGetOperation structure represents the RMIBEntryGet operation
+type xxx_MIBEntryGetOperation struct {
+	PID        uint32                   `idl:"name:dwPid" json:"pid"`
+	RoutingPID uint32                   `idl:"name:dwRoutingPid" json:"routing_pid"`
+	Info       *rrasm.MIBEntryContainer `idl:"name:pInfoStuct" json:"info"`
+	Return     uint32                   `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RmibEntryGetOperation) OpNum() int { return 29 }
+func (o *xxx_MIBEntryGetOperation) OpNum() int { return 29 }
 
-func (o *xxx_RmibEntryGetOperation) OpName() string { return "/dimsvc/v0/RMIBEntryGet" }
+func (o *xxx_MIBEntryGetOperation) OpName() string { return "/dimsvc/v0/RMIBEntryGet" }
 
-func (o *xxx_RmibEntryGetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_MIBEntryGetOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -6541,7 +6533,7 @@ func (o *xxx_RmibEntryGetOperation) xxx_PrepareRequestPayload(ctx context.Contex
 	return nil
 }
 
-func (o *xxx_RmibEntryGetOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_MIBEntryGetOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -6559,12 +6551,12 @@ func (o *xxx_RmibEntryGetOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// pInfoStuct {in, out} (1:{alias=PDIM_MIB_ENTRY_CONTAINER}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
-		if o.InfoStuct != nil {
-			if err := o.InfoStuct.MarshalNDR(ctx, w); err != nil {
+		if o.Info != nil {
+			if err := o.Info.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimMIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.MIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -6575,7 +6567,7 @@ func (o *xxx_RmibEntryGetOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	return nil
 }
 
-func (o *xxx_RmibEntryGetOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_MIBEntryGetOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// dwPid {in} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.PID); err != nil {
@@ -6590,10 +6582,10 @@ func (o *xxx_RmibEntryGetOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	}
 	// pInfoStuct {in, out} (1:{alias=PDIM_MIB_ENTRY_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
-		if o.InfoStuct == nil {
-			o.InfoStuct = &rrasm.DimMIBEntryContainer{}
+		if o.Info == nil {
+			o.Info = &rrasm.MIBEntryContainer{}
 		}
-		if err := o.InfoStuct.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6603,7 +6595,7 @@ func (o *xxx_RmibEntryGetOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	return nil
 }
 
-func (o *xxx_RmibEntryGetOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_MIBEntryGetOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -6612,18 +6604,18 @@ func (o *xxx_RmibEntryGetOperation) xxx_PrepareResponsePayload(ctx context.Conte
 	return nil
 }
 
-func (o *xxx_RmibEntryGetOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_MIBEntryGetOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
 	// pInfoStuct {in, out} (1:{alias=PDIM_MIB_ENTRY_CONTAINER}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
-		if o.InfoStuct != nil {
-			if err := o.InfoStuct.MarshalNDR(ctx, w); err != nil {
+		if o.Info != nil {
+			if err := o.Info.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimMIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.MIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -6640,13 +6632,13 @@ func (o *xxx_RmibEntryGetOperation) MarshalNDRResponse(ctx context.Context, w nd
 	return nil
 }
 
-func (o *xxx_RmibEntryGetOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_MIBEntryGetOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pInfoStuct {in, out} (1:{alias=PDIM_MIB_ENTRY_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
-		if o.InfoStuct == nil {
-			o.InfoStuct = &rrasm.DimMIBEntryContainer{}
+		if o.Info == nil {
+			o.Info = &rrasm.MIBEntryContainer{}
 		}
-		if err := o.InfoStuct.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6662,39 +6654,39 @@ func (o *xxx_RmibEntryGetOperation) UnmarshalNDRResponse(ctx context.Context, w 
 	return nil
 }
 
-// RmibEntryGetRequest structure represents the RMIBEntryGet operation request
-type RmibEntryGetRequest struct {
-	PID        uint32                      `idl:"name:dwPid" json:"pid"`
-	RoutingPID uint32                      `idl:"name:dwRoutingPid" json:"routing_pid"`
-	InfoStuct  *rrasm.DimMIBEntryContainer `idl:"name:pInfoStuct" json:"info_stuct"`
+// MIBEntryGetRequest structure represents the RMIBEntryGet operation request
+type MIBEntryGetRequest struct {
+	PID        uint32                   `idl:"name:dwPid" json:"pid"`
+	RoutingPID uint32                   `idl:"name:dwRoutingPid" json:"routing_pid"`
+	Info       *rrasm.MIBEntryContainer `idl:"name:pInfoStuct" json:"info"`
 }
 
-func (o *RmibEntryGetRequest) xxx_ToOp(ctx context.Context, op *xxx_RmibEntryGetOperation) *xxx_RmibEntryGetOperation {
+func (o *MIBEntryGetRequest) xxx_ToOp(ctx context.Context, op *xxx_MIBEntryGetOperation) *xxx_MIBEntryGetOperation {
 	if op == nil {
-		op = &xxx_RmibEntryGetOperation{}
+		op = &xxx_MIBEntryGetOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.PID = o.PID
 	op.RoutingPID = o.RoutingPID
-	op.InfoStuct = o.InfoStuct
+	op.Info = o.Info
 	return op
 }
 
-func (o *RmibEntryGetRequest) xxx_FromOp(ctx context.Context, op *xxx_RmibEntryGetOperation) {
+func (o *MIBEntryGetRequest) xxx_FromOp(ctx context.Context, op *xxx_MIBEntryGetOperation) {
 	if o == nil {
 		return
 	}
 	o.PID = op.PID
 	o.RoutingPID = op.RoutingPID
-	o.InfoStuct = op.InfoStuct
+	o.Info = op.Info
 }
-func (o *RmibEntryGetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBEntryGetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RmibEntryGetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RmibEntryGetOperation{}
+func (o *MIBEntryGetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_MIBEntryGetOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -6702,37 +6694,37 @@ func (o *RmibEntryGetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
-// RmibEntryGetResponse structure represents the RMIBEntryGet operation response
-type RmibEntryGetResponse struct {
-	InfoStuct *rrasm.DimMIBEntryContainer `idl:"name:pInfoStuct" json:"info_stuct"`
+// MIBEntryGetResponse structure represents the RMIBEntryGet operation response
+type MIBEntryGetResponse struct {
+	Info *rrasm.MIBEntryContainer `idl:"name:pInfoStuct" json:"info"`
 	// Return: The RMIBEntryGet return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RmibEntryGetResponse) xxx_ToOp(ctx context.Context, op *xxx_RmibEntryGetOperation) *xxx_RmibEntryGetOperation {
+func (o *MIBEntryGetResponse) xxx_ToOp(ctx context.Context, op *xxx_MIBEntryGetOperation) *xxx_MIBEntryGetOperation {
 	if op == nil {
-		op = &xxx_RmibEntryGetOperation{}
+		op = &xxx_MIBEntryGetOperation{}
 	}
 	if o == nil {
 		return op
 	}
-	op.InfoStuct = o.InfoStuct
+	op.Info = o.Info
 	op.Return = o.Return
 	return op
 }
 
-func (o *RmibEntryGetResponse) xxx_FromOp(ctx context.Context, op *xxx_RmibEntryGetOperation) {
+func (o *MIBEntryGetResponse) xxx_FromOp(ctx context.Context, op *xxx_MIBEntryGetOperation) {
 	if o == nil {
 		return
 	}
-	o.InfoStuct = op.InfoStuct
+	o.Info = op.Info
 	o.Return = op.Return
 }
-func (o *RmibEntryGetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBEntryGetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RmibEntryGetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RmibEntryGetOperation{}
+func (o *MIBEntryGetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_MIBEntryGetOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -6740,19 +6732,19 @@ func (o *RmibEntryGetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
-// xxx_RmibEntryGetFirstOperation structure represents the RMIBEntryGetFirst operation
-type xxx_RmibEntryGetFirstOperation struct {
-	PID        uint32                      `idl:"name:dwPid" json:"pid"`
-	RoutingPID uint32                      `idl:"name:dwRoutingPid" json:"routing_pid"`
-	InfoStuct  *rrasm.DimMIBEntryContainer `idl:"name:pInfoStuct" json:"info_stuct"`
-	Return     uint32                      `idl:"name:Return" json:"return"`
+// xxx_MIBEntryGetFirstOperation structure represents the RMIBEntryGetFirst operation
+type xxx_MIBEntryGetFirstOperation struct {
+	PID        uint32                   `idl:"name:dwPid" json:"pid"`
+	RoutingPID uint32                   `idl:"name:dwRoutingPid" json:"routing_pid"`
+	Info       *rrasm.MIBEntryContainer `idl:"name:pInfoStuct" json:"info"`
+	Return     uint32                   `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RmibEntryGetFirstOperation) OpNum() int { return 30 }
+func (o *xxx_MIBEntryGetFirstOperation) OpNum() int { return 30 }
 
-func (o *xxx_RmibEntryGetFirstOperation) OpName() string { return "/dimsvc/v0/RMIBEntryGetFirst" }
+func (o *xxx_MIBEntryGetFirstOperation) OpName() string { return "/dimsvc/v0/RMIBEntryGetFirst" }
 
-func (o *xxx_RmibEntryGetFirstOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_MIBEntryGetFirstOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -6761,7 +6753,7 @@ func (o *xxx_RmibEntryGetFirstOperation) xxx_PrepareRequestPayload(ctx context.C
 	return nil
 }
 
-func (o *xxx_RmibEntryGetFirstOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_MIBEntryGetFirstOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -6779,12 +6771,12 @@ func (o *xxx_RmibEntryGetFirstOperation) MarshalNDRRequest(ctx context.Context, 
 	}
 	// pInfoStuct {in, out} (1:{alias=PDIM_MIB_ENTRY_CONTAINER}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
-		if o.InfoStuct != nil {
-			if err := o.InfoStuct.MarshalNDR(ctx, w); err != nil {
+		if o.Info != nil {
+			if err := o.Info.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimMIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.MIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -6795,7 +6787,7 @@ func (o *xxx_RmibEntryGetFirstOperation) MarshalNDRRequest(ctx context.Context, 
 	return nil
 }
 
-func (o *xxx_RmibEntryGetFirstOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_MIBEntryGetFirstOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// dwPid {in} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.PID); err != nil {
@@ -6810,10 +6802,10 @@ func (o *xxx_RmibEntryGetFirstOperation) UnmarshalNDRRequest(ctx context.Context
 	}
 	// pInfoStuct {in, out} (1:{alias=PDIM_MIB_ENTRY_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
-		if o.InfoStuct == nil {
-			o.InfoStuct = &rrasm.DimMIBEntryContainer{}
+		if o.Info == nil {
+			o.Info = &rrasm.MIBEntryContainer{}
 		}
-		if err := o.InfoStuct.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6823,7 +6815,7 @@ func (o *xxx_RmibEntryGetFirstOperation) UnmarshalNDRRequest(ctx context.Context
 	return nil
 }
 
-func (o *xxx_RmibEntryGetFirstOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_MIBEntryGetFirstOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -6832,18 +6824,18 @@ func (o *xxx_RmibEntryGetFirstOperation) xxx_PrepareResponsePayload(ctx context.
 	return nil
 }
 
-func (o *xxx_RmibEntryGetFirstOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_MIBEntryGetFirstOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
 	// pInfoStuct {in, out} (1:{alias=PDIM_MIB_ENTRY_CONTAINER}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
-		if o.InfoStuct != nil {
-			if err := o.InfoStuct.MarshalNDR(ctx, w); err != nil {
+		if o.Info != nil {
+			if err := o.Info.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimMIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.MIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -6860,13 +6852,13 @@ func (o *xxx_RmibEntryGetFirstOperation) MarshalNDRResponse(ctx context.Context,
 	return nil
 }
 
-func (o *xxx_RmibEntryGetFirstOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_MIBEntryGetFirstOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pInfoStuct {in, out} (1:{alias=PDIM_MIB_ENTRY_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
-		if o.InfoStuct == nil {
-			o.InfoStuct = &rrasm.DimMIBEntryContainer{}
+		if o.Info == nil {
+			o.Info = &rrasm.MIBEntryContainer{}
 		}
-		if err := o.InfoStuct.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6882,39 +6874,39 @@ func (o *xxx_RmibEntryGetFirstOperation) UnmarshalNDRResponse(ctx context.Contex
 	return nil
 }
 
-// RmibEntryGetFirstRequest structure represents the RMIBEntryGetFirst operation request
-type RmibEntryGetFirstRequest struct {
-	PID        uint32                      `idl:"name:dwPid" json:"pid"`
-	RoutingPID uint32                      `idl:"name:dwRoutingPid" json:"routing_pid"`
-	InfoStuct  *rrasm.DimMIBEntryContainer `idl:"name:pInfoStuct" json:"info_stuct"`
+// MIBEntryGetFirstRequest structure represents the RMIBEntryGetFirst operation request
+type MIBEntryGetFirstRequest struct {
+	PID        uint32                   `idl:"name:dwPid" json:"pid"`
+	RoutingPID uint32                   `idl:"name:dwRoutingPid" json:"routing_pid"`
+	Info       *rrasm.MIBEntryContainer `idl:"name:pInfoStuct" json:"info"`
 }
 
-func (o *RmibEntryGetFirstRequest) xxx_ToOp(ctx context.Context, op *xxx_RmibEntryGetFirstOperation) *xxx_RmibEntryGetFirstOperation {
+func (o *MIBEntryGetFirstRequest) xxx_ToOp(ctx context.Context, op *xxx_MIBEntryGetFirstOperation) *xxx_MIBEntryGetFirstOperation {
 	if op == nil {
-		op = &xxx_RmibEntryGetFirstOperation{}
+		op = &xxx_MIBEntryGetFirstOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.PID = o.PID
 	op.RoutingPID = o.RoutingPID
-	op.InfoStuct = o.InfoStuct
+	op.Info = o.Info
 	return op
 }
 
-func (o *RmibEntryGetFirstRequest) xxx_FromOp(ctx context.Context, op *xxx_RmibEntryGetFirstOperation) {
+func (o *MIBEntryGetFirstRequest) xxx_FromOp(ctx context.Context, op *xxx_MIBEntryGetFirstOperation) {
 	if o == nil {
 		return
 	}
 	o.PID = op.PID
 	o.RoutingPID = op.RoutingPID
-	o.InfoStuct = op.InfoStuct
+	o.Info = op.Info
 }
-func (o *RmibEntryGetFirstRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBEntryGetFirstRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RmibEntryGetFirstRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RmibEntryGetFirstOperation{}
+func (o *MIBEntryGetFirstRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_MIBEntryGetFirstOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -6922,37 +6914,37 @@ func (o *RmibEntryGetFirstRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
-// RmibEntryGetFirstResponse structure represents the RMIBEntryGetFirst operation response
-type RmibEntryGetFirstResponse struct {
-	InfoStuct *rrasm.DimMIBEntryContainer `idl:"name:pInfoStuct" json:"info_stuct"`
+// MIBEntryGetFirstResponse structure represents the RMIBEntryGetFirst operation response
+type MIBEntryGetFirstResponse struct {
+	Info *rrasm.MIBEntryContainer `idl:"name:pInfoStuct" json:"info"`
 	// Return: The RMIBEntryGetFirst return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RmibEntryGetFirstResponse) xxx_ToOp(ctx context.Context, op *xxx_RmibEntryGetFirstOperation) *xxx_RmibEntryGetFirstOperation {
+func (o *MIBEntryGetFirstResponse) xxx_ToOp(ctx context.Context, op *xxx_MIBEntryGetFirstOperation) *xxx_MIBEntryGetFirstOperation {
 	if op == nil {
-		op = &xxx_RmibEntryGetFirstOperation{}
+		op = &xxx_MIBEntryGetFirstOperation{}
 	}
 	if o == nil {
 		return op
 	}
-	op.InfoStuct = o.InfoStuct
+	op.Info = o.Info
 	op.Return = o.Return
 	return op
 }
 
-func (o *RmibEntryGetFirstResponse) xxx_FromOp(ctx context.Context, op *xxx_RmibEntryGetFirstOperation) {
+func (o *MIBEntryGetFirstResponse) xxx_FromOp(ctx context.Context, op *xxx_MIBEntryGetFirstOperation) {
 	if o == nil {
 		return
 	}
-	o.InfoStuct = op.InfoStuct
+	o.Info = op.Info
 	o.Return = op.Return
 }
-func (o *RmibEntryGetFirstResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBEntryGetFirstResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RmibEntryGetFirstResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RmibEntryGetFirstOperation{}
+func (o *MIBEntryGetFirstResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_MIBEntryGetFirstOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -6960,19 +6952,19 @@ func (o *RmibEntryGetFirstResponse) UnmarshalNDR(ctx context.Context, r ndr.Read
 	return nil
 }
 
-// xxx_RmibEntryGetNextOperation structure represents the RMIBEntryGetNext operation
-type xxx_RmibEntryGetNextOperation struct {
-	PID        uint32                      `idl:"name:dwPid" json:"pid"`
-	RoutingPID uint32                      `idl:"name:dwRoutingPid" json:"routing_pid"`
-	InfoStuct  *rrasm.DimMIBEntryContainer `idl:"name:pInfoStuct" json:"info_stuct"`
-	Return     uint32                      `idl:"name:Return" json:"return"`
+// xxx_MIBEntryGetNextOperation structure represents the RMIBEntryGetNext operation
+type xxx_MIBEntryGetNextOperation struct {
+	PID        uint32                   `idl:"name:dwPid" json:"pid"`
+	RoutingPID uint32                   `idl:"name:dwRoutingPid" json:"routing_pid"`
+	Info       *rrasm.MIBEntryContainer `idl:"name:pInfoStuct" json:"info"`
+	Return     uint32                   `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RmibEntryGetNextOperation) OpNum() int { return 31 }
+func (o *xxx_MIBEntryGetNextOperation) OpNum() int { return 31 }
 
-func (o *xxx_RmibEntryGetNextOperation) OpName() string { return "/dimsvc/v0/RMIBEntryGetNext" }
+func (o *xxx_MIBEntryGetNextOperation) OpName() string { return "/dimsvc/v0/RMIBEntryGetNext" }
 
-func (o *xxx_RmibEntryGetNextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_MIBEntryGetNextOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -6981,7 +6973,7 @@ func (o *xxx_RmibEntryGetNextOperation) xxx_PrepareRequestPayload(ctx context.Co
 	return nil
 }
 
-func (o *xxx_RmibEntryGetNextOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_MIBEntryGetNextOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -6999,12 +6991,12 @@ func (o *xxx_RmibEntryGetNextOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// pInfoStuct {in, out} (1:{alias=PDIM_MIB_ENTRY_CONTAINER}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
-		if o.InfoStuct != nil {
-			if err := o.InfoStuct.MarshalNDR(ctx, w); err != nil {
+		if o.Info != nil {
+			if err := o.Info.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimMIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.MIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -7015,7 +7007,7 @@ func (o *xxx_RmibEntryGetNextOperation) MarshalNDRRequest(ctx context.Context, w
 	return nil
 }
 
-func (o *xxx_RmibEntryGetNextOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_MIBEntryGetNextOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// dwPid {in} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.PID); err != nil {
@@ -7030,10 +7022,10 @@ func (o *xxx_RmibEntryGetNextOperation) UnmarshalNDRRequest(ctx context.Context,
 	}
 	// pInfoStuct {in, out} (1:{alias=PDIM_MIB_ENTRY_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
-		if o.InfoStuct == nil {
-			o.InfoStuct = &rrasm.DimMIBEntryContainer{}
+		if o.Info == nil {
+			o.Info = &rrasm.MIBEntryContainer{}
 		}
-		if err := o.InfoStuct.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7043,7 +7035,7 @@ func (o *xxx_RmibEntryGetNextOperation) UnmarshalNDRRequest(ctx context.Context,
 	return nil
 }
 
-func (o *xxx_RmibEntryGetNextOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_MIBEntryGetNextOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -7052,18 +7044,18 @@ func (o *xxx_RmibEntryGetNextOperation) xxx_PrepareResponsePayload(ctx context.C
 	return nil
 }
 
-func (o *xxx_RmibEntryGetNextOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_MIBEntryGetNextOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
 	// pInfoStuct {in, out} (1:{alias=PDIM_MIB_ENTRY_CONTAINER}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
-		if o.InfoStuct != nil {
-			if err := o.InfoStuct.MarshalNDR(ctx, w); err != nil {
+		if o.Info != nil {
+			if err := o.Info.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimMIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.MIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -7080,13 +7072,13 @@ func (o *xxx_RmibEntryGetNextOperation) MarshalNDRResponse(ctx context.Context, 
 	return nil
 }
 
-func (o *xxx_RmibEntryGetNextOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_MIBEntryGetNextOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pInfoStuct {in, out} (1:{alias=PDIM_MIB_ENTRY_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
-		if o.InfoStuct == nil {
-			o.InfoStuct = &rrasm.DimMIBEntryContainer{}
+		if o.Info == nil {
+			o.Info = &rrasm.MIBEntryContainer{}
 		}
-		if err := o.InfoStuct.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7102,39 +7094,39 @@ func (o *xxx_RmibEntryGetNextOperation) UnmarshalNDRResponse(ctx context.Context
 	return nil
 }
 
-// RmibEntryGetNextRequest structure represents the RMIBEntryGetNext operation request
-type RmibEntryGetNextRequest struct {
-	PID        uint32                      `idl:"name:dwPid" json:"pid"`
-	RoutingPID uint32                      `idl:"name:dwRoutingPid" json:"routing_pid"`
-	InfoStuct  *rrasm.DimMIBEntryContainer `idl:"name:pInfoStuct" json:"info_stuct"`
+// MIBEntryGetNextRequest structure represents the RMIBEntryGetNext operation request
+type MIBEntryGetNextRequest struct {
+	PID        uint32                   `idl:"name:dwPid" json:"pid"`
+	RoutingPID uint32                   `idl:"name:dwRoutingPid" json:"routing_pid"`
+	Info       *rrasm.MIBEntryContainer `idl:"name:pInfoStuct" json:"info"`
 }
 
-func (o *RmibEntryGetNextRequest) xxx_ToOp(ctx context.Context, op *xxx_RmibEntryGetNextOperation) *xxx_RmibEntryGetNextOperation {
+func (o *MIBEntryGetNextRequest) xxx_ToOp(ctx context.Context, op *xxx_MIBEntryGetNextOperation) *xxx_MIBEntryGetNextOperation {
 	if op == nil {
-		op = &xxx_RmibEntryGetNextOperation{}
+		op = &xxx_MIBEntryGetNextOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.PID = o.PID
 	op.RoutingPID = o.RoutingPID
-	op.InfoStuct = o.InfoStuct
+	op.Info = o.Info
 	return op
 }
 
-func (o *RmibEntryGetNextRequest) xxx_FromOp(ctx context.Context, op *xxx_RmibEntryGetNextOperation) {
+func (o *MIBEntryGetNextRequest) xxx_FromOp(ctx context.Context, op *xxx_MIBEntryGetNextOperation) {
 	if o == nil {
 		return
 	}
 	o.PID = op.PID
 	o.RoutingPID = op.RoutingPID
-	o.InfoStuct = op.InfoStuct
+	o.Info = op.Info
 }
-func (o *RmibEntryGetNextRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBEntryGetNextRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RmibEntryGetNextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RmibEntryGetNextOperation{}
+func (o *MIBEntryGetNextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_MIBEntryGetNextOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -7142,37 +7134,37 @@ func (o *RmibEntryGetNextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
-// RmibEntryGetNextResponse structure represents the RMIBEntryGetNext operation response
-type RmibEntryGetNextResponse struct {
-	InfoStuct *rrasm.DimMIBEntryContainer `idl:"name:pInfoStuct" json:"info_stuct"`
+// MIBEntryGetNextResponse structure represents the RMIBEntryGetNext operation response
+type MIBEntryGetNextResponse struct {
+	Info *rrasm.MIBEntryContainer `idl:"name:pInfoStuct" json:"info"`
 	// Return: The RMIBEntryGetNext return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RmibEntryGetNextResponse) xxx_ToOp(ctx context.Context, op *xxx_RmibEntryGetNextOperation) *xxx_RmibEntryGetNextOperation {
+func (o *MIBEntryGetNextResponse) xxx_ToOp(ctx context.Context, op *xxx_MIBEntryGetNextOperation) *xxx_MIBEntryGetNextOperation {
 	if op == nil {
-		op = &xxx_RmibEntryGetNextOperation{}
+		op = &xxx_MIBEntryGetNextOperation{}
 	}
 	if o == nil {
 		return op
 	}
-	op.InfoStuct = o.InfoStuct
+	op.Info = o.Info
 	op.Return = o.Return
 	return op
 }
 
-func (o *RmibEntryGetNextResponse) xxx_FromOp(ctx context.Context, op *xxx_RmibEntryGetNextOperation) {
+func (o *MIBEntryGetNextResponse) xxx_FromOp(ctx context.Context, op *xxx_MIBEntryGetNextOperation) {
 	if o == nil {
 		return
 	}
-	o.InfoStuct = op.InfoStuct
+	o.Info = op.Info
 	o.Return = op.Return
 }
-func (o *RmibEntryGetNextResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBEntryGetNextResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RmibEntryGetNextResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RmibEntryGetNextOperation{}
+func (o *MIBEntryGetNextResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_MIBEntryGetNextOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -7180,19 +7172,19 @@ func (o *RmibEntryGetNextResponse) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
-// xxx_RmibGetTrapInfoOperation structure represents the RMIBGetTrapInfo operation
-type xxx_RmibGetTrapInfoOperation struct {
-	PID        uint32                      `idl:"name:dwPid" json:"pid"`
-	RoutingPID uint32                      `idl:"name:dwRoutingPid" json:"routing_pid"`
-	Info       *rrasm.DimMIBEntryContainer `idl:"name:pInfoStruct" json:"info"`
-	Return     uint32                      `idl:"name:Return" json:"return"`
+// xxx_MIBGetTrapInfoOperation structure represents the RMIBGetTrapInfo operation
+type xxx_MIBGetTrapInfoOperation struct {
+	PID        uint32                   `idl:"name:dwPid" json:"pid"`
+	RoutingPID uint32                   `idl:"name:dwRoutingPid" json:"routing_pid"`
+	Info       *rrasm.MIBEntryContainer `idl:"name:pInfoStruct" json:"info"`
+	Return     uint32                   `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RmibGetTrapInfoOperation) OpNum() int { return 32 }
+func (o *xxx_MIBGetTrapInfoOperation) OpNum() int { return 32 }
 
-func (o *xxx_RmibGetTrapInfoOperation) OpName() string { return "/dimsvc/v0/RMIBGetTrapInfo" }
+func (o *xxx_MIBGetTrapInfoOperation) OpName() string { return "/dimsvc/v0/RMIBGetTrapInfo" }
 
-func (o *xxx_RmibGetTrapInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_MIBGetTrapInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -7201,7 +7193,7 @@ func (o *xxx_RmibGetTrapInfoOperation) xxx_PrepareRequestPayload(ctx context.Con
 	return nil
 }
 
-func (o *xxx_RmibGetTrapInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_MIBGetTrapInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -7224,7 +7216,7 @@ func (o *xxx_RmibGetTrapInfoOperation) MarshalNDRRequest(ctx context.Context, w 
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimMIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.MIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -7235,7 +7227,7 @@ func (o *xxx_RmibGetTrapInfoOperation) MarshalNDRRequest(ctx context.Context, w 
 	return nil
 }
 
-func (o *xxx_RmibGetTrapInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_MIBGetTrapInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// dwPid {in} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.PID); err != nil {
@@ -7251,7 +7243,7 @@ func (o *xxx_RmibGetTrapInfoOperation) UnmarshalNDRRequest(ctx context.Context, 
 	// pInfoStruct {in, out} (1:{alias=PDIM_MIB_ENTRY_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimMIBEntryContainer{}
+			o.Info = &rrasm.MIBEntryContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -7263,7 +7255,7 @@ func (o *xxx_RmibGetTrapInfoOperation) UnmarshalNDRRequest(ctx context.Context, 
 	return nil
 }
 
-func (o *xxx_RmibGetTrapInfoOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_MIBGetTrapInfoOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -7272,7 +7264,7 @@ func (o *xxx_RmibGetTrapInfoOperation) xxx_PrepareResponsePayload(ctx context.Co
 	return nil
 }
 
-func (o *xxx_RmibGetTrapInfoOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_MIBGetTrapInfoOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -7283,7 +7275,7 @@ func (o *xxx_RmibGetTrapInfoOperation) MarshalNDRResponse(ctx context.Context, w
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimMIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.MIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -7300,11 +7292,11 @@ func (o *xxx_RmibGetTrapInfoOperation) MarshalNDRResponse(ctx context.Context, w
 	return nil
 }
 
-func (o *xxx_RmibGetTrapInfoOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_MIBGetTrapInfoOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pInfoStruct {in, out} (1:{alias=PDIM_MIB_ENTRY_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimMIBEntryContainer{}
+			o.Info = &rrasm.MIBEntryContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -7322,16 +7314,16 @@ func (o *xxx_RmibGetTrapInfoOperation) UnmarshalNDRResponse(ctx context.Context,
 	return nil
 }
 
-// RmibGetTrapInfoRequest structure represents the RMIBGetTrapInfo operation request
-type RmibGetTrapInfoRequest struct {
-	PID        uint32                      `idl:"name:dwPid" json:"pid"`
-	RoutingPID uint32                      `idl:"name:dwRoutingPid" json:"routing_pid"`
-	Info       *rrasm.DimMIBEntryContainer `idl:"name:pInfoStruct" json:"info"`
+// MIBGetTrapInfoRequest structure represents the RMIBGetTrapInfo operation request
+type MIBGetTrapInfoRequest struct {
+	PID        uint32                   `idl:"name:dwPid" json:"pid"`
+	RoutingPID uint32                   `idl:"name:dwRoutingPid" json:"routing_pid"`
+	Info       *rrasm.MIBEntryContainer `idl:"name:pInfoStruct" json:"info"`
 }
 
-func (o *RmibGetTrapInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_RmibGetTrapInfoOperation) *xxx_RmibGetTrapInfoOperation {
+func (o *MIBGetTrapInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_MIBGetTrapInfoOperation) *xxx_MIBGetTrapInfoOperation {
 	if op == nil {
-		op = &xxx_RmibGetTrapInfoOperation{}
+		op = &xxx_MIBGetTrapInfoOperation{}
 	}
 	if o == nil {
 		return op
@@ -7342,7 +7334,7 @@ func (o *RmibGetTrapInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_RmibGetTr
 	return op
 }
 
-func (o *RmibGetTrapInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_RmibGetTrapInfoOperation) {
+func (o *MIBGetTrapInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_MIBGetTrapInfoOperation) {
 	if o == nil {
 		return
 	}
@@ -7350,11 +7342,11 @@ func (o *RmibGetTrapInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_RmibGet
 	o.RoutingPID = op.RoutingPID
 	o.Info = op.Info
 }
-func (o *RmibGetTrapInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBGetTrapInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RmibGetTrapInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RmibGetTrapInfoOperation{}
+func (o *MIBGetTrapInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_MIBGetTrapInfoOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -7362,16 +7354,16 @@ func (o *RmibGetTrapInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
-// RmibGetTrapInfoResponse structure represents the RMIBGetTrapInfo operation response
-type RmibGetTrapInfoResponse struct {
-	Info *rrasm.DimMIBEntryContainer `idl:"name:pInfoStruct" json:"info"`
+// MIBGetTrapInfoResponse structure represents the RMIBGetTrapInfo operation response
+type MIBGetTrapInfoResponse struct {
+	Info *rrasm.MIBEntryContainer `idl:"name:pInfoStruct" json:"info"`
 	// Return: The RMIBGetTrapInfo return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RmibGetTrapInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_RmibGetTrapInfoOperation) *xxx_RmibGetTrapInfoOperation {
+func (o *MIBGetTrapInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_MIBGetTrapInfoOperation) *xxx_MIBGetTrapInfoOperation {
 	if op == nil {
-		op = &xxx_RmibGetTrapInfoOperation{}
+		op = &xxx_MIBGetTrapInfoOperation{}
 	}
 	if o == nil {
 		return op
@@ -7381,18 +7373,18 @@ func (o *RmibGetTrapInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_RmibGetT
 	return op
 }
 
-func (o *RmibGetTrapInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_RmibGetTrapInfoOperation) {
+func (o *MIBGetTrapInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_MIBGetTrapInfoOperation) {
 	if o == nil {
 		return
 	}
 	o.Info = op.Info
 	o.Return = op.Return
 }
-func (o *RmibGetTrapInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBGetTrapInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RmibGetTrapInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RmibGetTrapInfoOperation{}
+func (o *MIBGetTrapInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_MIBGetTrapInfoOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -7400,21 +7392,21 @@ func (o *RmibGetTrapInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
-// xxx_RmibSetTrapInfoOperation structure represents the RMIBSetTrapInfo operation
-type xxx_RmibSetTrapInfoOperation struct {
-	PID             uint32                      `idl:"name:dwPid" json:"pid"`
-	RoutingPID      uint32                      `idl:"name:dwRoutingPid" json:"routing_pid"`
-	HEvent          uint64                      `idl:"name:hEvent" json:"h_event"`
-	ClientProcessID uint32                      `idl:"name:dwClientProcessId" json:"client_process_id"`
-	Info            *rrasm.DimMIBEntryContainer `idl:"name:pInfoStruct" json:"info"`
-	Return          uint32                      `idl:"name:Return" json:"return"`
+// xxx_MIBSetTrapInfoOperation structure represents the RMIBSetTrapInfo operation
+type xxx_MIBSetTrapInfoOperation struct {
+	PID             uint32                   `idl:"name:dwPid" json:"pid"`
+	RoutingPID      uint32                   `idl:"name:dwRoutingPid" json:"routing_pid"`
+	Event           uint64                   `idl:"name:hEvent" json:"event"`
+	ClientProcessID uint32                   `idl:"name:dwClientProcessId" json:"client_process_id"`
+	Info            *rrasm.MIBEntryContainer `idl:"name:pInfoStruct" json:"info"`
+	Return          uint32                   `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RmibSetTrapInfoOperation) OpNum() int { return 33 }
+func (o *xxx_MIBSetTrapInfoOperation) OpNum() int { return 33 }
 
-func (o *xxx_RmibSetTrapInfoOperation) OpName() string { return "/dimsvc/v0/RMIBSetTrapInfo" }
+func (o *xxx_MIBSetTrapInfoOperation) OpName() string { return "/dimsvc/v0/RMIBSetTrapInfo" }
 
-func (o *xxx_RmibSetTrapInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_MIBSetTrapInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -7423,7 +7415,7 @@ func (o *xxx_RmibSetTrapInfoOperation) xxx_PrepareRequestPayload(ctx context.Con
 	return nil
 }
 
-func (o *xxx_RmibSetTrapInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_MIBSetTrapInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -7441,7 +7433,7 @@ func (o *xxx_RmibSetTrapInfoOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// hEvent {in} (1:{public, alias=ULONG_PTR}(uint32_64))
 	{
-		if err := w.WriteData(ndr.Uint3264(o.HEvent)); err != nil {
+		if err := w.WriteData(ndr.Uint3264(o.Event)); err != nil {
 			return err
 		}
 	}
@@ -7458,7 +7450,7 @@ func (o *xxx_RmibSetTrapInfoOperation) MarshalNDRRequest(ctx context.Context, w 
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimMIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.MIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -7469,7 +7461,7 @@ func (o *xxx_RmibSetTrapInfoOperation) MarshalNDRRequest(ctx context.Context, w 
 	return nil
 }
 
-func (o *xxx_RmibSetTrapInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_MIBSetTrapInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// dwPid {in} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.PID); err != nil {
@@ -7484,7 +7476,7 @@ func (o *xxx_RmibSetTrapInfoOperation) UnmarshalNDRRequest(ctx context.Context, 
 	}
 	// hEvent {in} (1:{public, alias=ULONG_PTR}(uint32_64))
 	{
-		if err := w.ReadData((*ndr.Uint3264)(&o.HEvent)); err != nil {
+		if err := w.ReadData((*ndr.Uint3264)(&o.Event)); err != nil {
 			return err
 		}
 	}
@@ -7497,7 +7489,7 @@ func (o *xxx_RmibSetTrapInfoOperation) UnmarshalNDRRequest(ctx context.Context, 
 	// pInfoStruct {in, out} (1:{alias=PDIM_MIB_ENTRY_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimMIBEntryContainer{}
+			o.Info = &rrasm.MIBEntryContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -7509,7 +7501,7 @@ func (o *xxx_RmibSetTrapInfoOperation) UnmarshalNDRRequest(ctx context.Context, 
 	return nil
 }
 
-func (o *xxx_RmibSetTrapInfoOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_MIBSetTrapInfoOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -7518,7 +7510,7 @@ func (o *xxx_RmibSetTrapInfoOperation) xxx_PrepareResponsePayload(ctx context.Co
 	return nil
 }
 
-func (o *xxx_RmibSetTrapInfoOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_MIBSetTrapInfoOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -7529,7 +7521,7 @@ func (o *xxx_RmibSetTrapInfoOperation) MarshalNDRResponse(ctx context.Context, w
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimMIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.MIBEntryContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -7546,11 +7538,11 @@ func (o *xxx_RmibSetTrapInfoOperation) MarshalNDRResponse(ctx context.Context, w
 	return nil
 }
 
-func (o *xxx_RmibSetTrapInfoOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_MIBSetTrapInfoOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pInfoStruct {in, out} (1:{alias=PDIM_MIB_ENTRY_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_MIB_ENTRY_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimMIBEntryContainer{}
+			o.Info = &rrasm.MIBEntryContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -7568,45 +7560,45 @@ func (o *xxx_RmibSetTrapInfoOperation) UnmarshalNDRResponse(ctx context.Context,
 	return nil
 }
 
-// RmibSetTrapInfoRequest structure represents the RMIBSetTrapInfo operation request
-type RmibSetTrapInfoRequest struct {
-	PID             uint32                      `idl:"name:dwPid" json:"pid"`
-	RoutingPID      uint32                      `idl:"name:dwRoutingPid" json:"routing_pid"`
-	HEvent          uint64                      `idl:"name:hEvent" json:"h_event"`
-	ClientProcessID uint32                      `idl:"name:dwClientProcessId" json:"client_process_id"`
-	Info            *rrasm.DimMIBEntryContainer `idl:"name:pInfoStruct" json:"info"`
+// MIBSetTrapInfoRequest structure represents the RMIBSetTrapInfo operation request
+type MIBSetTrapInfoRequest struct {
+	PID             uint32                   `idl:"name:dwPid" json:"pid"`
+	RoutingPID      uint32                   `idl:"name:dwRoutingPid" json:"routing_pid"`
+	Event           uint64                   `idl:"name:hEvent" json:"event"`
+	ClientProcessID uint32                   `idl:"name:dwClientProcessId" json:"client_process_id"`
+	Info            *rrasm.MIBEntryContainer `idl:"name:pInfoStruct" json:"info"`
 }
 
-func (o *RmibSetTrapInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_RmibSetTrapInfoOperation) *xxx_RmibSetTrapInfoOperation {
+func (o *MIBSetTrapInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_MIBSetTrapInfoOperation) *xxx_MIBSetTrapInfoOperation {
 	if op == nil {
-		op = &xxx_RmibSetTrapInfoOperation{}
+		op = &xxx_MIBSetTrapInfoOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.PID = o.PID
 	op.RoutingPID = o.RoutingPID
-	op.HEvent = o.HEvent
+	op.Event = o.Event
 	op.ClientProcessID = o.ClientProcessID
 	op.Info = o.Info
 	return op
 }
 
-func (o *RmibSetTrapInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_RmibSetTrapInfoOperation) {
+func (o *MIBSetTrapInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_MIBSetTrapInfoOperation) {
 	if o == nil {
 		return
 	}
 	o.PID = op.PID
 	o.RoutingPID = op.RoutingPID
-	o.HEvent = op.HEvent
+	o.Event = op.Event
 	o.ClientProcessID = op.ClientProcessID
 	o.Info = op.Info
 }
-func (o *RmibSetTrapInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBSetTrapInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RmibSetTrapInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RmibSetTrapInfoOperation{}
+func (o *MIBSetTrapInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_MIBSetTrapInfoOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -7614,16 +7606,16 @@ func (o *RmibSetTrapInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
-// RmibSetTrapInfoResponse structure represents the RMIBSetTrapInfo operation response
-type RmibSetTrapInfoResponse struct {
-	Info *rrasm.DimMIBEntryContainer `idl:"name:pInfoStruct" json:"info"`
+// MIBSetTrapInfoResponse structure represents the RMIBSetTrapInfo operation response
+type MIBSetTrapInfoResponse struct {
+	Info *rrasm.MIBEntryContainer `idl:"name:pInfoStruct" json:"info"`
 	// Return: The RMIBSetTrapInfo return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RmibSetTrapInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_RmibSetTrapInfoOperation) *xxx_RmibSetTrapInfoOperation {
+func (o *MIBSetTrapInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_MIBSetTrapInfoOperation) *xxx_MIBSetTrapInfoOperation {
 	if op == nil {
-		op = &xxx_RmibSetTrapInfoOperation{}
+		op = &xxx_MIBSetTrapInfoOperation{}
 	}
 	if o == nil {
 		return op
@@ -7633,18 +7625,18 @@ func (o *RmibSetTrapInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_RmibSetT
 	return op
 }
 
-func (o *RmibSetTrapInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_RmibSetTrapInfoOperation) {
+func (o *MIBSetTrapInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_MIBSetTrapInfoOperation) {
 	if o == nil {
 		return
 	}
 	o.Info = op.Info
 	o.Return = op.Return
 }
-func (o *RmibSetTrapInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *MIBSetTrapInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RmibSetTrapInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RmibSetTrapInfoOperation{}
+func (o *MIBSetTrapInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_MIBSetTrapInfoOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -7652,21 +7644,21 @@ func (o *RmibSetTrapInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
-// xxx_RASAdminConnectionNotificationOperation structure represents the RRasAdminConnectionNotification operation
-type xxx_RASAdminConnectionNotificationOperation struct {
-	Register           uint32 `idl:"name:fRegister" json:"register"`
-	ClientProcessID    uint32 `idl:"name:dwClientProcessId" json:"client_process_id"`
-	HEventNotification uint64 `idl:"name:hEventNotification" json:"h_event_notification"`
-	Return             uint32 `idl:"name:Return" json:"return"`
+// xxx_ConnectionNotificationOperation structure represents the RRasAdminConnectionNotification operation
+type xxx_ConnectionNotificationOperation struct {
+	Register          uint32 `idl:"name:fRegister" json:"register"`
+	ClientProcessID   uint32 `idl:"name:dwClientProcessId" json:"client_process_id"`
+	EventNotification uint64 `idl:"name:hEventNotification" json:"event_notification"`
+	Return            uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASAdminConnectionNotificationOperation) OpNum() int { return 34 }
+func (o *xxx_ConnectionNotificationOperation) OpNum() int { return 34 }
 
-func (o *xxx_RASAdminConnectionNotificationOperation) OpName() string {
+func (o *xxx_ConnectionNotificationOperation) OpName() string {
 	return "/dimsvc/v0/RRasAdminConnectionNotification"
 }
 
-func (o *xxx_RASAdminConnectionNotificationOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_ConnectionNotificationOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -7675,7 +7667,7 @@ func (o *xxx_RASAdminConnectionNotificationOperation) xxx_PrepareRequestPayload(
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionNotificationOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ConnectionNotificationOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -7693,14 +7685,14 @@ func (o *xxx_RASAdminConnectionNotificationOperation) MarshalNDRRequest(ctx cont
 	}
 	// hEventNotification {in} (1:{public, alias=ULONG_PTR}(uint32_64))
 	{
-		if err := w.WriteData(ndr.Uint3264(o.HEventNotification)); err != nil {
+		if err := w.WriteData(ndr.Uint3264(o.EventNotification)); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionNotificationOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ConnectionNotificationOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// fRegister {in} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Register); err != nil {
@@ -7715,14 +7707,14 @@ func (o *xxx_RASAdminConnectionNotificationOperation) UnmarshalNDRRequest(ctx co
 	}
 	// hEventNotification {in} (1:{public, alias=ULONG_PTR}(uint32_64))
 	{
-		if err := w.ReadData((*ndr.Uint3264)(&o.HEventNotification)); err != nil {
+		if err := w.ReadData((*ndr.Uint3264)(&o.EventNotification)); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionNotificationOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_ConnectionNotificationOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -7731,7 +7723,7 @@ func (o *xxx_RASAdminConnectionNotificationOperation) xxx_PrepareResponsePayload
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionNotificationOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ConnectionNotificationOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -7744,7 +7736,7 @@ func (o *xxx_RASAdminConnectionNotificationOperation) MarshalNDRResponse(ctx con
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionNotificationOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ConnectionNotificationOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -7754,39 +7746,39 @@ func (o *xxx_RASAdminConnectionNotificationOperation) UnmarshalNDRResponse(ctx c
 	return nil
 }
 
-// RASAdminConnectionNotificationRequest structure represents the RRasAdminConnectionNotification operation request
-type RASAdminConnectionNotificationRequest struct {
-	Register           uint32 `idl:"name:fRegister" json:"register"`
-	ClientProcessID    uint32 `idl:"name:dwClientProcessId" json:"client_process_id"`
-	HEventNotification uint64 `idl:"name:hEventNotification" json:"h_event_notification"`
+// ConnectionNotificationRequest structure represents the RRasAdminConnectionNotification operation request
+type ConnectionNotificationRequest struct {
+	Register          uint32 `idl:"name:fRegister" json:"register"`
+	ClientProcessID   uint32 `idl:"name:dwClientProcessId" json:"client_process_id"`
+	EventNotification uint64 `idl:"name:hEventNotification" json:"event_notification"`
 }
 
-func (o *RASAdminConnectionNotificationRequest) xxx_ToOp(ctx context.Context, op *xxx_RASAdminConnectionNotificationOperation) *xxx_RASAdminConnectionNotificationOperation {
+func (o *ConnectionNotificationRequest) xxx_ToOp(ctx context.Context, op *xxx_ConnectionNotificationOperation) *xxx_ConnectionNotificationOperation {
 	if op == nil {
-		op = &xxx_RASAdminConnectionNotificationOperation{}
+		op = &xxx_ConnectionNotificationOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.Register = o.Register
 	op.ClientProcessID = o.ClientProcessID
-	op.HEventNotification = o.HEventNotification
+	op.EventNotification = o.EventNotification
 	return op
 }
 
-func (o *RASAdminConnectionNotificationRequest) xxx_FromOp(ctx context.Context, op *xxx_RASAdminConnectionNotificationOperation) {
+func (o *ConnectionNotificationRequest) xxx_FromOp(ctx context.Context, op *xxx_ConnectionNotificationOperation) {
 	if o == nil {
 		return
 	}
 	o.Register = op.Register
 	o.ClientProcessID = op.ClientProcessID
-	o.HEventNotification = op.HEventNotification
+	o.EventNotification = op.EventNotification
 }
-func (o *RASAdminConnectionNotificationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ConnectionNotificationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASAdminConnectionNotificationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminConnectionNotificationOperation{}
+func (o *ConnectionNotificationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ConnectionNotificationOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -7794,15 +7786,15 @@ func (o *RASAdminConnectionNotificationRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
-// RASAdminConnectionNotificationResponse structure represents the RRasAdminConnectionNotification operation response
-type RASAdminConnectionNotificationResponse struct {
+// ConnectionNotificationResponse structure represents the RRasAdminConnectionNotification operation response
+type ConnectionNotificationResponse struct {
 	// Return: The RRasAdminConnectionNotification return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASAdminConnectionNotificationResponse) xxx_ToOp(ctx context.Context, op *xxx_RASAdminConnectionNotificationOperation) *xxx_RASAdminConnectionNotificationOperation {
+func (o *ConnectionNotificationResponse) xxx_ToOp(ctx context.Context, op *xxx_ConnectionNotificationOperation) *xxx_ConnectionNotificationOperation {
 	if op == nil {
-		op = &xxx_RASAdminConnectionNotificationOperation{}
+		op = &xxx_ConnectionNotificationOperation{}
 	}
 	if o == nil {
 		return op
@@ -7811,17 +7803,17 @@ func (o *RASAdminConnectionNotificationResponse) xxx_ToOp(ctx context.Context, o
 	return op
 }
 
-func (o *RASAdminConnectionNotificationResponse) xxx_FromOp(ctx context.Context, op *xxx_RASAdminConnectionNotificationOperation) {
+func (o *ConnectionNotificationResponse) xxx_FromOp(ctx context.Context, op *xxx_ConnectionNotificationOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *RASAdminConnectionNotificationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ConnectionNotificationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASAdminConnectionNotificationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminConnectionNotificationOperation{}
+func (o *ConnectionNotificationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ConnectionNotificationOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -7829,20 +7821,18 @@ func (o *RASAdminConnectionNotificationResponse) UnmarshalNDR(ctx context.Contex
 	return nil
 }
 
-// xxx_RASAdminSendUserMessageOperation structure represents the RRasAdminSendUserMessage operation
-type xxx_RASAdminSendUserMessageOperation struct {
-	HDimConnection uint32 `idl:"name:hDimConnection" json:"h_dim_connection"`
-	Message        string `idl:"name:lpwszMessage;string" json:"message"`
-	Return         uint32 `idl:"name:Return" json:"return"`
+// xxx_SendUserMessageOperation structure represents the RRasAdminSendUserMessage operation
+type xxx_SendUserMessageOperation struct {
+	Connection uint32 `idl:"name:hDimConnection" json:"connection"`
+	Message    string `idl:"name:lpwszMessage;string" json:"message"`
+	Return     uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASAdminSendUserMessageOperation) OpNum() int { return 35 }
+func (o *xxx_SendUserMessageOperation) OpNum() int { return 35 }
 
-func (o *xxx_RASAdminSendUserMessageOperation) OpName() string {
-	return "/dimsvc/v0/RRasAdminSendUserMessage"
-}
+func (o *xxx_SendUserMessageOperation) OpName() string { return "/dimsvc/v0/RRasAdminSendUserMessage" }
 
-func (o *xxx_RASAdminSendUserMessageOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_SendUserMessageOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -7851,13 +7841,13 @@ func (o *xxx_RASAdminSendUserMessageOperation) xxx_PrepareRequestPayload(ctx con
 	return nil
 }
 
-func (o *xxx_RASAdminSendUserMessageOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_SendUserMessageOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
 	// hDimConnection {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HDimConnection); err != nil {
+		if err := w.WriteData(o.Connection); err != nil {
 			return err
 		}
 	}
@@ -7870,10 +7860,10 @@ func (o *xxx_RASAdminSendUserMessageOperation) MarshalNDRRequest(ctx context.Con
 	return nil
 }
 
-func (o *xxx_RASAdminSendUserMessageOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_SendUserMessageOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hDimConnection {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HDimConnection); err != nil {
+		if err := w.ReadData(&o.Connection); err != nil {
 			return err
 		}
 	}
@@ -7886,7 +7876,7 @@ func (o *xxx_RASAdminSendUserMessageOperation) UnmarshalNDRRequest(ctx context.C
 	return nil
 }
 
-func (o *xxx_RASAdminSendUserMessageOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_SendUserMessageOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -7895,7 +7885,7 @@ func (o *xxx_RASAdminSendUserMessageOperation) xxx_PrepareResponsePayload(ctx co
 	return nil
 }
 
-func (o *xxx_RASAdminSendUserMessageOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_SendUserMessageOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -7908,7 +7898,7 @@ func (o *xxx_RASAdminSendUserMessageOperation) MarshalNDRResponse(ctx context.Co
 	return nil
 }
 
-func (o *xxx_RASAdminSendUserMessageOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_SendUserMessageOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -7918,36 +7908,36 @@ func (o *xxx_RASAdminSendUserMessageOperation) UnmarshalNDRResponse(ctx context.
 	return nil
 }
 
-// RASAdminSendUserMessageRequest structure represents the RRasAdminSendUserMessage operation request
-type RASAdminSendUserMessageRequest struct {
-	HDimConnection uint32 `idl:"name:hDimConnection" json:"h_dim_connection"`
-	Message        string `idl:"name:lpwszMessage;string" json:"message"`
+// SendUserMessageRequest structure represents the RRasAdminSendUserMessage operation request
+type SendUserMessageRequest struct {
+	Connection uint32 `idl:"name:hDimConnection" json:"connection"`
+	Message    string `idl:"name:lpwszMessage;string" json:"message"`
 }
 
-func (o *RASAdminSendUserMessageRequest) xxx_ToOp(ctx context.Context, op *xxx_RASAdminSendUserMessageOperation) *xxx_RASAdminSendUserMessageOperation {
+func (o *SendUserMessageRequest) xxx_ToOp(ctx context.Context, op *xxx_SendUserMessageOperation) *xxx_SendUserMessageOperation {
 	if op == nil {
-		op = &xxx_RASAdminSendUserMessageOperation{}
+		op = &xxx_SendUserMessageOperation{}
 	}
 	if o == nil {
 		return op
 	}
-	op.HDimConnection = o.HDimConnection
+	op.Connection = o.Connection
 	op.Message = o.Message
 	return op
 }
 
-func (o *RASAdminSendUserMessageRequest) xxx_FromOp(ctx context.Context, op *xxx_RASAdminSendUserMessageOperation) {
+func (o *SendUserMessageRequest) xxx_FromOp(ctx context.Context, op *xxx_SendUserMessageOperation) {
 	if o == nil {
 		return
 	}
-	o.HDimConnection = op.HDimConnection
+	o.Connection = op.Connection
 	o.Message = op.Message
 }
-func (o *RASAdminSendUserMessageRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SendUserMessageRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASAdminSendUserMessageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminSendUserMessageOperation{}
+func (o *SendUserMessageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SendUserMessageOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -7955,15 +7945,15 @@ func (o *RASAdminSendUserMessageRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
-// RASAdminSendUserMessageResponse structure represents the RRasAdminSendUserMessage operation response
-type RASAdminSendUserMessageResponse struct {
+// SendUserMessageResponse structure represents the RRasAdminSendUserMessage operation response
+type SendUserMessageResponse struct {
 	// Return: The RRasAdminSendUserMessage return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASAdminSendUserMessageResponse) xxx_ToOp(ctx context.Context, op *xxx_RASAdminSendUserMessageOperation) *xxx_RASAdminSendUserMessageOperation {
+func (o *SendUserMessageResponse) xxx_ToOp(ctx context.Context, op *xxx_SendUserMessageOperation) *xxx_SendUserMessageOperation {
 	if op == nil {
-		op = &xxx_RASAdminSendUserMessageOperation{}
+		op = &xxx_SendUserMessageOperation{}
 	}
 	if o == nil {
 		return op
@@ -7972,17 +7962,17 @@ func (o *RASAdminSendUserMessageResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	return op
 }
 
-func (o *RASAdminSendUserMessageResponse) xxx_FromOp(ctx context.Context, op *xxx_RASAdminSendUserMessageOperation) {
+func (o *SendUserMessageResponse) xxx_FromOp(ctx context.Context, op *xxx_SendUserMessageOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *RASAdminSendUserMessageResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SendUserMessageResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASAdminSendUserMessageResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminSendUserMessageOperation{}
+func (o *SendUserMessageResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SendUserMessageOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -7992,10 +7982,10 @@ func (o *RASAdminSendUserMessageResponse) UnmarshalNDR(ctx context.Context, r nd
 
 // xxx_RouterDeviceEnumOperation structure represents the RRouterDeviceEnum operation
 type xxx_RouterDeviceEnumOperation struct {
-	Level        uint32                         `idl:"name:dwLevel" json:"level"`
-	Info         *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	TotalEntries uint32                         `idl:"name:lpdwTotalEntries" json:"total_entries"`
-	Return       uint32                         `idl:"name:Return" json:"return"`
+	Level        uint32                      `idl:"name:dwLevel" json:"level"`
+	Info         *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	TotalEntries uint32                      `idl:"name:lpdwTotalEntries" json:"total_entries"`
+	Return       uint32                      `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterDeviceEnumOperation) OpNum() int { return 36 }
@@ -8028,7 +8018,7 @@ func (o *xxx_RouterDeviceEnumOperation) MarshalNDRRequest(ctx context.Context, w
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -8055,7 +8045,7 @@ func (o *xxx_RouterDeviceEnumOperation) UnmarshalNDRRequest(ctx context.Context,
 	// pInfoStruct {in, out} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -8093,7 +8083,7 @@ func (o *xxx_RouterDeviceEnumOperation) MarshalNDRResponse(ctx context.Context, 
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -8120,7 +8110,7 @@ func (o *xxx_RouterDeviceEnumOperation) UnmarshalNDRResponse(ctx context.Context
 	// pInfoStruct {in, out} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -8146,9 +8136,9 @@ func (o *xxx_RouterDeviceEnumOperation) UnmarshalNDRResponse(ctx context.Context
 
 // RouterDeviceEnumRequest structure represents the RRouterDeviceEnum operation request
 type RouterDeviceEnumRequest struct {
-	Level        uint32                         `idl:"name:dwLevel" json:"level"`
-	Info         *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	TotalEntries uint32                         `idl:"name:lpdwTotalEntries" json:"total_entries"`
+	Level        uint32                      `idl:"name:dwLevel" json:"level"`
+	Info         *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	TotalEntries uint32                      `idl:"name:lpdwTotalEntries" json:"total_entries"`
 }
 
 func (o *RouterDeviceEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterDeviceEnumOperation) *xxx_RouterDeviceEnumOperation {
@@ -8186,8 +8176,8 @@ func (o *RouterDeviceEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 
 // RouterDeviceEnumResponse structure represents the RRouterDeviceEnum operation response
 type RouterDeviceEnumResponse struct {
-	Info         *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	TotalEntries uint32                         `idl:"name:lpdwTotalEntries" json:"total_entries"`
+	Info         *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	TotalEntries uint32                      `idl:"name:lpdwTotalEntries" json:"total_entries"`
 	// Return: The RRouterDeviceEnum return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -8227,11 +8217,11 @@ func (o *RouterDeviceEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // xxx_RouterInterfaceTransportCreateOperation structure represents the RRouterInterfaceTransportCreate operation
 type xxx_RouterInterfaceTransportCreateOperation struct {
-	TransportID       uint32                       `idl:"name:dwTransportId" json:"transport_id"`
-	LpwsTransportName string                       `idl:"name:lpwsTransportName;string" json:"lpws_transport_name"`
-	Info              *rrasm.DimInterfaceContainer `idl:"name:pInfoStruct" json:"info"`
-	LpwsDLLPath       string                       `idl:"name:lpwsDLLPath;string" json:"lpws_dll_path"`
-	Return            uint32                       `idl:"name:Return" json:"return"`
+	TransportID   uint32                    `idl:"name:dwTransportId" json:"transport_id"`
+	TransportName string                    `idl:"name:lpwsTransportName;string" json:"transport_name"`
+	Info          *rrasm.InterfaceContainer `idl:"name:pInfoStruct" json:"info"`
+	DLLPath       string                    `idl:"name:lpwsDLLPath;string" json:"dll_path"`
+	Return        uint32                    `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceTransportCreateOperation) OpNum() int { return 37 }
@@ -8261,7 +8251,7 @@ func (o *xxx_RouterInterfaceTransportCreateOperation) MarshalNDRRequest(ctx cont
 	}
 	// lpwsTransportName {in} (1:{string, alias=LPWSTR}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.WriteUTF16NString(ctx, w, o.LpwsTransportName); err != nil {
+		if err := ndr.WriteUTF16NString(ctx, w, o.TransportName); err != nil {
 			return err
 		}
 	}
@@ -8272,7 +8262,7 @@ func (o *xxx_RouterInterfaceTransportCreateOperation) MarshalNDRRequest(ctx cont
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInterfaceContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InterfaceContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -8282,7 +8272,7 @@ func (o *xxx_RouterInterfaceTransportCreateOperation) MarshalNDRRequest(ctx cont
 	}
 	// lpwsDLLPath {in} (1:{string, alias=LPWSTR}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.WriteUTF16NString(ctx, w, o.LpwsDLLPath); err != nil {
+		if err := ndr.WriteUTF16NString(ctx, w, o.DLLPath); err != nil {
 			return err
 		}
 	}
@@ -8298,14 +8288,14 @@ func (o *xxx_RouterInterfaceTransportCreateOperation) UnmarshalNDRRequest(ctx co
 	}
 	// lpwsTransportName {in} (1:{string, alias=LPWSTR,pointer=ref}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.ReadUTF16NString(ctx, w, &o.LpwsTransportName); err != nil {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.TransportName); err != nil {
 			return err
 		}
 	}
 	// pInfoStruct {in} (1:{alias=PDIM_INTERFACE_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INTERFACE_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInterfaceContainer{}
+			o.Info = &rrasm.InterfaceContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -8316,7 +8306,7 @@ func (o *xxx_RouterInterfaceTransportCreateOperation) UnmarshalNDRRequest(ctx co
 	}
 	// lpwsDLLPath {in} (1:{string, alias=LPWSTR,pointer=ref}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.ReadUTF16NString(ctx, w, &o.LpwsDLLPath); err != nil {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.DLLPath); err != nil {
 			return err
 		}
 	}
@@ -8357,10 +8347,10 @@ func (o *xxx_RouterInterfaceTransportCreateOperation) UnmarshalNDRResponse(ctx c
 
 // RouterInterfaceTransportCreateRequest structure represents the RRouterInterfaceTransportCreate operation request
 type RouterInterfaceTransportCreateRequest struct {
-	TransportID       uint32                       `idl:"name:dwTransportId" json:"transport_id"`
-	LpwsTransportName string                       `idl:"name:lpwsTransportName;string" json:"lpws_transport_name"`
-	Info              *rrasm.DimInterfaceContainer `idl:"name:pInfoStruct" json:"info"`
-	LpwsDLLPath       string                       `idl:"name:lpwsDLLPath;string" json:"lpws_dll_path"`
+	TransportID   uint32                    `idl:"name:dwTransportId" json:"transport_id"`
+	TransportName string                    `idl:"name:lpwsTransportName;string" json:"transport_name"`
+	Info          *rrasm.InterfaceContainer `idl:"name:pInfoStruct" json:"info"`
+	DLLPath       string                    `idl:"name:lpwsDLLPath;string" json:"dll_path"`
 }
 
 func (o *RouterInterfaceTransportCreateRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceTransportCreateOperation) *xxx_RouterInterfaceTransportCreateOperation {
@@ -8371,9 +8361,9 @@ func (o *RouterInterfaceTransportCreateRequest) xxx_ToOp(ctx context.Context, op
 		return op
 	}
 	op.TransportID = o.TransportID
-	op.LpwsTransportName = o.LpwsTransportName
+	op.TransportName = o.TransportName
 	op.Info = o.Info
-	op.LpwsDLLPath = o.LpwsDLLPath
+	op.DLLPath = o.DLLPath
 	return op
 }
 
@@ -8382,9 +8372,9 @@ func (o *RouterInterfaceTransportCreateRequest) xxx_FromOp(ctx context.Context, 
 		return
 	}
 	o.TransportID = op.TransportID
-	o.LpwsTransportName = op.LpwsTransportName
+	o.TransportName = op.TransportName
 	o.Info = op.Info
-	o.LpwsDLLPath = op.LpwsDLLPath
+	o.DLLPath = op.DLLPath
 }
 func (o *RouterInterfaceTransportCreateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -8435,11 +8425,11 @@ func (o *RouterInterfaceTransportCreateResponse) UnmarshalNDR(ctx context.Contex
 
 // xxx_RouterInterfaceDeviceGetInfoOperation structure represents the RRouterInterfaceDeviceGetInfo operation
 type xxx_RouterInterfaceDeviceGetInfoOperation struct {
-	Level      uint32                         `idl:"name:dwLevel" json:"level"`
-	Info       *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	Index      uint32                         `idl:"name:dwIndex" json:"index"`
-	HInterface uint32                         `idl:"name:hInterface" json:"h_interface"`
-	Return     uint32                         `idl:"name:Return" json:"return"`
+	Level     uint32                      `idl:"name:dwLevel" json:"level"`
+	Info      *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Index     uint32                      `idl:"name:dwIndex" json:"index"`
+	Interface uint32                      `idl:"name:hInterface" json:"interface"`
+	Return    uint32                      `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceDeviceGetInfoOperation) OpNum() int { return 38 }
@@ -8474,7 +8464,7 @@ func (o *xxx_RouterInterfaceDeviceGetInfoOperation) MarshalNDRRequest(ctx contex
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -8490,7 +8480,7 @@ func (o *xxx_RouterInterfaceDeviceGetInfoOperation) MarshalNDRRequest(ctx contex
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HInterface); err != nil {
+		if err := w.WriteData(o.Interface); err != nil {
 			return err
 		}
 	}
@@ -8507,7 +8497,7 @@ func (o *xxx_RouterInterfaceDeviceGetInfoOperation) UnmarshalNDRRequest(ctx cont
 	// pInfoStruct {in, out} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -8524,7 +8514,7 @@ func (o *xxx_RouterInterfaceDeviceGetInfoOperation) UnmarshalNDRRequest(ctx cont
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HInterface); err != nil {
+		if err := w.ReadData(&o.Interface); err != nil {
 			return err
 		}
 	}
@@ -8551,7 +8541,7 @@ func (o *xxx_RouterInterfaceDeviceGetInfoOperation) MarshalNDRResponse(ctx conte
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -8572,7 +8562,7 @@ func (o *xxx_RouterInterfaceDeviceGetInfoOperation) UnmarshalNDRResponse(ctx con
 	// pInfoStruct {in, out} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -8592,10 +8582,10 @@ func (o *xxx_RouterInterfaceDeviceGetInfoOperation) UnmarshalNDRResponse(ctx con
 
 // RouterInterfaceDeviceGetInfoRequest structure represents the RRouterInterfaceDeviceGetInfo operation request
 type RouterInterfaceDeviceGetInfoRequest struct {
-	Level      uint32                         `idl:"name:dwLevel" json:"level"`
-	Info       *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	Index      uint32                         `idl:"name:dwIndex" json:"index"`
-	HInterface uint32                         `idl:"name:hInterface" json:"h_interface"`
+	Level     uint32                      `idl:"name:dwLevel" json:"level"`
+	Info      *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Index     uint32                      `idl:"name:dwIndex" json:"index"`
+	Interface uint32                      `idl:"name:hInterface" json:"interface"`
 }
 
 func (o *RouterInterfaceDeviceGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceDeviceGetInfoOperation) *xxx_RouterInterfaceDeviceGetInfoOperation {
@@ -8608,7 +8598,7 @@ func (o *RouterInterfaceDeviceGetInfoRequest) xxx_ToOp(ctx context.Context, op *
 	op.Level = o.Level
 	op.Info = o.Info
 	op.Index = o.Index
-	op.HInterface = o.HInterface
+	op.Interface = o.Interface
 	return op
 }
 
@@ -8619,7 +8609,7 @@ func (o *RouterInterfaceDeviceGetInfoRequest) xxx_FromOp(ctx context.Context, op
 	o.Level = op.Level
 	o.Info = op.Info
 	o.Index = op.Index
-	o.HInterface = op.HInterface
+	o.Interface = op.Interface
 }
 func (o *RouterInterfaceDeviceGetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -8635,7 +8625,7 @@ func (o *RouterInterfaceDeviceGetInfoRequest) UnmarshalNDR(ctx context.Context, 
 
 // RouterInterfaceDeviceGetInfoResponse structure represents the RRouterInterfaceDeviceGetInfo operation response
 type RouterInterfaceDeviceGetInfoResponse struct {
-	Info *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Info *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
 	// Return: The RRouterInterfaceDeviceGetInfo return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -8673,11 +8663,11 @@ func (o *RouterInterfaceDeviceGetInfoResponse) UnmarshalNDR(ctx context.Context,
 
 // xxx_RouterInterfaceDeviceSetInfoOperation structure represents the RRouterInterfaceDeviceSetInfo operation
 type xxx_RouterInterfaceDeviceSetInfoOperation struct {
-	Level      uint32                         `idl:"name:dwLevel" json:"level"`
-	Info       *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	Index      uint32                         `idl:"name:dwIndex" json:"index"`
-	HInterface uint32                         `idl:"name:hInterface" json:"h_interface"`
-	Return     uint32                         `idl:"name:Return" json:"return"`
+	Level     uint32                      `idl:"name:dwLevel" json:"level"`
+	Info      *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Index     uint32                      `idl:"name:dwIndex" json:"index"`
+	Interface uint32                      `idl:"name:hInterface" json:"interface"`
+	Return    uint32                      `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceDeviceSetInfoOperation) OpNum() int { return 39 }
@@ -8712,7 +8702,7 @@ func (o *xxx_RouterInterfaceDeviceSetInfoOperation) MarshalNDRRequest(ctx contex
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -8728,7 +8718,7 @@ func (o *xxx_RouterInterfaceDeviceSetInfoOperation) MarshalNDRRequest(ctx contex
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HInterface); err != nil {
+		if err := w.WriteData(o.Interface); err != nil {
 			return err
 		}
 	}
@@ -8745,7 +8735,7 @@ func (o *xxx_RouterInterfaceDeviceSetInfoOperation) UnmarshalNDRRequest(ctx cont
 	// pInfoStruct {in} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -8762,7 +8752,7 @@ func (o *xxx_RouterInterfaceDeviceSetInfoOperation) UnmarshalNDRRequest(ctx cont
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HInterface); err != nil {
+		if err := w.ReadData(&o.Interface); err != nil {
 			return err
 		}
 	}
@@ -8803,10 +8793,10 @@ func (o *xxx_RouterInterfaceDeviceSetInfoOperation) UnmarshalNDRResponse(ctx con
 
 // RouterInterfaceDeviceSetInfoRequest structure represents the RRouterInterfaceDeviceSetInfo operation request
 type RouterInterfaceDeviceSetInfoRequest struct {
-	Level      uint32                         `idl:"name:dwLevel" json:"level"`
-	Info       *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	Index      uint32                         `idl:"name:dwIndex" json:"index"`
-	HInterface uint32                         `idl:"name:hInterface" json:"h_interface"`
+	Level     uint32                      `idl:"name:dwLevel" json:"level"`
+	Info      *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Index     uint32                      `idl:"name:dwIndex" json:"index"`
+	Interface uint32                      `idl:"name:hInterface" json:"interface"`
 }
 
 func (o *RouterInterfaceDeviceSetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceDeviceSetInfoOperation) *xxx_RouterInterfaceDeviceSetInfoOperation {
@@ -8819,7 +8809,7 @@ func (o *RouterInterfaceDeviceSetInfoRequest) xxx_ToOp(ctx context.Context, op *
 	op.Level = o.Level
 	op.Info = o.Info
 	op.Index = o.Index
-	op.HInterface = o.HInterface
+	op.Interface = o.Interface
 	return op
 }
 
@@ -8830,7 +8820,7 @@ func (o *RouterInterfaceDeviceSetInfoRequest) xxx_FromOp(ctx context.Context, op
 	o.Level = op.Level
 	o.Info = op.Info
 	o.Index = op.Index
-	o.HInterface = op.HInterface
+	o.Interface = op.Interface
 }
 func (o *RouterInterfaceDeviceSetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -8881,10 +8871,10 @@ func (o *RouterInterfaceDeviceSetInfoResponse) UnmarshalNDR(ctx context.Context,
 
 // xxx_RouterInterfaceSetCredentialsExOperation structure represents the RRouterInterfaceSetCredentialsEx operation
 type xxx_RouterInterfaceSetCredentialsExOperation struct {
-	Level      uint32                         `idl:"name:dwLevel" json:"level"`
-	Info       *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	HInterface uint32                         `idl:"name:hInterface" json:"h_interface"`
-	Return     uint32                         `idl:"name:Return" json:"return"`
+	Level     uint32                      `idl:"name:dwLevel" json:"level"`
+	Info      *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Interface uint32                      `idl:"name:hInterface" json:"interface"`
+	Return    uint32                      `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceSetCredentialsExOperation) OpNum() int { return 40 }
@@ -8919,7 +8909,7 @@ func (o *xxx_RouterInterfaceSetCredentialsExOperation) MarshalNDRRequest(ctx con
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -8929,7 +8919,7 @@ func (o *xxx_RouterInterfaceSetCredentialsExOperation) MarshalNDRRequest(ctx con
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HInterface); err != nil {
+		if err := w.WriteData(o.Interface); err != nil {
 			return err
 		}
 	}
@@ -8946,7 +8936,7 @@ func (o *xxx_RouterInterfaceSetCredentialsExOperation) UnmarshalNDRRequest(ctx c
 	// pInfoStruct {in} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -8957,7 +8947,7 @@ func (o *xxx_RouterInterfaceSetCredentialsExOperation) UnmarshalNDRRequest(ctx c
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HInterface); err != nil {
+		if err := w.ReadData(&o.Interface); err != nil {
 			return err
 		}
 	}
@@ -8998,9 +8988,9 @@ func (o *xxx_RouterInterfaceSetCredentialsExOperation) UnmarshalNDRResponse(ctx 
 
 // RouterInterfaceSetCredentialsExRequest structure represents the RRouterInterfaceSetCredentialsEx operation request
 type RouterInterfaceSetCredentialsExRequest struct {
-	Level      uint32                         `idl:"name:dwLevel" json:"level"`
-	Info       *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	HInterface uint32                         `idl:"name:hInterface" json:"h_interface"`
+	Level     uint32                      `idl:"name:dwLevel" json:"level"`
+	Info      *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Interface uint32                      `idl:"name:hInterface" json:"interface"`
 }
 
 func (o *RouterInterfaceSetCredentialsExRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceSetCredentialsExOperation) *xxx_RouterInterfaceSetCredentialsExOperation {
@@ -9012,7 +9002,7 @@ func (o *RouterInterfaceSetCredentialsExRequest) xxx_ToOp(ctx context.Context, o
 	}
 	op.Level = o.Level
 	op.Info = o.Info
-	op.HInterface = o.HInterface
+	op.Interface = o.Interface
 	return op
 }
 
@@ -9022,7 +9012,7 @@ func (o *RouterInterfaceSetCredentialsExRequest) xxx_FromOp(ctx context.Context,
 	}
 	o.Level = op.Level
 	o.Info = op.Info
-	o.HInterface = op.HInterface
+	o.Interface = op.Interface
 }
 func (o *RouterInterfaceSetCredentialsExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -9073,10 +9063,10 @@ func (o *RouterInterfaceSetCredentialsExResponse) UnmarshalNDR(ctx context.Conte
 
 // xxx_RouterInterfaceGetCredentialsExOperation structure represents the RRouterInterfaceGetCredentialsEx operation
 type xxx_RouterInterfaceGetCredentialsExOperation struct {
-	Level      uint32                         `idl:"name:dwLevel" json:"level"`
-	Info       *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	HInterface uint32                         `idl:"name:hInterface" json:"h_interface"`
-	Return     uint32                         `idl:"name:Return" json:"return"`
+	Level     uint32                      `idl:"name:dwLevel" json:"level"`
+	Info      *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Interface uint32                      `idl:"name:hInterface" json:"interface"`
+	Return    uint32                      `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceGetCredentialsExOperation) OpNum() int { return 41 }
@@ -9111,7 +9101,7 @@ func (o *xxx_RouterInterfaceGetCredentialsExOperation) MarshalNDRRequest(ctx con
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -9121,7 +9111,7 @@ func (o *xxx_RouterInterfaceGetCredentialsExOperation) MarshalNDRRequest(ctx con
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HInterface); err != nil {
+		if err := w.WriteData(o.Interface); err != nil {
 			return err
 		}
 	}
@@ -9138,7 +9128,7 @@ func (o *xxx_RouterInterfaceGetCredentialsExOperation) UnmarshalNDRRequest(ctx c
 	// pInfoStruct {in, out} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -9149,7 +9139,7 @@ func (o *xxx_RouterInterfaceGetCredentialsExOperation) UnmarshalNDRRequest(ctx c
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HInterface); err != nil {
+		if err := w.ReadData(&o.Interface); err != nil {
 			return err
 		}
 	}
@@ -9176,7 +9166,7 @@ func (o *xxx_RouterInterfaceGetCredentialsExOperation) MarshalNDRResponse(ctx co
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -9197,7 +9187,7 @@ func (o *xxx_RouterInterfaceGetCredentialsExOperation) UnmarshalNDRResponse(ctx 
 	// pInfoStruct {in, out} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -9217,9 +9207,9 @@ func (o *xxx_RouterInterfaceGetCredentialsExOperation) UnmarshalNDRResponse(ctx 
 
 // RouterInterfaceGetCredentialsExRequest structure represents the RRouterInterfaceGetCredentialsEx operation request
 type RouterInterfaceGetCredentialsExRequest struct {
-	Level      uint32                         `idl:"name:dwLevel" json:"level"`
-	Info       *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	HInterface uint32                         `idl:"name:hInterface" json:"h_interface"`
+	Level     uint32                      `idl:"name:dwLevel" json:"level"`
+	Info      *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Interface uint32                      `idl:"name:hInterface" json:"interface"`
 }
 
 func (o *RouterInterfaceGetCredentialsExRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceGetCredentialsExOperation) *xxx_RouterInterfaceGetCredentialsExOperation {
@@ -9231,7 +9221,7 @@ func (o *RouterInterfaceGetCredentialsExRequest) xxx_ToOp(ctx context.Context, o
 	}
 	op.Level = o.Level
 	op.Info = o.Info
-	op.HInterface = o.HInterface
+	op.Interface = o.Interface
 	return op
 }
 
@@ -9241,7 +9231,7 @@ func (o *RouterInterfaceGetCredentialsExRequest) xxx_FromOp(ctx context.Context,
 	}
 	o.Level = op.Level
 	o.Info = op.Info
-	o.HInterface = op.HInterface
+	o.Interface = op.Interface
 }
 func (o *RouterInterfaceGetCredentialsExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -9257,7 +9247,7 @@ func (o *RouterInterfaceGetCredentialsExRequest) UnmarshalNDR(ctx context.Contex
 
 // RouterInterfaceGetCredentialsExResponse structure represents the RRouterInterfaceGetCredentialsEx operation response
 type RouterInterfaceGetCredentialsExResponse struct {
-	Info *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Info *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
 	// Return: The RRouterInterfaceGetCredentialsEx return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -9293,20 +9283,20 @@ func (o *RouterInterfaceGetCredentialsExResponse) UnmarshalNDR(ctx context.Conte
 	return nil
 }
 
-// xxx_RASAdminConnectionRemoveQuarantineOperation structure represents the RRasAdminConnectionRemoveQuarantine operation
-type xxx_RASAdminConnectionRemoveQuarantineOperation struct {
-	HRASConnection uint32 `idl:"name:hRasConnection" json:"h_ras_connection"`
-	IsIPAddress    bool   `idl:"name:fIsIpAddress" json:"is_ip_address"`
-	Return         uint32 `idl:"name:Return" json:"return"`
+// xxx_ConnectionRemoveQuarantineOperation structure represents the RRasAdminConnectionRemoveQuarantine operation
+type xxx_ConnectionRemoveQuarantineOperation struct {
+	Connection  uint32 `idl:"name:hRasConnection" json:"connection"`
+	IsIPAddress bool   `idl:"name:fIsIpAddress" json:"is_ip_address"`
+	Return      uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASAdminConnectionRemoveQuarantineOperation) OpNum() int { return 42 }
+func (o *xxx_ConnectionRemoveQuarantineOperation) OpNum() int { return 42 }
 
-func (o *xxx_RASAdminConnectionRemoveQuarantineOperation) OpName() string {
+func (o *xxx_ConnectionRemoveQuarantineOperation) OpName() string {
 	return "/dimsvc/v0/RRasAdminConnectionRemoveQuarantine"
 }
 
-func (o *xxx_RASAdminConnectionRemoveQuarantineOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_ConnectionRemoveQuarantineOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -9315,13 +9305,13 @@ func (o *xxx_RASAdminConnectionRemoveQuarantineOperation) xxx_PrepareRequestPayl
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionRemoveQuarantineOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ConnectionRemoveQuarantineOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
 	// hRasConnection {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HRASConnection); err != nil {
+		if err := w.WriteData(o.Connection); err != nil {
 			return err
 		}
 	}
@@ -9340,10 +9330,10 @@ func (o *xxx_RASAdminConnectionRemoveQuarantineOperation) MarshalNDRRequest(ctx 
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionRemoveQuarantineOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ConnectionRemoveQuarantineOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hRasConnection {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HRASConnection); err != nil {
+		if err := w.ReadData(&o.Connection); err != nil {
 			return err
 		}
 	}
@@ -9358,7 +9348,7 @@ func (o *xxx_RASAdminConnectionRemoveQuarantineOperation) UnmarshalNDRRequest(ct
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionRemoveQuarantineOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_ConnectionRemoveQuarantineOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -9367,7 +9357,7 @@ func (o *xxx_RASAdminConnectionRemoveQuarantineOperation) xxx_PrepareResponsePay
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionRemoveQuarantineOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ConnectionRemoveQuarantineOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -9380,7 +9370,7 @@ func (o *xxx_RASAdminConnectionRemoveQuarantineOperation) MarshalNDRResponse(ctx
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionRemoveQuarantineOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ConnectionRemoveQuarantineOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -9390,36 +9380,36 @@ func (o *xxx_RASAdminConnectionRemoveQuarantineOperation) UnmarshalNDRResponse(c
 	return nil
 }
 
-// RASAdminConnectionRemoveQuarantineRequest structure represents the RRasAdminConnectionRemoveQuarantine operation request
-type RASAdminConnectionRemoveQuarantineRequest struct {
-	HRASConnection uint32 `idl:"name:hRasConnection" json:"h_ras_connection"`
-	IsIPAddress    bool   `idl:"name:fIsIpAddress" json:"is_ip_address"`
+// ConnectionRemoveQuarantineRequest structure represents the RRasAdminConnectionRemoveQuarantine operation request
+type ConnectionRemoveQuarantineRequest struct {
+	Connection  uint32 `idl:"name:hRasConnection" json:"connection"`
+	IsIPAddress bool   `idl:"name:fIsIpAddress" json:"is_ip_address"`
 }
 
-func (o *RASAdminConnectionRemoveQuarantineRequest) xxx_ToOp(ctx context.Context, op *xxx_RASAdminConnectionRemoveQuarantineOperation) *xxx_RASAdminConnectionRemoveQuarantineOperation {
+func (o *ConnectionRemoveQuarantineRequest) xxx_ToOp(ctx context.Context, op *xxx_ConnectionRemoveQuarantineOperation) *xxx_ConnectionRemoveQuarantineOperation {
 	if op == nil {
-		op = &xxx_RASAdminConnectionRemoveQuarantineOperation{}
+		op = &xxx_ConnectionRemoveQuarantineOperation{}
 	}
 	if o == nil {
 		return op
 	}
-	op.HRASConnection = o.HRASConnection
+	op.Connection = o.Connection
 	op.IsIPAddress = o.IsIPAddress
 	return op
 }
 
-func (o *RASAdminConnectionRemoveQuarantineRequest) xxx_FromOp(ctx context.Context, op *xxx_RASAdminConnectionRemoveQuarantineOperation) {
+func (o *ConnectionRemoveQuarantineRequest) xxx_FromOp(ctx context.Context, op *xxx_ConnectionRemoveQuarantineOperation) {
 	if o == nil {
 		return
 	}
-	o.HRASConnection = op.HRASConnection
+	o.Connection = op.Connection
 	o.IsIPAddress = op.IsIPAddress
 }
-func (o *RASAdminConnectionRemoveQuarantineRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ConnectionRemoveQuarantineRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASAdminConnectionRemoveQuarantineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminConnectionRemoveQuarantineOperation{}
+func (o *ConnectionRemoveQuarantineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ConnectionRemoveQuarantineOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -9427,15 +9417,15 @@ func (o *RASAdminConnectionRemoveQuarantineRequest) UnmarshalNDR(ctx context.Con
 	return nil
 }
 
-// RASAdminConnectionRemoveQuarantineResponse structure represents the RRasAdminConnectionRemoveQuarantine operation response
-type RASAdminConnectionRemoveQuarantineResponse struct {
+// ConnectionRemoveQuarantineResponse structure represents the RRasAdminConnectionRemoveQuarantine operation response
+type ConnectionRemoveQuarantineResponse struct {
 	// Return: The RRasAdminConnectionRemoveQuarantine return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASAdminConnectionRemoveQuarantineResponse) xxx_ToOp(ctx context.Context, op *xxx_RASAdminConnectionRemoveQuarantineOperation) *xxx_RASAdminConnectionRemoveQuarantineOperation {
+func (o *ConnectionRemoveQuarantineResponse) xxx_ToOp(ctx context.Context, op *xxx_ConnectionRemoveQuarantineOperation) *xxx_ConnectionRemoveQuarantineOperation {
 	if op == nil {
-		op = &xxx_RASAdminConnectionRemoveQuarantineOperation{}
+		op = &xxx_ConnectionRemoveQuarantineOperation{}
 	}
 	if o == nil {
 		return op
@@ -9444,17 +9434,17 @@ func (o *RASAdminConnectionRemoveQuarantineResponse) xxx_ToOp(ctx context.Contex
 	return op
 }
 
-func (o *RASAdminConnectionRemoveQuarantineResponse) xxx_FromOp(ctx context.Context, op *xxx_RASAdminConnectionRemoveQuarantineOperation) {
+func (o *ConnectionRemoveQuarantineResponse) xxx_FromOp(ctx context.Context, op *xxx_ConnectionRemoveQuarantineOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *RASAdminConnectionRemoveQuarantineResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ConnectionRemoveQuarantineResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASAdminConnectionRemoveQuarantineResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminConnectionRemoveQuarantineOperation{}
+func (o *ConnectionRemoveQuarantineResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ConnectionRemoveQuarantineOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -9462,20 +9452,18 @@ func (o *RASAdminConnectionRemoveQuarantineResponse) UnmarshalNDR(ctx context.Co
 	return nil
 }
 
-// xxx_MprAdminServerSetInfoOperation structure represents the RMprAdminServerSetInfo operation
-type xxx_MprAdminServerSetInfoOperation struct {
-	Level  uint32                         `idl:"name:dwLevel" json:"level"`
-	Info   *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
-	Return uint32                         `idl:"name:Return" json:"return"`
+// xxx_ServerSetInfoOperation structure represents the RMprAdminServerSetInfo operation
+type xxx_ServerSetInfoOperation struct {
+	Level  uint32                      `idl:"name:dwLevel" json:"level"`
+	Info   *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
+	Return uint32                      `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_MprAdminServerSetInfoOperation) OpNum() int { return 43 }
+func (o *xxx_ServerSetInfoOperation) OpNum() int { return 43 }
 
-func (o *xxx_MprAdminServerSetInfoOperation) OpName() string {
-	return "/dimsvc/v0/RMprAdminServerSetInfo"
-}
+func (o *xxx_ServerSetInfoOperation) OpName() string { return "/dimsvc/v0/RMprAdminServerSetInfo" }
 
-func (o *xxx_MprAdminServerSetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_ServerSetInfoOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -9484,7 +9472,7 @@ func (o *xxx_MprAdminServerSetInfoOperation) xxx_PrepareRequestPayload(ctx conte
 	return nil
 }
 
-func (o *xxx_MprAdminServerSetInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ServerSetInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -9501,7 +9489,7 @@ func (o *xxx_MprAdminServerSetInfoOperation) MarshalNDRRequest(ctx context.Conte
 				return err
 			}
 		} else {
-			if err := (&rrasm.DimInformationContainer{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InformationContainer{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -9512,7 +9500,7 @@ func (o *xxx_MprAdminServerSetInfoOperation) MarshalNDRRequest(ctx context.Conte
 	return nil
 }
 
-func (o *xxx_MprAdminServerSetInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ServerSetInfoOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// dwLevel {in} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Level); err != nil {
@@ -9522,7 +9510,7 @@ func (o *xxx_MprAdminServerSetInfoOperation) UnmarshalNDRRequest(ctx context.Con
 	// pInfoStruct {in} (1:{alias=PDIM_INFORMATION_CONTAINER,pointer=ref}*(1))(2:{alias=DIM_INFORMATION_CONTAINER}(struct))
 	{
 		if o.Info == nil {
-			o.Info = &rrasm.DimInformationContainer{}
+			o.Info = &rrasm.InformationContainer{}
 		}
 		if err := o.Info.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -9534,7 +9522,7 @@ func (o *xxx_MprAdminServerSetInfoOperation) UnmarshalNDRRequest(ctx context.Con
 	return nil
 }
 
-func (o *xxx_MprAdminServerSetInfoOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_ServerSetInfoOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -9543,7 +9531,7 @@ func (o *xxx_MprAdminServerSetInfoOperation) xxx_PrepareResponsePayload(ctx cont
 	return nil
 }
 
-func (o *xxx_MprAdminServerSetInfoOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ServerSetInfoOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -9556,7 +9544,7 @@ func (o *xxx_MprAdminServerSetInfoOperation) MarshalNDRResponse(ctx context.Cont
 	return nil
 }
 
-func (o *xxx_MprAdminServerSetInfoOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ServerSetInfoOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -9566,15 +9554,15 @@ func (o *xxx_MprAdminServerSetInfoOperation) UnmarshalNDRResponse(ctx context.Co
 	return nil
 }
 
-// MprAdminServerSetInfoRequest structure represents the RMprAdminServerSetInfo operation request
-type MprAdminServerSetInfoRequest struct {
-	Level uint32                         `idl:"name:dwLevel" json:"level"`
-	Info  *rrasm.DimInformationContainer `idl:"name:pInfoStruct" json:"info"`
+// ServerSetInfoRequest structure represents the RMprAdminServerSetInfo operation request
+type ServerSetInfoRequest struct {
+	Level uint32                      `idl:"name:dwLevel" json:"level"`
+	Info  *rrasm.InformationContainer `idl:"name:pInfoStruct" json:"info"`
 }
 
-func (o *MprAdminServerSetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_MprAdminServerSetInfoOperation) *xxx_MprAdminServerSetInfoOperation {
+func (o *ServerSetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_ServerSetInfoOperation) *xxx_ServerSetInfoOperation {
 	if op == nil {
-		op = &xxx_MprAdminServerSetInfoOperation{}
+		op = &xxx_ServerSetInfoOperation{}
 	}
 	if o == nil {
 		return op
@@ -9584,18 +9572,18 @@ func (o *MprAdminServerSetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_Mpr
 	return op
 }
 
-func (o *MprAdminServerSetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_MprAdminServerSetInfoOperation) {
+func (o *ServerSetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_ServerSetInfoOperation) {
 	if o == nil {
 		return
 	}
 	o.Level = op.Level
 	o.Info = op.Info
 }
-func (o *MprAdminServerSetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerSetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *MprAdminServerSetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_MprAdminServerSetInfoOperation{}
+func (o *ServerSetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ServerSetInfoOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -9603,15 +9591,15 @@ func (o *MprAdminServerSetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
-// MprAdminServerSetInfoResponse structure represents the RMprAdminServerSetInfo operation response
-type MprAdminServerSetInfoResponse struct {
+// ServerSetInfoResponse structure represents the RMprAdminServerSetInfo operation response
+type ServerSetInfoResponse struct {
 	// Return: The RMprAdminServerSetInfo return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *MprAdminServerSetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_MprAdminServerSetInfoOperation) *xxx_MprAdminServerSetInfoOperation {
+func (o *ServerSetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_ServerSetInfoOperation) *xxx_ServerSetInfoOperation {
 	if op == nil {
-		op = &xxx_MprAdminServerSetInfoOperation{}
+		op = &xxx_ServerSetInfoOperation{}
 	}
 	if o == nil {
 		return op
@@ -9620,17 +9608,17 @@ func (o *MprAdminServerSetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Mp
 	return op
 }
 
-func (o *MprAdminServerSetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_MprAdminServerSetInfoOperation) {
+func (o *ServerSetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_ServerSetInfoOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *MprAdminServerSetInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerSetInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *MprAdminServerSetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_MprAdminServerSetInfoOperation{}
+func (o *ServerSetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ServerSetInfoOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -9638,19 +9626,17 @@ func (o *MprAdminServerSetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.
 	return nil
 }
 
-// xxx_MprAdminServerGetInfoExOperation structure represents the RMprAdminServerGetInfoEx operation
-type xxx_MprAdminServerGetInfoExOperation struct {
-	ServerConfig *rrasm.MprServerExIDL `idl:"name:pServerConfig" json:"server_config"`
-	Return       uint32                `idl:"name:Return" json:"return"`
+// xxx_ServerGetInfoExOperation structure represents the RMprAdminServerGetInfoEx operation
+type xxx_ServerGetInfoExOperation struct {
+	ServerConfig *rrasm.ServerExIDL `idl:"name:pServerConfig" json:"server_config"`
+	Return       uint32             `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_MprAdminServerGetInfoExOperation) OpNum() int { return 44 }
+func (o *xxx_ServerGetInfoExOperation) OpNum() int { return 44 }
 
-func (o *xxx_MprAdminServerGetInfoExOperation) OpName() string {
-	return "/dimsvc/v0/RMprAdminServerGetInfoEx"
-}
+func (o *xxx_ServerGetInfoExOperation) OpName() string { return "/dimsvc/v0/RMprAdminServerGetInfoEx" }
 
-func (o *xxx_MprAdminServerGetInfoExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_ServerGetInfoExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -9659,7 +9645,7 @@ func (o *xxx_MprAdminServerGetInfoExOperation) xxx_PrepareRequestPayload(ctx con
 	return nil
 }
 
-func (o *xxx_MprAdminServerGetInfoExOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ServerGetInfoExOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -9670,7 +9656,7 @@ func (o *xxx_MprAdminServerGetInfoExOperation) MarshalNDRRequest(ctx context.Con
 				return err
 			}
 		} else {
-			if err := (&rrasm.MprServerExIDL{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.ServerExIDL{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -9681,11 +9667,11 @@ func (o *xxx_MprAdminServerGetInfoExOperation) MarshalNDRRequest(ctx context.Con
 	return nil
 }
 
-func (o *xxx_MprAdminServerGetInfoExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ServerGetInfoExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// pServerConfig {in, out} (1:{alias=PMPR_SERVER_EX_IDL,pointer=ref}*(1))(2:{alias=MPR_SERVER_EX_IDL}(union))
 	{
 		if o.ServerConfig == nil {
-			o.ServerConfig = &rrasm.MprServerExIDL{}
+			o.ServerConfig = &rrasm.ServerExIDL{}
 		}
 		if err := o.ServerConfig.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -9697,7 +9683,7 @@ func (o *xxx_MprAdminServerGetInfoExOperation) UnmarshalNDRRequest(ctx context.C
 	return nil
 }
 
-func (o *xxx_MprAdminServerGetInfoExOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_ServerGetInfoExOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -9706,7 +9692,7 @@ func (o *xxx_MprAdminServerGetInfoExOperation) xxx_PrepareResponsePayload(ctx co
 	return nil
 }
 
-func (o *xxx_MprAdminServerGetInfoExOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ServerGetInfoExOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -9717,7 +9703,7 @@ func (o *xxx_MprAdminServerGetInfoExOperation) MarshalNDRResponse(ctx context.Co
 				return err
 			}
 		} else {
-			if err := (&rrasm.MprServerExIDL{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.ServerExIDL{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -9734,11 +9720,11 @@ func (o *xxx_MprAdminServerGetInfoExOperation) MarshalNDRResponse(ctx context.Co
 	return nil
 }
 
-func (o *xxx_MprAdminServerGetInfoExOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ServerGetInfoExOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pServerConfig {in, out} (1:{alias=PMPR_SERVER_EX_IDL,pointer=ref}*(1))(2:{alias=MPR_SERVER_EX_IDL}(union))
 	{
 		if o.ServerConfig == nil {
-			o.ServerConfig = &rrasm.MprServerExIDL{}
+			o.ServerConfig = &rrasm.ServerExIDL{}
 		}
 		if err := o.ServerConfig.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -9756,14 +9742,14 @@ func (o *xxx_MprAdminServerGetInfoExOperation) UnmarshalNDRResponse(ctx context.
 	return nil
 }
 
-// MprAdminServerGetInfoExRequest structure represents the RMprAdminServerGetInfoEx operation request
-type MprAdminServerGetInfoExRequest struct {
-	ServerConfig *rrasm.MprServerExIDL `idl:"name:pServerConfig" json:"server_config"`
+// ServerGetInfoExRequest structure represents the RMprAdminServerGetInfoEx operation request
+type ServerGetInfoExRequest struct {
+	ServerConfig *rrasm.ServerExIDL `idl:"name:pServerConfig" json:"server_config"`
 }
 
-func (o *MprAdminServerGetInfoExRequest) xxx_ToOp(ctx context.Context, op *xxx_MprAdminServerGetInfoExOperation) *xxx_MprAdminServerGetInfoExOperation {
+func (o *ServerGetInfoExRequest) xxx_ToOp(ctx context.Context, op *xxx_ServerGetInfoExOperation) *xxx_ServerGetInfoExOperation {
 	if op == nil {
-		op = &xxx_MprAdminServerGetInfoExOperation{}
+		op = &xxx_ServerGetInfoExOperation{}
 	}
 	if o == nil {
 		return op
@@ -9772,17 +9758,17 @@ func (o *MprAdminServerGetInfoExRequest) xxx_ToOp(ctx context.Context, op *xxx_M
 	return op
 }
 
-func (o *MprAdminServerGetInfoExRequest) xxx_FromOp(ctx context.Context, op *xxx_MprAdminServerGetInfoExOperation) {
+func (o *ServerGetInfoExRequest) xxx_FromOp(ctx context.Context, op *xxx_ServerGetInfoExOperation) {
 	if o == nil {
 		return
 	}
 	o.ServerConfig = op.ServerConfig
 }
-func (o *MprAdminServerGetInfoExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerGetInfoExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *MprAdminServerGetInfoExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_MprAdminServerGetInfoExOperation{}
+func (o *ServerGetInfoExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ServerGetInfoExOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -9790,16 +9776,16 @@ func (o *MprAdminServerGetInfoExRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
-// MprAdminServerGetInfoExResponse structure represents the RMprAdminServerGetInfoEx operation response
-type MprAdminServerGetInfoExResponse struct {
-	ServerConfig *rrasm.MprServerExIDL `idl:"name:pServerConfig" json:"server_config"`
+// ServerGetInfoExResponse structure represents the RMprAdminServerGetInfoEx operation response
+type ServerGetInfoExResponse struct {
+	ServerConfig *rrasm.ServerExIDL `idl:"name:pServerConfig" json:"server_config"`
 	// Return: The RMprAdminServerGetInfoEx return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *MprAdminServerGetInfoExResponse) xxx_ToOp(ctx context.Context, op *xxx_MprAdminServerGetInfoExOperation) *xxx_MprAdminServerGetInfoExOperation {
+func (o *ServerGetInfoExResponse) xxx_ToOp(ctx context.Context, op *xxx_ServerGetInfoExOperation) *xxx_ServerGetInfoExOperation {
 	if op == nil {
-		op = &xxx_MprAdminServerGetInfoExOperation{}
+		op = &xxx_ServerGetInfoExOperation{}
 	}
 	if o == nil {
 		return op
@@ -9809,18 +9795,18 @@ func (o *MprAdminServerGetInfoExResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	return op
 }
 
-func (o *MprAdminServerGetInfoExResponse) xxx_FromOp(ctx context.Context, op *xxx_MprAdminServerGetInfoExOperation) {
+func (o *ServerGetInfoExResponse) xxx_FromOp(ctx context.Context, op *xxx_ServerGetInfoExOperation) {
 	if o == nil {
 		return
 	}
 	o.ServerConfig = op.ServerConfig
 	o.Return = op.Return
 }
-func (o *MprAdminServerGetInfoExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerGetInfoExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *MprAdminServerGetInfoExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_MprAdminServerGetInfoExOperation{}
+func (o *ServerGetInfoExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ServerGetInfoExOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -9828,24 +9814,24 @@ func (o *MprAdminServerGetInfoExResponse) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
-// xxx_RASAdminConnectionEnumExOperation structure represents the RRasAdminConnectionEnumEx operation
-type xxx_RASAdminConnectionEnumExOperation struct {
-	ObjectHeader        *rrasm.MprapiObjectHeaderIDL `idl:"name:objectHeader" json:"object_header"`
-	PreferredMaxLength  uint32                       `idl:"name:dwPreferedMaxLen" json:"preferred_max_length"`
-	EntriesRead         uint32                       `idl:"name:lpdwEntriesRead" json:"entries_read"`
-	LpdNumTotalElements uint32                       `idl:"name:lpdNumTotalElements" json:"lpd_num_total_elements"`
-	RASConections       []*rrasm.RASConnectionExIDL  `idl:"name:pRasConections;size_is:(, lpdwEntriesRead)" json:"ras_conections"`
-	Resume              uint32                       `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
-	Return              uint32                       `idl:"name:Return" json:"return"`
+// xxx_ConnectionEnumExOperation structure represents the RRasAdminConnectionEnumEx operation
+type xxx_ConnectionEnumExOperation struct {
+	ObjectHeader        *rrasm.ObjectHeaderIDL      `idl:"name:objectHeader" json:"object_header"`
+	PreferredMaxLength  uint32                      `idl:"name:dwPreferedMaxLen" json:"preferred_max_length"`
+	EntriesRead         uint32                      `idl:"name:lpdwEntriesRead" json:"entries_read"`
+	LpdNumTotalElements uint32                      `idl:"name:lpdNumTotalElements" json:"lpd_num_total_elements"`
+	RASConections       []*rrasm.RASConnectionExIDL `idl:"name:pRasConections;size_is:(, lpdwEntriesRead)" json:"ras_conections"`
+	Resume              uint32                      `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
+	Return              uint32                      `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASAdminConnectionEnumExOperation) OpNum() int { return 45 }
+func (o *xxx_ConnectionEnumExOperation) OpNum() int { return 45 }
 
-func (o *xxx_RASAdminConnectionEnumExOperation) OpName() string {
+func (o *xxx_ConnectionEnumExOperation) OpName() string {
 	return "/dimsvc/v0/RRasAdminConnectionEnumEx"
 }
 
-func (o *xxx_RASAdminConnectionEnumExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_ConnectionEnumExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -9854,7 +9840,7 @@ func (o *xxx_RASAdminConnectionEnumExOperation) xxx_PrepareRequestPayload(ctx co
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionEnumExOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ConnectionEnumExOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -9865,7 +9851,7 @@ func (o *xxx_RASAdminConnectionEnumExOperation) MarshalNDRRequest(ctx context.Co
 				return err
 			}
 		} else {
-			if err := (&rrasm.MprapiObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.ObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -9896,11 +9882,11 @@ func (o *xxx_RASAdminConnectionEnumExOperation) MarshalNDRRequest(ctx context.Co
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionEnumExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ConnectionEnumExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// objectHeader {in} (1:{alias=PMPRAPI_OBJECT_HEADER_IDL,pointer=ref}*(1))(2:{alias=MPRAPI_OBJECT_HEADER_IDL}(struct))
 	{
 		if o.ObjectHeader == nil {
-			o.ObjectHeader = &rrasm.MprapiObjectHeaderIDL{}
+			o.ObjectHeader = &rrasm.ObjectHeaderIDL{}
 		}
 		if err := o.ObjectHeader.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -9931,7 +9917,7 @@ func (o *xxx_RASAdminConnectionEnumExOperation) UnmarshalNDRRequest(ctx context.
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionEnumExOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_ConnectionEnumExOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if o.RASConections != nil && o.EntriesRead == 0 {
 		o.EntriesRead = uint32(len(o.RASConections))
 	}
@@ -9943,7 +9929,7 @@ func (o *xxx_RASAdminConnectionEnumExOperation) xxx_PrepareResponsePayload(ctx c
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionEnumExOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ConnectionEnumExOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -10030,7 +10016,7 @@ func (o *xxx_RASAdminConnectionEnumExOperation) MarshalNDRResponse(ctx context.C
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionEnumExOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ConnectionEnumExOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// lpdwEntriesRead {out} (1:{alias=LPDWORD,pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.EntriesRead); err != nil {
@@ -10102,16 +10088,16 @@ func (o *xxx_RASAdminConnectionEnumExOperation) UnmarshalNDRResponse(ctx context
 	return nil
 }
 
-// RASAdminConnectionEnumExRequest structure represents the RRasAdminConnectionEnumEx operation request
-type RASAdminConnectionEnumExRequest struct {
-	ObjectHeader       *rrasm.MprapiObjectHeaderIDL `idl:"name:objectHeader" json:"object_header"`
-	PreferredMaxLength uint32                       `idl:"name:dwPreferedMaxLen" json:"preferred_max_length"`
-	Resume             uint32                       `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
+// ConnectionEnumExRequest structure represents the RRasAdminConnectionEnumEx operation request
+type ConnectionEnumExRequest struct {
+	ObjectHeader       *rrasm.ObjectHeaderIDL `idl:"name:objectHeader" json:"object_header"`
+	PreferredMaxLength uint32                 `idl:"name:dwPreferedMaxLen" json:"preferred_max_length"`
+	Resume             uint32                 `idl:"name:lpdwResumeHandle;pointer:unique" json:"resume"`
 }
 
-func (o *RASAdminConnectionEnumExRequest) xxx_ToOp(ctx context.Context, op *xxx_RASAdminConnectionEnumExOperation) *xxx_RASAdminConnectionEnumExOperation {
+func (o *ConnectionEnumExRequest) xxx_ToOp(ctx context.Context, op *xxx_ConnectionEnumExOperation) *xxx_ConnectionEnumExOperation {
 	if op == nil {
-		op = &xxx_RASAdminConnectionEnumExOperation{}
+		op = &xxx_ConnectionEnumExOperation{}
 	}
 	if o == nil {
 		return op
@@ -10122,7 +10108,7 @@ func (o *RASAdminConnectionEnumExRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	return op
 }
 
-func (o *RASAdminConnectionEnumExRequest) xxx_FromOp(ctx context.Context, op *xxx_RASAdminConnectionEnumExOperation) {
+func (o *ConnectionEnumExRequest) xxx_FromOp(ctx context.Context, op *xxx_ConnectionEnumExOperation) {
 	if o == nil {
 		return
 	}
@@ -10130,11 +10116,11 @@ func (o *RASAdminConnectionEnumExRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.PreferredMaxLength = op.PreferredMaxLength
 	o.Resume = op.Resume
 }
-func (o *RASAdminConnectionEnumExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ConnectionEnumExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASAdminConnectionEnumExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminConnectionEnumExOperation{}
+func (o *ConnectionEnumExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ConnectionEnumExOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -10142,8 +10128,8 @@ func (o *RASAdminConnectionEnumExRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
-// RASAdminConnectionEnumExResponse structure represents the RRasAdminConnectionEnumEx operation response
-type RASAdminConnectionEnumExResponse struct {
+// ConnectionEnumExResponse structure represents the RRasAdminConnectionEnumEx operation response
+type ConnectionEnumExResponse struct {
 	EntriesRead         uint32                      `idl:"name:lpdwEntriesRead" json:"entries_read"`
 	LpdNumTotalElements uint32                      `idl:"name:lpdNumTotalElements" json:"lpd_num_total_elements"`
 	RASConections       []*rrasm.RASConnectionExIDL `idl:"name:pRasConections;size_is:(, lpdwEntriesRead)" json:"ras_conections"`
@@ -10152,9 +10138,9 @@ type RASAdminConnectionEnumExResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASAdminConnectionEnumExResponse) xxx_ToOp(ctx context.Context, op *xxx_RASAdminConnectionEnumExOperation) *xxx_RASAdminConnectionEnumExOperation {
+func (o *ConnectionEnumExResponse) xxx_ToOp(ctx context.Context, op *xxx_ConnectionEnumExOperation) *xxx_ConnectionEnumExOperation {
 	if op == nil {
-		op = &xxx_RASAdminConnectionEnumExOperation{}
+		op = &xxx_ConnectionEnumExOperation{}
 	}
 	if o == nil {
 		return op
@@ -10167,7 +10153,7 @@ func (o *RASAdminConnectionEnumExResponse) xxx_ToOp(ctx context.Context, op *xxx
 	return op
 }
 
-func (o *RASAdminConnectionEnumExResponse) xxx_FromOp(ctx context.Context, op *xxx_RASAdminConnectionEnumExOperation) {
+func (o *ConnectionEnumExResponse) xxx_FromOp(ctx context.Context, op *xxx_ConnectionEnumExOperation) {
 	if o == nil {
 		return
 	}
@@ -10177,11 +10163,11 @@ func (o *RASAdminConnectionEnumExResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Resume = op.Resume
 	o.Return = op.Return
 }
-func (o *RASAdminConnectionEnumExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ConnectionEnumExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASAdminConnectionEnumExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminConnectionEnumExOperation{}
+func (o *ConnectionEnumExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ConnectionEnumExOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -10189,21 +10175,21 @@ func (o *RASAdminConnectionEnumExResponse) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
-// xxx_RASAdminConnectionGetInfoExOperation structure represents the RRasAdminConnectionGetInfoEx operation
-type xxx_RASAdminConnectionGetInfoExOperation struct {
-	HDimConnection uint32                       `idl:"name:hDimConnection" json:"h_dim_connection"`
-	ObjectHeader   *rrasm.MprapiObjectHeaderIDL `idl:"name:objectHeader" json:"object_header"`
-	RASConnection  *rrasm.RASConnectionExIDL    `idl:"name:pRasConnection" json:"ras_connection"`
-	Return         uint32                       `idl:"name:Return" json:"return"`
+// xxx_ConnectionGetInfoExOperation structure represents the RRasAdminConnectionGetInfoEx operation
+type xxx_ConnectionGetInfoExOperation struct {
+	Connection    uint32                    `idl:"name:hDimConnection" json:"connection"`
+	ObjectHeader  *rrasm.ObjectHeaderIDL    `idl:"name:objectHeader" json:"object_header"`
+	RASConnection *rrasm.RASConnectionExIDL `idl:"name:pRasConnection" json:"ras_connection"`
+	Return        uint32                    `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASAdminConnectionGetInfoExOperation) OpNum() int { return 46 }
+func (o *xxx_ConnectionGetInfoExOperation) OpNum() int { return 46 }
 
-func (o *xxx_RASAdminConnectionGetInfoExOperation) OpName() string {
+func (o *xxx_ConnectionGetInfoExOperation) OpName() string {
 	return "/dimsvc/v0/RRasAdminConnectionGetInfoEx"
 }
 
-func (o *xxx_RASAdminConnectionGetInfoExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_ConnectionGetInfoExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -10212,13 +10198,13 @@ func (o *xxx_RASAdminConnectionGetInfoExOperation) xxx_PrepareRequestPayload(ctx
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionGetInfoExOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ConnectionGetInfoExOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
 	// hDimConnection {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HDimConnection); err != nil {
+		if err := w.WriteData(o.Connection); err != nil {
 			return err
 		}
 	}
@@ -10229,7 +10215,7 @@ func (o *xxx_RASAdminConnectionGetInfoExOperation) MarshalNDRRequest(ctx context
 				return err
 			}
 		} else {
-			if err := (&rrasm.MprapiObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.ObjectHeaderIDL{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -10237,17 +10223,17 @@ func (o *xxx_RASAdminConnectionGetInfoExOperation) MarshalNDRRequest(ctx context
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionGetInfoExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ConnectionGetInfoExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hDimConnection {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HDimConnection); err != nil {
+		if err := w.ReadData(&o.Connection); err != nil {
 			return err
 		}
 	}
 	// objectHeader {in} (1:{alias=PMPRAPI_OBJECT_HEADER_IDL,pointer=ref}*(1))(2:{alias=MPRAPI_OBJECT_HEADER_IDL}(struct))
 	{
 		if o.ObjectHeader == nil {
-			o.ObjectHeader = &rrasm.MprapiObjectHeaderIDL{}
+			o.ObjectHeader = &rrasm.ObjectHeaderIDL{}
 		}
 		if err := o.ObjectHeader.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -10256,7 +10242,7 @@ func (o *xxx_RASAdminConnectionGetInfoExOperation) UnmarshalNDRRequest(ctx conte
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionGetInfoExOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_ConnectionGetInfoExOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -10265,7 +10251,7 @@ func (o *xxx_RASAdminConnectionGetInfoExOperation) xxx_PrepareResponsePayload(ct
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionGetInfoExOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ConnectionGetInfoExOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -10290,7 +10276,7 @@ func (o *xxx_RASAdminConnectionGetInfoExOperation) MarshalNDRResponse(ctx contex
 	return nil
 }
 
-func (o *xxx_RASAdminConnectionGetInfoExOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ConnectionGetInfoExOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pRasConnection {out} (1:{alias=PRAS_CONNECTION_EX_IDL,pointer=ref}*(1))(2:{alias=RAS_CONNECTION_EX_IDL}(union))
 	{
 		if o.RASConnection == nil {
@@ -10309,36 +10295,36 @@ func (o *xxx_RASAdminConnectionGetInfoExOperation) UnmarshalNDRResponse(ctx cont
 	return nil
 }
 
-// RASAdminConnectionGetInfoExRequest structure represents the RRasAdminConnectionGetInfoEx operation request
-type RASAdminConnectionGetInfoExRequest struct {
-	HDimConnection uint32                       `idl:"name:hDimConnection" json:"h_dim_connection"`
-	ObjectHeader   *rrasm.MprapiObjectHeaderIDL `idl:"name:objectHeader" json:"object_header"`
+// ConnectionGetInfoExRequest structure represents the RRasAdminConnectionGetInfoEx operation request
+type ConnectionGetInfoExRequest struct {
+	Connection   uint32                 `idl:"name:hDimConnection" json:"connection"`
+	ObjectHeader *rrasm.ObjectHeaderIDL `idl:"name:objectHeader" json:"object_header"`
 }
 
-func (o *RASAdminConnectionGetInfoExRequest) xxx_ToOp(ctx context.Context, op *xxx_RASAdminConnectionGetInfoExOperation) *xxx_RASAdminConnectionGetInfoExOperation {
+func (o *ConnectionGetInfoExRequest) xxx_ToOp(ctx context.Context, op *xxx_ConnectionGetInfoExOperation) *xxx_ConnectionGetInfoExOperation {
 	if op == nil {
-		op = &xxx_RASAdminConnectionGetInfoExOperation{}
+		op = &xxx_ConnectionGetInfoExOperation{}
 	}
 	if o == nil {
 		return op
 	}
-	op.HDimConnection = o.HDimConnection
+	op.Connection = o.Connection
 	op.ObjectHeader = o.ObjectHeader
 	return op
 }
 
-func (o *RASAdminConnectionGetInfoExRequest) xxx_FromOp(ctx context.Context, op *xxx_RASAdminConnectionGetInfoExOperation) {
+func (o *ConnectionGetInfoExRequest) xxx_FromOp(ctx context.Context, op *xxx_ConnectionGetInfoExOperation) {
 	if o == nil {
 		return
 	}
-	o.HDimConnection = op.HDimConnection
+	o.Connection = op.Connection
 	o.ObjectHeader = op.ObjectHeader
 }
-func (o *RASAdminConnectionGetInfoExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ConnectionGetInfoExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASAdminConnectionGetInfoExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminConnectionGetInfoExOperation{}
+func (o *ConnectionGetInfoExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ConnectionGetInfoExOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -10346,16 +10332,16 @@ func (o *RASAdminConnectionGetInfoExRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
-// RASAdminConnectionGetInfoExResponse structure represents the RRasAdminConnectionGetInfoEx operation response
-type RASAdminConnectionGetInfoExResponse struct {
+// ConnectionGetInfoExResponse structure represents the RRasAdminConnectionGetInfoEx operation response
+type ConnectionGetInfoExResponse struct {
 	RASConnection *rrasm.RASConnectionExIDL `idl:"name:pRasConnection" json:"ras_connection"`
 	// Return: The RRasAdminConnectionGetInfoEx return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASAdminConnectionGetInfoExResponse) xxx_ToOp(ctx context.Context, op *xxx_RASAdminConnectionGetInfoExOperation) *xxx_RASAdminConnectionGetInfoExOperation {
+func (o *ConnectionGetInfoExResponse) xxx_ToOp(ctx context.Context, op *xxx_ConnectionGetInfoExOperation) *xxx_ConnectionGetInfoExOperation {
 	if op == nil {
-		op = &xxx_RASAdminConnectionGetInfoExOperation{}
+		op = &xxx_ConnectionGetInfoExOperation{}
 	}
 	if o == nil {
 		return op
@@ -10365,18 +10351,18 @@ func (o *RASAdminConnectionGetInfoExResponse) xxx_ToOp(ctx context.Context, op *
 	return op
 }
 
-func (o *RASAdminConnectionGetInfoExResponse) xxx_FromOp(ctx context.Context, op *xxx_RASAdminConnectionGetInfoExOperation) {
+func (o *ConnectionGetInfoExResponse) xxx_FromOp(ctx context.Context, op *xxx_ConnectionGetInfoExOperation) {
 	if o == nil {
 		return
 	}
 	o.RASConnection = op.RASConnection
 	o.Return = op.Return
 }
-func (o *RASAdminConnectionGetInfoExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ConnectionGetInfoExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASAdminConnectionGetInfoExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminConnectionGetInfoExOperation{}
+func (o *ConnectionGetInfoExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ConnectionGetInfoExOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -10384,19 +10370,17 @@ func (o *RASAdminConnectionGetInfoExResponse) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
-// xxx_MprAdminServerSetInfoExOperation structure represents the RMprAdminServerSetInfoEx operation
-type xxx_MprAdminServerSetInfoExOperation struct {
-	ServerConfig *rrasm.MprServerSetConfigExIDL `idl:"name:pServerConfig" json:"server_config"`
-	Return       uint32                         `idl:"name:Return" json:"return"`
+// xxx_ServerSetInfoExOperation structure represents the RMprAdminServerSetInfoEx operation
+type xxx_ServerSetInfoExOperation struct {
+	ServerConfig *rrasm.ServerSetConfigExIDL `idl:"name:pServerConfig" json:"server_config"`
+	Return       uint32                      `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_MprAdminServerSetInfoExOperation) OpNum() int { return 47 }
+func (o *xxx_ServerSetInfoExOperation) OpNum() int { return 47 }
 
-func (o *xxx_MprAdminServerSetInfoExOperation) OpName() string {
-	return "/dimsvc/v0/RMprAdminServerSetInfoEx"
-}
+func (o *xxx_ServerSetInfoExOperation) OpName() string { return "/dimsvc/v0/RMprAdminServerSetInfoEx" }
 
-func (o *xxx_MprAdminServerSetInfoExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_ServerSetInfoExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -10405,7 +10389,7 @@ func (o *xxx_MprAdminServerSetInfoExOperation) xxx_PrepareRequestPayload(ctx con
 	return nil
 }
 
-func (o *xxx_MprAdminServerSetInfoExOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ServerSetInfoExOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -10416,7 +10400,7 @@ func (o *xxx_MprAdminServerSetInfoExOperation) MarshalNDRRequest(ctx context.Con
 				return err
 			}
 		} else {
-			if err := (&rrasm.MprServerSetConfigExIDL{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.ServerSetConfigExIDL{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -10427,11 +10411,11 @@ func (o *xxx_MprAdminServerSetInfoExOperation) MarshalNDRRequest(ctx context.Con
 	return nil
 }
 
-func (o *xxx_MprAdminServerSetInfoExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ServerSetInfoExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// pServerConfig {in} (1:{alias=PMPR_SERVER_SET_CONFIG_EX_IDL,pointer=ref}*(1))(2:{alias=MPR_SERVER_SET_CONFIG_EX_IDL}(union))
 	{
 		if o.ServerConfig == nil {
-			o.ServerConfig = &rrasm.MprServerSetConfigExIDL{}
+			o.ServerConfig = &rrasm.ServerSetConfigExIDL{}
 		}
 		if err := o.ServerConfig.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -10443,7 +10427,7 @@ func (o *xxx_MprAdminServerSetInfoExOperation) UnmarshalNDRRequest(ctx context.C
 	return nil
 }
 
-func (o *xxx_MprAdminServerSetInfoExOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_ServerSetInfoExOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -10452,7 +10436,7 @@ func (o *xxx_MprAdminServerSetInfoExOperation) xxx_PrepareResponsePayload(ctx co
 	return nil
 }
 
-func (o *xxx_MprAdminServerSetInfoExOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ServerSetInfoExOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -10465,7 +10449,7 @@ func (o *xxx_MprAdminServerSetInfoExOperation) MarshalNDRResponse(ctx context.Co
 	return nil
 }
 
-func (o *xxx_MprAdminServerSetInfoExOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ServerSetInfoExOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -10475,14 +10459,14 @@ func (o *xxx_MprAdminServerSetInfoExOperation) UnmarshalNDRResponse(ctx context.
 	return nil
 }
 
-// MprAdminServerSetInfoExRequest structure represents the RMprAdminServerSetInfoEx operation request
-type MprAdminServerSetInfoExRequest struct {
-	ServerConfig *rrasm.MprServerSetConfigExIDL `idl:"name:pServerConfig" json:"server_config"`
+// ServerSetInfoExRequest structure represents the RMprAdminServerSetInfoEx operation request
+type ServerSetInfoExRequest struct {
+	ServerConfig *rrasm.ServerSetConfigExIDL `idl:"name:pServerConfig" json:"server_config"`
 }
 
-func (o *MprAdminServerSetInfoExRequest) xxx_ToOp(ctx context.Context, op *xxx_MprAdminServerSetInfoExOperation) *xxx_MprAdminServerSetInfoExOperation {
+func (o *ServerSetInfoExRequest) xxx_ToOp(ctx context.Context, op *xxx_ServerSetInfoExOperation) *xxx_ServerSetInfoExOperation {
 	if op == nil {
-		op = &xxx_MprAdminServerSetInfoExOperation{}
+		op = &xxx_ServerSetInfoExOperation{}
 	}
 	if o == nil {
 		return op
@@ -10491,17 +10475,17 @@ func (o *MprAdminServerSetInfoExRequest) xxx_ToOp(ctx context.Context, op *xxx_M
 	return op
 }
 
-func (o *MprAdminServerSetInfoExRequest) xxx_FromOp(ctx context.Context, op *xxx_MprAdminServerSetInfoExOperation) {
+func (o *ServerSetInfoExRequest) xxx_FromOp(ctx context.Context, op *xxx_ServerSetInfoExOperation) {
 	if o == nil {
 		return
 	}
 	o.ServerConfig = op.ServerConfig
 }
-func (o *MprAdminServerSetInfoExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerSetInfoExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *MprAdminServerSetInfoExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_MprAdminServerSetInfoExOperation{}
+func (o *ServerSetInfoExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ServerSetInfoExOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -10509,15 +10493,15 @@ func (o *MprAdminServerSetInfoExRequest) UnmarshalNDR(ctx context.Context, r ndr
 	return nil
 }
 
-// MprAdminServerSetInfoExResponse structure represents the RMprAdminServerSetInfoEx operation response
-type MprAdminServerSetInfoExResponse struct {
+// ServerSetInfoExResponse structure represents the RMprAdminServerSetInfoEx operation response
+type ServerSetInfoExResponse struct {
 	// Return: The RMprAdminServerSetInfoEx return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *MprAdminServerSetInfoExResponse) xxx_ToOp(ctx context.Context, op *xxx_MprAdminServerSetInfoExOperation) *xxx_MprAdminServerSetInfoExOperation {
+func (o *ServerSetInfoExResponse) xxx_ToOp(ctx context.Context, op *xxx_ServerSetInfoExOperation) *xxx_ServerSetInfoExOperation {
 	if op == nil {
-		op = &xxx_MprAdminServerSetInfoExOperation{}
+		op = &xxx_ServerSetInfoExOperation{}
 	}
 	if o == nil {
 		return op
@@ -10526,17 +10510,17 @@ func (o *MprAdminServerSetInfoExResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	return op
 }
 
-func (o *MprAdminServerSetInfoExResponse) xxx_FromOp(ctx context.Context, op *xxx_MprAdminServerSetInfoExOperation) {
+func (o *ServerSetInfoExResponse) xxx_FromOp(ctx context.Context, op *xxx_ServerSetInfoExOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *MprAdminServerSetInfoExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ServerSetInfoExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *MprAdminServerSetInfoExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_MprAdminServerSetInfoExOperation{}
+func (o *ServerSetInfoExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ServerSetInfoExOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -10544,20 +10528,20 @@ func (o *MprAdminServerSetInfoExResponse) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
-// xxx_RASAdminUpdateConnectionOperation structure represents the RRasAdminUpdateConnection operation
-type xxx_RASAdminUpdateConnectionOperation struct {
-	HDimConnection uint32                        `idl:"name:hDimConnection" json:"h_dim_connection"`
-	ServerConfig   *rrasm.RASUpdateConnectionIDL `idl:"name:pServerConfig" json:"server_config"`
-	Return         uint32                        `idl:"name:Return" json:"return"`
+// xxx_UpdateConnectionOperation structure represents the RRasAdminUpdateConnection operation
+type xxx_UpdateConnectionOperation struct {
+	Connection   uint32                        `idl:"name:hDimConnection" json:"connection"`
+	ServerConfig *rrasm.RASUpdateConnectionIDL `idl:"name:pServerConfig" json:"server_config"`
+	Return       uint32                        `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_RASAdminUpdateConnectionOperation) OpNum() int { return 48 }
+func (o *xxx_UpdateConnectionOperation) OpNum() int { return 48 }
 
-func (o *xxx_RASAdminUpdateConnectionOperation) OpName() string {
+func (o *xxx_UpdateConnectionOperation) OpName() string {
 	return "/dimsvc/v0/RRasAdminUpdateConnection"
 }
 
-func (o *xxx_RASAdminUpdateConnectionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_UpdateConnectionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -10566,13 +10550,13 @@ func (o *xxx_RASAdminUpdateConnectionOperation) xxx_PrepareRequestPayload(ctx co
 	return nil
 }
 
-func (o *xxx_RASAdminUpdateConnectionOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_UpdateConnectionOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
 	// hDimConnection {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HDimConnection); err != nil {
+		if err := w.WriteData(o.Connection); err != nil {
 			return err
 		}
 	}
@@ -10591,10 +10575,10 @@ func (o *xxx_RASAdminUpdateConnectionOperation) MarshalNDRRequest(ctx context.Co
 	return nil
 }
 
-func (o *xxx_RASAdminUpdateConnectionOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_UpdateConnectionOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hDimConnection {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HDimConnection); err != nil {
+		if err := w.ReadData(&o.Connection); err != nil {
 			return err
 		}
 	}
@@ -10610,7 +10594,7 @@ func (o *xxx_RASAdminUpdateConnectionOperation) UnmarshalNDRRequest(ctx context.
 	return nil
 }
 
-func (o *xxx_RASAdminUpdateConnectionOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_UpdateConnectionOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -10619,7 +10603,7 @@ func (o *xxx_RASAdminUpdateConnectionOperation) xxx_PrepareResponsePayload(ctx c
 	return nil
 }
 
-func (o *xxx_RASAdminUpdateConnectionOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_UpdateConnectionOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -10632,7 +10616,7 @@ func (o *xxx_RASAdminUpdateConnectionOperation) MarshalNDRResponse(ctx context.C
 	return nil
 }
 
-func (o *xxx_RASAdminUpdateConnectionOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_UpdateConnectionOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:{alias=DWORD}(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -10642,36 +10626,36 @@ func (o *xxx_RASAdminUpdateConnectionOperation) UnmarshalNDRResponse(ctx context
 	return nil
 }
 
-// RASAdminUpdateConnectionRequest structure represents the RRasAdminUpdateConnection operation request
-type RASAdminUpdateConnectionRequest struct {
-	HDimConnection uint32                        `idl:"name:hDimConnection" json:"h_dim_connection"`
-	ServerConfig   *rrasm.RASUpdateConnectionIDL `idl:"name:pServerConfig" json:"server_config"`
+// UpdateConnectionRequest structure represents the RRasAdminUpdateConnection operation request
+type UpdateConnectionRequest struct {
+	Connection   uint32                        `idl:"name:hDimConnection" json:"connection"`
+	ServerConfig *rrasm.RASUpdateConnectionIDL `idl:"name:pServerConfig" json:"server_config"`
 }
 
-func (o *RASAdminUpdateConnectionRequest) xxx_ToOp(ctx context.Context, op *xxx_RASAdminUpdateConnectionOperation) *xxx_RASAdminUpdateConnectionOperation {
+func (o *UpdateConnectionRequest) xxx_ToOp(ctx context.Context, op *xxx_UpdateConnectionOperation) *xxx_UpdateConnectionOperation {
 	if op == nil {
-		op = &xxx_RASAdminUpdateConnectionOperation{}
+		op = &xxx_UpdateConnectionOperation{}
 	}
 	if o == nil {
 		return op
 	}
-	op.HDimConnection = o.HDimConnection
+	op.Connection = o.Connection
 	op.ServerConfig = o.ServerConfig
 	return op
 }
 
-func (o *RASAdminUpdateConnectionRequest) xxx_FromOp(ctx context.Context, op *xxx_RASAdminUpdateConnectionOperation) {
+func (o *UpdateConnectionRequest) xxx_FromOp(ctx context.Context, op *xxx_UpdateConnectionOperation) {
 	if o == nil {
 		return
 	}
-	o.HDimConnection = op.HDimConnection
+	o.Connection = op.Connection
 	o.ServerConfig = op.ServerConfig
 }
-func (o *RASAdminUpdateConnectionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *UpdateConnectionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *RASAdminUpdateConnectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminUpdateConnectionOperation{}
+func (o *UpdateConnectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_UpdateConnectionOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -10679,15 +10663,15 @@ func (o *RASAdminUpdateConnectionRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
-// RASAdminUpdateConnectionResponse structure represents the RRasAdminUpdateConnection operation response
-type RASAdminUpdateConnectionResponse struct {
+// UpdateConnectionResponse structure represents the RRasAdminUpdateConnection operation response
+type UpdateConnectionResponse struct {
 	// Return: The RRasAdminUpdateConnection return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RASAdminUpdateConnectionResponse) xxx_ToOp(ctx context.Context, op *xxx_RASAdminUpdateConnectionOperation) *xxx_RASAdminUpdateConnectionOperation {
+func (o *UpdateConnectionResponse) xxx_ToOp(ctx context.Context, op *xxx_UpdateConnectionOperation) *xxx_UpdateConnectionOperation {
 	if op == nil {
-		op = &xxx_RASAdminUpdateConnectionOperation{}
+		op = &xxx_UpdateConnectionOperation{}
 	}
 	if o == nil {
 		return op
@@ -10696,17 +10680,17 @@ func (o *RASAdminUpdateConnectionResponse) xxx_ToOp(ctx context.Context, op *xxx
 	return op
 }
 
-func (o *RASAdminUpdateConnectionResponse) xxx_FromOp(ctx context.Context, op *xxx_RASAdminUpdateConnectionOperation) {
+func (o *UpdateConnectionResponse) xxx_FromOp(ctx context.Context, op *xxx_UpdateConnectionOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *RASAdminUpdateConnectionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *UpdateConnectionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *RASAdminUpdateConnectionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_RASAdminUpdateConnectionOperation{}
+func (o *UpdateConnectionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_UpdateConnectionOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -10716,11 +10700,11 @@ func (o *RASAdminUpdateConnectionResponse) UnmarshalNDR(ctx context.Context, r n
 
 // xxx_RouterInterfaceSetCredentialsLocalOperation structure represents the RRouterInterfaceSetCredentialsLocal operation
 type xxx_RouterInterfaceSetCredentialsLocalOperation struct {
-	LpwsInterfaceName string `idl:"name:lpwsInterfaceName;string" json:"lpws_interface_name"`
-	LpwsUserName      string `idl:"name:lpwsUserName;string" json:"lpws_user_name"`
-	LpwsDomainName    string `idl:"name:lpwsDomainName;string" json:"lpws_domain_name"`
-	LpwsPassword      string `idl:"name:lpwsPassword;string" json:"lpws_password"`
-	Return            uint32 `idl:"name:Return" json:"return"`
+	InterfaceName string `idl:"name:lpwsInterfaceName;string" json:"interface_name"`
+	UserName      string `idl:"name:lpwsUserName;string" json:"user_name"`
+	DomainName    string `idl:"name:lpwsDomainName;string" json:"domain_name"`
+	Password      string `idl:"name:lpwsPassword;string" json:"password"`
+	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceSetCredentialsLocalOperation) OpNum() int { return 49 }
@@ -10744,25 +10728,25 @@ func (o *xxx_RouterInterfaceSetCredentialsLocalOperation) MarshalNDRRequest(ctx 
 	}
 	// lpwsInterfaceName {in} (1:{string, alias=LPWSTR}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.WriteUTF16NString(ctx, w, o.LpwsInterfaceName); err != nil {
+		if err := ndr.WriteUTF16NString(ctx, w, o.InterfaceName); err != nil {
 			return err
 		}
 	}
 	// lpwsUserName {in} (1:{string, alias=LPWSTR}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.WriteUTF16NString(ctx, w, o.LpwsUserName); err != nil {
+		if err := ndr.WriteUTF16NString(ctx, w, o.UserName); err != nil {
 			return err
 		}
 	}
 	// lpwsDomainName {in} (1:{string, alias=LPWSTR}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.WriteUTF16NString(ctx, w, o.LpwsDomainName); err != nil {
+		if err := ndr.WriteUTF16NString(ctx, w, o.DomainName); err != nil {
 			return err
 		}
 	}
 	// lpwsPassword {in} (1:{string, alias=LPWSTR}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.WriteUTF16NString(ctx, w, o.LpwsPassword); err != nil {
+		if err := ndr.WriteUTF16NString(ctx, w, o.Password); err != nil {
 			return err
 		}
 	}
@@ -10772,25 +10756,25 @@ func (o *xxx_RouterInterfaceSetCredentialsLocalOperation) MarshalNDRRequest(ctx 
 func (o *xxx_RouterInterfaceSetCredentialsLocalOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// lpwsInterfaceName {in} (1:{string, alias=LPWSTR,pointer=ref}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.ReadUTF16NString(ctx, w, &o.LpwsInterfaceName); err != nil {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.InterfaceName); err != nil {
 			return err
 		}
 	}
 	// lpwsUserName {in} (1:{string, alias=LPWSTR,pointer=ref}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.ReadUTF16NString(ctx, w, &o.LpwsUserName); err != nil {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.UserName); err != nil {
 			return err
 		}
 	}
 	// lpwsDomainName {in} (1:{string, alias=LPWSTR,pointer=ref}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.ReadUTF16NString(ctx, w, &o.LpwsDomainName); err != nil {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.DomainName); err != nil {
 			return err
 		}
 	}
 	// lpwsPassword {in} (1:{string, alias=LPWSTR,pointer=ref}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.ReadUTF16NString(ctx, w, &o.LpwsPassword); err != nil {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.Password); err != nil {
 			return err
 		}
 	}
@@ -10831,10 +10815,10 @@ func (o *xxx_RouterInterfaceSetCredentialsLocalOperation) UnmarshalNDRResponse(c
 
 // RouterInterfaceSetCredentialsLocalRequest structure represents the RRouterInterfaceSetCredentialsLocal operation request
 type RouterInterfaceSetCredentialsLocalRequest struct {
-	LpwsInterfaceName string `idl:"name:lpwsInterfaceName;string" json:"lpws_interface_name"`
-	LpwsUserName      string `idl:"name:lpwsUserName;string" json:"lpws_user_name"`
-	LpwsDomainName    string `idl:"name:lpwsDomainName;string" json:"lpws_domain_name"`
-	LpwsPassword      string `idl:"name:lpwsPassword;string" json:"lpws_password"`
+	InterfaceName string `idl:"name:lpwsInterfaceName;string" json:"interface_name"`
+	UserName      string `idl:"name:lpwsUserName;string" json:"user_name"`
+	DomainName    string `idl:"name:lpwsDomainName;string" json:"domain_name"`
+	Password      string `idl:"name:lpwsPassword;string" json:"password"`
 }
 
 func (o *RouterInterfaceSetCredentialsLocalRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceSetCredentialsLocalOperation) *xxx_RouterInterfaceSetCredentialsLocalOperation {
@@ -10844,10 +10828,10 @@ func (o *RouterInterfaceSetCredentialsLocalRequest) xxx_ToOp(ctx context.Context
 	if o == nil {
 		return op
 	}
-	op.LpwsInterfaceName = o.LpwsInterfaceName
-	op.LpwsUserName = o.LpwsUserName
-	op.LpwsDomainName = o.LpwsDomainName
-	op.LpwsPassword = o.LpwsPassword
+	op.InterfaceName = o.InterfaceName
+	op.UserName = o.UserName
+	op.DomainName = o.DomainName
+	op.Password = o.Password
 	return op
 }
 
@@ -10855,10 +10839,10 @@ func (o *RouterInterfaceSetCredentialsLocalRequest) xxx_FromOp(ctx context.Conte
 	if o == nil {
 		return
 	}
-	o.LpwsInterfaceName = op.LpwsInterfaceName
-	o.LpwsUserName = op.LpwsUserName
-	o.LpwsDomainName = op.LpwsDomainName
-	o.LpwsPassword = op.LpwsPassword
+	o.InterfaceName = op.InterfaceName
+	o.UserName = op.UserName
+	o.DomainName = op.DomainName
+	o.Password = op.Password
 }
 func (o *RouterInterfaceSetCredentialsLocalRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -10909,11 +10893,11 @@ func (o *RouterInterfaceSetCredentialsLocalResponse) UnmarshalNDR(ctx context.Co
 
 // xxx_RouterInterfaceGetCredentialsLocalOperation structure represents the RRouterInterfaceGetCredentialsLocal operation
 type xxx_RouterInterfaceGetCredentialsLocalOperation struct {
-	LpwsInterfaceName string `idl:"name:lpwsInterfaceName;string" json:"lpws_interface_name"`
-	LpwsUserName      string `idl:"name:lpwsUserName;string" json:"lpws_user_name"`
-	LpwsDomainName    string `idl:"name:lpwsDomainName;string" json:"lpws_domain_name"`
-	LpwsPassword      string `idl:"name:lpwsPassword;string" json:"lpws_password"`
-	Return            uint32 `idl:"name:Return" json:"return"`
+	InterfaceName string `idl:"name:lpwsInterfaceName;string" json:"interface_name"`
+	UserName      string `idl:"name:lpwsUserName;string" json:"user_name"`
+	DomainName    string `idl:"name:lpwsDomainName;string" json:"domain_name"`
+	Password      string `idl:"name:lpwsPassword;string" json:"password"`
+	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceGetCredentialsLocalOperation) OpNum() int { return 50 }
@@ -10937,7 +10921,7 @@ func (o *xxx_RouterInterfaceGetCredentialsLocalOperation) MarshalNDRRequest(ctx 
 	}
 	// lpwsInterfaceName {in} (1:{string, alias=LPWSTR}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.WriteUTF16NString(ctx, w, o.LpwsInterfaceName); err != nil {
+		if err := ndr.WriteUTF16NString(ctx, w, o.InterfaceName); err != nil {
 			return err
 		}
 	}
@@ -10947,7 +10931,7 @@ func (o *xxx_RouterInterfaceGetCredentialsLocalOperation) MarshalNDRRequest(ctx 
 func (o *xxx_RouterInterfaceGetCredentialsLocalOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// lpwsInterfaceName {in} (1:{string, alias=LPWSTR,pointer=ref}*(1)[dim:0,string,null](wchar))
 	{
-		if err := ndr.ReadUTF16NString(ctx, w, &o.LpwsInterfaceName); err != nil {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.InterfaceName); err != nil {
 			return err
 		}
 	}
@@ -10969,14 +10953,14 @@ func (o *xxx_RouterInterfaceGetCredentialsLocalOperation) MarshalNDRResponse(ctx
 	}
 	// lpwsUserName {out} (1:{string, pointer=ref}*(2))(2:{alias=LPWSTR}*(1)[dim:0,string,null](wchar))
 	{
-		if o.LpwsUserName != "" {
+		if o.UserName != "" {
 			_ptr_lpwsUserName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if err := ndr.WriteUTF16NString(ctx, w, o.LpwsUserName); err != nil {
+				if err := ndr.WriteUTF16NString(ctx, w, o.UserName); err != nil {
 					return err
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.LpwsUserName, _ptr_lpwsUserName); err != nil {
+			if err := w.WritePointer(&o.UserName, _ptr_lpwsUserName); err != nil {
 				return err
 			}
 		} else {
@@ -10990,14 +10974,14 @@ func (o *xxx_RouterInterfaceGetCredentialsLocalOperation) MarshalNDRResponse(ctx
 	}
 	// lpwsDomainName {out} (1:{string, pointer=ref}*(2))(2:{alias=LPWSTR}*(1)[dim:0,string,null](wchar))
 	{
-		if o.LpwsDomainName != "" {
+		if o.DomainName != "" {
 			_ptr_lpwsDomainName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if err := ndr.WriteUTF16NString(ctx, w, o.LpwsDomainName); err != nil {
+				if err := ndr.WriteUTF16NString(ctx, w, o.DomainName); err != nil {
 					return err
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.LpwsDomainName, _ptr_lpwsDomainName); err != nil {
+			if err := w.WritePointer(&o.DomainName, _ptr_lpwsDomainName); err != nil {
 				return err
 			}
 		} else {
@@ -11011,14 +10995,14 @@ func (o *xxx_RouterInterfaceGetCredentialsLocalOperation) MarshalNDRResponse(ctx
 	}
 	// lpwsPassword {out} (1:{string, pointer=ref}*(2))(2:{alias=LPWSTR}*(1)[dim:0,string,null](wchar))
 	{
-		if o.LpwsPassword != "" {
+		if o.Password != "" {
 			_ptr_lpwsPassword := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if err := ndr.WriteUTF16NString(ctx, w, o.LpwsPassword); err != nil {
+				if err := ndr.WriteUTF16NString(ctx, w, o.Password); err != nil {
 					return err
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.LpwsPassword, _ptr_lpwsPassword); err != nil {
+			if err := w.WritePointer(&o.Password, _ptr_lpwsPassword); err != nil {
 				return err
 			}
 		} else {
@@ -11043,13 +11027,13 @@ func (o *xxx_RouterInterfaceGetCredentialsLocalOperation) UnmarshalNDRResponse(c
 	// lpwsUserName {out} (1:{string, pointer=ref}*(2))(2:{alias=LPWSTR,pointer=ref}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_lpwsUserName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if err := ndr.ReadUTF16NString(ctx, w, &o.LpwsUserName); err != nil {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.UserName); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_lpwsUserName := func(ptr interface{}) { o.LpwsUserName = *ptr.(*string) }
-		if err := w.ReadPointer(&o.LpwsUserName, _s_lpwsUserName, _ptr_lpwsUserName); err != nil {
+		_s_lpwsUserName := func(ptr interface{}) { o.UserName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.UserName, _s_lpwsUserName, _ptr_lpwsUserName); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -11059,13 +11043,13 @@ func (o *xxx_RouterInterfaceGetCredentialsLocalOperation) UnmarshalNDRResponse(c
 	// lpwsDomainName {out} (1:{string, pointer=ref}*(2))(2:{alias=LPWSTR,pointer=ref}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_lpwsDomainName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if err := ndr.ReadUTF16NString(ctx, w, &o.LpwsDomainName); err != nil {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.DomainName); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_lpwsDomainName := func(ptr interface{}) { o.LpwsDomainName = *ptr.(*string) }
-		if err := w.ReadPointer(&o.LpwsDomainName, _s_lpwsDomainName, _ptr_lpwsDomainName); err != nil {
+		_s_lpwsDomainName := func(ptr interface{}) { o.DomainName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.DomainName, _s_lpwsDomainName, _ptr_lpwsDomainName); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -11075,13 +11059,13 @@ func (o *xxx_RouterInterfaceGetCredentialsLocalOperation) UnmarshalNDRResponse(c
 	// lpwsPassword {out} (1:{string, pointer=ref}*(2))(2:{alias=LPWSTR,pointer=ref}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_lpwsPassword := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if err := ndr.ReadUTF16NString(ctx, w, &o.LpwsPassword); err != nil {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.Password); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_lpwsPassword := func(ptr interface{}) { o.LpwsPassword = *ptr.(*string) }
-		if err := w.ReadPointer(&o.LpwsPassword, _s_lpwsPassword, _ptr_lpwsPassword); err != nil {
+		_s_lpwsPassword := func(ptr interface{}) { o.Password = *ptr.(*string) }
+		if err := w.ReadPointer(&o.Password, _s_lpwsPassword, _ptr_lpwsPassword); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -11099,7 +11083,7 @@ func (o *xxx_RouterInterfaceGetCredentialsLocalOperation) UnmarshalNDRResponse(c
 
 // RouterInterfaceGetCredentialsLocalRequest structure represents the RRouterInterfaceGetCredentialsLocal operation request
 type RouterInterfaceGetCredentialsLocalRequest struct {
-	LpwsInterfaceName string `idl:"name:lpwsInterfaceName;string" json:"lpws_interface_name"`
+	InterfaceName string `idl:"name:lpwsInterfaceName;string" json:"interface_name"`
 }
 
 func (o *RouterInterfaceGetCredentialsLocalRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceGetCredentialsLocalOperation) *xxx_RouterInterfaceGetCredentialsLocalOperation {
@@ -11109,7 +11093,7 @@ func (o *RouterInterfaceGetCredentialsLocalRequest) xxx_ToOp(ctx context.Context
 	if o == nil {
 		return op
 	}
-	op.LpwsInterfaceName = o.LpwsInterfaceName
+	op.InterfaceName = o.InterfaceName
 	return op
 }
 
@@ -11117,7 +11101,7 @@ func (o *RouterInterfaceGetCredentialsLocalRequest) xxx_FromOp(ctx context.Conte
 	if o == nil {
 		return
 	}
-	o.LpwsInterfaceName = op.LpwsInterfaceName
+	o.InterfaceName = op.InterfaceName
 }
 func (o *RouterInterfaceGetCredentialsLocalRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -11133,9 +11117,9 @@ func (o *RouterInterfaceGetCredentialsLocalRequest) UnmarshalNDR(ctx context.Con
 
 // RouterInterfaceGetCredentialsLocalResponse structure represents the RRouterInterfaceGetCredentialsLocal operation response
 type RouterInterfaceGetCredentialsLocalResponse struct {
-	LpwsUserName   string `idl:"name:lpwsUserName;string" json:"lpws_user_name"`
-	LpwsDomainName string `idl:"name:lpwsDomainName;string" json:"lpws_domain_name"`
-	LpwsPassword   string `idl:"name:lpwsPassword;string" json:"lpws_password"`
+	UserName   string `idl:"name:lpwsUserName;string" json:"user_name"`
+	DomainName string `idl:"name:lpwsDomainName;string" json:"domain_name"`
+	Password   string `idl:"name:lpwsPassword;string" json:"password"`
 	// Return: The RRouterInterfaceGetCredentialsLocal return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -11147,9 +11131,9 @@ func (o *RouterInterfaceGetCredentialsLocalResponse) xxx_ToOp(ctx context.Contex
 	if o == nil {
 		return op
 	}
-	op.LpwsUserName = o.LpwsUserName
-	op.LpwsDomainName = o.LpwsDomainName
-	op.LpwsPassword = o.LpwsPassword
+	op.UserName = o.UserName
+	op.DomainName = o.DomainName
+	op.Password = o.Password
 	op.Return = o.Return
 	return op
 }
@@ -11158,9 +11142,9 @@ func (o *RouterInterfaceGetCredentialsLocalResponse) xxx_FromOp(ctx context.Cont
 	if o == nil {
 		return
 	}
-	o.LpwsUserName = op.LpwsUserName
-	o.LpwsDomainName = op.LpwsDomainName
-	o.LpwsPassword = op.LpwsPassword
+	o.UserName = op.UserName
+	o.DomainName = op.DomainName
+	o.Password = op.Password
 	o.Return = op.Return
 }
 func (o *RouterInterfaceGetCredentialsLocalResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -11177,9 +11161,9 @@ func (o *RouterInterfaceGetCredentialsLocalResponse) UnmarshalNDR(ctx context.Co
 
 // xxx_RouterInterfaceGetCustomInfoExOperation structure represents the RRouterInterfaceGetCustomInfoEx operation
 type xxx_RouterInterfaceGetCustomInfoExOperation struct {
-	HInterface            uint32                             `idl:"name:hInterface" json:"h_interface"`
-	InterfaceCustomConfig *rrasm.MprInterfaceCustominfoexIDL `idl:"name:pIfCustomConfig" json:"interface_custom_config"`
-	Return                uint32                             `idl:"name:Return" json:"return"`
+	Interface             uint32                          `idl:"name:hInterface" json:"interface"`
+	InterfaceCustomConfig *rrasm.InterfaceCustominfoexIDL `idl:"name:pIfCustomConfig" json:"interface_custom_config"`
+	Return                uint32                          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceGetCustomInfoExOperation) OpNum() int { return 51 }
@@ -11203,7 +11187,7 @@ func (o *xxx_RouterInterfaceGetCustomInfoExOperation) MarshalNDRRequest(ctx cont
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HInterface); err != nil {
+		if err := w.WriteData(o.Interface); err != nil {
 			return err
 		}
 	}
@@ -11214,7 +11198,7 @@ func (o *xxx_RouterInterfaceGetCustomInfoExOperation) MarshalNDRRequest(ctx cont
 				return err
 			}
 		} else {
-			if err := (&rrasm.MprInterfaceCustominfoexIDL{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InterfaceCustominfoexIDL{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -11228,14 +11212,14 @@ func (o *xxx_RouterInterfaceGetCustomInfoExOperation) MarshalNDRRequest(ctx cont
 func (o *xxx_RouterInterfaceGetCustomInfoExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HInterface); err != nil {
+		if err := w.ReadData(&o.Interface); err != nil {
 			return err
 		}
 	}
 	// pIfCustomConfig {in, out} (1:{alias=PMPR_IF_CUSTOMINFOEX_IDL,pointer=ref}*(1))(2:{alias=MPR_IF_CUSTOMINFOEX_IDL}(union))
 	{
 		if o.InterfaceCustomConfig == nil {
-			o.InterfaceCustomConfig = &rrasm.MprInterfaceCustominfoexIDL{}
+			o.InterfaceCustomConfig = &rrasm.InterfaceCustominfoexIDL{}
 		}
 		if err := o.InterfaceCustomConfig.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -11267,7 +11251,7 @@ func (o *xxx_RouterInterfaceGetCustomInfoExOperation) MarshalNDRResponse(ctx con
 				return err
 			}
 		} else {
-			if err := (&rrasm.MprInterfaceCustominfoexIDL{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InterfaceCustominfoexIDL{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -11288,7 +11272,7 @@ func (o *xxx_RouterInterfaceGetCustomInfoExOperation) UnmarshalNDRResponse(ctx c
 	// pIfCustomConfig {in, out} (1:{alias=PMPR_IF_CUSTOMINFOEX_IDL,pointer=ref}*(1))(2:{alias=MPR_IF_CUSTOMINFOEX_IDL}(union))
 	{
 		if o.InterfaceCustomConfig == nil {
-			o.InterfaceCustomConfig = &rrasm.MprInterfaceCustominfoexIDL{}
+			o.InterfaceCustomConfig = &rrasm.InterfaceCustominfoexIDL{}
 		}
 		if err := o.InterfaceCustomConfig.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -11308,8 +11292,8 @@ func (o *xxx_RouterInterfaceGetCustomInfoExOperation) UnmarshalNDRResponse(ctx c
 
 // RouterInterfaceGetCustomInfoExRequest structure represents the RRouterInterfaceGetCustomInfoEx operation request
 type RouterInterfaceGetCustomInfoExRequest struct {
-	HInterface            uint32                             `idl:"name:hInterface" json:"h_interface"`
-	InterfaceCustomConfig *rrasm.MprInterfaceCustominfoexIDL `idl:"name:pIfCustomConfig" json:"interface_custom_config"`
+	Interface             uint32                          `idl:"name:hInterface" json:"interface"`
+	InterfaceCustomConfig *rrasm.InterfaceCustominfoexIDL `idl:"name:pIfCustomConfig" json:"interface_custom_config"`
 }
 
 func (o *RouterInterfaceGetCustomInfoExRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceGetCustomInfoExOperation) *xxx_RouterInterfaceGetCustomInfoExOperation {
@@ -11319,7 +11303,7 @@ func (o *RouterInterfaceGetCustomInfoExRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	op.HInterface = o.HInterface
+	op.Interface = o.Interface
 	op.InterfaceCustomConfig = o.InterfaceCustomConfig
 	return op
 }
@@ -11328,7 +11312,7 @@ func (o *RouterInterfaceGetCustomInfoExRequest) xxx_FromOp(ctx context.Context, 
 	if o == nil {
 		return
 	}
-	o.HInterface = op.HInterface
+	o.Interface = op.Interface
 	o.InterfaceCustomConfig = op.InterfaceCustomConfig
 }
 func (o *RouterInterfaceGetCustomInfoExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -11345,7 +11329,7 @@ func (o *RouterInterfaceGetCustomInfoExRequest) UnmarshalNDR(ctx context.Context
 
 // RouterInterfaceGetCustomInfoExResponse structure represents the RRouterInterfaceGetCustomInfoEx operation response
 type RouterInterfaceGetCustomInfoExResponse struct {
-	InterfaceCustomConfig *rrasm.MprInterfaceCustominfoexIDL `idl:"name:pIfCustomConfig" json:"interface_custom_config"`
+	InterfaceCustomConfig *rrasm.InterfaceCustominfoexIDL `idl:"name:pIfCustomConfig" json:"interface_custom_config"`
 	// Return: The RRouterInterfaceGetCustomInfoEx return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -11383,9 +11367,9 @@ func (o *RouterInterfaceGetCustomInfoExResponse) UnmarshalNDR(ctx context.Contex
 
 // xxx_RouterInterfaceSetCustomInfoExOperation structure represents the RRouterInterfaceSetCustomInfoEx operation
 type xxx_RouterInterfaceSetCustomInfoExOperation struct {
-	HInterface            uint32                             `idl:"name:hInterface" json:"h_interface"`
-	InterfaceCustomConfig *rrasm.MprInterfaceCustominfoexIDL `idl:"name:pIfCustomConfig" json:"interface_custom_config"`
-	Return                uint32                             `idl:"name:Return" json:"return"`
+	Interface             uint32                          `idl:"name:hInterface" json:"interface"`
+	InterfaceCustomConfig *rrasm.InterfaceCustominfoexIDL `idl:"name:pIfCustomConfig" json:"interface_custom_config"`
+	Return                uint32                          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RouterInterfaceSetCustomInfoExOperation) OpNum() int { return 52 }
@@ -11409,7 +11393,7 @@ func (o *xxx_RouterInterfaceSetCustomInfoExOperation) MarshalNDRRequest(ctx cont
 	}
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.HInterface); err != nil {
+		if err := w.WriteData(o.Interface); err != nil {
 			return err
 		}
 	}
@@ -11420,7 +11404,7 @@ func (o *xxx_RouterInterfaceSetCustomInfoExOperation) MarshalNDRRequest(ctx cont
 				return err
 			}
 		} else {
-			if err := (&rrasm.MprInterfaceCustominfoexIDL{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InterfaceCustominfoexIDL{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -11434,14 +11418,14 @@ func (o *xxx_RouterInterfaceSetCustomInfoExOperation) MarshalNDRRequest(ctx cont
 func (o *xxx_RouterInterfaceSetCustomInfoExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// hInterface {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.HInterface); err != nil {
+		if err := w.ReadData(&o.Interface); err != nil {
 			return err
 		}
 	}
 	// pIfCustomConfig {in, out} (1:{alias=PMPR_IF_CUSTOMINFOEX_IDL,pointer=ref}*(1))(2:{alias=MPR_IF_CUSTOMINFOEX_IDL}(union))
 	{
 		if o.InterfaceCustomConfig == nil {
-			o.InterfaceCustomConfig = &rrasm.MprInterfaceCustominfoexIDL{}
+			o.InterfaceCustomConfig = &rrasm.InterfaceCustominfoexIDL{}
 		}
 		if err := o.InterfaceCustomConfig.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -11473,7 +11457,7 @@ func (o *xxx_RouterInterfaceSetCustomInfoExOperation) MarshalNDRResponse(ctx con
 				return err
 			}
 		} else {
-			if err := (&rrasm.MprInterfaceCustominfoexIDL{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rrasm.InterfaceCustominfoexIDL{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -11494,7 +11478,7 @@ func (o *xxx_RouterInterfaceSetCustomInfoExOperation) UnmarshalNDRResponse(ctx c
 	// pIfCustomConfig {in, out} (1:{alias=PMPR_IF_CUSTOMINFOEX_IDL,pointer=ref}*(1))(2:{alias=MPR_IF_CUSTOMINFOEX_IDL}(union))
 	{
 		if o.InterfaceCustomConfig == nil {
-			o.InterfaceCustomConfig = &rrasm.MprInterfaceCustominfoexIDL{}
+			o.InterfaceCustomConfig = &rrasm.InterfaceCustominfoexIDL{}
 		}
 		if err := o.InterfaceCustomConfig.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -11514,8 +11498,8 @@ func (o *xxx_RouterInterfaceSetCustomInfoExOperation) UnmarshalNDRResponse(ctx c
 
 // RouterInterfaceSetCustomInfoExRequest structure represents the RRouterInterfaceSetCustomInfoEx operation request
 type RouterInterfaceSetCustomInfoExRequest struct {
-	HInterface            uint32                             `idl:"name:hInterface" json:"h_interface"`
-	InterfaceCustomConfig *rrasm.MprInterfaceCustominfoexIDL `idl:"name:pIfCustomConfig" json:"interface_custom_config"`
+	Interface             uint32                          `idl:"name:hInterface" json:"interface"`
+	InterfaceCustomConfig *rrasm.InterfaceCustominfoexIDL `idl:"name:pIfCustomConfig" json:"interface_custom_config"`
 }
 
 func (o *RouterInterfaceSetCustomInfoExRequest) xxx_ToOp(ctx context.Context, op *xxx_RouterInterfaceSetCustomInfoExOperation) *xxx_RouterInterfaceSetCustomInfoExOperation {
@@ -11525,7 +11509,7 @@ func (o *RouterInterfaceSetCustomInfoExRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	op.HInterface = o.HInterface
+	op.Interface = o.Interface
 	op.InterfaceCustomConfig = o.InterfaceCustomConfig
 	return op
 }
@@ -11534,7 +11518,7 @@ func (o *RouterInterfaceSetCustomInfoExRequest) xxx_FromOp(ctx context.Context, 
 	if o == nil {
 		return
 	}
-	o.HInterface = op.HInterface
+	o.Interface = op.Interface
 	o.InterfaceCustomConfig = op.InterfaceCustomConfig
 }
 func (o *RouterInterfaceSetCustomInfoExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -11551,7 +11535,7 @@ func (o *RouterInterfaceSetCustomInfoExRequest) UnmarshalNDR(ctx context.Context
 
 // RouterInterfaceSetCustomInfoExResponse structure represents the RRouterInterfaceSetCustomInfoEx operation response
 type RouterInterfaceSetCustomInfoExResponse struct {
-	InterfaceCustomConfig *rrasm.MprInterfaceCustominfoexIDL `idl:"name:pIfCustomConfig" json:"interface_custom_config"`
+	InterfaceCustomConfig *rrasm.InterfaceCustominfoexIDL `idl:"name:pIfCustomConfig" json:"interface_custom_config"`
 	// Return: The RRouterInterfaceSetCustomInfoEx return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }

@@ -26,7 +26,7 @@ var (
 )
 
 // IMSMQQueueInfo3 server interface.
-type ImsmqQueueInfo3Server interface {
+type QueueInfo3Server interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -62,10 +62,10 @@ type ImsmqQueueInfo3Server interface {
 	GetIsTransactional(context.Context, *GetIsTransactionalRequest) (*GetIsTransactionalResponse, error)
 
 	// PrivLevel operation.
-	GetPrivLevel(context.Context, *GetPrivLevelRequest) (*GetPrivLevelResponse, error)
+	GetPrivacyLevel(context.Context, *GetPrivacyLevelRequest) (*GetPrivacyLevelResponse, error)
 
 	// PrivLevel operation.
-	SetPrivLevel(context.Context, *SetPrivLevelRequest) (*SetPrivLevelResponse, error)
+	SetPrivacyLevel(context.Context, *SetPrivacyLevelRequest) (*SetPrivacyLevelResponse, error)
 
 	// Journal operation.
 	GetJournal(context.Context, *GetJournalRequest) (*GetJournalResponse, error)
@@ -146,20 +146,20 @@ type ImsmqQueueInfo3Server interface {
 	SetMulticastAddress(context.Context, *SetMulticastAddressRequest) (*SetMulticastAddressResponse, error)
 
 	// ADsPath operation.
-	GetADSPath(context.Context, *GetADSPathRequest) (*GetADSPathResponse, error)
+	GetADsPath(context.Context, *GetADsPathRequest) (*GetADsPathResponse, error)
 }
 
-func RegisterImsmqQueueInfo3Server(conn dcerpc.Conn, o ImsmqQueueInfo3Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqQueueInfo3ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqQueueInfo3SyntaxV0_0))...)
+func RegisterQueueInfo3Server(conn dcerpc.Conn, o QueueInfo3Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewQueueInfo3ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(QueueInfo3SyntaxV0_0))...)
 }
 
-func NewImsmqQueueInfo3ServerHandle(o ImsmqQueueInfo3Server) dcerpc.ServerHandle {
+func NewQueueInfo3ServerHandle(o QueueInfo3Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqQueueInfo3ServerHandle(ctx, o, opNum, r)
+		return QueueInfo3ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqQueueInfo3ServerHandle(ctx context.Context, o ImsmqQueueInfo3Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func QueueInfo3ServerHandle(ctx context.Context, o QueueInfo3Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -256,22 +256,22 @@ func ImsmqQueueInfo3ServerHandle(ctx context.Context, o ImsmqQueueInfo3Server, o
 		resp, err := o.GetIsTransactional(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 17: // PrivLevel
-		op := &xxx_GetPrivLevelOperation{}
+		op := &xxx_GetPrivacyLevelOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &GetPrivLevelRequest{}
+		req := &GetPrivacyLevelRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.GetPrivLevel(ctx, req)
+		resp, err := o.GetPrivacyLevel(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 18: // PrivLevel
-		op := &xxx_SetPrivLevelOperation{}
+		op := &xxx_SetPrivacyLevelOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &SetPrivLevelRequest{}
+		req := &SetPrivacyLevelRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.SetPrivLevel(ctx, req)
+		resp, err := o.SetPrivacyLevel(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 19: // Journal
 		op := &xxx_GetJournalOperation{}
@@ -508,139 +508,139 @@ func ImsmqQueueInfo3ServerHandle(ctx context.Context, o ImsmqQueueInfo3Server, o
 		resp, err := o.SetMulticastAddress(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 45: // ADsPath
-		op := &xxx_GetADSPathOperation{}
+		op := &xxx_GetADsPathOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &GetADSPathRequest{}
+		req := &GetADsPathRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.GetADSPath(ctx, req)
+		resp, err := o.GetADsPath(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
 
 // Unimplemented IMSMQQueueInfo3
-type UnimplementedImsmqQueueInfo3Server struct {
+type UnimplementedQueueInfo3Server struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedImsmqQueueInfo3Server) GetQueueGUID(context.Context, *GetQueueGUIDRequest) (*GetQueueGUIDResponse, error) {
+func (UnimplementedQueueInfo3Server) GetQueueGUID(context.Context, *GetQueueGUIDRequest) (*GetQueueGUIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetServiceTypeGUID(context.Context, *GetServiceTypeGUIDRequest) (*GetServiceTypeGUIDResponse, error) {
+func (UnimplementedQueueInfo3Server) GetServiceTypeGUID(context.Context, *GetServiceTypeGUIDRequest) (*GetServiceTypeGUIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) SetServiceTypeGUID(context.Context, *SetServiceTypeGUIDRequest) (*SetServiceTypeGUIDResponse, error) {
+func (UnimplementedQueueInfo3Server) SetServiceTypeGUID(context.Context, *SetServiceTypeGUIDRequest) (*SetServiceTypeGUIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetLabel(context.Context, *GetLabelRequest) (*GetLabelResponse, error) {
+func (UnimplementedQueueInfo3Server) GetLabel(context.Context, *GetLabelRequest) (*GetLabelResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) SetLabel(context.Context, *SetLabelRequest) (*SetLabelResponse, error) {
+func (UnimplementedQueueInfo3Server) SetLabel(context.Context, *SetLabelRequest) (*SetLabelResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetPathName(context.Context, *GetPathNameRequest) (*GetPathNameResponse, error) {
+func (UnimplementedQueueInfo3Server) GetPathName(context.Context, *GetPathNameRequest) (*GetPathNameResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) SetPathName(context.Context, *SetPathNameRequest) (*SetPathNameResponse, error) {
+func (UnimplementedQueueInfo3Server) SetPathName(context.Context, *SetPathNameRequest) (*SetPathNameResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetFormatName(context.Context, *GetFormatNameRequest) (*GetFormatNameResponse, error) {
+func (UnimplementedQueueInfo3Server) GetFormatName(context.Context, *GetFormatNameRequest) (*GetFormatNameResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) SetFormatName(context.Context, *SetFormatNameRequest) (*SetFormatNameResponse, error) {
+func (UnimplementedQueueInfo3Server) SetFormatName(context.Context, *SetFormatNameRequest) (*SetFormatNameResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetIsTransactional(context.Context, *GetIsTransactionalRequest) (*GetIsTransactionalResponse, error) {
+func (UnimplementedQueueInfo3Server) GetIsTransactional(context.Context, *GetIsTransactionalRequest) (*GetIsTransactionalResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetPrivLevel(context.Context, *GetPrivLevelRequest) (*GetPrivLevelResponse, error) {
+func (UnimplementedQueueInfo3Server) GetPrivacyLevel(context.Context, *GetPrivacyLevelRequest) (*GetPrivacyLevelResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) SetPrivLevel(context.Context, *SetPrivLevelRequest) (*SetPrivLevelResponse, error) {
+func (UnimplementedQueueInfo3Server) SetPrivacyLevel(context.Context, *SetPrivacyLevelRequest) (*SetPrivacyLevelResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetJournal(context.Context, *GetJournalRequest) (*GetJournalResponse, error) {
+func (UnimplementedQueueInfo3Server) GetJournal(context.Context, *GetJournalRequest) (*GetJournalResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) SetJournal(context.Context, *SetJournalRequest) (*SetJournalResponse, error) {
+func (UnimplementedQueueInfo3Server) SetJournal(context.Context, *SetJournalRequest) (*SetJournalResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetQuota(context.Context, *GetQuotaRequest) (*GetQuotaResponse, error) {
+func (UnimplementedQueueInfo3Server) GetQuota(context.Context, *GetQuotaRequest) (*GetQuotaResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) SetQuota(context.Context, *SetQuotaRequest) (*SetQuotaResponse, error) {
+func (UnimplementedQueueInfo3Server) SetQuota(context.Context, *SetQuotaRequest) (*SetQuotaResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetBasePriority(context.Context, *GetBasePriorityRequest) (*GetBasePriorityResponse, error) {
+func (UnimplementedQueueInfo3Server) GetBasePriority(context.Context, *GetBasePriorityRequest) (*GetBasePriorityResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) SetBasePriority(context.Context, *SetBasePriorityRequest) (*SetBasePriorityResponse, error) {
+func (UnimplementedQueueInfo3Server) SetBasePriority(context.Context, *SetBasePriorityRequest) (*SetBasePriorityResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetCreateTime(context.Context, *GetCreateTimeRequest) (*GetCreateTimeResponse, error) {
+func (UnimplementedQueueInfo3Server) GetCreateTime(context.Context, *GetCreateTimeRequest) (*GetCreateTimeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetModifyTime(context.Context, *GetModifyTimeRequest) (*GetModifyTimeResponse, error) {
+func (UnimplementedQueueInfo3Server) GetModifyTime(context.Context, *GetModifyTimeRequest) (*GetModifyTimeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetAuthenticate(context.Context, *GetAuthenticateRequest) (*GetAuthenticateResponse, error) {
+func (UnimplementedQueueInfo3Server) GetAuthenticate(context.Context, *GetAuthenticateRequest) (*GetAuthenticateResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) SetAuthenticate(context.Context, *SetAuthenticateRequest) (*SetAuthenticateResponse, error) {
+func (UnimplementedQueueInfo3Server) SetAuthenticate(context.Context, *SetAuthenticateRequest) (*SetAuthenticateResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetJournalQuota(context.Context, *GetJournalQuotaRequest) (*GetJournalQuotaResponse, error) {
+func (UnimplementedQueueInfo3Server) GetJournalQuota(context.Context, *GetJournalQuotaRequest) (*GetJournalQuotaResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) SetJournalQuota(context.Context, *SetJournalQuotaRequest) (*SetJournalQuotaResponse, error) {
+func (UnimplementedQueueInfo3Server) SetJournalQuota(context.Context, *SetJournalQuotaRequest) (*SetJournalQuotaResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetIsWorldReadable(context.Context, *GetIsWorldReadableRequest) (*GetIsWorldReadableResponse, error) {
+func (UnimplementedQueueInfo3Server) GetIsWorldReadable(context.Context, *GetIsWorldReadableRequest) (*GetIsWorldReadableResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) Create(context.Context, *CreateRequest) (*CreateResponse, error) {
+func (UnimplementedQueueInfo3Server) Create(context.Context, *CreateRequest) (*CreateResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
+func (UnimplementedQueueInfo3Server) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) Open(context.Context, *OpenRequest) (*OpenResponse, error) {
+func (UnimplementedQueueInfo3Server) Open(context.Context, *OpenRequest) (*OpenResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) Refresh(context.Context, *RefreshRequest) (*RefreshResponse, error) {
+func (UnimplementedQueueInfo3Server) Refresh(context.Context, *RefreshRequest) (*RefreshResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
+func (UnimplementedQueueInfo3Server) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetPathNameDNS(context.Context, *GetPathNameDNSRequest) (*GetPathNameDNSResponse, error) {
+func (UnimplementedQueueInfo3Server) GetPathNameDNS(context.Context, *GetPathNameDNSRequest) (*GetPathNameDNSResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+func (UnimplementedQueueInfo3Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetSecurity(context.Context, *GetSecurityRequest) (*GetSecurityResponse, error) {
+func (UnimplementedQueueInfo3Server) GetSecurity(context.Context, *GetSecurityRequest) (*GetSecurityResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) SetSecurity(context.Context, *SetSecurityRequest) (*SetSecurityResponse, error) {
+func (UnimplementedQueueInfo3Server) SetSecurity(context.Context, *SetSecurityRequest) (*SetSecurityResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetIsTransactional2(context.Context, *GetIsTransactional2Request) (*GetIsTransactional2Response, error) {
+func (UnimplementedQueueInfo3Server) GetIsTransactional2(context.Context, *GetIsTransactional2Request) (*GetIsTransactional2Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetIsWorldReadable2(context.Context, *GetIsWorldReadable2Request) (*GetIsWorldReadable2Response, error) {
+func (UnimplementedQueueInfo3Server) GetIsWorldReadable2(context.Context, *GetIsWorldReadable2Request) (*GetIsWorldReadable2Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetMulticastAddress(context.Context, *GetMulticastAddressRequest) (*GetMulticastAddressResponse, error) {
+func (UnimplementedQueueInfo3Server) GetMulticastAddress(context.Context, *GetMulticastAddressRequest) (*GetMulticastAddressResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) SetMulticastAddress(context.Context, *SetMulticastAddressRequest) (*SetMulticastAddressResponse, error) {
+func (UnimplementedQueueInfo3Server) SetMulticastAddress(context.Context, *SetMulticastAddressRequest) (*SetMulticastAddressResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfo3Server) GetADSPath(context.Context, *GetADSPathRequest) (*GetADSPathResponse, error) {
+func (UnimplementedQueueInfo3Server) GetADsPath(context.Context, *GetADsPathRequest) (*GetADsPathResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqQueueInfo3Server = (*UnimplementedImsmqQueueInfo3Server)(nil)
+var _ QueueInfo3Server = (*UnimplementedQueueInfo3Server)(nil)

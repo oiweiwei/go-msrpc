@@ -36,15 +36,15 @@ var (
 
 var (
 	// IWRMAccounting interface identifier 4f7ca01c-a9e5-45b6-b142-2332a1339c1d
-	IwrmAccountingIID = &dcom.IID{Data1: 0x4f7ca01c, Data2: 0xa9e5, Data3: 0x45b6, Data4: []byte{0xb1, 0x42, 0x23, 0x32, 0xa1, 0x33, 0x9c, 0x1d}}
+	AccountingIID = &dcom.IID{Data1: 0x4f7ca01c, Data2: 0xa9e5, Data3: 0x45b6, Data4: []byte{0xb1, 0x42, 0x23, 0x32, 0xa1, 0x33, 0x9c, 0x1d}}
 	// Syntax UUID
-	IwrmAccountingSyntaxUUID = &uuid.UUID{TimeLow: 0x4f7ca01c, TimeMid: 0xa9e5, TimeHiAndVersion: 0x45b6, ClockSeqHiAndReserved: 0xb1, ClockSeqLow: 0x42, Node: [6]uint8{0x23, 0x32, 0xa1, 0x33, 0x9c, 0x1d}}
+	AccountingSyntaxUUID = &uuid.UUID{TimeLow: 0x4f7ca01c, TimeMid: 0xa9e5, TimeHiAndVersion: 0x45b6, ClockSeqHiAndReserved: 0xb1, ClockSeqLow: 0x42, Node: [6]uint8{0x23, 0x32, 0xa1, 0x33, 0x9c, 0x1d}}
 	// Syntax ID
-	IwrmAccountingSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: IwrmAccountingSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	AccountingSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: AccountingSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IWRMAccounting interface.
-type IwrmAccountingClient interface {
+type AccountingClient interface {
 
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
@@ -84,20 +84,20 @@ type IwrmAccountingClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) IwrmAccountingClient
+	IPID(context.Context, *dcom.IPID) AccountingClient
 }
 
-type xxx_DefaultIwrmAccountingClient struct {
+type xxx_DefaultAccountingClient struct {
 	idispatch.DispatchClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultIwrmAccountingClient) Dispatch() idispatch.DispatchClient {
+func (o *xxx_DefaultAccountingClient) Dispatch() idispatch.DispatchClient {
 	return o.DispatchClient
 }
 
-func (o *xxx_DefaultIwrmAccountingClient) CreateAccountingDB(ctx context.Context, in *CreateAccountingDBRequest, opts ...dcerpc.CallOption) (*CreateAccountingDBResponse, error) {
+func (o *xxx_DefaultAccountingClient) CreateAccountingDB(ctx context.Context, in *CreateAccountingDBRequest, opts ...dcerpc.CallOption) (*CreateAccountingDBResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -117,7 +117,7 @@ func (o *xxx_DefaultIwrmAccountingClient) CreateAccountingDB(ctx context.Context
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmAccountingClient) GetAccountingMetadata(ctx context.Context, in *GetAccountingMetadataRequest, opts ...dcerpc.CallOption) (*GetAccountingMetadataResponse, error) {
+func (o *xxx_DefaultAccountingClient) GetAccountingMetadata(ctx context.Context, in *GetAccountingMetadataRequest, opts ...dcerpc.CallOption) (*GetAccountingMetadataResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -137,7 +137,7 @@ func (o *xxx_DefaultIwrmAccountingClient) GetAccountingMetadata(ctx context.Cont
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmAccountingClient) ExecuteAccountingQuery(ctx context.Context, in *ExecuteAccountingQueryRequest, opts ...dcerpc.CallOption) (*ExecuteAccountingQueryResponse, error) {
+func (o *xxx_DefaultAccountingClient) ExecuteAccountingQuery(ctx context.Context, in *ExecuteAccountingQueryRequest, opts ...dcerpc.CallOption) (*ExecuteAccountingQueryResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -157,7 +157,7 @@ func (o *xxx_DefaultIwrmAccountingClient) ExecuteAccountingQuery(ctx context.Con
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmAccountingClient) GetRawAccountingData(ctx context.Context, in *GetRawAccountingDataRequest, opts ...dcerpc.CallOption) (*GetRawAccountingDataResponse, error) {
+func (o *xxx_DefaultAccountingClient) GetRawAccountingData(ctx context.Context, in *GetRawAccountingDataRequest, opts ...dcerpc.CallOption) (*GetRawAccountingDataResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -177,7 +177,7 @@ func (o *xxx_DefaultIwrmAccountingClient) GetRawAccountingData(ctx context.Conte
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmAccountingClient) GetNextAccountingDataBatch(ctx context.Context, in *GetNextAccountingDataBatchRequest, opts ...dcerpc.CallOption) (*GetNextAccountingDataBatchResponse, error) {
+func (o *xxx_DefaultAccountingClient) GetNextAccountingDataBatch(ctx context.Context, in *GetNextAccountingDataBatchRequest, opts ...dcerpc.CallOption) (*GetNextAccountingDataBatchResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -197,7 +197,7 @@ func (o *xxx_DefaultIwrmAccountingClient) GetNextAccountingDataBatch(ctx context
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmAccountingClient) DeleteAccountingData(ctx context.Context, in *DeleteAccountingDataRequest, opts ...dcerpc.CallOption) (*DeleteAccountingDataResponse, error) {
+func (o *xxx_DefaultAccountingClient) DeleteAccountingData(ctx context.Context, in *DeleteAccountingDataRequest, opts ...dcerpc.CallOption) (*DeleteAccountingDataResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -217,7 +217,7 @@ func (o *xxx_DefaultIwrmAccountingClient) DeleteAccountingData(ctx context.Conte
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmAccountingClient) DefragmentDB(ctx context.Context, in *DefragmentDBRequest, opts ...dcerpc.CallOption) (*DefragmentDBResponse, error) {
+func (o *xxx_DefaultAccountingClient) DefragmentDB(ctx context.Context, in *DefragmentDBRequest, opts ...dcerpc.CallOption) (*DefragmentDBResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -237,7 +237,7 @@ func (o *xxx_DefaultIwrmAccountingClient) DefragmentDB(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmAccountingClient) CancelAccountingQuery(ctx context.Context, in *CancelAccountingQueryRequest, opts ...dcerpc.CallOption) (*CancelAccountingQueryResponse, error) {
+func (o *xxx_DefaultAccountingClient) CancelAccountingQuery(ctx context.Context, in *CancelAccountingQueryRequest, opts ...dcerpc.CallOption) (*CancelAccountingQueryResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -257,7 +257,7 @@ func (o *xxx_DefaultIwrmAccountingClient) CancelAccountingQuery(ctx context.Cont
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmAccountingClient) RegisterAccountingClient(ctx context.Context, in *RegisterAccountingClientRequest, opts ...dcerpc.CallOption) (*RegisterAccountingClientResponse, error) {
+func (o *xxx_DefaultAccountingClient) RegisterAccountingClient(ctx context.Context, in *RegisterAccountingClientRequest, opts ...dcerpc.CallOption) (*RegisterAccountingClientResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -277,7 +277,7 @@ func (o *xxx_DefaultIwrmAccountingClient) RegisterAccountingClient(ctx context.C
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmAccountingClient) DumpAccountingData(ctx context.Context, in *DumpAccountingDataRequest, opts ...dcerpc.CallOption) (*DumpAccountingDataResponse, error) {
+func (o *xxx_DefaultAccountingClient) DumpAccountingData(ctx context.Context, in *DumpAccountingDataRequest, opts ...dcerpc.CallOption) (*DumpAccountingDataResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -297,7 +297,7 @@ func (o *xxx_DefaultIwrmAccountingClient) DumpAccountingData(ctx context.Context
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmAccountingClient) GetAccountingClients(ctx context.Context, in *GetAccountingClientsRequest, opts ...dcerpc.CallOption) (*GetAccountingClientsResponse, error) {
+func (o *xxx_DefaultAccountingClient) GetAccountingClients(ctx context.Context, in *GetAccountingClientsRequest, opts ...dcerpc.CallOption) (*GetAccountingClientsResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -317,7 +317,7 @@ func (o *xxx_DefaultIwrmAccountingClient) GetAccountingClients(ctx context.Conte
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmAccountingClient) SetAccountingClientStatus(ctx context.Context, in *SetAccountingClientStatusRequest, opts ...dcerpc.CallOption) (*SetAccountingClientStatusResponse, error) {
+func (o *xxx_DefaultAccountingClient) SetAccountingClientStatus(ctx context.Context, in *SetAccountingClientStatusRequest, opts ...dcerpc.CallOption) (*SetAccountingClientStatusResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -337,7 +337,7 @@ func (o *xxx_DefaultIwrmAccountingClient) SetAccountingClientStatus(ctx context.
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmAccountingClient) CheckAccountingConnection(ctx context.Context, in *CheckAccountingConnectionRequest, opts ...dcerpc.CallOption) (*CheckAccountingConnectionResponse, error) {
+func (o *xxx_DefaultAccountingClient) CheckAccountingConnection(ctx context.Context, in *CheckAccountingConnectionRequest, opts ...dcerpc.CallOption) (*CheckAccountingConnectionResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -357,7 +357,7 @@ func (o *xxx_DefaultIwrmAccountingClient) CheckAccountingConnection(ctx context.
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmAccountingClient) SetClientPermissions(ctx context.Context, in *SetClientPermissionsRequest, opts ...dcerpc.CallOption) (*SetClientPermissionsResponse, error) {
+func (o *xxx_DefaultAccountingClient) SetClientPermissions(ctx context.Context, in *SetClientPermissionsRequest, opts ...dcerpc.CallOption) (*SetClientPermissionsResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -377,29 +377,29 @@ func (o *xxx_DefaultIwrmAccountingClient) SetClientPermissions(ctx context.Conte
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmAccountingClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultAccountingClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultIwrmAccountingClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultAccountingClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultIwrmAccountingClient) IPID(ctx context.Context, ipid *dcom.IPID) IwrmAccountingClient {
+func (o *xxx_DefaultAccountingClient) IPID(ctx context.Context, ipid *dcom.IPID) AccountingClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultIwrmAccountingClient{
+	return &xxx_DefaultAccountingClient{
 		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
 		cc:             o.cc,
 		ipid:           ipid,
 	}
 }
 
-func NewIwrmAccountingClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (IwrmAccountingClient, error) {
+func NewAccountingClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (AccountingClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(IwrmAccountingSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(AccountingSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -412,7 +412,7 @@ func NewIwrmAccountingClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultIwrmAccountingClient{
+	return &xxx_DefaultAccountingClient{
 		DispatchClient: base,
 		cc:             cc,
 		ipid:           ipid,

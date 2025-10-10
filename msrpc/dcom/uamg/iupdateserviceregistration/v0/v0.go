@@ -55,7 +55,7 @@ type UpdateServiceRegistrationClient interface {
 
 	GetServiceID(context.Context, *GetServiceIDRequest, ...dcerpc.CallOption) (*GetServiceIDResponse, error)
 
-	GetIsPendingRegistrationWithAu(context.Context, *GetIsPendingRegistrationWithAuRequest, ...dcerpc.CallOption) (*GetIsPendingRegistrationWithAuResponse, error)
+	GetIsPendingRegistrationWithAU(context.Context, *GetIsPendingRegistrationWithAURequest, ...dcerpc.CallOption) (*GetIsPendingRegistrationWithAUResponse, error)
 
 	GetService(context.Context, *GetServiceRequest, ...dcerpc.CallOption) (*GetServiceResponse, error)
 
@@ -119,7 +119,7 @@ func (o *xxx_DefaultUpdateServiceRegistrationClient) GetServiceID(ctx context.Co
 	return out, nil
 }
 
-func (o *xxx_DefaultUpdateServiceRegistrationClient) GetIsPendingRegistrationWithAu(ctx context.Context, in *GetIsPendingRegistrationWithAuRequest, opts ...dcerpc.CallOption) (*GetIsPendingRegistrationWithAuResponse, error) {
+func (o *xxx_DefaultUpdateServiceRegistrationClient) GetIsPendingRegistrationWithAU(ctx context.Context, in *GetIsPendingRegistrationWithAURequest, opts ...dcerpc.CallOption) (*GetIsPendingRegistrationWithAUResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -131,7 +131,7 @@ func (o *xxx_DefaultUpdateServiceRegistrationClient) GetIsPendingRegistrationWit
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &GetIsPendingRegistrationWithAuResponse{}
+	out := &GetIsPendingRegistrationWithAUResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -653,21 +653,21 @@ func (o *GetServiceIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
-// xxx_GetIsPendingRegistrationWithAuOperation structure represents the IsPendingRegistrationWithAU operation
-type xxx_GetIsPendingRegistrationWithAuOperation struct {
+// xxx_GetIsPendingRegistrationWithAUOperation structure represents the IsPendingRegistrationWithAU operation
+type xxx_GetIsPendingRegistrationWithAUOperation struct {
 	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
 	ReturnValue int16          `idl:"name:retval" json:"return_value"`
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_GetIsPendingRegistrationWithAuOperation) OpNum() int { return 9 }
+func (o *xxx_GetIsPendingRegistrationWithAUOperation) OpNum() int { return 9 }
 
-func (o *xxx_GetIsPendingRegistrationWithAuOperation) OpName() string {
+func (o *xxx_GetIsPendingRegistrationWithAUOperation) OpName() string {
 	return "/IUpdateServiceRegistration/v0/IsPendingRegistrationWithAU"
 }
 
-func (o *xxx_GetIsPendingRegistrationWithAuOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetIsPendingRegistrationWithAUOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -676,7 +676,7 @@ func (o *xxx_GetIsPendingRegistrationWithAuOperation) xxx_PrepareRequestPayload(
 	return nil
 }
 
-func (o *xxx_GetIsPendingRegistrationWithAuOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetIsPendingRegistrationWithAUOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -698,7 +698,7 @@ func (o *xxx_GetIsPendingRegistrationWithAuOperation) MarshalNDRRequest(ctx cont
 	return nil
 }
 
-func (o *xxx_GetIsPendingRegistrationWithAuOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetIsPendingRegistrationWithAUOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -714,7 +714,7 @@ func (o *xxx_GetIsPendingRegistrationWithAuOperation) UnmarshalNDRRequest(ctx co
 	return nil
 }
 
-func (o *xxx_GetIsPendingRegistrationWithAuOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetIsPendingRegistrationWithAUOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -723,7 +723,7 @@ func (o *xxx_GetIsPendingRegistrationWithAuOperation) xxx_PrepareResponsePayload
 	return nil
 }
 
-func (o *xxx_GetIsPendingRegistrationWithAuOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetIsPendingRegistrationWithAUOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -757,7 +757,7 @@ func (o *xxx_GetIsPendingRegistrationWithAuOperation) MarshalNDRResponse(ctx con
 	return nil
 }
 
-func (o *xxx_GetIsPendingRegistrationWithAuOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetIsPendingRegistrationWithAUOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -785,15 +785,15 @@ func (o *xxx_GetIsPendingRegistrationWithAuOperation) UnmarshalNDRResponse(ctx c
 	return nil
 }
 
-// GetIsPendingRegistrationWithAuRequest structure represents the IsPendingRegistrationWithAU operation request
-type GetIsPendingRegistrationWithAuRequest struct {
+// GetIsPendingRegistrationWithAURequest structure represents the IsPendingRegistrationWithAU operation request
+type GetIsPendingRegistrationWithAURequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetIsPendingRegistrationWithAuRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIsPendingRegistrationWithAuOperation) *xxx_GetIsPendingRegistrationWithAuOperation {
+func (o *GetIsPendingRegistrationWithAURequest) xxx_ToOp(ctx context.Context, op *xxx_GetIsPendingRegistrationWithAUOperation) *xxx_GetIsPendingRegistrationWithAUOperation {
 	if op == nil {
-		op = &xxx_GetIsPendingRegistrationWithAuOperation{}
+		op = &xxx_GetIsPendingRegistrationWithAUOperation{}
 	}
 	if o == nil {
 		return op
@@ -802,17 +802,17 @@ func (o *GetIsPendingRegistrationWithAuRequest) xxx_ToOp(ctx context.Context, op
 	return op
 }
 
-func (o *GetIsPendingRegistrationWithAuRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIsPendingRegistrationWithAuOperation) {
+func (o *GetIsPendingRegistrationWithAURequest) xxx_FromOp(ctx context.Context, op *xxx_GetIsPendingRegistrationWithAUOperation) {
 	if o == nil {
 		return
 	}
 	o.This = op.This
 }
-func (o *GetIsPendingRegistrationWithAuRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetIsPendingRegistrationWithAURequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *GetIsPendingRegistrationWithAuRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetIsPendingRegistrationWithAuOperation{}
+func (o *GetIsPendingRegistrationWithAURequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetIsPendingRegistrationWithAUOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -820,8 +820,8 @@ func (o *GetIsPendingRegistrationWithAuRequest) UnmarshalNDR(ctx context.Context
 	return nil
 }
 
-// GetIsPendingRegistrationWithAuResponse structure represents the IsPendingRegistrationWithAU operation response
-type GetIsPendingRegistrationWithAuResponse struct {
+// GetIsPendingRegistrationWithAUResponse structure represents the IsPendingRegistrationWithAU operation response
+type GetIsPendingRegistrationWithAUResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
 	ReturnValue int16          `idl:"name:retval" json:"return_value"`
@@ -829,9 +829,9 @@ type GetIsPendingRegistrationWithAuResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetIsPendingRegistrationWithAuResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIsPendingRegistrationWithAuOperation) *xxx_GetIsPendingRegistrationWithAuOperation {
+func (o *GetIsPendingRegistrationWithAUResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIsPendingRegistrationWithAUOperation) *xxx_GetIsPendingRegistrationWithAUOperation {
 	if op == nil {
-		op = &xxx_GetIsPendingRegistrationWithAuOperation{}
+		op = &xxx_GetIsPendingRegistrationWithAUOperation{}
 	}
 	if o == nil {
 		return op
@@ -842,7 +842,7 @@ func (o *GetIsPendingRegistrationWithAuResponse) xxx_ToOp(ctx context.Context, o
 	return op
 }
 
-func (o *GetIsPendingRegistrationWithAuResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIsPendingRegistrationWithAuOperation) {
+func (o *GetIsPendingRegistrationWithAUResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIsPendingRegistrationWithAUOperation) {
 	if o == nil {
 		return
 	}
@@ -850,11 +850,11 @@ func (o *GetIsPendingRegistrationWithAuResponse) xxx_FromOp(ctx context.Context,
 	o.ReturnValue = op.ReturnValue
 	o.Return = op.Return
 }
-func (o *GetIsPendingRegistrationWithAuResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetIsPendingRegistrationWithAUResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *GetIsPendingRegistrationWithAuResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetIsPendingRegistrationWithAuOperation{}
+func (o *GetIsPendingRegistrationWithAUResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetIsPendingRegistrationWithAUOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

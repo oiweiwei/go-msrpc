@@ -38,15 +38,15 @@ var (
 
 var (
 	// INtmsNotifySink interface identifier bb39332c-bfee-4380-ad8a-badc8aff5bb6
-	NTMSNotifySinkIID = &dcom.IID{Data1: 0xbb39332c, Data2: 0xbfee, Data3: 0x4380, Data4: []byte{0xad, 0x8a, 0xba, 0xdc, 0x8a, 0xff, 0x5b, 0xb6}}
+	NotifySinkIID = &dcom.IID{Data1: 0xbb39332c, Data2: 0xbfee, Data3: 0x4380, Data4: []byte{0xad, 0x8a, 0xba, 0xdc, 0x8a, 0xff, 0x5b, 0xb6}}
 	// Syntax UUID
-	NTMSNotifySinkSyntaxUUID = &uuid.UUID{TimeLow: 0xbb39332c, TimeMid: 0xbfee, TimeHiAndVersion: 0x4380, ClockSeqHiAndReserved: 0xad, ClockSeqLow: 0x8a, Node: [6]uint8{0xba, 0xdc, 0x8a, 0xff, 0x5b, 0xb6}}
+	NotifySinkSyntaxUUID = &uuid.UUID{TimeLow: 0xbb39332c, TimeMid: 0xbfee, TimeHiAndVersion: 0x4380, ClockSeqHiAndReserved: 0xad, ClockSeqLow: 0x8a, Node: [6]uint8{0xba, 0xdc, 0x8a, 0xff, 0x5b, 0xb6}}
 	// Syntax ID
-	NTMSNotifySinkSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: NTMSNotifySinkSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	NotifySinkSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: NotifySinkSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // INtmsNotifySink interface.
-type NTMSNotifySinkClient interface {
+type NotifySinkClient interface {
 
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
@@ -65,20 +65,20 @@ type NTMSNotifySinkClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) NTMSNotifySinkClient
+	IPID(context.Context, *dcom.IPID) NotifySinkClient
 }
 
-type xxx_DefaultNTMSNotifySinkClient struct {
+type xxx_DefaultNotifySinkClient struct {
 	iunknown.UnknownClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultNTMSNotifySinkClient) Unknown() iunknown.UnknownClient {
+func (o *xxx_DefaultNotifySinkClient) Unknown() iunknown.UnknownClient {
 	return o.UnknownClient
 }
 
-func (o *xxx_DefaultNTMSNotifySinkClient) ConnectCallback(ctx context.Context, in *ConnectCallbackRequest, opts ...dcerpc.CallOption) (*ConnectCallbackResponse, error) {
+func (o *xxx_DefaultNotifySinkClient) ConnectCallback(ctx context.Context, in *ConnectCallbackRequest, opts ...dcerpc.CallOption) (*ConnectCallbackResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -98,7 +98,7 @@ func (o *xxx_DefaultNTMSNotifySinkClient) ConnectCallback(ctx context.Context, i
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSNotifySinkClient) OnNotify(ctx context.Context, in *OnNotifyRequest, opts ...dcerpc.CallOption) (*OnNotifyResponse, error) {
+func (o *xxx_DefaultNotifySinkClient) OnNotify(ctx context.Context, in *OnNotifyRequest, opts ...dcerpc.CallOption) (*OnNotifyResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -118,7 +118,7 @@ func (o *xxx_DefaultNTMSNotifySinkClient) OnNotify(ctx context.Context, in *OnNo
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSNotifySinkClient) ReleaseCallback(ctx context.Context, in *ReleaseCallbackRequest, opts ...dcerpc.CallOption) (*ReleaseCallbackResponse, error) {
+func (o *xxx_DefaultNotifySinkClient) ReleaseCallback(ctx context.Context, in *ReleaseCallbackRequest, opts ...dcerpc.CallOption) (*ReleaseCallbackResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -138,29 +138,29 @@ func (o *xxx_DefaultNTMSNotifySinkClient) ReleaseCallback(ctx context.Context, i
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSNotifySinkClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultNotifySinkClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultNTMSNotifySinkClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultNotifySinkClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultNTMSNotifySinkClient) IPID(ctx context.Context, ipid *dcom.IPID) NTMSNotifySinkClient {
+func (o *xxx_DefaultNotifySinkClient) IPID(ctx context.Context, ipid *dcom.IPID) NotifySinkClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultNTMSNotifySinkClient{
+	return &xxx_DefaultNotifySinkClient{
 		UnknownClient: o.UnknownClient.IPID(ctx, ipid),
 		cc:            o.cc,
 		ipid:          ipid,
 	}
 }
 
-func NewNTMSNotifySinkClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (NTMSNotifySinkClient, error) {
+func NewNotifySinkClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (NotifySinkClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(NTMSNotifySinkSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(NotifySinkSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -173,7 +173,7 @@ func NewNTMSNotifySinkClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultNTMSNotifySinkClient{
+	return &xxx_DefaultNotifySinkClient{
 		UnknownClient: base,
 		cc:            cc,
 		ipid:          ipid,
@@ -182,11 +182,11 @@ func NewNTMSNotifySinkClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc
 
 // xxx_ConnectCallbackOperation structure represents the ConnectCallback operation
 type xxx_ConnectCallbackOperation struct {
-	This                   *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That                   *dcom.ORPCThat `idl:"name:That" json:"that"`
-	UnknownCreatePartition *rsmp.Unknown  `idl:"name:pUnkCP" json:"unknown_create_partition"`
-	UnknownSink            *rsmp.Unknown  `idl:"name:pUnkSink" json:"unknown_sink"`
-	Return                 int32          `idl:"name:Return" json:"return"`
+	This            *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
+	ConnectionPoint *rsmp.Unknown  `idl:"name:pUnkCP" json:"connection_point"`
+	Sink            *rsmp.Unknown  `idl:"name:pUnkSink" json:"sink"`
+	Return          int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_ConnectCallbackOperation) OpNum() int { return 3 }
@@ -223,10 +223,10 @@ func (o *xxx_ConnectCallbackOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// pUnkCP {in} (1:{pointer=ref}*(1))(2:{alias=IUnknown}(interface))
 	{
-		if o.UnknownCreatePartition != nil {
+		if o.ConnectionPoint != nil {
 			_ptr_pUnkCP := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.UnknownCreatePartition != nil {
-					if err := o.UnknownCreatePartition.MarshalNDR(ctx, w); err != nil {
+				if o.ConnectionPoint != nil {
+					if err := o.ConnectionPoint.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -236,7 +236,7 @@ func (o *xxx_ConnectCallbackOperation) MarshalNDRRequest(ctx context.Context, w 
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.UnknownCreatePartition, _ptr_pUnkCP); err != nil {
+			if err := w.WritePointer(&o.ConnectionPoint, _ptr_pUnkCP); err != nil {
 				return err
 			}
 		} else {
@@ -250,10 +250,10 @@ func (o *xxx_ConnectCallbackOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// pUnkSink {in} (1:{pointer=ref}*(1))(2:{alias=IUnknown}(interface))
 	{
-		if o.UnknownSink != nil {
+		if o.Sink != nil {
 			_ptr_pUnkSink := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.UnknownSink != nil {
-					if err := o.UnknownSink.MarshalNDR(ctx, w); err != nil {
+				if o.Sink != nil {
+					if err := o.Sink.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -263,7 +263,7 @@ func (o *xxx_ConnectCallbackOperation) MarshalNDRRequest(ctx context.Context, w 
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.UnknownSink, _ptr_pUnkSink); err != nil {
+			if err := w.WritePointer(&o.Sink, _ptr_pUnkSink); err != nil {
 				return err
 			}
 		} else {
@@ -294,16 +294,16 @@ func (o *xxx_ConnectCallbackOperation) UnmarshalNDRRequest(ctx context.Context, 
 	// pUnkCP {in} (1:{pointer=ref}*(1))(2:{alias=IUnknown}(interface))
 	{
 		_ptr_pUnkCP := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.UnknownCreatePartition == nil {
-				o.UnknownCreatePartition = &rsmp.Unknown{}
+			if o.ConnectionPoint == nil {
+				o.ConnectionPoint = &rsmp.Unknown{}
 			}
-			if err := o.UnknownCreatePartition.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.ConnectionPoint.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pUnkCP := func(ptr interface{}) { o.UnknownCreatePartition = *ptr.(**rsmp.Unknown) }
-		if err := w.ReadPointer(&o.UnknownCreatePartition, _s_pUnkCP, _ptr_pUnkCP); err != nil {
+		_s_pUnkCP := func(ptr interface{}) { o.ConnectionPoint = *ptr.(**rsmp.Unknown) }
+		if err := w.ReadPointer(&o.ConnectionPoint, _s_pUnkCP, _ptr_pUnkCP); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -313,16 +313,16 @@ func (o *xxx_ConnectCallbackOperation) UnmarshalNDRRequest(ctx context.Context, 
 	// pUnkSink {in} (1:{pointer=ref}*(1))(2:{alias=IUnknown}(interface))
 	{
 		_ptr_pUnkSink := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.UnknownSink == nil {
-				o.UnknownSink = &rsmp.Unknown{}
+			if o.Sink == nil {
+				o.Sink = &rsmp.Unknown{}
 			}
-			if err := o.UnknownSink.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Sink.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pUnkSink := func(ptr interface{}) { o.UnknownSink = *ptr.(**rsmp.Unknown) }
-		if err := w.ReadPointer(&o.UnknownSink, _s_pUnkSink, _ptr_pUnkSink); err != nil {
+		_s_pUnkSink := func(ptr interface{}) { o.Sink = *ptr.(**rsmp.Unknown) }
+		if err := w.ReadPointer(&o.Sink, _s_pUnkSink, _ptr_pUnkSink); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -394,9 +394,9 @@ func (o *xxx_ConnectCallbackOperation) UnmarshalNDRResponse(ctx context.Context,
 // ConnectCallbackRequest structure represents the ConnectCallback operation request
 type ConnectCallbackRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                   *dcom.ORPCThis `idl:"name:This" json:"this"`
-	UnknownCreatePartition *rsmp.Unknown  `idl:"name:pUnkCP" json:"unknown_create_partition"`
-	UnknownSink            *rsmp.Unknown  `idl:"name:pUnkSink" json:"unknown_sink"`
+	This            *dcom.ORPCThis `idl:"name:This" json:"this"`
+	ConnectionPoint *rsmp.Unknown  `idl:"name:pUnkCP" json:"connection_point"`
+	Sink            *rsmp.Unknown  `idl:"name:pUnkSink" json:"sink"`
 }
 
 func (o *ConnectCallbackRequest) xxx_ToOp(ctx context.Context, op *xxx_ConnectCallbackOperation) *xxx_ConnectCallbackOperation {
@@ -407,8 +407,8 @@ func (o *ConnectCallbackRequest) xxx_ToOp(ctx context.Context, op *xxx_ConnectCa
 		return op
 	}
 	op.This = o.This
-	op.UnknownCreatePartition = o.UnknownCreatePartition
-	op.UnknownSink = o.UnknownSink
+	op.ConnectionPoint = o.ConnectionPoint
+	op.Sink = o.Sink
 	return op
 }
 
@@ -417,8 +417,8 @@ func (o *ConnectCallbackRequest) xxx_FromOp(ctx context.Context, op *xxx_Connect
 		return
 	}
 	o.This = op.This
-	o.UnknownCreatePartition = op.UnknownCreatePartition
-	o.UnknownSink = op.UnknownSink
+	o.ConnectionPoint = op.ConnectionPoint
+	o.Sink = op.Sink
 }
 func (o *ConnectCallbackRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)

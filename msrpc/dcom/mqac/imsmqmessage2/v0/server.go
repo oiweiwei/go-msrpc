@@ -26,7 +26,7 @@ var (
 )
 
 // IMSMQMessage2 server interface.
-type ImsmqMessage2Server interface {
+type Message2Server interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -35,10 +35,10 @@ type ImsmqMessage2Server interface {
 	GetClass(context.Context, *GetClassRequest) (*GetClassResponse, error)
 
 	// PrivLevel operation.
-	GetPrivLevel(context.Context, *GetPrivLevelRequest) (*GetPrivLevelResponse, error)
+	GetPrivacyLevel(context.Context, *GetPrivacyLevelRequest) (*GetPrivacyLevelResponse, error)
 
 	// PrivLevel operation.
-	SetPrivLevel(context.Context, *SetPrivLevelRequest) (*SetPrivLevelResponse, error)
+	SetPrivacyLevel(context.Context, *SetPrivacyLevelRequest) (*SetPrivacyLevelResponse, error)
 
 	// AuthLevel operation.
 	GetAuthLevel(context.Context, *GetAuthLevelRequest) (*GetAuthLevelResponse, error)
@@ -257,17 +257,17 @@ type ImsmqMessage2Server interface {
 	GetReceivedAuthenticationLevel(context.Context, *GetReceivedAuthenticationLevelRequest) (*GetReceivedAuthenticationLevelResponse, error)
 }
 
-func RegisterImsmqMessage2Server(conn dcerpc.Conn, o ImsmqMessage2Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqMessage2ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqMessage2SyntaxV0_0))...)
+func RegisterMessage2Server(conn dcerpc.Conn, o Message2Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewMessage2ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(Message2SyntaxV0_0))...)
 }
 
-func NewImsmqMessage2ServerHandle(o ImsmqMessage2Server) dcerpc.ServerHandle {
+func NewMessage2ServerHandle(o Message2Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqMessage2ServerHandle(ctx, o, opNum, r)
+		return Message2ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqMessage2ServerHandle(ctx context.Context, o ImsmqMessage2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func Message2ServerHandle(ctx context.Context, o Message2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -283,22 +283,22 @@ func ImsmqMessage2ServerHandle(ctx context.Context, o ImsmqMessage2Server, opNum
 		resp, err := o.GetClass(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 8: // PrivLevel
-		op := &xxx_GetPrivLevelOperation{}
+		op := &xxx_GetPrivacyLevelOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &GetPrivLevelRequest{}
+		req := &GetPrivacyLevelRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.GetPrivLevel(ctx, req)
+		resp, err := o.GetPrivacyLevel(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 9: // PrivLevel
-		op := &xxx_SetPrivLevelOperation{}
+		op := &xxx_SetPrivacyLevelOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &SetPrivLevelRequest{}
+		req := &SetPrivacyLevelRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.SetPrivLevel(ctx, req)
+		resp, err := o.SetPrivacyLevel(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 10: // AuthLevel
 		op := &xxx_GetAuthLevelOperation{}
@@ -953,234 +953,234 @@ func ImsmqMessage2ServerHandle(ctx context.Context, o ImsmqMessage2Server, opNum
 }
 
 // Unimplemented IMSMQMessage2
-type UnimplementedImsmqMessage2Server struct {
+type UnimplementedMessage2Server struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedImsmqMessage2Server) GetClass(context.Context, *GetClassRequest) (*GetClassResponse, error) {
+func (UnimplementedMessage2Server) GetClass(context.Context, *GetClassRequest) (*GetClassResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetPrivLevel(context.Context, *GetPrivLevelRequest) (*GetPrivLevelResponse, error) {
+func (UnimplementedMessage2Server) GetPrivacyLevel(context.Context, *GetPrivacyLevelRequest) (*GetPrivacyLevelResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetPrivLevel(context.Context, *SetPrivLevelRequest) (*SetPrivLevelResponse, error) {
+func (UnimplementedMessage2Server) SetPrivacyLevel(context.Context, *SetPrivacyLevelRequest) (*SetPrivacyLevelResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetAuthLevel(context.Context, *GetAuthLevelRequest) (*GetAuthLevelResponse, error) {
+func (UnimplementedMessage2Server) GetAuthLevel(context.Context, *GetAuthLevelRequest) (*GetAuthLevelResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetAuthLevel(context.Context, *SetAuthLevelRequest) (*SetAuthLevelResponse, error) {
+func (UnimplementedMessage2Server) SetAuthLevel(context.Context, *SetAuthLevelRequest) (*SetAuthLevelResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetIsAuthenticated(context.Context, *GetIsAuthenticatedRequest) (*GetIsAuthenticatedResponse, error) {
+func (UnimplementedMessage2Server) GetIsAuthenticated(context.Context, *GetIsAuthenticatedRequest) (*GetIsAuthenticatedResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetDelivery(context.Context, *GetDeliveryRequest) (*GetDeliveryResponse, error) {
+func (UnimplementedMessage2Server) GetDelivery(context.Context, *GetDeliveryRequest) (*GetDeliveryResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetDelivery(context.Context, *SetDeliveryRequest) (*SetDeliveryResponse, error) {
+func (UnimplementedMessage2Server) SetDelivery(context.Context, *SetDeliveryRequest) (*SetDeliveryResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetTrace(context.Context, *GetTraceRequest) (*GetTraceResponse, error) {
+func (UnimplementedMessage2Server) GetTrace(context.Context, *GetTraceRequest) (*GetTraceResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetTrace(context.Context, *SetTraceRequest) (*SetTraceResponse, error) {
+func (UnimplementedMessage2Server) SetTrace(context.Context, *SetTraceRequest) (*SetTraceResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetPriority(context.Context, *GetPriorityRequest) (*GetPriorityResponse, error) {
+func (UnimplementedMessage2Server) GetPriority(context.Context, *GetPriorityRequest) (*GetPriorityResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetPriority(context.Context, *SetPriorityRequest) (*SetPriorityResponse, error) {
+func (UnimplementedMessage2Server) SetPriority(context.Context, *SetPriorityRequest) (*SetPriorityResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetJournal(context.Context, *GetJournalRequest) (*GetJournalResponse, error) {
+func (UnimplementedMessage2Server) GetJournal(context.Context, *GetJournalRequest) (*GetJournalResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetJournal(context.Context, *SetJournalRequest) (*SetJournalResponse, error) {
+func (UnimplementedMessage2Server) SetJournal(context.Context, *SetJournalRequest) (*SetJournalResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetResponseQueueInfoV1(context.Context, *GetResponseQueueInfoV1Request) (*GetResponseQueueInfoV1Response, error) {
+func (UnimplementedMessage2Server) GetResponseQueueInfoV1(context.Context, *GetResponseQueueInfoV1Request) (*GetResponseQueueInfoV1Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetResponseQueueInfoV1(context.Context, *SetResponseQueueInfoV1Request) (*SetResponseQueueInfoV1Response, error) {
+func (UnimplementedMessage2Server) SetResponseQueueInfoV1(context.Context, *SetResponseQueueInfoV1Request) (*SetResponseQueueInfoV1Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetAppSpecific(context.Context, *GetAppSpecificRequest) (*GetAppSpecificResponse, error) {
+func (UnimplementedMessage2Server) GetAppSpecific(context.Context, *GetAppSpecificRequest) (*GetAppSpecificResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetAppSpecific(context.Context, *SetAppSpecificRequest) (*SetAppSpecificResponse, error) {
+func (UnimplementedMessage2Server) SetAppSpecific(context.Context, *SetAppSpecificRequest) (*SetAppSpecificResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetSourceMachineGUID(context.Context, *GetSourceMachineGUIDRequest) (*GetSourceMachineGUIDResponse, error) {
+func (UnimplementedMessage2Server) GetSourceMachineGUID(context.Context, *GetSourceMachineGUIDRequest) (*GetSourceMachineGUIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetBodyLength(context.Context, *GetBodyLengthRequest) (*GetBodyLengthResponse, error) {
+func (UnimplementedMessage2Server) GetBodyLength(context.Context, *GetBodyLengthRequest) (*GetBodyLengthResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetBody(context.Context, *GetBodyRequest) (*GetBodyResponse, error) {
+func (UnimplementedMessage2Server) GetBody(context.Context, *GetBodyRequest) (*GetBodyResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetBody(context.Context, *SetBodyRequest) (*SetBodyResponse, error) {
+func (UnimplementedMessage2Server) SetBody(context.Context, *SetBodyRequest) (*SetBodyResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetAdminQueueInfoV1(context.Context, *GetAdminQueueInfoV1Request) (*GetAdminQueueInfoV1Response, error) {
+func (UnimplementedMessage2Server) GetAdminQueueInfoV1(context.Context, *GetAdminQueueInfoV1Request) (*GetAdminQueueInfoV1Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetAdminQueueInfoV1(context.Context, *SetAdminQueueInfoV1Request) (*SetAdminQueueInfoV1Response, error) {
+func (UnimplementedMessage2Server) SetAdminQueueInfoV1(context.Context, *SetAdminQueueInfoV1Request) (*SetAdminQueueInfoV1Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetID(context.Context, *GetIDRequest) (*GetIDResponse, error) {
+func (UnimplementedMessage2Server) GetID(context.Context, *GetIDRequest) (*GetIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetCorrelationID(context.Context, *GetCorrelationIDRequest) (*GetCorrelationIDResponse, error) {
+func (UnimplementedMessage2Server) GetCorrelationID(context.Context, *GetCorrelationIDRequest) (*GetCorrelationIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetCorrelationID(context.Context, *SetCorrelationIDRequest) (*SetCorrelationIDResponse, error) {
+func (UnimplementedMessage2Server) SetCorrelationID(context.Context, *SetCorrelationIDRequest) (*SetCorrelationIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetAck(context.Context, *GetAckRequest) (*GetAckResponse, error) {
+func (UnimplementedMessage2Server) GetAck(context.Context, *GetAckRequest) (*GetAckResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetAck(context.Context, *SetAckRequest) (*SetAckResponse, error) {
+func (UnimplementedMessage2Server) SetAck(context.Context, *SetAckRequest) (*SetAckResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetLabel(context.Context, *GetLabelRequest) (*GetLabelResponse, error) {
+func (UnimplementedMessage2Server) GetLabel(context.Context, *GetLabelRequest) (*GetLabelResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetLabel(context.Context, *SetLabelRequest) (*SetLabelResponse, error) {
+func (UnimplementedMessage2Server) SetLabel(context.Context, *SetLabelRequest) (*SetLabelResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetMaxTimeToReachQueue(context.Context, *GetMaxTimeToReachQueueRequest) (*GetMaxTimeToReachQueueResponse, error) {
+func (UnimplementedMessage2Server) GetMaxTimeToReachQueue(context.Context, *GetMaxTimeToReachQueueRequest) (*GetMaxTimeToReachQueueResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetMaxTimeToReachQueue(context.Context, *SetMaxTimeToReachQueueRequest) (*SetMaxTimeToReachQueueResponse, error) {
+func (UnimplementedMessage2Server) SetMaxTimeToReachQueue(context.Context, *SetMaxTimeToReachQueueRequest) (*SetMaxTimeToReachQueueResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetMaxTimeToReceive(context.Context, *GetMaxTimeToReceiveRequest) (*GetMaxTimeToReceiveResponse, error) {
+func (UnimplementedMessage2Server) GetMaxTimeToReceive(context.Context, *GetMaxTimeToReceiveRequest) (*GetMaxTimeToReceiveResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetMaxTimeToReceive(context.Context, *SetMaxTimeToReceiveRequest) (*SetMaxTimeToReceiveResponse, error) {
+func (UnimplementedMessage2Server) SetMaxTimeToReceive(context.Context, *SetMaxTimeToReceiveRequest) (*SetMaxTimeToReceiveResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetHashAlgorithm(context.Context, *GetHashAlgorithmRequest) (*GetHashAlgorithmResponse, error) {
+func (UnimplementedMessage2Server) GetHashAlgorithm(context.Context, *GetHashAlgorithmRequest) (*GetHashAlgorithmResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetHashAlgorithm(context.Context, *SetHashAlgorithmRequest) (*SetHashAlgorithmResponse, error) {
+func (UnimplementedMessage2Server) SetHashAlgorithm(context.Context, *SetHashAlgorithmRequest) (*SetHashAlgorithmResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetEncryptAlgorithm(context.Context, *GetEncryptAlgorithmRequest) (*GetEncryptAlgorithmResponse, error) {
+func (UnimplementedMessage2Server) GetEncryptAlgorithm(context.Context, *GetEncryptAlgorithmRequest) (*GetEncryptAlgorithmResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetEncryptAlgorithm(context.Context, *SetEncryptAlgorithmRequest) (*SetEncryptAlgorithmResponse, error) {
+func (UnimplementedMessage2Server) SetEncryptAlgorithm(context.Context, *SetEncryptAlgorithmRequest) (*SetEncryptAlgorithmResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetSentTime(context.Context, *GetSentTimeRequest) (*GetSentTimeResponse, error) {
+func (UnimplementedMessage2Server) GetSentTime(context.Context, *GetSentTimeRequest) (*GetSentTimeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetArrivedTime(context.Context, *GetArrivedTimeRequest) (*GetArrivedTimeResponse, error) {
+func (UnimplementedMessage2Server) GetArrivedTime(context.Context, *GetArrivedTimeRequest) (*GetArrivedTimeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetDestinationQueueInfo(context.Context, *GetDestinationQueueInfoRequest) (*GetDestinationQueueInfoResponse, error) {
+func (UnimplementedMessage2Server) GetDestinationQueueInfo(context.Context, *GetDestinationQueueInfoRequest) (*GetDestinationQueueInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetSenderCertificate(context.Context, *GetSenderCertificateRequest) (*GetSenderCertificateResponse, error) {
+func (UnimplementedMessage2Server) GetSenderCertificate(context.Context, *GetSenderCertificateRequest) (*GetSenderCertificateResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetSenderCertificate(context.Context, *SetSenderCertificateRequest) (*SetSenderCertificateResponse, error) {
+func (UnimplementedMessage2Server) SetSenderCertificate(context.Context, *SetSenderCertificateRequest) (*SetSenderCertificateResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetSenderID(context.Context, *GetSenderIDRequest) (*GetSenderIDResponse, error) {
+func (UnimplementedMessage2Server) GetSenderID(context.Context, *GetSenderIDRequest) (*GetSenderIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetSenderIDType(context.Context, *GetSenderIDTypeRequest) (*GetSenderIDTypeResponse, error) {
+func (UnimplementedMessage2Server) GetSenderIDType(context.Context, *GetSenderIDTypeRequest) (*GetSenderIDTypeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetSenderIDType(context.Context, *SetSenderIDTypeRequest) (*SetSenderIDTypeResponse, error) {
+func (UnimplementedMessage2Server) SetSenderIDType(context.Context, *SetSenderIDTypeRequest) (*SetSenderIDTypeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) Send(context.Context, *SendRequest) (*SendResponse, error) {
+func (UnimplementedMessage2Server) Send(context.Context, *SendRequest) (*SendResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) AttachCurrentSecurityContext(context.Context, *AttachCurrentSecurityContextRequest) (*AttachCurrentSecurityContextResponse, error) {
+func (UnimplementedMessage2Server) AttachCurrentSecurityContext(context.Context, *AttachCurrentSecurityContextRequest) (*AttachCurrentSecurityContextResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetSenderVersion(context.Context, *GetSenderVersionRequest) (*GetSenderVersionResponse, error) {
+func (UnimplementedMessage2Server) GetSenderVersion(context.Context, *GetSenderVersionRequest) (*GetSenderVersionResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetExtension(context.Context, *GetExtensionRequest) (*GetExtensionResponse, error) {
+func (UnimplementedMessage2Server) GetExtension(context.Context, *GetExtensionRequest) (*GetExtensionResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetExtension(context.Context, *SetExtensionRequest) (*SetExtensionResponse, error) {
+func (UnimplementedMessage2Server) SetExtension(context.Context, *SetExtensionRequest) (*SetExtensionResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetConnectorTypeGUID(context.Context, *GetConnectorTypeGUIDRequest) (*GetConnectorTypeGUIDResponse, error) {
+func (UnimplementedMessage2Server) GetConnectorTypeGUID(context.Context, *GetConnectorTypeGUIDRequest) (*GetConnectorTypeGUIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetConnectorTypeGUID(context.Context, *SetConnectorTypeGUIDRequest) (*SetConnectorTypeGUIDResponse, error) {
+func (UnimplementedMessage2Server) SetConnectorTypeGUID(context.Context, *SetConnectorTypeGUIDRequest) (*SetConnectorTypeGUIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetTransactionStatusQueueInfo(context.Context, *GetTransactionStatusQueueInfoRequest) (*GetTransactionStatusQueueInfoResponse, error) {
+func (UnimplementedMessage2Server) GetTransactionStatusQueueInfo(context.Context, *GetTransactionStatusQueueInfoRequest) (*GetTransactionStatusQueueInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetDestinationSymmetricKey(context.Context, *GetDestinationSymmetricKeyRequest) (*GetDestinationSymmetricKeyResponse, error) {
+func (UnimplementedMessage2Server) GetDestinationSymmetricKey(context.Context, *GetDestinationSymmetricKeyRequest) (*GetDestinationSymmetricKeyResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetDestinationSymmetricKey(context.Context, *SetDestinationSymmetricKeyRequest) (*SetDestinationSymmetricKeyResponse, error) {
+func (UnimplementedMessage2Server) SetDestinationSymmetricKey(context.Context, *SetDestinationSymmetricKeyRequest) (*SetDestinationSymmetricKeyResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetSignature(context.Context, *GetSignatureRequest) (*GetSignatureResponse, error) {
+func (UnimplementedMessage2Server) GetSignature(context.Context, *GetSignatureRequest) (*GetSignatureResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetSignature(context.Context, *SetSignatureRequest) (*SetSignatureResponse, error) {
+func (UnimplementedMessage2Server) SetSignature(context.Context, *SetSignatureRequest) (*SetSignatureResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetAuthenticationProviderType(context.Context, *GetAuthenticationProviderTypeRequest) (*GetAuthenticationProviderTypeResponse, error) {
+func (UnimplementedMessage2Server) GetAuthenticationProviderType(context.Context, *GetAuthenticationProviderTypeRequest) (*GetAuthenticationProviderTypeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetAuthenticationProviderType(context.Context, *SetAuthenticationProviderTypeRequest) (*SetAuthenticationProviderTypeResponse, error) {
+func (UnimplementedMessage2Server) SetAuthenticationProviderType(context.Context, *SetAuthenticationProviderTypeRequest) (*SetAuthenticationProviderTypeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetAuthenticationProviderName(context.Context, *GetAuthenticationProviderNameRequest) (*GetAuthenticationProviderNameResponse, error) {
+func (UnimplementedMessage2Server) GetAuthenticationProviderName(context.Context, *GetAuthenticationProviderNameRequest) (*GetAuthenticationProviderNameResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetAuthenticationProviderName(context.Context, *SetAuthenticationProviderNameRequest) (*SetAuthenticationProviderNameResponse, error) {
+func (UnimplementedMessage2Server) SetAuthenticationProviderName(context.Context, *SetAuthenticationProviderNameRequest) (*SetAuthenticationProviderNameResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetSenderID(context.Context, *SetSenderIDRequest) (*SetSenderIDResponse, error) {
+func (UnimplementedMessage2Server) SetSenderID(context.Context, *SetSenderIDRequest) (*SetSenderIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetMessageClass(context.Context, *GetMessageClassRequest) (*GetMessageClassResponse, error) {
+func (UnimplementedMessage2Server) GetMessageClass(context.Context, *GetMessageClassRequest) (*GetMessageClassResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetMessageClass(context.Context, *SetMessageClassRequest) (*SetMessageClassResponse, error) {
+func (UnimplementedMessage2Server) SetMessageClass(context.Context, *SetMessageClassRequest) (*SetMessageClassResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+func (UnimplementedMessage2Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetTransactionID(context.Context, *GetTransactionIDRequest) (*GetTransactionIDResponse, error) {
+func (UnimplementedMessage2Server) GetTransactionID(context.Context, *GetTransactionIDRequest) (*GetTransactionIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetIsFirstInTransaction(context.Context, *GetIsFirstInTransactionRequest) (*GetIsFirstInTransactionResponse, error) {
+func (UnimplementedMessage2Server) GetIsFirstInTransaction(context.Context, *GetIsFirstInTransactionRequest) (*GetIsFirstInTransactionResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetIsLastInTransaction(context.Context, *GetIsLastInTransactionRequest) (*GetIsLastInTransactionResponse, error) {
+func (UnimplementedMessage2Server) GetIsLastInTransaction(context.Context, *GetIsLastInTransactionRequest) (*GetIsLastInTransactionResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetResponseQueueInfo(context.Context, *GetResponseQueueInfoRequest) (*GetResponseQueueInfoResponse, error) {
+func (UnimplementedMessage2Server) GetResponseQueueInfo(context.Context, *GetResponseQueueInfoRequest) (*GetResponseQueueInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetByRefResponseQueueInfo(context.Context, *SetByRefResponseQueueInfoRequest) (*SetByRefResponseQueueInfoResponse, error) {
+func (UnimplementedMessage2Server) SetByRefResponseQueueInfo(context.Context, *SetByRefResponseQueueInfoRequest) (*SetByRefResponseQueueInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetAdminQueueInfo(context.Context, *GetAdminQueueInfoRequest) (*GetAdminQueueInfoResponse, error) {
+func (UnimplementedMessage2Server) GetAdminQueueInfo(context.Context, *GetAdminQueueInfoRequest) (*GetAdminQueueInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) SetByRefAdminQueueInfo(context.Context, *SetByRefAdminQueueInfoRequest) (*SetByRefAdminQueueInfoResponse, error) {
+func (UnimplementedMessage2Server) SetByRefAdminQueueInfo(context.Context, *SetByRefAdminQueueInfoRequest) (*SetByRefAdminQueueInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqMessage2Server) GetReceivedAuthenticationLevel(context.Context, *GetReceivedAuthenticationLevelRequest) (*GetReceivedAuthenticationLevelResponse, error) {
+func (UnimplementedMessage2Server) GetReceivedAuthenticationLevel(context.Context, *GetReceivedAuthenticationLevelRequest) (*GetReceivedAuthenticationLevelResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqMessage2Server = (*UnimplementedImsmqMessage2Server)(nil)
+var _ Message2Server = (*UnimplementedMessage2Server)(nil)

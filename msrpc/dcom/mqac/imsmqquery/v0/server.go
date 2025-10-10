@@ -26,7 +26,7 @@ var (
 )
 
 // IMSMQQuery server interface.
-type ImsmqQueryServer interface {
+type QueryServer interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -35,17 +35,17 @@ type ImsmqQueryServer interface {
 	LookupQueue(context.Context, *LookupQueueRequest) (*LookupQueueResponse, error)
 }
 
-func RegisterImsmqQueryServer(conn dcerpc.Conn, o ImsmqQueryServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqQueryServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqQuerySyntaxV0_0))...)
+func RegisterQueryServer(conn dcerpc.Conn, o QueryServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewQueryServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(QuerySyntaxV0_0))...)
 }
 
-func NewImsmqQueryServerHandle(o ImsmqQueryServer) dcerpc.ServerHandle {
+func NewQueryServerHandle(o QueryServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqQueryServerHandle(ctx, o, opNum, r)
+		return QueryServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqQueryServerHandle(ctx context.Context, o ImsmqQueryServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func QueryServerHandle(ctx context.Context, o QueryServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -65,12 +65,12 @@ func ImsmqQueryServerHandle(ctx context.Context, o ImsmqQueryServer, opNum int, 
 }
 
 // Unimplemented IMSMQQuery
-type UnimplementedImsmqQueryServer struct {
+type UnimplementedQueryServer struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedImsmqQueryServer) LookupQueue(context.Context, *LookupQueueRequest) (*LookupQueueResponse, error) {
+func (UnimplementedQueryServer) LookupQueue(context.Context, *LookupQueueRequest) (*LookupQueueResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqQueryServer = (*UnimplementedImsmqQueryServer)(nil)
+var _ QueryServer = (*UnimplementedQueryServer)(nil)

@@ -26,7 +26,7 @@ var (
 )
 
 // IMSMQQueue4 server interface.
-type ImsmqQueue4Server interface {
+type Queue4Server interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -131,17 +131,17 @@ type ImsmqQueue4Server interface {
 	ReceiveByLookupIDAllowPeek(context.Context, *ReceiveByLookupIDAllowPeekRequest) (*ReceiveByLookupIDAllowPeekResponse, error)
 }
 
-func RegisterImsmqQueue4Server(conn dcerpc.Conn, o ImsmqQueue4Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqQueue4ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqQueue4SyntaxV0_0))...)
+func RegisterQueue4Server(conn dcerpc.Conn, o Queue4Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewQueue4ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(Queue4SyntaxV0_0))...)
 }
 
-func NewImsmqQueue4ServerHandle(o ImsmqQueue4Server) dcerpc.ServerHandle {
+func NewQueue4ServerHandle(o Queue4Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqQueue4ServerHandle(ctx, o, opNum, r)
+		return Queue4ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqQueue4ServerHandle(ctx context.Context, o ImsmqQueue4Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func Queue4ServerHandle(ctx context.Context, o Queue4Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -449,108 +449,108 @@ func ImsmqQueue4ServerHandle(ctx context.Context, o ImsmqQueue4Server, opNum int
 }
 
 // Unimplemented IMSMQQueue4
-type UnimplementedImsmqQueue4Server struct {
+type UnimplementedQueue4Server struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedImsmqQueue4Server) GetAccess(context.Context, *GetAccessRequest) (*GetAccessResponse, error) {
+func (UnimplementedQueue4Server) GetAccess(context.Context, *GetAccessRequest) (*GetAccessResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) GetShareMode(context.Context, *GetShareModeRequest) (*GetShareModeResponse, error) {
+func (UnimplementedQueue4Server) GetShareMode(context.Context, *GetShareModeRequest) (*GetShareModeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) GetQueueInfo(context.Context, *GetQueueInfoRequest) (*GetQueueInfoResponse, error) {
+func (UnimplementedQueue4Server) GetQueueInfo(context.Context, *GetQueueInfoRequest) (*GetQueueInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) GetHandle(context.Context, *GetHandleRequest) (*GetHandleResponse, error) {
+func (UnimplementedQueue4Server) GetHandle(context.Context, *GetHandleRequest) (*GetHandleResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) GetIsOpen(context.Context, *GetIsOpenRequest) (*GetIsOpenResponse, error) {
+func (UnimplementedQueue4Server) GetIsOpen(context.Context, *GetIsOpenRequest) (*GetIsOpenResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) Close(context.Context, *CloseRequest) (*CloseResponse, error) {
+func (UnimplementedQueue4Server) Close(context.Context, *CloseRequest) (*CloseResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) ReceiveV1(context.Context, *ReceiveV1Request) (*ReceiveV1Response, error) {
+func (UnimplementedQueue4Server) ReceiveV1(context.Context, *ReceiveV1Request) (*ReceiveV1Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) PeekV1(context.Context, *PeekV1Request) (*PeekV1Response, error) {
+func (UnimplementedQueue4Server) PeekV1(context.Context, *PeekV1Request) (*PeekV1Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) EnableNotification(context.Context, *EnableNotificationRequest) (*EnableNotificationResponse, error) {
+func (UnimplementedQueue4Server) EnableNotification(context.Context, *EnableNotificationRequest) (*EnableNotificationResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) Reset(context.Context, *ResetRequest) (*ResetResponse, error) {
+func (UnimplementedQueue4Server) Reset(context.Context, *ResetRequest) (*ResetResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) ReceiveCurrentV1(context.Context, *ReceiveCurrentV1Request) (*ReceiveCurrentV1Response, error) {
+func (UnimplementedQueue4Server) ReceiveCurrentV1(context.Context, *ReceiveCurrentV1Request) (*ReceiveCurrentV1Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) PeekNextV1(context.Context, *PeekNextV1Request) (*PeekNextV1Response, error) {
+func (UnimplementedQueue4Server) PeekNextV1(context.Context, *PeekNextV1Request) (*PeekNextV1Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) PeekCurrentV1(context.Context, *PeekCurrentV1Request) (*PeekCurrentV1Response, error) {
+func (UnimplementedQueue4Server) PeekCurrentV1(context.Context, *PeekCurrentV1Request) (*PeekCurrentV1Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) Receive(context.Context, *ReceiveRequest) (*ReceiveResponse, error) {
+func (UnimplementedQueue4Server) Receive(context.Context, *ReceiveRequest) (*ReceiveResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) Peek(context.Context, *PeekRequest) (*PeekResponse, error) {
+func (UnimplementedQueue4Server) Peek(context.Context, *PeekRequest) (*PeekResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) ReceiveCurrent(context.Context, *ReceiveCurrentRequest) (*ReceiveCurrentResponse, error) {
+func (UnimplementedQueue4Server) ReceiveCurrent(context.Context, *ReceiveCurrentRequest) (*ReceiveCurrentResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) PeekNext(context.Context, *PeekNextRequest) (*PeekNextResponse, error) {
+func (UnimplementedQueue4Server) PeekNext(context.Context, *PeekNextRequest) (*PeekNextResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) PeekCurrent(context.Context, *PeekCurrentRequest) (*PeekCurrentResponse, error) {
+func (UnimplementedQueue4Server) PeekCurrent(context.Context, *PeekCurrentRequest) (*PeekCurrentResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+func (UnimplementedQueue4Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) GetHandle2(context.Context, *GetHandle2Request) (*GetHandle2Response, error) {
+func (UnimplementedQueue4Server) GetHandle2(context.Context, *GetHandle2Request) (*GetHandle2Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) ReceiveByLookupID(context.Context, *ReceiveByLookupIDRequest) (*ReceiveByLookupIDResponse, error) {
+func (UnimplementedQueue4Server) ReceiveByLookupID(context.Context, *ReceiveByLookupIDRequest) (*ReceiveByLookupIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) ReceiveNextByLookupID(context.Context, *ReceiveNextByLookupIDRequest) (*ReceiveNextByLookupIDResponse, error) {
+func (UnimplementedQueue4Server) ReceiveNextByLookupID(context.Context, *ReceiveNextByLookupIDRequest) (*ReceiveNextByLookupIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) ReceivePreviousByLookupID(context.Context, *ReceivePreviousByLookupIDRequest) (*ReceivePreviousByLookupIDResponse, error) {
+func (UnimplementedQueue4Server) ReceivePreviousByLookupID(context.Context, *ReceivePreviousByLookupIDRequest) (*ReceivePreviousByLookupIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) ReceiveFirstByLookupID(context.Context, *ReceiveFirstByLookupIDRequest) (*ReceiveFirstByLookupIDResponse, error) {
+func (UnimplementedQueue4Server) ReceiveFirstByLookupID(context.Context, *ReceiveFirstByLookupIDRequest) (*ReceiveFirstByLookupIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) ReceiveLastByLookupID(context.Context, *ReceiveLastByLookupIDRequest) (*ReceiveLastByLookupIDResponse, error) {
+func (UnimplementedQueue4Server) ReceiveLastByLookupID(context.Context, *ReceiveLastByLookupIDRequest) (*ReceiveLastByLookupIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) PeekByLookupID(context.Context, *PeekByLookupIDRequest) (*PeekByLookupIDResponse, error) {
+func (UnimplementedQueue4Server) PeekByLookupID(context.Context, *PeekByLookupIDRequest) (*PeekByLookupIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) PeekNextByLookupID(context.Context, *PeekNextByLookupIDRequest) (*PeekNextByLookupIDResponse, error) {
+func (UnimplementedQueue4Server) PeekNextByLookupID(context.Context, *PeekNextByLookupIDRequest) (*PeekNextByLookupIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) PeekPreviousByLookupID(context.Context, *PeekPreviousByLookupIDRequest) (*PeekPreviousByLookupIDResponse, error) {
+func (UnimplementedQueue4Server) PeekPreviousByLookupID(context.Context, *PeekPreviousByLookupIDRequest) (*PeekPreviousByLookupIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) PeekFirstByLookupID(context.Context, *PeekFirstByLookupIDRequest) (*PeekFirstByLookupIDResponse, error) {
+func (UnimplementedQueue4Server) PeekFirstByLookupID(context.Context, *PeekFirstByLookupIDRequest) (*PeekFirstByLookupIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) PeekLastByLookupID(context.Context, *PeekLastByLookupIDRequest) (*PeekLastByLookupIDResponse, error) {
+func (UnimplementedQueue4Server) PeekLastByLookupID(context.Context, *PeekLastByLookupIDRequest) (*PeekLastByLookupIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) Purge(context.Context, *PurgeRequest) (*PurgeResponse, error) {
+func (UnimplementedQueue4Server) Purge(context.Context, *PurgeRequest) (*PurgeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) GetIsOpen2(context.Context, *GetIsOpen2Request) (*GetIsOpen2Response, error) {
+func (UnimplementedQueue4Server) GetIsOpen2(context.Context, *GetIsOpen2Request) (*GetIsOpen2Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueue4Server) ReceiveByLookupIDAllowPeek(context.Context, *ReceiveByLookupIDAllowPeekRequest) (*ReceiveByLookupIDAllowPeekResponse, error) {
+func (UnimplementedQueue4Server) ReceiveByLookupIDAllowPeek(context.Context, *ReceiveByLookupIDAllowPeekRequest) (*ReceiveByLookupIDAllowPeekResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqQueue4Server = (*UnimplementedImsmqQueue4Server)(nil)
+var _ Queue4Server = (*UnimplementedQueue4Server)(nil)

@@ -26,7 +26,7 @@ var (
 )
 
 // IWRMCalendar server interface.
-type IwrmCalendarServer interface {
+type CalendarServer interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -60,17 +60,17 @@ type IwrmCalendarServer interface {
 	GetServerTimeZone(context.Context, *GetServerTimeZoneRequest) (*GetServerTimeZoneResponse, error)
 }
 
-func RegisterIwrmCalendarServer(conn dcerpc.Conn, o IwrmCalendarServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewIwrmCalendarServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(IwrmCalendarSyntaxV0_0))...)
+func RegisterCalendarServer(conn dcerpc.Conn, o CalendarServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewCalendarServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(CalendarSyntaxV0_0))...)
 }
 
-func NewIwrmCalendarServerHandle(o IwrmCalendarServer) dcerpc.ServerHandle {
+func NewCalendarServerHandle(o CalendarServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return IwrmCalendarServerHandle(ctx, o, opNum, r)
+		return CalendarServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func IwrmCalendarServerHandle(ctx context.Context, o IwrmCalendarServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func CalendarServerHandle(ctx context.Context, o CalendarServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -207,51 +207,51 @@ func IwrmCalendarServerHandle(ctx context.Context, o IwrmCalendarServer, opNum i
 }
 
 // Unimplemented IWRMCalendar
-type UnimplementedIwrmCalendarServer struct {
+type UnimplementedCalendarServer struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedIwrmCalendarServer) GetCalendarInfo(context.Context, *GetCalendarInfoRequest) (*GetCalendarInfoResponse, error) {
+func (UnimplementedCalendarServer) GetCalendarInfo(context.Context, *GetCalendarInfoRequest) (*GetCalendarInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmCalendarServer) CreateCalendar(context.Context, *CreateCalendarRequest) (*CreateCalendarResponse, error) {
+func (UnimplementedCalendarServer) CreateCalendar(context.Context, *CreateCalendarRequest) (*CreateCalendarResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmCalendarServer) ModifyCalendar(context.Context, *ModifyCalendarRequest) (*ModifyCalendarResponse, error) {
+func (UnimplementedCalendarServer) ModifyCalendar(context.Context, *ModifyCalendarRequest) (*ModifyCalendarResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmCalendarServer) DeleteCalendar(context.Context, *DeleteCalendarRequest) (*DeleteCalendarResponse, error) {
+func (UnimplementedCalendarServer) DeleteCalendar(context.Context, *DeleteCalendarRequest) (*DeleteCalendarResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmCalendarServer) RenameCalendar(context.Context, *RenameCalendarRequest) (*RenameCalendarResponse, error) {
+func (UnimplementedCalendarServer) RenameCalendar(context.Context, *RenameCalendarRequest) (*RenameCalendarResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmCalendarServer) ComputeEvents(context.Context, *ComputeEventsRequest) (*ComputeEventsResponse, error) {
+func (UnimplementedCalendarServer) ComputeEvents(context.Context, *ComputeEventsRequest) (*ComputeEventsResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmCalendarServer) GetScheduleInfo(context.Context, *GetScheduleInfoRequest) (*GetScheduleInfoResponse, error) {
+func (UnimplementedCalendarServer) GetScheduleInfo(context.Context, *GetScheduleInfoRequest) (*GetScheduleInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmCalendarServer) CreateSchedule(context.Context, *CreateScheduleRequest) (*CreateScheduleResponse, error) {
+func (UnimplementedCalendarServer) CreateSchedule(context.Context, *CreateScheduleRequest) (*CreateScheduleResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmCalendarServer) ModifySchedule(context.Context, *ModifyScheduleRequest) (*ModifyScheduleResponse, error) {
+func (UnimplementedCalendarServer) ModifySchedule(context.Context, *ModifyScheduleRequest) (*ModifyScheduleResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmCalendarServer) DeleteSchedule(context.Context, *DeleteScheduleRequest) (*DeleteScheduleResponse, error) {
+func (UnimplementedCalendarServer) DeleteSchedule(context.Context, *DeleteScheduleRequest) (*DeleteScheduleResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmCalendarServer) RenameSchedule(context.Context, *RenameScheduleRequest) (*RenameScheduleResponse, error) {
+func (UnimplementedCalendarServer) RenameSchedule(context.Context, *RenameScheduleRequest) (*RenameScheduleResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmCalendarServer) MoveBeforeCalendar(context.Context, *MoveBeforeCalendarRequest) (*MoveBeforeCalendarResponse, error) {
+func (UnimplementedCalendarServer) MoveBeforeCalendar(context.Context, *MoveBeforeCalendarRequest) (*MoveBeforeCalendarResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmCalendarServer) MoveAfterCalendar(context.Context, *MoveAfterCalendarRequest) (*MoveAfterCalendarResponse, error) {
+func (UnimplementedCalendarServer) MoveAfterCalendar(context.Context, *MoveAfterCalendarRequest) (*MoveAfterCalendarResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmCalendarServer) GetServerTimeZone(context.Context, *GetServerTimeZoneRequest) (*GetServerTimeZoneResponse, error) {
+func (UnimplementedCalendarServer) GetServerTimeZone(context.Context, *GetServerTimeZoneRequest) (*GetServerTimeZoneResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ IwrmCalendarServer = (*UnimplementedIwrmCalendarServer)(nil)
+var _ CalendarServer = (*UnimplementedCalendarServer)(nil)

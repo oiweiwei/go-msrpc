@@ -36,15 +36,15 @@ var (
 
 var (
 	// ITpmVirtualSmartCardManagerStatusCallback interface identifier 1a1bb35f-abb8-451c-a1ae-33d98f1bef4a
-	TpmVirtualSmartCardManagerStatusCallbackIID = &dcom.IID{Data1: 0x1a1bb35f, Data2: 0xabb8, Data3: 0x451c, Data4: []byte{0xa1, 0xae, 0x33, 0xd9, 0x8f, 0x1b, 0xef, 0x4a}}
+	VirtualSmartCardManagerStatusCallbackIID = &dcom.IID{Data1: 0x1a1bb35f, Data2: 0xabb8, Data3: 0x451c, Data4: []byte{0xa1, 0xae, 0x33, 0xd9, 0x8f, 0x1b, 0xef, 0x4a}}
 	// Syntax UUID
-	TpmVirtualSmartCardManagerStatusCallbackSyntaxUUID = &uuid.UUID{TimeLow: 0x1a1bb35f, TimeMid: 0xabb8, TimeHiAndVersion: 0x451c, ClockSeqHiAndReserved: 0xa1, ClockSeqLow: 0xae, Node: [6]uint8{0x33, 0xd9, 0x8f, 0x1b, 0xef, 0x4a}}
+	VirtualSmartCardManagerStatusCallbackSyntaxUUID = &uuid.UUID{TimeLow: 0x1a1bb35f, TimeMid: 0xabb8, TimeHiAndVersion: 0x451c, ClockSeqHiAndReserved: 0xa1, ClockSeqLow: 0xae, Node: [6]uint8{0x33, 0xd9, 0x8f, 0x1b, 0xef, 0x4a}}
 	// Syntax ID
-	TpmVirtualSmartCardManagerStatusCallbackSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: TpmVirtualSmartCardManagerStatusCallbackSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	VirtualSmartCardManagerStatusCallbackSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: VirtualSmartCardManagerStatusCallbackSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // ITpmVirtualSmartCardManagerStatusCallback interface.
-type TpmVirtualSmartCardManagerStatusCallbackClient interface {
+type VirtualSmartCardManagerStatusCallbackClient interface {
 
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
@@ -60,20 +60,20 @@ type TpmVirtualSmartCardManagerStatusCallbackClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) TpmVirtualSmartCardManagerStatusCallbackClient
+	IPID(context.Context, *dcom.IPID) VirtualSmartCardManagerStatusCallbackClient
 }
 
-type xxx_DefaultTpmVirtualSmartCardManagerStatusCallbackClient struct {
+type xxx_DefaultVirtualSmartCardManagerStatusCallbackClient struct {
 	iunknown.UnknownClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultTpmVirtualSmartCardManagerStatusCallbackClient) Unknown() iunknown.UnknownClient {
+func (o *xxx_DefaultVirtualSmartCardManagerStatusCallbackClient) Unknown() iunknown.UnknownClient {
 	return o.UnknownClient
 }
 
-func (o *xxx_DefaultTpmVirtualSmartCardManagerStatusCallbackClient) ReportProgress(ctx context.Context, in *ReportProgressRequest, opts ...dcerpc.CallOption) (*ReportProgressResponse, error) {
+func (o *xxx_DefaultVirtualSmartCardManagerStatusCallbackClient) ReportProgress(ctx context.Context, in *ReportProgressRequest, opts ...dcerpc.CallOption) (*ReportProgressResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -93,7 +93,7 @@ func (o *xxx_DefaultTpmVirtualSmartCardManagerStatusCallbackClient) ReportProgre
 	return out, nil
 }
 
-func (o *xxx_DefaultTpmVirtualSmartCardManagerStatusCallbackClient) ReportError(ctx context.Context, in *ReportErrorRequest, opts ...dcerpc.CallOption) (*ReportErrorResponse, error) {
+func (o *xxx_DefaultVirtualSmartCardManagerStatusCallbackClient) ReportError(ctx context.Context, in *ReportErrorRequest, opts ...dcerpc.CallOption) (*ReportErrorResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -113,29 +113,29 @@ func (o *xxx_DefaultTpmVirtualSmartCardManagerStatusCallbackClient) ReportError(
 	return out, nil
 }
 
-func (o *xxx_DefaultTpmVirtualSmartCardManagerStatusCallbackClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultVirtualSmartCardManagerStatusCallbackClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultTpmVirtualSmartCardManagerStatusCallbackClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultVirtualSmartCardManagerStatusCallbackClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultTpmVirtualSmartCardManagerStatusCallbackClient) IPID(ctx context.Context, ipid *dcom.IPID) TpmVirtualSmartCardManagerStatusCallbackClient {
+func (o *xxx_DefaultVirtualSmartCardManagerStatusCallbackClient) IPID(ctx context.Context, ipid *dcom.IPID) VirtualSmartCardManagerStatusCallbackClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultTpmVirtualSmartCardManagerStatusCallbackClient{
+	return &xxx_DefaultVirtualSmartCardManagerStatusCallbackClient{
 		UnknownClient: o.UnknownClient.IPID(ctx, ipid),
 		cc:            o.cc,
 		ipid:          ipid,
 	}
 }
 
-func NewTpmVirtualSmartCardManagerStatusCallbackClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (TpmVirtualSmartCardManagerStatusCallbackClient, error) {
+func NewVirtualSmartCardManagerStatusCallbackClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (VirtualSmartCardManagerStatusCallbackClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(TpmVirtualSmartCardManagerStatusCallbackSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(VirtualSmartCardManagerStatusCallbackSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -148,7 +148,7 @@ func NewTpmVirtualSmartCardManagerStatusCallbackClient(ctx context.Context, cc d
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultTpmVirtualSmartCardManagerStatusCallbackClient{
+	return &xxx_DefaultVirtualSmartCardManagerStatusCallbackClient{
 		UnknownClient: base,
 		cc:            cc,
 		ipid:          ipid,
@@ -157,10 +157,10 @@ func NewTpmVirtualSmartCardManagerStatusCallbackClient(ctx context.Context, cc d
 
 // xxx_ReportProgressOperation structure represents the ReportProgress operation
 type xxx_ReportProgressOperation struct {
-	This   *dcom.ORPCThis         `idl:"name:This" json:"this"`
-	That   *dcom.ORPCThat         `idl:"name:That" json:"that"`
-	Status tpmvsc.TpmvscmgrStatus `idl:"name:Status" json:"status"`
-	Return int32                  `idl:"name:Return" json:"return"`
+	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Status tpmvsc.Status  `idl:"name:Status" json:"status"`
+	Return int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_ReportProgressOperation) OpNum() int { return 3 }
@@ -290,8 +290,8 @@ func (o *xxx_ReportProgressOperation) UnmarshalNDRResponse(ctx context.Context, 
 // ReportProgressRequest structure represents the ReportProgress operation request
 type ReportProgressRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This   *dcom.ORPCThis         `idl:"name:This" json:"this"`
-	Status tpmvsc.TpmvscmgrStatus `idl:"name:Status" json:"status"`
+	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
+	Status tpmvsc.Status  `idl:"name:Status" json:"status"`
 }
 
 func (o *ReportProgressRequest) xxx_ToOp(ctx context.Context, op *xxx_ReportProgressOperation) *xxx_ReportProgressOperation {
@@ -366,10 +366,10 @@ func (o *ReportProgressResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // xxx_ReportErrorOperation structure represents the ReportError operation
 type xxx_ReportErrorOperation struct {
-	This   *dcom.ORPCThis        `idl:"name:This" json:"this"`
-	That   *dcom.ORPCThat        `idl:"name:That" json:"that"`
-	Error  tpmvsc.TpmvscmgrError `idl:"name:Error" json:"error"`
-	Return int32                 `idl:"name:Return" json:"return"`
+	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Error  tpmvsc.Error   `idl:"name:Error" json:"error"`
+	Return int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_ReportErrorOperation) OpNum() int { return 4 }
@@ -499,8 +499,8 @@ func (o *xxx_ReportErrorOperation) UnmarshalNDRResponse(ctx context.Context, w n
 // ReportErrorRequest structure represents the ReportError operation request
 type ReportErrorRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis        `idl:"name:This" json:"this"`
-	Error tpmvsc.TpmvscmgrError `idl:"name:Error" json:"error"`
+	This  *dcom.ORPCThis `idl:"name:This" json:"this"`
+	Error tpmvsc.Error   `idl:"name:Error" json:"error"`
 }
 
 func (o *ReportErrorRequest) xxx_ToOp(ctx context.Context, op *xxx_ReportErrorOperation) *xxx_ReportErrorOperation {

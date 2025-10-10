@@ -52,10 +52,10 @@ type Client interface {
 	RemoteUnknown2() iremunknown2.RemoteUnknown2Client
 
 	// Package specific interfaces
-	TpmVirtualSmartCardManagerStatusCallback() itpmvirtualsmartcardmanagerstatuscallback.TpmVirtualSmartCardManagerStatusCallbackClient
-	TpmVirtualSmartCardManager() itpmvirtualsmartcardmanager.TpmVirtualSmartCardManagerClient
-	TpmVirtualSmartCardManager2() itpmvirtualsmartcardmanager2.TpmVirtualSmartCardManager2Client
-	TpmVirtualSmartCardManager3() itpmvirtualsmartcardmanager3.TpmVirtualSmartCardManager3Client
+	VirtualSmartCardManagerStatusCallback() itpmvirtualsmartcardmanagerstatuscallback.VirtualSmartCardManagerStatusCallbackClient
+	VirtualSmartCardManager() itpmvirtualsmartcardmanager.VirtualSmartCardManagerClient
+	VirtualSmartCardManager2() itpmvirtualsmartcardmanager2.VirtualSmartCardManager2Client
+	VirtualSmartCardManager3() itpmvirtualsmartcardmanager3.VirtualSmartCardManager3Client
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
@@ -70,10 +70,10 @@ type xxx_DefaultClient struct {
 
 	dcomClient dcom_client.Client
 
-	tpmVirtualSmartCardManagerStatusCallback itpmvirtualsmartcardmanagerstatuscallback.TpmVirtualSmartCardManagerStatusCallbackClient
-	tpmVirtualSmartCardManager               itpmvirtualsmartcardmanager.TpmVirtualSmartCardManagerClient
-	tpmVirtualSmartCardManager2              itpmvirtualsmartcardmanager2.TpmVirtualSmartCardManager2Client
-	tpmVirtualSmartCardManager3              itpmvirtualsmartcardmanager3.TpmVirtualSmartCardManager3Client
+	virtualSmartCardManagerStatusCallback itpmvirtualsmartcardmanagerstatuscallback.VirtualSmartCardManagerStatusCallbackClient
+	virtualSmartCardManager               itpmvirtualsmartcardmanager.VirtualSmartCardManagerClient
+	virtualSmartCardManager2              itpmvirtualsmartcardmanager2.VirtualSmartCardManager2Client
+	virtualSmartCardManager3              itpmvirtualsmartcardmanager3.VirtualSmartCardManager3Client
 }
 
 func (o *xxx_DefaultClient) RemoteUnknown() iremunknown.RemoteUnknownClient {
@@ -84,29 +84,29 @@ func (o *xxx_DefaultClient) RemoteUnknown2() iremunknown2.RemoteUnknown2Client {
 	return o.dcomClient.RemoteUnknown2()
 }
 
-func (o *xxx_DefaultClient) TpmVirtualSmartCardManagerStatusCallback() itpmvirtualsmartcardmanagerstatuscallback.TpmVirtualSmartCardManagerStatusCallbackClient {
-	return o.tpmVirtualSmartCardManagerStatusCallback
+func (o *xxx_DefaultClient) VirtualSmartCardManagerStatusCallback() itpmvirtualsmartcardmanagerstatuscallback.VirtualSmartCardManagerStatusCallbackClient {
+	return o.virtualSmartCardManagerStatusCallback
 }
 
-func (o *xxx_DefaultClient) TpmVirtualSmartCardManager() itpmvirtualsmartcardmanager.TpmVirtualSmartCardManagerClient {
-	return o.tpmVirtualSmartCardManager
+func (o *xxx_DefaultClient) VirtualSmartCardManager() itpmvirtualsmartcardmanager.VirtualSmartCardManagerClient {
+	return o.virtualSmartCardManager
 }
 
-func (o *xxx_DefaultClient) TpmVirtualSmartCardManager2() itpmvirtualsmartcardmanager2.TpmVirtualSmartCardManager2Client {
-	return o.tpmVirtualSmartCardManager2
+func (o *xxx_DefaultClient) VirtualSmartCardManager2() itpmvirtualsmartcardmanager2.VirtualSmartCardManager2Client {
+	return o.virtualSmartCardManager2
 }
 
-func (o *xxx_DefaultClient) TpmVirtualSmartCardManager3() itpmvirtualsmartcardmanager3.TpmVirtualSmartCardManager3Client {
-	return o.tpmVirtualSmartCardManager3
+func (o *xxx_DefaultClient) VirtualSmartCardManager3() itpmvirtualsmartcardmanager3.VirtualSmartCardManager3Client {
+	return o.virtualSmartCardManager3
 }
 
 func NewClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Client, error) {
 
 	opts = append(opts,
-		dcerpc.WithAbstractSyntax(itpmvirtualsmartcardmanagerstatuscallback.TpmVirtualSmartCardManagerStatusCallbackSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(itpmvirtualsmartcardmanager.TpmVirtualSmartCardManagerSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(itpmvirtualsmartcardmanager2.TpmVirtualSmartCardManager2SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(itpmvirtualsmartcardmanager3.TpmVirtualSmartCardManager3SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(itpmvirtualsmartcardmanagerstatuscallback.VirtualSmartCardManagerStatusCallbackSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(itpmvirtualsmartcardmanager.VirtualSmartCardManagerSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(itpmvirtualsmartcardmanager2.VirtualSmartCardManager2SyntaxV0_0),
+		dcerpc.WithAbstractSyntax(itpmvirtualsmartcardmanager3.VirtualSmartCardManager3SyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iremunknown.RemoteUnknownSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iremunknown2.RemoteUnknown2SyntaxV0_0),
 	)
@@ -129,41 +129,41 @@ func NewClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Clie
 		return nil, fmt.Errorf("sub-conn is not supported")
 	}
 
-	tpmVirtualSmartCardManagerStatusCallbackSubConn, err := sub.SubConn(ctx, itpmvirtualsmartcardmanagerstatuscallback.TpmVirtualSmartCardManagerStatusCallbackSyntaxV0_0)
+	virtualSmartCardManagerStatusCallbackSubConn, err := sub.SubConn(ctx, itpmvirtualsmartcardmanagerstatuscallback.VirtualSmartCardManagerStatusCallbackSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		tpmVirtualSmartCardManagerStatusCallbackSubConn = sub
+		virtualSmartCardManagerStatusCallbackSubConn = sub
 	}
 
-	o.tpmVirtualSmartCardManagerStatusCallback, err = itpmvirtualsmartcardmanagerstatuscallback.NewTpmVirtualSmartCardManagerStatusCallbackClient(ctx, tpmVirtualSmartCardManagerStatusCallbackSubConn, append(opts, dcerpc.WithNoBind(tpmVirtualSmartCardManagerStatusCallbackSubConn))...)
+	o.virtualSmartCardManagerStatusCallback, err = itpmvirtualsmartcardmanagerstatuscallback.NewVirtualSmartCardManagerStatusCallbackClient(ctx, virtualSmartCardManagerStatusCallbackSubConn, append(opts, dcerpc.WithNoBind(virtualSmartCardManagerStatusCallbackSubConn))...)
 
-	tpmVirtualSmartCardManagerSubConn, err := sub.SubConn(ctx, itpmvirtualsmartcardmanager.TpmVirtualSmartCardManagerSyntaxV0_0)
+	virtualSmartCardManagerSubConn, err := sub.SubConn(ctx, itpmvirtualsmartcardmanager.VirtualSmartCardManagerSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		tpmVirtualSmartCardManagerSubConn = sub
+		virtualSmartCardManagerSubConn = sub
 	}
 
-	o.tpmVirtualSmartCardManager, err = itpmvirtualsmartcardmanager.NewTpmVirtualSmartCardManagerClient(ctx, tpmVirtualSmartCardManagerSubConn, append(opts, dcerpc.WithNoBind(tpmVirtualSmartCardManagerSubConn))...)
+	o.virtualSmartCardManager, err = itpmvirtualsmartcardmanager.NewVirtualSmartCardManagerClient(ctx, virtualSmartCardManagerSubConn, append(opts, dcerpc.WithNoBind(virtualSmartCardManagerSubConn))...)
 
-	tpmVirtualSmartCardManager2SubConn, err := sub.SubConn(ctx, itpmvirtualsmartcardmanager2.TpmVirtualSmartCardManager2SyntaxV0_0)
+	virtualSmartCardManager2SubConn, err := sub.SubConn(ctx, itpmvirtualsmartcardmanager2.VirtualSmartCardManager2SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		tpmVirtualSmartCardManager2SubConn = sub
+		virtualSmartCardManager2SubConn = sub
 	}
 
-	o.tpmVirtualSmartCardManager2, err = itpmvirtualsmartcardmanager2.NewTpmVirtualSmartCardManager2Client(ctx, tpmVirtualSmartCardManager2SubConn, append(opts, dcerpc.WithNoBind(tpmVirtualSmartCardManager2SubConn))...)
+	o.virtualSmartCardManager2, err = itpmvirtualsmartcardmanager2.NewVirtualSmartCardManager2Client(ctx, virtualSmartCardManager2SubConn, append(opts, dcerpc.WithNoBind(virtualSmartCardManager2SubConn))...)
 
-	tpmVirtualSmartCardManager3SubConn, err := sub.SubConn(ctx, itpmvirtualsmartcardmanager3.TpmVirtualSmartCardManager3SyntaxV0_0)
+	virtualSmartCardManager3SubConn, err := sub.SubConn(ctx, itpmvirtualsmartcardmanager3.VirtualSmartCardManager3SyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		tpmVirtualSmartCardManager3SubConn = sub
+		virtualSmartCardManager3SubConn = sub
 	}
 
-	o.tpmVirtualSmartCardManager3, err = itpmvirtualsmartcardmanager3.NewTpmVirtualSmartCardManager3Client(ctx, tpmVirtualSmartCardManager3SubConn, append(opts, dcerpc.WithNoBind(tpmVirtualSmartCardManager3SubConn))...)
+	o.virtualSmartCardManager3, err = itpmvirtualsmartcardmanager3.NewVirtualSmartCardManager3Client(ctx, virtualSmartCardManager3SubConn, append(opts, dcerpc.WithNoBind(virtualSmartCardManager3SubConn))...)
 	return o, nil
 }
 
@@ -180,11 +180,11 @@ func (o *xxx_DefaultClient) IPID(ctx context.Context, ipid *dcom.IPID) Client {
 		ipid = &dcom.IPID{}
 	}
 	return &xxx_DefaultClient{
-		dcomClient:                               o.dcomClient.IPID(ctx, ipid),
-		tpmVirtualSmartCardManagerStatusCallback: o.tpmVirtualSmartCardManagerStatusCallback.IPID(ctx, ipid),
-		tpmVirtualSmartCardManager:               o.tpmVirtualSmartCardManager.IPID(ctx, ipid),
-		tpmVirtualSmartCardManager2:              o.tpmVirtualSmartCardManager2.IPID(ctx, ipid),
-		tpmVirtualSmartCardManager3:              o.tpmVirtualSmartCardManager3.IPID(ctx, ipid),
-		cc:                                       o.cc,
+		dcomClient:                            o.dcomClient.IPID(ctx, ipid),
+		virtualSmartCardManagerStatusCallback: o.virtualSmartCardManagerStatusCallback.IPID(ctx, ipid),
+		virtualSmartCardManager:               o.virtualSmartCardManager.IPID(ctx, ipid),
+		virtualSmartCardManager2:              o.virtualSmartCardManager2.IPID(ctx, ipid),
+		virtualSmartCardManager3:              o.virtualSmartCardManager3.IPID(ctx, ipid),
+		cc:                                    o.cc,
 	}
 }

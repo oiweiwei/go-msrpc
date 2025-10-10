@@ -34,24 +34,24 @@ var (
 
 var (
 	// IRemoteICFICSConfig interface identifier 66a2db22-d706-11d0-a37b-00c04fc9da04
-	RemoteIcficsConfigIID = &dcom.IID{Data1: 0x66a2db22, Data2: 0xd706, Data3: 0x11d0, Data4: []byte{0xa3, 0x7b, 0x00, 0xc0, 0x4f, 0xc9, 0xda, 0x04}}
+	RemoteICFICSConfigIID = &dcom.IID{Data1: 0x66a2db22, Data2: 0xd706, Data3: 0x11d0, Data4: []byte{0xa3, 0x7b, 0x00, 0xc0, 0x4f, 0xc9, 0xda, 0x04}}
 	// Syntax UUID
-	RemoteIcficsConfigSyntaxUUID = &uuid.UUID{TimeLow: 0x66a2db22, TimeMid: 0xd706, TimeHiAndVersion: 0x11d0, ClockSeqHiAndReserved: 0xa3, ClockSeqLow: 0x7b, Node: [6]uint8{0x0, 0xc0, 0x4f, 0xc9, 0xda, 0x4}}
+	RemoteICFICSConfigSyntaxUUID = &uuid.UUID{TimeLow: 0x66a2db22, TimeMid: 0xd706, TimeHiAndVersion: 0x11d0, ClockSeqHiAndReserved: 0xa3, ClockSeqLow: 0x7b, Node: [6]uint8{0x0, 0xc0, 0x4f, 0xc9, 0xda, 0x4}}
 	// Syntax ID
-	RemoteIcficsConfigSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: RemoteIcficsConfigSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	RemoteICFICSConfigSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: RemoteICFICSConfigSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IRemoteICFICSConfig interface.
-type RemoteIcficsConfigClient interface {
+type RemoteICFICSConfigClient interface {
 
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
 
 	// GetIcfEnabled operation.
-	GetIcfEnabled(context.Context, *GetIcfEnabledRequest, ...dcerpc.CallOption) (*GetIcfEnabledResponse, error)
+	GetICFEnabled(context.Context, *GetICFEnabledRequest, ...dcerpc.CallOption) (*GetICFEnabledResponse, error)
 
 	// GetIcsEnabled operation.
-	GetIcsEnabled(context.Context, *GetIcsEnabledRequest, ...dcerpc.CallOption) (*GetIcsEnabledResponse, error)
+	GetICSEnabled(context.Context, *GetICSEnabledRequest, ...dcerpc.CallOption) (*GetICSEnabledResponse, error)
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
@@ -60,20 +60,20 @@ type RemoteIcficsConfigClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) RemoteIcficsConfigClient
+	IPID(context.Context, *dcom.IPID) RemoteICFICSConfigClient
 }
 
-type xxx_DefaultRemoteIcficsConfigClient struct {
+type xxx_DefaultRemoteICFICSConfigClient struct {
 	iunknown.UnknownClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultRemoteIcficsConfigClient) Unknown() iunknown.UnknownClient {
+func (o *xxx_DefaultRemoteICFICSConfigClient) Unknown() iunknown.UnknownClient {
 	return o.UnknownClient
 }
 
-func (o *xxx_DefaultRemoteIcficsConfigClient) GetIcfEnabled(ctx context.Context, in *GetIcfEnabledRequest, opts ...dcerpc.CallOption) (*GetIcfEnabledResponse, error) {
+func (o *xxx_DefaultRemoteICFICSConfigClient) GetICFEnabled(ctx context.Context, in *GetICFEnabledRequest, opts ...dcerpc.CallOption) (*GetICFEnabledResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -85,7 +85,7 @@ func (o *xxx_DefaultRemoteIcficsConfigClient) GetIcfEnabled(ctx context.Context,
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &GetIcfEnabledResponse{}
+	out := &GetICFEnabledResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -93,7 +93,7 @@ func (o *xxx_DefaultRemoteIcficsConfigClient) GetIcfEnabled(ctx context.Context,
 	return out, nil
 }
 
-func (o *xxx_DefaultRemoteIcficsConfigClient) GetIcsEnabled(ctx context.Context, in *GetIcsEnabledRequest, opts ...dcerpc.CallOption) (*GetIcsEnabledResponse, error) {
+func (o *xxx_DefaultRemoteICFICSConfigClient) GetICSEnabled(ctx context.Context, in *GetICSEnabledRequest, opts ...dcerpc.CallOption) (*GetICSEnabledResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -105,7 +105,7 @@ func (o *xxx_DefaultRemoteIcficsConfigClient) GetIcsEnabled(ctx context.Context,
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &GetIcsEnabledResponse{}
+	out := &GetICSEnabledResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -113,29 +113,29 @@ func (o *xxx_DefaultRemoteIcficsConfigClient) GetIcsEnabled(ctx context.Context,
 	return out, nil
 }
 
-func (o *xxx_DefaultRemoteIcficsConfigClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultRemoteICFICSConfigClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultRemoteIcficsConfigClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultRemoteICFICSConfigClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultRemoteIcficsConfigClient) IPID(ctx context.Context, ipid *dcom.IPID) RemoteIcficsConfigClient {
+func (o *xxx_DefaultRemoteICFICSConfigClient) IPID(ctx context.Context, ipid *dcom.IPID) RemoteICFICSConfigClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultRemoteIcficsConfigClient{
+	return &xxx_DefaultRemoteICFICSConfigClient{
 		UnknownClient: o.UnknownClient.IPID(ctx, ipid),
 		cc:            o.cc,
 		ipid:          ipid,
 	}
 }
 
-func NewRemoteIcficsConfigClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (RemoteIcficsConfigClient, error) {
+func NewRemoteICFICSConfigClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (RemoteICFICSConfigClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(RemoteIcficsConfigSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(RemoteICFICSConfigSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -148,26 +148,26 @@ func NewRemoteIcficsConfigClient(ctx context.Context, cc dcerpc.Conn, opts ...dc
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultRemoteIcficsConfigClient{
+	return &xxx_DefaultRemoteICFICSConfigClient{
 		UnknownClient: base,
 		cc:            cc,
 		ipid:          ipid,
 	}, nil
 }
 
-// xxx_GetIcfEnabledOperation structure represents the GetIcfEnabled operation
-type xxx_GetIcfEnabledOperation struct {
+// xxx_GetICFEnabledOperation structure represents the GetIcfEnabled operation
+type xxx_GetICFEnabledOperation struct {
 	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
 	Status bool           `idl:"name:status" json:"status"`
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_GetIcfEnabledOperation) OpNum() int { return 3 }
+func (o *xxx_GetICFEnabledOperation) OpNum() int { return 3 }
 
-func (o *xxx_GetIcfEnabledOperation) OpName() string { return "/IRemoteICFICSConfig/v0/GetIcfEnabled" }
+func (o *xxx_GetICFEnabledOperation) OpName() string { return "/IRemoteICFICSConfig/v0/GetIcfEnabled" }
 
-func (o *xxx_GetIcfEnabledOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetICFEnabledOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -176,7 +176,7 @@ func (o *xxx_GetIcfEnabledOperation) xxx_PrepareRequestPayload(ctx context.Conte
 	return nil
 }
 
-func (o *xxx_GetIcfEnabledOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetICFEnabledOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -198,7 +198,7 @@ func (o *xxx_GetIcfEnabledOperation) MarshalNDRRequest(ctx context.Context, w nd
 	return nil
 }
 
-func (o *xxx_GetIcfEnabledOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetICFEnabledOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -214,7 +214,7 @@ func (o *xxx_GetIcfEnabledOperation) UnmarshalNDRRequest(ctx context.Context, w 
 	return nil
 }
 
-func (o *xxx_GetIcfEnabledOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetICFEnabledOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -223,7 +223,7 @@ func (o *xxx_GetIcfEnabledOperation) xxx_PrepareResponsePayload(ctx context.Cont
 	return nil
 }
 
-func (o *xxx_GetIcfEnabledOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetICFEnabledOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -263,7 +263,7 @@ func (o *xxx_GetIcfEnabledOperation) MarshalNDRResponse(ctx context.Context, w n
 	return nil
 }
 
-func (o *xxx_GetIcfEnabledOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetICFEnabledOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -293,15 +293,15 @@ func (o *xxx_GetIcfEnabledOperation) UnmarshalNDRResponse(ctx context.Context, w
 	return nil
 }
 
-// GetIcfEnabledRequest structure represents the GetIcfEnabled operation request
-type GetIcfEnabledRequest struct {
+// GetICFEnabledRequest structure represents the GetIcfEnabled operation request
+type GetICFEnabledRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetIcfEnabledRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIcfEnabledOperation) *xxx_GetIcfEnabledOperation {
+func (o *GetICFEnabledRequest) xxx_ToOp(ctx context.Context, op *xxx_GetICFEnabledOperation) *xxx_GetICFEnabledOperation {
 	if op == nil {
-		op = &xxx_GetIcfEnabledOperation{}
+		op = &xxx_GetICFEnabledOperation{}
 	}
 	if o == nil {
 		return op
@@ -310,17 +310,17 @@ func (o *GetIcfEnabledRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIcfEnabl
 	return op
 }
 
-func (o *GetIcfEnabledRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIcfEnabledOperation) {
+func (o *GetICFEnabledRequest) xxx_FromOp(ctx context.Context, op *xxx_GetICFEnabledOperation) {
 	if o == nil {
 		return
 	}
 	o.This = op.This
 }
-func (o *GetIcfEnabledRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetICFEnabledRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *GetIcfEnabledRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetIcfEnabledOperation{}
+func (o *GetICFEnabledRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetICFEnabledOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -328,8 +328,8 @@ func (o *GetIcfEnabledRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
-// GetIcfEnabledResponse structure represents the GetIcfEnabled operation response
-type GetIcfEnabledResponse struct {
+// GetICFEnabledResponse structure represents the GetIcfEnabled operation response
+type GetICFEnabledResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
 	Status bool           `idl:"name:status" json:"status"`
@@ -337,9 +337,9 @@ type GetIcfEnabledResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetIcfEnabledResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIcfEnabledOperation) *xxx_GetIcfEnabledOperation {
+func (o *GetICFEnabledResponse) xxx_ToOp(ctx context.Context, op *xxx_GetICFEnabledOperation) *xxx_GetICFEnabledOperation {
 	if op == nil {
-		op = &xxx_GetIcfEnabledOperation{}
+		op = &xxx_GetICFEnabledOperation{}
 	}
 	if o == nil {
 		return op
@@ -350,7 +350,7 @@ func (o *GetIcfEnabledResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIcfEnab
 	return op
 }
 
-func (o *GetIcfEnabledResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIcfEnabledOperation) {
+func (o *GetICFEnabledResponse) xxx_FromOp(ctx context.Context, op *xxx_GetICFEnabledOperation) {
 	if o == nil {
 		return
 	}
@@ -358,11 +358,11 @@ func (o *GetIcfEnabledResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIcfEn
 	o.Status = op.Status
 	o.Return = op.Return
 }
-func (o *GetIcfEnabledResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetICFEnabledResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *GetIcfEnabledResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetIcfEnabledOperation{}
+func (o *GetICFEnabledResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetICFEnabledOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -370,19 +370,19 @@ func (o *GetIcfEnabledResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 	return nil
 }
 
-// xxx_GetIcsEnabledOperation structure represents the GetIcsEnabled operation
-type xxx_GetIcsEnabledOperation struct {
+// xxx_GetICSEnabledOperation structure represents the GetIcsEnabled operation
+type xxx_GetICSEnabledOperation struct {
 	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
 	Status bool           `idl:"name:status" json:"status"`
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_GetIcsEnabledOperation) OpNum() int { return 4 }
+func (o *xxx_GetICSEnabledOperation) OpNum() int { return 4 }
 
-func (o *xxx_GetIcsEnabledOperation) OpName() string { return "/IRemoteICFICSConfig/v0/GetIcsEnabled" }
+func (o *xxx_GetICSEnabledOperation) OpName() string { return "/IRemoteICFICSConfig/v0/GetIcsEnabled" }
 
-func (o *xxx_GetIcsEnabledOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetICSEnabledOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -391,7 +391,7 @@ func (o *xxx_GetIcsEnabledOperation) xxx_PrepareRequestPayload(ctx context.Conte
 	return nil
 }
 
-func (o *xxx_GetIcsEnabledOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetICSEnabledOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -413,7 +413,7 @@ func (o *xxx_GetIcsEnabledOperation) MarshalNDRRequest(ctx context.Context, w nd
 	return nil
 }
 
-func (o *xxx_GetIcsEnabledOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetICSEnabledOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -429,7 +429,7 @@ func (o *xxx_GetIcsEnabledOperation) UnmarshalNDRRequest(ctx context.Context, w 
 	return nil
 }
 
-func (o *xxx_GetIcsEnabledOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetICSEnabledOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -438,7 +438,7 @@ func (o *xxx_GetIcsEnabledOperation) xxx_PrepareResponsePayload(ctx context.Cont
 	return nil
 }
 
-func (o *xxx_GetIcsEnabledOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetICSEnabledOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -478,7 +478,7 @@ func (o *xxx_GetIcsEnabledOperation) MarshalNDRResponse(ctx context.Context, w n
 	return nil
 }
 
-func (o *xxx_GetIcsEnabledOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetICSEnabledOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -508,15 +508,15 @@ func (o *xxx_GetIcsEnabledOperation) UnmarshalNDRResponse(ctx context.Context, w
 	return nil
 }
 
-// GetIcsEnabledRequest structure represents the GetIcsEnabled operation request
-type GetIcsEnabledRequest struct {
+// GetICSEnabledRequest structure represents the GetIcsEnabled operation request
+type GetICSEnabledRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetIcsEnabledRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIcsEnabledOperation) *xxx_GetIcsEnabledOperation {
+func (o *GetICSEnabledRequest) xxx_ToOp(ctx context.Context, op *xxx_GetICSEnabledOperation) *xxx_GetICSEnabledOperation {
 	if op == nil {
-		op = &xxx_GetIcsEnabledOperation{}
+		op = &xxx_GetICSEnabledOperation{}
 	}
 	if o == nil {
 		return op
@@ -525,17 +525,17 @@ func (o *GetIcsEnabledRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIcsEnabl
 	return op
 }
 
-func (o *GetIcsEnabledRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIcsEnabledOperation) {
+func (o *GetICSEnabledRequest) xxx_FromOp(ctx context.Context, op *xxx_GetICSEnabledOperation) {
 	if o == nil {
 		return
 	}
 	o.This = op.This
 }
-func (o *GetIcsEnabledRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetICSEnabledRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *GetIcsEnabledRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetIcsEnabledOperation{}
+func (o *GetICSEnabledRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetICSEnabledOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -543,8 +543,8 @@ func (o *GetIcsEnabledRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
-// GetIcsEnabledResponse structure represents the GetIcsEnabled operation response
-type GetIcsEnabledResponse struct {
+// GetICSEnabledResponse structure represents the GetIcsEnabled operation response
+type GetICSEnabledResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
 	Status bool           `idl:"name:status" json:"status"`
@@ -552,9 +552,9 @@ type GetIcsEnabledResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetIcsEnabledResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIcsEnabledOperation) *xxx_GetIcsEnabledOperation {
+func (o *GetICSEnabledResponse) xxx_ToOp(ctx context.Context, op *xxx_GetICSEnabledOperation) *xxx_GetICSEnabledOperation {
 	if op == nil {
-		op = &xxx_GetIcsEnabledOperation{}
+		op = &xxx_GetICSEnabledOperation{}
 	}
 	if o == nil {
 		return op
@@ -565,7 +565,7 @@ func (o *GetIcsEnabledResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIcsEnab
 	return op
 }
 
-func (o *GetIcsEnabledResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIcsEnabledOperation) {
+func (o *GetICSEnabledResponse) xxx_FromOp(ctx context.Context, op *xxx_GetICSEnabledOperation) {
 	if o == nil {
 		return
 	}
@@ -573,11 +573,11 @@ func (o *GetIcsEnabledResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIcsEn
 	o.Status = op.Status
 	o.Return = op.Return
 }
-func (o *GetIcsEnabledResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetICSEnabledResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *GetIcsEnabledResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetIcsEnabledOperation{}
+func (o *GetICSEnabledResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetICSEnabledOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

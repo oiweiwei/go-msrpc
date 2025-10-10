@@ -39,7 +39,7 @@ type UpdateServiceServer interface {
 
 	GetIsManaged(context.Context, *GetIsManagedRequest) (*GetIsManagedResponse, error)
 
-	GetIsRegisteredWithAu(context.Context, *GetIsRegisteredWithAuRequest) (*GetIsRegisteredWithAuResponse, error)
+	GetIsRegisteredWithAU(context.Context, *GetIsRegisteredWithAURequest) (*GetIsRegisteredWithAUResponse, error)
 
 	GetIssueDate(context.Context, *GetIssueDateRequest) (*GetIssueDateResponse, error)
 
@@ -51,7 +51,7 @@ type UpdateServiceServer interface {
 
 	GetIsScanPackageService(context.Context, *GetIsScanPackageServiceRequest) (*GetIsScanPackageServiceResponse, error)
 
-	GetCanRegisterWithAu(context.Context, *GetCanRegisterWithAuRequest) (*GetCanRegisterWithAuResponse, error)
+	GetCanRegisterWithAU(context.Context, *GetCanRegisterWithAURequest) (*GetCanRegisterWithAUResponse, error)
 
 	GetServiceURL(context.Context, *GetServiceURLRequest) (*GetServiceURLResponse, error)
 
@@ -111,13 +111,13 @@ func UpdateServiceServerHandle(ctx context.Context, o UpdateServiceServer, opNum
 		resp, err := o.GetIsManaged(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 11: // IsRegisteredWithAU
-		op := &xxx_GetIsRegisteredWithAuOperation{}
+		op := &xxx_GetIsRegisteredWithAUOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &GetIsRegisteredWithAuRequest{}
+		req := &GetIsRegisteredWithAURequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.GetIsRegisteredWithAu(ctx, req)
+		resp, err := o.GetIsRegisteredWithAU(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 12: // IssueDate
 		op := &xxx_GetIssueDateOperation{}
@@ -165,13 +165,13 @@ func UpdateServiceServerHandle(ctx context.Context, o UpdateServiceServer, opNum
 		resp, err := o.GetIsScanPackageService(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 17: // CanRegisterWithAU
-		op := &xxx_GetCanRegisterWithAuOperation{}
+		op := &xxx_GetCanRegisterWithAUOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &GetCanRegisterWithAuRequest{}
+		req := &GetCanRegisterWithAURequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.GetCanRegisterWithAu(ctx, req)
+		resp, err := o.GetCanRegisterWithAU(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 18: // ServiceUrl
 		op := &xxx_GetServiceURLOperation{}
@@ -212,7 +212,7 @@ func (UnimplementedUpdateServiceServer) GetExpirationDate(context.Context, *GetE
 func (UnimplementedUpdateServiceServer) GetIsManaged(context.Context, *GetIsManagedRequest) (*GetIsManagedResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedUpdateServiceServer) GetIsRegisteredWithAu(context.Context, *GetIsRegisteredWithAuRequest) (*GetIsRegisteredWithAuResponse, error) {
+func (UnimplementedUpdateServiceServer) GetIsRegisteredWithAU(context.Context, *GetIsRegisteredWithAURequest) (*GetIsRegisteredWithAUResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 func (UnimplementedUpdateServiceServer) GetIssueDate(context.Context, *GetIssueDateRequest) (*GetIssueDateResponse, error) {
@@ -230,7 +230,7 @@ func (UnimplementedUpdateServiceServer) GetServiceID(context.Context, *GetServic
 func (UnimplementedUpdateServiceServer) GetIsScanPackageService(context.Context, *GetIsScanPackageServiceRequest) (*GetIsScanPackageServiceResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedUpdateServiceServer) GetCanRegisterWithAu(context.Context, *GetCanRegisterWithAuRequest) (*GetCanRegisterWithAuResponse, error) {
+func (UnimplementedUpdateServiceServer) GetCanRegisterWithAU(context.Context, *GetCanRegisterWithAURequest) (*GetCanRegisterWithAUResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 func (UnimplementedUpdateServiceServer) GetServiceURL(context.Context, *GetServiceURLRequest) (*GetServiceURLResponse, error) {

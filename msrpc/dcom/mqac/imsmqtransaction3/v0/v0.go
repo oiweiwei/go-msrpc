@@ -36,18 +36,18 @@ var (
 
 var (
 	// IMSMQTransaction3 interface identifier eba96b13-2168-11d3-898c-00e02c074f6b
-	ImsmqTransaction3IID = &dcom.IID{Data1: 0xeba96b13, Data2: 0x2168, Data3: 0x11d3, Data4: []byte{0x89, 0x8c, 0x00, 0xe0, 0x2c, 0x07, 0x4f, 0x6b}}
+	Transaction3IID = &dcom.IID{Data1: 0xeba96b13, Data2: 0x2168, Data3: 0x11d3, Data4: []byte{0x89, 0x8c, 0x00, 0xe0, 0x2c, 0x07, 0x4f, 0x6b}}
 	// Syntax UUID
-	ImsmqTransaction3SyntaxUUID = &uuid.UUID{TimeLow: 0xeba96b13, TimeMid: 0x2168, TimeHiAndVersion: 0x11d3, ClockSeqHiAndReserved: 0x89, ClockSeqLow: 0x8c, Node: [6]uint8{0x0, 0xe0, 0x2c, 0x7, 0x4f, 0x6b}}
+	Transaction3SyntaxUUID = &uuid.UUID{TimeLow: 0xeba96b13, TimeMid: 0x2168, TimeHiAndVersion: 0x11d3, ClockSeqHiAndReserved: 0x89, ClockSeqLow: 0x8c, Node: [6]uint8{0x0, 0xe0, 0x2c, 0x7, 0x4f, 0x6b}}
 	// Syntax ID
-	ImsmqTransaction3SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ImsmqTransaction3SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	Transaction3SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: Transaction3SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IMSMQTransaction3 interface.
-type ImsmqTransaction3Client interface {
+type Transaction3Client interface {
 
 	// IMSMQTransaction2 retrieval method.
-	ImsmqTransaction2() imsmqtransaction2.ImsmqTransaction2Client
+	Transaction2() imsmqtransaction2.Transaction2Client
 
 	// ITransaction operation.
 	GetITransaction(context.Context, *GetITransactionRequest, ...dcerpc.CallOption) (*GetITransactionResponse, error)
@@ -59,20 +59,20 @@ type ImsmqTransaction3Client interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) ImsmqTransaction3Client
+	IPID(context.Context, *dcom.IPID) Transaction3Client
 }
 
-type xxx_DefaultImsmqTransaction3Client struct {
-	imsmqtransaction2.ImsmqTransaction2Client
+type xxx_DefaultTransaction3Client struct {
+	imsmqtransaction2.Transaction2Client
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultImsmqTransaction3Client) ImsmqTransaction2() imsmqtransaction2.ImsmqTransaction2Client {
-	return o.ImsmqTransaction2Client
+func (o *xxx_DefaultTransaction3Client) Transaction2() imsmqtransaction2.Transaction2Client {
+	return o.Transaction2Client
 }
 
-func (o *xxx_DefaultImsmqTransaction3Client) GetITransaction(ctx context.Context, in *GetITransactionRequest, opts ...dcerpc.CallOption) (*GetITransactionResponse, error) {
+func (o *xxx_DefaultTransaction3Client) GetITransaction(ctx context.Context, in *GetITransactionRequest, opts ...dcerpc.CallOption) (*GetITransactionResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -92,34 +92,34 @@ func (o *xxx_DefaultImsmqTransaction3Client) GetITransaction(ctx context.Context
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqTransaction3Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultTransaction3Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultImsmqTransaction3Client) Conn() dcerpc.Conn {
+func (o *xxx_DefaultTransaction3Client) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultImsmqTransaction3Client) IPID(ctx context.Context, ipid *dcom.IPID) ImsmqTransaction3Client {
+func (o *xxx_DefaultTransaction3Client) IPID(ctx context.Context, ipid *dcom.IPID) Transaction3Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultImsmqTransaction3Client{
-		ImsmqTransaction2Client: o.ImsmqTransaction2Client.IPID(ctx, ipid),
-		cc:                      o.cc,
-		ipid:                    ipid,
+	return &xxx_DefaultTransaction3Client{
+		Transaction2Client: o.Transaction2Client.IPID(ctx, ipid),
+		cc:                 o.cc,
+		ipid:               ipid,
 	}
 }
 
-func NewImsmqTransaction3Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ImsmqTransaction3Client, error) {
+func NewTransaction3Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Transaction3Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ImsmqTransaction3SyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(Transaction3SyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
 	}
-	base, err := imsmqtransaction2.NewImsmqTransaction2Client(ctx, cc, append(opts, dcom.Superclass(cc))...)
+	base, err := imsmqtransaction2.NewTransaction2Client(ctx, cc, append(opts, dcom.Superclass(cc))...)
 	if err != nil {
 		return nil, err
 	}
@@ -127,19 +127,19 @@ func NewImsmqTransaction3Client(ctx context.Context, cc dcerpc.Conn, opts ...dce
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultImsmqTransaction3Client{
-		ImsmqTransaction2Client: base,
-		cc:                      cc,
-		ipid:                    ipid,
+	return &xxx_DefaultTransaction3Client{
+		Transaction2Client: base,
+		cc:                 cc,
+		ipid:               ipid,
 	}, nil
 }
 
 // xxx_GetITransactionOperation structure represents the ITransaction operation
 type xxx_GetITransactionOperation struct {
-	This             *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That             *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PvarITransaction *oaut.Variant  `idl:"name:pvarITransaction" json:"pvar_i_transaction"`
-	Return           int32          `idl:"name:Return" json:"return"`
+	This         *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
+	ITransaction *oaut.Variant  `idl:"name:pvarITransaction" json:"i_transaction"`
+	Return       int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetITransactionOperation) OpNum() int { return 12 }
@@ -223,10 +223,10 @@ func (o *xxx_GetITransactionOperation) MarshalNDRResponse(ctx context.Context, w
 	}
 	// pvarITransaction {out, retval} (1:{pointer=ref}*(2))(2:{alias=VARIANT}*(1))(3:{alias=_VARIANT}(struct))
 	{
-		if o.PvarITransaction != nil {
+		if o.ITransaction != nil {
 			_ptr_pvarITransaction := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PvarITransaction != nil {
-					if err := o.PvarITransaction.MarshalNDR(ctx, w); err != nil {
+				if o.ITransaction != nil {
+					if err := o.ITransaction.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -236,7 +236,7 @@ func (o *xxx_GetITransactionOperation) MarshalNDRResponse(ctx context.Context, w
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PvarITransaction, _ptr_pvarITransaction); err != nil {
+			if err := w.WritePointer(&o.ITransaction, _ptr_pvarITransaction); err != nil {
 				return err
 			}
 		} else {
@@ -273,16 +273,16 @@ func (o *xxx_GetITransactionOperation) UnmarshalNDRResponse(ctx context.Context,
 	// pvarITransaction {out, retval} (1:{pointer=ref}*(2))(2:{alias=VARIANT,pointer=ref}*(1))(3:{alias=_VARIANT}(struct))
 	{
 		_ptr_pvarITransaction := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PvarITransaction == nil {
-				o.PvarITransaction = &oaut.Variant{}
+			if o.ITransaction == nil {
+				o.ITransaction = &oaut.Variant{}
 			}
-			if err := o.PvarITransaction.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.ITransaction.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pvarITransaction := func(ptr interface{}) { o.PvarITransaction = *ptr.(**oaut.Variant) }
-		if err := w.ReadPointer(&o.PvarITransaction, _s_pvarITransaction, _ptr_pvarITransaction); err != nil {
+		_s_pvarITransaction := func(ptr interface{}) { o.ITransaction = *ptr.(**oaut.Variant) }
+		if err := w.ReadPointer(&o.ITransaction, _s_pvarITransaction, _ptr_pvarITransaction); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -336,8 +336,8 @@ func (o *GetITransactionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // GetITransactionResponse structure represents the ITransaction operation response
 type GetITransactionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That             *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PvarITransaction *oaut.Variant  `idl:"name:pvarITransaction" json:"pvar_i_transaction"`
+	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
+	ITransaction *oaut.Variant  `idl:"name:pvarITransaction" json:"i_transaction"`
 	// Return: The ITransaction return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -350,7 +350,7 @@ func (o *GetITransactionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetITran
 		return op
 	}
 	op.That = o.That
-	op.PvarITransaction = o.PvarITransaction
+	op.ITransaction = o.ITransaction
 	op.Return = o.Return
 	return op
 }
@@ -360,7 +360,7 @@ func (o *GetITransactionResponse) xxx_FromOp(ctx context.Context, op *xxx_GetITr
 		return
 	}
 	o.That = op.That
-	o.PvarITransaction = op.PvarITransaction
+	o.ITransaction = op.ITransaction
 	o.Return = op.Return
 }
 func (o *GetITransactionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {

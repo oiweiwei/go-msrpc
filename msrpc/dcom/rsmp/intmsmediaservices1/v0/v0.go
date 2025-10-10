@@ -38,15 +38,15 @@ var (
 
 var (
 	// INtmsMediaServices1 interface identifier d02e4be0-3419-11d1-8fb1-00a024cb6019
-	NTMSMediaServices1IID = &dcom.IID{Data1: 0xd02e4be0, Data2: 0x3419, Data3: 0x11d1, Data4: []byte{0x8f, 0xb1, 0x00, 0xa0, 0x24, 0xcb, 0x60, 0x19}}
+	MediaServices1IID = &dcom.IID{Data1: 0xd02e4be0, Data2: 0x3419, Data3: 0x11d1, Data4: []byte{0x8f, 0xb1, 0x00, 0xa0, 0x24, 0xcb, 0x60, 0x19}}
 	// Syntax UUID
-	NTMSMediaServices1SyntaxUUID = &uuid.UUID{TimeLow: 0xd02e4be0, TimeMid: 0x3419, TimeHiAndVersion: 0x11d1, ClockSeqHiAndReserved: 0x8f, ClockSeqLow: 0xb1, Node: [6]uint8{0x0, 0xa0, 0x24, 0xcb, 0x60, 0x19}}
+	MediaServices1SyntaxUUID = &uuid.UUID{TimeLow: 0xd02e4be0, TimeMid: 0x3419, TimeHiAndVersion: 0x11d1, ClockSeqHiAndReserved: 0x8f, ClockSeqLow: 0xb1, Node: [6]uint8{0x0, 0xa0, 0x24, 0xcb, 0x60, 0x19}}
 	// Syntax ID
-	NTMSMediaServices1SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: NTMSMediaServices1SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	MediaServices1SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: MediaServices1SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // INtmsMediaServices1 interface.
-type NTMSMediaServices1Client interface {
+type MediaServices1Client interface {
 
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
@@ -95,20 +95,20 @@ type NTMSMediaServices1Client interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) NTMSMediaServices1Client
+	IPID(context.Context, *dcom.IPID) MediaServices1Client
 }
 
-type xxx_DefaultNTMSMediaServices1Client struct {
+type xxx_DefaultMediaServices1Client struct {
 	iunknown.UnknownClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) Unknown() iunknown.UnknownClient {
+func (o *xxx_DefaultMediaServices1Client) Unknown() iunknown.UnknownClient {
 	return o.UnknownClient
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) MountNTMSMedia(ctx context.Context, in *MountNTMSMediaRequest, opts ...dcerpc.CallOption) (*MountNTMSMediaResponse, error) {
+func (o *xxx_DefaultMediaServices1Client) MountNTMSMedia(ctx context.Context, in *MountNTMSMediaRequest, opts ...dcerpc.CallOption) (*MountNTMSMediaResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -128,7 +128,7 @@ func (o *xxx_DefaultNTMSMediaServices1Client) MountNTMSMedia(ctx context.Context
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) DismountNTMSMedia(ctx context.Context, in *DismountNTMSMediaRequest, opts ...dcerpc.CallOption) (*DismountNTMSMediaResponse, error) {
+func (o *xxx_DefaultMediaServices1Client) DismountNTMSMedia(ctx context.Context, in *DismountNTMSMediaRequest, opts ...dcerpc.CallOption) (*DismountNTMSMediaResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -148,7 +148,7 @@ func (o *xxx_DefaultNTMSMediaServices1Client) DismountNTMSMedia(ctx context.Cont
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) AllocateNTMSMedia(ctx context.Context, in *AllocateNTMSMediaRequest, opts ...dcerpc.CallOption) (*AllocateNTMSMediaResponse, error) {
+func (o *xxx_DefaultMediaServices1Client) AllocateNTMSMedia(ctx context.Context, in *AllocateNTMSMediaRequest, opts ...dcerpc.CallOption) (*AllocateNTMSMediaResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -168,7 +168,7 @@ func (o *xxx_DefaultNTMSMediaServices1Client) AllocateNTMSMedia(ctx context.Cont
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) DeallocateNTMSMedia(ctx context.Context, in *DeallocateNTMSMediaRequest, opts ...dcerpc.CallOption) (*DeallocateNTMSMediaResponse, error) {
+func (o *xxx_DefaultMediaServices1Client) DeallocateNTMSMedia(ctx context.Context, in *DeallocateNTMSMediaRequest, opts ...dcerpc.CallOption) (*DeallocateNTMSMediaResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -188,7 +188,7 @@ func (o *xxx_DefaultNTMSMediaServices1Client) DeallocateNTMSMedia(ctx context.Co
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) SwapNTMSMedia(ctx context.Context, in *SwapNTMSMediaRequest, opts ...dcerpc.CallOption) (*SwapNTMSMediaResponse, error) {
+func (o *xxx_DefaultMediaServices1Client) SwapNTMSMedia(ctx context.Context, in *SwapNTMSMediaRequest, opts ...dcerpc.CallOption) (*SwapNTMSMediaResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -208,7 +208,7 @@ func (o *xxx_DefaultNTMSMediaServices1Client) SwapNTMSMedia(ctx context.Context,
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) DecommissionNTMSMedia(ctx context.Context, in *DecommissionNTMSMediaRequest, opts ...dcerpc.CallOption) (*DecommissionNTMSMediaResponse, error) {
+func (o *xxx_DefaultMediaServices1Client) DecommissionNTMSMedia(ctx context.Context, in *DecommissionNTMSMediaRequest, opts ...dcerpc.CallOption) (*DecommissionNTMSMediaResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -228,7 +228,7 @@ func (o *xxx_DefaultNTMSMediaServices1Client) DecommissionNTMSMedia(ctx context.
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) SetNTMSMediaComplete(ctx context.Context, in *SetNTMSMediaCompleteRequest, opts ...dcerpc.CallOption) (*SetNTMSMediaCompleteResponse, error) {
+func (o *xxx_DefaultMediaServices1Client) SetNTMSMediaComplete(ctx context.Context, in *SetNTMSMediaCompleteRequest, opts ...dcerpc.CallOption) (*SetNTMSMediaCompleteResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -248,7 +248,7 @@ func (o *xxx_DefaultNTMSMediaServices1Client) SetNTMSMediaComplete(ctx context.C
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) DeleteNTMSMedia(ctx context.Context, in *DeleteNTMSMediaRequest, opts ...dcerpc.CallOption) (*DeleteNTMSMediaResponse, error) {
+func (o *xxx_DefaultMediaServices1Client) DeleteNTMSMedia(ctx context.Context, in *DeleteNTMSMediaRequest, opts ...dcerpc.CallOption) (*DeleteNTMSMediaResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -268,7 +268,7 @@ func (o *xxx_DefaultNTMSMediaServices1Client) DeleteNTMSMedia(ctx context.Contex
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) CreateNTMSMediaPoolA(ctx context.Context, in *CreateNTMSMediaPoolARequest, opts ...dcerpc.CallOption) (*CreateNTMSMediaPoolAResponse, error) {
+func (o *xxx_DefaultMediaServices1Client) CreateNTMSMediaPoolA(ctx context.Context, in *CreateNTMSMediaPoolARequest, opts ...dcerpc.CallOption) (*CreateNTMSMediaPoolAResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -288,7 +288,7 @@ func (o *xxx_DefaultNTMSMediaServices1Client) CreateNTMSMediaPoolA(ctx context.C
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) CreateNTMSMediaPoolW(ctx context.Context, in *CreateNTMSMediaPoolWRequest, opts ...dcerpc.CallOption) (*CreateNTMSMediaPoolWResponse, error) {
+func (o *xxx_DefaultMediaServices1Client) CreateNTMSMediaPoolW(ctx context.Context, in *CreateNTMSMediaPoolWRequest, opts ...dcerpc.CallOption) (*CreateNTMSMediaPoolWResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -308,7 +308,7 @@ func (o *xxx_DefaultNTMSMediaServices1Client) CreateNTMSMediaPoolW(ctx context.C
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) GetNTMSMediaPoolNameA(ctx context.Context, in *GetNTMSMediaPoolNameARequest, opts ...dcerpc.CallOption) (*GetNTMSMediaPoolNameAResponse, error) {
+func (o *xxx_DefaultMediaServices1Client) GetNTMSMediaPoolNameA(ctx context.Context, in *GetNTMSMediaPoolNameARequest, opts ...dcerpc.CallOption) (*GetNTMSMediaPoolNameAResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -328,7 +328,7 @@ func (o *xxx_DefaultNTMSMediaServices1Client) GetNTMSMediaPoolNameA(ctx context.
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) GetNTMSMediaPoolNameW(ctx context.Context, in *GetNTMSMediaPoolNameWRequest, opts ...dcerpc.CallOption) (*GetNTMSMediaPoolNameWResponse, error) {
+func (o *xxx_DefaultMediaServices1Client) GetNTMSMediaPoolNameW(ctx context.Context, in *GetNTMSMediaPoolNameWRequest, opts ...dcerpc.CallOption) (*GetNTMSMediaPoolNameWResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -348,7 +348,7 @@ func (o *xxx_DefaultNTMSMediaServices1Client) GetNTMSMediaPoolNameW(ctx context.
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) MoveToNTMSMediaPool(ctx context.Context, in *MoveToNTMSMediaPoolRequest, opts ...dcerpc.CallOption) (*MoveToNTMSMediaPoolResponse, error) {
+func (o *xxx_DefaultMediaServices1Client) MoveToNTMSMediaPool(ctx context.Context, in *MoveToNTMSMediaPoolRequest, opts ...dcerpc.CallOption) (*MoveToNTMSMediaPoolResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -368,7 +368,7 @@ func (o *xxx_DefaultNTMSMediaServices1Client) MoveToNTMSMediaPool(ctx context.Co
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) DeleteNTMSMediaPool(ctx context.Context, in *DeleteNTMSMediaPoolRequest, opts ...dcerpc.CallOption) (*DeleteNTMSMediaPoolResponse, error) {
+func (o *xxx_DefaultMediaServices1Client) DeleteNTMSMediaPool(ctx context.Context, in *DeleteNTMSMediaPoolRequest, opts ...dcerpc.CallOption) (*DeleteNTMSMediaPoolResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -388,7 +388,7 @@ func (o *xxx_DefaultNTMSMediaServices1Client) DeleteNTMSMediaPool(ctx context.Co
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) AddNTMSMediaType(ctx context.Context, in *AddNTMSMediaTypeRequest, opts ...dcerpc.CallOption) (*AddNTMSMediaTypeResponse, error) {
+func (o *xxx_DefaultMediaServices1Client) AddNTMSMediaType(ctx context.Context, in *AddNTMSMediaTypeRequest, opts ...dcerpc.CallOption) (*AddNTMSMediaTypeResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -408,7 +408,7 @@ func (o *xxx_DefaultNTMSMediaServices1Client) AddNTMSMediaType(ctx context.Conte
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) DeleteNTMSMediaType(ctx context.Context, in *DeleteNTMSMediaTypeRequest, opts ...dcerpc.CallOption) (*DeleteNTMSMediaTypeResponse, error) {
+func (o *xxx_DefaultMediaServices1Client) DeleteNTMSMediaType(ctx context.Context, in *DeleteNTMSMediaTypeRequest, opts ...dcerpc.CallOption) (*DeleteNTMSMediaTypeResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -428,7 +428,7 @@ func (o *xxx_DefaultNTMSMediaServices1Client) DeleteNTMSMediaType(ctx context.Co
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) ChangeNTMSMediaType(ctx context.Context, in *ChangeNTMSMediaTypeRequest, opts ...dcerpc.CallOption) (*ChangeNTMSMediaTypeResponse, error) {
+func (o *xxx_DefaultMediaServices1Client) ChangeNTMSMediaType(ctx context.Context, in *ChangeNTMSMediaTypeRequest, opts ...dcerpc.CallOption) (*ChangeNTMSMediaTypeResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -448,29 +448,29 @@ func (o *xxx_DefaultNTMSMediaServices1Client) ChangeNTMSMediaType(ctx context.Co
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultMediaServices1Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) Conn() dcerpc.Conn {
+func (o *xxx_DefaultMediaServices1Client) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultNTMSMediaServices1Client) IPID(ctx context.Context, ipid *dcom.IPID) NTMSMediaServices1Client {
+func (o *xxx_DefaultMediaServices1Client) IPID(ctx context.Context, ipid *dcom.IPID) MediaServices1Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultNTMSMediaServices1Client{
+	return &xxx_DefaultMediaServices1Client{
 		UnknownClient: o.UnknownClient.IPID(ctx, ipid),
 		cc:            o.cc,
 		ipid:          ipid,
 	}
 }
 
-func NewNTMSMediaServices1Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (NTMSMediaServices1Client, error) {
+func NewMediaServices1Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (MediaServices1Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(NTMSMediaServices1SyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(MediaServices1SyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -483,7 +483,7 @@ func NewNTMSMediaServices1Client(ctx context.Context, cc dcerpc.Conn, opts ...dc
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultNTMSMediaServices1Client{
+	return &xxx_DefaultMediaServices1Client{
 		UnknownClient: base,
 		cc:            cc,
 		ipid:          ipid,
@@ -492,16 +492,16 @@ func NewNTMSMediaServices1Client(ctx context.Context, cc dcerpc.Conn, opts ...dc
 
 // xxx_MountNTMSMediaOperation structure represents the MountNtmsMedia operation
 type xxx_MountNTMSMediaOperation struct {
-	This             *dcom.ORPCThis             `idl:"name:This" json:"this"`
-	That             *dcom.ORPCThat             `idl:"name:That" json:"that"`
-	MediaID          []*dtyp.GUID               `idl:"name:lpMediaId;size_is:(dwCount)" json:"media_id"`
-	DriveID          []*dtyp.GUID               `idl:"name:lpDriveId;size_is:(dwCount)" json:"drive_id"`
-	Count            uint32                     `idl:"name:dwCount" json:"count"`
-	Options          uint32                     `idl:"name:dwOptions" json:"options"`
-	Priority         int32                      `idl:"name:dwPriority" json:"priority"`
-	Timeout          uint32                     `idl:"name:dwTimeout" json:"timeout"`
-	MountInformation *rsmp.NTMSMountInformation `idl:"name:lpMountInformation" json:"mount_information"`
-	Return           int32                      `idl:"name:Return" json:"return"`
+	This             *dcom.ORPCThis         `idl:"name:This" json:"this"`
+	That             *dcom.ORPCThat         `idl:"name:That" json:"that"`
+	MediaID          []*dtyp.GUID           `idl:"name:lpMediaId;size_is:(dwCount)" json:"media_id"`
+	DriveID          []*dtyp.GUID           `idl:"name:lpDriveId;size_is:(dwCount)" json:"drive_id"`
+	Count            uint32                 `idl:"name:dwCount" json:"count"`
+	Options          uint32                 `idl:"name:dwOptions" json:"options"`
+	Priority         int32                  `idl:"name:dwPriority" json:"priority"`
+	Timeout          uint32                 `idl:"name:dwTimeout" json:"timeout"`
+	MountInformation *rsmp.MountInformation `idl:"name:lpMountInformation" json:"mount_information"`
+	Return           int32                  `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_MountNTMSMediaOperation) OpNum() int { return 0 }
@@ -635,7 +635,7 @@ func (o *xxx_MountNTMSMediaOperation) MarshalNDRRequest(ctx context.Context, w n
 				return err
 			}
 		} else {
-			if err := (&rsmp.NTMSMountInformation{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rsmp.MountInformation{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -734,7 +734,7 @@ func (o *xxx_MountNTMSMediaOperation) UnmarshalNDRRequest(ctx context.Context, w
 	// lpMountInformation {in, out} (1:{alias=LPNTMS_MOUNT_INFORMATION,pointer=ref}*(1))(2:{alias=NTMS_MOUNT_INFORMATION}(struct))
 	{
 		if o.MountInformation == nil {
-			o.MountInformation = &rsmp.NTMSMountInformation{}
+			o.MountInformation = &rsmp.MountInformation{}
 		}
 		if err := o.MountInformation.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -811,7 +811,7 @@ func (o *xxx_MountNTMSMediaOperation) MarshalNDRResponse(ctx context.Context, w 
 				return err
 			}
 		} else {
-			if err := (&rsmp.NTMSMountInformation{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rsmp.MountInformation{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -868,7 +868,7 @@ func (o *xxx_MountNTMSMediaOperation) UnmarshalNDRResponse(ctx context.Context, 
 	// lpMountInformation {in, out} (1:{alias=LPNTMS_MOUNT_INFORMATION,pointer=ref}*(1))(2:{alias=NTMS_MOUNT_INFORMATION}(struct))
 	{
 		if o.MountInformation == nil {
-			o.MountInformation = &rsmp.NTMSMountInformation{}
+			o.MountInformation = &rsmp.MountInformation{}
 		}
 		if err := o.MountInformation.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -889,14 +889,14 @@ func (o *xxx_MountNTMSMediaOperation) UnmarshalNDRResponse(ctx context.Context, 
 // MountNTMSMediaRequest structure represents the MountNtmsMedia operation request
 type MountNTMSMediaRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This             *dcom.ORPCThis             `idl:"name:This" json:"this"`
-	MediaID          []*dtyp.GUID               `idl:"name:lpMediaId;size_is:(dwCount)" json:"media_id"`
-	DriveID          []*dtyp.GUID               `idl:"name:lpDriveId;size_is:(dwCount)" json:"drive_id"`
-	Count            uint32                     `idl:"name:dwCount" json:"count"`
-	Options          uint32                     `idl:"name:dwOptions" json:"options"`
-	Priority         int32                      `idl:"name:dwPriority" json:"priority"`
-	Timeout          uint32                     `idl:"name:dwTimeout" json:"timeout"`
-	MountInformation *rsmp.NTMSMountInformation `idl:"name:lpMountInformation" json:"mount_information"`
+	This             *dcom.ORPCThis         `idl:"name:This" json:"this"`
+	MediaID          []*dtyp.GUID           `idl:"name:lpMediaId;size_is:(dwCount)" json:"media_id"`
+	DriveID          []*dtyp.GUID           `idl:"name:lpDriveId;size_is:(dwCount)" json:"drive_id"`
+	Count            uint32                 `idl:"name:dwCount" json:"count"`
+	Options          uint32                 `idl:"name:dwOptions" json:"options"`
+	Priority         int32                  `idl:"name:dwPriority" json:"priority"`
+	Timeout          uint32                 `idl:"name:dwTimeout" json:"timeout"`
+	MountInformation *rsmp.MountInformation `idl:"name:lpMountInformation" json:"mount_information"`
 }
 
 func (o *MountNTMSMediaRequest) xxx_ToOp(ctx context.Context, op *xxx_MountNTMSMediaOperation) *xxx_MountNTMSMediaOperation {
@@ -948,9 +948,9 @@ type MountNTMSMediaResponse struct {
 	Count uint32 `idl:"name:dwCount" json:"count"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That             *dcom.ORPCThat             `idl:"name:That" json:"that"`
-	DriveID          []*dtyp.GUID               `idl:"name:lpDriveId;size_is:(dwCount)" json:"drive_id"`
-	MountInformation *rsmp.NTMSMountInformation `idl:"name:lpMountInformation" json:"mount_information"`
+	That             *dcom.ORPCThat         `idl:"name:That" json:"that"`
+	DriveID          []*dtyp.GUID           `idl:"name:lpDriveId;size_is:(dwCount)" json:"drive_id"`
+	MountInformation *rsmp.MountInformation `idl:"name:lpMountInformation" json:"mount_information"`
 	// Return: The MountNtmsMedia return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1286,15 +1286,15 @@ func (o *DismountNTMSMediaResponse) UnmarshalNDR(ctx context.Context, r ndr.Read
 
 // xxx_AllocateNTMSMediaOperation structure represents the AllocateNtmsMedia operation
 type xxx_AllocateNTMSMediaOperation struct {
-	This                *dcom.ORPCThis                  `idl:"name:This" json:"this"`
-	That                *dcom.ORPCThat                  `idl:"name:That" json:"that"`
-	MediaPool           *dtyp.GUID                      `idl:"name:lpMediaPool" json:"media_pool"`
-	Partition           *dtyp.GUID                      `idl:"name:lpPartition;pointer:unique" json:"partition"`
-	MediaID             *dtyp.GUID                      `idl:"name:lpMediaId" json:"media_id"`
-	Options             uint32                          `idl:"name:dwOptions" json:"options"`
-	Timeout             uint32                          `idl:"name:dwTimeout" json:"timeout"`
-	AllocateInformation *rsmp.NTMSAllocationInformation `idl:"name:lpAllocateInformation" json:"allocate_information"`
-	Return              int32                           `idl:"name:Return" json:"return"`
+	This                *dcom.ORPCThis              `idl:"name:This" json:"this"`
+	That                *dcom.ORPCThat              `idl:"name:That" json:"that"`
+	MediaPool           *dtyp.GUID                  `idl:"name:lpMediaPool" json:"media_pool"`
+	Partition           *dtyp.GUID                  `idl:"name:lpPartition;pointer:unique" json:"partition"`
+	MediaID             *dtyp.GUID                  `idl:"name:lpMediaId" json:"media_id"`
+	Options             uint32                      `idl:"name:dwOptions" json:"options"`
+	Timeout             uint32                      `idl:"name:dwTimeout" json:"timeout"`
+	AllocateInformation *rsmp.AllocationInformation `idl:"name:lpAllocateInformation" json:"allocate_information"`
+	Return              int32                       `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_AllocateNTMSMediaOperation) OpNum() int { return 3 }
@@ -1401,7 +1401,7 @@ func (o *xxx_AllocateNTMSMediaOperation) MarshalNDRRequest(ctx context.Context, 
 				return err
 			}
 		} else {
-			if err := (&rsmp.NTMSAllocationInformation{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rsmp.AllocationInformation{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1477,7 +1477,7 @@ func (o *xxx_AllocateNTMSMediaOperation) UnmarshalNDRRequest(ctx context.Context
 	// lpAllocateInformation {in, out} (1:{alias=LPNTMS_ALLOCATION_INFORMATION,pointer=ref}*(1))(2:{alias=NTMS_ALLOCATION_INFORMATION}(struct))
 	{
 		if o.AllocateInformation == nil {
-			o.AllocateInformation = &rsmp.NTMSAllocationInformation{}
+			o.AllocateInformation = &rsmp.AllocationInformation{}
 		}
 		if err := o.AllocateInformation.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -1536,7 +1536,7 @@ func (o *xxx_AllocateNTMSMediaOperation) MarshalNDRResponse(ctx context.Context,
 				return err
 			}
 		} else {
-			if err := (&rsmp.NTMSAllocationInformation{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&rsmp.AllocationInformation{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1578,7 +1578,7 @@ func (o *xxx_AllocateNTMSMediaOperation) UnmarshalNDRResponse(ctx context.Contex
 	// lpAllocateInformation {in, out} (1:{alias=LPNTMS_ALLOCATION_INFORMATION,pointer=ref}*(1))(2:{alias=NTMS_ALLOCATION_INFORMATION}(struct))
 	{
 		if o.AllocateInformation == nil {
-			o.AllocateInformation = &rsmp.NTMSAllocationInformation{}
+			o.AllocateInformation = &rsmp.AllocationInformation{}
 		}
 		if err := o.AllocateInformation.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -1599,13 +1599,13 @@ func (o *xxx_AllocateNTMSMediaOperation) UnmarshalNDRResponse(ctx context.Contex
 // AllocateNTMSMediaRequest structure represents the AllocateNtmsMedia operation request
 type AllocateNTMSMediaRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                *dcom.ORPCThis                  `idl:"name:This" json:"this"`
-	MediaPool           *dtyp.GUID                      `idl:"name:lpMediaPool" json:"media_pool"`
-	Partition           *dtyp.GUID                      `idl:"name:lpPartition;pointer:unique" json:"partition"`
-	MediaID             *dtyp.GUID                      `idl:"name:lpMediaId" json:"media_id"`
-	Options             uint32                          `idl:"name:dwOptions" json:"options"`
-	Timeout             uint32                          `idl:"name:dwTimeout" json:"timeout"`
-	AllocateInformation *rsmp.NTMSAllocationInformation `idl:"name:lpAllocateInformation" json:"allocate_information"`
+	This                *dcom.ORPCThis              `idl:"name:This" json:"this"`
+	MediaPool           *dtyp.GUID                  `idl:"name:lpMediaPool" json:"media_pool"`
+	Partition           *dtyp.GUID                  `idl:"name:lpPartition;pointer:unique" json:"partition"`
+	MediaID             *dtyp.GUID                  `idl:"name:lpMediaId" json:"media_id"`
+	Options             uint32                      `idl:"name:dwOptions" json:"options"`
+	Timeout             uint32                      `idl:"name:dwTimeout" json:"timeout"`
+	AllocateInformation *rsmp.AllocationInformation `idl:"name:lpAllocateInformation" json:"allocate_information"`
 }
 
 func (o *AllocateNTMSMediaRequest) xxx_ToOp(ctx context.Context, op *xxx_AllocateNTMSMediaOperation) *xxx_AllocateNTMSMediaOperation {
@@ -1652,9 +1652,9 @@ func (o *AllocateNTMSMediaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // AllocateNTMSMediaResponse structure represents the AllocateNtmsMedia operation response
 type AllocateNTMSMediaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That                *dcom.ORPCThat                  `idl:"name:That" json:"that"`
-	MediaID             *dtyp.GUID                      `idl:"name:lpMediaId" json:"media_id"`
-	AllocateInformation *rsmp.NTMSAllocationInformation `idl:"name:lpAllocateInformation" json:"allocate_information"`
+	That                *dcom.ORPCThat              `idl:"name:That" json:"that"`
+	MediaID             *dtyp.GUID                  `idl:"name:lpMediaId" json:"media_id"`
+	AllocateInformation *rsmp.AllocationInformation `idl:"name:lpAllocateInformation" json:"allocate_information"`
 	// Return: The AllocateNtmsMedia return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1932,8 +1932,8 @@ func (o *DeallocateNTMSMediaResponse) UnmarshalNDR(ctx context.Context, r ndr.Re
 type xxx_SwapNTMSMediaOperation struct {
 	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That     *dcom.ORPCThat `idl:"name:That" json:"that"`
-	MediaId1 *dtyp.GUID     `idl:"name:lpMediaId1" json:"media_id1"`
-	MediaId2 *dtyp.GUID     `idl:"name:lpMediaId2" json:"media_id2"`
+	MediaID1 *dtyp.GUID     `idl:"name:lpMediaId1" json:"media_id1"`
+	MediaID2 *dtyp.GUID     `idl:"name:lpMediaId2" json:"media_id2"`
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
@@ -1971,8 +1971,8 @@ func (o *xxx_SwapNTMSMediaOperation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// lpMediaId1 {in} (1:{alias=LPNTMS_GUID}*(1))(2:{alias=GUID}(struct))
 	{
-		if o.MediaId1 != nil {
-			if err := o.MediaId1.MarshalNDR(ctx, w); err != nil {
+		if o.MediaID1 != nil {
+			if err := o.MediaID1.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -1983,8 +1983,8 @@ func (o *xxx_SwapNTMSMediaOperation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// lpMediaId2 {in} (1:{alias=LPNTMS_GUID}*(1))(2:{alias=GUID}(struct))
 	{
-		if o.MediaId2 != nil {
-			if err := o.MediaId2.MarshalNDR(ctx, w); err != nil {
+		if o.MediaID2 != nil {
+			if err := o.MediaID2.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -2011,19 +2011,19 @@ func (o *xxx_SwapNTMSMediaOperation) UnmarshalNDRRequest(ctx context.Context, w 
 	}
 	// lpMediaId1 {in} (1:{alias=LPNTMS_GUID,pointer=ref}*(1))(2:{alias=GUID}(struct))
 	{
-		if o.MediaId1 == nil {
-			o.MediaId1 = &dtyp.GUID{}
+		if o.MediaID1 == nil {
+			o.MediaID1 = &dtyp.GUID{}
 		}
-		if err := o.MediaId1.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.MediaID1.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	// lpMediaId2 {in} (1:{alias=LPNTMS_GUID,pointer=ref}*(1))(2:{alias=GUID}(struct))
 	{
-		if o.MediaId2 == nil {
-			o.MediaId2 = &dtyp.GUID{}
+		if o.MediaID2 == nil {
+			o.MediaID2 = &dtyp.GUID{}
 		}
-		if err := o.MediaId2.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.MediaID2.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -2093,8 +2093,8 @@ func (o *xxx_SwapNTMSMediaOperation) UnmarshalNDRResponse(ctx context.Context, w
 type SwapNTMSMediaRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
-	MediaId1 *dtyp.GUID     `idl:"name:lpMediaId1" json:"media_id1"`
-	MediaId2 *dtyp.GUID     `idl:"name:lpMediaId2" json:"media_id2"`
+	MediaID1 *dtyp.GUID     `idl:"name:lpMediaId1" json:"media_id1"`
+	MediaID2 *dtyp.GUID     `idl:"name:lpMediaId2" json:"media_id2"`
 }
 
 func (o *SwapNTMSMediaRequest) xxx_ToOp(ctx context.Context, op *xxx_SwapNTMSMediaOperation) *xxx_SwapNTMSMediaOperation {
@@ -2105,8 +2105,8 @@ func (o *SwapNTMSMediaRequest) xxx_ToOp(ctx context.Context, op *xxx_SwapNTMSMed
 		return op
 	}
 	op.This = o.This
-	op.MediaId1 = o.MediaId1
-	op.MediaId2 = o.MediaId2
+	op.MediaID1 = o.MediaID1
+	op.MediaID2 = o.MediaID2
 	return op
 }
 
@@ -2115,8 +2115,8 @@ func (o *SwapNTMSMediaRequest) xxx_FromOp(ctx context.Context, op *xxx_SwapNTMSM
 		return
 	}
 	o.This = op.This
-	o.MediaId1 = op.MediaId1
-	o.MediaId2 = op.MediaId2
+	o.MediaID1 = op.MediaID1
+	o.MediaID2 = op.MediaID2
 }
 func (o *SwapNTMSMediaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)

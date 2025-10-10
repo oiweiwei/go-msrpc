@@ -38,20 +38,20 @@ type NTFrsAPIServer interface {
 	// Opnum3NotUsedOnWire operation.
 	// Opnum3NotUsedOnWire
 
-	NTFrsAPIRPCSetDSPollingIntervalW(context.Context, *NTFrsAPIRPCSetDSPollingIntervalWRequest) (*NTFrsAPIRPCSetDSPollingIntervalWResponse, error)
+	SetDSPollingIntervalW(context.Context, *SetDSPollingIntervalWRequest) (*SetDSPollingIntervalWResponse, error)
 
-	NTFrsAPIRPCGetDSPollingIntervalW(context.Context, *NTFrsAPIRPCGetDSPollingIntervalWRequest) (*NTFrsAPIRPCGetDSPollingIntervalWResponse, error)
+	GetDSPollingIntervalW(context.Context, *GetDSPollingIntervalWRequest) (*GetDSPollingIntervalWResponse, error)
 
 	// Opnum6NotUsedOnWire operation.
 	// Opnum6NotUsedOnWire
 
-	NTFrsAPIRPCInfoW(context.Context, *NTFrsAPIRPCInfoWRequest) (*NTFrsAPIRPCInfoWResponse, error)
+	InfoW(context.Context, *InfoWRequest) (*InfoWResponse, error)
 
-	NTFrsAPIRPCIsPathReplicated(context.Context, *NTFrsAPIRPCIsPathReplicatedRequest) (*NTFrsAPIRPCIsPathReplicatedResponse, error)
+	IsPathReplicated(context.Context, *IsPathReplicatedRequest) (*IsPathReplicatedResponse, error)
 
-	NTFrsAPIRPCWriterCommand(context.Context, *NTFrsAPIRPCWriterCommandRequest) (*NTFrsAPIRPCWriterCommandResponse, error)
+	WriterCommand(context.Context, *WriterCommandRequest) (*WriterCommandResponse, error)
 
-	NTFrsAPIRPCForceReplication(context.Context, *NTFrsAPIRPCForceReplicationRequest) (*NTFrsAPIRPCForceReplicationResponse, error)
+	ForceReplication(context.Context, *ForceReplicationRequest) (*ForceReplicationResponse, error)
 }
 
 func RegisterNTFrsAPIServer(conn dcerpc.Conn, o NTFrsAPIServer, opts ...dcerpc.Option) {
@@ -79,61 +79,61 @@ func NTFrsAPIServerHandle(ctx context.Context, o NTFrsAPIServer, opNum int, r nd
 		// Opnum3NotUsedOnWire
 		return nil, nil
 	case 4: // NtFrsApi_Rpc_Set_DsPollingIntervalW
-		op := &xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation{}
+		op := &xxx_SetDSPollingIntervalWOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &NTFrsAPIRPCSetDSPollingIntervalWRequest{}
+		req := &SetDSPollingIntervalWRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.NTFrsAPIRPCSetDSPollingIntervalW(ctx, req)
+		resp, err := o.SetDSPollingIntervalW(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 5: // NtFrsApi_Rpc_Get_DsPollingIntervalW
-		op := &xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation{}
+		op := &xxx_GetDSPollingIntervalWOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &NTFrsAPIRPCGetDSPollingIntervalWRequest{}
+		req := &GetDSPollingIntervalWRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.NTFrsAPIRPCGetDSPollingIntervalW(ctx, req)
+		resp, err := o.GetDSPollingIntervalW(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 6: // Opnum6NotUsedOnWire
 		// Opnum6NotUsedOnWire
 		return nil, nil
 	case 7: // NtFrsApi_Rpc_InfoW
-		op := &xxx_NTFrsAPIRPCInfoWOperation{}
+		op := &xxx_InfoWOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &NTFrsAPIRPCInfoWRequest{}
+		req := &InfoWRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.NTFrsAPIRPCInfoW(ctx, req)
+		resp, err := o.InfoW(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 8: // NtFrsApi_Rpc_IsPathReplicated
-		op := &xxx_NTFrsAPIRPCIsPathReplicatedOperation{}
+		op := &xxx_IsPathReplicatedOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &NTFrsAPIRPCIsPathReplicatedRequest{}
+		req := &IsPathReplicatedRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.NTFrsAPIRPCIsPathReplicated(ctx, req)
+		resp, err := o.IsPathReplicated(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 9: // NtFrsApi_Rpc_WriterCommand
-		op := &xxx_NTFrsAPIRPCWriterCommandOperation{}
+		op := &xxx_WriterCommandOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &NTFrsAPIRPCWriterCommandRequest{}
+		req := &WriterCommandRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.NTFrsAPIRPCWriterCommand(ctx, req)
+		resp, err := o.WriterCommand(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 10: // NtFrsApi_Rpc_ForceReplication
-		op := &xxx_NTFrsAPIRPCForceReplicationOperation{}
+		op := &xxx_ForceReplicationOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &NTFrsAPIRPCForceReplicationRequest{}
+		req := &ForceReplicationRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.NTFrsAPIRPCForceReplication(ctx, req)
+		resp, err := o.ForceReplication(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
@@ -143,22 +143,22 @@ func NTFrsAPIServerHandle(ctx context.Context, o NTFrsAPIServer, opNum int, r nd
 type UnimplementedNTFrsAPIServer struct {
 }
 
-func (UnimplementedNTFrsAPIServer) NTFrsAPIRPCSetDSPollingIntervalW(context.Context, *NTFrsAPIRPCSetDSPollingIntervalWRequest) (*NTFrsAPIRPCSetDSPollingIntervalWResponse, error) {
+func (UnimplementedNTFrsAPIServer) SetDSPollingIntervalW(context.Context, *SetDSPollingIntervalWRequest) (*SetDSPollingIntervalWResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTFrsAPIServer) NTFrsAPIRPCGetDSPollingIntervalW(context.Context, *NTFrsAPIRPCGetDSPollingIntervalWRequest) (*NTFrsAPIRPCGetDSPollingIntervalWResponse, error) {
+func (UnimplementedNTFrsAPIServer) GetDSPollingIntervalW(context.Context, *GetDSPollingIntervalWRequest) (*GetDSPollingIntervalWResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTFrsAPIServer) NTFrsAPIRPCInfoW(context.Context, *NTFrsAPIRPCInfoWRequest) (*NTFrsAPIRPCInfoWResponse, error) {
+func (UnimplementedNTFrsAPIServer) InfoW(context.Context, *InfoWRequest) (*InfoWResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTFrsAPIServer) NTFrsAPIRPCIsPathReplicated(context.Context, *NTFrsAPIRPCIsPathReplicatedRequest) (*NTFrsAPIRPCIsPathReplicatedResponse, error) {
+func (UnimplementedNTFrsAPIServer) IsPathReplicated(context.Context, *IsPathReplicatedRequest) (*IsPathReplicatedResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTFrsAPIServer) NTFrsAPIRPCWriterCommand(context.Context, *NTFrsAPIRPCWriterCommandRequest) (*NTFrsAPIRPCWriterCommandResponse, error) {
+func (UnimplementedNTFrsAPIServer) WriterCommand(context.Context, *WriterCommandRequest) (*WriterCommandResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTFrsAPIServer) NTFrsAPIRPCForceReplication(context.Context, *NTFrsAPIRPCForceReplicationRequest) (*NTFrsAPIRPCForceReplicationResponse, error) {
+func (UnimplementedNTFrsAPIServer) ForceReplication(context.Context, *ForceReplicationRequest) (*ForceReplicationResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 

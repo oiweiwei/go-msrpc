@@ -26,7 +26,7 @@ var (
 )
 
 // IWRMResourceGroup server interface.
-type IwrmResourceGroupServer interface {
+type ResourceGroupServer interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -42,17 +42,17 @@ type IwrmResourceGroupServer interface {
 	RenameResourceGroup(context.Context, *RenameResourceGroupRequest) (*RenameResourceGroupResponse, error)
 }
 
-func RegisterIwrmResourceGroupServer(conn dcerpc.Conn, o IwrmResourceGroupServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewIwrmResourceGroupServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(IwrmResourceGroupSyntaxV0_0))...)
+func RegisterResourceGroupServer(conn dcerpc.Conn, o ResourceGroupServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewResourceGroupServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ResourceGroupSyntaxV0_0))...)
 }
 
-func NewIwrmResourceGroupServerHandle(o IwrmResourceGroupServer) dcerpc.ServerHandle {
+func NewResourceGroupServerHandle(o ResourceGroupServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return IwrmResourceGroupServerHandle(ctx, o, opNum, r)
+		return ResourceGroupServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func IwrmResourceGroupServerHandle(ctx context.Context, o IwrmResourceGroupServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func ResourceGroupServerHandle(ctx context.Context, o ResourceGroupServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -108,24 +108,24 @@ func IwrmResourceGroupServerHandle(ctx context.Context, o IwrmResourceGroupServe
 }
 
 // Unimplemented IWRMResourceGroup
-type UnimplementedIwrmResourceGroupServer struct {
+type UnimplementedResourceGroupServer struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedIwrmResourceGroupServer) GetResourceGroupInfo(context.Context, *GetResourceGroupInfoRequest) (*GetResourceGroupInfoResponse, error) {
+func (UnimplementedResourceGroupServer) GetResourceGroupInfo(context.Context, *GetResourceGroupInfoRequest) (*GetResourceGroupInfoResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmResourceGroupServer) ModifyResourceGroup(context.Context, *ModifyResourceGroupRequest) (*ModifyResourceGroupResponse, error) {
+func (UnimplementedResourceGroupServer) ModifyResourceGroup(context.Context, *ModifyResourceGroupRequest) (*ModifyResourceGroupResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmResourceGroupServer) CreateResourceGroup(context.Context, *CreateResourceGroupRequest) (*CreateResourceGroupResponse, error) {
+func (UnimplementedResourceGroupServer) CreateResourceGroup(context.Context, *CreateResourceGroupRequest) (*CreateResourceGroupResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmResourceGroupServer) DeleteResourceGroup(context.Context, *DeleteResourceGroupRequest) (*DeleteResourceGroupResponse, error) {
+func (UnimplementedResourceGroupServer) DeleteResourceGroup(context.Context, *DeleteResourceGroupRequest) (*DeleteResourceGroupResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmResourceGroupServer) RenameResourceGroup(context.Context, *RenameResourceGroupRequest) (*RenameResourceGroupResponse, error) {
+func (UnimplementedResourceGroupServer) RenameResourceGroup(context.Context, *RenameResourceGroupRequest) (*RenameResourceGroupResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ IwrmResourceGroupServer = (*UnimplementedIwrmResourceGroupServer)(nil)
+var _ ResourceGroupServer = (*UnimplementedResourceGroupServer)(nil)

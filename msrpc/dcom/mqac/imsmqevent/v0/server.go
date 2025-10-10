@@ -26,31 +26,31 @@ var (
 )
 
 // IMSMQEvent server interface.
-type ImsmqEventServer interface {
+type EventServer interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
 }
 
-func RegisterImsmqEventServer(conn dcerpc.Conn, o ImsmqEventServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqEventServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqEventSyntaxV0_0))...)
+func RegisterEventServer(conn dcerpc.Conn, o EventServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewEventServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(EventSyntaxV0_0))...)
 }
 
-func NewImsmqEventServerHandle(o ImsmqEventServer) dcerpc.ServerHandle {
+func NewEventServerHandle(o EventServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqEventServerHandle(ctx, o, opNum, r)
+		return EventServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqEventServerHandle(ctx context.Context, o ImsmqEventServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func EventServerHandle(ctx context.Context, o EventServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	}
 	return nil, nil
 }
 
 // Unimplemented IMSMQEvent
-type UnimplementedImsmqEventServer struct {
+type UnimplementedEventServer struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-var _ ImsmqEventServer = (*UnimplementedImsmqEventServer)(nil)
+var _ EventServer = (*UnimplementedEventServer)(nil)

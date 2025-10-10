@@ -36,15 +36,15 @@ var (
 
 var (
 	// INtmsSession1 interface identifier 8da03f40-3419-11d1-8fb1-00a024cb6019
-	NTMSSession1IID = &dcom.IID{Data1: 0x8da03f40, Data2: 0x3419, Data3: 0x11d1, Data4: []byte{0x8f, 0xb1, 0x00, 0xa0, 0x24, 0xcb, 0x60, 0x19}}
+	Session1IID = &dcom.IID{Data1: 0x8da03f40, Data2: 0x3419, Data3: 0x11d1, Data4: []byte{0x8f, 0xb1, 0x00, 0xa0, 0x24, 0xcb, 0x60, 0x19}}
 	// Syntax UUID
-	NTMSSession1SyntaxUUID = &uuid.UUID{TimeLow: 0x8da03f40, TimeMid: 0x3419, TimeHiAndVersion: 0x11d1, ClockSeqHiAndReserved: 0x8f, ClockSeqLow: 0xb1, Node: [6]uint8{0x0, 0xa0, 0x24, 0xcb, 0x60, 0x19}}
+	Session1SyntaxUUID = &uuid.UUID{TimeLow: 0x8da03f40, TimeMid: 0x3419, TimeHiAndVersion: 0x11d1, ClockSeqHiAndReserved: 0x8f, ClockSeqLow: 0xb1, Node: [6]uint8{0x0, 0xa0, 0x24, 0xcb, 0x60, 0x19}}
 	// Syntax ID
-	NTMSSession1SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: NTMSSession1SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	Session1SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: Session1SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // INtmsSession1 interface.
-type NTMSSession1Client interface {
+type Session1Client interface {
 
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
@@ -85,20 +85,20 @@ type NTMSSession1Client interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) NTMSSession1Client
+	IPID(context.Context, *dcom.IPID) Session1Client
 }
 
-type xxx_DefaultNTMSSession1Client struct {
+type xxx_DefaultSession1Client struct {
 	iunknown.UnknownClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultNTMSSession1Client) Unknown() iunknown.UnknownClient {
+func (o *xxx_DefaultSession1Client) Unknown() iunknown.UnknownClient {
 	return o.UnknownClient
 }
 
-func (o *xxx_DefaultNTMSSession1Client) OpenNTMSServerSessionW(ctx context.Context, in *OpenNTMSServerSessionWRequest, opts ...dcerpc.CallOption) (*OpenNTMSServerSessionWResponse, error) {
+func (o *xxx_DefaultSession1Client) OpenNTMSServerSessionW(ctx context.Context, in *OpenNTMSServerSessionWRequest, opts ...dcerpc.CallOption) (*OpenNTMSServerSessionWResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -118,7 +118,7 @@ func (o *xxx_DefaultNTMSSession1Client) OpenNTMSServerSessionW(ctx context.Conte
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSSession1Client) OpenNTMSServerSessionA(ctx context.Context, in *OpenNTMSServerSessionARequest, opts ...dcerpc.CallOption) (*OpenNTMSServerSessionAResponse, error) {
+func (o *xxx_DefaultSession1Client) OpenNTMSServerSessionA(ctx context.Context, in *OpenNTMSServerSessionARequest, opts ...dcerpc.CallOption) (*OpenNTMSServerSessionAResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -138,7 +138,7 @@ func (o *xxx_DefaultNTMSSession1Client) OpenNTMSServerSessionA(ctx context.Conte
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSSession1Client) CloseNTMSSession(ctx context.Context, in *CloseNTMSSessionRequest, opts ...dcerpc.CallOption) (*CloseNTMSSessionResponse, error) {
+func (o *xxx_DefaultSession1Client) CloseNTMSSession(ctx context.Context, in *CloseNTMSSessionRequest, opts ...dcerpc.CallOption) (*CloseNTMSSessionResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -158,7 +158,7 @@ func (o *xxx_DefaultNTMSSession1Client) CloseNTMSSession(ctx context.Context, in
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSSession1Client) SubmitNTMSOperatorRequestW(ctx context.Context, in *SubmitNTMSOperatorRequestWRequest, opts ...dcerpc.CallOption) (*SubmitNTMSOperatorRequestWResponse, error) {
+func (o *xxx_DefaultSession1Client) SubmitNTMSOperatorRequestW(ctx context.Context, in *SubmitNTMSOperatorRequestWRequest, opts ...dcerpc.CallOption) (*SubmitNTMSOperatorRequestWResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -178,7 +178,7 @@ func (o *xxx_DefaultNTMSSession1Client) SubmitNTMSOperatorRequestW(ctx context.C
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSSession1Client) SubmitNTMSOperatorRequestA(ctx context.Context, in *SubmitNTMSOperatorRequestARequest, opts ...dcerpc.CallOption) (*SubmitNTMSOperatorRequestAResponse, error) {
+func (o *xxx_DefaultSession1Client) SubmitNTMSOperatorRequestA(ctx context.Context, in *SubmitNTMSOperatorRequestARequest, opts ...dcerpc.CallOption) (*SubmitNTMSOperatorRequestAResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -198,7 +198,7 @@ func (o *xxx_DefaultNTMSSession1Client) SubmitNTMSOperatorRequestA(ctx context.C
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSSession1Client) WaitForNTMSOperatorRequest(ctx context.Context, in *WaitForNTMSOperatorRequestRequest, opts ...dcerpc.CallOption) (*WaitForNTMSOperatorRequestResponse, error) {
+func (o *xxx_DefaultSession1Client) WaitForNTMSOperatorRequest(ctx context.Context, in *WaitForNTMSOperatorRequestRequest, opts ...dcerpc.CallOption) (*WaitForNTMSOperatorRequestResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -218,7 +218,7 @@ func (o *xxx_DefaultNTMSSession1Client) WaitForNTMSOperatorRequest(ctx context.C
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSSession1Client) CancelNTMSOperatorRequest(ctx context.Context, in *CancelNTMSOperatorRequestRequest, opts ...dcerpc.CallOption) (*CancelNTMSOperatorRequestResponse, error) {
+func (o *xxx_DefaultSession1Client) CancelNTMSOperatorRequest(ctx context.Context, in *CancelNTMSOperatorRequestRequest, opts ...dcerpc.CallOption) (*CancelNTMSOperatorRequestResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -238,7 +238,7 @@ func (o *xxx_DefaultNTMSSession1Client) CancelNTMSOperatorRequest(ctx context.Co
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSSession1Client) SatisfyNTMSOperatorRequest(ctx context.Context, in *SatisfyNTMSOperatorRequestRequest, opts ...dcerpc.CallOption) (*SatisfyNTMSOperatorRequestResponse, error) {
+func (o *xxx_DefaultSession1Client) SatisfyNTMSOperatorRequest(ctx context.Context, in *SatisfyNTMSOperatorRequestRequest, opts ...dcerpc.CallOption) (*SatisfyNTMSOperatorRequestResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -258,7 +258,7 @@ func (o *xxx_DefaultNTMSSession1Client) SatisfyNTMSOperatorRequest(ctx context.C
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSSession1Client) ImportNTMSDatabase(ctx context.Context, in *ImportNTMSDatabaseRequest, opts ...dcerpc.CallOption) (*ImportNTMSDatabaseResponse, error) {
+func (o *xxx_DefaultSession1Client) ImportNTMSDatabase(ctx context.Context, in *ImportNTMSDatabaseRequest, opts ...dcerpc.CallOption) (*ImportNTMSDatabaseResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -278,7 +278,7 @@ func (o *xxx_DefaultNTMSSession1Client) ImportNTMSDatabase(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSSession1Client) ExportNTMSDatabase(ctx context.Context, in *ExportNTMSDatabaseRequest, opts ...dcerpc.CallOption) (*ExportNTMSDatabaseResponse, error) {
+func (o *xxx_DefaultSession1Client) ExportNTMSDatabase(ctx context.Context, in *ExportNTMSDatabaseRequest, opts ...dcerpc.CallOption) (*ExportNTMSDatabaseResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -298,7 +298,7 @@ func (o *xxx_DefaultNTMSSession1Client) ExportNTMSDatabase(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSSession1Client) AddNotification(ctx context.Context, in *AddNotificationRequest, opts ...dcerpc.CallOption) (*AddNotificationResponse, error) {
+func (o *xxx_DefaultSession1Client) AddNotification(ctx context.Context, in *AddNotificationRequest, opts ...dcerpc.CallOption) (*AddNotificationResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -318,7 +318,7 @@ func (o *xxx_DefaultNTMSSession1Client) AddNotification(ctx context.Context, in 
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSSession1Client) RemoveNotification(ctx context.Context, in *RemoveNotificationRequest, opts ...dcerpc.CallOption) (*RemoveNotificationResponse, error) {
+func (o *xxx_DefaultSession1Client) RemoveNotification(ctx context.Context, in *RemoveNotificationRequest, opts ...dcerpc.CallOption) (*RemoveNotificationResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -338,7 +338,7 @@ func (o *xxx_DefaultNTMSSession1Client) RemoveNotification(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSSession1Client) DispatchNotification(ctx context.Context, in *DispatchNotificationRequest, opts ...dcerpc.CallOption) (*DispatchNotificationResponse, error) {
+func (o *xxx_DefaultSession1Client) DispatchNotification(ctx context.Context, in *DispatchNotificationRequest, opts ...dcerpc.CallOption) (*DispatchNotificationResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -358,29 +358,29 @@ func (o *xxx_DefaultNTMSSession1Client) DispatchNotification(ctx context.Context
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSSession1Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultSession1Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultNTMSSession1Client) Conn() dcerpc.Conn {
+func (o *xxx_DefaultSession1Client) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultNTMSSession1Client) IPID(ctx context.Context, ipid *dcom.IPID) NTMSSession1Client {
+func (o *xxx_DefaultSession1Client) IPID(ctx context.Context, ipid *dcom.IPID) Session1Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultNTMSSession1Client{
+	return &xxx_DefaultSession1Client{
 		UnknownClient: o.UnknownClient.IPID(ctx, ipid),
 		cc:            o.cc,
 		ipid:          ipid,
 	}
 }
 
-func NewNTMSSession1Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (NTMSSession1Client, error) {
+func NewSession1Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Session1Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(NTMSSession1SyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(Session1SyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -393,7 +393,7 @@ func NewNTMSSession1Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.O
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultNTMSSession1Client{
+	return &xxx_DefaultSession1Client{
 		UnknownClient: base,
 		cc:            cc,
 		ipid:          ipid,

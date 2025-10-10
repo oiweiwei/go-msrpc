@@ -38,15 +38,15 @@ var (
 
 var (
 	// IMSMQQuery2 interface identifier eba96b0e-2168-11d3-898c-00e02c074f6b
-	ImsmqQuery2IID = &dcom.IID{Data1: 0xeba96b0e, Data2: 0x2168, Data3: 0x11d3, Data4: []byte{0x89, 0x8c, 0x00, 0xe0, 0x2c, 0x07, 0x4f, 0x6b}}
+	Query2IID = &dcom.IID{Data1: 0xeba96b0e, Data2: 0x2168, Data3: 0x11d3, Data4: []byte{0x89, 0x8c, 0x00, 0xe0, 0x2c, 0x07, 0x4f, 0x6b}}
 	// Syntax UUID
-	ImsmqQuery2SyntaxUUID = &uuid.UUID{TimeLow: 0xeba96b0e, TimeMid: 0x2168, TimeHiAndVersion: 0x11d3, ClockSeqHiAndReserved: 0x89, ClockSeqLow: 0x8c, Node: [6]uint8{0x0, 0xe0, 0x2c, 0x7, 0x4f, 0x6b}}
+	Query2SyntaxUUID = &uuid.UUID{TimeLow: 0xeba96b0e, TimeMid: 0x2168, TimeHiAndVersion: 0x11d3, ClockSeqHiAndReserved: 0x89, ClockSeqLow: 0x8c, Node: [6]uint8{0x0, 0xe0, 0x2c, 0x7, 0x4f, 0x6b}}
 	// Syntax ID
-	ImsmqQuery2SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ImsmqQuery2SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	Query2SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: Query2SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IMSMQQuery2 interface.
-type ImsmqQuery2Client interface {
+type Query2Client interface {
 
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
@@ -64,20 +64,20 @@ type ImsmqQuery2Client interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) ImsmqQuery2Client
+	IPID(context.Context, *dcom.IPID) Query2Client
 }
 
-type xxx_DefaultImsmqQuery2Client struct {
+type xxx_DefaultQuery2Client struct {
 	idispatch.DispatchClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultImsmqQuery2Client) Dispatch() idispatch.DispatchClient {
+func (o *xxx_DefaultQuery2Client) Dispatch() idispatch.DispatchClient {
 	return o.DispatchClient
 }
 
-func (o *xxx_DefaultImsmqQuery2Client) LookupQueue(ctx context.Context, in *LookupQueueRequest, opts ...dcerpc.CallOption) (*LookupQueueResponse, error) {
+func (o *xxx_DefaultQuery2Client) LookupQueue(ctx context.Context, in *LookupQueueRequest, opts ...dcerpc.CallOption) (*LookupQueueResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -97,7 +97,7 @@ func (o *xxx_DefaultImsmqQuery2Client) LookupQueue(ctx context.Context, in *Look
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQuery2Client) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
+func (o *xxx_DefaultQuery2Client) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -117,29 +117,29 @@ func (o *xxx_DefaultImsmqQuery2Client) GetProperties(ctx context.Context, in *Ge
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqQuery2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultQuery2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultImsmqQuery2Client) Conn() dcerpc.Conn {
+func (o *xxx_DefaultQuery2Client) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultImsmqQuery2Client) IPID(ctx context.Context, ipid *dcom.IPID) ImsmqQuery2Client {
+func (o *xxx_DefaultQuery2Client) IPID(ctx context.Context, ipid *dcom.IPID) Query2Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultImsmqQuery2Client{
+	return &xxx_DefaultQuery2Client{
 		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
 		cc:             o.cc,
 		ipid:           ipid,
 	}
 }
 
-func NewImsmqQuery2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ImsmqQuery2Client, error) {
+func NewQuery2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Query2Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ImsmqQuery2SyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(Query2SyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -152,7 +152,7 @@ func NewImsmqQuery2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Op
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultImsmqQuery2Client{
+	return &xxx_DefaultQuery2Client{
 		DispatchClient: base,
 		cc:             cc,
 		ipid:           ipid,
@@ -161,19 +161,19 @@ func NewImsmqQuery2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Op
 
 // xxx_LookupQueueOperation structure represents the LookupQueue operation
 type xxx_LookupQueueOperation struct {
-	This                *dcom.ORPCThis         `idl:"name:This" json:"this"`
-	That                *dcom.ORPCThat         `idl:"name:That" json:"that"`
-	QueueGUID           *oaut.Variant          `idl:"name:QueueGuid" json:"queue_guid"`
-	ServiceTypeGUID     *oaut.Variant          `idl:"name:ServiceTypeGuid" json:"service_type_guid"`
-	Label               *oaut.Variant          `idl:"name:Label" json:"label"`
-	CreateTime          *oaut.Variant          `idl:"name:CreateTime" json:"create_time"`
-	ModifyTime          *oaut.Variant          `idl:"name:ModifyTime" json:"modify_time"`
-	RelationServiceType *oaut.Variant          `idl:"name:RelServiceType" json:"relation_service_type"`
-	RelationLabel       *oaut.Variant          `idl:"name:RelLabel" json:"relation_label"`
-	RelationCreateTime  *oaut.Variant          `idl:"name:RelCreateTime" json:"relation_create_time"`
-	RelationModifyTime  *oaut.Variant          `idl:"name:RelModifyTime" json:"relation_modify_time"`
-	Ppqinfos            *mqac.ImsmqQueueInfos2 `idl:"name:ppqinfos" json:"ppqinfos"`
-	Return              int32                  `idl:"name:Return" json:"return"`
+	This                *dcom.ORPCThis    `idl:"name:This" json:"this"`
+	That                *dcom.ORPCThat    `idl:"name:That" json:"that"`
+	QueueGUID           *oaut.Variant     `idl:"name:QueueGuid" json:"queue_guid"`
+	ServiceTypeGUID     *oaut.Variant     `idl:"name:ServiceTypeGuid" json:"service_type_guid"`
+	Label               *oaut.Variant     `idl:"name:Label" json:"label"`
+	CreateTime          *oaut.Variant     `idl:"name:CreateTime" json:"create_time"`
+	ModifyTime          *oaut.Variant     `idl:"name:ModifyTime" json:"modify_time"`
+	RelationServiceType *oaut.Variant     `idl:"name:RelServiceType" json:"relation_service_type"`
+	RelationLabel       *oaut.Variant     `idl:"name:RelLabel" json:"relation_label"`
+	RelationCreateTime  *oaut.Variant     `idl:"name:RelCreateTime" json:"relation_create_time"`
+	RelationModifyTime  *oaut.Variant     `idl:"name:RelModifyTime" json:"relation_modify_time"`
+	S                   *mqac.QueueInfos2 `idl:"name:ppqinfos" json:"s"`
+	Return              int32             `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_LookupQueueOperation) OpNum() int { return 7 }
@@ -671,20 +671,20 @@ func (o *xxx_LookupQueueOperation) MarshalNDRResponse(ctx context.Context, w ndr
 	}
 	// ppqinfos {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQQueueInfos2}(interface))
 	{
-		if o.Ppqinfos != nil {
+		if o.S != nil {
 			_ptr_ppqinfos := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppqinfos != nil {
-					if err := o.Ppqinfos.MarshalNDR(ctx, w); err != nil {
+				if o.S != nil {
+					if err := o.S.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqQueueInfos2{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.QueueInfos2{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppqinfos, _ptr_ppqinfos); err != nil {
+			if err := w.WritePointer(&o.S, _ptr_ppqinfos); err != nil {
 				return err
 			}
 		} else {
@@ -721,16 +721,16 @@ func (o *xxx_LookupQueueOperation) UnmarshalNDRResponse(ctx context.Context, w n
 	// ppqinfos {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQQueueInfos2}(interface))
 	{
 		_ptr_ppqinfos := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppqinfos == nil {
-				o.Ppqinfos = &mqac.ImsmqQueueInfos2{}
+			if o.S == nil {
+				o.S = &mqac.QueueInfos2{}
 			}
-			if err := o.Ppqinfos.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.S.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppqinfos := func(ptr interface{}) { o.Ppqinfos = *ptr.(**mqac.ImsmqQueueInfos2) }
-		if err := w.ReadPointer(&o.Ppqinfos, _s_ppqinfos, _ptr_ppqinfos); err != nil {
+		_s_ppqinfos := func(ptr interface{}) { o.S = *ptr.(**mqac.QueueInfos2) }
+		if err := w.ReadPointer(&o.S, _s_ppqinfos, _ptr_ppqinfos); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -811,8 +811,8 @@ func (o *LookupQueueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // LookupQueueResponse structure represents the LookupQueue operation response
 type LookupQueueResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That     *dcom.ORPCThat         `idl:"name:That" json:"that"`
-	Ppqinfos *mqac.ImsmqQueueInfos2 `idl:"name:ppqinfos" json:"ppqinfos"`
+	That *dcom.ORPCThat    `idl:"name:That" json:"that"`
+	S    *mqac.QueueInfos2 `idl:"name:ppqinfos" json:"s"`
 	// Return: The LookupQueue return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -825,7 +825,7 @@ func (o *LookupQueueResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupQueueO
 		return op
 	}
 	op.That = o.That
-	op.Ppqinfos = o.Ppqinfos
+	op.S = o.S
 	op.Return = o.Return
 	return op
 }
@@ -835,7 +835,7 @@ func (o *LookupQueueResponse) xxx_FromOp(ctx context.Context, op *xxx_LookupQueu
 		return
 	}
 	o.That = op.That
-	o.Ppqinfos = op.Ppqinfos
+	o.S = op.S
 	o.Return = op.Return
 }
 func (o *LookupQueueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -852,10 +852,10 @@ func (o *LookupQueueResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 
 // xxx_GetPropertiesOperation structure represents the Properties operation
 type xxx_GetPropertiesOperation struct {
-	This            *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PpcolProperties *oaut.Dispatch `idl:"name:ppcolProperties" json:"ppcol_properties"`
-	Return          int32          `idl:"name:Return" json:"return"`
+	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Properties *oaut.Dispatch `idl:"name:ppcolProperties" json:"properties"`
+	Return     int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetPropertiesOperation) OpNum() int { return 8 }
@@ -939,10 +939,10 @@ func (o *xxx_GetPropertiesOperation) MarshalNDRResponse(ctx context.Context, w n
 	}
 	// ppcolProperties {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IDispatch}(interface))
 	{
-		if o.PpcolProperties != nil {
+		if o.Properties != nil {
 			_ptr_ppcolProperties := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PpcolProperties != nil {
-					if err := o.PpcolProperties.MarshalNDR(ctx, w); err != nil {
+				if o.Properties != nil {
+					if err := o.Properties.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -952,7 +952,7 @@ func (o *xxx_GetPropertiesOperation) MarshalNDRResponse(ctx context.Context, w n
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PpcolProperties, _ptr_ppcolProperties); err != nil {
+			if err := w.WritePointer(&o.Properties, _ptr_ppcolProperties); err != nil {
 				return err
 			}
 		} else {
@@ -989,16 +989,16 @@ func (o *xxx_GetPropertiesOperation) UnmarshalNDRResponse(ctx context.Context, w
 	// ppcolProperties {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IDispatch}(interface))
 	{
 		_ptr_ppcolProperties := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PpcolProperties == nil {
-				o.PpcolProperties = &oaut.Dispatch{}
+			if o.Properties == nil {
+				o.Properties = &oaut.Dispatch{}
 			}
-			if err := o.PpcolProperties.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Properties.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppcolProperties := func(ptr interface{}) { o.PpcolProperties = *ptr.(**oaut.Dispatch) }
-		if err := w.ReadPointer(&o.PpcolProperties, _s_ppcolProperties, _ptr_ppcolProperties); err != nil {
+		_s_ppcolProperties := func(ptr interface{}) { o.Properties = *ptr.(**oaut.Dispatch) }
+		if err := w.ReadPointer(&o.Properties, _s_ppcolProperties, _ptr_ppcolProperties); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1052,8 +1052,8 @@ func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetPropertiesResponse structure represents the Properties operation response
 type GetPropertiesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PpcolProperties *oaut.Dispatch `idl:"name:ppcolProperties" json:"ppcol_properties"`
+	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Properties *oaut.Dispatch `idl:"name:ppcolProperties" json:"properties"`
 	// Return: The Properties return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1066,7 +1066,7 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 		return op
 	}
 	op.That = o.That
-	op.PpcolProperties = o.PpcolProperties
+	op.Properties = o.Properties
 	op.Return = o.Return
 	return op
 }
@@ -1076,7 +1076,7 @@ func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrope
 		return
 	}
 	o.That = op.That
-	o.PpcolProperties = op.PpcolProperties
+	o.Properties = op.Properties
 	o.Return = op.Return
 }
 func (o *GetPropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {

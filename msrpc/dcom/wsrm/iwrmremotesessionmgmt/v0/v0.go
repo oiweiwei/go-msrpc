@@ -36,15 +36,15 @@ var (
 
 var (
 	// IWRMRemoteSessionMgmt interface identifier fc910418-55ca-45ef-b264-83d4ce7d30e0
-	IwrmRemoteSessionManagementIID = &dcom.IID{Data1: 0xfc910418, Data2: 0x55ca, Data3: 0x45ef, Data4: []byte{0xb2, 0x64, 0x83, 0xd4, 0xce, 0x7d, 0x30, 0xe0}}
+	RemoteSessionManagementIID = &dcom.IID{Data1: 0xfc910418, Data2: 0x55ca, Data3: 0x45ef, Data4: []byte{0xb2, 0x64, 0x83, 0xd4, 0xce, 0x7d, 0x30, 0xe0}}
 	// Syntax UUID
-	IwrmRemoteSessionManagementSyntaxUUID = &uuid.UUID{TimeLow: 0xfc910418, TimeMid: 0x55ca, TimeHiAndVersion: 0x45ef, ClockSeqHiAndReserved: 0xb2, ClockSeqLow: 0x64, Node: [6]uint8{0x83, 0xd4, 0xce, 0x7d, 0x30, 0xe0}}
+	RemoteSessionManagementSyntaxUUID = &uuid.UUID{TimeLow: 0xfc910418, TimeMid: 0x55ca, TimeHiAndVersion: 0x45ef, ClockSeqHiAndReserved: 0xb2, ClockSeqLow: 0x64, Node: [6]uint8{0x83, 0xd4, 0xce, 0x7d, 0x30, 0xe0}}
 	// Syntax ID
-	IwrmRemoteSessionManagementSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: IwrmRemoteSessionManagementSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	RemoteSessionManagementSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: RemoteSessionManagementSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IWRMRemoteSessionMgmt interface.
-type IwrmRemoteSessionManagementClient interface {
+type RemoteSessionManagementClient interface {
 
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
@@ -62,20 +62,20 @@ type IwrmRemoteSessionManagementClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) IwrmRemoteSessionManagementClient
+	IPID(context.Context, *dcom.IPID) RemoteSessionManagementClient
 }
 
-type xxx_DefaultIwrmRemoteSessionManagementClient struct {
+type xxx_DefaultRemoteSessionManagementClient struct {
 	idispatch.DispatchClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultIwrmRemoteSessionManagementClient) Dispatch() idispatch.DispatchClient {
+func (o *xxx_DefaultRemoteSessionManagementClient) Dispatch() idispatch.DispatchClient {
 	return o.DispatchClient
 }
 
-func (o *xxx_DefaultIwrmRemoteSessionManagementClient) GetRemoteUserCategories(ctx context.Context, in *GetRemoteUserCategoriesRequest, opts ...dcerpc.CallOption) (*GetRemoteUserCategoriesResponse, error) {
+func (o *xxx_DefaultRemoteSessionManagementClient) GetRemoteUserCategories(ctx context.Context, in *GetRemoteUserCategoriesRequest, opts ...dcerpc.CallOption) (*GetRemoteUserCategoriesResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -95,7 +95,7 @@ func (o *xxx_DefaultIwrmRemoteSessionManagementClient) GetRemoteUserCategories(c
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmRemoteSessionManagementClient) SetRemoteUserCategories(ctx context.Context, in *SetRemoteUserCategoriesRequest, opts ...dcerpc.CallOption) (*SetRemoteUserCategoriesResponse, error) {
+func (o *xxx_DefaultRemoteSessionManagementClient) SetRemoteUserCategories(ctx context.Context, in *SetRemoteUserCategoriesRequest, opts ...dcerpc.CallOption) (*SetRemoteUserCategoriesResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -115,7 +115,7 @@ func (o *xxx_DefaultIwrmRemoteSessionManagementClient) SetRemoteUserCategories(c
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmRemoteSessionManagementClient) RefreshRemoteSessionWeights(ctx context.Context, in *RefreshRemoteSessionWeightsRequest, opts ...dcerpc.CallOption) (*RefreshRemoteSessionWeightsResponse, error) {
+func (o *xxx_DefaultRemoteSessionManagementClient) RefreshRemoteSessionWeights(ctx context.Context, in *RefreshRemoteSessionWeightsRequest, opts ...dcerpc.CallOption) (*RefreshRemoteSessionWeightsResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -135,29 +135,29 @@ func (o *xxx_DefaultIwrmRemoteSessionManagementClient) RefreshRemoteSessionWeigh
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmRemoteSessionManagementClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultRemoteSessionManagementClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultIwrmRemoteSessionManagementClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultRemoteSessionManagementClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultIwrmRemoteSessionManagementClient) IPID(ctx context.Context, ipid *dcom.IPID) IwrmRemoteSessionManagementClient {
+func (o *xxx_DefaultRemoteSessionManagementClient) IPID(ctx context.Context, ipid *dcom.IPID) RemoteSessionManagementClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultIwrmRemoteSessionManagementClient{
+	return &xxx_DefaultRemoteSessionManagementClient{
 		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
 		cc:             o.cc,
 		ipid:           ipid,
 	}
 }
 
-func NewIwrmRemoteSessionManagementClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (IwrmRemoteSessionManagementClient, error) {
+func NewRemoteSessionManagementClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (RemoteSessionManagementClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(IwrmRemoteSessionManagementSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(RemoteSessionManagementSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -170,7 +170,7 @@ func NewIwrmRemoteSessionManagementClient(ctx context.Context, cc dcerpc.Conn, o
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultIwrmRemoteSessionManagementClient{
+	return &xxx_DefaultRemoteSessionManagementClient{
 		DispatchClient: base,
 		cc:             cc,
 		ipid:           ipid,

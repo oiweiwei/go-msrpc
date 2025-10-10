@@ -36,18 +36,18 @@ var (
 
 var (
 	// INtmsLibraryControl2 interface identifier db90832f-6910-4d46-9f5e-9fd6bfa73903
-	NTMSLibraryControl2IID = &dcom.IID{Data1: 0xdb90832f, Data2: 0x6910, Data3: 0x4d46, Data4: []byte{0x9f, 0x5e, 0x9f, 0xd6, 0xbf, 0xa7, 0x39, 0x03}}
+	LibraryControl2IID = &dcom.IID{Data1: 0xdb90832f, Data2: 0x6910, Data3: 0x4d46, Data4: []byte{0x9f, 0x5e, 0x9f, 0xd6, 0xbf, 0xa7, 0x39, 0x03}}
 	// Syntax UUID
-	NTMSLibraryControl2SyntaxUUID = &uuid.UUID{TimeLow: 0xdb90832f, TimeMid: 0x6910, TimeHiAndVersion: 0x4d46, ClockSeqHiAndReserved: 0x9f, ClockSeqLow: 0x5e, Node: [6]uint8{0x9f, 0xd6, 0xbf, 0xa7, 0x39, 0x3}}
+	LibraryControl2SyntaxUUID = &uuid.UUID{TimeLow: 0xdb90832f, TimeMid: 0x6910, TimeHiAndVersion: 0x4d46, ClockSeqHiAndReserved: 0x9f, ClockSeqLow: 0x5e, Node: [6]uint8{0x9f, 0xd6, 0xbf, 0xa7, 0x39, 0x3}}
 	// Syntax ID
-	NTMSLibraryControl2SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: NTMSLibraryControl2SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	LibraryControl2SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: LibraryControl2SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // INtmsLibraryControl2 interface.
-type NTMSLibraryControl2Client interface {
+type LibraryControl2Client interface {
 
 	// INtmsLibraryControl1 retrieval method.
-	NTMSLibraryControl1() intmslibrarycontrol1.NTMSLibraryControl1Client
+	LibraryControl1() intmslibrarycontrol1.LibraryControl1Client
 
 	IdentifyNTMSSlot(context.Context, *IdentifyNTMSSlotRequest, ...dcerpc.CallOption) (*IdentifyNTMSSlotResponse, error)
 
@@ -58,20 +58,20 @@ type NTMSLibraryControl2Client interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) NTMSLibraryControl2Client
+	IPID(context.Context, *dcom.IPID) LibraryControl2Client
 }
 
-type xxx_DefaultNTMSLibraryControl2Client struct {
-	intmslibrarycontrol1.NTMSLibraryControl1Client
+type xxx_DefaultLibraryControl2Client struct {
+	intmslibrarycontrol1.LibraryControl1Client
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultNTMSLibraryControl2Client) NTMSLibraryControl1() intmslibrarycontrol1.NTMSLibraryControl1Client {
-	return o.NTMSLibraryControl1Client
+func (o *xxx_DefaultLibraryControl2Client) LibraryControl1() intmslibrarycontrol1.LibraryControl1Client {
+	return o.LibraryControl1Client
 }
 
-func (o *xxx_DefaultNTMSLibraryControl2Client) IdentifyNTMSSlot(ctx context.Context, in *IdentifyNTMSSlotRequest, opts ...dcerpc.CallOption) (*IdentifyNTMSSlotResponse, error) {
+func (o *xxx_DefaultLibraryControl2Client) IdentifyNTMSSlot(ctx context.Context, in *IdentifyNTMSSlotRequest, opts ...dcerpc.CallOption) (*IdentifyNTMSSlotResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -91,34 +91,34 @@ func (o *xxx_DefaultNTMSLibraryControl2Client) IdentifyNTMSSlot(ctx context.Cont
 	return out, nil
 }
 
-func (o *xxx_DefaultNTMSLibraryControl2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultLibraryControl2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultNTMSLibraryControl2Client) Conn() dcerpc.Conn {
+func (o *xxx_DefaultLibraryControl2Client) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultNTMSLibraryControl2Client) IPID(ctx context.Context, ipid *dcom.IPID) NTMSLibraryControl2Client {
+func (o *xxx_DefaultLibraryControl2Client) IPID(ctx context.Context, ipid *dcom.IPID) LibraryControl2Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultNTMSLibraryControl2Client{
-		NTMSLibraryControl1Client: o.NTMSLibraryControl1Client.IPID(ctx, ipid),
-		cc:                        o.cc,
-		ipid:                      ipid,
+	return &xxx_DefaultLibraryControl2Client{
+		LibraryControl1Client: o.LibraryControl1Client.IPID(ctx, ipid),
+		cc:                    o.cc,
+		ipid:                  ipid,
 	}
 }
 
-func NewNTMSLibraryControl2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (NTMSLibraryControl2Client, error) {
+func NewLibraryControl2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (LibraryControl2Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(NTMSLibraryControl2SyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(LibraryControl2SyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
 	}
-	base, err := intmslibrarycontrol1.NewNTMSLibraryControl1Client(ctx, cc, append(opts, dcom.Superclass(cc))...)
+	base, err := intmslibrarycontrol1.NewLibraryControl1Client(ctx, cc, append(opts, dcom.Superclass(cc))...)
 	if err != nil {
 		return nil, err
 	}
@@ -126,10 +126,10 @@ func NewNTMSLibraryControl2Client(ctx context.Context, cc dcerpc.Conn, opts ...d
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultNTMSLibraryControl2Client{
-		NTMSLibraryControl1Client: base,
-		cc:                        cc,
-		ipid:                      ipid,
+	return &xxx_DefaultLibraryControl2Client{
+		LibraryControl1Client: base,
+		cc:                    cc,
+		ipid:                  ipid,
 	}, nil
 }
 

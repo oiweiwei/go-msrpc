@@ -65,15 +65,15 @@ type Client interface {
 
 	// Package specific interfaces
 	ResourceManager() iresourcemanager.ResourceManagerClient
-	IwrmCalendar() iwrmcalendar.IwrmCalendarClient
-	IwrmPolicy() iwrmpolicy.IwrmPolicyClient
-	IwrmResourceGroup() iwrmresourcegroup.IwrmResourceGroupClient
-	IwrmAccounting() iwrmaccounting.IwrmAccountingClient
-	IwrmConfig() iwrmconfig.IwrmConfigClient
-	IwrmProtocol() iwrmprotocol.IwrmProtocolClient
-	IwrmMachineGroup() iwrmmachinegroup.IwrmMachineGroupClient
+	Calendar() iwrmcalendar.CalendarClient
+	Policy() iwrmpolicy.PolicyClient
+	ResourceGroup() iwrmresourcegroup.ResourceGroupClient
+	Accounting() iwrmaccounting.AccountingClient
+	Config() iwrmconfig.ConfigClient
+	Protocol() iwrmprotocol.ProtocolClient
+	MachineGroup() iwrmmachinegroup.MachineGroupClient
 	ResourceManager2() iresourcemanager2.ResourceManager2Client
-	IwrmRemoteSessionManagement() iwrmremotesessionmgmt.IwrmRemoteSessionManagementClient
+	RemoteSessionManagement() iwrmremotesessionmgmt.RemoteSessionManagementClient
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
@@ -88,16 +88,16 @@ type xxx_DefaultClient struct {
 
 	dcomClient dcom_client.Client
 
-	resourceManager             iresourcemanager.ResourceManagerClient
-	iwrmCalendar                iwrmcalendar.IwrmCalendarClient
-	iwrmPolicy                  iwrmpolicy.IwrmPolicyClient
-	iwrmResourceGroup           iwrmresourcegroup.IwrmResourceGroupClient
-	iwrmAccounting              iwrmaccounting.IwrmAccountingClient
-	iwrmConfig                  iwrmconfig.IwrmConfigClient
-	iwrmProtocol                iwrmprotocol.IwrmProtocolClient
-	iwrmMachineGroup            iwrmmachinegroup.IwrmMachineGroupClient
-	resourceManager2            iresourcemanager2.ResourceManager2Client
-	iwrmRemoteSessionManagement iwrmremotesessionmgmt.IwrmRemoteSessionManagementClient
+	resourceManager         iresourcemanager.ResourceManagerClient
+	calendar                iwrmcalendar.CalendarClient
+	policy                  iwrmpolicy.PolicyClient
+	resourceGroup           iwrmresourcegroup.ResourceGroupClient
+	accounting              iwrmaccounting.AccountingClient
+	config                  iwrmconfig.ConfigClient
+	protocol                iwrmprotocol.ProtocolClient
+	machineGroup            iwrmmachinegroup.MachineGroupClient
+	resourceManager2        iresourcemanager2.ResourceManager2Client
+	remoteSessionManagement iwrmremotesessionmgmt.RemoteSessionManagementClient
 }
 
 func (o *xxx_DefaultClient) RemoteUnknown() iremunknown.RemoteUnknownClient {
@@ -112,55 +112,55 @@ func (o *xxx_DefaultClient) ResourceManager() iresourcemanager.ResourceManagerCl
 	return o.resourceManager
 }
 
-func (o *xxx_DefaultClient) IwrmCalendar() iwrmcalendar.IwrmCalendarClient {
-	return o.iwrmCalendar
+func (o *xxx_DefaultClient) Calendar() iwrmcalendar.CalendarClient {
+	return o.calendar
 }
 
-func (o *xxx_DefaultClient) IwrmPolicy() iwrmpolicy.IwrmPolicyClient {
-	return o.iwrmPolicy
+func (o *xxx_DefaultClient) Policy() iwrmpolicy.PolicyClient {
+	return o.policy
 }
 
-func (o *xxx_DefaultClient) IwrmResourceGroup() iwrmresourcegroup.IwrmResourceGroupClient {
-	return o.iwrmResourceGroup
+func (o *xxx_DefaultClient) ResourceGroup() iwrmresourcegroup.ResourceGroupClient {
+	return o.resourceGroup
 }
 
-func (o *xxx_DefaultClient) IwrmAccounting() iwrmaccounting.IwrmAccountingClient {
-	return o.iwrmAccounting
+func (o *xxx_DefaultClient) Accounting() iwrmaccounting.AccountingClient {
+	return o.accounting
 }
 
-func (o *xxx_DefaultClient) IwrmConfig() iwrmconfig.IwrmConfigClient {
-	return o.iwrmConfig
+func (o *xxx_DefaultClient) Config() iwrmconfig.ConfigClient {
+	return o.config
 }
 
-func (o *xxx_DefaultClient) IwrmProtocol() iwrmprotocol.IwrmProtocolClient {
-	return o.iwrmProtocol
+func (o *xxx_DefaultClient) Protocol() iwrmprotocol.ProtocolClient {
+	return o.protocol
 }
 
-func (o *xxx_DefaultClient) IwrmMachineGroup() iwrmmachinegroup.IwrmMachineGroupClient {
-	return o.iwrmMachineGroup
+func (o *xxx_DefaultClient) MachineGroup() iwrmmachinegroup.MachineGroupClient {
+	return o.machineGroup
 }
 
 func (o *xxx_DefaultClient) ResourceManager2() iresourcemanager2.ResourceManager2Client {
 	return o.resourceManager2
 }
 
-func (o *xxx_DefaultClient) IwrmRemoteSessionManagement() iwrmremotesessionmgmt.IwrmRemoteSessionManagementClient {
-	return o.iwrmRemoteSessionManagement
+func (o *xxx_DefaultClient) RemoteSessionManagement() iwrmremotesessionmgmt.RemoteSessionManagementClient {
+	return o.remoteSessionManagement
 }
 
 func NewClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Client, error) {
 
 	opts = append(opts,
 		dcerpc.WithAbstractSyntax(iresourcemanager.ResourceManagerSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(iwrmcalendar.IwrmCalendarSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(iwrmpolicy.IwrmPolicySyntaxV0_0),
-		dcerpc.WithAbstractSyntax(iwrmresourcegroup.IwrmResourceGroupSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(iwrmaccounting.IwrmAccountingSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(iwrmconfig.IwrmConfigSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(iwrmprotocol.IwrmProtocolSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(iwrmmachinegroup.IwrmMachineGroupSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(iwrmcalendar.CalendarSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(iwrmpolicy.PolicySyntaxV0_0),
+		dcerpc.WithAbstractSyntax(iwrmresourcegroup.ResourceGroupSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(iwrmaccounting.AccountingSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(iwrmconfig.ConfigSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(iwrmprotocol.ProtocolSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(iwrmmachinegroup.MachineGroupSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iresourcemanager2.ResourceManager2SyntaxV0_0),
-		dcerpc.WithAbstractSyntax(iwrmremotesessionmgmt.IwrmRemoteSessionManagementSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(iwrmremotesessionmgmt.RemoteSessionManagementSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iremunknown.RemoteUnknownSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iremunknown2.RemoteUnknown2SyntaxV0_0),
 	)
@@ -192,68 +192,68 @@ func NewClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Clie
 
 	o.resourceManager, err = iresourcemanager.NewResourceManagerClient(ctx, resourceManagerSubConn, append(opts, dcerpc.WithNoBind(resourceManagerSubConn))...)
 
-	iwrmCalendarSubConn, err := sub.SubConn(ctx, iwrmcalendar.IwrmCalendarSyntaxV0_0)
+	calendarSubConn, err := sub.SubConn(ctx, iwrmcalendar.CalendarSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		iwrmCalendarSubConn = sub
+		calendarSubConn = sub
 	}
 
-	o.iwrmCalendar, err = iwrmcalendar.NewIwrmCalendarClient(ctx, iwrmCalendarSubConn, append(opts, dcerpc.WithNoBind(iwrmCalendarSubConn))...)
+	o.calendar, err = iwrmcalendar.NewCalendarClient(ctx, calendarSubConn, append(opts, dcerpc.WithNoBind(calendarSubConn))...)
 
-	iwrmPolicySubConn, err := sub.SubConn(ctx, iwrmpolicy.IwrmPolicySyntaxV0_0)
+	policySubConn, err := sub.SubConn(ctx, iwrmpolicy.PolicySyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		iwrmPolicySubConn = sub
+		policySubConn = sub
 	}
 
-	o.iwrmPolicy, err = iwrmpolicy.NewIwrmPolicyClient(ctx, iwrmPolicySubConn, append(opts, dcerpc.WithNoBind(iwrmPolicySubConn))...)
+	o.policy, err = iwrmpolicy.NewPolicyClient(ctx, policySubConn, append(opts, dcerpc.WithNoBind(policySubConn))...)
 
-	iwrmResourceGroupSubConn, err := sub.SubConn(ctx, iwrmresourcegroup.IwrmResourceGroupSyntaxV0_0)
+	resourceGroupSubConn, err := sub.SubConn(ctx, iwrmresourcegroup.ResourceGroupSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		iwrmResourceGroupSubConn = sub
+		resourceGroupSubConn = sub
 	}
 
-	o.iwrmResourceGroup, err = iwrmresourcegroup.NewIwrmResourceGroupClient(ctx, iwrmResourceGroupSubConn, append(opts, dcerpc.WithNoBind(iwrmResourceGroupSubConn))...)
+	o.resourceGroup, err = iwrmresourcegroup.NewResourceGroupClient(ctx, resourceGroupSubConn, append(opts, dcerpc.WithNoBind(resourceGroupSubConn))...)
 
-	iwrmAccountingSubConn, err := sub.SubConn(ctx, iwrmaccounting.IwrmAccountingSyntaxV0_0)
+	accountingSubConn, err := sub.SubConn(ctx, iwrmaccounting.AccountingSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		iwrmAccountingSubConn = sub
+		accountingSubConn = sub
 	}
 
-	o.iwrmAccounting, err = iwrmaccounting.NewIwrmAccountingClient(ctx, iwrmAccountingSubConn, append(opts, dcerpc.WithNoBind(iwrmAccountingSubConn))...)
+	o.accounting, err = iwrmaccounting.NewAccountingClient(ctx, accountingSubConn, append(opts, dcerpc.WithNoBind(accountingSubConn))...)
 
-	iwrmConfigSubConn, err := sub.SubConn(ctx, iwrmconfig.IwrmConfigSyntaxV0_0)
+	configSubConn, err := sub.SubConn(ctx, iwrmconfig.ConfigSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		iwrmConfigSubConn = sub
+		configSubConn = sub
 	}
 
-	o.iwrmConfig, err = iwrmconfig.NewIwrmConfigClient(ctx, iwrmConfigSubConn, append(opts, dcerpc.WithNoBind(iwrmConfigSubConn))...)
+	o.config, err = iwrmconfig.NewConfigClient(ctx, configSubConn, append(opts, dcerpc.WithNoBind(configSubConn))...)
 
-	iwrmProtocolSubConn, err := sub.SubConn(ctx, iwrmprotocol.IwrmProtocolSyntaxV0_0)
+	protocolSubConn, err := sub.SubConn(ctx, iwrmprotocol.ProtocolSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		iwrmProtocolSubConn = sub
+		protocolSubConn = sub
 	}
 
-	o.iwrmProtocol, err = iwrmprotocol.NewIwrmProtocolClient(ctx, iwrmProtocolSubConn, append(opts, dcerpc.WithNoBind(iwrmProtocolSubConn))...)
+	o.protocol, err = iwrmprotocol.NewProtocolClient(ctx, protocolSubConn, append(opts, dcerpc.WithNoBind(protocolSubConn))...)
 
-	iwrmMachineGroupSubConn, err := sub.SubConn(ctx, iwrmmachinegroup.IwrmMachineGroupSyntaxV0_0)
+	machineGroupSubConn, err := sub.SubConn(ctx, iwrmmachinegroup.MachineGroupSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		iwrmMachineGroupSubConn = sub
+		machineGroupSubConn = sub
 	}
 
-	o.iwrmMachineGroup, err = iwrmmachinegroup.NewIwrmMachineGroupClient(ctx, iwrmMachineGroupSubConn, append(opts, dcerpc.WithNoBind(iwrmMachineGroupSubConn))...)
+	o.machineGroup, err = iwrmmachinegroup.NewMachineGroupClient(ctx, machineGroupSubConn, append(opts, dcerpc.WithNoBind(machineGroupSubConn))...)
 
 	resourceManager2SubConn, err := sub.SubConn(ctx, iresourcemanager2.ResourceManager2SyntaxV0_0)
 	if err != nil {
@@ -264,14 +264,14 @@ func NewClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Clie
 
 	o.resourceManager2, err = iresourcemanager2.NewResourceManager2Client(ctx, resourceManager2SubConn, append(opts, dcerpc.WithNoBind(resourceManager2SubConn))...)
 
-	iwrmRemoteSessionManagementSubConn, err := sub.SubConn(ctx, iwrmremotesessionmgmt.IwrmRemoteSessionManagementSyntaxV0_0)
+	remoteSessionManagementSubConn, err := sub.SubConn(ctx, iwrmremotesessionmgmt.RemoteSessionManagementSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		iwrmRemoteSessionManagementSubConn = sub
+		remoteSessionManagementSubConn = sub
 	}
 
-	o.iwrmRemoteSessionManagement, err = iwrmremotesessionmgmt.NewIwrmRemoteSessionManagementClient(ctx, iwrmRemoteSessionManagementSubConn, append(opts, dcerpc.WithNoBind(iwrmRemoteSessionManagementSubConn))...)
+	o.remoteSessionManagement, err = iwrmremotesessionmgmt.NewRemoteSessionManagementClient(ctx, remoteSessionManagementSubConn, append(opts, dcerpc.WithNoBind(remoteSessionManagementSubConn))...)
 	return o, nil
 }
 
@@ -288,17 +288,17 @@ func (o *xxx_DefaultClient) IPID(ctx context.Context, ipid *dcom.IPID) Client {
 		ipid = &dcom.IPID{}
 	}
 	return &xxx_DefaultClient{
-		dcomClient:                  o.dcomClient.IPID(ctx, ipid),
-		resourceManager:             o.resourceManager.IPID(ctx, ipid),
-		iwrmCalendar:                o.iwrmCalendar.IPID(ctx, ipid),
-		iwrmPolicy:                  o.iwrmPolicy.IPID(ctx, ipid),
-		iwrmResourceGroup:           o.iwrmResourceGroup.IPID(ctx, ipid),
-		iwrmAccounting:              o.iwrmAccounting.IPID(ctx, ipid),
-		iwrmConfig:                  o.iwrmConfig.IPID(ctx, ipid),
-		iwrmProtocol:                o.iwrmProtocol.IPID(ctx, ipid),
-		iwrmMachineGroup:            o.iwrmMachineGroup.IPID(ctx, ipid),
-		resourceManager2:            o.resourceManager2.IPID(ctx, ipid),
-		iwrmRemoteSessionManagement: o.iwrmRemoteSessionManagement.IPID(ctx, ipid),
-		cc:                          o.cc,
+		dcomClient:              o.dcomClient.IPID(ctx, ipid),
+		resourceManager:         o.resourceManager.IPID(ctx, ipid),
+		calendar:                o.calendar.IPID(ctx, ipid),
+		policy:                  o.policy.IPID(ctx, ipid),
+		resourceGroup:           o.resourceGroup.IPID(ctx, ipid),
+		accounting:              o.accounting.IPID(ctx, ipid),
+		config:                  o.config.IPID(ctx, ipid),
+		protocol:                o.protocol.IPID(ctx, ipid),
+		machineGroup:            o.machineGroup.IPID(ctx, ipid),
+		resourceManager2:        o.resourceManager2.IPID(ctx, ipid),
+		remoteSessionManagement: o.remoteSessionManagement.IPID(ctx, ipid),
+		cc:                      o.cc,
 	}
 }

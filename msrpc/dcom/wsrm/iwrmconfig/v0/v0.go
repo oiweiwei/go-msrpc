@@ -38,15 +38,15 @@ var (
 
 var (
 	// IWRMConfig interface identifier 21546ae8-4da5-445e-987f-627fea39c5e8
-	IwrmConfigIID = &dcom.IID{Data1: 0x21546ae8, Data2: 0x4da5, Data3: 0x445e, Data4: []byte{0x98, 0x7f, 0x62, 0x7f, 0xea, 0x39, 0xc5, 0xe8}}
+	ConfigIID = &dcom.IID{Data1: 0x21546ae8, Data2: 0x4da5, Data3: 0x445e, Data4: []byte{0x98, 0x7f, 0x62, 0x7f, 0xea, 0x39, 0xc5, 0xe8}}
 	// Syntax UUID
-	IwrmConfigSyntaxUUID = &uuid.UUID{TimeLow: 0x21546ae8, TimeMid: 0x4da5, TimeHiAndVersion: 0x445e, ClockSeqHiAndReserved: 0x98, ClockSeqLow: 0x7f, Node: [6]uint8{0x62, 0x7f, 0xea, 0x39, 0xc5, 0xe8}}
+	ConfigSyntaxUUID = &uuid.UUID{TimeLow: 0x21546ae8, TimeMid: 0x4da5, TimeHiAndVersion: 0x445e, ClockSeqHiAndReserved: 0x98, ClockSeqLow: 0x7f, Node: [6]uint8{0x62, 0x7f, 0xea, 0x39, 0xc5, 0xe8}}
 	// Syntax ID
-	IwrmConfigSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: IwrmConfigSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	ConfigSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ConfigSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IWRMConfig interface.
-type IwrmConfigClient interface {
+type ConfigClient interface {
 
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
@@ -63,9 +63,9 @@ type IwrmConfigClient interface {
 
 	SetExclusionList(context.Context, *SetExclusionListRequest, ...dcerpc.CallOption) (*SetExclusionListResponse, error)
 
-	WsrmActivate(context.Context, *WsrmActivateRequest, ...dcerpc.CallOption) (*WsrmActivateResponse, error)
+	WSRMActivate(context.Context, *WSRMActivateRequest, ...dcerpc.CallOption) (*WSRMActivateResponse, error)
 
-	IsWsrmActivated(context.Context, *IsWsrmActivatedRequest, ...dcerpc.CallOption) (*IsWsrmActivatedResponse, error)
+	IsWSRMActivated(context.Context, *IsWSRMActivatedRequest, ...dcerpc.CallOption) (*IsWSRMActivatedResponse, error)
 
 	RestoreExclusionList(context.Context, *RestoreExclusionListRequest, ...dcerpc.CallOption) (*RestoreExclusionListResponse, error)
 
@@ -76,20 +76,20 @@ type IwrmConfigClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) IwrmConfigClient
+	IPID(context.Context, *dcom.IPID) ConfigClient
 }
 
-type xxx_DefaultIwrmConfigClient struct {
+type xxx_DefaultConfigClient struct {
 	idispatch.DispatchClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultIwrmConfigClient) Dispatch() idispatch.DispatchClient {
+func (o *xxx_DefaultConfigClient) Dispatch() idispatch.DispatchClient {
 	return o.DispatchClient
 }
 
-func (o *xxx_DefaultIwrmConfigClient) GetConfig(ctx context.Context, in *GetConfigRequest, opts ...dcerpc.CallOption) (*GetConfigResponse, error) {
+func (o *xxx_DefaultConfigClient) GetConfig(ctx context.Context, in *GetConfigRequest, opts ...dcerpc.CallOption) (*GetConfigResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -109,7 +109,7 @@ func (o *xxx_DefaultIwrmConfigClient) GetConfig(ctx context.Context, in *GetConf
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmConfigClient) SetConfig(ctx context.Context, in *SetConfigRequest, opts ...dcerpc.CallOption) (*SetConfigResponse, error) {
+func (o *xxx_DefaultConfigClient) SetConfig(ctx context.Context, in *SetConfigRequest, opts ...dcerpc.CallOption) (*SetConfigResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -129,7 +129,7 @@ func (o *xxx_DefaultIwrmConfigClient) SetConfig(ctx context.Context, in *SetConf
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmConfigClient) IsEnabled(ctx context.Context, in *IsEnabledRequest, opts ...dcerpc.CallOption) (*IsEnabledResponse, error) {
+func (o *xxx_DefaultConfigClient) IsEnabled(ctx context.Context, in *IsEnabledRequest, opts ...dcerpc.CallOption) (*IsEnabledResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -149,7 +149,7 @@ func (o *xxx_DefaultIwrmConfigClient) IsEnabled(ctx context.Context, in *IsEnabl
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmConfigClient) EnableDisable(ctx context.Context, in *EnableDisableRequest, opts ...dcerpc.CallOption) (*EnableDisableResponse, error) {
+func (o *xxx_DefaultConfigClient) EnableDisable(ctx context.Context, in *EnableDisableRequest, opts ...dcerpc.CallOption) (*EnableDisableResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -169,7 +169,7 @@ func (o *xxx_DefaultIwrmConfigClient) EnableDisable(ctx context.Context, in *Ena
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmConfigClient) GetExclusionList(ctx context.Context, in *GetExclusionListRequest, opts ...dcerpc.CallOption) (*GetExclusionListResponse, error) {
+func (o *xxx_DefaultConfigClient) GetExclusionList(ctx context.Context, in *GetExclusionListRequest, opts ...dcerpc.CallOption) (*GetExclusionListResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -189,7 +189,7 @@ func (o *xxx_DefaultIwrmConfigClient) GetExclusionList(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmConfigClient) SetExclusionList(ctx context.Context, in *SetExclusionListRequest, opts ...dcerpc.CallOption) (*SetExclusionListResponse, error) {
+func (o *xxx_DefaultConfigClient) SetExclusionList(ctx context.Context, in *SetExclusionListRequest, opts ...dcerpc.CallOption) (*SetExclusionListResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -209,7 +209,7 @@ func (o *xxx_DefaultIwrmConfigClient) SetExclusionList(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmConfigClient) WsrmActivate(ctx context.Context, in *WsrmActivateRequest, opts ...dcerpc.CallOption) (*WsrmActivateResponse, error) {
+func (o *xxx_DefaultConfigClient) WSRMActivate(ctx context.Context, in *WSRMActivateRequest, opts ...dcerpc.CallOption) (*WSRMActivateResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -221,7 +221,7 @@ func (o *xxx_DefaultIwrmConfigClient) WsrmActivate(ctx context.Context, in *Wsrm
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &WsrmActivateResponse{}
+	out := &WSRMActivateResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -229,7 +229,7 @@ func (o *xxx_DefaultIwrmConfigClient) WsrmActivate(ctx context.Context, in *Wsrm
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmConfigClient) IsWsrmActivated(ctx context.Context, in *IsWsrmActivatedRequest, opts ...dcerpc.CallOption) (*IsWsrmActivatedResponse, error) {
+func (o *xxx_DefaultConfigClient) IsWSRMActivated(ctx context.Context, in *IsWSRMActivatedRequest, opts ...dcerpc.CallOption) (*IsWSRMActivatedResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -241,7 +241,7 @@ func (o *xxx_DefaultIwrmConfigClient) IsWsrmActivated(ctx context.Context, in *I
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &IsWsrmActivatedResponse{}
+	out := &IsWSRMActivatedResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -249,7 +249,7 @@ func (o *xxx_DefaultIwrmConfigClient) IsWsrmActivated(ctx context.Context, in *I
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmConfigClient) RestoreExclusionList(ctx context.Context, in *RestoreExclusionListRequest, opts ...dcerpc.CallOption) (*RestoreExclusionListResponse, error) {
+func (o *xxx_DefaultConfigClient) RestoreExclusionList(ctx context.Context, in *RestoreExclusionListRequest, opts ...dcerpc.CallOption) (*RestoreExclusionListResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -269,29 +269,29 @@ func (o *xxx_DefaultIwrmConfigClient) RestoreExclusionList(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmConfigClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultConfigClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultIwrmConfigClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultConfigClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultIwrmConfigClient) IPID(ctx context.Context, ipid *dcom.IPID) IwrmConfigClient {
+func (o *xxx_DefaultConfigClient) IPID(ctx context.Context, ipid *dcom.IPID) ConfigClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultIwrmConfigClient{
+	return &xxx_DefaultConfigClient{
 		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
 		cc:             o.cc,
 		ipid:           ipid,
 	}
 }
 
-func NewIwrmConfigClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (IwrmConfigClient, error) {
+func NewConfigClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ConfigClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(IwrmConfigSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ConfigSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -304,7 +304,7 @@ func NewIwrmConfigClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Opt
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultIwrmConfigClient{
+	return &xxx_DefaultConfigClient{
 		DispatchClient: base,
 		cc:             cc,
 		ipid:           ipid,
@@ -316,7 +316,7 @@ type xxx_GetConfigOperation struct {
 	This           *dcom.ORPCThis  `idl:"name:This" json:"this"`
 	That           *dcom.ORPCThat  `idl:"name:That" json:"that"`
 	ConfigInfo     *oaut.String    `idl:"name:pbstrConfigInfo" json:"config_info"`
-	EnumConfigType wsrm.Configtype `idl:"name:enumConfigType" json:"enum_config_type"`
+	EnumConfigType wsrm.ConfigType `idl:"name:enumConfigType" json:"enum_config_type"`
 	Return         int32           `idl:"name:Return" json:"return"`
 }
 
@@ -492,7 +492,7 @@ func (o *xxx_GetConfigOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 type GetConfigRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This           *dcom.ORPCThis  `idl:"name:This" json:"this"`
-	EnumConfigType wsrm.Configtype `idl:"name:enumConfigType" json:"enum_config_type"`
+	EnumConfigType wsrm.ConfigType `idl:"name:enumConfigType" json:"enum_config_type"`
 }
 
 func (o *GetConfigRequest) xxx_ToOp(ctx context.Context, op *xxx_GetConfigOperation) *xxx_GetConfigOperation {
@@ -573,7 +573,7 @@ type xxx_SetConfigOperation struct {
 	This           *dcom.ORPCThis  `idl:"name:This" json:"this"`
 	That           *dcom.ORPCThat  `idl:"name:That" json:"that"`
 	ConfigInfo     *oaut.String    `idl:"name:bstrConfigInfo" json:"config_info"`
-	EnumConfigType wsrm.Configtype `idl:"name:enumConfigType" json:"enum_config_type"`
+	EnumConfigType wsrm.ConfigType `idl:"name:enumConfigType" json:"enum_config_type"`
 	Return         int32           `idl:"name:Return" json:"return"`
 }
 
@@ -750,7 +750,7 @@ type SetConfigRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This           *dcom.ORPCThis  `idl:"name:This" json:"this"`
 	ConfigInfo     *oaut.String    `idl:"name:bstrConfigInfo" json:"config_info"`
-	EnumConfigType wsrm.Configtype `idl:"name:enumConfigType" json:"enum_config_type"`
+	EnumConfigType wsrm.ConfigType `idl:"name:enumConfigType" json:"enum_config_type"`
 }
 
 func (o *SetConfigRequest) xxx_ToOp(ctx context.Context, op *xxx_SetConfigOperation) *xxx_SetConfigOperation {
@@ -830,7 +830,7 @@ type xxx_IsEnabledOperation struct {
 	This           *dcom.ORPCThis  `idl:"name:This" json:"this"`
 	That           *dcom.ORPCThat  `idl:"name:That" json:"that"`
 	Enable         bool            `idl:"name:pbEnable" json:"enable"`
-	EnumConfigType wsrm.Configtype `idl:"name:enumConfigType" json:"enum_config_type"`
+	EnumConfigType wsrm.ConfigType `idl:"name:enumConfigType" json:"enum_config_type"`
 	Return         int32           `idl:"name:Return" json:"return"`
 }
 
@@ -980,7 +980,7 @@ func (o *xxx_IsEnabledOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 type IsEnabledRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This           *dcom.ORPCThis  `idl:"name:This" json:"this"`
-	EnumConfigType wsrm.Configtype `idl:"name:enumConfigType" json:"enum_config_type"`
+	EnumConfigType wsrm.ConfigType `idl:"name:enumConfigType" json:"enum_config_type"`
 }
 
 func (o *IsEnabledRequest) xxx_ToOp(ctx context.Context, op *xxx_IsEnabledOperation) *xxx_IsEnabledOperation {
@@ -1061,7 +1061,7 @@ type xxx_EnableDisableOperation struct {
 	This           *dcom.ORPCThis  `idl:"name:This" json:"this"`
 	That           *dcom.ORPCThat  `idl:"name:That" json:"that"`
 	EnableDisable  bool            `idl:"name:bEnableDisable" json:"enable_disable"`
-	EnumConfigType wsrm.Configtype `idl:"name:enumConfigType" json:"enum_config_type"`
+	EnumConfigType wsrm.ConfigType `idl:"name:enumConfigType" json:"enum_config_type"`
 	Return         int32           `idl:"name:Return" json:"return"`
 }
 
@@ -1212,7 +1212,7 @@ type EnableDisableRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This           *dcom.ORPCThis  `idl:"name:This" json:"this"`
 	EnableDisable  bool            `idl:"name:bEnableDisable" json:"enable_disable"`
-	EnumConfigType wsrm.Configtype `idl:"name:enumConfigType" json:"enum_config_type"`
+	EnumConfigType wsrm.ConfigType `idl:"name:enumConfigType" json:"enum_config_type"`
 }
 
 func (o *EnableDisableRequest) xxx_ToOp(ctx context.Context, op *xxx_EnableDisableOperation) *xxx_EnableDisableOperation {
@@ -1785,19 +1785,19 @@ func (o *SetExclusionListResponse) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
-// xxx_WsrmActivateOperation structure represents the WSRMActivate operation
-type xxx_WsrmActivateOperation struct {
+// xxx_WSRMActivateOperation structure represents the WSRMActivate operation
+type xxx_WSRMActivateOperation struct {
 	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That     *dcom.ORPCThat `idl:"name:That" json:"that"`
 	Activate bool           `idl:"name:bActivate" json:"activate"`
 	Return   int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_WsrmActivateOperation) OpNum() int { return 13 }
+func (o *xxx_WSRMActivateOperation) OpNum() int { return 13 }
 
-func (o *xxx_WsrmActivateOperation) OpName() string { return "/IWRMConfig/v0/WSRMActivate" }
+func (o *xxx_WSRMActivateOperation) OpName() string { return "/IWRMConfig/v0/WSRMActivate" }
 
-func (o *xxx_WsrmActivateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_WSRMActivateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -1806,7 +1806,7 @@ func (o *xxx_WsrmActivateOperation) xxx_PrepareRequestPayload(ctx context.Contex
 	return nil
 }
 
-func (o *xxx_WsrmActivateOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_WSRMActivateOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -1840,7 +1840,7 @@ func (o *xxx_WsrmActivateOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	return nil
 }
 
-func (o *xxx_WsrmActivateOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_WSRMActivateOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -1864,7 +1864,7 @@ func (o *xxx_WsrmActivateOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	return nil
 }
 
-func (o *xxx_WsrmActivateOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_WSRMActivateOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1873,7 +1873,7 @@ func (o *xxx_WsrmActivateOperation) xxx_PrepareResponsePayload(ctx context.Conte
 	return nil
 }
 
-func (o *xxx_WsrmActivateOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_WSRMActivateOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1901,7 +1901,7 @@ func (o *xxx_WsrmActivateOperation) MarshalNDRResponse(ctx context.Context, w nd
 	return nil
 }
 
-func (o *xxx_WsrmActivateOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_WSRMActivateOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -1923,16 +1923,16 @@ func (o *xxx_WsrmActivateOperation) UnmarshalNDRResponse(ctx context.Context, w 
 	return nil
 }
 
-// WsrmActivateRequest structure represents the WSRMActivate operation request
-type WsrmActivateRequest struct {
+// WSRMActivateRequest structure represents the WSRMActivate operation request
+type WSRMActivateRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
 	Activate bool           `idl:"name:bActivate" json:"activate"`
 }
 
-func (o *WsrmActivateRequest) xxx_ToOp(ctx context.Context, op *xxx_WsrmActivateOperation) *xxx_WsrmActivateOperation {
+func (o *WSRMActivateRequest) xxx_ToOp(ctx context.Context, op *xxx_WSRMActivateOperation) *xxx_WSRMActivateOperation {
 	if op == nil {
-		op = &xxx_WsrmActivateOperation{}
+		op = &xxx_WSRMActivateOperation{}
 	}
 	if o == nil {
 		return op
@@ -1942,18 +1942,18 @@ func (o *WsrmActivateRequest) xxx_ToOp(ctx context.Context, op *xxx_WsrmActivate
 	return op
 }
 
-func (o *WsrmActivateRequest) xxx_FromOp(ctx context.Context, op *xxx_WsrmActivateOperation) {
+func (o *WSRMActivateRequest) xxx_FromOp(ctx context.Context, op *xxx_WSRMActivateOperation) {
 	if o == nil {
 		return
 	}
 	o.This = op.This
 	o.Activate = op.Activate
 }
-func (o *WsrmActivateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *WSRMActivateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *WsrmActivateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_WsrmActivateOperation{}
+func (o *WSRMActivateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_WSRMActivateOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1961,17 +1961,17 @@ func (o *WsrmActivateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
-// WsrmActivateResponse structure represents the WSRMActivate operation response
-type WsrmActivateResponse struct {
+// WSRMActivateResponse structure represents the WSRMActivate operation response
+type WSRMActivateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// Return: The WSRMActivate return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *WsrmActivateResponse) xxx_ToOp(ctx context.Context, op *xxx_WsrmActivateOperation) *xxx_WsrmActivateOperation {
+func (o *WSRMActivateResponse) xxx_ToOp(ctx context.Context, op *xxx_WSRMActivateOperation) *xxx_WSRMActivateOperation {
 	if op == nil {
-		op = &xxx_WsrmActivateOperation{}
+		op = &xxx_WSRMActivateOperation{}
 	}
 	if o == nil {
 		return op
@@ -1981,18 +1981,18 @@ func (o *WsrmActivateResponse) xxx_ToOp(ctx context.Context, op *xxx_WsrmActivat
 	return op
 }
 
-func (o *WsrmActivateResponse) xxx_FromOp(ctx context.Context, op *xxx_WsrmActivateOperation) {
+func (o *WSRMActivateResponse) xxx_FromOp(ctx context.Context, op *xxx_WSRMActivateOperation) {
 	if o == nil {
 		return
 	}
 	o.That = op.That
 	o.Return = op.Return
 }
-func (o *WsrmActivateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *WSRMActivateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *WsrmActivateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_WsrmActivateOperation{}
+func (o *WSRMActivateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_WSRMActivateOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -2000,19 +2000,19 @@ func (o *WsrmActivateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
-// xxx_IsWsrmActivatedOperation structure represents the IsWSRMActivated operation
-type xxx_IsWsrmActivatedOperation struct {
+// xxx_IsWSRMActivatedOperation structure represents the IsWSRMActivated operation
+type xxx_IsWSRMActivatedOperation struct {
 	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
 	Activated bool           `idl:"name:pbActivated" json:"activated"`
 	Return    int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_IsWsrmActivatedOperation) OpNum() int { return 14 }
+func (o *xxx_IsWSRMActivatedOperation) OpNum() int { return 14 }
 
-func (o *xxx_IsWsrmActivatedOperation) OpName() string { return "/IWRMConfig/v0/IsWSRMActivated" }
+func (o *xxx_IsWSRMActivatedOperation) OpName() string { return "/IWRMConfig/v0/IsWSRMActivated" }
 
-func (o *xxx_IsWsrmActivatedOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_IsWSRMActivatedOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -2021,7 +2021,7 @@ func (o *xxx_IsWsrmActivatedOperation) xxx_PrepareRequestPayload(ctx context.Con
 	return nil
 }
 
-func (o *xxx_IsWsrmActivatedOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_IsWSRMActivatedOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -2043,7 +2043,7 @@ func (o *xxx_IsWsrmActivatedOperation) MarshalNDRRequest(ctx context.Context, w 
 	return nil
 }
 
-func (o *xxx_IsWsrmActivatedOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_IsWSRMActivatedOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -2059,7 +2059,7 @@ func (o *xxx_IsWsrmActivatedOperation) UnmarshalNDRRequest(ctx context.Context, 
 	return nil
 }
 
-func (o *xxx_IsWsrmActivatedOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_IsWSRMActivatedOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -2068,7 +2068,7 @@ func (o *xxx_IsWsrmActivatedOperation) xxx_PrepareResponsePayload(ctx context.Co
 	return nil
 }
 
-func (o *xxx_IsWsrmActivatedOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_IsWSRMActivatedOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -2108,7 +2108,7 @@ func (o *xxx_IsWsrmActivatedOperation) MarshalNDRResponse(ctx context.Context, w
 	return nil
 }
 
-func (o *xxx_IsWsrmActivatedOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_IsWSRMActivatedOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -2138,15 +2138,15 @@ func (o *xxx_IsWsrmActivatedOperation) UnmarshalNDRResponse(ctx context.Context,
 	return nil
 }
 
-// IsWsrmActivatedRequest structure represents the IsWSRMActivated operation request
-type IsWsrmActivatedRequest struct {
+// IsWSRMActivatedRequest structure represents the IsWSRMActivated operation request
+type IsWSRMActivatedRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *IsWsrmActivatedRequest) xxx_ToOp(ctx context.Context, op *xxx_IsWsrmActivatedOperation) *xxx_IsWsrmActivatedOperation {
+func (o *IsWSRMActivatedRequest) xxx_ToOp(ctx context.Context, op *xxx_IsWSRMActivatedOperation) *xxx_IsWSRMActivatedOperation {
 	if op == nil {
-		op = &xxx_IsWsrmActivatedOperation{}
+		op = &xxx_IsWSRMActivatedOperation{}
 	}
 	if o == nil {
 		return op
@@ -2155,17 +2155,17 @@ func (o *IsWsrmActivatedRequest) xxx_ToOp(ctx context.Context, op *xxx_IsWsrmAct
 	return op
 }
 
-func (o *IsWsrmActivatedRequest) xxx_FromOp(ctx context.Context, op *xxx_IsWsrmActivatedOperation) {
+func (o *IsWSRMActivatedRequest) xxx_FromOp(ctx context.Context, op *xxx_IsWSRMActivatedOperation) {
 	if o == nil {
 		return
 	}
 	o.This = op.This
 }
-func (o *IsWsrmActivatedRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IsWSRMActivatedRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *IsWsrmActivatedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_IsWsrmActivatedOperation{}
+func (o *IsWSRMActivatedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_IsWSRMActivatedOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -2173,8 +2173,8 @@ func (o *IsWsrmActivatedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 	return nil
 }
 
-// IsWsrmActivatedResponse structure represents the IsWSRMActivated operation response
-type IsWsrmActivatedResponse struct {
+// IsWSRMActivatedResponse structure represents the IsWSRMActivated operation response
+type IsWSRMActivatedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
 	Activated bool           `idl:"name:pbActivated" json:"activated"`
@@ -2182,9 +2182,9 @@ type IsWsrmActivatedResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *IsWsrmActivatedResponse) xxx_ToOp(ctx context.Context, op *xxx_IsWsrmActivatedOperation) *xxx_IsWsrmActivatedOperation {
+func (o *IsWSRMActivatedResponse) xxx_ToOp(ctx context.Context, op *xxx_IsWSRMActivatedOperation) *xxx_IsWSRMActivatedOperation {
 	if op == nil {
-		op = &xxx_IsWsrmActivatedOperation{}
+		op = &xxx_IsWSRMActivatedOperation{}
 	}
 	if o == nil {
 		return op
@@ -2195,7 +2195,7 @@ func (o *IsWsrmActivatedResponse) xxx_ToOp(ctx context.Context, op *xxx_IsWsrmAc
 	return op
 }
 
-func (o *IsWsrmActivatedResponse) xxx_FromOp(ctx context.Context, op *xxx_IsWsrmActivatedOperation) {
+func (o *IsWSRMActivatedResponse) xxx_FromOp(ctx context.Context, op *xxx_IsWSRMActivatedOperation) {
 	if o == nil {
 		return
 	}
@@ -2203,11 +2203,11 @@ func (o *IsWsrmActivatedResponse) xxx_FromOp(ctx context.Context, op *xxx_IsWsrm
 	o.Activated = op.Activated
 	o.Return = op.Return
 }
-func (o *IsWsrmActivatedResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IsWSRMActivatedResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *IsWsrmActivatedResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_IsWsrmActivatedOperation{}
+func (o *IsWSRMActivatedResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_IsWSRMActivatedOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

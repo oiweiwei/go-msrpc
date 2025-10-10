@@ -459,7 +459,7 @@ func (o *RemoteGetClassObjectResponse) UnmarshalNDR(ctx context.Context, r ndr.R
 type xxx_RemoteCreateInstanceOperation struct {
 	ORPCThis         *dcom.ORPCThis         `idl:"name:orpcthis" json:"orpc_this"`
 	ORPCThat         *dcom.ORPCThat         `idl:"name:orpcthat" json:"orpc_that"`
-	UnknownOuter     *dcom.InterfacePointer `idl:"name:pUnkOuter;pointer:unique" json:"unknown_outer"`
+	Outer            *dcom.InterfacePointer `idl:"name:pUnkOuter;pointer:unique" json:"outer"`
 	ActPropertiesIn  *dcom.InterfacePointer `idl:"name:pActProperties;pointer:unique" json:"act_properties_in"`
 	ActPropertiesOut *dcom.InterfacePointer `idl:"name:ppActProperties" json:"act_properties_out"`
 	Return           int32                  `idl:"name:Return" json:"return"`
@@ -501,10 +501,10 @@ func (o *xxx_RemoteCreateInstanceOperation) MarshalNDRRequest(ctx context.Contex
 	}
 	// pUnkOuter {in} (1:{pointer=unique}*(1))(2:{alias=MInterfacePointer}(struct))
 	{
-		if o.UnknownOuter != nil {
+		if o.Outer != nil {
 			_ptr_pUnkOuter := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.UnknownOuter != nil {
-					if err := o.UnknownOuter.MarshalNDR(ctx, w); err != nil {
+				if o.Outer != nil {
+					if err := o.Outer.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -514,7 +514,7 @@ func (o *xxx_RemoteCreateInstanceOperation) MarshalNDRRequest(ctx context.Contex
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.UnknownOuter, _ptr_pUnkOuter); err != nil {
+			if err := w.WritePointer(&o.Outer, _ptr_pUnkOuter); err != nil {
 				return err
 			}
 		} else {
@@ -572,16 +572,16 @@ func (o *xxx_RemoteCreateInstanceOperation) UnmarshalNDRRequest(ctx context.Cont
 	// pUnkOuter {in} (1:{pointer=unique}*(1))(2:{alias=MInterfacePointer}(struct))
 	{
 		_ptr_pUnkOuter := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.UnknownOuter == nil {
-				o.UnknownOuter = &dcom.InterfacePointer{}
+			if o.Outer == nil {
+				o.Outer = &dcom.InterfacePointer{}
 			}
-			if err := o.UnknownOuter.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Outer.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pUnkOuter := func(ptr interface{}) { o.UnknownOuter = *ptr.(**dcom.InterfacePointer) }
-		if err := w.ReadPointer(&o.UnknownOuter, _s_pUnkOuter, _ptr_pUnkOuter); err != nil {
+		_s_pUnkOuter := func(ptr interface{}) { o.Outer = *ptr.(**dcom.InterfacePointer) }
+		if err := w.ReadPointer(&o.Outer, _s_pUnkOuter, _ptr_pUnkOuter); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -722,7 +722,7 @@ type RemoteCreateInstanceRequest struct {
 	// NULL.
 	ORPCThis *dcom.ORPCThis `idl:"name:orpcthis" json:"orpc_this"`
 	// pUnkOuter:  This MUST be NULL and MUST be ignored by the recipient.
-	UnknownOuter *dcom.InterfacePointer `idl:"name:pUnkOuter;pointer:unique" json:"unknown_outer"`
+	Outer *dcom.InterfacePointer `idl:"name:pUnkOuter;pointer:unique" json:"outer"`
 	// pActProperties: This MUST specify an MInterfacePointer that MUST contain an OBJREF_CUSTOM
 	// with a CLSID field set to CLSID_ActivationPropertiesIn (see section 1.9) and a pObjectData
 	// field that MUST contain an activation properties BLOB (see section 2.2.22). The iid
@@ -764,7 +764,7 @@ func (o *RemoteCreateInstanceRequest) xxx_ToOp(ctx context.Context, op *xxx_Remo
 		return op
 	}
 	op.ORPCThis = o.ORPCThis
-	op.UnknownOuter = o.UnknownOuter
+	op.Outer = o.Outer
 	op.ActPropertiesIn = o.ActPropertiesIn
 	return op
 }
@@ -774,7 +774,7 @@ func (o *RemoteCreateInstanceRequest) xxx_FromOp(ctx context.Context, op *xxx_Re
 		return
 	}
 	o.ORPCThis = op.ORPCThis
-	o.UnknownOuter = op.UnknownOuter
+	o.Outer = op.Outer
 	o.ActPropertiesIn = op.ActPropertiesIn
 }
 func (o *RemoteCreateInstanceRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {

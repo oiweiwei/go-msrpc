@@ -26,7 +26,7 @@ var (
 )
 
 // INtmsMediaServices1 server interface.
-type NTMSMediaServices1Server interface {
+type MediaServices1Server interface {
 
 	// IUnknown base class.
 	iunknown.UnknownServer
@@ -69,17 +69,17 @@ type NTMSMediaServices1Server interface {
 	ChangeNTMSMediaType(context.Context, *ChangeNTMSMediaTypeRequest) (*ChangeNTMSMediaTypeResponse, error)
 }
 
-func RegisterNTMSMediaServices1Server(conn dcerpc.Conn, o NTMSMediaServices1Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewNTMSMediaServices1ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(NTMSMediaServices1SyntaxV0_0))...)
+func RegisterMediaServices1Server(conn dcerpc.Conn, o MediaServices1Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewMediaServices1ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(MediaServices1SyntaxV0_0))...)
 }
 
-func NewNTMSMediaServices1ServerHandle(o NTMSMediaServices1Server) dcerpc.ServerHandle {
+func NewMediaServices1ServerHandle(o MediaServices1Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return NTMSMediaServices1ServerHandle(ctx, o, opNum, r)
+		return MediaServices1ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func NTMSMediaServices1ServerHandle(ctx context.Context, o NTMSMediaServices1Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func MediaServices1ServerHandle(ctx context.Context, o MediaServices1Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // MountNtmsMedia
 		op := &xxx_MountNTMSMediaOperation{}
@@ -242,60 +242,60 @@ func NTMSMediaServices1ServerHandle(ctx context.Context, o NTMSMediaServices1Ser
 }
 
 // Unimplemented INtmsMediaServices1
-type UnimplementedNTMSMediaServices1Server struct {
+type UnimplementedMediaServices1Server struct {
 	iunknown.UnimplementedUnknownServer
 }
 
-func (UnimplementedNTMSMediaServices1Server) MountNTMSMedia(context.Context, *MountNTMSMediaRequest) (*MountNTMSMediaResponse, error) {
+func (UnimplementedMediaServices1Server) MountNTMSMedia(context.Context, *MountNTMSMediaRequest) (*MountNTMSMediaResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSMediaServices1Server) DismountNTMSMedia(context.Context, *DismountNTMSMediaRequest) (*DismountNTMSMediaResponse, error) {
+func (UnimplementedMediaServices1Server) DismountNTMSMedia(context.Context, *DismountNTMSMediaRequest) (*DismountNTMSMediaResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSMediaServices1Server) AllocateNTMSMedia(context.Context, *AllocateNTMSMediaRequest) (*AllocateNTMSMediaResponse, error) {
+func (UnimplementedMediaServices1Server) AllocateNTMSMedia(context.Context, *AllocateNTMSMediaRequest) (*AllocateNTMSMediaResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSMediaServices1Server) DeallocateNTMSMedia(context.Context, *DeallocateNTMSMediaRequest) (*DeallocateNTMSMediaResponse, error) {
+func (UnimplementedMediaServices1Server) DeallocateNTMSMedia(context.Context, *DeallocateNTMSMediaRequest) (*DeallocateNTMSMediaResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSMediaServices1Server) SwapNTMSMedia(context.Context, *SwapNTMSMediaRequest) (*SwapNTMSMediaResponse, error) {
+func (UnimplementedMediaServices1Server) SwapNTMSMedia(context.Context, *SwapNTMSMediaRequest) (*SwapNTMSMediaResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSMediaServices1Server) DecommissionNTMSMedia(context.Context, *DecommissionNTMSMediaRequest) (*DecommissionNTMSMediaResponse, error) {
+func (UnimplementedMediaServices1Server) DecommissionNTMSMedia(context.Context, *DecommissionNTMSMediaRequest) (*DecommissionNTMSMediaResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSMediaServices1Server) SetNTMSMediaComplete(context.Context, *SetNTMSMediaCompleteRequest) (*SetNTMSMediaCompleteResponse, error) {
+func (UnimplementedMediaServices1Server) SetNTMSMediaComplete(context.Context, *SetNTMSMediaCompleteRequest) (*SetNTMSMediaCompleteResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSMediaServices1Server) DeleteNTMSMedia(context.Context, *DeleteNTMSMediaRequest) (*DeleteNTMSMediaResponse, error) {
+func (UnimplementedMediaServices1Server) DeleteNTMSMedia(context.Context, *DeleteNTMSMediaRequest) (*DeleteNTMSMediaResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSMediaServices1Server) CreateNTMSMediaPoolA(context.Context, *CreateNTMSMediaPoolARequest) (*CreateNTMSMediaPoolAResponse, error) {
+func (UnimplementedMediaServices1Server) CreateNTMSMediaPoolA(context.Context, *CreateNTMSMediaPoolARequest) (*CreateNTMSMediaPoolAResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSMediaServices1Server) CreateNTMSMediaPoolW(context.Context, *CreateNTMSMediaPoolWRequest) (*CreateNTMSMediaPoolWResponse, error) {
+func (UnimplementedMediaServices1Server) CreateNTMSMediaPoolW(context.Context, *CreateNTMSMediaPoolWRequest) (*CreateNTMSMediaPoolWResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSMediaServices1Server) GetNTMSMediaPoolNameA(context.Context, *GetNTMSMediaPoolNameARequest) (*GetNTMSMediaPoolNameAResponse, error) {
+func (UnimplementedMediaServices1Server) GetNTMSMediaPoolNameA(context.Context, *GetNTMSMediaPoolNameARequest) (*GetNTMSMediaPoolNameAResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSMediaServices1Server) GetNTMSMediaPoolNameW(context.Context, *GetNTMSMediaPoolNameWRequest) (*GetNTMSMediaPoolNameWResponse, error) {
+func (UnimplementedMediaServices1Server) GetNTMSMediaPoolNameW(context.Context, *GetNTMSMediaPoolNameWRequest) (*GetNTMSMediaPoolNameWResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSMediaServices1Server) MoveToNTMSMediaPool(context.Context, *MoveToNTMSMediaPoolRequest) (*MoveToNTMSMediaPoolResponse, error) {
+func (UnimplementedMediaServices1Server) MoveToNTMSMediaPool(context.Context, *MoveToNTMSMediaPoolRequest) (*MoveToNTMSMediaPoolResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSMediaServices1Server) DeleteNTMSMediaPool(context.Context, *DeleteNTMSMediaPoolRequest) (*DeleteNTMSMediaPoolResponse, error) {
+func (UnimplementedMediaServices1Server) DeleteNTMSMediaPool(context.Context, *DeleteNTMSMediaPoolRequest) (*DeleteNTMSMediaPoolResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSMediaServices1Server) AddNTMSMediaType(context.Context, *AddNTMSMediaTypeRequest) (*AddNTMSMediaTypeResponse, error) {
+func (UnimplementedMediaServices1Server) AddNTMSMediaType(context.Context, *AddNTMSMediaTypeRequest) (*AddNTMSMediaTypeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSMediaServices1Server) DeleteNTMSMediaType(context.Context, *DeleteNTMSMediaTypeRequest) (*DeleteNTMSMediaTypeResponse, error) {
+func (UnimplementedMediaServices1Server) DeleteNTMSMediaType(context.Context, *DeleteNTMSMediaTypeRequest) (*DeleteNTMSMediaTypeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSMediaServices1Server) ChangeNTMSMediaType(context.Context, *ChangeNTMSMediaTypeRequest) (*ChangeNTMSMediaTypeResponse, error) {
+func (UnimplementedMediaServices1Server) ChangeNTMSMediaType(context.Context, *ChangeNTMSMediaTypeRequest) (*ChangeNTMSMediaTypeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ NTMSMediaServices1Server = (*UnimplementedNTMSMediaServices1Server)(nil)
+var _ MediaServices1Server = (*UnimplementedMediaServices1Server)(nil)

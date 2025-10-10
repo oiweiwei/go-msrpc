@@ -26,7 +26,7 @@ var (
 )
 
 // IMSMQManagement server interface.
-type ImsmqManagementServer interface {
+type ManagementServer interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -59,17 +59,17 @@ type ImsmqManagementServer interface {
 	GetBytesInQueue(context.Context, *GetBytesInQueueRequest) (*GetBytesInQueueResponse, error)
 }
 
-func RegisterImsmqManagementServer(conn dcerpc.Conn, o ImsmqManagementServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqManagementServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqManagementSyntaxV0_0))...)
+func RegisterManagementServer(conn dcerpc.Conn, o ManagementServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewManagementServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ManagementSyntaxV0_0))...)
 }
 
-func NewImsmqManagementServerHandle(o ImsmqManagementServer) dcerpc.ServerHandle {
+func NewManagementServerHandle(o ManagementServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqManagementServerHandle(ctx, o, opNum, r)
+		return ManagementServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqManagementServerHandle(ctx context.Context, o ImsmqManagementServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func ManagementServerHandle(ctx context.Context, o ManagementServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -161,36 +161,36 @@ func ImsmqManagementServerHandle(ctx context.Context, o ImsmqManagementServer, o
 }
 
 // Unimplemented IMSMQManagement
-type UnimplementedImsmqManagementServer struct {
+type UnimplementedManagementServer struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedImsmqManagementServer) Init(context.Context, *InitRequest) (*InitResponse, error) {
+func (UnimplementedManagementServer) Init(context.Context, *InitRequest) (*InitResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqManagementServer) GetFormatName(context.Context, *GetFormatNameRequest) (*GetFormatNameResponse, error) {
+func (UnimplementedManagementServer) GetFormatName(context.Context, *GetFormatNameRequest) (*GetFormatNameResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqManagementServer) GetMachine(context.Context, *GetMachineRequest) (*GetMachineResponse, error) {
+func (UnimplementedManagementServer) GetMachine(context.Context, *GetMachineRequest) (*GetMachineResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqManagementServer) GetMessageCount(context.Context, *GetMessageCountRequest) (*GetMessageCountResponse, error) {
+func (UnimplementedManagementServer) GetMessageCount(context.Context, *GetMessageCountRequest) (*GetMessageCountResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqManagementServer) GetForeignStatus(context.Context, *GetForeignStatusRequest) (*GetForeignStatusResponse, error) {
+func (UnimplementedManagementServer) GetForeignStatus(context.Context, *GetForeignStatusRequest) (*GetForeignStatusResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqManagementServer) GetQueueType(context.Context, *GetQueueTypeRequest) (*GetQueueTypeResponse, error) {
+func (UnimplementedManagementServer) GetQueueType(context.Context, *GetQueueTypeRequest) (*GetQueueTypeResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqManagementServer) GetIsLocal(context.Context, *GetIsLocalRequest) (*GetIsLocalResponse, error) {
+func (UnimplementedManagementServer) GetIsLocal(context.Context, *GetIsLocalRequest) (*GetIsLocalResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqManagementServer) GetTransactionalStatus(context.Context, *GetTransactionalStatusRequest) (*GetTransactionalStatusResponse, error) {
+func (UnimplementedManagementServer) GetTransactionalStatus(context.Context, *GetTransactionalStatusRequest) (*GetTransactionalStatusResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqManagementServer) GetBytesInQueue(context.Context, *GetBytesInQueueRequest) (*GetBytesInQueueResponse, error) {
+func (UnimplementedManagementServer) GetBytesInQueue(context.Context, *GetBytesInQueueRequest) (*GetBytesInQueueResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqManagementServer = (*UnimplementedImsmqManagementServer)(nil)
+var _ ManagementServer = (*UnimplementedManagementServer)(nil)

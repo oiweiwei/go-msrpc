@@ -26,7 +26,7 @@ var (
 )
 
 // IMSMQTransactionDispenser3 server interface.
-type ImsmqTransactionDispenser3Server interface {
+type TransactionDispenser3Server interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -38,17 +38,17 @@ type ImsmqTransactionDispenser3Server interface {
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 }
 
-func RegisterImsmqTransactionDispenser3Server(conn dcerpc.Conn, o ImsmqTransactionDispenser3Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqTransactionDispenser3ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqTransactionDispenser3SyntaxV0_0))...)
+func RegisterTransactionDispenser3Server(conn dcerpc.Conn, o TransactionDispenser3Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewTransactionDispenser3ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(TransactionDispenser3SyntaxV0_0))...)
 }
 
-func NewImsmqTransactionDispenser3ServerHandle(o ImsmqTransactionDispenser3Server) dcerpc.ServerHandle {
+func NewTransactionDispenser3ServerHandle(o TransactionDispenser3Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqTransactionDispenser3ServerHandle(ctx, o, opNum, r)
+		return TransactionDispenser3ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqTransactionDispenser3ServerHandle(ctx context.Context, o ImsmqTransactionDispenser3Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func TransactionDispenser3ServerHandle(ctx context.Context, o TransactionDispenser3Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -77,15 +77,15 @@ func ImsmqTransactionDispenser3ServerHandle(ctx context.Context, o ImsmqTransact
 }
 
 // Unimplemented IMSMQTransactionDispenser3
-type UnimplementedImsmqTransactionDispenser3Server struct {
+type UnimplementedTransactionDispenser3Server struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedImsmqTransactionDispenser3Server) BeginTransaction(context.Context, *BeginTransactionRequest) (*BeginTransactionResponse, error) {
+func (UnimplementedTransactionDispenser3Server) BeginTransaction(context.Context, *BeginTransactionRequest) (*BeginTransactionResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqTransactionDispenser3Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+func (UnimplementedTransactionDispenser3Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqTransactionDispenser3Server = (*UnimplementedImsmqTransactionDispenser3Server)(nil)
+var _ TransactionDispenser3Server = (*UnimplementedTransactionDispenser3Server)(nil)

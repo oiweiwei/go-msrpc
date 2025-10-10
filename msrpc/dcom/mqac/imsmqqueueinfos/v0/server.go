@@ -26,7 +26,7 @@ var (
 )
 
 // IMSMQQueueInfos server interface.
-type ImsmqQueueInfosServer interface {
+type QueueInfosServer interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -38,17 +38,17 @@ type ImsmqQueueInfosServer interface {
 	Next(context.Context, *NextRequest) (*NextResponse, error)
 }
 
-func RegisterImsmqQueueInfosServer(conn dcerpc.Conn, o ImsmqQueueInfosServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqQueueInfosServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqQueueInfosSyntaxV0_0))...)
+func RegisterQueueInfosServer(conn dcerpc.Conn, o QueueInfosServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewQueueInfosServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(QueueInfosSyntaxV0_0))...)
 }
 
-func NewImsmqQueueInfosServerHandle(o ImsmqQueueInfosServer) dcerpc.ServerHandle {
+func NewQueueInfosServerHandle(o QueueInfosServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqQueueInfosServerHandle(ctx, o, opNum, r)
+		return QueueInfosServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqQueueInfosServerHandle(ctx context.Context, o ImsmqQueueInfosServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func QueueInfosServerHandle(ctx context.Context, o QueueInfosServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -77,15 +77,15 @@ func ImsmqQueueInfosServerHandle(ctx context.Context, o ImsmqQueueInfosServer, o
 }
 
 // Unimplemented IMSMQQueueInfos
-type UnimplementedImsmqQueueInfosServer struct {
+type UnimplementedQueueInfosServer struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedImsmqQueueInfosServer) Reset(context.Context, *ResetRequest) (*ResetResponse, error) {
+func (UnimplementedQueueInfosServer) Reset(context.Context, *ResetRequest) (*ResetResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqQueueInfosServer) Next(context.Context, *NextRequest) (*NextResponse, error) {
+func (UnimplementedQueueInfosServer) Next(context.Context, *NextRequest) (*NextResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqQueueInfosServer = (*UnimplementedImsmqQueueInfosServer)(nil)
+var _ QueueInfosServer = (*UnimplementedQueueInfosServer)(nil)

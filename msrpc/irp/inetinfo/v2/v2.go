@@ -1310,15 +1310,15 @@ type VirtualRootList struct {
 	// cEntries:  The number of entries contained in the list.
 	EntriesCount uint32 `idl:"name:cEntries" json:"entries_count"`
 	// aVirtRootEntry:  An array of INET_INFO_VIRTUAL_ROOT_ENTRY entries.
-	VirtRootEntry []*VirtualRootEntry `idl:"name:aVirtRootEntry;size_is:(cEntries)" json:"virt_root_entry"`
+	VirtualRootEntry []*VirtualRootEntry `idl:"name:aVirtRootEntry;size_is:(cEntries)" json:"virtual_root_entry"`
 }
 
 func (o *VirtualRootList) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
-	if o.VirtRootEntry != nil && o.EntriesCount == 0 {
-		o.EntriesCount = uint32(len(o.VirtRootEntry))
+	if o.VirtualRootEntry != nil && o.EntriesCount == 0 {
+		o.EntriesCount = uint32(len(o.VirtualRootEntry))
 	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
 		return err
@@ -1355,13 +1355,13 @@ func (o *VirtualRootList) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteTrailingGap(9); err != nil {
 		return err
 	}
-	for i1 := range o.VirtRootEntry {
+	for i1 := range o.VirtualRootEntry {
 		i1 := i1
 		if uint64(i1) >= sizeInfo[0] {
 			break
 		}
-		if o.VirtRootEntry[i1] != nil {
-			if err := o.VirtRootEntry[i1].MarshalNDR(ctx, w); err != nil {
+		if o.VirtualRootEntry[i1] != nil {
+			if err := o.VirtualRootEntry[i1].MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -1370,7 +1370,7 @@ func (o *VirtualRootList) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			}
 		}
 	}
-	for i1 := len(o.VirtRootEntry); uint64(i1) < sizeInfo[0]; i1++ {
+	for i1 := len(o.VirtualRootEntry); uint64(i1) < sizeInfo[0]; i1++ {
 		if err := (&VirtualRootEntry{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
@@ -1402,15 +1402,15 @@ func (o *VirtualRootList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		sizeInfo[0] = uint64(o.EntriesCount)
 	}
 	if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-		return fmt.Errorf("buffer overflow for size %d of array o.VirtRootEntry", sizeInfo[0])
+		return fmt.Errorf("buffer overflow for size %d of array o.VirtualRootEntry", sizeInfo[0])
 	}
-	o.VirtRootEntry = make([]*VirtualRootEntry, sizeInfo[0])
-	for i1 := range o.VirtRootEntry {
+	o.VirtualRootEntry = make([]*VirtualRootEntry, sizeInfo[0])
+	for i1 := range o.VirtualRootEntry {
 		i1 := i1
-		if o.VirtRootEntry[i1] == nil {
-			o.VirtRootEntry[i1] = &VirtualRootEntry{}
+		if o.VirtualRootEntry[i1] == nil {
+			o.VirtualRootEntry[i1] = &VirtualRootEntry{}
 		}
-		if err := o.VirtRootEntry[i1].UnmarshalNDR(ctx, w); err != nil {
+		if err := o.VirtualRootEntry[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -2847,7 +2847,7 @@ type W3Statistics1 struct {
 	// MeasuredBw:  The measured network bandwidth for the HTTP server.
 	MeasuredBandwidth uint32 `idl:"name:MeasuredBw" json:"measured_bandwidth"`
 	// ServiceUptime:  The HTTP server uptime.
-	ServiceUptime uint32 `idl:"name:ServiceUptime" json:"service_uptime"`
+	ServiceUpTime uint32 `idl:"name:ServiceUptime" json:"service_up_time"`
 	// TimeOfLastClear:  The time of the last clear.
 	TimeOfLastClear uint32 `idl:"name:TimeOfLastClear" json:"time_of_last_clear"`
 	// nAuxCounters:  The number of initialized elements in rgCounters. MUST be 0.
@@ -3032,7 +3032,7 @@ func (o *W3Statistics1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.MeasuredBandwidth); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ServiceUptime); err != nil {
+	if err := w.WriteData(o.ServiceUpTime); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.TimeOfLastClear); err != nil {
@@ -3217,7 +3217,7 @@ func (o *W3Statistics1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.MeasuredBandwidth); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ServiceUptime); err != nil {
+	if err := w.ReadData(&o.ServiceUpTime); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.TimeOfLastClear); err != nil {
@@ -3419,7 +3419,7 @@ type FTPStatistics0 struct {
 	// LogonAttempts:  The number of logon attempts that have been made to the FTP server.
 	LogonAttempts uint32 `idl:"name:LogonAttempts" json:"logon_attempts"`
 	// ServiceUptime:  The time that the FTP server has been operational.
-	ServiceUptime uint32 `idl:"name:ServiceUptime" json:"service_uptime"`
+	ServiceUpTime uint32 `idl:"name:ServiceUptime" json:"service_up_time"`
 	// TotalAllowedRequests:  The total number of requests allowed to the FTP server.
 	TotalAllowedRequests uint32 `idl:"name:TotalAllowedRequests" json:"total_allowed_requests"`
 	// TotalRejectedRequests:  The total number of rejected requests.
@@ -3504,7 +3504,7 @@ func (o *FTPStatistics0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.LogonAttempts); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ServiceUptime); err != nil {
+	if err := w.WriteData(o.ServiceUpTime); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.TotalAllowedRequests); err != nil {
@@ -3582,7 +3582,7 @@ func (o *FTPStatistics0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.LogonAttempts); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ServiceUptime); err != nil {
+	if err := w.ReadData(&o.ServiceUpTime); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.TotalAllowedRequests); err != nil {

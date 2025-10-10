@@ -26,13 +26,13 @@ var (
 )
 
 // IMSMQPrivateEvent server interface.
-type ImsmqPrivateEventServer interface {
+type PrivateEventServer interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
 
 	// Hwnd operation.
-	GetHwnd(context.Context, *GetHwndRequest) (*GetHwndResponse, error)
+	GetHandle(context.Context, *GetHandleRequest) (*GetHandleResponse, error)
 
 	// FireArrivedEvent operation.
 	FireArrivedEvent(context.Context, *FireArrivedEventRequest) (*FireArrivedEventResponse, error)
@@ -41,30 +41,30 @@ type ImsmqPrivateEventServer interface {
 	FireArrivedErrorEvent(context.Context, *FireArrivedErrorEventRequest) (*FireArrivedErrorEventResponse, error)
 }
 
-func RegisterImsmqPrivateEventServer(conn dcerpc.Conn, o ImsmqPrivateEventServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqPrivateEventServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqPrivateEventSyntaxV0_0))...)
+func RegisterPrivateEventServer(conn dcerpc.Conn, o PrivateEventServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewPrivateEventServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(PrivateEventSyntaxV0_0))...)
 }
 
-func NewImsmqPrivateEventServerHandle(o ImsmqPrivateEventServer) dcerpc.ServerHandle {
+func NewPrivateEventServerHandle(o PrivateEventServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqPrivateEventServerHandle(ctx, o, opNum, r)
+		return PrivateEventServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqPrivateEventServerHandle(ctx context.Context, o ImsmqPrivateEventServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func PrivateEventServerHandle(ctx context.Context, o PrivateEventServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
 	}
 	switch opNum {
 	case 7: // Hwnd
-		op := &xxx_GetHwndOperation{}
+		op := &xxx_GetHandleOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &GetHwndRequest{}
+		req := &GetHandleRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.GetHwnd(ctx, req)
+		resp, err := o.GetHandle(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 8: // FireArrivedEvent
 		op := &xxx_FireArrivedEventOperation{}
@@ -89,18 +89,18 @@ func ImsmqPrivateEventServerHandle(ctx context.Context, o ImsmqPrivateEventServe
 }
 
 // Unimplemented IMSMQPrivateEvent
-type UnimplementedImsmqPrivateEventServer struct {
+type UnimplementedPrivateEventServer struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedImsmqPrivateEventServer) GetHwnd(context.Context, *GetHwndRequest) (*GetHwndResponse, error) {
+func (UnimplementedPrivateEventServer) GetHandle(context.Context, *GetHandleRequest) (*GetHandleResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqPrivateEventServer) FireArrivedEvent(context.Context, *FireArrivedEventRequest) (*FireArrivedEventResponse, error) {
+func (UnimplementedPrivateEventServer) FireArrivedEvent(context.Context, *FireArrivedEventRequest) (*FireArrivedEventResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqPrivateEventServer) FireArrivedErrorEvent(context.Context, *FireArrivedErrorEventRequest) (*FireArrivedErrorEventResponse, error) {
+func (UnimplementedPrivateEventServer) FireArrivedErrorEvent(context.Context, *FireArrivedErrorEventRequest) (*FireArrivedErrorEventResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqPrivateEventServer = (*UnimplementedImsmqPrivateEventServer)(nil)
+var _ PrivateEventServer = (*UnimplementedPrivateEventServer)(nil)

@@ -52,20 +52,20 @@ type NTFrsAPIClient interface {
 	// Opnum3NotUsedOnWire operation.
 	// Opnum3NotUsedOnWire
 
-	NTFrsAPIRPCSetDSPollingIntervalW(context.Context, *NTFrsAPIRPCSetDSPollingIntervalWRequest, ...dcerpc.CallOption) (*NTFrsAPIRPCSetDSPollingIntervalWResponse, error)
+	SetDSPollingIntervalW(context.Context, *SetDSPollingIntervalWRequest, ...dcerpc.CallOption) (*SetDSPollingIntervalWResponse, error)
 
-	NTFrsAPIRPCGetDSPollingIntervalW(context.Context, *NTFrsAPIRPCGetDSPollingIntervalWRequest, ...dcerpc.CallOption) (*NTFrsAPIRPCGetDSPollingIntervalWResponse, error)
+	GetDSPollingIntervalW(context.Context, *GetDSPollingIntervalWRequest, ...dcerpc.CallOption) (*GetDSPollingIntervalWResponse, error)
 
 	// Opnum6NotUsedOnWire operation.
 	// Opnum6NotUsedOnWire
 
-	NTFrsAPIRPCInfoW(context.Context, *NTFrsAPIRPCInfoWRequest, ...dcerpc.CallOption) (*NTFrsAPIRPCInfoWResponse, error)
+	InfoW(context.Context, *InfoWRequest, ...dcerpc.CallOption) (*InfoWResponse, error)
 
-	NTFrsAPIRPCIsPathReplicated(context.Context, *NTFrsAPIRPCIsPathReplicatedRequest, ...dcerpc.CallOption) (*NTFrsAPIRPCIsPathReplicatedResponse, error)
+	IsPathReplicated(context.Context, *IsPathReplicatedRequest, ...dcerpc.CallOption) (*IsPathReplicatedResponse, error)
 
-	NTFrsAPIRPCWriterCommand(context.Context, *NTFrsAPIRPCWriterCommandRequest, ...dcerpc.CallOption) (*NTFrsAPIRPCWriterCommandResponse, error)
+	WriterCommand(context.Context, *WriterCommandRequest, ...dcerpc.CallOption) (*WriterCommandResponse, error)
 
-	NTFrsAPIRPCForceReplication(context.Context, *NTFrsAPIRPCForceReplicationRequest, ...dcerpc.CallOption) (*NTFrsAPIRPCForceReplicationResponse, error)
+	ForceReplication(context.Context, *ForceReplicationRequest, ...dcerpc.CallOption) (*ForceReplicationResponse, error)
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
@@ -78,12 +78,12 @@ type xxx_DefaultNTFrsAPIClient struct {
 	cc dcerpc.Conn
 }
 
-func (o *xxx_DefaultNTFrsAPIClient) NTFrsAPIRPCSetDSPollingIntervalW(ctx context.Context, in *NTFrsAPIRPCSetDSPollingIntervalWRequest, opts ...dcerpc.CallOption) (*NTFrsAPIRPCSetDSPollingIntervalWResponse, error) {
+func (o *xxx_DefaultNTFrsAPIClient) SetDSPollingIntervalW(ctx context.Context, in *SetDSPollingIntervalWRequest, opts ...dcerpc.CallOption) (*SetDSPollingIntervalWResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &NTFrsAPIRPCSetDSPollingIntervalWResponse{}
+	out := &SetDSPollingIntervalWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -91,12 +91,12 @@ func (o *xxx_DefaultNTFrsAPIClient) NTFrsAPIRPCSetDSPollingIntervalW(ctx context
 	return out, nil
 }
 
-func (o *xxx_DefaultNTFrsAPIClient) NTFrsAPIRPCGetDSPollingIntervalW(ctx context.Context, in *NTFrsAPIRPCGetDSPollingIntervalWRequest, opts ...dcerpc.CallOption) (*NTFrsAPIRPCGetDSPollingIntervalWResponse, error) {
+func (o *xxx_DefaultNTFrsAPIClient) GetDSPollingIntervalW(ctx context.Context, in *GetDSPollingIntervalWRequest, opts ...dcerpc.CallOption) (*GetDSPollingIntervalWResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &NTFrsAPIRPCGetDSPollingIntervalWResponse{}
+	out := &GetDSPollingIntervalWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -104,12 +104,12 @@ func (o *xxx_DefaultNTFrsAPIClient) NTFrsAPIRPCGetDSPollingIntervalW(ctx context
 	return out, nil
 }
 
-func (o *xxx_DefaultNTFrsAPIClient) NTFrsAPIRPCInfoW(ctx context.Context, in *NTFrsAPIRPCInfoWRequest, opts ...dcerpc.CallOption) (*NTFrsAPIRPCInfoWResponse, error) {
+func (o *xxx_DefaultNTFrsAPIClient) InfoW(ctx context.Context, in *InfoWRequest, opts ...dcerpc.CallOption) (*InfoWResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &NTFrsAPIRPCInfoWResponse{}
+	out := &InfoWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -117,12 +117,12 @@ func (o *xxx_DefaultNTFrsAPIClient) NTFrsAPIRPCInfoW(ctx context.Context, in *NT
 	return out, nil
 }
 
-func (o *xxx_DefaultNTFrsAPIClient) NTFrsAPIRPCIsPathReplicated(ctx context.Context, in *NTFrsAPIRPCIsPathReplicatedRequest, opts ...dcerpc.CallOption) (*NTFrsAPIRPCIsPathReplicatedResponse, error) {
+func (o *xxx_DefaultNTFrsAPIClient) IsPathReplicated(ctx context.Context, in *IsPathReplicatedRequest, opts ...dcerpc.CallOption) (*IsPathReplicatedResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &NTFrsAPIRPCIsPathReplicatedResponse{}
+	out := &IsPathReplicatedResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -130,12 +130,12 @@ func (o *xxx_DefaultNTFrsAPIClient) NTFrsAPIRPCIsPathReplicated(ctx context.Cont
 	return out, nil
 }
 
-func (o *xxx_DefaultNTFrsAPIClient) NTFrsAPIRPCWriterCommand(ctx context.Context, in *NTFrsAPIRPCWriterCommandRequest, opts ...dcerpc.CallOption) (*NTFrsAPIRPCWriterCommandResponse, error) {
+func (o *xxx_DefaultNTFrsAPIClient) WriterCommand(ctx context.Context, in *WriterCommandRequest, opts ...dcerpc.CallOption) (*WriterCommandResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &NTFrsAPIRPCWriterCommandResponse{}
+	out := &WriterCommandResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -143,12 +143,12 @@ func (o *xxx_DefaultNTFrsAPIClient) NTFrsAPIRPCWriterCommand(ctx context.Context
 	return out, nil
 }
 
-func (o *xxx_DefaultNTFrsAPIClient) NTFrsAPIRPCForceReplication(ctx context.Context, in *NTFrsAPIRPCForceReplicationRequest, opts ...dcerpc.CallOption) (*NTFrsAPIRPCForceReplicationResponse, error) {
+func (o *xxx_DefaultNTFrsAPIClient) ForceReplication(ctx context.Context, in *ForceReplicationRequest, opts ...dcerpc.CallOption) (*ForceReplicationResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &NTFrsAPIRPCForceReplicationResponse{}
+	out := &ForceReplicationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -172,21 +172,21 @@ func NewNTFrsAPIClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Optio
 	return &xxx_DefaultNTFrsAPIClient{cc: cc}, nil
 }
 
-// xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation structure represents the NtFrsApi_Rpc_Set_DsPollingIntervalW operation
-type xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation struct {
+// xxx_SetDSPollingIntervalWOperation structure represents the NtFrsApi_Rpc_Set_DsPollingIntervalW operation
+type xxx_SetDSPollingIntervalWOperation struct {
 	UseShortInterval uint32 `idl:"name:UseShortInterval" json:"use_short_interval"`
 	LongInterval     uint32 `idl:"name:LongInterval" json:"long_interval"`
 	ShortInterval    uint32 `idl:"name:ShortInterval" json:"short_interval"`
 	Return           uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation) OpNum() int { return 4 }
+func (o *xxx_SetDSPollingIntervalWOperation) OpNum() int { return 4 }
 
-func (o *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation) OpName() string {
+func (o *xxx_SetDSPollingIntervalWOperation) OpName() string {
 	return "/NtFrsApi/v1.1/NtFrsApi_Rpc_Set_DsPollingIntervalW"
 }
 
-func (o *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_SetDSPollingIntervalWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -195,7 +195,7 @@ func (o *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation) xxx_PrepareRequestPayloa
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_SetDSPollingIntervalWOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -220,7 +220,7 @@ func (o *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation) MarshalNDRRequest(ctx co
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_SetDSPollingIntervalWOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// UseShortInterval {in} (1:(uint32))
 	{
 		if err := w.ReadData(&o.UseShortInterval); err != nil {
@@ -242,7 +242,7 @@ func (o *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation) UnmarshalNDRRequest(ctx 
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_SetDSPollingIntervalWOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -251,7 +251,7 @@ func (o *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation) xxx_PrepareResponsePaylo
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_SetDSPollingIntervalWOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -264,7 +264,7 @@ func (o *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation) MarshalNDRResponse(ctx c
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_SetDSPollingIntervalWOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -274,16 +274,16 @@ func (o *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation) UnmarshalNDRResponse(ctx
 	return nil
 }
 
-// NTFrsAPIRPCSetDSPollingIntervalWRequest structure represents the NtFrsApi_Rpc_Set_DsPollingIntervalW operation request
-type NTFrsAPIRPCSetDSPollingIntervalWRequest struct {
+// SetDSPollingIntervalWRequest structure represents the NtFrsApi_Rpc_Set_DsPollingIntervalW operation request
+type SetDSPollingIntervalWRequest struct {
 	UseShortInterval uint32 `idl:"name:UseShortInterval" json:"use_short_interval"`
 	LongInterval     uint32 `idl:"name:LongInterval" json:"long_interval"`
 	ShortInterval    uint32 `idl:"name:ShortInterval" json:"short_interval"`
 }
 
-func (o *NTFrsAPIRPCSetDSPollingIntervalWRequest) xxx_ToOp(ctx context.Context, op *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation) *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation {
+func (o *SetDSPollingIntervalWRequest) xxx_ToOp(ctx context.Context, op *xxx_SetDSPollingIntervalWOperation) *xxx_SetDSPollingIntervalWOperation {
 	if op == nil {
-		op = &xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation{}
+		op = &xxx_SetDSPollingIntervalWOperation{}
 	}
 	if o == nil {
 		return op
@@ -294,7 +294,7 @@ func (o *NTFrsAPIRPCSetDSPollingIntervalWRequest) xxx_ToOp(ctx context.Context, 
 	return op
 }
 
-func (o *NTFrsAPIRPCSetDSPollingIntervalWRequest) xxx_FromOp(ctx context.Context, op *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation) {
+func (o *SetDSPollingIntervalWRequest) xxx_FromOp(ctx context.Context, op *xxx_SetDSPollingIntervalWOperation) {
 	if o == nil {
 		return
 	}
@@ -302,11 +302,11 @@ func (o *NTFrsAPIRPCSetDSPollingIntervalWRequest) xxx_FromOp(ctx context.Context
 	o.LongInterval = op.LongInterval
 	o.ShortInterval = op.ShortInterval
 }
-func (o *NTFrsAPIRPCSetDSPollingIntervalWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SetDSPollingIntervalWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *NTFrsAPIRPCSetDSPollingIntervalWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation{}
+func (o *SetDSPollingIntervalWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SetDSPollingIntervalWOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -314,15 +314,15 @@ func (o *NTFrsAPIRPCSetDSPollingIntervalWRequest) UnmarshalNDR(ctx context.Conte
 	return nil
 }
 
-// NTFrsAPIRPCSetDSPollingIntervalWResponse structure represents the NtFrsApi_Rpc_Set_DsPollingIntervalW operation response
-type NTFrsAPIRPCSetDSPollingIntervalWResponse struct {
+// SetDSPollingIntervalWResponse structure represents the NtFrsApi_Rpc_Set_DsPollingIntervalW operation response
+type SetDSPollingIntervalWResponse struct {
 	// Return: The NtFrsApi_Rpc_Set_DsPollingIntervalW return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *NTFrsAPIRPCSetDSPollingIntervalWResponse) xxx_ToOp(ctx context.Context, op *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation) *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation {
+func (o *SetDSPollingIntervalWResponse) xxx_ToOp(ctx context.Context, op *xxx_SetDSPollingIntervalWOperation) *xxx_SetDSPollingIntervalWOperation {
 	if op == nil {
-		op = &xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation{}
+		op = &xxx_SetDSPollingIntervalWOperation{}
 	}
 	if o == nil {
 		return op
@@ -331,17 +331,17 @@ func (o *NTFrsAPIRPCSetDSPollingIntervalWResponse) xxx_ToOp(ctx context.Context,
 	return op
 }
 
-func (o *NTFrsAPIRPCSetDSPollingIntervalWResponse) xxx_FromOp(ctx context.Context, op *xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation) {
+func (o *SetDSPollingIntervalWResponse) xxx_FromOp(ctx context.Context, op *xxx_SetDSPollingIntervalWOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *NTFrsAPIRPCSetDSPollingIntervalWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SetDSPollingIntervalWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *NTFrsAPIRPCSetDSPollingIntervalWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_NTFrsAPIRPCSetDSPollingIntervalWOperation{}
+func (o *SetDSPollingIntervalWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SetDSPollingIntervalWOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -349,21 +349,21 @@ func (o *NTFrsAPIRPCSetDSPollingIntervalWResponse) UnmarshalNDR(ctx context.Cont
 	return nil
 }
 
-// xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation structure represents the NtFrsApi_Rpc_Get_DsPollingIntervalW operation
-type xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation struct {
+// xxx_GetDSPollingIntervalWOperation structure represents the NtFrsApi_Rpc_Get_DsPollingIntervalW operation
+type xxx_GetDSPollingIntervalWOperation struct {
 	Interval      uint32 `idl:"name:Interval" json:"interval"`
 	LongInterval  uint32 `idl:"name:LongInterval" json:"long_interval"`
 	ShortInterval uint32 `idl:"name:ShortInterval" json:"short_interval"`
 	Return        uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation) OpNum() int { return 5 }
+func (o *xxx_GetDSPollingIntervalWOperation) OpNum() int { return 5 }
 
-func (o *xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation) OpName() string {
+func (o *xxx_GetDSPollingIntervalWOperation) OpName() string {
 	return "/NtFrsApi/v1.1/NtFrsApi_Rpc_Get_DsPollingIntervalW"
 }
 
-func (o *xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetDSPollingIntervalWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -372,18 +372,18 @@ func (o *xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation) xxx_PrepareRequestPayloa
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetDSPollingIntervalWOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetDSPollingIntervalWOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetDSPollingIntervalWOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -392,7 +392,7 @@ func (o *xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation) xxx_PrepareResponsePaylo
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetDSPollingIntervalWOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -423,7 +423,7 @@ func (o *xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation) MarshalNDRResponse(ctx c
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetDSPollingIntervalWOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Interval {out} (1:{pointer=ref}*(1)(uint32))
 	{
 		if err := w.ReadData(&o.Interval); err != nil {
@@ -451,13 +451,13 @@ func (o *xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation) UnmarshalNDRResponse(ctx
 	return nil
 }
 
-// NTFrsAPIRPCGetDSPollingIntervalWRequest structure represents the NtFrsApi_Rpc_Get_DsPollingIntervalW operation request
-type NTFrsAPIRPCGetDSPollingIntervalWRequest struct {
+// GetDSPollingIntervalWRequest structure represents the NtFrsApi_Rpc_Get_DsPollingIntervalW operation request
+type GetDSPollingIntervalWRequest struct {
 }
 
-func (o *NTFrsAPIRPCGetDSPollingIntervalWRequest) xxx_ToOp(ctx context.Context, op *xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation) *xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation {
+func (o *GetDSPollingIntervalWRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDSPollingIntervalWOperation) *xxx_GetDSPollingIntervalWOperation {
 	if op == nil {
-		op = &xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation{}
+		op = &xxx_GetDSPollingIntervalWOperation{}
 	}
 	if o == nil {
 		return op
@@ -465,16 +465,16 @@ func (o *NTFrsAPIRPCGetDSPollingIntervalWRequest) xxx_ToOp(ctx context.Context, 
 	return op
 }
 
-func (o *NTFrsAPIRPCGetDSPollingIntervalWRequest) xxx_FromOp(ctx context.Context, op *xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation) {
+func (o *GetDSPollingIntervalWRequest) xxx_FromOp(ctx context.Context, op *xxx_GetDSPollingIntervalWOperation) {
 	if o == nil {
 		return
 	}
 }
-func (o *NTFrsAPIRPCGetDSPollingIntervalWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetDSPollingIntervalWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *NTFrsAPIRPCGetDSPollingIntervalWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation{}
+func (o *GetDSPollingIntervalWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetDSPollingIntervalWOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -482,8 +482,8 @@ func (o *NTFrsAPIRPCGetDSPollingIntervalWRequest) UnmarshalNDR(ctx context.Conte
 	return nil
 }
 
-// NTFrsAPIRPCGetDSPollingIntervalWResponse structure represents the NtFrsApi_Rpc_Get_DsPollingIntervalW operation response
-type NTFrsAPIRPCGetDSPollingIntervalWResponse struct {
+// GetDSPollingIntervalWResponse structure represents the NtFrsApi_Rpc_Get_DsPollingIntervalW operation response
+type GetDSPollingIntervalWResponse struct {
 	Interval      uint32 `idl:"name:Interval" json:"interval"`
 	LongInterval  uint32 `idl:"name:LongInterval" json:"long_interval"`
 	ShortInterval uint32 `idl:"name:ShortInterval" json:"short_interval"`
@@ -491,9 +491,9 @@ type NTFrsAPIRPCGetDSPollingIntervalWResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *NTFrsAPIRPCGetDSPollingIntervalWResponse) xxx_ToOp(ctx context.Context, op *xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation) *xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation {
+func (o *GetDSPollingIntervalWResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDSPollingIntervalWOperation) *xxx_GetDSPollingIntervalWOperation {
 	if op == nil {
-		op = &xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation{}
+		op = &xxx_GetDSPollingIntervalWOperation{}
 	}
 	if o == nil {
 		return op
@@ -505,7 +505,7 @@ func (o *NTFrsAPIRPCGetDSPollingIntervalWResponse) xxx_ToOp(ctx context.Context,
 	return op
 }
 
-func (o *NTFrsAPIRPCGetDSPollingIntervalWResponse) xxx_FromOp(ctx context.Context, op *xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation) {
+func (o *GetDSPollingIntervalWResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDSPollingIntervalWOperation) {
 	if o == nil {
 		return
 	}
@@ -514,11 +514,11 @@ func (o *NTFrsAPIRPCGetDSPollingIntervalWResponse) xxx_FromOp(ctx context.Contex
 	o.ShortInterval = op.ShortInterval
 	o.Return = op.Return
 }
-func (o *NTFrsAPIRPCGetDSPollingIntervalWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetDSPollingIntervalWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *NTFrsAPIRPCGetDSPollingIntervalWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_NTFrsAPIRPCGetDSPollingIntervalWOperation{}
+func (o *GetDSPollingIntervalWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetDSPollingIntervalWOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -526,18 +526,18 @@ func (o *NTFrsAPIRPCGetDSPollingIntervalWResponse) UnmarshalNDR(ctx context.Cont
 	return nil
 }
 
-// xxx_NTFrsAPIRPCInfoWOperation structure represents the NtFrsApi_Rpc_InfoW operation
-type xxx_NTFrsAPIRPCInfoWOperation struct {
+// xxx_InfoWOperation structure represents the NtFrsApi_Rpc_InfoW operation
+type xxx_InfoWOperation struct {
 	BlobSize uint32 `idl:"name:BlobSize" json:"blob_size"`
 	Blob     []byte `idl:"name:Blob;size_is:(BlobSize);pointer:unique" json:"blob"`
 	Return   uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_NTFrsAPIRPCInfoWOperation) OpNum() int { return 7 }
+func (o *xxx_InfoWOperation) OpNum() int { return 7 }
 
-func (o *xxx_NTFrsAPIRPCInfoWOperation) OpName() string { return "/NtFrsApi/v1.1/NtFrsApi_Rpc_InfoW" }
+func (o *xxx_InfoWOperation) OpName() string { return "/NtFrsApi/v1.1/NtFrsApi_Rpc_InfoW" }
 
-func (o *xxx_NTFrsAPIRPCInfoWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_InfoWOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if o.Blob != nil && o.BlobSize == 0 {
 		o.BlobSize = uint32(len(o.Blob))
 	}
@@ -552,7 +552,7 @@ func (o *xxx_NTFrsAPIRPCInfoWOperation) xxx_PrepareRequestPayload(ctx context.Co
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCInfoWOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_InfoWOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -604,7 +604,7 @@ func (o *xxx_NTFrsAPIRPCInfoWOperation) MarshalNDRRequest(ctx context.Context, w
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCInfoWOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_InfoWOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// BlobSize {in} (1:{range=(0,65536)}(uint32))
 	{
 		if err := w.ReadData(&o.BlobSize); err != nil {
@@ -645,7 +645,7 @@ func (o *xxx_NTFrsAPIRPCInfoWOperation) UnmarshalNDRRequest(ctx context.Context,
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCInfoWOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_InfoWOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -654,7 +654,7 @@ func (o *xxx_NTFrsAPIRPCInfoWOperation) xxx_PrepareResponsePayload(ctx context.C
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCInfoWOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_InfoWOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -706,7 +706,7 @@ func (o *xxx_NTFrsAPIRPCInfoWOperation) MarshalNDRResponse(ctx context.Context, 
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCInfoWOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_InfoWOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Blob {in, out} (1:{pointer=unique}*(1)[dim:0,size_is=BlobSize](uchar))
 	{
 		_ptr_Blob := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -747,15 +747,15 @@ func (o *xxx_NTFrsAPIRPCInfoWOperation) UnmarshalNDRResponse(ctx context.Context
 	return nil
 }
 
-// NTFrsAPIRPCInfoWRequest structure represents the NtFrsApi_Rpc_InfoW operation request
-type NTFrsAPIRPCInfoWRequest struct {
+// InfoWRequest structure represents the NtFrsApi_Rpc_InfoW operation request
+type InfoWRequest struct {
 	BlobSize uint32 `idl:"name:BlobSize" json:"blob_size"`
 	Blob     []byte `idl:"name:Blob;size_is:(BlobSize);pointer:unique" json:"blob"`
 }
 
-func (o *NTFrsAPIRPCInfoWRequest) xxx_ToOp(ctx context.Context, op *xxx_NTFrsAPIRPCInfoWOperation) *xxx_NTFrsAPIRPCInfoWOperation {
+func (o *InfoWRequest) xxx_ToOp(ctx context.Context, op *xxx_InfoWOperation) *xxx_InfoWOperation {
 	if op == nil {
-		op = &xxx_NTFrsAPIRPCInfoWOperation{}
+		op = &xxx_InfoWOperation{}
 	}
 	if o == nil {
 		return op
@@ -765,18 +765,18 @@ func (o *NTFrsAPIRPCInfoWRequest) xxx_ToOp(ctx context.Context, op *xxx_NTFrsAPI
 	return op
 }
 
-func (o *NTFrsAPIRPCInfoWRequest) xxx_FromOp(ctx context.Context, op *xxx_NTFrsAPIRPCInfoWOperation) {
+func (o *InfoWRequest) xxx_FromOp(ctx context.Context, op *xxx_InfoWOperation) {
 	if o == nil {
 		return
 	}
 	o.BlobSize = op.BlobSize
 	o.Blob = op.Blob
 }
-func (o *NTFrsAPIRPCInfoWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *InfoWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *NTFrsAPIRPCInfoWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_NTFrsAPIRPCInfoWOperation{}
+func (o *InfoWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_InfoWOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -784,8 +784,8 @@ func (o *NTFrsAPIRPCInfoWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 	return nil
 }
 
-// NTFrsAPIRPCInfoWResponse structure represents the NtFrsApi_Rpc_InfoW operation response
-type NTFrsAPIRPCInfoWResponse struct {
+// InfoWResponse structure represents the NtFrsApi_Rpc_InfoW operation response
+type InfoWResponse struct {
 	// XXX: BlobSize is an implicit input depedency for output parameters
 	BlobSize uint32 `idl:"name:BlobSize" json:"blob_size"`
 
@@ -794,9 +794,9 @@ type NTFrsAPIRPCInfoWResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *NTFrsAPIRPCInfoWResponse) xxx_ToOp(ctx context.Context, op *xxx_NTFrsAPIRPCInfoWOperation) *xxx_NTFrsAPIRPCInfoWOperation {
+func (o *InfoWResponse) xxx_ToOp(ctx context.Context, op *xxx_InfoWOperation) *xxx_InfoWOperation {
 	if op == nil {
-		op = &xxx_NTFrsAPIRPCInfoWOperation{}
+		op = &xxx_InfoWOperation{}
 	}
 	if o == nil {
 		return op
@@ -811,7 +811,7 @@ func (o *NTFrsAPIRPCInfoWResponse) xxx_ToOp(ctx context.Context, op *xxx_NTFrsAP
 	return op
 }
 
-func (o *NTFrsAPIRPCInfoWResponse) xxx_FromOp(ctx context.Context, op *xxx_NTFrsAPIRPCInfoWOperation) {
+func (o *InfoWResponse) xxx_FromOp(ctx context.Context, op *xxx_InfoWOperation) {
 	if o == nil {
 		return
 	}
@@ -821,11 +821,11 @@ func (o *NTFrsAPIRPCInfoWResponse) xxx_FromOp(ctx context.Context, op *xxx_NTFrs
 	o.Blob = op.Blob
 	o.Return = op.Return
 }
-func (o *NTFrsAPIRPCInfoWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *InfoWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *NTFrsAPIRPCInfoWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_NTFrsAPIRPCInfoWOperation{}
+func (o *InfoWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_InfoWOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -833,8 +833,8 @@ func (o *NTFrsAPIRPCInfoWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reade
 	return nil
 }
 
-// xxx_NTFrsAPIRPCIsPathReplicatedOperation structure represents the NtFrsApi_Rpc_IsPathReplicated operation
-type xxx_NTFrsAPIRPCIsPathReplicatedOperation struct {
+// xxx_IsPathReplicatedOperation structure represents the NtFrsApi_Rpc_IsPathReplicated operation
+type xxx_IsPathReplicatedOperation struct {
 	Path                     string     `idl:"name:Path;string;pointer:unique" json:"path"`
 	SetTypeOfInterestReplica uint32     `idl:"name:ReplicaSetTypeOfInterest" json:"set_type_of_interest_replica"`
 	Replicated               uint32     `idl:"name:Replicated" json:"replicated"`
@@ -844,13 +844,13 @@ type xxx_NTFrsAPIRPCIsPathReplicatedOperation struct {
 	Return                   uint32     `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_NTFrsAPIRPCIsPathReplicatedOperation) OpNum() int { return 8 }
+func (o *xxx_IsPathReplicatedOperation) OpNum() int { return 8 }
 
-func (o *xxx_NTFrsAPIRPCIsPathReplicatedOperation) OpName() string {
+func (o *xxx_IsPathReplicatedOperation) OpName() string {
 	return "/NtFrsApi/v1.1/NtFrsApi_Rpc_IsPathReplicated"
 }
 
-func (o *xxx_NTFrsAPIRPCIsPathReplicatedOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_IsPathReplicatedOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -859,7 +859,7 @@ func (o *xxx_NTFrsAPIRPCIsPathReplicatedOperation) xxx_PrepareRequestPayload(ctx
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCIsPathReplicatedOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_IsPathReplicatedOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -893,7 +893,7 @@ func (o *xxx_NTFrsAPIRPCIsPathReplicatedOperation) MarshalNDRRequest(ctx context
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCIsPathReplicatedOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_IsPathReplicatedOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// Path {in} (1:{string, pointer=unique, alias=PWCHAR}*(1))(2:{alias=WCHAR}[dim:0,string,null](wchar))
 	{
 		_ptr_Path := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -919,7 +919,7 @@ func (o *xxx_NTFrsAPIRPCIsPathReplicatedOperation) UnmarshalNDRRequest(ctx conte
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCIsPathReplicatedOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_IsPathReplicatedOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -928,7 +928,7 @@ func (o *xxx_NTFrsAPIRPCIsPathReplicatedOperation) xxx_PrepareResponsePayload(ct
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCIsPathReplicatedOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_IsPathReplicatedOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -971,7 +971,7 @@ func (o *xxx_NTFrsAPIRPCIsPathReplicatedOperation) MarshalNDRResponse(ctx contex
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCIsPathReplicatedOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_IsPathReplicatedOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Replicated {out} (1:{pointer=ref}*(1)(uint32))
 	{
 		if err := w.ReadData(&o.Replicated); err != nil {
@@ -1008,15 +1008,15 @@ func (o *xxx_NTFrsAPIRPCIsPathReplicatedOperation) UnmarshalNDRResponse(ctx cont
 	return nil
 }
 
-// NTFrsAPIRPCIsPathReplicatedRequest structure represents the NtFrsApi_Rpc_IsPathReplicated operation request
-type NTFrsAPIRPCIsPathReplicatedRequest struct {
+// IsPathReplicatedRequest structure represents the NtFrsApi_Rpc_IsPathReplicated operation request
+type IsPathReplicatedRequest struct {
 	Path                     string `idl:"name:Path;string;pointer:unique" json:"path"`
 	SetTypeOfInterestReplica uint32 `idl:"name:ReplicaSetTypeOfInterest" json:"set_type_of_interest_replica"`
 }
 
-func (o *NTFrsAPIRPCIsPathReplicatedRequest) xxx_ToOp(ctx context.Context, op *xxx_NTFrsAPIRPCIsPathReplicatedOperation) *xxx_NTFrsAPIRPCIsPathReplicatedOperation {
+func (o *IsPathReplicatedRequest) xxx_ToOp(ctx context.Context, op *xxx_IsPathReplicatedOperation) *xxx_IsPathReplicatedOperation {
 	if op == nil {
-		op = &xxx_NTFrsAPIRPCIsPathReplicatedOperation{}
+		op = &xxx_IsPathReplicatedOperation{}
 	}
 	if o == nil {
 		return op
@@ -1026,18 +1026,18 @@ func (o *NTFrsAPIRPCIsPathReplicatedRequest) xxx_ToOp(ctx context.Context, op *x
 	return op
 }
 
-func (o *NTFrsAPIRPCIsPathReplicatedRequest) xxx_FromOp(ctx context.Context, op *xxx_NTFrsAPIRPCIsPathReplicatedOperation) {
+func (o *IsPathReplicatedRequest) xxx_FromOp(ctx context.Context, op *xxx_IsPathReplicatedOperation) {
 	if o == nil {
 		return
 	}
 	o.Path = op.Path
 	o.SetTypeOfInterestReplica = op.SetTypeOfInterestReplica
 }
-func (o *NTFrsAPIRPCIsPathReplicatedRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IsPathReplicatedRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *NTFrsAPIRPCIsPathReplicatedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_NTFrsAPIRPCIsPathReplicatedOperation{}
+func (o *IsPathReplicatedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_IsPathReplicatedOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1045,8 +1045,8 @@ func (o *NTFrsAPIRPCIsPathReplicatedRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
-// NTFrsAPIRPCIsPathReplicatedResponse structure represents the NtFrsApi_Rpc_IsPathReplicated operation response
-type NTFrsAPIRPCIsPathReplicatedResponse struct {
+// IsPathReplicatedResponse structure represents the NtFrsApi_Rpc_IsPathReplicated operation response
+type IsPathReplicatedResponse struct {
 	Replicated     uint32     `idl:"name:Replicated" json:"replicated"`
 	Primary        uint32     `idl:"name:Primary" json:"primary"`
 	Root           uint32     `idl:"name:Root" json:"root"`
@@ -1055,9 +1055,9 @@ type NTFrsAPIRPCIsPathReplicatedResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *NTFrsAPIRPCIsPathReplicatedResponse) xxx_ToOp(ctx context.Context, op *xxx_NTFrsAPIRPCIsPathReplicatedOperation) *xxx_NTFrsAPIRPCIsPathReplicatedOperation {
+func (o *IsPathReplicatedResponse) xxx_ToOp(ctx context.Context, op *xxx_IsPathReplicatedOperation) *xxx_IsPathReplicatedOperation {
 	if op == nil {
-		op = &xxx_NTFrsAPIRPCIsPathReplicatedOperation{}
+		op = &xxx_IsPathReplicatedOperation{}
 	}
 	if o == nil {
 		return op
@@ -1070,7 +1070,7 @@ func (o *NTFrsAPIRPCIsPathReplicatedResponse) xxx_ToOp(ctx context.Context, op *
 	return op
 }
 
-func (o *NTFrsAPIRPCIsPathReplicatedResponse) xxx_FromOp(ctx context.Context, op *xxx_NTFrsAPIRPCIsPathReplicatedOperation) {
+func (o *IsPathReplicatedResponse) xxx_FromOp(ctx context.Context, op *xxx_IsPathReplicatedOperation) {
 	if o == nil {
 		return
 	}
@@ -1080,11 +1080,11 @@ func (o *NTFrsAPIRPCIsPathReplicatedResponse) xxx_FromOp(ctx context.Context, op
 	o.SetGUIDReplica = op.SetGUIDReplica
 	o.Return = op.Return
 }
-func (o *NTFrsAPIRPCIsPathReplicatedResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *IsPathReplicatedResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *NTFrsAPIRPCIsPathReplicatedResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_NTFrsAPIRPCIsPathReplicatedOperation{}
+func (o *IsPathReplicatedResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_IsPathReplicatedOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -1092,19 +1092,19 @@ func (o *NTFrsAPIRPCIsPathReplicatedResponse) UnmarshalNDR(ctx context.Context, 
 	return nil
 }
 
-// xxx_NTFrsAPIRPCWriterCommandOperation structure represents the NtFrsApi_Rpc_WriterCommand operation
-type xxx_NTFrsAPIRPCWriterCommandOperation struct {
+// xxx_WriterCommandOperation structure represents the NtFrsApi_Rpc_WriterCommand operation
+type xxx_WriterCommandOperation struct {
 	Command uint32 `idl:"name:Command" json:"command"`
 	Return  uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_NTFrsAPIRPCWriterCommandOperation) OpNum() int { return 9 }
+func (o *xxx_WriterCommandOperation) OpNum() int { return 9 }
 
-func (o *xxx_NTFrsAPIRPCWriterCommandOperation) OpName() string {
+func (o *xxx_WriterCommandOperation) OpName() string {
 	return "/NtFrsApi/v1.1/NtFrsApi_Rpc_WriterCommand"
 }
 
-func (o *xxx_NTFrsAPIRPCWriterCommandOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_WriterCommandOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -1113,7 +1113,7 @@ func (o *xxx_NTFrsAPIRPCWriterCommandOperation) xxx_PrepareRequestPayload(ctx co
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCWriterCommandOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_WriterCommandOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -1126,7 +1126,7 @@ func (o *xxx_NTFrsAPIRPCWriterCommandOperation) MarshalNDRRequest(ctx context.Co
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCWriterCommandOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_WriterCommandOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// Command {in} (1:(uint32))
 	{
 		if err := w.ReadData(&o.Command); err != nil {
@@ -1136,7 +1136,7 @@ func (o *xxx_NTFrsAPIRPCWriterCommandOperation) UnmarshalNDRRequest(ctx context.
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCWriterCommandOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_WriterCommandOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1145,7 +1145,7 @@ func (o *xxx_NTFrsAPIRPCWriterCommandOperation) xxx_PrepareResponsePayload(ctx c
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCWriterCommandOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_WriterCommandOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1158,7 +1158,7 @@ func (o *xxx_NTFrsAPIRPCWriterCommandOperation) MarshalNDRResponse(ctx context.C
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCWriterCommandOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_WriterCommandOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -1168,14 +1168,14 @@ func (o *xxx_NTFrsAPIRPCWriterCommandOperation) UnmarshalNDRResponse(ctx context
 	return nil
 }
 
-// NTFrsAPIRPCWriterCommandRequest structure represents the NtFrsApi_Rpc_WriterCommand operation request
-type NTFrsAPIRPCWriterCommandRequest struct {
+// WriterCommandRequest structure represents the NtFrsApi_Rpc_WriterCommand operation request
+type WriterCommandRequest struct {
 	Command uint32 `idl:"name:Command" json:"command"`
 }
 
-func (o *NTFrsAPIRPCWriterCommandRequest) xxx_ToOp(ctx context.Context, op *xxx_NTFrsAPIRPCWriterCommandOperation) *xxx_NTFrsAPIRPCWriterCommandOperation {
+func (o *WriterCommandRequest) xxx_ToOp(ctx context.Context, op *xxx_WriterCommandOperation) *xxx_WriterCommandOperation {
 	if op == nil {
-		op = &xxx_NTFrsAPIRPCWriterCommandOperation{}
+		op = &xxx_WriterCommandOperation{}
 	}
 	if o == nil {
 		return op
@@ -1184,17 +1184,17 @@ func (o *NTFrsAPIRPCWriterCommandRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	return op
 }
 
-func (o *NTFrsAPIRPCWriterCommandRequest) xxx_FromOp(ctx context.Context, op *xxx_NTFrsAPIRPCWriterCommandOperation) {
+func (o *WriterCommandRequest) xxx_FromOp(ctx context.Context, op *xxx_WriterCommandOperation) {
 	if o == nil {
 		return
 	}
 	o.Command = op.Command
 }
-func (o *NTFrsAPIRPCWriterCommandRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *WriterCommandRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *NTFrsAPIRPCWriterCommandRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_NTFrsAPIRPCWriterCommandOperation{}
+func (o *WriterCommandRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_WriterCommandOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1202,15 +1202,15 @@ func (o *NTFrsAPIRPCWriterCommandRequest) UnmarshalNDR(ctx context.Context, r nd
 	return nil
 }
 
-// NTFrsAPIRPCWriterCommandResponse structure represents the NtFrsApi_Rpc_WriterCommand operation response
-type NTFrsAPIRPCWriterCommandResponse struct {
+// WriterCommandResponse structure represents the NtFrsApi_Rpc_WriterCommand operation response
+type WriterCommandResponse struct {
 	// Return: The NtFrsApi_Rpc_WriterCommand return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *NTFrsAPIRPCWriterCommandResponse) xxx_ToOp(ctx context.Context, op *xxx_NTFrsAPIRPCWriterCommandOperation) *xxx_NTFrsAPIRPCWriterCommandOperation {
+func (o *WriterCommandResponse) xxx_ToOp(ctx context.Context, op *xxx_WriterCommandOperation) *xxx_WriterCommandOperation {
 	if op == nil {
-		op = &xxx_NTFrsAPIRPCWriterCommandOperation{}
+		op = &xxx_WriterCommandOperation{}
 	}
 	if o == nil {
 		return op
@@ -1219,17 +1219,17 @@ func (o *NTFrsAPIRPCWriterCommandResponse) xxx_ToOp(ctx context.Context, op *xxx
 	return op
 }
 
-func (o *NTFrsAPIRPCWriterCommandResponse) xxx_FromOp(ctx context.Context, op *xxx_NTFrsAPIRPCWriterCommandOperation) {
+func (o *WriterCommandResponse) xxx_FromOp(ctx context.Context, op *xxx_WriterCommandOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *NTFrsAPIRPCWriterCommandResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *WriterCommandResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *NTFrsAPIRPCWriterCommandResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_NTFrsAPIRPCWriterCommandOperation{}
+func (o *WriterCommandResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_WriterCommandOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -1237,8 +1237,8 @@ func (o *NTFrsAPIRPCWriterCommandResponse) UnmarshalNDR(ctx context.Context, r n
 	return nil
 }
 
-// xxx_NTFrsAPIRPCForceReplicationOperation structure represents the NtFrsApi_Rpc_ForceReplication operation
-type xxx_NTFrsAPIRPCForceReplicationOperation struct {
+// xxx_ForceReplicationOperation structure represents the NtFrsApi_Rpc_ForceReplication operation
+type xxx_ForceReplicationOperation struct {
 	SetGUIDReplica *dtyp.GUID `idl:"name:ReplicaSetGuid;pointer:unique" json:"set_guid_replica"`
 	CxtionGUID     *dtyp.GUID `idl:"name:CxtionGuid;pointer:unique" json:"cxtion_guid"`
 	SetNameReplica string     `idl:"name:ReplicaSetName;string;pointer:unique" json:"set_name_replica"`
@@ -1246,13 +1246,13 @@ type xxx_NTFrsAPIRPCForceReplicationOperation struct {
 	Return         uint32     `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_NTFrsAPIRPCForceReplicationOperation) OpNum() int { return 10 }
+func (o *xxx_ForceReplicationOperation) OpNum() int { return 10 }
 
-func (o *xxx_NTFrsAPIRPCForceReplicationOperation) OpName() string {
+func (o *xxx_ForceReplicationOperation) OpName() string {
 	return "/NtFrsApi/v1.1/NtFrsApi_Rpc_ForceReplication"
 }
 
-func (o *xxx_NTFrsAPIRPCForceReplicationOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_ForceReplicationOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -1261,7 +1261,7 @@ func (o *xxx_NTFrsAPIRPCForceReplicationOperation) xxx_PrepareRequestPayload(ctx
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCForceReplicationOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ForceReplicationOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -1364,7 +1364,7 @@ func (o *xxx_NTFrsAPIRPCForceReplicationOperation) MarshalNDRRequest(ctx context
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCForceReplicationOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ForceReplicationOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// ReplicaSetGuid {in} (1:{pointer=unique}*(1))(2:{alias=GUID}(struct))
 	{
 		_ptr_ReplicaSetGuid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -1438,7 +1438,7 @@ func (o *xxx_NTFrsAPIRPCForceReplicationOperation) UnmarshalNDRRequest(ctx conte
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCForceReplicationOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_ForceReplicationOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1447,7 +1447,7 @@ func (o *xxx_NTFrsAPIRPCForceReplicationOperation) xxx_PrepareResponsePayload(ct
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCForceReplicationOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_ForceReplicationOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1460,7 +1460,7 @@ func (o *xxx_NTFrsAPIRPCForceReplicationOperation) MarshalNDRResponse(ctx contex
 	return nil
 }
 
-func (o *xxx_NTFrsAPIRPCForceReplicationOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_ForceReplicationOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// Return {out} (1:(uint32))
 	{
 		if err := w.ReadData(&o.Return); err != nil {
@@ -1470,17 +1470,17 @@ func (o *xxx_NTFrsAPIRPCForceReplicationOperation) UnmarshalNDRResponse(ctx cont
 	return nil
 }
 
-// NTFrsAPIRPCForceReplicationRequest structure represents the NtFrsApi_Rpc_ForceReplication operation request
-type NTFrsAPIRPCForceReplicationRequest struct {
+// ForceReplicationRequest structure represents the NtFrsApi_Rpc_ForceReplication operation request
+type ForceReplicationRequest struct {
 	SetGUIDReplica *dtyp.GUID `idl:"name:ReplicaSetGuid;pointer:unique" json:"set_guid_replica"`
 	CxtionGUID     *dtyp.GUID `idl:"name:CxtionGuid;pointer:unique" json:"cxtion_guid"`
 	SetNameReplica string     `idl:"name:ReplicaSetName;string;pointer:unique" json:"set_name_replica"`
 	PartnerDNSName string     `idl:"name:PartnerDnsName;string;pointer:unique" json:"partner_dns_name"`
 }
 
-func (o *NTFrsAPIRPCForceReplicationRequest) xxx_ToOp(ctx context.Context, op *xxx_NTFrsAPIRPCForceReplicationOperation) *xxx_NTFrsAPIRPCForceReplicationOperation {
+func (o *ForceReplicationRequest) xxx_ToOp(ctx context.Context, op *xxx_ForceReplicationOperation) *xxx_ForceReplicationOperation {
 	if op == nil {
-		op = &xxx_NTFrsAPIRPCForceReplicationOperation{}
+		op = &xxx_ForceReplicationOperation{}
 	}
 	if o == nil {
 		return op
@@ -1492,7 +1492,7 @@ func (o *NTFrsAPIRPCForceReplicationRequest) xxx_ToOp(ctx context.Context, op *x
 	return op
 }
 
-func (o *NTFrsAPIRPCForceReplicationRequest) xxx_FromOp(ctx context.Context, op *xxx_NTFrsAPIRPCForceReplicationOperation) {
+func (o *ForceReplicationRequest) xxx_FromOp(ctx context.Context, op *xxx_ForceReplicationOperation) {
 	if o == nil {
 		return
 	}
@@ -1501,11 +1501,11 @@ func (o *NTFrsAPIRPCForceReplicationRequest) xxx_FromOp(ctx context.Context, op 
 	o.SetNameReplica = op.SetNameReplica
 	o.PartnerDNSName = op.PartnerDNSName
 }
-func (o *NTFrsAPIRPCForceReplicationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ForceReplicationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *NTFrsAPIRPCForceReplicationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_NTFrsAPIRPCForceReplicationOperation{}
+func (o *ForceReplicationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ForceReplicationOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1513,15 +1513,15 @@ func (o *NTFrsAPIRPCForceReplicationRequest) UnmarshalNDR(ctx context.Context, r
 	return nil
 }
 
-// NTFrsAPIRPCForceReplicationResponse structure represents the NtFrsApi_Rpc_ForceReplication operation response
-type NTFrsAPIRPCForceReplicationResponse struct {
+// ForceReplicationResponse structure represents the NtFrsApi_Rpc_ForceReplication operation response
+type ForceReplicationResponse struct {
 	// Return: The NtFrsApi_Rpc_ForceReplication return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *NTFrsAPIRPCForceReplicationResponse) xxx_ToOp(ctx context.Context, op *xxx_NTFrsAPIRPCForceReplicationOperation) *xxx_NTFrsAPIRPCForceReplicationOperation {
+func (o *ForceReplicationResponse) xxx_ToOp(ctx context.Context, op *xxx_ForceReplicationOperation) *xxx_ForceReplicationOperation {
 	if op == nil {
-		op = &xxx_NTFrsAPIRPCForceReplicationOperation{}
+		op = &xxx_ForceReplicationOperation{}
 	}
 	if o == nil {
 		return op
@@ -1530,17 +1530,17 @@ func (o *NTFrsAPIRPCForceReplicationResponse) xxx_ToOp(ctx context.Context, op *
 	return op
 }
 
-func (o *NTFrsAPIRPCForceReplicationResponse) xxx_FromOp(ctx context.Context, op *xxx_NTFrsAPIRPCForceReplicationOperation) {
+func (o *ForceReplicationResponse) xxx_FromOp(ctx context.Context, op *xxx_ForceReplicationOperation) {
 	if o == nil {
 		return
 	}
 	o.Return = op.Return
 }
-func (o *NTFrsAPIRPCForceReplicationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ForceReplicationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *NTFrsAPIRPCForceReplicationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_NTFrsAPIRPCForceReplicationOperation{}
+func (o *ForceReplicationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ForceReplicationOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

@@ -36,15 +36,15 @@ var (
 
 var (
 	// IMSMQTransactionDispenser interface identifier d7d6e083-dccd-11d0-aa4b-0060970debae
-	ImsmqTransactionDispenserIID = &dcom.IID{Data1: 0xd7d6e083, Data2: 0xdccd, Data3: 0x11d0, Data4: []byte{0xaa, 0x4b, 0x00, 0x60, 0x97, 0x0d, 0xeb, 0xae}}
+	TransactionDispenserIID = &dcom.IID{Data1: 0xd7d6e083, Data2: 0xdccd, Data3: 0x11d0, Data4: []byte{0xaa, 0x4b, 0x00, 0x60, 0x97, 0x0d, 0xeb, 0xae}}
 	// Syntax UUID
-	ImsmqTransactionDispenserSyntaxUUID = &uuid.UUID{TimeLow: 0xd7d6e083, TimeMid: 0xdccd, TimeHiAndVersion: 0x11d0, ClockSeqHiAndReserved: 0xaa, ClockSeqLow: 0x4b, Node: [6]uint8{0x0, 0x60, 0x97, 0xd, 0xeb, 0xae}}
+	TransactionDispenserSyntaxUUID = &uuid.UUID{TimeLow: 0xd7d6e083, TimeMid: 0xdccd, TimeHiAndVersion: 0x11d0, ClockSeqHiAndReserved: 0xaa, ClockSeqLow: 0x4b, Node: [6]uint8{0x0, 0x60, 0x97, 0xd, 0xeb, 0xae}}
 	// Syntax ID
-	ImsmqTransactionDispenserSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ImsmqTransactionDispenserSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	TransactionDispenserSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: TransactionDispenserSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IMSMQTransactionDispenser interface.
-type ImsmqTransactionDispenserClient interface {
+type TransactionDispenserClient interface {
 
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
@@ -59,20 +59,20 @@ type ImsmqTransactionDispenserClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) ImsmqTransactionDispenserClient
+	IPID(context.Context, *dcom.IPID) TransactionDispenserClient
 }
 
-type xxx_DefaultImsmqTransactionDispenserClient struct {
+type xxx_DefaultTransactionDispenserClient struct {
 	idispatch.DispatchClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultImsmqTransactionDispenserClient) Dispatch() idispatch.DispatchClient {
+func (o *xxx_DefaultTransactionDispenserClient) Dispatch() idispatch.DispatchClient {
 	return o.DispatchClient
 }
 
-func (o *xxx_DefaultImsmqTransactionDispenserClient) BeginTransaction(ctx context.Context, in *BeginTransactionRequest, opts ...dcerpc.CallOption) (*BeginTransactionResponse, error) {
+func (o *xxx_DefaultTransactionDispenserClient) BeginTransaction(ctx context.Context, in *BeginTransactionRequest, opts ...dcerpc.CallOption) (*BeginTransactionResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -92,29 +92,29 @@ func (o *xxx_DefaultImsmqTransactionDispenserClient) BeginTransaction(ctx contex
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqTransactionDispenserClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultTransactionDispenserClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultImsmqTransactionDispenserClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultTransactionDispenserClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultImsmqTransactionDispenserClient) IPID(ctx context.Context, ipid *dcom.IPID) ImsmqTransactionDispenserClient {
+func (o *xxx_DefaultTransactionDispenserClient) IPID(ctx context.Context, ipid *dcom.IPID) TransactionDispenserClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultImsmqTransactionDispenserClient{
+	return &xxx_DefaultTransactionDispenserClient{
 		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
 		cc:             o.cc,
 		ipid:           ipid,
 	}
 }
 
-func NewImsmqTransactionDispenserClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ImsmqTransactionDispenserClient, error) {
+func NewTransactionDispenserClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (TransactionDispenserClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ImsmqTransactionDispenserSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(TransactionDispenserSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -127,7 +127,7 @@ func NewImsmqTransactionDispenserClient(ctx context.Context, cc dcerpc.Conn, opt
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultImsmqTransactionDispenserClient{
+	return &xxx_DefaultTransactionDispenserClient{
 		DispatchClient: base,
 		cc:             cc,
 		ipid:           ipid,
@@ -136,10 +136,10 @@ func NewImsmqTransactionDispenserClient(ctx context.Context, cc dcerpc.Conn, opt
 
 // xxx_BeginTransactionOperation structure represents the BeginTransaction operation
 type xxx_BeginTransactionOperation struct {
-	This         *dcom.ORPCThis         `idl:"name:This" json:"this"`
-	That         *dcom.ORPCThat         `idl:"name:That" json:"that"`
-	Ptransaction *mqac.ImsmqTransaction `idl:"name:ptransaction" json:"ptransaction"`
-	Return       int32                  `idl:"name:Return" json:"return"`
+	This        *dcom.ORPCThis    `idl:"name:This" json:"this"`
+	That        *dcom.ORPCThat    `idl:"name:That" json:"that"`
+	Transaction *mqac.Transaction `idl:"name:ptransaction" json:"transaction"`
+	Return      int32             `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_BeginTransactionOperation) OpNum() int { return 7 }
@@ -225,20 +225,20 @@ func (o *xxx_BeginTransactionOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// ptransaction {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQTransaction}(interface))
 	{
-		if o.Ptransaction != nil {
+		if o.Transaction != nil {
 			_ptr_ptransaction := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ptransaction != nil {
-					if err := o.Ptransaction.MarshalNDR(ctx, w); err != nil {
+				if o.Transaction != nil {
+					if err := o.Transaction.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqTransaction{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Transaction{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ptransaction, _ptr_ptransaction); err != nil {
+			if err := w.WritePointer(&o.Transaction, _ptr_ptransaction); err != nil {
 				return err
 			}
 		} else {
@@ -275,16 +275,16 @@ func (o *xxx_BeginTransactionOperation) UnmarshalNDRResponse(ctx context.Context
 	// ptransaction {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQTransaction}(interface))
 	{
 		_ptr_ptransaction := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ptransaction == nil {
-				o.Ptransaction = &mqac.ImsmqTransaction{}
+			if o.Transaction == nil {
+				o.Transaction = &mqac.Transaction{}
 			}
-			if err := o.Ptransaction.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Transaction.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ptransaction := func(ptr interface{}) { o.Ptransaction = *ptr.(**mqac.ImsmqTransaction) }
-		if err := w.ReadPointer(&o.Ptransaction, _s_ptransaction, _ptr_ptransaction); err != nil {
+		_s_ptransaction := func(ptr interface{}) { o.Transaction = *ptr.(**mqac.Transaction) }
+		if err := w.ReadPointer(&o.Transaction, _s_ptransaction, _ptr_ptransaction); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -338,8 +338,8 @@ func (o *BeginTransactionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // BeginTransactionResponse structure represents the BeginTransaction operation response
 type BeginTransactionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That         *dcom.ORPCThat         `idl:"name:That" json:"that"`
-	Ptransaction *mqac.ImsmqTransaction `idl:"name:ptransaction" json:"ptransaction"`
+	That        *dcom.ORPCThat    `idl:"name:That" json:"that"`
+	Transaction *mqac.Transaction `idl:"name:ptransaction" json:"transaction"`
 	// Return: The BeginTransaction return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -352,7 +352,7 @@ func (o *BeginTransactionResponse) xxx_ToOp(ctx context.Context, op *xxx_BeginTr
 		return op
 	}
 	op.That = o.That
-	op.Ptransaction = o.Ptransaction
+	op.Transaction = o.Transaction
 	op.Return = o.Return
 	return op
 }
@@ -362,7 +362,7 @@ func (o *BeginTransactionResponse) xxx_FromOp(ctx context.Context, op *xxx_Begin
 		return
 	}
 	o.That = op.That
-	o.Ptransaction = op.Ptransaction
+	o.Transaction = op.Transaction
 	o.Return = op.Return
 }
 func (o *BeginTransactionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {

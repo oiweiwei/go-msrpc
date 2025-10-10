@@ -26,7 +26,7 @@ var (
 )
 
 // ITpmVirtualSmartCardManager server interface.
-type TpmVirtualSmartCardManagerServer interface {
+type VirtualSmartCardManagerServer interface {
 
 	// IUnknown base class.
 	iunknown.UnknownServer
@@ -36,17 +36,17 @@ type TpmVirtualSmartCardManagerServer interface {
 	DestroyVirtualSmartCard(context.Context, *DestroyVirtualSmartCardRequest) (*DestroyVirtualSmartCardResponse, error)
 }
 
-func RegisterTpmVirtualSmartCardManagerServer(conn dcerpc.Conn, o TpmVirtualSmartCardManagerServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewTpmVirtualSmartCardManagerServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(TpmVirtualSmartCardManagerSyntaxV0_0))...)
+func RegisterVirtualSmartCardManagerServer(conn dcerpc.Conn, o VirtualSmartCardManagerServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewVirtualSmartCardManagerServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(VirtualSmartCardManagerSyntaxV0_0))...)
 }
 
-func NewTpmVirtualSmartCardManagerServerHandle(o TpmVirtualSmartCardManagerServer) dcerpc.ServerHandle {
+func NewVirtualSmartCardManagerServerHandle(o VirtualSmartCardManagerServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return TpmVirtualSmartCardManagerServerHandle(ctx, o, opNum, r)
+		return VirtualSmartCardManagerServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func TpmVirtualSmartCardManagerServerHandle(ctx context.Context, o TpmVirtualSmartCardManagerServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func VirtualSmartCardManagerServerHandle(ctx context.Context, o VirtualSmartCardManagerServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 3 {
 		// IUnknown base method.
 		return iunknown.UnknownServerHandle(ctx, o, opNum, r)
@@ -75,15 +75,15 @@ func TpmVirtualSmartCardManagerServerHandle(ctx context.Context, o TpmVirtualSma
 }
 
 // Unimplemented ITpmVirtualSmartCardManager
-type UnimplementedTpmVirtualSmartCardManagerServer struct {
+type UnimplementedVirtualSmartCardManagerServer struct {
 	iunknown.UnimplementedUnknownServer
 }
 
-func (UnimplementedTpmVirtualSmartCardManagerServer) CreateVirtualSmartCard(context.Context, *CreateVirtualSmartCardRequest) (*CreateVirtualSmartCardResponse, error) {
+func (UnimplementedVirtualSmartCardManagerServer) CreateVirtualSmartCard(context.Context, *CreateVirtualSmartCardRequest) (*CreateVirtualSmartCardResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedTpmVirtualSmartCardManagerServer) DestroyVirtualSmartCard(context.Context, *DestroyVirtualSmartCardRequest) (*DestroyVirtualSmartCardResponse, error) {
+func (UnimplementedVirtualSmartCardManagerServer) DestroyVirtualSmartCard(context.Context, *DestroyVirtualSmartCardRequest) (*DestroyVirtualSmartCardResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ TpmVirtualSmartCardManagerServer = (*UnimplementedTpmVirtualSmartCardManagerServer)(nil)
+var _ VirtualSmartCardManagerServer = (*UnimplementedVirtualSmartCardManagerServer)(nil)

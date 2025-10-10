@@ -26,7 +26,7 @@ var (
 )
 
 // INtmsObjectInfo1 server interface.
-type NTMSObjectInfo1Server interface {
+type ObjectInfo1Server interface {
 
 	// IUnknown base class.
 	iunknown.UnknownServer
@@ -44,17 +44,17 @@ type NTMSObjectInfo1Server interface {
 	CreateNTMSMediaW(context.Context, *CreateNTMSMediaWRequest) (*CreateNTMSMediaWResponse, error)
 }
 
-func RegisterNTMSObjectInfo1Server(conn dcerpc.Conn, o NTMSObjectInfo1Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewNTMSObjectInfo1ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(NTMSObjectInfo1SyntaxV0_0))...)
+func RegisterObjectInfo1Server(conn dcerpc.Conn, o ObjectInfo1Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewObjectInfo1ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ObjectInfo1SyntaxV0_0))...)
 }
 
-func NewNTMSObjectInfo1ServerHandle(o NTMSObjectInfo1Server) dcerpc.ServerHandle {
+func NewObjectInfo1ServerHandle(o ObjectInfo1Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return NTMSObjectInfo1ServerHandle(ctx, o, opNum, r)
+		return ObjectInfo1ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func NTMSObjectInfo1ServerHandle(ctx context.Context, o NTMSObjectInfo1Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func ObjectInfo1ServerHandle(ctx context.Context, o ObjectInfo1Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // GetNtmsServerObjectInformationA
 		op := &xxx_GetNTMSServerObjectInformationAOperation{}
@@ -115,27 +115,27 @@ func NTMSObjectInfo1ServerHandle(ctx context.Context, o NTMSObjectInfo1Server, o
 }
 
 // Unimplemented INtmsObjectInfo1
-type UnimplementedNTMSObjectInfo1Server struct {
+type UnimplementedObjectInfo1Server struct {
 	iunknown.UnimplementedUnknownServer
 }
 
-func (UnimplementedNTMSObjectInfo1Server) GetNTMSServerObjectInformationA(context.Context, *GetNTMSServerObjectInformationARequest) (*GetNTMSServerObjectInformationAResponse, error) {
+func (UnimplementedObjectInfo1Server) GetNTMSServerObjectInformationA(context.Context, *GetNTMSServerObjectInformationARequest) (*GetNTMSServerObjectInformationAResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSObjectInfo1Server) GetNTMSServerObjectInformationW(context.Context, *GetNTMSServerObjectInformationWRequest) (*GetNTMSServerObjectInformationWResponse, error) {
+func (UnimplementedObjectInfo1Server) GetNTMSServerObjectInformationW(context.Context, *GetNTMSServerObjectInformationWRequest) (*GetNTMSServerObjectInformationWResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSObjectInfo1Server) SetNTMSObjectInformationA(context.Context, *SetNTMSObjectInformationARequest) (*SetNTMSObjectInformationAResponse, error) {
+func (UnimplementedObjectInfo1Server) SetNTMSObjectInformationA(context.Context, *SetNTMSObjectInformationARequest) (*SetNTMSObjectInformationAResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSObjectInfo1Server) SetNTMSObjectInformationW(context.Context, *SetNTMSObjectInformationWRequest) (*SetNTMSObjectInformationWResponse, error) {
+func (UnimplementedObjectInfo1Server) SetNTMSObjectInformationW(context.Context, *SetNTMSObjectInformationWRequest) (*SetNTMSObjectInformationWResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSObjectInfo1Server) CreateNTMSMediaA(context.Context, *CreateNTMSMediaARequest) (*CreateNTMSMediaAResponse, error) {
+func (UnimplementedObjectInfo1Server) CreateNTMSMediaA(context.Context, *CreateNTMSMediaARequest) (*CreateNTMSMediaAResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSObjectInfo1Server) CreateNTMSMediaW(context.Context, *CreateNTMSMediaWRequest) (*CreateNTMSMediaWResponse, error) {
+func (UnimplementedObjectInfo1Server) CreateNTMSMediaW(context.Context, *CreateNTMSMediaWRequest) (*CreateNTMSMediaWResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ NTMSObjectInfo1Server = (*UnimplementedNTMSObjectInfo1Server)(nil)
+var _ ObjectInfo1Server = (*UnimplementedObjectInfo1Server)(nil)

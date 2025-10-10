@@ -26,7 +26,7 @@ var (
 )
 
 // IWRMConfig server interface.
-type IwrmConfigServer interface {
+type ConfigServer interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -43,24 +43,24 @@ type IwrmConfigServer interface {
 
 	SetExclusionList(context.Context, *SetExclusionListRequest) (*SetExclusionListResponse, error)
 
-	WsrmActivate(context.Context, *WsrmActivateRequest) (*WsrmActivateResponse, error)
+	WSRMActivate(context.Context, *WSRMActivateRequest) (*WSRMActivateResponse, error)
 
-	IsWsrmActivated(context.Context, *IsWsrmActivatedRequest) (*IsWsrmActivatedResponse, error)
+	IsWSRMActivated(context.Context, *IsWSRMActivatedRequest) (*IsWSRMActivatedResponse, error)
 
 	RestoreExclusionList(context.Context, *RestoreExclusionListRequest) (*RestoreExclusionListResponse, error)
 }
 
-func RegisterIwrmConfigServer(conn dcerpc.Conn, o IwrmConfigServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewIwrmConfigServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(IwrmConfigSyntaxV0_0))...)
+func RegisterConfigServer(conn dcerpc.Conn, o ConfigServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewConfigServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ConfigSyntaxV0_0))...)
 }
 
-func NewIwrmConfigServerHandle(o IwrmConfigServer) dcerpc.ServerHandle {
+func NewConfigServerHandle(o ConfigServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return IwrmConfigServerHandle(ctx, o, opNum, r)
+		return ConfigServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func IwrmConfigServerHandle(ctx context.Context, o IwrmConfigServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func ConfigServerHandle(ctx context.Context, o ConfigServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -121,22 +121,22 @@ func IwrmConfigServerHandle(ctx context.Context, o IwrmConfigServer, opNum int, 
 		resp, err := o.SetExclusionList(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 13: // WSRMActivate
-		op := &xxx_WsrmActivateOperation{}
+		op := &xxx_WSRMActivateOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &WsrmActivateRequest{}
+		req := &WSRMActivateRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.WsrmActivate(ctx, req)
+		resp, err := o.WSRMActivate(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 14: // IsWSRMActivated
-		op := &xxx_IsWsrmActivatedOperation{}
+		op := &xxx_IsWSRMActivatedOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &IsWsrmActivatedRequest{}
+		req := &IsWSRMActivatedRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.IsWsrmActivated(ctx, req)
+		resp, err := o.IsWSRMActivated(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 15: // RestoreExclusionList
 		op := &xxx_RestoreExclusionListOperation{}
@@ -152,36 +152,36 @@ func IwrmConfigServerHandle(ctx context.Context, o IwrmConfigServer, opNum int, 
 }
 
 // Unimplemented IWRMConfig
-type UnimplementedIwrmConfigServer struct {
+type UnimplementedConfigServer struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedIwrmConfigServer) GetConfig(context.Context, *GetConfigRequest) (*GetConfigResponse, error) {
+func (UnimplementedConfigServer) GetConfig(context.Context, *GetConfigRequest) (*GetConfigResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmConfigServer) SetConfig(context.Context, *SetConfigRequest) (*SetConfigResponse, error) {
+func (UnimplementedConfigServer) SetConfig(context.Context, *SetConfigRequest) (*SetConfigResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmConfigServer) IsEnabled(context.Context, *IsEnabledRequest) (*IsEnabledResponse, error) {
+func (UnimplementedConfigServer) IsEnabled(context.Context, *IsEnabledRequest) (*IsEnabledResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmConfigServer) EnableDisable(context.Context, *EnableDisableRequest) (*EnableDisableResponse, error) {
+func (UnimplementedConfigServer) EnableDisable(context.Context, *EnableDisableRequest) (*EnableDisableResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmConfigServer) GetExclusionList(context.Context, *GetExclusionListRequest) (*GetExclusionListResponse, error) {
+func (UnimplementedConfigServer) GetExclusionList(context.Context, *GetExclusionListRequest) (*GetExclusionListResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmConfigServer) SetExclusionList(context.Context, *SetExclusionListRequest) (*SetExclusionListResponse, error) {
+func (UnimplementedConfigServer) SetExclusionList(context.Context, *SetExclusionListRequest) (*SetExclusionListResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmConfigServer) WsrmActivate(context.Context, *WsrmActivateRequest) (*WsrmActivateResponse, error) {
+func (UnimplementedConfigServer) WSRMActivate(context.Context, *WSRMActivateRequest) (*WSRMActivateResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmConfigServer) IsWsrmActivated(context.Context, *IsWsrmActivatedRequest) (*IsWsrmActivatedResponse, error) {
+func (UnimplementedConfigServer) IsWSRMActivated(context.Context, *IsWSRMActivatedRequest) (*IsWSRMActivatedResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedIwrmConfigServer) RestoreExclusionList(context.Context, *RestoreExclusionListRequest) (*RestoreExclusionListResponse, error) {
+func (UnimplementedConfigServer) RestoreExclusionList(context.Context, *RestoreExclusionListRequest) (*RestoreExclusionListResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ IwrmConfigServer = (*UnimplementedIwrmConfigServer)(nil)
+var _ ConfigServer = (*UnimplementedConfigServer)(nil)

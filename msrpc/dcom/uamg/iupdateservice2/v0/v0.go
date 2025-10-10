@@ -47,7 +47,7 @@ type UpdateService2Client interface {
 	// IUpdateService retrieval method.
 	UpdateService() iupdateservice.UpdateServiceClient
 
-	GetIsDefaultAuService(context.Context, *GetIsDefaultAuServiceRequest, ...dcerpc.CallOption) (*GetIsDefaultAuServiceResponse, error)
+	GetIsDefaultAUService(context.Context, *GetIsDefaultAUServiceRequest, ...dcerpc.CallOption) (*GetIsDefaultAUServiceResponse, error)
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
@@ -69,7 +69,7 @@ func (o *xxx_DefaultUpdateService2Client) UpdateService() iupdateservice.UpdateS
 	return o.UpdateServiceClient
 }
 
-func (o *xxx_DefaultUpdateService2Client) GetIsDefaultAuService(ctx context.Context, in *GetIsDefaultAuServiceRequest, opts ...dcerpc.CallOption) (*GetIsDefaultAuServiceResponse, error) {
+func (o *xxx_DefaultUpdateService2Client) GetIsDefaultAUService(ctx context.Context, in *GetIsDefaultAUServiceRequest, opts ...dcerpc.CallOption) (*GetIsDefaultAUServiceResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -81,7 +81,7 @@ func (o *xxx_DefaultUpdateService2Client) GetIsDefaultAuService(ctx context.Cont
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &GetIsDefaultAuServiceResponse{}
+	out := &GetIsDefaultAUServiceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -131,21 +131,21 @@ func NewUpdateService2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc
 	}, nil
 }
 
-// xxx_GetIsDefaultAuServiceOperation structure represents the IsDefaultAUService operation
-type xxx_GetIsDefaultAuServiceOperation struct {
+// xxx_GetIsDefaultAUServiceOperation structure represents the IsDefaultAUService operation
+type xxx_GetIsDefaultAUServiceOperation struct {
 	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
 	ReturnValue int16          `idl:"name:retval" json:"return_value"`
 	Return      int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_GetIsDefaultAuServiceOperation) OpNum() int { return 20 }
+func (o *xxx_GetIsDefaultAUServiceOperation) OpNum() int { return 20 }
 
-func (o *xxx_GetIsDefaultAuServiceOperation) OpName() string {
+func (o *xxx_GetIsDefaultAUServiceOperation) OpName() string {
 	return "/IUpdateService2/v0/IsDefaultAUService"
 }
 
-func (o *xxx_GetIsDefaultAuServiceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetIsDefaultAUServiceOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -154,7 +154,7 @@ func (o *xxx_GetIsDefaultAuServiceOperation) xxx_PrepareRequestPayload(ctx conte
 	return nil
 }
 
-func (o *xxx_GetIsDefaultAuServiceOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetIsDefaultAUServiceOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -176,7 +176,7 @@ func (o *xxx_GetIsDefaultAuServiceOperation) MarshalNDRRequest(ctx context.Conte
 	return nil
 }
 
-func (o *xxx_GetIsDefaultAuServiceOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetIsDefaultAUServiceOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -192,7 +192,7 @@ func (o *xxx_GetIsDefaultAuServiceOperation) UnmarshalNDRRequest(ctx context.Con
 	return nil
 }
 
-func (o *xxx_GetIsDefaultAuServiceOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetIsDefaultAUServiceOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -201,7 +201,7 @@ func (o *xxx_GetIsDefaultAuServiceOperation) xxx_PrepareResponsePayload(ctx cont
 	return nil
 }
 
-func (o *xxx_GetIsDefaultAuServiceOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetIsDefaultAUServiceOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -235,7 +235,7 @@ func (o *xxx_GetIsDefaultAuServiceOperation) MarshalNDRResponse(ctx context.Cont
 	return nil
 }
 
-func (o *xxx_GetIsDefaultAuServiceOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetIsDefaultAUServiceOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -263,15 +263,15 @@ func (o *xxx_GetIsDefaultAuServiceOperation) UnmarshalNDRResponse(ctx context.Co
 	return nil
 }
 
-// GetIsDefaultAuServiceRequest structure represents the IsDefaultAUService operation request
-type GetIsDefaultAuServiceRequest struct {
+// GetIsDefaultAUServiceRequest structure represents the IsDefaultAUService operation request
+type GetIsDefaultAUServiceRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetIsDefaultAuServiceRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIsDefaultAuServiceOperation) *xxx_GetIsDefaultAuServiceOperation {
+func (o *GetIsDefaultAUServiceRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIsDefaultAUServiceOperation) *xxx_GetIsDefaultAUServiceOperation {
 	if op == nil {
-		op = &xxx_GetIsDefaultAuServiceOperation{}
+		op = &xxx_GetIsDefaultAUServiceOperation{}
 	}
 	if o == nil {
 		return op
@@ -280,17 +280,17 @@ func (o *GetIsDefaultAuServiceRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	return op
 }
 
-func (o *GetIsDefaultAuServiceRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIsDefaultAuServiceOperation) {
+func (o *GetIsDefaultAUServiceRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIsDefaultAUServiceOperation) {
 	if o == nil {
 		return
 	}
 	o.This = op.This
 }
-func (o *GetIsDefaultAuServiceRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetIsDefaultAUServiceRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *GetIsDefaultAuServiceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetIsDefaultAuServiceOperation{}
+func (o *GetIsDefaultAUServiceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetIsDefaultAUServiceOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -298,8 +298,8 @@ func (o *GetIsDefaultAuServiceRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 	return nil
 }
 
-// GetIsDefaultAuServiceResponse structure represents the IsDefaultAUService operation response
-type GetIsDefaultAuServiceResponse struct {
+// GetIsDefaultAUServiceResponse structure represents the IsDefaultAUService operation response
+type GetIsDefaultAUServiceResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
 	ReturnValue int16          `idl:"name:retval" json:"return_value"`
@@ -307,9 +307,9 @@ type GetIsDefaultAuServiceResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetIsDefaultAuServiceResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIsDefaultAuServiceOperation) *xxx_GetIsDefaultAuServiceOperation {
+func (o *GetIsDefaultAUServiceResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIsDefaultAUServiceOperation) *xxx_GetIsDefaultAUServiceOperation {
 	if op == nil {
-		op = &xxx_GetIsDefaultAuServiceOperation{}
+		op = &xxx_GetIsDefaultAUServiceOperation{}
 	}
 	if o == nil {
 		return op
@@ -320,7 +320,7 @@ func (o *GetIsDefaultAuServiceResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	return op
 }
 
-func (o *GetIsDefaultAuServiceResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIsDefaultAuServiceOperation) {
+func (o *GetIsDefaultAUServiceResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIsDefaultAUServiceOperation) {
 	if o == nil {
 		return
 	}
@@ -328,11 +328,11 @@ func (o *GetIsDefaultAuServiceResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.ReturnValue = op.ReturnValue
 	o.Return = op.Return
 }
-func (o *GetIsDefaultAuServiceResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetIsDefaultAUServiceResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *GetIsDefaultAuServiceResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetIsDefaultAuServiceOperation{}
+func (o *GetIsDefaultAUServiceResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetIsDefaultAUServiceOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}

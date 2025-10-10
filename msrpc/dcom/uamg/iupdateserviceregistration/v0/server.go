@@ -35,7 +35,7 @@ type UpdateServiceRegistrationServer interface {
 
 	GetServiceID(context.Context, *GetServiceIDRequest) (*GetServiceIDResponse, error)
 
-	GetIsPendingRegistrationWithAu(context.Context, *GetIsPendingRegistrationWithAuRequest) (*GetIsPendingRegistrationWithAuResponse, error)
+	GetIsPendingRegistrationWithAU(context.Context, *GetIsPendingRegistrationWithAURequest) (*GetIsPendingRegistrationWithAUResponse, error)
 
 	GetService(context.Context, *GetServiceRequest) (*GetServiceResponse, error)
 }
@@ -75,13 +75,13 @@ func UpdateServiceRegistrationServerHandle(ctx context.Context, o UpdateServiceR
 		resp, err := o.GetServiceID(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 9: // IsPendingRegistrationWithAU
-		op := &xxx_GetIsPendingRegistrationWithAuOperation{}
+		op := &xxx_GetIsPendingRegistrationWithAUOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &GetIsPendingRegistrationWithAuRequest{}
+		req := &GetIsPendingRegistrationWithAURequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.GetIsPendingRegistrationWithAu(ctx, req)
+		resp, err := o.GetIsPendingRegistrationWithAU(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 10: // Service
 		op := &xxx_GetServiceOperation{}
@@ -107,7 +107,7 @@ func (UnimplementedUpdateServiceRegistrationServer) GetRegistrationState(context
 func (UnimplementedUpdateServiceRegistrationServer) GetServiceID(context.Context, *GetServiceIDRequest) (*GetServiceIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedUpdateServiceRegistrationServer) GetIsPendingRegistrationWithAu(context.Context, *GetIsPendingRegistrationWithAuRequest) (*GetIsPendingRegistrationWithAuResponse, error) {
+func (UnimplementedUpdateServiceRegistrationServer) GetIsPendingRegistrationWithAU(context.Context, *GetIsPendingRegistrationWithAURequest) (*GetIsPendingRegistrationWithAUResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 func (UnimplementedUpdateServiceRegistrationServer) GetService(context.Context, *GetServiceRequest) (*GetServiceResponse, error) {

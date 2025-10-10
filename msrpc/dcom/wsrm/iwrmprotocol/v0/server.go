@@ -26,7 +26,7 @@ var (
 )
 
 // IWRMProtocol server interface.
-type IwrmProtocolServer interface {
+type ProtocolServer interface {
 
 	// IDispatch base class.
 	idispatch.DispatchServer
@@ -34,17 +34,17 @@ type IwrmProtocolServer interface {
 	GetSupportedClient(context.Context, *GetSupportedClientRequest) (*GetSupportedClientResponse, error)
 }
 
-func RegisterIwrmProtocolServer(conn dcerpc.Conn, o IwrmProtocolServer, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewIwrmProtocolServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(IwrmProtocolSyntaxV0_0))...)
+func RegisterProtocolServer(conn dcerpc.Conn, o ProtocolServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewProtocolServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ProtocolSyntaxV0_0))...)
 }
 
-func NewIwrmProtocolServerHandle(o IwrmProtocolServer) dcerpc.ServerHandle {
+func NewProtocolServerHandle(o ProtocolServer) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return IwrmProtocolServerHandle(ctx, o, opNum, r)
+		return ProtocolServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func IwrmProtocolServerHandle(ctx context.Context, o IwrmProtocolServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func ProtocolServerHandle(ctx context.Context, o ProtocolServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 7 {
 		// IDispatch base method.
 		return idispatch.DispatchServerHandle(ctx, o, opNum, r)
@@ -64,12 +64,12 @@ func IwrmProtocolServerHandle(ctx context.Context, o IwrmProtocolServer, opNum i
 }
 
 // Unimplemented IWRMProtocol
-type UnimplementedIwrmProtocolServer struct {
+type UnimplementedProtocolServer struct {
 	idispatch.UnimplementedDispatchServer
 }
 
-func (UnimplementedIwrmProtocolServer) GetSupportedClient(context.Context, *GetSupportedClientRequest) (*GetSupportedClientResponse, error) {
+func (UnimplementedProtocolServer) GetSupportedClient(context.Context, *GetSupportedClientRequest) (*GetSupportedClientResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ IwrmProtocolServer = (*UnimplementedIwrmProtocolServer)(nil)
+var _ ProtocolServer = (*UnimplementedProtocolServer)(nil)

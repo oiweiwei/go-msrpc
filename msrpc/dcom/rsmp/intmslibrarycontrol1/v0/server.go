@@ -26,7 +26,7 @@ var (
 )
 
 // INtmsLibraryControl1 server interface.
-type NTMSLibraryControl1Server interface {
+type LibraryControl1Server interface {
 
 	// IUnknown base class.
 	iunknown.UnknownServer
@@ -44,7 +44,7 @@ type NTMSLibraryControl1Server interface {
 	InventoryNTMSLibrary(context.Context, *InventoryNTMSLibraryRequest) (*InventoryNTMSLibraryResponse, error)
 
 	// INtmsLibraryControl1_LocalOnlyOpnum09 operation.
-	NTMSLibraryControl1LocalOnlyOpnum09(context.Context, *NTMSLibraryControl1LocalOnlyOpnum09Request) (*NTMSLibraryControl1LocalOnlyOpnum09Response, error)
+	LibraryControl1LocalOnlyOpnum09(context.Context, *LibraryControl1LocalOnlyOpnum09Request) (*LibraryControl1LocalOnlyOpnum09Response, error)
 
 	CancelNTMSLibraryRequest(context.Context, *CancelNTMSLibraryRequestRequest) (*CancelNTMSLibraryRequestResponse, error)
 
@@ -73,17 +73,17 @@ type NTMSLibraryControl1Server interface {
 	EndNTMSDeviceChangeDetection(context.Context, *EndNTMSDeviceChangeDetectionRequest) (*EndNTMSDeviceChangeDetectionResponse, error)
 }
 
-func RegisterNTMSLibraryControl1Server(conn dcerpc.Conn, o NTMSLibraryControl1Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewNTMSLibraryControl1ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(NTMSLibraryControl1SyntaxV0_0))...)
+func RegisterLibraryControl1Server(conn dcerpc.Conn, o LibraryControl1Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewLibraryControl1ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(LibraryControl1SyntaxV0_0))...)
 }
 
-func NewNTMSLibraryControl1ServerHandle(o NTMSLibraryControl1Server) dcerpc.ServerHandle {
+func NewLibraryControl1ServerHandle(o LibraryControl1Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return NTMSLibraryControl1ServerHandle(ctx, o, opNum, r)
+		return LibraryControl1ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func NTMSLibraryControl1ServerHandle(ctx context.Context, o NTMSLibraryControl1Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func LibraryControl1ServerHandle(ctx context.Context, o LibraryControl1Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // EjectNtmsMedia
 		op := &xxx_EjectNTMSMediaOperation{}
@@ -140,13 +140,13 @@ func NTMSLibraryControl1ServerHandle(ctx context.Context, o NTMSLibraryControl1S
 		resp, err := o.InventoryNTMSLibrary(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 6: // INtmsLibraryControl1_LocalOnlyOpnum09
-		op := &xxx_NTMSLibraryControl1LocalOnlyOpnum09Operation{}
+		op := &xxx_LibraryControl1LocalOnlyOpnum09Operation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &NTMSLibraryControl1LocalOnlyOpnum09Request{}
+		req := &LibraryControl1LocalOnlyOpnum09Request{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.NTMSLibraryControl1LocalOnlyOpnum09(ctx, req)
+		resp, err := o.LibraryControl1LocalOnlyOpnum09(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 7: // CancelNtmsLibraryRequest
 		op := &xxx_CancelNTMSLibraryRequestOperation{}
@@ -270,69 +270,69 @@ func NTMSLibraryControl1ServerHandle(ctx context.Context, o NTMSLibraryControl1S
 }
 
 // Unimplemented INtmsLibraryControl1
-type UnimplementedNTMSLibraryControl1Server struct {
+type UnimplementedLibraryControl1Server struct {
 	iunknown.UnimplementedUnknownServer
 }
 
-func (UnimplementedNTMSLibraryControl1Server) EjectNTMSMedia(context.Context, *EjectNTMSMediaRequest) (*EjectNTMSMediaResponse, error) {
+func (UnimplementedLibraryControl1Server) EjectNTMSMedia(context.Context, *EjectNTMSMediaRequest) (*EjectNTMSMediaResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSLibraryControl1Server) InjectNTMSMedia(context.Context, *InjectNTMSMediaRequest) (*InjectNTMSMediaResponse, error) {
+func (UnimplementedLibraryControl1Server) InjectNTMSMedia(context.Context, *InjectNTMSMediaRequest) (*InjectNTMSMediaResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSLibraryControl1Server) AccessNTMSLibraryDoor(context.Context, *AccessNTMSLibraryDoorRequest) (*AccessNTMSLibraryDoorResponse, error) {
+func (UnimplementedLibraryControl1Server) AccessNTMSLibraryDoor(context.Context, *AccessNTMSLibraryDoorRequest) (*AccessNTMSLibraryDoorResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSLibraryControl1Server) CleanNTMSDrive(context.Context, *CleanNTMSDriveRequest) (*CleanNTMSDriveResponse, error) {
+func (UnimplementedLibraryControl1Server) CleanNTMSDrive(context.Context, *CleanNTMSDriveRequest) (*CleanNTMSDriveResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSLibraryControl1Server) DismountNTMSDrive(context.Context, *DismountNTMSDriveRequest) (*DismountNTMSDriveResponse, error) {
+func (UnimplementedLibraryControl1Server) DismountNTMSDrive(context.Context, *DismountNTMSDriveRequest) (*DismountNTMSDriveResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSLibraryControl1Server) InventoryNTMSLibrary(context.Context, *InventoryNTMSLibraryRequest) (*InventoryNTMSLibraryResponse, error) {
+func (UnimplementedLibraryControl1Server) InventoryNTMSLibrary(context.Context, *InventoryNTMSLibraryRequest) (*InventoryNTMSLibraryResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSLibraryControl1Server) NTMSLibraryControl1LocalOnlyOpnum09(context.Context, *NTMSLibraryControl1LocalOnlyOpnum09Request) (*NTMSLibraryControl1LocalOnlyOpnum09Response, error) {
+func (UnimplementedLibraryControl1Server) LibraryControl1LocalOnlyOpnum09(context.Context, *LibraryControl1LocalOnlyOpnum09Request) (*LibraryControl1LocalOnlyOpnum09Response, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSLibraryControl1Server) CancelNTMSLibraryRequest(context.Context, *CancelNTMSLibraryRequestRequest) (*CancelNTMSLibraryRequestResponse, error) {
+func (UnimplementedLibraryControl1Server) CancelNTMSLibraryRequest(context.Context, *CancelNTMSLibraryRequestRequest) (*CancelNTMSLibraryRequestResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSLibraryControl1Server) ReserveNTMSCleanerSlot(context.Context, *ReserveNTMSCleanerSlotRequest) (*ReserveNTMSCleanerSlotResponse, error) {
+func (UnimplementedLibraryControl1Server) ReserveNTMSCleanerSlot(context.Context, *ReserveNTMSCleanerSlotRequest) (*ReserveNTMSCleanerSlotResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSLibraryControl1Server) ReleaseNTMSCleanerSlot(context.Context, *ReleaseNTMSCleanerSlotRequest) (*ReleaseNTMSCleanerSlotResponse, error) {
+func (UnimplementedLibraryControl1Server) ReleaseNTMSCleanerSlot(context.Context, *ReleaseNTMSCleanerSlotRequest) (*ReleaseNTMSCleanerSlotResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSLibraryControl1Server) InjectNTMSCleaner(context.Context, *InjectNTMSCleanerRequest) (*InjectNTMSCleanerResponse, error) {
+func (UnimplementedLibraryControl1Server) InjectNTMSCleaner(context.Context, *InjectNTMSCleanerRequest) (*InjectNTMSCleanerResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSLibraryControl1Server) EjectNTMSCleaner(context.Context, *EjectNTMSCleanerRequest) (*EjectNTMSCleanerResponse, error) {
+func (UnimplementedLibraryControl1Server) EjectNTMSCleaner(context.Context, *EjectNTMSCleanerRequest) (*EjectNTMSCleanerResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSLibraryControl1Server) DeleteNTMSLibrary(context.Context, *DeleteNTMSLibraryRequest) (*DeleteNTMSLibraryResponse, error) {
+func (UnimplementedLibraryControl1Server) DeleteNTMSLibrary(context.Context, *DeleteNTMSLibraryRequest) (*DeleteNTMSLibraryResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSLibraryControl1Server) DeleteNTMSDrive(context.Context, *DeleteNTMSDriveRequest) (*DeleteNTMSDriveResponse, error) {
+func (UnimplementedLibraryControl1Server) DeleteNTMSDrive(context.Context, *DeleteNTMSDriveRequest) (*DeleteNTMSDriveResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSLibraryControl1Server) GetNTMSRequestOrder(context.Context, *GetNTMSRequestOrderRequest) (*GetNTMSRequestOrderResponse, error) {
+func (UnimplementedLibraryControl1Server) GetNTMSRequestOrder(context.Context, *GetNTMSRequestOrderRequest) (*GetNTMSRequestOrderResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSLibraryControl1Server) SetNTMSRequestOrder(context.Context, *SetNTMSRequestOrderRequest) (*SetNTMSRequestOrderResponse, error) {
+func (UnimplementedLibraryControl1Server) SetNTMSRequestOrder(context.Context, *SetNTMSRequestOrderRequest) (*SetNTMSRequestOrderResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSLibraryControl1Server) DeleteNTMSRequests(context.Context, *DeleteNTMSRequestsRequest) (*DeleteNTMSRequestsResponse, error) {
+func (UnimplementedLibraryControl1Server) DeleteNTMSRequests(context.Context, *DeleteNTMSRequestsRequest) (*DeleteNTMSRequestsResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSLibraryControl1Server) BeginNTMSDeviceChangeDetection(context.Context, *BeginNTMSDeviceChangeDetectionRequest) (*BeginNTMSDeviceChangeDetectionResponse, error) {
+func (UnimplementedLibraryControl1Server) BeginNTMSDeviceChangeDetection(context.Context, *BeginNTMSDeviceChangeDetectionRequest) (*BeginNTMSDeviceChangeDetectionResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSLibraryControl1Server) SetNTMSDeviceChangeDetection(context.Context, *SetNTMSDeviceChangeDetectionRequest) (*SetNTMSDeviceChangeDetectionResponse, error) {
+func (UnimplementedLibraryControl1Server) SetNTMSDeviceChangeDetection(context.Context, *SetNTMSDeviceChangeDetectionRequest) (*SetNTMSDeviceChangeDetectionResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedNTMSLibraryControl1Server) EndNTMSDeviceChangeDetection(context.Context, *EndNTMSDeviceChangeDetectionRequest) (*EndNTMSDeviceChangeDetectionResponse, error) {
+func (UnimplementedLibraryControl1Server) EndNTMSDeviceChangeDetection(context.Context, *EndNTMSDeviceChangeDetectionRequest) (*EndNTMSDeviceChangeDetectionResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ NTMSLibraryControl1Server = (*UnimplementedNTMSLibraryControl1Server)(nil)
+var _ LibraryControl1Server = (*UnimplementedLibraryControl1Server)(nil)

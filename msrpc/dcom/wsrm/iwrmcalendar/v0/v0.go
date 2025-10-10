@@ -36,15 +36,15 @@ var (
 
 var (
 	// IWRMCalendar interface identifier 481e06cf-ab04-4498-8ffe-124a0a34296d
-	IwrmCalendarIID = &dcom.IID{Data1: 0x481e06cf, Data2: 0xab04, Data3: 0x4498, Data4: []byte{0x8f, 0xfe, 0x12, 0x4a, 0x0a, 0x34, 0x29, 0x6d}}
+	CalendarIID = &dcom.IID{Data1: 0x481e06cf, Data2: 0xab04, Data3: 0x4498, Data4: []byte{0x8f, 0xfe, 0x12, 0x4a, 0x0a, 0x34, 0x29, 0x6d}}
 	// Syntax UUID
-	IwrmCalendarSyntaxUUID = &uuid.UUID{TimeLow: 0x481e06cf, TimeMid: 0xab04, TimeHiAndVersion: 0x4498, ClockSeqHiAndReserved: 0x8f, ClockSeqLow: 0xfe, Node: [6]uint8{0x12, 0x4a, 0xa, 0x34, 0x29, 0x6d}}
+	CalendarSyntaxUUID = &uuid.UUID{TimeLow: 0x481e06cf, TimeMid: 0xab04, TimeHiAndVersion: 0x4498, ClockSeqHiAndReserved: 0x8f, ClockSeqLow: 0xfe, Node: [6]uint8{0x12, 0x4a, 0xa, 0x34, 0x29, 0x6d}}
 	// Syntax ID
-	IwrmCalendarSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: IwrmCalendarSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	CalendarSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: CalendarSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IWRMCalendar interface.
-type IwrmCalendarClient interface {
+type CalendarClient interface {
 
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
@@ -84,20 +84,20 @@ type IwrmCalendarClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) IwrmCalendarClient
+	IPID(context.Context, *dcom.IPID) CalendarClient
 }
 
-type xxx_DefaultIwrmCalendarClient struct {
+type xxx_DefaultCalendarClient struct {
 	idispatch.DispatchClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultIwrmCalendarClient) Dispatch() idispatch.DispatchClient {
+func (o *xxx_DefaultCalendarClient) Dispatch() idispatch.DispatchClient {
 	return o.DispatchClient
 }
 
-func (o *xxx_DefaultIwrmCalendarClient) GetCalendarInfo(ctx context.Context, in *GetCalendarInfoRequest, opts ...dcerpc.CallOption) (*GetCalendarInfoResponse, error) {
+func (o *xxx_DefaultCalendarClient) GetCalendarInfo(ctx context.Context, in *GetCalendarInfoRequest, opts ...dcerpc.CallOption) (*GetCalendarInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -117,7 +117,7 @@ func (o *xxx_DefaultIwrmCalendarClient) GetCalendarInfo(ctx context.Context, in 
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmCalendarClient) CreateCalendar(ctx context.Context, in *CreateCalendarRequest, opts ...dcerpc.CallOption) (*CreateCalendarResponse, error) {
+func (o *xxx_DefaultCalendarClient) CreateCalendar(ctx context.Context, in *CreateCalendarRequest, opts ...dcerpc.CallOption) (*CreateCalendarResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -137,7 +137,7 @@ func (o *xxx_DefaultIwrmCalendarClient) CreateCalendar(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmCalendarClient) ModifyCalendar(ctx context.Context, in *ModifyCalendarRequest, opts ...dcerpc.CallOption) (*ModifyCalendarResponse, error) {
+func (o *xxx_DefaultCalendarClient) ModifyCalendar(ctx context.Context, in *ModifyCalendarRequest, opts ...dcerpc.CallOption) (*ModifyCalendarResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -157,7 +157,7 @@ func (o *xxx_DefaultIwrmCalendarClient) ModifyCalendar(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmCalendarClient) DeleteCalendar(ctx context.Context, in *DeleteCalendarRequest, opts ...dcerpc.CallOption) (*DeleteCalendarResponse, error) {
+func (o *xxx_DefaultCalendarClient) DeleteCalendar(ctx context.Context, in *DeleteCalendarRequest, opts ...dcerpc.CallOption) (*DeleteCalendarResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -177,7 +177,7 @@ func (o *xxx_DefaultIwrmCalendarClient) DeleteCalendar(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmCalendarClient) RenameCalendar(ctx context.Context, in *RenameCalendarRequest, opts ...dcerpc.CallOption) (*RenameCalendarResponse, error) {
+func (o *xxx_DefaultCalendarClient) RenameCalendar(ctx context.Context, in *RenameCalendarRequest, opts ...dcerpc.CallOption) (*RenameCalendarResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -197,7 +197,7 @@ func (o *xxx_DefaultIwrmCalendarClient) RenameCalendar(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmCalendarClient) ComputeEvents(ctx context.Context, in *ComputeEventsRequest, opts ...dcerpc.CallOption) (*ComputeEventsResponse, error) {
+func (o *xxx_DefaultCalendarClient) ComputeEvents(ctx context.Context, in *ComputeEventsRequest, opts ...dcerpc.CallOption) (*ComputeEventsResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -217,7 +217,7 @@ func (o *xxx_DefaultIwrmCalendarClient) ComputeEvents(ctx context.Context, in *C
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmCalendarClient) GetScheduleInfo(ctx context.Context, in *GetScheduleInfoRequest, opts ...dcerpc.CallOption) (*GetScheduleInfoResponse, error) {
+func (o *xxx_DefaultCalendarClient) GetScheduleInfo(ctx context.Context, in *GetScheduleInfoRequest, opts ...dcerpc.CallOption) (*GetScheduleInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -237,7 +237,7 @@ func (o *xxx_DefaultIwrmCalendarClient) GetScheduleInfo(ctx context.Context, in 
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmCalendarClient) CreateSchedule(ctx context.Context, in *CreateScheduleRequest, opts ...dcerpc.CallOption) (*CreateScheduleResponse, error) {
+func (o *xxx_DefaultCalendarClient) CreateSchedule(ctx context.Context, in *CreateScheduleRequest, opts ...dcerpc.CallOption) (*CreateScheduleResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -257,7 +257,7 @@ func (o *xxx_DefaultIwrmCalendarClient) CreateSchedule(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmCalendarClient) ModifySchedule(ctx context.Context, in *ModifyScheduleRequest, opts ...dcerpc.CallOption) (*ModifyScheduleResponse, error) {
+func (o *xxx_DefaultCalendarClient) ModifySchedule(ctx context.Context, in *ModifyScheduleRequest, opts ...dcerpc.CallOption) (*ModifyScheduleResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -277,7 +277,7 @@ func (o *xxx_DefaultIwrmCalendarClient) ModifySchedule(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmCalendarClient) DeleteSchedule(ctx context.Context, in *DeleteScheduleRequest, opts ...dcerpc.CallOption) (*DeleteScheduleResponse, error) {
+func (o *xxx_DefaultCalendarClient) DeleteSchedule(ctx context.Context, in *DeleteScheduleRequest, opts ...dcerpc.CallOption) (*DeleteScheduleResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -297,7 +297,7 @@ func (o *xxx_DefaultIwrmCalendarClient) DeleteSchedule(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmCalendarClient) RenameSchedule(ctx context.Context, in *RenameScheduleRequest, opts ...dcerpc.CallOption) (*RenameScheduleResponse, error) {
+func (o *xxx_DefaultCalendarClient) RenameSchedule(ctx context.Context, in *RenameScheduleRequest, opts ...dcerpc.CallOption) (*RenameScheduleResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -317,7 +317,7 @@ func (o *xxx_DefaultIwrmCalendarClient) RenameSchedule(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmCalendarClient) MoveBeforeCalendar(ctx context.Context, in *MoveBeforeCalendarRequest, opts ...dcerpc.CallOption) (*MoveBeforeCalendarResponse, error) {
+func (o *xxx_DefaultCalendarClient) MoveBeforeCalendar(ctx context.Context, in *MoveBeforeCalendarRequest, opts ...dcerpc.CallOption) (*MoveBeforeCalendarResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -337,7 +337,7 @@ func (o *xxx_DefaultIwrmCalendarClient) MoveBeforeCalendar(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmCalendarClient) MoveAfterCalendar(ctx context.Context, in *MoveAfterCalendarRequest, opts ...dcerpc.CallOption) (*MoveAfterCalendarResponse, error) {
+func (o *xxx_DefaultCalendarClient) MoveAfterCalendar(ctx context.Context, in *MoveAfterCalendarRequest, opts ...dcerpc.CallOption) (*MoveAfterCalendarResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -357,7 +357,7 @@ func (o *xxx_DefaultIwrmCalendarClient) MoveAfterCalendar(ctx context.Context, i
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmCalendarClient) GetServerTimeZone(ctx context.Context, in *GetServerTimeZoneRequest, opts ...dcerpc.CallOption) (*GetServerTimeZoneResponse, error) {
+func (o *xxx_DefaultCalendarClient) GetServerTimeZone(ctx context.Context, in *GetServerTimeZoneRequest, opts ...dcerpc.CallOption) (*GetServerTimeZoneResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -377,29 +377,29 @@ func (o *xxx_DefaultIwrmCalendarClient) GetServerTimeZone(ctx context.Context, i
 	return out, nil
 }
 
-func (o *xxx_DefaultIwrmCalendarClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultCalendarClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultIwrmCalendarClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultCalendarClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultIwrmCalendarClient) IPID(ctx context.Context, ipid *dcom.IPID) IwrmCalendarClient {
+func (o *xxx_DefaultCalendarClient) IPID(ctx context.Context, ipid *dcom.IPID) CalendarClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultIwrmCalendarClient{
+	return &xxx_DefaultCalendarClient{
 		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
 		cc:             o.cc,
 		ipid:           ipid,
 	}
 }
 
-func NewIwrmCalendarClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (IwrmCalendarClient, error) {
+func NewCalendarClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (CalendarClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(IwrmCalendarSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(CalendarSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -412,7 +412,7 @@ func NewIwrmCalendarClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.O
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultIwrmCalendarClient{
+	return &xxx_DefaultCalendarClient{
 		DispatchClient: base,
 		cc:             cc,
 		ipid:           ipid,

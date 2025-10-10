@@ -38,15 +38,15 @@ var (
 
 var (
 	// IMSMQMessage interface identifier d7d6e074-dccd-11d0-aa4b-0060970debae
-	ImsmqMessageIID = &dcom.IID{Data1: 0xd7d6e074, Data2: 0xdccd, Data3: 0x11d0, Data4: []byte{0xaa, 0x4b, 0x00, 0x60, 0x97, 0x0d, 0xeb, 0xae}}
+	MessageIID = &dcom.IID{Data1: 0xd7d6e074, Data2: 0xdccd, Data3: 0x11d0, Data4: []byte{0xaa, 0x4b, 0x00, 0x60, 0x97, 0x0d, 0xeb, 0xae}}
 	// Syntax UUID
-	ImsmqMessageSyntaxUUID = &uuid.UUID{TimeLow: 0xd7d6e074, TimeMid: 0xdccd, TimeHiAndVersion: 0x11d0, ClockSeqHiAndReserved: 0xaa, ClockSeqLow: 0x4b, Node: [6]uint8{0x0, 0x60, 0x97, 0xd, 0xeb, 0xae}}
+	MessageSyntaxUUID = &uuid.UUID{TimeLow: 0xd7d6e074, TimeMid: 0xdccd, TimeHiAndVersion: 0x11d0, ClockSeqHiAndReserved: 0xaa, ClockSeqLow: 0x4b, Node: [6]uint8{0x0, 0x60, 0x97, 0xd, 0xeb, 0xae}}
 	// Syntax ID
-	ImsmqMessageSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ImsmqMessageSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+	MessageSyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: MessageSyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
 )
 
 // IMSMQMessage interface.
-type ImsmqMessageClient interface {
+type MessageClient interface {
 
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
@@ -55,10 +55,10 @@ type ImsmqMessageClient interface {
 	GetClass(context.Context, *GetClassRequest, ...dcerpc.CallOption) (*GetClassResponse, error)
 
 	// PrivLevel operation.
-	GetPrivLevel(context.Context, *GetPrivLevelRequest, ...dcerpc.CallOption) (*GetPrivLevelResponse, error)
+	GetPrivacyLevel(context.Context, *GetPrivacyLevelRequest, ...dcerpc.CallOption) (*GetPrivacyLevelResponse, error)
 
 	// PrivLevel operation.
-	SetPrivLevel(context.Context, *SetPrivLevelRequest, ...dcerpc.CallOption) (*SetPrivLevelResponse, error)
+	SetPrivacyLevel(context.Context, *SetPrivacyLevelRequest, ...dcerpc.CallOption) (*SetPrivacyLevelResponse, error)
 
 	// AuthLevel operation.
 	GetAuthLevel(context.Context, *GetAuthLevelRequest, ...dcerpc.CallOption) (*GetAuthLevelResponse, error)
@@ -205,20 +205,20 @@ type ImsmqMessageClient interface {
 	Conn() dcerpc.Conn
 
 	// IPID sets the object interface identifier.
-	IPID(context.Context, *dcom.IPID) ImsmqMessageClient
+	IPID(context.Context, *dcom.IPID) MessageClient
 }
 
-type xxx_DefaultImsmqMessageClient struct {
+type xxx_DefaultMessageClient struct {
 	idispatch.DispatchClient
 	cc   dcerpc.Conn
 	ipid *dcom.IPID
 }
 
-func (o *xxx_DefaultImsmqMessageClient) Dispatch() idispatch.DispatchClient {
+func (o *xxx_DefaultMessageClient) Dispatch() idispatch.DispatchClient {
 	return o.DispatchClient
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetClass(ctx context.Context, in *GetClassRequest, opts ...dcerpc.CallOption) (*GetClassResponse, error) {
+func (o *xxx_DefaultMessageClient) GetClass(ctx context.Context, in *GetClassRequest, opts ...dcerpc.CallOption) (*GetClassResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -238,7 +238,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetClass(ctx context.Context, in *GetCla
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetPrivLevel(ctx context.Context, in *GetPrivLevelRequest, opts ...dcerpc.CallOption) (*GetPrivLevelResponse, error) {
+func (o *xxx_DefaultMessageClient) GetPrivacyLevel(ctx context.Context, in *GetPrivacyLevelRequest, opts ...dcerpc.CallOption) (*GetPrivacyLevelResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -250,7 +250,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetPrivLevel(ctx context.Context, in *Ge
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &GetPrivLevelResponse{}
+	out := &GetPrivacyLevelResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -258,7 +258,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetPrivLevel(ctx context.Context, in *Ge
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) SetPrivLevel(ctx context.Context, in *SetPrivLevelRequest, opts ...dcerpc.CallOption) (*SetPrivLevelResponse, error) {
+func (o *xxx_DefaultMessageClient) SetPrivacyLevel(ctx context.Context, in *SetPrivacyLevelRequest, opts ...dcerpc.CallOption) (*SetPrivacyLevelResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -270,7 +270,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetPrivLevel(ctx context.Context, in *Se
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
-	out := &SetPrivLevelResponse{}
+	out := &SetPrivacyLevelResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
 		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
@@ -278,7 +278,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetPrivLevel(ctx context.Context, in *Se
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetAuthLevel(ctx context.Context, in *GetAuthLevelRequest, opts ...dcerpc.CallOption) (*GetAuthLevelResponse, error) {
+func (o *xxx_DefaultMessageClient) GetAuthLevel(ctx context.Context, in *GetAuthLevelRequest, opts ...dcerpc.CallOption) (*GetAuthLevelResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -298,7 +298,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetAuthLevel(ctx context.Context, in *Ge
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) SetAuthLevel(ctx context.Context, in *SetAuthLevelRequest, opts ...dcerpc.CallOption) (*SetAuthLevelResponse, error) {
+func (o *xxx_DefaultMessageClient) SetAuthLevel(ctx context.Context, in *SetAuthLevelRequest, opts ...dcerpc.CallOption) (*SetAuthLevelResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -318,7 +318,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetAuthLevel(ctx context.Context, in *Se
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetIsAuthenticated(ctx context.Context, in *GetIsAuthenticatedRequest, opts ...dcerpc.CallOption) (*GetIsAuthenticatedResponse, error) {
+func (o *xxx_DefaultMessageClient) GetIsAuthenticated(ctx context.Context, in *GetIsAuthenticatedRequest, opts ...dcerpc.CallOption) (*GetIsAuthenticatedResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -338,7 +338,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetIsAuthenticated(ctx context.Context, 
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetDelivery(ctx context.Context, in *GetDeliveryRequest, opts ...dcerpc.CallOption) (*GetDeliveryResponse, error) {
+func (o *xxx_DefaultMessageClient) GetDelivery(ctx context.Context, in *GetDeliveryRequest, opts ...dcerpc.CallOption) (*GetDeliveryResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -358,7 +358,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetDelivery(ctx context.Context, in *Get
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) SetDelivery(ctx context.Context, in *SetDeliveryRequest, opts ...dcerpc.CallOption) (*SetDeliveryResponse, error) {
+func (o *xxx_DefaultMessageClient) SetDelivery(ctx context.Context, in *SetDeliveryRequest, opts ...dcerpc.CallOption) (*SetDeliveryResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -378,7 +378,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetDelivery(ctx context.Context, in *Set
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetTrace(ctx context.Context, in *GetTraceRequest, opts ...dcerpc.CallOption) (*GetTraceResponse, error) {
+func (o *xxx_DefaultMessageClient) GetTrace(ctx context.Context, in *GetTraceRequest, opts ...dcerpc.CallOption) (*GetTraceResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -398,7 +398,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetTrace(ctx context.Context, in *GetTra
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) SetTrace(ctx context.Context, in *SetTraceRequest, opts ...dcerpc.CallOption) (*SetTraceResponse, error) {
+func (o *xxx_DefaultMessageClient) SetTrace(ctx context.Context, in *SetTraceRequest, opts ...dcerpc.CallOption) (*SetTraceResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -418,7 +418,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetTrace(ctx context.Context, in *SetTra
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetPriority(ctx context.Context, in *GetPriorityRequest, opts ...dcerpc.CallOption) (*GetPriorityResponse, error) {
+func (o *xxx_DefaultMessageClient) GetPriority(ctx context.Context, in *GetPriorityRequest, opts ...dcerpc.CallOption) (*GetPriorityResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -438,7 +438,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetPriority(ctx context.Context, in *Get
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) SetPriority(ctx context.Context, in *SetPriorityRequest, opts ...dcerpc.CallOption) (*SetPriorityResponse, error) {
+func (o *xxx_DefaultMessageClient) SetPriority(ctx context.Context, in *SetPriorityRequest, opts ...dcerpc.CallOption) (*SetPriorityResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -458,7 +458,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetPriority(ctx context.Context, in *Set
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetJournal(ctx context.Context, in *GetJournalRequest, opts ...dcerpc.CallOption) (*GetJournalResponse, error) {
+func (o *xxx_DefaultMessageClient) GetJournal(ctx context.Context, in *GetJournalRequest, opts ...dcerpc.CallOption) (*GetJournalResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -478,7 +478,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetJournal(ctx context.Context, in *GetJ
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) SetJournal(ctx context.Context, in *SetJournalRequest, opts ...dcerpc.CallOption) (*SetJournalResponse, error) {
+func (o *xxx_DefaultMessageClient) SetJournal(ctx context.Context, in *SetJournalRequest, opts ...dcerpc.CallOption) (*SetJournalResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -498,7 +498,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetJournal(ctx context.Context, in *SetJ
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetResponseQueueInfo(ctx context.Context, in *GetResponseQueueInfoRequest, opts ...dcerpc.CallOption) (*GetResponseQueueInfoResponse, error) {
+func (o *xxx_DefaultMessageClient) GetResponseQueueInfo(ctx context.Context, in *GetResponseQueueInfoRequest, opts ...dcerpc.CallOption) (*GetResponseQueueInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -518,7 +518,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetResponseQueueInfo(ctx context.Context
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) SetByRefResponseQueueInfo(ctx context.Context, in *SetByRefResponseQueueInfoRequest, opts ...dcerpc.CallOption) (*SetByRefResponseQueueInfoResponse, error) {
+func (o *xxx_DefaultMessageClient) SetByRefResponseQueueInfo(ctx context.Context, in *SetByRefResponseQueueInfoRequest, opts ...dcerpc.CallOption) (*SetByRefResponseQueueInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -538,7 +538,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetByRefResponseQueueInfo(ctx context.Co
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetAppSpecific(ctx context.Context, in *GetAppSpecificRequest, opts ...dcerpc.CallOption) (*GetAppSpecificResponse, error) {
+func (o *xxx_DefaultMessageClient) GetAppSpecific(ctx context.Context, in *GetAppSpecificRequest, opts ...dcerpc.CallOption) (*GetAppSpecificResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -558,7 +558,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetAppSpecific(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) SetAppSpecific(ctx context.Context, in *SetAppSpecificRequest, opts ...dcerpc.CallOption) (*SetAppSpecificResponse, error) {
+func (o *xxx_DefaultMessageClient) SetAppSpecific(ctx context.Context, in *SetAppSpecificRequest, opts ...dcerpc.CallOption) (*SetAppSpecificResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -578,7 +578,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetAppSpecific(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetSourceMachineGUID(ctx context.Context, in *GetSourceMachineGUIDRequest, opts ...dcerpc.CallOption) (*GetSourceMachineGUIDResponse, error) {
+func (o *xxx_DefaultMessageClient) GetSourceMachineGUID(ctx context.Context, in *GetSourceMachineGUIDRequest, opts ...dcerpc.CallOption) (*GetSourceMachineGUIDResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -598,7 +598,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetSourceMachineGUID(ctx context.Context
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetBodyLength(ctx context.Context, in *GetBodyLengthRequest, opts ...dcerpc.CallOption) (*GetBodyLengthResponse, error) {
+func (o *xxx_DefaultMessageClient) GetBodyLength(ctx context.Context, in *GetBodyLengthRequest, opts ...dcerpc.CallOption) (*GetBodyLengthResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -618,7 +618,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetBodyLength(ctx context.Context, in *G
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetBody(ctx context.Context, in *GetBodyRequest, opts ...dcerpc.CallOption) (*GetBodyResponse, error) {
+func (o *xxx_DefaultMessageClient) GetBody(ctx context.Context, in *GetBodyRequest, opts ...dcerpc.CallOption) (*GetBodyResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -638,7 +638,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetBody(ctx context.Context, in *GetBody
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) SetBody(ctx context.Context, in *SetBodyRequest, opts ...dcerpc.CallOption) (*SetBodyResponse, error) {
+func (o *xxx_DefaultMessageClient) SetBody(ctx context.Context, in *SetBodyRequest, opts ...dcerpc.CallOption) (*SetBodyResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -658,7 +658,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetBody(ctx context.Context, in *SetBody
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetAdminQueueInfo(ctx context.Context, in *GetAdminQueueInfoRequest, opts ...dcerpc.CallOption) (*GetAdminQueueInfoResponse, error) {
+func (o *xxx_DefaultMessageClient) GetAdminQueueInfo(ctx context.Context, in *GetAdminQueueInfoRequest, opts ...dcerpc.CallOption) (*GetAdminQueueInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -678,7 +678,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetAdminQueueInfo(ctx context.Context, i
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) SetByRefAdminQueueInfo(ctx context.Context, in *SetByRefAdminQueueInfoRequest, opts ...dcerpc.CallOption) (*SetByRefAdminQueueInfoResponse, error) {
+func (o *xxx_DefaultMessageClient) SetByRefAdminQueueInfo(ctx context.Context, in *SetByRefAdminQueueInfoRequest, opts ...dcerpc.CallOption) (*SetByRefAdminQueueInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -698,7 +698,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetByRefAdminQueueInfo(ctx context.Conte
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetID(ctx context.Context, in *GetIDRequest, opts ...dcerpc.CallOption) (*GetIDResponse, error) {
+func (o *xxx_DefaultMessageClient) GetID(ctx context.Context, in *GetIDRequest, opts ...dcerpc.CallOption) (*GetIDResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -718,7 +718,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetID(ctx context.Context, in *GetIDRequ
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetCorrelationID(ctx context.Context, in *GetCorrelationIDRequest, opts ...dcerpc.CallOption) (*GetCorrelationIDResponse, error) {
+func (o *xxx_DefaultMessageClient) GetCorrelationID(ctx context.Context, in *GetCorrelationIDRequest, opts ...dcerpc.CallOption) (*GetCorrelationIDResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -738,7 +738,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetCorrelationID(ctx context.Context, in
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) SetCorrelationID(ctx context.Context, in *SetCorrelationIDRequest, opts ...dcerpc.CallOption) (*SetCorrelationIDResponse, error) {
+func (o *xxx_DefaultMessageClient) SetCorrelationID(ctx context.Context, in *SetCorrelationIDRequest, opts ...dcerpc.CallOption) (*SetCorrelationIDResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -758,7 +758,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetCorrelationID(ctx context.Context, in
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetAck(ctx context.Context, in *GetAckRequest, opts ...dcerpc.CallOption) (*GetAckResponse, error) {
+func (o *xxx_DefaultMessageClient) GetAck(ctx context.Context, in *GetAckRequest, opts ...dcerpc.CallOption) (*GetAckResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -778,7 +778,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetAck(ctx context.Context, in *GetAckRe
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) SetAck(ctx context.Context, in *SetAckRequest, opts ...dcerpc.CallOption) (*SetAckResponse, error) {
+func (o *xxx_DefaultMessageClient) SetAck(ctx context.Context, in *SetAckRequest, opts ...dcerpc.CallOption) (*SetAckResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -798,7 +798,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetAck(ctx context.Context, in *SetAckRe
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetLabel(ctx context.Context, in *GetLabelRequest, opts ...dcerpc.CallOption) (*GetLabelResponse, error) {
+func (o *xxx_DefaultMessageClient) GetLabel(ctx context.Context, in *GetLabelRequest, opts ...dcerpc.CallOption) (*GetLabelResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -818,7 +818,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetLabel(ctx context.Context, in *GetLab
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) SetLabel(ctx context.Context, in *SetLabelRequest, opts ...dcerpc.CallOption) (*SetLabelResponse, error) {
+func (o *xxx_DefaultMessageClient) SetLabel(ctx context.Context, in *SetLabelRequest, opts ...dcerpc.CallOption) (*SetLabelResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -838,7 +838,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetLabel(ctx context.Context, in *SetLab
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetMaxTimeToReachQueue(ctx context.Context, in *GetMaxTimeToReachQueueRequest, opts ...dcerpc.CallOption) (*GetMaxTimeToReachQueueResponse, error) {
+func (o *xxx_DefaultMessageClient) GetMaxTimeToReachQueue(ctx context.Context, in *GetMaxTimeToReachQueueRequest, opts ...dcerpc.CallOption) (*GetMaxTimeToReachQueueResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -858,7 +858,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetMaxTimeToReachQueue(ctx context.Conte
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) SetMaxTimeToReachQueue(ctx context.Context, in *SetMaxTimeToReachQueueRequest, opts ...dcerpc.CallOption) (*SetMaxTimeToReachQueueResponse, error) {
+func (o *xxx_DefaultMessageClient) SetMaxTimeToReachQueue(ctx context.Context, in *SetMaxTimeToReachQueueRequest, opts ...dcerpc.CallOption) (*SetMaxTimeToReachQueueResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -878,7 +878,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetMaxTimeToReachQueue(ctx context.Conte
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetMaxTimeToReceive(ctx context.Context, in *GetMaxTimeToReceiveRequest, opts ...dcerpc.CallOption) (*GetMaxTimeToReceiveResponse, error) {
+func (o *xxx_DefaultMessageClient) GetMaxTimeToReceive(ctx context.Context, in *GetMaxTimeToReceiveRequest, opts ...dcerpc.CallOption) (*GetMaxTimeToReceiveResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -898,7 +898,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetMaxTimeToReceive(ctx context.Context,
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) SetMaxTimeToReceive(ctx context.Context, in *SetMaxTimeToReceiveRequest, opts ...dcerpc.CallOption) (*SetMaxTimeToReceiveResponse, error) {
+func (o *xxx_DefaultMessageClient) SetMaxTimeToReceive(ctx context.Context, in *SetMaxTimeToReceiveRequest, opts ...dcerpc.CallOption) (*SetMaxTimeToReceiveResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -918,7 +918,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetMaxTimeToReceive(ctx context.Context,
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetHashAlgorithm(ctx context.Context, in *GetHashAlgorithmRequest, opts ...dcerpc.CallOption) (*GetHashAlgorithmResponse, error) {
+func (o *xxx_DefaultMessageClient) GetHashAlgorithm(ctx context.Context, in *GetHashAlgorithmRequest, opts ...dcerpc.CallOption) (*GetHashAlgorithmResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -938,7 +938,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetHashAlgorithm(ctx context.Context, in
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) SetHashAlgorithm(ctx context.Context, in *SetHashAlgorithmRequest, opts ...dcerpc.CallOption) (*SetHashAlgorithmResponse, error) {
+func (o *xxx_DefaultMessageClient) SetHashAlgorithm(ctx context.Context, in *SetHashAlgorithmRequest, opts ...dcerpc.CallOption) (*SetHashAlgorithmResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -958,7 +958,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetHashAlgorithm(ctx context.Context, in
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetEncryptAlgorithm(ctx context.Context, in *GetEncryptAlgorithmRequest, opts ...dcerpc.CallOption) (*GetEncryptAlgorithmResponse, error) {
+func (o *xxx_DefaultMessageClient) GetEncryptAlgorithm(ctx context.Context, in *GetEncryptAlgorithmRequest, opts ...dcerpc.CallOption) (*GetEncryptAlgorithmResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -978,7 +978,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetEncryptAlgorithm(ctx context.Context,
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) SetEncryptAlgorithm(ctx context.Context, in *SetEncryptAlgorithmRequest, opts ...dcerpc.CallOption) (*SetEncryptAlgorithmResponse, error) {
+func (o *xxx_DefaultMessageClient) SetEncryptAlgorithm(ctx context.Context, in *SetEncryptAlgorithmRequest, opts ...dcerpc.CallOption) (*SetEncryptAlgorithmResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -998,7 +998,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetEncryptAlgorithm(ctx context.Context,
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetSentTime(ctx context.Context, in *GetSentTimeRequest, opts ...dcerpc.CallOption) (*GetSentTimeResponse, error) {
+func (o *xxx_DefaultMessageClient) GetSentTime(ctx context.Context, in *GetSentTimeRequest, opts ...dcerpc.CallOption) (*GetSentTimeResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -1018,7 +1018,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetSentTime(ctx context.Context, in *Get
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetArrivedTime(ctx context.Context, in *GetArrivedTimeRequest, opts ...dcerpc.CallOption) (*GetArrivedTimeResponse, error) {
+func (o *xxx_DefaultMessageClient) GetArrivedTime(ctx context.Context, in *GetArrivedTimeRequest, opts ...dcerpc.CallOption) (*GetArrivedTimeResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -1038,7 +1038,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetArrivedTime(ctx context.Context, in *
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetDestinationQueueInfo(ctx context.Context, in *GetDestinationQueueInfoRequest, opts ...dcerpc.CallOption) (*GetDestinationQueueInfoResponse, error) {
+func (o *xxx_DefaultMessageClient) GetDestinationQueueInfo(ctx context.Context, in *GetDestinationQueueInfoRequest, opts ...dcerpc.CallOption) (*GetDestinationQueueInfoResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -1058,7 +1058,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetDestinationQueueInfo(ctx context.Cont
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetSenderCertificate(ctx context.Context, in *GetSenderCertificateRequest, opts ...dcerpc.CallOption) (*GetSenderCertificateResponse, error) {
+func (o *xxx_DefaultMessageClient) GetSenderCertificate(ctx context.Context, in *GetSenderCertificateRequest, opts ...dcerpc.CallOption) (*GetSenderCertificateResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -1078,7 +1078,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetSenderCertificate(ctx context.Context
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) SetSenderCertificate(ctx context.Context, in *SetSenderCertificateRequest, opts ...dcerpc.CallOption) (*SetSenderCertificateResponse, error) {
+func (o *xxx_DefaultMessageClient) SetSenderCertificate(ctx context.Context, in *SetSenderCertificateRequest, opts ...dcerpc.CallOption) (*SetSenderCertificateResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -1098,7 +1098,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetSenderCertificate(ctx context.Context
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetSenderID(ctx context.Context, in *GetSenderIDRequest, opts ...dcerpc.CallOption) (*GetSenderIDResponse, error) {
+func (o *xxx_DefaultMessageClient) GetSenderID(ctx context.Context, in *GetSenderIDRequest, opts ...dcerpc.CallOption) (*GetSenderIDResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -1118,7 +1118,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetSenderID(ctx context.Context, in *Get
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) GetSenderIDType(ctx context.Context, in *GetSenderIDTypeRequest, opts ...dcerpc.CallOption) (*GetSenderIDTypeResponse, error) {
+func (o *xxx_DefaultMessageClient) GetSenderIDType(ctx context.Context, in *GetSenderIDTypeRequest, opts ...dcerpc.CallOption) (*GetSenderIDTypeResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -1138,7 +1138,7 @@ func (o *xxx_DefaultImsmqMessageClient) GetSenderIDType(ctx context.Context, in 
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) SetSenderIDType(ctx context.Context, in *SetSenderIDTypeRequest, opts ...dcerpc.CallOption) (*SetSenderIDTypeResponse, error) {
+func (o *xxx_DefaultMessageClient) SetSenderIDType(ctx context.Context, in *SetSenderIDTypeRequest, opts ...dcerpc.CallOption) (*SetSenderIDTypeResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -1158,7 +1158,7 @@ func (o *xxx_DefaultImsmqMessageClient) SetSenderIDType(ctx context.Context, in 
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) Send(ctx context.Context, in *SendRequest, opts ...dcerpc.CallOption) (*SendResponse, error) {
+func (o *xxx_DefaultMessageClient) Send(ctx context.Context, in *SendRequest, opts ...dcerpc.CallOption) (*SendResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -1178,7 +1178,7 @@ func (o *xxx_DefaultImsmqMessageClient) Send(ctx context.Context, in *SendReques
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) AttachCurrentSecurityContext(ctx context.Context, in *AttachCurrentSecurityContextRequest, opts ...dcerpc.CallOption) (*AttachCurrentSecurityContextResponse, error) {
+func (o *xxx_DefaultMessageClient) AttachCurrentSecurityContext(ctx context.Context, in *AttachCurrentSecurityContextRequest, opts ...dcerpc.CallOption) (*AttachCurrentSecurityContextResponse, error) {
 	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
@@ -1198,29 +1198,29 @@ func (o *xxx_DefaultImsmqMessageClient) AttachCurrentSecurityContext(ctx context
 	return out, nil
 }
 
-func (o *xxx_DefaultImsmqMessageClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+func (o *xxx_DefaultMessageClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
 
-func (o *xxx_DefaultImsmqMessageClient) Conn() dcerpc.Conn {
+func (o *xxx_DefaultMessageClient) Conn() dcerpc.Conn {
 	return o.cc
 }
 
-func (o *xxx_DefaultImsmqMessageClient) IPID(ctx context.Context, ipid *dcom.IPID) ImsmqMessageClient {
+func (o *xxx_DefaultMessageClient) IPID(ctx context.Context, ipid *dcom.IPID) MessageClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
 	}
-	return &xxx_DefaultImsmqMessageClient{
+	return &xxx_DefaultMessageClient{
 		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
 		cc:             o.cc,
 		ipid:           ipid,
 	}
 }
 
-func NewImsmqMessageClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ImsmqMessageClient, error) {
+func NewMessageClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (MessageClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
-		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ImsmqMessageSyntaxV0_0))...)
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(MessageSyntaxV0_0))...)
 		if err != nil {
 			return nil, err
 		}
@@ -1233,7 +1233,7 @@ func NewImsmqMessageClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.O
 	if ok {
 		base = base.IPID(ctx, ipid)
 	}
-	return &xxx_DefaultImsmqMessageClient{
+	return &xxx_DefaultMessageClient{
 		DispatchClient: base,
 		cc:             cc,
 		ipid:           ipid,
@@ -1447,19 +1447,19 @@ func (o *GetClassResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 	return nil
 }
 
-// xxx_GetPrivLevelOperation structure represents the PrivLevel operation
-type xxx_GetPrivLevelOperation struct {
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PrivLevel int32          `idl:"name:plPrivLevel" json:"priv_level"`
-	Return    int32          `idl:"name:Return" json:"return"`
+// xxx_GetPrivacyLevelOperation structure represents the PrivLevel operation
+type xxx_GetPrivacyLevelOperation struct {
+	This         *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
+	PrivacyLevel int32          `idl:"name:plPrivLevel" json:"privacy_level"`
+	Return       int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_GetPrivLevelOperation) OpNum() int { return 8 }
+func (o *xxx_GetPrivacyLevelOperation) OpNum() int { return 8 }
 
-func (o *xxx_GetPrivLevelOperation) OpName() string { return "/IMSMQMessage/v0/PrivLevel" }
+func (o *xxx_GetPrivacyLevelOperation) OpName() string { return "/IMSMQMessage/v0/PrivLevel" }
 
-func (o *xxx_GetPrivLevelOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_GetPrivacyLevelOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -1468,7 +1468,7 @@ func (o *xxx_GetPrivLevelOperation) xxx_PrepareRequestPayload(ctx context.Contex
 	return nil
 }
 
-func (o *xxx_GetPrivLevelOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetPrivacyLevelOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -1490,7 +1490,7 @@ func (o *xxx_GetPrivLevelOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	return nil
 }
 
-func (o *xxx_GetPrivLevelOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetPrivacyLevelOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -1506,7 +1506,7 @@ func (o *xxx_GetPrivLevelOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	return nil
 }
 
-func (o *xxx_GetPrivLevelOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_GetPrivacyLevelOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1515,7 +1515,7 @@ func (o *xxx_GetPrivLevelOperation) xxx_PrepareResponsePayload(ctx context.Conte
 	return nil
 }
 
-func (o *xxx_GetPrivLevelOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_GetPrivacyLevelOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1536,7 +1536,7 @@ func (o *xxx_GetPrivLevelOperation) MarshalNDRResponse(ctx context.Context, w nd
 	}
 	// plPrivLevel {out, retval} (1:{pointer=ref}*(1)(int32))
 	{
-		if err := w.WriteData(o.PrivLevel); err != nil {
+		if err := w.WriteData(o.PrivacyLevel); err != nil {
 			return err
 		}
 	}
@@ -1549,7 +1549,7 @@ func (o *xxx_GetPrivLevelOperation) MarshalNDRResponse(ctx context.Context, w nd
 	return nil
 }
 
-func (o *xxx_GetPrivLevelOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_GetPrivacyLevelOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -1564,7 +1564,7 @@ func (o *xxx_GetPrivLevelOperation) UnmarshalNDRResponse(ctx context.Context, w 
 	}
 	// plPrivLevel {out, retval} (1:{pointer=ref}*(1)(int32))
 	{
-		if err := w.ReadData(&o.PrivLevel); err != nil {
+		if err := w.ReadData(&o.PrivacyLevel); err != nil {
 			return err
 		}
 	}
@@ -1577,15 +1577,15 @@ func (o *xxx_GetPrivLevelOperation) UnmarshalNDRResponse(ctx context.Context, w 
 	return nil
 }
 
-// GetPrivLevelRequest structure represents the PrivLevel operation request
-type GetPrivLevelRequest struct {
+// GetPrivacyLevelRequest structure represents the PrivLevel operation request
+type GetPrivacyLevelRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetPrivLevelRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPrivLevelOperation) *xxx_GetPrivLevelOperation {
+func (o *GetPrivacyLevelRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPrivacyLevelOperation) *xxx_GetPrivacyLevelOperation {
 	if op == nil {
-		op = &xxx_GetPrivLevelOperation{}
+		op = &xxx_GetPrivacyLevelOperation{}
 	}
 	if o == nil {
 		return op
@@ -1594,17 +1594,17 @@ func (o *GetPrivLevelRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPrivLevel
 	return op
 }
 
-func (o *GetPrivLevelRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPrivLevelOperation) {
+func (o *GetPrivacyLevelRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPrivacyLevelOperation) {
 	if o == nil {
 		return
 	}
 	o.This = op.This
 }
-func (o *GetPrivLevelRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetPrivacyLevelRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *GetPrivLevelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetPrivLevelOperation{}
+func (o *GetPrivacyLevelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetPrivacyLevelOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1612,41 +1612,41 @@ func (o *GetPrivLevelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
-// GetPrivLevelResponse structure represents the PrivLevel operation response
-type GetPrivLevelResponse struct {
+// GetPrivacyLevelResponse structure represents the PrivLevel operation response
+type GetPrivacyLevelResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PrivLevel int32          `idl:"name:plPrivLevel" json:"priv_level"`
+	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
+	PrivacyLevel int32          `idl:"name:plPrivLevel" json:"privacy_level"`
 	// Return: The PrivLevel return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPrivLevelResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrivLevelOperation) *xxx_GetPrivLevelOperation {
+func (o *GetPrivacyLevelResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrivacyLevelOperation) *xxx_GetPrivacyLevelOperation {
 	if op == nil {
-		op = &xxx_GetPrivLevelOperation{}
+		op = &xxx_GetPrivacyLevelOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.That = o.That
-	op.PrivLevel = o.PrivLevel
+	op.PrivacyLevel = o.PrivacyLevel
 	op.Return = o.Return
 	return op
 }
 
-func (o *GetPrivLevelResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrivLevelOperation) {
+func (o *GetPrivacyLevelResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrivacyLevelOperation) {
 	if o == nil {
 		return
 	}
 	o.That = op.That
-	o.PrivLevel = op.PrivLevel
+	o.PrivacyLevel = op.PrivacyLevel
 	o.Return = op.Return
 }
-func (o *GetPrivLevelResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *GetPrivacyLevelResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *GetPrivLevelResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_GetPrivLevelOperation{}
+func (o *GetPrivacyLevelResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetPrivacyLevelOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -1654,19 +1654,19 @@ func (o *GetPrivLevelResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 	return nil
 }
 
-// xxx_SetPrivLevelOperation structure represents the PrivLevel operation
-type xxx_SetPrivLevelOperation struct {
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PrivLevel int32          `idl:"name:lPrivLevel" json:"priv_level"`
-	Return    int32          `idl:"name:Return" json:"return"`
+// xxx_SetPrivacyLevelOperation structure represents the PrivLevel operation
+type xxx_SetPrivacyLevelOperation struct {
+	This         *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
+	PrivacyLevel int32          `idl:"name:lPrivLevel" json:"privacy_level"`
+	Return       int32          `idl:"name:Return" json:"return"`
 }
 
-func (o *xxx_SetPrivLevelOperation) OpNum() int { return 9 }
+func (o *xxx_SetPrivacyLevelOperation) OpNum() int { return 9 }
 
-func (o *xxx_SetPrivLevelOperation) OpName() string { return "/IMSMQMessage/v0/PrivLevel" }
+func (o *xxx_SetPrivacyLevelOperation) OpName() string { return "/IMSMQMessage/v0/PrivLevel" }
 
-func (o *xxx_SetPrivLevelOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+func (o *xxx_SetPrivacyLevelOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
 			return err
@@ -1675,7 +1675,7 @@ func (o *xxx_SetPrivLevelOperation) xxx_PrepareRequestPayload(ctx context.Contex
 	return nil
 }
 
-func (o *xxx_SetPrivLevelOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_SetPrivacyLevelOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
 		return err
 	}
@@ -1696,14 +1696,14 @@ func (o *xxx_SetPrivLevelOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// lPrivLevel {in} (1:(int32))
 	{
-		if err := w.WriteData(o.PrivLevel); err != nil {
+		if err := w.WriteData(o.PrivacyLevel); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (o *xxx_SetPrivLevelOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_SetPrivacyLevelOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// This {in} (1:{alias=ORPCTHIS}(struct))
 	{
 		if o.This == nil {
@@ -1718,14 +1718,14 @@ func (o *xxx_SetPrivLevelOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	}
 	// lPrivLevel {in} (1:(int32))
 	{
-		if err := w.ReadData(&o.PrivLevel); err != nil {
+		if err := w.ReadData(&o.PrivacyLevel); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func (o *xxx_SetPrivLevelOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+func (o *xxx_SetPrivacyLevelOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -1734,7 +1734,7 @@ func (o *xxx_SetPrivLevelOperation) xxx_PrepareResponsePayload(ctx context.Conte
 	return nil
 }
 
-func (o *xxx_SetPrivLevelOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+func (o *xxx_SetPrivacyLevelOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
@@ -1762,7 +1762,7 @@ func (o *xxx_SetPrivLevelOperation) MarshalNDRResponse(ctx context.Context, w nd
 	return nil
 }
 
-func (o *xxx_SetPrivLevelOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+func (o *xxx_SetPrivacyLevelOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// That {out} (1:{alias=ORPCTHAT}(struct))
 	{
 		if o.That == nil {
@@ -1784,37 +1784,37 @@ func (o *xxx_SetPrivLevelOperation) UnmarshalNDRResponse(ctx context.Context, w 
 	return nil
 }
 
-// SetPrivLevelRequest structure represents the PrivLevel operation request
-type SetPrivLevelRequest struct {
+// SetPrivacyLevelRequest structure represents the PrivLevel operation request
+type SetPrivacyLevelRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PrivLevel int32          `idl:"name:lPrivLevel" json:"priv_level"`
+	This         *dcom.ORPCThis `idl:"name:This" json:"this"`
+	PrivacyLevel int32          `idl:"name:lPrivLevel" json:"privacy_level"`
 }
 
-func (o *SetPrivLevelRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPrivLevelOperation) *xxx_SetPrivLevelOperation {
+func (o *SetPrivacyLevelRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPrivacyLevelOperation) *xxx_SetPrivacyLevelOperation {
 	if op == nil {
-		op = &xxx_SetPrivLevelOperation{}
+		op = &xxx_SetPrivacyLevelOperation{}
 	}
 	if o == nil {
 		return op
 	}
 	op.This = o.This
-	op.PrivLevel = o.PrivLevel
+	op.PrivacyLevel = o.PrivacyLevel
 	return op
 }
 
-func (o *SetPrivLevelRequest) xxx_FromOp(ctx context.Context, op *xxx_SetPrivLevelOperation) {
+func (o *SetPrivacyLevelRequest) xxx_FromOp(ctx context.Context, op *xxx_SetPrivacyLevelOperation) {
 	if o == nil {
 		return
 	}
 	o.This = op.This
-	o.PrivLevel = op.PrivLevel
+	o.PrivacyLevel = op.PrivacyLevel
 }
-func (o *SetPrivLevelRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SetPrivacyLevelRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
-func (o *SetPrivLevelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_SetPrivLevelOperation{}
+func (o *SetPrivacyLevelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SetPrivacyLevelOperation{}
 	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
 		return err
 	}
@@ -1822,17 +1822,17 @@ func (o *SetPrivLevelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 	return nil
 }
 
-// SetPrivLevelResponse structure represents the PrivLevel operation response
-type SetPrivLevelResponse struct {
+// SetPrivacyLevelResponse structure represents the PrivLevel operation response
+type SetPrivacyLevelResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// Return: The PrivLevel return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetPrivLevelResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPrivLevelOperation) *xxx_SetPrivLevelOperation {
+func (o *SetPrivacyLevelResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPrivacyLevelOperation) *xxx_SetPrivacyLevelOperation {
 	if op == nil {
-		op = &xxx_SetPrivLevelOperation{}
+		op = &xxx_SetPrivacyLevelOperation{}
 	}
 	if o == nil {
 		return op
@@ -1842,18 +1842,18 @@ func (o *SetPrivLevelResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPrivLeve
 	return op
 }
 
-func (o *SetPrivLevelResponse) xxx_FromOp(ctx context.Context, op *xxx_SetPrivLevelOperation) {
+func (o *SetPrivacyLevelResponse) xxx_FromOp(ctx context.Context, op *xxx_SetPrivacyLevelOperation) {
 	if o == nil {
 		return
 	}
 	o.That = op.That
 	o.Return = op.Return
 }
-func (o *SetPrivLevelResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *SetPrivacyLevelResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
-func (o *SetPrivLevelResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
-	_o := &xxx_SetPrivLevelOperation{}
+func (o *SetPrivacyLevelResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_SetPrivacyLevelOperation{}
 	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
 		return err
 	}
@@ -2277,10 +2277,10 @@ func (o *SetAuthLevelResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 
 // xxx_GetIsAuthenticatedOperation structure represents the IsAuthenticated operation
 type xxx_GetIsAuthenticatedOperation struct {
-	This             *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That             *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PisAuthenticated int16          `idl:"name:pisAuthenticated" json:"pis_authenticated"`
-	Return           int32          `idl:"name:Return" json:"return"`
+	This            *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
+	IsAuthenticated int16          `idl:"name:pisAuthenticated" json:"is_authenticated"`
+	Return          int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetIsAuthenticatedOperation) OpNum() int { return 12 }
@@ -2364,7 +2364,7 @@ func (o *xxx_GetIsAuthenticatedOperation) MarshalNDRResponse(ctx context.Context
 	}
 	// pisAuthenticated {out, retval} (1:{pointer=ref}*(1)(int16))
 	{
-		if err := w.WriteData(o.PisAuthenticated); err != nil {
+		if err := w.WriteData(o.IsAuthenticated); err != nil {
 			return err
 		}
 	}
@@ -2392,7 +2392,7 @@ func (o *xxx_GetIsAuthenticatedOperation) UnmarshalNDRResponse(ctx context.Conte
 	}
 	// pisAuthenticated {out, retval} (1:{pointer=ref}*(1)(int16))
 	{
-		if err := w.ReadData(&o.PisAuthenticated); err != nil {
+		if err := w.ReadData(&o.IsAuthenticated); err != nil {
 			return err
 		}
 	}
@@ -2443,8 +2443,8 @@ func (o *GetIsAuthenticatedRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 // GetIsAuthenticatedResponse structure represents the IsAuthenticated operation response
 type GetIsAuthenticatedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That             *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PisAuthenticated int16          `idl:"name:pisAuthenticated" json:"pis_authenticated"`
+	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
+	IsAuthenticated int16          `idl:"name:pisAuthenticated" json:"is_authenticated"`
 	// Return: The IsAuthenticated return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2457,7 +2457,7 @@ func (o *GetIsAuthenticatedResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIs
 		return op
 	}
 	op.That = o.That
-	op.PisAuthenticated = o.PisAuthenticated
+	op.IsAuthenticated = o.IsAuthenticated
 	op.Return = o.Return
 	return op
 }
@@ -2467,7 +2467,7 @@ func (o *GetIsAuthenticatedResponse) xxx_FromOp(ctx context.Context, op *xxx_Get
 		return
 	}
 	o.That = op.That
-	o.PisAuthenticated = op.PisAuthenticated
+	o.IsAuthenticated = op.IsAuthenticated
 	o.Return = op.Return
 }
 func (o *GetIsAuthenticatedResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -4140,10 +4140,10 @@ func (o *SetJournalResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 
 // xxx_GetResponseQueueInfoOperation structure represents the ResponseQueueInfo operation
 type xxx_GetResponseQueueInfoOperation struct {
-	This            *dcom.ORPCThis       `idl:"name:This" json:"this"`
-	That            *dcom.ORPCThat       `idl:"name:That" json:"that"`
-	PpqinfoResponse *mqac.ImsmqQueueInfo `idl:"name:ppqinfoResponse" json:"ppqinfo_response"`
-	Return          int32                `idl:"name:Return" json:"return"`
+	This     *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	That     *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	Response *mqac.QueueInfo `idl:"name:ppqinfoResponse" json:"response"`
+	Return   int32           `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetResponseQueueInfoOperation) OpNum() int { return 21 }
@@ -4229,20 +4229,20 @@ func (o *xxx_GetResponseQueueInfoOperation) MarshalNDRResponse(ctx context.Conte
 	}
 	// ppqinfoResponse {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQQueueInfo}(interface))
 	{
-		if o.PpqinfoResponse != nil {
+		if o.Response != nil {
 			_ptr_ppqinfoResponse := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PpqinfoResponse != nil {
-					if err := o.PpqinfoResponse.MarshalNDR(ctx, w); err != nil {
+				if o.Response != nil {
+					if err := o.Response.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqQueueInfo{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.QueueInfo{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PpqinfoResponse, _ptr_ppqinfoResponse); err != nil {
+			if err := w.WritePointer(&o.Response, _ptr_ppqinfoResponse); err != nil {
 				return err
 			}
 		} else {
@@ -4279,16 +4279,16 @@ func (o *xxx_GetResponseQueueInfoOperation) UnmarshalNDRResponse(ctx context.Con
 	// ppqinfoResponse {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQQueueInfo}(interface))
 	{
 		_ptr_ppqinfoResponse := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PpqinfoResponse == nil {
-				o.PpqinfoResponse = &mqac.ImsmqQueueInfo{}
+			if o.Response == nil {
+				o.Response = &mqac.QueueInfo{}
 			}
-			if err := o.PpqinfoResponse.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Response.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppqinfoResponse := func(ptr interface{}) { o.PpqinfoResponse = *ptr.(**mqac.ImsmqQueueInfo) }
-		if err := w.ReadPointer(&o.PpqinfoResponse, _s_ppqinfoResponse, _ptr_ppqinfoResponse); err != nil {
+		_s_ppqinfoResponse := func(ptr interface{}) { o.Response = *ptr.(**mqac.QueueInfo) }
+		if err := w.ReadPointer(&o.Response, _s_ppqinfoResponse, _ptr_ppqinfoResponse); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4342,8 +4342,8 @@ func (o *GetResponseQueueInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 // GetResponseQueueInfoResponse structure represents the ResponseQueueInfo operation response
 type GetResponseQueueInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat       `idl:"name:That" json:"that"`
-	PpqinfoResponse *mqac.ImsmqQueueInfo `idl:"name:ppqinfoResponse" json:"ppqinfo_response"`
+	That     *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	Response *mqac.QueueInfo `idl:"name:ppqinfoResponse" json:"response"`
 	// Return: The ResponseQueueInfo return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -4356,7 +4356,7 @@ func (o *GetResponseQueueInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 		return op
 	}
 	op.That = o.That
-	op.PpqinfoResponse = o.PpqinfoResponse
+	op.Response = o.Response
 	op.Return = o.Return
 	return op
 }
@@ -4366,7 +4366,7 @@ func (o *GetResponseQueueInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_G
 		return
 	}
 	o.That = op.That
-	o.PpqinfoResponse = op.PpqinfoResponse
+	o.Response = op.Response
 	o.Return = op.Return
 }
 func (o *GetResponseQueueInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -4383,10 +4383,10 @@ func (o *GetResponseQueueInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.R
 
 // xxx_SetByRefResponseQueueInfoOperation structure represents the ResponseQueueInfo operation
 type xxx_SetByRefResponseQueueInfoOperation struct {
-	This           *dcom.ORPCThis       `idl:"name:This" json:"this"`
-	That           *dcom.ORPCThat       `idl:"name:That" json:"that"`
-	PqinfoResponse *mqac.ImsmqQueueInfo `idl:"name:pqinfoResponse" json:"pqinfo_response"`
-	Return         int32                `idl:"name:Return" json:"return"`
+	This              *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	That              *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	QueueInfoResponse *mqac.QueueInfo `idl:"name:pqinfoResponse" json:"queue_info_response"`
+	Return            int32           `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_SetByRefResponseQueueInfoOperation) OpNum() int { return 22 }
@@ -4425,20 +4425,20 @@ func (o *xxx_SetByRefResponseQueueInfoOperation) MarshalNDRRequest(ctx context.C
 	}
 	// pqinfoResponse {in} (1:{pointer=ref}*(1))(2:{alias=IMSMQQueueInfo}(interface))
 	{
-		if o.PqinfoResponse != nil {
+		if o.QueueInfoResponse != nil {
 			_ptr_pqinfoResponse := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PqinfoResponse != nil {
-					if err := o.PqinfoResponse.MarshalNDR(ctx, w); err != nil {
+				if o.QueueInfoResponse != nil {
+					if err := o.QueueInfoResponse.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqQueueInfo{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.QueueInfo{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PqinfoResponse, _ptr_pqinfoResponse); err != nil {
+			if err := w.WritePointer(&o.QueueInfoResponse, _ptr_pqinfoResponse); err != nil {
 				return err
 			}
 		} else {
@@ -4469,16 +4469,16 @@ func (o *xxx_SetByRefResponseQueueInfoOperation) UnmarshalNDRRequest(ctx context
 	// pqinfoResponse {in} (1:{pointer=ref}*(1))(2:{alias=IMSMQQueueInfo}(interface))
 	{
 		_ptr_pqinfoResponse := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PqinfoResponse == nil {
-				o.PqinfoResponse = &mqac.ImsmqQueueInfo{}
+			if o.QueueInfoResponse == nil {
+				o.QueueInfoResponse = &mqac.QueueInfo{}
 			}
-			if err := o.PqinfoResponse.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.QueueInfoResponse.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pqinfoResponse := func(ptr interface{}) { o.PqinfoResponse = *ptr.(**mqac.ImsmqQueueInfo) }
-		if err := w.ReadPointer(&o.PqinfoResponse, _s_pqinfoResponse, _ptr_pqinfoResponse); err != nil {
+		_s_pqinfoResponse := func(ptr interface{}) { o.QueueInfoResponse = *ptr.(**mqac.QueueInfo) }
+		if err := w.ReadPointer(&o.QueueInfoResponse, _s_pqinfoResponse, _ptr_pqinfoResponse); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4550,8 +4550,8 @@ func (o *xxx_SetByRefResponseQueueInfoOperation) UnmarshalNDRResponse(ctx contex
 // SetByRefResponseQueueInfoRequest structure represents the ResponseQueueInfo operation request
 type SetByRefResponseQueueInfoRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis       `idl:"name:This" json:"this"`
-	PqinfoResponse *mqac.ImsmqQueueInfo `idl:"name:pqinfoResponse" json:"pqinfo_response"`
+	This              *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	QueueInfoResponse *mqac.QueueInfo `idl:"name:pqinfoResponse" json:"queue_info_response"`
 }
 
 func (o *SetByRefResponseQueueInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetByRefResponseQueueInfoOperation) *xxx_SetByRefResponseQueueInfoOperation {
@@ -4562,7 +4562,7 @@ func (o *SetByRefResponseQueueInfoRequest) xxx_ToOp(ctx context.Context, op *xxx
 		return op
 	}
 	op.This = o.This
-	op.PqinfoResponse = o.PqinfoResponse
+	op.QueueInfoResponse = o.QueueInfoResponse
 	return op
 }
 
@@ -4571,7 +4571,7 @@ func (o *SetByRefResponseQueueInfoRequest) xxx_FromOp(ctx context.Context, op *x
 		return
 	}
 	o.This = op.This
-	o.PqinfoResponse = op.PqinfoResponse
+	o.QueueInfoResponse = op.QueueInfoResponse
 }
 func (o *SetByRefResponseQueueInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -5040,10 +5040,10 @@ func (o *SetAppSpecificResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // xxx_GetSourceMachineGUIDOperation structure represents the SourceMachineGuid operation
 type xxx_GetSourceMachineGUIDOperation struct {
-	This              *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That              *dcom.ORPCThat `idl:"name:That" json:"that"`
-	GUIDSourceMachine *oaut.String   `idl:"name:pbstrGuidSrcMachine" json:"guid_source_machine"`
-	Return            int32          `idl:"name:Return" json:"return"`
+	This          *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
+	SourceMachine *oaut.String   `idl:"name:pbstrGuidSrcMachine" json:"source_machine"`
+	Return        int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetSourceMachineGUIDOperation) OpNum() int { return 25 }
@@ -5129,10 +5129,10 @@ func (o *xxx_GetSourceMachineGUIDOperation) MarshalNDRResponse(ctx context.Conte
 	}
 	// pbstrGuidSrcMachine {out, retval} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
-		if o.GUIDSourceMachine != nil {
+		if o.SourceMachine != nil {
 			_ptr_pbstrGuidSrcMachine := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.GUIDSourceMachine != nil {
-					if err := o.GUIDSourceMachine.MarshalNDR(ctx, w); err != nil {
+				if o.SourceMachine != nil {
+					if err := o.SourceMachine.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -5142,7 +5142,7 @@ func (o *xxx_GetSourceMachineGUIDOperation) MarshalNDRResponse(ctx context.Conte
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.GUIDSourceMachine, _ptr_pbstrGuidSrcMachine); err != nil {
+			if err := w.WritePointer(&o.SourceMachine, _ptr_pbstrGuidSrcMachine); err != nil {
 				return err
 			}
 		} else {
@@ -5179,16 +5179,16 @@ func (o *xxx_GetSourceMachineGUIDOperation) UnmarshalNDRResponse(ctx context.Con
 	// pbstrGuidSrcMachine {out, retval} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
 	{
 		_ptr_pbstrGuidSrcMachine := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.GUIDSourceMachine == nil {
-				o.GUIDSourceMachine = &oaut.String{}
+			if o.SourceMachine == nil {
+				o.SourceMachine = &oaut.String{}
 			}
-			if err := o.GUIDSourceMachine.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.SourceMachine.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pbstrGuidSrcMachine := func(ptr interface{}) { o.GUIDSourceMachine = *ptr.(**oaut.String) }
-		if err := w.ReadPointer(&o.GUIDSourceMachine, _s_pbstrGuidSrcMachine, _ptr_pbstrGuidSrcMachine); err != nil {
+		_s_pbstrGuidSrcMachine := func(ptr interface{}) { o.SourceMachine = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.SourceMachine, _s_pbstrGuidSrcMachine, _ptr_pbstrGuidSrcMachine); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5242,8 +5242,8 @@ func (o *GetSourceMachineGUIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 // GetSourceMachineGUIDResponse structure represents the SourceMachineGuid operation response
 type GetSourceMachineGUIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That              *dcom.ORPCThat `idl:"name:That" json:"that"`
-	GUIDSourceMachine *oaut.String   `idl:"name:pbstrGuidSrcMachine" json:"guid_source_machine"`
+	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
+	SourceMachine *oaut.String   `idl:"name:pbstrGuidSrcMachine" json:"source_machine"`
 	// Return: The SourceMachineGuid return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -5256,7 +5256,7 @@ func (o *GetSourceMachineGUIDResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 		return op
 	}
 	op.That = o.That
-	op.GUIDSourceMachine = o.GUIDSourceMachine
+	op.SourceMachine = o.SourceMachine
 	op.Return = o.Return
 	return op
 }
@@ -5266,7 +5266,7 @@ func (o *GetSourceMachineGUIDResponse) xxx_FromOp(ctx context.Context, op *xxx_G
 		return
 	}
 	o.That = op.That
-	o.GUIDSourceMachine = op.GUIDSourceMachine
+	o.SourceMachine = op.SourceMachine
 	o.Return = op.Return
 }
 func (o *GetSourceMachineGUIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -5490,10 +5490,10 @@ func (o *GetBodyLengthResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 
 // xxx_GetBodyOperation structure represents the Body operation
 type xxx_GetBodyOperation struct {
-	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That     *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PvarBody *oaut.Variant  `idl:"name:pvarBody" json:"pvar_body"`
-	Return   int32          `idl:"name:Return" json:"return"`
+	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Body   *oaut.Variant  `idl:"name:pvarBody" json:"body"`
+	Return int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetBodyOperation) OpNum() int { return 27 }
@@ -5577,10 +5577,10 @@ func (o *xxx_GetBodyOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 	}
 	// pvarBody {out, retval} (1:{pointer=ref}*(2))(2:{alias=VARIANT}*(1))(3:{alias=_VARIANT}(struct))
 	{
-		if o.PvarBody != nil {
+		if o.Body != nil {
 			_ptr_pvarBody := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PvarBody != nil {
-					if err := o.PvarBody.MarshalNDR(ctx, w); err != nil {
+				if o.Body != nil {
+					if err := o.Body.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -5590,7 +5590,7 @@ func (o *xxx_GetBodyOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PvarBody, _ptr_pvarBody); err != nil {
+			if err := w.WritePointer(&o.Body, _ptr_pvarBody); err != nil {
 				return err
 			}
 		} else {
@@ -5627,16 +5627,16 @@ func (o *xxx_GetBodyOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 	// pvarBody {out, retval} (1:{pointer=ref}*(2))(2:{alias=VARIANT,pointer=ref}*(1))(3:{alias=_VARIANT}(struct))
 	{
 		_ptr_pvarBody := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PvarBody == nil {
-				o.PvarBody = &oaut.Variant{}
+			if o.Body == nil {
+				o.Body = &oaut.Variant{}
 			}
-			if err := o.PvarBody.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Body.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pvarBody := func(ptr interface{}) { o.PvarBody = *ptr.(**oaut.Variant) }
-		if err := w.ReadPointer(&o.PvarBody, _s_pvarBody, _ptr_pvarBody); err != nil {
+		_s_pvarBody := func(ptr interface{}) { o.Body = *ptr.(**oaut.Variant) }
+		if err := w.ReadPointer(&o.Body, _s_pvarBody, _ptr_pvarBody); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5690,8 +5690,8 @@ func (o *GetBodyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // GetBodyResponse structure represents the Body operation response
 type GetBodyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That     *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PvarBody *oaut.Variant  `idl:"name:pvarBody" json:"pvar_body"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Body *oaut.Variant  `idl:"name:pvarBody" json:"body"`
 	// Return: The Body return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -5704,7 +5704,7 @@ func (o *GetBodyResponse) xxx_ToOp(ctx context.Context, op *xxx_GetBodyOperation
 		return op
 	}
 	op.That = o.That
-	op.PvarBody = o.PvarBody
+	op.Body = o.Body
 	op.Return = o.Return
 	return op
 }
@@ -5714,7 +5714,7 @@ func (o *GetBodyResponse) xxx_FromOp(ctx context.Context, op *xxx_GetBodyOperati
 		return
 	}
 	o.That = op.That
-	o.PvarBody = op.PvarBody
+	o.Body = op.Body
 	o.Return = op.Return
 }
 func (o *GetBodyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -5731,10 +5731,10 @@ func (o *GetBodyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 
 // xxx_SetBodyOperation structure represents the Body operation
 type xxx_SetBodyOperation struct {
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
-	VarBody *oaut.Variant  `idl:"name:varBody" json:"var_body"`
-	Return  int32          `idl:"name:Return" json:"return"`
+	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Body   *oaut.Variant  `idl:"name:varBody" json:"body"`
+	Return int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_SetBodyOperation) OpNum() int { return 28 }
@@ -5771,8 +5771,8 @@ func (o *xxx_SetBodyOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 	}
 	// varBody {in} (1:{alias=VARIANT}*(1))(2:{alias=_VARIANT}(struct))
 	{
-		if o.VarBody != nil {
-			if err := o.VarBody.MarshalNDR(ctx, w); err != nil {
+		if o.Body != nil {
+			if err := o.Body.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -5802,10 +5802,10 @@ func (o *xxx_SetBodyOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 	}
 	// varBody {in} (1:{alias=VARIANT,pointer=ref}*(1))(2:{alias=_VARIANT}(struct))
 	{
-		if o.VarBody == nil {
-			o.VarBody = &oaut.Variant{}
+		if o.Body == nil {
+			o.Body = &oaut.Variant{}
 		}
-		if err := o.VarBody.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Body.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5877,8 +5877,8 @@ func (o *xxx_SetBodyOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 // SetBodyRequest structure represents the Body operation request
 type SetBodyRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	VarBody *oaut.Variant  `idl:"name:varBody" json:"var_body"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	Body *oaut.Variant  `idl:"name:varBody" json:"body"`
 }
 
 func (o *SetBodyRequest) xxx_ToOp(ctx context.Context, op *xxx_SetBodyOperation) *xxx_SetBodyOperation {
@@ -5889,7 +5889,7 @@ func (o *SetBodyRequest) xxx_ToOp(ctx context.Context, op *xxx_SetBodyOperation)
 		return op
 	}
 	op.This = o.This
-	op.VarBody = o.VarBody
+	op.Body = o.Body
 	return op
 }
 
@@ -5898,7 +5898,7 @@ func (o *SetBodyRequest) xxx_FromOp(ctx context.Context, op *xxx_SetBodyOperatio
 		return
 	}
 	o.This = op.This
-	o.VarBody = op.VarBody
+	o.Body = op.Body
 }
 func (o *SetBodyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -5953,10 +5953,10 @@ func (o *SetBodyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 
 // xxx_GetAdminQueueInfoOperation structure represents the AdminQueueInfo operation
 type xxx_GetAdminQueueInfoOperation struct {
-	This         *dcom.ORPCThis       `idl:"name:This" json:"this"`
-	That         *dcom.ORPCThat       `idl:"name:That" json:"that"`
-	PpqinfoAdmin *mqac.ImsmqQueueInfo `idl:"name:ppqinfoAdmin" json:"ppqinfo_admin"`
-	Return       int32                `idl:"name:Return" json:"return"`
+	This   *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	That   *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	Admin  *mqac.QueueInfo `idl:"name:ppqinfoAdmin" json:"admin"`
+	Return int32           `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetAdminQueueInfoOperation) OpNum() int { return 29 }
@@ -6040,20 +6040,20 @@ func (o *xxx_GetAdminQueueInfoOperation) MarshalNDRResponse(ctx context.Context,
 	}
 	// ppqinfoAdmin {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQQueueInfo}(interface))
 	{
-		if o.PpqinfoAdmin != nil {
+		if o.Admin != nil {
 			_ptr_ppqinfoAdmin := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PpqinfoAdmin != nil {
-					if err := o.PpqinfoAdmin.MarshalNDR(ctx, w); err != nil {
+				if o.Admin != nil {
+					if err := o.Admin.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqQueueInfo{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.QueueInfo{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PpqinfoAdmin, _ptr_ppqinfoAdmin); err != nil {
+			if err := w.WritePointer(&o.Admin, _ptr_ppqinfoAdmin); err != nil {
 				return err
 			}
 		} else {
@@ -6090,16 +6090,16 @@ func (o *xxx_GetAdminQueueInfoOperation) UnmarshalNDRResponse(ctx context.Contex
 	// ppqinfoAdmin {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQQueueInfo}(interface))
 	{
 		_ptr_ppqinfoAdmin := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PpqinfoAdmin == nil {
-				o.PpqinfoAdmin = &mqac.ImsmqQueueInfo{}
+			if o.Admin == nil {
+				o.Admin = &mqac.QueueInfo{}
 			}
-			if err := o.PpqinfoAdmin.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Admin.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppqinfoAdmin := func(ptr interface{}) { o.PpqinfoAdmin = *ptr.(**mqac.ImsmqQueueInfo) }
-		if err := w.ReadPointer(&o.PpqinfoAdmin, _s_ppqinfoAdmin, _ptr_ppqinfoAdmin); err != nil {
+		_s_ppqinfoAdmin := func(ptr interface{}) { o.Admin = *ptr.(**mqac.QueueInfo) }
+		if err := w.ReadPointer(&o.Admin, _s_ppqinfoAdmin, _ptr_ppqinfoAdmin); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6153,8 +6153,8 @@ func (o *GetAdminQueueInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // GetAdminQueueInfoResponse structure represents the AdminQueueInfo operation response
 type GetAdminQueueInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That         *dcom.ORPCThat       `idl:"name:That" json:"that"`
-	PpqinfoAdmin *mqac.ImsmqQueueInfo `idl:"name:ppqinfoAdmin" json:"ppqinfo_admin"`
+	That  *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	Admin *mqac.QueueInfo `idl:"name:ppqinfoAdmin" json:"admin"`
 	// Return: The AdminQueueInfo return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -6167,7 +6167,7 @@ func (o *GetAdminQueueInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAdm
 		return op
 	}
 	op.That = o.That
-	op.PpqinfoAdmin = o.PpqinfoAdmin
+	op.Admin = o.Admin
 	op.Return = o.Return
 	return op
 }
@@ -6177,7 +6177,7 @@ func (o *GetAdminQueueInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetA
 		return
 	}
 	o.That = op.That
-	o.PpqinfoAdmin = op.PpqinfoAdmin
+	o.Admin = op.Admin
 	o.Return = op.Return
 }
 func (o *GetAdminQueueInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -6194,10 +6194,10 @@ func (o *GetAdminQueueInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Read
 
 // xxx_SetByRefAdminQueueInfoOperation structure represents the AdminQueueInfo operation
 type xxx_SetByRefAdminQueueInfoOperation struct {
-	This        *dcom.ORPCThis       `idl:"name:This" json:"this"`
-	That        *dcom.ORPCThat       `idl:"name:That" json:"that"`
-	PqinfoAdmin *mqac.ImsmqQueueInfo `idl:"name:pqinfoAdmin" json:"pqinfo_admin"`
-	Return      int32                `idl:"name:Return" json:"return"`
+	This           *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	That           *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	QueueInfoAdmin *mqac.QueueInfo `idl:"name:pqinfoAdmin" json:"queue_info_admin"`
+	Return         int32           `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_SetByRefAdminQueueInfoOperation) OpNum() int { return 30 }
@@ -6236,20 +6236,20 @@ func (o *xxx_SetByRefAdminQueueInfoOperation) MarshalNDRRequest(ctx context.Cont
 	}
 	// pqinfoAdmin {in} (1:{pointer=ref}*(1))(2:{alias=IMSMQQueueInfo}(interface))
 	{
-		if o.PqinfoAdmin != nil {
+		if o.QueueInfoAdmin != nil {
 			_ptr_pqinfoAdmin := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PqinfoAdmin != nil {
-					if err := o.PqinfoAdmin.MarshalNDR(ctx, w); err != nil {
+				if o.QueueInfoAdmin != nil {
+					if err := o.QueueInfoAdmin.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqQueueInfo{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.QueueInfo{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PqinfoAdmin, _ptr_pqinfoAdmin); err != nil {
+			if err := w.WritePointer(&o.QueueInfoAdmin, _ptr_pqinfoAdmin); err != nil {
 				return err
 			}
 		} else {
@@ -6280,16 +6280,16 @@ func (o *xxx_SetByRefAdminQueueInfoOperation) UnmarshalNDRRequest(ctx context.Co
 	// pqinfoAdmin {in} (1:{pointer=ref}*(1))(2:{alias=IMSMQQueueInfo}(interface))
 	{
 		_ptr_pqinfoAdmin := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PqinfoAdmin == nil {
-				o.PqinfoAdmin = &mqac.ImsmqQueueInfo{}
+			if o.QueueInfoAdmin == nil {
+				o.QueueInfoAdmin = &mqac.QueueInfo{}
 			}
-			if err := o.PqinfoAdmin.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.QueueInfoAdmin.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pqinfoAdmin := func(ptr interface{}) { o.PqinfoAdmin = *ptr.(**mqac.ImsmqQueueInfo) }
-		if err := w.ReadPointer(&o.PqinfoAdmin, _s_pqinfoAdmin, _ptr_pqinfoAdmin); err != nil {
+		_s_pqinfoAdmin := func(ptr interface{}) { o.QueueInfoAdmin = *ptr.(**mqac.QueueInfo) }
+		if err := w.ReadPointer(&o.QueueInfoAdmin, _s_pqinfoAdmin, _ptr_pqinfoAdmin); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6361,8 +6361,8 @@ func (o *xxx_SetByRefAdminQueueInfoOperation) UnmarshalNDRResponse(ctx context.C
 // SetByRefAdminQueueInfoRequest structure represents the AdminQueueInfo operation request
 type SetByRefAdminQueueInfoRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis       `idl:"name:This" json:"this"`
-	PqinfoAdmin *mqac.ImsmqQueueInfo `idl:"name:pqinfoAdmin" json:"pqinfo_admin"`
+	This           *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	QueueInfoAdmin *mqac.QueueInfo `idl:"name:pqinfoAdmin" json:"queue_info_admin"`
 }
 
 func (o *SetByRefAdminQueueInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetByRefAdminQueueInfoOperation) *xxx_SetByRefAdminQueueInfoOperation {
@@ -6373,7 +6373,7 @@ func (o *SetByRefAdminQueueInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_Se
 		return op
 	}
 	op.This = o.This
-	op.PqinfoAdmin = o.PqinfoAdmin
+	op.QueueInfoAdmin = o.QueueInfoAdmin
 	return op
 }
 
@@ -6382,7 +6382,7 @@ func (o *SetByRefAdminQueueInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_
 		return
 	}
 	o.This = op.This
-	o.PqinfoAdmin = op.PqinfoAdmin
+	o.QueueInfoAdmin = op.QueueInfoAdmin
 }
 func (o *SetByRefAdminQueueInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -6437,10 +6437,10 @@ func (o *SetByRefAdminQueueInfoResponse) UnmarshalNDR(ctx context.Context, r ndr
 
 // xxx_GetIDOperation structure represents the Id operation
 type xxx_GetIDOperation struct {
-	This          *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PvarMessageID *oaut.Variant  `idl:"name:pvarMsgId" json:"pvar_message_id"`
-	Return        int32          `idl:"name:Return" json:"return"`
+	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
+	MessageID *oaut.Variant  `idl:"name:pvarMsgId" json:"message_id"`
+	Return    int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetIDOperation) OpNum() int { return 31 }
@@ -6524,10 +6524,10 @@ func (o *xxx_GetIDOperation) MarshalNDRResponse(ctx context.Context, w ndr.Write
 	}
 	// pvarMsgId {out, retval} (1:{pointer=ref}*(2))(2:{alias=VARIANT}*(1))(3:{alias=_VARIANT}(struct))
 	{
-		if o.PvarMessageID != nil {
+		if o.MessageID != nil {
 			_ptr_pvarMsgId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PvarMessageID != nil {
-					if err := o.PvarMessageID.MarshalNDR(ctx, w); err != nil {
+				if o.MessageID != nil {
+					if err := o.MessageID.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -6537,7 +6537,7 @@ func (o *xxx_GetIDOperation) MarshalNDRResponse(ctx context.Context, w ndr.Write
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PvarMessageID, _ptr_pvarMsgId); err != nil {
+			if err := w.WritePointer(&o.MessageID, _ptr_pvarMsgId); err != nil {
 				return err
 			}
 		} else {
@@ -6574,16 +6574,16 @@ func (o *xxx_GetIDOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 	// pvarMsgId {out, retval} (1:{pointer=ref}*(2))(2:{alias=VARIANT,pointer=ref}*(1))(3:{alias=_VARIANT}(struct))
 	{
 		_ptr_pvarMsgId := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PvarMessageID == nil {
-				o.PvarMessageID = &oaut.Variant{}
+			if o.MessageID == nil {
+				o.MessageID = &oaut.Variant{}
 			}
-			if err := o.PvarMessageID.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.MessageID.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pvarMsgId := func(ptr interface{}) { o.PvarMessageID = *ptr.(**oaut.Variant) }
-		if err := w.ReadPointer(&o.PvarMessageID, _s_pvarMsgId, _ptr_pvarMsgId); err != nil {
+		_s_pvarMsgId := func(ptr interface{}) { o.MessageID = *ptr.(**oaut.Variant) }
+		if err := w.ReadPointer(&o.MessageID, _s_pvarMsgId, _ptr_pvarMsgId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6637,8 +6637,8 @@ func (o *GetIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // GetIDResponse structure represents the Id operation response
 type GetIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PvarMessageID *oaut.Variant  `idl:"name:pvarMsgId" json:"pvar_message_id"`
+	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
+	MessageID *oaut.Variant  `idl:"name:pvarMsgId" json:"message_id"`
 	// Return: The Id return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -6651,7 +6651,7 @@ func (o *GetIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIDOperation) *x
 		return op
 	}
 	op.That = o.That
-	op.PvarMessageID = o.PvarMessageID
+	op.MessageID = o.MessageID
 	op.Return = o.Return
 	return op
 }
@@ -6661,7 +6661,7 @@ func (o *GetIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIDOperation) 
 		return
 	}
 	o.That = op.That
-	o.PvarMessageID = op.PvarMessageID
+	o.MessageID = op.MessageID
 	o.Return = op.Return
 }
 func (o *GetIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -6678,10 +6678,10 @@ func (o *GetIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_GetCorrelationIDOperation structure represents the CorrelationId operation
 type xxx_GetCorrelationIDOperation struct {
-	This          *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PvarMessageID *oaut.Variant  `idl:"name:pvarMsgId" json:"pvar_message_id"`
-	Return        int32          `idl:"name:Return" json:"return"`
+	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
+	MessageID *oaut.Variant  `idl:"name:pvarMsgId" json:"message_id"`
+	Return    int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetCorrelationIDOperation) OpNum() int { return 32 }
@@ -6765,10 +6765,10 @@ func (o *xxx_GetCorrelationIDOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// pvarMsgId {out, retval} (1:{pointer=ref}*(2))(2:{alias=VARIANT}*(1))(3:{alias=_VARIANT}(struct))
 	{
-		if o.PvarMessageID != nil {
+		if o.MessageID != nil {
 			_ptr_pvarMsgId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PvarMessageID != nil {
-					if err := o.PvarMessageID.MarshalNDR(ctx, w); err != nil {
+				if o.MessageID != nil {
+					if err := o.MessageID.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -6778,7 +6778,7 @@ func (o *xxx_GetCorrelationIDOperation) MarshalNDRResponse(ctx context.Context, 
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PvarMessageID, _ptr_pvarMsgId); err != nil {
+			if err := w.WritePointer(&o.MessageID, _ptr_pvarMsgId); err != nil {
 				return err
 			}
 		} else {
@@ -6815,16 +6815,16 @@ func (o *xxx_GetCorrelationIDOperation) UnmarshalNDRResponse(ctx context.Context
 	// pvarMsgId {out, retval} (1:{pointer=ref}*(2))(2:{alias=VARIANT,pointer=ref}*(1))(3:{alias=_VARIANT}(struct))
 	{
 		_ptr_pvarMsgId := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PvarMessageID == nil {
-				o.PvarMessageID = &oaut.Variant{}
+			if o.MessageID == nil {
+				o.MessageID = &oaut.Variant{}
 			}
-			if err := o.PvarMessageID.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.MessageID.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pvarMsgId := func(ptr interface{}) { o.PvarMessageID = *ptr.(**oaut.Variant) }
-		if err := w.ReadPointer(&o.PvarMessageID, _s_pvarMsgId, _ptr_pvarMsgId); err != nil {
+		_s_pvarMsgId := func(ptr interface{}) { o.MessageID = *ptr.(**oaut.Variant) }
+		if err := w.ReadPointer(&o.MessageID, _s_pvarMsgId, _ptr_pvarMsgId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -6878,8 +6878,8 @@ func (o *GetCorrelationIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // GetCorrelationIDResponse structure represents the CorrelationId operation response
 type GetCorrelationIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PvarMessageID *oaut.Variant  `idl:"name:pvarMsgId" json:"pvar_message_id"`
+	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
+	MessageID *oaut.Variant  `idl:"name:pvarMsgId" json:"message_id"`
 	// Return: The CorrelationId return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -6892,7 +6892,7 @@ func (o *GetCorrelationIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCorr
 		return op
 	}
 	op.That = o.That
-	op.PvarMessageID = o.PvarMessageID
+	op.MessageID = o.MessageID
 	op.Return = o.Return
 	return op
 }
@@ -6902,7 +6902,7 @@ func (o *GetCorrelationIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCo
 		return
 	}
 	o.That = op.That
-	o.PvarMessageID = op.PvarMessageID
+	o.MessageID = op.MessageID
 	o.Return = op.Return
 }
 func (o *GetCorrelationIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -6919,10 +6919,10 @@ func (o *GetCorrelationIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // xxx_SetCorrelationIDOperation structure represents the CorrelationId operation
 type xxx_SetCorrelationIDOperation struct {
-	This         *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
-	VarMessageID *oaut.Variant  `idl:"name:varMsgId" json:"var_message_id"`
-	Return       int32          `idl:"name:Return" json:"return"`
+	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
+	MessageID *oaut.Variant  `idl:"name:varMsgId" json:"message_id"`
+	Return    int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_SetCorrelationIDOperation) OpNum() int { return 33 }
@@ -6959,8 +6959,8 @@ func (o *xxx_SetCorrelationIDOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// varMsgId {in} (1:{alias=VARIANT}*(1))(2:{alias=_VARIANT}(struct))
 	{
-		if o.VarMessageID != nil {
-			if err := o.VarMessageID.MarshalNDR(ctx, w); err != nil {
+		if o.MessageID != nil {
+			if err := o.MessageID.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -6990,10 +6990,10 @@ func (o *xxx_SetCorrelationIDOperation) UnmarshalNDRRequest(ctx context.Context,
 	}
 	// varMsgId {in} (1:{alias=VARIANT,pointer=ref}*(1))(2:{alias=_VARIANT}(struct))
 	{
-		if o.VarMessageID == nil {
-			o.VarMessageID = &oaut.Variant{}
+		if o.MessageID == nil {
+			o.MessageID = &oaut.Variant{}
 		}
-		if err := o.VarMessageID.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.MessageID.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -7065,8 +7065,8 @@ func (o *xxx_SetCorrelationIDOperation) UnmarshalNDRResponse(ctx context.Context
 // SetCorrelationIDRequest structure represents the CorrelationId operation request
 type SetCorrelationIDRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This         *dcom.ORPCThis `idl:"name:This" json:"this"`
-	VarMessageID *oaut.Variant  `idl:"name:varMsgId" json:"var_message_id"`
+	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
+	MessageID *oaut.Variant  `idl:"name:varMsgId" json:"message_id"`
 }
 
 func (o *SetCorrelationIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetCorrelationIDOperation) *xxx_SetCorrelationIDOperation {
@@ -7077,7 +7077,7 @@ func (o *SetCorrelationIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetCorre
 		return op
 	}
 	op.This = o.This
-	op.VarMessageID = o.VarMessageID
+	op.MessageID = o.MessageID
 	return op
 }
 
@@ -7086,7 +7086,7 @@ func (o *SetCorrelationIDRequest) xxx_FromOp(ctx context.Context, op *xxx_SetCor
 		return
 	}
 	o.This = op.This
-	o.VarMessageID = op.VarMessageID
+	o.MessageID = op.MessageID
 }
 func (o *SetCorrelationIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -9705,10 +9705,10 @@ func (o *SetEncryptAlgorithmResponse) UnmarshalNDR(ctx context.Context, r ndr.Re
 
 // xxx_GetSentTimeOperation structure represents the SentTime operation
 type xxx_GetSentTimeOperation struct {
-	This         *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PvarSentTime *oaut.Variant  `idl:"name:pvarSentTime" json:"pvar_sent_time"`
-	Return       int32          `idl:"name:Return" json:"return"`
+	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That     *dcom.ORPCThat `idl:"name:That" json:"that"`
+	SentTime *oaut.Variant  `idl:"name:pvarSentTime" json:"sent_time"`
+	Return   int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetSentTimeOperation) OpNum() int { return 46 }
@@ -9792,10 +9792,10 @@ func (o *xxx_GetSentTimeOperation) MarshalNDRResponse(ctx context.Context, w ndr
 	}
 	// pvarSentTime {out, retval} (1:{pointer=ref}*(2))(2:{alias=VARIANT}*(1))(3:{alias=_VARIANT}(struct))
 	{
-		if o.PvarSentTime != nil {
+		if o.SentTime != nil {
 			_ptr_pvarSentTime := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PvarSentTime != nil {
-					if err := o.PvarSentTime.MarshalNDR(ctx, w); err != nil {
+				if o.SentTime != nil {
+					if err := o.SentTime.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -9805,7 +9805,7 @@ func (o *xxx_GetSentTimeOperation) MarshalNDRResponse(ctx context.Context, w ndr
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PvarSentTime, _ptr_pvarSentTime); err != nil {
+			if err := w.WritePointer(&o.SentTime, _ptr_pvarSentTime); err != nil {
 				return err
 			}
 		} else {
@@ -9842,16 +9842,16 @@ func (o *xxx_GetSentTimeOperation) UnmarshalNDRResponse(ctx context.Context, w n
 	// pvarSentTime {out, retval} (1:{pointer=ref}*(2))(2:{alias=VARIANT,pointer=ref}*(1))(3:{alias=_VARIANT}(struct))
 	{
 		_ptr_pvarSentTime := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PvarSentTime == nil {
-				o.PvarSentTime = &oaut.Variant{}
+			if o.SentTime == nil {
+				o.SentTime = &oaut.Variant{}
 			}
-			if err := o.PvarSentTime.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.SentTime.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pvarSentTime := func(ptr interface{}) { o.PvarSentTime = *ptr.(**oaut.Variant) }
-		if err := w.ReadPointer(&o.PvarSentTime, _s_pvarSentTime, _ptr_pvarSentTime); err != nil {
+		_s_pvarSentTime := func(ptr interface{}) { o.SentTime = *ptr.(**oaut.Variant) }
+		if err := w.ReadPointer(&o.SentTime, _s_pvarSentTime, _ptr_pvarSentTime); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -9905,8 +9905,8 @@ func (o *GetSentTimeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // GetSentTimeResponse structure represents the SentTime operation response
 type GetSentTimeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PvarSentTime *oaut.Variant  `idl:"name:pvarSentTime" json:"pvar_sent_time"`
+	That     *dcom.ORPCThat `idl:"name:That" json:"that"`
+	SentTime *oaut.Variant  `idl:"name:pvarSentTime" json:"sent_time"`
 	// Return: The SentTime return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -9919,7 +9919,7 @@ func (o *GetSentTimeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSentTimeO
 		return op
 	}
 	op.That = o.That
-	op.PvarSentTime = o.PvarSentTime
+	op.SentTime = o.SentTime
 	op.Return = o.Return
 	return op
 }
@@ -9929,7 +9929,7 @@ func (o *GetSentTimeResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSentTim
 		return
 	}
 	o.That = op.That
-	o.PvarSentTime = op.PvarSentTime
+	o.SentTime = op.SentTime
 	o.Return = op.Return
 }
 func (o *GetSentTimeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -10187,10 +10187,10 @@ func (o *GetArrivedTimeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // xxx_GetDestinationQueueInfoOperation structure represents the DestinationQueueInfo operation
 type xxx_GetDestinationQueueInfoOperation struct {
-	This               *dcom.ORPCThis       `idl:"name:This" json:"this"`
-	That               *dcom.ORPCThat       `idl:"name:That" json:"that"`
-	PpqinfoDestination *mqac.ImsmqQueueInfo `idl:"name:ppqinfoDest" json:"ppqinfo_destination"`
-	Return             int32                `idl:"name:Return" json:"return"`
+	This        *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	That        *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	Destination *mqac.QueueInfo `idl:"name:ppqinfoDest" json:"destination"`
+	Return      int32           `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetDestinationQueueInfoOperation) OpNum() int { return 48 }
@@ -10276,20 +10276,20 @@ func (o *xxx_GetDestinationQueueInfoOperation) MarshalNDRResponse(ctx context.Co
 	}
 	// ppqinfoDest {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQQueueInfo}(interface))
 	{
-		if o.PpqinfoDestination != nil {
+		if o.Destination != nil {
 			_ptr_ppqinfoDest := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PpqinfoDestination != nil {
-					if err := o.PpqinfoDestination.MarshalNDR(ctx, w); err != nil {
+				if o.Destination != nil {
+					if err := o.Destination.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqQueueInfo{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.QueueInfo{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PpqinfoDestination, _ptr_ppqinfoDest); err != nil {
+			if err := w.WritePointer(&o.Destination, _ptr_ppqinfoDest); err != nil {
 				return err
 			}
 		} else {
@@ -10326,16 +10326,16 @@ func (o *xxx_GetDestinationQueueInfoOperation) UnmarshalNDRResponse(ctx context.
 	// ppqinfoDest {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQQueueInfo}(interface))
 	{
 		_ptr_ppqinfoDest := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PpqinfoDestination == nil {
-				o.PpqinfoDestination = &mqac.ImsmqQueueInfo{}
+			if o.Destination == nil {
+				o.Destination = &mqac.QueueInfo{}
 			}
-			if err := o.PpqinfoDestination.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Destination.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppqinfoDest := func(ptr interface{}) { o.PpqinfoDestination = *ptr.(**mqac.ImsmqQueueInfo) }
-		if err := w.ReadPointer(&o.PpqinfoDestination, _s_ppqinfoDest, _ptr_ppqinfoDest); err != nil {
+		_s_ppqinfoDest := func(ptr interface{}) { o.Destination = *ptr.(**mqac.QueueInfo) }
+		if err := w.ReadPointer(&o.Destination, _s_ppqinfoDest, _ptr_ppqinfoDest); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -10389,8 +10389,8 @@ func (o *GetDestinationQueueInfoRequest) UnmarshalNDR(ctx context.Context, r ndr
 // GetDestinationQueueInfoResponse structure represents the DestinationQueueInfo operation response
 type GetDestinationQueueInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That               *dcom.ORPCThat       `idl:"name:That" json:"that"`
-	PpqinfoDestination *mqac.ImsmqQueueInfo `idl:"name:ppqinfoDest" json:"ppqinfo_destination"`
+	That        *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	Destination *mqac.QueueInfo `idl:"name:ppqinfoDest" json:"destination"`
 	// Return: The DestinationQueueInfo return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -10403,7 +10403,7 @@ func (o *GetDestinationQueueInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_
 		return op
 	}
 	op.That = o.That
-	op.PpqinfoDestination = o.PpqinfoDestination
+	op.Destination = o.Destination
 	op.Return = o.Return
 	return op
 }
@@ -10413,7 +10413,7 @@ func (o *GetDestinationQueueInfoResponse) xxx_FromOp(ctx context.Context, op *xx
 		return
 	}
 	o.That = op.That
-	o.PpqinfoDestination = op.PpqinfoDestination
+	o.Destination = op.Destination
 	o.Return = op.Return
 }
 func (o *GetDestinationQueueInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -10430,10 +10430,10 @@ func (o *GetDestinationQueueInfoResponse) UnmarshalNDR(ctx context.Context, r nd
 
 // xxx_GetSenderCertificateOperation structure represents the SenderCertificate operation
 type xxx_GetSenderCertificateOperation struct {
-	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PvarSenderCert *oaut.Variant  `idl:"name:pvarSenderCert" json:"pvar_sender_cert"`
-	Return         int32          `idl:"name:Return" json:"return"`
+	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
+	SenderCert *oaut.Variant  `idl:"name:pvarSenderCert" json:"sender_cert"`
+	Return     int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetSenderCertificateOperation) OpNum() int { return 49 }
@@ -10519,10 +10519,10 @@ func (o *xxx_GetSenderCertificateOperation) MarshalNDRResponse(ctx context.Conte
 	}
 	// pvarSenderCert {out, retval} (1:{pointer=ref}*(2))(2:{alias=VARIANT}*(1))(3:{alias=_VARIANT}(struct))
 	{
-		if o.PvarSenderCert != nil {
+		if o.SenderCert != nil {
 			_ptr_pvarSenderCert := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PvarSenderCert != nil {
-					if err := o.PvarSenderCert.MarshalNDR(ctx, w); err != nil {
+				if o.SenderCert != nil {
+					if err := o.SenderCert.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -10532,7 +10532,7 @@ func (o *xxx_GetSenderCertificateOperation) MarshalNDRResponse(ctx context.Conte
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PvarSenderCert, _ptr_pvarSenderCert); err != nil {
+			if err := w.WritePointer(&o.SenderCert, _ptr_pvarSenderCert); err != nil {
 				return err
 			}
 		} else {
@@ -10569,16 +10569,16 @@ func (o *xxx_GetSenderCertificateOperation) UnmarshalNDRResponse(ctx context.Con
 	// pvarSenderCert {out, retval} (1:{pointer=ref}*(2))(2:{alias=VARIANT,pointer=ref}*(1))(3:{alias=_VARIANT}(struct))
 	{
 		_ptr_pvarSenderCert := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PvarSenderCert == nil {
-				o.PvarSenderCert = &oaut.Variant{}
+			if o.SenderCert == nil {
+				o.SenderCert = &oaut.Variant{}
 			}
-			if err := o.PvarSenderCert.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.SenderCert.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pvarSenderCert := func(ptr interface{}) { o.PvarSenderCert = *ptr.(**oaut.Variant) }
-		if err := w.ReadPointer(&o.PvarSenderCert, _s_pvarSenderCert, _ptr_pvarSenderCert); err != nil {
+		_s_pvarSenderCert := func(ptr interface{}) { o.SenderCert = *ptr.(**oaut.Variant) }
+		if err := w.ReadPointer(&o.SenderCert, _s_pvarSenderCert, _ptr_pvarSenderCert); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -10632,8 +10632,8 @@ func (o *GetSenderCertificateRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 // GetSenderCertificateResponse structure represents the SenderCertificate operation response
 type GetSenderCertificateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PvarSenderCert *oaut.Variant  `idl:"name:pvarSenderCert" json:"pvar_sender_cert"`
+	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
+	SenderCert *oaut.Variant  `idl:"name:pvarSenderCert" json:"sender_cert"`
 	// Return: The SenderCertificate return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -10646,7 +10646,7 @@ func (o *GetSenderCertificateResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 		return op
 	}
 	op.That = o.That
-	op.PvarSenderCert = o.PvarSenderCert
+	op.SenderCert = o.SenderCert
 	op.Return = o.Return
 	return op
 }
@@ -10656,7 +10656,7 @@ func (o *GetSenderCertificateResponse) xxx_FromOp(ctx context.Context, op *xxx_G
 		return
 	}
 	o.That = op.That
-	o.PvarSenderCert = op.PvarSenderCert
+	o.SenderCert = op.SenderCert
 	o.Return = op.Return
 }
 func (o *GetSenderCertificateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -10673,10 +10673,10 @@ func (o *GetSenderCertificateResponse) UnmarshalNDR(ctx context.Context, r ndr.R
 
 // xxx_SetSenderCertificateOperation structure represents the SenderCertificate operation
 type xxx_SetSenderCertificateOperation struct {
-	This          *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
-	VarSenderCert *oaut.Variant  `idl:"name:varSenderCert" json:"var_sender_cert"`
-	Return        int32          `idl:"name:Return" json:"return"`
+	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
+	SenderCert *oaut.Variant  `idl:"name:varSenderCert" json:"sender_cert"`
+	Return     int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_SetSenderCertificateOperation) OpNum() int { return 50 }
@@ -10715,8 +10715,8 @@ func (o *xxx_SetSenderCertificateOperation) MarshalNDRRequest(ctx context.Contex
 	}
 	// varSenderCert {in} (1:{alias=VARIANT}*(1))(2:{alias=_VARIANT}(struct))
 	{
-		if o.VarSenderCert != nil {
-			if err := o.VarSenderCert.MarshalNDR(ctx, w); err != nil {
+		if o.SenderCert != nil {
+			if err := o.SenderCert.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -10746,10 +10746,10 @@ func (o *xxx_SetSenderCertificateOperation) UnmarshalNDRRequest(ctx context.Cont
 	}
 	// varSenderCert {in} (1:{alias=VARIANT,pointer=ref}*(1))(2:{alias=_VARIANT}(struct))
 	{
-		if o.VarSenderCert == nil {
-			o.VarSenderCert = &oaut.Variant{}
+		if o.SenderCert == nil {
+			o.SenderCert = &oaut.Variant{}
 		}
-		if err := o.VarSenderCert.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.SenderCert.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -10821,8 +10821,8 @@ func (o *xxx_SetSenderCertificateOperation) UnmarshalNDRResponse(ctx context.Con
 // SetSenderCertificateRequest structure represents the SenderCertificate operation request
 type SetSenderCertificateRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This          *dcom.ORPCThis `idl:"name:This" json:"this"`
-	VarSenderCert *oaut.Variant  `idl:"name:varSenderCert" json:"var_sender_cert"`
+	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
+	SenderCert *oaut.Variant  `idl:"name:varSenderCert" json:"sender_cert"`
 }
 
 func (o *SetSenderCertificateRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSenderCertificateOperation) *xxx_SetSenderCertificateOperation {
@@ -10833,7 +10833,7 @@ func (o *SetSenderCertificateRequest) xxx_ToOp(ctx context.Context, op *xxx_SetS
 		return op
 	}
 	op.This = o.This
-	op.VarSenderCert = o.VarSenderCert
+	op.SenderCert = o.SenderCert
 	return op
 }
 
@@ -10842,7 +10842,7 @@ func (o *SetSenderCertificateRequest) xxx_FromOp(ctx context.Context, op *xxx_Se
 		return
 	}
 	o.This = op.This
-	o.VarSenderCert = op.VarSenderCert
+	o.SenderCert = op.SenderCert
 }
 func (o *SetSenderCertificateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -10897,10 +10897,10 @@ func (o *SetSenderCertificateResponse) UnmarshalNDR(ctx context.Context, r ndr.R
 
 // xxx_GetSenderIDOperation structure represents the SenderId operation
 type xxx_GetSenderIDOperation struct {
-	This         *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PvarSenderID *oaut.Variant  `idl:"name:pvarSenderId" json:"pvar_sender_id"`
-	Return       int32          `idl:"name:Return" json:"return"`
+	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That     *dcom.ORPCThat `idl:"name:That" json:"that"`
+	SenderID *oaut.Variant  `idl:"name:pvarSenderId" json:"sender_id"`
+	Return   int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetSenderIDOperation) OpNum() int { return 51 }
@@ -10984,10 +10984,10 @@ func (o *xxx_GetSenderIDOperation) MarshalNDRResponse(ctx context.Context, w ndr
 	}
 	// pvarSenderId {out, retval} (1:{pointer=ref}*(2))(2:{alias=VARIANT}*(1))(3:{alias=_VARIANT}(struct))
 	{
-		if o.PvarSenderID != nil {
+		if o.SenderID != nil {
 			_ptr_pvarSenderId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PvarSenderID != nil {
-					if err := o.PvarSenderID.MarshalNDR(ctx, w); err != nil {
+				if o.SenderID != nil {
+					if err := o.SenderID.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -10997,7 +10997,7 @@ func (o *xxx_GetSenderIDOperation) MarshalNDRResponse(ctx context.Context, w ndr
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PvarSenderID, _ptr_pvarSenderId); err != nil {
+			if err := w.WritePointer(&o.SenderID, _ptr_pvarSenderId); err != nil {
 				return err
 			}
 		} else {
@@ -11034,16 +11034,16 @@ func (o *xxx_GetSenderIDOperation) UnmarshalNDRResponse(ctx context.Context, w n
 	// pvarSenderId {out, retval} (1:{pointer=ref}*(2))(2:{alias=VARIANT,pointer=ref}*(1))(3:{alias=_VARIANT}(struct))
 	{
 		_ptr_pvarSenderId := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PvarSenderID == nil {
-				o.PvarSenderID = &oaut.Variant{}
+			if o.SenderID == nil {
+				o.SenderID = &oaut.Variant{}
 			}
-			if err := o.PvarSenderID.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.SenderID.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pvarSenderId := func(ptr interface{}) { o.PvarSenderID = *ptr.(**oaut.Variant) }
-		if err := w.ReadPointer(&o.PvarSenderID, _s_pvarSenderId, _ptr_pvarSenderId); err != nil {
+		_s_pvarSenderId := func(ptr interface{}) { o.SenderID = *ptr.(**oaut.Variant) }
+		if err := w.ReadPointer(&o.SenderID, _s_pvarSenderId, _ptr_pvarSenderId); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -11097,8 +11097,8 @@ func (o *GetSenderIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // GetSenderIDResponse structure represents the SenderId operation response
 type GetSenderIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PvarSenderID *oaut.Variant  `idl:"name:pvarSenderId" json:"pvar_sender_id"`
+	That     *dcom.ORPCThat `idl:"name:That" json:"that"`
+	SenderID *oaut.Variant  `idl:"name:pvarSenderId" json:"sender_id"`
 	// Return: The SenderId return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -11111,7 +11111,7 @@ func (o *GetSenderIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSenderIDO
 		return op
 	}
 	op.That = o.That
-	op.PvarSenderID = o.PvarSenderID
+	op.SenderID = o.SenderID
 	op.Return = o.Return
 	return op
 }
@@ -11121,7 +11121,7 @@ func (o *GetSenderIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSenderI
 		return
 	}
 	o.That = op.That
-	o.PvarSenderID = op.PvarSenderID
+	o.SenderID = op.SenderID
 	o.Return = op.Return
 }
 func (o *GetSenderIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -11552,11 +11552,11 @@ func (o *SetSenderIDTypeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader
 
 // xxx_SendOperation structure represents the Send operation
 type xxx_SendOperation struct {
-	This             *dcom.ORPCThis   `idl:"name:This" json:"this"`
-	That             *dcom.ORPCThat   `idl:"name:That" json:"that"`
-	DestinationQueue *mqac.ImsmqQueue `idl:"name:DestinationQueue" json:"destination_queue"`
-	Transaction      *oaut.Variant    `idl:"name:Transaction" json:"transaction"`
-	Return           int32            `idl:"name:Return" json:"return"`
+	This             *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That             *dcom.ORPCThat `idl:"name:That" json:"that"`
+	DestinationQueue *mqac.Queue    `idl:"name:DestinationQueue" json:"destination_queue"`
+	Transaction      *oaut.Variant  `idl:"name:Transaction" json:"transaction"`
+	Return           int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_SendOperation) OpNum() int { return 54 }
@@ -11600,7 +11600,7 @@ func (o *xxx_SendOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 						return err
 					}
 				} else {
-					if err := (&mqac.ImsmqQueue{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&mqac.Queue{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
@@ -11665,14 +11665,14 @@ func (o *xxx_SendOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 	{
 		_ptr_DestinationQueue := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if o.DestinationQueue == nil {
-				o.DestinationQueue = &mqac.ImsmqQueue{}
+				o.DestinationQueue = &mqac.Queue{}
 			}
 			if err := o.DestinationQueue.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_DestinationQueue := func(ptr interface{}) { o.DestinationQueue = *ptr.(**mqac.ImsmqQueue) }
+		_s_DestinationQueue := func(ptr interface{}) { o.DestinationQueue = *ptr.(**mqac.Queue) }
 		if err := w.ReadPointer(&o.DestinationQueue, _s_DestinationQueue, _ptr_DestinationQueue); err != nil {
 			return err
 		}
@@ -11764,9 +11764,9 @@ func (o *xxx_SendOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 // SendRequest structure represents the Send operation request
 type SendRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This             *dcom.ORPCThis   `idl:"name:This" json:"this"`
-	DestinationQueue *mqac.ImsmqQueue `idl:"name:DestinationQueue" json:"destination_queue"`
-	Transaction      *oaut.Variant    `idl:"name:Transaction" json:"transaction"`
+	This             *dcom.ORPCThis `idl:"name:This" json:"this"`
+	DestinationQueue *mqac.Queue    `idl:"name:DestinationQueue" json:"destination_queue"`
+	Transaction      *oaut.Variant  `idl:"name:Transaction" json:"transaction"`
 }
 
 func (o *SendRequest) xxx_ToOp(ctx context.Context, op *xxx_SendOperation) *xxx_SendOperation {

@@ -15171,9 +15171,9 @@ func (o *GetAllOptionValuesResponse) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // xxx_GetMCastMIBInfoOperation structure represents the R_DhcpGetMCastMibInfo operation
 type xxx_GetMCastMIBInfoOperation struct {
-	ServerIPAddress string              `idl:"name:ServerIpAddress;string;pointer:unique" json:"server_ip_address"`
-	MIBInfo         *dhcpm.MCastMIBInfo `idl:"name:MibInfo" json:"mib_info"`
-	Return          uint32              `idl:"name:Return" json:"return"`
+	ServerIPAddress string                  `idl:"name:ServerIpAddress;string;pointer:unique" json:"server_ip_address"`
+	MIBInfo         *dhcpm.MulticastMIBInfo `idl:"name:MibInfo" json:"mib_info"`
+	Return          uint32                  `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetMCastMIBInfoOperation) OpNum() int { return 31 }
@@ -15259,7 +15259,7 @@ func (o *xxx_GetMCastMIBInfoOperation) MarshalNDRResponse(ctx context.Context, w
 						return err
 					}
 				} else {
-					if err := (&dhcpm.MCastMIBInfo{}).MarshalNDR(ctx, w); err != nil {
+					if err := (&dhcpm.MulticastMIBInfo{}).MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				}
@@ -15291,14 +15291,14 @@ func (o *xxx_GetMCastMIBInfoOperation) UnmarshalNDRResponse(ctx context.Context,
 	{
 		_ptr_MibInfo := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 			if o.MIBInfo == nil {
-				o.MIBInfo = &dhcpm.MCastMIBInfo{}
+				o.MIBInfo = &dhcpm.MulticastMIBInfo{}
 			}
 			if err := o.MIBInfo.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_MibInfo := func(ptr interface{}) { o.MIBInfo = *ptr.(**dhcpm.MCastMIBInfo) }
+		_s_MibInfo := func(ptr interface{}) { o.MIBInfo = *ptr.(**dhcpm.MulticastMIBInfo) }
 		if err := w.ReadPointer(&o.MIBInfo, _s_MibInfo, _ptr_MibInfo); err != nil {
 			return err
 		}
@@ -15355,7 +15355,7 @@ func (o *GetMCastMIBInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 type GetMCastMIBInfoResponse struct {
 	// MibInfo: This is of type LPDHCP_MCAST_MIB_INFO, pointing to the location that contains
 	// the multicast MIB information of the MADCAP server.
-	MIBInfo *dhcpm.MCastMIBInfo `idl:"name:MibInfo" json:"mib_info"`
+	MIBInfo *dhcpm.MulticastMIBInfo `idl:"name:MibInfo" json:"mib_info"`
 	// Return: The R_DhcpGetMCastMibInfo return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }

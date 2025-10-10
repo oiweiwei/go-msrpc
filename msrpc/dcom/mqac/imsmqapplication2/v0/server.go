@@ -26,10 +26,10 @@ var (
 )
 
 // IMSMQApplication2 server interface.
-type ImsmqApplication2Server interface {
+type Application2Server interface {
 
 	// IMSMQApplication base class.
-	imsmqapplication.ImsmqApplicationServer
+	imsmqapplication.ApplicationServer
 
 	// RegisterCertificate operation.
 	RegisterCertificate(context.Context, *RegisterCertificateRequest) (*RegisterCertificateResponse, error)
@@ -38,13 +38,13 @@ type ImsmqApplication2Server interface {
 	MachineNameOfMachineID(context.Context, *MachineNameOfMachineIDRequest) (*MachineNameOfMachineIDResponse, error)
 
 	// MSMQVersionMajor operation.
-	GetMsmqVersionMajor(context.Context, *GetMsmqVersionMajorRequest) (*GetMsmqVersionMajorResponse, error)
+	GetVersionMajor(context.Context, *GetVersionMajorRequest) (*GetVersionMajorResponse, error)
 
 	// MSMQVersionMinor operation.
-	GetMsmqVersionMinor(context.Context, *GetMsmqVersionMinorRequest) (*GetMsmqVersionMinorResponse, error)
+	GetVersionMinor(context.Context, *GetVersionMinorRequest) (*GetVersionMinorResponse, error)
 
 	// MSMQVersionBuild operation.
-	GetMsmqVersionBuild(context.Context, *GetMsmqVersionBuildRequest) (*GetMsmqVersionBuildResponse, error)
+	GetVersionBuild(context.Context, *GetVersionBuildRequest) (*GetVersionBuildResponse, error)
 
 	// IsDsEnabled operation.
 	GetIsDSEnabled(context.Context, *GetIsDSEnabledRequest) (*GetIsDSEnabledResponse, error)
@@ -53,20 +53,20 @@ type ImsmqApplication2Server interface {
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 }
 
-func RegisterImsmqApplication2Server(conn dcerpc.Conn, o ImsmqApplication2Server, opts ...dcerpc.Option) {
-	conn.RegisterServer(NewImsmqApplication2ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(ImsmqApplication2SyntaxV0_0))...)
+func RegisterApplication2Server(conn dcerpc.Conn, o Application2Server, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewApplication2ServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(Application2SyntaxV0_0))...)
 }
 
-func NewImsmqApplication2ServerHandle(o ImsmqApplication2Server) dcerpc.ServerHandle {
+func NewApplication2ServerHandle(o Application2Server) dcerpc.ServerHandle {
 	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
-		return ImsmqApplication2ServerHandle(ctx, o, opNum, r)
+		return Application2ServerHandle(ctx, o, opNum, r)
 	}
 }
 
-func ImsmqApplication2ServerHandle(ctx context.Context, o ImsmqApplication2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+func Application2ServerHandle(ctx context.Context, o Application2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	if opNum < 8 {
 		// IMSMQApplication base method.
-		return imsmqapplication.ImsmqApplicationServerHandle(ctx, o, opNum, r)
+		return imsmqapplication.ApplicationServerHandle(ctx, o, opNum, r)
 	}
 	switch opNum {
 	case 8: // RegisterCertificate
@@ -88,31 +88,31 @@ func ImsmqApplication2ServerHandle(ctx context.Context, o ImsmqApplication2Serve
 		resp, err := o.MachineNameOfMachineID(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 10: // MSMQVersionMajor
-		op := &xxx_GetMsmqVersionMajorOperation{}
+		op := &xxx_GetVersionMajorOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &GetMsmqVersionMajorRequest{}
+		req := &GetVersionMajorRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.GetMsmqVersionMajor(ctx, req)
+		resp, err := o.GetVersionMajor(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 11: // MSMQVersionMinor
-		op := &xxx_GetMsmqVersionMinorOperation{}
+		op := &xxx_GetVersionMinorOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &GetMsmqVersionMinorRequest{}
+		req := &GetVersionMinorRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.GetMsmqVersionMinor(ctx, req)
+		resp, err := o.GetVersionMinor(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 12: // MSMQVersionBuild
-		op := &xxx_GetMsmqVersionBuildOperation{}
+		op := &xxx_GetVersionBuildOperation{}
 		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		req := &GetMsmqVersionBuildRequest{}
+		req := &GetVersionBuildRequest{}
 		req.xxx_FromOp(ctx, op)
-		resp, err := o.GetMsmqVersionBuild(ctx, req)
+		resp, err := o.GetVersionBuild(ctx, req)
 		return resp.xxx_ToOp(ctx, op), err
 	case 13: // IsDsEnabled
 		op := &xxx_GetIsDSEnabledOperation{}
@@ -137,30 +137,30 @@ func ImsmqApplication2ServerHandle(ctx context.Context, o ImsmqApplication2Serve
 }
 
 // Unimplemented IMSMQApplication2
-type UnimplementedImsmqApplication2Server struct {
-	imsmqapplication.UnimplementedImsmqApplicationServer
+type UnimplementedApplication2Server struct {
+	imsmqapplication.UnimplementedApplicationServer
 }
 
-func (UnimplementedImsmqApplication2Server) RegisterCertificate(context.Context, *RegisterCertificateRequest) (*RegisterCertificateResponse, error) {
+func (UnimplementedApplication2Server) RegisterCertificate(context.Context, *RegisterCertificateRequest) (*RegisterCertificateResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqApplication2Server) MachineNameOfMachineID(context.Context, *MachineNameOfMachineIDRequest) (*MachineNameOfMachineIDResponse, error) {
+func (UnimplementedApplication2Server) MachineNameOfMachineID(context.Context, *MachineNameOfMachineIDRequest) (*MachineNameOfMachineIDResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqApplication2Server) GetMsmqVersionMajor(context.Context, *GetMsmqVersionMajorRequest) (*GetMsmqVersionMajorResponse, error) {
+func (UnimplementedApplication2Server) GetVersionMajor(context.Context, *GetVersionMajorRequest) (*GetVersionMajorResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqApplication2Server) GetMsmqVersionMinor(context.Context, *GetMsmqVersionMinorRequest) (*GetMsmqVersionMinorResponse, error) {
+func (UnimplementedApplication2Server) GetVersionMinor(context.Context, *GetVersionMinorRequest) (*GetVersionMinorResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqApplication2Server) GetMsmqVersionBuild(context.Context, *GetMsmqVersionBuildRequest) (*GetMsmqVersionBuildResponse, error) {
+func (UnimplementedApplication2Server) GetVersionBuild(context.Context, *GetVersionBuildRequest) (*GetVersionBuildResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqApplication2Server) GetIsDSEnabled(context.Context, *GetIsDSEnabledRequest) (*GetIsDSEnabledResponse, error) {
+func (UnimplementedApplication2Server) GetIsDSEnabled(context.Context, *GetIsDSEnabledRequest) (*GetIsDSEnabledResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
-func (UnimplementedImsmqApplication2Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+func (UnimplementedApplication2Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
 	return nil, dcerpc.ErrNotImplemented
 }
 
-var _ ImsmqApplication2Server = (*UnimplementedImsmqApplication2Server)(nil)
+var _ Application2Server = (*UnimplementedApplication2Server)(nil)

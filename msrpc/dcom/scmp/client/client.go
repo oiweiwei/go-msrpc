@@ -52,10 +52,10 @@ type Client interface {
 	RemoteUnknown2() iremunknown2.RemoteUnknown2Client
 
 	// Package specific interfaces
-	VSSSnapshotManagement() ivsssnapshotmgmt.VSSSnapshotManagementClient
-	VSSDifferentialSoftwareSnapshotManagement() ivssdifferentialsoftwaresnapshotmgmt.VSSDifferentialSoftwareSnapshotManagementClient
-	VSSEnumObject() ivssenumobject.VSSEnumObjectClient
-	VSSEnumManagementObject() ivssenummgmtobject.VSSEnumManagementObjectClient
+	SnapshotManagement() ivsssnapshotmgmt.SnapshotManagementClient
+	DifferentialSoftwareSnapshotManagement() ivssdifferentialsoftwaresnapshotmgmt.DifferentialSoftwareSnapshotManagementClient
+	EnumObject() ivssenumobject.EnumObjectClient
+	EnumManagementObject() ivssenummgmtobject.EnumManagementObjectClient
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
@@ -70,10 +70,10 @@ type xxx_DefaultClient struct {
 
 	dcomClient dcom_client.Client
 
-	vssSnapshotManagement                     ivsssnapshotmgmt.VSSSnapshotManagementClient
-	vssDifferentialSoftwareSnapshotManagement ivssdifferentialsoftwaresnapshotmgmt.VSSDifferentialSoftwareSnapshotManagementClient
-	vssEnumObject                             ivssenumobject.VSSEnumObjectClient
-	vssEnumManagementObject                   ivssenummgmtobject.VSSEnumManagementObjectClient
+	snapshotManagement                     ivsssnapshotmgmt.SnapshotManagementClient
+	differentialSoftwareSnapshotManagement ivssdifferentialsoftwaresnapshotmgmt.DifferentialSoftwareSnapshotManagementClient
+	enumObject                             ivssenumobject.EnumObjectClient
+	enumManagementObject                   ivssenummgmtobject.EnumManagementObjectClient
 }
 
 func (o *xxx_DefaultClient) RemoteUnknown() iremunknown.RemoteUnknownClient {
@@ -84,29 +84,29 @@ func (o *xxx_DefaultClient) RemoteUnknown2() iremunknown2.RemoteUnknown2Client {
 	return o.dcomClient.RemoteUnknown2()
 }
 
-func (o *xxx_DefaultClient) VSSSnapshotManagement() ivsssnapshotmgmt.VSSSnapshotManagementClient {
-	return o.vssSnapshotManagement
+func (o *xxx_DefaultClient) SnapshotManagement() ivsssnapshotmgmt.SnapshotManagementClient {
+	return o.snapshotManagement
 }
 
-func (o *xxx_DefaultClient) VSSDifferentialSoftwareSnapshotManagement() ivssdifferentialsoftwaresnapshotmgmt.VSSDifferentialSoftwareSnapshotManagementClient {
-	return o.vssDifferentialSoftwareSnapshotManagement
+func (o *xxx_DefaultClient) DifferentialSoftwareSnapshotManagement() ivssdifferentialsoftwaresnapshotmgmt.DifferentialSoftwareSnapshotManagementClient {
+	return o.differentialSoftwareSnapshotManagement
 }
 
-func (o *xxx_DefaultClient) VSSEnumObject() ivssenumobject.VSSEnumObjectClient {
-	return o.vssEnumObject
+func (o *xxx_DefaultClient) EnumObject() ivssenumobject.EnumObjectClient {
+	return o.enumObject
 }
 
-func (o *xxx_DefaultClient) VSSEnumManagementObject() ivssenummgmtobject.VSSEnumManagementObjectClient {
-	return o.vssEnumManagementObject
+func (o *xxx_DefaultClient) EnumManagementObject() ivssenummgmtobject.EnumManagementObjectClient {
+	return o.enumManagementObject
 }
 
 func NewClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Client, error) {
 
 	opts = append(opts,
-		dcerpc.WithAbstractSyntax(ivsssnapshotmgmt.VSSSnapshotManagementSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(ivssdifferentialsoftwaresnapshotmgmt.VSSDifferentialSoftwareSnapshotManagementSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(ivssenumobject.VSSEnumObjectSyntaxV0_0),
-		dcerpc.WithAbstractSyntax(ivssenummgmtobject.VSSEnumManagementObjectSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(ivsssnapshotmgmt.SnapshotManagementSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(ivssdifferentialsoftwaresnapshotmgmt.DifferentialSoftwareSnapshotManagementSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(ivssenumobject.EnumObjectSyntaxV0_0),
+		dcerpc.WithAbstractSyntax(ivssenummgmtobject.EnumManagementObjectSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iremunknown.RemoteUnknownSyntaxV0_0),
 		dcerpc.WithAbstractSyntax(iremunknown2.RemoteUnknown2SyntaxV0_0),
 	)
@@ -129,41 +129,41 @@ func NewClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Clie
 		return nil, fmt.Errorf("sub-conn is not supported")
 	}
 
-	vssSnapshotManagementSubConn, err := sub.SubConn(ctx, ivsssnapshotmgmt.VSSSnapshotManagementSyntaxV0_0)
+	snapshotManagementSubConn, err := sub.SubConn(ctx, ivsssnapshotmgmt.SnapshotManagementSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		vssSnapshotManagementSubConn = sub
+		snapshotManagementSubConn = sub
 	}
 
-	o.vssSnapshotManagement, err = ivsssnapshotmgmt.NewVSSSnapshotManagementClient(ctx, vssSnapshotManagementSubConn, append(opts, dcerpc.WithNoBind(vssSnapshotManagementSubConn))...)
+	o.snapshotManagement, err = ivsssnapshotmgmt.NewSnapshotManagementClient(ctx, snapshotManagementSubConn, append(opts, dcerpc.WithNoBind(snapshotManagementSubConn))...)
 
-	vssDifferentialSoftwareSnapshotManagementSubConn, err := sub.SubConn(ctx, ivssdifferentialsoftwaresnapshotmgmt.VSSDifferentialSoftwareSnapshotManagementSyntaxV0_0)
+	differentialSoftwareSnapshotManagementSubConn, err := sub.SubConn(ctx, ivssdifferentialsoftwaresnapshotmgmt.DifferentialSoftwareSnapshotManagementSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		vssDifferentialSoftwareSnapshotManagementSubConn = sub
+		differentialSoftwareSnapshotManagementSubConn = sub
 	}
 
-	o.vssDifferentialSoftwareSnapshotManagement, err = ivssdifferentialsoftwaresnapshotmgmt.NewVSSDifferentialSoftwareSnapshotManagementClient(ctx, vssDifferentialSoftwareSnapshotManagementSubConn, append(opts, dcerpc.WithNoBind(vssDifferentialSoftwareSnapshotManagementSubConn))...)
+	o.differentialSoftwareSnapshotManagement, err = ivssdifferentialsoftwaresnapshotmgmt.NewDifferentialSoftwareSnapshotManagementClient(ctx, differentialSoftwareSnapshotManagementSubConn, append(opts, dcerpc.WithNoBind(differentialSoftwareSnapshotManagementSubConn))...)
 
-	vssEnumObjectSubConn, err := sub.SubConn(ctx, ivssenumobject.VSSEnumObjectSyntaxV0_0)
+	enumObjectSubConn, err := sub.SubConn(ctx, ivssenumobject.EnumObjectSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		vssEnumObjectSubConn = sub
+		enumObjectSubConn = sub
 	}
 
-	o.vssEnumObject, err = ivssenumobject.NewVSSEnumObjectClient(ctx, vssEnumObjectSubConn, append(opts, dcerpc.WithNoBind(vssEnumObjectSubConn))...)
+	o.enumObject, err = ivssenumobject.NewEnumObjectClient(ctx, enumObjectSubConn, append(opts, dcerpc.WithNoBind(enumObjectSubConn))...)
 
-	vssEnumManagementObjectSubConn, err := sub.SubConn(ctx, ivssenummgmtobject.VSSEnumManagementObjectSyntaxV0_0)
+	enumManagementObjectSubConn, err := sub.SubConn(ctx, ivssenummgmtobject.EnumManagementObjectSyntaxV0_0)
 	if err != nil {
 		// XXX: use main subconnection as a last resort
 		// it was noticed that we can reuse the main connection for dcom interfaces
-		vssEnumManagementObjectSubConn = sub
+		enumManagementObjectSubConn = sub
 	}
 
-	o.vssEnumManagementObject, err = ivssenummgmtobject.NewVSSEnumManagementObjectClient(ctx, vssEnumManagementObjectSubConn, append(opts, dcerpc.WithNoBind(vssEnumManagementObjectSubConn))...)
+	o.enumManagementObject, err = ivssenummgmtobject.NewEnumManagementObjectClient(ctx, enumManagementObjectSubConn, append(opts, dcerpc.WithNoBind(enumManagementObjectSubConn))...)
 	return o, nil
 }
 
@@ -180,11 +180,11 @@ func (o *xxx_DefaultClient) IPID(ctx context.Context, ipid *dcom.IPID) Client {
 		ipid = &dcom.IPID{}
 	}
 	return &xxx_DefaultClient{
-		dcomClient:            o.dcomClient.IPID(ctx, ipid),
-		vssSnapshotManagement: o.vssSnapshotManagement.IPID(ctx, ipid),
-		vssDifferentialSoftwareSnapshotManagement: o.vssDifferentialSoftwareSnapshotManagement.IPID(ctx, ipid),
-		vssEnumObject:           o.vssEnumObject.IPID(ctx, ipid),
-		vssEnumManagementObject: o.vssEnumManagementObject.IPID(ctx, ipid),
-		cc:                      o.cc,
+		dcomClient:                             o.dcomClient.IPID(ctx, ipid),
+		snapshotManagement:                     o.snapshotManagement.IPID(ctx, ipid),
+		differentialSoftwareSnapshotManagement: o.differentialSoftwareSnapshotManagement.IPID(ctx, ipid),
+		enumObject:                             o.enumObject.IPID(ctx, ipid),
+		enumManagementObject:                   o.enumManagementObject.IPID(ctx, ipid),
+		cc:                                     o.cc,
 	}
 }
