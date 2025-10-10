@@ -192,7 +192,6 @@ The set of changes includes:
 | [MS-FAX](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fax) | Fax Server and Client Remote Protocol | [github.com/oiweiwei/msrpc/fax](./msrpc/fax) |
 | [MS-FRS1](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-frs1) | File Replication Service (FRS) Remote Protocol | [github.com/oiweiwei/msrpc/frs1](./msrpc/frs1) |
 | [MS-FSR2](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-frs2) | File Replication Service (FRS) Remote Protocol Version 2 | [github.com/oiweiwei/msrpc/frs2](./msrpc/frs2) |
-| [MS-FSRM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fsrm) | File Server Resource Manager Protocol | [github.com/oiweiwei/msrpc/fsrm](./msrpc/fsrm) |
 | [MS-ICPR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-icpr) | ICertPassage Remote Protocol | [github.com/oiweiwei/msrpc/icpr](./msrpc/icpr) |
 | [MS-IRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-irp) | Internet Information Services (IIS) Inetinfo Remote Protocol | [github.com/oiweiwei/msrpc/irp](./msrpc/irp) |
 | [MS-LREC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-lrec) | Live Remote Event Capture (LREC) Protocol | [github.com/oiweiwei/msrpc/lrec](./msrpc/lrec) |
