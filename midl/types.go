@@ -127,6 +127,15 @@ type Param struct {
 	Attrs *ParamAttr `json:"attrs,omitempty"`
 }
 
+func (p *Param) IsPipe() bool {
+	for _, t := range p.Type.flat() {
+		if t.Is(TypePipe) {
+			return true
+		}
+	}
+	return false
+}
+
 func (p *Param) IsHandle() bool {
 	if p.Type.Is(TypeAttribute) {
 		return p.Type.Elem.Is(TypeHandle)

@@ -2275,6 +2275,9 @@ func (o *xxx_ReadFileRawOperation) UnmarshalNDRResponse(ctx context.Context, w n
 
 // ReadFileRawRequest structure represents the EfsRpcReadFileRaw operation request
 type ReadFileRawRequest struct {
+	// XXX: EfsOutPipe is an implicit input depedency for output parameters
+	OutPipe ExportImportPipe `idl:"name:EfsOutPipe" json:"out_pipe"`
+
 	Context *Context `idl:"name:hContext" json:"context"`
 }
 
@@ -2285,6 +2288,11 @@ func (o *ReadFileRawRequest) xxx_ToOp(ctx context.Context, op *xxx_ReadFileRawOp
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutPipe == nil {
+		op.OutPipe = o.OutPipe
+	}
+
 	op.Context = o.Context
 	return op
 }
@@ -2293,6 +2301,9 @@ func (o *ReadFileRawRequest) xxx_FromOp(ctx context.Context, op *xxx_ReadFileRaw
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutPipe = op.OutPipe
+
 	o.Context = op.Context
 }
 func (o *ReadFileRawRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {

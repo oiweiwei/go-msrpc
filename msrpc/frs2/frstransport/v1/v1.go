@@ -4341,6 +4341,9 @@ func (o *xxx_RawGetFileDataAsyncOperation) UnmarshalNDRResponse(ctx context.Cont
 
 // RawGetFileDataAsyncRequest structure represents the RawGetFileDataAsync operation request
 type RawGetFileDataAsyncRequest struct {
+	// XXX: bytePipe is an implicit input depedency for output parameters
+	BytePipe frs2.BytePipe `idl:"name:bytePipe" json:"byte_pipe"`
+
 	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
 }
 
@@ -4351,6 +4354,11 @@ func (o *RawGetFileDataAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_RawGe
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BytePipe == nil {
+		op.BytePipe = o.BytePipe
+	}
+
 	op.ServerContext = o.ServerContext
 	return op
 }
@@ -4359,6 +4367,9 @@ func (o *RawGetFileDataAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_Raw
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BytePipe = op.BytePipe
+
 	o.ServerContext = op.ServerContext
 }
 func (o *RawGetFileDataAsyncRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -4562,6 +4573,9 @@ func (o *xxx_GetFileDataAsyncOperation) UnmarshalNDRResponse(ctx context.Context
 
 // GetFileDataAsyncRequest structure represents the RdcGetFileDataAsync operation request
 type GetFileDataAsyncRequest struct {
+	// XXX: bytePipe is an implicit input depedency for output parameters
+	BytePipe frs2.BytePipe `idl:"name:bytePipe" json:"byte_pipe"`
+
 	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
 }
 
@@ -4572,6 +4586,11 @@ func (o *GetFileDataAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFileD
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BytePipe == nil {
+		op.BytePipe = o.BytePipe
+	}
+
 	op.ServerContext = o.ServerContext
 	return op
 }
@@ -4580,6 +4599,9 @@ func (o *GetFileDataAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFil
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BytePipe = op.BytePipe
+
 	o.ServerContext = op.ServerContext
 }
 func (o *GetFileDataAsyncRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
