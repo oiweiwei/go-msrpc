@@ -104,6 +104,8 @@ func (p *Generator) GoTypeZeroValue(ctx context.Context, attr *midl.TypeAttr, fi
 		case midl.TypePointer:
 			scopes = scopes.Next()
 			continue
+		case midl.TypePipe:
+			return "nil"
 		}
 
 		break

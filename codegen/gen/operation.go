@@ -285,6 +285,13 @@ func (p *Generator) GetExprIdents(ctx context.Context, expr ...midl.Expr) []stri
 func (p *Generator) GetOutputParamImplicitDependents(ctx context.Context, op *midl.Operation, dir int) []*midl.Param {
 
 	if dir != OutParam {
+		if dir == InParam {
+			for _, param := range p.OperationParams(ctx, op) {
+				if param.Attrs.Direction.Out && param.IsPipe() {
+					return []*midl.Param{param}
+				}
+			}
+		}
 		return nil
 	}
 
