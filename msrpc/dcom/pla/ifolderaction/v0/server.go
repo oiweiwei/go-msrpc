@@ -73,61 +73,109 @@ func FolderActionServerHandle(ctx context.Context, o FolderActionServer, opNum i
 	}
 	switch opNum {
 	case 7: // Age
-		in := &GetAgeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAgeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAge(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAgeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAge(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // Age
-		in := &SetAgeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetAgeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetAge(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetAgeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetAge(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Size
-		in := &GetSizeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSizeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSize(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSizeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSize(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // Size
-		in := &SetSizeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSizeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSize(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSizeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSize(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // Actions
-		in := &GetActionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetActionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetActions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetActionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetActions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // Actions
-		in := &SetActionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetActionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetActions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetActionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetActions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // SendCabTo
-		in := &GetSendCabToRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSendCabToOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSendCabTo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSendCabToRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSendCabTo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // SendCabTo
-		in := &SetSendCabToRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSendCabToOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSendCabTo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSendCabToRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSendCabTo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFolderAction
+type UnimplementedFolderActionServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedFolderActionServer) GetAge(context.Context, *GetAgeRequest) (*GetAgeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFolderActionServer) SetAge(context.Context, *SetAgeRequest) (*SetAgeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFolderActionServer) GetSize(context.Context, *GetSizeRequest) (*GetSizeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFolderActionServer) SetSize(context.Context, *SetSizeRequest) (*SetSizeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFolderActionServer) GetActions(context.Context, *GetActionsRequest) (*GetActionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFolderActionServer) SetActions(context.Context, *SetActionsRequest) (*SetActionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFolderActionServer) GetSendCabTo(context.Context, *GetSendCabToRequest) (*GetSendCabToResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFolderActionServer) SetSendCabTo(context.Context, *SetSendCabToRequest) (*SetSendCabToResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ FolderActionServer = (*UnimplementedFolderActionServer)(nil)

@@ -229,6 +229,8 @@ var (
 		INTERFACE:        {},
 		COCLASS:          {},
 		DISPINTERFACE:    {},
+		PROPERTIES:       {},
+		METHODS:          {},
 	}
 )
 

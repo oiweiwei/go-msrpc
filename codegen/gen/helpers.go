@@ -94,8 +94,10 @@ func (p *Generator) Structure(args ...interface{}) {
 func (p *Generator) Range(args ...interface{}) {
 
 	switch len(args) {
-	case 0, 1:
+	case 0:
 		panic("unknown range")
+	case 1:
+		p.Block("for", args[0])
 	case 2:
 		p.Block(append([]interface{}{"for", "range"}, args...)...)
 	case 3:

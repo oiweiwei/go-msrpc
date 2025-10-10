@@ -142,3 +142,7 @@ trim:
   - Ec
   - multiSz
   - PerflibV2
+  - EFS_RPC
+  - EFS_
+  - EfsRpc
+  - Efs

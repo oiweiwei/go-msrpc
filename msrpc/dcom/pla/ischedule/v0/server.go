@@ -73,61 +73,109 @@ func ScheduleServerHandle(ctx context.Context, o ScheduleServer, opNum int, r nd
 	}
 	switch opNum {
 	case 7: // StartDate
-		in := &GetStartDateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetStartDateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetStartDate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetStartDateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetStartDate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // StartDate
-		in := &SetStartDateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetStartDateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetStartDate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetStartDateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetStartDate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // EndDate
-		in := &GetEndDateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEndDateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEndDate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEndDateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEndDate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // EndDate
-		in := &SetEndDateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetEndDateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetEndDate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetEndDateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetEndDate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // StartTime
-		in := &GetStartTimeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetStartTimeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetStartTime(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetStartTimeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetStartTime(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // StartTime
-		in := &SetStartTimeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetStartTimeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetStartTime(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetStartTimeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetStartTime(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // Days
-		in := &GetDaysRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDaysOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDays(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDaysRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDays(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // Days
-		in := &SetDaysRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDaysOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDays(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDaysRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDays(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ISchedule
+type UnimplementedScheduleServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedScheduleServer) GetStartDate(context.Context, *GetStartDateRequest) (*GetStartDateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedScheduleServer) SetStartDate(context.Context, *SetStartDateRequest) (*SetStartDateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedScheduleServer) GetEndDate(context.Context, *GetEndDateRequest) (*GetEndDateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedScheduleServer) SetEndDate(context.Context, *SetEndDateRequest) (*SetEndDateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedScheduleServer) GetStartTime(context.Context, *GetStartTimeRequest) (*GetStartTimeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedScheduleServer) SetStartTime(context.Context, *SetStartTimeRequest) (*SetStartTimeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedScheduleServer) GetDays(context.Context, *GetDaysRequest) (*GetDaysResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedScheduleServer) SetDays(context.Context, *SetDaysRequest) (*SetDaysResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ScheduleServer = (*UnimplementedScheduleServer)(nil)

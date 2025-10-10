@@ -168,7 +168,6 @@ The set of changes includes:
 | Code | Description | Package |
 | ------- | -------- | ------- |
 | [MS-ADTS](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adts) | Active Directory Technical Specification: Claims | [github.com/oiweiwei/go-msrpc/msrpc/adts](./msrpc/adts) |
-| [MS-EVEN6-BINXML](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-even6/c73573ae-1c90-43a2-a65f-ad7501155956) | BinXml encodes an XML document so that the original XML text can be correctly reproduced from the encoding. | [github.com/oiweiwei/msrpc/binxml](./msrpc/binxml) |
 | [MS-BKRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-bkrp) | BackupKey Remote Protocol | [github.com/oiweiwei/msrpc/bkrp](./msrpc/bkrp) |
 | [MS-BPAU](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-bpau) | Background Intelligent Transfer Service (BITS) Peer-Caching: Peer Authentication Protocol | [github.com/oiweiwei/msrpc/bpau](./msrpc/bpau) |
 | [MS-BRWSA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-brwsa) | Common Internet File System (CIFS) Browser Auxiliary Protocol | [github.com/oiweiwei/msrpc/brwsa](./msrpc/brwsa) |
@@ -184,12 +183,16 @@ The set of changes includes:
 | [MS-DSSP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dssp) | Directory Services Setup Remote Protocol | [github.com/oiweiwei/msrpc/dssp](./msrpc/dssp) |
 | [MS-DTYP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dtyp) | Windows Data Types | [github.com/oiweiwei/msrpc/dtyp](./msrpc/dtyp) |
 | [MS-EERR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-eerr) | ExtendedError Remote Data Structure | [github.com/oiweiwei/msrpc/eerr](./msrpc/eerr) |
-| [MS-RPCE-EPM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rpce) [C706-EPM](https://pubs.opengroup.org/onlinepubs/9629399/apdxo.htm#tagcjh_35) | Endpoint Mapper | [github.com/oiweiwei/msrpc/epm](./msrpc/epm) |
+| [MS-EFSR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-efsr) | Encrypting File System Remote (EFSRPC) Protocol | [github.com/oiweiwei/msrpc/efsr](./msrpc/efsr) |
 | [MS-ERREF](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-erref) | Windows Error Codes | [github.com/oiweiwei/msrpc/erref](./msrpc/erref) |
-| [MS-EVEN](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-even) | EventLog Remoting Protocol | [github.com/oiweiwei/msrpc/even](./msrpc/even) |
+| [MS-EVEN6-BINXML](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-even6/c73573ae-1c90-43a2-a65f-ad7501155956) | BinXml encodes an XML document so that the original XML text can be correctly reproduced from the encoding. | [github.com/oiweiwei/msrpc/binxml](./msrpc/binxml) |
 | [MS-EVEN6](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-even6) | EventLog Remoting Protocol Version 6.0 | [github.com/oiweiwei/msrpc/even6](./msrpc/even6) |
+| [MS-EVEN](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-even) | EventLog Remoting Protocol | [github.com/oiweiwei/msrpc/even](./msrpc/even) |
 | [MS-FASP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fasp) | Firewall and Advanced Security Protocol | [github.com/oiweiwei/msrpc/fasp](./msrpc/fasp) |
 | [MS-FAX](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fax) | Fax Server and Client Remote Protocol | [github.com/oiweiwei/msrpc/fax](./msrpc/fax) |
+| [MS-FRS1](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-frs1) | File Replication Service (FRS) Remote Protocol | [github.com/oiweiwei/msrpc/frs1](./msrpc/frs1) |
+| [MS-FSR2](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-frs2) | File Replication Service (FRS) Remote Protocol Version 2 | [github.com/oiweiwei/msrpc/frs2](./msrpc/frs2) |
+| [MS-FSRM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fsrm) | File Server Resource Manager Protocol | [github.com/oiweiwei/msrpc/fsrm](./msrpc/fsrm) |
 | [MS-ICPR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-icpr) | ICertPassage Remote Protocol | [github.com/oiweiwei/msrpc/icpr](./msrpc/icpr) |
 | [MS-IRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-irp) | Internet Information Services (IIS) Inetinfo Remote Protocol | [github.com/oiweiwei/msrpc/irp](./msrpc/irp) |
 | [MS-LREC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-lrec) | Live Remote Event Capture (LREC) Protocol | [github.com/oiweiwei/msrpc/lrec](./msrpc/lrec) |
@@ -203,17 +206,19 @@ The set of changes includes:
 | [MS-MQRR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-mqrr) | Message Queuing (MSMQ): Queue Manager Remote Read Protocol | [github.com/oiweiwei/msrpc/mqrr](./msrpc/mqrr) |
 | [MS-MSRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-msrp) | Messenger Service Remote Protocol | [github.com/oiweiwei/msrpc/msrp](./msrpc/msrp) |
 | [MS-NEGOEX](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-negoex) | SPNEGO Extended Negotiation (NEGOEX) Security Mechanism | [github.com/oiweiwei/msrpc/negoex](./msrpc/negoex) |
-| [MS-NRPC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-nrpc) | Netlogon Remote Protocol | [github.com/oiweiwei/msrpc/nrpc](./msrpc/nrpc) |
 | [MS-NRPC-SECCHANNEL](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-nrpc/fb50db72-7f71-478d-a180-12eb0ca3b36b) | Secure Channel Establishment and Maintenance | [github.com/oiweiwei/msrpc/nrpc](./msrpc/nrpc) |
+| [MS-NRPC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-nrpc) | Netlogon Remote Protocol | [github.com/oiweiwei/msrpc/nrpc](./msrpc/nrpc) |
 | [MS-NSPI](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-nspi) | Name Service Provider Interface (NSPI) Protocol | [github.com/oiweiwei/msrpc/nspi](./msrpc/nspi) |
 | [MS-OXABREF](https://learn.microsoft.com/en-us/openspecs/exchange_server_protocols/ms-oxabref) | Address Book Name Service Provider Interface (NSPI) Referral Protocol |
 | [MS-OXCRPC](https://learn.microsoft.com/en-us/openspecs/exchange_server_protocols/ms-oxcrpc) | Wire Format Protocol | [github.com/oiweiwei/msrpc/oxcrpc](./msrpc/oxcrpc) |
+| [MS-OXNSPI](https://learn.microsoft.com/en-us/openspecs/exchange_server_protocols/ms-oxnspi) | Name Service Provider Interface (NSPI) Protocol | [github.com/oiweiwei/msrpc/nspi](./msrpc/nspi) |
 | [MS-PAC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-pac) | Privilege Attribute Certificate Data Structure | [github.com/oiweiwei/msrpc/pac](./msrpc/pac) |
 | [MS-PAN](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-pan) | Print System Asynchronous Notification Protocol | [github.com/oiweiwei/msrpc/pan](./msrpc/pan) |
 | [MS-PAR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-par) | Print System Asynchronous Remote Protocol | [github.com/oiweiwei/msrpc/par](./msrpc/par) |
 | [MS-PCQ](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-pcq) | Performance Counter Query Protocol | [github.com/oiweiwei/msrpc/pcq](./msrpc/pcq) |
 | [MS-RAA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-raa) | Remote Authorization API Protocol | [github.com/oiweiwei/msrpc/raa](./msrpc/raa) |
 | [MS-RAIW](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-raiw) | Remote Administrative Interface: WINS | [github.com/oiweiwei/msrpc/raiw](./msrpc/raiw) |
+| [MS-RPCE-EPM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rpce) [C706-EPM](https://pubs.opengroup.org/onlinepubs/9629399/apdxo.htm#tagcjh_35) | Endpoint Mapper | [github.com/oiweiwei/msrpc/epm](./msrpc/epm) |
 | [MS-RPCL](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rpcl) | Remote Procedure Call Location Services Extensions | [github.com/oiweiwei/msrpc/rpcl](./msrpc/rpcl) |
 | [MS-RPRN](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rprn) | Print System Remote Protocol | [github.com/oiweiwei/msrpc/rprn](./msrpc/rprn) |
 | [MS-RRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rrp) | Windows Remote Registry Protocol | [github.com/oiweiwei/msrpc/rrp](./msrpc/rrp) |
@@ -235,19 +240,20 @@ The set of changes includes:
 
 | Code | Description | Package |
 | ------- | -------- | ------- |
-| [MS-DCOM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dcom) | Distributed Component Object Model (DCOM) Remote Protocol | [github.com/oiweiwei/msrpc/dcom](./msrpc/dcom) |
-| [MS-ADTG](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adtg) | Remote Data Services (RDS) Transport Protocol | [github.com/oiweiwei/msrpc/adtg](./msrpc/dcom/adtg) |
 | [MC-CCFG](https://learn.microsoft.com/en-us/openspecs/windows_protocols/mc-ccfg) | Server Cluster: Configuration (ClusCfg) Protocol | [github.com/oiweiwei/msrpc/ccfg](./msrpc/dcom/ccfg) |
-| [MS-COM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-com) | Component Object Model Plus (COM+) Protocol | [github.com/oiweiwei/msrpc/com](./msrpc/dcom/com) |
+| [MC-IISA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/mc-iisa) | Internet Information Services (IIS) Application Host COM Protocol | [github.com/oiweiwei/msrpc/iisa](./msrpc/dcom/iisa) |
+| [MC-MQAC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/mc-mqac) | Message Queuing (MSMQ): ActiveX Client Protocol | [github.com/oiweiwei/msrpc/mqac](./msrpc/dcom/mqac) |
+| [MS-ADTG](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adtg) | Remote Data Services (RDS) Transport Protocol | [github.com/oiweiwei/msrpc/adtg](./msrpc/dcom/adtg) |
 | [MS-COMA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-coma) | Component Object Model Plus (COM+) Remote Administration Protocol | [github.com/oiweiwei/msrpc/coma](./msrpc/dcom/coma) |
 | [MS-COMEV](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-comev) | Component Object Model Plus (COM+) Event System Protocol | [github.com/oiweiwei/msrpc/comev](./msrpc/dcom/comev) |
 | [MS-COMT](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-comt) | Component Object Model Plus (COM+) Tracker Service Protocol | [github.com/oiweiwei/msrpc/comt](./msrpc/dcom/comt) |
+| [MS-COM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-com) | Component Object Model Plus (COM+) Protocol | [github.com/oiweiwei/msrpc/com](./msrpc/dcom/com) |
 | [MS-CSRA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-csra) | Certificate Services Remote Administration Protocol | [github.com/oiweiwei/msrpc/csra](./msrpc/dcom/csra) |
 | [MS-CSVP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-csvp) | Failover Cluster: Setup and Validation Protocol (ClusPrep) | [github.com/oiweiwei/msrpc/csvp](./msrpc/dcom/csvp) |
+| [MS-DCOM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dcom) | Distributed Component Object Model (DCOM) Remote Protocol | [github.com/oiweiwei/msrpc/dcom](./msrpc/dcom) |
 | [MS-DFSRH](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dfsrh) | DFS Replication Helper Protocol | [github.com/oiweiwei/msrpc/dfsrh](./msrpc/dcom/dfsrh) |
 | [MS-DMRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dmrp) | Disk Management Remote Protocol | [github.com/oiweiwei/msrpc/dmrp](./msrpc/dcom/dmrp) |
 | [MS-FSRM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-fsrm) | File Server Resource Manager Protocol | [github.com/oiweiwei/msrpc/fsrm](./msrpc/dcom/fsrm) |
-| [MC-IISA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/mc-iisa) | Internet Information Services (IIS) Application Host COM Protocol | [github.com/oiweiwei/msrpc/iisa](./msrpc/dcom/iisa) |
 | [MS-IISS](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-iiss) | Internet Information Services (IIS) ServiceControl Protocol | [github.com/oiweiwei/msrpc/iiss](./msrpc/dcom/iiss) |
 | [MS-IMSA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-imsa) | Internet Information Services (IIS) IMSAdminBaseW Remote Protocol | [github.com/oiweiwei/msrpc/imsa](./msrpc/dcom/imsa) |
 | [MS-IOI](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-ioi) | IManagedObject Interface Protocol | [github.com/oiweiwei/msrpc/ioi](./msrpc/dcom/ioi) |
@@ -256,10 +262,16 @@ The set of changes includes:
 | [MS-PLA](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-pla) | Performance Logs and Alerts Protocol | [github.com/oiweiwei/msrpc/pla](./msrpc/dcom/pla) |
 | [MS-RAI](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rai) | Remote Assistance Initiation Protocol | [github.com/oiweiwei/msrpc/rai](./msrpc/dcom/rai) |
 | [MS-RDPESC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpesc) | Remote Desktop Protocol: Smart Card Virtual Channel Extension | [github.com/oiweiwei/msrpc/rdpesc](./msrpc/dcom/rdpesc) |
+| [MS-RRASM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rrasm) | Routing and Remote Access Server (RRAS) Management Protocol | [github.com/oiweiwei/msrpc/rrasm](./msrpc/dcom/rrasm) |
+| [MS-RSMP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rsmp) | Removable Storage Manager (RSM) Remote Protocol | [github.com/oiweiwei/msrpc/rsmp](./msrpc/dcom/rsmp) |
+| [MS-SCMP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-scmp) | Shadow Copy Management Protocol | [github.com/oiweiwei/msrpc/scmp](./msrpc/dcom/scmp) |
+| [MS-TPMVSC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-tpmvsc) | Trusted Platform Module (TPM) Virtual Smart Card Remote Protocol | [github.com/oiweiwei/msrpc/tpmvsc](./msrpc/dcom/tpmvsc) |
+| [MS-UAMG](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-uamg) | Update Agent Management Protocol | [github.com/oiweiwei/msrpc/uamg](./msrpc/dcom/uamg) |
 | [MS-VDS](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-vds) | Virtual Disk Service (VDS) Protocol | [github.com/oiweiwei/msrpc/vds](./msrpc/dcom/vds) |
 | [MS-WCCE](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wcce) | Windows Client Certificate Enrollment Protocol | [github.com/oiweiwei/msrpc/wcce](./msrpc/dcom/wcce) |
-| [MS-WMI](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wmi) | Windows Management Instrumentation Remote Protocol | [github.com/oiweiwei/msrpc/wmi](./msrpc/dcom/wmi) |
 | [MS-WMIO](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wmio) | Windows Management Instrumentation Encoding Version 1.0 Protocol | [github.com/oiweiwei/msrpc/wmio](./msrpc/dcom/wmio) |
+| [MS-WMI](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wmi) | Windows Management Instrumentation Remote Protocol | [github.com/oiweiwei/msrpc/wmi](./msrpc/dcom/wmi) |
+| [MS-WSRM](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wsrm) | Windows System Resource Manager (WSRM) Protocol | [github.com/oiweiwei/msrpc/wsrm](./msrpc/dcom/wsrm) |
 
 ### Documentation
 
@@ -296,8 +308,6 @@ this or that field.
  * Handle reserved arguments/structure fields used for `switch_is` and `size_is` statements.
 
  * Derive the type from field name, like `^f[A-Z]` -> `boolean`.
-
- * Pipes support
 
  * Callbacks Support / Server-Side Support
 

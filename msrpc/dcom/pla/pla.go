@@ -1,3 +1,8 @@
+// The pla package implements the PLA client protocol.
+//
+// # Introduction
+//
+// # Overview
 package pla
 
 import (
@@ -793,16 +798,18 @@ func (o *PerformanceCounterDataCollector) InterfacePointer() *dcom.InterfacePoin
 }
 
 func (o *PerformanceCounterDataCollector) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
+
 func (o *PerformanceCounterDataCollector) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -936,16 +943,18 @@ func (o *FolderActionCollection) InterfacePointer() *dcom.InterfacePointer {
 }
 
 func (o *FolderActionCollection) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
+
 func (o *FolderActionCollection) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -1107,16 +1116,18 @@ type ValueMapItem dcom.InterfacePointer
 func (o *ValueMapItem) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
 func (o *ValueMapItem) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
+
 func (o *ValueMapItem) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -1336,16 +1347,18 @@ func (o *ConfigurationDataCollector) InterfacePointer() *dcom.InterfacePointer {
 }
 
 func (o *ConfigurationDataCollector) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
+
 func (o *ConfigurationDataCollector) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -1488,16 +1501,18 @@ type Schedule dcom.InterfacePointer
 func (o *Schedule) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
 func (o *Schedule) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
+
 func (o *Schedule) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -1699,16 +1714,18 @@ type DataCollector dcom.InterfacePointer
 func (o *DataCollector) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
 func (o *DataCollector) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
+
 func (o *DataCollector) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -1941,16 +1958,18 @@ func (o *TraceDataProvider) InterfacePointer() *dcom.InterfacePointer {
 }
 
 func (o *TraceDataProvider) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
+
 func (o *TraceDataProvider) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2094,16 +2113,18 @@ type FolderAction dcom.InterfacePointer
 func (o *FolderAction) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
 func (o *FolderAction) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
+
 func (o *FolderAction) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2268,16 +2289,18 @@ func (o *APITracingDataCollector) InterfacePointer() *dcom.InterfacePointer {
 }
 
 func (o *APITracingDataCollector) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
+
 func (o *APITracingDataCollector) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2413,16 +2436,18 @@ func (o *DataCollectorCollection) InterfacePointer() *dcom.InterfacePointer {
 }
 
 func (o *DataCollectorCollection) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
+
 func (o *DataCollectorCollection) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2776,16 +2801,18 @@ func (o *TraceDataCollector) InterfacePointer() *dcom.InterfacePointer {
 }
 
 func (o *TraceDataCollector) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
+
 func (o *TraceDataCollector) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2950,16 +2977,18 @@ type ValueMap dcom.InterfacePointer
 func (o *ValueMap) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
 func (o *ValueMap) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
+
 func (o *ValueMap) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -3094,16 +3123,18 @@ func (o *DataCollectorSetCollection) InterfacePointer() *dcom.InterfacePointer {
 }
 
 func (o *DataCollectorSetCollection) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
+
 func (o *DataCollectorSetCollection) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -3307,16 +3338,18 @@ func (o *AlertDataCollector) InterfacePointer() *dcom.InterfacePointer {
 }
 
 func (o *AlertDataCollector) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
+
 func (o *AlertDataCollector) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -3534,16 +3567,18 @@ type DataManager dcom.InterfacePointer
 func (o *DataManager) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
 func (o *DataManager) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
+
 func (o *DataManager) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -3676,16 +3711,18 @@ func (o *ScheduleCollection) InterfacePointer() *dcom.InterfacePointer {
 }
 
 func (o *ScheduleCollection) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
+
 func (o *ScheduleCollection) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -4114,16 +4151,18 @@ func (o *DataCollectorSet) InterfacePointer() *dcom.InterfacePointer {
 }
 
 func (o *DataCollectorSet) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
+
 func (o *DataCollectorSet) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -4262,16 +4301,18 @@ func (o *TraceDataProviderCollection) InterfacePointer() *dcom.InterfacePointer 
 }
 
 func (o *TraceDataProviderCollection) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
+
 func (o *TraceDataProviderCollection) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{

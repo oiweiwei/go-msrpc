@@ -1,3 +1,8 @@
+// The ocspa package implements the OCSPA client protocol.
+//
+// # Introduction
+//
+// # Overview
 package ocspa
 
 import (
@@ -37,13 +42,14 @@ type CertTransportBlob struct {
 }
 
 func (o *CertTransportBlob) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Buffer != nil && o.Length == 0 {
 		o.Length = uint32(len(o.Buffer))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -178,16 +184,18 @@ type OCSPAdminD dcom.InterfacePointer
 func (o *OCSPAdminD) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
 func (o *OCSPAdminD) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
+
 func (o *OCSPAdminD) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{

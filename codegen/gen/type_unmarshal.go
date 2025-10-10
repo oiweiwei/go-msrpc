@@ -245,7 +245,7 @@ func (p *TypeGenerator) GenFieldUnmarshalNDR(ctx context.Context, field *midl.Fi
 			}
 		}
 
-		if isVarying {
+		if isVarying && !p.IsNotLastFixedArray(ctx, scopes, field) {
 
 			if !isConformant {
 				// initialize sizeInfo.
@@ -312,7 +312,7 @@ func (p *TypeGenerator) GenFieldUnmarshalNDR(ctx context.Context, field *midl.Fi
 			break
 		}
 
-		if scopes.Array().IsFixed() && !scopes.Dim().IsString {
+		if scopes.Array().IsFixed() && (!scopes.Dim().IsString || p.IsNotLastFixedArray(ctx, scopes, field)) {
 			p.P(name, "=", p.B("make", decl, scopes.Array().Size()))
 		} else {
 			szVar := p.IVar("sizeInfo", scopes.Dim().Dimension)
@@ -346,6 +346,27 @@ func (p *TypeGenerator) GenFieldUnmarshalNDR(ctx context.Context, field *midl.Fi
 			case midl.TypeChar, midl.TypeUChar, midl.TypeInt8, midl.TypeUint8:
 				p.P(origName, "=", p.B("strings.TrimRight", p.B("string", name), "ndr.ZeroString"))
 			}
+		}
+
+	case scopes.Is(midl.TypePipe):
+
+		{
+			p.If(name, "==", "nil", func() {
+				p.P(name, "=", p.B(p.GoScopeTypeNameWithN(ctx, p.Scope(), field, scopes, true, "New")))
+			})
+
+			field := p.GenPipeField(ctx, scopes.Type())
+			scopes := NewScopes(field.Scopes())
+
+			p.Range(func() {
+				p.P("var", "_chunk", p.GoFieldTypeName(ctx, NewScopes(field.Scopes()).Scope(), field))
+				p.GenFieldUnmarshalNDR(WithVarName(ctx, "_chunk"), field, scopes)
+				p.If(p.Len("_chunk"), "==", "0", "/* end */", func() {
+					p.P("break")
+				})
+
+				p.P(name + ".Append(_chunk)")
+			})
 		}
 
 	default:

@@ -1,3 +1,8 @@
+// The wdsc package implements the WDSC client protocol.
+//
+// # Introduction
+//
+// # Overview
 package wdsc
 
 import (

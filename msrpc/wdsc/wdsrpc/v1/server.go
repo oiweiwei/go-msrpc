@@ -47,12 +47,24 @@ func NewWdsRPCServerHandle(o WdsRPCServer) dcerpc.ServerHandle {
 func WdsRPCServerHandle(ctx context.Context, o WdsRPCServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // WdsRpcMessage
-		in := &MessageRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MessageOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Message(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MessageRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Message(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented WdsRpc
+type UnimplementedWdsRPCServer struct {
+}
+
+func (UnimplementedWdsRPCServer) Message(context.Context, *MessageRequest) (*MessageResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ WdsRPCServer = (*UnimplementedWdsRPCServer)(nil)

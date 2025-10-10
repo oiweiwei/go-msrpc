@@ -138,168 +138,286 @@ func DataCollectorServerHandle(ctx context.Context, o DataCollectorServer, opNum
 	}
 	switch opNum {
 	case 7: // DataCollectorSet
-		in := &GetDataCollectorSetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDataCollectorSetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDataCollectorSet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDataCollectorSetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDataCollectorSet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // Opnum8NotUsedOnWire
 		// Opnum8NotUsedOnWire
 		return nil, nil
 	case 9: // DataCollectorType
-		in := &GetDataCollectorTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDataCollectorTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDataCollectorType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDataCollectorTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDataCollectorType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // FileName
-		in := &GetFileNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFileNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFileName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFileNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFileName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // FileName
-		in := &SetFileNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFileNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFileName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFileNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFileName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // FileNameFormat
-		in := &GetFileNameFormatRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFileNameFormatOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFileNameFormat(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFileNameFormatRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFileNameFormat(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // FileNameFormat
-		in := &SetFileNameFormatRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFileNameFormatOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFileNameFormat(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFileNameFormatRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFileNameFormat(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // FileNameFormatPattern
-		in := &GetFileNameFormatPatternRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFileNameFormatPatternOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFileNameFormatPattern(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFileNameFormatPatternRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFileNameFormatPattern(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // FileNameFormatPattern
-		in := &SetFileNameFormatPatternRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFileNameFormatPatternOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFileNameFormatPattern(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFileNameFormatPatternRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFileNameFormatPattern(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // LatestOutputLocation
-		in := &GetLatestOutputLocationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLatestOutputLocationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLatestOutputLocation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLatestOutputLocationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLatestOutputLocation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // LatestOutputLocation
-		in := &SetLatestOutputLocationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetLatestOutputLocationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetLatestOutputLocation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetLatestOutputLocationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetLatestOutputLocation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // LogAppend
-		in := &GetLogAppendRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLogAppendOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLogAppend(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLogAppendRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLogAppend(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // LogAppend
-		in := &SetLogAppendRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetLogAppendOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetLogAppend(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetLogAppendRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetLogAppend(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // LogCircular
-		in := &GetLogCircularRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLogCircularOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLogCircular(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLogCircularRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLogCircular(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // LogCircular
-		in := &SetLogCircularRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetLogCircularOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetLogCircular(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetLogCircularRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetLogCircular(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // LogOverwrite
-		in := &GetLogOverwriteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLogOverwriteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLogOverwrite(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLogOverwriteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLogOverwrite(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // LogOverwrite
-		in := &SetLogOverwriteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetLogOverwriteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetLogOverwrite(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetLogOverwriteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetLogOverwrite(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // Name
-		in := &GetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // Name
-		in := &SetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // OutputLocation
-		in := &GetOutputLocationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetOutputLocationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetOutputLocation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetOutputLocationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetOutputLocation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // Index
-		in := &GetIndexRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetIndexOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetIndex(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetIndexRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetIndex(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // Opnum28NotUsedOnWire
 		// Opnum28NotUsedOnWire
 		return nil, nil
 	case 29: // Xml
-		in := &GetXMLRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetXMLOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetXML(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetXMLRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetXML(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // SetXml
-		in := &SetXMLRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetXMLOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetXML(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetXMLRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetXML(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // Opnum31NotUsedOnWire
 		// Opnum31NotUsedOnWire
 		return nil, nil
 	}
 	return nil, nil
 }
+
+// Unimplemented IDataCollector
+type UnimplementedDataCollectorServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedDataCollectorServer) GetDataCollectorSet(context.Context, *GetDataCollectorSetRequest) (*GetDataCollectorSetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) GetDataCollectorType(context.Context, *GetDataCollectorTypeRequest) (*GetDataCollectorTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) GetFileName(context.Context, *GetFileNameRequest) (*GetFileNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) SetFileName(context.Context, *SetFileNameRequest) (*SetFileNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) GetFileNameFormat(context.Context, *GetFileNameFormatRequest) (*GetFileNameFormatResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) SetFileNameFormat(context.Context, *SetFileNameFormatRequest) (*SetFileNameFormatResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) GetFileNameFormatPattern(context.Context, *GetFileNameFormatPatternRequest) (*GetFileNameFormatPatternResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) SetFileNameFormatPattern(context.Context, *SetFileNameFormatPatternRequest) (*SetFileNameFormatPatternResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) GetLatestOutputLocation(context.Context, *GetLatestOutputLocationRequest) (*GetLatestOutputLocationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) SetLatestOutputLocation(context.Context, *SetLatestOutputLocationRequest) (*SetLatestOutputLocationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) GetLogAppend(context.Context, *GetLogAppendRequest) (*GetLogAppendResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) SetLogAppend(context.Context, *SetLogAppendRequest) (*SetLogAppendResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) GetLogCircular(context.Context, *GetLogCircularRequest) (*GetLogCircularResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) SetLogCircular(context.Context, *SetLogCircularRequest) (*SetLogCircularResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) GetLogOverwrite(context.Context, *GetLogOverwriteRequest) (*GetLogOverwriteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) SetLogOverwrite(context.Context, *SetLogOverwriteRequest) (*SetLogOverwriteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) GetName(context.Context, *GetNameRequest) (*GetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) SetName(context.Context, *SetNameRequest) (*SetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) GetOutputLocation(context.Context, *GetOutputLocationRequest) (*GetOutputLocationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) GetIndex(context.Context, *GetIndexRequest) (*GetIndexResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) GetXML(context.Context, *GetXMLRequest) (*GetXMLResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorServer) SetXML(context.Context, *SetXMLRequest) (*SetXMLResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ DataCollectorServer = (*UnimplementedDataCollectorServer)(nil)

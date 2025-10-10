@@ -85,75 +85,133 @@ func ValueMapItemServerHandle(ctx context.Context, o ValueMapItemServer, opNum i
 	}
 	switch opNum {
 	case 7: // Description
-		in := &GetDescriptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDescriptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDescription(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDescriptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDescription(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // Description
-		in := &SetDescriptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDescriptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDescription(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDescriptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDescription(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Enabled
-		in := &GetEnabledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEnabledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEnabled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEnabledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEnabled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // Enabled
-		in := &SetEnabledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetEnabledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetEnabled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetEnabledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetEnabled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // Key
-		in := &GetKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // Key
-		in := &SetKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // Value
-		in := &GetValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // Value
-		in := &SetValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // ValueMapType
-		in := &GetValueMapTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetValueMapTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetValueMapType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetValueMapTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetValueMapType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // ValueMapType
-		in := &SetValueMapTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetValueMapTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetValueMapType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetValueMapTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetValueMapType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IValueMapItem
+type UnimplementedValueMapItemServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedValueMapItemServer) GetDescription(context.Context, *GetDescriptionRequest) (*GetDescriptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedValueMapItemServer) SetDescription(context.Context, *SetDescriptionRequest) (*SetDescriptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedValueMapItemServer) GetEnabled(context.Context, *GetEnabledRequest) (*GetEnabledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedValueMapItemServer) SetEnabled(context.Context, *SetEnabledRequest) (*SetEnabledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedValueMapItemServer) GetKey(context.Context, *GetKeyRequest) (*GetKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedValueMapItemServer) SetKey(context.Context, *SetKeyRequest) (*SetKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedValueMapItemServer) GetValue(context.Context, *GetValueRequest) (*GetValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedValueMapItemServer) SetValue(context.Context, *SetValueRequest) (*SetValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedValueMapItemServer) GetValueMapType(context.Context, *GetValueMapTypeRequest) (*GetValueMapTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedValueMapItemServer) SetValueMapType(context.Context, *SetValueMapTypeRequest) (*SetValueMapTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ValueMapItemServer = (*UnimplementedValueMapItemServer)(nil)

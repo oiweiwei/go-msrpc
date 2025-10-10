@@ -50,7 +50,7 @@ func (p *TypeGenerator) GenZeroArrayFieldMarhalNDR(ctx context.Context, field *m
 
 	idx := p.Var("i", len(index)+1)
 
-	if scopes.Array().IsFixed() && !scopes.Dim().IsString {
+	if scopes.Array().IsFixed() && (!scopes.Dim().IsString || p.IsNotLastFixedArray(ctx, scopes, field)) {
 		p.Block("for", idx, ":=", p.Len(name), ";", p.B("uint64", idx), "<", scopes.Array().Size(), ";", idx, "++", func() {
 			p.GenZeroFieldMarshalNDR(ctx, field, scopes.Next(), append(index, idx)...)
 		})

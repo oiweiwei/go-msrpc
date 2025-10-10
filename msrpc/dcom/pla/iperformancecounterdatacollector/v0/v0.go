@@ -84,6 +84,9 @@ type PerformanceCounterDataCollectorClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) PerformanceCounterDataCollectorClient
 }
@@ -99,7 +102,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) DataCollector() idata
 }
 
 func (o *xxx_DefaultPerformanceCounterDataCollectorClient) GetDataSourceName(ctx context.Context, in *GetDataSourceNameRequest, opts ...dcerpc.CallOption) (*GetDataSourceNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -119,7 +122,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) GetDataSourceName(ctx
 }
 
 func (o *xxx_DefaultPerformanceCounterDataCollectorClient) SetDataSourceName(ctx context.Context, in *SetDataSourceNameRequest, opts ...dcerpc.CallOption) (*SetDataSourceNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -139,7 +142,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) SetDataSourceName(ctx
 }
 
 func (o *xxx_DefaultPerformanceCounterDataCollectorClient) GetPerformanceCounters(ctx context.Context, in *GetPerformanceCountersRequest, opts ...dcerpc.CallOption) (*GetPerformanceCountersResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -159,7 +162,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) GetPerformanceCounter
 }
 
 func (o *xxx_DefaultPerformanceCounterDataCollectorClient) SetPerformanceCounters(ctx context.Context, in *SetPerformanceCountersRequest, opts ...dcerpc.CallOption) (*SetPerformanceCountersResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -179,7 +182,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) SetPerformanceCounter
 }
 
 func (o *xxx_DefaultPerformanceCounterDataCollectorClient) GetLogFileFormat(ctx context.Context, in *GetLogFileFormatRequest, opts ...dcerpc.CallOption) (*GetLogFileFormatResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -199,7 +202,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) GetLogFileFormat(ctx 
 }
 
 func (o *xxx_DefaultPerformanceCounterDataCollectorClient) SetLogFileFormat(ctx context.Context, in *SetLogFileFormatRequest, opts ...dcerpc.CallOption) (*SetLogFileFormatResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -219,7 +222,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) SetLogFileFormat(ctx 
 }
 
 func (o *xxx_DefaultPerformanceCounterDataCollectorClient) GetSampleInterval(ctx context.Context, in *GetSampleIntervalRequest, opts ...dcerpc.CallOption) (*GetSampleIntervalResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -239,7 +242,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) GetSampleInterval(ctx
 }
 
 func (o *xxx_DefaultPerformanceCounterDataCollectorClient) SetSampleInterval(ctx context.Context, in *SetSampleIntervalRequest, opts ...dcerpc.CallOption) (*SetSampleIntervalResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -259,7 +262,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) SetSampleInterval(ctx
 }
 
 func (o *xxx_DefaultPerformanceCounterDataCollectorClient) GetSegmentMaxRecords(ctx context.Context, in *GetSegmentMaxRecordsRequest, opts ...dcerpc.CallOption) (*GetSegmentMaxRecordsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -279,7 +282,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) GetSegmentMaxRecords(
 }
 
 func (o *xxx_DefaultPerformanceCounterDataCollectorClient) SetSegmentMaxRecords(ctx context.Context, in *SetSegmentMaxRecordsRequest, opts ...dcerpc.CallOption) (*SetSegmentMaxRecordsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -302,6 +305,10 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) AlterContext(ctx cont
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultPerformanceCounterDataCollectorClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultPerformanceCounterDataCollectorClient) IPID(ctx context.Context, ipid *dcom.IPID) PerformanceCounterDataCollectorClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -312,6 +319,7 @@ func (o *xxx_DefaultPerformanceCounterDataCollectorClient) IPID(ctx context.Cont
 		ipid:                ipid,
 	}
 }
+
 func NewPerformanceCounterDataCollectorClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (PerformanceCounterDataCollectorClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
@@ -507,13 +515,15 @@ type GetDataSourceNameRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetDataSourceNameRequest) xxx_ToOp(ctx context.Context) *xxx_GetDataSourceNameOperation {
+func (o *GetDataSourceNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDataSourceNameOperation) *xxx_GetDataSourceNameOperation {
+	if op == nil {
+		op = &xxx_GetDataSourceNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetDataSourceNameOperation{}
+		return op
 	}
-	return &xxx_GetDataSourceNameOperation{
-		This: o.This,
-	}
+	op.This = o.This
+	return op
 }
 
 func (o *GetDataSourceNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetDataSourceNameOperation) {
@@ -523,7 +533,7 @@ func (o *GetDataSourceNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetDa
 	o.This = op.This
 }
 func (o *GetDataSourceNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetDataSourceNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDataSourceNameOperation{}
@@ -543,15 +553,17 @@ type GetDataSourceNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetDataSourceNameResponse) xxx_ToOp(ctx context.Context) *xxx_GetDataSourceNameOperation {
+func (o *GetDataSourceNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDataSourceNameOperation) *xxx_GetDataSourceNameOperation {
+	if op == nil {
+		op = &xxx_GetDataSourceNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetDataSourceNameOperation{}
+		return op
 	}
-	return &xxx_GetDataSourceNameOperation{
-		That:   o.That,
-		DSN:    o.DSN,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.DSN = o.DSN
+	op.Return = o.Return
+	return op
 }
 
 func (o *GetDataSourceNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDataSourceNameOperation) {
@@ -563,7 +575,7 @@ func (o *GetDataSourceNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetD
 	o.Return = op.Return
 }
 func (o *GetDataSourceNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetDataSourceNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDataSourceNameOperation{}
@@ -747,14 +759,16 @@ type SetDataSourceNameRequest struct {
 	DSN  *oaut.String   `idl:"name:dsn" json:"dsn"`
 }
 
-func (o *SetDataSourceNameRequest) xxx_ToOp(ctx context.Context) *xxx_SetDataSourceNameOperation {
+func (o *SetDataSourceNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetDataSourceNameOperation) *xxx_SetDataSourceNameOperation {
+	if op == nil {
+		op = &xxx_SetDataSourceNameOperation{}
+	}
 	if o == nil {
-		return &xxx_SetDataSourceNameOperation{}
+		return op
 	}
-	return &xxx_SetDataSourceNameOperation{
-		This: o.This,
-		DSN:  o.DSN,
-	}
+	op.This = o.This
+	op.DSN = o.DSN
+	return op
 }
 
 func (o *SetDataSourceNameRequest) xxx_FromOp(ctx context.Context, op *xxx_SetDataSourceNameOperation) {
@@ -765,7 +779,7 @@ func (o *SetDataSourceNameRequest) xxx_FromOp(ctx context.Context, op *xxx_SetDa
 	o.DSN = op.DSN
 }
 func (o *SetDataSourceNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetDataSourceNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetDataSourceNameOperation{}
@@ -784,14 +798,16 @@ type SetDataSourceNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetDataSourceNameResponse) xxx_ToOp(ctx context.Context) *xxx_SetDataSourceNameOperation {
+func (o *SetDataSourceNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetDataSourceNameOperation) *xxx_SetDataSourceNameOperation {
+	if op == nil {
+		op = &xxx_SetDataSourceNameOperation{}
+	}
 	if o == nil {
-		return &xxx_SetDataSourceNameOperation{}
+		return op
 	}
-	return &xxx_SetDataSourceNameOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Return = o.Return
+	return op
 }
 
 func (o *SetDataSourceNameResponse) xxx_FromOp(ctx context.Context, op *xxx_SetDataSourceNameOperation) {
@@ -802,7 +818,7 @@ func (o *SetDataSourceNameResponse) xxx_FromOp(ctx context.Context, op *xxx_SetD
 	o.Return = op.Return
 }
 func (o *SetDataSourceNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetDataSourceNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetDataSourceNameOperation{}
@@ -985,13 +1001,15 @@ type GetPerformanceCountersRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetPerformanceCountersRequest) xxx_ToOp(ctx context.Context) *xxx_GetPerformanceCountersOperation {
+func (o *GetPerformanceCountersRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPerformanceCountersOperation) *xxx_GetPerformanceCountersOperation {
+	if op == nil {
+		op = &xxx_GetPerformanceCountersOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPerformanceCountersOperation{}
+		return op
 	}
-	return &xxx_GetPerformanceCountersOperation{
-		This: o.This,
-	}
+	op.This = o.This
+	return op
 }
 
 func (o *GetPerformanceCountersRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPerformanceCountersOperation) {
@@ -1001,7 +1019,7 @@ func (o *GetPerformanceCountersRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.This = op.This
 }
 func (o *GetPerformanceCountersRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPerformanceCountersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPerformanceCountersOperation{}
@@ -1021,15 +1039,17 @@ type GetPerformanceCountersResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPerformanceCountersResponse) xxx_ToOp(ctx context.Context) *xxx_GetPerformanceCountersOperation {
+func (o *GetPerformanceCountersResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPerformanceCountersOperation) *xxx_GetPerformanceCountersOperation {
+	if op == nil {
+		op = &xxx_GetPerformanceCountersOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPerformanceCountersOperation{}
+		return op
 	}
-	return &xxx_GetPerformanceCountersOperation{
-		That:     o.That,
-		Counters: o.Counters,
-		Return:   o.Return,
-	}
+	op.That = o.That
+	op.Counters = o.Counters
+	op.Return = o.Return
+	return op
 }
 
 func (o *GetPerformanceCountersResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPerformanceCountersOperation) {
@@ -1041,7 +1061,7 @@ func (o *GetPerformanceCountersResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *GetPerformanceCountersResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPerformanceCountersResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPerformanceCountersOperation{}
@@ -1225,14 +1245,16 @@ type SetPerformanceCountersRequest struct {
 	Counters *oaut.SafeArray `idl:"name:counters" json:"counters"`
 }
 
-func (o *SetPerformanceCountersRequest) xxx_ToOp(ctx context.Context) *xxx_SetPerformanceCountersOperation {
+func (o *SetPerformanceCountersRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPerformanceCountersOperation) *xxx_SetPerformanceCountersOperation {
+	if op == nil {
+		op = &xxx_SetPerformanceCountersOperation{}
+	}
 	if o == nil {
-		return &xxx_SetPerformanceCountersOperation{}
+		return op
 	}
-	return &xxx_SetPerformanceCountersOperation{
-		This:     o.This,
-		Counters: o.Counters,
-	}
+	op.This = o.This
+	op.Counters = o.Counters
+	return op
 }
 
 func (o *SetPerformanceCountersRequest) xxx_FromOp(ctx context.Context, op *xxx_SetPerformanceCountersOperation) {
@@ -1243,7 +1265,7 @@ func (o *SetPerformanceCountersRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Counters = op.Counters
 }
 func (o *SetPerformanceCountersRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetPerformanceCountersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetPerformanceCountersOperation{}
@@ -1262,14 +1284,16 @@ type SetPerformanceCountersResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetPerformanceCountersResponse) xxx_ToOp(ctx context.Context) *xxx_SetPerformanceCountersOperation {
+func (o *SetPerformanceCountersResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPerformanceCountersOperation) *xxx_SetPerformanceCountersOperation {
+	if op == nil {
+		op = &xxx_SetPerformanceCountersOperation{}
+	}
 	if o == nil {
-		return &xxx_SetPerformanceCountersOperation{}
+		return op
 	}
-	return &xxx_SetPerformanceCountersOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Return = o.Return
+	return op
 }
 
 func (o *SetPerformanceCountersResponse) xxx_FromOp(ctx context.Context, op *xxx_SetPerformanceCountersOperation) {
@@ -1280,7 +1304,7 @@ func (o *SetPerformanceCountersResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *SetPerformanceCountersResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetPerformanceCountersResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetPerformanceCountersOperation{}
@@ -1382,7 +1406,7 @@ func (o *xxx_GetLogFileFormatOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// format {out, retval} (1:{pointer=ref}*(1))(2:{alias=FileFormat}(enum))
 	{
-		if err := w.WriteData(uint16(o.Format)); err != nil {
+		if err := w.WriteEnum(uint16(o.Format)); err != nil {
 			return err
 		}
 	}
@@ -1410,7 +1434,7 @@ func (o *xxx_GetLogFileFormatOperation) UnmarshalNDRResponse(ctx context.Context
 	}
 	// format {out, retval} (1:{pointer=ref}*(1))(2:{alias=FileFormat}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Format)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Format)); err != nil {
 			return err
 		}
 	}
@@ -1429,13 +1453,15 @@ type GetLogFileFormatRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetLogFileFormatRequest) xxx_ToOp(ctx context.Context) *xxx_GetLogFileFormatOperation {
+func (o *GetLogFileFormatRequest) xxx_ToOp(ctx context.Context, op *xxx_GetLogFileFormatOperation) *xxx_GetLogFileFormatOperation {
+	if op == nil {
+		op = &xxx_GetLogFileFormatOperation{}
+	}
 	if o == nil {
-		return &xxx_GetLogFileFormatOperation{}
+		return op
 	}
-	return &xxx_GetLogFileFormatOperation{
-		This: o.This,
-	}
+	op.This = o.This
+	return op
 }
 
 func (o *GetLogFileFormatRequest) xxx_FromOp(ctx context.Context, op *xxx_GetLogFileFormatOperation) {
@@ -1445,7 +1471,7 @@ func (o *GetLogFileFormatRequest) xxx_FromOp(ctx context.Context, op *xxx_GetLog
 	o.This = op.This
 }
 func (o *GetLogFileFormatRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetLogFileFormatRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetLogFileFormatOperation{}
@@ -1465,15 +1491,17 @@ type GetLogFileFormatResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetLogFileFormatResponse) xxx_ToOp(ctx context.Context) *xxx_GetLogFileFormatOperation {
+func (o *GetLogFileFormatResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLogFileFormatOperation) *xxx_GetLogFileFormatOperation {
+	if op == nil {
+		op = &xxx_GetLogFileFormatOperation{}
+	}
 	if o == nil {
-		return &xxx_GetLogFileFormatOperation{}
+		return op
 	}
-	return &xxx_GetLogFileFormatOperation{
-		That:   o.That,
-		Format: o.Format,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Format = o.Format
+	op.Return = o.Return
+	return op
 }
 
 func (o *GetLogFileFormatResponse) xxx_FromOp(ctx context.Context, op *xxx_GetLogFileFormatOperation) {
@@ -1485,7 +1513,7 @@ func (o *GetLogFileFormatResponse) xxx_FromOp(ctx context.Context, op *xxx_GetLo
 	o.Return = op.Return
 }
 func (o *GetLogFileFormatResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetLogFileFormatResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetLogFileFormatOperation{}
@@ -1540,7 +1568,7 @@ func (o *xxx_SetLogFileFormatOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// format {in} (1:{alias=FileFormat}(enum))
 	{
-		if err := w.WriteData(uint16(o.Format)); err != nil {
+		if err := w.WriteEnum(uint16(o.Format)); err != nil {
 			return err
 		}
 	}
@@ -1562,7 +1590,7 @@ func (o *xxx_SetLogFileFormatOperation) UnmarshalNDRRequest(ctx context.Context,
 	}
 	// format {in} (1:{alias=FileFormat}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Format)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Format)); err != nil {
 			return err
 		}
 	}
@@ -1635,14 +1663,16 @@ type SetLogFileFormatRequest struct {
 	Format pla.FileFormat `idl:"name:format" json:"format"`
 }
 
-func (o *SetLogFileFormatRequest) xxx_ToOp(ctx context.Context) *xxx_SetLogFileFormatOperation {
+func (o *SetLogFileFormatRequest) xxx_ToOp(ctx context.Context, op *xxx_SetLogFileFormatOperation) *xxx_SetLogFileFormatOperation {
+	if op == nil {
+		op = &xxx_SetLogFileFormatOperation{}
+	}
 	if o == nil {
-		return &xxx_SetLogFileFormatOperation{}
+		return op
 	}
-	return &xxx_SetLogFileFormatOperation{
-		This:   o.This,
-		Format: o.Format,
-	}
+	op.This = o.This
+	op.Format = o.Format
+	return op
 }
 
 func (o *SetLogFileFormatRequest) xxx_FromOp(ctx context.Context, op *xxx_SetLogFileFormatOperation) {
@@ -1653,7 +1683,7 @@ func (o *SetLogFileFormatRequest) xxx_FromOp(ctx context.Context, op *xxx_SetLog
 	o.Format = op.Format
 }
 func (o *SetLogFileFormatRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetLogFileFormatRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetLogFileFormatOperation{}
@@ -1672,14 +1702,16 @@ type SetLogFileFormatResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetLogFileFormatResponse) xxx_ToOp(ctx context.Context) *xxx_SetLogFileFormatOperation {
+func (o *SetLogFileFormatResponse) xxx_ToOp(ctx context.Context, op *xxx_SetLogFileFormatOperation) *xxx_SetLogFileFormatOperation {
+	if op == nil {
+		op = &xxx_SetLogFileFormatOperation{}
+	}
 	if o == nil {
-		return &xxx_SetLogFileFormatOperation{}
+		return op
 	}
-	return &xxx_SetLogFileFormatOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Return = o.Return
+	return op
 }
 
 func (o *SetLogFileFormatResponse) xxx_FromOp(ctx context.Context, op *xxx_SetLogFileFormatOperation) {
@@ -1690,7 +1722,7 @@ func (o *SetLogFileFormatResponse) xxx_FromOp(ctx context.Context, op *xxx_SetLo
 	o.Return = op.Return
 }
 func (o *SetLogFileFormatResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetLogFileFormatResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetLogFileFormatOperation{}
@@ -1839,13 +1871,15 @@ type GetSampleIntervalRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetSampleIntervalRequest) xxx_ToOp(ctx context.Context) *xxx_GetSampleIntervalOperation {
+func (o *GetSampleIntervalRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSampleIntervalOperation) *xxx_GetSampleIntervalOperation {
+	if op == nil {
+		op = &xxx_GetSampleIntervalOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSampleIntervalOperation{}
+		return op
 	}
-	return &xxx_GetSampleIntervalOperation{
-		This: o.This,
-	}
+	op.This = o.This
+	return op
 }
 
 func (o *GetSampleIntervalRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSampleIntervalOperation) {
@@ -1855,7 +1889,7 @@ func (o *GetSampleIntervalRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSa
 	o.This = op.This
 }
 func (o *GetSampleIntervalRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSampleIntervalRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSampleIntervalOperation{}
@@ -1875,15 +1909,17 @@ type GetSampleIntervalResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSampleIntervalResponse) xxx_ToOp(ctx context.Context) *xxx_GetSampleIntervalOperation {
+func (o *GetSampleIntervalResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSampleIntervalOperation) *xxx_GetSampleIntervalOperation {
+	if op == nil {
+		op = &xxx_GetSampleIntervalOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSampleIntervalOperation{}
+		return op
 	}
-	return &xxx_GetSampleIntervalOperation{
-		That:     o.That,
-		Interval: o.Interval,
-		Return:   o.Return,
-	}
+	op.That = o.That
+	op.Interval = o.Interval
+	op.Return = o.Return
+	return op
 }
 
 func (o *GetSampleIntervalResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSampleIntervalOperation) {
@@ -1895,7 +1931,7 @@ func (o *GetSampleIntervalResponse) xxx_FromOp(ctx context.Context, op *xxx_GetS
 	o.Return = op.Return
 }
 func (o *GetSampleIntervalResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSampleIntervalResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSampleIntervalOperation{}
@@ -2045,14 +2081,16 @@ type SetSampleIntervalRequest struct {
 	Interval uint32         `idl:"name:interval" json:"interval"`
 }
 
-func (o *SetSampleIntervalRequest) xxx_ToOp(ctx context.Context) *xxx_SetSampleIntervalOperation {
+func (o *SetSampleIntervalRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSampleIntervalOperation) *xxx_SetSampleIntervalOperation {
+	if op == nil {
+		op = &xxx_SetSampleIntervalOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSampleIntervalOperation{}
+		return op
 	}
-	return &xxx_SetSampleIntervalOperation{
-		This:     o.This,
-		Interval: o.Interval,
-	}
+	op.This = o.This
+	op.Interval = o.Interval
+	return op
 }
 
 func (o *SetSampleIntervalRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSampleIntervalOperation) {
@@ -2063,7 +2101,7 @@ func (o *SetSampleIntervalRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSa
 	o.Interval = op.Interval
 }
 func (o *SetSampleIntervalRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetSampleIntervalRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSampleIntervalOperation{}
@@ -2082,14 +2120,16 @@ type SetSampleIntervalResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetSampleIntervalResponse) xxx_ToOp(ctx context.Context) *xxx_SetSampleIntervalOperation {
+func (o *SetSampleIntervalResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSampleIntervalOperation) *xxx_SetSampleIntervalOperation {
+	if op == nil {
+		op = &xxx_SetSampleIntervalOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSampleIntervalOperation{}
+		return op
 	}
-	return &xxx_SetSampleIntervalOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Return = o.Return
+	return op
 }
 
 func (o *SetSampleIntervalResponse) xxx_FromOp(ctx context.Context, op *xxx_SetSampleIntervalOperation) {
@@ -2100,7 +2140,7 @@ func (o *SetSampleIntervalResponse) xxx_FromOp(ctx context.Context, op *xxx_SetS
 	o.Return = op.Return
 }
 func (o *SetSampleIntervalResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetSampleIntervalResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSampleIntervalOperation{}
@@ -2249,13 +2289,15 @@ type GetSegmentMaxRecordsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetSegmentMaxRecordsRequest) xxx_ToOp(ctx context.Context) *xxx_GetSegmentMaxRecordsOperation {
+func (o *GetSegmentMaxRecordsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSegmentMaxRecordsOperation) *xxx_GetSegmentMaxRecordsOperation {
+	if op == nil {
+		op = &xxx_GetSegmentMaxRecordsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSegmentMaxRecordsOperation{}
+		return op
 	}
-	return &xxx_GetSegmentMaxRecordsOperation{
-		This: o.This,
-	}
+	op.This = o.This
+	return op
 }
 
 func (o *GetSegmentMaxRecordsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSegmentMaxRecordsOperation) {
@@ -2265,7 +2307,7 @@ func (o *GetSegmentMaxRecordsRequest) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.This = op.This
 }
 func (o *GetSegmentMaxRecordsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSegmentMaxRecordsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSegmentMaxRecordsOperation{}
@@ -2285,15 +2327,17 @@ type GetSegmentMaxRecordsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSegmentMaxRecordsResponse) xxx_ToOp(ctx context.Context) *xxx_GetSegmentMaxRecordsOperation {
+func (o *GetSegmentMaxRecordsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSegmentMaxRecordsOperation) *xxx_GetSegmentMaxRecordsOperation {
+	if op == nil {
+		op = &xxx_GetSegmentMaxRecordsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSegmentMaxRecordsOperation{}
+		return op
 	}
-	return &xxx_GetSegmentMaxRecordsOperation{
-		That:    o.That,
-		Records: o.Records,
-		Return:  o.Return,
-	}
+	op.That = o.That
+	op.Records = o.Records
+	op.Return = o.Return
+	return op
 }
 
 func (o *GetSegmentMaxRecordsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSegmentMaxRecordsOperation) {
@@ -2305,7 +2349,7 @@ func (o *GetSegmentMaxRecordsResponse) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.Return = op.Return
 }
 func (o *GetSegmentMaxRecordsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSegmentMaxRecordsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSegmentMaxRecordsOperation{}
@@ -2455,14 +2499,16 @@ type SetSegmentMaxRecordsRequest struct {
 	Records uint32         `idl:"name:records" json:"records"`
 }
 
-func (o *SetSegmentMaxRecordsRequest) xxx_ToOp(ctx context.Context) *xxx_SetSegmentMaxRecordsOperation {
+func (o *SetSegmentMaxRecordsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSegmentMaxRecordsOperation) *xxx_SetSegmentMaxRecordsOperation {
+	if op == nil {
+		op = &xxx_SetSegmentMaxRecordsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSegmentMaxRecordsOperation{}
+		return op
 	}
-	return &xxx_SetSegmentMaxRecordsOperation{
-		This:    o.This,
-		Records: o.Records,
-	}
+	op.This = o.This
+	op.Records = o.Records
+	return op
 }
 
 func (o *SetSegmentMaxRecordsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSegmentMaxRecordsOperation) {
@@ -2473,7 +2519,7 @@ func (o *SetSegmentMaxRecordsRequest) xxx_FromOp(ctx context.Context, op *xxx_Se
 	o.Records = op.Records
 }
 func (o *SetSegmentMaxRecordsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetSegmentMaxRecordsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSegmentMaxRecordsOperation{}
@@ -2492,14 +2538,16 @@ type SetSegmentMaxRecordsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetSegmentMaxRecordsResponse) xxx_ToOp(ctx context.Context) *xxx_SetSegmentMaxRecordsOperation {
+func (o *SetSegmentMaxRecordsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSegmentMaxRecordsOperation) *xxx_SetSegmentMaxRecordsOperation {
+	if op == nil {
+		op = &xxx_SetSegmentMaxRecordsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSegmentMaxRecordsOperation{}
+		return op
 	}
-	return &xxx_SetSegmentMaxRecordsOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Return = o.Return
+	return op
 }
 
 func (o *SetSegmentMaxRecordsResponse) xxx_FromOp(ctx context.Context, op *xxx_SetSegmentMaxRecordsOperation) {
@@ -2510,7 +2558,7 @@ func (o *SetSegmentMaxRecordsResponse) xxx_FromOp(ctx context.Context, op *xxx_S
 	o.Return = op.Return
 }
 func (o *SetSegmentMaxRecordsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetSegmentMaxRecordsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSegmentMaxRecordsOperation{}

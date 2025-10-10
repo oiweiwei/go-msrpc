@@ -78,6 +78,9 @@ type ScheduleClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) ScheduleClient
 }
@@ -93,7 +96,7 @@ func (o *xxx_DefaultScheduleClient) Dispatch() idispatch.DispatchClient {
 }
 
 func (o *xxx_DefaultScheduleClient) GetStartDate(ctx context.Context, in *GetStartDateRequest, opts ...dcerpc.CallOption) (*GetStartDateResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -113,7 +116,7 @@ func (o *xxx_DefaultScheduleClient) GetStartDate(ctx context.Context, in *GetSta
 }
 
 func (o *xxx_DefaultScheduleClient) SetStartDate(ctx context.Context, in *SetStartDateRequest, opts ...dcerpc.CallOption) (*SetStartDateResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -133,7 +136,7 @@ func (o *xxx_DefaultScheduleClient) SetStartDate(ctx context.Context, in *SetSta
 }
 
 func (o *xxx_DefaultScheduleClient) GetEndDate(ctx context.Context, in *GetEndDateRequest, opts ...dcerpc.CallOption) (*GetEndDateResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -153,7 +156,7 @@ func (o *xxx_DefaultScheduleClient) GetEndDate(ctx context.Context, in *GetEndDa
 }
 
 func (o *xxx_DefaultScheduleClient) SetEndDate(ctx context.Context, in *SetEndDateRequest, opts ...dcerpc.CallOption) (*SetEndDateResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -173,7 +176,7 @@ func (o *xxx_DefaultScheduleClient) SetEndDate(ctx context.Context, in *SetEndDa
 }
 
 func (o *xxx_DefaultScheduleClient) GetStartTime(ctx context.Context, in *GetStartTimeRequest, opts ...dcerpc.CallOption) (*GetStartTimeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -193,7 +196,7 @@ func (o *xxx_DefaultScheduleClient) GetStartTime(ctx context.Context, in *GetSta
 }
 
 func (o *xxx_DefaultScheduleClient) SetStartTime(ctx context.Context, in *SetStartTimeRequest, opts ...dcerpc.CallOption) (*SetStartTimeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -213,7 +216,7 @@ func (o *xxx_DefaultScheduleClient) SetStartTime(ctx context.Context, in *SetSta
 }
 
 func (o *xxx_DefaultScheduleClient) GetDays(ctx context.Context, in *GetDaysRequest, opts ...dcerpc.CallOption) (*GetDaysResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -233,7 +236,7 @@ func (o *xxx_DefaultScheduleClient) GetDays(ctx context.Context, in *GetDaysRequ
 }
 
 func (o *xxx_DefaultScheduleClient) SetDays(ctx context.Context, in *SetDaysRequest, opts ...dcerpc.CallOption) (*SetDaysResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -256,6 +259,10 @@ func (o *xxx_DefaultScheduleClient) AlterContext(ctx context.Context, opts ...dc
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultScheduleClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultScheduleClient) IPID(ctx context.Context, ipid *dcom.IPID) ScheduleClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -266,6 +273,7 @@ func (o *xxx_DefaultScheduleClient) IPID(ctx context.Context, ipid *dcom.IPID) S
 		ipid:           ipid,
 	}
 }
+
 func NewScheduleClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ScheduleClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
@@ -459,13 +467,15 @@ type GetStartDateRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetStartDateRequest) xxx_ToOp(ctx context.Context) *xxx_GetStartDateOperation {
+func (o *GetStartDateRequest) xxx_ToOp(ctx context.Context, op *xxx_GetStartDateOperation) *xxx_GetStartDateOperation {
+	if op == nil {
+		op = &xxx_GetStartDateOperation{}
+	}
 	if o == nil {
-		return &xxx_GetStartDateOperation{}
+		return op
 	}
-	return &xxx_GetStartDateOperation{
-		This: o.This,
-	}
+	op.This = o.This
+	return op
 }
 
 func (o *GetStartDateRequest) xxx_FromOp(ctx context.Context, op *xxx_GetStartDateOperation) {
@@ -475,7 +485,7 @@ func (o *GetStartDateRequest) xxx_FromOp(ctx context.Context, op *xxx_GetStartDa
 	o.This = op.This
 }
 func (o *GetStartDateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetStartDateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetStartDateOperation{}
@@ -495,15 +505,17 @@ type GetStartDateResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetStartDateResponse) xxx_ToOp(ctx context.Context) *xxx_GetStartDateOperation {
+func (o *GetStartDateResponse) xxx_ToOp(ctx context.Context, op *xxx_GetStartDateOperation) *xxx_GetStartDateOperation {
+	if op == nil {
+		op = &xxx_GetStartDateOperation{}
+	}
 	if o == nil {
-		return &xxx_GetStartDateOperation{}
+		return op
 	}
-	return &xxx_GetStartDateOperation{
-		That:   o.That,
-		Start:  o.Start,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Start = o.Start
+	op.Return = o.Return
+	return op
 }
 
 func (o *GetStartDateResponse) xxx_FromOp(ctx context.Context, op *xxx_GetStartDateOperation) {
@@ -515,7 +527,7 @@ func (o *GetStartDateResponse) xxx_FromOp(ctx context.Context, op *xxx_GetStartD
 	o.Return = op.Return
 }
 func (o *GetStartDateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetStartDateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetStartDateOperation{}
@@ -678,14 +690,16 @@ type SetStartDateRequest struct {
 	Start *oaut.Variant  `idl:"name:start" json:"start"`
 }
 
-func (o *SetStartDateRequest) xxx_ToOp(ctx context.Context) *xxx_SetStartDateOperation {
+func (o *SetStartDateRequest) xxx_ToOp(ctx context.Context, op *xxx_SetStartDateOperation) *xxx_SetStartDateOperation {
+	if op == nil {
+		op = &xxx_SetStartDateOperation{}
+	}
 	if o == nil {
-		return &xxx_SetStartDateOperation{}
+		return op
 	}
-	return &xxx_SetStartDateOperation{
-		This:  o.This,
-		Start: o.Start,
-	}
+	op.This = o.This
+	op.Start = o.Start
+	return op
 }
 
 func (o *SetStartDateRequest) xxx_FromOp(ctx context.Context, op *xxx_SetStartDateOperation) {
@@ -696,7 +710,7 @@ func (o *SetStartDateRequest) xxx_FromOp(ctx context.Context, op *xxx_SetStartDa
 	o.Start = op.Start
 }
 func (o *SetStartDateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetStartDateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetStartDateOperation{}
@@ -715,14 +729,16 @@ type SetStartDateResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetStartDateResponse) xxx_ToOp(ctx context.Context) *xxx_SetStartDateOperation {
+func (o *SetStartDateResponse) xxx_ToOp(ctx context.Context, op *xxx_SetStartDateOperation) *xxx_SetStartDateOperation {
+	if op == nil {
+		op = &xxx_SetStartDateOperation{}
+	}
 	if o == nil {
-		return &xxx_SetStartDateOperation{}
+		return op
 	}
-	return &xxx_SetStartDateOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Return = o.Return
+	return op
 }
 
 func (o *SetStartDateResponse) xxx_FromOp(ctx context.Context, op *xxx_SetStartDateOperation) {
@@ -733,7 +749,7 @@ func (o *SetStartDateResponse) xxx_FromOp(ctx context.Context, op *xxx_SetStartD
 	o.Return = op.Return
 }
 func (o *SetStartDateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetStartDateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetStartDateOperation{}
@@ -914,13 +930,15 @@ type GetEndDateRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetEndDateRequest) xxx_ToOp(ctx context.Context) *xxx_GetEndDateOperation {
+func (o *GetEndDateRequest) xxx_ToOp(ctx context.Context, op *xxx_GetEndDateOperation) *xxx_GetEndDateOperation {
+	if op == nil {
+		op = &xxx_GetEndDateOperation{}
+	}
 	if o == nil {
-		return &xxx_GetEndDateOperation{}
+		return op
 	}
-	return &xxx_GetEndDateOperation{
-		This: o.This,
-	}
+	op.This = o.This
+	return op
 }
 
 func (o *GetEndDateRequest) xxx_FromOp(ctx context.Context, op *xxx_GetEndDateOperation) {
@@ -930,7 +948,7 @@ func (o *GetEndDateRequest) xxx_FromOp(ctx context.Context, op *xxx_GetEndDateOp
 	o.This = op.This
 }
 func (o *GetEndDateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetEndDateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetEndDateOperation{}
@@ -950,15 +968,17 @@ type GetEndDateResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetEndDateResponse) xxx_ToOp(ctx context.Context) *xxx_GetEndDateOperation {
+func (o *GetEndDateResponse) xxx_ToOp(ctx context.Context, op *xxx_GetEndDateOperation) *xxx_GetEndDateOperation {
+	if op == nil {
+		op = &xxx_GetEndDateOperation{}
+	}
 	if o == nil {
-		return &xxx_GetEndDateOperation{}
+		return op
 	}
-	return &xxx_GetEndDateOperation{
-		That:   o.That,
-		End:    o.End,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.End = o.End
+	op.Return = o.Return
+	return op
 }
 
 func (o *GetEndDateResponse) xxx_FromOp(ctx context.Context, op *xxx_GetEndDateOperation) {
@@ -970,7 +990,7 @@ func (o *GetEndDateResponse) xxx_FromOp(ctx context.Context, op *xxx_GetEndDateO
 	o.Return = op.Return
 }
 func (o *GetEndDateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetEndDateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetEndDateOperation{}
@@ -1133,14 +1153,16 @@ type SetEndDateRequest struct {
 	End  *oaut.Variant  `idl:"name:end" json:"end"`
 }
 
-func (o *SetEndDateRequest) xxx_ToOp(ctx context.Context) *xxx_SetEndDateOperation {
+func (o *SetEndDateRequest) xxx_ToOp(ctx context.Context, op *xxx_SetEndDateOperation) *xxx_SetEndDateOperation {
+	if op == nil {
+		op = &xxx_SetEndDateOperation{}
+	}
 	if o == nil {
-		return &xxx_SetEndDateOperation{}
+		return op
 	}
-	return &xxx_SetEndDateOperation{
-		This: o.This,
-		End:  o.End,
-	}
+	op.This = o.This
+	op.End = o.End
+	return op
 }
 
 func (o *SetEndDateRequest) xxx_FromOp(ctx context.Context, op *xxx_SetEndDateOperation) {
@@ -1151,7 +1173,7 @@ func (o *SetEndDateRequest) xxx_FromOp(ctx context.Context, op *xxx_SetEndDateOp
 	o.End = op.End
 }
 func (o *SetEndDateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetEndDateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetEndDateOperation{}
@@ -1170,14 +1192,16 @@ type SetEndDateResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetEndDateResponse) xxx_ToOp(ctx context.Context) *xxx_SetEndDateOperation {
+func (o *SetEndDateResponse) xxx_ToOp(ctx context.Context, op *xxx_SetEndDateOperation) *xxx_SetEndDateOperation {
+	if op == nil {
+		op = &xxx_SetEndDateOperation{}
+	}
 	if o == nil {
-		return &xxx_SetEndDateOperation{}
+		return op
 	}
-	return &xxx_SetEndDateOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Return = o.Return
+	return op
 }
 
 func (o *SetEndDateResponse) xxx_FromOp(ctx context.Context, op *xxx_SetEndDateOperation) {
@@ -1188,7 +1212,7 @@ func (o *SetEndDateResponse) xxx_FromOp(ctx context.Context, op *xxx_SetEndDateO
 	o.Return = op.Return
 }
 func (o *SetEndDateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetEndDateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetEndDateOperation{}
@@ -1369,13 +1393,15 @@ type GetStartTimeRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetStartTimeRequest) xxx_ToOp(ctx context.Context) *xxx_GetStartTimeOperation {
+func (o *GetStartTimeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetStartTimeOperation) *xxx_GetStartTimeOperation {
+	if op == nil {
+		op = &xxx_GetStartTimeOperation{}
+	}
 	if o == nil {
-		return &xxx_GetStartTimeOperation{}
+		return op
 	}
-	return &xxx_GetStartTimeOperation{
-		This: o.This,
-	}
+	op.This = o.This
+	return op
 }
 
 func (o *GetStartTimeRequest) xxx_FromOp(ctx context.Context, op *xxx_GetStartTimeOperation) {
@@ -1385,7 +1411,7 @@ func (o *GetStartTimeRequest) xxx_FromOp(ctx context.Context, op *xxx_GetStartTi
 	o.This = op.This
 }
 func (o *GetStartTimeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetStartTimeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetStartTimeOperation{}
@@ -1405,15 +1431,17 @@ type GetStartTimeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetStartTimeResponse) xxx_ToOp(ctx context.Context) *xxx_GetStartTimeOperation {
+func (o *GetStartTimeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetStartTimeOperation) *xxx_GetStartTimeOperation {
+	if op == nil {
+		op = &xxx_GetStartTimeOperation{}
+	}
 	if o == nil {
-		return &xxx_GetStartTimeOperation{}
+		return op
 	}
-	return &xxx_GetStartTimeOperation{
-		That:   o.That,
-		Start:  o.Start,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Start = o.Start
+	op.Return = o.Return
+	return op
 }
 
 func (o *GetStartTimeResponse) xxx_FromOp(ctx context.Context, op *xxx_GetStartTimeOperation) {
@@ -1425,7 +1453,7 @@ func (o *GetStartTimeResponse) xxx_FromOp(ctx context.Context, op *xxx_GetStartT
 	o.Return = op.Return
 }
 func (o *GetStartTimeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetStartTimeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetStartTimeOperation{}
@@ -1588,14 +1616,16 @@ type SetStartTimeRequest struct {
 	Start *oaut.Variant  `idl:"name:start" json:"start"`
 }
 
-func (o *SetStartTimeRequest) xxx_ToOp(ctx context.Context) *xxx_SetStartTimeOperation {
+func (o *SetStartTimeRequest) xxx_ToOp(ctx context.Context, op *xxx_SetStartTimeOperation) *xxx_SetStartTimeOperation {
+	if op == nil {
+		op = &xxx_SetStartTimeOperation{}
+	}
 	if o == nil {
-		return &xxx_SetStartTimeOperation{}
+		return op
 	}
-	return &xxx_SetStartTimeOperation{
-		This:  o.This,
-		Start: o.Start,
-	}
+	op.This = o.This
+	op.Start = o.Start
+	return op
 }
 
 func (o *SetStartTimeRequest) xxx_FromOp(ctx context.Context, op *xxx_SetStartTimeOperation) {
@@ -1606,7 +1636,7 @@ func (o *SetStartTimeRequest) xxx_FromOp(ctx context.Context, op *xxx_SetStartTi
 	o.Start = op.Start
 }
 func (o *SetStartTimeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetStartTimeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetStartTimeOperation{}
@@ -1625,14 +1655,16 @@ type SetStartTimeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetStartTimeResponse) xxx_ToOp(ctx context.Context) *xxx_SetStartTimeOperation {
+func (o *SetStartTimeResponse) xxx_ToOp(ctx context.Context, op *xxx_SetStartTimeOperation) *xxx_SetStartTimeOperation {
+	if op == nil {
+		op = &xxx_SetStartTimeOperation{}
+	}
 	if o == nil {
-		return &xxx_SetStartTimeOperation{}
+		return op
 	}
-	return &xxx_SetStartTimeOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Return = o.Return
+	return op
 }
 
 func (o *SetStartTimeResponse) xxx_FromOp(ctx context.Context, op *xxx_SetStartTimeOperation) {
@@ -1643,7 +1675,7 @@ func (o *SetStartTimeResponse) xxx_FromOp(ctx context.Context, op *xxx_SetStartT
 	o.Return = op.Return
 }
 func (o *SetStartTimeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetStartTimeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetStartTimeOperation{}
@@ -1743,7 +1775,7 @@ func (o *xxx_GetDaysOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 	}
 	// days {out, retval} (1:{pointer=ref}*(1))(2:{alias=WeekDays}(enum))
 	{
-		if err := w.WriteData(uint16(o.Days)); err != nil {
+		if err := w.WriteEnum(uint16(o.Days)); err != nil {
 			return err
 		}
 	}
@@ -1771,7 +1803,7 @@ func (o *xxx_GetDaysOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 	}
 	// days {out, retval} (1:{pointer=ref}*(1))(2:{alias=WeekDays}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Days)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Days)); err != nil {
 			return err
 		}
 	}
@@ -1790,13 +1822,15 @@ type GetDaysRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetDaysRequest) xxx_ToOp(ctx context.Context) *xxx_GetDaysOperation {
+func (o *GetDaysRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDaysOperation) *xxx_GetDaysOperation {
+	if op == nil {
+		op = &xxx_GetDaysOperation{}
+	}
 	if o == nil {
-		return &xxx_GetDaysOperation{}
+		return op
 	}
-	return &xxx_GetDaysOperation{
-		This: o.This,
-	}
+	op.This = o.This
+	return op
 }
 
 func (o *GetDaysRequest) xxx_FromOp(ctx context.Context, op *xxx_GetDaysOperation) {
@@ -1806,7 +1840,7 @@ func (o *GetDaysRequest) xxx_FromOp(ctx context.Context, op *xxx_GetDaysOperatio
 	o.This = op.This
 }
 func (o *GetDaysRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetDaysRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDaysOperation{}
@@ -1826,15 +1860,17 @@ type GetDaysResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetDaysResponse) xxx_ToOp(ctx context.Context) *xxx_GetDaysOperation {
+func (o *GetDaysResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDaysOperation) *xxx_GetDaysOperation {
+	if op == nil {
+		op = &xxx_GetDaysOperation{}
+	}
 	if o == nil {
-		return &xxx_GetDaysOperation{}
+		return op
 	}
-	return &xxx_GetDaysOperation{
-		That:   o.That,
-		Days:   o.Days,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Days = o.Days
+	op.Return = o.Return
+	return op
 }
 
 func (o *GetDaysResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDaysOperation) {
@@ -1846,7 +1882,7 @@ func (o *GetDaysResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDaysOperati
 	o.Return = op.Return
 }
 func (o *GetDaysResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetDaysResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDaysOperation{}
@@ -1899,7 +1935,7 @@ func (o *xxx_SetDaysOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 	}
 	// days {in} (1:{alias=WeekDays}(enum))
 	{
-		if err := w.WriteData(uint16(o.Days)); err != nil {
+		if err := w.WriteEnum(uint16(o.Days)); err != nil {
 			return err
 		}
 	}
@@ -1921,7 +1957,7 @@ func (o *xxx_SetDaysOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 	}
 	// days {in} (1:{alias=WeekDays}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Days)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Days)); err != nil {
 			return err
 		}
 	}
@@ -1994,14 +2030,16 @@ type SetDaysRequest struct {
 	Days pla.WeekDays   `idl:"name:days" json:"days"`
 }
 
-func (o *SetDaysRequest) xxx_ToOp(ctx context.Context) *xxx_SetDaysOperation {
+func (o *SetDaysRequest) xxx_ToOp(ctx context.Context, op *xxx_SetDaysOperation) *xxx_SetDaysOperation {
+	if op == nil {
+		op = &xxx_SetDaysOperation{}
+	}
 	if o == nil {
-		return &xxx_SetDaysOperation{}
+		return op
 	}
-	return &xxx_SetDaysOperation{
-		This: o.This,
-		Days: o.Days,
-	}
+	op.This = o.This
+	op.Days = o.Days
+	return op
 }
 
 func (o *SetDaysRequest) xxx_FromOp(ctx context.Context, op *xxx_SetDaysOperation) {
@@ -2012,7 +2050,7 @@ func (o *SetDaysRequest) xxx_FromOp(ctx context.Context, op *xxx_SetDaysOperatio
 	o.Days = op.Days
 }
 func (o *SetDaysRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetDaysRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetDaysOperation{}
@@ -2031,14 +2069,16 @@ type SetDaysResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetDaysResponse) xxx_ToOp(ctx context.Context) *xxx_SetDaysOperation {
+func (o *SetDaysResponse) xxx_ToOp(ctx context.Context, op *xxx_SetDaysOperation) *xxx_SetDaysOperation {
+	if op == nil {
+		op = &xxx_SetDaysOperation{}
+	}
 	if o == nil {
-		return &xxx_SetDaysOperation{}
+		return op
 	}
-	return &xxx_SetDaysOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Return = o.Return
+	return op
 }
 
 func (o *SetDaysResponse) xxx_FromOp(ctx context.Context, op *xxx_SetDaysOperation) {
@@ -2049,7 +2089,7 @@ func (o *SetDaysResponse) xxx_FromOp(ctx context.Context, op *xxx_SetDaysOperati
 	o.Return = op.Return
 }
 func (o *SetDaysResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetDaysResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetDaysOperation{}

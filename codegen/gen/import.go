@@ -54,6 +54,11 @@ var (
 		Guard: "hex.DecodeString",
 	}
 
+	SyncImport = Import{
+		Name:  "sync",
+		Guard: "&sync.Mutex{}",
+	}
+
 	DefaultImports = []Import{
 		{
 			Name:  "context",

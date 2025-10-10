@@ -60,9 +60,9 @@ interface IEnumConnections : IUnknown
     typedef struct tagCONNECTDATA {
         IUnknown *  pUnk;
         DWORD       dwCookie;
-    } CONNECTDATA;
-    typedef struct tagCONNECTDATA * PCONNECTDATA;
-    typedef struct tagCONNECTDATA * LPCONNECTDATA;
+    } CONNECTDATA, *PCONNECTDATA, *LPCONNECTDATA;
+    // typedef struct tagCONNECTDATA * PCONNECTDATA, * LPCONNECTDATA;
+    // typedef struct tagCONNECTDATA * LPCONNECTDATA;
    
     HRESULT Next(
         [in]  ULONG cConnections,

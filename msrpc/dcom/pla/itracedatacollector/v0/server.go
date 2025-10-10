@@ -227,257 +227,430 @@ func TraceDataCollectorServerHandle(ctx context.Context, o TraceDataCollectorSer
 	}
 	switch opNum {
 	case 32: // BufferSize
-		in := &GetBufferSizeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetBufferSizeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetBufferSize(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetBufferSizeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetBufferSize(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // BufferSize
-		in := &SetBufferSizeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetBufferSizeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetBufferSize(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetBufferSizeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetBufferSize(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // BuffersLost
-		in := &GetBuffersLostRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetBuffersLostOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetBuffersLost(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetBuffersLostRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetBuffersLost(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // Opnum35NotUsedOnWire
 		// Opnum35NotUsedOnWire
 		return nil, nil
 	case 36: // BuffersWritten
-		in := &GetBuffersWrittenRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetBuffersWrittenOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetBuffersWritten(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetBuffersWrittenRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetBuffersWritten(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // Opnum37NotUsedOnWire
 		// Opnum37NotUsedOnWire
 		return nil, nil
 	case 38: // ClockType
-		in := &GetClockTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetClockTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetClockType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetClockTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetClockType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // ClockType
-		in := &SetClockTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetClockTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetClockType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetClockTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetClockType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 40: // EventsLost
-		in := &GetEventsLostRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEventsLostOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEventsLost(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEventsLostRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEventsLost(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 41: // Opnum41NotUsedOnWire
 		// Opnum41NotUsedOnWire
 		return nil, nil
 	case 42: // ExtendedModes
-		in := &GetExtendedModesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetExtendedModesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetExtendedModes(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetExtendedModesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetExtendedModes(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 43: // ExtendedModes
-		in := &SetExtendedModesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetExtendedModesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetExtendedModes(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetExtendedModesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetExtendedModes(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 44: // FlushTimer
-		in := &GetFlushTimerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFlushTimerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFlushTimer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFlushTimerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFlushTimer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 45: // FlushTimer
-		in := &SetFlushTimerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFlushTimerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFlushTimer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFlushTimerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFlushTimer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 46: // FreeBuffers
-		in := &GetFreeBuffersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFreeBuffersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFreeBuffers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFreeBuffersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFreeBuffers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 47: // Opnum47NotUsedOnWire
 		// Opnum47NotUsedOnWire
 		return nil, nil
 	case 48: // Guid
-		in := &GetGUIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetGUIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetGUID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetGUIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetGUID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 49: // Guid
-		in := &SetGUIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetGUIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetGUID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetGUIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetGUID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 50: // IsKernelTrace
-		in := &GetIsKernelTraceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetIsKernelTraceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetIsKernelTrace(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetIsKernelTraceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetIsKernelTrace(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 51: // MaximumBuffers
-		in := &GetMaximumBuffersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMaximumBuffersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMaximumBuffers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMaximumBuffersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMaximumBuffers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 52: // MaximumBuffers
-		in := &SetMaximumBuffersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMaximumBuffersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMaximumBuffers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMaximumBuffersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMaximumBuffers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 53: // MinimumBuffers
-		in := &GetMinimumBuffersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMinimumBuffersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMinimumBuffers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMinimumBuffersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMinimumBuffers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 54: // MinimumBuffers
-		in := &SetMinimumBuffersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMinimumBuffersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMinimumBuffers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMinimumBuffersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMinimumBuffers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 55: // NumberOfBuffers
-		in := &GetNumberOfBuffersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNumberOfBuffersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNumberOfBuffers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNumberOfBuffersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNumberOfBuffers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 56: // NumberOfBuffers
-		in := &SetNumberOfBuffersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetNumberOfBuffersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetNumberOfBuffers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetNumberOfBuffersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetNumberOfBuffers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 57: // PreallocateFile
-		in := &GetPreallocateFileRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPreallocateFileOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPreallocateFile(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPreallocateFileRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPreallocateFile(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 58: // PreallocateFile
-		in := &SetPreallocateFileRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPreallocateFileOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetPreallocateFile(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPreallocateFileRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPreallocateFile(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 59: // ProcessMode
-		in := &GetProcessModeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetProcessModeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProcessMode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetProcessModeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProcessMode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 60: // ProcessMode
-		in := &SetProcessModeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetProcessModeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetProcessMode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetProcessModeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetProcessMode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 61: // RealTimeBuffersLost
-		in := &GetRealTimeBuffersLostRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRealTimeBuffersLostOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRealTimeBuffersLost(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRealTimeBuffersLostRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRealTimeBuffersLost(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 62: // Opnum62NotUsedOnWire
 		// Opnum62NotUsedOnWire
 		return nil, nil
 	case 63: // SessionId
-		in := &GetSessionIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSessionIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSessionID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSessionIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSessionID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 64: // Opnum64NotUsedOnWire
 		// Opnum64NotUsedOnWire
 		return nil, nil
 	case 65: // SessionName
-		in := &GetSessionNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSessionNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSessionName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSessionNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSessionName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 66: // SessionName
-		in := &SetSessionNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSessionNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSessionName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSessionNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSessionName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 67: // SessionThreadId
-		in := &GetSessionThreadIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSessionThreadIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSessionThreadID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSessionThreadIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSessionThreadID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 68: // Opnum68NotUsedOnWire
 		// Opnum68NotUsedOnWire
 		return nil, nil
 	case 69: // StreamMode
-		in := &GetStreamModeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetStreamModeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetStreamMode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetStreamModeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetStreamMode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 70: // StreamMode
-		in := &SetStreamModeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetStreamModeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetStreamMode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetStreamModeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetStreamMode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 71: // TraceDataProviders
-		in := &GetTraceDataProvidersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTraceDataProvidersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTraceDataProviders(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTraceDataProvidersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTraceDataProviders(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ITraceDataCollector
+type UnimplementedTraceDataCollectorServer struct {
+	idatacollector.UnimplementedDataCollectorServer
+}
+
+func (UnimplementedTraceDataCollectorServer) GetBufferSize(context.Context, *GetBufferSizeRequest) (*GetBufferSizeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) SetBufferSize(context.Context, *SetBufferSizeRequest) (*SetBufferSizeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetBuffersLost(context.Context, *GetBuffersLostRequest) (*GetBuffersLostResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetBuffersWritten(context.Context, *GetBuffersWrittenRequest) (*GetBuffersWrittenResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetClockType(context.Context, *GetClockTypeRequest) (*GetClockTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) SetClockType(context.Context, *SetClockTypeRequest) (*SetClockTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetEventsLost(context.Context, *GetEventsLostRequest) (*GetEventsLostResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetExtendedModes(context.Context, *GetExtendedModesRequest) (*GetExtendedModesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) SetExtendedModes(context.Context, *SetExtendedModesRequest) (*SetExtendedModesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetFlushTimer(context.Context, *GetFlushTimerRequest) (*GetFlushTimerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) SetFlushTimer(context.Context, *SetFlushTimerRequest) (*SetFlushTimerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetFreeBuffers(context.Context, *GetFreeBuffersRequest) (*GetFreeBuffersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetGUID(context.Context, *GetGUIDRequest) (*GetGUIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) SetGUID(context.Context, *SetGUIDRequest) (*SetGUIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetIsKernelTrace(context.Context, *GetIsKernelTraceRequest) (*GetIsKernelTraceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetMaximumBuffers(context.Context, *GetMaximumBuffersRequest) (*GetMaximumBuffersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) SetMaximumBuffers(context.Context, *SetMaximumBuffersRequest) (*SetMaximumBuffersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetMinimumBuffers(context.Context, *GetMinimumBuffersRequest) (*GetMinimumBuffersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) SetMinimumBuffers(context.Context, *SetMinimumBuffersRequest) (*SetMinimumBuffersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetNumberOfBuffers(context.Context, *GetNumberOfBuffersRequest) (*GetNumberOfBuffersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) SetNumberOfBuffers(context.Context, *SetNumberOfBuffersRequest) (*SetNumberOfBuffersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetPreallocateFile(context.Context, *GetPreallocateFileRequest) (*GetPreallocateFileResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) SetPreallocateFile(context.Context, *SetPreallocateFileRequest) (*SetPreallocateFileResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetProcessMode(context.Context, *GetProcessModeRequest) (*GetProcessModeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) SetProcessMode(context.Context, *SetProcessModeRequest) (*SetProcessModeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetRealTimeBuffersLost(context.Context, *GetRealTimeBuffersLostRequest) (*GetRealTimeBuffersLostResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetSessionID(context.Context, *GetSessionIDRequest) (*GetSessionIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetSessionName(context.Context, *GetSessionNameRequest) (*GetSessionNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) SetSessionName(context.Context, *SetSessionNameRequest) (*SetSessionNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetSessionThreadID(context.Context, *GetSessionThreadIDRequest) (*GetSessionThreadIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetStreamMode(context.Context, *GetStreamModeRequest) (*GetStreamModeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) SetStreamMode(context.Context, *SetStreamModeRequest) (*SetStreamModeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataCollectorServer) GetTraceDataProviders(context.Context, *GetTraceDataProvidersRequest) (*GetTraceDataProvidersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ TraceDataCollectorServer = (*UnimplementedTraceDataCollectorServer)(nil)

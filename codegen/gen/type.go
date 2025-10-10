@@ -38,6 +38,97 @@ func (p *TypeGenerator) Skip() bool {
 	return p.Scopes == nil || p.Scope().Alias == ""
 }
 
+func (p *TypeGenerator) GenPipeField(ctx context.Context, typ *midl.Type) *midl.Field {
+	return &midl.Field{
+		Attrs: &midl.FieldAttr{NoSizeLimit: false},
+		Type: &midl.Type{
+			Kind:  midl.TypeArray,
+			Array: &midl.Array{Bound: midl.ArrayBound{Upper: -1, Lower: 0}},
+			Attrs: &midl.TypeAttr{},
+			Elem:  typ.Elem,
+		},
+	}
+}
+
+func (p *TypeGenerator) GenPipe(ctx context.Context) {
+
+	p.P("//", p.GoTypeName, "type", "represents", RPCName(p.Alias()), "RPC", "pipe.")
+	if p.Doc != nil {
+		p.P("//")
+		p.GenComment(ctx, p.Doc.Doc)
+	}
+
+	p.P("type", p.GoTypeName, "interface", "{")
+	p.P("Pipe()", "<-chan", p.GoFieldTypeName(ctx, p.Scope(), p.GenPipeField(ctx, p.Type())))
+	p.P("Send(v", p.GoFieldTypeName(ctx, p.Scope(), p.GenPipeField(ctx, p.Type()))+")")
+	p.P("Append(v", p.GoFieldTypeName(ctx, p.Scope(), p.GenPipeField(ctx, p.Type()))+")")
+	p.P("Recv()", p.B("", p.GoFieldTypeName(ctx, p.Scope(), p.GenPipeField(ctx, p.Type())), "bool"))
+	p.P("Close()", "error")
+	p.P("}")
+
+	field := p.GenPipeField(ctx, p.Type())
+
+	p.P()
+	p.P("//", "Pipe", "provides", "a", "channel-based", "interface", "to", "send", "data", "to", "the", "RPC", "server.")
+	p.P("//", "Note: pipe must be closed after use to avoid resource leaks.")
+	p.P("type", p.XXX()+p.GoTypeName, "struct {")
+	p.P("p", "chan", p.GoFieldTypeName(ctx, p.Scope(), field))
+	p.P("recv", "[]", p.GoFieldTypeName(ctx, p.Scope(), field))
+	p.P("}")
+
+	p.P()
+	p.P("//", "New"+p.XXX()+p.GoTypeName, "creates", "a", "new", p.GoTypeName, "instance.")
+	p.P("func", "New"+p.GoTypeName+"()", p.GoTypeName, "{")
+	p.P("return", "&"+p.XXX()+p.GoTypeName+"{")
+	p.P("p: make(chan", p.GoFieldTypeName(ctx, p.Scope(), field), "),")
+	p.P("}")
+	p.P("}")
+
+	p.P()
+	p.P("func", "(o *"+p.XXX()+p.GoTypeName+")", "Pipe()", "<-chan", p.GoFieldTypeName(ctx, p.Scope(), field), "{")
+	p.P("return", "o.p")
+	p.P("}")
+
+	p.P()
+	p.P("//", "Send", "sends", "data", "to", "the", "RPC", "server", "via", "the", "pipe.")
+	p.P("func", "(o *"+p.XXX()+p.GoTypeName+")", "Send(v", p.GoFieldTypeName(ctx, p.Scope(), field)+")", "{")
+	p.P("if o != nil && o.p != nil {")
+	p.P("o.p <- v")
+	p.P("}")
+	p.P("}")
+
+	// append to pipe.
+	p.P()
+	p.P("//", "Append", "appends", "data", "to", "the", "internal", "buffer", "of", "the", "pipe.")
+	p.P("func", "(o *"+p.XXX()+p.GoTypeName+")", "Append(v", p.GoFieldTypeName(ctx, p.Scope(), field)+")", "{")
+	p.P("if o != nil {")
+	p.P("o.recv =", "append(o.recv, v)")
+	p.P("}")
+	p.P("}")
+
+	// receive first item of recv.
+	p.P()
+	p.P("//", "Recv", "receives", "data", "from", "the", "internal", "buffer", "of", "the", "pipe.")
+	p.P("func", "(o *"+p.XXX()+p.GoTypeName+")", "Recv()", p.B("", p.GoFieldTypeName(ctx, p.Scope(), field), "bool"), "{")
+	p.P("if o != nil {")
+	p.P("if len(o.recv) > 0 {")
+	p.P("v", ":=", "o.recv[0]")
+	p.P("o.recv", "=", "o.recv[1:]")
+	p.P("return", "v", ",", "true")
+	p.P("}")
+	p.P("}")
+	p.P("return", p.GoTypeZeroValue(ctx, p.Scope(), field, NewScopes(field.Scopes())), ",", "false")
+	p.P("}")
+
+	p.P("func", "(o *"+p.XXX()+p.GoTypeName+")", "Close()", "error", "{")
+	p.If("o != nil && o.p != nil", func() {
+		p.P("close(o.p)")
+	})
+	p.P("return", "nil")
+	p.P("}")
+
+}
+
 func (p *TypeGenerator) GenEnum(ctx context.Context) {
 
 	p.P("//", p.GoTypeName, "type", "represents", RPCName(p.Alias()), "RPC", "enumeration.")
@@ -697,7 +788,7 @@ func (p *TypeGenerator) GenFieldMarshalNDR(ctx context.Context, field *midl.Fiel
 		p.Range(idx, name, func() {
 			// iterate over the array.
 			p.P(idx, ":=", idx)
-			if scopes.Array().IsFixed() && !scopes.Dim().IsString {
+			if scopes.Array().IsFixed() && (!scopes.Dim().IsString || p.IsNotLastFixedArray(ctx, scopes, field)) {
 				// break if index exceeds the fixed-array limit.
 				p.If(p.B("uint64", idx), ">=", scopes.Array().Size(), func() {
 					p.P("break")
@@ -713,9 +804,26 @@ func (p *TypeGenerator) GenFieldMarshalNDR(ctx context.Context, field *midl.Fiel
 
 		p.GenZeroFieldMarshalNDR(ctx, field, scopes, index...)
 
+	case scopes.Is(midl.TypePipe):
+
+		p.P("//", "marshal", "pipe", field.Name)
+
+		field := p.GenPipeField(ctx, scopes.Type())
+
+		p.If(name, "!=", "nil", func() {
+			p.Range("_chunk", name+".Pipe()", func() {
+				p.GenFieldMarshalNDR(WithVarName(ctx, "_chunk"), field, NewScopes(field.Scopes()))
+			})
+		})
+		p.GenWriteSize(ctx, "0")
+
 	default:
 		p.P("//", "FIXME", "unknown type", field.Name)
 	}
+}
+
+func (p *TypeGenerator) IsNotLastFixedArray(ctx context.Context, scopes *Scopes, field *midl.Field) bool {
+	return !scopes.IsTopLevelArray() && scopes.Array().IsFixed() && p.Struct() != nil && len(p.Struct().Fields) > 0 && field.Position != p.Struct().LastField().Position
 }
 
 func (p *TypeGenerator) GenMarshalSizeInfo(ctx context.Context, field *midl.Field, scopes *Scopes, index ...interface{}) bool {
@@ -724,6 +832,10 @@ func (p *TypeGenerator) GenMarshalSizeInfo(ctx context.Context, field *midl.Fiel
 	name := p.VarName(ctx, index...)
 	if name == "" {
 		name = p.O(p.IVar(p.GoFieldName(field), index...))
+	}
+
+	if p.IsNotLastFixedArray(ctx, scopes, field) {
+		return true
 	}
 
 	isConformant, isVarying := scopes.IsConformant(), scopes.IsVarying()
@@ -848,7 +960,12 @@ func (p *TypeGenerator) GenArraySizeVar(ctx context.Context, field *midl.Field, 
 
 	if i == 0 {
 		// short-path.
-		p.P(dimVar, ":=", p.DataLen(ctx, field, scopes, p.O(p.GoFieldName(field))))
+		// get variable name.
+		name := p.VarName(ctx)
+		if name == "" {
+			name = p.O(GoFieldName(field))
+		}
+		p.P(dimVar, ":=", p.DataLen(ctx, field, scopes, name))
 		return dimVar
 	}
 

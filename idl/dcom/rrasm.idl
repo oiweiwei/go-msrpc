@@ -105,8 +105,8 @@ import "ms-oaut.idl";
   
   
  typedef enum {
-     MIB_IP_FORWARDING     = 1,
-     MIB_IP_NOT_FORWARDING = 2,
+     MIB_IP_IS_FORWARDING     = 1,
+     MIB_IP_IS_NOT_FORWARDING = 2,
  } MIB_IPSTATS_FORWARDING, *PMIB_IPSTATS_FORWARDING;
   
   
@@ -368,9 +368,9 @@ import "ms-oaut.idl";
  {
      case 1: // RAS_CONNECTION_EX with version 1: (MPRAPI_RAS_CONNECTION_OBJECT_REVISION_1)
          RAS_CONNECTION_EX_1_IDL     RasConnection1;
- }RAS_CONNECTION_EX_IDL;
+ }RAS_CONNECTION_EX_IDL, *PRAS_CONNECTION_EX_IDL;
   
- typedef struct _RAS_CONNECTION_EX_IDL *PRAS_CONNECTION_EX_IDL;
+ // typedef struct _RAS_CONNECTION_EX_IDL *PRAS_CONNECTION_EX_IDL;
   
  typedef struct _RAS_CONNECTION_4_IDL
  { 
@@ -716,9 +716,9 @@ import "ms-oaut.idl";
          MPR_SERVER_EX_2     ServerConfig2;
      case 3:
          MPR_SERVER_EX_3     ServerConfig3;
- }MPR_SERVER_EX_IDL;
+ }MPR_SERVER_EX_IDL, *PMPR_SERVER_EX_IDL;
   
- typedef struct _MPR_SERVER_EX_IDL *PMPR_SERVER_EX_IDL;
+ // typedef struct _MPR_SERVER_EX_IDL *PMPR_SERVER_EX_IDL;
   
   
  typedef struct _MPR_SERVER_SET_CONFIG_EX_1
@@ -753,10 +753,10 @@ import "ms-oaut.idl";
          MPR_SERVER_SET_CONFIG_EX_2      ServerSetConfig2;
      case 3:
          MPR_SERVER_SET_CONFIG_EX_3      ServerSetConfig3;
- }MPR_SERVER_SET_CONFIG_EX_IDL;
+ }MPR_SERVER_SET_CONFIG_EX_IDL, *PMPR_SERVER_SET_CONFIG_EX_IDL;
   
   
- typedef struct _MPR_SERVER_SET_CONFIG_EX_IDL *PMPR_SERVER_SET_CONFIG_EX_IDL;
+ // typedef struct _MPR_SERVER_SET_CONFIG_EX_IDL *PMPR_SERVER_SET_CONFIG_EX_IDL;
   
   
  typedef struct _RAS_UPDATE_CONNECTION_1_IDL
@@ -773,9 +773,9 @@ import "ms-oaut.idl";
      case 1: // MPR_SERVER_UPDATE_CONNECTION_EX with version 1: //(MPRAPI_RAS_UPDATE_CONNECTION_OBJECT_REVISION_1)
          RAS_UPDATE_CONNECTION_1_IDL     UpdateConnection1;
      // New ones update here
- }RAS_UPDATE_CONNECTION_IDL;
+ }RAS_UPDATE_CONNECTION_IDL, *PRAS_UPDATE_CONNECTION_IDL;
   
- typedef struct _RAS_UPDATE_CONNECTION_IDL *PRAS_UPDATE_CONNECTION_IDL;
+ // typedef struct _RAS_UPDATE_CONNECTION_IDL *PRAS_UPDATE_CONNECTION_IDL;
   
  typedef struct _DIM_INTERFACE_CONTAINER
  {
@@ -1001,14 +1001,19 @@ import "ms-oaut.idl";
      DWORD dwForwardPolicy;
      DWORD dwForwardNextHop;
      DWORD dwForwardIfIndex;
-     union { 
+     /*union { 
          DWORD dwForwardType;              
+     */
          MIB_IPFORWARD_TYPE ForwardType; 
+     /*
      };
      union { 
          DWORD dwForwardProto;             
+     */
          MIB_IPFORWARD_PROTO ForwardProto;  
+     /*
      };
+     */
      DWORD dwForwardAge;
      DWORD dwForwardNextHopAS;
      DWORD dwForwardMetric1;
@@ -1324,10 +1329,14 @@ import "ms-oaut.idl";
   
   
  typedef struct _MIB_IPSTATS {
+     /*
      union {
          DWORD dwForwarding;
+     */
          MIB_IPSTATS_FORWARDING Forwarding ;
+     /*
      };
+     */
      DWORD dwDefaultTTL;
      DWORD dwInReceives;
      DWORD dwInHdrErrors;
@@ -1373,10 +1382,14 @@ import "ms-oaut.idl";
   
  typedef struct _MIB_OPAQUE_INFO {
      DWORD dwId;
+     /*
      union {
+     */
          ULONGLONG ullAlign;
+     /*
          BYTE rgbyData[1];
      };
+     */
  } MIB_OPAQUE_INFO, 
  *PMIB_OPAQUE_INFO;
   
@@ -1400,10 +1413,14 @@ import "ms-oaut.idl";
   
   
  typedef struct _MIB_TCPROW {
+    /*
      union {
          DWORD dwState;       
+    */
          MIB_TCP_STATE State;
+    /*
      };
+    */
      DWORD dwLocalAddr;
      DWORD dwLocalPort;
      DWORD dwRemoteAddr;
@@ -1414,10 +1431,14 @@ import "ms-oaut.idl";
   
   
  typedef struct _MIB_TCPSTATS {
+    /*
      union {
          DWORD dwRtoAlgorithm;
+    */
          TCP_RTO_ALGORITHM RtoAlgorithm; 
+    /*
      };
+    */
      DWORD dwRtoMin;
      DWORD dwRtoMax;
      DWORD dwMaxConn;
@@ -3010,7 +3031,7 @@ import "ms-oaut.idl";
      GUID            guidDevice;
      CHAR            szPortName[17];
      CHAR            szDeviceName[129];
-     WCHAR           wszDeviceName[129];
+     WCHAR           wszUnicodeDeviceName[129];
  } RAS_DEVICE_INFO, *PRAS_DEVICE_INFO;
   
   

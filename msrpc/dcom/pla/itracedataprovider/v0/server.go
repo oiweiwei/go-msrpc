@@ -166,138 +166,241 @@ func TraceDataProviderServerHandle(ctx context.Context, o TraceDataProviderServe
 	}
 	switch opNum {
 	case 7: // DisplayName
-		in := &GetDisplayNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDisplayNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDisplayName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDisplayNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDisplayName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // DisplayName
-		in := &SetDisplayNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDisplayNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDisplayName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDisplayNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDisplayName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Guid
-		in := &GetGUIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetGUIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetGUID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetGUIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetGUID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // Guid
-		in := &SetGUIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetGUIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetGUID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetGUIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetGUID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // Level
-		in := &GetLevelRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLevelOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLevel(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLevelRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLevel(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // KeywordsAny
-		in := &GetKeywordsAnyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetKeywordsAnyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetKeywordsAny(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetKeywordsAnyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetKeywordsAny(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // KeywordsAll
-		in := &GetKeywordsAllRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetKeywordsAllOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetKeywordsAll(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetKeywordsAllRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetKeywordsAll(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // Properties
-		in := &GetPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // FilterEnabled
-		in := &GetFilterEnabledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFilterEnabledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFilterEnabled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFilterEnabledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFilterEnabled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // FilterEnabled
-		in := &SetFilterEnabledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFilterEnabledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFilterEnabled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFilterEnabledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFilterEnabled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // FilterType
-		in := &GetFilterTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFilterTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFilterType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFilterTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFilterType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // FilterType
-		in := &SetFilterTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFilterTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFilterType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFilterTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFilterType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // FilterData
-		in := &GetFilterDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFilterDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFilterData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFilterDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFilterData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // FilterData
-		in := &SetFilterDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFilterDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFilterData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFilterDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFilterData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // Query
-		in := &QueryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Query(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Query(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // Resolve
-		in := &ResolveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ResolveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Resolve(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ResolveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Resolve(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // SetSecurity
-		in := &SetSecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // GetSecurity
-		in := &GetSecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // GetRegisteredProcesses
-		in := &GetRegisteredProcessesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRegisteredProcessesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRegisteredProcesses(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRegisteredProcessesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRegisteredProcesses(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ITraceDataProvider
+type UnimplementedTraceDataProviderServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedTraceDataProviderServer) GetDisplayName(context.Context, *GetDisplayNameRequest) (*GetDisplayNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataProviderServer) SetDisplayName(context.Context, *SetDisplayNameRequest) (*SetDisplayNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataProviderServer) GetGUID(context.Context, *GetGUIDRequest) (*GetGUIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataProviderServer) SetGUID(context.Context, *SetGUIDRequest) (*SetGUIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataProviderServer) GetLevel(context.Context, *GetLevelRequest) (*GetLevelResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataProviderServer) GetKeywordsAny(context.Context, *GetKeywordsAnyRequest) (*GetKeywordsAnyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataProviderServer) GetKeywordsAll(context.Context, *GetKeywordsAllRequest) (*GetKeywordsAllResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataProviderServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataProviderServer) GetFilterEnabled(context.Context, *GetFilterEnabledRequest) (*GetFilterEnabledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataProviderServer) SetFilterEnabled(context.Context, *SetFilterEnabledRequest) (*SetFilterEnabledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataProviderServer) GetFilterType(context.Context, *GetFilterTypeRequest) (*GetFilterTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataProviderServer) SetFilterType(context.Context, *SetFilterTypeRequest) (*SetFilterTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataProviderServer) GetFilterData(context.Context, *GetFilterDataRequest) (*GetFilterDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataProviderServer) SetFilterData(context.Context, *SetFilterDataRequest) (*SetFilterDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataProviderServer) Query(context.Context, *QueryRequest) (*QueryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataProviderServer) Resolve(context.Context, *ResolveRequest) (*ResolveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataProviderServer) SetSecurity(context.Context, *SetSecurityRequest) (*SetSecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataProviderServer) GetSecurity(context.Context, *GetSecurityRequest) (*GetSecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTraceDataProviderServer) GetRegisteredProcesses(context.Context, *GetRegisteredProcessesRequest) (*GetRegisteredProcessesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ TraceDataProviderServer = (*UnimplementedTraceDataProviderServer)(nil)

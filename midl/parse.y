@@ -541,6 +541,10 @@ coclass_type_spec       : INTERFACE
                             {
                                 $$ = &Type{Kind: TypeDispInterface}
                             }
+                        | IDENT
+                            {
+                                $$ = &Type{Kind: TypeRef, Name: $1}
+                            }
                         ;
 
 coclass_attributes0     : /* empty */

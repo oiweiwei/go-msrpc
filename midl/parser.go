@@ -4,6 +4,7 @@ package midl
 
 import (
 	"fmt"
+	"strings"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -44,7 +45,10 @@ func Parse(s string) (*File, error) {
 	for _, ref := range p.refs {
 		typ, ok := p.LookupType(ref.Name)
 		if !ok {
-			return nil, fmt.Errorf("unable to resolve type %s", ref.Name)
+			name := strings.Replace(ref.Name, "_struct_", "_union_", 1)
+			if typ, ok = p.LookupType(name); !ok {
+				return nil, fmt.Errorf("unable to resolve type %s", ref.Name)
+			}
 		}
 
 		*ref = *typ

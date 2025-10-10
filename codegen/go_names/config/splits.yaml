@@ -594,3 +594,8 @@ split:
   pibc: [bind, context]
   pfiletime: [filetime]
   pstatstg: [storage, stat]
+  peximport: [context]
+  exim: [export, import]
+  ipstats: [ip, stats]
+  ipproto: [ip, proto]
+  mibip: [mib, ip]
