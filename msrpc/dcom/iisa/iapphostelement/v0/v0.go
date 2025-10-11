@@ -54,13 +54,81 @@ type AppHostElementClient interface {
 	// Name operation.
 	GetName(context.Context, *GetNameRequest, ...dcerpc.CallOption) (*GetNameResponse, error)
 
-	// Collection operation.
+	// The Collection method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns an IAppHostElementCollection that represents a collection of "collection
+	// IAppHostElement" objects. If the specific IAppHostElement does not support this type
+	// of child object, it indicates this in the return.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                        |
+	//	|             VALUE/CODE             |                              DESCRIPTION                               |
+	//	|                                    |                                                                        |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                                  |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                          |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X80070013 ERROR_INVALID_DATA      | Configuration data or schema on the server are malformed or corrupted. |
+	//	+------------------------------------+------------------------------------------------------------------------+
 	GetCollection(context.Context, *GetCollectionRequest, ...dcerpc.CallOption) (*GetCollectionResponse, error)
 
-	// Properties operation.
+	// The Properties method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns an IAppHostPropertyCollection that contains the IAppHostProperty
+	// objects that are available for this IAppHostElement.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppProperties is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                        |
+	//	|             VALUE/CODE             |                              DESCRIPTION                               |
+	//	|                                    |                                                                        |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                                  |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                          |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.                |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X80070013 ERROR_INVALID_DATA      | Configuration data or schema on the server are malformed or corrupted. |
+	//	+------------------------------------+------------------------------------------------------------------------+
 	GetProperties(context.Context, *GetPropertiesRequest, ...dcerpc.CallOption) (*GetPropertiesResponse, error)
 
-	// ChildElements operation.
+	// The ChildElements method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns an IAppHostChildElementCollection that contains child IAppHostElement
+	// objects if any child IAppHostElement objects exist.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                        |
+	//	|             VALUE/CODE             |                              DESCRIPTION                               |
+	//	|                                    |                                                                        |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                                  |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                          |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.                |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X80070013 ERROR_INVALID_DATA      | Configuration data or schema on the server are malformed or corrupted. |
+	//	+------------------------------------+------------------------------------------------------------------------+
 	GetChildElements(context.Context, *GetChildElementsRequest, ...dcerpc.CallOption) (*GetChildElementsResponse, error)
 
 	// GetMetadata operation.
@@ -72,16 +140,82 @@ type AppHostElementClient interface {
 	// Schema operation.
 	GetSchema(context.Context, *GetSchemaRequest, ...dcerpc.CallOption) (*GetSchemaResponse, error)
 
-	// GetElementByName operation.
+	// The GetElementByName method is received by the server in an RPC_REQUEST packet. In
+	// response, the server returns the child IAppHostElement object with the specified
+	// name.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppElement is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+----------------------------------------------------------------+
+	//	|               RETURN               |                                                                |
+	//	|             VALUE/CODE             |                          DESCRIPTION                           |
+	//	|                                    |                                                                |
+	//	+------------------------------------+----------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                          |
+	//	+------------------------------------+----------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                  |
+	//	+------------------------------------+----------------------------------------------------------------+
+	//	| 0X80070585 ERROR_INVALID_INDEX     | The child element specified by bstrSubName could not be found. |
+	//	+------------------------------------+----------------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.        |
+	//	+------------------------------------+----------------------------------------------------------------+
 	GetElementByName(context.Context, *GetElementByNameRequest, ...dcerpc.CallOption) (*GetElementByNameResponse, error)
 
-	// GetPropertyByName operation.
+	// The GetPropertyByName method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns the IAppHostProperty of the specified name.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppProperty is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------------------+
+	//	|               RETURN               |                                                           |
+	//	|             VALUE/CODE             |                        DESCRIPTION                        |
+	//	|                                    |                                                           |
+	//	+------------------------------------+-----------------------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                     |
+	//	+------------------------------------+-----------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.             |
+	//	+------------------------------------+-----------------------------------------------------------+
+	//	| 0X80070585 ERROR_INVALID_INDEX     | The property specified by bstrSubName could not be found. |
+	//	+------------------------------------+-----------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.   |
+	//	+------------------------------------+-----------------------------------------------------------+
 	GetPropertyByName(context.Context, *GetPropertyByNameRequest, ...dcerpc.CallOption) (*GetPropertyByNameResponse, error)
 
 	// Clear operation.
 	Clear(context.Context, *ClearRequest, ...dcerpc.CallOption) (*ClearResponse, error)
 
-	// Methods operation.
+	// The Methods method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns an IAppHostMethodCollection, which is the collection of methods
+	// that are supported for the specific IAppHostElement object.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppMethods is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetMethods(context.Context, *GetMethodsRequest, ...dcerpc.CallOption) (*GetMethodsResponse, error)
 
 	// AlterContext alters the client context.
@@ -809,7 +943,10 @@ func (o *GetCollectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetCollectionResponse structure represents the Collection operation response
 type GetCollectionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat                 `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppCollection: Contains an IAppHostElementCollection that represents the collection
+	// child elements. If the specific IAppHostElement does not support this type of child
+	// element, this parameter is NULL.
 	Collection *iisa.AppHostElementCollection `idl:"name:ppCollection" json:"collection"`
 	// Return: The Collection return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1050,7 +1187,9 @@ func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetPropertiesResponse structure represents the Properties operation response
 type GetPropertiesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat                  `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppProperties: Contains the IAppHostPropertyCollection that represents the collection
+	// of IAppHostProperty objects that are available.
 	Properties *iisa.AppHostPropertyCollection `idl:"name:ppProperties" json:"properties"`
 	// Return: The Properties return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1291,7 +1430,9 @@ func (o *GetChildElementsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // GetChildElementsResponse structure represents the ChildElements operation response
 type GetChildElementsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That     *dcom.ORPCThat                      `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppElements: Contains an IAppHostChildElementCollection if there are child IAppHostElement
+	// objects in the specified IAppHostElement object. Otherwise, it is NULL.
 	Elements *iisa.AppHostChildElementCollection `idl:"name:ppElements" json:"elements"`
 	// Return: The ChildElements return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -2350,8 +2491,9 @@ func (o *xxx_GetElementByNameOperation) UnmarshalNDRResponse(ctx context.Context
 // GetElementByNameRequest structure represents the GetElementByName operation request
 type GetElementByNameRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	SubName *oaut.String   `idl:"name:bstrSubName" json:"sub_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrSubName: The name of the child element to retrieve.
+	SubName *oaut.String `idl:"name:bstrSubName" json:"sub_name"`
 }
 
 func (o *GetElementByNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetElementByNameOperation) *xxx_GetElementByNameOperation {
@@ -2388,7 +2530,8 @@ func (o *GetElementByNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // GetElementByNameResponse structure represents the GetElementByName operation response
 type GetElementByNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat       `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppElement: Contains the child IAppHostElement object.
 	Element *iisa.AppHostElement `idl:"name:ppElement" json:"element"`
 	// Return: The GetElementByName return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -2643,8 +2786,9 @@ func (o *xxx_GetPropertyByNameOperation) UnmarshalNDRResponse(ctx context.Contex
 // GetPropertyByNameRequest structure represents the GetPropertyByName operation request
 type GetPropertyByNameRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	SubName *oaut.String   `idl:"name:bstrSubName" json:"sub_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrSubName: The name of the IAppHostProperty to fetch.
+	SubName *oaut.String `idl:"name:bstrSubName" json:"sub_name"`
 }
 
 func (o *GetPropertyByNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPropertyByNameOperation) *xxx_GetPropertyByNameOperation {
@@ -2681,7 +2825,8 @@ func (o *GetPropertyByNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // GetPropertyByNameResponse structure represents the GetPropertyByName operation response
 type GetPropertyByNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That     *dcom.ORPCThat        `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppProperty: Contains an IAppHostProperty of the specified name.
 	Property *iisa.AppHostProperty `idl:"name:ppProperty" json:"property"`
 	// Return: The GetPropertyByName return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -3113,7 +3258,9 @@ func (o *GetMethodsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 // GetMethodsResponse structure represents the Methods operation response
 type GetMethodsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat                `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppMethods: Contains an IAppHostMethodCollection, which is a collection of methods
+	// that are supported for the specific IAppHostElement object.
 	Methods *iisa.AppHostMethodCollection `idl:"name:ppMethods" json:"methods"`
 	// Return: The Methods return value.
 	Return int32 `idl:"name:Return" json:"return"`

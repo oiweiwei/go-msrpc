@@ -1,0 +1,48 @@
+<div class="content"><p>The MQMSGTRACE enumeration defines values that indicate
+whether the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a>
+tracing feature is enabled for a particular message. When message tracing is
+enabled for a <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>,
+the message transfer process generates a report message for each hop along the
+route to the destination <a href="7d8d0dab-699c-4121-9ee4-226a2dbced2e" data-linktype="relative-path">ApplicationQueue</a>.
+Report messages are administrative messages of type MQMSG_CLASS_REPORT, as
+specified by the <a href="eaab11bf-07b9-4e74-9197-c5eb1bf772e7" data-linktype="relative-path">MQMSGCLASS</a>
+enumeration in section 2.2.2.9.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MQMSG_TRACE_NONE = 0,
+   MQMSG_SEND_ROUTE_TO_REPORT_QUEUE = 1
+ } MQMSGTRACE;
+</pre></div>
+</dd></dl><p><b>MQMSG_TRACE_NONE:  </b>The message tracing feature
+of the message transfer process is disabled. This is the default value.</p><p><b>MQMSG_SEND_ROUTE_TO_REPORT_QUEUE:  </b>The message
+tracing feature of the message transfer process is enabled.<a id="Appendix_A_Target_3"></a><a aria-label="Product behavior note 3" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_3" data-linktype="relative-path">&lt;3&gt;</a></p><p>Used by:</p><ul><li><p><span><span> 
+</span></span>get <a href="85071029-14d2-440a-9ec6-db9349e937c1" data-linktype="relative-path">IMSMQMessage::Trace</a></p>
+</li><li><p><span><span> 
+</span></span>put <a href="56ca93d2-1e02-4c70-af06-30dc24aa3d96" data-linktype="relative-path">IMSMQMessage::Trace</a></p>
+</li></ul><p>The MQMSGTRACE enumeration values correspond to the
+enumeration values for Message.<b>TracingRequested</b> as shown in the
+following table:</p><table><thead>
+  <tr>
+   <th>
+   <p>MQMSGTRACE</p>
+   </th>
+   <th>
+   <p>Message.TracingRequested</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQMSG_TRACE_NONE</p>
+  </td>
+  <td>
+  <p>False</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_SEND_ROUTE_TO_REPORT_QUEUE</p>
+  </td>
+  <td>
+  <p>True</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

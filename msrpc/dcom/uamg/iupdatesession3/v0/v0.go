@@ -51,8 +51,37 @@ type UpdateSession3Client interface {
 	// IUpdateSession2 retrieval method.
 	UpdateSession2() iupdatesession2.UpdateSession2Client
 
+	// The IUpdateSession3::CreateUpdateServiceManager (Opnum 16) method retrieves an instance
+	// of the IUpdateServiceManager2 interface.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return a newly created object that implements IUpdateServiceManager2.
 	CreateUpdateServiceManager(context.Context, *CreateUpdateServiceManagerRequest, ...dcerpc.CallOption) (*CreateUpdateServiceManagerResponse, error)
 
+	// The IUpdateSearcher::QueryHistory (opnum 19) method retrieves a collection of history
+	// events.
+	//
+	// The IUpdateSession3::QueryHistory (Opnum 17) method retrieves relevant update history
+	// entries.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	QueryHistory(context.Context, *QueryHistoryRequest, ...dcerpc.CallOption) (*QueryHistoryResponse, error)
 
 	// AlterContext alters the client context.
@@ -361,7 +390,8 @@ func (o *CreateUpdateServiceManagerRequest) UnmarshalNDR(ctx context.Context, r 
 // CreateUpdateServiceManagerResponse structure represents the CreateUpdateServiceManager operation response
 type CreateUpdateServiceManagerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat              `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An IUpdateServiceManager2 instance.
 	ReturnValue *uamg.UpdateServiceManager2 `idl:"name:retval" json:"return_value"`
 	// Return: The CreateUpdateServiceManager return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -640,10 +670,19 @@ func (o *xxx_QueryHistoryOperation) UnmarshalNDRResponse(ctx context.Context, w 
 // QueryHistoryRequest structure represents the QueryHistory operation request
 type QueryHistoryRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Criteria   *oaut.String   `idl:"name:criteria" json:"criteria"`
-	StartIndex int32          `idl:"name:startIndex" json:"start_index"`
-	Count      int32          `idl:"name:count" json:"count"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// criteria: A string specifying criteria that select history entries. The string MUST
+	// be one of the following:
+	//
+	// * NULL or empty, in which case all history entries are selected.
+	//
+	// * "UpdateID='<id>'", where <id> is an update identifier. In this case, only history
+	// entries pertaining to this update are selected.
+	Criteria *oaut.String `idl:"name:criteria" json:"criteria"`
+	// startIndex: The zero-based index of the first history entry to retrieve.
+	StartIndex int32 `idl:"name:startIndex" json:"start_index"`
+	// count: The number of entries to retrieve.
+	Count int32 `idl:"name:count" json:"count"`
 }
 
 func (o *QueryHistoryRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryHistoryOperation) *xxx_QueryHistoryOperation {
@@ -684,7 +723,10 @@ func (o *QueryHistoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 // QueryHistoryResponse structure represents the QueryHistory operation response
 type QueryHistoryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat                     `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An IUpdateHistoryEntryCollection containing the history entries requested.
+	// If fewer entries are available than requested in the count parameter, only the entries
+	// available are retrieved.
 	ReturnValue *uamg.UpdateHistoryEntryCollection `idl:"name:retval" json:"return_value"`
 	// Return: The QueryHistory return value.
 	Return int32 `idl:"name:Return" json:"return"`

@@ -1,1 +1,632 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPRIP_IF_CONFIG</b> structure contains the
+per-interface configuration. This structure is used in structures <a href="45250002-d774-4bc2-ab2e-6992341b5f45" data-linktype="relative-path"><b>IPRIP_MIB_GET_INPUT_DATA (section 2.2.1.2.161)</b></a>,
+<a href="4fc16996-6de7-4f99-8cea-40e1f42931e1" data-linktype="relative-path"><b>IPRIP_MIB_GET_OUTPUT_DATA (section 2.2.1.2.162)</b></a>,
+and in the following methods: </p><ul><li><p><span><span> 
+</span></span><a href="927c5bf1-ac91-4325-b945-0d96a58f609b" data-linktype="relative-path"><b>RRouterInterfaceTransportAdd (section 3.1.4.18)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="2c0f9b0e-1f3e-4436-a534-cb30fe0f887f" data-linktype="relative-path"><b>RRouterInterfaceTransportGetInfo (section 3.2.4.19)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="209ba5e7-876e-4406-a05c-65b7e5fb2380" data-linktype="relative-path"><b>RRouterInterfaceTransportSetInfo (section 3.1.4.20)</b></a><span>  </span></p>
+</li></ul><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_State</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_Metric</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_UpdateMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_AcceptMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_AnnounceMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_ProtocolFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_RouteExpirationInterval</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_RouteRemovalInterval</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_FullUpdateInterval</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_AuthenticationType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_AuthenticationKey
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>IC_RouteTag</p>
+  </td>
+  <td colspan="16">
+  <p>IC_Padding</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_UnicastPeerMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_AcceptFilterMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_AnnounceFilterMode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_UnicastPeerCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_AcceptFilterCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_AnnounceFilterCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_UnicastPeer
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_AcceptFilter
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>IC_AnnounceFilter
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>IC_State (4 bytes): </b>Specifies the IP RIP state
+on the interface. This field MUST be read-only and MUST be ignored if modified.
+It MUST be a combination of one or more of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPRIP_STATE_ENABLED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The IP RIP is enabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_STATE_BOUND</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The socket is bound.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IC_Metric (4 bytes): </b>Specifies the metric of
+the interface.</p><p><b>IC_UpdateMode (4 bytes): </b>Specifies whether the
+update mode is periodic or on demand.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPRIP_UPDATE_PERIODIC</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The RIP updates are done periodically.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_UPDATE_DEMAND</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The RIP updates are done only when there is change.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IC_AcceptMode (4 bytes): </b>Specifies the type of
+routes that are accepted.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPRIP_ACCEPT_DISABLED</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Does not accept routes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_ACCEPT_RIP1</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Accepts RIPv1 routes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_ACCEPT_RIP1_COMPAT</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Accepts RIPv1 compatible routes (RIPv1 was designed to
+  be compatible with future versions of the RIP. If a RIPv1 router receives a
+  message and if the RIP version indicated in the RIP header is not 1, the
+  RIPv1 router does not discard the RIP announcement, but instead processes
+  only the RIPv1 defined fields.)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_ACCEPT_RIP2</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Accepts RIPv2 routes. See <a href="https://go.microsoft.com/fwlink/?LinkId=144665" data-linktype="external">[RFC1723]</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IC_AnnounceMode (4 bytes): </b>Specifies the type
+of routes that are announced.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPRIP_ANNOUNCE_DISABLED</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Does not announce routes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_ANNOUNCE_RIP1</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Announces RIPv1 routes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_ANNOUNCE_RIP1_COMPAT</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Accepts RIPv1 compatible routes. (RIPv1 was designed
+  to be compatible with future versions of the RIP. If a RIPv1 router receives
+  a message and if the RIP version indicated in the RIP header is not 1, the
+  RIPv1 router does not discard the RIP announcement, but instead processes
+  only the RIPv1 defined fields.)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_ANNOUNCE_RIP2</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Announces RIPv2 routes. See [RFC1723].</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IC_ProtocolFlags (4 bytes): </b>Specifies which
+routes are included or excluded from RIP announcements.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPRIP_FLAG_ACCEPT_HOST_ROUTES</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Specifies whether host routes in received RIP
+  announcements are accepted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_FLAG_ANNOUNCE_HOST_ROUTES</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Specifies whether host routes are included in RIP
+  announcements.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_FLAG_ACCEPT_DEFAULT_ROUTES</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Specifies whether host routes are included in RIP
+  announcements.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_FLAG_ANNOUNCE_DEFAULT_ROUTES</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Specifies whether default routes are included in RIP
+  announcements.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_FLAG_SPLIT_HORIZON</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Enables split-horizon processing. </p>
+  <p>Specifies whether routes learned on a network are not
+  announced in RIP announcements sent on that network.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_FLAG_POISON_REVERSE</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Enables the poison-reverse processing. </p>
+  <p>Specifies whether routes learned on a network are
+  announced with a metric of 16 (unreachable) in RIP announcements sent on that
+  network.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_FLAG_GRACEFUL_SHUTDOWN</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>Sends cleanup updates when shutting down. </p>
+  <p>Specifies whether, if the RIP is stopping on this
+  interface, the RIP sends an announcement with all routes that are marked with
+  a metric of 15. This enables neighboring routers to immediately update their
+  routing tables to indicate that the routes available through the router that
+  is stopping are no longer reachable.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_FLAG_TRIGGERED_UPDATES</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>Enables triggered updates processing. </p>
+  <p>Specifies whether new routes and metric changes
+  trigger an immediate update that includes only the changes. This is called a
+  triggered update.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_FLAG_OVERWRITE_STATIC_ROUTES</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>Overwrites the static routes on the interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_FLAG_NO_SUBNET_SUMMARY</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>Specifies that subnet routes are not summarized in the
+  form of the class-based network ID when announced on a network that is not a
+  subnet of the class-based network ID. By default, subnet summarization is
+  disabled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IC_RouteExpirationInterval (4 bytes): </b>The
+lifetime (in seconds) of a route that is learned through the RIP before it
+expires.</p><p><b>IC_RouteRemovalInterval (4 bytes): </b>The amount
+of time (in seconds) after which a RIP-learned route that has expired is
+removed from the routing table.</p><p><b>IC_FullUpdateInterval (4 bytes): </b>The number of
+seconds between full RIP updates.</p><p><b>IC_AuthenticationType (4 bytes): </b>One of the
+following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPRIP_AUTHTYPE_NONE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>No authentication is used.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_AUTHTYPE_SIMPLE_PASSWORD</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Password authentication is used. Plain comparison of
+  text is made.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_AUTHTYPE_MD5</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>This is unused.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IC_AuthenticationKey (16 bytes): </b>The authentication
+data being sent depending on IC_AuthenticationType. This MUST be a write-only
+field and MUST be ignored on receive.</p><p><b>IC_RouteTag (2 bytes): </b>A tag number for the
+routes advertised on this interface. Use this option if to have all packets
+sent over this interface to include a tag in RIP version 2 announcements. See
+[RFC1723].</p><p><b>IC_Padding (2 bytes): </b>This is a padding field
+and MUST be set to 0 and ignored on receive.</p><p><b>IC_UnicastPeerMode (4 bytes): </b>This MUST be one
+of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPRIP_PEER_DISABLED</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p> RIP packets will not be sent to peers.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_PEER_ALSO</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>RIP packets will be sent to peers, as well as being
+  sent via broadcast or multicast.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_PEER_ONLY</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>RIP packets will only be sent to the peers specified
+  in the structure.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IC_AcceptFilterMode (4 bytes): </b>This MUST be
+one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPRIP_FILTER_DISABLED</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Updates from all IP addresses are accepted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_FILTER_INCLUDE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Updates are only accepted from the IP addresses
+  specified by the IC_AcceptFilter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_FILTER_EXCLUDE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Ignores updates from the IP addresses specified by the
+  IC_AcceptFilter.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IC_AnnounceFilterMode (4 bytes): </b>This MUST be
+one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPRIP_FILTER_DISABLED</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Updates from all IP addresses are accepted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_FILTER_INCLUDE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Updates are only accepted from IP addresses specified
+  by the IC_AnnounceFilter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_FILTER_EXCLUDE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Ignores updates from the IP addresses specified by the
+  IC_AnnounceFilter.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IC_UnicastPeerCount (4 bytes): </b>The number of
+peer IP addresses specified in <b>IC_UnicastPeer</b> array.</p><p><b>IC_AcceptFilterCount (4 bytes): </b>The number of
+accept filters specified in <b>IC_AcceptFilter</b>.</p><p><b>IC_AnnounceFilterCount (4 bytes): </b>The number
+of announce filters specified in <b>IC_AnnounceFilter</b>.</p><p><b>IC_UnicastPeer (variable): </b>This specifies an
+array of IPv4 address of the peers in network byte order. The array MUST have <b>IC_UnicastPeerCount</b>
+number of elements in it.</p><p><b>IC_AcceptFilter (variable): </b>This specifies an
+array of <a href="7f2efd87-3217-471c-b4a1-1289237a6d2a" data-linktype="relative-path"><b>IPRIP_ROUTE_FILTER
+(section</b></a><span> </span>2.2.1.2.167) entries. The
+array MUST have <b>IC_AcceptFilterCount</b> number of elements in it. The
+default filter action to be applied for these filters is specified by <b>IC_AcceptFilterMode</b>. 
+</p><p><b>IC_AnnounceFilter (variable): </b>This specifies
+an array of <b>IPRIP_ROUTE_FILTER</b> entries. The array MUST have <b>IC_AnnounceFilterCount</b>
+number of elements in it. The default filter action to be applied for these
+filters is specified by <b>IC_AnnounceFilterMode</b>.</p></div>

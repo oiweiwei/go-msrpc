@@ -37,10 +37,55 @@ type AppHostSectionDefinitionCollectionServer interface {
 	// Item operation.
 	GetItem(context.Context, *GetItemRequest) (*GetItemResponse, error)
 
-	// AddSection operation.
+	// The AddSection method is received by the server in an RPC_REQUEST packet. In response,
+	// the server adds a section definition to the administration system.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppConfigSection is not NULL. If
+	// processing fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF].
+	// The following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X800700B7 ERROR_ALREADY_EXISTS    | A section with name bstrSectionName already exists.     |
+	//	+------------------------------------+---------------------------------------------------------+
 	AddSection(context.Context, *AddSectionRequest) (*AddSectionResponse, error)
 
-	// DeleteSection operation.
+	// The DeleteSection method is received by the server in an RPC_REQUEST packet. In response,
+	// the server deletes the specified section definition.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	|             RETURN              |                                                                                  |
+	//	|           VALUE/CODE            |                                   DESCRIPTION                                    |
+	//	|                                 |                                                                                  |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR             | The operation completed successfully.                                            |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070585 ERROR_INVALID_INDEX  | The integer index specified by varIndex is invalid, or the section with name     |
+	//	|                                 | specified by cIndex could not be found.                                          |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070021 ERROR_LOCK_VIOLATION | The instance is set to read-only.                                                |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X00000002 ERROR_PATH_NOT_FOUND | The system cannot find the path specified.The section could not be found.        |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
 	DeleteSection(context.Context, *DeleteSectionRequest) (*DeleteSectionResponse, error)
 }
 

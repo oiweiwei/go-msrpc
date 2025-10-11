@@ -1,1 +1,619 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RTR_TOC_ENTRY</b> structure specifies the format in
+which information pertaining to the type of data is stored in <a href="402d2cc2-dd94-487a-9bb1-fab6728c3e7d" data-linktype="relative-path"><b>RTR_INFO_BLOCK_HEADER (section 2.2.1.2.3)</b></a>.
+The following figure shows the relationships between the block header and the
+entries.</p><p><img id="MS-RRASM_pictf2acd8c5-ea36-3d22-9bb9-6022d7c52764.png" src="ms-rrasm_files/image003.png" alt="Block header and entries" title="Block header and entries" data-linktype="relative-path"/></p><p><b>Figure 3: Block header and entries</b></p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>InfoType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>InfoSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Count</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Offset</p>
+  </td>
+ </tr>
+</tbody></table><p><b>InfoType (4 bytes): </b>A 32-bit, unsigned integer
+in network byte order that MUST indicate the type of data contained in the
+list. The value MUST be one of the following when the transport is IPv4 or
+IPv6.<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+   <th>
+   <p>Structure pointed to at offset</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IP_IN_FILTER_INFO</p>
+  <p>0xFFFF0001</p>
+  </td>
+  <td>
+  <p>The input filter that is applied to the IP packets
+  sent to the RRAS server.</p>
+  </td>
+  <td>
+  <p><a href="4df61e3b-10c2-486a-a8ae-e6613491116b" data-linktype="relative-path">FILTER_DESCRIPTOR (section 2.2.1.2.5)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_OUT_FILTER_INFO</p>
+  <p>0xFFFF0002</p>
+  </td>
+  <td>
+  <p>The output filter that is applied to the IP packets
+  sent from the RRAS server.</p>
+  </td>
+  <td>
+  <p>FILTER_DESCRIPTOR (section 2.2.1.2.5)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_GLOBAL_INFO</p>
+  <p>0xFFFF0003</p>
+  </td>
+  <td>
+  <p>Global IP filtering information.</p>
+  </td>
+  <td>
+  <p><a href="00b80943-db2f-48a5-85f0-ba65210b744f" data-linktype="relative-path">GLOBAL_INFO (section 2.2.1.2.9)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_INTERFACE_STATUS_INFO</p>
+  <p>0xFFFF0004</p>
+  </td>
+  <td>
+  <p>IPv4 interface status information.</p>
+  </td>
+  <td>
+  <p><a href="71de36ba-8cc5-4486-897f-18255b0a5bd3" data-linktype="relative-path">INTERFACE_STATUS_INFO (section 2.2.1.2.18)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_ROUTE_INFO</p>
+  <p>0xFFFF0005</p>
+  </td>
+  <td>
+  <p>Routing information is added. If bV4 of
+  INTERFACE_ROUTE_INFO is set, an IPv4 route is added; otherwise, an IPv6 route
+  is added.</p>
+  </td>
+  <td>
+  <p><a href="784d8544-140a-4769-b659-7d3168de9242" data-linktype="relative-path">INTERFACE_ROUTE_INFO (section 2.2.1.2.11)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_PROT_PRIORITY_INFO</p>
+  <p>0xFFFF0006</p>
+  </td>
+  <td>
+  <p>Protocol priority information.</p>
+  </td>
+  <td>
+  <p><a href="911cf24d-db4e-4681-bdb2-827edb904200" data-linktype="relative-path">PRIORITY_INFO (section 2.2.1.2.12)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_PROT_PRIORITY_INFO_EX<a id="Appendix_A_Target_18"></a><a aria-label="Product behavior note 18" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_18" data-linktype="relative-path">&lt;18&gt;</a> </p>
+  <p>0xFFFF0017</p>
+  </td>
+  <td>
+  <p>Protocol priority information.</p>
+  </td>
+  <td>
+  <p><a href="bd2b7eb4-1a20-469a-ac87-0aea5660d381" data-linktype="relative-path">PRIORITY_INFO_EX (section 2.2.1.2.266)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_ROUTER_DISC_INFO</p>
+  <p>0xFFFF0007</p>
+  </td>
+  <td>
+  <p>Router discovery information.</p>
+  </td>
+  <td>
+  <p><a href="f7ffac77-b97e-415b-aed9-3203f785fb0d" data-linktype="relative-path">RTR_DISC_INFO (section 2.2.1.2.14)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_DEMAND_DIAL_FILTER_INFO</p>
+  <p>0xFFFF0009</p>
+  </td>
+  <td>
+  <p>The IP traffic that matches this filter indicates that
+  a demand-dial connection is available and all the IP packets matching this
+  filter MUST be routed into the connection.</p>
+  </td>
+  <td>
+  <p>FILTER_DESCRIPTOR (section 2.2.1.2.5)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_MCAST_HEARTBEAT_INFO</p>
+  <p>0xFFFF000A</p>
+  </td>
+  <td>
+  <p>Specifies the multicast heartbeat configuration for an
+  interface.</p>
+  </td>
+  <td>
+  <p><a href="eeaaca25-5484-4729-a5b4-fa42c4d5a7d3" data-linktype="relative-path">MCAST_HBEAT_INFO (section 2.2.1.2.15)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_MCAST_BOUNDARY_INFO</p>
+  <p>0xFFFF000B</p>
+  </td>
+  <td>
+  <p>Multicast boundary information.</p>
+  </td>
+  <td>
+  <p><a href="b9cc44e7-6047-4e0d-9bae-ffbd4b50b4e2" data-linktype="relative-path">MIB_BOUNDARYROW (section 2.2.1.2.24)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_IPINIP_CFG_INFO</p>
+  <p>0xFFFF000C</p>
+  </td>
+  <td>
+  <p>IP in IP configuration information.</p>
+  </td>
+  <td>
+  <p><a href="984a6b32-73d0-45cd-bbdf-24826eff554c" data-linktype="relative-path">IPINIP_CONFIG_INFO (section 2.2.1.2.17)</a><a id="Appendix_A_Target_19"></a><a aria-label="Product behavior note 19" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_19" data-linktype="relative-path">&lt;19&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_IFFILTER_INFO</p>
+  <p>0xFFFF000D</p>
+  </td>
+  <td>
+  <p>IPv4 interface filter information.</p>
+  </td>
+  <td>
+  <p><a href="968cc06e-2533-4566-887d-d2917c5f0538" data-linktype="relative-path">IFFILTER_INFO (section 2.2.1.2.88)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_MCAST_LIMIT_INFO</p>
+  <p>0xFFFF000E</p>
+  </td>
+  <td>
+  <p>Multicast configuration information.</p>
+  </td>
+  <td>
+  <p><a href="8e668e2d-0ccd-456f-b589-0d4dd97209a7" data-linktype="relative-path">MIB_MCAST_LIMIT_ROW (section 2.2.1.2.16)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPV6_GLOBAL_INFO</p>
+  <p>0xFFFF000F</p>
+  </td>
+  <td>
+  <p>Global lPv6 filtering information.</p>
+  </td>
+  <td>
+  <p>GLOBAL_INFO (section 2.2.1.2.9) </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_IN_FILTER_INFO_V6</p>
+  <p>0xFFFF0011</p>
+  </td>
+  <td>
+  <p>The input filter that MUST be applied to the IPv6
+  packets sent to the RRAS server.</p>
+  </td>
+  <td>
+  <p><a href="3d3c143f-3da6-45d0-9152-37baa976f3c8" data-linktype="relative-path">FILTER_DESCRIPTOR_V6 (section 2.2.1.2.7)</a>
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_OUT_FILTER_INFO_V6</p>
+  <p>0xFFFF0012</p>
+  </td>
+  <td>
+  <p>The output filter that MUST be applied to the IPv6
+  packets sent from the RRAS server. </p>
+  </td>
+  <td>
+  <p>FILTER_DESCRIPTOR_V6 (section 2.2.1.2.7) </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_DEMAND_DIAL_FILTER_INFO_V6</p>
+  <p>0xFFFF0013</p>
+  </td>
+  <td>
+  <p>IPv6 traffic that matches this filter indicates that a
+  site-to-site connection MUST be available and all the IPv6 packets matching
+  this filter MUST be routed into the connection. </p>
+  </td>
+  <td>
+  <p>FILTER_DESCRIPTOR_V6 (section 2.2.1.2.7) </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_IFFILTER_INFO_V6</p>
+  <p>0xFFFF0014</p>
+  </td>
+  <td>
+  <p>IPv6 interface filter information.</p>
+  </td>
+  <td>
+  <p>IFFILTER_INFO (section 2.2.1.2.88) </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_FILTER_ENABLE_INFO </p>
+  <p>0xFFFF0015</p>
+  </td>
+  <td>
+  <p>Enable or disable IPv4 interface filter.</p>
+  </td>
+  <td>
+  <p><a href="d5556601-8e51-46bd-b8c6-2fc4d76a21aa" data-linktype="relative-path">MPR_FILTER_0 (section 2.2.1.2.89)</a><a id="Appendix_A_Target_20"></a><a aria-label="Product behavior note 20" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_FILTER_ENABLE_INFO_V6</p>
+  <p>0xFFFF0016</p>
+  </td>
+  <td>
+  <p>Enable or disable IPv6 interface filter.</p>
+  </td>
+  <td>
+  <p>MPR_FILTER_0 (section 2.2.1.2.89)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MS_IP_BOOTP</p>
+  <p>0x0000270F</p>
+  </td>
+  <td>
+  <p>IP BOOTP global or interface information depending on
+  the method that calls.</p>
+  </td>
+  <td>
+  <p><a href="4419f3c5-188e-4824-8006-39ad9b105b9d" data-linktype="relative-path">IPBOOTP_GLOBAL_CONFIG (section 2.2.1.2.149)</a></p>
+  <p><a href="7c328ccb-406a-4e6c-9987-e89297d9ac89" data-linktype="relative-path">IPBOOTP_IF_CONFIG (section 2.2.1.2.150)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MS_IP_IGMP</p>
+  <p>0x4137000A</p>
+  </td>
+  <td>
+  <p>IGMP global or interface information depending on the
+  method that calls.</p>
+  </td>
+  <td>
+  <p><a href="0c8cd37c-b9c0-44d1-a73d-8822717c9927" data-linktype="relative-path">IGMP_MIB_GLOBAL_CONFIG (section 2.2.1.2.173)</a></p>
+  <p><a href="a5faf030-9152-4e68-82a4-5451267586bb" data-linktype="relative-path">IGMP_MIB_IF_CONFIG (section 2.2.1.2.174)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MS_IP_RIP</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>IP RIP global or interface information depending on
+  the method that calls.</p>
+  </td>
+  <td>
+  <p><a href="7053ff8a-73fc-4557-b7d5-fce2dccd9382" data-linktype="relative-path">IPRIP_IF_CONFIG (section 2.2.1.2.166)</a></p>
+  <p><a href="bd082244-f666-4d4d-9ef3-cade80b09c13" data-linktype="relative-path">IPRIP_GLOBAL_CONFIG (section 2.2.1.2.164)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MS_IP_BGP</p>
+  <p>0x0137000E</p>
+  </td>
+  <td>
+  <p>BGP configuration.</p>
+  </td>
+  <td>
+  <p>When the transport is IPv4, the structure pointed to
+  at the offset is <a href="cf155bce-58dd-492d-8883-6a920c767d19" data-linktype="relative-path">BGP_CONFIG_HEADER (section 2.2.1.2.252)</a>.</p>
+  <p>When the transport is IPv6, the structure pointed to
+  at the offset is <a href="d3faa796-bc6b-4d1a-ad97-a75068a1acbb" data-linktype="relative-path">BGP_ROUTER_V6 (section 2.2.1.2.265)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MS_IP_DHCP_ALLOCATOR</p>
+  <p>0x81372714</p>
+  </td>
+  <td>
+  <p>DHCP allocator global or interface information
+  depending on the method that calls.</p>
+  </td>
+  <td>
+  <p>IP_AUTO_DHCP_GLOBAL_INFO (section <a href="8c173961-b72b-4115-a23a-a90f8270cbc0" data-linktype="relative-path">2.2.1.2.191)</a></p>
+  <p>IP_AUTO_DHCP_INTERFACE_INFO (section <a href="5e791bf2-b33e-45a5-a6da-4a7aac04acba" data-linktype="relative-path">2.2.1.2.192)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MS_IP_DNS_PROXY</p>
+  <p>0x81372713</p>
+  </td>
+  <td>
+  <p>DNS Proxy global or interface information depending on
+  the method that calls.</p>
+  </td>
+  <td>
+  <p>IP_DNS_PROXY_GLOBAL_INFO (section <a href="91d78735-4aef-4dd1-a0e4-b71beb6f7a2e" data-linktype="relative-path">2.2.1.2.193)</a></p>
+  <p>IP_DNS_PROXY_INTERFACE_INFO (section <a href="fd724ece-760f-4cd1-8f20-2fb1e587492b" data-linktype="relative-path">2.2.1.2.194)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MS_IP_NAT</p>
+  <p>0x81372715</p>
+  </td>
+  <td>
+  <p>IP NAT global or interface information depending on the
+  method that calls.</p>
+  </td>
+  <td>
+  <p>IP_NAT_GLOBAL_INFO (section <a href="a2965a02-bfe6-45d1-9c7d-c35b5b9edbbe" data-linktype="relative-path">2.2.1.2.195)</a></p>
+  <p>IP_NAT_INTERFACE_INFO (section <a href="a16a3b99-8c59-44fa-b74f-d154f0eca5f9" data-linktype="relative-path">2.2.1.2.197)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MS_IP_OSPF<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a> </p>
+  <p>0x0000000D</p>
+  </td>
+  <td>
+  <p>OSPF global or interface information depending on the
+  method that calls.</p>
+  </td>
+  <td>
+  <p>OSPF_ROUTE_FILTER_INFO (section <a href="027f5f7a-ae39-44f2-95ac-f557c881a069" data-linktype="relative-path">2.2.1.2.209)</a></p>
+  <p>OSPF_PROTO_FILTER_INFO (section <a href="1c930f3c-6b7a-4731-b124-3252f408f0ea" data-linktype="relative-path">2.2.1.2.210)</a></p>
+  <p>OSPF_GLOBAL_PARAM (section <a href="0fd4f4e7-3dc1-4d39-93a9-fbcd073e3011" data-linktype="relative-path">2.2.1.2.211)</a></p>
+  <p>OSPF_AREA_PARAM (section <a href="1c78678e-4d2d-4e6c-b40b-5c435b89bd09" data-linktype="relative-path">2.2.1.2.212)</a></p>
+  <p>OSPF_AREA_RANGE_PARAM (section <a href="d73ca99d-16f6-4304-851e-15b18aaa78c5" data-linktype="relative-path">2.2.1.2.213)</a></p>
+  <p>OSPF_VIRT_INTERFACE_PARAM (section <a href="7fb02ecb-a32b-4967-bb60-a49f90d348a7" data-linktype="relative-path">2.2.1.2.214)</a></p>
+  <p>OSPF_INTERFACE_PARAM (section <a href="a74c9676-a5d5-4075-833b-b2276942f482" data-linktype="relative-path">2.2.1.2.215)</a></p>
+  <p>OSPF_NBMA_NEIGHBOR_PARAM (section <a href="d5c8a58c-ce43-4791-9ffd-59e28a5b9b54" data-linktype="relative-path">2.2.1.2.216)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MS_IPV6_DHCP</p>
+  <p>0x000003E7</p>
+  </td>
+  <td>
+  <p>DHCPv6 Relay global or interface information depending
+  on the method that calls.</p>
+  </td>
+  <td>
+  <p><a href="b769ac0a-a546-46b2-9f81-afc05bf5bd91" data-linktype="relative-path">DHCPV6R_IF_CONFIG (section 2.2.1.2.159)</a></p>
+  <p><a href="ce9b2f8e-aaa6-4d39-b935-28815acca0ff" data-linktype="relative-path">DHCPV6R_GLOBAL_CONFIG (section 2.2.1.2.157)</a></p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The value MUST be one of the
+following when the transport is IPX.<a id="Appendix_A_Target_22"></a><a aria-label="Product behavior note 22" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_22" data-linktype="relative-path">&lt;22&gt;</a></p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+   <th>
+   <p>Structure pointed to at offset</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPX_INTERFACE_INFO_TYPE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Specifies the IPX interface data.</p>
+  </td>
+  <td>
+  <p><a href="4bfe354b-9447-4786-8cee-8b5d380503a1" data-linktype="relative-path">IPX_IF_INFO (section 2.2.1.2.91)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_STATIC_ROUTE_INFO_TYPE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Specifies the route information for an IPX interface.</p>
+  </td>
+  <td>
+  <p><a href="80f25fd1-c194-44dc-8ddf-8c95ba0e25ac" data-linktype="relative-path">IPX_STATIC_ROUTE_INFO (section 2.2.1.2.93)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_STATIC_SERVICE_INFO_TYPE</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Specifies information about the transport layer
+  protocol that is being multiplexed.</p>
+  </td>
+  <td>
+  <p><a href="a8c32199-2bc6-4ddc-a681-4fc5ba56ee40" data-linktype="relative-path">IPX_STATIC_SERVICE_INFO (section 2.2.1.2.94)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_IN_TRAFFIC_FILTER_INFO_TYPE</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>Specifies the filter data for an IPX interface.</p>
+  </td>
+  <td>
+  <p><a href="852a0e2a-cf35-475d-b0a8-5f554c5491a9" data-linktype="relative-path">IPX_TRAFFIC_FILTER_INFO (section 2.2.1.2.98)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_ADAPTER_INFO_TYPE</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>Specifies the adapter information for the IPX.</p>
+  </td>
+  <td>
+  <p><a href="14deb2e8-de31-460f-9662-ee6269c9e7cb" data-linktype="relative-path">IPX_ADAPTER_INFO (section 2.2.1.2.96)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPXWAN_IF_INFO</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Specifies whether IPXWAN negotiation is to be disabled
+  or enabled.</p>
+  </td>
+  <td>
+  <p><a href="fa5c804e-3cd5-4063-9c2c-6a668aa3009e" data-linktype="relative-path">IPXWAN_IF_INFO (section 2.2.1.2.92)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_GLOBAL_INFO_TYPE</p>
+  <p>0x00000009</p>
+  </td>
+  <td>
+  <p>Specifies global IPX information. See IPX_GLOBAL_INFO
+  for the actual information.</p>
+  </td>
+  <td>
+  <p><a href="e33c4916-b815-4305-b2ac-d7a598225bef" data-linktype="relative-path">IPX_GLOBAL_INFO (section 2.2.1.2.90)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_STATIC_NETBIOS_NAME_INFO_TYPE</p>
+  <p>0x0000000A</p>
+  </td>
+  <td>
+  <p>Specifies the NetBIOS name of an IPX interface.</p>
+  </td>
+  <td>
+  <p><a href="5e478309-1d6d-4f06-a4b9-7095f66e75bd" data-linktype="relative-path">IPX_STATIC_NETBIOS_NAME_INFO (section 2.2.1.2.95)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_IN_TRAFFIC_FILTER_GLOBAL_INFO_TYPE</p>
+  <p>0x0000000B</p>
+  </td>
+  <td>
+  <p>Specifies the action for a filter match.</p>
+  </td>
+  <td>
+  <p><a href="1117719b-4230-44ae-9337-97ac08bbe0b1" data-linktype="relative-path">IPX_TRAFFIC_FILTER_GLOBAL_INFO (section 2.2.1.2.97)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_OUT_TRAFFIC_FILTER_INFO_TYPE</p>
+  <p>0x0000000C</p>
+  </td>
+  <td>
+  <p>Specifies the filter data for an IPX interface.</p>
+  </td>
+  <td>
+  <p>IPX_TRAFFIC_FILTER_INFO (section 2.2.1.2.98)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_OUT_TRAFFIC_FILTER_GLOBAL_INFO_TYPE</p>
+  <p>0x0000000D</p>
+  </td>
+  <td>
+  <p>Specifies the action for a filter match.</p>
+  </td>
+  <td>
+  <p>IPX_TRAFFIC_FILTER_GLOBAL_INFO (section 2.2.1.2.97)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_PROTOCOL_RIP</p>
+  <p>0x00020000</p>
+  </td>
+  <td>
+  <p>RIP global or interface information depending on the
+  method that calls.</p>
+  </td>
+  <td>
+  <p>RIP_GLOBAL_INFO (section <a href="89f466e4-30f3-4574-8a60-dedf692ce779" data-linktype="relative-path">2.2.1.2.202)</a></p>
+  <p>RIP_IF_CONFIG (section <a href="d3d015ab-1559-4be5-994d-b6f9ed7522ec" data-linktype="relative-path">2.2.1.2.206)</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_PROTOCOL_SAP</p>
+  <p>0x00020001</p>
+  </td>
+  <td>
+  <p>SAP global or interface information depending on the
+  method that calls.</p>
+  </td>
+  <td>
+  <p>SAP_GLOBAL_INFO (section <a href="5b29647b-29a6-4da6-b728-4bcc6a7a74e3" data-linktype="relative-path">2.2.1.2.207)</a></p>
+  <p><a href="be09ab33-b081-41ea-b79a-99f5b1a508e0" data-linktype="relative-path">SAP_IF_CONFIG (section 2.2.1.2.114)</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>InfoSize (4 bytes): </b>A 32-bit, unsigned
+integer, in network byte-order, that MUST specify the number of bytes in an
+information structure of this type in this entry.</p><p><b>Count (4 bytes): </b>A 32-bit, unsigned integer in
+network byte order that MUST specify the number of information structures of
+this type in this entry.</p><p><b>Offset (4 bytes): </b>A 32-bit, unsigned integer
+in network byte order that MUST specify the offset of start of the first
+structure for this entry.</p></div>

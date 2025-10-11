@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_BEST_IF</b> structure stores the index of the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> that has the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_6e1f63f5-d9fa-4e56-80bc-a18cae389b80" data-linktype="relative-path">best route</a> to a specific
+destination IPv4 address.</p><dl>
+<dd>
+<div><pre> typedef struct _MIB_BEST_IF {
+   DWORD dwDestAddr;
+   DWORD dwIfIndex;
+ } MIB_BEST_IF,
+  *PMIB_BEST_IF;
+</pre></div>
+</dd></dl><p><b>dwDestAddr: </b>Specifies the IPv4 address of the
+destination address.</p><p><b>dwIfIndex: </b>Specifies the index of the
+interface that has the best route to the destination address specified by the <b>dwDestAddr</b>
+member.</p></div>

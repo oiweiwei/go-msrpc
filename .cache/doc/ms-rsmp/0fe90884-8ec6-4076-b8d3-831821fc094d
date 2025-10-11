@@ -1,1 +1,19 @@
-<div class="content"></div>
+<div class="content"><p>The SECURITY_ATTRIBUTES_NTMS structure contains the security
+descriptor for an object.</p><dl>
+<dd>
+<div><pre> typedef struct _SECURITY_ATTRIBUTES_NTMS {
+   DWORD nLength;
+   [size_is(nDescriptorLength)] byte* lpSecurityDescriptor;
+   BOOL bInheritHandle;
+   DWORD nDescriptorLength;
+ } SECURITY_ATTRIBUTES_NTMS,
+  *LPSECURITY_ATTRIBUTES_NTMS;
+</pre></div>
+</dd></dl><p><b>nLength:</b>  The size, in bytes, of the
+particular instance of the structure containing this field. </p><p><b>lpSecurityDescriptor:</b>  A pointer to
+a security descriptor for the object that controls the sharing of that object.
+Security descriptors are specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>.
+</p><p><b>bInheritHandle:</b>  If set to TRUE, the
+new process MUST inherit the handle; if set to FALSE, the handle MUST NOT be
+inherited. </p><p><b>nDescriptorLength:</b>  The size, in
+bytes, of the descriptor. </p></div>

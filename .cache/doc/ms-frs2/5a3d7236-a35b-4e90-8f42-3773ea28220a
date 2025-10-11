@@ -1,1 +1,86 @@
-<div class="content"></div>
+<div class="content"><p>The RawGetFileData method is used to transfer successive
+segments of compressed marshaled data for a file from the server to the client.
+This method does not use the Remote Differential Compression Algorithm (as
+specified in <a href="../ms-rdc/5b027295-0b63-45b9-8f62-0e49448350d9" data-linktype="relative-path">[MS-RDC]</a>)
+to transfer data.</p><dl>
+<dd>
+<div><pre> DWORD RawGetFileData(
+   [in, out] PFRS_SERVER_CONTEXT* serverContext,
+   [out, size_is(bufferSize), length_is(*sizeRead)] 
+     byte* dataBuffer,
+   [in, range(0, CONFIG_TRANSPORT_MAX_BUFFER_SIZE)] 
+     DWORD bufferSize,
+   [out] DWORD* sizeRead,
+   [out] long* isEndOfFile
+ );
+</pre></div>
+</dd></dl><p><b>serverContext: </b>The context handle that
+represents the requested file replication operation. The client MUST specify a
+pointer to a server context that was retrieved by a previously successful call
+to the <a href="908b4cc2-9915-4e31-84b8-f6b3e09b7c03" data-linktype="relative-path">InitializeFileTransferAsync</a>
+method. The server MUST NOT change the value of serverContext and then return
+the same serverContext that was passed in.</p><p><b>dataBuffer: </b>The file data received from the
+server.</p><p><b>bufferSize: </b>The size, in bytes, of <i>dataBuffer</i>.</p><p><b>sizeRead: </b>The size, in bytes, of the file data
+returned in <i>dataBuffer</i>.</p><p><b>isEndOfFile: </b>The value is TRUE if the end of
+the specified file has been reached and there is no more file data to replicate
+to the client; otherwise, the value is FALSE.</p><p><b>Return Values: </b>This method MUST return 0 on
+success or a nonzero error code on failure. For protocol purposes all nonzero
+values MUST be treated as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The context is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00002344</p>
+  <p>FRS_ERROR_CONTENTSET_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The content set was not found.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Validating the file transfer request:</b> The server MUST
+validate the file transfer request by performing the following checks. </p><ul><li><p><span><span> 
+</span></span>If the specified server context was not retrieved by a previously
+successful call to the InitializeFileTransferAsync method, then the server MUST
+fail the call with the ERROR_INVALID_PARAMETER failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the server has already completed transferring the file
+associated with the server context, the server MUST fail the call with an
+implementation-defined failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the server is not currently participating in the replication
+of the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_064adaf1-86c7-43e5-a157-b0949980181e" data-linktype="relative-path">replicated folder</a>
+that is associated with the specified server context, then the server MUST fail
+the call with the FRS_ERROR_CONTENTSET_NOT_FOUND failure value.</p>
+</li></ul><p><b>Actions Triggered:</b> Upon successfully validating the
+file transfer request, the server retrieves the next segment of the file’s
+marshaled data. </p><p><b>Remarks:</b> If the <i>bufferSize</i> parameter is zero
+then the server MAY complete the call successfully with the <i>sizeRead</i>
+parameter set to zero, or fail the call with an implementation-defined failure
+value. <a id="Appendix_A_Target_28"></a><a aria-label="Product behavior note 28" href="c43938b1-6e96-48ec-9725-5e5d42089f49#Appendix_A_28" data-linktype="relative-path">&lt;28&gt;</a></p><p>The data returned in the <i>dataBuffer</i> parameter is a
+continuation of the data returned by a previous call to the
+InitializeFileTransferAsync method.</p></div>

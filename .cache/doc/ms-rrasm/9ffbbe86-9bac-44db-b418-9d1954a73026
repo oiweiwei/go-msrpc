@@ -1,1 +1,163 @@
-<div class="content"></div>
+<div class="content"><p>The <b>BGP_POLICY</b> structure<a id="Appendix_A_Target_190"></a><a aria-label="Product behavior note 190" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_190" data-linktype="relative-path">&lt;190&gt;</a> is used to get or set the
+policy configuration of a <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_3a805569-358b-4691-b201-80833db6e879" data-linktype="relative-path">BGP
+speaker</a>. A policy can be composed of zero or more Match clauses and one or
+more Action clauses. All the Match clauses are always grouped in logical AND.
+Similarly, all the Action clauses are always grouped in logical AND. Action
+clauses are applied only if all the Match clauses are satisfied.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>szPolicyName
+  (152 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>eType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uMatchCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uActionCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Matches (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Actions
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwFlags (4 bytes): </b>Specifies the policy
+attribute that is being modified. This field is used while modifying the BGP
+policy configuration. The value MUST be a bit-wise OR combination of one or
+more of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The Match clauses are modified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The Action clauses are modified.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>szPolicyName (152 bytes): </b>A null-terminated
+Unicode string that contains the name of the BGP policy.</p><p><b>eType (4 bytes): </b>Specifies the policy type as
+defined in <a href="9c485e56-7504-4a24-b3bf-3a1d3b1c59f0" data-linktype="relative-path"><b>BGP_POLICY_TYPE
+(section</b></a><span> </span>2.2.1.1.23) enumeration type. 
+</p><p><b>uMatchCount (4 bytes): </b>Specifies the number of
+Match clauses.</p><p><b>uActionCount (4 bytes): </b>Specifies the number
+of Action clauses.</p><p><b>Matches (variable): </b>A list of consecutive
+entries of Match clauses, <b>uMatchCount</b> in number, each of which MUST be
+of type <a href="b0a00f6a-172c-4ebf-a50b-c7db87c5673b" data-linktype="relative-path"><b>BGP_POLICY_MATCH
+(section</b></a><span> </span>2.2.1.2.258).  </p><p><b>Actions (variable): </b>A list of consecutive
+entries of Action clauses, <b>uActionCount</b> in number, each of which MUST be
+of type <a href="e9f914a5-1d72-4918-9c5e-7537eb3b1cf5" data-linktype="relative-path"><b>BGP_POLICY_ACTION
+(section</b></a><span> </span>2.2.1.2.260). The Action
+clause MUST ignore the <b>Modify</b> field of <b>BGP_POLICY_ACTION</b> when the
+<b>eType</b> field is set to <b>PolicyFilter</b> (0x1).  </p><dl>
+<dd>
+<p>A BGP policy:</p>
+</dd></dl><ul><li><p><span><span>  </span></span>MUST
+NOT have more than one Match clause with <b>eType</b> in <b>BGP_POLICY_MATCH</b>
+set to MatchASNRange (0x3). </p>
+</li><li><p><span><span>  </span></span>MUST
+NOT have more than one Match clause with <b>eType</b> in <b>BGP_POLICY_MATCH</b>
+set to MatchMaxPrefixes (0x5).</p>
+</li><li><p><span><span>  </span></span>MUST
+NOT have more than one modify Action clause with <b>eAttrType</b> in <a href="ab8017b3-230d-4be7-abfe-edec6814948c" data-linktype="relative-path"><b>BGP_POLICY_MODIFY (section 2.2.1.2.259)</b></a>
+set to NewLocalPref (0x3).  </p>
+</li><li><p><span><span>  </span></span>MUST
+NOT have more than one modify Action clause with <b>eAttrType</b> in <b>BGP_POLICY_MODIFY</b>
+set to NewNextHop (0x4).</p>
+</li><li><p><span><span>  </span></span>MUST
+NOT have more than one modify Action clause with <b>eAttrType</b> in <b>BGP_POLICY_MODIFY</b>
+set to NewMed (0x5).</p>
+</li><li><p><span><span>  </span></span>MUST
+have only one Action clause with <b>bDeny</b> in BGP_POLICY_ACTION set to TRUE
+when a Match clause with <b>eType</b> in BGP_POLICY_MATCH is specified as
+MatchMaxPrefixes (0x5). </p>
+</li></ul></div>

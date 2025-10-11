@@ -1,1 +1,52 @@
-<div class="content"></div>
+<div class="content"><p>The NTMS_IEDOORINFORMATION structure defines properties
+specific to an insert/eject <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_52b64896-966d-41bd-849a-36602125506b" data-linktype="relative-path">door</a>
+object.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_IEDOORINFORMATION {
+   DWORD Number;
+   DWORD State;
+   unsigned short MaxOpenSecs;
+   NTMS_GUID Library;
+ } NTMS_IEDOORINFORMATION;
+</pre></div>
+</dd></dl><p><b>Number:</b>  The number of the doors in
+the library. Libraries typically have one door. </p><p><b>State:</b>  The state of the door. This
+MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_DOORSTATE_CLOSED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The library door is closed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_DOORSTATE_OPEN</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The library door is open.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_DOORSTATE_UNKNOWN</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The state of the library is unknown.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>MaxOpenSecs:</b>  The maximum number of
+seconds the door is to remain open. </p><p><b>Library:</b>  The library that contains
+this door.</p></div>

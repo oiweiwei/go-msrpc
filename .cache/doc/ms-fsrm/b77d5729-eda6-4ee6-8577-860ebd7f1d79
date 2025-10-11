@@ -31,6 +31,6 @@ success, or a nonzero error code on failure.</p><dl>
 </dd></dl><p>Upon receiving this message, the server MUST validate
 parameters:</p><ul><li><p><span><span> 
 </span></span>Verify that <i>daysSinceAccess</i> is not NULL.</p>
-</li></ul><p>If any validation fails, the server MUST terminate processing
-and return a nonzero error code.</p><p> The server MUST set <i>daysSinceAccess</i> to the <b>days
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p> The server MUST set <i>daysSinceAccess</i> to the <b>days
 since file last accessed</b> this file management job.</p></div>

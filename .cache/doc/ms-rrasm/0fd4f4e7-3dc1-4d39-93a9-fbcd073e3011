@@ -1,1 +1,21 @@
-<div class="content"></div>
+<div class="content"><p>The <b>OSPF_GLOBAL_PARAM</b> structure MAY<a id="Appendix_A_Target_147"></a><a aria-label="Product behavior note 147" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_147" data-linktype="relative-path">&lt;147&gt;</a> be used to contain the OPSF
+global parameters and is used by the following methods: </p><ul><li><p><span><span> 
+</span></span><a href="071439e7-a9fd-40e4-91f7-ab756108e82f" data-linktype="relative-path"><b>RRouterInterfaceTransportSetGlobalInfo (section 3.1.4.10)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="14ad8d26-d7d7-48dd-914d-da962d5d7049" data-linktype="relative-path"><b>RRouterInterfaceTransportGetGlobalInfo (section 3.1.4.11)</b></a><span>  </span></p>
+<div><pre> typedef struct _OSPF_GLOBAL_PARAM {
+   DWORD type;
+   DWORD create;
+   DWORD enable;
+   DWORD routerId;
+   DWORD ASBrdrRtr;
+   DWORD logLevel;
+ } OSPF_GLOBAL_PARAM, *POSPF_GLOBAL_PARAM;
+</pre></div>
+</li></ul><p><b>type: </b>This MUST be set to
+OSPF_GLOBAL_PARAM_TYPE.</p><p><b>create: </b>Set to 1 if the configuration needs to
+be created or set to 2 if it needs to be deleted.</p><p><b>enable: </b>Set to 1 if the configuration needs to
+be enabled or set to 2 if it needs to be deleted.</p><p><b>routerId: </b>This can be any value, or the IP
+address of the router, and MUST NOT be zero.</p><p><b>ASBrdrRtr: </b>If it is the boundary router set to
+1, otherwise set to 2.</p><p><b>logLevel: </b>Set to 0 if no logging, 1 if an
+error, 2 if a warning, and 3 if information.</p></div>

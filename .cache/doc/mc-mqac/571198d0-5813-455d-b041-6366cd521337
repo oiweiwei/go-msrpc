@@ -1,0 +1,73 @@
+<div class="content"><p>The State method is received by the server in an RPC_REQUEST
+packet. In response, the server MUST return the represented <a href="../ms-mqdmpr/d53d687d-49c4-4b6f-af29-351f7341b423" data-linktype="relative-path">OutgoingQueue</a>.State.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT State(
+   [out, retval] long* plState
+ );
+</pre></div>
+</dd></dl><p><b>plState: </b>A pointer to a <b>long</b> that
+corresponds to the <a href="81ea0bda-aac4-4c57-a798-5307137ccfa0" data-linktype="relative-path">QUEUE_STATE</a>
+(section 2.2.2.19) enumeration.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+processes this call, it MUST follow these guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <b>ObjectIsInitialized</b> instance variable is False:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST return MQ_ERROR_UNINITIALIZED_OBJECT (0xC00E0094), and MUST take no
+further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>The server MUST generate a <b>QMMgmt Get Info</b> event with the
+following inputs:</p>
+<ul><li><p><span><span>  </span></span><b>iPropID</b>
+= PROPID_MGMT_QUEUE_STATE</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <b>rStatus</b> return value is not equal to MQ_OK (0x00000000),
+the server MUST return <b>rStatus</b> and MUST take no further action.</p>
+</li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>If
+the value of the returned <b>rPropVar</b> was &#34;LOCAL CONNECTION&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The server MUST set the <i>plState</i> output variable to
+MQ_QUEUE_STATE_LOCAL_CONNECTION, and MUST take no further action.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the value of the returned <b>rPropVar</b> was &#34;DISCONNECTED&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The server MUST set the <i>plState</i> output variable to
+MQ_QUEUE_STATE_DISCONNECTED, and MUST take no further action.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the value of the returned <b>rPropVar</b> was &#34;LOCKED&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The server MUST set the <i>plState</i> output variable to
+MQ_QUEUE_STATE_LOCKED, and MUST take no further action.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the value of the returned <b>rPropVar</b>  was &#34;WAITING&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The server MUST set the <i>plState</i> output variable to
+MQ_QUEUE_STATE_WAITING, and MUST take no further action.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the value of the returned <b>rPropVar</b>  was &#34;NEED VALIDATION&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The server MUST set the <i>plState</i> output variable to
+MQ_QUEUE_STATE_NEEDVALIDATE, and MUST take no further action.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the value of the returned <b>rPropVar</b>  was &#34;ONHOLD&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The server MUST set the <i>plState</i> output variable to
+MQ_QUEUE_STATE_ONHOLD, and MUST take no further action.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the value of the returned <b>rPropVar</b>  was &#34;INACTIVE&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The server MUST set the <i>plState</i> output variable to
+MQ_QUEUE_STATE_NONACTIVE, and MUST take no further action.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the value of the returned <b>rPropVar</b>  was &#34;CONNECTED&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The server MUST set the <i>plState</i> output variable to
+MQ_QUEUE_STATE_CONNECTED, and MUST take no further action.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the value of the returned <b>rPropVar</b>  was &#34;DISCONNECTING&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The server MUST set the <i>plState</i> output variable to
+MQ_QUEUE_STATE_DISCONNECTING, and MUST take no further action.</p>
+</li></ul></li></ul></li></ul></div>

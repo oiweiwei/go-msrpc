@@ -1,0 +1,49 @@
+<div class="content"><p>The PathNameDNS method is received by the server in an
+RPC_REQUEST packet. In response, the server returns the DNS path name that
+identifies the <i>referenced queue</i>.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT PathNameDNS(
+   [out, retval] BSTR* pbstrPathNameDNS
+ );
+</pre></div>
+</dd></dl><p><b>pbstrPathNameDNS: </b>A pointer to a <a href="../ms-oaut/1c9d2cfc-cf7d-4f4b-95bf-584be5defd81" data-linktype="relative-path">BSTR</a>
+that specifies the DNS path name of the <i>referenced queue</i>.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the server MUST abide by the
+following contract:</p><ul><li><p><span><span> 
+</span></span>If <i>IsRefreshed</i> is FALSE call <a href="e4072abd-b433-4b22-a4ed-8f654d182705" data-linktype="relative-path">Refresh</a> (section
+3.10.4.1.29).</p>
+</li><li><p><span><span> 
+</span></span>If Refresh returns a value other than S_OK (0x00000000), return
+the HRESULT returned by Refresh and take no further action.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>QueueFormatName</i> instance variable is NULL:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error HRESULT, and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>QueueFormatName</i> instance variable identifies more
+than one queue or contains an HTTP or a multicast <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_390ae273-7109-44eb-981f-aa157e6b37c0" data-linktype="relative-path">format name</a>:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error HRESULT, and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Look up the <a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">Queue</a>
+identified by the <i>QueueFormatName</i> instance variable.</p>
+<ul><li><p><span><span>  </span></span>If
+Queue exists:</p>
+<ul><li><p><span><span> 
+</span></span>If Queue.<a href="2f388dcb-36be-44ea-95e7-7e9078c50cc2" data-linktype="relative-path">QueueType</a>
+equals public:</p>
+<ul><li><p><span><span> 
+</span></span>Set DNSPathName to the value of Queue.QualifiedPathName.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span> 
+</span></span>Return an error HRESULT, and take no further action.</p>
+</li></ul></li></ul></li><li><p><span><span>  </span></span>Else:</p>
+<ul><li><p><span><span> 
+</span></span>Return an error HRESULT, and take no further action.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Set the <i>pbstrPathNameDNS</i> output parameter to the value of <i>DNSPathName</i>.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK (0x00000000), and take no further action.</p>
+</li></ul></div>

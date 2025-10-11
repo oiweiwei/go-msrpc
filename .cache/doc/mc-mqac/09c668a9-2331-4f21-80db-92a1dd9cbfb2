@@ -1,0 +1,17 @@
+<div class="content"><p>The Class method is received by the server in an RPC_REQUEST
+packet. In response, the server MUST return the represented Message.Class.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT Class(
+   [out, retval] long* plClass
+ );
+</pre></div>
+</dd></dl><p><b>plClass: </b>A pointer to a <b>long</b> that
+identifies the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a>
+type. This parameter corresponds to the <a href="eaab11bf-07b9-4e74-9197-c5eb1bf772e7" data-linktype="relative-path">MQMSGCLASS</a> (section
+2.2.2.9) enum.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>Set the <i>plClass</i> output parameter to the MQMSGCLASS enum
+that maps to the value of the represented Message.Class.</p>
+</li></ul></div>

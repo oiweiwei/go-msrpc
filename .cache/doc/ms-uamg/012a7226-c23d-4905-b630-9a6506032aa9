@@ -1,1 +1,23 @@
-<div class="content"></div>
+<div class="content"><p>The AutoSelectionMode enumeration defines values describing
+the recommendation for whether an update is automatically selected in a user
+interface (UI).</p><dl>
+<dd>
+<div><pre> typedef  enum tagAutoSelectionMode
+ {
+   asLetWindowsUpdateDecide = 0,
+   asAutoSelectIfDownloaded = 1,
+   asNeverAutoSelect = 2,
+   asAlwaysAutoSelect = 3,
+ } AutoSelectionMode;
+</pre></div>
+</dd></dl><p><b>asLetWindowsUpdateDecide:  </b>The update service
+recommends that a user interface implementation SHOULD decide whether to
+automatically select the update. This decision is implementation-specific and
+can involve other properties of the update and/or the administrator&#39;s
+configuration of the user interface. <a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="50faf1ae-d0ab-42cb-87e2-33f30391e807#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a></p><p><b>asAutoSelectIfDownloaded:  </b>The update service
+recommends that a user interface implementation SHOULD automatically select the
+update if the update is already downloaded.</p><p><b>asNeverAutoSelect:  </b>The update service
+recommends that a user interface implementation SHOULD NOT automatically select
+the update.</p><p><b>asAlwaysAutoSelect:  </b>The update service
+recommends that a user interface implementation SHOULD automatically select the
+update.</p></div>

@@ -2,7 +2,52 @@
 //
 // # Introduction
 //
+// The DCOM Interfaces for Trusted Platform Module (TPM) Virtual Smart Card Management
+// Protocol is used to manage virtual smart cards (VSCs) on a remote machine, such as
+// those based on trusted platform modules (TPM). It provides methods for a protocol
+// client to request creation and destruction of VSCs and to monitor the status of these
+// operations.
+//
 // # Overview
+//
+// The DCOM Interfaces for the Trusted Platform Module (TPM) Virtual Smart Card Management
+// Protocol provides a Distributed Component Object Model (DCOM) Remote Protocol [MS-DCOM]
+// interface used for creating and destroying VSCs. Like all other DCOM interfaces,
+// this protocol uses RPC [C706], with the extensions specified in [MS-RPCE], as its
+// underlying protocol. A VSC is a device that presents a device interface complying
+// with the PC/SC specification for PC-connected interface devices [PCSC3] to its host
+// operating system (OS) platform. This protocol does not assume anything about the
+// underlying implementation of VSC devices. In particular, while it is primarily intended
+// for the management of VSCs based on TPMs, it can also be used to manage other types
+// of VSCs. The protocol defines two interfaces: a primary interface which is used to
+// request VSC operations on a target system, and a secondary interface which is used
+// by that target system to return status and progress information to the requestor.
+//
+// In a typical scenario, this protocol is used by a requestor (generally an administrative
+// workstation) to manage VSC devices on a target (generally an end-user workstation).
+// The requestor, acting as a client, connects to the ITpmVirtualSmartCardManager, ITpmVirtualSmartCardManager2,
+// or ITpmVirtualSmartCardManager3 interface on the target (which acts as the server)
+// and requests the target to either create or destroy a VSC by passing appropriate
+// parameters. These parameters include a reference to an ITpmVirtualSmartCardManagerStatusCallback
+// DCOM interface on the requestor that can be used to provide status updates through
+// callbacks.
+//
+// The principal difference between the ITpmVirtualSmartCardManager2 interface and the
+// ITpmVirtualSmartCardManager3 interface is that the latter supports creation of attestation-capable
+// virtual smart cards.
+//
+// The principal difference between the ITpmVirtualSmartCardManager interface and the
+// ITpmVirtualSmartCardManager2 interface is that the latter supports policies to define
+// valid values for the smart-card PIN.
+//
+// The target, after validating these parameters, starts executing the requested operation.
+// It also opens a second connection back to the requestor over which it invokes the
+// requestor’s ITpmVirtualSmartCardManagerStatusCallback interface as a client, and
+// calls the appropriate functions of that interface to provide progress or error codes.
+// When the operation is completed, the target closes this second connection and returns
+// the result for the requestor’s original method invocation.
+//
+// This entire process is illustrated in Figure 1.
 package tpmvsc
 
 import (
@@ -63,20 +108,34 @@ func (o AttestationType) String() string {
 type Status uint32
 
 var (
-	StatusVTPMSmartCardInitializing  Status = 0
-	StatusVTPMSmartCardCreating      Status = 1
-	StatusVTPMSmartCardDestroying    Status = 2
+	// TPMVSCMGR_STATUS_VTPMSMARTCARD_INITIALIZING: Initializing the VSC component.
+	StatusVTPMSmartCardInitializing Status = 0
+	// TPMVSCMGR_STATUS_VTPMSMARTCARD_CREATING: Creating the VSC component.
+	StatusVTPMSmartCardCreating Status = 1
+	// TPMVSCMGR_STATUS_VTPMSMARTCARD_DESTROYING: Deleting the VSC component.
+	StatusVTPMSmartCardDestroying Status = 2
+	// TPMVSCMGR_STATUS_VGIDSSIMULATOR_INITIALIZING: Initializing the VSC simulator.
 	StatusVGIDSSimulatorInitializing Status = 3
-	StatusVGIDSSimulatorCreating     Status = 4
-	StatusVGIDSSimulatorDestroying   Status = 5
-	StatusVReaderInitializing        Status = 6
-	StatusVReaderCreating            Status = 7
-	StatusVReaderDestroying          Status = 8
-	StatusGenerateWaiting            Status = 9
-	StatusGenerateAuthenticating     Status = 10
-	StatusGenerateRunning            Status = 11
-	StatusCardCreated                Status = 12
-	StatusCardDestroyed              Status = 13
+	// TPMVSCMGR_STATUS_VGIDSSIMULATOR_CREATING: Creating the VSC simulator.
+	StatusVGIDSSimulatorCreating Status = 4
+	// TPMVSCMGR_STATUS_VGIDSSIMULATOR_DESTROYING: Destroying the VSC simulator.
+	StatusVGIDSSimulatorDestroying Status = 5
+	// TPMVSCMGR_STATUS_VREADER_INITIALIZING: Initializing the VSC reader.
+	StatusVReaderInitializing Status = 6
+	// TPMVSCMGR_STATUS_VREADER_CREATING: Creating the VSC reader.
+	StatusVReaderCreating Status = 7
+	// TPMVSCMGR_STATUS_VREADER_DESTROYING: Destroying the VSC reader.
+	StatusVReaderDestroying Status = 8
+	// TPMVSCMGR_STATUS_GENERATE_WAITING: Waiting for the VSC device.
+	StatusGenerateWaiting Status = 9
+	// TPMVSCMGR_STATUS_GENERATE_AUTHENTICATING: Authenticating to the VSC.
+	StatusGenerateAuthenticating Status = 10
+	// TPMVSCMGR_STATUS_GENERATE_RUNNING: Generating the file system on the VSC.
+	StatusGenerateRunning Status = 11
+	// TPMVSCMGR_STATUS_CARD_CREATED: The VSC is created.
+	StatusCardCreated Status = 12
+	// TPMVSCMGR_STATUS_CARD_DESTROYED: The VSC is deleted.
+	StatusCardDestroyed Status = 13
 )
 
 func (o Status) String() string {
@@ -117,25 +176,57 @@ func (o Status) String() string {
 type Error uint32
 
 var (
-	ErrorImpersonation               Error = 0
-	ErrorPINComplexity               Error = 1
-	ErrorReaderCountLimit            Error = 2
-	ErrorTerminalServicesSession     Error = 3
-	ErrorVTPMSmartCardInitialize     Error = 4
-	ErrorVTPMSmartCardCreate         Error = 5
-	ErrorVTPMSmartCardDestroy        Error = 6
-	ErrorVGIDSSimulatorInitialize    Error = 7
-	ErrorVGIDSSimulatorCreate        Error = 8
-	ErrorVGIDSSimulatorDestroy       Error = 9
+	// TPMVSCMGR_ERROR_IMPERSONATION: An error occurred during impersonation of the caller.
+	ErrorImpersonation Error = 0
+	// TPMVSCMGR_ERROR_PIN_COMPLEXITY: The user personal identification number (PIN) or
+	// personal unblocking key (PUK) value does not meet the minimum length requirement.
+	ErrorPINComplexity Error = 1
+	// TPMVSCMGR_ERROR_READER_COUNT_LIMIT:  The limit on the number of Smart Card Readers
+	// has been reached.
+	ErrorReaderCountLimit Error = 2
+	// TPMVSCMGR_ERROR_TERMINAL_SERVICES_SESSION: The TPM Virtual Smart Card Management
+	// Protocol cannot be used within a Terminal Services session.
+	ErrorTerminalServicesSession Error = 3
+	// TPMVSCMGR_ERROR_VTPMSMARTCARD_INITIALIZE: An error occurred during initialization
+	// of the VSC component.
+	ErrorVTPMSmartCardInitialize Error = 4
+	// TPMVSCMGR_ERROR_VTPMSMARTCARD_CREATE: An error occurred during creation of the VSC
+	// component.
+	ErrorVTPMSmartCardCreate Error = 5
+	// TPMVSCMGR_ERROR_VTPMSMARTCARD_DESTROY: An error occurred during deletion of the VSC
+	// component.
+	ErrorVTPMSmartCardDestroy Error = 6
+	// TPMVSCMGR_ERROR_VGIDSSIMULATOR_INITIALIZE: An error occurred during initialization
+	// of the VSC simulator.
+	ErrorVGIDSSimulatorInitialize Error = 7
+	// TPMVSCMGR_ERROR_VGIDSSIMULATOR_CREATE: An error occurred during creation of the VSC
+	// simulator.
+	ErrorVGIDSSimulatorCreate Error = 8
+	// TPMVSCMGR_ERROR_VGIDSSIMULATOR_DESTROY: An error occurred during deletion of the
+	// VSC simulator.
+	ErrorVGIDSSimulatorDestroy Error = 9
+	// TPMVSCMGR_ERROR_VGIDSSIMULATOR_WRITE_PROPERTY: An error occurred during configuration
+	// of the VSC simulator.
 	ErrorVGIDSSimulatorWriteProperty Error = 10
-	ErrorVGIDSSimulatorReadProperty  Error = 11
-	ErrorVReaderInitialize           Error = 12
-	ErrorVReaderCreate               Error = 13
-	ErrorVReaderDestroy              Error = 14
-	ErrorGenerateLocateReader        Error = 15
-	ErrorGenerateFilesystem          Error = 16
-	ErrorCardCreate                  Error = 17
-	ErrorCardDestroy                 Error = 18
+	// TPMVSCMGR_ERROR_VGIDSSIMULATOR_READ_PROPERTY: An error occurred finding the VSC simulator.
+	ErrorVGIDSSimulatorReadProperty Error = 11
+	// TPMVSCMGR_ERROR_VREADER_INITIALIZE: An error occurred during the initialization of
+	// the VSC reader.
+	ErrorVReaderInitialize Error = 12
+	// TPMVSCMGR_ERROR_VREADER_CREATE: An error occurred during creation of the VSC reader.
+	ErrorVReaderCreate Error = 13
+	// TPMVSCMGR_ERROR_VREADER_DESTROY: An error occurred during deletion of the VSC reader.
+	ErrorVReaderDestroy Error = 14
+	// TPMVSCMGR_ERROR_GENERATE_LOCATE_READER: An error occurred preventing connection to
+	// the VSC reader.
+	ErrorGenerateLocateReader Error = 15
+	// TPMVSCMGR_ERROR_GENERATE_FILESYSTEM: An error occurred during generation of the file
+	// system on the VSC.
+	ErrorGenerateFilesystem Error = 16
+	// TPMVSCMGR_ERROR_CARD_CREATE: An error occurred during creation of the VSC.
+	ErrorCardCreate Error = 17
+	// TPMVSCMGR_ERROR_CARD_DESTROY: An error occurred during deletion of the VSC.
+	ErrorCardDestroy Error = 18
 )
 
 func (o Error) String() string {

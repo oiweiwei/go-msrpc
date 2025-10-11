@@ -1,1 +1,32 @@
-<div class="content"></div>
+<div class="content"><p>The IUpdateServiceManager2::AddService2 (opnum 18) method
+registers an <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_1692cfd4-4b1d-4566-9820-8171465bbc4b" data-linktype="relative-path">update service</a></span> with the
+<span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_362092cf-7fb5-43eb-92e1-c3e4affdd92b" data-linktype="relative-path">update
+agent</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT AddService2(
+   [in] BSTR serviceID,
+   [in] LONG flags,
+   [in] BSTR authorizationCabPath,
+   [out, retval] IUpdateServiceRegistration** retval
+ );
+</pre></div>
+</dd></dl><p><b>serviceID: </b>A string identifying the service.</p><p><b>flags: </b>A bitmask created with values from the <span><a href="399740ee-b701-4c5f-913d-760fded9270c" data-linktype="relative-path">AddServiceFlag (section 2.2.15)</a></span>
+enumeration specifying options.</p><p><b>authorizationCabPath: </b>The filesystem path of
+the authorization cabinet file containing information required for a service
+registration. If this is NULL or the empty string, the server SHOULD search for
+the authorization cabinet file online when a network connection is available.</p><p><b>retval: </b>An <b>IUpdateServiceRegistration</b>
+instance.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1, the method failed and
+encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method SHOULD trigger the update agent to add this
+update service through an implementation-dependent<a id="Appendix_A_Target_48"></a><a aria-label="Product behavior note 48" href="50faf1ae-d0ab-42cb-87e2-33f30391e807#Appendix_A_48" data-linktype="relative-path">&lt;48&gt;</a>
+interface. This method SHOULD add the given service to the <b>Services</b> ADM
+element maintained by the <span><a href="e21cb367-0ddd-4971-8fb5-673c661d5120" data-linktype="relative-path">IUpdateServiceManager (section 3.44)</a></span>
+interface and return an IUpdateServiceRegistration instance that represents the
+service registration.</p></div>

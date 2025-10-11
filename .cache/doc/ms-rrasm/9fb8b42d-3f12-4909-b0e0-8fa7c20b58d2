@@ -1,1 +1,67 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IGMP_MIB_GROUP_IFS_LIST</b> structure is an MIB entry
+and stores the list of interfaces that have received joins for that group. This
+structure has variable length. The structure is followed by the <b>NumInterfaces</b>
+number of structures of type <a href="f4a610c9-dc21-41ee-b5f5-e7c86219f107" data-linktype="relative-path"><b>IGMP_MIB_GROUP_INFO</b></a><b>
+</b>or <a href="62a379f0-35ac-40ee-b1fb-8f2730e42a00" data-linktype="relative-path"><b>IGMP_MIB_GROUP_INFO_V3</b></a>.
+</p><p>This structure is read only.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">GroupAddr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">NumInterfaces</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Buffer
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>GroupAddr (4 bytes): </b>The address of the IGMP
+group.</p><p><b>NumInterfaces (4 bytes): </b>The number of
+structures in the buffer.</p><p><b>Buffer (variable): </b>If IGMP_ENUM_FORMAT_IGMPV3
+is set, then <b>Flags</b> of <a href="78cfd91f-a654-4a17-8493-cbd25ae799a8" data-linktype="relative-path"><b>IGMP_MIB_GET_OUTPUT_DATA</b></a>
+contains <b>IGMP_MIB_GROUP_INFO_V3</b> structures. Otherwise, it contains <b>IGMP_MIB_GROUP_INFO</b>
+structures. </p></div>

@@ -1,0 +1,36 @@
+<div class="content"><p>The MQSHARE enumeration defines values that indicate the
+requested exclusivity level when opening a <a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">Queue</a>.
+When a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a> is opened
+for exclusive access, other clients of this protocol MUST NOT be permitted to
+open the same queue. Also, a client of this protocol MUST NOT acquire exclusive
+access to a queue that is already opened by another client.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MQ_DENY_NONE = 0,
+   MQ_DENY_RECEIVE_SHARE = 1
+ } MQSHARE;
+</pre></div>
+</dd></dl><p><b>MQ_DENY_NONE:  </b>This value indicates that the
+Queue is to be opened for nonexclusive access. If any <a href="../ms-mqdmpr/e2005510-8785-414e-9a71-fa313fa6e119" data-linktype="relative-path">OpenQueueDescriptor</a>
+that refers to the Queue has a <b>ShareMode</b> value of <b>DenyReceive</b>,
+the <a href="d1a87420-f35d-4ad3-9338-993b12431368" data-linktype="relative-path">IMSMQQueueInfo4::Open</a>
+method MUST return an error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>.
+The <b>ShareMode</b> property of the OpenQueueDescriptor that was created by
+the Open method MUST be set to <b>DenyNone</b>. This value maps to the <b>QueueShareMode</b>
+enumeration constant of <b>DenyNone</b>, as defined in <a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a>
+section <a href="../ms-mqdmpr/9a4010b9-0196-4d3c-a320-4ffd67e7ae85" data-linktype="relative-path">3.1.1.17</a>.</p><p><b>MQ_DENY_RECEIVE_SHARE:  </b>The Queue MUST be
+opened for exclusive access. If any OpenQueueDescriptor already refers to the
+Queue, the Open method MUST return an error HRESULT. If the Queue is opened
+successfully, the <b>ShareMode</b> property of the OpenQueueDescriptor MUST be
+set to <b>DenyReceive</b>. This value maps to the <b>QueueShareMode</b>
+enumeration constant of <b>DenyReceive</b> as defined in [MS-MQDMPR], section
+3.1.1.17.</p><p>Note the difference between MQSHARE and <a href="f7b87255-fbe2-4246-ba70-a9cd106d0548" data-linktype="relative-path">MQACCESS</a>:</p><ul><li><p><span><span> 
+</span></span>MQSHARE specifies whether a client has exclusive access to a
+queue, thereby making the queue inaccessible to other clients.</p>
+</li><li><p><span><span> 
+</span></span>MQACCESS determines the access to <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">messages</a> in a queue, such
+as read-only or read/write access to messages.</p>
+</li></ul><p>Used by:</p><ul><li><p><span><span> 
+</span></span>IMSMQQueueInfo::Open</p>
+</li></ul></div>

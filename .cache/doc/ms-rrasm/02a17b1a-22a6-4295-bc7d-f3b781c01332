@@ -1,1 +1,66 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IP_NAT_MIB_QUERY</b> structure is used to retrieve <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_67a3ad2c-4ad7-4386-b588-9387b24d86b8" data-linktype="relative-path">Network Address Translator
+(NAT)</a> information and is passed to the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><b>RMIBEntryGetFirst</b> (section <a href="9102e585-2f62-4408-bfb6-02a6460cc883" data-linktype="relative-path">3.1.4.31</a>) </p>
+</li><li><p><span><span> 
+</span></span><a href="50f78033-d248-4272-b4b9-a2519a0f304d" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.1.4.32)</b></a><span>  </span></p>
+<div><pre> typedef struct _IP_NAT_MIB_QUERY {
+   ULONG Oid;
+   union {
+     ULONG Index;
+     UCHAR Data;
+   };
+ } IP_NAT_MIB_QUERY,
+  *PIP_NAT_MIB_QUERY;
+</pre></div>
+</li></ul><p><b>Oid: </b>This is an index of the NAT MIB. It MUST
+be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IP_NAT_INTERFACE_STATISTICS_OID</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>NAT interface statistics information is retrieved.</p>
+  <p>When RMIBEntryGet, RMIBEntryGetFirst, and
+  RMIBEntryGetNext return pMibOutEntry or pInfoStruct it MUST be typecast to <b>IP_NAT_INTERFACE_STATISTICS</b> (section
+  <a href="05b6be2d-788f-41fd-8673-7b3ebb4c9e4b" data-linktype="relative-path">2.2.1.2.185)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NAT_INTERFACE_MAPPING_TABLE_OID</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>NAT interface mapping table information. </p>
+  <p>When RMIBEntryGet, RMIBEntryGetFirst, and
+  RMIBEntryGetNext return pMibOutEntry or pInfoStruct it MUST be typecast to <b>IP_NAT_ENUMERATE_SESSION_MAPPINGS</b> (section
+  <a href="36d57fdc-36e2-4da7-b6ab-5ba99481b2b6" data-linktype="relative-path">2.2.1.2.183)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NAT_MAPPING_TABLE_OID</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>NAT mapping table information.</p>
+  <p>Retrieves the session mappings of an interface.</p>
+  <p>When RMIBEntryGet, RMIBEntryGetFirst, and
+  RMIBEntryGetNext return pMibOutEntry or pInfoStruct it MUST be typecast to
+  IP_NAT_ENUMERATE_SESSION_MAPPINGS.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Index: </b>This MUST be the index of the interface
+when Oid is 0x00000000.</p><p><b>Data: </b>This MUST be <b>IP_NAT_ENUMERATE_SESSION_MAPPINGS</b>
+if Oid is not 0x00000000.</p></div>

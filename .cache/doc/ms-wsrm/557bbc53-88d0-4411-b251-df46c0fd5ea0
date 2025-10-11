@@ -1,1 +1,45 @@
-<div class="content"></div>
+<div class="content"><p>The GetCalDefaultPolicyName method used to get the name of
+the default <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_ce127d6a-8b12-40d6-b9c9-cf544c3ffd08" data-linktype="relative-path">resource
+allocation policy (RAP)</a>.</p><dl>
+<dd>
+<div><pre> [id(9), helpstring(&#34;method GetCalDefaultPolicyName&#34;)] HRESULT GetCalDefaultPolicyName(
+   [out] BSTR* pbstrDefaultPolicyName
+ );
+</pre></div>
+</dd></dl><p><b>pbstrDefaultPolicyName: </b>A pointer to a string
+that returns the default <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_6442eac9-3264-4d95-a435-fdc08e71603f" data-linktype="relative-path">RAP</a>
+name.</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0xC1FF038F</p>
+  <p>WRM_NO_DEF_RAP</p>
+  </td>
+  <td>
+  <p>The WSRM server does not have a default resource
+  allocation policy.<a id="Appendix_A_Target_110"></a><a aria-label="Product behavior note 110" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_110" data-linktype="relative-path">&lt;110&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="a03f4cd5-ad33-46aa-94e7-2c9a92f02b6f" data-linktype="relative-path">IWRMPolicy</a> interface
+methods are specified in section 3.2.4.7.</p></div>

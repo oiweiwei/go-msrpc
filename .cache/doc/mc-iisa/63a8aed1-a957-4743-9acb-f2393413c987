@@ -1,0 +1,28 @@
+<div class="content"><p>The IAppHostChangeHandler describes an <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> that clients can
+implement and that is called when the administration system has detected a
+change in a part of its path hierarchy.</p><p>To receive incoming remote calls for this interface, the
+client MUST implement this interface (09829352-87c2-418d-8d79-4133969a489d). It
+MUST then specify an object that implements this interface to the <a href="1e694f74-02bd-4bae-a74f-abf7a9bc4610" data-linktype="relative-path">IAppHostAdminManager::SetMetadata()</a>
+method by using a bstrMetadataName of &#34;changeHandler&#34;. </p><p>The server then calls this object when the administration
+system detects a change. The administration system is free to determine the
+supported time period during which the changes are detected and conveyed
+through this interface. The time period is either the lifetime of the
+administration system or a shorter time period. </p><p>The IAppHostChangeHandler interface inherits opnums 0–2 from
+the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="c46852f7-3702-499d-a97e-458e6216fd37" data-linktype="relative-path">OnSectionChanges</a></p>
+  </td>
+  <td>
+  <p>Opnum: 3</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

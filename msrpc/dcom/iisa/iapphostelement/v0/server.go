@@ -34,13 +34,81 @@ type AppHostElementServer interface {
 	// Name operation.
 	GetName(context.Context, *GetNameRequest) (*GetNameResponse, error)
 
-	// Collection operation.
+	// The Collection method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns an IAppHostElementCollection that represents a collection of "collection
+	// IAppHostElement" objects. If the specific IAppHostElement does not support this type
+	// of child object, it indicates this in the return.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                        |
+	//	|             VALUE/CODE             |                              DESCRIPTION                               |
+	//	|                                    |                                                                        |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                                  |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                          |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X80070013 ERROR_INVALID_DATA      | Configuration data or schema on the server are malformed or corrupted. |
+	//	+------------------------------------+------------------------------------------------------------------------+
 	GetCollection(context.Context, *GetCollectionRequest) (*GetCollectionResponse, error)
 
-	// Properties operation.
+	// The Properties method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns an IAppHostPropertyCollection that contains the IAppHostProperty
+	// objects that are available for this IAppHostElement.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppProperties is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                        |
+	//	|             VALUE/CODE             |                              DESCRIPTION                               |
+	//	|                                    |                                                                        |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                                  |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                          |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.                |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X80070013 ERROR_INVALID_DATA      | Configuration data or schema on the server are malformed or corrupted. |
+	//	+------------------------------------+------------------------------------------------------------------------+
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 
-	// ChildElements operation.
+	// The ChildElements method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns an IAppHostChildElementCollection that contains child IAppHostElement
+	// objects if any child IAppHostElement objects exist.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                        |
+	//	|             VALUE/CODE             |                              DESCRIPTION                               |
+	//	|                                    |                                                                        |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                                  |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                          |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.                |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X80070013 ERROR_INVALID_DATA      | Configuration data or schema on the server are malformed or corrupted. |
+	//	+------------------------------------+------------------------------------------------------------------------+
 	GetChildElements(context.Context, *GetChildElementsRequest) (*GetChildElementsResponse, error)
 
 	// GetMetadata operation.
@@ -52,16 +120,82 @@ type AppHostElementServer interface {
 	// Schema operation.
 	GetSchema(context.Context, *GetSchemaRequest) (*GetSchemaResponse, error)
 
-	// GetElementByName operation.
+	// The GetElementByName method is received by the server in an RPC_REQUEST packet. In
+	// response, the server returns the child IAppHostElement object with the specified
+	// name.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppElement is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+----------------------------------------------------------------+
+	//	|               RETURN               |                                                                |
+	//	|             VALUE/CODE             |                          DESCRIPTION                           |
+	//	|                                    |                                                                |
+	//	+------------------------------------+----------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                          |
+	//	+------------------------------------+----------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                  |
+	//	+------------------------------------+----------------------------------------------------------------+
+	//	| 0X80070585 ERROR_INVALID_INDEX     | The child element specified by bstrSubName could not be found. |
+	//	+------------------------------------+----------------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.        |
+	//	+------------------------------------+----------------------------------------------------------------+
 	GetElementByName(context.Context, *GetElementByNameRequest) (*GetElementByNameResponse, error)
 
-	// GetPropertyByName operation.
+	// The GetPropertyByName method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns the IAppHostProperty of the specified name.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppProperty is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------------------+
+	//	|               RETURN               |                                                           |
+	//	|             VALUE/CODE             |                        DESCRIPTION                        |
+	//	|                                    |                                                           |
+	//	+------------------------------------+-----------------------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                     |
+	//	+------------------------------------+-----------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.             |
+	//	+------------------------------------+-----------------------------------------------------------+
+	//	| 0X80070585 ERROR_INVALID_INDEX     | The property specified by bstrSubName could not be found. |
+	//	+------------------------------------+-----------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.   |
+	//	+------------------------------------+-----------------------------------------------------------+
 	GetPropertyByName(context.Context, *GetPropertyByNameRequest) (*GetPropertyByNameResponse, error)
 
 	// Clear operation.
 	Clear(context.Context, *ClearRequest) (*ClearResponse, error)
 
-	// Methods operation.
+	// The Methods method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns an IAppHostMethodCollection, which is the collection of methods
+	// that are supported for the specific IAppHostElement object.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppMethods is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetMethods(context.Context, *GetMethodsRequest) (*GetMethodsResponse, error)
 }
 

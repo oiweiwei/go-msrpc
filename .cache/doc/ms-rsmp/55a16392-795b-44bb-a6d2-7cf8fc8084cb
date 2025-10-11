@@ -1,1 +1,67 @@
-<div class="content"></div>
+<div class="content"><p>The CancelNtmsOperatorRequest method cancels an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_4676b5f2-6ecd-463c-8218-811911038e63" data-linktype="relative-path">operator request</a>.</p><dl>
+<dd>
+<div><pre> HRESULT CancelNtmsOperatorRequest(
+   [in] LPNTMS_GUID lpRequestId
+ );
+</pre></div>
+</dd></dl><p><b>lpRequestId: </b>A pointer to the identifier of
+the request to cancel.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The user who tried to execute this method does not
+  have administrator privileges. Only a server administrator can cancel
+  operator requests.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is missing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D8</p>
+  <p>ERROR_OBJECT_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The operator request object identifier was not found.
+  This error occurs if the request is completed prior to cancellation of the
+  operation, or when an invalid request identifier is supplied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007139F</p>
+  <p>ERROR_INVALID_STATE</p>
+  </td>
+  <td>
+  <p>The request has already been completed or cancelled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpRequestId</i>
+is not NULL. If parameter validation fails, the server MUST immediately fail
+the operation and return ERROR_INVALID_PARAMETER (0x80070057).</p><p>This method MUST cancel the given operator request by
+setting the request state to NTMS_OPSTATE_REFUSED.</p></div>

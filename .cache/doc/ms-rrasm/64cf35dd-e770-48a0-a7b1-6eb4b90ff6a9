@@ -1,1 +1,67 @@
-<div class="content"></div>
+<div class="content"><p>The <b>BGP_PEER</b> structure<a id="Appendix_A_Target_191"></a><a aria-label="Product behavior note 191" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_191" data-linktype="relative-path">&lt;191&gt;</a> is
+used to get or set the configuration of a BGP peer.</p><dl>
+<dd>
+<div><pre> typedef struct _BGP_PEER {
+   DWORD dwFlags;
+   WCHAR szPeeringName (152 bytes)[76];
+   BGP_IP_ADDRESS localIP;
+   BGP_IP_ADDRESS remoteIP;
+   USHORT uHoldTime;
+   DWORD dwRemoteASN;
+   BOOL bAutoStart;
+   BGP_PEERING_OP_MODE opMode;
+ } BGP_PEER,
+  *PBGP_PEER;
+</pre></div>
+</dd></dl><p><b>dwFlags: </b>Specifies the BGP peer attribute that
+is being modified. This field is used while modifying the BGP peer
+configuration. This value MUST be a bitwise OR combination of one or more of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The local IP address is modified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The local hold timeout is modified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The remote ASN is modified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>The operation mode of the BGP peer is modified.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>szPeeringName (152 bytes): </b>A null-terminated
+Unicode string that specifies a unique name for the BGP peer.</p><p><b>localIP: </b>Specifies local IP Address to be used
+for BGP peering. This MUST be of type <a href="6f8469c1-3c45-491b-b6e3-e249b27abd74" data-linktype="relative-path"><b>BGP_IP_ADDRESS (section 2.2.1.2.254)</b></a>.  
+</p><p><b>remoteIP: </b>Specifies remote IP address to be
+used for BGP peering. This MUST be of type <b>BGP_IP_ADDRESS</b>.</p><p><b>uHoldTime: </b>Specifies the local value of the
+Hold Timer in seconds. This value MUST NOT be 1 or 2.</p><p><b>dwRemoteASN: </b>Specifies the peer&#39;s <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_334e9ddc-96ff-4099-83c7-7ff8d3c20ff1" data-linktype="relative-path">ASN</a> number. This value MUST
+be between 1 and 65534.</p><p><b>bAutoStart: </b>This MUST be set to TRUE.</p><p><b>opMode: </b>Specifies the operation mode of the
+BGP as defined in <a href="48a71dd3-328f-4c0f-8051-dfa3eb7de230" data-linktype="relative-path"><b>BGP_PEERING_OP_MODE (section 2.2.1.1.24)</b></a>
+enumeration type.  </p></div>

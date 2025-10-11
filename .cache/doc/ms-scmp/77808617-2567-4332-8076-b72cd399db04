@@ -1,1 +1,12 @@
-<div class="content"></div>
+<div class="content"><p>The VSS_SNAPSHOT_STATE enumeration defines the set of valid
+states of a <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow copy</a>.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum _VSS_SNAPSHOT_STATE
+ {
+   VSS_SS_UNKNOWN = 0x00000000,
+   VSS_SS_CREATED = 0x0000000c,
+ } VSS_SNAPSHOT_STATE;
+</pre></div>
+</dd></dl><p><b>VSS_SS_UNKNOWN:  </b>The shadow copy state is
+unknown. This is a restricted shadow copy state. Shadow copies that are managed
+with this protocol MUST NOT appear in this state.</p><p><b>VSS_SS_CREATED:  </b>The shadow copy is created.</p></div>

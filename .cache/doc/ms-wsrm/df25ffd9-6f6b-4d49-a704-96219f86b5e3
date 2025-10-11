@@ -1,1 +1,64 @@
-<div class="content"></div>
+<div class="content"><p>The GetPolicyInfo method gets one or more specified <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_6442eac9-3264-4d95-a435-fdc08e71603f" data-linktype="relative-path">resource allocation policies
+(RAP)</a>.</p><dl>
+<dd>
+<div><pre> [id(1), helpstring(&#34;method GetPolicyInfo&#34;)] HRESULT GetPolicyInfo(
+   [in] BSTR bstrPolicyName,
+   [out] BSTR* pbstrPolicyInfo
+ );
+</pre></div>
+</dd></dl><p><b>bstrPolicyName: </b>The name of the policy to get.
+If the string value is &#34;\&#34;, this method returns a list of all
+allocation policies.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>pbstrPolicyInfo: </b>A pointer to a string that
+returns the policy specified by <i>bstrPolicyName</i>, in the form of a <a href="e6be8e0b-2ecb-4305-8f7c-ac378cc1900f" data-linktype="relative-path">Policy
+element (section 2.2.5.21)</a>. For an example, see the <a href="4600dd8b-3ef5-4390-9bfd-c291a6f45080" data-linktype="relative-path">Policy</a> example (section
+4.2.19). </p><dl>
+<dd>
+<p>If <i>pbstrPolicyName</i> is &#34;\&#34;, all
+policies MUST be returned, in the form of a <a href="1c010046-ccb3-41cb-8490-b181b715b16b" data-linktype="relative-path">PolicyCollection
+element (section 2.2.5.22)</a>.</p>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF00C9</p>
+  <p>WRM_ERR_POLICYID_INVALID</p>
+  </td>
+  <td>
+  <p>The specified RAP does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="a03f4cd5-ad33-46aa-94e7-2c9a92f02b6f" data-linktype="relative-path">IWRMPolicy</a> interface
+methods are specified in section 3.2.4.7.</p></div>

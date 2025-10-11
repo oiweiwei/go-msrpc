@@ -1,1 +1,19 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_MCAST_LIMIT_ROW</b> structure is used to specify
+the configuration information for a <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_70b74a6e-db1d-4648-bedd-5a524dfe6396" data-linktype="relative-path">multicast</a> <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a>. It contains the
+configurable limit information from a corresponding <a href="b1a89487-81f5-4c73-82eb-88df2abe310a" data-linktype="relative-path"><b>MIB_IPMCAST_IF_ENTRY (section 2.2.1.2.40)</b></a><b>
+</b>structure. Whenever this structure is used, the <b>InfoType</b> of <a href="c99955ec-6d18-4665-8d5b-e124de63a368" data-linktype="relative-path"><b>RTR_TOC_ENTRY (section 2.2.1.2.4)</b></a>
+MUST be 0xFFFF000E to specify multicast configuration information.</p><p>This structure is used in the following methods:</p><ul><li><p><span><span><span>  </span></span></span><a href="927c5bf1-ac91-4325-b945-0d96a58f609b" data-linktype="relative-path"><b>RRouterInterfaceTransportAdd (section 3.1.4.18)</b></a></p>
+</li><li><p><span><span> 
+</span></span><a href="ec9ba293-45e9-4f12-b9af-7e77ec96c90e" data-linktype="relative-path"><b>RRouterInterfaceTransportGetInfo (section 3.1.4.19)</b></a></p>
+</li><li><p><span><span> 
+</span></span><a href="209ba5e7-876e-4406-a05c-65b7e5fb2380" data-linktype="relative-path"><b>RRouterInterfaceTransportSetInfo (section 3.1.4.20)</b></a></p>
+<div><pre> typedef struct {
+   DWORD dwTtl;
+   DWORD dwRateLimit;
+ } MIB_MCAST_LIMIT_ROW,
+  *PMIB_MCAST_LIMIT_ROW;
+</pre></div>
+</li></ul><p><b>dwTtl: </b>The Time to Live (TTL) value for a
+multicast interface.</p><p><b>dwRateLimit: </b>The rate limit for a multicast
+interface. This MUST be set to 0.</p><p>When this structure is used, the <b>InfoType</b> of <b>RTR_TOC_ENTRY (section 2.2.1.2.4)</b>
+MUST be 0xFFFF000E to specify IP multicast configuration. </p></div>

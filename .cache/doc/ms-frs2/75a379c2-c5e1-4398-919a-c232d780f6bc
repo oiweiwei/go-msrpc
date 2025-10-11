@@ -1,1 +1,20 @@
-<div class="content"></div>
+<div class="content"><p><a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_b5d43ea0-cf01-4294-b0d8-0b0362d4a3a2" data-linktype="relative-path">Version
+chain vector</a> response payload.</p><dl>
+<dd>
+<div><pre> typedef struct _FRS_ASYNC_VERSION_VECTOR_RESPONSE {
+   ULONGLONG vvGeneration;
+   unsigned long versionVectorCount;
+   [size_is(versionVectorCount)] FRS_VERSION_VECTOR* versionVector;
+   unsigned long epoqueVectorCount;
+   [size_is(epoqueVectorCount)] FRS_EPOQUE_VECTOR* epoqueVector;
+ } FRS_ASYNC_VERSION_VECTOR_RESPONSE;
+</pre></div>
+</dd></dl><p><b>vvGeneration:</b>  The time stamp
+associated with the version chain vector on the server. The time stamp is
+incremented every time a server updates its version chain vector. This gives a
+way to track whether a client has the newest version of the version chain
+vector known to the server.</p><p><b>versionVectorCount:</b>  Number of
+elements in the <b>versionVector</b> array.</p><p><b>versionVector:</b>  An array of <a href="42bbbd7f-0078-4a48-8043-03c7cec67d3c" data-linktype="relative-path">FRS_VERSION_VECTOR</a>
+triples.</p><p><b>epoqueVectorCount:</b>  Number of
+elements in the epoqueVector array.</p><p><b>epoqueVector:</b>  An array of
+FRS_EPOQUE_VECTOR pairs.</p></div>

@@ -1,1 +1,104 @@
-<div class="content"></div>
+<div class="content"><p>The DeletePolicy method deletes an existing <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_559b0a4d-161b-4664-9c10-4fab98b97f1f" data-linktype="relative-path">resource policy</a>.</p><dl>
+<dd>
+<div><pre> [id(4), helpstring(&#34;method DeletePolicy&#34;)] HRESULT DeletePolicy(
+   [in] BSTR bstrPolicyName
+</pre></div>
+</dd></dl><p>);</p><p><b>bstrPolicyName: </b>The name of the resource
+policy to be deleted. </p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF006F</p>
+  <p>WRM_ERR_ID_VALUE</p>
+  </td>
+  <td>
+  <p>The specified name contains characters that are
+  invalid. The name cannot start with a hyphen (&#34;-&#34;), cannot contain
+  spaces, and cannot contain any of the following characters:</p>
+  <dl>
+<dd>
+<div><pre> \   / ? * | : &lt; &gt; &#34; , ;
+</pre></div>
+</dd></dl>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF00CF</p>
+  <p>WRM_ERR_IS_CURRENT_POLICY</p>
+  </td>
+  <td>
+  <p>This <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_ce127d6a-8b12-40d6-b9c9-cf544c3ffd08" data-linktype="relative-path">resource
+  allocation policy (RAP)</a> is being used by WSRM and cannot be deleted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF00E0</p>
+  <p>WRM_ERR_WSRM_RESERVED_POLICY</p>
+  </td>
+  <td>
+  <p>The specified policy is a built-in policy. It cannot
+  be altered.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF00E7</p>
+  <p>WRM_ERR_DELETING_POLICY</p>
+  </td>
+  <td>
+  <p>The specified policy could not be deleted. A policy
+  cannot be deleted if it is a member of one or more conditional policies.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0070</p>
+  <p>WRM_ERR_TAGS_NOT_IN_ORDER</p>
+  </td>
+  <td>
+  <p>The <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a>
+  data that is maintained by the management service is invalid or cannot be
+  processed. Windows returns this value if the XML data is corrupt.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF00C9</p>
+  <p>WRM_ERR_POLICYID_INVALID</p>
+  </td>
+  <td>
+  <p>The specified <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_6442eac9-3264-4d95-a435-fdc08e71603f" data-linktype="relative-path">RAP</a> does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="a03f4cd5-ad33-46aa-94e7-2c9a92f02b6f" data-linktype="relative-path">IWRMPolicy</a> interface
+methods are specified in section 3.2.4.7.</p></div>

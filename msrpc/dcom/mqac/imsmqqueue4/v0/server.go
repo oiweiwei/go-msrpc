@@ -31,13 +31,29 @@ type Queue4Server interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
-	// Access operation.
+	// The Access method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a flag that indicates the access mode in which the queue was opened.
+	// The access mode specifies whether peek, receive, send, and/or administration operations
+	// can be performed.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetAccess(context.Context, *GetAccessRequest) (*GetAccessResponse, error)
 
-	// ShareMode operation.
+	// The ShareMode method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a flag that indicates the share mode in which the queue was opened.
+	// The share mode specifies whether this instance of the open queue has exclusive access
+	// to the queue.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetShareMode(context.Context, *GetShareModeRequest) (*GetShareModeResponse, error)
 
-	// QueueInfo operation.
+	// The QueueInfo method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns an MSMQQueueInfo object that represents the referenced queue.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetQueueInfo(context.Context, *GetQueueInfoRequest) (*GetQueueInfoResponse, error)
 
 	// Handle operation.
@@ -49,85 +65,219 @@ type Queue4Server interface {
 	// Close operation.
 	Close(context.Context, *CloseRequest) (*CloseResponse, error)
 
-	// Receive_v1 operation.
+	// The Receive_v1 method is received by the server in an RPC_REQUEST packet. In response,
+	// the server retrieves the Message at the head of the referenced queue's MessagePositionList.Head
+	// and removes it.
+	//
+	// Return Values:  The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	ReceiveV1(context.Context, *ReceiveV1Request) (*ReceiveV1Response, error)
 
-	// Peek_v1 operation.
+	// The Peek_v1 method is received by the server in an RPC_REQUEST packet. In response,
+	// the server retrieves the Message at the head of the referenced queue's MessagePositionList
+	// without removing it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	PeekV1(context.Context, *PeekV1Request) (*PeekV1Response, error)
 
-	// EnableNotification operation.
+	// The EnableNotification method is received by the server in an RPC_REQUEST packet.
+	// In response, the server starts event notification for asynchronously receiving or
+	// peeking messages.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	EnableNotification(context.Context, *EnableNotificationRequest) (*EnableNotificationResponse, error)
 
 	// Reset operation.
 	Reset(context.Context, *ResetRequest) (*ResetResponse, error)
 
-	// ReceiveCurrent_v1 operation.
+	// The ReceiveCurrent_v1 method is received by the server in an RPC_REQUEST packet.
+	// In response, the server retrieves the Message at the current cursor position in the
+	// referenced queue's MessagePositionList, removes it, and advances the cursor.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	ReceiveCurrentV1(context.Context, *ReceiveCurrentV1Request) (*ReceiveCurrentV1Response, error)
 
-	// PeekNext_v1 operation.
+	// The PeekNext_v1 method is received by the server in an RPC_REQUEST packet. In response,
+	// the server retrieves the Message that follows the Message that is identified by the
+	// cursor represented by the Cursor instance variable in the referenced queue's MessagePositionList
+	// without removing it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	PeekNextV1(context.Context, *PeekNextV1Request) (*PeekNextV1Response, error)
 
-	// PeekCurrent_v1 operation.
+	// The PeekCurrent_v1 method is received by the server in an RPC_REQUEST packet. In
+	// response, the server retrieves the Message that is identified by the Cursor instance
+	// variable in the referenced queue's MessagePositionList, without removing it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	PeekCurrentV1(context.Context, *PeekCurrentV1Request) (*PeekCurrentV1Response, error)
 
-	// Receive operation.
+	// The Receive method is received by the server in an RPC_REQUEST packet. In response,
+	// the server retrieves the Message at the head of the referenced queue's MessagePositionList
+	// and removes it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Receive(context.Context, *ReceiveRequest) (*ReceiveResponse, error)
 
-	// Peek operation.
+	// The Peek method is received by the server in an RPC_REQUEST packet. In response,
+	// the server retrieves the Message at the head of the referenced queue's MessagePositionList
+	// without removing it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Peek(context.Context, *PeekRequest) (*PeekResponse, error)
 
-	// ReceiveCurrent operation.
+	// The ReceiveCurrent method is received by the server in an RPC_REQUEST packet. In
+	// response, the server retrieves the Message that is identified by the Cursor instance
+	// variable in the referenced queue's MessagePositionList and removes it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	ReceiveCurrent(context.Context, *ReceiveCurrentRequest) (*ReceiveCurrentResponse, error)
 
-	// PeekNext operation.
+	// The PeekNext method is received by the server in an RPC_REQUEST packet. In response,
+	// the server retrieves the Message that follows the Message that is identified by the
+	// Cursor instance variable in the referenced queue's MessagePositionList without removing
+	// it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	PeekNext(context.Context, *PeekNextRequest) (*PeekNextResponse, error)
 
-	// PeekCurrent operation.
+	// The PeekCurrent method is received by the server in an RPC_REQUEST packet. In response,
+	// the server retrieves the Message that is identified by the Cursor instance variable
+	// in the referenced queue's MessagePositionList, without removing it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	PeekCurrent(context.Context, *PeekCurrentRequest) (*PeekCurrentResponse, error)
 
 	// Properties operation.
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 
-	// Handle2 operation.
+	// The Handle2 method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns the handle of the open queue.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetHandle2(context.Context, *GetHandle2Request) (*GetHandle2Response, error)
 
-	// ReceiveByLookupId operation.
+	// The ReceiveByLookupId method is received by the server in an RPC_REQUEST packet.
+	// In response, the server retrieves the Message from the referenced queue's MessagePositionList
+	// for which the Message.LookupIdentifier property equals the lookup identifier and
+	// removes it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	ReceiveByLookupID(context.Context, *ReceiveByLookupIDRequest) (*ReceiveByLookupIDResponse, error)
 
-	// ReceiveNextByLookupId operation.
+	// The ReceiveNextByLookupId method is received by the server in an RPC_REQUEST packet.
+	// In response, the server retrieves the Message following a Message from the referenced
+	// queue's MessagePositionList for which the Message.LookupIdentifier property equals
+	// the lookup identifier and removes it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	ReceiveNextByLookupID(context.Context, *ReceiveNextByLookupIDRequest) (*ReceiveNextByLookupIDResponse, error)
 
-	// ReceivePreviousByLookupId operation.
+	// The ReceivePreviousByLookupId method is received by the server in an RPC_REQUEST
+	// packet. In response, the server retrieves the Message preceding a Message from the
+	// referenced queue's MessagePositionList for which the Message.LookupIdentifier property
+	// equals the lookup identifier and removes it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	ReceivePreviousByLookupID(context.Context, *ReceivePreviousByLookupIDRequest) (*ReceivePreviousByLookupIDResponse, error)
 
-	// ReceiveFirstByLookupId operation.
+	// The ReceiveFirstByLookupId method is received by the server in an RPC_REQUEST packet.
+	// In response, the server retrieves the Message at the head of the referenced queue's
+	// MessagePositionList and removes it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	ReceiveFirstByLookupID(context.Context, *ReceiveFirstByLookupIDRequest) (*ReceiveFirstByLookupIDResponse, error)
 
-	// ReceiveLastByLookupId operation.
+	// The ReceiveLastByLookupId method is received by the server in an RPC_REQUEST packet.
+	// In response, the server retrieves the Message at the tail of the referenced queue's
+	// MessagePositionList and removes it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	ReceiveLastByLookupID(context.Context, *ReceiveLastByLookupIDRequest) (*ReceiveLastByLookupIDResponse, error)
 
-	// PeekByLookupId operation.
+	// The PeekByLookupId method is received by the server in an RPC_REQUEST packet. In
+	// response, the server retrieves the Message from the referenced queue's MessagePositionList
+	// for which the Message.LookupIdentifier property equals the lookup ID without removing
+	// it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	PeekByLookupID(context.Context, *PeekByLookupIDRequest) (*PeekByLookupIDResponse, error)
 
-	// PeekNextByLookupId operation.
+	// The PeekNextByLookupId method is received by the server in an RPC_REQUEST packet.
+	// In response, the server retrieves the Message following a Message from the referenced
+	// queue's MessagePositionList for which the Message.LookupIdentifier property equals
+	// the lookup identifier without removing it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	PeekNextByLookupID(context.Context, *PeekNextByLookupIDRequest) (*PeekNextByLookupIDResponse, error)
 
-	// PeekPreviousByLookupId operation.
+	// The PeekPreviousByLookupId method is received by the server in an RPC_REQUEST packet.
+	// In response, the server retrieves the Message preceding a Message from the referenced
+	// queue's MessagePositionList for which the Message.LookupIdentifier property equals
+	// the lookup identifier without removing it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	PeekPreviousByLookupID(context.Context, *PeekPreviousByLookupIDRequest) (*PeekPreviousByLookupIDResponse, error)
 
-	// PeekFirstByLookupId operation.
+	// The PeekFirstByLookupId method is received by the server in an RPC_REQUEST packet.
+	// In response, the server retrieves the Message at the head of the referenced queue's
+	// MessagePositionList, without removing it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	PeekFirstByLookupID(context.Context, *PeekFirstByLookupIDRequest) (*PeekFirstByLookupIDResponse, error)
 
-	// PeekLastByLookupId operation.
+	// The PeekLastByLookupId method is received by the server in an RPC_REQUEST packet.
+	// In response, the server retrieves the Message at the tail of the referenced queue's
+	// MessagePositionList without removing it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	PeekLastByLookupID(context.Context, *PeekLastByLookupIDRequest) (*PeekLastByLookupIDResponse, error)
 
-	// Purge operation.
+	// The Purge method is received by the server in an RPC_REQUEST packet. In response,
+	// the server purges all Messages in the MessagePositionList of the referenced queue.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Purge(context.Context, *PurgeRequest) (*PurgeResponse, error)
 
-	// IsOpen2 operation.
+	// The IsOpen2 method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a value indicating whether the queue is open.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetIsOpen2(context.Context, *GetIsOpen2Request) (*GetIsOpen2Response, error)
 
-	// ReceiveByLookupIdAllowPeek operation.
+	// The ReceiveByLookupIdAllowPeek method is received by the server in an RPC_REQUEST
+	// packet. In response, the server retrieves the Message from the referenced queue's
+	// MessagePositionList for which the Message.LookupIdentifier property equals the lookup
+	// identifier and removes it. If the receive is transactional, the message remains visible
+	// to peek operations.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	ReceiveByLookupIDAllowPeek(context.Context, *ReceiveByLookupIDAllowPeekRequest) (*ReceiveByLookupIDAllowPeekResponse, error)
 }
 

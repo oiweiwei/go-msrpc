@@ -1,1 +1,409 @@
-<div class="content"></div>
+<div class="content"><p>The CreateNtmsMediaW method creates a new offline medium for
+a media pool, with strings encoded using Unicode.</p><dl>
+<dd>
+<div><pre> HRESULT CreateNtmsMediaW(
+   [in, out] LPNTMS_OBJECTINFORMATIONW lpMedia,
+   [in, out, size_is(*lpdwListBufferSize), length_is(dwListCount)] 
+     LPNTMS_OBJECTINFORMATIONW lpList,
+   [in] DWORD* lpdwListBufferSize,
+   [in] DWORD dwListCount,
+   [in] DWORD dwOptions
+ );
+</pre></div>
+</dd></dl><p><b>lpMedia: </b>A pointer to an <a href="7a583c21-ca5c-4de4-9b65-96f2e1261625" data-linktype="relative-path">NTMS_OBJECTINFORMATIONW (section 2.2.4.21)</a>
+structure describing the properties of the medium to create.</p><p><b>lpList: </b>An array of
+NTMS_OBJECTINFORMATIONW (section 2.2.4.21) structures specifying the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_55db62c5-a84f-43b7-a037-b44ecd8fb92f" data-linktype="relative-path">sides</a> of the new medium.</p><p><b>lpdwListBufferSize: </b>A pointer to the size of <b>lpList</b>,
+in bytes.</p><p><b>dwListCount: </b>The number of elements in the <b>lpList</b>
+array.</p><p><b>dwOptions: </b>A bitmap of creation options.</p><dl>
+<dd>
+<p>If a medium with the specified <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_e88a9ca7-9b8d-4dca-9338-59c98e1a5f13" data-linktype="relative-path">on-media identifier</a> already
+exists in the system<a id="Appendix_A_Target_70"></a><a aria-label="Product behavior note 70" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_70" data-linktype="relative-path">&lt;70&gt;</a> and the client does not want to
+duplicate the identifier, the client MUST set <i>dwOptions</i> to
+NTMS_ERROR_ON_DUPLICATION (0x00000001) and the server MUST NOT create a medium
+with the specified identifier.</p>
+</dd>
+<dd>
+<p>If a medium with the specified on-media identifier
+already exists in the system<a id="Appendix_A_Target_71"></a><a aria-label="Product behavior note 71" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_71" data-linktype="relative-path">&lt;71&gt;</a> and the
+client wants to duplicate the identifier, the client MUST set dwOptions to
+0x00000000 and the server MUST create a medium with the specified identifier.</p>
+</dd>
+<dd>
+<p>If a medium with the specified on-media identifier
+does not exist in the system,<a id="Appendix_A_Target_72"></a><a aria-label="Product behavior note 72" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_72" data-linktype="relative-path">&lt;72&gt;</a>there is
+no change in the server behavior due to this option.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>NTMS_USE_ACCESS to the media pool or offline media library
+  is denied; other security errors are possible but indicate a security
+  subsystem error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>An allocation failure occurred during processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>Invalid input parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CC</p>
+  <p>ERROR_INVALID_MEDIA</p>
+  </td>
+  <td>
+  <p>The option NTMS_ERROR_ON_DUPLICATION was provided, and
+  a medium with this on-media identifier already exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CE</p>
+  <p>ERROR_INVALID_MEDIA_POOL</p>
+  </td>
+  <td>
+  <p>The specified media pool either does not exist, or is
+  not a valid import or application pool.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database is inaccessible or damaged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DA</p>
+  <p>ERROR_DATABASE_FULL</p>
+  </td>
+  <td>
+  <p>The database is full.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DB</p>
+  <p>ERROR_MEDIA_INCOMPATIBLE</p>
+  </td>
+  <td>
+  <p>The number of specified sides does not match the
+  number of sides associated with the media type of the media pool.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that
+both <i>lpMedia</i> and <i>lpList</i> are not NULL. If parameter validation
+fails, the server MUST immediately fail the operation and return
+ERROR_INVALID_PARAMETER (0x80070057).</p><p>If dwOptions is NTMS_ERROR_ON_DUPLICATION (0x00000001), the
+server MUST verify that the medium with the specified on-media identifier does
+not exist.<a id="Appendix_A_Target_73"></a><a aria-label="Product behavior note 73" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_73" data-linktype="relative-path">&lt;73&gt;</a> If the medium with the
+specified on-media identifier does exist, the server MUST return
+ERROR_INVALID_MEDIA (0x800710CC) and take no further action.</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights. If the client does not have the
+required access rights, the server MUST return ERROR_ACCESS_DENIED
+(0x80070005).</p><p>The server MUST create a PMID and side (or sides) for a new
+piece of offline media. The media MUST be placed in the media pool specified
+for <b>MediaPool</b>.</p><p>The <i>lpMedia</i> parameter MUST point to an
+NTMS_OBJECTINFORMATIONW structure. For a full list of NTMS_OBJECTINFORMATIONW
+members and their descriptions, see section 2.2.4.21. </p><p>The NTMS_OBJECTINFORMATIONW structure MUST meet the
+following criteria.</p><table><thead>
+  <tr>
+   <th>
+   <p> Member </p>
+   </th>
+   <th>
+   <p> Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><b>dwSize</b></p>
+  </td>
+  <td>
+  <p>[in] CreateNtmsMedia MUST verify that this size equals
+  the length of a NTMS_OBJECTINFORMATION structure containing an <a href="15fb19e0-34b0-4836-9555-321afc712472" data-linktype="relative-path">NTMS_PMIDINFORMATIONW (section 2.2.4.32)</a>
+  structure. It MUST return ERROR_INVALID_PARAMETER if the size is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>dwType</b></p>
+  </td>
+  <td>
+  <p>[in] CreateNtmsMedia MUST verify that the value
+  NTMS_PHYSICAL_MEDIA was provided. It returns ERROR_INVALID_PARAMETER if the
+  provided type is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>Created</b></p>
+  </td>
+  <td>
+  <p>[out] Indicates the time the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_9036b269-4f3b-4353-a1d0-54f5c686ec2c" data-linktype="relative-path">PMID</a> was entered into the
+  NTMS database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>Modified</b></p>
+  </td>
+  <td>
+  <p>[out] Indicates the time the PMID was last modified in
+  the NTMS database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>ObjectGuid</b></p>
+  </td>
+  <td>
+  <p>[in/out] A unique identifier for the PMID. If a
+  non-NULL value is provided, the value MUST be used as the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> of the physical
+  medium; otherwise a GUID MUST be generated.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>Enabled</b></p>
+  </td>
+  <td>
+  <p>[in] Indicates whether to enable the physical medium.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>dwOperationalState</b></p>
+  </td>
+  <td>
+  <p>[out] MUST be NTMS_READY.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>szName</b></p>
+  </td>
+  <td>
+  <p>[in/out] CreateNtmsMedia allows an application to
+  specify the name of a new physical medium. This enables the application to
+  continue to use the name of a medium after moving it from one RSM computer to
+  another. The RSM default naming selection is: for single-sided media, <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_0c1aa461-4c32-4e8b-bb45-577085c32afb" data-linktype="relative-path">bar code</a> and then label
+  information value or sequence number; for multisided media, bar code and then
+  sequence number. </p>
+  <p>Note that the name that appears in the RSM user
+  interface for a partition is this name (the name assigned to the physical
+  media object).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>szDescription</b></p>
+  </td>
+  <td>
+  <p>[in] An optional parameter that MAY be set using
+  CreateNtmsMedia. Provide the empty string (&#34;\0&#34;) to avoid passing
+  in a value for the description.</p>
+  </td>
+ </tr></tbody></table><p>The <i>lpList</i> parameter MUST point to an
+NTMS_OBJECTINFORMATIONW structure. A full list of NTMS_OBJECTINFORMATIONW
+members and their descriptions can be found at 2.2.4.21.</p><p>The NTMS_OBJECTINFORMATIONW structure MUST meet the
+following criteria.</p><table><thead>
+  <tr>
+   <th>
+   <p> Member </p>
+   </th>
+   <th>
+   <p> Description </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><b>dwSize</b></p>
+  </td>
+  <td>
+  <p>[in] CreateNtmsMedia MUST verify that the provided
+  size matches the expected length of an NTMS_OBJECTINFORMATION structure
+  containing an <a href="f3affd46-f7f9-4327-8b91-eab6d79c677a" data-linktype="relative-path">NTMS_PARTITIONINFORMATION</a>
+  structure. It MUST return ERROR_INVALID_PARAMETER if the size is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>dwType</b></p>
+  </td>
+  <td>
+  <p>[in] CreateNtmsMedia MUST verify that the value
+  NTMS_PARTITION was provided. It MUST return ERROR_INVALID_PARAMETER if the
+  provided type is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>Created</b></p>
+  </td>
+  <td>
+  <p>[out] Indicates the time that the partition object was
+  entered into the RSM database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>Modified</b></p>
+  </td>
+  <td>
+  <p>[out] Indicates the time that the partition object was
+  last modified in the RSM database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>ObjectGuid</b></p>
+  </td>
+  <td>
+  <p>[in/out] The unique identifier for the side. If a
+  non-NULL value is provided, the value MUST be used as the GUID of the side;
+  otherwise, a GUID is generated.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>Enabled</b></p>
+  </td>
+  <td>
+  <p>[in] Determines whether to enable the side.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>dwOperationalState</b></p>
+  </td>
+  <td>
+  <p>[out] MUST be NTMS_READY.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>szName</b></p>
+  </td>
+  <td>
+  <p>[in] The name of a new side.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>szDescription</b></p>
+  </td>
+  <td>
+  <p>[in] An optional parameter that MAY be set using
+  CreateNtmsMedia. Provide the empty string (&#34;\0&#34;) to avoid passing
+  in a value for the description.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>PhysicalMedia</b></p>
+  </td>
+  <td>
+  <p>[out] The GUID of the newly created side object.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>LogicalMedia</b></p>
+  </td>
+  <td>
+  <p>[in/out] An optional input parameter, as well as an
+  output parameter. If the GUID is provided, CreateNtmsMedia MUST attempt to
+  create a new <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_05349689-4cd0-4643-a13e-9f552ecf3346" data-linktype="relative-path">logical media</a>
+  object with the pre-assigned GUID. If the GUID is not unique, CreateNtmsMedia
+  MUST return an error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>State</b></p>
+  </td>
+  <td>
+  <p>[in] Any valid side state.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>Side</b></p>
+  </td>
+  <td>
+  <p>[out] CreateNtmsMedia MUST set the side number to its
+  offset in the partitions array.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>dwOmidLabelIdLength</b></p>
+  </td>
+  <td>
+  <p>[in] MUST be a positive value. </p>
+  <p>CreateNtmsMedia uses the <b>dwOmidLabelIdLength</b> to
+  determine the number of significant bytes in the <b>OmidLabelId</b> member.
+  If the value is not correct, the recorded <b>OmidLabelId</b> is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>OmidLabelId</b></p>
+  </td>
+  <td>
+  <p>[in] MUST be a valid media label that can be
+  recognized by server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>szOmidLabelType</b></p>
+  </td>
+  <td>
+  <p>[in] MUST not be an empty string.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>szOmidLabelInfo</b></p>
+  </td>
+  <td>
+  <p>[in] MAY be the empty string.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>dwMountCount</b></p>
+  </td>
+  <td>
+  <p>[in] Any value is accepted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>dwAllocateCount</b></p>
+  </td>
+  <td>
+  <p>[in] Any value is accepted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>Capacity</b></p>
+  </td>
+  <td>
+  <p>[in] SCSI <a href="https://go.microsoft.com/fwlink/?LinkId=90512" data-linktype="external">[ANSI-131-1994]</a>
+  capacity code. </p>
+  <p>This member MUST NOT be used by RSM, but MAY be used
+  by applications written to RSM for additional information about the media.
+  For a description of what this member MUST be set to, see the hardware
+  manufacturer&#39;s SCSI specification for possible settings.</p>
+  <p>RSM MUST update this member when it <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b" data-linktype="relative-path">mounts</a> the newly imported
+  medium for the first time.</p>
+  </td>
+ </tr></tbody></table><p>Strings sent to this method as parameters MUST be
+Unicode-encoded.</p></div>

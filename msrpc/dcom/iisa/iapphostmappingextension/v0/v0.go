@@ -51,13 +51,87 @@ type AppHostMappingExtensionClient interface {
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
 
-	// GetSiteNameFromSiteId operation.
+	// The GetSiteNameFromSiteId method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns a string name for the specific integer site ID, which
+	// is a concept that is implemented on the administration system (it is an implementation
+	// detail).
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrSiteName is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070002 ERROR_FILE_NOT_FOUND    | The configuration has no site with ID dwSiteId.         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070490 ERROR_NOT_FOUND         | The configuration contains no sites.                    |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetSiteNameFromSiteID(context.Context, *GetSiteNameFromSiteIDRequest, ...dcerpc.CallOption) (*GetSiteNameFromSiteIDResponse, error)
 
-	// GetSiteIdFromSiteName operation.
+	// The GetSiteIdFromSiteName method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns a unique integer ID for the specific site name. Site
+	// name and ID are implementation details of the administration system.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070002 ERROR_FILE_NOT_FOUND    | The configuration has no site with name bstrSiteName.   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070490 ERROR_NOT_FOUND         | The configuration contains no sites.                    |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetSiteIDFromSiteName(context.Context, *GetSiteIDFromSiteNameRequest, ...dcerpc.CallOption) (*GetSiteIDFromSiteNameResponse, error)
 
-	// GetSiteElementFromSiteId operation.
+	// The GetSiteElementFromSiteId method is received by the server in an RPC_REQUEST packet.
+	// In response, the server obtains the site section element from a specific site ID
+	// in order to access site configuration and properties.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070002 ERROR_FILE_NOT_FOUND    | The given site ID could not be found.                   |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetSiteElementFromSiteID(context.Context, *GetSiteElementFromSiteIDRequest, ...dcerpc.CallOption) (*GetSiteElementFromSiteIDResponse, error)
 
 	// MapPath operation.
@@ -387,8 +461,10 @@ func (o *xxx_GetSiteNameFromSiteIDOperation) UnmarshalNDRResponse(ctx context.Co
 // GetSiteNameFromSiteIDRequest structure represents the GetSiteNameFromSiteId operation request
 type GetSiteNameFromSiteIDRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
-	SiteID uint32         `idl:"name:dwSiteId" json:"site_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// dwSiteId: The unique site ID number that is represented in a double-word format.
+	// Note that "0" is not a valid site ID.
+	SiteID uint32 `idl:"name:dwSiteId" json:"site_id"`
 }
 
 func (o *GetSiteNameFromSiteIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSiteNameFromSiteIDOperation) *xxx_GetSiteNameFromSiteIDOperation {
@@ -425,8 +501,10 @@ func (o *GetSiteNameFromSiteIDRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 // GetSiteNameFromSiteIDResponse structure represents the GetSiteNameFromSiteId operation response
 type GetSiteNameFromSiteIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That     *dcom.ORPCThat `idl:"name:That" json:"that"`
-	SiteName *oaut.String   `idl:"name:pbstrSiteName" json:"site_name"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrSiteName: Contains the string that represents the unique site name for the specified
+	// site ID.
+	SiteName *oaut.String `idl:"name:pbstrSiteName" json:"site_name"`
 	// Return: The GetSiteNameFromSiteId return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -646,8 +724,9 @@ func (o *xxx_GetSiteIDFromSiteNameOperation) UnmarshalNDRResponse(ctx context.Co
 // GetSiteIDFromSiteNameRequest structure represents the GetSiteIdFromSiteName operation request
 type GetSiteIDFromSiteNameRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
-	SiteName *oaut.String   `idl:"name:bstrSiteName" json:"site_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrSiteName: The unique site name string.
+	SiteName *oaut.String `idl:"name:bstrSiteName" json:"site_name"`
 }
 
 func (o *GetSiteIDFromSiteNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSiteIDFromSiteNameOperation) *xxx_GetSiteIDFromSiteNameOperation {
@@ -684,8 +763,10 @@ func (o *GetSiteIDFromSiteNameRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 // GetSiteIDFromSiteNameResponse structure represents the GetSiteIdFromSiteName operation response
 type GetSiteIDFromSiteNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
-	SiteID uint32         `idl:"name:pdwSiteId" json:"site_id"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pdwSiteId: Contains the double-word value that represents the unique site ID for
+	// the specified name. Note that "0" is NOT a valid site ID.
+	SiteID uint32 `idl:"name:pdwSiteId" json:"site_id"`
 	// Return: The GetSiteIdFromSiteName return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -905,8 +986,9 @@ func (o *xxx_GetSiteElementFromSiteIDOperation) UnmarshalNDRResponse(ctx context
 // GetSiteElementFromSiteIDRequest structure represents the GetSiteElementFromSiteId operation request
 type GetSiteElementFromSiteIDRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
-	SiteID uint32         `idl:"name:dwSiteId" json:"site_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// dwSiteId: The unique site ID number that is represented in a double-word format.
+	SiteID uint32 `idl:"name:dwSiteId" json:"site_id"`
 }
 
 func (o *GetSiteElementFromSiteIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSiteElementFromSiteIDOperation) *xxx_GetSiteElementFromSiteIDOperation {
@@ -943,7 +1025,9 @@ func (o *GetSiteElementFromSiteIDRequest) UnmarshalNDR(ctx context.Context, r nd
 // GetSiteElementFromSiteIDResponse structure represents the GetSiteElementFromSiteId operation response
 type GetSiteElementFromSiteIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat       `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppSiteElement: Returns an administration element object that represents the site
+	// element of the site section and includes properties, metadata, and methods.
 	SiteElement *iisa.AppHostElement `idl:"name:ppSiteElement" json:"site_element"`
 	// Return: The GetSiteElementFromSiteId return value.
 	Return int32 `idl:"name:Return" json:"return"`

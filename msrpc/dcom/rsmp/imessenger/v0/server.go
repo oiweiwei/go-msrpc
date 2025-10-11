@@ -31,8 +31,10 @@ type MessengerServer interface {
 	// IUnknown base class.
 	iunknown.UnknownServer
 
+	// The SendMessage method adds a message to the send queue.
 	SendMessage(context.Context, *SendMessageRequest) (*SendMessageResponse, error)
 
+	// The RecallMessage method retrieves a message from the send queue.
 	RecallMessage(context.Context, *RecallMessageRequest) (*RecallMessageResponse, error)
 }
 

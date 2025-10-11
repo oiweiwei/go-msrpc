@@ -9,8 +9,8 @@ and returns S_OK upon successful completion.</p><dl>
 </dd></dl><p><b>customAction: </b>Pointer to an <b>IFsrmActionCommand</b>
 interface pointer (section <a href="9fb9f66d-a7da-46c7-839b-b9360cae9207" data-linktype="relative-path">3.2.4.2.9</a>)
 that upon completion points to the newly created <b>notification</b>. A caller
-MUST release the <b>IFsrmActionCommand</b> received when the caller is done
-with it.</p><p><b>Return Values: </b>The method MUST return zero on
+MUST release the <b>IFsrmActionCommand</b> received when the caller is done with
+it.</p><p><b>Return Values: </b>The method MUST return zero on
 success, or a nonzero error code on failure.</p><dl>
 <dd>
 <table><thead>

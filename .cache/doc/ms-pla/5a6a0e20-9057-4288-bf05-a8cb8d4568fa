@@ -38,9 +38,8 @@ increases for each successive sample in this log file.</p>
 </li><li><p><span><span>  </span></span>CounterDateTime(char(24),
 NOT NULL): The time the collection was started, in UTC time.</p>
 </li><li><p><span><span>  </span></span>CounterValue(float,
-NOT NULL): The formatted value of the counter. This value can be zero for the
-first record if the counter requires two samples to compute a displayable
-value.</p>
+NOT NULL): The formatted value of the counter. This value can be zero for the first
+record if the counter requires two samples to compute a displayable value.</p>
 </li><li><p><span><span>  </span></span>FirstValueA(int):
 Combine this 32-bit value with the value of FirstValueB to create the
 FirstValue member of PDH_RAW_COUNTER. FirstValueA contains the low-order bits.</p>
@@ -48,9 +47,8 @@ FirstValue member of PDH_RAW_COUNTER. FirstValueA contains the low-order bits.</
 Combine this 32-bit value with the value of FirstValueA to create the
 FirstValue member of PDH_RAW_COUNTER. FirstValueB contains the high-order bits.</p>
 </li><li><p><span><span>  </span></span>SecondValueA(int):
-Combine this 32-bit value with the value of SecondValueB to create the
-SecondValue member of PDH_RAW_COUNTER. SecondValueA contains the low-order
-bits.</p>
+Combine this 32-bit value with the value of SecondValueB to create the SecondValue
+member of PDH_RAW_COUNTER. SecondValueA contains the low-order bits.</p>
 </li><li><p><span><span>  </span></span>SecondValueB(int):
 Combine this 32-bit value with the value of SecondValueA to create the
 SecondValue member of PDH_RAW_COUNTER. SecondValueB contains the high order

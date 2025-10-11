@@ -49,6 +49,14 @@ type VirtualSmartCardManager2Client interface {
 	// ITpmVirtualSmartCardManager retrieval method.
 	VirtualSmartCardManager() itpmvirtualsmartcardmanager.VirtualSmartCardManagerClient
 
+	// This method is invoked by the requestor to create a VSC with the specified PIN policy
+	// on the target.
+	//
+	// Return Values:  The server MUST return 0 if it successfully creates the new VSC,
+	// and a nonzero value otherwise.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	CreateVirtualSmartCardWithPINPolicy(context.Context, *CreateVirtualSmartCardWithPINPolicyRequest, ...dcerpc.CallOption) (*CreateVirtualSmartCardWithPINPolicyResponse, error)
 
 	// AlterContext alters the client context.
@@ -777,21 +785,51 @@ func (o *xxx_CreateVirtualSmartCardWithPINPolicyOperation) UnmarshalNDRResponse(
 // CreateVirtualSmartCardWithPINPolicyRequest structure represents the CreateVirtualSmartCardWithPinPolicy operation request
 type CreateVirtualSmartCardWithPINPolicyRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This             *dcom.ORPCThis                                `idl:"name:This" json:"this"`
-	FriendlyName     string                                        `idl:"name:pszFriendlyName;string" json:"friendly_name"`
-	AdminAlgorithmID uint8                                         `idl:"name:bAdminAlgId" json:"admin_algorithm_id"`
-	AdminKey         []byte                                        `idl:"name:pbAdminKey;size_is:(cbAdminKey)" json:"admin_key"`
-	AdminKeyLength   uint32                                        `idl:"name:cbAdminKey" json:"admin_key_length"`
-	AdminKCV         []byte                                        `idl:"name:pbAdminKcv;size_is:(cbAdminKcv);pointer:unique" json:"admin_kcv"`
-	AdminKCVLength   uint32                                        `idl:"name:cbAdminKcv" json:"admin_kcv_length"`
-	PUK              []byte                                        `idl:"name:pbPuk;size_is:(cbPuk);pointer:unique" json:"puk"`
-	PUKLength        uint32                                        `idl:"name:cbPuk" json:"puk_length"`
-	PIN              []byte                                        `idl:"name:pbPin;size_is:(cbPin)" json:"pin"`
-	PINLength        uint32                                        `idl:"name:cbPin" json:"pin_length"`
-	PINPolicy        []byte                                        `idl:"name:pbPinPolicy;size_is:(cbPinPolicy);pointer:unique" json:"pin_policy"`
-	PINPolicyLength  uint32                                        `idl:"name:cbPinPolicy" json:"pin_policy_length"`
-	Generate         int32                                         `idl:"name:fGenerate" json:"generate"`
-	StatusCallback   *tpmvsc.VirtualSmartCardManagerStatusCallback `idl:"name:pStatusCallback;pointer:unique" json:"status_callback"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// pszFriendlyName:  A Unicode string for use in any user interface messages relating
+	// to this VSC.
+	FriendlyName string `idl:"name:pszFriendlyName;string" json:"friendly_name"`
+	// bAdminAlgId:  An unsigned byte value. This parameter MUST be set to 0x82.
+	AdminAlgorithmID uint8 `idl:"name:bAdminAlgId" json:"admin_algorithm_id"`
+	// pbAdminKey:  An array of 24 bytes containing a TDEA [SP800-67] key intended to be
+	// used as the administrative key for the new VSC.
+	AdminKey []byte `idl:"name:pbAdminKey;size_is:(cbAdminKey)" json:"admin_key"`
+	// cbAdminKey:  A 32-bit unsigned integer value. It MUST be set to 24.
+	AdminKeyLength uint32 `idl:"name:cbAdminKey" json:"admin_key_length"`
+	// pbAdminKcv:  An array of bytes containing the Key Check Value (KCV) for the administrative
+	// key contained in the pbAdminKey parameter. This parameter is optional and MUST be
+	// set to NULL if absent. If present, it MUST be computed by encrypting eight zero bytes
+	// using the TDEA [SP800-67] block cipher and taking the first three bytes.
+	AdminKCV []byte `idl:"name:pbAdminKcv;size_is:(cbAdminKcv);pointer:unique" json:"admin_kcv"`
+	// cbAdminKcv:  A 32-bit unsigned integer value. It MUST be set to 0 if the pbAdmin
+	// parameter is NULL, and MUST be set to 3 otherwise.
+	AdminKCVLength uint32 `idl:"name:cbAdminKcv" json:"admin_kcv_length"`
+	// pbPuk:  An array of bytes containing the desired PUK for the new VSC. This parameter
+	// is optional and MUST be set to NULL if absent. If present, its length MUST be between
+	// 8 and 127 bytes, inclusive.
+	PUK []byte `idl:"name:pbPuk;size_is:(cbPuk);pointer:unique" json:"puk"`
+	// cbPuk:  A 32-bit unsigned integer value. It MUST be equal to the length of the pbPuk
+	// parameter in bytes. If pbPuk is NULL, this parameter MUST be set to 0.
+	PUKLength uint32 `idl:"name:cbPuk" json:"puk_length"`
+	// pbPin:  An array of bytes containing the desired PIN for the new VSC. Its length
+	// MUST be between 4 and 127 bytes, inclusive.
+	PIN []byte `idl:"name:pbPin;size_is:(cbPin)" json:"pin"`
+	// cbPin: A 32-bit unsigned integer value. It MUST be equal to the length of the pbPin
+	// parameter in bytes.
+	PINLength uint32 `idl:"name:cbPin" json:"pin_length"`
+	// pbPinPolicy:  A PinPolicySerialization structure specifying the PIN policy for the
+	// new VSC, as described in section 2.2.2.1.
+	PINPolicy []byte `idl:"name:pbPinPolicy;size_is:(cbPinPolicy);pointer:unique" json:"pin_policy"`
+	// cbPinPolicy:  A 32-bit unsigned integer value. It MUST be equal to the length in
+	// bytes of the pbPinPolicy parameter.
+	PINPolicyLength uint32 `idl:"name:cbPinPolicy" json:"pin_policy_length"`
+	// fGenerate:  A Boolean value that indicates whether a file system is to be generated
+	// on the new VSC.
+	Generate int32 `idl:"name:fGenerate" json:"generate"`
+	// pStatusCallback:  A reference to an instance of the ITpmVirtualSmartCardManagerStatusCallback
+	// DCOM interface on the requestor. The server uses this interface to provide feedback
+	// on progress and errors. This parameter is optional and MUST be set to NULL if absent.
+	StatusCallback *tpmvsc.VirtualSmartCardManagerStatusCallback `idl:"name:pStatusCallback;pointer:unique" json:"status_callback"`
 }
 
 func (o *CreateVirtualSmartCardWithPINPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateVirtualSmartCardWithPINPolicyOperation) *xxx_CreateVirtualSmartCardWithPINPolicyOperation {
@@ -854,9 +892,13 @@ func (o *CreateVirtualSmartCardWithPINPolicyRequest) UnmarshalNDR(ctx context.Co
 // CreateVirtualSmartCardWithPINPolicyResponse structure represents the CreateVirtualSmartCardWithPinPolicy operation response
 type CreateVirtualSmartCardWithPINPolicyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	InstanceID string         `idl:"name:ppszInstanceId;string" json:"instance_id"`
-	NeedReboot int32          `idl:"name:pfNeedReboot" json:"need_reboot"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppszInstanceId:  A Unicode string containing a unique instance identifier for the
+	// VSC created by this operation.
+	InstanceID string `idl:"name:ppszInstanceId;string" json:"instance_id"`
+	// pfNeedReboot:  A Boolean value that indicates whether or not a reboot is required
+	// on the server before the newly-created VSC is made available to applications.
+	NeedReboot int32 `idl:"name:pfNeedReboot" json:"need_reboot"`
 	// Return: The CreateVirtualSmartCardWithPinPolicy return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

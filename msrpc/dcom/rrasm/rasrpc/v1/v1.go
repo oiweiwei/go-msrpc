@@ -55,6 +55,46 @@ type RasrpcClient interface {
 	// Opnum4NotUsedOnWire operation.
 	// Opnum4NotUsedOnWire
 
+	// The RasRpcDeleteEntry method deletes a specific RRAS Entry from an RRAS Phonebook
+	// path.
+	//
+	// Return Values: Specifies the return status as explained in section 2.2.1.2.218 for
+	// retcode field.
+	//
+	// The return value can be one of the following error codes. All other error values
+	// MUST be treated the same by the RRASM client.
+	//
+	//	+--------------------------+--------------------------+
+	//	|          RETURN          |                          |
+	//	|        VALUE/CODE        |       DESCRIPTION        |
+	//	|                          |                          |
+	//	+--------------------------+--------------------------+
+	//	+--------------------------+--------------------------+
+	//	| ERROR_SUCCESS 0x00000000 | The call was successful. |
+	//	+--------------------------+--------------------------+
+	//
+	// Exceptions Thrown: This method throws an exception with the exception code RPC_S_ACCESS_DENIED
+	// (0x00000005) if the client is not an administrator on the RRASM server, with access
+	// permission to perform the operation.<334>
+	//
+	// The opnum field value for this method is 5.
+	//
+	// * Validate as specified in section 3.3.4 ( 83a083ac-cd43-44bf-a301-7c88e64a32fe )
+	// whether this method was called by a client which is an administrator of the RRASM
+	// server.
+	//
+	// * If lpszEntry is NULL, return an error other than one of the errors specified in
+	// the preceding table.
+	//
+	// * If lpszEntry is not present in *PhonebookEntryNameList* , return an error other
+	// than one of the errors specified in the preceding table.
+	//
+	// * Call the abstract interface *Invoke RASRPC* method, specifying the operation and
+	// the parameters necessary to enable the RRASM server to perform the required management
+	// task.
+	//
+	// * Return any error result that the RRASM server returns as a part of the processing.
+	// Otherwise return ERROR_SUCCESS (0x00000000).
 	DeleteEntry(context.Context, *DeleteEntryRequest, ...dcerpc.CallOption) (*DeleteEntryResponse, error)
 
 	// Opnum6NotUsedOnWire operation.
@@ -66,19 +106,232 @@ type RasrpcClient interface {
 	// Opnum8NotUsedOnWire operation.
 	// Opnum8NotUsedOnWire
 
+	// The RasRpcGetUserPreferences method retrieves the configuration information. The
+	// configuration information consists of the callback information associated with the
+	// various ports, and the number of the last successful callback done by the RRAS. This
+	// configuration information is set by RasRpcSetUserPreferences (section 3.3.4.3).
+	//
+	// Return Values: Specifies the return status as explained in section 2.2.1.2.218 for
+	// the retcode field.
+	//
+	// The return value can be one of the following error codes. All other error values
+	// MUST be treated the same by the RRASM client.
+	//
+	//	+--------------------------+--------------------------+
+	//	|          RETURN          |                          |
+	//	|        VALUE/CODE        |       DESCRIPTION        |
+	//	|                          |                          |
+	//	+--------------------------+--------------------------+
+	//	+--------------------------+--------------------------+
+	//	| ERROR_SUCCESS 0x00000000 | The call was successful. |
+	//	+--------------------------+--------------------------+
+	//
+	// Exceptions Thrown: This method throws an exception with the exception code RPC_S_ACCESS_DENIED
+	// (0x00000005) if the client is not an administrator on the RRASM server, with access
+	// permission to perform the operation.<335>
+	//
+	// The Opnum field value for this method is 9.
+	//
+	// * Validate as specified in section 3.3.4 ( 83a083ac-cd43-44bf-a301-7c88e64a32fe )
+	// whether this method was called by a client that is an administrator of the RRASM
+	// server. <336> ( 3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_336 )
+	//
+	// * Call the abstract interface *Invoke RASRPC* method, specifying the operation and
+	// the parameters necessary to enable RRAS server to perform the required management
+	// task.
+	//
+	// * Populate the pUser structure with the configuration information returned by the
+	// RRAS server and returning ERROR_SUCCESS (0x00000000).
 	GetUserPreferences(context.Context, *GetUserPreferencesRequest, ...dcerpc.CallOption) (*GetUserPreferencesResponse, error)
 
+	// The RasRpcSetUserPreferences method sets the configuration information. The configuration
+	// information consists of the callback information associated with the various ports,
+	// and the number of the last successful callback done by the RRAS.
+	//
+	// Return Values: Specifies the return status as explained in section 2.2.1.2.218 for
+	// the retcode field.
+	//
+	// The return value can be one of the error codes that follow. All other error values
+	// MUST be treated the same by the RRASM client.
+	//
+	//	+--------------------------+--------------------------+
+	//	|          RETURN          |                          |
+	//	|        VALUE/CODE        |       DESCRIPTION        |
+	//	|                          |                          |
+	//	+--------------------------+--------------------------+
+	//	+--------------------------+--------------------------+
+	//	| 0x00000000 ERROR_SUCCESS | The call was successful. |
+	//	+--------------------------+--------------------------+
+	//
+	// Exceptions Thrown: This method throws an exception with the exception code RPC_S_ACCESS_DENIED
+	// (0x00000005) if the client is not an administrator on the RRASM server, with access
+	// permission to perform the operation.<337>
+	//
+	// The opnum field value for this method is 10.
+	//
+	// * Validate as specified in section 3.3.4 ( 83a083ac-cd43-44bf-a301-7c88e64a32fe )
+	// whether this method was called by a client that is an administrator of the RRASM
+	// server.
+	//
+	// * Call the abstract interface *Invoke RASRPC* method, specifying the operation and
+	// the parameters necessary to enable RRAS server to perform the required management
+	// task.
+	//
+	// * Provide the configuration information as specified by the pUser structure to the
+	// RRAS server for further processing and returning ERROR_SUCCESS (0x00000000).
 	SetUserPreferences(context.Context, *SetUserPreferencesRequest, ...dcerpc.CallOption) (*SetUserPreferencesResponse, error)
 
+	// The RasRpcGetSystemDirectory method retrieves the path of the system directory.
+	//
+	// Return Values: Specifies the return status as explained in section 2.2.1.2.218 for
+	// retcode field.
+	//
+	// The return value can be one of the following error codes. All other error values
+	// MUST be treated the same by the RRASM client.
+	//
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	|      RETURN      |                                                                                  |
+	//	|      VALUE       |                                   DESCRIPTION                                    |
+	//	|                  |                                                                                  |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000       | The actual processing to retrieve the system directory on the remote server has  |
+	//	|                  | failed.                                                                          |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| Any other values | Indicate the length of the string in Unicode characters copied to the buffer.    |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//
+	// Exceptions Thrown: This method throws an exception with the exception code RPC_S_ACCESS_DENIED
+	// (0x00000005) if the client is not an administrator on the RRASM server, with access
+	// permission to perform the operation.<338>
+	//
+	// The Opnum field value for this method is 11.
+	//
+	// * Validate as specified in section 3.3.4 ( 83a083ac-cd43-44bf-a301-7c88e64a32fe )
+	// whether this method was called by a client that is an administrator of the RRASM
+	// server. <339> ( 3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_339 )
+	//
+	// * If uSize is less than 260, return an error other than one of the errors specified
+	// in the preceding table.
+	//
+	// * Call the abstract interface *Invoke RASRPC* method specifying the operation and
+	// the parameters to enable RRAS server to perform the required management task.
+	//
+	// * If all validations are successful, return the processing information result for
+	// the RRAS server and populate the lpBuffer with the system directory path returned
+	// by the RRAS server. Return the length of the string in Unicode characters populated
+	// to the lpBuffer.
 	GetSystemDirectory(context.Context, *GetSystemDirectoryRequest, ...dcerpc.CallOption) (*GetSystemDirectoryResponse, error)
 
+	// The RasRpcSubmitRequest method retrieves or sets the configuration data on RRAS server.
+	//
+	// Return Values: Specifies the return status as explained in section 2.2.1.2.218 for
+	// retcode field.
+	//
+	// Exceptions Thrown: This method throws an exception with the exception code RPC_S_ACCESS_DENIED
+	// (0x00000005) if the client is not an administrator on the RRASM server, with access
+	// permission to perform the operation.<340>
+	//
+	// Validations which SHOULD be done by the RRASM for all ReqTypes are:
+	//
+	// * Return ERROR_SUCCESS (0x00000000) if one of the following conditions are met without
+	// any further processing of the call:
+	//
+	// * *dwcbBufSize* is less than the sum of size of *RequestBuffer* and 5000, i.e. if
+	// the condition ( *dwcbBufSize* < size of *RequestBuffer* + 5000) is TRUE.
+	//
+	// * *pReqBuffer* is NULL
+	//
+	// * *pReqBuffer.RB_ReqType* is less than zero (0) or greater than maximum ReqTypes
+	// <341> ( 3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_341 )
+	//
+	// * Validate as specified in section 3.3.4 ( 83a083ac-cd43-44bf-a301-7c88e64a32fe )
+	// whether this method was called by a client that is an administrator ( fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_eb335f5b-619b-46ed-9138-06e9910108c3
+	// ) of the RRASM server ( fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_f91f3fc7-d1a1-4a07-8c92-d19eb0c9acb0
+	// ).
+	//
+	// Specific RRASM behavior for each ReqTypes value follows.
 	SubmitRequest(context.Context, *SubmitRequestRequest, ...dcerpc.CallOption) (*SubmitRequestResponse, error)
 
 	// Opnum13NotUsedOnWire operation.
 	// Opnum13NotUsedOnWire
 
+	// The RasRpcGetInstalledProtocolsEx method retrieves the protocol information on the
+	// RRAS server. The list of protocols is defined in the following return value section.
+	//
+	// Return Values: Specifies the return status as explained in section 2.2.1.2.218 for
+	// the retcode field.
+	//
+	// The return value can be one of the error codes that follow. All other error values
+	// MUST be treated the same by the RRASM client.
+	//
+	//	+--------------------------+----------------------------------------------------------------------------------+
+	//	|          RETURN          |                                                                                  |
+	//	|          VALUE           |                                   DESCRIPTION                                    |
+	//	|                          |                                                                                  |
+	//	+--------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000               | There is no protocol installed on the RRAS server or there is some error when    |
+	//	|                          | RRAS server retrieves the information.                                           |
+	//	+--------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000001 to 0x0000000F | Specifies the protocols enabled on the RRAS server. This value SHOULD be a       |
+	//	|                          | combination of one or more of the following flags: NP_Nbf (0x00000001): NetBEUI  |
+	//	|                          | protocol is enabled.<344> NP_Ipx (0x00000002): IPX protocol is enabled.<345>     |
+	//	|                          | NP_Ip (0x00000004): TCP/IPv4 protocol is enabled. NP_Ipv6 (0x00000008): TCP/IPv6 |
+	//	|                          | protocol is enabled.<346>                                                        |
+	//	+--------------------------+----------------------------------------------------------------------------------+
+	//
+	// Exceptions Thrown: This method throws an exception with the exception code RPC_S_ACCESS_DENIED
+	// (0x00000005) if the client is not an administrator on the RRASM server, with access
+	// permission to perform the operation.<347>
+	//
+	// The opnum field value for this method is 14.
+	//
+	// * Validate as specified in section 3.3.4 ( 83a083ac-cd43-44bf-a301-7c88e64a32fe )
+	// whether this method was called by a client that is an administrator of the RRASM
+	// server.
+	//
+	// * Call the abstract interface *Invoke RASRPC* method specifying the operation and
+	// the parameters to enable RRAS server to perform the required management task.
+	//
+	// * If all validation is successful, return the installed protocol information as provided
+	// by the RRAS server.
 	GetInstalledProtocolsEx(context.Context, *GetInstalledProtocolsExRequest, ...dcerpc.CallOption) (*GetInstalledProtocolsExResponse, error)
 
+	// The RasRpcGetVersion method retrieves the Rasrpc server interface version.
+	//
+	// Return Values: Specifies the return status as explained in section 2.2.1.2.218 for
+	// the retcode field
+	//
+	// The return value can be one of the error codes that follow. All other error values
+	// MUST be treated the same by the RRASM client.
+	//
+	//	+--------------------------+--------------------------+
+	//	|          RETURN          |                          |
+	//	|        VALUE/CODE        |       DESCRIPTION        |
+	//	|                          |                          |
+	//	+--------------------------+--------------------------+
+	//	+--------------------------+--------------------------+
+	//	| ERROR_SUCCESS 0x00000000 | The call was successful. |
+	//	+--------------------------+--------------------------+
+	//
+	// Exceptions Thrown: This method throws an exception with the exception code RPC_S_ACCESS_DENIED
+	// (0x00000005) if the client is not an administrator on the RRASM server, with access
+	// permission to perform the operation.<348>
+	//
+	// The opnum field value for this method is 15.
+	//
+	// * Validate as specified in section 3.3.4 ( 83a083ac-cd43-44bf-a301-7c88e64a32fe )
+	// whether this method was called by a client that is an administrator of the RRASM
+	// server. <349> ( 3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_349 )
+	//
+	// * Call the abstract interface *Invoke RASRPC method* specifying the operation and
+	// the parameters to enable the RRAS server to perform the required management task.
+	//
+	// * Set the value pointed by pdwVersion to the version of RRAS server. <350> ( 3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_350
+	// )
+	//
+	// * If there is no error, the server MUST return ERROR_SUCCESS (0x00000000).
 	GetVersion(context.Context, *GetVersionRequest, ...dcerpc.CallOption) (*GetVersionResponse, error)
 
 	// Opnum16NotUsedOnWire operation.
@@ -291,8 +544,12 @@ func (o *xxx_DeleteEntryOperation) UnmarshalNDRResponse(ctx context.Context, w n
 
 // DeleteEntryRequest structure represents the RasRpcDeleteEntry operation request
 type DeleteEntryRequest struct {
+	// lpszPhonebook: A null-terminated Unicode string specifying the RRAS Phonebook path
+	// as specified in section 2.2.2.
 	Phonebook string `idl:"name:lpszPhonebook;string" json:"phonebook"`
-	Entry     string `idl:"name:lpszEntry;string" json:"entry"`
+	// lpszEntry: A null-terminated Unicode string specifying the RRAS Entry name as specified
+	// in section 2.2.2.1 to be deleted.
+	Entry string `idl:"name:lpszEntry;string" json:"entry"`
 }
 
 func (o *DeleteEntryRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteEntryOperation) *xxx_DeleteEntryOperation {
@@ -494,8 +751,11 @@ func (o *xxx_GetUserPreferencesOperation) UnmarshalNDRResponse(ctx context.Conte
 
 // GetUserPreferencesRequest structure represents the RasRpcGetUserPreferences operation request
 type GetUserPreferencesRequest struct {
+	// pUser: Pointer to the RASRPC_PBUSER (section 2.2.1.2.229) structure which on successful
+	// return contains the configuration information on the RRAS server.
 	User *rrasm.User `idl:"name:pUser" json:"user"`
-	Mode uint32      `idl:"name:dwMode" json:"mode"`
+	// dwMode: This MUST be set to 2.
+	Mode uint32 `idl:"name:dwMode" json:"mode"`
 }
 
 func (o *GetUserPreferencesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUserPreferencesOperation) *xxx_GetUserPreferencesOperation {
@@ -531,6 +791,8 @@ func (o *GetUserPreferencesRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 
 // GetUserPreferencesResponse structure represents the RasRpcGetUserPreferences operation response
 type GetUserPreferencesResponse struct {
+	// pUser: Pointer to the RASRPC_PBUSER (section 2.2.1.2.229) structure which on successful
+	// return contains the configuration information on the RRAS server.
 	User *rrasm.User `idl:"name:pUser" json:"user"`
 	// Return: The RasRpcGetUserPreferences return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -673,8 +935,11 @@ func (o *xxx_SetUserPreferencesOperation) UnmarshalNDRResponse(ctx context.Conte
 
 // SetUserPreferencesRequest structure represents the RasRpcSetUserPreferences operation request
 type SetUserPreferencesRequest struct {
+	// pUser: Pointer to the RASRPC_PBUSER (section 2.2.1.2.229) structure which on successful
+	// return contains the configuration information on the RRAS server.
 	User *rrasm.User `idl:"name:pUser" json:"user"`
-	Mode uint32      `idl:"name:dwMode" json:"mode"`
+	// dwMode: This MUST be set to 2.
+	Mode uint32 `idl:"name:dwMode" json:"mode"`
 }
 
 func (o *SetUserPreferencesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetUserPreferencesOperation) *xxx_SetUserPreferencesOperation {
@@ -976,8 +1241,12 @@ func (o *xxx_GetSystemDirectoryOperation) UnmarshalNDRResponse(ctx context.Conte
 
 // GetSystemDirectoryRequest structure represents the RasRpcGetSystemDirectory operation request
 type GetSystemDirectoryRequest struct {
+	// lpBuffer: A null-terminated Unicode string that is populated with the path of the
+	// system directory. The length of the string MUST be equal to uSize.
 	Buffer string `idl:"name:lpBuffer;size_is:(uSize);string" json:"buffer"`
-	Size   uint32 `idl:"name:uSize" json:"size"`
+	// uSize: Specifies the size of the lpBuffer in Unicode characters. This value MUST
+	// be equal to 260.
+	Size uint32 `idl:"name:uSize" json:"size"`
 }
 
 func (o *GetSystemDirectoryRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSystemDirectoryOperation) *xxx_GetSystemDirectoryOperation {
@@ -1016,6 +1285,8 @@ type GetSystemDirectoryResponse struct {
 	// XXX: uSize is an implicit input depedency for output parameters
 	Size uint32 `idl:"name:uSize" json:"size"`
 
+	// lpBuffer: A null-terminated Unicode string that is populated with the path of the
+	// system directory. The length of the string MUST be equal to uSize.
 	Buffer string `idl:"name:lpBuffer;size_is:(uSize);string" json:"buffer"`
 	// Return: The RasRpcGetSystemDirectory return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -1280,8 +1551,18 @@ func (o *xxx_SubmitRequestOperation) UnmarshalNDRResponse(ctx context.Context, w
 
 // SubmitRequestRequest structure represents the RasRpcSubmitRequest operation request
 type SubmitRequestRequest struct {
+	// pReqBuffer: A pointer to a buffer of size dwcbBufSize. The buffer MUST be large enough
+	// to hold the RequestBuffer structure (section 2.2.1.2.217) and RequestBuffer.RB_Buffer
+	// data. RequestBuffer.RB_Reqtype specifies the request type which will be processed
+	// by the server and RequestBuffer.RB_Buffer specifies the structure specific to RB_Reqtype
+	// to be processed. The structure that MUST be used for each ReqTypes value is explained
+	// in section 2.2.1.2.217. The client MUST NOT send the ReqType other than those defined
+	// in ReqTypes (section 2.2.1.1.18). RequestBuffer.RB_PCBIndex MUST be set to the unique
+	// port identifier whose information is sought for ReqTypes REQTYPE_GETINFO and REQTYPE_GETDEVCONFIG.
+	// For other valid ReqTypes, RequestBuffer.RB_PCBIndex MUST be set to zero (0).
 	RequestBuffer []byte `idl:"name:pReqBuffer;size_is:(dwcbBufSize);pointer:unique" json:"request_buffer"`
-	BufferSize    uint32 `idl:"name:dwcbBufSize" json:"buffer_size"`
+	// dwcbBufSize: Size in byte of pReqBuffer.
+	BufferSize uint32 `idl:"name:dwcbBufSize" json:"buffer_size"`
 }
 
 func (o *SubmitRequestRequest) xxx_ToOp(ctx context.Context, op *xxx_SubmitRequestOperation) *xxx_SubmitRequestOperation {
@@ -1320,6 +1601,15 @@ type SubmitRequestResponse struct {
 	// XXX: dwcbBufSize is an implicit input depedency for output parameters
 	BufferSize uint32 `idl:"name:dwcbBufSize" json:"buffer_size"`
 
+	// pReqBuffer: A pointer to a buffer of size dwcbBufSize. The buffer MUST be large enough
+	// to hold the RequestBuffer structure (section 2.2.1.2.217) and RequestBuffer.RB_Buffer
+	// data. RequestBuffer.RB_Reqtype specifies the request type which will be processed
+	// by the server and RequestBuffer.RB_Buffer specifies the structure specific to RB_Reqtype
+	// to be processed. The structure that MUST be used for each ReqTypes value is explained
+	// in section 2.2.1.2.217. The client MUST NOT send the ReqType other than those defined
+	// in ReqTypes (section 2.2.1.1.18). RequestBuffer.RB_PCBIndex MUST be set to the unique
+	// port identifier whose information is sought for ReqTypes REQTYPE_GETINFO and REQTYPE_GETDEVCONFIG.
+	// For other valid ReqTypes, RequestBuffer.RB_PCBIndex MUST be set to zero (0).
 	RequestBuffer []byte `idl:"name:pReqBuffer;size_is:(dwcbBufSize);pointer:unique" json:"request_buffer"`
 	// Return: The RasRpcSubmitRequest return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -1492,8 +1782,13 @@ func (o *xxx_GetInstalledProtocolsExOperation) UnmarshalNDRResponse(ctx context.
 
 // GetInstalledProtocolsExRequest structure represents the RasRpcGetInstalledProtocolsEx operation request
 type GetInstalledProtocolsExRequest struct {
-	Router    bool `idl:"name:fRouter" json:"router"`
-	RASCli    bool `idl:"name:fRasCli" json:"ras_cli"`
+	// fRouter: If set to TRUE, protocols enabled for Demand Dial are retrieved. If set
+	// to FALSE, protocols enabled for Demand Dial are not retrieved.
+	Router bool `idl:"name:fRouter" json:"router"`
+	// fRasCli: This flag is not used and MUST be set to FALSE.
+	RASCli bool `idl:"name:fRasCli" json:"ras_cli"`
+	// fRasSrv: If set to TRUE, retrieves the protocol enabled for RRAS incoming connections.
+	// If set to FALSE, protocol for RRAS incoming connections are not retrieved.
 	RASServer bool `idl:"name:fRasSrv" json:"ras_server"`
 }
 
@@ -1653,6 +1948,8 @@ func (o *xxx_GetVersionOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 
 // GetVersionRequest structure represents the RasRpcGetVersion operation request
 type GetVersionRequest struct {
+	// pdwVersion: This is a pointer to type DWORD which, after a successful function call,
+	// specifies the version of the Rasrpc interface.
 	Version uint32 `idl:"name:pdwVersion;pointer:ref" json:"version"`
 }
 
@@ -1687,6 +1984,8 @@ func (o *GetVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 
 // GetVersionResponse structure represents the RasRpcGetVersion operation response
 type GetVersionResponse struct {
+	// pdwVersion: This is a pointer to type DWORD which, after a successful function call,
+	// specifies the version of the Rasrpc interface.
 	Version uint32 `idl:"name:pdwVersion;pointer:ref" json:"version"`
 	// Return: The RasRpcGetVersion return value.
 	Return uint32 `idl:"name:Return" json:"return"`

@@ -1,1 +1,147 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RAS_CONNECTION_EX_1_IDL</b> structure contains
+information for a connection, including the GUID that identifies the
+connection, the NAP, and the PPP or the IKEv2 related data for the connection.</p><dl>
+<dd>
+<div><pre> typedef struct _RAS_CONNECTION_EX_1_IDL {
+   MPRAPI_OBJECT_HEADER_IDL Header;
+   DWORD dwConnectDuration;
+   ROUTER_INTERFACE_TYPE dwInterfaceType;
+   DWORD dwConnectionFlags;
+   WCHAR wszInterfaceName[257];
+   WCHAR wszUserName[257];
+   WCHAR wszLogonDomain[16];
+   WCHAR wszRemoteComputer[17];
+   GUID guid;
+   RAS_QUARANTINE_STATE rasQuarState;
+   FILETIME probationTime;
+   DWORD dwBytesXmited;
+   DWORD dwBytesRcved;
+   DWORD dwFramesXmited;
+   DWORD dwFramesRcved;
+   DWORD dwCrcErr;
+   DWORD dwTimeoutErr;
+   DWORD dwAlignmentErr;
+   DWORD dwHardwareOverrunErr;
+   DWORD dwFramingErr;
+   DWORD dwBufferOverrunErr;
+   DWORD dwCompressionRatioIn;
+   DWORD dwCompressionRatioOut;
+   DWORD dwNumSwitchOvers;
+   WCHAR wszRemoteEndpointAddress[65];
+   WCHAR wszLocalEndpointAddress[65];
+   PROJECTION_INFO_IDL_1 ProjectionInfo;
+   ULONG hConnection;
+   ULONG hInterface;
+ } RAS_CONNECTION_EX_1_IDL,
+  *PRAS_CONNECTION_EX_1_IDL;
+</pre></div>
+</dd></dl><p><b>Header: </b>A <a href="abab767e-8f43-40c6-bb13-ff65307f05ef" data-linktype="relative-path"><b>MPRAPI_OBJECT_HEADER_IDL (section 2.2.1.2.129)</b></a>
+whose <b>revision</b> field MUST be 0x01 and <b>type</b> field MUST be 0x01.  </p><p><b>dwConnectDuration: </b>Specifies the duration in
+seconds for which the current connection is active.</p><p><b>dwInterfaceType: </b>Specifies a <a href="849c1f9e-9d6f-4408-840e-ee9ae253ae01" data-linktype="relative-path"><b>ROUTER_INTERFACE_TYPE (section 2.2.1.1.1)</b></a>
+value specifying the interface type of the current connection. </p><p><b>dwConnectionFlags: </b>Specifies certain
+attributes of the connection.</p><dl>
+<dd>
+<p>This member SHOULD contain one of the following
+flags.<a id="Appendix_A_Target_119"></a><a aria-label="Product behavior note 119" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_119" data-linktype="relative-path">&lt;119&gt;</a> </p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>No flag is set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RAS_FLAGS_PPP_CONNECTION</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The connection is using the Point-to-Point Protocol
+  (PPP).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RAS_FLAGS_MESSENGER_PRESENT</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The messenger service is active on the client and
+  messages can be sent to the client using <a href="31cf599a-c62a-42ff-9bad-bc52be459439" data-linktype="relative-path"><b>RRasAdminSendUserMessage (section 3.1.4.36)</b></a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RAS_FLAGS_QUARANTINE_PRESENT</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The connection is currently in quarantine. See <b>RRasAdminConnectionRemoveQuarantine</b> (section
+  <a href="30a29384-99b1-43df-bc67-554d5121c555" data-linktype="relative-path">3.1.4.43</a>) for more
+  information.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RAS_FLAGS_ARAP_CONNECTION</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>The connection is using the AppleTalk Remote Access
+  Protocol (ARAP).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RAS_FLAGS_DORMANT</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>The connection is using the IKEv2 and the server is
+  not reachable.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>wszInterfaceName: </b>Specifies a null-terminated
+Unicode string that contains the name of the interface for this connection.</p><p><b>wszUserName: </b>Specifies a null-terminated
+Unicode string that contains the name of the user logged on to the connection.</p><p><b>wszLogonDomain: </b>Specifies a null-terminated
+Unicode string that contains the domain on which the connected user is
+authenticated.</p><p><b>wszRemoteComputer: </b>Specifies a null-terminated
+Unicode string that contains the name of the remote computer.</p><p><b>guid: </b>A GUID uniquely identifying the
+connection.</p><p><b>rasQuarState: </b>Specifies the NAP quarantine
+state for the connection through the type <a href="4393ed23-2164-4283-8198-e704da2664f4" data-linktype="relative-path"><b>RAS_QUARANTINE_STATE (section 2.2.1.1.3)</b></a>
+that contains the quarantine state of this connection. </p><p><b>probationTime: </b>Specifies the NAP probation
+time for the connection in UTC. This value is valid only if the <b>rasQuarState</b>
+has a value of RAS_QUAR_STATE_PROBATION (see <b>RAS_QUARANTINE_STATE</b>). </p><p><b>dwBytesXmited: </b>Specifies the bytes transmitted
+on the current connection.</p><p><b>dwBytesRcved: </b>Specifies the bytes received on
+the current connection.</p><p><b>dwFramesXmited: </b>Specifies the frames
+transmitted on the current connection.</p><p><b>dwFramesRcved: </b>Specifies the frames received
+on the current connection.</p><p><b>dwCrcErr: </b>Specifies the CRC errors on the
+current connection.</p><p><b>dwTimeoutErr: </b>Specifies the time-out errors on
+the current connection.</p><p><b>dwAlignmentErr: </b>Specifies the alignment errors
+on the current connection.</p><p><b>dwHardwareOverrunErr: </b>Specifies the number of
+hardware-overrun errors on the current connection.</p><p><b>dwFramingErr: </b>Specifies the number of framing
+errors for the current connection.</p><p><b>dwBufferOverrunErr: </b>Specifies the number of
+buffer-overrun errors.</p><p><b>dwCompressionRatioIn: </b>Specifies a percentage
+that indicates the degree to which data received on this connection is
+compressed. The ratio is the size of the compressed data divided by the size of
+the same data in an uncompressed state.</p><p><b>dwCompressionRatioOut: </b>Specifies a percentage
+that indicates the degree to which data transmitted on this connection is
+compressed. The ratio is the size of the compressed data divided by the size of
+the same data in an uncompressed state.</p><p><b>dwNumSwitchOvers: </b>Specifies the number of
+MOBIKE <a href="https://go.microsoft.com/fwlink/?LinkId=121752" data-linktype="external">[RFC4555]</a>
+switches that happened on the connection. Valid only if <b>dwConnectionFlags</b>
+is RAS_FLAGS_IKEV2_CONNECTION.</p><p><b>wszRemoteEndpointAddress: </b>Specifies a
+null-terminated Unicode string that holds the remote computer&#39;s IP address for
+the connection. This string has the form a.b.c.d; for example,
+&#34;10.102.235.84&#34;.</p><p><b>wszLocalEndpointAddress: </b>Specifies a
+null-terminated Unicode string that holds the local computer&#39;s IP address for
+the connection. This string has the form a.b.c.d or a::1234; for example,
+&#34;10.102.235.84&#34; or 2ffe::1234.</p><p><b>ProjectionInfo: </b>This is a <a href="ba8b9bed-bd23-49d6-9840-20fcbf415cfe" data-linktype="relative-path"><b>PROJECTION_INFO_IDL_1</b></a>
+structure. </p><p><b>hConnection: </b>A handle to the connection.</p><p><b>hInterface: </b>A handle to the interface.</p></div>

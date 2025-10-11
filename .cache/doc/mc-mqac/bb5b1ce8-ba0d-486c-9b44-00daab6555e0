@@ -1,0 +1,36 @@
+<div class="content"><p>The AttachCurrentSecurityContext method is received by the
+server in an RPC_REQUEST packet. In response, the server MUST cache the
+relevant information required to sign a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a> on behalf of the
+client, including the Message.SenderIdentifier and Message.SenderCertificate.
+This method is provided purely as an optimization to allow the client to reduce
+lookups of the security information about the calling client each time the message
+is sent. The represented Message.SenderIdentifier and Message.SenderCertificate
+property values MUST NOT be updated as a result of calling this method. This
+method is superseded by IMSMQMessage4::AttachSecurityContext2.</p><dl>
+<dd>
+<div><pre> HRESULT AttachCurrentSecurityContext();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>Set the <i>SenderIdentifierCache</i> instance variable to the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> of the caller.<a id="Appendix_A_Target_153"></a><a aria-label="Product behavior note 153" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_153" data-linktype="relative-path">&lt;153&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If the represented Message.SenderCertificate equals NULL:</p>
+<ul><li><p><span><span>  </span></span>Set
+the <i>SenderCertificateCache</i> instance variable to the <b>Certificate</b>
+ADM attribute of the <b>InternalCertificate</b> (<a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a>
+section <a href="../ms-mqdmpr/b9c56cb5-9c06-4c07-ad1a-6850ed9c7d6e" data-linktype="relative-path">3.1.1.19</a>)
+ADM element instance from the <b>InternalCertificateCollection</b> ADM
+attribute of the local <b>QueueManager</b> ADM element instance whose <b>InternalCertificate.User</b>
+ADM attribute matches the user identified by the <i>SenderIdentifierCache</i>
+instance variable.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>The
+server MAY impose additional requirements on the represented
+Message.SenderCertificate for authentication purposes.<a id="Appendix_A_Target_154"></a><a aria-label="Product behavior note 154" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_154" data-linktype="relative-path">&lt;154&gt;</a></p>
+</li><li><p><span><span>  </span></span>Set
+the <i>SenderCertificateCache</i> instance variable to the value of the
+represented Message.SenderCertificate.</p>
+</li></ul></li></ul></div>

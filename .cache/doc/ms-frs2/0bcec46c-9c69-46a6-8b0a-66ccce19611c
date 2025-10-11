@@ -1,1 +1,100 @@
-<div class="content"></div>
+<div class="content"><p>A structure that contains file metadata related to a
+particular file being processed by <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_4ee9457f-e894-4c1d-8a0b-fbbf20fad5d6" data-linktype="relative-path">Distributed File System
+Replication (DFS-R)</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _FRS_UPDATE {
+   long present;
+   long nameConflict;
+   unsigned long attributes;
+   FILETIME fence;
+   FILETIME clock;
+   FILETIME createTime;
+   FRS_CONTENT_SET_ID contentSetId;
+   unsigned char hash[CONFIG_FILEHASH_DATASIZE];
+   unsigned char rdcSimilarity[CONFIG_RDC_SIMILARITY_DATASIZE];
+   GUID uidDbGuid;
+   DWORDLONG uidVersion;
+   GUID gvsnDbGuid;
+   DWORDLONG gvsnVersion;
+   GUID parentDbGuid;
+   DWORDLONG parentVersion;
+   [string] WCHAR name[260+1];
+   long flags;
+ } FRS_UPDATE;
+</pre></div>
+</dd></dl><p><b>present:</b>  Indicates whether the file
+exists or has been deleted. The value MUST be either 0 or 1.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>File has been deleted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>File exists.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>nameConflict:</b>  Set if this update
+was <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_9d8e0963-13fa-4e19-a97f-7ce6bc90d20f" data-linktype="relative-path">tombstone</a> due to a
+name conflict. The value MUST be either 0 or 1. This field MUST be 0 if <b>present</b>
+is 1.</p><p><b>attributes:</b>  The file&#39;s attributes.</p><p><b>fence:</b>  The <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_131e9832-ec7f-4c99-82a7-8be2c7a82704" data-linktype="relative-path">fence</a> clock.</p><p><b>clock:</b>  Logical, last change clock.</p><p><b>createTime:</b>  File creation time.</p><p><b>contentSetId:</b>  The content set ID (<a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_064adaf1-86c7-43e5-a157-b0949980181e" data-linktype="relative-path">replicated folder</a>) that
+this file belongs to.</p><p><b>hash:</b>  The <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_168fbe0c-fc02-4722-979e-b0261766ac9c" data-linktype="relative-path">SHA-1 hash</a> of the file.</p><p><b>rdcSimilarity:</b>  The similarity <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_b7e2b611-0af5-4fec-8af2-3f9ce7bad205" data-linktype="relative-path">hash</a> of the file. The value
+will be all zeros if the similarity data was not computed. See <a href="../ms-rdc/5b027295-0b63-45b9-8f62-0e49448350d9" data-linktype="relative-path">[MS-RDC]</a>, <a href="../ms-rdc/0b4ecd59-8bab-45d0-ad48-42193e0e7c74" data-linktype="relative-path">3.1.5.4</a>.</p><p><b>uidDbGuid:</b>  The <a href="../ms-dtyp/49e490b8-f972-45d6-a3a4-99f924998d97" data-linktype="relative-path">GUID</a>
+portion of the file&#39;s <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_3d9dd73b-8923-43cc-ac95-8103f17683d7" data-linktype="relative-path">UID</a>.
+Same as the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_00f35ba3-4dbb-4ff9-8e27-572a6aea1b15" data-linktype="relative-path">database</a> GUID
+of the replicated folder where this file originated.</p><p><b>uidVersion:</b>  The <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_dad98bb4-1dd5-404f-a742-3c3195292945" data-linktype="relative-path">VSN</a> portion of the file&#39;s
+UID. This is assigned when the file is created.</p><p><b>gvsnDbGuid:</b>  The GUID portion of the
+file&#39;s <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_b2063d4f-ec5f-4417-9dc8-7ab381e2beab" data-linktype="relative-path">GVSN</a>. Same as the
+database GUID of the replicated folder where this file was last updated.</p><p><b>gvsnVersion:</b>  The VSN portion of the
+file&#39;s GVSN. This is assigned when the file was last updated.</p><p><b>parentDbGuid:</b>  The GUID portion of
+the UID of the file&#39;s parent. Same as the database GUID of the replicated
+folder where this file&#39;s parent originated.</p><p><b>parentVersion:</b>  The VSN portion of
+the UID of the file&#39;s parent. This is assigned when the parent of the file was
+created.</p><p><b>name:</b>  The file name, in UTF-16
+form, of the file.</p><p><b>flags:</b>  A flags bitmask. The value
+SHOULD be 0 or FRS_UPDATE_FLAG_CLOCK_DECREMENTED. The client MUST ignore any
+bits other than FRS_UPDATE_FLAG_CLOCK_DECREMENTED. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The update is normal.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FRS_UPDATE_FLAG_CLOCK_DECREMENTED</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>The update is the result of a dirty shutdown on the
+  remote partner and the clock has been decremented by the remote partner. The
+  client MAY assign a new GVSN when installing an update with this flag.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

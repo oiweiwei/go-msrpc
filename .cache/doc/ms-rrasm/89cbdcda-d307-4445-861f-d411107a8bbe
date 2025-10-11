@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MPR_IF_CUSTOMINFOEX_IDL</b> structure<a id="Appendix_A_Target_174"></a><a aria-label="Product behavior note 174" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_174" data-linktype="relative-path">&lt;174&gt;</a> is a placeholder for <a href="54f68223-7380-45b3-bc09-1168944831be" data-linktype="relative-path"><b>MPR_IF_CUSTOMINFOEX_0 (section 2.2.1.2.244)</b></a>
+and <a href="d0d5f606-5c82-48de-ab99-d106e797813a" data-linktype="relative-path"><b>MPR_IF_CUSTOMINFOEX_1 (section 2.2.1.2.269)</b></a>
+structures.   </p><dl>
+<dd>
+<div><pre> typedef union _MPR_IF_CUSTOMINFOEX_IDL  switch(UCHAR revision) IfCustomConfigObject {
+   case 1: MPR_IF_CUSTOMINFOEX_0 IfConfigObj1;
+   case 2: MPR_IF_CUSTOMINFOEX_1 IfConfigObj2;
+ } MPR_IF_CUSTOMINFOEX_IDL,
+  *PMPR_IF_CUSTOMINFOEX_IDL;
+</pre></div>
+</dd></dl><p><b>IfConfigObj1: </b>This MUST be an <b>MPR_IF_CUSTOMINFOEX_0 (section 2.2.1.2.244)</b>
+structure.  </p><p><b>IfConfigObj2: </b>This MUST be an <b>MPR_IF_CUSTOMINFOEX_1 (section 2.2.1.2.269)</b>
+structure.  </p></div>

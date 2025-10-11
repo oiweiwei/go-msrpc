@@ -31,10 +31,20 @@ type CollectionServer interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
-	// Item operation.
+	// The Item method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return a VARIANT from the VariantCollection instance variable where
+	// the key matches the Index input parameter.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Item(context.Context, *ItemRequest) (*ItemResponse, error)
 
-	// Count operation.
+	// The Count method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the total number of elements in the VariantCollection instance
+	// variable.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetCount(context.Context, *GetCountRequest) (*GetCountResponse, error)
 
 	// _NewEnum operation.

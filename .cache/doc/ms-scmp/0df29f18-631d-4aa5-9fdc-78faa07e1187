@@ -1,1 +1,21 @@
-<div class="content"></div>
+<div class="content"><p>The VSS_OBJECT_TYPE enumeration defines the types of objects
+that can be queried by the <a href="1fff5a29-7f95-4237-9792-0743b75739fa" data-linktype="relative-path">IVssEnumObject</a>
+<a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a>.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum _VSS_OBJECT_TYPE
+ {
+   VSS_OBJECT_UNKNOWN = 0x00000000,
+   VSS_OBJECT_NONE = 0x00000001,
+   VSS_OBJECT_SNAPSHOT_SET = 0x00000002,
+   VSS_OBJECT_SNAPSHOT = 0x00000003,
+   VSS_OBJECT_PROVIDER = 0x00000004,
+   VSS_OBJECT_TYPE_COUNT = 0x00000005
+ } VSS_OBJECT_TYPE;
+</pre></div>
+</dd></dl><p><b>VSS_OBJECT_UNKNOWN:  </b>The object is of an
+unknown type of <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow copy</a>.</p><p><b>VSS_OBJECT_NONE:  </b>This value MUST NOT be used
+and MUST be ignored upon receipt.</p><p><b>VSS_OBJECT_SNAPSHOT_SET:  </b>The object is a <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_32d6d594-cd61-4aa8-83f9-8504b8518f21" data-linktype="relative-path">shadow copy set</a>.</p><p><b>VSS_OBJECT_SNAPSHOT:  </b>The object is a shadow
+copy.</p><p><b>VSS_OBJECT_PROVIDER:  </b>This value is not used
+by the Shadow Copy Management Protocol and MUST NOT be referenced. It MUST be
+ignored on receipt.</p><p><b>VSS_OBJECT_TYPE_COUNT:  </b>This value is the
+number of VSS_OBJECT_TYPE values in the enumeration.</p></div>

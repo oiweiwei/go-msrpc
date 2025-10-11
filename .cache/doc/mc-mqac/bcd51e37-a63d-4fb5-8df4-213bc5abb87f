@@ -1,0 +1,29 @@
+<div class="content"><p>The XACTTRANSINFO structure is defined as follows.</p><dl>
+<dd>
+<div><pre> typedef struct XACTTRANSINFO {
+   BOID uow;
+   LONG isoLevel;
+   ULONG isoFlags;
+   DWORD grfTCSupported;
+   DWORD grfRMSupported;
+   DWORD grfTCSupportedRetaining;
+   DWORD grfRMSupportedRetaining;
+ } XACTTRANSINFO;
+</pre></div>
+</dd></dl><p><b>uow:</b>  This is of type <a href="a2b4847a-0970-4462-8a71-b7f60d25a9f9" data-linktype="relative-path">BOID</a>.</p><p><b>isoLevel:</b>  The <b>isoLevel</b>
+property contains a <a href="../ms-dtyp/29d44d70-382f-4998-9d76-8a1fe93e445c" data-linktype="relative-path">LONG</a>
+value that corresponds to the values defined for the OLETX_ISOLATION_LEVEL
+enumeration, as defined in <a href="../ms-dtco/c367c571-33f3-44ac-85cb-4b9ebbb2779d" data-linktype="relative-path">[MS-DTCO]</a>
+section <a href="../ms-dtco/0d6f3fa3-7074-4193-8621-119e418b05b5" data-linktype="relative-path">2.2.6.9</a>.</p><p><b>isoFlags:</b>  The <b>isoFlags</b>
+property contains a <a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">ULONG</a>
+value that corresponds to the values defined for the OLETX_ISOLATION_FLAGS
+enumeration, as defined in [MS-DTCO] section <a href="../ms-dtco/a2ed3564-77a4-4b85-b07a-d2c3c9c26ec0" data-linktype="relative-path">2.2.6.8</a>.</p><p><b>grfTCSupported:</b>  The <b>grfTCSupported</b>
+property specifies a bitmask that indicates which <a href="c4c9f1cc-6230-4a07-8716-1df46756c746" data-linktype="relative-path">XACTTC</a> flags (section
+2.2.2.21) this <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a>
+implementation supports.</p><p><b>grfRMSupported:</b>  The <b>grfRMSupported</b>
+property is reserved for future use, and the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST set the value
+of this property to zero.</p><p><b>grfTCSupportedRetaining:</b>  The <b>grfTCSupportedRetaining</b>
+property is reserved for future use, and the server MUST set the value of this
+property to zero.</p><p><b>grfRMSupportedRetaining:</b>  The <b>grfRMSupportedRetaining</b>
+property is reserved for future use, and the server MUST set the value of this
+property to zero.</p></div>

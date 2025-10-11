@@ -49,8 +49,12 @@ type RobustNTMSMediaServices1Client interface {
 	// INtmsMediaServices1 retrieval method.
 	MediaServices1() intmsmediaservices1.MediaServices1Client
 
+	// The GetNtmsMediaPoolNameAR method retrieves the full name hierarchy of a media pool,
+	// with strings encoded using ASCII.
 	GetNTMSMediaPoolNameAR(context.Context, *GetNTMSMediaPoolNameARRequest, ...dcerpc.CallOption) (*GetNTMSMediaPoolNameARResponse, error)
 
+	// The GetNtmsMediaPoolNameWR method retrieves the full name hierarchy of a media pool,
+	// with strings encoded using Unicode.
 	GetNTMSMediaPoolNameWR(context.Context, *GetNTMSMediaPoolNameWRRequest, ...dcerpc.CallOption) (*GetNTMSMediaPoolNameWRResponse, error)
 
 	// AlterContext alters the client context.
@@ -407,9 +411,12 @@ func (o *xxx_GetNTMSMediaPoolNameAROperation) UnmarshalNDRResponse(ctx context.C
 // GetNTMSMediaPoolNameARRequest structure represents the GetNtmsMediaPoolNameAR operation request
 type GetNTMSMediaPoolNameARRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PoolID         *dtyp.GUID     `idl:"name:lpPoolId" json:"pool_id"`
-	NameSizeBuffer uint32         `idl:"name:lpdwNameSizeBuf" json:"name_size_buffer"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpPoolId: A pointer to the identifier of the media pool for which to retrieve the
+	// name.
+	PoolID *dtyp.GUID `idl:"name:lpPoolId" json:"pool_id"`
+	// lpdwNameSizeBuf: The size, in bytes, of lpBufName.
+	NameSizeBuffer uint32 `idl:"name:lpdwNameSizeBuf" json:"name_size_buffer"`
 }
 
 func (o *GetNTMSMediaPoolNameARRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameAROperation) *xxx_GetNTMSMediaPoolNameAROperation {
@@ -451,10 +458,34 @@ type GetNTMSMediaPoolNameARResponse struct {
 	NameSizeBuffer uint32 `idl:"name:lpdwNameSizeBuf" json:"name_size_buffer"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	BufferName []byte         `idl:"name:lpBufName;size_is:(lpdwNameSizeBuf);length_is:(lpdwNameSize)" json:"buffer_name"`
-	NameSize   uint32         `idl:"name:lpdwNameSize" json:"name_size"`
-	OutputSize uint32         `idl:"name:lpdwOutputSize" json:"output_size"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpBufName: The null-terminated buffer that contains the name of the media pool.
+	BufferName []byte `idl:"name:lpBufName;size_is:(lpdwNameSizeBuf);length_is:(lpdwNameSize)" json:"buffer_name"`
+	// lpdwNameSize: The length of the string in lpBufName, including the terminating null
+	// character.
+	NameSize uint32 `idl:"name:lpdwNameSize" json:"name_size"`
+	// lpdwOutputSize: A pointer to the buffer size required to return the name.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | The call was successful.                                                         |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED       | Access to an object was denied.                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY   | An allocation error occurred during processing.                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER   | The parameter is missing or invalid.                                             |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007007A ERROR_INSUFFICIENT_BUFFER | The specified buffer size is too small. The required size is returned in         |
+	//	|                                      | lpdwOutputSize.                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CE ERROR_INVALID_MEDIA_POOL  | The media pool identifier is missing or invalid.                                 |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	OutputSize uint32 `idl:"name:lpdwOutputSize" json:"output_size"`
 	// Return: The GetNtmsMediaPoolNameAR return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -762,9 +793,12 @@ func (o *xxx_GetNTMSMediaPoolNameWROperation) UnmarshalNDRResponse(ctx context.C
 // GetNTMSMediaPoolNameWRRequest structure represents the GetNtmsMediaPoolNameWR operation request
 type GetNTMSMediaPoolNameWRRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PoolID         *dtyp.GUID     `idl:"name:lpPoolId" json:"pool_id"`
-	NameSizeBuffer uint32         `idl:"name:lpdwNameSizeBuf" json:"name_size_buffer"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpPoolId: A pointer to the identifier of the media pool for which to retrieve the
+	// name.
+	PoolID *dtyp.GUID `idl:"name:lpPoolId" json:"pool_id"`
+	// lpdwNameSizeBuf: A pointer to the size, in bytes, of lpBufName.
+	NameSizeBuffer uint32 `idl:"name:lpdwNameSizeBuf" json:"name_size_buffer"`
 }
 
 func (o *GetNTMSMediaPoolNameWRRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameWROperation) *xxx_GetNTMSMediaPoolNameWROperation {
@@ -806,10 +840,34 @@ type GetNTMSMediaPoolNameWRResponse struct {
 	NameSizeBuffer uint32 `idl:"name:lpdwNameSizeBuf" json:"name_size_buffer"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	BufferName string         `idl:"name:lpBufName;size_is:(lpdwNameSizeBuf);length_is:(lpdwNameSize)" json:"buffer_name"`
-	NameSize   uint32         `idl:"name:lpdwNameSize" json:"name_size"`
-	OutputSize uint32         `idl:"name:lpdwOutputSize" json:"output_size"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpBufName: The null-terminated buffer that contains the name of the media pool.
+	BufferName string `idl:"name:lpBufName;size_is:(lpdwNameSizeBuf);length_is:(lpdwNameSize)" json:"buffer_name"`
+	// lpdwNameSize: A pointer to the length of the string in lpBufName, including the terminating
+	// null character.
+	NameSize uint32 `idl:"name:lpdwNameSize" json:"name_size"`
+	// lpdwOutputSize: A pointer to the buffer size required to return the name.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | The call was successful.                                                         |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED       | Access to an object was denied.                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY   | An allocation error occurred during processing.                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER   | The parameter is missing or invalid.                                             |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007007A ERROR_INSUFFICIENT_BUFFER | The specified buffer size is too small. The required size is returned in         |
+	//	|                                      | lpdwOutputSize.                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CE ERROR_INVALID_MEDIA_POOL  | The media pool identifier is missing or invalid.                                 |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	OutputSize uint32 `idl:"name:lpdwOutputSize" json:"output_size"`
 	// Return: The GetNtmsMediaPoolNameWR return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

@@ -37,16 +37,93 @@ type AppHostElementCollectionServer interface {
 	// Item operation.
 	GetItem(context.Context, *GetItemRequest) (*GetItemResponse, error)
 
-	// AddElement operation.
+	// The AddElement method is received by the server in an RPC_REQUEST packet. In response,
+	// the server attempts to add a newly created IAppHostElement object to the specified
+	// collection.
+	//
+	// This function adds an element to the current collection of elements.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070021 ERROR_LOCK_VIOLATION    | The instance is not editable.                           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070585 ERROR_INVALID_INDEX     | The index specified by cPosition is invalid.            |
+	//	+------------------------------------+---------------------------------------------------------+
 	AddElement(context.Context, *AddElementRequest) (*AddElementResponse, error)
 
-	// DeleteElement operation.
+	// The DeleteElement method is received by the server in an RPC_REQUEST packet. In response,
+	// the server deletes the IAppHostElement at the specified index.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070021 ERROR_LOCK_VIOLATION    | The instance is not editable.                           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070585 ERROR_INVALID_INDEX     | The index specified by cIndex is invalid.               |
+	//	+------------------------------------+---------------------------------------------------------+
 	DeleteElement(context.Context, *DeleteElementRequest) (*DeleteElementResponse, error)
 
 	// Clear operation.
 	Clear(context.Context, *ClearRequest) (*ClearResponse, error)
 
-	// CreateNewElement operation.
+	// The CreateNewElement method is received by the server in an RPC_REQUEST packet. In
+	// response, the server creates a new unattached IAppHostElement object that has the
+	// specified name. The name MUST be a supported name as defined by the IAppHostCollectionSchema
+	// of the specified IAppHostElementCollection.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppElement is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                                            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                                    |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.                          |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070021 ERROR_LOCK_VIOLATION    | The instance is not editable.                                                    |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070585 ERROR_INVALID_INDEX     | The schema does not permit the creation of an element with name bstrElementName. |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
 	CreateNewElement(context.Context, *CreateNewElementRequest) (*CreateNewElementResponse, error)
 
 	// Schema operation.

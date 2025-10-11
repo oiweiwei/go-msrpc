@@ -1,1 +1,129 @@
-<div class="content"></div>
+<div class="content"><p>The RequestUpdates method is used to obtain a specified set
+of updates (replicated file metadata) from a server.</p><dl>
+<dd>
+<div><pre> DWORD RequestUpdates(
+   [in] FRS_CONNECTION_ID connectionId,
+   [in] FRS_CONTENT_SET_ID contentSetId,
+   [in, range(0,256)] DWORD creditsAvailable,
+   [in, range(0,1)] long hashRequested,
+   [in, range(UPDATE_REQUEST_ALL, UPDATE_REQUEST_LIVE)] 
+     UPDATE_REQUEST_TYPE updateRequestType,
+   [in] unsigned long versionVectorDiffCount,
+   [in, size_is(versionVectorDiffCount)] 
+     FRS_VERSION_VECTOR* versionVectorDiff,
+   [out, size_is(creditsAvailable), length_is(*updateCount)] 
+     FRS_UPDATE* frsUpdate,
+   [out] DWORD* updateCount,
+   [out] UPDATE_STATUS* updateStatus,
+   [out] GUID* gvsnDbGuid,
+   [out] DWORDLONG* gvsnVersion
+ );
+</pre></div>
+</dd></dl><p><b>connectionId: </b>The <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a> of
+an outbound connection (see the <b>objectGUID</b> attribute specified in
+section <a href="afd3c10a-9783-4df7-ae2b-13e56c37ab03" data-linktype="relative-path">2.3.11</a>) that
+the client established by a previous call to the <a href="2c51e5f4-bef1-4e29-9292-b63f1d5ccff6" data-linktype="relative-path">EstablishConnection</a>
+method.</p><p><b>contentSetId: </b>The GUID of the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_064adaf1-86c7-43e5-a157-b0949980181e" data-linktype="relative-path">replicated folder</a> (see the <b>objectGUID</b>
+attribute specified in section <a href="3cd01848-1a7d-4e5e-9511-44dca4e46ce0" data-linktype="relative-path">2.3.7</a>) in the specified
+connection&#39;s <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_fcc139c9-86ff-4414-bc66-5f63e4465b6d" data-linktype="relative-path">replication
+group</a>.</p><p><b>creditsAvailable: </b>The maximum number of
+updates that the client can receive in the <i>frsUpdate</i> buffer.</p><p><b>hashRequested: </b>The client sets the <i>hashRequested</i>
+parameter to TRUE to request that the server compute the hash (see the <b>hash</b>
+field of the <a href="0bcec46c-9c69-46a6-8b0a-66ccce19611c" data-linktype="relative-path">FRS_UPDATE</a>
+structure specified in section 2.2.1.4.4) for each update that it sends, or
+FALSE if the hashes are not desired. The server SHOULD compute hashes when
+hashes are requested, although it is not required to do so. Computing a file&#39;s <b>hash</b>
+requires DFS-R to read the file&#39;s data. It is possible that another process has
+already opened the file for exclusive access, which prevents DFS-R from
+computing the file <b>hash</b>. In this scenario, the DFS-R server does not
+compute the <b>hash</b> even if the client requested that it does. </p><p><b>updateRequestType: </b>The value from the <a href="f0c7573a-790b-4da8-a6cf-3218004c5994" data-linktype="relative-path">UPDATE_REQUEST_TYPE</a>
+enumeration that indicates the type of replication updates requested.</p><p><b>versionVectorDiffCount: </b>The number of items
+specified in the <i>versionVectorDiff</i> parameter.</p><p><b>versionVectorDiff: </b>The set of <a href="42bbbd7f-0078-4a48-8043-03c7cec67d3c" data-linktype="relative-path">FRS_VERSION_VECTOR</a>
+structures that specifies what updates the client requires from the server.
+This parameter specifies the difference between the client&#39;s version vector and
+the client&#39;s most recent copy of the server&#39;s version vector obtained from a
+previous call to the <a href="dc9cd8a6-826b-414d-83cf-d742367cba9f" data-linktype="relative-path">RequestVersionVector</a>
+method.</p><p><b>frsUpdate: </b>The set of FRS_UPDATE structures
+that describes the update that occurred to each of the files to be replicated.</p><p><b>updateCount: </b>The number of updates that the
+server wrote into the <i>frsUpdate</i> buffer.</p><p><b>updateStatus: </b>The value from the <a href="e899f360-f482-40aa-83c1-aa089f9d7824" data-linktype="relative-path">UPDATE_STATUS</a> enumeration
+that specifies if all of the requested updates have been sent by the server.</p><p><b>gvsnDbGuid: </b>The <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_b2063d4f-ec5f-4417-9dc8-7ab381e2beab" data-linktype="relative-path">GVSN</a> GUID (as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section 2.3.4) for the last field in the <i>versionVectorDiff</i> that was
+processed.</p><p><b>gvsnVersion: </b>The version of the <i>gvsnDbGuid</i>.</p><p><b>Return Values: </b>The method MUST return 0 on
+success or a nonzero error code on failure. For protocol purposes all nonzero
+values MUST be treated as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00002344</p>
+  <p>FRS_ERROR_CONTENTSET_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The content set was not found.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Validating the updates request:</b> The server validates
+the updates request by performing the following checks.</p><ul><li><p><span><span> 
+</span></span>If an outbound connection for the specified connection is not
+established between the client and server (see the EstablishConnection method)
+then the server MUST fail the call an implementation-defined failure value.</p>
+</li><li><p><span><span> 
+</span></span>If a replicated folder session for the specified replicated
+folder is not established between the client and server (see the <a href="29a8e0a7-95b8-47cb-9cb3-2ec294232633" data-linktype="relative-path">EstablishSession</a> method)
+then the server MUST fail the call with the FRS_ERROR_CONTENTSET_NOT_FOUND
+failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the contents of the <i>versionVectorDiff</i> parameter are
+invalid (see section 2.2.1.4.1 for the FRS_VERSION_VECTOR structure
+requirements) then the server MUST fail the call with an implementation-defined
+failure value.</p>
+</li></ul><p><b>Actions Triggered:</b> Upon successfully validating the
+update request, the server MUST send as many of the requested updates as fit in
+the <i>frsUpdate</i> buffer. The server sends records for the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_6ea49fb3-42c8-42a5-b246-cd7321981287" data-linktype="relative-path">GVSNs</a> that are known to the
+server, appear in the specified <i>versionVectorDiff</i> parameter, and are of
+the type specified by the <i>updateRequestType</i> parameter. </p><p>The server MUST scan through the database for the updates.</p><p>If the value of the <i>updateRequestType</i> parameter is
+UPDATE_REQUEST_TOMBSTONES, the server SHOULD<a id="Appendix_A_Target_23"></a><a aria-label="Product behavior note 23" href="c43938b1-6e96-48ec-9725-5e5d42089f49#Appendix_A_23" data-linktype="relative-path">&lt;23&gt;</a> send
+version vector tombstone updates as follows:</p><ul><li><p><span><span> 
+</span></span>When a particular update is not stale,<a id="Appendix_A_Target_24"></a><a aria-label="Product behavior note 24" href="c43938b1-6e96-48ec-9725-5e5d42089f49#Appendix_A_24" data-linktype="relative-path">&lt;24&gt;</a> set the <b>present</b> field of
+the <b>FRS_UPDATE</b> structure specified in section 2.2.1.4.4 to 1.</p>
+</li><li><p><span><span> 
+</span></span>When a particular update is stale,<a id="Appendix_A_Target_25"></a><a aria-label="Product behavior note 25" href="c43938b1-6e96-48ec-9725-5e5d42089f49#Appendix_A_25" data-linktype="relative-path">&lt;25&gt;</a> set the <b>present</b>
+field of the <b>FRS_UPDATE</b> structure specified in section 2.2.1.4.4 to 0.</p>
+</li></ul><p>If the value of the <i>updateRequestType</i> parameter is
+UPDATE_REQUEST_ALL and there are tombstone updates to send, the server MUST
+place the tombstone updates ahead of the live updates in the <i>frsUpdate</i>
+buffer. </p><p>The server MUST indicate to the client if there are more of
+the requested updates to be retrieved by setting the <i>updateStatus</i>
+parameter to one of the following values.</p><ul><li><p><span><span> 
+</span></span><b>UPDATE_STATUS_DONE:</b> There are no more updates in the scope
+of the supplied <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_b5d43ea0-cf01-4294-b0d8-0b0362d4a3a2" data-linktype="relative-path">version
+chain vector</a>.</p>
+</li><li><p><span><span> 
+</span></span><b>UPDATE_STATUS_MORE:</b>  There are potentially more updates
+from the supplied version chain vector.</p>
+</li></ul><p>If all of the requested updates could not be sent to the
+client because of credit limitations, the <i>gvsnDbGuid</i> and <i>gvsnVersion</i>
+parameters allow the server to indicate to the client how much of the <i>versionVectorDiff</i>
+has been processed during this call. The returned GVSN (formed by the parameter
+pair <i>gvsnDbGuid</i> / <i>gvsnVersion</i>) is a cursor into the <i>versionVectorDiff</i>.
+The cursor MUST be set to the last GVSN covered by <i>versionVectorDiff</i>
+that was considered for populating the <i>frsUpdate</i> buffer. The cursor is
+used by the client to determine which remaining updates it requests during
+subsequent calls to the RequestUpdates method.</p></div>

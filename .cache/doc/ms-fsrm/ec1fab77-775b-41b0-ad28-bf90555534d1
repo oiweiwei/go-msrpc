@@ -1,5 +1,5 @@
-<div class="content"><p>The CreateThresholdAction method creates an action and associates
-it with the specified <b>threshold</b>.</p><dl>
+<div class="content"><p>The CreateThresholdAction method creates an action and
+associates it with the specified <b>threshold</b>.</p><dl>
 <dd>
 <div><pre> [id(FSRM_DISPID_QUOTA_BASE | 0x04)] HRESULT CreateThresholdAction(
    [in] FSRM_QUOTA_THRESHOLD threshold,

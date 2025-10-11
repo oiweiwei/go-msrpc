@@ -1,1 +1,19 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RASMAN_STATE</b> enumeration indicates the connection
+condition of a given <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_76717edf-a943-4324-bce3-807df4b53153" data-linktype="relative-path">RAS
+port</a>.</p><dl>
+<dd>
+<div><pre> typedef enum _RASMAN_STATE
+ {
+   CONNECTING = 0,
+   LISTENING = 1,
+   CONNECTED = 2,
+   DISCONNECTING = 3,
+   DISCONNECTED = 4,
+   LISTENCOMPLETED = 5,
+ } RASMAN_STATE;
+</pre></div>
+</dd></dl><p><b>CONNECTING: </b>The port is in the process of
+connecting.</p><p><b>LISTENING: </b>The port is listening for
+connection requests.</p><p><b>CONNECTED: </b>The port is connected.</p><p><b>DISCONNECTING: </b>The port is in the process of
+disconnecting.</p><p><b>DISCONNECTED: </b>The port is disconnected.</p><p><b>LISTENCOMPLETED: </b>The port has completed
+listening for connection requests.</p></div>

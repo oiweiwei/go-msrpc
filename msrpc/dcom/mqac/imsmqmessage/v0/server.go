@@ -31,7 +31,11 @@ type MessageServer interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
-	// Class operation.
+	// The Class method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the represented Message.Class.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetClass(context.Context, *GetClassRequest) (*GetClassResponse, error)
 
 	// PrivLevel operation.
@@ -46,7 +50,12 @@ type MessageServer interface {
 	// AuthLevel operation.
 	SetAuthLevel(context.Context, *SetAuthLevelRequest) (*SetAuthLevelResponse, error)
 
-	// IsAuthenticated operation.
+	// The IsAuthenticated method is received by the server in an RPC_REQUEST packet. In
+	// response, the server MUST return a BOOLEAN flag indicating whether the message was
+	// authenticated by the Queue Manager that received the message.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetIsAuthenticated(context.Context, *GetIsAuthenticatedRequest) (*GetIsAuthenticatedResponse, error)
 
 	// Delivery operation.
@@ -85,10 +94,18 @@ type MessageServer interface {
 	// AppSpecific operation.
 	SetAppSpecific(context.Context, *SetAppSpecificRequest) (*SetAppSpecificResponse, error)
 
-	// SourceMachineGuid operation.
+	// The SourceMachineGuid method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return the represented Message.SourceMachineIdentifier.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetSourceMachineGUID(context.Context, *GetSourceMachineGUIDRequest) (*GetSourceMachineGUIDResponse, error)
 
-	// BodyLength operation.
+	// The BodyLength method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the number of bytes in the represented Message.Body.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetBodyLength(context.Context, *GetBodyLengthRequest) (*GetBodyLengthResponse, error)
 
 	// Body operation.
@@ -103,7 +120,11 @@ type MessageServer interface {
 	// AdminQueueInfo operation.
 	SetByRefAdminQueueInfo(context.Context, *SetByRefAdminQueueInfoRequest) (*SetByRefAdminQueueInfoResponse, error)
 
-	// Id operation.
+	// The Id method is received by the server in an RPC_REQUEST packet. In response, the
+	// server MUST return the represented Message.Identifier.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetID(context.Context, *GetIDRequest) (*GetIDResponse, error)
 
 	// CorrelationId operation.
@@ -148,13 +169,26 @@ type MessageServer interface {
 	// EncryptAlgorithm operation.
 	SetEncryptAlgorithm(context.Context, *SetEncryptAlgorithmRequest) (*SetEncryptAlgorithmResponse, error)
 
-	// SentTime operation.
+	// The SentTime method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the represented Message.SentTime.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetSentTime(context.Context, *GetSentTimeRequest) (*GetSentTimeResponse, error)
 
-	// ArrivedTime operation.
+	// The ArrivedTime method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the represented Message.ArrivalTime.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetArrivedTime(context.Context, *GetArrivedTimeRequest) (*GetArrivedTimeResponse, error)
 
-	// DestinationQueueInfo operation.
+	// The DestinationQueueInfo method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return an IMSMQQueueInfo interface pointer to an MSMQQueueInfo
+	// object that represents the Queue identified by the represented Message.DestinationQueueFormatName.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetDestinationQueueInfo(context.Context, *GetDestinationQueueInfoRequest) (*GetDestinationQueueInfoResponse, error)
 
 	// SenderCertificate operation.
@@ -172,10 +206,26 @@ type MessageServer interface {
 	// SenderIdType operation.
 	SetSenderIDType(context.Context, *SetSenderIDTypeRequest) (*SetSenderIDTypeResponse, error)
 
-	// Send operation.
+	// The Send method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST send a message.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Send(context.Context, *SendRequest) (*SendResponse, error)
 
-	// AttachCurrentSecurityContext operation.
+	// The AttachCurrentSecurityContext method is received by the server in an RPC_REQUEST
+	// packet. In response, the server MUST cache the relevant information required to sign
+	// a message on behalf of the client, including the Message.SenderIdentifier and Message.SenderCertificate.
+	// This method is provided purely as an optimization to allow the client to reduce lookups
+	// of the security information about the calling client each time the message is sent.
+	// The represented Message.SenderIdentifier and Message.SenderCertificate property values
+	// MUST NOT be updated as a result of calling this method. This method is superseded
+	// by IMSMQMessage4::AttachSecurityContext2.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	AttachCurrentSecurityContext(context.Context, *AttachCurrentSecurityContextRequest) (*AttachCurrentSecurityContextResponse, error)
 }
 

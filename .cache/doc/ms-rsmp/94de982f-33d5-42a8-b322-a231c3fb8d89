@@ -1,1 +1,227 @@
-<div class="content"></div>
+<div class="content"><p>The GetNtmsObjectAttributeW method retrieves private data
+from an object, with strings encoded using Unicode.</p><dl>
+<dd>
+<div><pre> HRESULT GetNtmsObjectAttributeW(
+   [in] LPNTMS_GUID lpObjectId,
+   [in] DWORD dwType,
+   [in, string] const wchar_t* lpAttributeName,
+   [out, size_is(*lpdwAttributeBufferSize), length_is(*lpAttributeSize)] 
+     byte* lpAttributeData,
+   [in] DWORD* lpdwAttributeBufferSize,
+   [out] DWORD* lpAttributeSize
+ );
+</pre></div>
+</dd></dl><p><b>lpObjectId: </b>A pointer to the identifier of the
+object for which to retrieve private data.</p><p><b>dwType: </b>A value from the <a href="5b190198-a0cb-4e20-90a3-234009357051" data-linktype="relative-path">NtmsObjectsTypes (section 2.2.1.6)</a>
+enumeration specifying the type of the object.</p><p><b>lpAttributeName: </b>A null-terminated sequence of
+Unicode characters specifying the name of the extended attribute to retrieve.
+The attribute name MUST be identical to that specified when creating this
+attribute using <a href="c9b17545-7fa1-4ae6-ab80-42818365fffb" data-linktype="relative-path">SetNtmsObjectAttributeW</a>.</p><p><b>lpAttributeData: </b>A buffer containing the
+attribute.</p><p><b>lpdwAttributeBufferSize: </b>A pointer to the
+size, in bytes, of the client buffer for <i>lpAttributeData</i>.</p><p><b>lpAttributeSize: </b>The size of lpAttributeData.
+If the specified client buffer was not large enough, lpAttributeSize MUST point
+to the required size of <i>lpAttributeData</i>; otherwise, it MUST point to the
+number of bytes that are returned by the server in the buffer <i>lpAttributeData</i>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to the object is denied; other security errors
+  are possible but indicate a security subsystem error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The parameter is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007007A</p>
+  <p>ERROR_INSUFFICIENT_BUFFER</p>
+  </td>
+  <td>
+  <p>The specified buffer size is not large enough.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800700E8</p>
+  <p>ERROR_NO_DATA</p>
+  </td>
+  <td>
+  <p>The specified attribute is greater than or equal to
+  NTMS_MAXATTR_LENGTH, defined in the Platform SDK file NTMSApi.h.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D8</p>
+  <p>ERROR_OBJECT_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The specified attribute was not found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database query or update failed.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpObjectId</i>,
+<i>lpAttributeData</i>, <i>lpAttributeName</i>, and <i>lpAttributeSize</i> are
+not NULL. If parameter validation fails, the server MUST immediately fail the
+operation and return ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights. If the client does not have the
+required access rights, NTMS_USE_ACCESS to the object specified in lpObjectId
+is denied and the server MUST return ERROR_ACCESS_DENIED (0x80070005).</p><p>The server MUST retrieve the extended attribute (named
+private data) for the specified object.</p><p>The GetNtmsObjectAttributeW method MUST be executed on the
+RSM server. Because the buffer of bytes is unmarshaled between systems of
+different architectures, remote execution of this method can result in
+unpredictable results.</p><p>The following is the list of objects that require special
+access rights.</p><table><thead>
+  <tr>
+   <th>
+   <p> Object </p>
+   </th>
+   <th>
+   <p> Access </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_CHANGER</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the library.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_CHANGER_TYPE</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the computer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_COMPUTER</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the computer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_DRIVE</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the library.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_DRIVE_TYPE</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the computer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_IEDOOR</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the library.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_IEPORT</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the library.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_LIBRARY</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the library.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_LIBREQUEST</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the library.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_LOGICAL_MEDIA</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the media pool of the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_05349689-4cd0-4643-a13e-9f552ecf3346" data-linktype="relative-path">logical media</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_MEDIA_POOL</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the media pool.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_MEDIA_TYPE</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the computer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_OPREQUEST</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the computer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_PARTITION</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the media pool of the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_55db62c5-a84f-43b7-a037-b44ecd8fb92f" data-linktype="relative-path">side</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_PHYSICAL_MEDIA</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the media pool.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_STORAGESLOT</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the library.</p>
+  </td>
+ </tr></tbody></table><p>Strings sent to this method as parameters MUST be
+Unicode-encoded.</p></div>

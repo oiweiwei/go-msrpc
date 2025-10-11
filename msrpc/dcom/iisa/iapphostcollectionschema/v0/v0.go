@@ -51,25 +51,160 @@ type AppHostCollectionSchemaClient interface {
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
 
-	// AddElementNames operation.
+	// The AddElementNames method is received by the server in an RPC_REQUEST packet. In
+	// response, the server returns a comma-delimited list of names that are supported by
+	// the administration system as names to IAppHostElement objects that are collection
+	// items of an IAppHostElementCollection object. An administration system typically
+	// supports only one name for the IAppHostElement objects that are contained in the
+	// collection. However, it could support more names in certain conditions; in which
+	// case, all the names are returned by using this method.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrElementName MUST NOT be NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetAddElementNames(context.Context, *GetAddElementNamesRequest, ...dcerpc.CallOption) (*GetAddElementNamesResponse, error)
 
-	// GetAddElementSchema operation.
+	// The GetAddElementSchema method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns an IAppHostElementSchema that represents the schema
+	// and constraints of the IAppHostElement. The IAppHostElement can be a collection item
+	// of the specified IAppHostElementCollection from which the specified IAppHostCollectionSchema
+	// was retrieved and whose name matches the specified name in the method call.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppSchema MUST NOT be NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------------------+
+	//	|               RETURN               |                                                           |
+	//	|             VALUE/CODE             |                        DESCRIPTION                        |
+	//	|                                    |                                                           |
+	//	+------------------------------------+-----------------------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                     |
+	//	+------------------------------------+-----------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.             |
+	//	+------------------------------------+-----------------------------------------------------------+
+	//	| 0X80070585 ERROR_INVALID_INDEX     | The element specified by bstrElementName cannot be found. |
+	//	+------------------------------------+-----------------------------------------------------------+
 	GetAddElementSchema(context.Context, *GetAddElementSchemaRequest, ...dcerpc.CallOption) (*GetAddElementSchemaResponse, error)
 
-	// RemoveElementSchema operation.
+	// The RemoveElementSchema method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns the IAppHostElementSchema that represents the schema
+	// and constraints of an optionally supported "directive IAppHostElement". This directive
+	// element can be used by the administration system to control the behavior of the specific
+	// IAppHostElementCollection from which the specified IAppHostCollectionSchema was retrieved.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF].
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetRemoveElementSchema(context.Context, *GetRemoveElementSchemaRequest, ...dcerpc.CallOption) (*GetRemoveElementSchemaResponse, error)
 
-	// ClearElementSchema operation.
+	// The ClearElementSchema method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns the IAppHostElementSchema that represents the schema
+	// and constraints of an optionally supported "directive IAppHostElement". This directive
+	// element can be used by the administration system to control behavior of the specific
+	// IAppHostElementCollection from which the specified IAppHostCollectionSchema was retrieved.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetClearElementSchema(context.Context, *GetClearElementSchemaRequest, ...dcerpc.CallOption) (*GetClearElementSchemaResponse, error)
 
-	// IsMergeAppend operation.
+	// The IsMergeAppend method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a Boolean that represents whether the IAppHostElementCollection,
+	// from which the specified IAppHostCollectionSchema was retrieved, will prepend collection
+	// IAppHostElement objects from lower (deeper) in the hierarchy of the administration
+	// system with IAppHostElement objects from higher (shallower) in the hierarchy of the
+	// administration system.
+	//
+	// If the value is false, lower IAppHostElement objects are prepended; otherwise, they
+	// are appended.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetIsMergeAppend(context.Context, *GetIsMergeAppendRequest, ...dcerpc.CallOption) (*GetIsMergeAppendResponse, error)
 
 	// GetMetadata operation.
 	GetMetadata(context.Context, *GetMetadataRequest, ...dcerpc.CallOption) (*GetMetadataResponse, error)
 
-	// DoesAllowDuplicates operation.
+	// The DoesAllowDuplicates method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns whether (through a Boolean) the IAppHostElementCollection
+	// from which the specified IAppHostCollectionSchema was retrieved allows duplicate
+	// IAppHostElement objects to exist in the collection. The concept of "duplicate" is
+	// implementation-specific.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetDoesAllowDuplicates(context.Context, *GetDoesAllowDuplicatesRequest, ...dcerpc.CallOption) (*GetDoesAllowDuplicatesResponse, error)
 
 	// AlterContext alters the client context.
@@ -478,8 +613,11 @@ func (o *GetAddElementNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 // GetAddElementNamesResponse structure represents the AddElementNames operation response
 type GetAddElementNamesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ElementName *oaut.String   `idl:"name:pbstrElementName" json:"element_name"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrElementName: Returns the comma-delimited string that contains the names of all
+	// supported names of IAppHostElement objects that are contained in the IAppHostElementCollection
+	// from which the specified IAppHostCollectionSchema was retrieved.
+	ElementName *oaut.String `idl:"name:pbstrElementName" json:"element_name"`
 	// Return: The AddElementNames return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -733,8 +871,10 @@ func (o *xxx_GetAddElementSchemaOperation) UnmarshalNDRResponse(ctx context.Cont
 // GetAddElementSchemaRequest structure represents the GetAddElementSchema operation request
 type GetAddElementSchemaRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ElementName *oaut.String   `idl:"name:bstrElementName" json:"element_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrElementName: The name of the IAppHostElement that is contained in the specified
+	// collection. It is one of the names that is returned in the AddElementNames method.
+	ElementName *oaut.String `idl:"name:bstrElementName" json:"element_name"`
 }
 
 func (o *GetAddElementSchemaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAddElementSchemaOperation) *xxx_GetAddElementSchemaOperation {
@@ -771,7 +911,9 @@ func (o *GetAddElementSchemaRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 // GetAddElementSchemaResponse structure represents the GetAddElementSchema operation response
 type GetAddElementSchemaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That   *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppSchema: Returns the IAppHostElementSchema schema object that is associated with
+	// the specified element name.
 	Schema *iisa.AppHostElementSchema `idl:"name:ppSchema" json:"schema"`
 	// Return: The GetAddElementSchema return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1014,7 +1156,9 @@ func (o *GetRemoveElementSchemaRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // GetRemoveElementSchemaResponse structure represents the RemoveElementSchema operation response
 type GetRemoveElementSchemaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That   *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppSchema: Returns an IAppHostElementSchema object that is associated with the optionally
+	// supported directive IAppHostElement.
 	Schema *iisa.AppHostElementSchema `idl:"name:ppSchema" json:"schema"`
 	// Return: The RemoveElementSchema return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1257,7 +1401,9 @@ func (o *GetClearElementSchemaRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 // GetClearElementSchemaResponse structure represents the ClearElementSchema operation response
 type GetClearElementSchemaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That   *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppSchema: Returns an IAppHostElementSchema object that is associated with the optionally
+	// supported directive IAppHostElement.
 	Schema *iisa.AppHostElementSchema `idl:"name:ppSchema" json:"schema"`
 	// Return: The ClearElementSchema return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1466,8 +1612,9 @@ func (o *GetIsMergeAppendRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // GetIsMergeAppendResponse structure represents the IsMergeAppend operation response
 type GetIsMergeAppendResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IsMergeAppend int16          `idl:"name:pfIsMergeAppend" json:"is_merge_append"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pfIsMergeAppend: The Boolean value that represents the append or prepend behavior.
+	IsMergeAppend int16 `idl:"name:pfIsMergeAppend" json:"is_merge_append"`
 	// Return: The IsMergeAppend return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1966,8 +2113,9 @@ func (o *GetDoesAllowDuplicatesRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // GetDoesAllowDuplicatesResponse structure represents the DoesAllowDuplicates operation response
 type GetDoesAllowDuplicatesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	AllowDuplicates int16          `idl:"name:pfAllowDuplicates" json:"allow_duplicates"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pfAllowDuplicates: The Boolean value that represents whether duplicates are supported.
+	AllowDuplicates int16 `idl:"name:pfAllowDuplicates" json:"allow_duplicates"`
 	// Return: The DoesAllowDuplicates return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

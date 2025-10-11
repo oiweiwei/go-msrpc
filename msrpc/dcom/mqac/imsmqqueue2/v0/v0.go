@@ -51,13 +51,29 @@ type Queue2Client interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
-	// Access operation.
+	// The Access method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a flag that indicates the access mode in which the queue was opened.
+	// The access mode specifies whether peek, receive, send, and/or administration operations
+	// can be performed.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetAccess(context.Context, *GetAccessRequest, ...dcerpc.CallOption) (*GetAccessResponse, error)
 
-	// ShareMode operation.
+	// The ShareMode method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a flag that indicates the share mode in which the queue was opened.
+	// The share mode specifies whether this instance of the open queue has exclusive access
+	// to the queue.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetShareMode(context.Context, *GetShareModeRequest, ...dcerpc.CallOption) (*GetShareModeResponse, error)
 
-	// QueueInfo operation.
+	// The QueueInfo method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns an MSMQQueueInfo object that represents the referenced queue.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetQueueInfo(context.Context, *GetQueueInfoRequest, ...dcerpc.CallOption) (*GetQueueInfoResponse, error)
 
 	// Handle operation.
@@ -69,40 +85,97 @@ type Queue2Client interface {
 	// Close operation.
 	Close(context.Context, *CloseRequest, ...dcerpc.CallOption) (*CloseResponse, error)
 
-	// Receive_v1 operation.
+	// The Receive_v1 method is received by the server in an RPC_REQUEST packet. In response,
+	// the server retrieves the Message at the head of the referenced queue's MessagePositionList.Head
+	// and removes it.
+	//
+	// Return Values:  The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	ReceiveV1(context.Context, *ReceiveV1Request, ...dcerpc.CallOption) (*ReceiveV1Response, error)
 
-	// Peek_v1 operation.
+	// The Peek_v1 method is received by the server in an RPC_REQUEST packet. In response,
+	// the server retrieves the Message at the head of the referenced queue's MessagePositionList
+	// without removing it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	PeekV1(context.Context, *PeekV1Request, ...dcerpc.CallOption) (*PeekV1Response, error)
 
-	// EnableNotification operation.
+	// The EnableNotification method is received by the server in an RPC_REQUEST packet.
+	// In response, the server starts event notification for asynchronously receiving or
+	// peeking messages.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	EnableNotification(context.Context, *EnableNotificationRequest, ...dcerpc.CallOption) (*EnableNotificationResponse, error)
 
 	// Reset operation.
 	Reset(context.Context, *ResetRequest, ...dcerpc.CallOption) (*ResetResponse, error)
 
-	// ReceiveCurrent_v1 operation.
+	// The ReceiveCurrent_v1 method is received by the server in an RPC_REQUEST packet.
+	// In response, the server retrieves the Message at the current cursor position in the
+	// referenced queue's MessagePositionList, removes it, and advances the cursor.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	ReceiveCurrentV1(context.Context, *ReceiveCurrentV1Request, ...dcerpc.CallOption) (*ReceiveCurrentV1Response, error)
 
-	// PeekNext_v1 operation.
+	// The PeekNext_v1 method is received by the server in an RPC_REQUEST packet. In response,
+	// the server retrieves the Message that follows the Message that is identified by the
+	// cursor represented by the Cursor instance variable in the referenced queue's MessagePositionList
+	// without removing it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	PeekNextV1(context.Context, *PeekNextV1Request, ...dcerpc.CallOption) (*PeekNextV1Response, error)
 
-	// PeekCurrent_v1 operation.
+	// The PeekCurrent_v1 method is received by the server in an RPC_REQUEST packet. In
+	// response, the server retrieves the Message that is identified by the Cursor instance
+	// variable in the referenced queue's MessagePositionList, without removing it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	PeekCurrentV1(context.Context, *PeekCurrentV1Request, ...dcerpc.CallOption) (*PeekCurrentV1Response, error)
 
-	// Receive operation.
+	// The Receive method is received by the server in an RPC_REQUEST packet. In response,
+	// the server retrieves the Message at the head of the referenced queue's MessagePositionList
+	// and removes it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Receive(context.Context, *ReceiveRequest, ...dcerpc.CallOption) (*ReceiveResponse, error)
 
-	// Peek operation.
+	// The Peek method is received by the server in an RPC_REQUEST packet. In response,
+	// the server retrieves the Message at the head of the referenced queue's MessagePositionList
+	// without removing it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Peek(context.Context, *PeekRequest, ...dcerpc.CallOption) (*PeekResponse, error)
 
-	// ReceiveCurrent operation.
+	// The ReceiveCurrent method is received by the server in an RPC_REQUEST packet. In
+	// response, the server retrieves the Message that is identified by the Cursor instance
+	// variable in the referenced queue's MessagePositionList and removes it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	ReceiveCurrent(context.Context, *ReceiveCurrentRequest, ...dcerpc.CallOption) (*ReceiveCurrentResponse, error)
 
-	// PeekNext operation.
+	// The PeekNext method is received by the server in an RPC_REQUEST packet. In response,
+	// the server retrieves the Message that follows the Message that is identified by the
+	// Cursor instance variable in the referenced queue's MessagePositionList without removing
+	// it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	PeekNext(context.Context, *PeekNextRequest, ...dcerpc.CallOption) (*PeekNextResponse, error)
 
-	// PeekCurrent operation.
+	// The PeekCurrent method is received by the server in an RPC_REQUEST packet. In response,
+	// the server retrieves the Message that is identified by the Cursor instance variable
+	// in the referenced queue's MessagePositionList, without removing it.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	PeekCurrent(context.Context, *PeekCurrentRequest, ...dcerpc.CallOption) (*PeekCurrentResponse, error)
 
 	// Properties operation.
@@ -718,8 +791,10 @@ func (o *GetAccessRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 // GetAccessResponse structure represents the Access operation response
 type GetAccessResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Access int32          `idl:"name:plAccess" json:"access"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// plAccess: A pointer to a long that corresponds to one of the MQACCESS (section 2.2.2.3)
+	// enumeration values.
+	Access int32 `idl:"name:plAccess" json:"access"`
 	// Return: The Access return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -925,8 +1000,10 @@ func (o *GetShareModeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 // GetShareModeResponse structure represents the ShareMode operation response
 type GetShareModeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ShareMode int32          `idl:"name:plShareMode" json:"share_mode"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// plShareMode: A pointer to a long that corresponds to one of the MQSHARE (section
+	// 2.2.2.2) enumeration values.
+	ShareMode int32 `idl:"name:plShareMode" json:"share_mode"`
 	// Return: The ShareMode return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1166,7 +1243,9 @@ func (o *GetQueueInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 // GetQueueInfoResponse structure represents the QueueInfo operation response
 type GetQueueInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That      *dcom.ORPCThat   `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppqinfo: A pointer to an IMSMQQueueInfo4 interface pointer that contains the MSMQQueueInfo
+	// object that represents the referenced queue.
 	QueueInfo *mqac.QueueInfo2 `idl:"name:ppqinfo" json:"queue_info"`
 	// Return: The QueueInfo return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -2165,11 +2244,58 @@ func (o *xxx_ReceiveV1Operation) UnmarshalNDRResponse(ctx context.Context, w ndr
 // ReceiveV1Request structure represents the Receive_v1 operation request
 type ReceiveV1Request struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Transaction          *oaut.Variant  `idl:"name:Transaction" json:"transaction"`
-	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// Transaction:  A pointer to a VARIANT that MUST contain either:
+	//
+	//   - A VT_DISPATCH or a VT_DISPATCH | VT_BYREF that points to an MSMQTransaction ( b670ebdc-cd6e-4098-a51f-5d4274d8dfdd ) object.
+	//
+	// * A VT_I4 that corresponds to one of the MQTRANSACTION (section 2.2.2.1) ( 3ff1f343-d6e9-4bab-848f-6f2b39209762
+	// ) enumeration values.
+	//
+	// If this parameter is not specified by the client, the server ( 3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703
+	// ) MUST use the default value MQ_MTS_TRANSACTION (0x00000001) in place of the unspecified
+	// value.
+	Transaction *oaut.Variant `idl:"name:Transaction" json:"transaction"`
+	// WantDestinationQueue:  A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_FALSE (0x0000) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | The server MUST return an MSMQMessage object that has the DestinationQueueInfo   |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | Default. The server MUST return an MSMQMessage object that does not have the     |
+	//	|                      | DestinationQueueInfo property set.                                               |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantDestinationQueue *oaut.Variant `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	// WantBody:  A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_TRUE (0xFFFF) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | Default. The server MUST return an MSMQMessage object that has the Body property |
+	//	|                      | set.                                                                             |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | The server MUST return an MSMQMessage object that does not have the Body         |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantBody *oaut.Variant `idl:"name:WantBody" json:"want_body"`
+	// ReceiveTimeout:  A pointer to a VARIANT containing a long value (VT_I4) that specifies
+	// the time, in milliseconds, that the server MUST NOT exceed while waiting for a new
+	// message to arrive.
+	ReceiveTimeout *oaut.Variant `idl:"name:ReceiveTimeout" json:"receive_timeout"`
 }
 
 func (o *ReceiveV1Request) xxx_ToOp(ctx context.Context, op *xxx_ReceiveV1Operation) *xxx_ReceiveV1Operation {
@@ -2212,8 +2338,10 @@ func (o *ReceiveV1Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 // ReceiveV1Response structure represents the Receive_v1 operation response
 type ReceiveV1Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Message *mqac.Message  `idl:"name:ppmsg" json:"message"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppmsg:  A pointer to an IMSMQMessage interface pointer that MUST be set by the server
+	// with the received message.
+	Message *mqac.Message `idl:"name:ppmsg" json:"message"`
 	// Return: The Receive_v1 return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2559,10 +2687,47 @@ func (o *xxx_PeekV1Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 // PeekV1Request structure represents the Peek_v1 operation request
 type PeekV1Request struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
-	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// WantDestinationQueue: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_FALSE (0x0000) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | The server MUST return an MSMQMessage object that has the DestinationQueueInfo   |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | Default. The server MUST return an MSMQMessage object that does not have the     |
+	//	|                      | DestinationQueueInfo property set.                                               |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantDestinationQueue *oaut.Variant `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	// WantBody: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_TRUE (0xFFFF) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | Default. The server MUST return an MSMQMessage object that has the Body property |
+	//	|                      | set.                                                                             |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | The server MUST return an MSMQMessage object that does not have the Body         |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantBody *oaut.Variant `idl:"name:WantBody" json:"want_body"`
+	// ReceiveTimeout: A pointer to a VARIANT that contains a long value (VT_I4) that specifies
+	// the time, in milliseconds, that the server MUST NOT exceed while waiting for a new
+	// message to arrive.
+	ReceiveTimeout *oaut.Variant `idl:"name:ReceiveTimeout" json:"receive_timeout"`
 }
 
 func (o *PeekV1Request) xxx_ToOp(ctx context.Context, op *xxx_PeekV1Operation) *xxx_PeekV1Operation {
@@ -2603,8 +2768,10 @@ func (o *PeekV1Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // PeekV1Response structure represents the Peek_v1 operation response
 type PeekV1Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Message *mqac.Message  `idl:"name:ppmsg" json:"message"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppmsg: A pointer to a pointer to an IMSMQMessage interface that MUST be set by the
+	// server with the received message.
+	Message *mqac.Message `idl:"name:ppmsg" json:"message"`
 	// Return: The Peek_v1 return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2905,10 +3072,17 @@ func (o *xxx_EnableNotificationOperation) UnmarshalNDRResponse(ctx context.Conte
 // EnableNotificationRequest structure represents the EnableNotification operation request
 type EnableNotificationRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Event          *mqac.Event2   `idl:"name:Event" json:"event"`
-	Cursor         *oaut.Variant  `idl:"name:Cursor" json:"cursor"`
-	ReceiveTimeout *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// Event: A pointer to an IMSMQEvent3 interface. If Event is NULL, the server MUST return
+	// an error E_INVALIDARG (0x80070057).
+	Event *mqac.Event2 `idl:"name:Event" json:"event"`
+	// Cursor: A VARIANT pointer to a signed integer that corresponds to one of the MQMSGCURSOR
+	// ( section 2.2.2.8) enumeration values.
+	Cursor *oaut.Variant `idl:"name:Cursor" json:"cursor"`
+	// ReceiveTimeout: A pointer to a VARIANT that contains a long value (VT_I4) that specifies
+	// the time, in milliseconds, that the server MUST NOT exceed while waiting for a new
+	// message to arrive.
+	ReceiveTimeout *oaut.Variant `idl:"name:ReceiveTimeout" json:"receive_timeout"`
 }
 
 func (o *EnableNotificationRequest) xxx_ToOp(ctx context.Context, op *xxx_EnableNotificationOperation) *xxx_EnableNotificationOperation {
@@ -3531,11 +3705,58 @@ func (o *xxx_ReceiveCurrentV1Operation) UnmarshalNDRResponse(ctx context.Context
 // ReceiveCurrentV1Request structure represents the ReceiveCurrent_v1 operation request
 type ReceiveCurrentV1Request struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Transaction          *oaut.Variant  `idl:"name:Transaction" json:"transaction"`
-	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// Transaction: A pointer to a VARIANT that MUST contain either:
+	//
+	//   - A VT_DISPATCH or a VT_DISPATCH | VT_BYREF that points to an MSMQTransaction ( b670ebdc-cd6e-4098-a51f-5d4274d8dfdd ) object.
+	//
+	// * A VT_I4 that corresponds to one of the MQTRANSACTION ( 3ff1f343-d6e9-4bab-848f-6f2b39209762
+	// ) (section 2.2.2.1) enumeration values.
+	//
+	// If this parameter is not specified by the client, the server ( 3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703
+	// ) MUST use the default value MQ_MTS_TRANSACTION (0x00000001) in place of the unspecified
+	// value.
+	Transaction *oaut.Variant `idl:"name:Transaction" json:"transaction"`
+	// WantDestinationQueue: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_FALSE (0x0000) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | The server MUST return an MSMQMessage object that has the DestinationQueueInfo   |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | Default. The server MUST return an MSMQMessage object that does not have the     |
+	//	|                      | DestinationQueueInfo property set.                                               |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantDestinationQueue *oaut.Variant `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	// WantBody: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_TRUE (0xFFFF) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | Default. The server MUST return an MSMQMessage object that has the Body property |
+	//	|                      | set.                                                                             |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | The server MUST return an MSMQMessage object that does not have the Body         |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantBody *oaut.Variant `idl:"name:WantBody" json:"want_body"`
+	// ReceiveTimeout: A pointer to a VARIANT containing a long value (VT_I4) that specifies
+	// the time, in milliseconds, that the server MUST NOT exceed while waiting for a new
+	// message to arrive.
+	ReceiveTimeout *oaut.Variant `idl:"name:ReceiveTimeout" json:"receive_timeout"`
 }
 
 func (o *ReceiveCurrentV1Request) xxx_ToOp(ctx context.Context, op *xxx_ReceiveCurrentV1Operation) *xxx_ReceiveCurrentV1Operation {
@@ -3578,8 +3799,10 @@ func (o *ReceiveCurrentV1Request) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // ReceiveCurrentV1Response structure represents the ReceiveCurrent_v1 operation response
 type ReceiveCurrentV1Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Message *mqac.Message  `idl:"name:ppmsg" json:"message"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppmsg: A pointer to a pointer to an IMSMQMessage interface that MUST be set by the
+	// server with the received message.
+	Message *mqac.Message `idl:"name:ppmsg" json:"message"`
 	// Return: The ReceiveCurrent_v1 return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3925,10 +4148,47 @@ func (o *xxx_PeekNextV1Operation) UnmarshalNDRResponse(ctx context.Context, w nd
 // PeekNextV1Request structure represents the PeekNext_v1 operation request
 type PeekNextV1Request struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
-	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// WantDestinationQueue: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_FALSE (0x0000) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | The server MUST return an MSMQMessage object that has the DestinationQueueInfo   |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | Default. The server MUST return an MSMQMessage object that does not have the     |
+	//	|                      | DestinationQueueInfo property set.                                               |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantDestinationQueue *oaut.Variant `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	// WantBody: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_TRUE (0xFFFF) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | Default. The server MUST return an MSMQMessage object that has the Body property |
+	//	|                      | set.                                                                             |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | The server MUST return an MSMQMessage object that does not have the Body         |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantBody *oaut.Variant `idl:"name:WantBody" json:"want_body"`
+	// ReceiveTimeout: A pointer to a VARIANT that contains a long value (VT_I4) that specifies
+	// the time, in milliseconds, that the server MUST NOT exceed while waiting for a new
+	// message to arrive.
+	ReceiveTimeout *oaut.Variant `idl:"name:ReceiveTimeout" json:"receive_timeout"`
 }
 
 func (o *PeekNextV1Request) xxx_ToOp(ctx context.Context, op *xxx_PeekNextV1Operation) *xxx_PeekNextV1Operation {
@@ -3969,8 +4229,10 @@ func (o *PeekNextV1Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 // PeekNextV1Response structure represents the PeekNext_v1 operation response
 type PeekNextV1Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Message *mqac.Message  `idl:"name:ppmsg" json:"message"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppmsg: A pointer to a pointer to an IMSMQMessage4 interface that MUST be set by the
+	// server with the received message.
+	Message *mqac.Message `idl:"name:ppmsg" json:"message"`
 	// Return: The PeekNext_v1 return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -4316,10 +4578,47 @@ func (o *xxx_PeekCurrentV1Operation) UnmarshalNDRResponse(ctx context.Context, w
 // PeekCurrentV1Request structure represents the PeekCurrent_v1 operation request
 type PeekCurrentV1Request struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
-	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// WantDestinationQueue: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_FALSE (0x0000) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | The server MUST return an MSMQMessage object that has the DestinationQueueInfo   |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | Default. The server MUST return an MSMQMessage object that does not have the     |
+	//	|                      | DestinationQueueInfo property set.                                               |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantDestinationQueue *oaut.Variant `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	// WantBody: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_TRUE (0xFFFF) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | Default. The server MUST return an MSMQMessage object that has the Body property |
+	//	|                      | set.                                                                             |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | The server MUST return an MSMQMessage object that does not have the Body         |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantBody *oaut.Variant `idl:"name:WantBody" json:"want_body"`
+	// ReceiveTimeout: A pointer to a VARIANT that contains a long value (VT_I4) that specifies
+	// the time, in milliseconds, that the server MUST NOT exceed while waiting for a new
+	// message to arrive.
+	ReceiveTimeout *oaut.Variant `idl:"name:ReceiveTimeout" json:"receive_timeout"`
 }
 
 func (o *PeekCurrentV1Request) xxx_ToOp(ctx context.Context, op *xxx_PeekCurrentV1Operation) *xxx_PeekCurrentV1Operation {
@@ -4360,8 +4659,10 @@ func (o *PeekCurrentV1Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // PeekCurrentV1Response structure represents the PeekCurrent_v1 operation response
 type PeekCurrentV1Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Message *mqac.Message  `idl:"name:ppmsg" json:"message"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppmsg: A pointer to a pointer to an IMSMQMessage4 interface that MUST be set by the
+	// server with the received message.
+	Message *mqac.Message `idl:"name:ppmsg" json:"message"`
 	// Return: The PeekCurrent_v1 return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -4801,12 +5102,72 @@ func (o *xxx_ReceiveOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 // ReceiveRequest structure represents the Receive operation request
 type ReceiveRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Transaction          *oaut.Variant  `idl:"name:Transaction" json:"transaction"`
-	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
-	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// Transaction: A pointer to a VARIANT that MUST contain either of the following:
+	//
+	//	A VT_DISPATCH or a VT_DISPATCH | VT_BYREF that points to an MSMQTransaction object.
+	//
+	// A VT_I4 that corresponds to one of the MQTRANSACTION (section 2.2.2.1) enumeration
+	// values.
+	Transaction *oaut.Variant `idl:"name:Transaction" json:"transaction"`
+	// WantDestinationQueue: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_FALSE (0x0000) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | The server MUST return an MSMQMessage object that has the DestinationQueueInfo   |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | Default. The server MUST return an MSMQMessage object that does not have the     |
+	//	|                      | DestinationQueueInfo property set.                                               |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantDestinationQueue *oaut.Variant `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	// WantBody: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_TRUE (0xFFFF) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | Default. The server MUST return an MSMQMessage object that has the Body property |
+	//	|                      | set.                                                                             |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | The server MUST return an MSMQMessage object that does not have the Body         |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantBody *oaut.Variant `idl:"name:WantBody" json:"want_body"`
+	// ReceiveTimeout: A pointer to a VARIANT that contains a long value (VT_I4) that specifies
+	// the time, in milliseconds, that the server MUST NOT exceed while waiting for a new
+	// message to arrive.
+	ReceiveTimeout *oaut.Variant `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	// WantConnectorType: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_FALSE (0x0000) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | The server MUST return an MSMQMessage object that has the ConnectorTypeGuid      |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | Default. The server MUST return an MSMQMessage object that does not have the     |
+	//	|                      | ConnectorTypeGuid property set.                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantConnectorType *oaut.Variant `idl:"name:WantConnectorType" json:"want_connector_type"`
 }
 
 func (o *ReceiveRequest) xxx_ToOp(ctx context.Context, op *xxx_ReceiveOperation) *xxx_ReceiveOperation {
@@ -4851,7 +5212,9 @@ func (o *ReceiveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // ReceiveResponse structure represents the Receive operation response
 type ReceiveResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppmsg: A pointer to a pointer to an IMSMQMessage4 interface that MUST be set by the
+	// server with the received message.
 	Message *mqac.Message2 `idl:"name:ppmsg" json:"message"`
 	// Return: The Receive return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -5245,11 +5608,65 @@ func (o *xxx_PeekOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 // PeekRequest structure represents the Peek operation request
 type PeekRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
-	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
-	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// WantDestinationQueue: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_FALSE (0x0000) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | The server MUST return an MSMQMessage object that has the DestinationQueueInfo   |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | Default. The server MUST return an MSMQMessage object that does not have the     |
+	//	|                      | DestinationQueueInfo property set.                                               |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantDestinationQueue *oaut.Variant `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	// WantBody: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_TRUE (0xFFFF) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | Default. The server MUST return an MSMQMessage object that has the Body property |
+	//	|                      | set.                                                                             |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | The server MUST return an MSMQMessage object that does not have the Body         |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantBody *oaut.Variant `idl:"name:WantBody" json:"want_body"`
+	// ReceiveTimeout: A pointer to a VARIANT that contains a long value (VT_I4) that specifies
+	// the time, in milliseconds, that the server MUST NOT exceed while waiting for a new
+	// message to arrive.
+	ReceiveTimeout *oaut.Variant `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	// WantConnectorType: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_FALSE (0x0000) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | The server MUST return an MSMQMessage object that has the ConnectorTypeGuid      |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | Default. The server MUST return an MSMQMessage object that does not have the     |
+	//	|                      | ConnectorTypeGuid property set.                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantConnectorType *oaut.Variant `idl:"name:WantConnectorType" json:"want_connector_type"`
 }
 
 func (o *PeekRequest) xxx_ToOp(ctx context.Context, op *xxx_PeekOperation) *xxx_PeekOperation {
@@ -5292,7 +5709,9 @@ func (o *PeekRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // PeekResponse structure represents the Peek operation response
 type PeekResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppmsg: A pointer to a pointer to an IMSMQMessage4 interface that MUST be set by the
+	// server with the received message.
 	Message *mqac.Message2 `idl:"name:ppmsg" json:"message"`
 	// Return: The Peek return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -5733,12 +6152,72 @@ func (o *xxx_ReceiveCurrentOperation) UnmarshalNDRResponse(ctx context.Context, 
 // ReceiveCurrentRequest structure represents the ReceiveCurrent operation request
 type ReceiveCurrentRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Transaction          *oaut.Variant  `idl:"name:Transaction" json:"transaction"`
-	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
-	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// Transaction: A pointer to a VARIANT that MUST contain either of the following:
+	//
+	//	A VT_DISPATCH or a VT_DISPATCH | VT_BYREF that points to an MSMQTransaction object.
+	//
+	// A VT_I4 that corresponds to one of the MQTRANSACTION (section 2.2.2.1) enumeration
+	// values.
+	Transaction *oaut.Variant `idl:"name:Transaction" json:"transaction"`
+	// WantDestinationQueue: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_FALSE (0x0000) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | The server MUST return an MSMQMessage object that has the DestinationQueueInfo   |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | Default. The server MUST return an MSMQMessage object that does not have the     |
+	//	|                      | DestinationQueueInfo property set.                                               |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantDestinationQueue *oaut.Variant `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	// WantBody: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_TRUE (0xFFFF) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | Default. The server MUST return an MSMQMessage object that has the Body property |
+	//	|                      | set.                                                                             |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | The server MUST return an MSMQMessage object that does not have the Body         |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantBody *oaut.Variant `idl:"name:WantBody" json:"want_body"`
+	// ReceiveTimeout: A pointer to a VARIANT that contains a long value (VT_I4) that specifies
+	// the time, in milliseconds, that the server MUST NOT exceed while waiting for a new
+	// message to arrive.
+	ReceiveTimeout *oaut.Variant `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	// WantConnectorType: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_FALSE (0x0000) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | The server MUST return an MSMQMessage object that has the ConnectorTypeGuid      |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | Default. The server MUST return an MSMQMessage object that does not have the     |
+	//	|                      | ConnectorTypeGuid property set.                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantConnectorType *oaut.Variant `idl:"name:WantConnectorType" json:"want_connector_type"`
 }
 
 func (o *ReceiveCurrentRequest) xxx_ToOp(ctx context.Context, op *xxx_ReceiveCurrentOperation) *xxx_ReceiveCurrentOperation {
@@ -5783,7 +6262,9 @@ func (o *ReceiveCurrentRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // ReceiveCurrentResponse structure represents the ReceiveCurrent operation response
 type ReceiveCurrentResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppmsg: A pointer to a pointer to an IMSMQMessage4 interface that MUST be set by the
+	// server with the received message.
 	Message *mqac.Message2 `idl:"name:ppmsg" json:"message"`
 	// Return: The ReceiveCurrent return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -6177,11 +6658,65 @@ func (o *xxx_PeekNextOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 // PeekNextRequest structure represents the PeekNext operation request
 type PeekNextRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
-	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
-	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// WantDestinationQueue: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_FALSE (0x0000) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | The server MUST return an MSMQMessage object that has the DestinationQueueInfo   |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | Default. The server MUST return an MSMQMessage object that does not have the     |
+	//	|                      | DestinationQueueInfo property set.                                               |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantDestinationQueue *oaut.Variant `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	// WantBody: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_TRUE (0xFFFF) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | Default. The server MUST return an MSMQMessage object that has the Body property |
+	//	|                      | set.                                                                             |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | The server MUST return an MSMQMessage object that does not have the Body         |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantBody *oaut.Variant `idl:"name:WantBody" json:"want_body"`
+	// ReceiveTimeout: A pointer to a VARIANT that contains a long value (VT_I4) that specifies
+	// the time, in milliseconds, that the server MUST NOT exceed while waiting for a new
+	// message to arrive.
+	ReceiveTimeout *oaut.Variant `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	// WantConnectorType: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_FALSE (0x0000) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | The server MUST return an MSMQMessage object that has the ConnectorTypeGuid      |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | Default. The server MUST return an MSMQMessage object that does not have the     |
+	//	|                      | ConnectorTypeGuid property set.                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantConnectorType *oaut.Variant `idl:"name:WantConnectorType" json:"want_connector_type"`
 }
 
 func (o *PeekNextRequest) xxx_ToOp(ctx context.Context, op *xxx_PeekNextOperation) *xxx_PeekNextOperation {
@@ -6224,7 +6759,9 @@ func (o *PeekNextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 // PeekNextResponse structure represents the PeekNext operation response
 type PeekNextResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppmsg: A pointer to a pointer to an IMSMQMessage4 interface that MUST be set by the
+	// server with the received message.
 	Message *mqac.Message2 `idl:"name:ppmsg" json:"message"`
 	// Return: The PeekNext return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -6618,11 +7155,65 @@ func (o *xxx_PeekCurrentOperation) UnmarshalNDRResponse(ctx context.Context, w n
 // PeekCurrentRequest structure represents the PeekCurrent operation request
 type PeekCurrentRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
-	WantDestinationQueue *oaut.Variant  `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
-	WantBody             *oaut.Variant  `idl:"name:WantBody" json:"want_body"`
-	ReceiveTimeout       *oaut.Variant  `idl:"name:ReceiveTimeout" json:"receive_timeout"`
-	WantConnectorType    *oaut.Variant  `idl:"name:WantConnectorType" json:"want_connector_type"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// WantDestinationQueue: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_FALSE (0x0000) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | The server MUST return an MSMQMessage object that has the DestinationQueueInfo   |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | Default. The server MUST return an MSMQMessage object that does not have the     |
+	//	|                      | DestinationQueueInfo property set.                                               |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantDestinationQueue *oaut.Variant `idl:"name:WantDestinationQueue" json:"want_destination_queue"`
+	// WantBody: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_TRUE (0xFFFF) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | Default. The server MUST return an MSMQMessage object that has the Body property |
+	//	|                      | set.                                                                             |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | The server MUST return an MSMQMessage object that does not have the Body         |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantBody *oaut.Variant `idl:"name:WantBody" json:"want_body"`
+	// ReceiveTimeout: A pointer to a VARIANT that contains a long value (VT_I4) that specifies
+	// the time, in milliseconds, that the server MUST NOT exceed while waiting for a new
+	// message to arrive.
+	ReceiveTimeout *oaut.Variant `idl:"name:ReceiveTimeout" json:"receive_timeout"`
+	// WantConnectorType: A pointer to a VARIANT (VT_BOOL).
+	//
+	// If this parameter is not specified by the client, the server MUST use the default
+	// value VARIANT_FALSE (0x0000) in place of the unspecified value.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xFFFF  | The server MUST return an MSMQMessage object that has the ConnectorTypeGuid      |
+	//	|                      | property set.                                                                    |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | Default. The server MUST return an MSMQMessage object that does not have the     |
+	//	|                      | ConnectorTypeGuid property set.                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	WantConnectorType *oaut.Variant `idl:"name:WantConnectorType" json:"want_connector_type"`
 }
 
 func (o *PeekCurrentRequest) xxx_ToOp(ctx context.Context, op *xxx_PeekCurrentOperation) *xxx_PeekCurrentOperation {
@@ -6665,7 +7256,9 @@ func (o *PeekCurrentRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // PeekCurrentResponse structure represents the PeekCurrent operation response
 type PeekCurrentResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppmsg: A pointer to a pointer to an IMSMQMessage4 interface that MUST be set by the
+	// server with the received message.
 	Message *mqac.Message2 `idl:"name:ppmsg" json:"message"`
 	// Return: The PeekCurrent return value.
 	Return int32 `idl:"name:Return" json:"return"`

@@ -1,1 +1,115 @@
-<div class="content"></div>
+<div class="content"><p>Stores information about the data stored in an XPRESS Block.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Block
+  Signature</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Block
+  Compressed Size</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Block Uncompressed
+  Size</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Block Signature (4 bytes): </b>MUST be composed of
+the four bytes 0x58, 0x42, 0x4c, and 0x4f (or &#39;X&#39;, &#39;B&#39;, &#39;L&#39;, and &#39;O&#39; in ASCII)
+as follows.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p align="center">0x58</p>
+  </td>
+  <td colspan="8">
+  <p align="center">0x42</p>
+  </td>
+  <td colspan="8">
+  <p align="center">0x4c</p>
+  </td>
+  <td colspan="8">
+  <p align="center">0x4f</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd></dl><p><b>Block Compressed Size (4 bytes): </b>A 32-bit
+unsigned integer specifying the size of the XPRESS Block&#39;s data in bytes,
+regardless of whether it is compressed. The value of the <b>Block Compressed
+Size</b> field MUST be less than or equal to the value of the <b>Block Uncompressed
+Size</b> field and greater than 0.</p><p><b>Block Uncompressed Size (4 bytes): </b>A 32-bit
+unsigned integer specifying the size of the XPRESS Block&#39;s data when
+uncompressed. The <b>Block Uncompressed Size</b> field MUST be less than or
+equal to 8,192 bytes.</p></div>

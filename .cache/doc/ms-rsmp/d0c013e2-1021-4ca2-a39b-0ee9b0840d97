@@ -1,1 +1,31 @@
-<div class="content"></div>
+<div class="content"><p>The NTMS_CHANGERINFORMATIONA structure describes the
+properties of a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_898fa8ab-42d5-439f-9415-1589599fe913" data-linktype="relative-path">changer</a>
+object as a sequence of ASCII characters.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_CHANGERINFORMATIONA {
+   DWORD Number;
+   NTMS_GUID ChangerType;
+   char szSerialNumber[32];
+   char szRevision[32];
+   char szDeviceName[64];
+   unsigned short ScsiPort;
+   unsigned short ScsiBus;
+   unsigned short ScsiTarget;
+   unsigned short ScsiLun;
+   NTMS_GUID Library;
+ } NTMS_CHANGERINFORMATIONA;
+</pre></div>
+</dd></dl><p><b>Number:</b>  The number of the changer
+within the online library.</p><p><b>ChangerType:</b>  An identifier of the
+type object for the changer. </p><p><b>szSerialNumber:</b>   A serial number
+for the changer in a null-terminated ASCII-character string. Devices that do
+not support serial numbers MUST report NULL for this member. </p><p><b>szRevision:</b>   A null-terminated
+sequence of ASCII characters specifying the revision of the changer. </p><p><b>szDeviceName:</b>   A null-terminated
+sequence of ASCII characters specifying the name of the device used to access
+the changer. </p><p><b>ScsiPort:</b>  The small computer system
+interface (SCSI) <a href="https://go.microsoft.com/fwlink/?LinkId=90512" data-linktype="external">[ANSI-131-1994]</a>
+host adapter to which the changer is connected.</p><p><b>ScsiBus:</b>  The SCSI bus to which the
+changer is connected.</p><p><b>ScsiTarget:</b>  The SCSI target
+identifier of the changer.</p><p><b>ScsiLun:</b>  The SCSI logical unit
+identifier of the changer.</p><p><b>Library:</b>  The identifier of the library
+that contains the changer. </p></div>

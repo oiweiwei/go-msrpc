@@ -1,1 +1,11 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IP_NAT_TIMEOUT</b> structure is used to amend the
+default timeouts for TCP and UDP session mappings.</p><dl>
+<dd>
+<div><pre> typedef struct _IP_NAT_TIMEOUT {
+   ULONG TCPTimeoutSeconds;
+   ULONG UDPTimeoutSeconds;
+ } IP_NAT_TIMEOUT, *PIP_NAT_TIMEOUT;
+</pre></div>
+</dd></dl><p><b>TCPTimeoutSeconds: </b>The number of seconds that
+a dynamic mapping for a TCP session remains in the translation table.</p><p><b>UDPTimeoutSeconds: </b>The number of seconds that
+a dynamic mapping for a UDP session remains in the translation table.</p></div>

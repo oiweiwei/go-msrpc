@@ -57,13 +57,74 @@ type AppHostSectionGroupClient interface {
 	// Item operation.
 	GetItem(context.Context, *GetItemRequest, ...dcerpc.CallOption) (*GetItemResponse, error)
 
-	// Sections operation.
+	// The Sections method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a collection of section definitions in the specified section group.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppSections is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetSections(context.Context, *GetSectionsRequest, ...dcerpc.CallOption) (*GetSectionsResponse, error)
 
-	// AddSectionGroup operation.
+	// The AddSectionGroup method is received by the server in an RPC_REQUEST packet. In
+	// response, the server adds a new section group to the specified section group.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppSectionGroup is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+----------------------------------------------------------------+
+	//	|               RETURN               |                                                                |
+	//	|             VALUE/CODE             |                          DESCRIPTION                           |
+	//	|                                    |                                                                |
+	//	+------------------------------------+----------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                          |
+	//	+------------------------------------+----------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                  |
+	//	+------------------------------------+----------------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.        |
+	//	+------------------------------------+----------------------------------------------------------------+
+	//	| 0X800700B7 ERROR_ALREADY_EXISTS    | A section group with name bstrSectionGroupName already exists. |
+	//	+------------------------------------+----------------------------------------------------------------+
 	AddSectionGroup(context.Context, *AddSectionGroupRequest, ...dcerpc.CallOption) (*AddSectionGroupResponse, error)
 
-	// DeleteSectionGroup operation.
+	// The DeleteSectionGroup method is received by the server in an RPC_REQUEST packet.
+	// In response, the server deletes the specified section group.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	|             RETURN              |                                                                                  |
+	//	|           VALUE/CODE            |                                   DESCRIPTION                                    |
+	//	|                                 |                                                                                  |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR             | The operation completed successfully.                                            |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070585 ERROR_INVALID_INDEX  | The integer index specified by varIndex is invalid, or the section group with    |
+	//	|                                 | name specified by cIndex could not be found.                                     |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070021 ERROR_LOCK_VIOLATION | The instance is not editable.                                                    |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
 	DeleteSectionGroup(context.Context, *DeleteSectionGroupRequest, ...dcerpc.CallOption) (*DeleteSectionGroupResponse, error)
 
 	// Name operation.
@@ -978,7 +1039,8 @@ func (o *GetSectionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // GetSectionsResponse structure represents the Sections operation response
 type GetSectionsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That     *dcom.ORPCThat                           `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppSections: Contains the collection of section definitions.
 	Sections *iisa.AppHostSectionDefinitionCollection `idl:"name:ppSections" json:"sections"`
 	// Return: The Sections return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1233,8 +1295,9 @@ func (o *xxx_AddSectionGroupOperation) UnmarshalNDRResponse(ctx context.Context,
 // AddSectionGroupRequest structure represents the AddSectionGroup operation request
 type AddSectionGroupRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This             *dcom.ORPCThis `idl:"name:This" json:"this"`
-	SectionGroupName *oaut.String   `idl:"name:bstrSectionGroupName" json:"section_group_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrSectionGroupName: A string that contains the name of the section group to add.
+	SectionGroupName *oaut.String `idl:"name:bstrSectionGroupName" json:"section_group_name"`
 }
 
 func (o *AddSectionGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_AddSectionGroupOperation) *xxx_AddSectionGroupOperation {
@@ -1271,7 +1334,8 @@ func (o *AddSectionGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // AddSectionGroupResponse structure represents the AddSectionGroup operation response
 type AddSectionGroupResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That         *dcom.ORPCThat            `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppSectionGroup: Contains the pointer to the newly created section group.
 	SectionGroup *iisa.AppHostSectionGroup `idl:"name:ppSectionGroup" json:"section_group"`
 	// Return: The AddSectionGroup return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1460,8 +1524,11 @@ func (o *xxx_DeleteSectionGroupOperation) UnmarshalNDRResponse(ctx context.Conte
 // DeleteSectionGroupRequest structure represents the DeleteSectionGroup operation request
 type DeleteSectionGroupRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
-	VarIndex *oaut.Variant  `idl:"name:varIndex" json:"var_index"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// varIndex: A VARIANT index that specifies the section group. If it is of type integer,
+	// the index is a zero-based index to the collection. If it is of type string, the index
+	// is the name of the section group to retrieve.
+	VarIndex *oaut.Variant `idl:"name:varIndex" json:"var_index"`
 }
 
 func (o *DeleteSectionGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteSectionGroupOperation) *xxx_DeleteSectionGroupOperation {

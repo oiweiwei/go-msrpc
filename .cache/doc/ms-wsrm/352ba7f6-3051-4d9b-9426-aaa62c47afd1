@@ -1,1 +1,56 @@
-<div class="content"></div>
+<div class="content"><p>The RestoreXMLFiles method restores the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_c18a91a3-689f-4e5e-9a91-c7b8f5402c5e" data-linktype="relative-path">WSRM configuration</a> to a
+specified state.</p><dl>
+<dd>
+<div><pre> [id(5), helpstring(&#34;method RestoreXMLFiles&#34;)] HRESULT RestoreXMLFiles(
+   [in] RESTORE_MODE enumRestore
+ );
+</pre></div>
+</dd></dl><p><b>enumRestore: </b>A value that specifies the state
+to restore.</p><dl>
+<dd>
+<p>This parameter MUST be defined in the <a href="a1654691-1e67-42c5-a6af-bbba3b398801" data-linktype="relative-path">RESTORE_MODE</a> enumeration
+(section 2.2.3.7); otherwise, <b>E_INVALIDARG</b> MUST be returned.<a id="Appendix_A_Target_30"></a><a aria-label="Product behavior note 30" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_30" data-linktype="relative-path">&lt;30&gt;</a></p>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0070</p>
+  <p>WRM_ERR_TAGS_NOT_IN_ORDER</p>
+  </td>
+  <td>
+  <p>The XML data that is maintained by the management
+  service is invalid or cannot be processed.<a id="Appendix_A_Target_31"></a><a aria-label="Product behavior note 31" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_31" data-linktype="relative-path">&lt;31&gt;</a> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>This method can be used to reset the WSRM server state to a
+known value in case some data becomes corrupted and the server cannot proceed.</p><p>Additional <a href="7c62a2fd-63f4-435f-8fc8-c94e4509f6fd" data-linktype="relative-path">IResourceManager</a> interface
+methods are specified in section 3.2.4.1.</p></div>

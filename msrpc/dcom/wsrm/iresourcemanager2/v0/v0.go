@@ -51,12 +51,114 @@ type ResourceManager2Client interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The ExportObjects method creates XML for exporting objects.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------+------------------------------------+
+	//	|         RETURN          |                                    |
+	//	|       VALUE/CODE        |            DESCRIPTION             |
+	//	|                         |                                    |
+	//	+-------------------------+------------------------------------+
+	//	+-------------------------+------------------------------------+
+	//	| 0x00000000 S_OK         | Operation successful.              |
+	//	+-------------------------+------------------------------------+
+	//	| 0x80070057 E_INVALIDARG | One or more arguments are invalid. |
+	//	+-------------------------+------------------------------------+
+	//
+	// Additional IResourceManager2 interface methods are specified in section 3.2.4.2.
+	//
+	// The server SHOULD process this method call as follows.
+	//
+	// * If one or more ObjectIds XML elements included in the bstrObjectIds parameter cannot
+	// be found, they MUST be ignored, and the call MUST proceed for other ObjectIds.
+	//
+	// * If a PMC ( e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_65daee12-445f-41c0-8456-f728063bef24
+	// ) object is specified in the enumObjectType parameter, this method MUST return an
+	// XML string containing the requested PMCs in the configuration. The "Type" attributes
+	// of individual objects in the ObjectIds XML element MUST be ignored.
+	//
+	// * If a resource policy object is specified in the enumObjectType parameter, this
+	// method MUST return an XML string containing the requested RAPs ( e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_6442eac9-3264-4d95-a435-fdc08e71603f
+	// ) in the configuration. The "Type" attributes of individual objects in the ObjectIds
+	// XML element MUST be ignored.
+	//
+	// * If a schedule object is specified in the enumObjectType parameter and the "Type"
+	// attribute of the object requested in the ObjectIds XML element is "Calendar", this
+	// method MUST return an XML string containing the requested calendar objects in the
+	// configuration.
+	//
+	// * If a schedule object is specified in the enumObjectType parameter and the "Type"
+	// attribute of the object requested in the ObjectIds XML element is not "Calendar",
+	// this method MUST return an XML string containing the requested schedule objects in
+	// the configuration.
 	ExportObjects(context.Context, *ExportObjectsRequest, ...dcerpc.CallOption) (*ExportObjectsResponse, error)
 
+	// The GetImportConflicts method finds conflicts between import objects and existing
+	// objects.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | Operation successful.                                                            |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG              | One or more arguments are invalid.                                               |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                      | be processed.<36>                                                                |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IResourceManager2 interface methods are specified in section 3.2.4.2.
 	GetImportConflicts(context.Context, *GetImportConflictsRequest, ...dcerpc.CallOption) (*GetImportConflictsResponse, error)
 
+	// The ImportXml method imports objects into the configuration.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	|                 RETURN                 |                                                                                  |
+	//	|               VALUE/CODE               |                                   DESCRIPTION                                    |
+	//	|                                        |                                                                                  |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                        | Operation successful.                                                            |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                | One or more arguments are invalid.                                               |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0272 WRM_ERR_CAL_SCHEDULE_IN_USE | An existing schedule with the same name as the one in the supplied               |
+	//	|                                        | CalendarsCollection is currently in use with an existing calendar. The complete  |
+	//	|                                        | import process is canceled.<38>                                                  |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER   | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                        | be processed.<39>                                                                |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IResourceManager2 interface methods are specified in section 3.2.4.2.
 	ImportXML(context.Context, *ImportXMLRequest, ...dcerpc.CallOption) (*ImportXMLResponse, error)
 
+	// The ExportXml method exports objects from the configuration.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IResourceManager2 interface methods are specified in section 3.2.4.2.
 	ExportXML(context.Context, *ExportXMLRequest, ...dcerpc.CallOption) (*ExportXMLResponse, error)
 
 	// AlterContext alters the client context.
@@ -428,8 +530,25 @@ func (o *xxx_ExportObjectsOperation) UnmarshalNDRResponse(ctx context.Context, w
 // ExportObjectsRequest structure represents the ExportObjects operation request
 type ExportObjectsRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis  `idl:"name:This" json:"this"`
-	ObjectIDs      *oaut.String    `idl:"name:bstrObjectIds" json:"object_ids"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrObjectIds: A string that identifies the objects to be exported, in the format
+	// of an ObjectIds element (section 2.2.5.20).
+	ObjectIDs *oaut.String `idl:"name:bstrObjectIds" json:"object_ids"`
+	// enumObjectType: An OBJECT_TYPE enumeration value (section 2.2.3.6) that specifies
+	// the type of the objects to be exported. This determines the format of XML object
+	// returned in the pbstrObjectXml parameter, as follows.
+	//
+	//	+---------------------------+---------------------------------------------------------------------------+
+	//	|          OBJECT           |                                    XML                                    |
+	//	|           TYPE            |                                  OBJECT                                   |
+	//	+---------------------------+---------------------------------------------------------------------------+
+	//	+---------------------------+---------------------------------------------------------------------------+
+	//	| OBJECT_SELECTION_CRITERIA | ProcessMatchingCriteria element (section 2.2.5.24)                        |
+	//	+---------------------------+---------------------------------------------------------------------------+
+	//	| OBJECT_POLICY             | Policy element (section 2.2.5.21)                                         |
+	//	+---------------------------+---------------------------------------------------------------------------+
+	//	| OBJECT_SCHEDULE           | Calendar element (section 2.2.5.7) or Schedule element (section 2.2.5.26) |
+	//	+---------------------------+---------------------------------------------------------------------------+
 	EnumObjectType wsrm.ObjectType `idl:"name:enumObjectType" json:"enum_object_type"`
 }
 
@@ -469,8 +588,11 @@ func (o *ExportObjectsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // ExportObjectsResponse structure represents the ExportObjects operation response
 type ExportObjectsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ObjectXML *oaut.String   `idl:"name:pbstrObjectXml" json:"object_xml"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrObjectXml: A pointer to a string that returns the XML for the objects to be
+	// exported. The format of the XML depends on the type of exported objects specified
+	// by the enumObjectType parameter.<35>
+	ObjectXML *oaut.String `idl:"name:pbstrObjectXml" json:"object_xml"`
 	// Return: The ExportObjects return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -959,13 +1081,24 @@ func (o *xxx_GetImportConflictsOperation) UnmarshalNDRResponse(ctx context.Conte
 // GetImportConflictsRequest structure represents the GetImportConflicts operation request
 type GetImportConflictsRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This              *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PMCXML            *oaut.String   `idl:"name:bstrPMCXml" json:"pmc_xml"`
-	PolicyXML         *oaut.String   `idl:"name:bstrPolicyXml" json:"policy_xml"`
-	CalendarXML       *oaut.String   `idl:"name:bstrCalendarXml" json:"calendar_xml"`
-	ConditionalXML    *oaut.String   `idl:"name:bstrConditionalXml" json:"conditional_xml"`
-	MachineGroupXML   *oaut.String   `idl:"name:bstrMachineGroupXml" json:"machine_group_xml"`
-	ConfigurationXMLs *oaut.String   `idl:"name:bstrConfigurationXmls" json:"configuration_xmls"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrPMCXml: An optional string that specifies process matching criteria (PMC), in
+	// the form of a ProcessMatchingCriteriaCollection element (section 2.2.5.25).
+	PMCXML *oaut.String `idl:"name:bstrPMCXml" json:"pmc_xml"`
+	// bstrPolicyXml: An optional string that specifies resource policies, in the form of
+	// a PolicyCollection element (section 2.2.5.22).
+	PolicyXML *oaut.String `idl:"name:bstrPolicyXml" json:"policy_xml"`
+	// bstrCalendarXml: An optional string that specifies calendar elements, in the form
+	// of a CalendarsCollection element (section 2.2.5.11).
+	CalendarXML *oaut.String `idl:"name:bstrCalendarXml" json:"calendar_xml"`
+	// bstrConditionalXml: An optional string that specifies a conditional policy, in the
+	// form of a ConditionalPolicy element (section 2.2.5.12).
+	ConditionalXML *oaut.String `idl:"name:bstrConditionalXml" json:"conditional_xml"`
+	// bstrMachineGroupXml: An optional string that specifies a machine group, in the form
+	// of a MachineGroup element (section 2.2.5.18).
+	MachineGroupXML *oaut.String `idl:"name:bstrMachineGroupXml" json:"machine_group_xml"`
+	// bstrConfigurationXmls: Not used.
+	ConfigurationXMLs *oaut.String `idl:"name:bstrConfigurationXmls" json:"configuration_xmls"`
 }
 
 func (o *GetImportConflictsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetImportConflictsOperation) *xxx_GetImportConflictsOperation {
@@ -1012,8 +1145,10 @@ func (o *GetImportConflictsRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 // GetImportConflictsResponse structure represents the GetImportConflicts operation response
 type GetImportConflictsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That               *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ConflictingObjects *oaut.String   `idl:"name:pbstrConflictingObjects" json:"conflicting_objects"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrConflictingObjects: A pointer to a string that SHOULD identify the conflicting
+	// objects, in the form of an ObjectIds element (section 2.2.5.20).
+	ConflictingObjects *oaut.String `idl:"name:pbstrConflictingObjects" json:"conflicting_objects"`
 	// Return: The GetImportConflicts return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1466,14 +1601,30 @@ func (o *xxx_ImportXMLOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 // ImportXMLRequest structure represents the ImportXml operation request
 type ImportXMLRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This              *dcom.ORPCThis  `idl:"name:This" json:"this"`
-	PMCXML            *oaut.String    `idl:"name:bstrPMCXml" json:"pmc_xml"`
-	PolicyXML         *oaut.String    `idl:"name:bstrPolicyXml" json:"policy_xml"`
-	CalendarXML       *oaut.String    `idl:"name:bstrCalendarXml" json:"calendar_xml"`
-	ConditionalXML    *oaut.String    `idl:"name:bstrConditionalXml" json:"conditional_xml"`
-	MachineGroupXML   *oaut.String    `idl:"name:bstrMachineGroupXml" json:"machine_group_xml"`
-	ConfigurationXMLs *oaut.String    `idl:"name:bstrConfigurationXmls" json:"configuration_xmls"`
-	EnumImportType    wsrm.ImportType `idl:"name:enumImportType" json:"enum_import_type"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrPMCXml: A string that specifies process matching criteria (PMC), in the form
+	// of a ProcessMatchingCriteriaCollection element (section 2.2.5.25). For an example,
+	// see ProcessMatchingCriteriaCollection example (section 4.2.21).
+	PMCXML *oaut.String `idl:"name:bstrPMCXml" json:"pmc_xml"`
+	// bstrPolicyXml: A string that specifies a resource policy, in the form of a PolicyCollection
+	// element (section 2.2.5.22).
+	PolicyXML *oaut.String `idl:"name:bstrPolicyXml" json:"policy_xml"`
+	// bstrCalendarXml: A string that specifies a calendar, in the form of a CalendarsCollection
+	// element (section 2.2.5.11). For an example, see CalendarsCollection example (section
+	// 4.2.8).<37>
+	CalendarXML *oaut.String `idl:"name:bstrCalendarXml" json:"calendar_xml"`
+	// bstrConditionalXml: A string that specifies a conditional policy, in the form of
+	// a ConditionalPolicy element (section 2.2.5.12).
+	ConditionalXML *oaut.String `idl:"name:bstrConditionalXml" json:"conditional_xml"`
+	// bstrMachineGroupXml: A string that specifies a machine group, in the form of a MachineGroup
+	// element (section 2.2.5.17).
+	MachineGroupXML *oaut.String `idl:"name:bstrMachineGroupXml" json:"machine_group_xml"`
+	// bstrConfigurationXmls: A string that specifies a configuration to be loaded by the
+	// WSRM server, in the form of a ConfigurationFiles element (section 2.2.5.13).
+	ConfigurationXMLs *oaut.String `idl:"name:bstrConfigurationXmls" json:"configuration_xmls"`
+	// enumImportType: An IMPORT_TYPE enumeration value (section 2.2.3.6) that specifies
+	// the mode in which to handle conflicting objects.
+	EnumImportType wsrm.ImportType `idl:"name:enumImportType" json:"enum_import_type"`
 }
 
 func (o *ImportXMLRequest) xxx_ToOp(ctx context.Context, op *xxx_ImportXMLOperation) *xxx_ImportXMLOperation {
@@ -1995,13 +2146,27 @@ func (o *ExportXMLRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 // ExportXMLResponse structure represents the ExportXml operation response
 type ExportXMLResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That              *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PMCXML            *oaut.String   `idl:"name:pbstrPMCXml" json:"pmc_xml"`
-	PolicyXML         *oaut.String   `idl:"name:pbstrPolicyXml" json:"policy_xml"`
-	CalendarXML       *oaut.String   `idl:"name:pbstrCalendarXml" json:"calendar_xml"`
-	ConditionalXML    *oaut.String   `idl:"name:pbstrConditionalXml" json:"conditional_xml"`
-	MachineGroupXML   *oaut.String   `idl:"name:pbstrMachineGroupXml" json:"machine_group_xml"`
-	ConfigurationXMLs *oaut.String   `idl:"name:pbstrConfigurationXmls" json:"configuration_xmls"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrPMCXml: A pointer to a string that returns process matching criteria (PMC),
+	// in the form of a ProcessMatchingCriteriaCollection element (section 2.2.5.25). For
+	// an example, see ProcessMatchingCriteriaCollection example (section 4.2.21).
+	PMCXML *oaut.String `idl:"name:pbstrPMCXml" json:"pmc_xml"`
+	// pbstrPolicyXml: A pointer to a string that returns a resource policy, in the form
+	// of a PolicyCollection element (section 2.2.5.22).
+	PolicyXML *oaut.String `idl:"name:pbstrPolicyXml" json:"policy_xml"`
+	// pbstrCalendarXml: A pointer to a string that returns a calendar, in the form of a
+	// CalendarsCollection element (section 2.2.5.11). For an example, see CalendarsCollection
+	// example (section 4.2.8).
+	CalendarXML *oaut.String `idl:"name:pbstrCalendarXml" json:"calendar_xml"`
+	// pbstrConditionalXml: A pointer to a string that SHOULD return a conditional policy,
+	// in the format of a ConditionalPolicy element (section 2.2.5.12).
+	ConditionalXML *oaut.String `idl:"name:pbstrConditionalXml" json:"conditional_xml"`
+	// pbstrMachineGroupXml: A pointer to a string that SHOULD return a machine group, in
+	// the format of a MachineGroup element (section 2.2.5.17).
+	MachineGroupXML *oaut.String `idl:"name:pbstrMachineGroupXml" json:"machine_group_xml"`
+	// pbstrConfigurationXmls: A pointer to a string that SHOULD return a configuration,
+	// in the format of a ConfigurationFiles element (section 2.2.5.13).
+	ConfigurationXMLs *oaut.String `idl:"name:pbstrConfigurationXmls" json:"configuration_xmls"`
 	// Return: The ExportXml return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

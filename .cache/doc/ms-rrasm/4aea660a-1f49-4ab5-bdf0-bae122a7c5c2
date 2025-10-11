@@ -1,1 +1,15 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IP_NAT_ADDRESS_RANGE</b> structure holds a range of
+addresses that are part of the address-pool for a boundary interface. An
+address pool consists of a list of these structures. Overlapping address ranges
+are not supported. Noncontiguous subnet masks are also unsupported.</p><dl>
+<dd>
+<div><pre> typedef struct _IP_NAT_ADDRESS_RANGE {
+   ULONG StartAddress;
+   ULONG EndAddress;
+   ULONG SubnetMask;
+ } IP_NAT_ADDRESS_RANGE, *PIP_NAT_ADDRESS_RANGE;
+</pre></div>
+</dd></dl><p><b>StartAddress: </b>The starting IP address of the
+address pool.</p><p><b>EndAddress: </b>The end IP address of the address
+pool.</p><p><b>SubnetMask: </b>The subnet mask of the address
+pool; see <a href="https://go.microsoft.com/fwlink/?LinkId=90501" data-linktype="external">[RFC950]</a>.</p></div>

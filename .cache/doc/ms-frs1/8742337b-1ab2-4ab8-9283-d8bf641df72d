@@ -1,1 +1,26 @@
-<div class="content"></div>
+<div class="content"><p>The structure of the COMM_REPLICA packet element is as
+follows.</p><dl>
+<dd>
+<div><pre> typedef struct _COMM_REPLICA {
+   USHORT CommType;
+   ULONG Length;
+   ULONG LengthGuid;
+   GUID Guid;
+   ULONG LengthName;
+   wchar_t Name[];
+ } COMM_REPLICA,
+  *PCOMM_REPLICA;
+</pre></div>
+</dd></dl><p><b>CommType:</b>   A 16-bit, unsigned
+integer that indicates the type of this <a href="194f8fff-d903-44b7-9530-c66f5366f8c7" data-linktype="relative-path">COMM_PACKET</a> element. MUST
+be set to 0x0005.</p><p><b>Length:</b>   A 32-bit, unsigned integer
+that indicates the length, in bytes, of the data following the Length field.</p><p><b>LengthGuid:</b>   A 32-bit, unsigned
+integer that indicates the length, in bytes, of the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> field. MUST be
+0x00000010.</p><p><b>Guid:</b>   A field of type <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a>
+that indicates the GUID of the receiving Partner.</p><p><b>LengthName:</b>   A 32-bit, unsigned
+integer that indicates the length, in bytes, of the <b>Name</b> field,
+including the NULL terminator.</p><p><b>Name:</b>   A Unicode UTF-16 string that
+identifies the affected <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_6cef9d9c-c366-490a-8e4e-a350688731ca" data-linktype="relative-path">replica
+set</a>. MUST BE a variable-length array that contains a NULL (0x0000)
+terminated string of 16-bit (Unicode) characters. There are no other
+constraints on the format.</p></div>

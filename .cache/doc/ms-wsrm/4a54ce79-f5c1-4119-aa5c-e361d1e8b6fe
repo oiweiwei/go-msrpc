@@ -1,1 +1,30 @@
-<div class="content"></div>
+<div class="content"><p>The RetrieveEventList method is not implemented and always
+returns an error.</p><dl>
+<dd>
+<div><pre> [id(1), helpstring(&#34;method RetrieveEventList&#34;)] HRESULT RetrieveEventList(
+   [out] BSTR *pbstrEventList
+ );
+</pre></div>
+</dd></dl><p><b>pbstrEventList:</b> Not used.</p><p><b>Return Values: </b>This method returns <b>E_NOTIMPL</b>,
+unless a parameter error is found.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80004001</p>
+  <p>E_NOTIMPL</p>
+  </td>
+  <td>
+  <p>This function is not implemented.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="7c62a2fd-63f4-435f-8fc8-c94e4509f6fd" data-linktype="relative-path">IResourceManager</a> interface
+methods are specified in section 3.2.4.1.</p></div>

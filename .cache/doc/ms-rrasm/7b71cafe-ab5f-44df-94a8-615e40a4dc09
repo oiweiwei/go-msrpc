@@ -1,1 +1,46 @@
-<div class="content"></div>
+<div class="content"><p>The <b>BGP_IP_PREFIX</b> structure<a id="Appendix_A_Target_184"></a><a aria-label="Product behavior note 184" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_184" data-linktype="relative-path">&lt;184&gt;</a> is used to represent the
+prefix of an IPv4 or IPv6 network subnet.</p><dl>
+<dd>
+<div><pre> typedef struct _BGP_IP_PREFIX {
+   union {
+     DWORD v4;
+     BYTE v6[16];
+   } address;
+   USHORT uPrefixLength;
+   USHORT uAddressFamily;
+ } BGP_IP_PREFIX,
+  *PBGP_IP_PREFIX;
+</pre></div>
+</dd></dl><p><b>v4: </b>A 32-bit, unsigned integer in network byte
+order that represents an IPv4 address prefix.</p><p><b>v6[16]: </b>A 128-bit, unsigned integer in network
+byte order that represents an IPv6 address prefix.</p><p><b>uPrefixLength: </b>Specifies prefix length of the
+IPv4 or IPv6 network subnet.</p><p><b>uAddressFamily: </b>Specifies whether the subnet
+is an IPv4 or IPv6 network subnet.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>AF_INET</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>The IP address is an IPv4 network subnet.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AF_INET6</p>
+  <p>0x17</p>
+  </td>
+  <td>
+  <p>The IP address is an IPv6 network subnet.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

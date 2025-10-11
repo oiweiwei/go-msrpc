@@ -1,0 +1,38 @@
+<div class="content"><p>The DirectoryServiceServer method is received by the server
+in an RPC_REQUEST packet. In response, the server MUST return a string that
+contains the name of the current directory computer.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT DirectoryServiceServer(
+   [out, retval] BSTR* pbstrDirectoryServiceServer
+ );
+</pre></div>
+</dd></dl><p><b>pbstrDirectoryServiceServer: </b>A pointer to a <a href="../ms-oaut/1c9d2cfc-cf7d-4f4b-95bf-584be5defd81" data-linktype="relative-path">BSTR</a>
+that, when successfully completed, contains the name of the directory computer
+in DNS or <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_b86c44e6-57df-4c48-8163-5e3fa7bdcff4" data-linktype="relative-path">NetBIOS</a>
+format, prefixed by &#34;\\&#34;. The string MUST use the following format,
+which is specified in <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_24ddbbb4-b79e-4419-96ec-0fdd229c9ebf" data-linktype="relative-path">ABNF</a>.</p><dl>
+<dd>
+<div><pre> DirectoryServer =&#34;\\&#34; Name
+ Alpha           = %x41-5A / %x61-7A
+ Name            =1*255Alpha
+</pre></div>
+</dd></dl><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+processes this call, it MUST follow these guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>ComputerName</i> instance variable is NULL:</p>
+<ul><li><p><span><span>  </span></span>Set
+the <i>pbstrDirectoryServiceServer</i> output variable to the DNS or NetBIOS
+name of the directory computer,<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a> prefixed
+by &#34;\\&#34;.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST generate a QMMgmt Get Info event with the following inputs:</p>
+<ul><li><p><span><span> 
+</span></span>iPropID = PROPID_MGMT_MSMQ_DSSERVER</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the <i>rStatus</i> return value is not equal to MQ_OK (0x00000000), the server
+MUST return <i>rStatus</i> and MUST take no further action. Otherwise, the <i>pbstrDirectoryServiceServer</i>
+output variable MUST be set to the value of the returned <i>rPropVar</i>.</p>
+</li></ul></li></ul></div>

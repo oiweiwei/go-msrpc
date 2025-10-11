@@ -1,0 +1,31 @@
+<div class="content"><p>The EodGetReceiveInfo method is received by the server in an
+RPC_REQUEST packet. In response, the server MUST return the represented <a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">Queue</a>.IncomingTransactionalTransferInfoCollection.</p><dl>
+<dd>
+<div><pre> HRESULT EodGetReceiveInfo(
+   [out, retval] VARIANT* pvCollection
+ );
+</pre></div>
+</dd></dl><p><b>pvCollection: </b>A pointer to a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_a3af3eaf-64b7-499b-a95f-193cd4c27812" data-linktype="relative-path">VARIANT</a> that contains an
+array of VARIANTs (VT_ARRAY | VT_VARIANT) in which each VARIANT contains an <a href="4b141ab6-62b9-4254-86f8-74c552c122dd" data-linktype="relative-path">EODTargetInfo</a> (section
+2.2.4.1) collection.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+processes this call, it MUST follow these guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <b>ObjectIsInitialized</b> instance variable is False:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST return MQ_ERROR_UNINITIALIZED_OBJECT (0xC00E0094), and MUST take no
+further action.</p>
+</li><li><p><span><span>  </span></span>The
+server MUST generate a <b>QMMgmt Get Info</b> event with the following inputs:</p>
+<ul><li><p><span><span> 
+</span></span><b>iPropID</b> = PROPID_MGMT_EOD_SOURCE_INFO</p>
+</li><li><p><span><span> 
+</span></span>If the <b>rStatus</b> return value is not equal to MQ_OK
+(0x00000000), the server MUST return <b>rStatus</b> and MUST take no further
+action.</p>
+</li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span> 
+</span></span>The <i>pvCollection</i> output variable MUST be set to the
+returned <b>rPropVar</b>. </p>
+</li></ul></li></ul></li></ul></li></ul></div>

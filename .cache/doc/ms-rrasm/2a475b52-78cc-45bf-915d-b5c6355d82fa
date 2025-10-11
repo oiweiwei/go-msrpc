@@ -1,1 +1,18 @@
-<div class="content"></div>
+<div class="content"><p>The <b>Info</b> structure contains information specific to
+the <b>REQTYPE_GETINFO</b> <a href="fcb89c61-ced3-43ba-a2ef-4c6f4a2d40a6" data-linktype="relative-path"><b>ReqTypes (section 2.2.1.1.18)</b></a>
+value.  </p><dl>
+<dd>
+<div><pre> typedef struct Info {
+   union {
+     DWORD retcode;
+     HANDLE paddingField;
+   };
+   RASMAN_INFO info;
+ } Info;
+</pre></div>
+</dd></dl><p><b>retcode: </b>Specifies the return status as
+explained in section <a href="c39d153e-2f97-4e11-8aff-bcf983869dc9" data-linktype="relative-path">2.2.1.2.218</a>
+for the <b>retcode</b> field.</p><p><b>paddingField: </b>Reserved field to provide proper
+alignment of the structure.</p><p><b>info: </b>Specifies the port information as
+defined in the <a href="4080a4a5-9f60-493d-bc1b-abf0df708065" data-linktype="relative-path"><b>RASMAN_INFO (section 2.2.1.2.228)</b></a>
+structure.  </p></div>

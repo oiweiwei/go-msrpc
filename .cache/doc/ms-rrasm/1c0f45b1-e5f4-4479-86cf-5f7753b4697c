@@ -1,1 +1,141 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MPRI_INTERFACE_0</b> structure contains information
+for a particular router interface. This structure is used in the following
+methods: </p><ul><li><p><span><span> 
+</span></span><a href="72bead5c-821f-4e98-bacd-0de279552379" data-linktype="relative-path"><b>RRouterInterfaceCreate (section 3.1.4.13)</b></a><span> </span></p>
+</li><li><p><span><span> 
+</span></span><a href="2fbcf316-2082-4f98-878b-eab5d0c2da1d" data-linktype="relative-path"><b>RRouterInterfaceGetInfo (section 3.1.4.14)</b></a><span> </span></p>
+</li><li><p><span><span> 
+</span></span><a href="615c1081-5d03-415a-b57c-76876bb2cf23" data-linktype="relative-path"><b>RRouterInterfaceSetInfo (section 3.1.4.15)</b></a> 
+</p>
+</li><li><p><span><span> 
+</span></span><a href="0d19911e-f4d7-47f0-b615-90feef69831c" data-linktype="relative-path"><b>RRouterInterfaceEnum (section 3.1.4.21)</b></a><span> </span></p>
+<div><pre> typedef struct _MPRI_INTERFACE_0 {
+   WCHAR wszInterfaceName[257];
+   DWORD dwInterface;
+   BOOL fEnabled;
+   ROUTER_INTERFACE_TYPE dwIfType;
+   ROUTER_CONNECTION_STATE dwConnectionState;
+   DWORD fUnReachabilityReasons;
+   DWORD dwLastError;
+ } MPRI_INTERFACE_0,
+  *PMPRI_INTERFACE_0;
+</pre></div>
+</li></ul><p><b>wszInterfaceName: </b>A null-terminated Unicode
+string that contains the name of a valid interface. This value MUST be
+specified during the call to <b>RRouterInterfaceCreate</b> and cannot be
+modified after the interface is created.</p><p><b>dwInterface: </b>Specifies a unique identifier of
+the interface. This is a read-only field that cannot be set or modified.</p><p><b>fEnabled: </b>Specifies whether the interface is
+enabled. The value TRUE is greater than zero (0) if the interface is enabled,
+or FALSE is zero (0) if the interface is disabled by an administrator.</p><dl>
+<dd>
+<p>This member can have one of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRUE</p>
+  <p>&gt;0</p>
+  </td>
+  <td>
+  <p>The interface is enabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0</p>
+  </td>
+  <td>
+  <p>The interface is disabled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwIfType: </b>A <a href="849c1f9e-9d6f-4408-840e-ee9ae253ae01" data-linktype="relative-path"><b>ROUTER_INTERFACE_TYPE (section 2.2.1.1.1)</b></a>
+value that specifies the interface type. This value MUST be specified during
+the call to <b>RRouterInterfaceCreate</b> and cannot be modified after the
+interface is created. </p><p><b>dwConnectionState: </b>A <a href="3286822c-7051-40a9-b448-8f5cc5236b97" data-linktype="relative-path"><b>ROUTER_CONNECTION_STATE (section 2.2.1.1.2)</b></a>
+value that specifies the current state of the interface (for example:
+connected, disconnected, or unreachable). This is a read-only field that cannot
+be set or modified.</p><p><b>fUnReachabilityReasons: </b>Specifies a value that
+represents a reason the interface cannot be reached. This is a read-only field
+that cannot be set or modified. The following table lists constant values that
+indicate why an interface is unreachable. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MPR_INTERFACE_OUT_OF_RESOURCES</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>No ports or devices are available for use.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_INTERFACE_ADMIN_DISABLED</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The administrator has disabled the interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_INTERFACE_CONNECTION_FAILURE</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The previous connection attempt failed. Look at the
+  dwLastError member for the error code.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_INTERFACE_DIALOUT_HOURS_RESTRICTION</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Dialing out is not allowed at the current time.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_INTERFACE_SERVICE_PAUSED</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The RRAS is paused.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_INTERFACE_NO_MEDIA_SENSE</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>The network cable is disconnected from the network
+  card.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_INTERFACE_NO_DEVICE</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>The network card has been removed from the machine.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwLastError: </b>Specifies a nonzero value if the
+interface fails to connect. The value is a Win32 error code as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+This is a read-only field that cannot be set or modified.</p></div>

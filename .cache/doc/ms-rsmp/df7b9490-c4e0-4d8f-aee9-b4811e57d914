@@ -1,1 +1,96 @@
-<div class="content"></div>
+<div class="content"><p>The SetNtmsDeviceChangeDetection method sets one or more
+target devices for change detection. Implementation of this method is optional.<a id="Appendix_A_Target_25"></a><a aria-label="Product behavior note 25" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_25" data-linktype="relative-path">&lt;25&gt;</a> The server MAY return a
+non-implemented error (ERROR_CALL_NOT_IMPLEMENTED, 0x80070078). <a id="Appendix_A_Target_26"></a><a aria-label="Product behavior note 26" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_26" data-linktype="relative-path">&lt;26&gt;</a></p><dl>
+<dd>
+<div><pre> HRESULT SetNtmsDeviceChangeDetection(
+   [in] NTMS_HANDLE DetectHandle,
+   [in, size_is(dwCount)] LPNTMS_GUID lpObjectId,
+   [in] DWORD dwType,
+   [in] DWORD dwCount
+ );
+</pre></div>
+</dd></dl><p><b>DetectHandle: </b>The device change detection
+handle, or NULL for a single poll of the objects in <i>lpObjectId</i>. The
+handle MUST have come from a prior <a href="49879215-0972-4215-8ddc-b56f5540b36c" data-linktype="relative-path">BeginNtmsDeviceChangeDetection</a>
+method invocation.</p><p><b>lpObjectId: </b>An array of media library, <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_9036b269-4f3b-4353-a1d0-54f5c686ec2c" data-linktype="relative-path">physical media</a>, or media
+type identifiers, used to specify the target devices for change detection. All
+identifiers MUST be of the same type.</p><p><b>dwType: </b>One of the NTMS_LIBRARY,
+NTMS_PHYSICAL_MEDIA, or NTMS_MEDIA_TYPE values defined in the <a href="5b190198-a0cb-4e20-90a3-234009357051" data-linktype="relative-path">NtmsObjectsTypes (section 2.2.1.6)</a>
+enumeration, specifying the type of the objects in <i>lpObjectId</i>.</p><p><b>dwCount: </b>The number of elements in the <i>lpObjectId</i>
+array.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070006</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The session handle is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070078</p>
+  <p>ERROR_CALL_NOT_IMPLEMENTED</p>
+  </td>
+  <td>
+  <p>This function is not supported on this system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CC</p>
+  <p>ERROR_INVALID_MEDIA</p>
+  </td>
+  <td>
+  <p>The media identifier is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CD</p>
+  <p>ERROR_INVALID_LIBRARY</p>
+  </td>
+  <td>
+  <p>The library identifier is not valid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>If the method is implemented, the server MUST verify that
+both <i>DetectHandle</i> and <i>lpObjectId</i> are not NULL. If parameter
+validation fails, the server MUST immediately fail the operation and return
+ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds and dwCount is greater than
+one, the server MUST verify that the type of objects specified in the <i>lpObjectId</i>
+array are all of the same object type. If the objects specified in the <i>lpObjectId</i>
+array are not of the same object type, the server MUST return
+ERROR_INVALID_PARAMETER (0x80070057).</p><p>The SetNtmsDeviceChangeDetection method sets one or more
+target devices for change detection.</p><p>The device can be specified directly by passing library <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUIDs</a>, or indirectly by
+passing physical media or media type GUIDs. When using indirect specification,
+only stand-alone libraries that could contain the media or media type are
+detected. All devices that are specified, either directly or indirectly,
+continue to be detected until the device change detection handle is closed
+using the <a href="fd638727-b71a-4f27-a901-e09a6e5abc52" data-linktype="relative-path">EndNtmsDeviceChangeDetection</a>
+method.</p><p>This method can also be used to poll for changed media in
+the specified devices. This feature is typically used by a UI when opening a
+leaf node or implementing a refresh option. </p></div>

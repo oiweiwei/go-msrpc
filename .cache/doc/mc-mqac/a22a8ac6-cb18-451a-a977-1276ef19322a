@@ -1,0 +1,24 @@
+<div class="content"><p>The GetConnectionInterface method is received by the server
+in an RPC_REQUEST packet. In response, the server MUST return a pointer to the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_76ad3105-3f05-479d-a40c-c9c8fa2ebd83" data-linktype="relative-path">IID</a> of the interface that
+client applications MUST implement for the <a href="6102da49-1a16-4862-a4d1-ad092c5101a4" data-linktype="relative-path">MSMQEvent</a> object to be able
+to notify them when an event is raised.</p><dl>
+<dd>
+<div><pre> HRESULT GetConnectionInterface(
+   [out] IID* pIID
+ );
+</pre></div>
+</dd></dl><p><b>pIID: </b>A pointer to an IID that upon successful
+completion will contain the IID value of the <a href="b910c6a9-81db-4b87-b049-20eabf8853eb" data-linktype="relative-path">_DMSMQEventEvents</a>
+interface.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.<a id="Appendix_A_Target_92"></a><a aria-label="Product behavior note 92" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_92" data-linktype="relative-path">&lt;92&gt;</a></p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>pIID</i> output parameter equals NULL:</p>
+<ul><li><p><span><span>  </span></span>Return
+E_POINTER (0x80000005).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>Set
+the <i>pIID</i> output parameter to the IID for the _DMSMQEventEvents interface
+(D7D6E078-DCCD-11d0-AA4B-0060970DEBAE).</p>
+</li></ul></li></ul></div>

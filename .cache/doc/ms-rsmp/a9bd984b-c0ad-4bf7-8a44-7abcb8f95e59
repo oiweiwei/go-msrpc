@@ -1,1 +1,100 @@
-<div class="content"></div>
+<div class="content"><p> The ChangeNtmsMediaType method moves a physical <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_746b1ad1-e1ad-4120-9986-fef919a2eaf7" data-linktype="relative-path">media identifier</a> to a new
+media pool and sets the media type of the medium to that of the pool.</p><dl>
+<dd>
+<div><pre> HRESULT ChangeNtmsMediaType(
+   [in] LPNTMS_GUID lpMediaId,
+   [in] LPNTMS_GUID lpPoolId
+ );
+</pre></div>
+</dd></dl><p><b>lpMediaId: </b>A pointer to the identifier of the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_9036b269-4f3b-4353-a1d0-54f5c686ec2c" data-linktype="relative-path">physical media</a> to be moved.</p><p><b>lpPoolId: </b> A pointer to the identifier of the
+media pool to which the media will be <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_0e546e86-71c4-45cc-9ef1-4a78f6cb425a" data-linktype="relative-path">allocated</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>NTMS_MODIFY_ACCESS to the media pool of the media is
+  denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>An allocation failure occurred during processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The media pool or media identifiers are missing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CC</p>
+  <p>ERROR_INVALID_MEDIA</p>
+  </td>
+  <td>
+  <p>The media identifier is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CE</p>
+  <p>ERROR_INVALID_MEDIA_POOL</p>
+  </td>
+  <td>
+  <p>The identifier of the media pool is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database is inaccessible or damaged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DA</p>
+  <p>ERROR_DATABASE_FULL</p>
+  </td>
+  <td>
+  <p>The database is full.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that
+both <i>lpMediaId</i> and <i>lpPoolId</i> are not NULL. If parameter validation
+fails, the server MUST immediately fail the operation and return
+ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights and that the library is enabled
+and online. If the client does not have the required access rights, the server
+MUST return ERROR_ACCESS_DENIED (0x80070005). If the library is offline, the
+server MUST return ERROR_LIBRARY_OFFLINE (0x800710D1).</p><p>The ChangeNtmsMediaType method uses the same policy for
+moving media as the method specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90043" data-linktype="external">[MSDN-MoveToNtmsMediaPool]</a>.
+A medium having a partition in the completed, allocated, or reserved state MUST
+NOT be moved to the free media pool. A medium can be moved to an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_c74372fa-bcae-4710-8b24-996fa2b676ac" data-linktype="relative-path">import pool</a> only if all the
+partitions of the medium are in the import state.</p><p>Unrecognized media can only be moved to the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_58cd2daf-1d47-44a9-a725-a9459fd5efaf" data-linktype="relative-path">free pool</a>.</p><p>If moving the given media to specified media pool is an
+invalid operation, it MUST return ERROR_INVALID_MEDIA_POOL (0x800710CE).</p><p>On completion of an asynchronous operation, notification is
+sent with the identifier <b>lpMediaId</b>.</p></div>

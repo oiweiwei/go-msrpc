@@ -1,1 +1,108 @@
-<div class="content"></div>
+<div class="content"><p>The RequestVersionVector method is used to obtain the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_b5d43ea0-cf01-4294-b0d8-0b0362d4a3a2" data-linktype="relative-path">version chain vector</a> <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_a19e13f5-9713-4a70-be02-a37ed2c79a80" data-linktype="relative-path">persisted</a> on a server or to
+request notification when the server&#39;s version chain vector changes.</p><dl>
+<dd>
+<div><pre> DWORD RequestVersionVector(
+   [in] DWORD sequenceNumber,
+   [in] FRS_CONNECTION_ID connectionId,
+   [in] FRS_CONTENT_SET_ID contentSetId,
+   [in, range(REQUEST_NORMAL_SYNC,REQUEST_SUBORDINATE_SYNC)] 
+     VERSION_REQUEST_TYPE requestType,
+   [in, range(CHANGE_NOTIFY,CHANGE_ALL)] 
+     VERSION_CHANGE_TYPE changeType,
+   [in] ULONGLONG vvGeneration
+ );
+</pre></div>
+</dd></dl><p><b>sequenceNumber: </b>The sequence number for this
+request. The sequence number is used to pair the version vector request with
+the asynchronous response in <a href="1880531d-2a8f-4293-9618-b7ce0b4acda4" data-linktype="relative-path">AsyncPoll</a>.
+During a given session, the client SHOULD supply a unique sequence number for
+each call to this function or else they will not be able to match server
+responses via the AsyncPoll method to the original version vector request.</p><p><b>connectionId: </b>The <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a> of
+an outbound connection (see the <b>objectGUID</b> attribute specified in
+section <a href="afd3c10a-9783-4df7-ae2b-13e56c37ab03" data-linktype="relative-path">2.3.11</a>) that
+the client established by a previous call to the <a href="2c51e5f4-bef1-4e29-9292-b63f1d5ccff6" data-linktype="relative-path">EstablishConnection</a>
+method.</p><p><b>contentSetId: </b>The GUID of the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_064adaf1-86c7-43e5-a157-b0949980181e" data-linktype="relative-path">replicated folder</a> (see the <b>objectGUID</b>
+attribute specified in section <a href="3cd01848-1a7d-4e5e-9511-44dca4e46ce0" data-linktype="relative-path">2.3.7</a>) in the specified
+connection&#39;s <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_fcc139c9-86ff-4414-bc66-5f63e4465b6d" data-linktype="relative-path">replication
+group</a>.</p><p><b>requestType: </b>The value from the <a href="a4ab4b0a-fffa-45a2-abd0-bd6b453caf77" data-linktype="relative-path">VERSION_REQUEST_TYPE</a>
+enumeration that describes the type of replication sync to perform.</p><p><b>changeType: </b>The value from the <a href="005b39ef-671a-46a7-a371-9d72f6d40f28" data-linktype="relative-path">VERSION_CHANGE_TYPE</a>
+enumeration that indicates whether to notify change only or send the entire
+version chain vector.</p><p><b>vvGeneration: </b>The <i>vvGeneration</i>
+parameter is used to calibrate what incarnation of the server&#39;s version chain
+vector is known to the client. The client supplies the last generation number
+that it received from the server when the <i>requestType</i> parameter is set
+to REQUEST_NORMAL_SYNC. Otherwise the client MUST supply zero.</p><p><b>Return Values: </b>This method MUST return 0 on
+success or a nonzero error code on failure. For protocol purposes all nonzero
+values MUST be treated as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p><b><span>Return value/code</span></b></p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Validating the version vector request:</b>  The server
+validates the version vector request by performing the following checks:</p><ul><li><p><span><span> 
+</span></span>If an outbound connection for the specified connection is not
+established between the client and server (see the EstablishConnection method)
+then the server MUST fail the call with an implementation-defined failure
+value.</p>
+</li><li><p><span><span> 
+</span></span>If a replicated folder session for the specified replicated
+folder is not established between the client and server (see the <a href="29a8e0a7-95b8-47cb-9cb3-2ec294232633" data-linktype="relative-path">EstablishSession</a> method)
+then the server MUST fail the call with an implementation-defined failure
+value.</p>
+</li><li><p><span><span> 
+</span></span>If the value of the <i>requestType</i> parameter is
+REQUEST_SLOW_SYNC or REQUEST_SUBORDINATE_SYNC and the value of the <i>vvGeneration</i>
+parameter is not zero, then the server MUST fail the call with an
+implementation-defined failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the value of the <i>requestType</i> parameter is
+REQUEST_SLOW_SYNC or REQUEST_SUBORDINATE_SYNC and the value of the <i>changeType</i>
+parameter is not CHANGE_ALL, then the server MUST fail the call with an
+implementation-defined failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the value of the <i>requestType</i> parameter is
+REQUEST_SUBORDINATE_SYNC and the server&#39;s <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_8f3c866a-07d2-4921-98ba-f5d376bfdba5" data-linktype="relative-path">DFS-R</a> protocol version is
+not FRS_COMMUNICATION_PROTOCOL_VERSION_LONGHORN_SERVER, then the server MUST
+fail the call with an implementation-defined failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the value of the <i>changeType</i> parameter is not
+CHANGE_NOTIFY or CHANGE_ALL, then the server fails the call with an
+implementation-defined failure value. </p>
+</li></ul><p><b>Actions Triggered when the requestType parameter is NORMAL_SYNC
+and the changeType parameter is CHANGE_NOTIFY:</b>  The server MUST keep a time
+stamp on its own version vector. When the server modifies its version vector
+(in a way visible to clients), the time stamp is incremented. The server
+communicates its version vector time stamp information to the client when it
+responds to AsyncPoll requests.</p><p>The supplied <i>vvGeneration</i> parameter is used to
+control when an AsyncPoll request can be completed by the server. The AsyncPoll
+request MUST be completed by the server when its version vector time stamp
+supersedes the time stamp passed in as the <i>vvGeneration</i> parameter of the
+version vector request. The server MUST NOT provide any version vector with the
+callback.</p><p><b>Actions Triggered when the changeType parameter is CHANGE_ALL:</b> 
+The client requests to receive the full version vector of the server. The
+server communicates its version vector information to the client when it
+responds to AsyncPoll requests.</p><p><b>Remarks:</b>The client SHOULD have an outstanding call to
+AsyncPoll. If the client does not have an outstanding AsyncPoll request, then
+the server MUST queue up any response until an AsyncPoll is received such that
+a response can be sent.</p><p><b>Sequence number for this request:</b> The sequence number
+is used to pair the version vector request with the asynchronous response in
+AsyncPoll. The asynchronous response from the server that corresponds to a
+version vector request MUST contain the same sequence number that was created
+by the client. A client SHOULD therefore not have two or more outstanding
+asynchronous requests with the same sequence number.</p></div>

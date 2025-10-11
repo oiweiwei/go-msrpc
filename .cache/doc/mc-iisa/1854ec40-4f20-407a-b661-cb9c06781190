@@ -1,0 +1,118 @@
+<div class="content"><p>The IAppHostPropertySchema <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides methods
+that access the schema and constraints for the corresponding <a href="564b4c1f-13a0-40c4-974b-1cbbd41764b3" data-linktype="relative-path">IAppHostProperty</a> object.</p><p>The IAppHostPropertySchema interface inherits opnums 0–2
+from the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="6e930e5e-1851-4e79-bc26-d07ae7de38df" data-linktype="relative-path">Name</a></p>
+  </td>
+  <td>
+  <p>Opnum: 3</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="66d7878f-dd34-4249-a0dc-0a192fe211fc" data-linktype="relative-path">Type</a></p>
+  </td>
+  <td>
+  <p>Opnum: 4</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="ac0abe0c-68de-4977-8c3b-a19e651f268c" data-linktype="relative-path">DefaultValue</a></p>
+  </td>
+  <td>
+  <p>Opnum: 5</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="ccadfb85-617d-4953-b06f-9114c0ed31bf" data-linktype="relative-path">IsRequired</a></p>
+  </td>
+  <td>
+  <p>Opnum: 6</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="1eb2c195-9e2c-4e98-8a17-b2d2e4187886" data-linktype="relative-path">IsUniqueKey</a></p>
+  </td>
+  <td>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="71bd59b8-8cff-463f-9c2c-c1bd9d7c9ec6" data-linktype="relative-path">IsCombinedKey</a></p>
+  </td>
+  <td>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="8460fd9e-9df4-4618-930e-2efd366e19ce" data-linktype="relative-path">IsExpanded</a></p>
+  </td>
+  <td>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="b2dd9a3a-eef2-408d-995b-96bf52bc251f" data-linktype="relative-path">ValidationType</a></p>
+  </td>
+  <td>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="133b37c9-06b5-4617-bc68-0e7809de8bbd" data-linktype="relative-path">ValidationParameter</a></p>
+  </td>
+  <td>
+  <p>Opnum: 11</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="320390c5-f02a-4e2a-a199-279fff6d7a11" data-linktype="relative-path">GetMetadata</a></p>
+  </td>
+  <td>
+  <p>Opnum: 12</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="023c2249-394c-46f4-b1ac-d5e7e5bb95f2" data-linktype="relative-path">IsCaseSensitive</a></p>
+  </td>
+  <td>
+  <p>Opnum: 13</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="b4c6fdaf-f283-4c7a-8259-66186f821dd3" data-linktype="relative-path">PossibleValues</a></p>
+  </td>
+  <td>
+  <p>Opnum: 14</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="6cb98505-f68e-4901-935a-6cfe61e93cf0" data-linktype="relative-path">DoesAllowInfinite</a></p>
+  </td>
+  <td>
+  <p>Opnum: 15</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="7472619d-534b-498c-ac70-20a0562c4712" data-linktype="relative-path">IsEncrypted</a></p>
+  </td>
+  <td>
+  <p>Opnum: 16</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="a9d4fbac-6ffe-48bd-92f1-9bbb50df37db" data-linktype="relative-path">TimeSpanFormat</a></p>
+  </td>
+  <td>
+  <p>Opnum: 17</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

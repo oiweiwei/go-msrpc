@@ -1,5 +1,5 @@
-<div class="content"><p>This method queries the <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_9ae02f8f-f961-4e5c-b07a-ea848ce0993e" data-linktype="relative-path">Online Responder Service</a> to
-find out whether it is running.</p><dl>
+<div class="content"><p>This method queries the <span><a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_9ae02f8f-f961-4e5c-b07a-ea848ce0993e" data-linktype="relative-path">Online Responder Service</a></span>
+to find out whether it is running.</p><dl>
 <dd>
 <div><pre> HRESULT Ping();
 </pre></div>

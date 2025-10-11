@@ -1,1 +1,32 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_TCP_STATE</b> enumeration enumerates different
+possible TCP states.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MIB_TCP_STATE_CLOSED = 1,
+   MIB_TCP_STATE_LISTEN = 2,
+   MIB_TCP_STATE_SYN_SENT = 3,
+   MIB_TCP_STATE_SYN_RCVD = 4,
+   MIB_TCP_STATE_ESTAB = 5,
+   MIB_TCP_STATE_FIN_WAIT1 = 6,
+   MIB_TCP_STATE_FIN_WAIT2 = 7,
+   MIB_TCP_STATE_CLOSE_WAIT = 8,
+   MIB_TCP_STATE_CLOSING = 9,
+   MIB_TCP_STATE_LAST_ACK = 10,
+   MIB_TCP_STATE_TIME_WAIT = 11,
+   MIB_TCP_STATE_DELETE_TCB = 12,
+ } MIB_TCP_STATE;
+</pre></div>
+</dd></dl><p><b>MIB_TCP_STATE_CLOSED: </b>The TCP connection is
+closed. </p><p><b>MIB_TCP_STATE_LISTEN: </b>The TCP connection is in
+the listen state. </p><p><b>MIB_TCP_STATE_SYN_SENT: </b>A SYN packet has been
+sent. </p><p><b>MIB_TCP_STATE_SYN_RCVD: </b>A SYN packet has been
+received. </p><p><b>MIB_TCP_STATE_ESTAB: </b>The TCP connection has
+been established. </p><p><b>MIB_TCP_STATE_FIN_WAIT1: </b>The TCP connection is
+waiting for a FIN packet. </p><p><b>MIB_TCP_STATE_FIN_WAIT2: </b>The TCP connection is
+waiting for a FIN packet. </p><p><b>MIB_TCP_STATE_CLOSE_WAIT: </b>The TCP connection
+is in the close wait state. </p><p><b>MIB_TCP_STATE_CLOSING: </b>The TCP connection is
+closing. </p><p><b>MIB_TCP_STATE_LAST_ACK: </b>The TCP connection is
+in the last ACK state. </p><p><b>MIB_TCP_STATE_TIME_WAIT: </b>The TCP connection is
+in the time wait state. </p><p><b>MIB_TCP_STATE_DELETE_TCB: </b>The TCP connection
+is in the delete TCB state. </p></div>

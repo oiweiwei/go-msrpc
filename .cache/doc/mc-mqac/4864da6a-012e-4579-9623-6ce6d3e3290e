@@ -1,0 +1,30 @@
+<div class="content"><p>The IsWorldReadable method is received by the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in an RPC_REQUEST
+packet. In response, the server returns a <a href="../ms-dtyp/51bbfbb1-08e2-4c13-a95e-1eaa7d310670" data-linktype="relative-path">BOOLEAN</a>
+that indicates whether the <i>referenced queue</i> is accessible to everyone,
+or only to the owner and the system <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_eb335f5b-619b-46ed-9138-06e9910108c3" data-linktype="relative-path">administrators</a>. This can be
+computed through the security descriptor in the <a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">Queue</a>.<b>Security</b>
+attribute. The owner is the security principal that has MQSEC_TAKE_QUEUE_OWNERSHIP
+permissions for the Queue, as defined by the security descriptor in the
+refQueue.<b>Security</b> attribute.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT IsWorldReadable(
+   [out, retval] short* pisWorldReadable
+ );
+</pre></div>
+</dd></dl><p><b>pisWorldReadable: </b>A pointer to a <b>short</b>
+that indicates whether the <i>referenced queue</i> is accessible to everyone or
+only to the owner and the system administrators.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000).</p><p>When processing this call, the server MUST abide by the
+following contract:</p><ul><li><p><span><span> 
+</span></span>If only the owner security principal has
+MQSEC_TAKE_QUEUE_OWNERSHIP permissions for the <i>referenced queue</i> in the
+security descriptor in the refQueue.<b>Security</b> attribute:</p>
+<ul><li><p><span><span>  </span></span>Set
+the <i>pisWorldReadable</i> output parameter to the value of False.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>Set
+the <i>pisWorldReadable</i> output parameter to the value of the True.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return S_OK (0x00000000), and take no further action.</p>
+</li></ul></div>

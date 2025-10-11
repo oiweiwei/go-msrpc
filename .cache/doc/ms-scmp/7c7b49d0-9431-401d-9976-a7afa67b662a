@@ -1,1 +1,64 @@
-<div class="content"></div>
+<div class="content"><p>The QueryVolumesSupportedForDiffAreas method retrieves from
+the server the collection of <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volumes</a>
+that can be used as a <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_9abab753-55aa-4455-bb21-7b51a32654fa" data-linktype="relative-path">shadow
+copy storage volume</a> for a specified <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_57484dae-5eef-4485-bfe4-db22b9cd90d6" data-linktype="relative-path">original volume</a>.</p><dl>
+<dd>
+<div><pre> HRESULT QueryVolumesSupportedForDiffAreas(
+   [in] VSS_PWSZ pwszOriginalVolumeName,
+   [out] IVssEnumMgmtObject** ppEnum
+ );
+</pre></div>
+</dd></dl><p><b>pwszOriginalVolumeName: </b>A null-terminated <a href="../ms-dtyp/845b6fa4-c34a-4b90-824d-60e98533dfb5" data-linktype="relative-path">UNICODE</a>
+string that contains the <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_1b153cd0-e3f3-4383-bc66-d5ad482c9766" data-linktype="relative-path">drive
+letter</a>, <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_513fcb37-059f-475c-a13d-e89b302f8ae8" data-linktype="relative-path">mount point</a>,
+or <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_ae3b4c60-05dc-4011-bd62-753ef23bb3cd" data-linktype="relative-path">volume mount name</a> of
+the original volume.</p><p><b>ppEnum: </b>A pointer to an <a href="7b274c35-057f-4d99-9038-b451e31590a2" data-linktype="relative-path">IVssEnumMgmtObject</a> pointer
+that upon completion, contains a collection of volumes that can be used to
+create <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_34a368ce-08be-44b8-8d15-cfa0d4ac176e" data-linktype="relative-path">shadow copy storage
+associations</a> with the specified original volume. Each element in the
+collection MUST be a <a href="d7a7bbd5-30ab-4dd3-aa4a-40ea45f6303b" data-linktype="relative-path">VSS_DIFF_VOLUME_PROP</a>
+structure. A caller MUST release the <i>ppEnum</i> received when the caller is
+done with it.</p><p><b>Return Values: </b>The method MUST return zero
+when it has succeeded or an implementation-specific nonzero error code on
+failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>Returned when <i>pwszOriginalVolumeName</i> or <i>ppEnum</i>
+  is NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>E_ACCESSDENIED</p>
+  </td>
+  <td>
+  <p>Returned when the user making the request does not
+  have sufficient privileges to perform the operation.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>No exceptions are thrown except those that are thrown by the
+underlying <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>When the server receives this message, it MUST validate the
+following parameters:</p><ul><li><p><span><span> 
+</span></span>The <i>pwszOriginalVolumeName</i> parameter is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>The <i>ppEnum</i> parameter is not NULL.</p>
+</li></ul><p>The server MUST set the <i>ppEnum</i> pointer to an instance
+of IVssEnumMgmtObject that contains a VSS_DIFF_VOLUME_PROP structure for each
+volume that can provide <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_d85fc09f-c375-4e90-952d-7c95a8e244dd" data-linktype="relative-path">shadow
+copy storage</a> for the specified original volume. If the server contains no
+volumes that can provide shadow copy storage for the specified volume, the
+server MUST return an empty IVssEnumMgmtObject object.</p></div>

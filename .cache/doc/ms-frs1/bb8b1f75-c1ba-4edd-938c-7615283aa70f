@@ -1,1 +1,24 @@
-<div class="content"></div>
+<div class="content"><p>The structure of the COMM_COMPRESSION_GUID packet element is
+as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _COMM_COMPRESSION_GUID {
+   USHORT CommType;
+   ULONG Length;
+   GUID Data;
+ } COMM_COMPRESSION_GUID,
+  *PCOMM_COMPRESSION_GUID;
+</pre></div>
+</dd></dl><p><b>CommType:</b> A 16-bit, unsigned integer that
+indicates the type of this <a href="194f8fff-d903-44b7-9530-c66f5366f8c7" data-linktype="relative-path">COMM_PACKET</a>
+element. MUST be set to 0x0018.</p><p><b>Length:</b> A 32-bit, unsigned integer that
+indicates the length in bytes of the data following the Length field. MUST be
+0x00000010.</p><p><b>Data:</b> A field of type <a href="../ms-dtyp/49e490b8-f972-45d6-a3a4-99f924998d97" data-linktype="relative-path">GUID</a>
+that contains a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>
+that represents a compression algorithm. This field MUST contain the GUID of a
+compression algorithm supported by the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_20f21413-875c-4ebf-9913-a3282fbb779f" data-linktype="relative-path">FRS</a> implementation. The two
+machines exchanging FRS messages MUST agree on the compression algorithm
+represented by any GUID sent in this field. A GUID value of
+00000000-0000-0000-0000-00000000000 indicates uncompressed data. A GUID value
+of 64d2f7d2-2695-436d-8830-8d3c58701e15 indicates LZNT1 compression, as
+specified in <a href="../ms-xca/a8b7cb0a-92a6-4187-a23b-5e14273b96f8" data-linktype="relative-path">[MS-XCA]</a>
+section <a href="../ms-xca/5655f4a3-6ba4-489b-959f-e1f407c52f15" data-linktype="relative-path">2.5</a>.<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="d18cc589-677e-4133-97e5-113641792c5e#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a></p></div>

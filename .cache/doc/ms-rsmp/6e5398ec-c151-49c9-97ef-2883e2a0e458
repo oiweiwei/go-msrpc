@@ -1,1 +1,99 @@
-<div class="content"></div>
+<div class="content"><p>The AddNtmsMediaType method MUST add a media type to a
+library if there is not currently a relation in the library. The method MUST
+create the system media pools (FREE, IMPORT, and UNRECOGNIZED) if they do not
+exist.</p><dl>
+<dd>
+<div><pre> HRESULT AddNtmsMediaType(
+   [in] LPNTMS_GUID lpMediaTypeId,
+   [in] LPNTMS_GUID lpLibId
+ );
+</pre></div>
+</dd></dl><p><b>lpMediaTypeId: </b>A pointer to the identifier of
+a media type to add to the library.</p><p><b>lpLibId: </b> A pointer to the identifier of the
+library to which the media type is to be added.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>NTMS_MODIFY_ACCESS to the library is denied; other
+  security errors are possible, but indicate a security subsystem error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>An allocation failure occurred during processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The media type or library identifiers are missing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CD</p>
+  <p>ERROR_INVALID_LIBRARY</p>
+  </td>
+  <td>
+  <p>The library identifier is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database is inaccessible or damaged. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DA</p>
+  <p>ERROR_DATABASE_FULL</p>
+  </td>
+  <td>
+  <p>The database is full.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>If the specified media type is not in the library object&#39;s
+list of already supported media types, the AddNtmsMediaType method adds the it
+to the specified library. If the specified media type is already in the library
+object&#39;s list of already supported media types, the AddNtmsMediaType method
+will not add the it to the specified library also it will not return error
+because of this. AddNtmsMediaType then creates the system media pools if they
+do not exist.</p><p>If the specified media type is not in the library object&#39;s
+list of already supported media types, the AddNtmsMediaType method adds it to
+the specified library. If the specified media type is already in the library
+object&#39;s list of supported media types, the specified media type is not added
+to the library object&#39;s list. In both instances, AddNtmsMediaType creates the
+system media pools if they do not exist.</p><p>Upon receiving this message, the server MUST verify that <i>lpLibId</i>
+and <i>lpMediaTypeId</i> are not NULL. If parameter validation fails, the
+server MUST immediately fail the operation and return ERROR_INVALID_PARAMETER
+(0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights and that the library is enabled
+and online. If the library is offline, the server MUST return
+ERROR_LIBRARY_OFFLINE (0x800710D1).</p></div>

@@ -49,13 +49,60 @@ type AppHostPropertyExceptionClient interface {
 	// IAppHostConfigException retrieval method.
 	AppHostConfigException() iapphostconfigexception.AppHostConfigExceptionClient
 
-	// InvalidValue operation.
+	// The InvalidValue method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a string representation of the invalid value that is encountered
+	// by the administration system when processing property.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrValue is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetInvalidValue(context.Context, *GetInvalidValueRequest, ...dcerpc.CallOption) (*GetInvalidValueResponse, error)
 
-	// ValidationFailureReason operation.
+	// The ValidationFailureReason method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns a description of the error that is encountered.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrValidationReason is not NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetValidationFailureReason(context.Context, *GetValidationFailureReasonRequest, ...dcerpc.CallOption) (*GetValidationFailureReasonResponse, error)
 
-	// ValidationFailureParameters operation.
+	// The ValidationFailureParameters method is currently reserved for future use. The
+	// server MUST return ERROR_NOT_SUPPORTED (as defined in [MS-ERREF]) to indicate that
+	// the method isnt implemented.
+	//
+	// Return Values: The server MUST return ERROR_NOT_SUPPORTED (as defined in [MS-ERREF])
+	// to indicate that the method isn't implemented.
 	GetValidationFailureParameters(context.Context, *GetValidationFailureParametersRequest, ...dcerpc.CallOption) (*GetValidationFailureParametersResponse, error)
 
 	// AlterContext alters the client context.
@@ -384,8 +431,9 @@ func (o *GetInvalidValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // GetInvalidValueResponse structure represents the InvalidValue operation response
 type GetInvalidValueResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Value *oaut.String   `idl:"name:pbstrValue" json:"value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrValue: Contains the invalid value representation.
+	Value *oaut.String `idl:"name:pbstrValue" json:"value"`
 	// Return: The InvalidValue return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -627,8 +675,9 @@ func (o *GetValidationFailureReasonRequest) UnmarshalNDR(ctx context.Context, r 
 // GetValidationFailureReasonResponse structure represents the ValidationFailureReason operation response
 type GetValidationFailureReasonResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That             *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ValidationReason *oaut.String   `idl:"name:pbstrValidationReason" json:"validation_reason"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrValidationReason: Contains a description of the error.
+	ValidationReason *oaut.String `idl:"name:pbstrValidationReason" json:"validation_reason"`
 	// Return: The ValidationFailureReason return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -870,7 +919,9 @@ func (o *GetValidationFailureParametersRequest) UnmarshalNDR(ctx context.Context
 // GetValidationFailureParametersResponse structure represents the ValidationFailureParameters operation response
 type GetValidationFailureParametersResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That           *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pParameterArray: Contains the VARIANT array of parameters that are applicable to
+	// the error.
 	ParameterArray *oaut.SafeArray `idl:"name:pParameterArray" json:"parameter_array"`
 	// Return: The ValidationFailureParameters return value.
 	Return int32 `idl:"name:Return" json:"return"`

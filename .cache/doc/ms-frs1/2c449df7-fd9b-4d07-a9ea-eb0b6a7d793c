@@ -1,1 +1,16 @@
-<div class="content"></div>
+<div class="content"><p>The structure of the COMM_FILE_SIZE packet element is as
+follows.</p><dl>
+<dd>
+<div><pre> typedef struct _COMM_FILE_SIZE {
+   USHORT CommType;
+   ULONG Length;
+   ULONGLONG Data;
+ } COMM_FILE_SIZE,
+  *PCOMM_FILE_SIZE;
+</pre></div>
+</dd></dl><p><b>CommType:</b>   A 16-bit, unsigned
+integer that indicates the type of this <a href="194f8fff-d903-44b7-9530-c66f5366f8c7" data-linktype="relative-path">COMM_PACKET</a> element. MUST
+be set to 0x000B.</p><p><b>Length:</b>   A 32-bit, unsigned integer
+that indicates the length in bytes of the data following the Length field. MUST
+be 0x00000008.</p><p><b>Data:</b>   A 64-bit, unsigned integer
+that specifies the total size in bytes of the staged file.</p></div>

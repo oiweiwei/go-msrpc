@@ -37,8 +37,8 @@ success, or a nonzero error code on failure.</p><dl>
 </dd></dl><p>Upon receiving this message, the server MUST validate
 parameters:</p><ul><li><p><span><span> 
 </span></span>Verify that <i>fileManagementJob</i> is not NULL.</p>
-</li></ul><p>If any validation fails, the server MUST terminate
-processing and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
+</li></ul><p>If any validation fails, the server MUST terminate processing
+and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
 perform the following actions.</p><ul><li><p><span><span> 
 </span></span>Create a new Non-Persisted File Management Job Instance.</p>
 <ul><li><p><span><span>  </span></span>Set
@@ -95,8 +95,7 @@ File Management Job.Deprecated to false.</p>
 <b>Information log</b> to an empty list</p>
 </li></ul></li><li><p><span><span> 
 </span></span>Set <i>fileManagementJob</i> to the <b>IFsrmFileManagementJob</b>
-interface pointer for the newly created Non-Persisted File Management Job
-Instance.</p>
+interface pointer for the newly created Non-Persisted File Management Job Instance.</p>
 </li></ul><p>The new Non-Persisted File Management Job Instance MUST NOT
 be associated with an existing <a href="78082f67-e548-48d8-9f9a-a840c1936acd" data-linktype="relative-path">Persisted File Management
 Job (section 3.2.1.7.1.1)</a>.</p></div>

@@ -1,1 +1,36 @@
-<div class="content"></div>
+<div class="content"><p>The GetServiceList method provides a list of <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_2dc07ca2-2b40-437e-a5ec-ed28ebfb116a" data-linktype="relative-path">services</a> that are
+registered with the server and are not excluded by the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_cca0ab9e-fde0-4f0f-b135-db8451c0594e" data-linktype="relative-path">exclusion list</a>. This list
+of services is expected to be used for defining <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_65daee12-445f-41c0-8456-f728063bef24" data-linktype="relative-path">process matching criteria (PMC)</a>.</p><dl>
+<dd>
+<div><pre> [id(7), helpstring(&#34;method GetServiceList&#34;)] HRESULT GetServiceList(
+   [out] BSTR* pbstrServiceList
+ );
+</pre></div>
+</dd></dl><p><b>pbstrServiceList: </b>A pointer to a string that
+returns a list of services, in the form of a <a href="19082f94-fba7-4a26-8f73-6c2494d63d04" data-linktype="relative-path">ServiceList element</a>
+(section 2.2.5.28). For an example, see section <a href="90a61c3f-c97b-4be5-b4cf-8b17766f74af" data-linktype="relative-path">4.2.23</a>.</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="7c62a2fd-63f4-435f-8fc8-c94e4509f6fd" data-linktype="relative-path">IResourceManager</a> interface
+methods are specified in section 3.2.4.1.</p></div>

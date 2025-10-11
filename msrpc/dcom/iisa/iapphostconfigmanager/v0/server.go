@@ -31,10 +31,76 @@ type AppHostConfigManagerServer interface {
 	// IUnknown base class.
 	iunknown.UnknownServer
 
-	// GetConfigFile operation.
+	// The GetConfigFile method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns an IAppHostConfigFile for the specific hierarchy path.
+	//
+	// The administration system implementation can choose to fail if the specified hierarchy
+	// path does not have an IAppHostConfigFile container for it. Or it can choose to succeed
+	// and create an empty IAppHostConfigFile container instead.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppConfigFile is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                                            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                                    |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070013 ERROR_INVALID_DATA      | Configuration data or schema on the server are malformed or corrupted.           |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070002 ERROR_FILE_NOT_FOUND    | The server resource (for example, a file or database) corresponding to           |
+	//	|                                    | bstrConfigPath could not be found.                                               |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070005 ERROR_ACCESS_DENIED     | Access to a server resource (for example, a file on a disk) was denied.          |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.                          |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
 	GetConfigFile(context.Context, *GetConfigFileRequest) (*GetConfigFileResponse, error)
 
-	// GetUniqueConfigPath operation.
+	// The GetUniqueConfigPath method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns the deepest hierarchy path (up to the specified hierarchy
+	// path) that contains a unique set of IAppHostElement objects. For example:
+	//
+	// Assume: At hierarchy path A, a set of IAppHostElement objects exist.
+	//
+	// Assume: At hierarchy path B (deeper than A), the identical set of objects exists.
+	//
+	// Given these assumptions, GetUniqueConfigPath( B ) returns path A. In other words,
+	// the method returns the shallowest path that contains the identical set of IAppHostElement
+	// objects as the specified path.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrUniquePath is not NULL. If
+	// processing fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF].
+	// The following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+-------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                         |
+	//	|             VALUE/CODE             |                               DESCRIPTION                               |
+	//	|                                    |                                                                         |
+	//	+------------------------------------+-------------------------------------------------------------------------+
+	//	+------------------------------------+-------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                                   |
+	//	+------------------------------------+-------------------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                           |
+	//	+------------------------------------+-------------------------------------------------------------------------+
+	//	| 0X80070013 ERROR_INVALID_DATA      | Configuration data or schema on the server are malformed or corrupted.  |
+	//	+------------------------------------+-------------------------------------------------------------------------+
+	//	| 0X00000002 ERROR_PATH_NOT_FOUND    | A server resource (for example, a file on a disk) could not be found.   |
+	//	+------------------------------------+-------------------------------------------------------------------------+
+	//	| 0X80070005 ERROR_ACCESS_DENIED     | Access to a server resource (for example, a file on a disk) was denied. |
+	//	+------------------------------------+-------------------------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.                 |
+	//	+------------------------------------+-------------------------------------------------------------------------+
 	GetUniqueConfigPath(context.Context, *GetUniqueConfigPathRequest) (*GetUniqueConfigPathResponse, error)
 }
 

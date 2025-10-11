@@ -31,6 +31,23 @@ type UpdateHistoryEntry2Server interface {
 	// IUpdateHistoryEntry base class.
 	iupdatehistoryentry.UpdateHistoryEntryServer
 
+	// The IUpdate::Categories (opnum 12) method retrieves a collection of the categories
+	// to which the update belongs.
+	//
+	// The IUpdateHistoryEntry2::Categories (opnum 22) method retrieves a collection of
+	// the update categories to which an update belongs.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the Categories ADM element.
 	GetCategories(context.Context, *GetCategoriesRequest) (*GetCategoriesResponse, error)
 }
 

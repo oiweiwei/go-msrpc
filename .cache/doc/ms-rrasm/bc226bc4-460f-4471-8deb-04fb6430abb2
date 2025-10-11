@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RIP_ROUTE_FILTER_INFO</b> structure contains the
+information about a route filter to which the filter actions specified in <b>RIP_IF_FILTERS</b> (section
+<a href="fa5639a9-0f0f-4e2e-8984-fa07647f317c" data-linktype="relative-path">2.2.1.2.204)</a> are
+applied. This structure is used in <b>RIP_IF_FILTERS</b>. </p><dl>
+<dd>
+<div><pre> typedef struct _RIP_ROUTE_FILTER_INFO {
+   UCHAR Network[4];
+   UCHAR Mask[4];
+ } RIP_ROUTE_FILTER_INFO, *PRIP_ROUTE_FILTER_INFO;
+</pre></div>
+</dd></dl><p><b>Network: </b>The network to which this filter is
+to be applied.</p><p><b>Mask: </b>The mask that MUST be ANDed with the
+network and with the IP address of the packet to establish a filter match. See <a href="https://go.microsoft.com/fwlink/?LinkId=90501" data-linktype="external">[RFC950]</a>.</p></div>

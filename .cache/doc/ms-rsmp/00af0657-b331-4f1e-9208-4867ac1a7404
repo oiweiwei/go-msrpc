@@ -1,1 +1,9 @@
-<div class="content"></div>
+<div class="content"><p>This document specifies the Removable Storage Manager (RSM)
+Remote Protocol.</p><p>The RSM Remote Protocol is a set of distributed component
+object model (DCOM) <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+interfaces for applications to manage <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_e15a2eb2-9f8f-4e34-a38d-b44de24f8b08" data-linktype="relative-path">robotic</a> <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_898fa8ab-42d5-439f-9415-1589599fe913" data-linktype="relative-path">changers</a>, media <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_ba47762a-6279-48b3-9a11-eeb239876e31" data-linktype="relative-path">libraries</a>, and tape <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drives</a>. The RSM Remote
+Protocol deals with detailed low-level operating system and storage concepts.
+Although the necessary basic concepts are outlined in this specification, this
+specification assumes reader familiarity with these technologies.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

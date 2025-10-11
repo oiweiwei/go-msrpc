@@ -1,1 +1,24 @@
-<div class="content"></div>
+<div class="content"><p>The structure of the COMM_REMOTE_CO packet element is as
+follows.</p><dl>
+<dd>
+<div><pre> typedef struct _COMM_REMOTE_CO {
+   USHORT CommType;
+   ULONG Length;
+   ULONG DataLength;
+   CHANGE_ORDER_COMMAND Data;
+ } COMM_REMOTE_CO,
+  *PCOMM_REMOTE_CO;
+</pre></div>
+</dd></dl><p><b>CommType:</b>   A 16-bit, unsigned
+integer that indicates the type of this <a href="194f8fff-d903-44b7-9530-c66f5366f8c7" data-linktype="relative-path">COMM_PACKET</a> element. MUST
+be set to 0x000D.</p><p><b>Length:</b>   A 32-bit, unsigned integer
+that indicates the length in bytes of the data following the Length field. MUST
+be 0x0000031C. </p><p><b>DataLength:</b>   A 32-bit, unsigned
+integer that indicates the length in bytes of the <b>Data</b> field. MUST be
+0x00000318.</p><p><b>Data:</b>   The <a href="93ac0801-c3cf-4dfc-80a4-c2bff7a9b09b" data-linktype="relative-path">CHANGE_ORDER_COMMAND</a>
+message being transmitted.</p><dl>
+<dd>
+<p>The CHANGE_ORDER_COMMAND structure defines a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_20f21413-875c-4ebf-9913-a3282fbb779f" data-linktype="relative-path">file replication service (FRS)</a>
+<a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_576a8417-dd00-4f9e-b52f-c9a2e3766a8a" data-linktype="relative-path">change order</a>. See the
+definition of the CHANGE_ORDER_COMMAND in section 2.2.3.2.</p>
+</dd></dl></div>

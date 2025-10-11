@@ -1,1 +1,109 @@
-<div class="content"></div>
+<div class="content"><p>The NtFrsApi_Rpc_InfoW method MUST return internal
+information. The method is not used in server-to-server interoperation. The
+vendor MUST fill the BLOB with implementation-dependent data structures.</p><dl>
+<dd>
+<div><pre> unsigned long NtFrsApi_Rpc_InfoW(
+   [in] handle_t Handle,
+   [in, range(0,65536)] unsigned long BlobSize,
+   [in, out, size_is(BlobSize), unique] 
+     unsigned char* Blob
+ );
+</pre></div>
+</dd></dl><p><b>Handle: </b>Binding handle obtained when the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a> authenticates with
+the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_20f21413-875c-4ebf-9913-a3282fbb779f" data-linktype="relative-path">file replication service
+(FRS)</a>.</p><p><b>BlobSize: </b>The size of the <i>Blob</i>
+parameter in bytes. MUST be one of the following values, to fit the returned
+information in the <i>Blob</i>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTFRSAPI_DEFAULT_INFO_SIZE</p>
+  <p>(64 * 1024)</p>
+  </td>
+  <td>
+  <p>Default info size.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTFRSAPI_MINIMUM_INFO_SIZE</p>
+  <p>( 1 * 1024)</p>
+  </td>
+  <td>
+  <p>Minimum info size.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Blob: </b>Custom binary format object that
+contains internal information about FRS. Vendors MUST choose their own
+implementation-dependent data structures for the <i>Blob</i> parameter to dump
+debug/tracing-related information. This protocol does not require a specific
+format for the information in this BLOB. This structure is not used for server-to-server
+interoperation, and the vendor can fill the BLOB with implementation-dependent
+data structures.<a id="Appendix_A_Target_60"></a><a aria-label="Product behavior note 60" href="d18cc589-677e-4133-97e5-113641792c5e#Appendix_A_60" data-linktype="relative-path">&lt;60&gt;</a><a id="Appendix_A_Target_61"></a><a aria-label="Product behavior note 61" href="d18cc589-677e-4133-97e5-113641792c5e#Appendix_A_61" data-linktype="relative-path">&lt;61&gt;</a></p><p><b>Return Values: </b>The method MUST return 0 on
+success or a nonzero error code on failure. All nonzero values MUST be treated
+as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Validating the _NtFrsApi_Rpc_InfoW request: </b>The
+server must validate the NtFrsApi_Rpc_InfoWrequest request by performing the
+following checks. </p><ul><li><p><span><span> 
+</span></span>If <b>IsGetInfoWAccessCheckEnabled</b> is set to
+&#34;None&#34;, the server MUST fail the call with an implementation specific
+value.</p>
+</li><li><p><span><span> 
+</span></span>If <b>IsGetInfoWAccessCheckEnabled</b> is set to &#34;Disabled&#34;,
+the server MUST process the request without performing an access check.</p>
+</li><li><p><span><span> 
+</span></span>If <b>IsGetInfoWAccessCheckEnabled</b> is set to
+&#34;Enabled&#34;, the server MUST check whether the calling client is
+authorized to perform that function. If the calling client is not authorized to
+perform that function, it MUST return ERROR_NOT_AUTHENTICATED.</p>
+</li><li><p><span><span> 
+</span></span>If <b>GetInfoWAccessRequired</b> is set to &#34;None&#34;, the
+server MUST fail the call with an implementation specific value.</p>
+</li><li><p><span><span> 
+</span></span>If <b>GetInfoWAccessRequired</b> is set to &#34;Read&#34;, the
+server MUST check whether the caller has read access. If the caller does not
+have read access, the server MUST return FRS_ERR_INSUFFICIENT_PRIV.</p>
+</li><li><p><span><span> 
+</span></span>If <b>GetInfoWAccessRequired</b> is set to &#34;Write&#34;, the
+server MUST check whether the caller has write access. If the caller does not
+have read access, the server MUST return FRS_ERR_INSUFFICIENT_PRIV.</p>
+</li><li><p><span><span> 
+</span></span>If the server is not able to verify the parameters inside blob,
+then it MUST fail the call with an implementation-defined failure value
+FRS_ERR_INVALID_SERVICE_PARAMETER.</p>
+</li></ul><p><b>Actions Triggered:</b>  FRS MUST return the internal
+information about FRS. The information returned MUST be used for dumping FRS
+internal implementation-specific information for debugging purposes. It MUST
+NOT be used in initial sync, normal sync, or in any way that affects the FRS Protocol
+behavior. The vendor can implement this <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> call to dump the
+vendor&#39;s implementation specific info. However, the structure of this
+information is implementation-specific and has no bearing on the operations of
+the protocol.<a id="Appendix_A_Target_62"></a><a aria-label="Product behavior note 62" href="d18cc589-677e-4133-97e5-113641792c5e#Appendix_A_62" data-linktype="relative-path">&lt;62&gt;</a></p></div>

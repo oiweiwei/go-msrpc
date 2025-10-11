@@ -1,1 +1,163 @@
-<div class="content"></div>
+<div class="content"><p>The SetConfig method sets <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_c18a91a3-689f-4e5e-9a91-c7b8f5402c5e" data-linktype="relative-path">WSRM configuration</a>
+information concerning <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1156c8ef-4d49-462b-9f76-aebcb6c57011" data-linktype="relative-path">accounting</a>
+and notifications.</p><dl>
+<dd>
+<div><pre> [id(2), helpstring(&#34;method SetConfig&#34;)] HRESULT SetConfig(
+   [in] BSTR bstrConfigInfo,
+   [in] CONFIGTYPE enumConfigType
+ );
+</pre></div>
+</dd></dl><p><b>bstrConfigInfo: </b>A string that contains WSRM
+configuration information. The type of information is determined by the value
+of the enumConfigType parameter.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>enumConfigType: </b>A <a href="c7d0ac7a-d7f4-492c-93cf-df63e3970229" data-linktype="relative-path">CONFIGTYPE</a> enumeration
+(section 2.2.3.1) value that specifies the type of WSRM configuration
+information to set.</p><dl>
+<dd>
+<p>Setting calendar information is not supported. If
+this parameter is set to <b>CONFIGTYPE_CALENDARING</b>,  ERROR_NOT_SUPPORTED
+SHOULD be returned.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CONFIGTYPE_ACCOUNTING</p>
+  <p>1</p>
+  </td>
+  <td>
+  <p>The WSRM configuration information is in the form of
+  an <a href="25276767-8123-48c5-9b2f-0eec944e8f32" data-linktype="relative-path">AccountingConfigInfo</a>
+  element (section 2.2.5.2).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CONFIGTYPE_NOTIFICATION</p>
+  <p>2</p>
+  </td>
+  <td>
+  <p>The WSRM configuration information is in the form of
+  an <a href="0b4d2217-2765-4afb-ab64-ccc3b5c41953" data-linktype="relative-path">NotificationConfigInfo</a>
+  element (section 2.2.5.19).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070032</p>
+  <p>ERROR_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The requested action is not supported.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF006E</p>
+  <p>WRM_ERR_TOO_LONG_CONFIG_VALUE</p>
+  </td>
+  <td>
+  <p>One or more specified values have exceeded an
+  implementation-defined limit.<a id="Appendix_A_Target_72"></a><a aria-label="Product behavior note 72" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_72" data-linktype="relative-path">&lt;72&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0070</p>
+  <p>WRM_ERR_TAGS_NOT_IN_ORDER</p>
+  </td>
+  <td>
+  <p>The <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a>
+  data that is maintained by the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1517eb9b-d2b2-48f0-bf23-bde76923ed30" data-linktype="relative-path">management service</a> is
+  invalid or cannot be processed.<a id="Appendix_A_Target_73"></a><a aria-label="Product behavior note 73" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_73" data-linktype="relative-path">&lt;73&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0190</p>
+  <p>WRM_ERR_INVALID_NTFY_ENABLE</p>
+  </td>
+  <td>
+  <p>The notification-enabled value MUST be <a href="4189de3c-65cd-48df-a0ad-1baf2dc226f5" data-linktype="relative-path">Boolean</a> (section
+  2.2.1.2).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0194</p>
+  <p>WRM_ERR_INVALID_EVENTLIST</p>
+  </td>
+  <td>
+  <p>The notification event list format is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF01F6</p>
+  <p>WRM_ERR_INVALID_ACC_ENABLE</p>
+  </td>
+  <td>
+  <p>The accounting-enabled value MUST be Boolean (section
+  2.2.1.2).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF01F9</p>
+  <p>WRM_ERR_ACC_INVALID_DUMPING_INTERVAL</p>
+  </td>
+  <td>
+  <p>The logging interval for accounting is invalid. The
+  interval MUST be between 2 and 60,000 minutes, inclusive.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Note</b>  When the <b>CONFIGTYPE_ACCOUNTING</b>
+option is used, an <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_bb8795a8-ff43-416b-976a-6257b68fe7fa" data-linktype="relative-path">accounting
+client</a> SHOULD call <a href="d2ae3199-3aca-46a9-831a-5015b07bd196" data-linktype="relative-path">SetClientPermissions (section 3.2.4.3.14)</a>
+prior to SetConfig in order to obtain authorization to modify an accounting
+database on a remote WSRM server. If a client does not have permission,
+ERROR_ACCESS_DENIED SHOULD be returned.<a id="Appendix_A_Target_74"></a><a aria-label="Product behavior note 74" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_74" data-linktype="relative-path">&lt;74&gt;</a></p><p>Additional <a href="38d3fffd-48ad-4e02-a7ce-b13da6304c80" data-linktype="relative-path">IWRMConfig</a> interface
+methods are specified in section 3.2.4.5.</p></div>

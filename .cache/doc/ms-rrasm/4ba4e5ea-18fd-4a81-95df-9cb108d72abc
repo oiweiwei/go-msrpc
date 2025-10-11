@@ -1,1 +1,108 @@
-<div class="content"></div>
+<div class="content"><p>The <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_f2515a6c-776c-43b4-a671-0c0963f60d11" data-linktype="relative-path">routing
+and remote access service (RRAS) server</a> management (RRASM) protocol enables
+remote management (configuration and monitoring) of RRAS routers. This protocol
+exposes the RRAS management data objects (described in sections <a href="27b9d5cc-0230-4a90-afeb-2cd133d0dabc" data-linktype="relative-path">1.3.1</a>, <a href="9291696f-8350-4b8a-af39-6f66013ae513" data-linktype="relative-path">1.3.2</a>, <a href="d836e7ce-95e8-4fcd-bc1f-caf1379b4271" data-linktype="relative-path">1.3.3</a>, <a href="81cb570b-c695-4672-b9b2-da5f878598da" data-linktype="relative-path">1.3.4</a>, and <a href="582ea86f-8493-40d3-9d45-a38503f18282" data-linktype="relative-path">1.3.5</a>) and the methods to
+manage these objects remotely. An RRAS implementation that exposes its
+configuration in the form of these objects and methods can be managed remotely
+using the RRASM protocol. The RRASM protocol is responsible for providing the remote
+management capability only. The way the management objects are used in order to
+provide RRAS functionality, is specific to the RRAS implementation and is
+outside the scope of this protocol.</p><p>The <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote
+procedure call (RPC)</a> protocol provides the mechanism to define methods and
+data structures that are passed as parameters to these methods. It also
+provides the underlying with which these methods can be invoked remotely as
+well as the data passed as parameters.</p><p>This document, in addition, specifies the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_2d67ea57-10e6-422f-985e-694834945a02" data-linktype="relative-path">registry</a> keys and values
+that can be used to specify an RRAS server configuration. These registry keys
+can be remotely configured using the <a href="../ms-rrp/0fa3191d-bb79-490a-81bd-54c2601b7a78" data-linktype="relative-path">[MS-RRP]</a>
+protocol. They form the initial configuration for the RRAS implementation.
+Runtime configuration changes are done through the RPC protocol itself. An RRAS
+implementation that understands these registry keys and realizes their intended
+semantics can then be configured remotely using the [MS-RRP] protocol.</p><p>This document also specifies the format of the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_7653fbde-27ea-4593-bf47-46064b0a1c29" data-linktype="relative-path">phonebook file</a> that can be
+used to specify site-to-site <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_866b0055-ceba-4acf-a692-98452943b981" data-linktype="relative-path">connection</a>
+settings. An RRAS implementation that understands the semantics of this
+phonebook file can then be configured to provide site-to-site connectivity. The
+phonebook file can be created remotely at a well-known location using any
+remote file management mechanism such as the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_09dbec39-5e75-4d9a-babf-1c9f1d499625" data-linktype="relative-path">Server Message Block (SMB)</a>
+protocol. The RRAS implementation can read the settings and realize the
+configuration based on the semantics specified.</p><p>The client-side Remote Access Service (RAS) is a
+point-to-point or point-to-site service that is not in this RRASM protocol
+server site-to-site router remote access service. See legacy information in <a href="https://go.microsoft.com/fwlink/?linkid=2150994" data-linktype="external">[MSDOCS-RRAS]</a> and <a href="https://go.microsoft.com/fwlink/?linkid=2151382" data-linktype="external">[MSDOCS-ROUT-API]</a>.
+Some of the functions in the RAS API are supported only on network servers, and
+other functions are supported only on network clients. See legacy information
+in <a href="https://go.microsoft.com/fwlink/?linkid=2150995" data-linktype="external">[MSDOCS-RA-API]</a>.
+RAS client uses a different phonebook file; see legacy information in <a href="https://go.microsoft.com/fwlink/?linkid=2151383" data-linktype="external">[MSDOCS-RASpbk]</a>.</p><p>The interaction between a RRASM client and a RRASM server
+itself is stateless and is accomplished through RPC method invocation. Each RPC
+method request is independent of others and no context is maintained by RRASM
+pertaining to the sequence of operations. Each method involves passing of
+certain parameters from the RRASM client to the RRAS implementation through the
+RRASM RPC server. The RRAS server performs the required operation locally in
+response to the RPC method request and provides the result of the operation to
+the RRASM server in the form of result information and associated data. The
+RRASM server is responsible for transporting the result information and the
+data associated, back to the client that originated the request. This
+request-response mechanism is provided by the RPC protocol as defined in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.
+In a nutshell, the RRASM client and server act as the endpoints providing
+remote communication to the RRAS implementation which already has these objects
+defined and managed locally.</p><p>The following two figures respectively show the
+Client/server message exchange and the RRAS conceptual model.</p><p><img id="MS-RRASM_picte2594efd-843b-21d2-0258-ad75298c674d.png" src="ms-rrasm_files/image001.png" alt="Client/server message exchange" title="Client/server message exchange" data-linktype="relative-path"/></p><p><b>Figure 1: Client/server message exchange</b></p><p><img id="MS-RRASM_pict36a2e2f7-a4da-122f-b93a-eaf075853bc2.png" src="ms-rrasm_files/image002.png" alt="RRAS conceptual model" title="RRAS conceptual model" data-linktype="relative-path"/></p><p><b>Figure 2: RRAS conceptual model</b></p><p>The RRASM client and server interact with each other using
+RPC and <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">Distributed
+Component Object Model (DCOM)</a> interfaces. There are two RPC interfaces
+supported by RRASM: <b>DIMSVC</b> and <b>RASRPC</b>. There is a DCOM interface
+supported by RRAS: <b>REMRAS</b>. These interfaces are specified in section <a href="89d8c3f8-4931-4795-bbb4-e20821adb9d0" data-linktype="relative-path">3</a>.</p><p>The RRAS implementation can be viewed as comprising the
+following components:</p><ul><li><p><span><span> 
+</span></span>Router Managers</p>
+</li><li><p><span><span> 
+</span></span>Interface Manager</p>
+</li><li><p><span><span> 
+</span></span>Connection Manager</p>
+</li></ul><p><b>Router Managers</b> are responsible for managing various <b>routing
+protocols</b>. <b>Router Managers</b> start as a part of the RRAS server
+initialization. The RRAS server will read the router configuration as specified
+in the registry store and will initialize the Router Managers with their
+configuration. There is one <b>Router Manager</b> per <b>transport</b> (for
+example, the IPv4 Router Manager). The Router Manager in turn is responsible
+for configuring the various routing protocols (for example, Routing Information
+Protocol (RIP) for IPv4 transport) for which the configuration is available.
+The Router Manager interacts with Interface Manager to monitor the various
+interfaces and their status. This in turn enables the Router Manager (and the
+routing protocols) to apply the routing configuration on the various
+interfaces. The Router Manager is also responsible for providing status and
+statistical information in the form of a Management Information Base (MIB).</p><p>The <b>Interface Manager</b> is the component responsible
+for managing the various interfaces (LAN/WAN) on the RRAS server. The LAN
+interface refers to the Ethernet interfaces that can participate in routing.
+The WAN interface can be a dial-in interface (the interface that collectively
+represents all the remote access clients that are connected to the RRAS
+server), or a <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_a5f114fd-0784-48a8-96b1-c07447033a0d" data-linktype="relative-path">demand-dial</a>
+interface (a WAN interface that is connected on demand to realize secure
+site-to-site router-level connectivity). For demand-dial interfaces, the <b>Interface
+Manager</b> is responsible for initiating the connection. The connection
+settings are managed by the <b>Interface Manager</b> using the phonebook file
+format. The manager reads the phonebook entry for the demand-dial connection
+settings and passes it to the <b>Connection Manager</b> to perform the task of
+setting up the connection using a specific protocol.</p><p>The <b>Connection Manager</b> is the component responsible
+for managing remote access connections. It provides the implementation of the
+various protocols as mentioned in the conceptual model (such as <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_09e8ce64-853c-4599-961d-1c3d851eaecb" data-linktype="relative-path">PPTP</a>, <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_d8e02e99-2309-4981-9da3-b6f2267b9f8f" data-linktype="relative-path">L2TP</a>, <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_d158ba19-bb5e-458e-bcda-38aed4eff053" data-linktype="relative-path">PPP</a>, and so on). It is also
+responsible for providing authentication, accounting, auditing, and
+authorization (AAAA) support for the remote access connections. This provides
+connection-specific detailed information for monitoring purposes.</p><p>These three components of RRAS server implement their own
+providers for configuration and monitoring tasks based on the defined objects
+and semantics. RRASM can then be used to perform these tasks remotely. The way these
+tasks are actually realized is outside the scope of the RRASM protocol itself.</p><p>The high-level data objects defined for an RRAS
+implementation to understand and operate on, and remotely managed by the RRASM
+protocol, are as follows:</p><ul><li><p><span><span> 
+</span></span>Interface</p>
+</li><li><p><span><span> 
+</span></span>Transport</p>
+</li><li><p><span><span> 
+</span></span>Management Information Base</p>
+</li><li><p><span><span> 
+</span></span>Port</p>
+</li><li><p><span><span> 
+</span></span>Connection</p>
+</li><li><p><span><span> 
+</span></span>Server</p>
+</li></ul><p>The RRAS implementation is defined to be the provider of
+these methods and objects for local management. These methods and objects are
+made available for the RRASM server to call into. The RRASM protocol makes
+these objects and methods available remotely over RPC interfaces, thereby
+enabling remote management.</p></div>

@@ -51,22 +51,248 @@ type ConfigClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The GetConfig method gets WSRM configuration information concerning accounting and
+	// notifications.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------+----------------------------------------+
+	//	|             RETURN             |                                        |
+	//	|           VALUE/CODE           |              DESCRIPTION               |
+	//	|                                |                                        |
+	//	+--------------------------------+----------------------------------------+
+	//	+--------------------------------+----------------------------------------+
+	//	| 0x00000000 S_OK                | Operation successful.                  |
+	//	+--------------------------------+----------------------------------------+
+	//	| 0x80070032 ERROR_NOT_SUPPORTED | The requested action is not supported. |
+	//	+--------------------------------+----------------------------------------+
+	//
+	// Additional IWRMConfig interface methods are specified in section 3.2.4.5.
 	GetConfig(context.Context, *GetConfigRequest, ...dcerpc.CallOption) (*GetConfigResponse, error)
 
+	// The SetConfig method sets WSRM configuration information concerning accounting and
+	// notifications.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                     RETURN                      |                                                                                  |
+	//	|                   VALUE/CODE                    |                                   DESCRIPTION                                    |
+	//	|                                                 |                                                                                  |
+	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                                 | Operation successful.                                                            |
+	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED                  | Access is denied.                                                                |
+	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070032 ERROR_NOT_SUPPORTED                  | The requested action is not supported.                                           |
+	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                         | One or more arguments are invalid.                                               |
+	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006E WRM_ERR_TOO_LONG_CONFIG_VALUE        | One or more specified values have exceeded an implementation-defined limit.<72>  |
+	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER            | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                                 | be processed.<73>                                                                |
+	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0190 WRM_ERR_INVALID_NTFY_ENABLE          | The notification-enabled value MUST be Boolean (section 2.2.1.2).                |
+	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0194 WRM_ERR_INVALID_EVENTLIST            | The notification event list format is invalid.                                   |
+	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF01F6 WRM_ERR_INVALID_ACC_ENABLE           | The accounting-enabled value MUST be Boolean (section 2.2.1.2).                  |
+	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF01F9 WRM_ERR_ACC_INVALID_DUMPING_INTERVAL | The logging interval for accounting is invalid. The interval MUST be between 2   |
+	//	|                                                 | and 60,000 minutes, inclusive.                                                   |
+	//	+-------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Note  When the CONFIGTYPE_ACCOUNTING option is used, an accounting client SHOULD
+	// call SetClientPermissions (section 3.2.4.3.14) prior to SetConfig in order to obtain
+	// authorization to modify an accounting database on a remote WSRM server. If a client
+	// does not have permission, ERROR_ACCESS_DENIED SHOULD be returned.<74>
+	//
+	// Additional IWRMConfig interface methods are specified in section 3.2.4.5.
 	SetConfig(context.Context, *SetConfigRequest, ...dcerpc.CallOption) (*SetConfigResponse, error)
 
+	// The IsEnabled method returns whether a type of WSRM configuration object is enabled
+	// or disabled.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------+------------------------------------+
+	//	|         RETURN          |                                    |
+	//	|       VALUE/CODE        |            DESCRIPTION             |
+	//	|                         |                                    |
+	//	+-------------------------+------------------------------------+
+	//	+-------------------------+------------------------------------+
+	//	| 0x00000000 S_OK         | Operation successful.              |
+	//	+-------------------------+------------------------------------+
+	//	| 0x80070057 E_INVALIDARG | One or more arguments are invalid. |
+	//	+-------------------------+------------------------------------+
+	//
+	// Additional IWRMConfig interface methods are specified in section 3.2.4.5.
 	IsEnabled(context.Context, *IsEnabledRequest, ...dcerpc.CallOption) (*IsEnabledResponse, error)
 
+	// The EnableDisable method enables or disables the management of a specified type of
+	// WSRM configuration.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                        RETURN                         |                                                                                  |
+	//	|                      VALUE/CODE                       |                                   DESCRIPTION                                    |
+	//	|                                                       |                                                                                  |
+	//	+-------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                                       | Operation successful.                                                            |
+	//	+-------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070032 ERROR_NOT_SUPPORTED                        | The requested action is not supported.<75>                                       |
+	//	+-------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                               | One or more arguments are invalid.                                               |
+	//	+-------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x81FF006D WRM_WARNING_CALENDARING_ALREADY_ENABLED    | The management service is already in calendar mode.                              |
+	//	+-------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x81FF0196 WRM_WARNING_NOTIFICATION_ALREADY_DISABLED  | Notification is already disabled.                                                |
+	//	+-------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x81FF0197 WRM_WARNING_NOTIFICATION_ALREADY_ENABLED   | Notification is already enabled.                                                 |
+	//	+-------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x81FF01F4 WRM_WARNING_ACCOUNTING_ALREADY_DISABLED    | Accounting is already disabled.                                                  |
+	//	+-------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x81FF01F5 WRM_WARNING_ACCOUNTING_ALREADY_ENABLED     | Accounting is already enabled.                                                   |
+	//	+-------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF007E WRM_ERR_ACCENABLED_UNDER_GROUPPOLICY       | The accounting setting is currently configured under Group Policy and cannot be  |
+	//	|                                                       | modified.<76>                                                                    |
+	//	+-------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0191 WRM_ERR_SMTPSERVERNAME_CANNOT_BE_NULL      | Both the Simple Mail Transfer Protocol (SMTP) server and email name are required |
+	//	|                                                       | in order to enable notification.                                                 |
+	//	+-------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0193 WRM_ERR_EVENTLIST_CANNOT_BE_NULL           | Notification requires at least one event.                                        |
+	//	+-------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF01F8 WRM_ERR_ACCOUNTING_NOT_CONFIGURED_PROPERLY | Accounting has not been configured properly. The accounting server might not be  |
+	//	|                                                       | present or access might be denied.<77>                                           |
+	//	+-------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF020B WRM_ERR_REMOTE_SERVICE_NOT_STARTED         | Connection to the remote server could not be established because the WSRM        |
+	//	|                                                       | management service has not been started on the remote server.<78>                |
+	//	+-------------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMConfig interface methods are specified in section 3.2.4.5.
 	EnableDisable(context.Context, *EnableDisableRequest, ...dcerpc.CallOption) (*EnableDisableResponse, error)
 
+	// The GetExclusionList method gets the current exclusion list of processes not managed
+	// by the WSRM management service.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                      RETURN                      |                                                                                  |
+	//	|                    VALUE/CODE                    |                                   DESCRIPTION                                    |
+	//	|                                                  |                                                                                  |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                                  | Operation successful.                                                            |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                          | One or more arguments are invalid.                                               |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006B WRM_ERR_TOO_LONG_PROCESS_NAME         | The exclusion list could not be returned because the number of characters in a   |
+	//	|                                                  | process name has exceeded an implementation-defined limit.<79>                   |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006C WRM_ERR_EXCLUSION_LIST_LIMIT_EXCEEDED | The exclusion list could not be returned because the number of processes that    |
+	//	|                                                  | can be excluded has exceeded an implementation-defined limit.<80>                |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMConfig interface methods are specified in section 3.2.4.5.
 	GetExclusionList(context.Context, *GetExclusionListRequest, ...dcerpc.CallOption) (*GetExclusionListResponse, error)
 
+	// The SetExclusionList method updates the contents of the exclusion list which is of
+	// type USER_EXCLUSION_LIST.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                      RETURN                      |                                                                                  |
+	//	|                    VALUE/CODE                    |                                   DESCRIPTION                                    |
+	//	|                                                  |                                                                                  |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                                  | Operation successful.                                                            |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006B WRM_ERR_TOO_LONG_PROCESS_NAME         | The exclusion list could not be returned because the number of characters in a   |
+	//	|                                                  | process name has exceeded an implementation-defined limit.<81>.                  |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006C WRM_ERR_EXCLUSION_LIST_LIMIT_EXCEEDED | The exclusion list could not be returned because the number of processes that    |
+	//	|                                                  | can be excluded has exceeded an implementation-defined limit.<82>                |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMConfig interface methods are specified in section 3.2.4.5.
 	SetExclusionList(context.Context, *SetExclusionListRequest, ...dcerpc.CallOption) (*SetExclusionListResponse, error)
 
+	// The WSRMActivate method activates or deactivates WSRM management state.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+---------------------------------------------+------------------------------------+
+	//	|                   RETURN                    |                                    |
+	//	|                 VALUE/CODE                  |            DESCRIPTION             |
+	//	|                                             |                                    |
+	//	+---------------------------------------------+------------------------------------+
+	//	+---------------------------------------------+------------------------------------+
+	//	| 0x00000000 S_OK                             | Operation successful.              |
+	//	+---------------------------------------------+------------------------------------+
+	//	| 0x81FF0075 WRM_WRN_WSRM_ALREADY_ACTIVATED   | WSRM has already been activated.   |
+	//	+---------------------------------------------+------------------------------------+
+	//	| 0x81FF0074 WRM_WRN_WSRM_ALREADY_DEACTIVATED | WSRM has already been deactivated. |
+	//	+---------------------------------------------+------------------------------------+
+	//
+	// This method MUST update the registry according to the management state of WSRM. If
+	// the WSRM management service later restarts, for example, after a reboot of the operating
+	// system, the WSRM management service MUST attempt to restore its prior management
+	// state.<83>
+	//
+	// Additional IWRMConfig interface methods are specified in section 3.2.4.5.
 	WSRMActivate(context.Context, *WSRMActivateRequest, ...dcerpc.CallOption) (*WSRMActivateResponse, error)
 
+	// The IsWSRMActivated method returns whether WSRM is active.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------+------------------------------------+
+	//	|         RETURN          |                                    |
+	//	|       VALUE/CODE        |            DESCRIPTION             |
+	//	|                         |                                    |
+	//	+-------------------------+------------------------------------+
+	//	+-------------------------+------------------------------------+
+	//	| 0x00000000 S_OK         | Operation successful.              |
+	//	+-------------------------+------------------------------------+
+	//	| 0x80070057 E_INVALIDARG | One or more arguments are invalid. |
+	//	+-------------------------+------------------------------------+
+	//
+	// Additional IWRMConfig interface methods are specified in section 3.2.4.5.
 	IsWSRMActivated(context.Context, *IsWSRMActivatedRequest, ...dcerpc.CallOption) (*IsWSRMActivatedResponse, error)
 
+	// The RestoreExclusionList method restores the exclusion list, which is of type USER_EXCLUSION_LIST,
+	// to default values.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IWRMConfig interface methods are specified in section 3.2.4.5.
 	RestoreExclusionList(context.Context, *RestoreExclusionListRequest, ...dcerpc.CallOption) (*RestoreExclusionListResponse, error)
 
 	// AlterContext alters the client context.
@@ -491,7 +717,25 @@ func (o *xxx_GetConfigOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 // GetConfigRequest structure represents the GetConfig operation request
 type GetConfigRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// enumConfigType: A CONFIGTYPE enumeration (section 2.2.3.1) value that specifies the
+	// type of WSRM configuration information to get.
+	//
+	// Obtaining calendar information is not supported. If this parameter is set to CONFIGTYPE_CALENDARING,
+	// ERROR_NOT_SUPPORTED SHOULD be returned.
+	//
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	|                           |                                                                                  |
+	//	|           VALUE           |                                     MEANING                                      |
+	//	|                           |                                                                                  |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| CONFIGTYPE_ACCOUNTING 1   | The WSRM configuration information is in the form of an AccountingConfigInfo     |
+	//	|                           | element (section 2.2.5.2).                                                       |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| CONFIGTYPE_NOTIFICATION 2 | The WSRM configuration information is in the form of a NotificationConfigInfo    |
+	//	|                           | element (section 2.2.5.19).                                                      |
+	//	+---------------------------+----------------------------------------------------------------------------------+
 	EnumConfigType wsrm.ConfigType `idl:"name:enumConfigType" json:"enum_config_type"`
 }
 
@@ -529,8 +773,10 @@ func (o *GetConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 // GetConfigResponse structure represents the GetConfig operation response
 type GetConfigResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ConfigInfo *oaut.String   `idl:"name:pbstrConfigInfo" json:"config_info"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrConfigInfo: A pointer to a string that returns WSRM configuration information.
+	// The type of information is determined by the value of the enumConfigType parameter.
+	ConfigInfo *oaut.String `idl:"name:pbstrConfigInfo" json:"config_info"`
 	// Return: The GetConfig return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -748,8 +994,28 @@ func (o *xxx_SetConfigOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 // SetConfigRequest structure represents the SetConfig operation request
 type SetConfigRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis  `idl:"name:This" json:"this"`
-	ConfigInfo     *oaut.String    `idl:"name:bstrConfigInfo" json:"config_info"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrConfigInfo: A string that contains WSRM configuration information. The type of
+	// information is determined by the value of the enumConfigType parameter.
+	ConfigInfo *oaut.String `idl:"name:bstrConfigInfo" json:"config_info"`
+	// enumConfigType: A CONFIGTYPE enumeration (section 2.2.3.1) value that specifies the
+	// type of WSRM configuration information to set.
+	//
+	// Setting calendar information is not supported. If this parameter is set to CONFIGTYPE_CALENDARING,
+	// ERROR_NOT_SUPPORTED SHOULD be returned.
+	//
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	|                           |                                                                                  |
+	//	|           VALUE           |                                     MEANING                                      |
+	//	|                           |                                                                                  |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| CONFIGTYPE_ACCOUNTING 1   | The WSRM configuration information is in the form of an AccountingConfigInfo     |
+	//	|                           | element (section 2.2.5.2).                                                       |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| CONFIGTYPE_NOTIFICATION 2 | The WSRM configuration information is in the form of an NotificationConfigInfo   |
+	//	|                           | element (section 2.2.5.19).                                                      |
+	//	+---------------------------+----------------------------------------------------------------------------------+
 	EnumConfigType wsrm.ConfigType `idl:"name:enumConfigType" json:"enum_config_type"`
 }
 
@@ -979,7 +1245,9 @@ func (o *xxx_IsEnabledOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 // IsEnabledRequest structure represents the IsEnabled operation request
 type IsEnabledRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// enumConfigType: A CONFIGTYPE enumeration (section 2.2.3.1) value that specifies the
+	// type of WSRM configuration object.
 	EnumConfigType wsrm.ConfigType `idl:"name:enumConfigType" json:"enum_config_type"`
 }
 
@@ -1017,8 +1285,10 @@ func (o *IsEnabledRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 // IsEnabledResponse structure represents the IsEnabled operation response
 type IsEnabledResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Enable bool           `idl:"name:pbEnable" json:"enable"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbEnable: A pointer to a Boolean value that indicates whether the WSRM configuration
+	// object is enabled or disabled.
+	Enable bool `idl:"name:pbEnable" json:"enable"`
 	// Return: The IsEnabled return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1210,8 +1480,24 @@ func (o *xxx_EnableDisableOperation) UnmarshalNDRResponse(ctx context.Context, w
 // EnableDisableRequest structure represents the EnableDisable operation request
 type EnableDisableRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis  `idl:"name:This" json:"this"`
-	EnableDisable  bool            `idl:"name:bEnableDisable" json:"enable_disable"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bEnableDisable: A Boolean value that specifies whether to enable or disable the management
+	// of the WSRM configuration. The type of configuration is determined by the value of
+	// the enumConfigType parameter.
+	//
+	//	+------------------+--------------------------------------------------------+
+	//	|                  |                                                        |
+	//	|      VALUE       |                        MEANING                         |
+	//	|                  |                                                        |
+	//	+------------------+--------------------------------------------------------+
+	//	+------------------+--------------------------------------------------------+
+	//	| FALSE 0x00000000 | Management of the WSRM configuration MUST be disabled. |
+	//	+------------------+--------------------------------------------------------+
+	//	| TRUE 0x00000001  | Management of the WSRM configuration MUST be enabled.  |
+	//	+------------------+--------------------------------------------------------+
+	EnableDisable bool `idl:"name:bEnableDisable" json:"enable_disable"`
+	// enumConfigType: A CONFIGTYPE enumeration (section 2.2.3.1) value that specifies the
+	// type of WSRM configuration to enable or disable.
 	EnumConfigType wsrm.ConfigType `idl:"name:enumConfigType" json:"enum_config_type"`
 }
 
@@ -1467,7 +1753,9 @@ func (o *xxx_GetExclusionListOperation) UnmarshalNDRResponse(ctx context.Context
 // GetExclusionListRequest structure represents the GetExclusionList operation request
 type GetExclusionListRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This         *dcom.ORPCThis         `idl:"name:This" json:"this"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// enumListType: An EXCLUSIONLIST_TYPE enumeration (section 2.2.3.2) value that specifies
+	// whether the list is system-defined or user-defined.
 	EnumListType wsrm.ExclusionlistType `idl:"name:enumListType" json:"enum_list_type"`
 }
 
@@ -1505,8 +1793,11 @@ func (o *GetExclusionListRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // GetExclusionListResponse structure represents the GetExclusionList operation response
 type GetExclusionListResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ExclusionList *oaut.String   `idl:"name:pbstrExclusionList" json:"exclusion_list"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrExclusionList: A pointer to a string that returns the exclusion list, in the
+	// form of an ExclusionList element (section 2.2.5.16). For an example, see ExclusionList
+	// Example (section 4.2.13).
+	ExclusionList *oaut.String `idl:"name:pbstrExclusionList" json:"exclusion_list"`
 	// Return: The GetExclusionList return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1711,8 +2002,10 @@ func (o *xxx_SetExclusionListOperation) UnmarshalNDRResponse(ctx context.Context
 // SetExclusionListRequest structure represents the SetExclusionList operation request
 type SetExclusionListRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This          *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ExclusionList *oaut.String   `idl:"name:bstrExclusionList" json:"exclusion_list"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrExclusionList: A string that specifies a list of processes, in the form of an
+	// ExclusionList element (section 2.2.5.16). For an example, see (section 4.2.13).
+	ExclusionList *oaut.String `idl:"name:bstrExclusionList" json:"exclusion_list"`
 }
 
 func (o *SetExclusionListRequest) xxx_ToOp(ctx context.Context, op *xxx_SetExclusionListOperation) *xxx_SetExclusionListOperation {
@@ -1926,8 +2219,20 @@ func (o *xxx_WSRMActivateOperation) UnmarshalNDRResponse(ctx context.Context, w 
 // WSRMActivateRequest structure represents the WSRMActivate operation request
 type WSRMActivateRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Activate bool           `idl:"name:bActivate" json:"activate"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bActivate: A Boolean value that specifies whether to activate or deactivate WSRM.
+	//
+	//	+------------------+---------------------------------------------------------------------------------+
+	//	|                  |                                                                                 |
+	//	|      VALUE       |                                     MEANING                                     |
+	//	|                  |                                                                                 |
+	//	+------------------+---------------------------------------------------------------------------------+
+	//	+------------------+---------------------------------------------------------------------------------+
+	//	| FALSE 0x00000000 | Management state of WSRM management service MUST be set to inactive or stopped. |
+	//	+------------------+---------------------------------------------------------------------------------+
+	//	| TRUE 0x00000001  | Management state of WSRM management service MUST be set to active or running.   |
+	//	+------------------+---------------------------------------------------------------------------------+
+	Activate bool `idl:"name:bActivate" json:"activate"`
 }
 
 func (o *WSRMActivateRequest) xxx_ToOp(ctx context.Context, op *xxx_WSRMActivateOperation) *xxx_WSRMActivateOperation {
@@ -2176,8 +2481,10 @@ func (o *IsWSRMActivatedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // IsWSRMActivatedResponse structure represents the IsWSRMActivated operation response
 type IsWSRMActivatedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Activated bool           `idl:"name:pbActivated" json:"activated"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbActivated: A pointer to a Boolean value that returns whether the WSRM server is
+	// in the active management state. If TRUE, WSRM is active; otherwise, it is inactive.
+	Activated bool `idl:"name:pbActivated" json:"activated"`
 	// Return: The IsWSRMActivated return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

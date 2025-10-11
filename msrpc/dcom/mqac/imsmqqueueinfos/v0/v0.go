@@ -52,7 +52,12 @@ type QueueInfosClient interface {
 	// Reset operation.
 	Reset(context.Context, *ResetRequest, ...dcerpc.CallOption) (*ResetResponse, error)
 
-	// Next operation.
+	// The Next method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns an MSMQQueueInfo4 object that represents a public queue in the
+	// ResultQueueCollection.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Next(context.Context, *NextRequest, ...dcerpc.CallOption) (*NextResponse, error)
 
 	// AlterContext alters the client context.
@@ -550,7 +555,10 @@ func (o *NextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // NextResponse structure represents the Next operation response
 type NextResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppqinfoNext: A pointer to an MSMQQueueInfo4 interface pointer that upon successful
+	// completion contains an initialized MSMQQueueInfo object representing the next public
+	// queue within the collection represented by the ResultQueueCollection instance variable.
 	Next *mqac.QueueInfo `idl:"name:ppqinfoNext" json:"next"`
 	// Return: The Next return value.
 	Return int32 `idl:"name:Return" json:"return"`

@@ -1,1 +1,21 @@
-<div class="content"></div>
+<div class="content"><p>The VSS_VOLUME_SNAPSHOT_ATTRIBUTES enumeration defines the
+set of valid attribute flags for a <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow copy</a>.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum _VSS_VOLUME_SNAPSHOT_ATTRIBUTES
+ {
+   VSS_VOLSNAP_ATTR_PERSISTENT = 0x00000001,
+   VSS_VOLSNAP_ATTR_NO_AUTORECOVERY = 0x00000002,
+   VSS_VOLSNAP_ATTR_CLIENT_ACCESSIBLE = 0x00000004,
+   VSS_VOLSNAP_ATTR_NO_AUTO_RELEASE = 0x00000008,
+   VSS_VOLSNAP_ATTR_NO_WRITERS = 0x00000010,
+ } VSS_VOLUME_SNAPSHOT_ATTRIBUTES;
+</pre></div>
+</dd></dl><p><b>VSS_VOLSNAP_ATTR_PERSISTENT:  </b>The shadow copy
+persists on the system despite rebooting the machine.</p><p><b>VSS_VOLSNAP_ATTR_NO_AUTORECOVERY:  </b>The shadow
+copy is created as read-only. Applications are not provided an opportunity to
+modify its contents.</p><p><b>VSS_VOLSNAP_ATTR_CLIENT_ACCESSIBLE:  </b>The
+shadow copy is of a specific type that can be exposed remotely through the SMB
+Protocol <a href="../ms-smb/f210069c-7086-4dc2-885e-861d837df688" data-linktype="relative-path">[MS-SMB]</a>.</p><p><b>VSS_VOLSNAP_ATTR_NO_AUTO_RELEASE:  </b>The shadow
+copy is not deleted after the client releases all references to the local
+interface that is used to create the shadow copy.</p><p><b>VSS_VOLSNAP_ATTR_NO_WRITERS:  </b>The shadow copy
+is created without any application-specific participation.</p></div>

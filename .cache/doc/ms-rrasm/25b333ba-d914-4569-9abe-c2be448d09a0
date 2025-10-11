@@ -1,1 +1,76 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPX_MIB_GET_INPUT_DATA</b> structure MAY<a id="Appendix_A_Target_96"></a><a aria-label="Product behavior note 96" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_96" data-linktype="relative-path">&lt;96&gt;</a> be used to retrieve IPX MIB
+entries. This structure is used in the following methods: </p><ul><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path">RMIBEntryGet (section 3.1.4.30)</a></p>
+</li><li><p><span><span> 
+</span></span><a href="9102e585-2f62-4408-bfb6-02a6460cc883" data-linktype="relative-path">RMIBEntryGetFirst (section 3.1.4.31)</a></p>
+</li><li><p><span><span> 
+</span></span><a href="50f78033-d248-4272-b4b9-a2519a0f304d" data-linktype="relative-path">RMIBEntryGetNext (section 3.1.4.32)</a></p>
+<div><pre> typedef struct _IPX_MIB_GET_INPUT_DATA {
+   ULONG TableId;
+   IPX_MIB_INDEX MibIndex;
+ } IPX_MIB_GET_INPUT_DATA,
+  *PIPX_MIB_GET_INPUT_DATA;
+</pre></div>
+</li></ul><p><b>TableId: </b>Specifies the type of table. Values
+MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPX_BASE_ENTRY</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>IPX base. See <a href="825552b7-7454-4a5f-8618-faa1da4ef714" data-linktype="relative-path">IPXMIB_BASE (section 2.2.1.2.106)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_INTERFACE_TABLE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p> IPX interface table. See <a href="6eff48f1-3f2e-4ba7-9db1-35d96b3ab5d0" data-linktype="relative-path">IPX_INTERFACE (section 2.2.1.2.108)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_DEST_TABLE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>IPX destination table. See <a href="05547443-377f-4578-9d2a-c9a3d88ebc3d" data-linktype="relative-path">IPX_ROUTE (section 2.2.1.2.109)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_STATIC_ROUTE_TABLE</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>IPX Static Route Table. See <a href="80f25fd1-c194-44dc-8ddf-8c95ba0e25ac" data-linktype="relative-path">IPX_STATIC_ROUTE_INFO (section 2.2.1.2.93)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_SERV_TABLE</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>IPX service table. See <a href="a1677c0c-302c-4789-9f5f-7af6a07ea8c1" data-linktype="relative-path">IPX_SERVICE (section 2.2.1.2.120)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_STATIC_SERV_TABLE</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>IPX static service table. See <a href="a8c32199-2bc6-4ddc-a681-4fc5ba56ee40" data-linktype="relative-path">IPX_STATIC_SERVICE_INFO (section 2.2.1.2.94)</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>MibIndex: </b>Specifies the MIB index for the
+query. See section <a href="9e132641-0b75-45b5-818c-a996828b4745" data-linktype="relative-path">2.2.1.2.104</a>.</p></div>

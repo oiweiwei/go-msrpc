@@ -1,0 +1,8 @@
+<div class="content"><p>The Server Cluster: Configuration (ClusCfg) Protocol is a <a href="6f99e32f-d3b3-4431-b0e6-122f5d1ca71e#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">DCOM</a> interface, as
+specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>,
+for initiating configuration operations for a <a href="6f99e32f-d3b3-4431-b0e6-122f5d1ca71e#gt_acd8b49c-8762-48fd-9272-26a03643322b" data-linktype="relative-path">failover cluster</a>. The
+ClusCfg Protocol allows users to restore a <a href="6f99e32f-d3b3-4431-b0e6-122f5d1ca71e#gt_762051d8-4fdc-437e-af9d-3f4da77c3c7d" data-linktype="relative-path">node</a> that is no longer a
+configured member of a failover cluster, back to its precluster installation
+state.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

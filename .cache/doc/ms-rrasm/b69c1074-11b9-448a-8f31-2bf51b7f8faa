@@ -1,1 +1,16 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IPFORWARD_TYPE</b> enumeration type specifies the
+type of the IP route.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MIB_IPROUTE_TYPE_OTHER = 1,
+   MIB_IPROUTE_TYPE_INVALID = 2,
+   MIB_IPROUTE_TYPE_DIRECT = 3,
+   MIB_IPROUTE_TYPE_INDIRECT = 4,
+ } MIB_IPFORWARD_TYPE;
+</pre></div>
+</dd></dl><p><b>MIB_IPROUTE_TYPE_OTHER: </b>Other than the type
+specified in <a href="https://go.microsoft.com/fwlink/?LinkId=119993" data-linktype="external">[RFC1354]</a>.</p><p><b>MIB_IPROUTE_TYPE_INVALID: </b>An invalid route is
+deleted.</p><p><b>MIB_IPROUTE_TYPE_DIRECT: </b>A local route where
+the next hop is the final destination (a local interface).</p><p><b>MIB_IPROUTE_TYPE_INDIRECT: </b>The remote route
+where the next hop is not the final destination (a remote destination).</p></div>

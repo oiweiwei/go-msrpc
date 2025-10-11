@@ -1,1 +1,43 @@
-<div class="content"></div>
+<div class="content"><p>In the <b>IPBOOTP_IF_BINDING</b> structure, the MIB entry
+contains the table of IP addresses to which each interface is bound. All of the
+IP addresses are in network order. The base structure contains the field
+IB_AddrCount, which gives the number of IP addresses to which the indexed
+interface is bound. The IP addresses themselves follow the base structure and
+are given as <a href="843cf179-2f88-494c-88d7-9a2a385311a5" data-linktype="relative-path"><b>IPBOOTP_IP_ADDRESS (section 2.2.1.2.155)</b></a>
+structures.  </p><dl>
+<dd>
+<div><pre> typedef struct _IPBOOTP_IF_BINDING {
+   DWORD IB_State;
+   DWORD IB_AddrCount;
+ } IPBOOTP_IF_BINDING,
+  *PIPBOOTP_IF_BINDING;
+</pre></div>
+</dd></dl><p><b>IB_State: </b>The state of the IPBOOTP. It MUST be
+one of the following values.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPBOOTP_STATE_ENABLED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The interface is enabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPBOOTP_STATE_BOUND</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The socket is bound and can listen to the IP BOOTP
+  packets <a href="https://go.microsoft.com/fwlink/?LinkId=90281" data-linktype="external">[RFC1542]</a>.</p>
+  </td>
+ </tr></tbody></table><p><b>IB_AddrCount: </b>The number of IP addresses to
+which the indexed interface is bound.</p></div>

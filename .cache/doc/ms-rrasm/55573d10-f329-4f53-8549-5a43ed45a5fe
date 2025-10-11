@@ -1,1 +1,20 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_UDPSTATS</b> structure contains statistics for
+the UDP running on the local computer. This structure is used in <b>MIB_OPAQUE_INFO</b> (section
+<a href="169e435d-a975-4c1c-bf41-55fd2bd76125" data-linktype="relative-path">2.2.1.2.52</a>) structure.</p><dl>
+<dd>
+<div><pre> typedef struct _MIB_UDPSTATS {
+   DWORD dwInDatagrams;
+   DWORD dwNoPorts;
+   DWORD dwInErrors;
+   DWORD dwOutDatagrams;
+   DWORD dwNumAddrs;
+ } MIB_UDPSTATS,
+  *PMIB_UDPSTATS;
+</pre></div>
+</dd></dl><p><b>dwInDatagrams: </b>The number of datagrams
+received.</p><p><b>dwNoPorts: </b>The number of datagrams received
+that were discarded because the port specified was invalid.</p><p><b>dwInErrors: </b>The number of erroneous datagrams
+received. This number does not include the value contained by the <b>dwNoPorts</b>
+member.</p><p><b>dwOutDatagrams: </b>The number of datagrams
+transmitted. </p><p><b>dwNumAddrs: </b>The number of entries in the UDP
+listener table.</p></div>

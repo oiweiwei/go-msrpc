@@ -1,1 +1,265 @@
-<div class="content"></div>
+<div class="content"><p>The NTMS_COMPUTERINFORMATION structure defines the
+properties specific to the RSM server.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_COMPUTERINFORMATION {
+   DWORD dwLibRequestPurgeTime;
+   DWORD dwOpRequestPurgeTime;
+   DWORD dwLibRequestFlags;
+   DWORD dwOpRequestFlags;
+   DWORD dwMediaPoolPolicy;
+ } NTMS_COMPUTERINFORMATION;
+</pre></div>
+</dd></dl><p><b>dwLibRequestPurgeTime:</b>  The total
+number of seconds that the completed <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_f8da5142-cddf-49b1-b24c-a352db74cbbb" data-linktype="relative-path">library requests</a> are
+maintained in the work queue.<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a></p><p><b>dwOpRequestPurgeTime:</b>  The total
+number of seconds that the completed <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_4676b5f2-6ecd-463c-8218-811911038e63" data-linktype="relative-path">operator requests</a> are
+maintained in the operator request queue.<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a></p><p><b>dwLibRequestFlags:</b>  The library
+request options. This member contains the following flag fields.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>F</p>
+  </td>
+  <td>
+  <p>A</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>Where the bits are defined as:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>A</p>
+  <p>NTMS_LIBREQFLAGS_NOAUTOPURGE</p>
+  </td>
+  <td>
+  <p>Library requests are not purged from the work queue.
+  This MUST be set to NULL by default.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F</p>
+  <p>NTMS_LIBREQFLAGS_NOFAILEDPURGE</p>
+  </td>
+  <td>
+  <p>Failed work items are not purged from the work queue.
+  This MUST be set to NULL by default.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwOpRequestFlags:</b>  The operator request
+options. Possible values include the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_OPREQFLAGS_NOAUTOPURGE</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>Operator requests MUST NOT be purged from the work
+  queue. This MUST be set to NULL by default.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_OPREQFLAGS_NOFAILEDPURGE</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>Failed operator requests MUST NOT be purged from the
+  queue. This MUST be set to NULL by default. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_OPREQFLAGS_NOALERTS</p>
+  <p>0x10</p>
+  </td>
+  <td>
+  <p>The alert for operator requests MUST be disabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_OPREQFLAGS_NOTRAYICON</p>
+  <p>0x20</p>
+  </td>
+  <td>
+  <p>The taskbar icon for operator requests MUST be
+  disabled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwMediaPoolPolicy:</b>  Media pool
+policies. Possible values include the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_POOLPOLICY_PURGEOFFLINESCRATCH</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>Any free media that is <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a22dff61-81ae-4414-8242-3d28f4c70c31" data-linktype="relative-path">ejected</a> MUST be
+  automatically deleted. This MUST be set to NULL by default. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_POOLPOLICY_KEEPOFFLINEIMPORT</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>Any import media that is ejected MUST NOT be deleted
+  automatically. This MUST be set to NULL by default. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

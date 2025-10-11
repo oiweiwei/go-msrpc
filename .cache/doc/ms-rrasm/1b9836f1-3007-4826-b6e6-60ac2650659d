@@ -1,1 +1,47 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPRIP_IF_BINDING</b> structure is an MIB entry that
+contains the table of IP addresses to which each interface is bound. This
+structure is used in <a href="45250002-d774-4bc2-ab2e-6992341b5f45" data-linktype="relative-path"><b>IPRIP_MIB_GET_INPUT_DATA (section 2.2.1.2.161)</b></a>
+and <a href="4fc16996-6de7-4f99-8cea-40e1f42931e1" data-linktype="relative-path"><b>IPRIP_MIB_GET_OUTPUT_DATA (section 2.2.1.2.162)</b></a>
+structures.   </p><p>All IP addresses are in network order. This structure is
+variable length. </p><p>The base structure contains the field <b>IB_AddrCount</b>,
+which gives the number of IP addresses to which the indexed interface is bound.
+The IP addresses themselves follow the base structure and are given as <a href="55d6cffe-6088-4b58-b368-2f9b72f48bbf" data-linktype="relative-path"><b>IPRIP_IP_ADDRESS (section 2.2.1.2.169)</b></a>
+structures. This MIB entry is read-only.  </p><dl>
+<dd>
+<div><pre> typedef struct _IPRIP_IF_BINDING {
+   DWORD IB_State;
+   DWORD IB_AddrCount;
+ } IPRIP_IF_BINDING,
+  *PIPRIP_IF_BINDING;
+</pre></div>
+</dd></dl><p><b>IB_State: </b>The IP RIP state on the interface.
+It MUST be a combination of one or more of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPRIP_STATE_ENABLED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The IP RIP is enabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_STATE_BOUND</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The socket is bound.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IB_AddrCount: </b>The number of <b>IPRIP_IP_ADDRESS</b>
+structures present at the end of this structure.</p></div>

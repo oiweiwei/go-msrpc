@@ -1,1 +1,17 @@
-<div class="content"></div>
+<div class="content"><p>The Distributed File System: Replication (DFS-R) Protocol is
+a <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call
+(RPC)</a> that replicates files between servers. <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_8f3c866a-07d2-4921-98ba-f5d376bfdba5" data-linktype="relative-path">DFS-R</a> enables creation of
+multimaster optimistic file replication systems. It is multimaster, because
+files can be changed by any member that participates in replicating shared
+files. It is optimistic, because files can be updated without any prior
+consensus or serialization. Therefore, files can be changed by any member
+without requiring the member to prevent other members from changing the files.</p><p>DFS-R is designed to replicate files, attributes, and file
+metadata. DFS-R is intended to interoperate with the user-level <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file system</a> semantics:
+Files are replicated when the applications that modify them close the files.
+File replication is designed to be performed asynchronously, such that updates
+made on one member are processed at the rate at which the receiving machine is
+able to receive the updates, without any real-time restrictions on when the
+changes must be propagated. DFS-R allows user-level file system operations to
+continue independent of protocol operations.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

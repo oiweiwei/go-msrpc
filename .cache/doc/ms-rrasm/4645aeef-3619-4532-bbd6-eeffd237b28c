@@ -1,1 +1,15 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RASRPC_LOCATIONLIST</b> structure contains
+information related to the TAPI location identifier.</p><dl>
+<dd>
+<div><pre> typedef struct _RASRPC_LOCATIONLIST {
+   DWORD dwLocationId;
+   DWORD iPrefix;
+   DWORD iSuffix;
+   [unique] struct _RASRPC_LOCATIONLIST* pNext;
+ } RASRPC_LOCATIONLIST,
+  *LPRASRPC_LOCATIONLIST;
+</pre></div>
+</dd></dl><p><b>dwLocationId: </b>Specifies the TAPI location id.</p><p><b>iPrefix: </b>It is unused and if set MUST be
+ignored by RRAS.</p><p><b>iSuffix: </b>It is unused and if set MUST be
+ignored by RRAS.</p><p><b>pNext: </b>Specifies the pointer to the next
+RASRPC_LOCATIONLIST structure.</p></div>

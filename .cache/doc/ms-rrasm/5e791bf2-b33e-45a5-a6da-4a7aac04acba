@@ -1,1 +1,48 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IP_AUTO_DHCP_INTERFACE_INFO</b> structure holds
+per-interface configuration for the DHCP allocator. This structure is used in
+the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="927c5bf1-ac91-4325-b945-0d96a58f609b" data-linktype="relative-path"><b>RRouterInterfaceTransportAdd (section 3.1.4.18)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="ec9ba293-45e9-4f12-b9af-7e77ec96c90e" data-linktype="relative-path"><b>RRouterInterfaceTransportGetInfo (section 3.1.4.19)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="209ba5e7-876e-4406-a05c-65b7e5fb2380" data-linktype="relative-path"><b>RRouterInterfaceTransportSetInfo (section 3.1.4.20)</b></a><span>  </span></p>
+</li></ul><p>The configuration only allows the DHCP allocator to be
+disabled on the given interface. Since the allocator runs in
+promiscuous-interface mode, it is enabled by default on all interfaces. Thus,
+the only interfaces that require any configuration are those on which the
+allocator is to be disabled.</p><dl>
+<dd>
+<div><pre> typedef struct _IP_AUTO_DHCP_INTERFACE_INFO {
+   ULONG Flags;
+ } IP_AUTO_DHCP_INTERFACE_INFO,
+  *PIP_AUTO_DHCP_INTERFACE_INFO;
+</pre></div>
+</dd></dl><p><b>Flags: </b>Specifies whether or not the DHCP
+allocator is enabled.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The DHCP allocator is enabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPNATHLP_INTERFACE_FLAG_DISABLED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The DHCP allocator is disabled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

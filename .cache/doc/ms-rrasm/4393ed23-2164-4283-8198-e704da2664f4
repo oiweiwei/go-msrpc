@@ -1,1 +1,19 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RAS_QUARANTINE_STATE</b> enumerated type indicates
+the quarantine state of a client connection <a href="../ms-rnap/e391716b-22f7-4bf7-bb39-202a18598000" data-linktype="relative-path">[MS-RNAP]</a>.
+For more information, see <a href="https://go.microsoft.com/fwlink/?LinkId=90049" data-linktype="external">[MSDN-NAP]</a>.</p><dl>
+<dd>
+<div><pre> typedef enum _RAS_QUARANTINE_STATE
+ {
+   RAS_QUAR_STATE_NORMAL,
+   RAS_QUAR_STATE_QUARANTINE,
+   RAS_QUAR_STATE_PROBATION,
+   RAS_QUAR_STATE_UNKNOWN
+ } RAS_QUARANTINE_STATE;
+</pre></div>
+</dd></dl><p><b>RAS_QUAR_STATE_NORMAL: </b>The connection state is
+normal.</p><p><b>RAS_QUAR_STATE_QUARANTINE: </b>The connection is
+quarantined, meaning that the client did not meet the health requirements
+[MS-RNAP] and therefore, its access is restricted to specific servers.</p><p><b>RAS_QUAR_STATE_PROBATION: </b>The connection is in
+probation, meaning that the client is not healthy [MS-RNAP] and needs to become
+healthy within a specified duration.</p><p><b>RAS_QUAR_STATE_UNKNOWN: </b>The connection state
+is unknown.</p></div>

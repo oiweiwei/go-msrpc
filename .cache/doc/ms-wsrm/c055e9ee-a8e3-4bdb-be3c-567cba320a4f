@@ -1,1 +1,28 @@
-<div class="content"></div>
+<div class="content"><p>The DefragmentDB method is not implemented. It MUST return a
+success code.</p><dl>
+<dd>
+<div><pre> [id(7), helpstring(&#34;method DefragmentDB&#34;)] HRESULT DefragmentDB();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>This method returns 0x00000000
+for success.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="d5942816-752f-480a-9712-38ef0a248b6a" data-linktype="relative-path">IWRMAccounting</a> interface
+methods are specified in section 3.2.4.3.</p></div>

@@ -19,7 +19,7 @@ that are located in a folder that has &#34;$RECYCLE.BIN&#34; in its <a href="809
 capitalization. Without this option, those files will be excluded.</p><p><b>FsrmEnumOptions_IncludeClusterNodes:  </b>If the
 system is configured to be part of a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_feef37b3-c173-4f51-aab6-b55a6366259b" data-linktype="relative-path">cluster</a>, include all
 objects even if they are not currently available on the system (identified by
-the machine name). Without this option, only objects available on the current system
-will be included.</p><p><b>FsrmEnumOptions_IncludeDeprecatedObjects:  </b>If
+the machine name). Without this option, only objects available on the current
+system will be included.</p><p><b>FsrmEnumOptions_IncludeDeprecatedObjects:  </b>If
 any objects were marked Deprecated, they will appear only when enumerated with
 this option.</p></div>

@@ -1,1 +1,36 @@
-<div class="content"></div>
+<div class="content"><p>The MACHINE_GROUP_MERGE_OPTIONS enumeration defines options
+for <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_f4153c8c-848d-4db5-b9cc-4113e5f1e406" data-linktype="relative-path">machine group</a>
+modification.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum 
+ {
+   OVERWRITE_MG_MERGE_OPTION = 1,
+   OVERRIDE_MG_MERGE_OPTION = 2,
+   APPEND_MG_MERGE_OPTION = 3,
+   SMART_MG_MERGE_OPTION = 4,
+ } MACHINE_GROUP_MERGE_OPTIONS;
+</pre></div>
+</dd></dl><p><b>OVERWRITE_MG_MERGE_OPTION:  </b>Specifies that the
+machine group configuration SHOULD be overwritten.</p><p><b>OVERRIDE_MG_MERGE_OPTION:  </b>Specifies that the
+machine group configuration SHOULD be overridden. That means that if the same
+machine group name exists with the same hierarchy then this (along with its
+children) SHOULD be replaced by the new machine group node. Nonconflicting new
+nodes SHOULD be imported as is. Nonconflicting existing nodes SHOULD remain as
+is.</p><p><b>APPEND_MG_MERGE_OPTION:  </b>Specifies that the
+machine group configuration SHOULD be appended. This means that nonconflicting
+nodes SHOULD remain as is in the existing configuration. Nonconflicting new
+nodes SHOULD be imported as is. Conflicting nodes SHOULD not be modified.</p><p><b>SMART_MG_MERGE_OPTION:  </b>Specifies that the
+machine group configuration SHOULD be handled smartly. This means that
+nonconflicting nodes SHOULD remain as is in the existing configuration.
+Nonconflicting new nodes SHOULD be imported as is. Conflicting nodes SHOULD be
+merged in a way that the name of the imported node will be changed to avoid
+name conflict. The new name of the conflicting object, which is being imported,
+is built by appending its original name with the string &#34;##@&#34;
+followed by a number. The numbers used are in the range 1-16384 and a number,
+once used, is not reused until the object it was used in is either deleted or
+renamed. For example, an object name &#34;ObjectName&#34; might become &#34;ObjectName##@1&#34;
+after using this option. This range is sufficiently large and is not consumed
+completely because, in the WSRM configuration, the maximum allowed number of
+objects of each type is 128. In addition, whenever an object with a smart name
+is deleted or renamed, the number that was used in its name is available for
+reuse.</p></div>

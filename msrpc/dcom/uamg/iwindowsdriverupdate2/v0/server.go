@@ -31,10 +31,61 @@ type WindowsDriverUpdate2Server interface {
 	// IWindowsDriverUpdate base class.
 	iwindowsdriverupdate.WindowsDriverUpdateServer
 
+	// The IWindowsDriverUpdate2::RebootRequired (opnum 61) method retrieves whether a reboot
+	// is needed to complete installation or uninstallation of the update.
+	//
+	// The IUpdate2::RebootRequired (opnum 53) method retrieves whether a reboot is needed
+	// to complete installation or uninstallation of the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the RebootRequired ADM element.
 	GetRebootRequired(context.Context, *GetRebootRequiredRequest) (*GetRebootRequiredResponse, error)
 
+	// The IUpdate2::IsPresent (opnum 54) method retrieves whether the update is installed
+	// for one or more products.
+	//
+	// The IWindowsDriverUpdate2::IsPresent (opnum 62) method retrieves whether the update
+	// is installed for one or more products.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the IsPresent ADM element.
 	GetIsPresent(context.Context, *GetIsPresentRequest) (*GetIsPresentResponse, error)
 
+	// The IUpdate2::CveIDs (opnum 55) method retrieves the CVE IDs associated with the
+	// update.
+	//
+	// The IWindowsDriverUpdate2::CveIDs (opnum 63) method retrieves the CVE IDs associated
+	// with the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the CveIDs ADM element.
 	GetCveIDs(context.Context, *GetCveIDsRequest) (*GetCveIDsResponse, error)
 
 	// Opnum64NotUsedOnWire operation.

@@ -1,1 +1,53 @@
-<div class="content"></div>
+<div class="content"><p>The GetTelnetSessions method is used to query the <a href="2773e920-ee91-4a2c-bb52-9f09c583f1af#gt_0a962242-a6b0-42e4-abb1-39d7434d3c8b" data-linktype="relative-path">telnet server</a> for
+information about all active <a href="2773e920-ee91-4a2c-bb52-9f09c583f1af#gt_a14efd2b-9efb-4197-accc-aa6935f1719c" data-linktype="relative-path">telnet
+sessions</a>.</p><dl>
+<dd>
+<div><pre> HRESULT GetTelnetSessions(
+   [out, retval] BSTR* pszSessionData
+ );
+</pre></div>
+</dd></dl><p><b>pszSessionData: </b>A string pointer to <a href="3f032f2d-d61b-4bef-b94f-c6359b68294c" data-linktype="relative-path">PSZSESSIONDATA</a> string that
+contains information about telnet sessions in the server.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="d1c1f9d9-02f9-432e-9e95-4b37f20a61de#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a></p><dl>
+<dd>
+<p>The server must fill various fields of
+PSZSESSIONDATA as below. </p>
+</dd></dl><p><b>NumberofSessions: </b>The server MUST set the
+value for this field to the number of current active telnet session in Telnet
+Server.  The server MUST ensure that the value of this field matches the number
+of instances of SessionInformation strings.</p><p><b>SessionInformation:</b> The server MUST have one
+SessionInformation string per active session and the number of
+SessionInformation strings MUST be the same as the value of NumberofSessions
+field. </p><p><b>ID:</b> ID of the session. The server must fill
+this filed with the unique identifier of the session. The server can reuse
+unique identifiers assigned to a session, but the server MUST ensure that at
+any given point in time only one telnet session exists with a particular ID.
+Refer to Section <a href="985f52c9-34ae-4b74-ac04-c4f95589ca9f" data-linktype="relative-path">3.1.1</a>
+for an abstract data model that the server can maintain.</p><p><b>Userdomain:</b> The server MUST set the value for
+this field to the domain of which the user that established the telnet session
+is a member. If the user account is not a member of any domain then the server
+MUST fill this field with the computer name of the server.</p><p><b>UserName:</b>  The server MUST set the value for
+this field to the user name of the user that established the telnet session.</p><p><b>Computername:</b> The server MUST set the value
+for this field to either the IPv4 or IPv6 address of the client. <a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="d1c1f9d9-02f9-432e-9e95-4b37f20a61de#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a></p><p><b>Year:</b> The server MUST determine the value for
+this field from the time of logon expressed in Coordinated Universal Time
+(UTC). </p><p><b>Month:</b> The server MUST determine the value for
+this field from the time of logon expressed in Coordinated Universal Time
+(UTC).</p><p><b>Dayofweek:</b> The server MUST determine the value
+for this field from the time of logon expressed in Coordinated Universal Time
+(UTC).</p><p><b>Day:</b> The server MUST determine the value for
+this field from the time of logon expressed in Coordinated Universal Time
+(UTC).</p><p><b>Hour:</b> The server MUST determine the value for
+this field from the time of logon expressed in Coordinated Universal Time
+(UTC).</p><p><b>Minute:</b> The server MUST determine the value
+for this field from the time of logon expressed in Coordinated Universal Time
+(UTC).</p><p><b>Second:</b> The server MUST determine the value
+for this field from the time of logon expressed in Coordinated Universal Time
+(UTC).</p><p><b>Milliseconds:</b> The server MUST determine the value
+for this field from the time of logon expressed in Coordinated Universal Time
+(UTC).</p><p><b>Idletime:</b> The server MUST set the value of
+this field to the time for which there has been no exchange of any
+communication between telnet client and server. </p><p><b>Return Values: </b>The server MUST return zero if
+the method is successful. The server MUST return 0x01 if processing fails and
+set output parameters to NULL. These are in addition to the values that can be
+returned by the underlying <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+implementation.</p><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying DCOM protocol [MS-DCOM].</p></div>

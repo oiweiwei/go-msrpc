@@ -1,1 +1,121 @@
-<div class="content"></div>
+<div class="content"><p>The MoveToNtmsMediaPool method moves a medium from its
+current media pool to another media pool.</p><dl>
+<dd>
+<div><pre> HRESULT MoveToNtmsMediaPool(
+   [in] LPNTMS_GUID lpMediaId,
+   [in] LPNTMS_GUID lpPoolId
+ );
+</pre></div>
+</dd></dl><p><b>lpMediaId: </b>A pointer to the identifier of a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_9036b269-4f3b-4353-a1d0-54f5c686ec2c" data-linktype="relative-path">physical medium</a>.</p><p><b>lpPoolId:</b>  A pointer to the identifier of a
+media pool to which the medium is to be moved.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>NTMS_MODIFY_ACCESS to the library is denied; other
+  security errors are possible, but indicate a security subsystem error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>An allocation failure occurred during processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The parameter is missing or invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800700AA</p>
+  <p>ERROR_BUSY</p>
+  </td>
+  <td>
+  <p>A <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_55db62c5-a84f-43b7-a037-b44ecd8fb92f" data-linktype="relative-path">side</a>
+  of the media is in use or currently unavailable.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CC</p>
+  <p>ERROR_INVALID_MEDIA</p>
+  </td>
+  <td>
+  <p>The source media or implied source media pool is
+  invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CE</p>
+  <p>ERROR_INVALID_MEDIA_POOL</p>
+  </td>
+  <td>
+  <p>Either the destination media pool is invalid, or media
+  in the unrecognized or <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_c74372fa-bcae-4710-8b24-996fa2b676ac" data-linktype="relative-path">import
+  pool</a> can be moved only to the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_58cd2daf-1d47-44a9-a725-a9459fd5efaf" data-linktype="relative-path">free pool</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database is inaccessible or damaged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DA</p>
+  <p>ERROR_DATABASE_FULL</p>
+  </td>
+  <td>
+  <p>The database is full.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DB</p>
+  <p>ERROR_MEDIA_INCOMPATIBLE</p>
+  </td>
+  <td>
+  <p>The source media type differs from the media type of
+  the destination pool.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpMediaId</i>
+and <i>lpPoolId</i> are not NULL. If parameter validation fails, the server
+MUST immediately fail the operation and return ERROR_INVALID_PARAMETER
+(0x80070057).</p><p>If parameter validation succeeds, the server MUST check that
+the user has the required access rights, ensure that all the partitions of the
+media about to be moved are currently available, and then MUST move the
+specified medium from its current media pool to the specified media pool. If
+the client does not have the required access rights, the server MUST return
+ERROR_ACCESS_DENIED (0x80070005).</p><p>The destination pool specified in the MoveToNtmsMediaPool
+method MUST be of the same media type and have compatible security.</p><p>The server MUST write an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_e88a9ca7-9b8d-4dca-9338-59c98e1a5f13" data-linktype="relative-path">on-media identifier</a> to
+media before moving the media into the free media pool.</p><p>A medium having a partition in the completed, <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_0e546e86-71c4-45cc-9ef1-4a78f6cb425a" data-linktype="relative-path">allocated</a>, or reserved
+state MUST NOT be moved to the free media pool. A medium MAY be moved to an
+import pool only if all the partitions of the medium are in the import state.<a id="Appendix_A_Target_32"></a><a aria-label="Product behavior note 32" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_32" data-linktype="relative-path">&lt;32&gt;</a></p><p>On completion of an asynchronous operation, notification
+will be sent with the identifier lpPoolId.</p></div>

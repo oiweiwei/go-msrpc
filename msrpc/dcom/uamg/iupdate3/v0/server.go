@@ -31,6 +31,23 @@ type Update3Server interface {
 	// IUpdate2 base class.
 	iupdate2.Update2Server
 
+	// The IUpdate3::BrowseOnly (opnum 57) method retrieves whether the update is browse-only.
+	//
+	// The IWindowsDriverUpdate3::BrowseOnly (opnum 65) method retrieves whether the update
+	// is browse-only. If an update is browse-only, then it is not recommended for the update
+	// to be installed automatically.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the BrowseOnly ADM element.
 	GetBrowseOnly(context.Context, *GetBrowseOnlyRequest) (*GetBrowseOnlyResponse, error)
 }
 

@@ -1,1 +1,84 @@
-<div class="content"></div>
+<div class="content"><p>The GetConfig method gets <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_c18a91a3-689f-4e5e-9a91-c7b8f5402c5e" data-linktype="relative-path">WSRM configuration</a>
+information concerning <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1156c8ef-4d49-462b-9f76-aebcb6c57011" data-linktype="relative-path">accounting</a>
+and notifications.</p><dl>
+<dd>
+<div><pre> [id(1), helpstring(&#34;method GetConfig&#34;)] HRESULT GetConfig(
+   [out] BSTR* pbstrConfigInfo,
+   [in] CONFIGTYPE enumConfigType
+ );
+</pre></div>
+</dd></dl><p><b>pbstrConfigInfo: </b>A pointer to a string that
+returns WSRM configuration information. The type of information is determined
+by the value of the <i>enumConfigType</i> parameter.</p><p><b>enumConfigType: </b>A <a href="c7d0ac7a-d7f4-492c-93cf-df63e3970229" data-linktype="relative-path">CONFIGTYPE</a> enumeration
+(section 2.2.3.1) value that specifies the type of WSRM configuration
+information to get.</p><dl>
+<dd>
+<p>Obtaining calendar information is not supported. If
+this parameter is set to <b>CONFIGTYPE_CALENDARING</b>, <b>ERROR_NOT_SUPPORTED</b>
+SHOULD be returned.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CONFIGTYPE_ACCOUNTING</p>
+  <p>1</p>
+  </td>
+  <td>
+  <p>The WSRM configuration information is in the form of
+  an <a href="25276767-8123-48c5-9b2f-0eec944e8f32" data-linktype="relative-path">AccountingConfigInfo</a>
+  element (section 2.2.5.2).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CONFIGTYPE_NOTIFICATION</p>
+  <p>2</p>
+  </td>
+  <td>
+  <p>The WSRM configuration information is in the form of a
+  <a href="0b4d2217-2765-4afb-ab64-ccc3b5c41953" data-linktype="relative-path">NotificationConfigInfo</a>
+  element (section 2.2.5.19).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070032</p>
+  <p>ERROR_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The requested action is not supported.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="38d3fffd-48ad-4e02-a7ce-b13da6304c80" data-linktype="relative-path">IWRMConfig</a> interface
+methods are specified in section 3.2.4.5.</p></div>

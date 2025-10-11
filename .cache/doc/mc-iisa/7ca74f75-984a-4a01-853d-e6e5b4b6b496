@@ -1,0 +1,28 @@
+<div class="content"><p>The IAppHostConfigManager <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides methods
+that allow access to the available hierarchy paths and the <a href="59774887-09e3-4de5-ad8e-4794f404b123" data-linktype="relative-path">IAppHostElement</a> objects
+that are defined within.</p><p>The IAppHostConfigManager interface inherits opnums 0–2 from
+the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="f97ca13f-3e34-402b-a0fb-053d676a064e" data-linktype="relative-path">GetConfigFile</a></p>
+  </td>
+  <td>
+  <p>Opnum: 3</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="f368fd09-096c-4f65-98ae-1918a3569560" data-linktype="relative-path">GetUniqueConfigPath</a></p>
+  </td>
+  <td>
+  <p>Opnum: 4</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

@@ -1,5 +1,5 @@
-<div class="content"><p>The CreateFileScreenException method creates a <a href="0902b6bb-43d6-4d38-bc17-a691e9245855" data-linktype="relative-path">Non-Persisted File Screen Exception
-Instance (section 3.2.1.3.2.2)</a> on the specified path.</p><dl>
+<div class="content"><p>The CreateFileScreenException method creates a <a href="0902b6bb-43d6-4d38-bc17-a691e9245855" data-linktype="relative-path">Non-Persisted File Screen
+Exception Instance (section 3.2.1.3.2.2)</a> on the specified path.</p><dl>
 <dd>
 <div><pre> [id(FSRM_DISPID_FILESCREEN_MANAGER | 0x04)] HRESULT CreateFileScreenException(
    [in] BSTR path,
@@ -50,9 +50,8 @@ parameters:</p><ul><li><p><span><span>
 </li></ul><p>If any validation fails, the server MUST terminate
 processing and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
 perform the following actions.</p><ul><li><p><span><span> 
-</span></span>Create a new Non-Persisted File Screen Exception
-Instance (section 3.2.1.3.2.2) with the <b>File Screen
-Exception.Folder path</b> set to the specified path.</p>
+</span></span>Create a new Non-Persisted File Screen Exception Instance (section 3.2.1.3.2.2)
+with the <b>File Screen Exception.Folder path</b> set to the specified path.</p>
 <ul><li><p><span><span>  </span></span>Set
 <b>FSRM Base Object.Id</b> to a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>.</p>
 </li><li><p><span><span>  </span></span>Set

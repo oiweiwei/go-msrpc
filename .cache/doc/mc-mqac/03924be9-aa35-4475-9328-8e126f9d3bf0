@@ -1,0 +1,55 @@
+<div class="content"><p>The InitNew method is received by the server in an
+RPC_REQUEST packet. In response, the server MUST initialize an MSMQ <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a> object to
+represent an existing underlying transaction object.</p><dl>
+<dd>
+<div><pre> HRESULT InitNew(
+   [in] VARIANT varTransaction
+ );
+</pre></div>
+</dd></dl><p><b>varTransaction: </b>A pointer to a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_a3af3eaf-64b7-499b-a95f-193cd4c27812" data-linktype="relative-path">VARIANT</a> that points to an
+existing underlying transaction object that is implementing the <a href="1fb025b7-9089-45da-9b01-2078fa8073bb" data-linktype="relative-path">ITransaction</a> interface.
+The VARIANT that is passed can be any one of the following types:</p><ul><li><p><span><span> 
+</span></span>VT_UNKNOWN</p>
+</li><li><p><span><span> 
+</span></span>VT_UNKNOWN | VT_BYREF</p>
+</li><li><p><span><span> 
+</span></span>VT_DISPATCH</p>
+</li><li><p><span><span> 
+</span></span>VT_DISPATCH | VT_BYREF</p>
+</li></ul><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+processes this call, it MUST follow these guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>Transaction</i> instance variable is NOT NULL:</p>
+<ul><li><p><span><span>  </span></span>Return
+MQ_ERROR_TRANSACTION_USAGE (0xC00E0050), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Retrieve the transaction object, referred to as <i>rTransObj</i>,
+from the <i>varTransaction </i>VARIANT based on the type of the VARIANT as
+follows:</p>
+<ul><li><p><span><span>  </span></span>If <i>varTransaction</i>.vt
+is VT_UNKNOWN then set <i>rTransObj</i> to <i>varTransaction</i>.punkVal.</p>
+</li><li><p><span><span>  </span></span>Else
+if <i>varTransaction</i>.vt is VT_UNKNOWN | VT_BYREF then set <i>rTransObj</i>
+to <i>varTransaction</i>.ppunkVal.</p>
+</li><li><p><span><span>  </span></span>Else
+if <i>varTransaction</i>.vt is VT_DISPATCH then set <i>rTransObj</i> to <i>varTransaction</i>.pdispVal.</p>
+</li><li><p><span><span>  </span></span>Else
+if <i>varTransaction</i>.vt is VT_ DISPATCH | VT_BYREF then set <i>rTransObj</i>
+to <i>varTransaction</i>.ppdispVal.</p>
+</li><li><p><span><span>  </span></span>Otherwise
+return E_INVALIDARG (0x80070057).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Retrieve the transaction object that is implementing the
+ITransaction interface by calling <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown::QueryInterface</a>
+(section <a href="6b1800d7-4e98-48be-997e-57f09ce52d41" data-linktype="relative-path">3.1</a>) on <i>rTransObj</i>,
+passing the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_76ad3105-3f05-479d-a40c-c9c8fa2ebd83" data-linktype="relative-path">interface
+identifier</a> of ITransaction.</p>
+</li><li><p><span><span> 
+</span></span>Return E_INVALIDARG (0x80070057) if the <i>varTransaction</i>
+input parameter does not implement the ITransaction interface, and take no
+further action.</p>
+</li><li><p><span><span> 
+</span></span>Set the <i>Transaction</i> instance variable to the value of the
+transaction object previously obtained.</p>
+</li></ul></div>

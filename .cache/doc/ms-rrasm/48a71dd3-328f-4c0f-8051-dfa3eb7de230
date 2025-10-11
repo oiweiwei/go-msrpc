@@ -1,1 +1,15 @@
-<div class="content"></div>
+<div class="content"><p>The <b>BGP_PEERING_OP_MODE</b> enumeration<a id="Appendix_A_Target_16"></a><a aria-label="Product behavior note 16" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_16" data-linktype="relative-path">&lt;16&gt;</a> enumerates the operation mode
+of a <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_10fb4236-73b3-4c84-ad83-1e288ede860f" data-linktype="relative-path">BGP</a> peer.</p><dl>
+<dd>
+<div><pre> typedef enum _BGP_PEERING_OP_MODE
+ {
+   OpModeMixed = 1,
+   OpModeServer = 2
+ } BGP_PEERING_OP_MODE,
+  *PBGP_PEERING_OP_MODE;
+</pre></div>
+</dd></dl><p><b>OpModeMixed: </b>The <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_3a805569-358b-4691-b201-80833db6e879" data-linktype="relative-path">BGP speaker</a> is configured
+to accept an incoming connection from the BGP peer on port 179. It is also
+configured to initiate a connection to BGP peers.</p><p><b>OpModeServer: </b>The BGP speaker is configured to
+only accept an incoming connection from the BGP peer. It never initiates the
+connection itself.</p></div>

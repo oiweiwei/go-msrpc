@@ -31,8 +31,42 @@ type WindowsDriverUpdate5Server interface {
 	// IWindowsDriverUpdate4 base class.
 	iwindowsdriverupdate4.WindowsDriverUpdate4Server
 
+	// The IWindowsDriverUpdate5::AutoSelection (opnum 68) method retrieves a value describing
+	// when the update is recommended to be selected automatically in the UI.
+	//
+	// The IUpdate5::AutoSelection (opnum 59) method retrieves a value describing when the
+	// update is recommended to be selected automatically in a user interface.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the AutoSelection ADM element.
 	GetAutoSelection(context.Context, *GetAutoSelectionRequest) (*GetAutoSelectionResponse, error)
 
+	// The IUpdate5::AutoDownload (opnum 60) method retrieves a value describing when the
+	// update is recommended to be downloaded automatically.
+	//
+	// The IWindowsDriverUpdate5::AutoDownload (opnum 69) method retrieves a value describing
+	// when the update is recommended to be downloaded automatically.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the AutoDownload ADM element.
 	GetAutoDownload(context.Context, *GetAutoDownloadRequest) (*GetAutoDownloadResponse, error)
 }
 

@@ -1,1 +1,16 @@
-<div class="content"></div>
+<div class="content"><p>The <b>STATIC_ROUTES_TABLE_INDEX</b> structure MAY<a id="Appendix_A_Target_92"></a><a aria-label="Product behavior note 92" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_92" data-linktype="relative-path">&lt;92&gt;</a> be used to specify the index
+within the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_3d3022dc-8226-46d9-b5e8-620f1f6fd7d6" data-linktype="relative-path">static routes</a>
+table. It is used in <a href="9e132641-0b75-45b5-818c-a996828b4745" data-linktype="relative-path"><b>IPX_MIB_INDEX (section 2.2.1.2.104)</b></a>. 
+</p><dl>
+<dd>
+<div><pre> typedef struct _STATIC_ROUTES_TABLE_INDEX {
+   ULONG InterfaceIndex;
+   UCHAR Network[4];
+ } STATIC_ROUTES_TABLE_INDEX,
+  *PSTATIC_ROUTES_TABLE_INDEX;
+</pre></div>
+</dd></dl><p><b>InterfaceIndex: </b>The local index value for the
+network interface. This index value MAY change when a network adapter is
+disabled and then enabled, or under other circumstances, and need not be
+persistent.</p><p><b>Network: </b>This MUST be the 4-byte IPX network
+number in hexadecimal (8 hexadecimal digits).</p></div>

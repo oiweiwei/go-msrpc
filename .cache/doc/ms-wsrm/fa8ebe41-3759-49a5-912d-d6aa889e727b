@@ -1,1 +1,91 @@
-<div class="content"></div>
+<div class="content"><p>The ComputeEvents method computes the calendar events in a
+specified time interval. It returns the list of all calendar events from the
+system in <i>pbstrEvents</i> with a start time greater than or equal to the one
+specified in <i>szStartTime</i> and with an end time less than or equal to the
+one specified in <i>szEndTime</i>. If the method is called with <i>fMergeEvents</i>
+set to TRUE, conflicting events are merged and returned in <i>pbstrConflicts</i>.</p><dl>
+<dd>
+<div><pre> [id(6), helpstring(&#34;method ComputeEvents&#34;)] HRESULT ComputeEvents(
+   [in] BSTR szStartTime,
+   [in] BSTR szEndTime,
+   [in] BOOL fMergeEvents,
+   [out] BSTR* pbstrEvents,
+   [out] BSTR* pbstrConflicts
+ );
+</pre></div>
+</dd></dl><p><b>szStartTime: </b>A string that specifies the start
+time to compute calendar events, in <a href="edaf1cfc-12b2-4093-8ff8-227c21f9bff5" data-linktype="relative-path">time</a> format (section
+2.2.1.3).</p><p><b>szEndTime: </b>A string that specifies the end
+time to compute calendar events, in time format.</p><p><b>fMergeEvents: </b>A Boolean value that specifies
+whether to merge calendar events. All conflicting events, that is, those whose
+start time and end time overlap, are returned in <i>pbstrConflicts</i>. If the <i>fMergeEvents</i>
+value is TRUE, conflicting events are merged into a new event with the
+start-time <b>DtTmStart</b> element picked from the event with the earliest
+start time and the end-time <b>DtTmEnd</b>, <b>PolicyName</b>, and <b>CalendarName</b>
+elements picked from the event with the latest end time.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The server SHOULD NOT merge calendar events.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The server SHOULD merge calendar events.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pbstrEvents: </b>A pointer to a string that
+returns a list of events that are computed during execution, in the form of an <a href="b304a27e-e2f4-4a63-aed1-9aa8976b96f6" data-linktype="relative-path">Events</a> element (section
+2.2.5.15). For an example, see <a href="c182139a-4838-4165-9706-7b21d05b54be" data-linktype="relative-path">Events Example</a> (section
+4.2.12).</p><p><b>pbstrConflicts: </b>A pointer to a string that
+returns a list of conflicting events during the specified time interval, in the
+form of an Events element (section 2.2.5.15). For an example, see Events Example (section 4.2.12).</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="b573c233-e3b6-4179-896f-90a4eb0ca8ff" data-linktype="relative-path">IWRMCalendar</a> interface
+methods are specified in section 3.2.4.4.</p></div>

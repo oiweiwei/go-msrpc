@@ -31,10 +31,21 @@ type ConnectionPointContainerServer interface {
 	// IUnknown base class.
 	iunknown.UnknownServer
 
-	// EnumConnectionPoints operation.
+	// The EnumConnectionPoints method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return a pointer to an IEnumConnectionPoints interface
+	// pointer, as defined in [MSDN-ECP], that can be used by the client to enumerate all
+	// the IConnectionPoint implementations for the MSMQEvent object.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.<97>
 	EnumConnectionPoints(context.Context, *EnumConnectionPointsRequest) (*EnumConnectionPointsResponse, error)
 
-	// FindConnectionPoint operation.
+	// The FindConnectionPoint method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return a pointer to an IConnectionPoint interface pointer
+	// for a specified IID.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.<98>
 	FindConnectionPoint(context.Context, *FindConnectionPointRequest) (*FindConnectionPointResponse, error)
 }
 

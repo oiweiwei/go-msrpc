@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The UpdateServiceRegistrationState enumeration defines
+values that describe the state of a service&#39;s registration.</p><dl>
+<dd>
+<div><pre> typedef  enum tagUpdateServiceRegistrationState
+ {
+   usrsNotRegistered = 1,
+   usrsRegistrationPending = 2,
+   usrsRegistered = 3,
+ } UpdateServiceRegistrationState;
+</pre></div>
+</dd></dl><p><b>usrsNotRegistered:  </b>The service is not
+registered.</p><p><b>usrsRegistrationPending:  </b>The service is
+pending registration. Registration will be attempted the next time that the <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_362092cf-7fb5-43eb-92e1-c3e4affdd92b" data-linktype="relative-path">update
+agent</a></span> contacts an <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_1692cfd4-4b1d-4566-9820-8171465bbc4b" data-linktype="relative-path">update service</a></span>.</p><p><b>usrsRegistered:  </b>The service is registered.</p></div>

@@ -1,1 +1,58 @@
-<div class="content"></div>
+<div class="content"><p>The GetAccountingClients method gets the names of all
+servers that are acting as <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_bb8795a8-ff43-416b-976a-6257b68fe7fa" data-linktype="relative-path">accounting
+clients</a> on the current server. </p><dl>
+<dd>
+<div><pre> [id(11), helpstring(&#34;method GetAccountingClients&#34;)] HRESULT GetAccountingClients(
+   [out] BSTR* pbstrClientIds
+ );
+</pre></div>
+</dd></dl><p><b>pbstrClientIds: </b>A pointer to a string that
+returns the machine names of all accounting clients, in the form of an <a href="163f18fa-b2f8-4d42-a6da-cbabd6260289" data-linktype="relative-path">AccountingClientList</a>
+element (section 2.2.5.1).</p><p><b>Return Values: </b>This method returns 0x00000000
+for success, or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0210</p>
+  <p>WRM_ERR_CLIENTSTATUS_ACC_OFF</p>
+  </td>
+  <td>
+  <p><a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1156c8ef-4d49-462b-9f76-aebcb6c57011" data-linktype="relative-path">Accounting</a>
+  functionality is currently turned off on the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_00ade642-0391-435b-980a-8fb488ef1b68" data-linktype="relative-path">accounting server</a>. There
+  are no clients logging data to this machine.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0211</p>
+  <p>WRM_ERR_CLIENTSTATUS_ACC_REMOTE</p>
+  </td>
+  <td>
+  <p>Accounting is currently being done on a remote
+  machine. There are no clients logging data to this machine.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The GetAccountingClients method can be used to find the
+names of WSRM servers, acting as accounting clients, for which the current
+server is acting as an accounting server.</p><p><b>Note</b>  Remote accounting is not supported in
+a workgroup environment.</p><p>Additional <a href="d5942816-752f-480a-9712-38ef0a248b6a" data-linktype="relative-path">IWRMAccounting</a> interface
+methods are specified in section 3.2.4.3.</p></div>

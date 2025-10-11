@@ -1,1 +1,68 @@
-<div class="content"></div>
+<div class="content"><p>The NTMS_STORAGESLOTINFORMATION structure defines properties
+specific to a storage <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a1f0ab90-f3c0-46b8-9c77-d0d7508ede94" data-linktype="relative-path">slot</a>
+object.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_STORAGESLOTINFORMATION {
+   DWORD Number;
+   DWORD State;
+   NTMS_GUID Library;
+ } NTMS_STORAGESLOTINFORMATION;
+</pre></div>
+</dd></dl><p><b>Number:</b>  The number of the slot in
+the library.</p><p><b>State:</b>  The current state of the
+slot. This MUST be one of the following values. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_SLOTSTATE_UNKNOWN</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The slot state cannot be determined.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_SLOTSTATE_FULL</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The slot is present and contains <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_9036b269-4f3b-4353-a1d0-54f5c686ec2c" data-linktype="relative-path">physical media</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_SLOTSTATE_EMPTY</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The slot is present but does not contain physical
+  media.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_SLOTSTATE_NOTPRESENT</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The slot is not present. If the library contains <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_406d0051-6666-4738-865c-4eca27b9e35d" data-linktype="relative-path">magazines</a>, this value is
+  reported for each slot when the associated magazine is missing. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_SLOTSTATE_NEEDSINVENTORY</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The slot needs <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_38cb8216-53ff-4936-a5c4-4d8d7672950a" data-linktype="relative-path">inventory</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Library:</b>  The library that contains
+the slot.</p></div>

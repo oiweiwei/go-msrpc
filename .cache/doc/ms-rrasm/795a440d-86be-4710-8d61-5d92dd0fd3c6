@@ -1,1 +1,32 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RASMAN_PORT_32</b> structure contains information
+regarding a specific RAS port, such as port status and port name.</p><dl>
+<dd>
+<div><pre> typedef struct _RASMAN_PORT_32 {
+   DWORD P_Port;
+   CHAR P_PortName[16];
+   RASMAN_STATUS P_Status;
+   RASDEVICETYPE P_rdtDeviceType;
+   RASMAN_USAGE P_ConfiguredUsage;
+   RASMAN_USAGE P_CurrentUsage;
+   CHAR P_MediaName[16];
+   CHAR P_DeviceType[16];
+   CHAR P_DeviceName[129];
+   DWORD P_LineDeviceId;
+   DWORD P_AddressId;
+ } RASMAN_PORT_32;
+</pre></div>
+</dd></dl><p><b>P_Port: </b>A unique identifier for the port.</p><p><b>P_PortName: </b>Specifies a null-terminated ASCII
+string specifying the port name.</p><p><b>P_Status: </b>Specifies the status of the port as
+defined in the <a href="88348417-04b4-4739-b500-93cf51742e04" data-linktype="relative-path"><b>RASMAN_STATUS (section 2.2.1.1.17)</b></a>
+enumeration type.  </p><p><b>P_rdtDeviceType: </b>Specifies the device type of
+the port as defined in the <a href="47fa4723-e879-4191-8fe5-34c13487cca4" data-linktype="relative-path"><b>RASDEVICETYPE (section 2.2.1.1.16)</b></a>
+enumeration type.  </p><p><b>P_ConfiguredUsage: </b>Specifies the configured
+usage of the port as defined in section <a href="eee884a6-4cc4-4a93-932f-bf8a386c6ad0" data-linktype="relative-path">2.2.1.1.21</a>.</p><p><b>P_CurrentUsage: </b>Specifies the usage for the
+port currently being used as defined in section 2.2.1.1.21.</p><p><b>P_MediaName: </b>A null-terminated ASCII string
+specifying the name of the media associated with the port.</p><p><b>P_DeviceType: </b>Specifies a null-terminated
+ASCII string that indicates the RRAS server device type as specified for the <b>wszDeviceType</b>
+field of the <a href="ed4beef4-11ba-413f-abf4-2659412169e8" data-linktype="relative-path"><b>RASI_PORT_0 (section 2.2.1.2.75)</b></a>
+structure.  </p><p><b>P_DeviceName: </b>A null-terminated ASCII string
+specifying the name of the device associated with the port.</p><p><b>P_LineDeviceId: </b>Specifies a unique identifier
+for the device.</p><p><b>P_AddressId: </b>MUST be set to zero (0) when sent
+and ignored on receipt.</p></div>

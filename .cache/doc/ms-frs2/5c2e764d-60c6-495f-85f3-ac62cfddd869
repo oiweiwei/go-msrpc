@@ -1,1 +1,12 @@
-<div class="content"></div>
+<div class="content"><p>The RDC_FILE_COMPRESSION_TYPES enumerated type identifies
+the data compression algorithm used for the file transfer.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   RDC_UNCOMPRESSED = 0,
+   RDC_XPRESS = 1
+ } RDC_FILE_COMPRESSION_TYPES;
+</pre></div>
+</dd></dl><p><b>RDC_UNCOMPRESSED:  </b>Data is not compressed.
+This value MUST be sent whenever an RDC_FILE_COMPRESSION_TYPES enum value is
+required.</p><p><b>RDC_XPRESS:  </b>Not used.</p></div>

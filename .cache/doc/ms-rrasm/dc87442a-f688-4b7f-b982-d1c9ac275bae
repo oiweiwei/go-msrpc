@@ -1,1 +1,65 @@
-<div class="content"></div>
+<div class="content"><p>The <b>SAP_SERVICE_FILTER_INFO</b> structure MAY<a id="Appendix_A_Target_104"></a><a aria-label="Product behavior note 104" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_104" data-linktype="relative-path">&lt;104&gt;</a> be used in the structure <a href="7b52a603-9e37-47bb-b77c-b24f4d69a081" data-linktype="relative-path"><b>SAP_IF_FILTERS (section 2.2.1.2.113)</b></a>.  
+</p><dl>
+<dd>
+<div><pre> typedef struct _SAP_SERVICE_FILTER_INFO {
+   union {
+     USHORT ServiceType;
+     ULONG ServiceType_align;
+   };
+   UCHAR ServiceName[48];
+ } SAP_SERVICE_FILTER_INFO,
+  *PSAP_SERVICE_FILTER_INFO;
+</pre></div>
+</dd></dl><p><b>ServiceType: </b>A field that indicates the type
+of the service. Service types are assigned uniquely by Novell, Inc. Some
+commonly defined SAP service types are listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Service type (hexadecimal)</p>
+   </th>
+   <th>
+   <p>Server</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00</p>
+  </td>
+  <td>
+  <p>Unknown</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00 — 0x04</p>
+  </td>
+  <td>
+  <p>NetWare file server</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00 — 0x07</p>
+  </td>
+  <td>
+  <p>NetWare print server</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x06 — 0x40</p>
+  </td>
+  <td>
+  <p>Microsoft RPC server</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xFF</p>
+  </td>
+  <td>
+  <p>General SAP request</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ServiceType_align: </b>Ensures alignment.</p><p><b>ServiceName: </b>Stores the name of the server
+advertising the service. The combination of server name and service type
+uniquely identifies a service on an IPX internetwork. Server names that are
+fewer than 48 bytes are terminated with the ASCII NULL character.</p></div>

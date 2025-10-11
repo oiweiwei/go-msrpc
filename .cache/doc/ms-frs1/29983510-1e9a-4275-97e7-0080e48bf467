@@ -1,1 +1,24 @@
-<div class="content"></div>
+<div class="content"><p>The structure of the COMM_TO packet element is as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _COMM_TO {
+   USHORT CommType;
+   ULONG Length;
+   ULONG LengthGuid;
+   GUID Guid;
+   ULONG LengthName;
+   wchar_t Name[];
+ } COMM_TO,
+  *PCOMM_TO;
+</pre></div>
+</dd></dl><p><b>CommType:</b>   A 16-bit, unsigned
+integer that indicates the type of this <a href="194f8fff-d903-44b7-9530-c66f5366f8c7" data-linktype="relative-path">COMM_PACKET</a> element. MUST
+be set to 0x0003.</p><p><b>Length:</b>   A 32-bit, unsigned integer
+that indicates the length, in bytes, of the COMM_TO packet element data
+following the Length field.</p><p><b>LengthGuid:</b>   A 32-bit, unsigned
+integer indicates the length, in bytes, of the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> field. MUST be
+0x00000010.</p><p><b>Guid:</b>   A field of type <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a>
+that indicates the GUID of the receiving <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a>.</p><p><b>LengthName:</b>   A 32-bit, unsigned
+integer that indicates the length, in bytes, of the <b>Name</b> field,
+including the NULL terminator.</p><p><b>Name:</b>   A Unicode UTF-16 string that
+identifies the receiving partner. MUST be a variable-length array that contains
+a NULL-terminated string (0x0000) of 16-bit (Unicode) characters.</p></div>

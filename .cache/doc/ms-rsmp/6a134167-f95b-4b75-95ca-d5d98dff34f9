@@ -1,1 +1,21 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsLmState enumeration defines the state of a work
+request.</p><dl>
+<dd>
+<div><pre> enum NtmsLmState
+ {
+   NTMS_LM_QUEUED = 0,
+   NTMS_LM_INPROCESS = 1,
+   NTMS_LM_PASSED = 2,
+   NTMS_LM_FAILED = 3,
+   NTMS_LM_INVALID = 4,
+   NTMS_LM_WAITING = 5,
+   NTMS_LM_CANCELLED = 7,
+   NTMS_LM_STOPPED = 8
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_LM_QUEUED:  </b>The work request is queued.</p><p><b>NTMS_LM_INPROCESS:  </b>The work request is being
+processed.</p><p><b>NTMS_LM_PASSED:  </b>The work request has
+completed successfully.</p><p><b>NTMS_LM_FAILED:  </b>The work request has
+completed with an error.</p><p><b>NTMS_LM_INVALID:  </b>The work request is invalid.</p><p><b>NTMS_LM_WAITING:  </b>The work request is blocked.</p><p><b>NTMS_LM_CANCELLED:  </b>The work request has been
+canceled.</p><p><b>NTMS_LM_STOPPED:  </b>The work request has been
+stopped.</p></div>

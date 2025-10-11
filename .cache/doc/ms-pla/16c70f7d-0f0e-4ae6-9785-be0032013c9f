@@ -24,10 +24,10 @@ that implement the IDataManager interface.</p><table><thead>
   <p>Indicates whether maximum folder count and minimum
   free <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_c4133b2a-a990-4042-ba44-7fda3090f118" data-linktype="relative-path">disk</a> space
   thresholds MUST be checked before running the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff77-b369-406d-9c0c-35a4771c1d0f" data-linktype="relative-path">data collector set</a>. If
-  set to VARIANT_TRUE and either one of the conditions is not met, the data
-  collector set MUST fail the start. If set to VARIANT_FALSE, the thresholds
-  will still be used after collection to determine if the resource policy will
-  be invoked. The ResourcePolicy property is defined below. </p>
+  set to VARIANT_TRUE and either one of the conditions is not met, the data collector
+  set MUST fail the start. If set to VARIANT_FALSE, the thresholds will still
+  be used after collection to determine if the resource policy will be invoked.
+  The ResourcePolicy property is defined below. </p>
   <p>The MaxSize threshold is never checked before running
   an IDataManager, irrespective of the value of this property. </p>
   </td>
@@ -40,11 +40,11 @@ that implement the IDataManager interface.</p><table><thead>
   </td>
   <td>
   <p>Determines whether <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_7159c556-babb-45a8-9bc6-fcfbc9244f17" data-linktype="relative-path">data management</a> is
-  enabled. If set to VARIANT_FALSE, all other settings of this object are
-  ignored and no data management operations (such as creating a report)
-  execute; the data manager is not run. If set to VARIANT_TRUE, all other
-  properties of this object are used and the data manager is run. The
-  properties that are used when the data manager runs are as follows:</p>
+  enabled. If set to VARIANT_FALSE, all other settings of this object are ignored
+  and no data management operations (such as creating a report) execute; the
+  data manager is not run. If set to VARIANT_TRUE, all other properties of this
+  object are used and the data manager is run. The properties that are used
+  when the data manager runs are as follows:</p>
   <ul><li><p><span><span>  
   </span></span><span>CheckBeforeRunning</span></p>
   </li><li><p><span><span>  

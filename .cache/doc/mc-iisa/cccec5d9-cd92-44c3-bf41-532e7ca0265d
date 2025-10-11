@@ -1,0 +1,84 @@
+<div class="content"><p>The Locations method is received by the server in an
+RPC_REQUEST packet. In response, the server returns any hierarchy subpaths that
+exist in the specified <a href="3687acff-fb79-4e02-8349-6ca2f49df2a5" data-linktype="relative-path">IAppHostConfigFile</a>.
+These subpaths are returned in the form of a collection object that implements
+the <a href="4b1ee19e-3418-45df-8ff9-2644ab6c106c" data-linktype="relative-path">IAppHostConfigLocationCollection</a>.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT Locations(
+   [out, retval] IAppHostConfigLocationCollection** ppLocations
+ );
+</pre></div>
+</dd></dl><p><b>ppLocations: </b>Contains a collection object that
+contains all the subpaths that are available in the specified
+IAppHostConfigFile.</p><p><b>Return Values: </b>The server MUST return zero if
+it successfully processes the message that is received from the client. In this
+case, *ppLocations is not NULL. If processing fails, the server MUST return a
+nonzero <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+code as defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following table describes the error conditions that MUST be handled and the
+corresponding error codes. A server MAY return additional
+implementation-specific error codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0X00000000  </p>
+  <p>NO_ERROR</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X80070057  </p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One or more parameters are incorrect or null.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X00000008  </p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>Not enough memory is available to process this
+  command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X80070002  </p>
+  <p>ERROR_FILE_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>A server resource (for example, a file on a disk)
+  could not be found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X80070005  </p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to a server resource (for example, a file on a
+  disk) was denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X80070013  </p>
+  <p>ERROR_INVALID_DATA</p>
+  </td>
+  <td>
+  <p>Configuration data or schema on the server are
+  malformed or corrupted.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

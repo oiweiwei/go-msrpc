@@ -1,1 +1,18 @@
-<div class="content"></div>
+<div class="content"><p>This is a specification of the Windows System Resource
+Manager (WSRM) Protocol. It is based on the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">Remote Procedure Call (RPC)</a>
+Protocol <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>WSRM exposes a set of <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">Distributed Component Object
+Model (DCOM) Remote Protocol</a> interfaces for managing processor and memory
+resources and <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1156c8ef-4d49-462b-9f76-aebcb6c57011" data-linktype="relative-path">accounting</a>
+functions on a computer. Using these interfaces, the following operations can
+be performed:</p><ul><li><p><span><span> 
+</span></span>Create, enumerate, modify, or delete rules governing resource
+consumption.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve, store, or delete long-term, persistent resource
+consumption histories.</p>
+</li><li><p><span><span> 
+</span></span>Directly control <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_43754e9e-2697-43b5-857d-2a81c17f010a" data-linktype="relative-path">resource management</a>
+enforcement.</p>
+</li></ul><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

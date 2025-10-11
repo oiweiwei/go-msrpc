@@ -1,1 +1,102 @@
-<div class="content"></div>
+<div class="content"><p>The GetDependencies method returns a list of WSRM objects
+that are being used or that depend on a specified object.</p><dl>
+<dd>
+<div><pre> [id(6), helpstring(&#34;method GetDependencies&#34;)] HRESULT GetDependencies(
+   [in] BSTR bstrObjectName,
+   [in] OBJECT_TYPE enumObject,
+   [out] BSTR* pbstrDependencyList
+ );
+</pre></div>
+</dd></dl><p><b>bstrObjectName: </b>A string that specifies the
+name of the object whose dependencies are to be returned.</p><p><b>enumObject: </b>An <a href="58277ad9-f953-4a97-a5f1-2fc927f24ea1" data-linktype="relative-path">OBJECT_TYPE enumeration</a>
+(section 2.2.3.6) value that specifies the type of object specified in <i>bstrObjectName</i>.</p><p><b>pbstrDependencyList: </b>A pointer to a string
+that returns the dependencies for the object specified in <i>bstrObjectName</i>,
+in the form of a <a href="ef8f6e12-4050-446a-9fa2-b0f8d5e9ef41" data-linktype="relative-path">DependencyList
+element</a> (section 2.2.5.14). For an example, see section <a href="3477b595-e300-4e40-b5fc-9d0dd5ed381f" data-linktype="relative-path">4.2.11</a>.</p><dl>
+<dd>
+<p>A DependencyList element can specify policies,
+schedules, calendars, and conditional policy events. The content of the
+structure that is returned by this method is determined by the value of the <i>enumObject</i>
+parameter.</p>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF006F</p>
+  <p>WRM_ERR_ID_VALUE</p>
+  </td>
+  <td>
+  <p>The specified name contains characters that are
+  invalid. The name cannot start with a hyphen (&#34;-&#34;) and cannot
+  contain spaces or any of the following characters:</p>
+  <dl>
+<dd>
+<div><pre> \   / ? * | : &lt; &gt; &#34; , ;.
+</pre></div>
+</dd></dl>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80004005</p>
+  <p>E_FAIL</p>
+  </td>
+  <td>
+  <p>Either an object with the specified name and type was
+  not found or its dependency list could not be created.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0271</p>
+  <p>WRM_ERR_CAL_UNKNOWN_SCHEDULE</p>
+  </td>
+  <td>
+  <p>A calendar name or an invalid schedule name was passed
+  in <i>bstrObjectName</i> for OBJECT_SCHEDULE enumObject.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF013A</p>
+  <p>WRM_ERR_DEPENDENCIES_FOR_RESIDUAL</p>
+  </td>
+  <td>
+  <p>This is a <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_886b7b14-6dff-4bdd-a3d5-2caa47b82edd" data-linktype="relative-path">residual PMC</a> and is a
+  part of all policies. All processes that do not match any of the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_65daee12-445f-41c0-8456-f728063bef24" data-linktype="relative-path">PMC</a> specified by a user
+  in a policy automatically match to residual PMC.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The server SHOULD process this method call as follows:</p><ul><li><p><span><span> 
+</span></span>If a PMC object is specified, this method MUST return a list of
+policies that make use of the PMC.</p>
+</li><li><p><span><span> 
+</span></span>If a <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_3731cbe9-91f2-49a8-b63f-6f5f7b69b05a" data-linktype="relative-path">resource
+policy object</a> is specified, this method MUST return a list of <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_7204b2ed-dcef-4434-be15-6451f92d03fb" data-linktype="relative-path">calendar</a> events,
+conditions, and schedules that make use of the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_559b0a4d-161b-4664-9c10-4fab98b97f1f" data-linktype="relative-path">resource policy</a>.</p>
+</li><li><p><span><span> 
+</span></span>If a schedule object is specified, this method MUST return a list
+of calendar events making use of the schedule.</p>
+</li><li><p><span><span> 
+</span></span>If a calendar object is specified, this method MUST return
+WRM_ERR_CAL_UNKNOWN_SCHEDULE.</p>
+</li></ul><p>Additional <a href="7c62a2fd-63f4-435f-8fc8-c94e4509f6fd" data-linktype="relative-path">IResourceManager</a> interface
+methods are specified in section 3.2.4.1.</p></div>

@@ -1,1 +1,11 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsDismountOptions enumeration defines options for <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a8ebf8eb-a5f7-406a-b211-9f9c08ee15d3" data-linktype="relative-path">dismount</a> operations.</p><dl>
+<dd>
+<div><pre> enum NtmsDismountOptions
+ {
+   NTMS_DISMOUNT_DEFERRED = 0x0001,
+   NTMS_DISMOUNT_IMMEDIATE = 0x0002
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_DISMOUNT_DEFERRED:  </b>Marks the media state
+as dismountable and keeps the medium in the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a>. Subsequent <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b" data-linktype="relative-path">mount</a> requests are
+satisfied using dismounted or dismountable drives.</p><p><b>NTMS_DISMOUNT_IMMEDIATE:  </b>Dismounts the media immediately.</p></div>

@@ -1,1 +1,159 @@
-<div class="content"></div>
+<div class="content"><p> </p><p>Each individual Protector List Entry MUST be formatted as
+follows. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">EFSX_Datum</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p align="center">ProtectorType</p>
+  </td>
+  <td colspan="16">
+  <p align="center">ProtectorFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Data_Fields
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>EFSX_Datum (8 bytes): </b>MUST be formatted as
+specified in section <a href="1d2fa232-d557-43fe-95e3-2d4ced7f7934" data-linktype="relative-path">2.2.2.2.2</a>.
+The datum <b>Type</b> MUST be EFSX_TYPE_KEY_PROTECTOR (0x0003) and SHOULD have
+a <b>Role</b> of EFSX_ROLE_IGNORE (0x0000). The datum <b>Flags</b> SHOULD
+include 0x0002 indicating a complex datum.</p><p><b>ProtectorType (2 bytes): </b>The type of the
+protector. It MUST be a 16-bit unsigned integer in little-endian format.
+Possible values are specified below.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>The protector was derived from a public/private key
+  pair using a key agreement. The Data Fields SHOULD include an EFSX_Datum of <b>Type</b>
+  EFSX_TYPE_KEY_AGMT_DATA (0x0005) and <b>Role</b> 0x0002.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0002</p>
+  </td>
+  <td>
+  <p>The protector was derived from a public/private key
+  pair capable of performing asymmetric encryption. The <b>Data Fields</b>
+  SHOULD include an EFSX_Datum of <b>Type</b> EFSX_TYPE_BLOB (0x0001) and <b>Role</b>
+  0x0002.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0003</p>
+  </td>
+  <td>
+  <p>The protector was derived using a DPAPI-NG encryption
+  provider on the endpoint. The <b>Data Fields</b> SHOULD include an EFSX_Datum
+  of <b>Type</b> EFSX_TYPE_DPAPI_NG_DATA (0x0007) and <b>Role</b> 0x0002.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ProtectorFlags (2 bytes): </b>The flags for the
+protector. It MUST be a 16-bit unsigned integer in little-endian format. The
+value MUST be 0x0000 or a union of one or more of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>The protector is a legacy protector, and stores the
+  Encrypted FEK as specified in section <a href="00933615-c9cf-4d51-9d9a-bb3fb33a3560" data-linktype="relative-path">2.2.2.1.5</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0002</p>
+  </td>
+  <td>
+  <p>If this is a legacy protector (flag 0x0001 is also
+  set), the Encrypted FEK is encrypted using AES 256, with a key that is
+  obtained by signing the non-terminated Unicode string &#34;MICROSOFTE&#34;
+  (20 bytes long) with the user&#39;s RSA and computing the SHA-256 hash of the
+  result.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0004</p>
+  </td>
+  <td>
+  <p>If this bit is set, bit 0x0001 MUST also be set to
+  indicate a legacy protector. This bit indicates that the legacy protector
+  stores the File Master Key (FMK) encrypted in the Encrypted FEK structure
+  instead of the File Encryption Key (FEK).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Data_Fields (variable): </b>This field contains
+any number of nested EFSX_Datum structures. The nested datum structures MUST
+NOT overlap and MUST be entirely contained within the protector list entry.
+This field SHOULD contain a datum with a <b>Role</b> of 0x0002 (protector data)
+and a datum with a <b>Type</b> of EFSX_TYPE_PROTECTOR_INFO (0x0004).</p></div>

@@ -1,0 +1,23 @@
+<div class="content"><p>The Tidy method is received by the server in an RPC_REQUEST
+packet. In response, the server SHOULD perform implementation-specific tasks to
+release unused resources of the represented <a href="../ms-mqdmpr/9adb2d90-c63b-43c7-9b9c-804ab96a57d5" data-linktype="relative-path">QueueManager</a>.</p><dl>
+<dd>
+<div><pre> HRESULT Tidy();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.<a id="Appendix_A_Target_19"></a><a aria-label="Product behavior note 19" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_19" data-linktype="relative-path">&lt;19&gt;</a></p><p>When the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+processes this call, it MUST follow these guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>ComputerName</i> instance variable is NULL:</p>
+<ul><li><p><span><span>  </span></span>The
+local QueueManager SHOULD perform implementation-specific tasks to release
+unused resources.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST generate a QMMgmt Action event with the following inputs:</p>
+<ul><li><p><span><span> 
+</span></span>iAction = &#34;TIDY&#34;</p>
+</li></ul></li><li><p><span><span>  </span></span>The
+server MUST return <i>rStatus</i>, and MUST take no further action.</p>
+</li></ul></li></ul></div>

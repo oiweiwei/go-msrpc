@@ -31,8 +31,12 @@ type RobustNTMSMediaServices1Server interface {
 	// INtmsMediaServices1 base class.
 	intmsmediaservices1.MediaServices1Server
 
+	// The GetNtmsMediaPoolNameAR method retrieves the full name hierarchy of a media pool,
+	// with strings encoded using ASCII.
 	GetNTMSMediaPoolNameAR(context.Context, *GetNTMSMediaPoolNameARRequest) (*GetNTMSMediaPoolNameARResponse, error)
 
+	// The GetNtmsMediaPoolNameWR method retrieves the full name hierarchy of a media pool,
+	// with strings encoded using Unicode.
 	GetNTMSMediaPoolNameWR(context.Context, *GetNTMSMediaPoolNameWRRequest) (*GetNTMSMediaPoolNameWRResponse, error)
 }
 

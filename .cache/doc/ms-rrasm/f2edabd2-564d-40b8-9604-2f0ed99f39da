@@ -1,1 +1,66 @@
-<div class="content"></div>
+<div class="content"><p>The <b>SAP_MIB_BASE</b> structure MAY<a id="Appendix_A_Target_107"></a><a aria-label="Product behavior note 107" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_107" data-linktype="relative-path">&lt;107&gt;</a> be used to contain the
+operation status. This structure is returned as part of the following methods: </p><ul><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="9102e585-2f62-4408-bfb6-02a6460cc883" data-linktype="relative-path"><b>RMIBEntryGetFirst (section 3.1.4.31)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="50f78033-d248-4272-b4b9-a2519a0f304d" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.1.4.32)</b></a><span>  </span></p>
+<div><pre> typedef struct _SAP_MIB_BASE {
+   ULONG SapOperState;
+ } SAP_MIB_BASE,
+  *PSAP_MIB_BASE;
+</pre></div>
+</li></ul><p><b>SapOperState: </b>Contains the operational status
+of the SAP. It MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>OPER_STATE_DOWN</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Nonoperational.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>OPER_STATE_UP</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Operational and can pass packets.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>OPER_STATE_SLEEPING</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Sleeping.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>OPER_STATE_STARTING</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Starting the router.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>OPER_STATE_STOPPING</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Stopping the router.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

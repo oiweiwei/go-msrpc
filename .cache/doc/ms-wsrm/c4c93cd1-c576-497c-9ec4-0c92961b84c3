@@ -1,1 +1,78 @@
-<div class="content"></div>
+<div class="content"><p>The MoveAfter method moves a specified <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_04c2dc43-6f4a-432d-bca6-ceeef2d5f2ae" data-linktype="relative-path">resource group</a> to a
+location just after a reference resource group.</p><dl>
+<dd>
+<div><pre> [id(7), helpstring(&#34;method MoveAfter&#34;)] HRESULT MoveAfter(
+   [in] BSTR bstrPolicyName,
+   [in] BSTR bstrResourceGroupName,
+   [in] BSTR bstrRefResourceGroupName
+ );
+</pre></div>
+</dd></dl><p><b>bstrPolicyName: </b>The name of the policy in
+which resource group is to be moved.</p><p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p><p><b>bstrResourceGroupName: </b>The name of the
+resource group to be moved.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>bstrRefResourceGroupName: </b>The name of the
+reference resource group.</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF00E0</p>
+  <p>WRM_ERR_WSRM_RESERVED_POLICY</p>
+  </td>
+  <td>
+  <p>The specified policy is a built-in policy. It cannot
+  be altered.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF00C9</p>
+  <p>WRM_ERR_POLICYID_INVALID</p>
+  </td>
+  <td>
+  <p>The specified <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_ce127d6a-8b12-40d6-b9c9-cf544c3ffd08" data-linktype="relative-path">resource allocation policy</a>
+  does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF012E</p>
+  <p>WRM_ERR_RESOURCEGROUPID_INVALID</p>
+  </td>
+  <td>
+  <p>The specified <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_65daee12-445f-41c0-8456-f728063bef24" data-linktype="relative-path">process matching criteria
+  (PMC)</a> does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="a03f4cd5-ad33-46aa-94e7-2c9a92f02b6f" data-linktype="relative-path">IWRMPolicy</a> interface
+methods are specified in section 3.2.4.7.</p></div>

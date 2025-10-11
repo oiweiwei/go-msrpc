@@ -1,0 +1,83 @@
+<div class="content"><p>The CleanupNode method removes all persistent artifacts that
+exist on the <a href="6f99e32f-d3b3-4431-b0e6-122f5d1ca71e#gt_762051d8-4fdc-437e-af9d-3f4da77c3c7d" data-linktype="relative-path">node</a> after
+it is evicted from a <a href="6f99e32f-d3b3-4431-b0e6-122f5d1ca71e#gt_feef37b3-c173-4f51-aab6-b55a6366259b" data-linktype="relative-path">cluster</a>.
+</p><p>The Failover Cluster: Management API (ClusAPI) Protocol
+server provides a method to evict a node from a cluster. Evicting a node from a
+cluster is specified in <a href="../ms-cmrp/ba4117c0-530e-4e70-a085-4b4cf5bbf193" data-linktype="relative-path">[MS-CMRP]</a>,
+section 3.1.1.5. Once evicted, the node can be restored to its precluster
+installation state.</p><p>This method is idempotent. After it is invoked, the
+following actions MUST occur.</p><ul><li><p><span><span> 
+</span></span>The target node MUST no longer be a server for the Failover
+Cluster: Management API (ClusAPI) Protocol (as specified in [MS-CMRP]) until
+the node is reconfigured as a member of a cluster by using
+implementation-specific methods between servers.</p>
+</li><li><p><span><span> 
+</span></span>In any subsequent query of the ClusterInstallationState Registry
+Value, by means of the Windows Remote Registry Protocol (<a href="../ms-rrp/0fa3191d-bb79-490a-81bd-54c2601b7a78" data-linktype="relative-path">[MS-RRP]</a>),
+as specified in [MS-CMRP] section 3.1.3.1, the server MUST return that the
+Value is set to 0x00000001 (eClusterInstallStateFilesCopied).</p>
+</li><li><p><span><span> 
+</span></span>In any subsequent calls of the Service Control Manager Remote
+Protocol (<a href="../ms-scmr/705b624a-13de-43cc-b8a2-99573da3635f" data-linktype="relative-path">[MS-SCMR]</a>)
+OpenService method for service name &#34;ClusSvc&#34;, the server MUST
+complete with error 1060 (ERROR_SERVICE_DOES_NOT_EXIST). This behavior is in
+contrast to the behavior specified in the first bullet of [MS-CMRP] section
+3.1.3.2.</p>
+</li><li><p><span><span> 
+</span></span>Reset any other implementation-specific values to their
+precluster installation state.</p>
+</li></ul><p>This method MUST NOT be invoked while the node is a
+configured member of a cluster. </p><dl>
+<dd>
+<div><pre> HRESULT CleanupNode(
+   [in] BSTR bstrEvictedNodeNameIn,
+   [in] long nDelayIn,
+   [in] long nTimeoutIn
+ );
+</pre></div>
+</dd></dl><p><b>bstrEvictedNodeNameIn: </b>The name of the node on
+which cleanup is to be initiated. The client MUST provide the name of a
+configured node that was evicted from its cluster.</p><dl>
+<dd>
+<p>The name of the node passed in the <i>bstrEvictedNodeNameIn</i>
+parameter is the same as the name of the node evicted using [MS-CMRP]. How
+clients obtain node names is specified in the ApiOpenNode method of [MS-CMRP],
+section 3.1.4.67. </p>
+</dd></dl><p><b>nDelayIn: </b>The number of milliseconds that will
+elapse before cleanup is started on the target node. If some other process
+cleans up the target node while the delay is in progress, the delay is
+terminated before its expiration. If this value is zero, the node is cleaned up
+immediately.</p><p><b>nTimeoutIn: </b>The number of milliseconds that
+this method will wait for cleanup to complete. This time-out is independent of
+the delay described previously, so if <i>nDelayIn</i> is greater than <i>nTimeoutIn</i>,
+this method will probably time out. However, after cleanup is initiated,
+cleanup will run to completion, but this method might not wait for it to
+complete.</p><p><b>Return Values: </b>A signed 32-bit value that
+indicates return status. If the method returns a negative value, the method has
+failed. If the 12-bit facility code (bits 16-27) is set to 0x007, the value
+contains a Win32 error code (defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>)
+in the lower 16 bits. A zero value or positive values indicate success, with
+the lower 16 bits in positive nonzero values containing warnings or flags that
+are defined in the method implementation.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Exceptions thrown:</p><p>No exceptions are thrown except those that are thrown by the
+underlying <a href="6f99e32f-d3b3-4431-b0e6-122f5d1ca71e#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol,
+as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

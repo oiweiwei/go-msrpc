@@ -51,11 +51,24 @@ type NotifySinkClient interface {
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
 
+	// The ConnectCallback method connects a connection point to the sink.
 	ConnectCallback(context.Context, *ConnectCallbackRequest, ...dcerpc.CallOption) (*ConnectCallbackResponse, error)
 
 	// OnNotify operation.
 	OnNotify(context.Context, *OnNotifyRequest, ...dcerpc.CallOption) (*OnNotifyResponse, error)
 
+	// The ReleaseCallback method removes a connection point from the sink.
+	//
+	// This method has no parameters.
+	//
+	//	+-------------------+------------------------------------+
+	//	|      RETURN       |                                    |
+	//	|    VALUE/CODE     |            DESCRIPTION             |
+	//	|                   |                                    |
+	//	+-------------------+------------------------------------+
+	//	+-------------------+------------------------------------+
+	//	| 0x00000000 S_OK   | The method completed successfully. |
+	//	+-------------------+------------------------------------+
 	ReleaseCallback(context.Context, *ReleaseCallbackRequest, ...dcerpc.CallOption) (*ReleaseCallbackResponse, error)
 
 	// AlterContext alters the client context.
@@ -394,9 +407,23 @@ func (o *xxx_ConnectCallbackOperation) UnmarshalNDRResponse(ctx context.Context,
 // ConnectCallbackRequest structure represents the ConnectCallback operation request
 type ConnectCallbackRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This            *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ConnectionPoint *rsmp.Unknown  `idl:"name:pUnkCP" json:"connection_point"`
-	Sink            *rsmp.Unknown  `idl:"name:pUnkSink" json:"sink"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// pUnkCP: A pointer to the IUnknown interface ([MS-DCOM] section 3.1.1.5.8) of the
+	// connection point.
+	ConnectionPoint *rsmp.Unknown `idl:"name:pUnkCP" json:"connection_point"`
+	// pUnkSink: A pointer to the IUnknown interface of the sink.
+	//
+	//	+------------------------------------+------------------------------------+
+	//	|               RETURN               |                                    |
+	//	|             VALUE/CODE             |            DESCRIPTION             |
+	//	|                                    |                                    |
+	//	+------------------------------------+------------------------------------+
+	//	+------------------------------------+------------------------------------+
+	//	| 0x00000000 S_OK                    | The method completed successfully. |
+	//	+------------------------------------+------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | A parameter is missing.            |
+	//	+------------------------------------+------------------------------------+
+	Sink *rsmp.Unknown `idl:"name:pUnkSink" json:"sink"`
 }
 
 func (o *ConnectCallbackRequest) xxx_ToOp(ctx context.Context, op *xxx_ConnectCallbackOperation) *xxx_ConnectCallbackOperation {

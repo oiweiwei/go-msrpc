@@ -49,10 +49,61 @@ type Update2Client interface {
 	// IUpdate retrieval method.
 	Update() iupdate.UpdateClient
 
+	// The IWindowsDriverUpdate2::RebootRequired (opnum 61) method retrieves whether a reboot
+	// is needed to complete installation or uninstallation of the update.
+	//
+	// The IUpdate2::RebootRequired (opnum 53) method retrieves whether a reboot is needed
+	// to complete installation or uninstallation of the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the RebootRequired ADM element.
 	GetRebootRequired(context.Context, *GetRebootRequiredRequest, ...dcerpc.CallOption) (*GetRebootRequiredResponse, error)
 
+	// The IUpdate2::IsPresent (opnum 54) method retrieves whether the update is installed
+	// for one or more products.
+	//
+	// The IWindowsDriverUpdate2::IsPresent (opnum 62) method retrieves whether the update
+	// is installed for one or more products.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the IsPresent ADM element.
 	GetIsPresent(context.Context, *GetIsPresentRequest, ...dcerpc.CallOption) (*GetIsPresentResponse, error)
 
+	// The IUpdate2::CveIDs (opnum 55) method retrieves the CVE IDs associated with the
+	// update.
+	//
+	// The IWindowsDriverUpdate2::CveIDs (opnum 63) method retrieves the CVE IDs associated
+	// with the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the CveIDs ADM element.
 	GetCveIDs(context.Context, *GetCveIDsRequest, ...dcerpc.CallOption) (*GetCveIDsResponse, error)
 
 	// Opnum56NotUsedOnWire operation.
@@ -348,8 +399,10 @@ func (o *GetRebootRequiredRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // GetRebootRequiredResponse structure represents the RebootRequired operation response
 type GetRebootRequiredResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if a reboot is required to complete the
+	// installation or uninstallation of this update or to VARIANT_FALSE if not.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The RebootRequired return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -555,8 +608,10 @@ func (o *GetIsPresentRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 // GetIsPresentResponse structure represents the IsPresent operation response
 type GetIsPresentResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if the update is installed for one or
+	// more products or to VARIANT_FALSE if not.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The IsPresent return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -796,7 +851,14 @@ func (o *GetCveIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 // GetCveIDsResponse structure represents the CveIDs operation response
 type GetCveIDsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat         `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An IStringCollection instance containing the CVE IDs associated with the
+	// update. If no CVE IDs are associated with the update, retval MUST be set to an empty
+	// IStringCollection.
+	//
+	// retval: An IStringCollection (section 3.18.4) instance containing the CVE IDs associated
+	// with the update. If no CVE IDs are associated with the update, retval MUST be set
+	// to an empty IStringCollection.
 	ReturnValue *uamg.StringCollection `idl:"name:retval" json:"return_value"`
 	// Return: The CveIDs return value.
 	Return int32 `idl:"name:Return" json:"return"`

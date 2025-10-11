@@ -1,1 +1,37 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IKEV2_PROJECTION_INFO_2</b> structure<a id="Appendix_A_Target_163"></a><a aria-label="Product behavior note 163" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_163" data-linktype="relative-path">&lt;163&gt;</a> contain information obtained
+during Internet key exchange (IKE) negotiation.</p><dl>
+<dd>
+<div><pre> typedef struct IKEV2_PROJECTION_INFO_2 {
+   DWORD dwIPv4NegotiationError;
+   WCHAR wszAddress[16];
+   WCHAR wszRemoteAddress[16];
+   ULONG64 IPv4SubInterfaceIndex;
+   DWORD dwIPv6NegotiationError;
+   UCHAR bInterfaceIdentifier[8];
+   UCHAR bRemoteInterfaceIdentifier[8];
+   UCHAR bPrefix[8];
+   DWORD dwPrefixLength;
+   ULONG64 IPv6SubInterfaceIndex;
+   DWORD dwOptions;
+   DWORD dwAuthenticationProtocol;
+   DWORD dwEapTypeId;
+   DWORD dwEmbeddedEAPTypeId;
+   DWORD dwCompressionAlgorithm;
+   DWORD dwEncryptionMethod;
+ } IKEV2_PROJECTION_INFO_2,
+  *PIKEV2_PROJECTION_INFO_2;
+</pre></div>
+</dd></dl><p><b>dwIPv4NegotiationError: </b>Same as <b>dwIPv4NegotiationError</b>
+in <a href="2696c821-a06f-4020-a3b3-96b88aecb7af" data-linktype="relative-path"><b>IKEV2_PROJECTION_INFO_1</b></a>.
+</p><p><b>wszAddress: </b>Same as <b>wszAddress</b> in <b> IKEV2_PROJECTION_INFO_1</b>.</p><p><b>wszRemoteAddress: </b>Same as <b>wszRemoteAddress</b>
+in <b> IKEV2_PROJECTION_INFO_1</b>.</p><p><b>IPv4SubInterfaceIndex: </b>Same as <b>IPv4SubInterfaceIndex</b>
+in <b> IKEV2_PROJECTION_INFO_1</b>.</p><p><b>dwIPv6NegotiationError: </b>Same as <b>dwIPv6NegotiationError</b>
+in <b> IKEV2_PROJECTION_INFO_1</b>.</p><p><b>bInterfaceIdentifier: </b>Same as <b>bInterfaceIdentifier</b>
+in <b> IKEV2_PROJECTION_INFO_1</b>.</p><p><b>bRemoteInterfaceIdentifier: </b>Same as <b>bRemoteInterfaceIdentifier</b>
+in <b> IKEV2_PROJECTION_INFO_1</b>.</p><p><b>bPrefix: </b>Same as <b>bPrefix</b> in <b> IKEV2_PROJECTION_INFO_1</b>.</p><p><b>dwPrefixLength: </b>Same as <b>dwPrefixLength</b>
+in <b> IKEV2_PROJECTION_INFO_1</b>.</p><p><b>IPv6SubInterfaceIndex: </b>Same as <b>IPv6SubInterfaceIndex</b>
+in <b> IKEV2_PROJECTION_INFO_1</b>.</p><p><b>dwOptions: </b>Same as <b>dwOptions</b> in <b> IKEV2_PROJECTION_INFO_1</b>.</p><p><b>dwAuthenticationProtocol: </b>Same as <b>dwAuthenticationProtocol</b>
+in <b> IKEV2_PROJECTION_INFO_1</b>.</p><p><b>dwEapTypeId: </b>Same as <b>dwEapTypeId</b> in <b> IKEV2_PROJECTION_INFO_1</b>.</p><p><b>dwEmbeddedEAPTypeId: </b>Same as <b>dwEmbeddedEAPTypeId</b>
+in <b> IKEV2_PROJECTION_INFO_1</b>.</p><p><b>dwCompressionAlgorithm: </b>Same as <b>dwCompressionAlgorithm</b>
+in <b> IKEV2_PROJECTION_INFO_1</b>.</p><p><b>dwEncryptionMethod: </b>Same as <b>dwEncryptionMethod</b>
+in <b>IKEV2_PROJECTION_INFO_1</b>.</p></div>

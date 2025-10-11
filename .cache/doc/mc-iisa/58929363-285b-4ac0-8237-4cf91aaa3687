@@ -1,0 +1,12 @@
+<div class="content"><p>The ValidationFailureParameters method is currently reserved
+for future use. The server MUST return ERROR_NOT_SUPPORTED (as defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>)
+to indicate that the method isnt implemented.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT ValidationFailureParameters(
+   [out, retval] SAFEARRAY (VARIANT)* pParameterArray
+ );
+</pre></div>
+</dd></dl><p><b>pParameterArray: </b>Contains the <a href="../ms-oaut/a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">VARIANT</a>
+array of parameters that are applicable to the error.</p><p><b>Return Values: </b>The server MUST return
+ERROR_NOT_SUPPORTED (as defined in [MS-ERREF]) to indicate that the method
+isn&#39;t implemented.</p></div>

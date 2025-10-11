@@ -1,1 +1,96 @@
-<div class="content"></div>
+<div class="content"><p>The MoveBeforeCalendar method moves a calendar event before
+the specified reference event. The caller can choose to control the move
+depending on whether the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_2ced4dc1-842a-4bf8-bdac-0e8d505d5ce6" data-linktype="relative-path">current
+resource policy</a> is affected.</p><dl>
+<dd>
+<div><pre> [id(12), helpstring(&#34;method MoveBeforeCalendar&#34;)] HRESULT MoveBeforeCalendar(
+   [in] BSTR bstrCalendarName,
+   [in] BSTR bstrRefCalendarName,
+   [in] BOOL bChangeActivePolicy
+ );
+</pre></div>
+</dd></dl><p><b>bstrCalendarName: </b>A string that specifies the
+name of the calendar event to be moved.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>bstrRefCalendarName: </b>A string that specifies
+the name of a reference calendar event, before which the specified event is to
+be moved.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>bChangeActivePolicy: </b>A Boolean value that
+specifies whether the configuration changes made by this method call SHOULD
+change the current active policy, if applicable, of the system.<a id="Appendix_A_Target_69"></a><a aria-label="Product behavior note 69" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_69" data-linktype="relative-path">&lt;69&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The current active policy of the system SHOULD NOT be
+  changed by the method call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>If applicable, the current active policy of the system
+  SHOULD be changed by the method call.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0259</p>
+  <p>WRM_ERR_CAL_UNKNOWN_CALENDAR</p>
+  </td>
+  <td>
+  <p>The specified calendar event does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="b573c233-e3b6-4179-896f-90a4eb0ca8ff" data-linktype="relative-path">IWRMCalendar</a> interface
+methods are specified in section 3.2.4.4.</p></div>

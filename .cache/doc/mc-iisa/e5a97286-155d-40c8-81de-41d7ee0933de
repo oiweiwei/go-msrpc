@@ -1,0 +1,63 @@
+<div class="content"><p>Methods that receive an error when they access the
+administration system can retrieve more specific information about why the
+error occurred by using the IAppHostConfigException <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a>.</p><p>The IAppHostConfigException interface inherits opnums 0–2
+from the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="fa41d5e6-79fb-4913-8673-20f0cd7070a5" data-linktype="relative-path">LineNumber</a></p>
+  </td>
+  <td>
+  <p>Opnum: 3</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="b8cfc0f0-0772-4b0f-acc7-f1b53b1ae18a" data-linktype="relative-path">FileName</a></p>
+  </td>
+  <td>
+  <p>Opnum: 4</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="1446143a-14a6-4fbc-98bd-249caef64022" data-linktype="relative-path">ConfigPath</a></p>
+  </td>
+  <td>
+  <p>Opnum: 5</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="0cbdf42f-820c-4bbd-8894-dd4e01061200" data-linktype="relative-path">ErrorLine</a></p>
+  </td>
+  <td>
+  <p>Opnum: 6</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="a0b9ceb9-a521-4e6c-874c-f3e2c5504cf6" data-linktype="relative-path">PreErrorLine</a></p>
+  </td>
+  <td>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="aa80156d-2358-4168-a068-5a1a77718359" data-linktype="relative-path">PostErrorLine</a></p>
+  </td>
+  <td>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="ac92c44f-4e51-43ad-af03-73033aeec35a" data-linktype="relative-path">ErrorString</a></p>
+  </td>
+  <td>
+  <p>Opnum: 9</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

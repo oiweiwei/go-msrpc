@@ -1,1 +1,28 @@
-<div class="content"></div>
+<div class="content"><p>On receiving the EfsRpcNotSupported method call, an EFSRPC
+server SHOULD implement the EfsRpcNotSupported method as specified in this
+section and return a nonzero value. However, a server MAY<a id="Appendix_A_Target_44"></a><a aria-label="Product behavior note 44" href="cecd911d-7105-45cc-a7c8-348335d6f03f#Appendix_A_44" data-linktype="relative-path">&lt;44&gt;</a> choose to interpret and respond
+to the arguments as specified in section <a href="b39ec3e2-d3f0-4934-925e-74032365f9d2" data-linktype="relative-path">3.1.4.2.13</a>.</p><dl>
+<dd>
+<div><pre> DWORD EfsRpcNotSupported(
+   [in] handle_t binding_h,
+   [in, string] wchar_t* Reserved1,
+   [in, string] wchar_t* Reserved2,
+   [in] DWORD dwReserved1,
+   [in] DWORD dwReserved2,
+   [in, unique] EFS_RPC_BLOB* Reserved,
+   [in] BOOL bReserved
+ );
+</pre></div>
+</dd></dl><p><b>binding_h: </b>This is an <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_1cf35308-abab-4123-9cbd-99c42dc9a6ff" data-linktype="relative-path">binding</a> handle parameter,
+as specified, in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+and in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a>.
+</p><p><b>Reserved1: </b>This parameter is not used. It MUST
+be set to an empty string by the client and ignored by the server.</p><p><b>Reserved2: </b>This parameter is not used. It MUST
+be set to an empty string by the client and ignored by the server.</p><p><b>dwReserved1: </b>This parameter is not used. It
+MUST be set to zero by the client and ignored by the server.</p><p><b>dwReserved2: </b>This parameter is not used. It
+MUST be set to zero by the client and ignored by the server.</p><p><b>Reserved: </b>This parameter is not used. It MUST
+be set to NULL by the client and ignored by the server.</p><p><b>bReserved: </b>This parameter is not used. It MUST
+be set to FALSE by the client and ignored by the server.</p><p><b>Return Values: </b>The EFSRPC server SHOULD return
+a nonzero value. However, the server MAY<a id="Appendix_A_Target_45"></a><a aria-label="Product behavior note 45" href="cecd911d-7105-45cc-a7c8-348335d6f03f#Appendix_A_45" data-linktype="relative-path">&lt;45&gt;</a> process
+this as described in section 3.1.4.2.13.</p></div>

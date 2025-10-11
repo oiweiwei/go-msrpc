@@ -1,6 +1,5 @@
 <div class="content"><p>The GetTraceDataProvidersByProcess method populates the
-collection with the list of providers that were registered by the given
-process.</p><dl>
+collection with the list of providers that were registered by the given process.</p><dl>
 <dd>
 <div><pre> HRESULT GetTraceDataProvidersByProcess(
    [in, unique] BSTR Server,

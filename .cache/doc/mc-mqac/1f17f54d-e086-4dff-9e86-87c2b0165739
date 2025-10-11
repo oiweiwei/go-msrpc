@@ -1,0 +1,133 @@
+<div class="content"><p>The LookupQueue method is received by the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in an RPC_REQUEST
+packet. In response, the server MUST return a pointer to an <a href="bace51e0-4567-4414-bbd4-8638967c5533" data-linktype="relative-path">IMSMQQueueInfos4</a> interface
+pointer. The returned interface allows the client to enumerate over a
+collection of Queues. The <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a>
+query represents search criteria based on any combination of Queue.Identifier,
+Queue.Type, Queue.Label, Queue.CreateTime, Queue.ModifyTime, or
+Queue.MulticastAddress properties.</p><dl>
+<dd>
+<div><pre> HRESULT LookupQueue(
+   [in, optional] VARIANT* QueueGuid,
+   [in, optional] VARIANT* ServiceTypeGuid,
+   [in, optional] VARIANT* Label,
+   [in, optional] VARIANT* CreateTime,
+   [in, optional] VARIANT* ModifyTime,
+   [in, optional] VARIANT* RelServiceType,
+   [in, optional] VARIANT* RelLabel,
+   [in, optional] VARIANT* RelCreateTime,
+   [in, optional] VARIANT* RelModifyTime,
+   [in, optional] VARIANT* MulticastAddress,
+   [in, optional] VARIANT* RelMulticastAddress,
+   [out, retval] IMSMQQueueInfos4** ppqinfos
+ );
+</pre></div>
+</dd></dl><p><b>QueueGuid: </b>Pointer to a <a href="../ms-oaut/a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">VARIANT</a>
+containing a <a href="../ms-dtyp/692a42a9-06ce-4394-b9bc-5d2a50440168" data-linktype="relative-path">BSTR</a>
+that contains a string representation of a Queue.Identifier. The string MUST
+adhere to the following format, specified using ABNF.</p><dl>
+<dd>
+<div><pre> guid = &#34;{&#34; dword-part &#34;-&#34; word-part &#34;-&#34; word-part &#34;-&#34;
+                   2byte-part &#34;-&#34; 6byte-part &#34;}&#34;
+ dword-part = 2word-part
+ word-part  = 2byte-part
+ byte-part  = 2hex-digit
+ hex-digit  = %x30-39 / %x41-46 / %x61-66
+</pre></div>
+</dd></dl><p><b>ServiceTypeGuid: </b>Pointer to a VARIANT
+containing a BSTR that contains a string representation of a Queue.Type. The
+string MUST adhere to the same format defined for QueueGuid.</p><p><b>Label: </b>Pointer to a VARIANT containing a BSTR
+that is used to query against Queue.Label.</p><p><b>CreateTime: </b>Pointer to a VARIANT that contains
+a DATE that is used to query against Queue.CreateTime.</p><p><b>ModifyTime: </b>Pointer to a VARIANT that contains
+a DATE that is used to query against Queue.ModifyTime.</p><p><b>RelServiceType: </b>Pointer to a VARIANT that
+contains a VT_I4 that specifies a logical comparison operator against the <i>ServiceTypeGuid</i>
+input parameter. This parameter corresponds to the <a href="9ddb3ff0-a9e0-48f1-8114-81bcea1a6e3b" data-linktype="relative-path">RELOPS</a> (section 2.2.2.20)
+enum. If this value is not specified by the client, the server MUST use the
+default value REL_EQ (0x00000001) in place of the unspecified value.</p><p><b>RelLabel: </b>Pointer to a VARIANT that contains a
+VT_I4 that specifies a logical comparison operator against the <i>Label</i>
+input parameter. This parameter corresponds to the RELOPS enum. If this value
+is not specified by the client, the server MUST use the default value REL_EQ
+(0x00000001) in place of the unspecified value.</p><p><b>RelCreateTime: </b>Pointer to a VARIANT that
+contains a VT_I4 that specifies a logical comparison operator against the <i>CreateTime</i>
+input parameter. This parameter corresponds to the RELOPS enum. If this value
+is not specified by the client, the server MUST use the default value REL_EQ
+(0x00000001) in place of the unspecified value.</p><p><b>RelModifyTime: </b>Pointer to a VARIANT that
+contains a VT_I4 that specifies a logical comparison operator against the <i>ModifyTime</i>
+input parameter. This parameter corresponds to the RELOPS enum. If this value
+is not specified by the client, the server MUST use the default value REL_EQ
+(0x00000001) in place of the unspecified value.</p><p><b>MulticastAddress: </b>Pointer to a VARIANT that
+contains a BSTR that is used to query against the Queue.MulticastAddress. If
+this value is not specified or an empty string is passed in, the server MUST
+create a query restriction that matches all queues that do not have a <i>MulticastAddress</i>
+property defined.</p><p><b>RelMulticastAddress: </b>Pointer to a VARIANT that
+contains a VT_I4 that specifies a logical comparison operator against the <i>MulticastAddress</i>
+input parameter. This parameter corresponds to the RELOPS enum. If this value
+is not specified by the client, the server MUST use the default value REL_EQ
+(0x00000001) in place of the unspecified value.</p><p><b>ppqinfos: </b>Pointer to an IMSMQQueueInfos4
+interface pointer, which upon successful completion contains a pointer to a <a href="80bc3edd-8104-455e-97c8-12e6913204ed" data-linktype="relative-path">MSMQQueueInfos</a> instance
+containing the query definition that can be used by the client to enumerate a
+collection of Queues that match the specified criteria.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the server MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>Define <i>queryFilter</i> as an array of attribute-filter
+expressions as described in <a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a>
+section <a href="../ms-mqdmpr/314c2287-dc0b-4079-b24a-550817c9e9ae" data-linktype="relative-path">3.1.7.1.20</a>.</p>
+</li><li><p><span><span> 
+</span></span>Define the operation variables <i>RelServiceTypeOp</i>, <i>RelLabelOp</i>,
+<i>RelCreateTimeOp</i>, <i>RelModifyTimeOp</i>, and <i>RelMulticastAddressOp</i>.
+These operation variables are related to the input parameter that matches the
+variable name (<i>RelServiceTypeOp</i> is related to <i>RelServiceType</i> and
+so on).</p>
+</li><li><p><span><span> 
+</span></span>Set each of the operation variables to the appropriate
+attribute-filter expression operator, which maps to the RELOPS enum contained
+in its related input parameter.</p>
+</li><li><p><span><span> 
+</span></span>Add attribute-filter expressions to <i>queryFilter</i> as
+follows:</p>
+<ul><li><p><span><span>  </span></span>If <i>QueueGuid</i>
+is not unspecified (VT_ERROR):</p>
+<ul><li><p><span><span> 
+</span></span>Add: &#34; Identifier&#34; EQUALS <i>QueueGuid</i>.</p>
+</li></ul></li><li><p><span><span>  </span></span>If <i>ServiceTypeGuid</i>
+is not unspecified (VT_ERROR) AND <i>RelServiceType</i> is not REL_NOP:</p>
+<ul><li><p><span><span> 
+</span></span>Add: &#34; Type&#34; <i>RelServiceTypeOpServiceTypeGuid</i>.</p>
+</li></ul></li><li><p><span><span>  </span></span>If <i>Label</i>
+is not unspecified (VT_ERROR) AND <i>RelLabel</i> is not REL_NOP:</p>
+<ul><li><p><span><span> 
+</span></span>Add: &#34; Label&#34; <i>RelLabelOpLabel</i>.</p>
+</li></ul></li><li><p><span><span>  </span></span>If <i>CreateTime</i>
+is not unspecified (VT_ERROR) AND <i>RelCreateTime</i> is not REL_NOP:</p>
+<ul><li><p><span><span> 
+</span></span>Add: &#34; CreateTime&#34; <i>RelCreateTimeOpCreateTime</i>.</p>
+</li></ul></li><li><p><span><span>  </span></span>If <i>ModifyTime</i>
+is not unspecified (VT_ERROR) AND <i>RelModifyTime</i> is not REL_NOP:</p>
+<ul><li><p><span><span> 
+</span></span>Add: &#34; ModifyTime&#34; <i>RelModifyTimeOpModifyTime</i>.</p>
+</li></ul></li><li><p><span><span>  </span></span>If <i>MulticastAddress</i>
+is not unspecified (VT_ERROR) AND <i>RelMulticastAddress</i> is not REL_NOP:</p>
+<ul><li><p><span><span> 
+</span></span>Add: &#34; MulticastAddress&#34; <i>RelMulticastAddressOpMulticastAddress</i>.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Create and initialize a new <i>MSMQQueueInfos</i> instance
+object, and pass <i>queryFilter</i> to the initialization of the <i>MSMQQueueInfos</i>
+instance object. For information about the initialization process, refer to
+section <a href="30788e1a-2c62-403a-bc1a-f36a930724f2" data-linktype="relative-path">3.14.3</a>. These
+values are referred to as query constraints.</p>
+</li><li><p><span><span> 
+</span></span>If initialization of the <i>MSMQQueueInfos</i> object instance
+succeeds:</p>
+<ul><li><p><span><span>  </span></span>Obtain
+a pointer to the <b>IMSMQQueueInfos4</b> interface by calling <b>IUnknown:QueryInterface</b>
+(see section <a href="6b1800d7-4e98-48be-997e-57f09ce52d41" data-linktype="relative-path">3.1</a>) on
+the newly-created <i>MSMQQueueInfos</i> object with the interface identifier of
+<b>IMSMQQueueInfos4</b>.</p>
+</li><li><p><span><span>  </span></span>Set
+the <i>ppqinfos</i> output parameter to the previously-obtained <b>IMSMQQueueInfos4</b>
+interface pointer.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error HRESULT, and take no further action.</p>
+</li></ul></li></ul></div>

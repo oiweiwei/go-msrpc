@@ -1,1 +1,12 @@
-<div class="content"></div>
+<div class="content"><p>The UpdateType enumeration defines values that describe the
+type of an update.</p><dl>
+<dd>
+<div><pre> typedef  enum tagUpdateType
+ {
+   utSoftware = 1,
+   utDriver = 2,
+ } UpdateType;
+</pre></div>
+</dd></dl><p><b>utSoftware:  </b>Indicates that the update is a
+software update.</p><p><b>utDriver:  </b>Indicates that the update is a
+driver update.</p></div>

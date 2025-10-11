@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The <b>SAP_IF_CONFIG</b> structure MAY<a id="Appendix_A_Target_106"></a><a aria-label="Product behavior note 106" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_106" data-linktype="relative-path">&lt;106&gt;</a> be used to contain SAP
+InterfaceConfiguration Information. This structure MUST be used when the <b>InfoType</b>
+in <a href="c99955ec-6d18-4665-8d5b-e124de63a368" data-linktype="relative-path"><b>RTR_TOC_ENTRY (section 2.2.1.2.4)</b></a>
+is 0x00020001.  </p><dl>
+<dd>
+<div><pre> typedef struct _SAP_IF_CONFIG {
+   SAP_IF_INFO SapIfInfo;
+   SAP_IF_FILTERS SapIfFilters;
+ } SAP_IF_CONFIG,
+  *PSAP_IF_CONFIG;
+</pre></div>
+</dd></dl><p><b>SapIfInfo: </b>This MUST be a <a href="2912b1a6-5156-4d76-8bd3-2403c5dbf032" data-linktype="relative-path"><b>SAP_IF_INFO (section 2.2.1.2.121)</b></a>
+structure.  </p><p><b>SapIfFilters: </b>This is a <a href="7b52a603-9e37-47bb-b77c-b24f4d69a081" data-linktype="relative-path"><b>SAP_IF_FILTERS (section 2.2.1.2.113)</b></a>
+structure.  </p></div>

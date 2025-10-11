@@ -1,1 +1,137 @@
-<div class="content"></div>
+<div class="content"><p>The <b>FILTER_INFO</b> structure MUST specify the five-tuple
+<a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_ffbe7b55-8e84-4f41-a18d-fc29191a4cda" data-linktype="relative-path">filter</a> to be used in <a href="4df61e3b-10c2-486a-a8ae-e6613491116b" data-linktype="relative-path"><b>FILTER_DESCRIPTOR (section 2.2.1.2.5)</b></a>.</p><dl>
+<dd>
+<div><pre> typedef struct _FILTER_INFO {
+   DWORD dwSrcAddr;
+   DWORD dwSrcMask;
+   DWORD dwDstAddr;
+   DWORD dwDstMask;
+   DWORD dwProtocol;
+   DWORD fLateBound;
+   WORD wSrcPort;
+   WORD wDstPort;
+ } FILTER_INFO,
+  *PFILTER_INFO;
+</pre></div>
+</dd></dl><p><b>dwSrcAddr: </b>A 32-bit, unsigned integer in <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_502de58c-ffc0-4dda-8fcb-b152b2c31fba" data-linktype="relative-path">network byte order</a> that
+MUST contain the IPv4 source address for which the filter (2) applies. A value
+of 0x00000000 in this field signifies ANY.</p><p><b>dwSrcMask: </b>A 32-bit, unsigned integer in
+network byte order that MUST contain the subnet mask for the source address.
+See <a href="https://go.microsoft.com/fwlink/?LinkId=90501" data-linktype="external">[RFC950]</a>.</p><p><b>dwDstAddr: </b>A 32-bit, unsigned integer in
+network byte order that MUST contain the IPv4 destination address for the
+filter. A value of 0x00000000 in this field signifies ANY.</p><p><b>dwDstMask: </b>A 32-bit, unsigned integer in
+network byte order that MUST be the subnet mask for the destination address in
+network byte order. See [RFC950].</p><p><b>dwProtocol: </b>A 32-bit, unsigned integer in
+little-endian byte order that MUST be the protocol number (such as TCP or UDP)
+for the filter. Possible values include the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>ANY</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>ICMP</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000003A</p>
+  </td>
+  <td>
+  <p>ICMPv6</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>TCP</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000011</p>
+  </td>
+  <td>
+  <p>UDP</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The complete list is specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90285" data-linktype="external">[RFC1700]</a>.</p>
+</dd></dl><p><b>fLateBound: </b>A 32-bit, unsigned integer in <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_079478cb-f4c5-4ce5-b72b-2144da5d2ce7" data-linktype="relative-path">little-endian</a> byte order
+that indicates to the RRAS server if the fields in the filter can be
+dynamically replaced by the RRAS server with values for specific endpoints at
+the time those endpoints request network access. This MUST be a combination of
+one or more of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>No source or destination address or mask replacement.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Source address replaceable with a new address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Destination address replaceable with a new address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Source address mask replaceable with a new mask.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Destination address mask replaceable with a new mask.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>wSrcPort: </b>If the protocol is TCP or UDP, this
+MUST be a 16-bit, unsigned integer in network byte order that specifies a port
+number for the corresponding protocol. If the protocol is ICMP or ICMPv6, this
+MUST be a 16-bit, unsigned integer in little-endian byte order that specifies a
+type indicator for ICMP or ICMPv6 correspondingly. For all other protocol
+values, this MUST be set to 0 (byte order does not matter).</p><p><b>wDstPort: </b>If the protocol is TCP or UDP, this
+MUST be a 16-bit, unsigned integer in network byte order that specifies a port
+number for the corresponding protocol. If the protocol is ICMP or ICMPv6, this
+MUST be a 16-bit, unsigned integer in little-endian byte order that specifies a
+code indicator for ICMP or ICMPv6 correspondingly. For all other protocol
+values, this MUST be set to 0 (byte order does not matter).</p></div>

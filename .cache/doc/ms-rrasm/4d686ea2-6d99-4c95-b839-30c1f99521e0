@@ -1,1 +1,28 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MPR_CREDENTIALSEX_1</b> structure is used to contain
+extended credentials information (other than username/password), such as the
+information used by <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_dde5e3b6-7aba-4797-8efd-8de034d99354" data-linktype="relative-path">Extensible
+Authentication Protocols (EAPs)</a> or a <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_f140c18d-b996-4067-bf71-34baa6907ba1" data-linktype="relative-path">preshared key</a> based on the
+level being passed in by the methods that use this structure. This structure is
+used in <a href="dcad4e29-723b-4832-84d8-5bfac7895b2e" data-linktype="relative-path"><b>RRouterInterfaceSetCredentialsEx (section 3.1.4.41)</b></a>
+and <a href="434d62e9-77b7-4cce-bbda-03a20685ae74" data-linktype="relative-path"><b>RRouterInterfaceGetCredentialsEx (section 3.1.4.42)</b></a>.
+If a preshared key is being used <b>dwSsize</b> MUST be less than 257. Note
+that the preshared key here is used to specify the credential for the
+connection endpoint on the RRAS server. The other end of the connection
+endpoint MUST be configured with the same preshared key in order for the
+connection to be successful.   </p><dl>
+<dd>
+<div><pre> typedef struct _MPR_CREDENTIALSEX_1 {
+   DWORD dwSize;
+   DWORD dwOffset;
+   BYTE bData[1];
+ } MPR_CREDENTIALSEX_1,
+  *PMPR_CREDENTIALSEX_1;
+</pre></div>
+</dd></dl><p><b>dwSize: </b>Specifies the size of the data pointed
+to by the <b>bData</b> member. If dwSize is zero (0) in a call to <b>RRouterInterfaceSetCredentialsEx</b>
+and the key is a preshared key, the key is deleted. </p><p><b>dwOffset: </b>Offset where the data starts in the
+structure.</p><p><b>bData: </b>Pointer to the credential information.
+Note that bData[1] is only a placeholder and the actual data of size <b>dwSize</b>
+is stored at the end of the structure. The actual value stored here can be
+either a preshared key or the EAP information <a href="37235430-8381-499c-99d8-d55219a36785" data-linktype="relative-path"><b>EAPTLS_USER_PROPERTIES (section 2.2.1.2.128)</b></a>. 
+</p></div>

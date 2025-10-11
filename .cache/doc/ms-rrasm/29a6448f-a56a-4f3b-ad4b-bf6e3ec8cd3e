@@ -1,1 +1,10 @@
-<div class="content"></div>
+<div class="content"><p>The <b>EAPTLS_HASH</b> structure contains the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> hash.</p><dl>
+<dd>
+<div><pre> typedef struct _EAPTLS_HASH {
+   DWORD cbHash;
+   BYTE pbHash[20];
+ } EAPTLS_HASH;
+</pre></div>
+</dd></dl><p><b>cbHash: </b>This MUST contain the number of bytes
+in the hash.</p><p><b>pbHash: </b>This MUST contain the hash of the
+certificate.</p></div>

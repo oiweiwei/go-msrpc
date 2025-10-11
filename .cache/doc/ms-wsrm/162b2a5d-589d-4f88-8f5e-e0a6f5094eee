@@ -1,1 +1,74 @@
-<div class="content"></div>
+<div class="content"><p>The <b>SetCurrentPolicy</b> method sets the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_2ced4dc1-842a-4bf8-bdac-0e8d505d5ce6" data-linktype="relative-path">current resource policy</a> to
+a specified <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_559b0a4d-161b-4664-9c10-4fab98b97f1f" data-linktype="relative-path">resource policy</a>
+by name.</p><dl>
+<dd>
+<div><pre> [id(12), helpstring(&#34;method SetCurrentPolicy&#34;)] HRESULT SetCurrentPolicy(
+   [in] BSTR bstrPolicyName,
+   [in] MANAGEMENT_TYPE enumManage
+ );
+</pre></div>
+</dd></dl><p><b>bstrPolicyName: </b>The name of the policy to
+become the current resource policy. If <i>enumManage</i> is <b>PROFILING</b>,
+the specified policy is used to gather <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_65daee12-445f-41c0-8456-f728063bef24" data-linktype="relative-path">PMC</a> details required for
+accounting. The WSRM service categorizes every process based on the PMCs of the
+policy and collects data to serve accounting-related queries.</p><p><b>enumManage: </b>The <a href="6eb9c5e7-3b5c-4177-99b4-028b1fb9e5a5" data-linktype="relative-path">MANAGEMENT_TYPE
+enumeration (section 2.2.3.5)</a> value that specifies the current
+mode in which the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1517eb9b-d2b2-48f0-bf23-bde76923ed30" data-linktype="relative-path">management
+service</a> is operating. This function does not support calendar mode, so the
+value <b>CALENDAR_POLICY</b> is not valid for this parameter.</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF006F</p>
+  <p>WRM_ERR_ID_VALUE</p>
+  </td>
+  <td>
+  <p>The specified name contains characters that are not
+  valid. The name cannot start with a hyphen (&#34;-&#34;), cannot contain
+  spaces, and cannot contain any of the following characters: </p>
+  <dl>
+<dd>
+<div><pre> \   / ? * | : &lt; &gt; &#34; , ;
+</pre></div>
+</dd></dl>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF00C9</p>
+  <p>WRM_ERR_POLICYID_INVALID</p>
+  </td>
+  <td>
+  <p>The specified <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_6442eac9-3264-4d95-a435-fdc08e71603f" data-linktype="relative-path">RAP</a> does not exist. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="a03f4cd5-ad33-46aa-94e7-2c9a92f02b6f" data-linktype="relative-path">IWRMPolicy</a> interface
+methods are specified in section 3.2.4.7.</p></div>

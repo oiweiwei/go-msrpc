@@ -31,7 +31,11 @@ type TransactionServer interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
-	// Transaction operation.
+	// The Transaction method is received by the server in an RPC_REQUEST packet. In response,
+	// the server SHOULD return E_NOTIMPL (0x80004001).
+	//
+	// Return Values: The method SHOULD<33> return E_NOTIMPL (0x80004001) and take no further
+	// action.
 	GetTransaction(context.Context, *GetTransactionRequest) (*GetTransactionResponse, error)
 
 	// Commit operation.

@@ -31,6 +31,13 @@ type VirtualSmartCardManager3Server interface {
 	// ITpmVirtualSmartCardManager2 base class.
 	itpmvirtualsmartcardmanager2.VirtualSmartCardManager2Server
 
+	// This method is invoked by the requestor to create a VSC with attestation.
+	//
+	// Return Values: The server MUST return 0 if it successfully creates the new VSC, and
+	// a nonzero value otherwise.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	CreateVirtualSmartCardWithAttestation(context.Context, *CreateVirtualSmartCardWithAttestationRequest) (*CreateVirtualSmartCardWithAttestationResponse, error)
 }
 

@@ -49,12 +49,69 @@ type InstallationBehaviorClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The IInstallationBehavior::CanRequestUserInput (opnum 8) method retrieves whether
+	// the operation can request user input.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the CanRequestUserInput ADM element.
 	GetCanRequestUserInput(context.Context, *GetCanRequestUserInputRequest, ...dcerpc.CallOption) (*GetCanRequestUserInputResponse, error)
 
+	// The IInstallationBehavior::Impact (opnum 9) method retrieves an enumeration value
+	// that describes the impact of the installation or uninstallation operation on the
+	// computer.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Impact ADM element.
 	GetImpact(context.Context, *GetImpactRequest, ...dcerpc.CallOption) (*GetImpactResponse, error)
 
+	// The IInstallationBehavior::RebootBehavior (opnum 10) method retrieves an enumeration
+	// value that describes the likelihood that a reboot is needed for this operation.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the RebootBehavior ADM element.
 	GetRebootBehavior(context.Context, *GetRebootBehaviorRequest, ...dcerpc.CallOption) (*GetRebootBehaviorResponse, error)
 
+	// The IInstallationBehavior::RequiresNetworkConnectivity (opnum 11) method retrieves
+	// whether the operation can require network connectivity.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the RequiresNetworkConnectivity ADM element.
 	GetRequiresNetworkConnectivity(context.Context, *GetRequiresNetworkConnectivityRequest, ...dcerpc.CallOption) (*GetRequiresNetworkConnectivityResponse, error)
 
 	// AlterContext alters the client context.
@@ -369,8 +426,10 @@ func (o *GetCanRequestUserInputRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // GetCanRequestUserInputResponse structure represents the CanRequestUserInput operation response
 type GetCanRequestUserInputResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if the operation can request user input
+	// or to VARIANT_FALSE if the operation never requests user input.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The CanRequestUserInput return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -576,7 +635,9 @@ func (o *GetImpactRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 // GetImpactResponse structure represents the Impact operation response
 type GetImpactResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat          `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An InstallationImpact (section 2.2.1) instance that indicates the impact
+	// of the operation.
 	ReturnValue uamg.InstallationImpact `idl:"name:retval" json:"return_value"`
 	// Return: The Impact return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -785,7 +846,9 @@ func (o *GetRebootBehaviorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // GetRebootBehaviorResponse structure represents the RebootBehavior operation response
 type GetRebootBehaviorResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat                  `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An InstallationRebootBehavior (section 2.2.2) instance that specifies the
+	// reboot behavior of the operation.
 	ReturnValue uamg.InstallationRebootBehavior `idl:"name:retval" json:"return_value"`
 	// Return: The RebootBehavior return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -994,8 +1057,10 @@ func (o *GetRequiresNetworkConnectivityRequest) UnmarshalNDR(ctx context.Context
 // GetRequiresNetworkConnectivityResponse structure represents the RequiresNetworkConnectivity operation response
 type GetRequiresNetworkConnectivityResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if the operation can require network connectivity
+	// or to VARIANT_FALSE if the operation never requires network connectivity.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The RequiresNetworkConnectivity return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

@@ -1,0 +1,20 @@
+<div class="content"><p>The MSMQVersionMajor method is received by the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in an RPC_REQUEST
+packet. In response, the serverMUST return the major version number of the
+server.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT MSMQVersionMajor(
+   [out, retval] short* psMSMQVersionMajor
+ );
+</pre></div>
+</dd></dl><p><b>psMSMQVersionMajor: </b>A pointer to a <b>short</b>
+that when successfully completed, contains the major version number of the
+server.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the server MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <b>ComputerName</b> instance variable is not NULL, return
+MQ_ERROR_INVALID_PARAMETER (0xC00E0006) and take no further action.</p>
+</li><li><p><span><span> 
+</span></span>Set the <i>psMSMQVersionMajor</i> output variable to the major
+version number<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a> of the server.</p>
+</li></ul></div>

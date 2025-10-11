@@ -1,1 +1,41 @@
-<div class="content"></div>
+<div class="content"><p>The FrsRpcVerifyPromotionParent method does not perform any
+actions. It MUST return ERROR_CALL_NOT_IMPLEMENTED.</p><dl>
+<dd>
+<div><pre> unsigned long FrsRpcVerifyPromotionParent(
+   [in] handle_t Handle,
+   [in, string, unique] PWCHAR ParentAccount,
+   [in, string, unique] PWCHAR ParentPassword,
+   [in, string, unique] PWCHAR ReplicaSetName,
+   [in, string, unique] PWCHAR ReplicaSetType,
+   [in] unsigned long PartnerAuthLevel,
+   [in] unsigned long GuidSize
+ );
+</pre></div>
+</dd></dl><p><b>Handle: </b>Binding handle obtained when the
+partner authenticates with the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_20f21413-875c-4ebf-9913-a3282fbb779f" data-linktype="relative-path">file replication service</a>.</p><p><b>ParentAccount: </b>MUST be 0. MUST be ignored on
+receipt.</p><p><b>ParentPassword: </b>MUST be 0. MUST be ignored on
+receipt.</p><p><b>ReplicaSetName: </b>MUST be 0. MUST be ignored on
+receipt.</p><p><b>ReplicaSetType: </b>MUST be 0. MUST be ignored on
+receipt.</p><p><b>PartnerAuthLevel: </b>MUST be 0. MUST be ignored
+on receipt.</p><p><b>GuidSize: </b>MUST be 0. MUST be ignored on
+receipt.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000078</p>
+  <p>ERROR_CALL_NOT_IMPLEMENTED</p>
+  </td>
+  <td>
+  <p>This function is not supported on this system.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

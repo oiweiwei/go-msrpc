@@ -1,1 +1,78 @@
-<div class="content"></div>
+<div class="content"><p> The Fek Info datum encapsulates the algorithm ID (<a href="4cc8e6ae-99aa-483e-99c1-ab4c0ee46294" data-linktype="relative-path">ALG_ID</a>) used for the FEK,
+the encrypted FEK, and the File IV. The FEK and File IV are both protected
+using <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_21edac94-99d0-44cb-bc1a-3416d8fc618e" data-linktype="relative-path">advanced encryption
+standard (AES)</a> keywrap, with the FMK as the wrapping key.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EFSX_Datum</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>AlgorithmID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Data_Fields
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>EFSX_Datum (8 bytes): </b>MUST be formatted as
+specified in section <a href="1d2fa232-d557-43fe-95e3-2d4ced7f7934" data-linktype="relative-path">2.2.2.2.2</a>.
+The datum <b>Type</b> MUST be EFSX_TYPE_FEK_INFO (0x0006). The datum <b>Flags</b>
+SHOULD include 0x0002, indicating a complex datum.</p><p><b>AlgorithmID (4 bytes): </b>The symmetric
+cryptographic algorithm associated with this key. It MUST be a 32-bit unsigned
+integer in little-endian format. Possible values are specified in section
+2.2.13.</p><p><b>Data_Fields (variable): </b>This field contains
+any number of nested EFSX_Datum structures. The nested datum structures MUST
+NOT overlap, and MUST be entirely contained within the Fek Info datum. This
+field MUST contain at least two datum structures of type EFSX_TYPE_BLOB
+(0x0001). These blobs MUST have <b>Role</b> fields set to 0x000a (for the
+encrypted FEK) and 0x000b (for the encrypted File IV), respectively. The <b>BlobType</b>
+for these blobs MUST be 0x0004, indicating that the blob data contains a key
+wrapped with an AES 256 key encryption key, as defined in <a href="https://go.microsoft.com/fwlink/?LinkId=131784" data-linktype="external">[RFC3394]</a>.</p></div>

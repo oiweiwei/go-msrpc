@@ -1,0 +1,190 @@
+<div class="content"><p>The PeekNextByLookupId method is received by the server in
+an RPC_REQUEST packet. In response, the server retrieves the <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>
+following a Message from the <i>referenced queue</i>&#39;s MessagePositionList for
+which the Message.LookupIdentifier property equals the lookup identifier
+without removing it.</p><dl>
+<dd>
+<div><pre> HRESULT PeekNextByLookupId(
+   [in] VARIANT LookupId,
+   [in, optional] VARIANT* WantDestinationQueue,
+   [in, optional] VARIANT* WantBody,
+   [in, optional] VARIANT* WantConnectorType,
+   [out, retval] IMSMQMessage4** ppmsg
+ );
+</pre></div>
+</dd></dl><p><b>LookupId: </b>A <a href="../ms-oaut/a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">VARIANT</a>
+(VT_UI8) that contains a value that represents a position in the
+MessagePositionList of the <i>referenced queue</i>, as described by the
+Message.LookupIdentifier.</p><p><b>WantDestinationQueue: </b>A pointer to a VARIANT
+(VT_BOOL).</p><dl>
+<dd>
+<p>If this parameter is not specified by the client,
+the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST use the
+default value VARIANT_FALSE (0x0000) in place of the unspecified value.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>VARIANT_TRUE</p>
+  <p>0xFFFF</p>
+  </td>
+  <td>
+  <p>The server MUST return an MSMQMessage object that has
+  the DestinationQueueInfo property set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VARIANT_FALSE</p>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>Default. The server MUST return an MSMQMessage object
+  that does not have the DestinationQueueInfo property set.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>WantBody: </b>A pointer to a VARIANT (VT_BOOL).</p><dl>
+<dd>
+<p>If this parameter is not specified by the client,
+the server MUST use the default value VARIANT_TRUE (0xFFFF) in place of the
+unspecified value.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>VARIANT_TRUE</p>
+  <p>0xFFFF</p>
+  </td>
+  <td>
+  <p>Default. The server MUST return an MSMQMessage object
+  that has the Body property set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VARIANT_FALSE</p>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>The server MUST return an MSMQMessage object that does
+  not have the Body property set.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>WantConnectorType: </b>A pointer to a VARIANT
+(VT_BOOL).</p><dl>
+<dd>
+<p>If this parameter is not specified by the client,
+the server MUST use the default value VARIANT_FALSE (0x0000) in place of the
+unspecified value.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>VARIANT_TRUE</p>
+  <p>0xFFFF</p>
+  </td>
+  <td>
+  <p>The server MUST return an MSMQMessage object that has
+  the ConnectorTypeGuid property set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VARIANT_FALSE</p>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>Default. The server MUST return an MSMQMessage object
+  that does not have the ConnectorTypeGuid property set.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ppmsg: </b>A pointer to a pointer to an <a href="7e7b8992-89c1-40b9-996f-93d68bf434b3" data-linktype="relative-path">IMSMQMessage4</a> interface
+that MUST be set by the server with the received <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a>.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the server MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>LookupId</i> input parameter equals 0:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error HRESULT, and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>IsInitialized</i> instance variable equals False:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error OLE_E_BLANK (0x80040007), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>IsClosed</i> instance variable equals True:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error MQ_ERROR_INVALID_HANDLE (0xC00E0007), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If refQueue.AccessType is not equal to PeekAccess or
+PeekAdminAccess or ReceiveAccess or ReceiveAdminAccess:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error MQ_ERROR_ACCESS_DENIED (0xC00E0025), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>ppmsg</i> output parameter is NULL:</p>
+<ul><li><p><span><span>  </span></span>Return
+E_INVALIDARG (0x80070057), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Define <i>suitable message</i> as the Message following the
+position in the MessagePositionList of the <i>referenced queue</i> identified
+by the <i>LookupId</i> input parameter (as described by the
+Message.LookupIdentifier), where the <a href="571198d0-5813-455d-b041-6366cd521337" data-linktype="relative-path">State</a> property of the
+Message does not equal Locked or Message.AllowPeekWhenLocked equals True.</p>
+</li><li><p><span><span> 
+</span></span>Attempt to retrieve the <i>suitable message</i> by raising the Read
+Message By Lookup Identifier event with the following arguments:</p>
+<ul><li><p><span><span>  </span></span><i>iQueueDesc</i>:
+This MUST be set to the OpenQueueDescriptor for the referenced queue.</p>
+</li><li><p><span><span>  </span></span><i>iLookupId</i>:
+This MUST be set to LookupId.</p>
+</li><li><p><span><span>  </span></span><i>iPeekOperation</i>:
+This MUST be set to TRUE.</p>
+</li><li><p><span><span>  </span></span><i>iLookupOperation</i>:
+This MUST be set to the enumeration value MessageSeekAction.SeekPrevious.</p>
+</li><li><p><span><span>  </span></span><i>iTransaction</i>:
+This MUST be set to a reference to the Transaction object if created.</p>
+</li><li><p><span><span>  </span></span>Based
+on the rStatus, take the following actions:</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If rStatus is not MQ_OK:</p>
+<ul><li><p><span><span>  </span></span>Set
+the <i>ppmsg</i> output parameter to NULL.</p>
+</li><li><p><span><span>  </span></span>Return
+MQ_ERROR_MESSAGE_NOT_FOUND (0xc00e0008), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>Retrieve
+the <i>suitable message from rMessage</i>, and instantiate an MSMQMessage
+instance and initialize it with the <i>suitable message</i>, observing the requirements
+set forth by the <i>WantConnectorType</i>, <i>WantBody</i>, and <i>WantDestinationQueue</i>
+input parameters. For details of initializing the MSMQMessage object, refer to
+section <a href="9f3d4014-b019-49ea-a37e-7725b7fb20cf" data-linktype="relative-path">3.17.3</a>.</p>
+</li><li><p><span><span>  </span></span>Set
+the <i>ppmsg</i> output parameter to the newly instantiated MSMQMessage
+instance.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return S_OK (0x00000000), and take no further action.</p>
+</li></ul></div>

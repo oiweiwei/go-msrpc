@@ -34,22 +34,124 @@ type AppHostElementSchemaServer interface {
 	// Name operation.
 	GetName(context.Context, *GetNameRequest) (*GetNameResponse, error)
 
-	// DoesAllowUnschematizedProperties operation.
+	// The DoesAllowUnschematizedProperties method is received by the server in an RPC_REQUEST
+	// packet. In response, the server returns whether the corresponding IAppHostElement
+	// supports IAppHostProperty objects.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetDoesAllowUnschematizedProperties(context.Context, *GetDoesAllowUnschematizedPropertiesRequest) (*GetDoesAllowUnschematizedPropertiesResponse, error)
 
 	// GetMetadata operation.
 	GetMetadata(context.Context, *GetMetadataRequest) (*GetMetadataResponse, error)
 
-	// CollectionSchema operation.
+	// The CollectionSchema method is received by the server in an RPC_REQUEST packet. If
+	// the specified IAppHostElement object supports child collection elements, the server
+	// returns the schema and constraints of the collection that is contained in the corresponding
+	// IAppHostElement object.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppCollectionSchema is not NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetCollectionSchema(context.Context, *GetCollectionSchemaRequest) (*GetCollectionSchemaResponse, error)
 
-	// ChildElementSchemas operation.
+	// The ChildElementSchemas method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns the schema and constraints of any child elements
+	// that are contained in the corresponding IAppHostElement object.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppChildSchemas is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetChildElementSchemas(context.Context, *GetChildElementSchemasRequest) (*GetChildElementSchemasResponse, error)
 
-	// PropertySchemas operation.
+	// The PropertySchemas method is received by the server in an RPC_REQUEST packet. In
+	// response, the server returns the schema and constraints for the IAppHostProperty
+	// objects that are contained in the corresponding IAppHostElement.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppPropertySchemas is not NULL. If
+	// processing fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF].
+	// The following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetPropertySchemas(context.Context, *GetPropertySchemasRequest) (*GetPropertySchemasResponse, error)
 
-	// IsCollectionDefault operation.
+	// The IsCollectionDefault method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns whether the corresponding IAppHostElement object
+	// is also considered to be a supported default for other IAppHostElement objects in
+	// the administration system.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetIsCollectionDefault(context.Context, *GetIsCollectionDefaultRequest) (*GetIsCollectionDefaultResponse, error)
 }
 

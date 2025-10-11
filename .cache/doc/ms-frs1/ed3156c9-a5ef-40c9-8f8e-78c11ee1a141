@@ -1,1 +1,21 @@
-<div class="content"></div>
+<div class="content"><p>The structure of the COMM_JOIN_TIME packet element is as
+follows:</p><dl>
+<dd>
+<div><pre> typedef struct _COMM_JOIN_TIME {
+   USHORT CommType;
+   ULONG Length;
+   ULONG DataLength;
+   FILETIME Data;
+ } COMM_JOIN_TIME,
+  *PCOMM_JOIN_TIME;
+</pre></div>
+</dd></dl><p><b>CommType:</b>   A 16-bit, unsigned
+integer that indicates the type of this <a href="194f8fff-d903-44b7-9530-c66f5366f8c7" data-linktype="relative-path">COMM_PACKET</a> element. MUST
+be set to 0x0011.</p><p><b>Length:</b>   A 32-bit, unsigned integer
+that indicates the length in bytes of the data following the Length field. MUST
+be 0x0000000C.</p><p><b>DataLength:</b>   A 32-bit, unsigned
+integer that indicates the length in bytes of the data in the <b>Data</b>
+field. MUST be 0x00000008.</p><p><b>Data:</b>   A <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">FILETIME</a>
+(as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>)
+structure that specifies the UTC time when the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a> builds this
+communication packet.</p></div>

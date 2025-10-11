@@ -1,0 +1,24 @@
+<div class="content"><p>The MQJOURNAL enumeration defines values that indicate the
+requested target journaling mode for an <a href="7d8d0dab-699c-4121-9ee4-226a2dbced2e" data-linktype="relative-path">ApplicationQueue</a>. Target
+journaling is the process of retaining copies of the <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>s
+removed from an ApplicationQueue. For ApplicationQueues where target journaling
+is enabled, Messages removed from an ApplicationQueue are copied to the <b>MessagePositionList</b>
+of the associated <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_89cac287-8784-4fdf-893f-739cd0ef3785" data-linktype="relative-path">journal
+queue</a>.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MQ_JOURNAL_NONE = 0,
+   MQ_JOURNAL = 1
+ } MQJOURNAL;
+</pre></div>
+</dd></dl><p><b>MQ_JOURNAL_NONE:  </b>Target journaling is not
+enabled for the ApplicationQueue. <b>Messages</b> received from the
+ApplicationQueue by clients of this protocol are permanently deleted.</p><p><b>MQ_JOURNAL:  </b>Target journaling is enabled for
+the ApplicationQueue. <b>Messages</b> received from the ApplicationQueue by
+clients of this protocol are copied to the <b>MessagePositionList</b> of the
+associated journal queue prior to being deleted from the ApplicationQueue.</p><p>Used by:</p><ul><li><p><span><span> 
+</span></span><a href="f76e87cb-98f5-4330-92ed-37d582f9e0b0" data-linktype="relative-path">IMSMQQueueInfo::Journal</a></p>
+</li><li><p><span><span> 
+</span></span><a href="3e42f768-5095-40da-8521-f1c686b92bcc" data-linktype="relative-path">IMSMQQueueInfo::Journal</a></p>
+</li></ul></div>

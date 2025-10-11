@@ -31,12 +31,72 @@ type SearchResultServer interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
+	// The ISearchResult::ResultCode (opnum 8) method retrieves the result code for the
+	// search.
+	//
+	// The IUpdateHistoryEntry::ResultCode (opnum 9) method describes the result of the
+	// operation.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ResultCode ADM element.
 	GetResultCode(context.Context, *GetResultCodeRequest) (*GetResultCodeResponse, error)
 
+	// The ISearchResult::RootCategories (opnum 9) method retrieves the root categories
+	// found during the search.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	GetRootCategories(context.Context, *GetRootCategoriesRequest) (*GetRootCategoriesResponse, error)
 
+	// The ICategory::Updates (opnum 16) method retrieves an IUpdateCollection interface
+	// containing the updates that belong to the update category.
+	//
+	// The ISearchResult::Updates (opnum 10) method retrieves the updates found during the
+	// search.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Updates ADM element.
 	GetUpdates(context.Context, *GetUpdatesRequest) (*GetUpdatesResponse, error)
 
+	// The ISearchResult::Warnings (opnum 11) method retrieves the warnings generated during
+	// the search.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Warnings ADM element.
 	GetWarnings(context.Context, *GetWarningsRequest) (*GetWarningsResponse, error)
 }
 

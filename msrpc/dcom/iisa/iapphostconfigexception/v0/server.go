@@ -31,25 +31,154 @@ type AppHostConfigExceptionServer interface {
 	// IUnknown base class.
 	iunknown.UnknownServer
 
-	// LineNumber operation.
+	// The LineNumber (opnum 3) method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns a specific line number that might provide more detail
+	// regarding the location of the error in the hierarchy of the administration system.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetLineNumber(context.Context, *GetLineNumberRequest) (*GetLineNumberResponse, error)
 
-	// FileName operation.
+	// The FileName method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a file name that can provide more detail regarding the location
+	// of the error in the hierarchy of the administration system.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrFileName MUST NOT be NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetFileName(context.Context, *GetFileNameRequest) (*GetFileNameResponse, error)
 
 	// ConfigPath operation.
 	GetConfigPath(context.Context, *GetConfigPathRequest) (*GetConfigPathResponse, error)
 
-	// ErrorLine operation.
+	// The ErrorLine method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a textual representation of the specific data in the administration
+	// system that is causing the error.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrErrorLine MUST NOT be NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetErrorLine(context.Context, *GetErrorLineRequest) (*GetErrorLineResponse, error)
 
-	// PreErrorLine operation.
+	// The PreErrorLine method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a textual representation of the data that precedes the specific
+	// data in the administration system that is causing the error.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrPreErrorLine MUST NOT be NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetPreErrorLine(context.Context, *GetPreErrorLineRequest) (*GetPreErrorLineResponse, error)
 
-	// PostErrorLine operation.
+	// The PostErrorLine method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a textual representation of the data that follows the specific
+	// data in the administration system that is causing the error.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrPostErrorLine MUST NOT be NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetPostErrorLine(context.Context, *GetPostErrorLineRequest) (*GetPostErrorLineResponse, error)
 
-	// ErrorString operation.
+	// The ErrorString method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a description of the error that occurred in the administration
+	// system.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrErrorString MUST NOT be NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetErrorString(context.Context, *GetErrorStringRequest) (*GetErrorStringResponse, error)
 }
 

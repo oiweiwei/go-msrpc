@@ -1,1 +1,80 @@
-<div class="content"></div>
+<div class="content"><p>The RdcGetFileDataAsync method is used instead of calling <a href="e09dc22a-0008-4af6-a7bf-22560c86d1b3" data-linktype="relative-path">RdcGetFileData</a> multiple
+times to obtain file data. As specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>,
+the specification for asynchronous <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>, an RPC client pulls
+file data from the byte pipe until receiving an end-of-file notification from
+the pipe.</p><dl>
+<dd>
+<div><pre> DWORD RdcGetFileDataAsync(
+   [in] PFRS_SERVER_CONTEXT serverContext,
+   [out] BYTE_PIPE* bytePipe
+ );
+</pre></div>
+</dd></dl><p><b>serverContext: </b>The context handle that
+represents the requested file replication operation. The client MUST specify a
+server context that was retrieved by a previously successful call to the <a href="908b4cc2-9915-4e31-84b8-f6b3e09b7c03" data-linktype="relative-path">InitializeFileTransferAsync</a>
+method in which the client set the <i>rdcDesired</i> parameter to TRUE.</p><p><b>bytePipe: </b>The asynchronous RPC byte pipe that
+contains returned file data.</p><p><b>Return Values: </b>This method MUST return 0 on
+success or a nonzero error code on failure. For protocol purposes all nonzero
+values MUST be treated as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The context is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00002344</p>
+  <p>FRS_ERROR_CONTENTSET_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The content set was not found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000234B</p>
+  <p>FRS_ERROR_RDC_GENERIC</p>
+  </td>
+  <td>
+  <p>Unknown error in <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_a0d8116e-63f3-418b-afea-ca6258840e92" data-linktype="relative-path">RDC</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00002358</p>
+  <p>FRS_ERROR_XPRESS_INVALID_DATA</p>
+  </td>
+  <td>
+  <p>The compressed data is invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol [MS-RPCE].</p><p><b>Validating the file transfer request:</b> The server MUST
+validate the file transfer request by performing the same checks as the
+RdcGetFileData method, except for the checks related to input parameters that
+exist in the RdcGetFileData method but not in the RdcGetFileDataAsync method. </p><p><b>Actions Triggered:</b> Upon successfully validating the
+RDC file data request, the server serves file data from the source needs that
+were queued by the <a href="3537a49b-0dd9-4a7d-acbc-8339f765c8a4" data-linktype="relative-path">RdcPushSourceNeeds</a>
+method. </p><p><b>Remarks:</b> The data stream returned by the
+RdcGetFileDataAsync method is identical to the format of the data received by a
+single call to the RdcGetFileData method if the RdcGetFileData method is passed
+a buffer large enough to hold all the data returned by the pipe.</p></div>

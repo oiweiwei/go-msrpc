@@ -1,0 +1,93 @@
+<div class="content"><p>The MQMSGAUTHENTICATION enumeration defines values for the <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>.<b>AuthenticationLevel</b>
+property. Specific values in this enumeration indicate the manner in which a
+Message was cryptographically signed. A value is reserved to indicate that the
+Message was not signed.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MQMSG_AUTHENTICATION_NOT_REQUESTED = 0,
+   MQMSG_AUTHENTICATION_REQUESTED = 1,
+   MQMSG_AUTHENTICATED_SIG10 = 1,
+   MQMSG_AUTHENTICATION_REQUESTED_EX = 3,
+   MQMSG_AUTHENTICATED_SIG20 = 3,
+   MQMSG_AUTHENTICATED_SIG30 = 5,
+   MQMSG_AUTHENTICATED_SIGXML = 9
+ } MQMSGAUTHENTICATION;
+</pre></div>
+</dd></dl><p><b>MQMSG_AUTHENTICATION_NOT_REQUESTED:  </b>The
+Message was not signed.</p><p><b>MQMSG_AUTHENTICATION_REQUESTED:  </b>The Message
+was signed according to the algorithm described in <a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a>
+section <a href="../ms-mqmq/303416bb-b821-4a18-ac0d-adc3ea44cc77" data-linktype="relative-path">2.2.20.6</a>,
+where the SecurityHeader.Flags.AS value is 0x1.</p><p><b>MQMSG_AUTHENTICATED_SIG10:  </b>The Message was
+signed according to the algorithm described in [MS-MQMQ] section 2.2.20.6,
+where the SecurityHeader.Flags.AS value is 0x1.</p><p><b>MQMSG_AUTHENTICATION_REQUESTED_EX:  </b>The
+Message was signed according to the algorithm described in [MS-MQMQ] section
+2.2.20.6, where the SecurityHeader.Flags.AS value is 0x3.</p><p><b>MQMSG_AUTHENTICATED_SIG20:  </b>The Message was
+signed according to the algorithm described in [MS-MQMQ] section 2.2.20.6,
+where the SecurityHeader.Flags.AS value is 0x3.</p><p><b>MQMSG_AUTHENTICATED_SIG30:  </b>The Message was
+signed according to the algorithm described in [MS-MQMQ] section 2.2.20.6,
+where the SecurityHeader.Flags.AS value is 0x5.</p><p><b>MQMSG_AUTHENTICATED_SIGXML:  </b>The Message was
+signed by using an <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_42b577ca-a377-4062-8bbd-73d6283bd35f" data-linktype="relative-path">XML
+digital signature</a>.</p><p>Used by:</p><ul><li><p><span><span> 
+</span></span>get <a href="1213dbc6-33f3-4163-8386-a68c7415827d" data-linktype="relative-path">IMSMQMessage::ReceivedAuthenticationLevel</a></p>
+</li></ul><p>The MQMSGAUTHENTICATION enumeration values correspond to the
+enumeration values for the Message.<b>AuthenticationLevel</b>, as shown in the
+following table:</p><table><thead>
+  <tr>
+   <th>
+   <p>MQMSGAUTHENTICATION</p>
+   </th>
+   <th>
+   <p>Message.AuthenticationLevel</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQMSG_AUTHENTICATION_NOT_REQUESTED</p>
+  </td>
+  <td>
+  <p>None</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_AUTHENTICATION_REQUESTED</p>
+  </td>
+  <td>
+  <p>Same as Sig10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_AUTHENTICATED_SIG10</p>
+  </td>
+  <td>
+  <p>Sig10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_AUTHENTICATION_REQUESTED_EX</p>
+  </td>
+  <td>
+  <p>Same as Sig20</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_AUTHENTICATED_SIG20</p>
+  </td>
+  <td>
+  <p>Sig20</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_AUTHENTICATED_SIG30</p>
+  </td>
+  <td>
+  <p>Sig30</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_AUTHENTICATED_SIGXML</p>
+  </td>
+  <td>
+  <p>XmlSig</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

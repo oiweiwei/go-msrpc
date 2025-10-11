@@ -49,6 +49,7 @@ type LibraryControl2Client interface {
 	// INtmsLibraryControl1 retrieval method.
 	LibraryControl1() intmslibrarycontrol1.LibraryControl1Client
 
+	// The IdentifyNtmsSlot method identifies the media in a storage slot.
 	IdentifyNTMSSlot(context.Context, *IdentifyNTMSSlotRequest, ...dcerpc.CallOption) (*IdentifyNTMSSlotResponse, error)
 
 	// AlterContext alters the client context.
@@ -290,9 +291,30 @@ func (o *xxx_IdentifyNTMSSlotOperation) UnmarshalNDRResponse(ctx context.Context
 // IdentifyNTMSSlotRequest structure represents the IdentifyNtmsSlot operation request
 type IdentifyNTMSSlotRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
-	SlotID *dtyp.GUID     `idl:"name:lpSlotId" json:"slot_id"`
-	Option uint32         `idl:"name:dwOption" json:"option"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpSlotId: A pointer to the identifier of the slot containing the media to identify
+	SlotID *dtyp.GUID `idl:"name:lpSlotId" json:"slot_id"`
+	// dwOption: A value from the NtmsDismountOptions (section 2.2.1.9) enumeration specifying
+	// what to do with the media after identification is complete. If dwOption does not
+	// contain a valid value, the default value NTMS_DISMOUNT_IMMEDIATE is taken.
+	//
+	//	+------------------------------------+------------------------------------------------------+
+	//	|               RETURN               |                                                      |
+	//	|             VALUE/CODE             |                     DESCRIPTION                      |
+	//	|                                    |                                                      |
+	//	+------------------------------------+------------------------------------------------------+
+	//	+------------------------------------+------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                             |
+	//	+------------------------------------+------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access to an object was denied.                      |
+	//	+------------------------------------+------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | A parameter is not valid.                            |
+	//	+------------------------------------+------------------------------------------------------+
+	//	| 0x800710D1 ERROR_LIBRARY_OFFLINE   | The library identifier refers to an offline library. |
+	//	+------------------------------------+------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND  | The object was not found.                            |
+	//	+------------------------------------+------------------------------------------------------+
+	Option uint32 `idl:"name:dwOption" json:"option"`
 }
 
 func (o *IdentifyNTMSSlotRequest) xxx_ToOp(ctx context.Context, op *xxx_IdentifyNTMSSlotOperation) *xxx_IdentifyNTMSSlotOperation {

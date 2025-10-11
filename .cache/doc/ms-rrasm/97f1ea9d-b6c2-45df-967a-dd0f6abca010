@@ -1,1 +1,17 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IKEV2_CONFIG_PARAMS_2</b> structure<a id="Appendix_A_Target_168"></a><a aria-label="Product behavior note 168" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_168" data-linktype="relative-path">&lt;168&gt;</a> is used to get or set
+configured parameters for IKEv2 devices.</p><dl>
+<dd>
+<div><pre> typedef struct _IKEV2_CONFIG_PARAMS_2 {
+   DWORD dwNumPorts;
+   DWORD dwPortFlags;
+   DWORD dwTunnelConfigParamFlags;
+   IKEV2_TUNNEL_CONFIG_PARAMS_2 TunnelConfigParams;
+ } IKEV2_CONFIG_PARAMS_2,
+  *PIKEV2_CONFIG_PARAMS_2;
+</pre></div>
+</dd></dl><p><b>dwNumPorts: </b>Same as <b>dwNumPorts</b> in <a href="cc155cc0-5776-4228-93ee-d9a787785d91" data-linktype="relative-path"><b>IKEV2_CONFIG_PARAMS_1</b></a>.
+</p><p><b>dwPortFlags: </b>Same as <b>dwPortFlags</b> in
+IKEV2_CONFIG_PARAMS_1.</p><p><b>dwTunnelConfigParamFlags: </b>Same as <b>dwTunnelConfigParamFlags</b>
+in IKEV2_CONFIG_PARAMS_1.</p><p><b>TunnelConfigParams: </b>IKEv2 tunnel-related
+parameters. MUST be an <a href="0351b688-0da2-4a6f-bd92-f24a22840f1a" data-linktype="relative-path"><b>IKEV2_TUNNEL_CONFIG_PARAMS_2</b></a>
+structure. </p></div>

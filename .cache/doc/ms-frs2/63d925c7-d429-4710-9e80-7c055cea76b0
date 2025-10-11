@@ -1,1 +1,75 @@
-<div class="content"></div>
+<div class="content"><p>A block of potentially compressed data.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Block
+  Header</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Block
+  Data (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Block Header (12 bytes): </b>An XPRESS Block
+Header (as specified in section <a href="417b2137-23f9-4bce-949b-23eee7877235" data-linktype="relative-path">2.2.1.4.15.1</a>) containing
+information about the block data.</p><p><b>Block Data (variable): </b>If the values of the <b>Block
+Compressed Size</b> and <b>Block Uncompressed Size</b> fields in the XPRESS
+block&#39;s header (specified in section 2.2.1.4.15.1) are equal, then the block
+data has not been compressed. In this case the uncompressed data is obtained by
+copying bytes from the <b>Block Data</b> field without modification.</p><dl>
+<dd>
+<p>If the value of the <b>Block Compressed Size</b>
+field is less than the value of the <b>Block Uncompressed Size</b> field, then
+the data has been compressed. For more information about decompressing
+compressed data, see section <a href="8cb5bae9-edf3-4833-9f0a-9d7e24218d3d" data-linktype="relative-path">3.1.1.2</a>.</p>
+</dd></dl></div>

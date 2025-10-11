@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPX_SERVICE</b> structure MAY<a id="Appendix_A_Target_112"></a><a aria-label="Product behavior note 112" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_112" data-linktype="relative-path">&lt;112&gt;</a> be used to contain
+information about the IPX service and is part of the <a href="f2c379b8-ece9-46d0-8aa8-f7ccba54d3eb" data-linktype="relative-path"><b>IPX_MIB_ROW (section 2.2.1.2.110)</b></a>
+structure.  </p><dl>
+<dd>
+<div><pre> typedef struct _IPX_SERVICE {
+   ULONG InterfaceIndex;
+   ULONG Protocol;
+   IPX_SERVER_ENTRY Server;
+ } IPX_SERVICE,
+  *PIPX_SERVICE;
+</pre></div>
+</dd></dl><p><b>InterfaceIndex: </b>This MUST be the interface index.</p><p><b>Protocol: </b>This MUST be the protocol from which
+knowledge of the service was obtained.</p><p><b>Server: </b>This MUST be an <a href="a8c32199-2bc6-4ddc-a681-4fc5ba56ee40" data-linktype="relative-path"><b>IPX_SERVER_ENTRY (section 2.2.1.2.94)</b></a>
+structure.  </p></div>

@@ -1,1 +1,102 @@
-<div class="content"></div>
+<div class="content"><p>The NtFrsApi_Rpc_Set_DsPollingIntervalW method adjusts the
+interval at which <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active
+Directory</a> is polled (see section <a href="57565762-c2e8-4eee-9559-bce8fe9f917d" data-linktype="relative-path">3.1.5.1</a>) for updates
+unless both <i>LongInterval</i> and <i>ShortInterval</i> are 0, and then MUST
+initiate a polling cycle.</p><dl>
+<dd>
+<div><pre> unsigned long NtFrsApi_Rpc_Set_DsPollingIntervalW(
+   [in] handle_t Handle,
+   [in] unsigned long UseShortInterval,
+   [in] unsigned long LongInterval,
+   [in] unsigned long ShortInterval
+ );
+</pre></div>
+</dd></dl><p><b>Handle: </b>Binding handle obtained when the
+Partner authenticates with the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_20f21413-875c-4ebf-9913-a3282fbb779f" data-linktype="relative-path">file replication service</a>.</p><p><b>UseShortInterval: </b>If nonzero, requests that
+the server initiate a polling cycle using the short interval. If 0, requests
+that the server initiate a polling cycle using the long interval.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Value in <i>LongInterval</i> is used.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001 — 0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>Value in <i>ShortInterval</i> is used.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>LongInterval: </b>Long interval in minutes. A
+0x00000000 value indicates that the <i>LongInterval</i> MUST NOT be modified by
+this call.<a id="Appendix_A_Target_58"></a><a aria-label="Product behavior note 58" href="d18cc589-677e-4133-97e5-113641792c5e#Appendix_A_58" data-linktype="relative-path">&lt;58&gt;</a></p><p><b>ShortInterval: </b>Short interval in minutes. A
+0x00000000 value indicates that the <i>ShortInterval</i> MUST NOT be modified
+by this call. If both ShortInterval and LongInterval are set, then the minimum
+of both will be used as the ShortInterval value.<a id="Appendix_A_Target_59"></a><a aria-label="Product behavior note 59" href="d18cc589-677e-4133-97e5-113641792c5e#Appendix_A_59" data-linktype="relative-path">&lt;59&gt;</a></p><p><b>Return Values: </b>The method MUST return 0 on
+success or a nonzero error code on failure. All nonzero values MUST be treated
+as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Validating the NtFrsApi_Rpc_Set_DsPollingIntervalW
+request: </b>The server must validate the NtFrsApi_Rpc_Set_DsPollingIntervalW
+request by performing the following checks.</p><ul><li><p><span><span> 
+</span></span>If <b>IsSetDsPollingIntervalAccessCheckEnabled</b> is set to
+&#34;None&#34;, the server MUST fail the call with an implementation-specific
+value.</p>
+</li><li><p><span><span> 
+</span></span>If <b>IsSetDsPollingIntervalAccessCheckEnabled</b> is set to
+&#34;Disabled&#34;, the server MUST process the request without performing an
+access check.</p>
+</li><li><p><span><span> 
+</span></span>If <b>IsSetDsPollingIntervalAccessCheckEnabled</b> is set to
+&#34;Enabled&#34;, the server MUST check if the calling client is authorized
+to perform that function. If not, the server MUST return
+ERROR_NOT_AUTHENTICATED.</p>
+<ul><li><p><span><span>  </span></span>If <b>SetDsPollingIntervalAccessRequired</b>
+is set to &#34;None&#34;, the server MUST fail the call with an
+implementation-specific value.</p>
+</li><li><p><span><span>  </span></span>If <b>SetDsPollingIntervalAccessRequired</b>
+is set to &#34;Read&#34;, the server MUST verify that the caller has read
+access. If the caller does not have read access, the server MUST return
+FRS_ERR_INSUFFICIENT_PRIV.</p>
+</li><li><p><span><span>  </span></span>If <b>SetDsPollingIntervalAccessRequired</b>
+is set to &#34;Write&#34;, the server MUST verify that the caller has write
+access. If the caller does not have write access, the server MUST return
+FRS_ERR_INSUFFICIENT_PRIV.</p>
+</li></ul></li></ul><p><b>Actions Triggered: </b>The local member MUST set the long
+and short polling intervals and kick off a new polling cycle. If both intervals
+are set, the new polling cycle MUST use the interval specified by
+UseShortInterval.</p><p><b>Note</b>  An Active Directory polling cycle
+MUST NOT be initiated if one is already in progress. An implementation can
+either return an error or wait for the in-progress polling cycle to complete.</p></div>

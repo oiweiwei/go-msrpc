@@ -51,8 +51,10 @@ type MessengerClient interface {
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
 
+	// The SendMessage method adds a message to the send queue.
 	SendMessage(context.Context, *SendMessageRequest, ...dcerpc.CallOption) (*SendMessageResponse, error)
 
+	// The RecallMessage method retrieves a message from the send queue.
 	RecallMessage(context.Context, *RecallMessageRequest, ...dcerpc.CallOption) (*RecallMessageResponse, error)
 
 	// AlterContext alters the client context.
@@ -324,7 +326,20 @@ func (o *xxx_SendMessageOperation) UnmarshalNDRResponse(ctx context.Context, w n
 // SendMessageRequest structure represents the SendMessage operation request
 type SendMessageRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis   `idl:"name:This" json:"this"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpRsmMessage: A pointer to an RSM_MESSAGE (section 2.2.6.1) structure describing
+	// the message that is to be sent.
+	//
+	//	+------------------------------------+--------------------------+
+	//	|               RETURN               |                          |
+	//	|             VALUE/CODE             |       DESCRIPTION        |
+	//	|                                    |                          |
+	//	+------------------------------------+--------------------------+
+	//	+------------------------------------+--------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful. |
+	//	+------------------------------------+--------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | A parameter is missing.  |
+	//	+------------------------------------+--------------------------+
 	RSMMessage *rsmp.RSMMessage `idl:"name:lpRsmMessage;pointer:unique" json:"rsm_message"`
 }
 
@@ -541,7 +556,37 @@ func (o *xxx_RecallMessageOperation) UnmarshalNDRResponse(ctx context.Context, w
 type RecallMessageRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
-	GUID *dtyp.GUID     `idl:"name:lpGuid" json:"guid"`
+	// lpGuid: A pointer to the identifier of the message to retrieve.
+	//
+	//	+------------------------------------+--------------------------+
+	//	|               RETURN               |                          |
+	//	|             VALUE/CODE             |       DESCRIPTION        |
+	//	|                                    |                          |
+	//	+------------------------------------+--------------------------+
+	//	+------------------------------------+--------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful. |
+	//	+------------------------------------+--------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | A parameter is missing.  |
+	//	+------------------------------------+--------------------------+
+	//
+	// After the server receives this message, it MUST verify that lpGuid is not equal to
+	// NULL. If parameter validation fails, the server MUST immediately fail the operation
+	// and return ERROR_INVALID_PARAMETER (0x80070057).
+	//
+	// If parameter validation succeeds, the server MUST perform the following actions:
+	//
+	// * Create an event for synchronization.
+	//
+	// * Get the Destination List from the Sent Message List, and verify that it is not
+	// NULL.
+	//
+	// * Find the message in the Sent Message List.
+	//
+	// * Remove the message from the list.
+	//
+	// If there are no more active requests, the server MUST hide any existing notifications,
+	// destroy the handler object and its corresponding dialog, and free the message object.
+	GUID *dtyp.GUID `idl:"name:lpGuid" json:"guid"`
 }
 
 func (o *RecallMessageRequest) xxx_ToOp(ctx context.Context, op *xxx_RecallMessageOperation) *xxx_RecallMessageOperation {

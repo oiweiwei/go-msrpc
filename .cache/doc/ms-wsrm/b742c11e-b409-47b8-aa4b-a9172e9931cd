@@ -1,1 +1,99 @@
-<div class="content"></div>
+<div class="content"><p>The DeleteCalendar method deletes a specified calendar
+event.</p><dl>
+<dd>
+<div><pre> [id(4), helpstring(&#34;method DeleteCalendar&#34;)] HRESULT DeleteCalendar(
+   [in] BSTR bstrCalendarName,
+   [in] BOOL bChangeActivePolicy
+ );
+</pre></div>
+</dd></dl><p><b>bstrCalendarName: </b>A string that specifies the
+name of the calendar event.</p><p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST be
+returned.</p><p><b>bChangeActivePolicy: </b>A Boolean value that
+specifies whether the configuration changes made by this method call SHOULD
+change the current active policy, if applicable, of the system.<a id="Appendix_A_Target_62"></a><a aria-label="Product behavior note 62" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_62" data-linktype="relative-path">&lt;62&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The current active policy of the system SHOULD NOT be
+  changed by the method call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>If applicable, the current active policy of the system
+  SHOULD be changed by the method call.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF006F</p>
+  <p>WRM_ERR_ID_VALUE</p>
+  </td>
+  <td>
+  <p>The specified name contains characters that are
+  invalid. The name cannot start with a hyphen (&#34;-&#34;) and cannot
+  contain spaces or any of the following characters:</p>
+  <dl>
+<dd>
+<div><pre> \   / ? * | : &lt; &gt; &#34; , ;.
+</pre></div>
+</dd></dl>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0259</p>
+  <p>WRM_ERR_CAL_UNKNOWN_CALENDAR</p>
+  </td>
+  <td>
+  <p>The specified calendar event does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="b573c233-e3b6-4179-896f-90a4eb0ca8ff" data-linktype="relative-path">IWRMCalendar</a> interface
+methods are specified in section 3.2.4.4.</p></div>

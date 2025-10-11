@@ -31,22 +31,160 @@ type CategoryServer interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
+	// The ICategory::Name (opnum 8) method retrieves the name of the update category.
+	//
+	// The IUpdateService::Name (opnum 8) method retrieves the name of the update service.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Name ADM element.
 	GetName(context.Context, *GetNameRequest) (*GetNameResponse, error)
 
+	// The ICategory:: CategoryID (opnum 9) method retrieves the ID of the update category.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ID ADM element.
 	GetCategoryID(context.Context, *GetCategoryIDRequest) (*GetCategoryIDResponse, error)
 
+	// The ICategory::Children (opnum 10) method retrieves an ICategoryCollection interface
+	// instance containing the children of the update category.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Children ADM element.
 	GetChildren(context.Context, *GetChildrenRequest) (*GetChildrenResponse, error)
 
+	// The ICategory::Description (opnum 11) method retrieves the description of the update
+	// category.
+	//
+	// The IUpdateHistoryEntry::Description (opnum 14) method retrieves the description
+	// of the update for which the operation is performed.
+	//
+	// The IUpdate::Description (opnum 16) method retrieves the localized description for
+	// the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Description ADM element.
 	GetDescription(context.Context, *GetDescriptionRequest) (*GetDescriptionResponse, error)
 
+	// The ICategory::Image (opnum 12) method retrieves an IImageInformation interface instance
+	// that contains information on the image associated with the update category.
+	//
+	// The IUpdate::Image (opnum 21) method retrieves a localized image associated with
+	// the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Image ADM element.
 	GetImage(context.Context, *GetImageRequest) (*GetImageResponse, error)
 
+	// The ICategory::Order (opnum 13) method retrieves the recommended display order of
+	// the update category among its siblings.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Order ADM element.
 	GetOrder(context.Context, *GetOrderRequest) (*GetOrderResponse, error)
 
+	// The ICategory::Parent (opnum 14) method retrieves the parent of the update category.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Parent ADM element.
 	GetParent(context.Context, *GetParentRequest) (*GetParentResponse, error)
 
+	// The ICategory::Type (opnum 15) method retrieves the type of the update category.
+	//
+	// The IUpdate::Type (opnum 43) method retrieves the type of the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Type ADM element.
 	GetType(context.Context, *GetTypeRequest) (*GetTypeResponse, error)
 
+	// The ICategory::Updates (opnum 16) method retrieves an IUpdateCollection interface
+	// containing the updates that belong to the update category.
+	//
+	// The ISearchResult::Updates (opnum 10) method retrieves the updates found during the
+	// search.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Updates ADM element.
 	GetUpdates(context.Context, *GetUpdatesRequest) (*GetUpdatesResponse, error)
 }
 

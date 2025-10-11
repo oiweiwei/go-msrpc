@@ -1,1 +1,100 @@
-<div class="content"></div>
+<div class="content"><p>The <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_20f21413-875c-4ebf-9913-a3282fbb779f" data-linktype="relative-path">File
+Replication Service (FRS)</a> Protocol is a multimaster replication protocol that
+is used to replicate files and folders across one or more members in an <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a> <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a>. It works to keep
+copies of a file system tree up to date on all members of a replication group,
+while allowing any member of the group to change the contents at any time. A
+particular file system tree being replicated, along with the set of machines to
+which it is replicated, and the topology of connections between those machines
+used for replication, is known as a replica set.</p><p>The topology of a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_6cef9d9c-c366-490a-8e4e-a350688731ca" data-linktype="relative-path">replica set</a> is a directed
+graph over the machines in the set. Because the graph is directed, data only
+flows in one direction on any given connection. All machines in a replica set
+participate as a client on some connections and a server on others. As the
+machines in a replica set update the contents of the replicated folder, they
+are responsible for generating <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_576a8417-dd00-4f9e-b52f-c9a2e3766a8a" data-linktype="relative-path">change orders</a> that
+propagate around the FRS topology. This causes the other members of the replica
+set to be aware of and (absent a conflict) replicate the update.</p><p>Each machine in a replication set keeps a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_dad98bb4-1dd5-404f-a742-3c3195292945" data-linktype="relative-path">volume sequence number (VSN)</a>
+that is incremented each time it generates a change order. Each member of a
+replica set keeps track of the highest VSN that it knows about for each member
+of the replica set; together they are known as a version vector. By sending its
+version vector to its <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_4daf1e81-3ffe-4656-8074-a9914b14a60c" data-linktype="relative-path">upstream
+partners</a> in the replication topology, the upstream partners can efficiently
+determine what changes need to be sent and what changes are already known, and
+send only the appropriate set of change orders back to the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_31ffd71b-0426-40ec-9a10-a174a364ecef" data-linktype="relative-path">downstream partner</a>. For
+more information on version vectors see section <a href="63e5f8af-dcb1-4d84-8732-b3a5d4598675" data-linktype="relative-path">3.1.1.11</a>.</p><p>On a given machine, FRS learns about all replica sets that
+it is part of, along with all its immediate partners, through a set of <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_90d448cf-8d8e-44e7-a9dc-675c4c99400f" data-linktype="relative-path">Active Directory objects</a>.
+Replication topology is defined by two types of objects: Member objects
+represent a given participant, and connection objects that connect two endpoint
+member objects and define the direction of data flow along with the replication
+<a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_a25a0f4f-2a1d-4c4a-bc65-fe8b0642c66b" data-linktype="relative-path">schedule</a>.</p><p>FRS detects changes made to any <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_a04c146a-de3b-4e4b-829f-a9e772f3fe25" data-linktype="relative-path">file</a> or folder underneath
+the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_5416e3c0-0a8f-46e1-b583-40ba4264d894" data-linktype="relative-path">replica tree root</a>.
+Details of a given local change are captured in a change order construct. A
+change order represents an action that took place on the local file system,
+such as file write, creation, deletion, or rename. In addition, FRS maintains a
+single ID record for every file or folder underneath the replica tree root in
+the file system. The ID record provides the information FRS needs to locate the
+file on the file system. The ID record also stores any extra properties for the
+resource, such as <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_87cf5b25-96b0-4088-827d-0d8f270c4d84" data-linktype="relative-path">file
+attributes</a>.</p><p>A new FRS participant goes through a process called <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_46a2ebd1-502d-46d9-a64a-677077aaf78c" data-linktype="relative-path">initial sync</a>. This process
+creates the initial content on the new member by requesting all the data from
+upstream partners. New participants cannot replicate local changes until the
+initial sync is concluded. </p><p>At sync time, which is defined by the connection schedule,
+FRS establishes a connection with its upstream partner through the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">remote procedure call (RPC)</a>
+interface exposed by every running FRS instance (one FRS instance per server).
+The connection is directed, so changes flow from the upstream partner to the
+downstream partner. FRS receives the version vector from its downstream partner
+in a process called <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_08e27cf3-b8d0-407e-9c9c-99d4ce06efc2" data-linktype="relative-path">Version
+Vector Join (or VVJoin)</a>, during which the upstream partner determines the
+changes that it needs to send to the downstream partner. For every such change,
+the upstream partner passes an appropriate change order to the downstream
+partner. The downstream partner inspects every change order it receives and
+decides, based on its local changes, to accept or reject the change. Typically,
+a change order is rejected if the local version supersedes the remote version
+of the resource. On accepting the change order, the downstream partner fetches
+the resource via one or more stage packets that carry the data as part of their
+payload in FrsRpcSendCommPkt method requests. Large files are partitioned into
+several stage packets that are serialized so that the downstream partner can
+reconstruct the file after receiving all the pieces.</p><p>File contents are marshaled before transfer over the wire to
+capture file system-specific metadata along with file data in one binary
+stream. The marshaled representation of a file is known as a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_64afafeb-a356-4bd0-8993-9c3326dcd8a0" data-linktype="relative-path">staging file</a>. The receiving
+<a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a> has to be able
+to unmarshal the file at its end prior to placing it in the target location on
+the file system. The replicated file can also be compressed when it is
+marshaled to save bandwidth.</p><p>If two or more users are creating files with the same file
+name on different replica set members, these files will have name collisions
+with each other as they replicate to other members. Each of these created files
+is a distinct object with unique content, but only one can be kept. FRS detects
+that a name collision has occurred when the second file is replicated to a
+member after a previous file has arrived. FRS then performs the
+last-writer-wins reconciliation between the two distinct objects. The loser
+gets deleted, and the delete is propagated out to the other members. The winner
+keeps the name and gets installed on the member.</p><p>For folders, things are a bit different because they can
+have files and folders underneath them. In this case, FRS again detects the
+name collision when the second folder is replicated to a member, and it
+performs last-writer-wins reconciliation; except, in this case, the winner gets
+a new non-conflicting file name (referred to as a morphed name), and the loser
+gets to keep the original folder name. The rename is replicated out so all
+copies of the renamed folder object get the same new name.</p><p>FRS supports four types of replica sets:</p><ul><li><p><span><span> 
+</span></span>FRS_RSTYPE_ENTERPRISE_SYSVOL (1)</p>
+</li><li><p><span><span> 
+</span></span>FRS_RSTYPE_DOMAIN_SYSVOL (2)</p>
+</li><li><p><span><span> 
+</span></span>FRS_RSTYPE_DFS (3)</p>
+</li><li><p><span><span> 
+</span></span>FRS_RSTYPE_OTHER (4)</p>
+</li></ul><p>FRS_RSTYPE_ENTERPRISE_SYSVOL and FRS_RSTYPE_DOMAIN_SYSVOL
+are used for <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_d3283b03-3828-49a7-ae15-9b65f86482e1" data-linktype="relative-path">SYSVOL</a>
+replication. </p><p>FRS_RSTYPE_DFS is used for <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_8f3c866a-07d2-4921-98ba-f5d376bfdba5" data-linktype="relative-path">DFS replication</a>.
+FRS_RSTYPE_OTHER is used only for testing.</p><p>The SYSVOL replica set is an <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_bd31ad9b-d9b9-4624-bbba-ace6fa3f9923" data-linktype="relative-path">FRS Replica</a> set that has
+all the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_76a05049-3531-4abd-aec8-30e19954b4bd" data-linktype="relative-path">DCs</a> in the
+domain as its members. It is created by default when a new domain is created.
+Every DC that is added to the domain is automatically joined as a member of
+this replica set. The SYSVOL replica set is mainly responsible for replicating
+policy data between the domain controllers. </p><p>FRS exposes two sets of RPC interfaces:</p><ul><li><p><span><span> 
+</span></span>Communication Interface—Exposes functions to implement the FRS
+replication protocol.</p>
+</li><li><p><span><span> 
+</span></span>Programming Interface—Exposes functions to implement
+administrative and monitoring tasks.</p>
+</li></ul><p>Each file or folder is assigned a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> when it is first added
+to a replica set. All replicas in the replica set use the same GUID to refer to
+the file or folder.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="d18cc589-677e-4133-97e5-113641792c5e#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a></p></div>

@@ -49,10 +49,21 @@ type ConnectionPointContainerClient interface {
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
 
-	// EnumConnectionPoints operation.
+	// The EnumConnectionPoints method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return a pointer to an IEnumConnectionPoints interface
+	// pointer, as defined in [MSDN-ECP], that can be used by the client to enumerate all
+	// the IConnectionPoint implementations for the MSMQEvent object.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.<97>
 	EnumConnectionPoints(context.Context, *EnumConnectionPointsRequest, ...dcerpc.CallOption) (*EnumConnectionPointsResponse, error)
 
-	// FindConnectionPoint operation.
+	// The FindConnectionPoint method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return a pointer to an IConnectionPoint interface pointer
+	// for a specified IID.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.<98>
 	FindConnectionPoint(context.Context, *FindConnectionPointRequest, ...dcerpc.CallOption) (*FindConnectionPointResponse, error)
 
 	// AlterContext alters the client context.
@@ -361,7 +372,10 @@ func (o *EnumConnectionPointsRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 // EnumConnectionPointsResponse structure represents the EnumConnectionPoints operation response
 type EnumConnectionPointsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppEnum: A pointer to an IEnumConnectionPoints interface pointer that upon successful
+	// completion will allow the user to enumerate all the IConnectionPoint implementations
+	// for the MSMQEvent object.
 	Enum *mqac.EnumConnectionPoints `idl:"name:ppEnum" json:"enum"`
 	// Return: The EnumConnectionPoints return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -592,7 +606,8 @@ func (o *xxx_FindConnectionPointOperation) UnmarshalNDRResponse(ctx context.Cont
 type FindConnectionPointRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
-	IID  *dcom.IID      `idl:"name:riid" json:"iid"`
+	// riid: The IID of the interface whose connection point object is being requested.
+	IID *dcom.IID `idl:"name:riid" json:"iid"`
 }
 
 func (o *FindConnectionPointRequest) xxx_ToOp(ctx context.Context, op *xxx_FindConnectionPointOperation) *xxx_FindConnectionPointOperation {
@@ -629,7 +644,9 @@ func (o *FindConnectionPointRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 // FindConnectionPointResponse structure represents the FindConnectionPoint operation response
 type FindConnectionPointResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat        `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppCP: A pointer to a pointer to an IConnectionPoint interface that supports the interface
+	// identified by the IID in the riid input parameter.
 	ConnectionPoint *mqac.ConnectionPoint `idl:"name:ppCP" json:"connection_point"`
 	// Return: The FindConnectionPoint return value.
 	Return int32 `idl:"name:Return" json:"return"`

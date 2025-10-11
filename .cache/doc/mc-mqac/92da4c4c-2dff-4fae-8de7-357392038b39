@@ -1,0 +1,21 @@
+<div class="content"><p>The IsFirstInTransaction method is received by the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in an RPC_REQUEST
+packet. In response, the server MUST return the represented <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>.<b>FirstInTransaction</b>.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT IsFirstInTransaction(
+   [out, retval] short* pisFirstInXact
+ );
+</pre></div>
+</dd></dl><p><b>pisFirstInXact: </b>A pointer to a <b>short</b>
+that specifies whether the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a>
+was the first sent by the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a>.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the server MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>If the represented Message.<b>FirstInTransaction</b> is True:</p>
+<ul><li><p><span><span>  </span></span>Set
+the <i>pisFirstInXact</i> output parameter to 0x0001.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>Set
+the <i>pisFirstInXact</i> output parameter to 0x0000.</p>
+</li></ul></li></ul></div>

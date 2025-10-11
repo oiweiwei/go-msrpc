@@ -1,0 +1,60 @@
+<div class="content"><p>The GetAddElementSchema method is received by the server in
+an RPC_REQUEST packet. In response, the server returns an <a href="a988c2d4-10e6-4e2f-8b6f-5cccff12298f" data-linktype="relative-path">IAppHostElementSchema</a> that
+represents the schema and constraints of the <a href="59774887-09e3-4de5-ad8e-4794f404b123" data-linktype="relative-path">IAppHostElement</a>. The
+IAppHostElement can be a collection item of the specified <a href="5b32b6df-8364-4ba9-8d04-bfe0a4891a57" data-linktype="relative-path">IAppHostElementCollection</a>
+from which the specified <a href="9b7dbefe-84a8-418d-a9c2-4c00d9552a03" data-linktype="relative-path">IAppHostCollectionSchema</a>
+was retrieved and whose name matches the specified name in the method call.</p><dl>
+<dd>
+<div><pre> HRESULT GetAddElementSchema(
+   [in] BSTR bstrElementName,
+   [out, retval] IAppHostElementSchema** ppSchema
+ );
+</pre></div>
+</dd></dl><p><b>bstrElementName: </b>The name of the
+IAppHostElement that is contained in the specified collection. It is one of the
+names that is returned in the <a href="c6b8181e-b65c-4b11-983e-48066af98e6b" data-linktype="relative-path">AddElementNames</a> method.</p><p><b>ppSchema: </b>Returns the IAppHostElementSchema
+schema object that is associated with the specified element name.</p><p><b>Return Values: </b>The server MUST return zero if
+it successfully processes the message that is received from the client. In this
+case, *ppSchema MUST NOT be NULL. If processing fails, the server MUST return a
+nonzero <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+code as defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following table describes the error conditions that MUST be handled and the
+corresponding error codes. A server MAY return additional
+implementation-specific error codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0X00000000</p>
+  <p>NO_ERROR</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One or more parameters are incorrect or null.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X80070585</p>
+  <p>ERROR_INVALID_INDEX</p>
+  </td>
+  <td>
+  <p>The element specified by bstrElementName cannot be
+  found.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

@@ -1,1 +1,74 @@
-<div class="content"></div>
+<div class="content"><p>The GetProcessList method returns a list of processes for a
+specified policy.</p><dl>
+<dd>
+<div><pre> [id(10), helpstring(&#34;method GetProcessList&#34;)] HRESULT GetProcessList(
+   [in] BSTR bstrPolicyName,
+   [out] BSTR* pbstrProcessList
+ );
+</pre></div>
+</dd></dl><p><b>bstrPolicyName: </b>Name of the policy for which a
+matching process list is to be returned.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>pbstrProcessList: </b>A pointer to a string that
+returns a list of processes in the form of a <a href="b5c1bb2a-7acf-4e50-be23-3c1d739f357a" data-linktype="relative-path">ProcessList</a> element
+(section 2.2.5.23). The data about matching processes is queried from the
+operating system to create the ProcessList element.</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF006F</p>
+  <p>WRM_ERR_ID_VALUE</p>
+  </td>
+  <td>
+  <p>The specified name contains characters that are not
+  valid. The name cannot start with a hyphen (&#34;-&#34;), cannot contain
+  spaces, and cannot contain any of the following characters:</p>
+  <dl>
+<dd>
+<div><pre> \   / ? * | : &lt; &gt; &#34; , ;
+</pre></div>
+</dd></dl>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF00C9</p>
+  <p>WRM_ERR_POLICYID_INVALID</p>
+  </td>
+  <td>
+  <p>The specified resource allocation policy does not
+  exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="a03f4cd5-ad33-46aa-94e7-2c9a92f02b6f" data-linktype="relative-path">IWRMPolicy</a> interface
+methods are specified in section 3.2.4.7.</p></div>

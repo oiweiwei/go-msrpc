@@ -1,1 +1,108 @@
-<div class="content"></div>
+<div class="content"><p>The SwapNtmsMedia method swaps the position of two media <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_55db62c5-a84f-43b7-a037-b44ecd8fb92f" data-linktype="relative-path">sides</a>.</p><dl>
+<dd>
+<div><pre> HRESULT SwapNtmsMedia(
+   [in] LPNTMS_GUID lpMediaId1,
+   [in] LPNTMS_GUID lpMediaId2
+ );
+</pre></div>
+</dd></dl><p><b>lpMediaId1: </b>A pointer to the identifier of a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_05349689-4cd0-4643-a13e-9f552ecf3346" data-linktype="relative-path">logical medium</a>.</p><p><b>lpMediaId2: </b> A pointer to the identifier of a
+logical medium.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>NTMS_MODIFY_ACCESS to the library is denied; other
+  security errors are possible, but indicate a security subsystem error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>An allocation error occurred during processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007000B</p>
+  <p>ERROR_BAD_FORMAT</p>
+  </td>
+  <td>
+  <p>No media label library recognizes the media label.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>At least one <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_746b1ad1-e1ad-4120-9986-fef919a2eaf7" data-linktype="relative-path">media identifier</a> is
+  missing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CC</p>
+  <p>ERROR_INVALID_MEDIA</p>
+  </td>
+  <td>
+  <p>A media identifier is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CE</p>
+  <p>ERROR_INVALID_MEDIA_POOL</p>
+  </td>
+  <td>
+  <p>A media pool of the logical media is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database is inaccessible or damaged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DA</p>
+  <p>ERROR_DATABASE_FULL</p>
+  </td>
+  <td>
+  <p>The database is full.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that
+both <i>lpMediaId1</i> and <i>lpMediaId2</i> are not NULL. If parameter
+validation fails, the server MUST immediately fail the operation and return
+ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights. If the client does not have the
+required access rights, the server MUST return ERROR_ACCESS_DENIED
+(0x80070005).</p><p>The SwapNtmsMedia method swaps the sides that are associated
+with the two specified LMIDs.</p><p>If the media are not in the NTMS_PARTSTATE_ALLOCATED state
+of the <a href="bdf99d44-7849-4a94-93ec-270a3e8c4eb3" data-linktype="relative-path">NtmsPartitionState</a>
+enumeration, the server MUST return ERROR_INVALID_STATE (0x8007139F).</p><p>The SwapNtmsMedia method MUST be implemented in such a way
+that it updates <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_9036b269-4f3b-4353-a1d0-54f5c686ec2c" data-linktype="relative-path">physical
+media</a> without affecting the application. For this method to succeed, the
+media for both LMIDs MUST NOT be in use. If any of the media is in use, the
+server MUST return ERROR_INVALID_MEDIA (0x800710CC).</p></div>

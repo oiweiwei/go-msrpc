@@ -49,8 +49,39 @@ type AutomaticUpdatesResultsClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The IAutomaticUpdatesResults::LastSearchSuccessDate (opnum 8) method retrieves the
+	// date-time of the most recent successful search done by the automatic update agent.
+	//
+	// Return Values: The method MUST return information in an HRESULT  data structure.
+	// The severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return a VARIANT, as specified in [MS-OAUT] section 2.2.29.2,
+	// containing the value of the LastSearchSuccessDate ADM element.
 	GetLastSearchSuccessDate(context.Context, *GetLastSearchSuccessDateRequest, ...dcerpc.CallOption) (*GetLastSearchSuccessDateResponse, error)
 
+	// The IAutomaticUpdatesResults::LastInstallationSuccessDate (opnum 9) method retrieves
+	// the date-time of the most recent successful installation done by the automatic update
+	// agent.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return a VARIANT containing the value of the LastInstallationSuccessDate
+	// ADM element.
 	GetLastInstallationSuccessDate(context.Context, *GetLastInstallationSuccessDateRequest, ...dcerpc.CallOption) (*GetLastInstallationSuccessDateResponse, error)
 
 	// AlterContext alters the client context.
@@ -359,8 +390,13 @@ func (o *GetLastSearchSuccessDateRequest) UnmarshalNDR(ctx context.Context, r nd
 // GetLastSearchSuccessDateResponse structure represents the LastSearchSuccessDate operation response
 type GetLastSearchSuccessDateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.Variant  `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: If the date-time for the last successful update search is not known, the
+	// vt field (see [MS-OAUT] section 2.2.29.1), MUST be set to VT_EMPTY as specified in
+	// [MS-OAUT] section 2.2.7. Otherwise, the vt member MUST be set to VT_DATE (see [MS-OAUT]
+	// section 2.2.7, and the date-time of the last successful update search MUST be stored
+	// in the date field.
+	ReturnValue *oaut.Variant `idl:"name:retval" json:"return_value"`
 	// Return: The LastSearchSuccessDate return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -602,8 +638,12 @@ func (o *GetLastInstallationSuccessDateRequest) UnmarshalNDR(ctx context.Context
 // GetLastInstallationSuccessDateResponse structure represents the LastInstallationSuccessDate operation response
 type GetLastInstallationSuccessDateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.Variant  `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: If the date-time for the last successful update search is not known, the
+	// vt field MUST be set to VT_EMPTY. Otherwise, the vt member MUST be set to VT_DATE,
+	// and the date-time of the last successful update installation MUST be stored in the
+	// date field.
+	ReturnValue *oaut.Variant `idl:"name:retval" json:"return_value"`
 	// Return: The LastInstallationSuccessDate return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

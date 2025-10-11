@@ -1,1 +1,12 @@
-<div class="content"></div>
+<div class="content"><p>The TransportFlags enumerated type has only one flag
+defined, TRANSPORT_SUPPORTS_RDC_SIMILARITY. </p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   TRANSPORT_SUPPORTS_RDC_SIMILARITY = 1
+ } TransportFlags;
+</pre></div>
+</dd></dl><p><b>TRANSPORT_SUPPORTS_RDC_SIMILARITY:  </b>This
+bitmask flag value is used to indicate to a client that a <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_8f3c866a-07d2-4921-98ba-f5d376bfdba5" data-linktype="relative-path">DFS-R</a> server is capable of
+using the similarity features of <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_a0d8116e-63f3-418b-afea-ca6258840e92" data-linktype="relative-path">RDC</a> (as specified in <a href="../ms-rdc/5b027295-0b63-45b9-8f62-0e49448350d9" data-linktype="relative-path">[MS-RDC]</a>,
+section <a href="../ms-rdc/0b4ecd59-8bab-45d0-ad48-42193e0e7c74" data-linktype="relative-path">3.1.5.4</a>).</p></div>

@@ -49,6 +49,20 @@ type AutomaticUpdates2Client interface {
 	// IAutomaticUpdates retrieval method.
 	AutomaticUpdates() iautomaticupdates.AutomaticUpdatesClient
 
+	// The IAutomaticUpdates2::Results (opnum 15) method retrieves an IAutomaticUpdatesResults
+	// instance.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Results ADM element.
 	GetResults(context.Context, *GetResultsRequest, ...dcerpc.CallOption) (*GetResultsResponse, error)
 
 	// AlterContext alters the client context.
@@ -335,7 +349,8 @@ func (o *GetResultsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 // GetResultsResponse structure represents the Results operation response
 type GetResultsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat                `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set to an instance of the IAutomaticUpdatesResults interface.
 	ReturnValue *uamg.AutomaticUpdatesResults `idl:"name:retval" json:"return_value"`
 	// Return: The Results return value.
 	Return int32 `idl:"name:Return" json:"return"`

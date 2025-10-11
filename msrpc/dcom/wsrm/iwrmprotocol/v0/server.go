@@ -31,6 +31,22 @@ type ProtocolServer interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
+	// The GetSupportedClient method retrieves the level of support for clients on the WSRM
+	// server.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IWRMProtocol interface methods are specified in section 3.2.4.8.
 	GetSupportedClient(context.Context, *GetSupportedClientRequest) (*GetSupportedClientResponse, error)
 }
 

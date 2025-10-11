@@ -1,1 +1,279 @@
-<div class="content"></div>
+<div class="content"><p>The RdcGetFileData method is used to obtain file ranges
+whose requests have previously been queued on a server by calling the <a href="3537a49b-0dd9-4a7d-acbc-8339f765c8a4" data-linktype="relative-path">RdcPushSourceNeeds</a> method.</p><dl>
+<dd>
+<div><pre> DWORD RdcGetFileData(
+   [in] PFRS_SERVER_CONTEXT serverContext,
+   [out, size_is(bufferSize), length_is(*sizeReturned)] 
+     byte* dataBuffer,
+   [in, range(0, CONFIG_TRANSPORT_MAX_BUFFER_SIZE)] 
+     DWORD bufferSize,
+   [out] DWORD* sizeReturned
+ );
+</pre></div>
+</dd></dl><p><b>serverContext: </b>The context handle that
+represents the requested file replication operation. The client MUST specify a
+server context that was retrieved by a previously successful call to the <a href="908b4cc2-9915-4e31-84b8-f6b3e09b7c03" data-linktype="relative-path">InitializeFileTransferAsync</a>
+method in which the client set the <i>rdcDesired</i> parameter to TRUE.</p><p><b>dataBuffer: </b>The file data received from the
+server. </p><p><b>bufferSize: </b>The size, in bytes, of <i>dataBuffer</i></p><p><b>sizeReturned: </b>The size, in bytes, of the file
+data returned in <i>dataBuffer</i>.</p><p><b>Return Values: </b>This method MUST return 0 on
+success or a nonzero error code on failure. For protocol purposes all nonzero
+values MUST be treated as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The context is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000234B</p>
+  <p>FRS_ERROR_RDC_GENERIC</p>
+  </td>
+  <td>
+  <p>Unknown error in <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_a0d8116e-63f3-418b-afea-ca6258840e92" data-linktype="relative-path">RDC</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00002358</p>
+  <p>FRS_ERROR_XPRESS_INVALID_DATA</p>
+  </td>
+  <td>
+  <p>The compressed data is invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Validating the RDC file data request:</b> The server MUST
+validate the request by performing the following checks. </p><ul><li><p><span><span> 
+</span></span>If the specified server context was not retrieved by a previously
+successful call to the InitializeFileTransferAsync method, then the server MUST
+fail the call with the ERROR_INVALID_PARAMETER failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the server has already completed transferring the file
+associated with the server context, the server MUST fail the call with an
+implementation-defined failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the specified server context was retrieved via a call to the
+InitializeFileTransferAsync method in which the client set the <i>rdcDesired</i>
+parameter to FALSE, then the server MUST fail the call with an
+implementation-defined failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the specified server context was retrieved via a call to the
+InitializeFileTransferAsync method in which the server set the <b>rdcSignatureLevels</b>
+field to zero in the <i>rdcFileInfo</i> output parameter (see section <a href="7e65da8c-67d7-4235-b019-c630c8ec5711" data-linktype="relative-path">2.2.1.4.11</a>), then the
+server MUST fail the call with an implementation-defined failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the server is not currently participating in the replication
+of the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_064adaf1-86c7-43e5-a157-b0949980181e" data-linktype="relative-path">replicated folder</a>
+that is associated with the specified server context, then the server MUST fail
+the call with the FRS_ERROR_CONTENTSET_NOT_FOUND failure value.</p>
+</li><li><p><span><span> 
+</span></span>If <i>bufferSize</i> is less than
+XPRESS_RDC_MIN_GET_DATA_BUFFER_SIZE_WITH_FILE_HEADER then the server MUST fail
+the call with an implementation-defined failure value</p>
+</li><li><p><span><span> 
+</span></span>If the server detects that the compressed data of the staged file
+is corrupted then the server MUST fail the call with
+FRS_ERROR_XPRESS_INVALID_DATA. Refer to section <a href="610b30e0-7b9e-404f-bc1c-913dcdf825c3" data-linktype="relative-path">3.3.4.7.1</a> for more
+information about the staging area.</p>
+</li></ul><p><b>Actions Triggered:</b> Upon successfully validating the
+RDC file data request, the server serves file data from the source needs that
+were queued by the RdcPushSourceNeeds method.</p><p><b>Remarks:</b> If the RDC source needs requested by the
+client through one or multiple calls to the RdcPushSourceNeeds method have
+already been processed and retrieved by the client through a series of calls to
+the RdcGetFileData method, then the server MUST complete the call successfully
+and set the <i>sizeReturned</i> parameter to zero to indicate that the server
+has completed the transfer of the previously requested source needs.</p><p>If the client has not called the RdcPushSourceNeeds method
+before calling the RdcGetFileData method, then the server MUST complete the
+call successfully and set the <i>sizeReturned</i> parameter to zero to indicate
+that the server has completed the transfer of the file associated with the
+server context. </p><p>The <i>dataBuffer</i> parameter is large enough to hold at
+least the FileHeader and one data block as explained below in the dataBuffer
+format section. A data block cannot be partially returned in dataBuffer. The server
+stops filling up dataBuffer when there is not enough space left to write the
+next data block, or when there are no more data blocks to send.</p><p><b>Format of dataBuffer:</b> The format of the <i>dataBuffer</i>
+parameter is as follows.</p><ul><li><p><span><span> 
+</span></span>FileHeader</p>
+</li><li><p><span><span> 
+</span></span>DataBlock1</p>
+</li><li><p><span><span> 
+</span></span>DataBlock2</p>
+</li></ul><p>A data block is composed of the following.</p><ul><li><p><span><span> 
+</span></span>Fragment Header</p>
+</li><li><p><span><span> 
+</span></span>List of fragments &lt;optional&gt;</p>
+</li><li><p><span><span> 
+</span></span>XPRESS Block</p>
+</li></ul><p><b>FileHeader:</b> Consists of the four bytes 0x46, 0x52,
+0x44, and 0x43 (in ASCII, that is &#39;F&#39;, &#39;R&#39;, &#39;D&#39;, and &#39;C&#39;).</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p align="center">0x46</p>
+  </td>
+  <td colspan="8">
+  <p align="center">0x52</p>
+  </td>
+  <td colspan="8">
+  <p align="center">0x44</p>
+  </td>
+  <td colspan="8">
+  <p align="center">0x43</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fragment Header:</b> Consists of a 4-byte number,
+numberOfFragments, which is the number of data fragments to follow. This value
+MUST be no greater than XPRESS_RDC_MAX_NB_NEEDS_FOR_COMPRESSION.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">numberOfFragments</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Fragment:</b> The list of fragments consists of 0 or more
+instances of the following structure.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">BlockOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">FragmentSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">XPRESS_Block</p>
+  </td>
+ </tr>
+</tbody></table><p><b>BlockOffset:</b> A starting offset into the uncompressed
+bytes from the XPRESS Block portion. The valid range of this field is 0 to
+X_CONFIG_XPRESS_BLOCK_SIZE-1.</p><p><b>FragmentSize:</b> The number of uncompressed bytes that
+the server instructs the client to extract. The uncompressed bytes start from
+BlockOffset and include at most, X_CONFIG_XPRESS_BLOCK_SIZE-blockOffset-1
+bytes. The valid range of this field is 1 to X_CONFIG_XPRESS_BLOCK_SIZE.
+Additionally, for each fragment, the sum of the <b>BlockOffset</b> field and
+the <b>FragmentSize</b> field MUST be less or equal to
+X_CONFIG_XPRESS_BLOCK_SIZE.</p><p><b>XPRESS Block:</b> Following the optional list of
+fragments is a variable size XPRESS Block, as specified in section <a href="63d925c7-d429-4710-9e80-7c055cea76b0" data-linktype="relative-path">2.2.1.4.15</a>.</p><p>All the data is tightly packed—no padding bytes are added
+for alignment purposes.</p></div>

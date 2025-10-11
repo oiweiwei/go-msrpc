@@ -1,1 +1,25 @@
-<div class="content"></div>
+<div class="content"><p>The ReleaseCallback method removes a connection point from
+the sink. </p><dl>
+<dd>
+<div><pre> HRESULT ReleaseCallback();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr></tbody></table><p>Upon receiving this message, the client sink MUST terminate
+the connection that was established through <a href="88525bc5-5abc-42b4-b66c-ccafa0e07ecf" data-linktype="relative-path">INtmsNotifySink::ConnectCallback</a>
+and return S_OK.</p></div>

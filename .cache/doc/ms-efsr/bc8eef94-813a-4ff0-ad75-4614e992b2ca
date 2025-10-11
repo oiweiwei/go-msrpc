@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The EFS_ENCRYPTION_STATUS_INFO structure is used to
+represent the predicted outcome if an attempt were made to convert an
+unencrypted object to an encrypted state.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   BOOL bHasCurrentKey;
+   DWORD dwEncryptionError;
+ } EFS_ENCRYPTION_STATUS_INFO;
+</pre></div>
+</dd></dl><p><b>bHasCurrentKey:</b>  A Boolean value
+signifying whether an appropriate <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">key</a> was found that could be
+used for encryption.</p><p><b>dwEncryptionError:</b>  The error code
+returned if encryption were attempted. If the operation were to succeed, this
+value MUST be zero. Otherwise, it MUST be set to a nonzero value.</p></div>

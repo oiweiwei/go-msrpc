@@ -1,1 +1,16 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MPR_SERVER_EX_IDL</b> union<a id="Appendix_A_Target_131"></a><a aria-label="Product behavior note 131" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_131" data-linktype="relative-path">&lt;131&gt;</a> be a placeholder for one of
+the following structures: <a href="453989e4-59d7-4915-9958-d9cd2c277b9a" data-linktype="relative-path"><b>MPR_SERVER_EX_1 (section 2.2.1.2.142)</b></a>,
+<a href="6f9a70b4-6222-4976-a93f-f853fa19d7b2" data-linktype="relative-path"><b>MPR_SERVER_EX_2 (section 2.2.1.2.242)</b></a>,
+or <a href="4795f906-fc58-41b9-9cb9-977165835b98" data-linktype="relative-path"><b>MPR_SERVER_EX_3 (section 2.2.1.2.251)</b></a>.<a id="Appendix_A_Target_132"></a><a aria-label="Product behavior note 132" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_132" data-linktype="relative-path">&lt;132&gt;</a>    </p><dl>
+<dd>
+<div><pre> typedef union _MPR_SERVER_EX_IDL switch (UCHAR  revision) ServerConfigObject {
+   case 1: MPR_SERVER_EX_1 ServerConfig1;
+   case 2: MPR_SERVER_EX_2 ServerConfig2;
+   case 3: MPR_SERVER_EX_3 ServerConfig3;
+ } MPR_SERVER_EX_IDL,
+  *PMPR_SERVER_EX_IDL;
+</pre></div>
+</dd></dl><p><b>ServerConfig1: </b>This MUST be an <b>MPR_SERVER_EX_1</b>
+structure. </p><p><b>ServerConfig2: </b>This MUST be an <b>MPR_SERVER_EX_2</b>
+structure. </p><p><b>ServerConfig3: </b>This MUST be an <b>MPR_SERVER_EX_3</b>
+structure. </p></div>

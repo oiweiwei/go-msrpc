@@ -51,41 +51,72 @@ type MediaServices1Client interface {
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
 
+	// The MountNtmsMedia method mounts one or more pieces of media.
 	MountNTMSMedia(context.Context, *MountNTMSMediaRequest, ...dcerpc.CallOption) (*MountNTMSMediaResponse, error)
 
+	// The DismountNtmsMedia method queues a command to move a medium in a drive to its
+	// storage.
 	DismountNTMSMedia(context.Context, *DismountNTMSMediaRequest, ...dcerpc.CallOption) (*DismountNTMSMediaResponse, error)
 
 	// Opnum5NotUsedOnWire operation.
 	// Opnum5NotUsedOnWire
 
+	// The AllocateNtmsMedia method allocates a piece of available media.
 	AllocateNTMSMedia(context.Context, *AllocateNTMSMediaRequest, ...dcerpc.CallOption) (*AllocateNTMSMediaResponse, error)
 
+	// The DeallocateNtmsMedia method deallocates the side that is associated with a piece
+	// of logical media.
 	DeallocateNTMSMedia(context.Context, *DeallocateNTMSMediaRequest, ...dcerpc.CallOption) (*DeallocateNTMSMediaResponse, error)
 
+	// The SwapNtmsMedia method swaps the position of two media sides.
 	SwapNTMSMedia(context.Context, *SwapNTMSMediaRequest, ...dcerpc.CallOption) (*SwapNTMSMediaResponse, error)
 
+	// The DecommissionNtmsMedia method moves media from available state to decommissioned
+	// state. Media that are decommissioned by the DecommissionNtmsMedia method are recognized
+	// by the server, but decommissioned media does not contain any data and is never again
+	// used. Only media that are in an available state can be decommissioned.
 	DecommissionNTMSMedia(context.Context, *DecommissionNTMSMediaRequest, ...dcerpc.CallOption) (*DecommissionNTMSMediaResponse, error)
 
+	// The SetNtmsMediaComplete method marks a piece of logical media as complete.
 	SetNTMSMediaComplete(context.Context, *SetNTMSMediaCompleteRequest, ...dcerpc.CallOption) (*SetNTMSMediaCompleteResponse, error)
 
+	// The DeleteNtmsMedia method deletes a physical piece of offline media by removing
+	// all references to it.
 	DeleteNTMSMedia(context.Context, *DeleteNTMSMediaRequest, ...dcerpc.CallOption) (*DeleteNTMSMediaResponse, error)
 
+	// The CreateNtmsMediaPoolA method creates a new application media pool, with strings
+	// encoded using ASCII.
 	CreateNTMSMediaPoolA(context.Context, *CreateNTMSMediaPoolARequest, ...dcerpc.CallOption) (*CreateNTMSMediaPoolAResponse, error)
 
+	// The CreateNtmsMediaPoolW method creates a new application media pool whose name is
+	// composed of a sequence of Unicode characters.
 	CreateNTMSMediaPoolW(context.Context, *CreateNTMSMediaPoolWRequest, ...dcerpc.CallOption) (*CreateNTMSMediaPoolWResponse, error)
 
+	// The GetNtmsMediaPoolNameA method retrieves the full name hierarchy of a media pool,
+	// with null-terminated strings encoded using ASCII.
 	GetNTMSMediaPoolNameA(context.Context, *GetNTMSMediaPoolNameARequest, ...dcerpc.CallOption) (*GetNTMSMediaPoolNameAResponse, error)
 
+	// The GetNtmsMediaPoolNameW method retrieves the full name hierarchy of a media pool,
+	// with strings encoded using Unicode.
 	GetNTMSMediaPoolNameW(context.Context, *GetNTMSMediaPoolNameWRequest, ...dcerpc.CallOption) (*GetNTMSMediaPoolNameWResponse, error)
 
+	// The MoveToNtmsMediaPool method moves a medium from its current media pool to another
+	// media pool.
 	MoveToNTMSMediaPool(context.Context, *MoveToNTMSMediaPoolRequest, ...dcerpc.CallOption) (*MoveToNTMSMediaPoolResponse, error)
 
+	// The DeleteNtmsMediaPool method deletes an application media pool.
 	DeleteNTMSMediaPool(context.Context, *DeleteNTMSMediaPoolRequest, ...dcerpc.CallOption) (*DeleteNTMSMediaPoolResponse, error)
 
+	// The AddNtmsMediaType method MUST add a media type to a library if there is not currently
+	// a relation in the library. The method MUST create the system media pools (FREE, IMPORT,
+	// and UNRECOGNIZED) if they do not exist.
 	AddNTMSMediaType(context.Context, *AddNTMSMediaTypeRequest, ...dcerpc.CallOption) (*AddNTMSMediaTypeResponse, error)
 
+	// The DeleteNtmsMediaType method deletes a media type from a library.
 	DeleteNTMSMediaType(context.Context, *DeleteNTMSMediaTypeRequest, ...dcerpc.CallOption) (*DeleteNTMSMediaTypeResponse, error)
 
+	// The ChangeNtmsMediaType method moves a physical media identifier to a new media pool
+	// and sets the media type of the medium to that of the pool.
 	ChangeNTMSMediaType(context.Context, *ChangeNTMSMediaTypeRequest, ...dcerpc.CallOption) (*ChangeNTMSMediaTypeResponse, error)
 
 	// AlterContext alters the client context.
@@ -889,13 +920,85 @@ func (o *xxx_MountNTMSMediaOperation) UnmarshalNDRResponse(ctx context.Context, 
 // MountNTMSMediaRequest structure represents the MountNtmsMedia operation request
 type MountNTMSMediaRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This             *dcom.ORPCThis         `idl:"name:This" json:"this"`
-	MediaID          []*dtyp.GUID           `idl:"name:lpMediaId;size_is:(dwCount)" json:"media_id"`
-	DriveID          []*dtyp.GUID           `idl:"name:lpDriveId;size_is:(dwCount)" json:"drive_id"`
-	Count            uint32                 `idl:"name:dwCount" json:"count"`
-	Options          uint32                 `idl:"name:dwOptions" json:"options"`
-	Priority         int32                  `idl:"name:dwPriority" json:"priority"`
-	Timeout          uint32                 `idl:"name:dwTimeout" json:"timeout"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpMediaId: An array of logical media identifiers or media side identifiers. Each
+	// entry in the array MUST be unique.
+	MediaID []*dtyp.GUID `idl:"name:lpMediaId;size_is:(dwCount)" json:"media_id"`
+	// lpDriveId: An array of drive identifiers that correspond to the media listed in the
+	// lpMediaId parameter. This array MUST either specify a list of drives into which media
+	// will be mounted or receive the list of drives into which media will be mounted when
+	// the operation completes.
+	DriveID []*dtyp.GUID `idl:"name:lpDriveId;size_is:(dwCount)" json:"drive_id"`
+	// dwCount: The number of elements in the lpMediaId and lpDriveId arrays.
+	Count uint32 `idl:"name:dwCount" json:"count"`
+	// dwOptions: A bitmap of mount options from the NtmsMountOptions (section 2.2.3.3)
+	// enumeration.
+	Options uint32 `idl:"name:dwOptions" json:"options"`
+	// dwPriority: A value from the NtmsMountPriority (section 2.2.3.4) enumeration specifying
+	// the priority of the mount request.
+	Priority int32 `idl:"name:dwPriority" json:"priority"`
+	// dwTimeout: The maximum time, in milliseconds, allowed for mounting of the specified
+	// media. To wait as long as the mount takes, this parameter MUST be set to 0xFFFFFFFF.
+	// If dwOptions is specified as NTMS_MOUNT_NOWAIT, ignore this value.
+	//
+	//	+------------+--------------------------------------------------------------------+
+	//	|            |                                                                    |
+	//	|   VALUE    |                              MEANING                               |
+	//	|            |                                                                    |
+	//	+------------+--------------------------------------------------------------------+
+	//	+------------+--------------------------------------------------------------------+
+	//	| 0xFFFFFFFF | Use this value to wait as long as required for the mount to occur. |
+	//	+------------+--------------------------------------------------------------------+
+	Timeout uint32 `idl:"name:dwTimeout" json:"timeout"`
+	// lpMountInformation: This parameter is currently unused. It MUST be sent as NULL and
+	// ignored on receipt.
+	//
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	|                 RETURN                  |                                                                                  |
+	//	|               VALUE/CODE                |                                   DESCRIPTION                                    |
+	//	|                                         |                                                                                  |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                         | The call was successful.                                                         |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED          | Access to an object was denied.                                                  |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY      | A allocation failure occurred during processing.                                 |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007000F ERROR_INVALID_DRIVE          | The drive identifier is not valid.                                               |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070013 ERROR_WRITE_PROTECT          | The media state is set to NTMS_PARTSTATE_COMPLETE, from the NtmsPartitionState   |
+	//	|                                         | enumeration, and the NTMS_MOUNT_WRITE value was specified.                       |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER      | A parameter is not valid.                                                        |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800700AA ERROR_BUSY                   | The media or drives are busy.                                                    |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800705B4 ERROR_TIMEOUT                | The time-out event expired before the medium was available.                      |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CC ERROR_INVALID_MEDIA          | The media identifier is not valid.                                               |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CD ERROR_INVALID_LIBRARY        | The library identifier is not valid.                                             |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CF ERROR_DRIVE_MEDIA_MISMATCH   | The specified media and drive are not in the same library.                       |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D0 ERROR_MEDIA_OFFLINE          | The specified media is offline and cannot be allocated.                          |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D5 ERROR_RESOURCE_DISABLED      | A resource required for this operation is disabled.                              |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE       | The database query or update failed.                                             |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL          | The database is full.                                                            |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710E0 ERROR_REQUEST_REFUSED        | The request is refused as a user canceled the request through the user           |
+	//	|                                         | interface.                                                                       |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007139E ERROR_RESOURCE_NOT_AVAILABLE | The specified resource is not available.                                         |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007139F ERROR_INVALID_STATE          | An unexpected state was encountered.                                             |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800704C7 ERROR_CANCELLED              | The request was cancelled.                                                       |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
 	MountInformation *rsmp.MountInformation `idl:"name:lpMountInformation" json:"mount_information"`
 }
 
@@ -948,8 +1051,61 @@ type MountNTMSMediaResponse struct {
 	Count uint32 `idl:"name:dwCount" json:"count"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That             *dcom.ORPCThat         `idl:"name:That" json:"that"`
-	DriveID          []*dtyp.GUID           `idl:"name:lpDriveId;size_is:(dwCount)" json:"drive_id"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpDriveId: An array of drive identifiers that correspond to the media listed in the
+	// lpMediaId parameter. This array MUST either specify a list of drives into which media
+	// will be mounted or receive the list of drives into which media will be mounted when
+	// the operation completes.
+	DriveID []*dtyp.GUID `idl:"name:lpDriveId;size_is:(dwCount)" json:"drive_id"`
+	// lpMountInformation: This parameter is currently unused. It MUST be sent as NULL and
+	// ignored on receipt.
+	//
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	|                 RETURN                  |                                                                                  |
+	//	|               VALUE/CODE                |                                   DESCRIPTION                                    |
+	//	|                                         |                                                                                  |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                         | The call was successful.                                                         |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED          | Access to an object was denied.                                                  |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY      | A allocation failure occurred during processing.                                 |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007000F ERROR_INVALID_DRIVE          | The drive identifier is not valid.                                               |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070013 ERROR_WRITE_PROTECT          | The media state is set to NTMS_PARTSTATE_COMPLETE, from the NtmsPartitionState   |
+	//	|                                         | enumeration, and the NTMS_MOUNT_WRITE value was specified.                       |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER      | A parameter is not valid.                                                        |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800700AA ERROR_BUSY                   | The media or drives are busy.                                                    |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800705B4 ERROR_TIMEOUT                | The time-out event expired before the medium was available.                      |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CC ERROR_INVALID_MEDIA          | The media identifier is not valid.                                               |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CD ERROR_INVALID_LIBRARY        | The library identifier is not valid.                                             |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CF ERROR_DRIVE_MEDIA_MISMATCH   | The specified media and drive are not in the same library.                       |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D0 ERROR_MEDIA_OFFLINE          | The specified media is offline and cannot be allocated.                          |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D5 ERROR_RESOURCE_DISABLED      | A resource required for this operation is disabled.                              |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE       | The database query or update failed.                                             |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL          | The database is full.                                                            |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710E0 ERROR_REQUEST_REFUSED        | The request is refused as a user canceled the request through the user           |
+	//	|                                         | interface.                                                                       |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007139E ERROR_RESOURCE_NOT_AVAILABLE | The specified resource is not available.                                         |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007139F ERROR_INVALID_STATE          | An unexpected state was encountered.                                             |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800704C7 ERROR_CANCELLED              | The request was cancelled.                                                       |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
 	MountInformation *rsmp.MountInformation `idl:"name:lpMountInformation" json:"mount_information"`
 	// Return: The MountNtmsMedia return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1204,10 +1360,47 @@ func (o *xxx_DismountNTMSMediaOperation) UnmarshalNDRResponse(ctx context.Contex
 // DismountNTMSMediaRequest structure represents the DismountNtmsMedia operation request
 type DismountNTMSMediaRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	MediaID []*dtyp.GUID   `idl:"name:lpMediaId;size_is:(dwCount)" json:"media_id"`
-	Count   uint32         `idl:"name:dwCount" json:"count"`
-	Options uint32         `idl:"name:dwOptions" json:"options"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpMediaId: An array of logical media or media side identifiers.
+	MediaID []*dtyp.GUID `idl:"name:lpMediaId;size_is:(dwCount)" json:"media_id"`
+	// dwCount: The number of elements in the lpMediaId array.
+	Count uint32 `idl:"name:dwCount" json:"count"`
+	// dwOptions: One of the options from the NtmsDismountOptions (section 2.2.1.9) numeration.
+	//
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                 |                                                                                  |
+	//	|              VALUE/CODE               |                                   DESCRIPTION                                    |
+	//	|                                       |                                                                                  |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                       | The call was successful.                                                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED        | NTMS_USE_ACCESS to the media pool or library that contains the media is denied;  |
+	//	|                                       | other security errors are possible, but indicate a security subsystem error.     |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER    | A parameter is missing.                                                          |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE     | The database is inaccessible or damaged.                                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL        | The database is full.                                                            |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DF ERROR_DEVICE_NOT_AVAILABLE | One or more resources required to perform the dismount are not currently         |
+	//	|                                       | available.                                                                       |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CD ERROR_INVALID_LIBRARY      | The library that contains the drives or media is not valid.                      |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CC ERROR_INVALID_MEDIA        | A medium is not valid, or lpMediaId contains duplicate identifiers.              |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007139F ERROR_INVALID_STATE        | An unexpected media or device state occurred during dismount.                    |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D0 ERROR_MEDIA_OFFLINE        | The specified media is offline.                                                  |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY    | A memory allocation failure occurred during processing.                          |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800705B4 ERROR_TIMEOUT              | The time-out event expired while the application attempted to acquire one or     |
+	//	|                                       | more resources.                                                                  |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	Options uint32 `idl:"name:dwOptions" json:"options"`
 }
 
 func (o *DismountNTMSMediaRequest) xxx_ToOp(ctx context.Context, op *xxx_DismountNTMSMediaOperation) *xxx_DismountNTMSMediaOperation {
@@ -1599,12 +1792,61 @@ func (o *xxx_AllocateNTMSMediaOperation) UnmarshalNDRResponse(ctx context.Contex
 // AllocateNTMSMediaRequest structure represents the AllocateNtmsMedia operation request
 type AllocateNTMSMediaRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                *dcom.ORPCThis              `idl:"name:This" json:"this"`
-	MediaPool           *dtyp.GUID                  `idl:"name:lpMediaPool" json:"media_pool"`
-	Partition           *dtyp.GUID                  `idl:"name:lpPartition;pointer:unique" json:"partition"`
-	MediaID             *dtyp.GUID                  `idl:"name:lpMediaId" json:"media_id"`
-	Options             uint32                      `idl:"name:dwOptions" json:"options"`
-	Timeout             uint32                      `idl:"name:dwTimeout" json:"timeout"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpMediaPool: A pointer to the identifier of the media pool from which the media is
+	// allocated.
+	MediaPool *dtyp.GUID `idl:"name:lpMediaPool" json:"media_pool"`
+	// lpPartition: A pointer to the partition identifier of the side that MUST be used
+	// for a logical media identifier. This feature MUST be used to allocate a particular
+	// side or to import media.
+	Partition *dtyp.GUID `idl:"name:lpPartition;pointer:unique" json:"partition"`
+	// lpMediaId: A pointer to the identifier of the allocated medium.
+	MediaID *dtyp.GUID `idl:"name:lpMediaId" json:"media_id"`
+	// dwOptions: A bitmap of allocation options from the NtmsAllocateOptions (section 2.2.3.1)
+	// enumeration.
+	Options uint32 `idl:"name:dwOptions" json:"options"`
+	// dwTimeout: The maximum time, in milliseconds, allowed to allocate the specified media.
+	// If this parameter is -1, the function MUST NOT time out. If this parameter is 0,
+	// it MUST NOT wait for media.
+	Timeout uint32 `idl:"name:dwTimeout" json:"timeout"`
+	// lpAllocateInformation: A pointer to an NTMS_ALLOCATION_INFORMATION (section 2.2.3.6)
+	// structure that MUST be filled with the source media pool from which the medium was
+	// taken. A NULL pointer MUST be passed if this information is not needed.
+	//
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                 |                                                                                  |
+	//	|              VALUE/CODE               |                                   DESCRIPTION                                    |
+	//	|                                       |                                                                                  |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                       | The call was successful.                                                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED        | NTMS_MODIFY_ACCESS to the library is denied; other security errors are possible, |
+	//	|                                       | but indicate a security subsystem error.                                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY    | An allocation error occurred during processing.                                  |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER    | The media or media pool identifiers are missing.                                 |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800704C7 ERROR_CANCELLED            | The operator canceled the request for new media.                                 |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800705B4 ERROR_TIMEOUT              | The time-out event expired before the medium was available.                      |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CC ERROR_INVALID_MEDIA        | The partition identifier or logical media identifier was invalid when combined   |
+	//	|                                       | with the NTMS_ALLOCATE_NEXT flag.                                                |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CE ERROR_INVALID_MEDIA_POOL   | The media pool identifier is invalid.                                            |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D0 ERROR_MEDIA_OFFLINE        | The specified media are offline and cannot be allocated.                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D4 ERROR_MEDIA_UNAVAILABLE    | No media have been allocated in the specified time-out.                          |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE     | The database is inaccessible or damaged.                                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL        | The database is full.                                                            |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DF ERROR_DEVICE_NOT_AVAILABLE | An intermediate resource is not available.                                       |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
 	AllocateInformation *rsmp.AllocationInformation `idl:"name:lpAllocateInformation" json:"allocate_information"`
 }
 
@@ -1652,8 +1894,47 @@ func (o *AllocateNTMSMediaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // AllocateNTMSMediaResponse structure represents the AllocateNtmsMedia operation response
 type AllocateNTMSMediaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That                *dcom.ORPCThat              `idl:"name:That" json:"that"`
-	MediaID             *dtyp.GUID                  `idl:"name:lpMediaId" json:"media_id"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpMediaId: A pointer to the identifier of the allocated medium.
+	MediaID *dtyp.GUID `idl:"name:lpMediaId" json:"media_id"`
+	// lpAllocateInformation: A pointer to an NTMS_ALLOCATION_INFORMATION (section 2.2.3.6)
+	// structure that MUST be filled with the source media pool from which the medium was
+	// taken. A NULL pointer MUST be passed if this information is not needed.
+	//
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                 |                                                                                  |
+	//	|              VALUE/CODE               |                                   DESCRIPTION                                    |
+	//	|                                       |                                                                                  |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                       | The call was successful.                                                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED        | NTMS_MODIFY_ACCESS to the library is denied; other security errors are possible, |
+	//	|                                       | but indicate a security subsystem error.                                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY    | An allocation error occurred during processing.                                  |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER    | The media or media pool identifiers are missing.                                 |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800704C7 ERROR_CANCELLED            | The operator canceled the request for new media.                                 |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800705B4 ERROR_TIMEOUT              | The time-out event expired before the medium was available.                      |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CC ERROR_INVALID_MEDIA        | The partition identifier or logical media identifier was invalid when combined   |
+	//	|                                       | with the NTMS_ALLOCATE_NEXT flag.                                                |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CE ERROR_INVALID_MEDIA_POOL   | The media pool identifier is invalid.                                            |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D0 ERROR_MEDIA_OFFLINE        | The specified media are offline and cannot be allocated.                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D4 ERROR_MEDIA_UNAVAILABLE    | No media have been allocated in the specified time-out.                          |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE     | The database is inaccessible or damaged.                                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL        | The database is full.                                                            |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DF ERROR_DEVICE_NOT_AVAILABLE | An intermediate resource is not available.                                       |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
 	AllocateInformation *rsmp.AllocationInformation `idl:"name:lpAllocateInformation" json:"allocate_information"`
 	// Return: The AllocateNtmsMedia return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1851,9 +2132,32 @@ func (o *xxx_DeallocateNTMSMediaOperation) UnmarshalNDRResponse(ctx context.Cont
 // DeallocateNTMSMediaRequest structure represents the DeallocateNtmsMedia operation request
 type DeallocateNTMSMediaRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	MediaID *dtyp.GUID     `idl:"name:lpMediaId" json:"media_id"`
-	Options uint32         `idl:"name:dwOptions" json:"options"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpMediaId: A pointer to the identifier of the logical media.
+	MediaID *dtyp.GUID `idl:"name:lpMediaId" json:"media_id"`
+	// dwOptions: This parameter is unused. It MUST be sent as 0 and MUST be ignored on
+	// receipt.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | NTMS_MODIFY_ACCESS to the library is denied; other security errors are possible, |
+	//	|                                    | but indicate a security subsystem error.                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY | An allocation error occurred during processing.                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | The media or media pool identifiers are missing.                                 |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE  | The database is inaccessible or damaged.                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL     | The database is full.                                                            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	Options uint32 `idl:"name:dwOptions" json:"options"`
 }
 
 func (o *DeallocateNTMSMediaRequest) xxx_ToOp(ctx context.Context, op *xxx_DeallocateNTMSMediaOperation) *xxx_DeallocateNTMSMediaOperation {
@@ -2092,9 +2396,37 @@ func (o *xxx_SwapNTMSMediaOperation) UnmarshalNDRResponse(ctx context.Context, w
 // SwapNTMSMediaRequest structure represents the SwapNtmsMedia operation request
 type SwapNTMSMediaRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
-	MediaID1 *dtyp.GUID     `idl:"name:lpMediaId1" json:"media_id1"`
-	MediaID2 *dtyp.GUID     `idl:"name:lpMediaId2" json:"media_id2"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpMediaId1: A pointer to the identifier of a logical medium.
+	MediaID1 *dtyp.GUID `idl:"name:lpMediaId1" json:"media_id1"`
+	// lpMediaId2:  A pointer to the identifier of a logical medium.
+	//
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN                |                                                                                  |
+	//	|             VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                     |                                                                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                     | The call was successful.                                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED      | NTMS_MODIFY_ACCESS to the library is denied; other security errors are possible, |
+	//	|                                     | but indicate a security subsystem error.                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY  | An allocation error occurred during processing.                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007000B ERROR_BAD_FORMAT         | No media label library recognizes the media label.                               |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER  | At least one media identifier is missing.                                        |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CC ERROR_INVALID_MEDIA      | A media identifier is invalid.                                                   |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CE ERROR_INVALID_MEDIA_POOL | A media pool of the logical media is invalid.                                    |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE   | The database is inaccessible or damaged.                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL      | The database is full.                                                            |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	MediaID2 *dtyp.GUID `idl:"name:lpMediaId2" json:"media_id2"`
 }
 
 func (o *SwapNTMSMediaRequest) xxx_ToOp(ctx context.Context, op *xxx_SwapNTMSMediaOperation) *xxx_SwapNTMSMediaOperation {
@@ -2313,8 +2645,33 @@ func (o *xxx_DecommissionNTMSMediaOperation) UnmarshalNDRResponse(ctx context.Co
 // DecommissionNTMSMediaRequest structure represents the DecommissionNtmsMedia operation request
 type DecommissionNTMSMediaRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	MediaID *dtyp.GUID     `idl:"name:lpMediaId" json:"media_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpMediaId: A pointer to the medium identifier of the partition to be decommissioned.
+	//
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN                |                                                                                  |
+	//	|             VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                     |                                                                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                     | The call was successful.                                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED      | Access to the object is denied; other security errors are possible, but indicate |
+	//	|                                     | a security subsystem error.                                                      |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY  | An allocation error occurred during processing.                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER  | The parameter is not valid.                                                      |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CC ERROR_INVALID_MEDIA      | The media identifier is not valid.                                               |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CE ERROR_INVALID_MEDIA_POOL | The media pool identifier is not valid.                                          |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE   | The database query or update failed.                                             |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007139F ERROR_INVALID_STATE      | An unexpected state was encountered; might be disabled or offline.               |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	MediaID *dtyp.GUID `idl:"name:lpMediaId" json:"media_id"`
 }
 
 func (o *DecommissionNTMSMediaRequest) xxx_ToOp(ctx context.Context, op *xxx_DecommissionNTMSMediaOperation) *xxx_DecommissionNTMSMediaOperation {
@@ -2531,8 +2888,35 @@ func (o *xxx_SetNTMSMediaCompleteOperation) UnmarshalNDRResponse(ctx context.Con
 // SetNTMSMediaCompleteRequest structure represents the SetNtmsMediaComplete operation request
 type SetNTMSMediaCompleteRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	MediaID *dtyp.GUID     `idl:"name:lpMediaId" json:"media_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpMediaId: A pointer to the identifier of the logical medium.
+	//
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN                |                                                                                  |
+	//	|             VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                     |                                                                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                     | The call was successful.                                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED      | NTMS_MODIFY_ACCESS to the library is denied; other security errors are possible, |
+	//	|                                     | but indicate a security subsystem error.                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY  | An allocation error occurred during processing.                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER  | The media identifier is missing.                                                 |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CC ERROR_INVALID_MEDIA      | The media identifier is invalid.                                                 |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CE ERROR_INVALID_MEDIA_POOL | The media pool of the media is invalid.                                          |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE   | The database is inaccessible or damaged.                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL      | The database is full.                                                            |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007139F ERROR_INVALID_STATE      | The medium is not in the allocated state, or is currently mounted.               |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	MediaID *dtyp.GUID `idl:"name:lpMediaId" json:"media_id"`
 }
 
 func (o *SetNTMSMediaCompleteRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNTMSMediaCompleteOperation) *xxx_SetNTMSMediaCompleteOperation {
@@ -2749,8 +3133,35 @@ func (o *xxx_DeleteNTMSMediaOperation) UnmarshalNDRResponse(ctx context.Context,
 // DeleteNTMSMediaRequest structure represents the DeleteNtmsMedia operation request
 type DeleteNTMSMediaRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	MediaID *dtyp.GUID     `idl:"name:lpMediaId" json:"media_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpMediaId: A pointer to the identifier of a physical medium.
+	//
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN                |                                                                                  |
+	//	|             VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                     |                                                                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                     | The call was successful.                                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED      | NTMS_MODIFY_ACCESS to the library is denied; other security errors are possible  |
+	//	|                                     | but indicate a security subsystem error.                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY  | An allocation error occurred during processing.                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER  | The media identifier is missing.                                                 |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CC ERROR_INVALID_MEDIA      | The media identifier is invalid.                                                 |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CE ERROR_INVALID_MEDIA_POOL | The media pool of the media is invalid.                                          |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE   | The database is inaccessible or damaged.                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL      | The database is full.                                                            |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007139F ERROR_INVALID_STATE      | The media is not offline.                                                        |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	MediaID *dtyp.GUID `idl:"name:lpMediaId" json:"media_id"`
 }
 
 func (o *DeleteNTMSMediaRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteNTMSMediaOperation) *xxx_DeleteNTMSMediaOperation {
@@ -3087,10 +3498,20 @@ func (o *xxx_CreateNTMSMediaPoolAOperation) UnmarshalNDRResponse(ctx context.Con
 // CreateNTMSMediaPoolARequest structure represents the CreateNtmsMediaPoolA operation request
 type CreateNTMSMediaPoolARequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This               *dcom.ORPCThis               `idl:"name:This" json:"this"`
-	PoolName           string                       `idl:"name:lpPoolName;string" json:"pool_name"`
-	MediaType          *dtyp.GUID                   `idl:"name:lpMediaType;pointer:unique" json:"media_type"`
-	Options            uint32                       `idl:"name:dwOptions" json:"options"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpPoolName: A null-terminated sequence of ASCII characters that constitute the name
+	// of the new media pool; MUST be unique among all the media pool present in the server.
+	PoolName string `idl:"name:lpPoolName;string" json:"pool_name"`
+	// lpMediaType: Pointer to a unique identifier for the type of media in this media pool.
+	// INtmsObjectManagement1::EnumerateNtmsObject produces a list of available media types
+	// and their attributes. Use of a NULL pointer creates a media pool that contains only
+	// other media pools.
+	MediaType *dtyp.GUID `idl:"name:lpMediaType;pointer:unique" json:"media_type"`
+	// dwOptions: A value from the NtmsCreateOptions (section 2.2.3.2) enumeration that
+	// specifies the type of creation to undertake.
+	Options uint32 `idl:"name:dwOptions" json:"options"`
+	// lpSecurityAttributes: A pointer to an optional SECURITY_ATTRIBUTES_NTMS structure
+	// that is used to restrict access to the pool.
 	SecurityAttributes *rsmp.SecurityAttributesNTMS `idl:"name:lpSecurityAttributes;pointer:unique" json:"security_attributes"`
 }
 
@@ -3134,8 +3555,36 @@ func (o *CreateNTMSMediaPoolARequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 // CreateNTMSMediaPoolAResponse structure represents the CreateNtmsMediaPoolA operation response
 type CreateNTMSMediaPoolAResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PoolID *dtyp.GUID     `idl:"name:lpPoolId" json:"pool_id"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpPoolId: A pointer to the identifier of the new media pool.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | NTMS_MODIFY_ACCESS to the library is denied; other security errors are possible  |
+	//	|                                    | but indicate a security subsystem error.                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | The media pool name or identifier is missing.                                    |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007007B ERROR_INVALID_NAME      | The pool name syntax is invalid or the name is too long.                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800700B7 ERROR_ALREADY_EXISTS    | A new media pool could not be created because one already exists with this name. |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CC ERROR_INVALID_MEDIA     | The selected media type is not valid.                                            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND  | Unable to open existing media pool.                                              |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE  | The database is inaccessible or damaged.                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL     | The database is full; other security errors are possible but indicate a security |
+	//	|                                    | subsystem error.                                                                 |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	PoolID *dtyp.GUID `idl:"name:lpPoolId" json:"pool_id"`
 	// Return: The CreateNtmsMediaPoolA return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3437,10 +3886,21 @@ func (o *xxx_CreateNTMSMediaPoolWOperation) UnmarshalNDRResponse(ctx context.Con
 // CreateNTMSMediaPoolWRequest structure represents the CreateNtmsMediaPoolW operation request
 type CreateNTMSMediaPoolWRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This               *dcom.ORPCThis               `idl:"name:This" json:"this"`
-	PoolName           string                       `idl:"name:lpPoolName;string" json:"pool_name"`
-	MediaType          *dtyp.GUID                   `idl:"name:lpMediaType;pointer:unique" json:"media_type"`
-	Options            uint32                       `idl:"name:dwOptions" json:"options"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpPoolName: A null-terminated sequence of Unicode characters, encoded using UTF-16,
+	// that constitute the name of the new media pool; MUST be unique among all the media
+	// pools present in the server.
+	PoolName string `idl:"name:lpPoolName;string" json:"pool_name"`
+	// lpMediaType: Pointer to a unique identifier for the type of media in this media pool.
+	// INtmsObjectManagement1::EnumerateNtmsObject produces a list of available media types
+	// and their attributes. Use of a NULL pointer creates a media pool that contains only
+	// other media pools.
+	MediaType *dtyp.GUID `idl:"name:lpMediaType;pointer:unique" json:"media_type"`
+	// dwOptions: A value from the NtmsCreateOptions (section 2.2.3.2) enumeration specifying
+	// the type of creation to undertake.
+	Options uint32 `idl:"name:dwOptions" json:"options"`
+	// lpSecurityAttributes: A pointer to an optional SECURITY_ATTRIBUTES_NTMS (section
+	// 2.2.3.5) structure used to restrict access to the pool.
 	SecurityAttributes *rsmp.SecurityAttributesNTMS `idl:"name:lpSecurityAttributes;pointer:unique" json:"security_attributes"`
 }
 
@@ -3484,8 +3944,36 @@ func (o *CreateNTMSMediaPoolWRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 // CreateNTMSMediaPoolWResponse structure represents the CreateNtmsMediaPoolW operation response
 type CreateNTMSMediaPoolWResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PoolID *dtyp.GUID     `idl:"name:lpPoolId" json:"pool_id"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpPoolId: A pointer to the identifier of the new media pool.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | NTMS_MODIFY_ACCESS to the library is denied; other security errors are possible, |
+	//	|                                    | but indicate a security subsystem error.                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | The media pool name or identifier is missing.                                    |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007007B ERROR_INVALID_NAME      | The pool name syntax is invalid or the name is too long.                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800700B7 ERROR_ALREADY_EXISTS    | A new media pool could not be created because one already exists with this name. |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CC ERROR_INVALID_MEDIA     | The selected media type is not valid.                                            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND  | Unable to open an existing media pool.                                           |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE  | The database is inaccessible or damaged.                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL     | The database is full; other security errors are possible, but indicate a         |
+	//	|                                    | security subsystem error.                                                        |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	PoolID *dtyp.GUID `idl:"name:lpPoolId" json:"pool_id"`
 	// Return: The CreateNtmsMediaPoolW return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3759,9 +4247,12 @@ func (o *xxx_GetNTMSMediaPoolNameAOperation) UnmarshalNDRResponse(ctx context.Co
 // GetNTMSMediaPoolNameARequest structure represents the GetNtmsMediaPoolNameA operation request
 type GetNTMSMediaPoolNameARequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PoolID         *dtyp.GUID     `idl:"name:lpPoolId" json:"pool_id"`
-	NameSizeBuffer uint32         `idl:"name:lpdwNameSizeBuf" json:"name_size_buffer"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpPoolId: A pointer to the identifier of the media pool from which to retrieve the
+	// name.
+	PoolID *dtyp.GUID `idl:"name:lpPoolId" json:"pool_id"`
+	// lpdwNameSizeBuf:  A pointer to the size, in bytes, of lpBufName.
+	NameSizeBuffer uint32 `idl:"name:lpdwNameSizeBuf" json:"name_size_buffer"`
 }
 
 func (o *GetNTMSMediaPoolNameARequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameAOperation) *xxx_GetNTMSMediaPoolNameAOperation {
@@ -3803,9 +4294,31 @@ type GetNTMSMediaPoolNameAResponse struct {
 	NameSizeBuffer uint32 `idl:"name:lpdwNameSizeBuf" json:"name_size_buffer"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	BufferName []byte         `idl:"name:lpBufName;size_is:(lpdwNameSizeBuf);length_is:(lpdwNameSizeBuf)" json:"buffer_name"`
-	NameSize   uint32         `idl:"name:lpdwNameSize" json:"name_size"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpBufName: A null-terminated buffer that contains the name of the media pool.
+	BufferName []byte `idl:"name:lpBufName;size_is:(lpdwNameSizeBuf);length_is:(lpdwNameSizeBuf)" json:"buffer_name"`
+	// lpdwNameSize:  A pointer to the length of the string in lpBufName, including the
+	// terminating null character.
+	//
+	//	+--------------------------------------+--------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                |
+	//	|              VALUE/CODE              |                                  DESCRIPTION                                   |
+	//	|                                      |                                                                                |
+	//	+--------------------------------------+--------------------------------------------------------------------------------+
+	//	+--------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | The call was successful.                                                       |
+	//	+--------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED       | Access to an object was denied.                                                |
+	//	+--------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY   | An allocation error occurred during processing.                                |
+	//	+--------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER   | A parameter is missing or invalid.                                             |
+	//	+--------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x8007007A ERROR_INSUFFICIENT_BUFFER | The buffer is not large enough. The required size is returned in lpdwNameSize. |
+	//	+--------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x800710CE ERROR_INVALID_MEDIA_POOL  | The media pool identifier is missing or invalid.                               |
+	//	+--------------------------------------+--------------------------------------------------------------------------------+
+	NameSize uint32 `idl:"name:lpdwNameSize" json:"name_size"`
 	// Return: The GetNtmsMediaPoolNameA return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -4095,9 +4608,13 @@ func (o *xxx_GetNTMSMediaPoolNameWOperation) UnmarshalNDRResponse(ctx context.Co
 // GetNTMSMediaPoolNameWRequest structure represents the GetNtmsMediaPoolNameW operation request
 type GetNTMSMediaPoolNameWRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PoolID         *dtyp.GUID     `idl:"name:lpPoolId" json:"pool_id"`
-	NameSizeBuffer uint32         `idl:"name:lpdwNameSizeBuf" json:"name_size_buffer"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpPoolId: A pointer to the identifier of the media pool for which to retrieve the
+	// name.
+	PoolID *dtyp.GUID `idl:"name:lpPoolId" json:"pool_id"`
+	// lpdwNameSizeBuf: A pointer to the size, in bytes, of the client buffer that is allocated
+	// to store lpBufName.
+	NameSizeBuffer uint32 `idl:"name:lpdwNameSizeBuf" json:"name_size_buffer"`
 }
 
 func (o *GetNTMSMediaPoolNameWRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSMediaPoolNameWOperation) *xxx_GetNTMSMediaPoolNameWOperation {
@@ -4139,9 +4656,31 @@ type GetNTMSMediaPoolNameWResponse struct {
 	NameSizeBuffer uint32 `idl:"name:lpdwNameSizeBuf" json:"name_size_buffer"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	BufferName string         `idl:"name:lpBufName;size_is:(lpdwNameSizeBuf);length_is:(lpdwNameSizeBuf)" json:"buffer_name"`
-	NameSize   uint32         `idl:"name:lpdwNameSize" json:"name_size"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpBufName: A null-terminated buffer that contains the name of the media pool.
+	BufferName string `idl:"name:lpBufName;size_is:(lpdwNameSizeBuf);length_is:(lpdwNameSizeBuf)" json:"buffer_name"`
+	// lpdwNameSize: A pointer to the length of the string in lpBufName, including the terminating
+	// null character.
+	//
+	//	+--------------------------------------+--------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                |
+	//	|              VALUE/CODE              |                                  DESCRIPTION                                   |
+	//	|                                      |                                                                                |
+	//	+--------------------------------------+--------------------------------------------------------------------------------+
+	//	+--------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | The call was successful.                                                       |
+	//	+--------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED       | Access to an object was denied.                                                |
+	//	+--------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY   | An allocation error occurred during processing.                                |
+	//	+--------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER   | A parameter is missing or invalid.                                             |
+	//	+--------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x8007007A ERROR_INSUFFICIENT_BUFFER | The buffer is not large enough. The required size is returned in lpdwNameSize. |
+	//	+--------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x800710CE ERROR_INVALID_MEDIA_POOL  | The media pool identifier is missing or invalid.                               |
+	//	+--------------------------------------+--------------------------------------------------------------------------------+
+	NameSize uint32 `idl:"name:lpdwNameSize" json:"name_size"`
 	// Return: The GetNtmsMediaPoolNameW return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -4355,9 +4894,41 @@ func (o *xxx_MoveToNTMSMediaPoolOperation) UnmarshalNDRResponse(ctx context.Cont
 // MoveToNTMSMediaPoolRequest structure represents the MoveToNtmsMediaPool operation request
 type MoveToNTMSMediaPoolRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	MediaID *dtyp.GUID     `idl:"name:lpMediaId" json:"media_id"`
-	PoolID  *dtyp.GUID     `idl:"name:lpPoolId" json:"pool_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpMediaId: A pointer to the identifier of a physical medium.
+	MediaID *dtyp.GUID `idl:"name:lpMediaId" json:"media_id"`
+	// lpPoolId:  A pointer to the identifier of a media pool to which the medium is to
+	// be moved.
+	//
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN                |                                                                                  |
+	//	|             VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                     |                                                                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                     | The call was successful.                                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED      | NTMS_MODIFY_ACCESS to the library is denied; other security errors are possible, |
+	//	|                                     | but indicate a security subsystem error.                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY  | An allocation failure occurred during processing.                                |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER  | The parameter is missing or invalid.                                             |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800700AA ERROR_BUSY               | A side of the media is in use or currently unavailable.                          |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CC ERROR_INVALID_MEDIA      | The source media or implied source media pool is invalid.                        |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CE ERROR_INVALID_MEDIA_POOL | Either the destination media pool is invalid, or media in the unrecognized or    |
+	//	|                                     | import pool can be moved only to the free pool.                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE   | The database is inaccessible or damaged.                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL      | The database is full.                                                            |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DB ERROR_MEDIA_INCOMPATIBLE | The source media type differs from the media type of the destination pool.       |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	PoolID *dtyp.GUID `idl:"name:lpPoolId" json:"pool_id"`
 }
 
 func (o *MoveToNTMSMediaPoolRequest) xxx_ToOp(ctx context.Context, op *xxx_MoveToNTMSMediaPoolOperation) *xxx_MoveToNTMSMediaPoolOperation {
@@ -4576,8 +5147,37 @@ func (o *xxx_DeleteNTMSMediaPoolOperation) UnmarshalNDRResponse(ctx context.Cont
 // DeleteNTMSMediaPoolRequest structure represents the DeleteNtmsMediaPool operation request
 type DeleteNTMSMediaPoolRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PoolID *dtyp.GUID     `idl:"name:lpPoolId" json:"pool_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpPoolId: A pointer to the identifier of a media pool.
+	//
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN                |                                                                                  |
+	//	|             VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                     |                                                                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                     | The call was successful.                                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED      | NTMS_CONTROL_ACCESS to the media pool is denied (for more information, see       |
+	//	|                                     | [MSDN-SetNtmsObjectSecurity]); other security errors are possible, but indicate  |
+	//	|                                     | a security subsystem error.                                                      |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY  | An allocation failure occurred during processing.                                |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER  | The media pool identifier is missing.                                            |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CE ERROR_INVALID_MEDIA_POOL | Unable to open the media pool or delete the free, import, or unrecognized media  |
+	//	|                                     | pools.                                                                           |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D3 ERROR_NOT_EMPTY          | The media pool must be empty to be deleted.                                      |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE   | The database is inaccessible or damaged.                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// The DeleteNtmsMediaPool method deletes the specified application media pool. Only
+	// empty media pools can be deleted with the DeleteNtmsMediaPool method. Free, unrecognized,
+	// and import media pools are managed by RSM and cannot be deleted with DeleteNtmsMediaPool.
+	PoolID *dtyp.GUID `idl:"name:lpPoolId" json:"pool_id"`
 }
 
 func (o *DeleteNTMSMediaPoolRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteNTMSMediaPoolOperation) *xxx_DeleteNTMSMediaPoolOperation {
@@ -4816,9 +5416,47 @@ func (o *xxx_AddNTMSMediaTypeOperation) UnmarshalNDRResponse(ctx context.Context
 // AddNTMSMediaTypeRequest structure represents the AddNtmsMediaType operation request
 type AddNTMSMediaTypeRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	MediaTypeID *dtyp.GUID     `idl:"name:lpMediaTypeId" json:"media_type_id"`
-	LibID       *dtyp.GUID     `idl:"name:lpLibId" json:"lib_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpMediaTypeId: A pointer to the identifier of a media type to add to the library.
+	MediaTypeID *dtyp.GUID `idl:"name:lpMediaTypeId" json:"media_type_id"`
+	// lpLibId:  A pointer to the identifier of the library to which the media type is
+	// to be added.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | NTMS_MODIFY_ACCESS to the library is denied; other security errors are possible, |
+	//	|                                    | but indicate a security subsystem error.                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY | An allocation failure occurred during processing.                                |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | The media type or library identifiers are missing.                               |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CD ERROR_INVALID_LIBRARY   | The library identifier is invalid.                                               |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE  | The database is inaccessible or damaged.                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL     | The database is full.                                                            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// If the specified media type is not in the library object's list of already supported
+	// media types, the AddNtmsMediaType method adds the it to the specified library. If
+	// the specified media type is already in the library object's list of already supported
+	// media types, the AddNtmsMediaType method will not add the it to the specified library
+	// also it will not return error because of this. AddNtmsMediaType then creates the
+	// system media pools if they do not exist.
+	//
+	// If the specified media type is not in the library object's list of already supported
+	// media types, the AddNtmsMediaType method adds it to the specified library. If the
+	// specified media type is already in the library object's list of supported media types,
+	// the specified media type is not added to the library object's list. In both instances,
+	// AddNtmsMediaType creates the system media pools if they do not exist.
+	LibID *dtyp.GUID `idl:"name:lpLibId" json:"lib_id"`
 }
 
 func (o *AddNTMSMediaTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_AddNTMSMediaTypeOperation) *xxx_AddNTMSMediaTypeOperation {
@@ -5059,9 +5697,36 @@ func (o *xxx_DeleteNTMSMediaTypeOperation) UnmarshalNDRResponse(ctx context.Cont
 // DeleteNTMSMediaTypeRequest structure represents the DeleteNtmsMediaType operation request
 type DeleteNTMSMediaTypeRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	MediaTypeID *dtyp.GUID     `idl:"name:lpMediaTypeId" json:"media_type_id"`
-	LibID       *dtyp.GUID     `idl:"name:lpLibId" json:"lib_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpMediaTypeId: A pointer to the identifier of a media type to delete from the library.
+	MediaTypeID *dtyp.GUID `idl:"name:lpMediaTypeId" json:"media_type_id"`
+	// lpLibId:  A pointer to the identifier of the library from which to delete the media
+	// type.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | NTMS_MODIFY_ACCESS to the library is denied; other security errors are possible  |
+	//	|                                    | but indicate a security subsystem error.                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY | An allocation failure occurred during processing.                                |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | The media type or library identifiers are missing.                               |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CD ERROR_INVALID_LIBRARY   | The library identifier is invalid.                                               |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D3 ERROR_NOT_EMPTY         | The media pool must be empty to be deleted.                                      |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE  | The database is inaccessible or damaged.                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL     | The database is full.                                                            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	LibID *dtyp.GUID `idl:"name:lpLibId" json:"lib_id"`
 }
 
 func (o *DeleteNTMSMediaTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteNTMSMediaTypeOperation) *xxx_DeleteNTMSMediaTypeOperation {
@@ -5302,9 +5967,35 @@ func (o *xxx_ChangeNTMSMediaTypeOperation) UnmarshalNDRResponse(ctx context.Cont
 // ChangeNTMSMediaTypeRequest structure represents the ChangeNtmsMediaType operation request
 type ChangeNTMSMediaTypeRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	MediaID *dtyp.GUID     `idl:"name:lpMediaId" json:"media_id"`
-	PoolID  *dtyp.GUID     `idl:"name:lpPoolId" json:"pool_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpMediaId: A pointer to the identifier of the physical media to be moved.
+	MediaID *dtyp.GUID `idl:"name:lpMediaId" json:"media_id"`
+	// lpPoolId:  A pointer to the identifier of the media pool to which the media will
+	// be allocated.
+	//
+	//	+-------------------------------------+--------------------------------------------------------------+
+	//	|               RETURN                |                                                              |
+	//	|             VALUE/CODE              |                         DESCRIPTION                          |
+	//	|                                     |                                                              |
+	//	+-------------------------------------+--------------------------------------------------------------+
+	//	+-------------------------------------+--------------------------------------------------------------+
+	//	| 0x00000000 S_OK                     | The call was successful.                                     |
+	//	+-------------------------------------+--------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED      | NTMS_MODIFY_ACCESS to the media pool of the media is denied. |
+	//	+-------------------------------------+--------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY  | An allocation failure occurred during processing.            |
+	//	+-------------------------------------+--------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER  | The media pool or media identifiers are missing.             |
+	//	+-------------------------------------+--------------------------------------------------------------+
+	//	| 0x800710CC ERROR_INVALID_MEDIA      | The media identifier is not valid.                           |
+	//	+-------------------------------------+--------------------------------------------------------------+
+	//	| 0x800710CE ERROR_INVALID_MEDIA_POOL | The identifier of the media pool is invalid.                 |
+	//	+-------------------------------------+--------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE   | The database is inaccessible or damaged.                     |
+	//	+-------------------------------------+--------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL      | The database is full.                                        |
+	//	+-------------------------------------+--------------------------------------------------------------+
+	PoolID *dtyp.GUID `idl:"name:lpPoolId" json:"pool_id"`
 }
 
 func (o *ChangeNTMSMediaTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_ChangeNTMSMediaTypeOperation) *xxx_ChangeNTMSMediaTypeOperation {

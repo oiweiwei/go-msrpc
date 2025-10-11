@@ -57,10 +57,61 @@ type AppHostConfigLocationCollectionClient interface {
 	// Item operation.
 	GetItem(context.Context, *GetItemRequest, ...dcerpc.CallOption) (*GetItemResponse, error)
 
-	// AddLocation operation.
+	// The AddLocation method is received by the server in an RPC_REQUEST packet. In response,
+	// the server attempts to create a new subpath container in the IAppHostConfigFile that
+	// provides the specified IAppHostConfigLocationCollection.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppNewLocation is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                                            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070005 ERROR_ACCESS_DENIED     | The instance is not editable.                                                    |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                                    |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X800700B7 ERROR_ALREADY_EXISTS    | The location path specified by bstrLocationPath cannot be added since it already |
+	//	|                                    | exists.                                                                          |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.                          |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X800700A1 ERROR_BAD_PATHNAME      | The server resource (for example, a file or database) corresponding to the path  |
+	//	|                                    | bstrLocationPath could not be found.                                             |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
 	AddLocation(context.Context, *AddLocationRequest, ...dcerpc.CallOption) (*AddLocationResponse, error)
 
-	// DeleteLocation operation.
+	// The DeleteLocation method is received by the server in an RPC_REQUEST packet. In
+	// response, the server attempts to delete the specific subpath container (the IAppHostConfigLocation
+	// object).
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+--------------------------------+----------------------------------------------------------------------------------+
+	//	|             RETURN             |                                                                                  |
+	//	|           VALUE/CODE           |                                   DESCRIPTION                                    |
+	//	|                                |                                                                                  |
+	//	+--------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR            | The operation completed successfully.                                            |
+	//	+--------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070005 ERROR_ACCESS_DENIED | The instance is not editable.                                                    |
+	//	+--------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070585 ERROR_INVALID_INDEX | The integer index specified by cIndex is invalid, or the location with name      |
+	//	|                                | specified by cIndex could not be found.                                          |
+	//	+--------------------------------+----------------------------------------------------------------------------------+
 	DeleteLocation(context.Context, *DeleteLocationRequest, ...dcerpc.CallOption) (*DeleteLocationResponse, error)
 
 	// AlterContext alters the client context.
@@ -900,8 +951,9 @@ func (o *xxx_AddLocationOperation) UnmarshalNDRResponse(ctx context.Context, w n
 // AddLocationRequest structure represents the AddLocation operation request
 type AddLocationRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This         *dcom.ORPCThis `idl:"name:This" json:"this"`
-	LocationPath *oaut.String   `idl:"name:bstrLocationPath" json:"location_path"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrLocationPath: The new subpath to add.
+	LocationPath *oaut.String `idl:"name:bstrLocationPath" json:"location_path"`
 }
 
 func (o *AddLocationRequest) xxx_ToOp(ctx context.Context, op *xxx_AddLocationOperation) *xxx_AddLocationOperation {
@@ -938,7 +990,8 @@ func (o *AddLocationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // AddLocationResponse structure represents the AddLocation operation response
 type AddLocationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat              `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppNewLocation: Contains a new subpath container IAppHostConfigLocation object.
 	NewLocation *iisa.AppHostConfigLocation `idl:"name:ppNewLocation" json:"new_location"`
 	// Return: The AddLocation return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1127,8 +1180,13 @@ func (o *xxx_DeleteLocationOperation) UnmarshalNDRResponse(ctx context.Context, 
 // DeleteLocationRequest structure represents the DeleteLocation operation request
 type DeleteLocationRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Index *oaut.Variant  `idl:"name:cIndex" json:"index"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// cIndex: A VARIANT, which is used to specify the IAppHostConfigLocation object to
+	// delete. If the VARIANT is of type integer, the index is a zero-based index to the
+	// collection of IAppHostElement objects, where 0 indicates the first IAppHostElement
+	// object, 1 the second, and so on. If the VARIANT is of type string, the index is the
+	// name of the subpath being deleted.
+	Index *oaut.Variant `idl:"name:cIndex" json:"index"`
 }
 
 func (o *DeleteLocationRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteLocationOperation) *xxx_DeleteLocationOperation {

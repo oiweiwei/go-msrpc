@@ -1,1 +1,201 @@
-<div class="content"></div>
+<div class="content"><p>The GetNtmsServerObjectInformationW method retrieves
+information about an object, as a sequence of Unicode characters.</p><dl>
+<dd>
+<div><pre> HRESULT GetNtmsServerObjectInformationW(
+   [in] LPNTMS_GUID lpObjectId,
+   [out] LPNTMS_OBJECTINFORMATIONW lpInfo,
+   [in] DWORD dwType,
+   [in] DWORD dwSize
+ );
+</pre></div>
+</dd></dl><p><b>lpObjectId: </b>A pointer to the identifier of the
+object for which to retrieve information. </p><p><b>lpInfo: </b>A pointer to an <a href="7a583c21-ca5c-4de4-9b65-96f2e1261625" data-linktype="relative-path">NTMS_OBJECTINFORMATIONW</a>
+structure describing the properties of the object.</p><p><b>dwType: </b>A value from the <a href="5b190198-a0cb-4e20-90a3-234009357051" data-linktype="relative-path">NtmsObjectsTypes</a>
+enumeration defining the type of the object.</p><p><b>dwSize: </b>The size, in bytes, of the appropriate
+structure for <i>lpInfo</i>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>An allocation failure occurred during processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is missing, or the <i>dwType</i> or <i>dwSize</i>
+  parameter is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D8</p>
+  <p>ERROR_OBJECT_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The <i>lpObjectId</i> parameter is invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message the server MUST verify that both
+<i>lpObjectId</i> and <i>lpInfo</i> are not NULL. If parameter validation
+fails, the server MUST immediately fail the operation and return
+ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights. If the client does not have the
+required access rights, the server MUST return ERROR_ACCESS_DENIED
+(0x80070005).</p><p>The caller MUST supply an object ID and an information
+structure of at least the size of the defined structure.</p><p>If the given object type is an NTMS_UNKNOWN structure, the
+server MUST determine the object type. The information size and type of the
+information structure MUST be set correctly in the <i>lpInfo</i> parameter
+before calling the GetNtmsServerObjectInformationW method.</p><p>The following objects require special access rights.</p><table><thead>
+  <tr>
+   <th>
+   <p> Object </p>
+   </th>
+   <th>
+   <p> Access </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_CHANGER</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the library.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_CHANGER_TYPE</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the computer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_COMPUTER</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the computer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_DRIVE</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the library.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_DRIVE_TYPE</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the computer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_IEDOOR</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the library.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_IEPORT</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the library.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_LIBRARY</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the library. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_LIBREQUEST</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the library.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_LOGICAL_MEDIA</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the media pool of the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_05349689-4cd0-4643-a13e-9f552ecf3346" data-linktype="relative-path">logical media</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_ MEDIA_POOL</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the media pool. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_MEDIA_TYPE</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the computer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_OPREQUEST</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the computer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_PARTITION</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the media pool of the
+  side. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_PHYSICAL_MEDIA</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the media pool.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_STORAGESLOT</p>
+  </td>
+  <td>
+  <p>Requires NTMS_USE_ACCESS to the library.</p>
+  </td>
+ </tr></tbody></table><p>Strings sent to this method as parameters MUST be
+Unicode-encoded.</p></div>

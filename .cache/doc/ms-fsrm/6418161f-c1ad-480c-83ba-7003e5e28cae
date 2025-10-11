@@ -1,5 +1,5 @@
-<div class="content"><p>The RefreshUsageProperties method refreshes the <b>quota usage</b>
-information for the caller&#39;s copy of the object.</p><dl>
+<div class="content"><p>The RefreshUsageProperties method refreshes the <b>quota
+usage</b> information for the caller&#39;s copy of the object.</p><dl>
 <dd>
 <div><pre> [id(FSRM_DISPID_QUOTA | 0x02)] HRESULT RefreshUsageProperties();
 </pre></div>

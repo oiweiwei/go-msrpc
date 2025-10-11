@@ -31,16 +31,28 @@ type ObjectInfo1Server interface {
 	// IUnknown base class.
 	iunknown.UnknownServer
 
+	// The GetNtmsServerObjectInformationA method retrieves information about an object,
+	// as a sequence of ASCII characters.
 	GetNTMSServerObjectInformationA(context.Context, *GetNTMSServerObjectInformationARequest) (*GetNTMSServerObjectInformationAResponse, error)
 
+	// The GetNtmsServerObjectInformationW method retrieves information about an object,
+	// as a sequence of Unicode characters.
 	GetNTMSServerObjectInformationW(context.Context, *GetNTMSServerObjectInformationWRequest) (*GetNTMSServerObjectInformationWResponse, error)
 
+	// The SetNtmsObjectInformationA method changes the information of an object, with strings
+	// encoded using ASCII.
 	SetNTMSObjectInformationA(context.Context, *SetNTMSObjectInformationARequest) (*SetNTMSObjectInformationAResponse, error)
 
+	// The SetNtmsObjectInformationW method changes the information of an object, with strings
+	// encoded using Unicode.
 	SetNTMSObjectInformationW(context.Context, *SetNTMSObjectInformationWRequest) (*SetNTMSObjectInformationWResponse, error)
 
+	// The CreateNtmsMediaA method creates a new offline medium for a media pool, with strings
+	// encoded using ASCII.
 	CreateNTMSMediaA(context.Context, *CreateNTMSMediaARequest) (*CreateNTMSMediaAResponse, error)
 
+	// The CreateNtmsMediaW method creates a new offline medium for a media pool, with strings
+	// encoded using Unicode.
 	CreateNTMSMediaW(context.Context, *CreateNTMSMediaWRequest) (*CreateNTMSMediaWResponse, error)
 }
 

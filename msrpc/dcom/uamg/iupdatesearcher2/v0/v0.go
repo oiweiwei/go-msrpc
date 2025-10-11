@@ -47,8 +47,42 @@ type UpdateSearcher2Client interface {
 	// IUpdateSearcher retrieval method.
 	UpdateSearcher() iupdatesearcher.UpdateSearcherClient
 
+	// The IUpdateSearcher2::IgnoreDownloadPriority (opnum 26) method retrieves whether
+	// the update download priority is ignored.
+	//
+	// The IUpdateSearcher2::IgnoreDownloadPriority (opnum 27) method sets whether the update
+	// download priority is ignored.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the IgnoreDownloadPriority ADM element.
 	GetIgnoreDownloadPriority(context.Context, *GetIgnoreDownloadPriorityRequest, ...dcerpc.CallOption) (*GetIgnoreDownloadPriorityResponse, error)
 
+	// The IUpdateSearcher2::IgnoreDownloadPriority (opnum 26) method retrieves whether
+	// the update download priority is ignored.
+	//
+	// The IUpdateSearcher2::IgnoreDownloadPriority (opnum 27) method sets whether the update
+	// download priority is ignored.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the IgnoreDownloadPriority ADM element.
 	SetIgnoreDownloadPriority(context.Context, *SetIgnoreDownloadPriorityRequest, ...dcerpc.CallOption) (*SetIgnoreDownloadPriorityResponse, error)
 
 	// AlterContext alters the client context.
@@ -323,8 +357,10 @@ func (o *GetIgnoreDownloadPriorityRequest) UnmarshalNDR(ctx context.Context, r n
 // GetIgnoreDownloadPriorityResponse structure represents the IgnoreDownloadPriority operation response
 type GetIgnoreDownloadPriorityResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if download priority is to be ignored
+	// when computing supersedence or to VARIANT_FALSE if not.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The IgnoreDownloadPriority return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -497,8 +533,10 @@ func (o *xxx_SetIgnoreDownloadPriorityOperation) UnmarshalNDRResponse(ctx contex
 // SetIgnoreDownloadPriorityRequest structure represents the IgnoreDownloadPriority operation request
 type SetIgnoreDownloadPriorityRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Value int16          `idl:"name:value" json:"value"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// value: MUST be set either to VARIANT_TRUE if download priority is to be ignored when
+	// computing supersedence or to VARIANT_FALSE if not.
+	Value int16 `idl:"name:value" json:"value"`
 }
 
 func (o *SetIgnoreDownloadPriorityRequest) xxx_ToOp(ctx context.Context, op *xxx_SetIgnoreDownloadPriorityOperation) *xxx_SetIgnoreDownloadPriorityOperation {

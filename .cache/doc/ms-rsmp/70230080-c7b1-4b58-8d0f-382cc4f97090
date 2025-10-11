@@ -1,1 +1,84 @@
-<div class="content"></div>
+<div class="content"><p>The DeallocateNtmsMedia method <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a8986e06-b078-4c42-86bc-178390427f04" data-linktype="relative-path">deallocates</a> the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_55db62c5-a84f-43b7-a037-b44ecd8fb92f" data-linktype="relative-path">side</a> that is associated
+with a piece of <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_05349689-4cd0-4643-a13e-9f552ecf3346" data-linktype="relative-path">logical
+media</a>.</p><dl>
+<dd>
+<div><pre> HRESULT DeallocateNtmsMedia(
+   [in] LPNTMS_GUID lpMediaId,
+   [in] DWORD dwOptions
+ );
+</pre></div>
+</dd></dl><p><b>lpMediaId: </b>A pointer to the identifier of the
+logical media. </p><p><b>dwOptions: </b>This parameter is unused. It MUST
+be sent as 0 and MUST be ignored on receipt.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>NTMS_MODIFY_ACCESS to the library is denied; other
+  security errors are possible, but indicate a security subsystem error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>An allocation error occurred during processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The media or media pool identifiers are missing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database is inaccessible or damaged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DA</p>
+  <p>ERROR_DATABASE_FULL</p>
+  </td>
+  <td>
+  <p>The database is full.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpMediaId</i>
+is not NULL. If it is NULL, the server MUST immediately fail the operation and
+return ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights, and disassociate the logical
+media. If the client does not have the required access rights, the server MUST
+return ERROR_ACCESS_DENIED (0x80070005).</p><p>When a logical medium is deallocated with the
+DeallocateNtmsMedia method, the server puts the side that is associated with
+the logical media in the available or <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_d753ed1c-ff6a-4179-81ea-10ba369e1cca" data-linktype="relative-path">decommissioned</a> media state,
+and the logical media is deleted from the system.</p><p>Sides are decommissioned upon deallocation if the side has
+been <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_0e546e86-71c4-45cc-9ef1-4a78f6cb425a" data-linktype="relative-path">allocated</a> the
+maximum number of times specified in the media pool. After media enters the
+decommissioned state, it cannot be allocated again.<a id="Appendix_A_Target_31"></a><a aria-label="Product behavior note 31" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_31" data-linktype="relative-path">&lt;31&gt;</a></p></div>

@@ -1,1 +1,139 @@
-<div class="content"></div>
+<div class="content"><p>The <b>BGP_TOC_ENTRY</b> structure<a id="Appendix_A_Target_182"></a><a aria-label="Product behavior note 182" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_182" data-linktype="relative-path">&lt;182&gt;</a> specifies the format in which
+information pertaining to the type of data is stored in <a href="cf155bce-58dd-492d-8883-6a920c767d19" data-linktype="relative-path"><b>BGP_CONFIG_HEADER (section 2.2.1.2.252)</b></a>.
+The following figure shows the relationships between the <b>BGP_CONFIG_HEADER</b>
+and the entries.   </p><p><img id="MS-RRASM_pict0b2707d5-dcec-6109-14e2-d07c32b12757.png" src="ms-rrasm_files/image004.png" alt="Relationship between the BGP_CONFIG_HEADER and the entries" title="Relationship between the BGP_CONFIG_HEADER and the entries" data-linktype="relative-path"/></p><p><b>Figure 4: Relationship between the BGP_CONFIG_HEADER and
+the entries</b></p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>InfoType</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>InfoSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Count</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Offset</p>
+  </td>
+ </tr>
+</tbody></table><p><b>InfoType (4 bytes): </b>A 32-bit, unsigned integer
+in <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_502de58c-ffc0-4dda-8fcb-b152b2c31fba" data-linktype="relative-path">network byte order</a>
+that MUST indicate the type of data contained in the list. The value MUST be
+one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+   <th>
+   <p>The structure pointed to at offset.</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  <p>BGP_ROUTER_CONFIG</p>
+  </td>
+  <td>
+  <p>This is the BGP router configuration.</p>
+  </td>
+  <td>
+  <p><a href="8cf79564-431f-4ccf-936a-f55a1d443e03" data-linktype="relative-path"><b>BGP_ROUTER_CONFIG (section 2.2.1.2.257)</b></a><span>  </span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  <p>BGP_POLICY_INFO</p>
+  </td>
+  <td>
+  <p>This is the BGP policy configuration.</p>
+  </td>
+  <td>
+  <p><a href="9ffbbe86-9bac-44db-b418-9d1954a73026" data-linktype="relative-path"><b>BGP_POLICY (section 2.2.1.2.261)</b></a><span>  </span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  <p>BGP_PEER_INFO</p>
+  </td>
+  <td>
+  <p>This is the BGP peer configuration.</p>
+  </td>
+  <td>
+  <p><a href="64cf35dd-e770-48a0-a7b1-6eb4b90ff6a9" data-linktype="relative-path"><b>BGP_PEER (section 2.2.1.2.262)</b></a><span>  </span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  <p>BGP_PEER_POLICY_MAP</p>
+  </td>
+  <td>
+  <p>This is the BGP peer to BGP policy mapping.</p>
+  </td>
+  <td>
+  <p><a href="e0366ead-9bd5-464c-9122-4c8095de5fae" data-linktype="relative-path"><b>BGP_PEER_TO_POLICIES (section 2.2.1.2.263)</b></a><span> </span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  <p>BGP_ADVERTISE_INFO</p>
+  </td>
+  <td>
+  <p>This is the BGP route advertise configuration.</p>
+  </td>
+  <td>
+  <p><a href="cfdc7601-5356-4453-93bf-0a563c5c071d" data-linktype="relative-path"><b>BGP_ADVERTISE (section 2.2.1.2.264)</b></a><span>  </span></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>InfoSize (4 bytes): </b>A 32-bit, unsigned
+integer, in network byte order, that MUST specify the number of bytes in an
+information structure of this type in this entry.</p><p><b>Count (4 bytes): </b>A 32-bit, unsigned integer in
+network byte order that MUST specify the number of information structures of
+this type in this entry.</p><p><b>Offset (4 bytes): </b>A 32-bit, unsigned integer
+in network byte order that MUST specify the offset starting from
+BGP_CONFIG_HEADER to start of the first structure for this entry.</p></div>

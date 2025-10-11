@@ -1,1 +1,186 @@
-<div class="content"></div>
+<div class="content"><p> The Public Key Information structure MUST be formatted as
+follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Length</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Offset
+  to Owner Hint</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p align="center">0x03</p>
+  </td>
+  <td colspan="8">
+  <p align="center">0x00</p>
+  </td>
+  <td colspan="8">
+  <p align="center">0x00</p>
+  </td>
+  <td colspan="8">
+  <p align="center">0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Length
+  of Certificate Data</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Offset
+  to Certificate Data</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Data
+  Fields (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Length (4 bytes): </b>This MUST be set to the
+length, in bytes, of this structure. It MUST be a 32-bit unsigned integer in
+little-endian format.</p><p><b>Offset to Owner Hint (4 bytes): </b>If the <b>Owner
+Hint</b> field is present, this field MUST be set to the offset of the <b>Owner
+Hint</b> from the beginning of this structure, measured in bytes. If this field
+is zero, then the <b>Owner Hint</b> field MUST NOT be present. This field MUST
+be a 32-bit unsigned integer in little-endian format.</p><p><b>Length of Certificate Data (4 bytes): </b>The
+size, in bytes, of the <b>Certificate Data</b> field. It MUST be a 32-bit
+unsigned integer in little-endian format.</p><p><b>Offset to Certificate Data (4 bytes): </b>The
+offset, in bytes, of the <b>Certificate Data</b> field from the start of this
+structure. It MUST be a 32-bit unsigned integer in little-endian format.</p><p><b>Reserved (8 bytes): </b>MUST be set to zero and
+ignored upon receipt.</p><p><b>Data Fields (variable): </b>This field MUST
+contain the following items, in any order, and at the locations indicated by
+the respective <b>Offset</b> fields above. These items MUST be completely
+contained inside this field and MUST NOT overlap each other. There MUST NOT be
+any unused areas within this field that span more than eight contiguous bytes.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Owner
+  Hint (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Certificate
+  Data (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Owner Hint (variable): </b> A
+<a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">security identifier (SID)</a>
+in RPC marshaling format that is intended to be used as a hint regarding the
+identity of the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">key</a>
+owner. This item MUST be present only if the <b>Offset to Owner Hint</b> field
+is nonzero. The structure of an RPC SID is specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/5cb97814-a1c2-4215-b7dc-76d1f4bfad01" data-linktype="relative-path">2.4.2.3</a>.</p>
+</dd>
+<dd>
+<p><b>Certificate Data
+(variable): </b>This field MUST contain information about the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_2069b65d-b546-4198-abfd-768badc2258e" data-linktype="relative-path">X.509</a> <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> associated with
+the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_4cf96ca0-e3a9-4165-8d1a-a21b1397007a" data-linktype="relative-path">public key</a> that is
+used to encrypt the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_3a58e275-3d9f-4b66-8c8d-9808cd0cd8ff" data-linktype="relative-path">FEK</a>
+data in this key list entry. It MUST be formatted as specified in section <a href="066d0c3d-182c-4730-a005-dbf8990c9fbb" data-linktype="relative-path">2.2.2.1.4</a>.</p>
+</dd></dl></div>

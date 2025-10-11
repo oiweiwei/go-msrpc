@@ -1,1 +1,137 @@
-<div class="content"></div>
+<div class="content"><p>The InventoryNtmsLibrary method queues a request to perform
+an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_38cb8216-53ff-4936-a5c4-4d8d7672950a" data-linktype="relative-path">inventory</a> of an
+online library.</p><dl>
+<dd>
+<div><pre> HRESULT InventoryNtmsLibrary(
+   [in] LPNTMS_GUID lpLibraryId,
+   [in] DWORD dwAction
+ );
+</pre></div>
+</dd></dl><p><b>lpLibraryId: </b>A pointer to the identifier of a
+media library.</p><p><b>dwAction: </b> One of the NTMS_INVENTORY_STOP,
+NTMS_INVENTORY_OMID, NTMS_INVENTORY_FAST, or NTMS_INVENTORY_DEFAULT values from
+the <a href="7d94093c-93d1-47a7-b754-b213b0034ba6" data-linktype="relative-path">NtmsInventoryMethod</a>
+enumeration, specifying the action to perform. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to the object was denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800708CA</p>
+  <p>ERROR_NOT_CONNECTED</p>
+  </td>
+  <td>
+  <p>Unable to connect to the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D1</p>
+  <p>ERROR_LIBRARY_OFFLINE</p>
+  </td>
+  <td>
+  <p>The library identifier refers to an offline library.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D5</p>
+  <p>ERROR_RESOURCE_DISABLED</p>
+  </td>
+  <td>
+  <p>A resource required for this operation is disabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CD</p>
+  <p>ERROR_INVALID_LIBRARY</p>
+  </td>
+  <td>
+  <p>The library identifier is invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <b>lpLibraryId</b>
+is not NULL. If parameter validation fails, the server MUST immediately fail
+the operation and return ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST get the
+library selected from the database, check the access to the library, and verify
+that the library is enabled and is online before making the call. If the client
+does not have the required access rights, the server MUST return
+ERROR_ACCESS_DENIED. If the library is disabled, the server MUST return ERROR_RESOURCE_DISABLED
+(0x800710D5). If the library is offline, the server MUST return
+ERROR_LIBRARY_OFFLINE (0x800710D1).</p><p>The action taken by the server depends on the value of <i>dwAction</i>.
+The following table lists all possible values for <i>dwAction</i>.</p><table><thead>
+  <tr>
+   <th>
+   <p> Value </p>
+   </th>
+   <th>
+   <p> Meaning </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_INVENTORY_OMID</p>
+  </td>
+  <td>
+  <p>A full on-media inventory is performed. Each <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_55db62c5-a84f-43b7-a037-b44ecd8fb92f" data-linktype="relative-path">side</a> of each medium MUST
+  be <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b" data-linktype="relative-path">mounted</a> into a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a>. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_INVENTORY_FAST</p>
+  </td>
+  <td>
+  <p>If the library has a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_d4650c0f-44cb-4988-8aa6-ca8c3ffdf1a0" data-linktype="relative-path">bar code reader</a>
+  installed, this flag causes a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_0c1aa461-4c32-4e8b-bb45-577085c32afb" data-linktype="relative-path">bar code</a> inventory to be
+  performed. If the library does not have a bar code reader, this flag causes a
+  differential inventory to be performed (<a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a1f0ab90-f3c0-46b8-9c77-d0d7508ede94" data-linktype="relative-path">slots</a> are classified).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_INVENTORY_DEFAULT</p>
+  </td>
+  <td>
+  <p>Use the inventory method specified in the library
+  object (for more information, see the description of the <a href="9117449f-2f75-4459-8a80-ad1f59f62ddb" data-linktype="relative-path">NTMS_LIBRARYINFORMATION</a>
+  structure).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_INVENTORY_STOP</p>
+  </td>
+  <td>
+  <p>Stop the current inventory in the specified library.</p>
+  </td>
+ </tr></tbody></table><p>The libraries that are not present MUST not be inventoried.</p><p>The InventoryNtmsLibrary method MUST mark all the slots that
+currently contain a medium in the library for classification or identification.
+The InventoryNtmsLibrary method returns when all the media is marked.</p><p>On completion of an asynchronous operation, notification
+will be sent with the identifier lpLibraryId.</p></div>

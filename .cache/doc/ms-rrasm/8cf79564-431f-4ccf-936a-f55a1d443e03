@@ -1,1 +1,169 @@
-<div class="content"></div>
+<div class="content"><p>The <b>BGP_ROUTER_CONFIG</b> structure<a id="Appendix_A_Target_186"></a><a aria-label="Product behavior note 186" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_186" data-linktype="relative-path">&lt;186&gt;</a> is used to get or set the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_3a805569-358b-4691-b201-80833db6e879" data-linktype="relative-path">BGP speaker</a> configuration
+of a RAS server.</p><dl>
+<dd>
+<div><pre> typedef struct _BGP_ROUTER_CONFIG {
+   DWORD dwFlags;
+   DWORD dwBGPIdentifier;
+   DWORD dwLocalASN;
+   BOOL bCompareMedAcrossASN;
+   BOOL bUseDefaultGateway;
+   BOOL bIPv6Routing;
+   in6_addr localIPv6Address;
+ } BGP_ROUTER_CONFIG,
+  *PBGP_ROUTER_CONFIG;
+</pre></div>
+</dd></dl><p><b>dwFlags: </b>Specifies the attributes of this
+structure that are modified. This field is used while modifying the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_10fb4236-73b3-4c84-ad83-1e288ede860f" data-linktype="relative-path">BGP</a> configuration. This
+value MUST be a bitwise OR combination of one or more of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The BGP identifier is modified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The local autonomous system number (ASN) is modified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The <i>bCompareMedAcrossASN</i> value is modified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The default gateway configuration is changed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>The configuration regarding whether the IPv6 routing
+  state is modified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>The default next hop IPv6 address is modified.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwBGPIdentifier: </b>Specifies the unique BGP
+identifier that the BGP speaker uses while communicating with BGP peers.</p><p><b>dwLocalASN: </b>Specifies the local <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_334e9ddc-96ff-4099-83c7-7ff8d3c20ff1" data-linktype="relative-path">autonomous system number (ASN)</a>
+to be used for peering. This value MUST be between 1 and 65534.</p><p><b>bCompareMedAcrossASN: </b>Specifies if the BGP
+speaker compares the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_5b00ad13-368b-4290-a5a1-c65e16edf60e" data-linktype="relative-path">multi
+exit discriminator (MED)</a> attribute in a BGP <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_ad8a294a-8e3c-47e3-a876-7488cd5c8353" data-linktype="relative-path">route</a> received from BGP
+peers across an <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_93140239-7bb7-4e8b-aecc-597e6b733f02" data-linktype="relative-path">autonomous
+system</a>. This value MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The BGP speaker MUST NOT compare the MED attribute in
+  a BGP route received from BGP peers across an autonomous system.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The BGP speaker MUST compare the MED attribute in a
+  BGP route received from BGP peers across an autonomous system.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>bUseDefaultGateway: </b>Specifies whether the
+default route would be used to recursively resolve a route. This value MUST be
+one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The BGP speaker MUST NOT use the default route while
+  recursively resolving a route.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The BGP speaker MUST use the default route while
+  recursively resolving a route.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>bIPv6Routing: </b>Specifies whether the BGP
+speaker would advertise the IPv6 MultiProtocol Extension capability as
+specified in [RFC 2545]. This value MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The BGP speaker MUST NOT advertise the IPv6
+  MultiProtocol Extension capability.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The BGP speaker MUST advertise the IPv6 MultiProtocol
+  Extension capability.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>localIPv6Address: </b>Species the default IPv6
+address that the BGP server would use as next hop while advertising IPv6 routes
+to peers. This configuration is used only when the IPv6 addresses are
+advertised over peering done using IPv4 address or link-local IPv6 address.</p></div>

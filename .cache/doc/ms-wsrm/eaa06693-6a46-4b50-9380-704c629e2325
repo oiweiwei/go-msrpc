@@ -1,1 +1,60 @@
-<div class="content"></div>
+<div class="content"><p>The GetMachineInfo method returns information about a
+machine. If more than one machine with the specified <b>bstrMachineId</b> value
+exists in the hierarchy of machine groups, the information can be returned from
+any of the machine groups.</p><dl>
+<dd>
+<div><pre> [id(7), helpstring(&#34;method GetMachineInfo&#34;)] HRESULT GetMachineInfo(
+   [in] BSTR bstrMachineId,
+   [out] BSTR* pbstrMachineInfo
+ );
+</pre></div>
+</dd></dl><p><b>bstrMachineId: </b>A string that specifies the
+identifier of the machine for which to return information.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>pbstrMachineInfo: </b>A pointer to a string that
+returns information about the machine, in the format specified in <a href="d137388f-8b86-4a30-8848-7ffb6029f276" data-linktype="relative-path">Machine</a> element (section
+2.2.5.17).</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF038A</p>
+  <p>WRM_ERR_MACHINEID_INVALID</p>
+  </td>
+  <td>
+  <p>The specified machine ID is not found in any machine
+  group of the configuration.<a id="Appendix_A_Target_98"></a><a aria-label="Product behavior note 98" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_98" data-linktype="relative-path">&lt;98&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="959a6150-11e3-44ec-b6cd-78da5b2c9e00" data-linktype="relative-path">IWRMMachineGroup</a> interface
+methods are specified in section 3.2.4.6.</p></div>

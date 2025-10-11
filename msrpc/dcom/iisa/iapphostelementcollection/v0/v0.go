@@ -57,16 +57,93 @@ type AppHostElementCollectionClient interface {
 	// Item operation.
 	GetItem(context.Context, *GetItemRequest, ...dcerpc.CallOption) (*GetItemResponse, error)
 
-	// AddElement operation.
+	// The AddElement method is received by the server in an RPC_REQUEST packet. In response,
+	// the server attempts to add a newly created IAppHostElement object to the specified
+	// collection.
+	//
+	// This function adds an element to the current collection of elements.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070021 ERROR_LOCK_VIOLATION    | The instance is not editable.                           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070585 ERROR_INVALID_INDEX     | The index specified by cPosition is invalid.            |
+	//	+------------------------------------+---------------------------------------------------------+
 	AddElement(context.Context, *AddElementRequest, ...dcerpc.CallOption) (*AddElementResponse, error)
 
-	// DeleteElement operation.
+	// The DeleteElement method is received by the server in an RPC_REQUEST packet. In response,
+	// the server deletes the IAppHostElement at the specified index.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070021 ERROR_LOCK_VIOLATION    | The instance is not editable.                           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070585 ERROR_INVALID_INDEX     | The index specified by cIndex is invalid.               |
+	//	+------------------------------------+---------------------------------------------------------+
 	DeleteElement(context.Context, *DeleteElementRequest, ...dcerpc.CallOption) (*DeleteElementResponse, error)
 
 	// Clear operation.
 	Clear(context.Context, *ClearRequest, ...dcerpc.CallOption) (*ClearResponse, error)
 
-	// CreateNewElement operation.
+	// The CreateNewElement method is received by the server in an RPC_REQUEST packet. In
+	// response, the server creates a new unattached IAppHostElement object that has the
+	// specified name. The name MUST be a supported name as defined by the IAppHostCollectionSchema
+	// of the specified IAppHostElementCollection.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppElement is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                                            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                                    |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.                          |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070021 ERROR_LOCK_VIOLATION    | The instance is not editable.                                                    |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070585 ERROR_INVALID_INDEX     | The schema does not permit the creation of an element with name bstrElementName. |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
 	CreateNewElement(context.Context, *CreateNewElementRequest, ...dcerpc.CallOption) (*CreateNewElementResponse, error)
 
 	// Schema operation.
@@ -933,9 +1010,13 @@ func (o *xxx_AddElementOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 // AddElementRequest structure represents the AddElement operation request
 type AddElementRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This          *dcom.ORPCThis       `idl:"name:This" json:"this"`
-	Element       *iisa.AppHostElement `idl:"name:pElement" json:"element"`
-	PositionCount int32                `idl:"name:cPosition" json:"position_count"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// pElement: The element to add to the collection.
+	Element *iisa.AppHostElement `idl:"name:pElement" json:"element"`
+	// cPosition: The position at which the element was added to the collection. If -1,
+	// the new element is appended. Otherwise, the position represents the zero-based index
+	// to the collection.
+	PositionCount int32 `idl:"name:cPosition" json:"position_count"`
 }
 
 func (o *AddElementRequest) xxx_ToOp(ctx context.Context, op *xxx_AddElementOperation) *xxx_AddElementOperation {
@@ -1160,8 +1241,13 @@ func (o *xxx_DeleteElementOperation) UnmarshalNDRResponse(ctx context.Context, w
 // DeleteElementRequest structure represents the DeleteElement operation request
 type DeleteElementRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Index *oaut.Variant  `idl:"name:cIndex" json:"index"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// cIndex: A VARIANT that specifies the IAppHostElement object to return from the collection.
+	// If the VARIANT is of type integer, the index is a zero-based index to the collection,
+	// where 0 indicates the first IAppHostElement, 1 the second, and so on. If the VARIANT
+	// is of type IAppHostElement, the index is a "selector" IAppHostElement to the specified
+	// collection.
+	Index *oaut.Variant `idl:"name:cIndex" json:"index"`
 }
 
 func (o *DeleteElementRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteElementOperation) *xxx_DeleteElementOperation {
@@ -1641,8 +1727,9 @@ func (o *xxx_CreateNewElementOperation) UnmarshalNDRResponse(ctx context.Context
 // CreateNewElementRequest structure represents the CreateNewElement operation request
 type CreateNewElementRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ElementName *oaut.String   `idl:"name:bstrElementName" json:"element_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrElementName: The name of the IAppHostElement to be created.
+	ElementName *oaut.String `idl:"name:bstrElementName" json:"element_name"`
 }
 
 func (o *CreateNewElementRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateNewElementOperation) *xxx_CreateNewElementOperation {
@@ -1679,7 +1766,8 @@ func (o *CreateNewElementRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // CreateNewElementResponse structure represents the CreateNewElement operation response
 type CreateNewElementResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat       `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppElement: Contains a new IAppHostElement object.
 	Element *iisa.AppHostElement `idl:"name:ppElement" json:"element"`
 	// Return: The CreateNewElement return value.
 	Return int32 `idl:"name:Return" json:"return"`

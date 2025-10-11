@@ -1,1 +1,36 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsObjectsTypes enumeration defines the types of RSM
+objects.</p><dl>
+<dd>
+<div><pre> enum NtmsObjectsTypes
+ {
+   NTMS_UNKNOWN = 0,
+   NTMS_OBJECT = 1,
+   NTMS_CHANGER = 2,
+   NTMS_CHANGER_TYPE = 3,
+   NTMS_COMPUTER = 4,
+   NTMS_DRIVE = 5,
+   NTMS_DRIVE_TYPE = 6,
+   NTMS_IEDOOR = 7,
+   NTMS_IEPORT = 8,
+   NTMS_LIBRARY = 9,
+   NTMS_LIBREQUEST = 10,
+   NTMS_LOGICAL_MEDIA = 11,
+   NTMS_MEDIA_POOL = 12,
+   NTMS_MEDIA_TYPE = 13,
+   NTMS_PARTITION = 14,
+   NTMS_PHYSICAL_MEDIA = 15,
+   NTMS_STORAGESLOT = 16,
+   NTMS_OPREQUEST = 17,
+   NTMS_UI_DESTINATION = 18
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_UNKNOWN:  </b>The object type is unknown.</p><p><b>NTMS_OBJECT:  </b>The object type is the default.</p><p><b>NTMS_CHANGER:  </b>The object is a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_898fa8ab-42d5-439f-9415-1589599fe913" data-linktype="relative-path">changer</a>.</p><p><b>NTMS_CHANGER_TYPE:  </b>The object is a type of
+changer.</p><p><b>NTMS_COMPUTER:  </b>The object is the current
+computer.</p><p><b>NTMS_DRIVE:  </b>The object is a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a>.</p><p><b>NTMS_DRIVE_TYPE:  </b>The object is a type of
+drive.</p><p><b>NTMS_IEDOOR:  </b>The object is the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_52b64896-966d-41bd-849a-36602125506b" data-linktype="relative-path">door</a> access mechanism of an
+online library unit.</p><p><b>NTMS_IEPORT:  </b>The object is the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_e2c6dee3-9f37-4fe2-b970-ae3c00a8ed70" data-linktype="relative-path">IE port</a> of an o  nline
+library unit.</p><p><b>NTMS_LIBRARY:  </b>The object is a media library.</p><p><b>NTMS_LIBREQUEST:  </b>The object is a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_f8da5142-cddf-49b1-b24c-a352db74cbbb" data-linktype="relative-path">library request</a>.</p><p><b>NTMS_LOGICAL_MEDIA:  </b>The object is a logical
+piece of media.</p><p><b>NTMS_MEDIA_POOL:  </b>The object is a media pool.</p><p><b>NTMS_MEDIA_TYPE:  </b>The object is a type of
+media.</p><p><b>NTMS_PARTITION:  </b>The object is a media <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_55db62c5-a84f-43b7-a037-b44ecd8fb92f" data-linktype="relative-path">side</a>.</p><p><b>NTMS_PHYSICAL_MEDIA:  </b>The object is a physical
+piece of media.</p><p><b>NTMS_STORAGESLOT:  </b>The object is a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a1f0ab90-f3c0-46b8-9c77-d0d7508ede94" data-linktype="relative-path">slot</a> that can hold media.</p><p><b>NTMS_OPREQUEST:  </b>The object is an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_4676b5f2-6ecd-463c-8218-811911038e63" data-linktype="relative-path">operator request</a>.</p><p><b>NTMS_UI_DESTINATION:  </b>The object is a user
+interface destination.</p></div>

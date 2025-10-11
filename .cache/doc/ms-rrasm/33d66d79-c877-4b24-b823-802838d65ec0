@@ -1,1 +1,11 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIBICMPINFO</b> structure that contains the incoming
+and outgoing statistics for the ICMP.</p><p>This structure is used in <a href="a86469ee-0a06-48b9-a9f3-d209285a4ca7" data-linktype="relative-path"><b>MIB_ICMP (section 2.2.1.2.25)</b></a><span> </span>structure. </p><dl>
+<dd>
+<div><pre> typedef struct _MIBICMPINFO {
+   MIBICMPSTATS icmpInStats;
+   MIBICMPSTATS icmpOutStats;
+ } MIBICMPINFO;
+</pre></div>
+</dd></dl><p><b>icmpInStats: </b>An <a href="7d6d3de6-9375-42e0-af80-dd864c0fc4b3" data-linktype="relative-path"><b>MIBICMPSTATS (section 2.2.1.2.27)</b></a>
+structure that contains the statistics for incoming ICMP messages. </p><p><b>icmpOutStats: </b>An <b>MIBICMPSTATS</b> structure
+that contains the statistics for outgoing ICMP messages.</p></div>

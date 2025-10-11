@@ -1,1 +1,27 @@
-<div class="content"></div>
+<div class="content"><p>The MANAGEMENT_TYPE enumeration defines management modes for
+the WSRM Protocol server. Management modes are used by <a href="a03f4cd5-ad33-46aa-94e7-2c9a92f02b6f" data-linktype="relative-path">IWRMPolicy
+methods (section 3.2.4.7)</a>.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum 
+ {
+   MANUAL_ACTIVE_POLICY = 1,
+   CALENDAR_POLICY = 2,
+   PROFILING = 3
+ } MANAGEMENT_TYPE;
+</pre></div>
+</dd></dl><p><b>MANUAL_ACTIVE_POLICY:  </b>The server is in manual
+active policy mode. In this mode, WSRM manages the CPU and memory allocation
+for different processes according to the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_65daee12-445f-41c0-8456-f728063bef24" data-linktype="relative-path">PMCs</a> that are defined by
+the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_2ced4dc1-842a-4bf8-bdac-0e8d505d5ce6" data-linktype="relative-path">current resource policy</a>.
+The current resource policy is selected using the <a href="162b2a5d-589d-4f88-8f5e-e0a6f5094eee" data-linktype="relative-path">SetCurrentPolicy</a> method
+(section 3.2.4.7.12). </p><p><b>CALENDAR_POLICY:  </b>The server is in <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_7204b2ed-dcef-4434-be15-6451f92d03fb" data-linktype="relative-path">calendar</a> mode. In this
+mode, a <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_559b0a4d-161b-4664-9c10-4fab98b97f1f" data-linktype="relative-path">resource policy</a>
+is managing the CPU and memory allocation for different processes according to
+the PMCs defined by the policy. The policy was set and the management mode was
+set to calendar mode as a result of a calendar event, which is created and
+managed by <a href="b573c233-e3b6-4179-896f-90a4eb0ca8ff" data-linktype="relative-path">IWRMCalendar
+methods (section 3.2.4.4)</a>.</p><p><b>PROFILING:  </b>The server is in profiling mode.
+In this mode, WSRM does not manage the CPU and memory allocation for processes.
+If <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1156c8ef-4d49-462b-9f76-aebcb6c57011" data-linktype="relative-path">accounting</a> is
+enabled, process properties of all running processes are logged into the
+accounting database.</p></div>

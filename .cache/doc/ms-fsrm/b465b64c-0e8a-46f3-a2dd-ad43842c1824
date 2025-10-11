@@ -94,5 +94,6 @@ be set:</p>
 </span></span>Set <b>Updates file contents</b> to false.</p>
 </li></ul></li></ul></li><li><p><span><span> 
 </span></span>Set <i>moduleDefinition</i> to the <b>IFsrmPipelineModuleDefinition</b>
-interface pointer for the newly created Non-Persisted Module Definition Instance.</p>
+interface pointer for the newly created Non-Persisted Module Definition
+Instance.</p>
 </li></ul></div>

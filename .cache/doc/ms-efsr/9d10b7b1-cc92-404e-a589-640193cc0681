@@ -1,1 +1,18 @@
-<div class="content"></div>
+<div class="content"><p>The EFS_DECRYPTION_STATUS_INFO type is used to represent the
+predicted outcome if an attempt were made to read the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_787ee6a8-5f01-4526-828a-d1b3de39c21a" data-linktype="relative-path">plaintext</a> of an encrypted
+object.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwDecryptionError;
+   DWORD dwHashOffset;
+   DWORD cbHash;
+ } EFS_DECRYPTION_STATUS_INFO;
+</pre></div>
+</dd></dl><p><b>dwDecryptionError:</b>  The error code
+returned if decryption were attempted. If the operation were to succeed, this
+value MUST be zero. Otherwise it MUST be set to a nonzero value.</p><p><b>dwHashOffset:</b>  The offset of the
+appended <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a>
+hash in bytes from the start of this structure.</p><p><b>cbHash:</b>  The length in bytes of the
+appended certificate hash.</p><p>If dwDecryptionError is nonzero, the preceding fields are
+followed by the hash of a certificate whose corresponding <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private key</a> is required for
+the decryption to succeed.</p></div>

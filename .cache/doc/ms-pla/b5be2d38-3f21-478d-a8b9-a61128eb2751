@@ -138,7 +138,7 @@ Protocol. <a id="Appendix_A_Target_38"></a><a aria-label="Product behavior note 
      &lt;FileName&gt;&lt;/FileName&gt;
      &lt;FileNameFormat&gt;&lt;/FileNameFormat&gt;
      &lt;FileNameFormatPattern&gt;&lt;/FileNameFormatPattern&gt;
-     &lt;LogAppend&gt;&lt;/LogAppend&gt;
+     &lt;LogAppend&gt;&lt;/LogAppend&gt;
      &lt;LogCircular&gt;&lt;/LogCircular&gt;
      &lt;LogOverwrite&gt;&lt;/LogOverwrite&gt;
      &lt;LatestOutputLocation&gt;&lt;/LatestOutputLocation&gt;

@@ -1,0 +1,29 @@
+<div class="content"><p>The MQAUTHENTICATE enumeration defines values that indicate
+whether an <a href="7d8d0dab-699c-4121-9ee4-226a2dbced2e" data-linktype="relative-path">ApplicationQueue</a>
+accepts only authenticated <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">messages</a>.
+Authenticated messages are <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>s
+for which the <b>AuthenticationLevel</b> value indicates that the Message was
+signed.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MQ_AUTHENTICATE_NONE = 0,
+   MQ_AUTHENTICATE = 1
+ } MQAUTHENTICATE;
+</pre></div>
+</dd></dl><p><b>MQ_AUTHENTICATE_NONE:  </b>The <b>Authentication</b>
+field of the specified ApplicationQueue equals False.</p><dl>
+<dd>
+<p>The ApplicationQueue does not restrict messages on
+the basis of their authentication status.</p>
+</dd></dl><p><b>MQ_AUTHENTICATE:  </b>The <b>Authentication</b>
+field of the specified ApplicationQueue equals True.</p><dl>
+<dd>
+<p>The ApplicationQueue only accepts Messages for which
+the <b>Signature</b> is successfully validated when the message arrives at the
+ApplicationQueue and when it is delivered via the message transfer process.</p>
+</dd></dl><p>Used by:</p><ul><li><p><span><span> 
+</span></span>get <a href="a1bd0554-274e-4031-b993-de549f5f9a63" data-linktype="relative-path">IMSMQQueueInfo::Authenticate</a></p>
+</li><li><p><span><span> 
+</span></span>put <a href="2ccf769e-54fc-4664-a18b-5da9d231278c" data-linktype="relative-path">IMSMQQueueInfo::Authenticate</a></p>
+</li></ul></div>

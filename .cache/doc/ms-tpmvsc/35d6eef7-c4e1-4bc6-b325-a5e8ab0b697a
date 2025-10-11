@@ -1,1 +1,46 @@
-<div class="content"></div>
+<div class="content"><dl>
+<dd>
+<div><pre> typedef  [v1_enum] enum {
+     TPMVSCMGR_ERROR_IMPERSONATION,
+     TPMVSCMGR_ERROR_PIN_COMPLEXITY,
+     TPMVSCMGR_ERROR_READER_COUNT_LIMIT,
+     TPMVSCMGR_ERROR_TERMINAL_SERVICES_SESSION,
+     TPMVSCMGR_ERROR_VTPMSMARTCARD_INITIALIZE,
+     TPMVSCMGR_ERROR_VTPMSMARTCARD_CREATE,
+     TPMVSCMGR_ERROR_VTPMSMARTCARD_DESTROY,
+     TPMVSCMGR_ERROR_VGIDSSIMULATOR_INITIALIZE,
+     TPMVSCMGR_ERROR_VGIDSSIMULATOR_CREATE,
+     TPMVSCMGR_ERROR_VGIDSSIMULATOR_DESTROY,
+     TPMVSCMGR_ERROR_VGIDSSIMULATOR_WRITE_PROPERTY,
+     TPMVSCMGR_ERROR_VGIDSSIMULATOR_READ_PROPERTY,
+     TPMVSCMGR_ERROR_VREADER_INITIALIZE,
+     TPMVSCMGR_ERROR_VREADER_CREATE,
+     TPMVSCMGR_ERROR_VREADER_DESTROY,
+     TPMVSCMGR_ERROR_GENERATE_LOCATE_READER,
+     TPMVSCMGR_ERROR_GENERATE_FILESYSTEM,
+     TPMVSCMGR_ERROR_CARD_CREATE,
+     TPMVSCMGR_ERROR_CARD_DESTROY,
+ } TPMVSCMGR_ERROR;
+</pre></div>
+</dd></dl><p><b>TPMVSCMGR_ERROR_IMPERSONATION:</b> An error
+occurred during impersonation of the caller. </p><p><b>TPMVSCMGR_ERROR_PIN_COMPLEXITY:</b> The user
+personal identification number (PIN) or personal unblocking key (PUK) value does
+not meet the minimum length requirement. </p><p><b>TPMVSCMGR_ERROR_READER_COUNT_LIMIT:</b>  The limit
+on the number of Smart Card Readers has been reached. </p><p><b>TPMVSCMGR_ERROR_TERMINAL_SERVICES_SESSION:</b> 
+The TPM Virtual Smart Card Management Protocol cannot be used within a Terminal
+Services session. </p><p><b>TPMVSCMGR_ERROR_VTPMSMARTCARD_INITIALIZE:</b> An
+error occurred during initialization of the <a href="348a1d4a-acc7-43ea-9413-b7e92ae9682d#gt_51714f66-75dc-4642-bd63-73b8b2825067" data-linktype="relative-path">VSC</a> component. </p><p><b>TPMVSCMGR_ERROR_VTPMSMARTCARD_CREATE:</b> An error
+occurred during creation of the VSC component. </p><p><b>TPMVSCMGR_ERROR_VTPMSMARTCARD_DESTROY:</b> An
+error occurred during deletion of the VSC component. </p><p><b>TPMVSCMGR_ERROR_VGIDSSIMULATOR_INITIALIZE:</b> An
+error occurred during initialization of the VSC simulator. </p><p><b>TPMVSCMGR_ERROR_VGIDSSIMULATOR_CREATE:</b> An
+error occurred during creation of the VSC simulator. </p><p><b>TPMVSCMGR_ERROR_VGIDSSIMULATOR_DESTROY:</b> An
+error occurred during deletion of the VSC simulator. </p><p><b>TPMVSCMGR_ERROR_VGIDSSIMULATOR_WRITE_PROPERTY:</b>
+An error occurred during configuration of the VSC simulator. </p><p><b>TPMVSCMGR_ERROR_VGIDSSIMULATOR_READ_PROPERTY:</b>
+An error occurred finding the VSC simulator. </p><p><b>TPMVSCMGR_ERROR_VREADER_INITIALIZE:</b> An error
+occurred during the initialization of the VSC reader. </p><p><b>TPMVSCMGR_ERROR_VREADER_CREATE:</b> An error
+occurred during creation of the VSC reader. </p><p><b>TPMVSCMGR_ERROR_VREADER_DESTROY:</b> An error
+occurred during deletion of the VSC reader. </p><p><b>TPMVSCMGR_ERROR_GENERATE_LOCATE_READER:</b> An
+error occurred preventing connection to the VSC reader. </p><p><b>TPMVSCMGR_ERROR_GENERATE_FILESYSTEM:</b> An error
+occurred during generation of the file system on the VSC. </p><p><b>TPMVSCMGR_ERROR_CARD_CREATE:</b> An error occurred
+during creation of the VSC. </p><p><b>TPMVSCMGR_ERROR_CARD_DESTROY:</b> An error
+occurred during deletion of the VSC.</p></div>

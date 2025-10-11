@@ -1,1 +1,15 @@
-<div class="content"></div>
+<div class="content"><p>The TerminateSession method terminates a <a href="2773e920-ee91-4a2c-bb52-9f09c583f1af#gt_a14efd2b-9efb-4197-accc-aa6935f1719c" data-linktype="relative-path">telnet session</a>.</p><dl>
+<dd>
+<div><pre> HRESULT TerminateSession(
+   [in] DWORD dwUniqueId
+ );
+</pre></div>
+</dd></dl><p><b>dwUniqueId: </b>The ID of the session. The ID of a
+session can be obtained by calling the <a href="92f5e331-b372-4b8d-9ae5-95d050fb2b59" data-linktype="relative-path">GetTelnetSessions</a> method
+or can be user provided. The server MUST ensure that at any given point in time
+only one telnet session exists with a particular ID. Refer to Section <a href="985f52c9-34ae-4b74-ac04-c4f95589ca9f" data-linktype="relative-path">3.1.1</a> for an abstract data
+model that the server can maintain.</p><p><b>Return Values: </b>The server MUST return zero if
+the method is successful. The server MUST return 0x01 if processing fails.
+These are in addition to the values that can be returned by the underlying <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+implementation.</p><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying DCOM protocol [MS-DCOM].</p></div>

@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsUIOperations enumeration defines the types of
+operations to perform on a UI destination list.</p><dl>
+<dd>
+<div><pre> enum NtmsUIOperations
+ {
+   NTMS_UIDEST_ADD = 1,
+   NTMS_UIDEST_DELETE = 2,
+   NTMS_UIDEST_DELETEALL = 3
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_UIDEST_ADD:  </b>Add a destination to the
+list.</p><p><b>NTMS_UIDEST_DELETE:  </b>Delete a destination from
+the list.</p><p><b>NTMS_UIDEST_DELETEALL:  </b>Clear the destination
+list.</p></div>

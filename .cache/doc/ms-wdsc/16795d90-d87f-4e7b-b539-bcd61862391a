@@ -1,1 +1,32 @@
-<div class="content"></div>
+<div class="content"><p>Windows Deployment Services (WDS) Control Protocol is a
+generic client/server protocol which is used to invoke services provided by <a href="c9ecc8ee-2046-4ef2-b2ec-329fde7f8b01#gt_b24fbc0d-6f77-4e48-9a94-881340734fb9" data-linktype="relative-path">Service Providers</a> in WDS
+Server. The WDS Control Protocol is a simple protocol with no state shared
+across multiple calls. Each call is considered one complete request.</p><p>A typical service invocation involves the following:</p><ol><li><p><span>    </span>The client has
+already obtained the name of the <a href="c9ecc8ee-2046-4ef2-b2ec-329fde7f8b01#gt_8ed48787-eb06-4b86-8b2e-19347bfbf07b" data-linktype="relative-path">WDS Server</a>, <a href="c9ecc8ee-2046-4ef2-b2ec-329fde7f8b01#gt_3996e5d9-beae-47cc-bf9d-dd0c570fbff5" data-linktype="relative-path">Endpoint GUID</a> for Service
+Provider and <a href="c9ecc8ee-2046-4ef2-b2ec-329fde7f8b01#gt_1b22a3a6-f2e9-438d-9b61-274ec834a114" data-linktype="relative-path">OpCode</a> for
+the operation being invoked.</p>
+</li><li><p><span>    </span>The client
+constructs a request by packaging required variables (as specified in section <a href="787da555-e0af-4e81-a8a8-619368b072ff" data-linktype="relative-path">2.2.1</a>), Endpoint GUID and
+OpCode.</p>
+</li><li><p><span>    </span>The WDS Control
+Protocol sends the request to the server by using <a href="c9ecc8ee-2046-4ef2-b2ec-329fde7f8b01#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> interface (as specified
+in section <a href="169ee4aa-8d4a-4fda-9463-9f321f81e88f" data-linktype="relative-path">3</a>).</p>
+</li><li><p><span>    </span>The WDS Server
+dispatches the request to the appropriate Service Provider based on Endpoint
+GUID.</p>
+</li><li><p><span>    </span>Based on the
+Endpoint GUID and OpCode in the request, Service Provider will:</p>
+<ul><li><p><span><span>  </span></span>Validate
+that the client has appropriate rights to perform the operation.</p>
+</li><li><p><span><span>  </span></span>Unpack
+the variables stored in the packet.</p>
+</li><li><p><span><span>  </span></span>Perform
+the requested operation.</p>
+</li><li><p><span><span>  </span></span>Package
+the results in pre-determined variables and complete the RPC request.</p>
+</li></ul></li><li><p><span>    </span>The client will
+check for success or failure of the request (as specified in section <a href="0926d80d-f68c-4df3-bab3-2d4741901367" data-linktype="relative-path">3.1.4.2</a> and <a href="49d0a2b0-5cc2-4204-9434-1de6562c428a" data-linktype="relative-path">3.2</a>).</p>
+</li><li><p><span>    </span>Unpack the
+variables from the reply packet and process the results.</p>
+</li></ol><p>The following diagram shows a client making a request to the
+WDS Server:</p><p><img id="MS-WDSC_pict1d2f7015-ea02-96dd-b926-2e52507690fe.png" src="ms-wdsc_files/image001.png" alt="Client to server request" title="Client to server request" data-linktype="relative-path"/></p><p><b>Figure 1: Client to server request</b></p></div>

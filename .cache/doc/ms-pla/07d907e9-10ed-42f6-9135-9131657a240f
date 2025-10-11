@@ -36,10 +36,10 @@ be implemented by the objects that implement the IAlertDataCollector interface.<
   </td>
   <td>
   <p>Specifies whether or not an event MUST be written to
-  the Eventlog each time the value of any counter specified in the AlertThresholds
-  property. If set to true and the threshold is crossed, then the event will be
-  logged; otherwise, if set to false, and even if the threshold is crossed, the
-  event is not logged. <a id="Appendix_A_Target_20"></a><a aria-label="Product behavior note 20" href="905cad7f-1a12-49b4-a263-461a2977ab71#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a></p>
+  the Eventlog each time the value of any counter specified in the
+  AlertThresholds property. If set to true and the threshold is crossed, then
+  the event will be logged; otherwise, if set to false, and even if the
+  threshold is crossed, the event is not logged. <a id="Appendix_A_Target_20"></a><a aria-label="Product behavior note 20" href="905cad7f-1a12-49b4-a263-461a2977ab71#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a></p>
   </td>
  </tr><tr>
   <td>
@@ -118,8 +118,8 @@ be implemented by the objects that implement the IAlertDataCollector interface.<
   <p>If a task is to run and the arguments include the
   {usertext} variable, this property determines the value of this variable. Any
   BSTR is potentially a valid value for this property. For example a random
-  string such as &#34;ch&amp;(26D@!k&#34; is a valid value, as are the
-  strings which would normally reference other task arguments, such as
+  string such as &#34;ch&amp;(26D@!k&#34; is a valid value, as are the strings
+  which would normally reference other task arguments, such as
   &#34;{name}&#34;. In no case will only substring contained in the
   TaskUserTextArguments be expanded (so if the string includes {name}, the
   string will be passed to the Task with the {name}, not with the value of

@@ -1,1 +1,12 @@
-<div class="content"></div>
+<div class="content"><p>A file range specification for <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_a0d8116e-63f3-418b-afea-ca6258840e92" data-linktype="relative-path">RDC</a> downloads.</p><dl>
+<dd>
+<div><pre> typedef struct _FRS_RDC_SOURCE_NEED {
+   ULONGLONG needOffset;
+   ULONGLONG needSize;
+ } FRS_RDC_SOURCE_NEED;
+</pre></div>
+</dd></dl><p><b>needOffset:</b>  The offset in the
+marshaled source file.</p><p><b>needSize:</b>  The number of data
+(uncompressed), in <a href="../ms-dtyp/267d9549-6f9d-48ed-8250-cc6cfc51b44d" data-linktype="relative-path">bytes</a>,
+to retrieve.</p><p>The client uses this structure to request source data from
+the server when downloading a file with RDC.</p></div>

@@ -1,1 +1,931 @@
-<div class="content"></div>
+<div class="content"><p>The CHANGE_ORDER_COMMAND is referenced below in sections <a href="0dee745f-a159-4c2b-b7e2-267c0a07da0c" data-linktype="relative-path">2.2.3.6.20</a>, <a href="fb48ace6-4e01-4675-b82f-e0649e293339" data-linktype="relative-path">2.2.3.6.21</a>, <a href="e1bf1d32-d3b6-48cf-8fb3-e90f66715e21" data-linktype="relative-path">2.2.3.6.22</a>, and <a href="d61d605a-af2b-4288-9735-a1784cdc28a6" data-linktype="relative-path">2.2.3.10</a>. It MUST be
+formatted as follows.</p><dl>
+<dd>
+<div><pre> typedef struct _CHANGE_ORDER_COMMAND {
+   ULONG SequenceNumber;
+   ULONG Flags;
+   ULONG IFlags;
+   ULONG State;
+   ULONG ContentCmd;
+   ULONG LocationCmd;
+   ULONG FileAttributes;
+   ULONG FileVersionNumber;
+   ULONG PartnerAckSeqNumber;
+   ULONG Notused;
+   ULONGLONG FileSize;
+   ULONGLONG FileOffset;
+   ULONGLONG FrsVsn;
+   ULONGLONG FileUsn;
+   ULONGLONG JrnlUsn;
+   ULONGLONG JrnlFirstUsn;
+   ULONG OriginalReplicaNum;
+   ULONG NewReplicaNum;
+   GUID ChangeOrderGuid;
+   GUID OriginatorGuid;
+   GUID FileGuid;
+   GUID OldParentGuid;
+   GUID NewParentGuid;
+   GUID CxtionGuid;
+   ULONGLONG AckVersion;
+   ULONGLONG Spare2Ul1;
+   GUID Spare1Guid;
+   GUID Spare2Guid;
+   PWCHAR Spare1Wcs;
+   PWCHAR Spare2Wcs;
+   ULONG Extension;
+   PVOID Spare2Bin;
+   LARGE_INTEGER EventTime;
+   USHORT FileNameLength;
+   WCHAR FileName[MAX_PATH+1];
+   UCHAR Padding[4];
+ } CHANGE_ORDER_COMMAND,
+  *PCHANGE_ORDER_COMMAND;
+</pre></div>
+</dd></dl><p><b>SequenceNumber:</b>  A 32-bit, unsigned
+integer that specifies the sequence number in the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_576a8417-dd00-4f9e-b52f-c9a2e3766a8a" data-linktype="relative-path">change order</a> command. It
+MUST be initialized to 0. The sequence number MUST be incremented with each
+change order that goes into the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_85aa757d-840d-4ae1-82dc-6a709c6eead1" data-linktype="relative-path">outbound log</a>. The sequence
+number MUST be unique per replica set per machine.</p><p><b>Flags:</b>  A 32-bit, unsigned integer
+that MUST contain one or more change order flags, represented as the bitwise OR
+of zero or more of the following values (see section <a href="73526609-23d0-4aae-a128-40a1f0d2e7a1" data-linktype="relative-path">3.3.4.4</a>).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CO_FLAG_ABORT_CO</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The change order is being aborted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_FLAG_VV_ACTIVATED</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>A version vector activate request has been made (see
+  section <a href="fae64b33-e008-464b-97e4-f447ef49b2bd" data-linktype="relative-path">3.3.4.4.6.2</a>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_FLAG_CONTENT_CMD</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>A valid content command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_FLAG_LOCATION_CMD</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>A valid location command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_FLAG_ONLIST</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>This change order is on a change order process list.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_FLAG_LOCALCO</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>This change order is locally generated.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_FLAG_RETRY</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>This change order MUST be retried (see section <a href="ea467c6f-d80a-4091-89dc-1fb0ffcbd16e" data-linktype="relative-path">3.1.1.10.2</a>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_FLAG_INSTALL_INCOMPLETE</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>The installation of the change order on the downstream
+  partner is incomplete.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_FLAG_OUT_OF_ORDER</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>Do not check/update version vector.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_FLAG_NEW_FILE</p>
+  <p>0x00000400</p>
+  </td>
+  <td>
+  <p>The file or folder inside the change order is new. An <a href="f32d4c62-914a-44b4-a9c4-dfab8a96856b" data-linktype="relative-path">IDTable</a> record MUST be
+  created for this file or folder. If the change order fails, then delete the
+  IDTable record just created.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_FLAG_CONTROL</p>
+  <p>0x00001000</p>
+  </td>
+  <td>
+  <p>This is a control change order sent by a remote
+  partner when an inbound connection starts up, so that the inbound log is
+  scanned and any pending change orders for this connection are queued again.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_FLAG_DIRECTED_CO</p>
+  <p>0x00002000</p>
+  </td>
+  <td>
+  <p>This change order is directed to a single connection.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_FLAG_VVJOIN_TO_ORIG</p>
+  <p>0x00040000</p>
+  </td>
+  <td>
+  <p>This change order is from a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_bd31ad9b-d9b9-4624-bbba-ace6fa3f9923" data-linktype="relative-path">replica member</a> identified
+  by the originator GUID.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_FLAG_SKIP_ORIG_REC_CHK</p>
+  <p>0x00100000</p>
+  </td>
+  <td>
+  <p>Skip the originator reconcile check.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_FLAG_MOVEIN_GEN</p>
+  <p>0x00200000</p>
+  </td>
+  <td>
+  <p>This change order was generated as part of a subfolder
+  MOVEIN.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_FLAG_MORPH_GEN_LEADER</p>
+  <p>0x00400000</p>
+  </td>
+  <td>
+  <p>This is a MORPH_GEN leader, and it needs to
+  refabricate the MORPH_GEN follower if it is retried.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_FLAG_JUST_OID_RESET</p>
+  <p>0x00800000</p>
+  </td>
+  <td>
+  <p>Reset object ID (OID) back to its FRS-defined value.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_FLAG_COMPRESSED_STAGE</p>
+  <p>0x01000000</p>
+  </td>
+  <td>
+  <p>The <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_64afafeb-a356-4bd0-8993-9c3326dcd8a0" data-linktype="relative-path">staging
+  file</a> for this change order is compressed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_FLAG_SKIP_VV_UPDATE</p>
+  <p>0x02000000</p>
+  </td>
+  <td>
+  <p>This change order can not update the version vector.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IFlags:</b>  A 32-bit, unsigned integer
+that contains additional flag values for the change order. The value of this
+field MUST be a bitwise OR of one or more of the values defined in the
+following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CO_IFLAG_NONE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>This value is sent by the downstream replication
+  partner if the change order is dampened.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_IFLAG_VVRETIRE_EXEC</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Indicates that an FRS operation, such as a file rename
+  or copy, is complete. This IFlag value is sent by a downstream replication
+  partner if the change order is not dampened.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_IFLAG_CO_ABORT</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>This value is sent by the downstream replication
+  partner if change order processing needs to be aborted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_IFLAG_DIR_ENUM_PENDING</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>This value is sent by the downstream replication
+  partner if change order needs to enumerate its children as part of a
+  sub-directory MoveIn.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>State:</b>   A 32-bit, unsigned integer
+that indicates the change order process state.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>This change order is entered in the log.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Allocating staging file space for a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_51e7c651-5332-45a4-9c7d-c589d8d44060" data-linktype="relative-path">local change order</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>This local change order staging file copy has started.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>This local change order staging file is complete.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Waiting to retry local change order staging file
+  generation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Allocated staging file space for a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_e7b1d6d0-b341-47d2-b0d6-e2aa4cc6345d" data-linktype="relative-path">remote change order</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>This remote change order staging file fetch has
+  started.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>This remote change order staging file fetch is
+  complete.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Waiting to retry the fetch of the staging file for the
+  remote change order.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000009</p>
+  </td>
+  <td>
+  <p>File <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_1c492b3c-efbd-4b1c-a5a7-7ef279ad989c" data-linktype="relative-path">install</a>
+  requested.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000000A</p>
+  </td>
+  <td>
+  <p>File install has started.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000000B</p>
+  </td>
+  <td>
+  <p>File install is complete.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000000C</p>
+  </td>
+  <td>
+  <p>File install is waiting to try again.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000000D</p>
+  </td>
+  <td>
+  <p>File install is retrying.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000000E</p>
+  </td>
+  <td>
+  <p>File install rename is retrying.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000000F</p>
+  </td>
+  <td>
+  <p>File install delete is retrying.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000013</p>
+  </td>
+  <td>
+  <p>This change order is being recycled to perform a
+  folder enumeration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000014</p>
+  </td>
+  <td>
+  <p>Request outbound propagation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000015</p>
+  </td>
+  <td>
+  <p>Request was accepted and is now in the outbound log.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000016</p>
+  </td>
+  <td>
+  <p>Database state update has started.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000017</p>
+  </td>
+  <td>
+  <p>Database state update has completed, and FRS is now
+  freeing the change order.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000018</p>
+  </td>
+  <td>
+  <p>This change order is being aborted.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ContentCmd:</b>   A 32-bit, unsigned
+integer that indicates the reasons for the change. The value of this field MUST
+be a bitwise OR of zero or more of the values defined in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>REASON_DATA_OVERWRITE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Overwrite a file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REASON_DATA_EXTEND</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Extend a file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REASON_DATA_TRUNCATION</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Truncate the data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REASON_NAMED_DATA_OVERWRITE</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Overwrite named data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REASON_NAMED_DATA_EXTEND</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Extend named data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REASON_NAMED_DATA_TRUNCATION</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>Truncate named data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REASON_FILE_CREATE</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>Create a file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REASON_FILE_DELETE</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>Delete a file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REASON_EA_CHANGE</p>
+  <p>0x00000400</p>
+  </td>
+  <td>
+  <p>Change the extended attribute.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REASON_SECURITY_CHANGE</p>
+  <p>0x00000800</p>
+  </td>
+  <td>
+  <p>Change the security type.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REASON_RENAME_OLD_NAME</p>
+  <p>0x00001000</p>
+  </td>
+  <td>
+  <p>The old name for rename operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REASON_RENAME_NEW_NAME</p>
+  <p>0x00002000</p>
+  </td>
+  <td>
+  <p>The new name for rename operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REASON_BASIC_INFO_CHANGE</p>
+  <p>0x00008000</p>
+  </td>
+  <td>
+  <p>Change the basic information.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REASON_COMPRESSION_CHANGE</p>
+  <p>0x00020000</p>
+  </td>
+  <td>
+  <p>Change the compression.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REASON_ENCRYPTION_CHANGE</p>
+  <p>0x00040000</p>
+  </td>
+  <td>
+  <p>Change the encryption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REASON_OBJECT_ID_CHANGE</p>
+  <p>0x00080000</p>
+  </td>
+  <td>
+  <p>Change the object identifier.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REASON_REPARSE_POINT_CHANGE</p>
+  <p>0x00100000</p>
+  </td>
+  <td>
+  <p>Change the file reparse point.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REASON_STREAM_CHANGE</p>
+  <p>0x00200000</p>
+  </td>
+  <td>
+  <p>Change the file stream.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>LocationCmd:</b>  File or folder
+location command. The location command specifies the movement of a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_a04c146a-de3b-4e4b-829f-a9e772f3fe25" data-linktype="relative-path">file</a> or folder in the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_2773cf8b-f1fa-4a40-8f22-0a8f4ddae5b4" data-linktype="relative-path">replica tree</a>. The location
+command also specifies whether the change order describes a change for a file
+or a folder. The location command MUST have the following structure.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td>
+  <p align="center">D</p>
+  </td>
+  <td>
+  <p align="center">C</p>
+  </td>
+  <td>
+  <p align="center">C</p>
+  </td>
+  <td>
+  <p align="center">C</p>
+  </td>
+  <td>
+  <p align="center">C</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+  <td>
+  <p align="center">F</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p>D = DirOrFile (1 bit)</p>
+</dd>
+<dd>
+<p>C = File Location Command (4 bits)</p>
+</dd>
+<dd>
+<p>F = Filler bits, not used (27 bits). MUST be 0. MUST
+be ignored on receipt.</p>
+</dd></dl><p><b>DirOrFile: </b>Bit that indicates whether the
+change is for a folder or for a file. The value MUST be one of the following:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p> Value </p>
+   </th>
+   <th>
+   <p> Meaning </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>The change is for a file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>The change is for a folder.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Command: </b> File location command MUST be one of
+the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p> Value </p>
+   </th>
+   <th>
+   <p> Meaning </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CO_LOCATION_CREATE</p>
+  <p>0x0</p>
+  </td>
+  <td>
+  <p>Create a file or folder.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_LOCATION_DELETE</p>
+  <p>0x1</p>
+  </td>
+  <td>
+  <p>Delete a file or folder.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_LOCATION_MOVEIN</p>
+  <p>0x2</p>
+  </td>
+  <td>
+  <p>Rename a file or folder from a path outside the
+  replica tree to a path inside the replica tree on the same volume.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_LOCATION_MOVEIN2</p>
+  <p>0x3</p>
+  </td>
+  <td>
+  <p>Rename a file or folder into the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_6cef9d9c-c366-490a-8e4e-a350688731ca" data-linktype="relative-path">replica set</a> after a
+  CO_LOCATION_MOVEOUT.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_LOCATION_MOVEOUT</p>
+  <p>0x4</p>
+  </td>
+  <td>
+  <p>Rename a file or folder from a path inside the replica
+  tree to a path outside the replica tree on the same volume.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_LOCATION_MOVERS</p>
+  <p>0x5</p>
+  </td>
+  <td>
+  <p>Rename a file or folder from one replica tree to
+  another replica tree on the same volume.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_LOCATION_MOVEDIR</p>
+  <p>0x6</p>
+  </td>
+  <td>
+  <p>Rename a file or folder from one folder to another
+  folder in the same replica tree.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_LOCATION_NO_CMD</p>
+  <p>0x7</p>
+  </td>
+  <td>
+  <p>No command.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Filler: </b>These bits are not used and MUST be
+set to 0 and ignored by the receiver.</p><p><b>FileAttributes:</b>  A 32-bit, unsigned
+integer that indicates <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_87cf5b25-96b0-4088-827d-0d8f270c4d84" data-linktype="relative-path">file
+attributes</a>, as specified in <a href="../ms-fscc/efbfe127-73ad-4140-9967-ec6500e66d5e" data-linktype="relative-path">[MS-FSCC]</a>
+section <a href="../ms-fscc/ca28ec38-f155-4768-81d6-4bfeb8586fc9" data-linktype="relative-path">2.6</a>.
+</p><p><b>FileVersionNumber:</b>   A 32-bit,
+unsigned integer that indicates the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_3b83c404-5ff8-4d87-89e1-b6a733711927" data-linktype="relative-path">file version number</a>.</p><p><b>PartnerAckSeqNumber:</b>   A 32-bit,
+unsigned integer that indicates the replication <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a> acknowledgment
+sequence number.</p><p><b>Notused:</b>   Four padding bytes to align
+the following field in memory. Not used. MUST be 0. MUST be ignored on receipt.</p><p><b>FileSize:</b>   A 64-bit, unsigned
+integer that indicates the file size in bytes. This is the original file size
+before staging and compression. It is used as a hint about how much staging
+space will be used on the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_31ffd71b-0426-40ec-9a10-a174a364ecef" data-linktype="relative-path">downstream
+partner</a>. The actual compressed staging file size is passed from <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_4daf1e81-3ffe-4656-8074-a9914b14a60c" data-linktype="relative-path">upstream partner</a> to
+downstream partner in the COMM_FILE_SIZE field in a COMM_PACKET packet whose
+COMM_COMMAND value is set to CMD_RECEIVING_STAGE (see section <a href="6a5dc7b2-e0f4-4ef5-a1c8-38cd8ed8893d" data-linktype="relative-path">3.3.4.4.7</a> and <a href="c5174d52-6a97-4eac-8e95-f81011659b62" data-linktype="relative-path">3.3.4.4.8</a>).</p><p><b>FileOffset:</b>   A 64-bit, unsigned
+integer that MUST be 0. Not used. MUST be ignored on receipt. (COMM_FILE_OFFSET
+inside COMM_PACKET indicates the file offset in downloading the staging file.
+See section <a href="ca1ffbe6-ae10-4d00-8674-191b3289e875" data-linktype="relative-path">2.2.3.6.16</a>.
+This FileOffset field inside CHANGE_ORDER_COMMAND is not used.) </p><p><b>FrsVsn:</b>   A 64-bit, unsigned integer
+that indicates the originating server&#39;s <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_dad98bb4-1dd5-404f-a742-3c3195292945" data-linktype="relative-path">volume sequence number</a>.</p><p><b>FileUsn:</b>   A 64-bit, unsigned
+integer that indicates internal implementation-specific data on the current
+replica member. This value is meaningful only on the current replica member and
+has no meaning on any other replica member. Once the change order is sent to
+another replica member, the receiving partner MUST ignore this field.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="d18cc589-677e-4133-97e5-113641792c5e#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></p><p><b>JrnlUsn:</b>   A 64-bit, unsigned
+integer that indicates internal implementation-specific data on the current
+replica member. This value is meaningful only on the current replica member and
+has no meaning on any other replica member. Once the change order is sent to
+another replica member, the receiving partner MUST ignore this field.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="d18cc589-677e-4133-97e5-113641792c5e#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p><p><b>JrnlFirstUsn:</b>   A 64-bit, unsigned
+integer that indicates internal implementation-specific data on the current
+replica member. This value is meaningful only on the current replica member and
+has no meaning on any other replica member. Once the change order is sent to
+another replica member, the receiving partner MUST ignore this field.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="d18cc589-677e-4133-97e5-113641792c5e#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p><p><b>OriginalReplicaNum:</b>   A 32-bit,
+unsigned integer that indicates internal implementation specific data on the
+current replica member. This value is meaningful only on the current replica
+member and has no meaning on any other replica member. Once the change order is
+sent to another replica member, the receiving partner MUST ignore this field.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="d18cc589-677e-4133-97e5-113641792c5e#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p><p><b>NewReplicaNum:</b>   A 32-bit, unsigned
+integer that indicates internal implementation specific data on the current
+replica member. This value is meaningful only on the current replica member and
+has no meaning on any other replica member. Once the change order is sent to
+another replica member, the receiving partner MUST ignore this field.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="d18cc589-677e-4133-97e5-113641792c5e#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p><p><b>ChangeOrderGuid:</b> The identifying <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> of the change order.</p><p><b>OriginatorGuid:</b> The GUID of the
+originating server.</p><p><b>FileGuid:</b> The identifying GUID of the
+file.</p><p><b>OldParentGuid:</b> The identifying GUID of the
+file&#39;s original parent folder.</p><p><b>NewParentGuid:</b> The identifying GUID of
+the file&#39;s current parent folder.</p><p><b>CxtionGuid:</b> The identifying GUID of the
+remote change order connection.</p><p><b>AckVersion:</b> A 64-bit, unsigned integer
+that indicates the partner&#39;s acknowledgment version number. The downstream
+partner MUST preserve this value when receiving a change order from the
+upstream partner. The vendor can set it to any value based on the vendor&#39;s
+implementation or set it to 0 and ignore it.</p><p><b>Spare2Ul1:</b> An 8-byte field that is not
+used and MUST be set to 8 bytes of 0x00 and MUST be ignored by the receiver.</p><p><b>Spare1Guid: </b>A 16-byte field that is not used
+and MUST be set to 16 bytes of 0x00 and MUST be ignored by the receiver.</p><p><b>Spare2Guid:</b> A 16-byte field that is not
+used and MUST be set to 16 bytes of 0x00 and MUST be ignored by the receiver.</p><p><b>Spare1Wcs:</b> A 4-byte field that is not used and
+MUST be set to 4 bytes of 0x00 and MUST be ignored by the receiver.</p><p><b>Spare2Wcs:</b> A 4-byte field that is not
+used and MUST be set to 4 bytes of 0x00 and MUST be ignored by the receiver.</p><p><b>Extension:</b> A 4-byte field that MUST be
+ignored.</p><p><b>Spare2Bin:</b> A 4-byte field that is not used and
+MUST be set to 4 bytes of 0x00 and MUST be ignored by the receiver.</p><p><b>EventTime:</b> USN journal <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_bf88fe8c-ffaa-45c2-894b-583906f55f29" data-linktype="relative-path">event time</a> that MUST be in
+the format of <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">FILETIME</a>,
+as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>.</p><p><b>FileNameLength:</b> A 16-bit, unsigned
+integer that indicates the length in bytes of <b>FileName</b> field. <b>FileNameLength</b>
+does not include the terminating 0 inside <b>FileName</b>.</p><p><b>FileName:</b> MUST be a Unicode string that
+contains the NULL-terminated file name. It is not a whole path or a relative path,
+only the file name.</p><p><b>Padding:</b> A 4-byte field (beyond the 522nd
+byte of <b>FileName</b>) that is not used and MUST be set to 4 bytes of 0x00
+and MUST be ignored by the receiver. </p></div>

@@ -1,1 +1,72 @@
-<div class="content"></div>
+<div class="content"><p>The DDF and DRF Protector List structure in the Version 4
+EFSRPC Metadata MUST be formatted as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>StructureSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>ProtectorsCount</p>
+  </td>
+  <td colspan="16">
+  <p>Protector_List_Entries
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>…</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>StructureSize (4 bytes): </b>The size in bytes of
+the protector list. It MUST be a 32-bit unsigned integer in little-endian
+format.</p><p><b>ProtectorsCount (2 bytes): </b> This represents
+the number of protectors in the protector list. It MUST be a 16-bit unsigned
+integer in little-endian format.</p><p><b>Protector_List_Entries (variable): </b>A number of
+entries equal to the value in the ProtectorsCount field. The individual entries
+MUST be formatted as specified in section <a href="8593a473-b726-4a19-9291-b8669b535304" data-linktype="relative-path">2.2.2.2.5</a>.</p></div>

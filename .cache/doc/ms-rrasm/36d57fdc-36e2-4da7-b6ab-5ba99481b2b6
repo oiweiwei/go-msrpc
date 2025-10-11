@@ -1,1 +1,93 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IP_NAT_ENUMERATE_SESSION_MAPPINGS</b> structure is
+used for enumerating <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_7ee5c1a4-6768-4256-817c-6686382e0f39" data-linktype="relative-path">NAT</a>
+session mappings and is part of the <b>IP_NAT_MIB_QUERY</b> (section <a href="02a17b1a-22a6-4295-bc7d-f3b781c01332" data-linktype="relative-path">2.2.1.2.182)</a> structure. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Index</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EnumerateContext
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EnumerateCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EnumerateTotalHint</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EnumerateTable (variable)</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Index (4 bytes): </b>This MUST be the index of the
+interface.</p><p><b>EnumerateContext (16 bytes): </b>This is
+represented by an array of 4 <a href="../ms-dtyp/32862b84-f6e6-40f9-85ca-c4faf985b822" data-linktype="relative-path">ULONG</a>
+values. On the first call to <a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet
+(section</b></a><span><b> </b></span>3.1.4.30) or <a href="9102e585-2f62-4408-bfb6-02a6460cc883" data-linktype="relative-path"><b>RMIBEntryGetFirst (section</b></a><span><b> </b></span>3.1.4.31) methods <b>EnumerateContext</b> is
+zeroed out. It will be filled by the NAT with the information to be passed back
+down as the enumeration continues. To indicate there are no items remaining,
+the NAT will set <b>EnumerateContext[0]</b> to 0. In <a href="12830348-d502-4b45-adc3-e5853d42d0c9" data-linktype="relative-path"><b>RMIBEntryGetNext (section</b></a><span><b> </b></span><a href="12830348-d502-4b45-adc3-e5853d42d0c9" data-linktype="relative-path">3.2.4.32</a>) method, <b>EnumerateContext</b>
+MUST be returned to the value returned in the previous calls.   </p><p><b>EnumerateCount (4 bytes): </b>Contains the number
+of enumerations returned and the number of <b>IP_NAT_SESSION_MAPPING</b>
+(section <a href="49c1cf7d-15ff-4c60-86b7-9bfdfe5d0479" data-linktype="relative-path">2.2.1.2.184)</a>
+structures being returned. </p><p><b>EnumerateTotalHint (4 bytes): </b>Count of the
+total number of entries.</p><p><b>EnumerateTable (variable): </b>This MUST be <b>IP_NAT_SESSION_MAPPING</b>
+structures.</p><dl>
+<dd>
+<p><b>Note</b>  The <b>EnumerateTable</b>
+field is of variable size depending on the value of <b>EnumerateCount</b>.
+While calculating the structure size, the size of <b>EnumerateTable</b> MUST
+NOT be added if value of <b>EnumerateCount</b> is zero.</p>
+</dd></dl></div>

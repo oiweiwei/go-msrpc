@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The RDC_CHUNKER_ALGORITHM enumerated type identifies the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_a0d8116e-63f3-418b-afea-ca6258840e92" data-linktype="relative-path">RDC</a> chunking algorithm used
+to generate the signatures for the file to be transferred.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   RDC_FILTERGENERIC = 0,
+   RDC_FILTERMAX = 1,
+   RDC_FILTERPOINT = 2,
+   RDC_MAXALGORITHM = 3
+ } RDC_CHUNKER_ALGORITHM;
+</pre></div>
+</dd></dl><p><b>RDC_FILTERGENERIC:</b>  Not used. </p><p><b>RDC_FILTERMAX:</b>  <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_33572936-6f55-4561-8599-8380eb71d725" data-linktype="relative-path">RDC FilterMax algorithm</a> is
+used. This value MUST be sent whenever an RDC_CHUNKER_ALGORITHM enum value is
+required.</p><p><b>RDC_FILTERPOINT:</b>  Not used.</p><p><b>RDC_MAXALGORITHM:</b>  Not used.</p></div>

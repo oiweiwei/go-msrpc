@@ -1,0 +1,27 @@
+<div class="content"><p>The IsOpen2 method is received by the server in an
+RPC_REQUEST packet. In response, the server returns a value indicating whether
+the queue is open.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT IsOpen2(
+   [out, retval] VARIANT_BOOL* pisOpen
+ );
+</pre></div>
+</dd></dl><p><b>pisOpen: </b>A pointer to a <a href="../ms-oaut/7b39eb24-9d39-498a-bcd8-75c38e5823d0" data-linktype="relative-path">VARIANT_BOOL</a>
+that MUST be set to VARIANT_TRUE (0xffff) if the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a> is open or
+VARIANT_FALSE (0x0000) if the queue is closed.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST:</p><ul><li><p><span><span> 
+</span></span>If the <i>IsInitialized</i> instance variable equals False:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error OLE_E_BLANK (0x80040007), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>IsClosed</i> instance variable equals True:</p>
+<ul><li><p><span><span>  </span></span>Set
+the pisOpen output variable to VARIANT_FALSE (0x0000).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>Set
+the pisOpen output variable to VARIANT_TRUE (0xffff).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return S_OK (0x00000000), and take no further action.</p>
+</li></ul></div>

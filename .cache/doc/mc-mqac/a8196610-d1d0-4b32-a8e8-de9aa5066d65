@@ -1,0 +1,46 @@
+<div class="content"><p>The MQMSGSENDERIDTYPE enumeration defines values for the <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>.<b>SenderIdentifierType</b>
+property. Specific values in this enumeration indicate the format of the <b>SenderIdentifier</b>
+that is associated with a Message.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MQMSG_SENDERID_TYPE_NONE = 0,
+   MQMSG_SENDERID_TYPE_SID = 1
+ } MQMSGSENDERIDTYPE;
+</pre></div>
+</dd></dl><p><b>MQMSG_SENDERID_TYPE_NONE:  </b>The identity of the
+sending user is not included in the Message. For the purposes of authorization,
+the sender identity for the Message is the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_b5c2f51b-87cd-4ad9-bf2b-7ed488edd698" data-linktype="relative-path">anonymous user</a>.</p><p><b>MQMSG_SENDERID_TYPE_SID:  </b>The identity of the
+sending user is indicated by the Message.<b>SenderIdentifier</b> field that
+contains a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">security
+identifier (SID)</a> (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/78eb9013-1c3a-4970-ad1f-2b1dad588a25" data-linktype="relative-path">2.4.2</a>).</p><p>Used by:</p><ul><li><p><span><span> 
+</span></span>get <a href="5ea102b4-0a68-42e9-9090-10b042929e9b" data-linktype="relative-path">IMSMQMessage::SenderIdType</a></p>
+</li><li><p><span><span> 
+</span></span>put <a href="f5a9ee37-f8d0-4e09-88ca-9ba2346d6f61" data-linktype="relative-path">IMSMQMessage::SenderIDType</a></p>
+</li></ul><p>The MQMSGSENDERIDTYPE enumeration values correspond to the
+enumeration values for the Message.<b>SenderIdentifierType</b>, as shown in the
+following table.</p><table><thead>
+  <tr>
+   <th>
+   <p>MQMSGSENDERIDTYPE</p>
+   </th>
+   <th>
+   <p>Message.SenderIdentifierType</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQMSG_SENDERID_TYPE_NONE</p>
+  </td>
+  <td>
+  <p>None</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_SENDERID_TYPE_SID</p>
+  </td>
+  <td>
+  <p>Sid</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

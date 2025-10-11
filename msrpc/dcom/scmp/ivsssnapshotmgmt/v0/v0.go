@@ -49,10 +49,78 @@ type SnapshotManagementClient interface {
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
 
+	// The GetProviderMgmtInterface method retrieves the IVssDifferentialSoftwareSnapshotMgmt
+	// interface.
+	//
+	// Return Values: The method MUST return the following error code for the specific conditions.
+	//
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                  RETURN                  |                                                                                  |
+	//	|                VALUE/CODE                |                                   DESCRIPTION                                    |
+	//	|                                          |                                                                                  |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80042304 VSS_E_PROVIDER_NOT_REGISTERED | Returned when the provider with ID ProviderId does not exist on the server.      |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                  | Returned when ppItf is NULL or REFIID is not equal to                            |
+	//	|                                          | __uuidof(IVssDifferentialSoftwareSnapshotMgmt).                                  |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 E_ACCESSDENIED                | Returned when the user making the request does not have sufficient privileges to |
+	//	|                                          | perform the operation.                                                           |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// No exceptions are thrown except those that are thrown by the underlying RPC protocol
+	// [MS-RPCE].
 	GetProviderManagementInterface(context.Context, *GetProviderManagementInterfaceRequest, ...dcerpc.CallOption) (*GetProviderManagementInterfaceResponse, error)
 
+	// The QueryVolumesSupportedForSnapshots method retrieves from the server a collection
+	// of volumes that support shadow copies.
+	//
+	// Return Values: The method MUST return zero when it has succeeded or an implementation-specific
+	// nonzero error code on failure.
+	//
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                  RETURN                  |                                                                                  |
+	//	|                VALUE/CODE                |                                   DESCRIPTION                                    |
+	//	|                                          |                                                                                  |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                  | Returned when ProviderId is GUID_NULL or when ppEnum is NULL.                    |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80042304 VSS_E_PROVIDER_NOT_REGISTERED | Returned when the provider with ID ProviderId does not exist on the server.      |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 E_ACCESSDENIED                | Returned when the user making the request does not have sufficient privileges to |
+	//	|                                          | perform the operation.                                                           |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// No exceptions are thrown except those that are thrown by the underlying RPC protocol
+	// [MS-RPCE].
 	QueryVolumesSupportedForSnapshots(context.Context, *QueryVolumesSupportedForSnapshotsRequest, ...dcerpc.CallOption) (*QueryVolumesSupportedForSnapshotsResponse, error)
 
+	// The QuerySnapshotsByVolume method retrieves a collection of shadow copy objects that
+	// are present on a specified volume of the server.
+	//
+	// Return Values: The method MUST return zero when it has succeeded or an implementation-specific
+	// nonzero error code on failure.
+	//
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                  RETURN                  |                                                                                  |
+	//	|                VALUE/CODE                |                                   DESCRIPTION                                    |
+	//	|                                          |                                                                                  |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                  | Returned when pwszVolumeName or ppEnum is NULL or when ProviderId is GUID_NULL.  |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80042304 VSS_E_PROVIDER_NOT_REGISTERED | Returned when the provider with ID ProviderId does not exist on the server.      |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 E_ACCESSDENIED                | Returned when the user making the request does not have sufficient privileges to |
+	//	|                                          | perform the operation.                                                           |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// No exceptions are thrown except those that are thrown by the underlying RPC protocol
+	// [MS-RPCE].
+	//
+	// After the server receives this message, it MUST verify that ppEnum is not NULL.
 	QuerySnapshotsByVolume(context.Context, *QuerySnapshotsByVolumeRequest, ...dcerpc.CallOption) (*QuerySnapshotsByVolumeResponse, error)
 
 	// AlterContext alters the client context.
@@ -390,9 +458,13 @@ func (o *xxx_GetProviderManagementInterfaceOperation) UnmarshalNDRResponse(ctx c
 // GetProviderManagementInterfaceRequest structure represents the GetProviderMgmtInterface operation request
 type GetProviderManagementInterfaceRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ProviderID  *scmp.ID       `idl:"name:ProviderId" json:"provider_id"`
-	InterfaceID *dcom.IID      `idl:"name:InterfaceId" json:"interface_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// ProviderId: MUST be set to the shadow copy provider UUID in Standards Assignments
+	// (section 1.9).
+	ProviderID *scmp.ID `idl:"name:ProviderId" json:"provider_id"`
+	// InterfaceId: MUST be set to the UUID for the IVssDifferentialSoftwareSnapshotMgmt
+	// interface in Standards Assignments (section 1.9).
+	InterfaceID *dcom.IID `idl:"name:InterfaceId" json:"interface_id"`
 }
 
 func (o *GetProviderManagementInterfaceRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProviderManagementInterfaceOperation) *xxx_GetProviderManagementInterfaceOperation {
@@ -431,8 +503,11 @@ func (o *GetProviderManagementInterfaceRequest) UnmarshalNDR(ctx context.Context
 // GetProviderManagementInterfaceResponse structure represents the GetProviderMgmtInterface operation response
 type GetProviderManagementInterfaceResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Interface *dcom.Unknown  `idl:"name:ppItf" json:"interface"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppItf: A pointer to an IUnknown pointer that upon completion contains a pointer to
+	// an instance of the interface object that is specified by InterfaceId. A caller MUST
+	// release the ppItf that is received when the caller is done with it.
+	Interface *dcom.Unknown `idl:"name:ppItf" json:"interface"`
 	// Return: The GetProviderMgmtInterface return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -674,9 +749,27 @@ func (o *xxx_QueryVolumesSupportedForSnapshotsOperation) UnmarshalNDRResponse(ct
 // QueryVolumesSupportedForSnapshotsRequest structure represents the QueryVolumesSupportedForSnapshots operation request
 type QueryVolumesSupportedForSnapshotsRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ProviderID *scmp.ID       `idl:"name:ProviderId" json:"provider_id"`
-	Context    int32          `idl:"name:lContext" json:"context"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// ProviderId: MUST be set to the shadow copy provider UUID as described in Standards
+	// Assignments (section 1.9).
+	ProviderID *scmp.ID `idl:"name:ProviderId" json:"provider_id"`
+	// lContext: MUST be set to the bitwise OR combination of the following VSS_VOLUME_SNAPSHOT_ATTRIBUTES
+	// flags.
+	//
+	//	+-------------------------------------------+
+	//	|    SNAPSHOT ATTRIBUTE MASK FOR CONTEXT    |
+	//	|                   VALUE                   |
+	//	+-------------------------------------------+
+	//	+-------------------------------------------+
+	//	| VSS_VOLSNAP_ATTR_PERSISTENT               |
+	//	+-------------------------------------------+
+	//	| VSS_VOLSNAP_ATTR_CLIENT_ACCESSIBLE        |
+	//	+-------------------------------------------+
+	//	| VSS_VOLSNAP_ATTR_NO_AUTO_RELEASE          |
+	//	+-------------------------------------------+
+	//	| VSS_VOLSNAP_ATTR_NO_WRITERS               |
+	//	+-------------------------------------------+
+	Context int32 `idl:"name:lContext" json:"context"`
 }
 
 func (o *QueryVolumesSupportedForSnapshotsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryVolumesSupportedForSnapshotsOperation) *xxx_QueryVolumesSupportedForSnapshotsOperation {
@@ -715,7 +808,11 @@ func (o *QueryVolumesSupportedForSnapshotsRequest) UnmarshalNDR(ctx context.Cont
 // QueryVolumesSupportedForSnapshotsResponse structure represents the QueryVolumesSupportedForSnapshots operation response
 type QueryVolumesSupportedForSnapshotsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppEnum: A pointer to an IVssEnumMgmtObject pointer that upon completion, contains
+	// a collection of volumes that support shadow copies. Each element in the collection
+	// MUST be a VSS_VOLUME_PROP structure. A caller MUST release the received ppEnum when
+	// the caller is done with it.
 	Enum *scmp.EnumManagementObject `idl:"name:ppEnum" json:"enum"`
 	// Return: The QueryVolumesSupportedForSnapshots return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -983,9 +1080,14 @@ func (o *xxx_QuerySnapshotsByVolumeOperation) UnmarshalNDRResponse(ctx context.C
 // QuerySnapshotsByVolumeRequest structure represents the QuerySnapshotsByVolume operation request
 type QuerySnapshotsByVolumeRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	VolumeName string         `idl:"name:pwszVolumeName" json:"volume_name"`
-	ProviderID *scmp.ID       `idl:"name:ProviderId" json:"provider_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// pwszVolumeName: A null-terminated UNICODE string that contains the drive letter,
+	// mount point, or volume mount name for which the existing shadow copy collection is
+	// requested.
+	VolumeName string `idl:"name:pwszVolumeName" json:"volume_name"`
+	// ProviderId: MUST be set to the shadow copy provider UUID as described in Standards
+	// Assignments (section 1.9).
+	ProviderID *scmp.ID `idl:"name:ProviderId" json:"provider_id"`
 }
 
 func (o *QuerySnapshotsByVolumeRequest) xxx_ToOp(ctx context.Context, op *xxx_QuerySnapshotsByVolumeOperation) *xxx_QuerySnapshotsByVolumeOperation {
@@ -1024,7 +1126,11 @@ func (o *QuerySnapshotsByVolumeRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // QuerySnapshotsByVolumeResponse structure represents the QuerySnapshotsByVolume operation response
 type QuerySnapshotsByVolumeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat   `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppEnum: A pointer to an IVssEnumObject pointer that upon completion, contains a collection
+	// of shadow copies that exist on the server for the specified volume. Each element
+	// in the collection MUST be a VSS_SNAPSHOT_PROP structure. A caller MUST release the
+	// received ppEnum when the caller is done with it.
 	Enum *scmp.EnumObject `idl:"name:ppEnum" json:"enum"`
 	// Return: The QuerySnapshotsByVolume return value.
 	Return int32 `idl:"name:Return" json:"return"`

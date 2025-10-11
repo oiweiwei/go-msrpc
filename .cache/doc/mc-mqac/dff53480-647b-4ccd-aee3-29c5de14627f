@@ -1,0 +1,45 @@
+<div class="content"><p>The Next method is received by the server in an RPC_REQUEST
+packet. In response, the server returns an <a href="6014d18a-38fc-4fe2-83f0-11a963c69615" data-linktype="relative-path">MSMQQueueInfo4</a> object that
+represents a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_bb49bace-e853-4c7a-b4ab-59f1097c3dc8" data-linktype="relative-path">public queue</a>
+in the <i>ResultQueueCollection</i>.</p><dl>
+<dd>
+<div><pre> HRESULT Next(
+   [out, retval] IMSMQQueueInfo4** ppqinfoNext
+ );
+</pre></div>
+</dd></dl><p><b>ppqinfoNext: </b>A pointer to an MSMQQueueInfo4
+interface pointer that upon successful completion contains an initialized <a href="d22779e5-7d4d-4711-bdf0-3d47adb6c5df" data-linktype="relative-path">MSMQQueueInfo</a> object
+representing the next public queue within the collection represented by the <i>ResultQueueCollection</i>
+instance variable.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the server MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>If the IsInitialized instance variable equals False:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error HRESULT.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>CollectionCursor</i> instance variable is at the end of
+the collection represented by the <i>ResultQueueCollection</i> instance
+variable:</p>
+<ul><li><p><span><span>  </span></span>Set
+the <i>ppqinfoNext</i> output parameter to NULL, and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>Create
+a new MSMQQueueInfo object instance.</p>
+</li><li><p><span><span>  </span></span>Set
+the QueueFormatName instance variable of the created MSMQQueueInfo object to
+the format name identifying the public queue identified by the <i>CollectionCursor</i>
+instance variable in the collection represented by the <i>ResultQueueCollection</i>
+instance variable.</p>
+</li><li><p><span><span>  </span></span>Call
+MSMQQueueInfo::Refresh on the created MSMQQueueInfo instance.</p>
+</li><li><p><span><span>  </span></span>Set
+the <i>ppqinfoNext</i> output parameter to a pointer to an IMSMQQueryInfo4
+interface pointer of the newly created MSMQQueueInfo object.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Advance the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursor</a>
+represented by the <i>CollectionCursor</i> instance variable to the next public
+queue in the collection represented by the <i>ResultQueueCollection</i>
+instance variable.</p>
+</li></ul></div>

@@ -55,8 +55,8 @@ valid.<a id="Appendix_A_Target_62"></a><a aria-label="Product behavior note 62" 
 </li></ul><p>If any validation fails, the server MUST terminate
 processing and return a nonzero error code.</p><p>The server MUST set the <i>report</i> parameter to the <b>IFsrmReport</b>
 interface of the newly created report based on the <i>reportType</i> specified
-and add it to the <b>Report Job.Reports</b> element of the <a href="0b493832-f781-4c1a-bddd-d39c9df1680f" data-linktype="relative-path">Non-Persisted Report Job
-Instance (section 3.2.1.5.1.2)</a> or return a nonzero error code.</p><p>In the <i>report</i> parameter, the server MUST set:</p><ul><li><p><span><span> 
+and add it to the <b>Report Job.Reports</b> element of the <a href="0b493832-f781-4c1a-bddd-d39c9df1680f" data-linktype="relative-path">Non-Persisted Report Job Instance (section 3.2.1.5.1.2)</a>
+or return a nonzero error code.</p><p>In the <i>report</i> parameter, the server MUST set:</p><ul><li><p><span><span> 
 </span></span>The <b>Report.Type</b> to the <i>reportType</i> parameter
 specified.</p>
 </li><li><p><span><span> 

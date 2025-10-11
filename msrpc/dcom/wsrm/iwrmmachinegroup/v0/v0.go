@@ -51,22 +51,248 @@ type MachineGroupClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The CreateMachineGroup method creates and initializes a machine group.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                           RETURN                           |                                                                                  |
+	//	|                         VALUE/CODE                         |                                   DESCRIPTION                                    |
+	//	|                                                            |                                                                                  |
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                                            | Operation successful.                                                            |
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                                    | One or more arguments are invalid.                                               |
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER                       | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                                            | be processed.<86>                                                                |
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0385 WRM_ERR_MACHINE_GROUP_LIMIT_EXCEEDED            | The total number of machine groups has exceeded an implementation-defined        |
+	//	|                                                            | limit.<87>                                                                       |
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0387 WRM_ERR_MACHINES_LIMIT_IN_MACHINEGROUP_EXCEEDED | The total number of machines directly under a machine group has exceeded an      |
+	//	|                                                            | implementation-defined limit.<88>                                                |
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0388 WRM_ERR_MACHINEGROUP_ALREADY_EXISTS             | A machine group with the specified name in bstrMachineGroupInfo XML already      |
+	//	|                                                            | exists in the entire WSRM configuration.                                         |
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0389 WRM_ERR_MACHINEGROUPID_INVALID                  | The specified parent machine group id does not exist.                            |
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMMachineGroup interface methods are specified in section 3.2.4.6.
 	CreateMachineGroup(context.Context, *CreateMachineGroupRequest, ...dcerpc.CallOption) (*CreateMachineGroupResponse, error)
 
+	// The GetMachineGroupInfo method returns information about a machine group.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------------------------+--------------------------------------------+
+	//	|                  RETURN                   |                                            |
+	//	|                VALUE/CODE                 |                DESCRIPTION                 |
+	//	|                                           |                                            |
+	//	+-------------------------------------------+--------------------------------------------+
+	//	+-------------------------------------------+--------------------------------------------+
+	//	| 0x00000000 S_OK                           | Operation successful.                      |
+	//	+-------------------------------------------+--------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                   | One or more arguments are invalid.         |
+	//	+-------------------------------------------+--------------------------------------------+
+	//	| 0xC1FF0389 WRM_ERR_MACHINEGROUPID_INVALID | The specified machine group id is invalid. |
+	//	+-------------------------------------------+--------------------------------------------+
+	//
+	// Additional IWRMMachineGroup interface methods are specified in section 3.2.4.6.
 	GetMachineGroupInfo(context.Context, *GetMachineGroupInfoRequest, ...dcerpc.CallOption) (*GetMachineGroupInfoResponse, error)
 
+	// The ModifyMachineGroup method modifies an existing machine group. The method replaces
+	// or merges the machine group information according to the value specified in the enumMGMergeOptions
+	// member.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                           RETURN                           |                                                                                  |
+	//	|                         VALUE/CODE                         |                                   DESCRIPTION                                    |
+	//	|                                                            |                                                                                  |
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                                            | Operation successful.                                                            |
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                                    | One or more arguments are invalid.<90>                                           |
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER                       | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                                            | be processed.<91>                                                                |
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0385 WRM_ERR_MACHINE_GROUP_LIMIT_EXCEEDED            | The total number of machine groups as specified in bstrMachineGroupInfo, has     |
+	//	|                                                            | exceeded an implementation-defined limit.<92>                                    |
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0387 WRM_ERR_MACHINES_LIMIT_IN_MACHINEGROUP_EXCEEDED | The machine group information could not be modified because the total number of  |
+	//	|                                                            | machines directly under a machine group has exceeded an implementation-defined   |
+	//	|                                                            | limit.<93>                                                                       |
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0388 WRM_ERR_MACHINEGROUP_ALREADY_EXISTS             | A machine group with the specified name in bstrMachineGroupInfo XML already      |
+	//	|                                                            | exists in the entire WSRM configuration. For example, if ModifyMachineGroup is   |
+	//	|                                                            | used to modify a machine group ID that is identical to the existing group ID,    |
+	//	|                                                            | this error will be generated.<94>                                                |
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0389 WRM_ERR_MACHINEGROUPID_INVALID                  | The specified machine group ID is invalid.                                       |
+	//	+------------------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMMachineGroup interface methods are specified in section 3.2.4.6.
 	ModifyMachineGroup(context.Context, *ModifyMachineGroupRequest, ...dcerpc.CallOption) (*ModifyMachineGroupResponse, error)
 
+	// The DeleteMachineGroup method deletes an existing machine group.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------------------------+--------------------------------------------+
+	//	|                  RETURN                   |                                            |
+	//	|                VALUE/CODE                 |                DESCRIPTION                 |
+	//	|                                           |                                            |
+	//	+-------------------------------------------+--------------------------------------------+
+	//	+-------------------------------------------+--------------------------------------------+
+	//	| 0x00000000 S_OK                           | Operation successful.                      |
+	//	+-------------------------------------------+--------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                   | One or more arguments are invalid.         |
+	//	+-------------------------------------------+--------------------------------------------+
+	//	| 0xC1FF0389 WRM_ERR_MACHINEGROUPID_INVALID | The specified machine group id is invalid. |
+	//	+-------------------------------------------+--------------------------------------------+
+	//
+	// Additional IWRMMachineGroup interface methods are specified in section 3.2.4.6.
 	DeleteMachineGroup(context.Context, *DeleteMachineGroupRequest, ...dcerpc.CallOption) (*DeleteMachineGroupResponse, error)
 
+	// The RenameMachineGroup method changes the name of an existing machine group.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                     RETURN                     |                                                                                  |
+	//	|                   VALUE/CODE                   |                                   DESCRIPTION                                    |
+	//	|                                                |                                                                                  |
+	//	+------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                                | Operation successful.                                                            |
+	//	+------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                        | One or more arguments are invalid.                                               |
+	//	+------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0388 WRM_ERR_MACHINEGROUP_ALREADY_EXISTS | A machine group with the specified name already exists in the entire WSRM        |
+	//	|                                                | configuration.                                                                   |
+	//	+------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0389 WRM_ERR_MACHINEGROUPID_INVALID      | The specified machine group id is invalid.                                       |
+	//	+------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMMachineGroup interface methods are specified in section 3.2.4.6.
 	RenameMachineGroup(context.Context, *RenameMachineGroupRequest, ...dcerpc.CallOption) (*RenameMachineGroupResponse, error)
 
+	// The AddMachine method adds a machine to a machine group.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                  RETURN                   |                                                                                  |
+	//	|                VALUE/CODE                 |                                   DESCRIPTION                                    |
+	//	|                                           |                                                                                  |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                           | Operation successful.                                                            |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                   | One or more arguments are invalid.                                               |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER      | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                           | be processed.<96>                                                                |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0389 WRM_ERR_MACHINEGROUPID_INVALID | The specified machine group id is invalid.                                       |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF038B WRM_ERR_MACHINE_LIMIT_EXCEEDED | The total number of machines has exceeded an implementation-defined limit.<97>   |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF038C WRM_ERR_MACHINE_ALREADY_EXISTS | A machine with the specified name already exists as the direct child in the      |
+	//	|                                           | machine group.                                                                   |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMMachineGroup interface methods are specified in section 3.2.4.6.
 	AddMachine(context.Context, *AddMachineRequest, ...dcerpc.CallOption) (*AddMachineResponse, error)
 
+	// The GetMachineInfo method returns information about a machine. If more than one machine
+	// with the specified bstrMachineId value exists in the hierarchy of machine groups,
+	// the information can be returned from any of the machine groups.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | Operation successful.                                                            |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG              | One or more arguments are invalid.                                               |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF038A WRM_ERR_MACHINEID_INVALID | The specified machine ID is not found in any machine group of the                |
+	//	|                                      | configuration.<98>                                                               |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMMachineGroup interface methods are specified in section 3.2.4.6.
 	GetMachineInfo(context.Context, *GetMachineInfoRequest, ...dcerpc.CallOption) (*GetMachineInfoResponse, error)
 
+	// The ModifyMachineInfo method modifies a machine in a machine group. This method modifies
+	// the direct child machine with the specified machine ID under the specified parent
+	// machine group.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                  RETURN                   |                                                                                  |
+	//	|                VALUE/CODE                 |                                   DESCRIPTION                                    |
+	//	|                                           |                                                                                  |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                           | Operation successful.                                                            |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                   | One or more arguments are invalid.                                               |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER      | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                           | be processed.<100>                                                               |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0389 WRM_ERR_MACHINEGROUPID_INVALID | The specified machine group ID is invalid.                                       |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF038A WRM_ERR_MACHINEID_INVALID      | The specified machine ID is not found.<101>                                      |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF038C WRM_ERR_MACHINE_ALREADY_EXISTS | A machine with the specified machine name in the bstrMachineInfo XML already     |
+	//	|                                           | exists as the direct child in the machine group.<102>                            |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMMachineGroup interface methods are specified in section 3.2.4.6.
 	ModifyMachineInfo(context.Context, *ModifyMachineInfoRequest, ...dcerpc.CallOption) (*ModifyMachineInfoResponse, error)
 
+	// The DeleteMachine method deletes a machine from a machine group.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------------------------+---------------------------------------------+
+	//	|                  RETURN                   |                                             |
+	//	|                VALUE/CODE                 |                 DESCRIPTION                 |
+	//	|                                           |                                             |
+	//	+-------------------------------------------+---------------------------------------------+
+	//	+-------------------------------------------+---------------------------------------------+
+	//	| 0x00000000 S_OK                           | Operation successful.                       |
+	//	+-------------------------------------------+---------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                   | One or more arguments are invalid.          |
+	//	+-------------------------------------------+---------------------------------------------+
+	//	| 0xC1FF0389 WRM_ERR_MACHINEGROUPID_INVALID | The specified machine group ID is invalid.  |
+	//	+-------------------------------------------+---------------------------------------------+
+	//	| 0xC1FF038A WRM_ERR_MACHINEID_INVALID      | The specified machine ID is not found.<104> |
+	//	+-------------------------------------------+---------------------------------------------+
+	//
+	// Additional IWRMMachineGroup interface methods are specified in section 3.2.4.6.
 	DeleteMachine(context.Context, *DeleteMachineRequest, ...dcerpc.CallOption) (*DeleteMachineResponse, error)
 
 	// AlterContext alters the client context.
@@ -527,9 +753,14 @@ func (o *xxx_CreateMachineGroupOperation) UnmarshalNDRResponse(ctx context.Conte
 // CreateMachineGroupRequest structure represents the CreateMachineGroup operation request
 type CreateMachineGroupRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ParentMachineGroupID *oaut.String   `idl:"name:bstrParentMachineGroupId" json:"parent_machine_group_id"`
-	MachineGroupInfo     *oaut.String   `idl:"name:bstrMachineGroupInfo" json:"machine_group_info"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrParentMachineGroupId: A string that specifies the identifier of the parent machine
+	// group in which to create a new machine group.
+	ParentMachineGroupID *oaut.String `idl:"name:bstrParentMachineGroupId" json:"parent_machine_group_id"`
+	// bstrMachineGroupInfo: A string that specifies information about the machine group
+	// to be created, including its identifier, in the format of a MachineGroup element
+	// (section 2.2.5.18).<85>
+	MachineGroupInfo *oaut.String `idl:"name:bstrMachineGroupInfo" json:"machine_group_info"`
 }
 
 func (o *CreateMachineGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateMachineGroupOperation) *xxx_CreateMachineGroupOperation {
@@ -820,8 +1051,10 @@ func (o *xxx_GetMachineGroupInfoOperation) UnmarshalNDRResponse(ctx context.Cont
 // GetMachineGroupInfoRequest structure represents the GetMachineGroupInfo operation request
 type GetMachineGroupInfoRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	MachineGroupID *oaut.String   `idl:"name:bstrMachineGroupId" json:"machine_group_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrMachineGroupId: A string that specifies the identifier of the machine group for
+	// which to return information.
+	MachineGroupID *oaut.String `idl:"name:bstrMachineGroupId" json:"machine_group_id"`
 }
 
 func (o *GetMachineGroupInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMachineGroupInfoOperation) *xxx_GetMachineGroupInfoOperation {
@@ -858,8 +1091,10 @@ func (o *GetMachineGroupInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 // GetMachineGroupInfoResponse structure represents the GetMachineGroupInfo operation response
 type GetMachineGroupInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That             *dcom.ORPCThat `idl:"name:That" json:"that"`
-	MachineGroupInfo *oaut.String   `idl:"name:pbstrMachineGroupInfo" json:"machine_group_info"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrMachineGroupInfo: A pointer to a string that SHOULD return information about
+	// the machine group, in the format specified in MachineGroup (section 2.2.5.17).
+	MachineGroupInfo *oaut.String `idl:"name:pbstrMachineGroupInfo" json:"machine_group_info"`
 	// Return: The GetMachineGroupInfo return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1126,9 +1361,15 @@ func (o *xxx_ModifyMachineGroupOperation) UnmarshalNDRResponse(ctx context.Conte
 // ModifyMachineGroupRequest structure represents the ModifyMachineGroup operation request
 type ModifyMachineGroupRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This               *dcom.ORPCThis                `idl:"name:This" json:"this"`
-	MachineGroupID     *oaut.String                  `idl:"name:bstrMachineGroupId" json:"machine_group_id"`
-	MachineGroupInfo   *oaut.String                  `idl:"name:bstrMachineGroupInfo" json:"machine_group_info"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrMachineGroupId: A string that specifies the identifier of the machine group to
+	// be modified.
+	MachineGroupID *oaut.String `idl:"name:bstrMachineGroupId" json:"machine_group_id"`
+	// bstrMachineGroupInfo: A string that specifies the new information for the machine
+	// group, in the format specified in MachineGroup element (section 2.2.5.18).
+	MachineGroupInfo *oaut.String `idl:"name:bstrMachineGroupInfo" json:"machine_group_info"`
+	// enumMGMergeOptions: Options for machine group modification, from the MACHINE_GROUP_MERGE_OPTIONS
+	// enumeration (section 2.2.3.4).<89>
 	EnumMGMergeOptions wsrm.MachineGroupMergeOptions `idl:"name:enumMGMergeOptions" json:"enum_mg_merge_options"`
 }
 
@@ -1375,8 +1616,10 @@ func (o *xxx_DeleteMachineGroupOperation) UnmarshalNDRResponse(ctx context.Conte
 // DeleteMachineGroupRequest structure represents the DeleteMachineGroup operation request
 type DeleteMachineGroupRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	MachineGroupID *oaut.String   `idl:"name:bstrMachineGroupId" json:"machine_group_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrMachineGroupId: A string that specifies the identifier of the machine group to
+	// be deleted.
+	MachineGroupID *oaut.String `idl:"name:bstrMachineGroupId" json:"machine_group_id"`
 }
 
 func (o *DeleteMachineGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteMachineGroupOperation) *xxx_DeleteMachineGroupOperation {
@@ -1665,9 +1908,13 @@ func (o *xxx_RenameMachineGroupOperation) UnmarshalNDRResponse(ctx context.Conte
 // RenameMachineGroupRequest structure represents the RenameMachineGroup operation request
 type RenameMachineGroupRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                *dcom.ORPCThis `idl:"name:This" json:"this"`
-	OldMachineGroupName *oaut.String   `idl:"name:bstrOldMachineGroupName" json:"old_machine_group_name"`
-	NewMachineGroupName *oaut.String   `idl:"name:bstrNewMachineGroupName" json:"new_machine_group_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrOldMachineGroupName: A string that specifies the identifier of the machine group
+	// to be renamed.
+	OldMachineGroupName *oaut.String `idl:"name:bstrOldMachineGroupName" json:"old_machine_group_name"`
+	// bstrNewMachineGroupName: A string that specifies the new identifier of the machine
+	// group.
+	NewMachineGroupName *oaut.String `idl:"name:bstrNewMachineGroupName" json:"new_machine_group_name"`
 }
 
 func (o *RenameMachineGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_RenameMachineGroupOperation) *xxx_RenameMachineGroupOperation {
@@ -1956,9 +2203,13 @@ func (o *xxx_AddMachineOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 // AddMachineRequest structure represents the AddMachine operation request
 type AddMachineRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ParentMachineGroupID *oaut.String   `idl:"name:bstrParentMachineGroupId" json:"parent_machine_group_id"`
-	MachineInfo          *oaut.String   `idl:"name:bstrMachineInfo" json:"machine_info"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrParentMachineGroupId: A string that specifies the identifier of the machine group
+	// in which to add a machine.
+	ParentMachineGroupID *oaut.String `idl:"name:bstrParentMachineGroupId" json:"parent_machine_group_id"`
+	// bstrMachineInfo: A string that specifies the machine, in the format specified in
+	// Machine element (section 2.2.5.17).<95>
+	MachineInfo *oaut.String `idl:"name:bstrMachineInfo" json:"machine_info"`
 }
 
 func (o *AddMachineRequest) xxx_ToOp(ctx context.Context, op *xxx_AddMachineOperation) *xxx_AddMachineOperation {
@@ -2247,8 +2498,10 @@ func (o *xxx_GetMachineInfoOperation) UnmarshalNDRResponse(ctx context.Context, 
 // GetMachineInfoRequest structure represents the GetMachineInfo operation request
 type GetMachineInfoRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	MachineID *oaut.String   `idl:"name:bstrMachineId" json:"machine_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrMachineId: A string that specifies the identifier of the machine for which to
+	// return information.
+	MachineID *oaut.String `idl:"name:bstrMachineId" json:"machine_id"`
 }
 
 func (o *GetMachineInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMachineInfoOperation) *xxx_GetMachineInfoOperation {
@@ -2285,8 +2538,10 @@ func (o *GetMachineInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetMachineInfoResponse structure represents the GetMachineInfo operation response
 type GetMachineInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	MachineInfo *oaut.String   `idl:"name:pbstrMachineInfo" json:"machine_info"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrMachineInfo: A pointer to a string that returns information about the machine,
+	// in the format specified in Machine element (section 2.2.5.17).
+	MachineInfo *oaut.String `idl:"name:pbstrMachineInfo" json:"machine_info"`
 	// Return: The GetMachineInfo return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2587,10 +2842,15 @@ func (o *xxx_ModifyMachineInfoOperation) UnmarshalNDRResponse(ctx context.Contex
 // ModifyMachineInfoRequest structure represents the ModifyMachineInfo operation request
 type ModifyMachineInfoRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ParentMachineGroupID *oaut.String   `idl:"name:bstrParentMachineGroupId" json:"parent_machine_group_id"`
-	MachineID            *oaut.String   `idl:"name:bstrMachineId" json:"machine_id"`
-	MachineInfo          *oaut.String   `idl:"name:bstrMachineInfo" json:"machine_info"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrParentMachineGroupId: A string that specifies the identifier of the machine group
+	// that contains the machine to modify.<99>
+	ParentMachineGroupID *oaut.String `idl:"name:bstrParentMachineGroupId" json:"parent_machine_group_id"`
+	// bstrMachineId: A string that specifies the identifier of the machine to modify.
+	MachineID *oaut.String `idl:"name:bstrMachineId" json:"machine_id"`
+	// bstrMachineInfo: A string that specifies the new information for the machine, in
+	// the format specified in Machine element (section 2.2.5.17).
+	MachineInfo *oaut.String `idl:"name:bstrMachineInfo" json:"machine_info"`
 }
 
 func (o *ModifyMachineInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_ModifyMachineInfoOperation) *xxx_ModifyMachineInfoOperation {
@@ -2902,10 +3162,28 @@ func (o *xxx_DeleteMachineOperation) UnmarshalNDRResponse(ctx context.Context, w
 // DeleteMachineRequest structure represents the DeleteMachine operation request
 type DeleteMachineRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ParentMachineGroupID *oaut.String   `idl:"name:bstrParentMachineGroupId" json:"parent_machine_group_id"`
-	MachineID            *oaut.String   `idl:"name:bstrMachineId" json:"machine_id"`
-	Recursive            bool           `idl:"name:bRecursive" json:"recursive"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrParentMachineGroupId: A string that specifies the identifier of the machine group
+	// that contains the machine to delete.
+	ParentMachineGroupID *oaut.String `idl:"name:bstrParentMachineGroupId" json:"parent_machine_group_id"`
+	// bstrMachineId: A string that specifies the identifier of the machine to delete.
+	MachineID *oaut.String `idl:"name:bstrMachineId" json:"machine_id"`
+	// bRecursive: A Boolean value that specifies whether to recursively delete all instances
+	// of the specified machine.<103>
+	//
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	|                  |                                                                                  |
+	//	|      VALUE       |                                     MEANING                                      |
+	//	|                  |                                                                                  |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| TRUE 0x00000001  | All instances of the specified machine MUST be recursively searched in the       |
+	//	|                  | specified machine group and deleted.                                             |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| FALSE 0x00000000 | Only a machine that is a direct child in the specified machine group SHOULD be   |
+	//	|                  | deleted.                                                                         |
+	//	+------------------+----------------------------------------------------------------------------------+
+	Recursive bool `idl:"name:bRecursive" json:"recursive"`
 }
 
 func (o *DeleteMachineRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteMachineOperation) *xxx_DeleteMachineOperation {

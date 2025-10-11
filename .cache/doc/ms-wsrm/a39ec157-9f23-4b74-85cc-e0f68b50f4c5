@@ -1,1 +1,71 @@
-<div class="content"></div>
+<div class="content"><p>The GetNextAccountingDataBatch method gets the next batch of
+data in a previously initiated query to the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1156c8ef-4d49-462b-9f76-aebcb6c57011" data-linktype="relative-path">accounting</a> database.<a id="Appendix_A_Target_45"></a><a aria-label="Product behavior note 45" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_45" data-linktype="relative-path">&lt;45&gt;</a></p><dl>
+<dd>
+<div><pre> [id(5), helpstring(&#34;method GetNextAccountingDataBatch&#34;)] HRESULT GetNextAccountingDataBatch(
+   [out] BSTR* pbstrResult,
+   [out] BOOL* pbIsThereMoreData
+ );
+</pre></div>
+</dd></dl><p><b>pbstrResult: </b>A pointer to a string that
+returns the requested data.</p><p><b>pbIsThereMoreData: </b>A pointer to a Boolean
+value that specifies whether more data is available.</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x81FF0217</p>
+  <p>WRM_WRN_WSRM_INCOMPLETE_FETCH</p>
+  </td>
+  <td>
+  <p>Data was fetched incompletely; the connection to the
+  database might have terminated.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF01FA</p>
+  <p>WRM_ERR_WYUKON_NOT_CONNECTABLE</p>
+  </td>
+  <td>
+  <p>Cannot establish a connection to the accounting
+  database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0203</p>
+  <p>WRM_ERR_JET_SERVER_TOO_BUSY</p>
+  </td>
+  <td>
+  <p>The server can service only one accounting request at
+  a time.<a id="Appendix_A_Target_46"></a><a aria-label="Product behavior note 46" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_46" data-linktype="relative-path">&lt;46&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The method GetNextAccountingDataBatch returns data from the
+accounting database if all the data was not retrieved by previous calls to this
+method or either of the methods <a href="9ff1f624-0ff0-4b99-8fca-415fe0385de2" data-linktype="relative-path">ExecuteAccountingQuery</a>
+(section 3.2.4.3.3) or <a href="7955c1aa-14ca-4aa5-a6cf-098cc7ca255e" data-linktype="relative-path">GetRawAccountingData</a>
+(section 3.2.4.3.4). The availability of additional database data is indicated
+by the value returned in the <i>pbIsThereMoreData</i> parameter of each of
+these methods.</p><p>If ExecuteAccountingQuery or GetRawAccountingData had
+returned indicating no more accounting data to be retrieved, and still
+GetNextAccountingDataBatch is called, <i>pbstrResult</i> is returned as NULL.</p><p>Additional <a href="d5942816-752f-480a-9712-38ef0a248b6a" data-linktype="relative-path">IWRMAccounting</a> interface
+methods are specified in section 3.2.4.3.</p></div>

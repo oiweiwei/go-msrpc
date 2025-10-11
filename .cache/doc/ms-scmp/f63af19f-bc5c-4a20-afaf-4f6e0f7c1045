@@ -1,1 +1,18 @@
-<div class="content"></div>
+<div class="content"><p>The VSS_OBJECT_UNION defines the union of object types that
+can be defined by the <a href="b53ffb7f-85df-428c-a5d0-17f099af7458" data-linktype="relative-path">VSS_OBJECT_PROP
+structure (section 2.2.3.2)</a>.</p><dl>
+<dd>
+<div><pre> [switch_type(VSS_OBJECT_TYPE)] 
+ typedef union  {
+   [case(VSS_OBJECT_SNAPSHOT)] 
+     VSS_SNAPSHOT_PROP Snap;
+   [case(VSS_OBJECT_PROVIDER)] 
+     VSS_PROVIDER_PROP Prov;
+   [default];
+ } VSS_OBJECT_UNION;
+</pre></div>
+</dd></dl><p><b>Snap:</b>  The structure specifies a <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow copy</a> object as a <a href="5091e34f-2812-4ef3-9477-e763c89017ab" data-linktype="relative-path">VSS_SNAPSHOT_PROP
+structure (section 2.2.3.3)</a>. </p><p><b>Prov:</b>  The structure specifies a VSS
+provider object. The Shadow Copy Management Protocol is not used to manage VSS
+provider objects; therefore, this member MUST NOT be referenced and MUST be
+ignored on receipt.</p></div>

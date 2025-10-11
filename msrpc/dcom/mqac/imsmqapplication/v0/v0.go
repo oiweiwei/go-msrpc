@@ -49,7 +49,12 @@ type ApplicationClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
-	// MachineIdOfMachineName operation.
+	// The MachineIdOfMachineName method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return a string that contains the QueueManager.Identifier
+	// for the computer name that was passed as the input parameter.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.<9>
 	MachineIDOfMachineName(context.Context, *MachineIDOfMachineNameRequest, ...dcerpc.CallOption) (*MachineIDOfMachineNameResponse, error)
 
 	// AlterContext alters the client context.
@@ -350,8 +355,10 @@ func (o *xxx_MachineIDOfMachineNameOperation) UnmarshalNDRResponse(ctx context.C
 // MachineIDOfMachineNameRequest structure represents the MachineIdOfMachineName operation request
 type MachineIDOfMachineNameRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	MachineName *oaut.String   `idl:"name:MachineName" json:"machine_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// MachineName: A BSTR that specifies the NETBIOS or DNS computer name for which a GUID
+	// is to be retrieved.
+	MachineName *oaut.String `idl:"name:MachineName" json:"machine_name"`
 }
 
 func (o *MachineIDOfMachineNameRequest) xxx_ToOp(ctx context.Context, op *xxx_MachineIDOfMachineNameOperation) *xxx_MachineIDOfMachineNameOperation {
@@ -389,7 +396,11 @@ func (o *MachineIDOfMachineNameRequest) UnmarshalNDR(ctx context.Context, r ndr.
 type MachineIDOfMachineNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
-	GUID *oaut.String   `idl:"name:pbstrGuid" json:"guid"`
+	// pbstrGuid: A pointer to a BSTR that upon successful completion, contains the string
+	// representation of the specified machine GUID. The server MUST NOT include the surrounding
+	// curly braces ({ }) with the returned GUID. The string MUST use the following format,
+	// which is specified in ABNF.
+	GUID *oaut.String `idl:"name:pbstrGuid" json:"guid"`
 	// Return: The MachineIdOfMachineName return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

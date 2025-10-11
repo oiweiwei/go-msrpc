@@ -1,0 +1,16 @@
+<div class="content"><p>The OnSectionChanges method is called by the server by using
+an RPC_REQUEST packet. This method is called when a change in the path of the
+administration system hierarchy is detected. The callee (the client-implemented
+object) can react to this notification as it determines. It can return any
+error and the server MUST ignore it.</p><dl>
+<dd>
+<div><pre> HRESULT OnSectionChanges(
+   [in] BSTR bstrSectionName,
+   [in] BSTR bstrConfigPath
+ );
+</pre></div>
+</dd></dl><p><b>bstrSectionName: </b>The name of the <a href="59774887-09e3-4de5-ad8e-4794f404b123" data-linktype="relative-path">IAppHostElement</a> on the
+server that changed. A server is free to not implement this parameter and
+always passes NULL.</p><p><b>bstrConfigPath: </b>The path in the hierarchy
+where the change was detected by the administration system.</p><p><b>Return Values: </b>The return value MUST be
+ignored by the server.</p></div>

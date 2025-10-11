@@ -1,0 +1,50 @@
+<div class="content"><p>The IsMergeAppend method is received by the server in an
+RPC_REQUEST packet. In response, the server returns a Boolean that represents
+whether the <a href="5b32b6df-8364-4ba9-8d04-bfe0a4891a57" data-linktype="relative-path">IAppHostElementCollection</a>,
+from which the specified <a href="9b7dbefe-84a8-418d-a9c2-4c00d9552a03" data-linktype="relative-path">IAppHostCollectionSchema</a>
+was retrieved, will prepend collection <a href="59774887-09e3-4de5-ad8e-4794f404b123" data-linktype="relative-path">IAppHostElement</a> objects
+from lower (deeper) in the hierarchy of the administration system with
+IAppHostElement objects from higher (shallower) in the hierarchy of the
+administration system. </p><p>If the value is false, lower IAppHostElement objects are
+prepended; otherwise, they are appended.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT IsMergeAppend(
+   [out, retval] VARIANT_BOOL* pfIsMergeAppend
+ );
+</pre></div>
+</dd></dl><p><b>pfIsMergeAppend: </b>The Boolean value that
+represents the append or prepend behavior.</p><p><b>Return Values: </b>The server MUST return zero if
+it successfully processes the message that is received from the client. If
+processing fails, the server MUST return a nonzero <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+code as defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following table describes the error conditions that MUST be handled and the
+corresponding error codes. A server MAY return additional implementation-specific
+error codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0X00000000</p>
+  <p>NO_ERROR</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One or more parameters are incorrect or null.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

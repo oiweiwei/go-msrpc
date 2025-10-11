@@ -1,1 +1,102 @@
-<div class="content"></div>
+<div class="content"><p> The SetNtmsObjectAttributeA method changes the private data
+of an object, with strings encoded using ASCII.</p><dl>
+<dd>
+<div><pre> HRESULT SetNtmsObjectAttributeA(
+   [in] LPNTMS_GUID lpObjectId,
+   [in] DWORD dwType,
+   [in] const  char* lpAttributeName,
+   [in, size_is(AttributeSize)] byte* lpAttributeData,
+   [in] DWORD AttributeSize
+ );
+</pre></div>
+</dd></dl><p><b>lpObjectId: </b>A pointer to the identifier of the
+object for which to set private data.</p><p><b>dwType: </b>A value from the <a href="5b190198-a0cb-4e20-90a3-234009357051" data-linktype="relative-path">NtmsObjectsTypes (section 2.2.1.6)</a>
+enumeration specifying the type of the object.</p><p><b>lpAttributeName: </b>A null-terminated sequence of
+ASCII characters specifying the name of the extended attribute to set. The
+client can give any name to the extended attribute and MUST use the same name
+in the <a href="095f5090-5319-4e2d-b4ff-04071c55e791" data-linktype="relative-path">GetNtmsObjectAttributeA</a>
+method.</p><p><b>lpAttributeData: </b>A buffer containing the
+attribute.</p><p><b>AttributeSize: </b>The size of <i>lpAttributeData</i>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to the object is denied; other security errors
+  are possible but indicate a security subsystem error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>An allocation failure occurred during processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The parameter is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007007B</p>
+  <p>ERROR_INVALID_NAME</p>
+  </td>
+  <td>
+  <p>The attribute name is invalid or too long. The
+  NTMS_MAXATTR_NAMELEN value, defined in the Platform SDK file NTMSApi.h,
+  specifies the maximum null-terminated attribute name length.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D8</p>
+  <p>ERROR_OBJECT_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The object was not found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800708CA</p>
+  <p>ERROR_NOT_CONNECTED</p>
+  </td>
+  <td>
+  <p>Unable to connect to the RSM service.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpObjectId</i>,
+<i>lpAttributeData</i>, and <i>lpAttributeName</i> are not NULL. If parameter
+validation fails, the server MUST immediately fail the operation and return
+ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights, and determine the validity of the
+object. If the client does not have the required access rights,
+NTMS_MODIFY_ACCESS to the object is denied and the server MUST return
+ERROR_ACCESS_DENIED (0x80070005). If the object is valid, the server MUST
+update the object attribute depending on the type of object specified. If the
+object is not valid, the server MUST return ERROR_INVALID_PARAMETER
+(0x80070057). If the object is valid and <i>dwType</i> is invalid, the server
+MUST ignore the invalid <i>dwType</i>.</p><p>Strings sent to this method as parameters MUST be
+ASCII-encoded.</p></div>

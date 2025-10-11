@@ -1,1 +1,65 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RasRpcDeleteEntry</b> method deletes a specific <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_14e2df4d-921d-4c9a-9b83-3f6a223f4ba7" data-linktype="relative-path">RRAS Entry</a> from an <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_308cba48-7417-4fec-a529-4051086b2f33" data-linktype="relative-path">RRAS Phonebook path</a>.</p><dl>
+<dd>
+<div><pre> DWORD RasRpcDeleteEntry(
+   [in] handle_t h,
+   [in, string] LPWSTR lpszPhonebook,
+   [in, string] LPWSTR lpszEntry
+ );
+</pre></div>
+</dd></dl><p><b>h: </b>An RPC binding handle as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> section 2.</p><p><b>lpszPhonebook: </b>A null-terminated <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string specifying
+the RRAS Phonebook path as specified in section <a href="4c69805f-b6ff-4e4a-9507-e3862f515d2c" data-linktype="relative-path">2.2.2</a>.</p><p><b>lpszEntry: </b>A null-terminated Unicode string
+specifying the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_1241c671-dc39-455f-be0a-5175846843ec" data-linktype="relative-path">RRAS Entry
+name</a> as specified in section <a href="273c1ddb-828a-4c12-a7b3-d10591c2b43f" data-linktype="relative-path">2.2.2.1</a> to be deleted.</p><p><b>Return Values: </b>Specifies the return status as
+explained in section <a href="c39d153e-2f97-4e11-8aff-bcf983869dc9" data-linktype="relative-path">2.2.1.2.218</a>
+for <b>retcode</b> field.</p><dl>
+<dd>
+<p>The return value can be one of the following error
+codes. All other error values MUST be treated the same by the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_6132dde1-9eae-4923-987e-9750c3dbca89" data-linktype="relative-path">RRASM client</a>.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_SUCCESS</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions
+Thrown:</b> This method throws an exception with the exception code
+RPC_S_ACCESS_DENIED (0x00000005) if the client is not an <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_eb335f5b-619b-46ed-9138-06e9910108c3" data-linktype="relative-path">administrator</a> on the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_f91f3fc7-d1a1-4a07-8c92-d19eb0c9acb0" data-linktype="relative-path">RRASM server</a>, with access
+permission to perform the operation.<a id="Appendix_A_Target_334"></a><a aria-label="Product behavior note 334" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_334" data-linktype="relative-path">&lt;334&gt;</a></p><dl>
+<dd>
+<p>The opnum field value for this method is 5.</p>
+</dd>
+<dd>
+<p>When processing this call, the RRASM server SHOULD
+do the following:</p>
+</dd></dl><ul><li><p><span><span>  </span></span>Validate
+as specified in section <a href="83a083ac-cd43-44bf-a301-7c88e64a32fe" data-linktype="relative-path">3.3.4</a>
+whether this method was called by a client which is an administrator of the
+RRASM server.</p>
+</li><li><p><span><span>  </span></span>If <i>lpszEntry</i>
+is NULL, return an error other than one of the errors specified in the
+preceding table.</p>
+</li><li><p><span><span>  </span></span>If <i>lpszEntry</i>
+is not present in <b>PhonebookEntryNameList</b>, return an error other than one
+of the errors specified in the preceding table.</p>
+</li><li><p><span><span>  </span></span>Call
+the abstract interface <b>Invoke RASRPC</b> method, specifying the operation
+and the parameters necessary to enable the RRASM server to perform the required
+management task.</p>
+</li><li><p><span><span>  </span></span>Return
+any error result that the RRASM server returns as a part of the processing.
+Otherwise return ERROR_SUCCESS (0x00000000).</p>
+</li></ul></div>

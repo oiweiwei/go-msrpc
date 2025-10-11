@@ -31,8 +31,37 @@ type UpdateSession3Server interface {
 	// IUpdateSession2 base class.
 	iupdatesession2.UpdateSession2Server
 
+	// The IUpdateSession3::CreateUpdateServiceManager (Opnum 16) method retrieves an instance
+	// of the IUpdateServiceManager2 interface.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return a newly created object that implements IUpdateServiceManager2.
 	CreateUpdateServiceManager(context.Context, *CreateUpdateServiceManagerRequest) (*CreateUpdateServiceManagerResponse, error)
 
+	// The IUpdateSearcher::QueryHistory (opnum 19) method retrieves a collection of history
+	// events.
+	//
+	// The IUpdateSession3::QueryHistory (Opnum 17) method retrieves relevant update history
+	// entries.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	QueryHistory(context.Context, *QueryHistoryRequest) (*QueryHistoryResponse, error)
 }
 

@@ -1,1 +1,53 @@
-<div class="content"></div>
+<div class="content"><p>The GetMachineGroupInfo method returns information about a
+machine group. </p><dl>
+<dd>
+<div><pre> [id(2), helpstring(&#34;method GetMachineGroupInfo&#34;)] HRESULT GetMachineGroupInfo(
+   [in] BSTR bstrMachineGroupId,
+   [out] BSTR* pbstrMachineGroupInfo
+ );
+</pre></div>
+</dd></dl><p><b>bstrMachineGroupId: </b>A string that specifies
+the identifier of the machine group for which to return information.</p><p><b>pbstrMachineGroupInfo: </b>A pointer to a string
+that SHOULD return information about the machine group, in the format specified
+in <a href="d137388f-8b86-4a30-8848-7ffb6029f276" data-linktype="relative-path">MachineGroup (section 2.2.5.17)</a>.</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0389</p>
+  <p>WRM_ERR_MACHINEGROUPID_INVALID</p>
+  </td>
+  <td>
+  <p>The specified machine group id is invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="959a6150-11e3-44ec-b6cd-78da5b2c9e00" data-linktype="relative-path">IWRMMachineGroup</a> interface
+methods are specified in section 3.2.4.6.</p></div>

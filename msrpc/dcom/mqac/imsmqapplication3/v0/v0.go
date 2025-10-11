@@ -49,19 +49,100 @@ type Application3Client interface {
 	// IMSMQApplication2 retrieval method.
 	Application2() imsmqapplication2.Application2Client
 
-	// ActiveQueues operation.
+	// The ActiveQueues method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return an array of strings that contain the format names of all the
+	// represented QueueManager.QueueCollection.Queues, where Queue.Active is equal to True.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
+	//
+	// When the server processes this call, it MUST follow these guidelines:
+	//
+	// * If the ComputerName instance variable is NULL:
+	//
+	// * Identify all the local QueueManager.QueueCollection.Queues, where Queue.Active
+	// is equal to True.
+	//
+	// * Set the pvActiveQueues output variable to an array that contains the format names
+	// that specify all the identified Queues.
+	//
+	// * Else:
+	//
+	// * The server MUST generate a QMMgmt Get Info ( a0b1e28b-0f93-415d-8753-e3e1133678db
+	// ) event with the following inputs:
+	//
+	// * iPropID = PROPID_MGMT_MSMQ_ACTIVEQUEUES
+	//
+	// * If the rStatus return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return rStatus and MUST take no further action. Otherwise, the pvActiveQueues output
+	// variable MUST be set to the value of the returned rPropVar.
 	ActiveQueues(context.Context, *ActiveQueuesRequest, ...dcerpc.CallOption) (*ActiveQueuesResponse, error)
 
-	// PrivateQueues operation.
+	// The PrivateQueues method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return an array of strings that contain the path names of all the
+	// represented QueueManager.QueueCollection.Queues, where Queue.QueueType is equal to
+	// Private.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
 	GetPrivateQueues(context.Context, *GetPrivateQueuesRequest, ...dcerpc.CallOption) (*GetPrivateQueuesResponse, error)
 
-	// DirectoryServiceServer operation.
+	// The DirectoryServiceServer method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return a string that contains the name of the current
+	// directory computer.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
+	//
+	// When the server processes this call, it MUST follow these guidelines:
+	//
+	// * If the ComputerName instance variable is NULL:
+	//
+	// * Set the pbstrDirectoryServiceServer output variable to the DNS or NetBIOS name
+	// of the directory computer, <16> ( 71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_16
+	// ) prefixed by "\\".
+	//
+	// * Else:
+	//
+	// * The server MUST generate a QMMgmt Get Info event with the following inputs:
+	//
+	// * iPropID = PROPID_MGMT_MSMQ_DSSERVER
+	//
+	// * If the rStatus return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return rStatus and MUST take no further action. Otherwise, the pbstrDirectoryServiceServer
+	// output variable MUST be set to the value of the returned rPropVar.
 	GetDirectoryServiceServer(context.Context, *GetDirectoryServiceServerRequest, ...dcerpc.CallOption) (*GetDirectoryServiceServerResponse, error)
 
-	// IsConnected operation.
+	// The IsConnected method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return a BOOLEAN value that indicates the connection status of the
+	// represented QueueManager.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
+	//
+	// When the server processes this call, it MUST follow these guidelines:
+	//
+	// * If the ComputerName instance variable is NULL:
+	//
+	// * Set the pfIsConnected output variable to local QueueManager.ConnectionActive.
+	//
+	// * Else:
+	//
+	// * The server MUST generate a QMMgmt Get Info event with the following inputs:
+	//
+	// * iPropID = PROPID_MGMT_MSMQ_CONNECTED
+	//
+	// * If the rStatus return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return rStatus and MUST take no further action. Otherwise, the pfIsConnected output
+	// variable MUST be set to the value of the returned rPropVar.
 	GetIsConnected(context.Context, *GetIsConnectedRequest, ...dcerpc.CallOption) (*GetIsConnectedResponse, error)
 
-	// BytesInAllQueues operation.
+	// The BytesInAllQueues method is received by the server in an RPC_REQUEST packet. In
+	// response, the server MUST return the number of message bytes that are currently stored
+	// in all Queues of the represented QueueManager.QueueCollection.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
 	GetBytesInAllQueues(context.Context, *GetBytesInAllQueuesRequest, ...dcerpc.CallOption) (*GetBytesInAllQueuesResponse, error)
 
 	// Machine operation.
@@ -70,13 +151,80 @@ type Application3Client interface {
 	// Machine operation.
 	GetMachine(context.Context, *GetMachineRequest, ...dcerpc.CallOption) (*GetMachineResponse, error)
 
-	// Connect operation.
+	// The Connect method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST connect the represented QueueManager to the network and to the directory.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.<17>
+	//
+	// When the server processes this call, it MUST follow these guidelines:
+	//
+	// * If the ComputerName instance variable is NULL:
+	//
+	// * Send a Bring Online ( ../ms-mqdmpr/f8539502-ed84-4cdb-97e7-a8927c97fbbf ) event,
+	// as defined in [MS-MQDMPR] ( ../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47 ) section
+	// 3.1.4.13, to the local QueueManager.
+	//
+	// * Else:
+	//
+	// * The server MUST generate a QMMgmt Action event with the following inputs:
+	//
+	// * iAction = "CONNECT"
+	//
+	// * The server MUST return rStatus , and MUST take no further action.
 	Connect(context.Context, *ConnectRequest, ...dcerpc.CallOption) (*ConnectResponse, error)
 
-	// Disconnect operation.
+	// The Disconnect method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST disconnect the represented QueueManager from the network and the
+	// directory.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.<18>
+	//
+	// When the server processes this call, it MUST follow these guidelines:
+	//
+	// * If the ComputerName instance variable is NULL:
+	//
+	// * Send a Take Offline ( ../ms-mqdmpr/3f4f55d3-aa90-41fb-985d-288fd76b2703 ) event
+	// as defined in [MS-MQDMPR] ( ../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47 ) section
+	// 3.1.4.12 to the local QueueManager.
+	//
+	// * Else:
+	//
+	// * The server MUST generate a QMMgmt Action event with the following inputs:
+	//
+	// * iAction = "DISCONNECT"
+	//
+	// * The server MUST return rStatus , and MUST take no further action.
 	Disconnect(context.Context, *DisconnectRequest, ...dcerpc.CallOption) (*DisconnectResponse, error)
 
-	// Tidy operation.
+	// The Tidy method is received by the server in an RPC_REQUEST packet. In response,
+	// the server SHOULD perform implementation-specific tasks to release unused resources
+	// of the represented QueueManager.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.<19>
+	//
+	// When the server processes this call, it MUST follow these guidelines:
+	//
+	// * If the ComputerName instance variable is NULL:
+	//
+	// * The local QueueManager SHOULD perform implementation-specific tasks to release
+	// unused resources.
+	//
+	// * Else:
+	//
+	// * The server MUST generate a QMMgmt Action event with the following inputs:
+	//
+	// * iAction = "TIDY"
+	//
+	// * The server MUST return rStatus , and MUST take no further action.
 	Tidy(context.Context, *TidyRequest, ...dcerpc.CallOption) (*TidyResponse, error)
 
 	// AlterContext alters the client context.
@@ -543,8 +691,9 @@ func (o *ActiveQueuesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 // ActiveQueuesResponse structure represents the ActiveQueues operation response
 type ActiveQueuesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ActiveQueues *oaut.Variant  `idl:"name:pvActiveQueues" json:"active_queues"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pvActiveQueues: A pointer to a VARIANT that, when successfully completed, contains an array of zero or more strings (VT_ARRAY | VT_BSTR) that specify the format names of all the represented QueueManager.QueueCollection.Queues, where Queue.Active is equal to True.
+	ActiveQueues *oaut.Variant `idl:"name:pvActiveQueues" json:"active_queues"`
 	// Return: The ActiveQueues return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -784,8 +933,9 @@ func (o *GetPrivateQueuesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // GetPrivateQueuesResponse structure represents the PrivateQueues operation response
 type GetPrivateQueuesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PrivateQueues *oaut.Variant  `idl:"name:pvPrivateQueues" json:"private_queues"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pvPrivateQueues: A pointer to a VARIANT that when successfully completed, contains an array of zero or more strings (VT_ARRAY | VT_BSTR) that specify the path names of all the represented QueueManager.QueueCollection.Queues, where Queue.QueueType is equal to Private.
+	PrivateQueues *oaut.Variant `idl:"name:pvPrivateQueues" json:"private_queues"`
 	// Return: The PrivateQueues return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1027,8 +1177,11 @@ func (o *GetDirectoryServiceServerRequest) UnmarshalNDR(ctx context.Context, r n
 // GetDirectoryServiceServerResponse structure represents the DirectoryServiceServer operation response
 type GetDirectoryServiceServerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That                   *dcom.ORPCThat `idl:"name:That" json:"that"`
-	DirectoryServiceServer *oaut.String   `idl:"name:pbstrDirectoryServiceServer" json:"directory_service_server"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrDirectoryServiceServer: A pointer to a BSTR that, when successfully completed,
+	// contains the name of the directory computer in DNS or NetBIOS format, prefixed by
+	// "\\". The string MUST use the following format, which is specified in ABNF.
+	DirectoryServiceServer *oaut.String `idl:"name:pbstrDirectoryServiceServer" json:"directory_service_server"`
 	// Return: The DirectoryServiceServer return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1234,8 +1387,21 @@ func (o *GetIsConnectedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetIsConnectedResponse structure represents the IsConnected operation response
 type GetIsConnectedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IsConnected int16          `idl:"name:pfIsConnected" json:"is_connected"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pfIsConnected: A pointer to a VARIANT_BOOL that, when successfully completed, contains
+	// one of the following values.
+	//
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	|                      |                                                                                  |
+	//	|        VALUE         |                                     MEANING                                      |
+	//	|                      |                                                                                  |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_TRUE 0xffff  | The represented QueueManager is connected to the network and the directory.      |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	//	| VARIANT_FALSE 0x0000 | The represented QueueManager is disconnected from the network and the directory. |
+	//	+----------------------+----------------------------------------------------------------------------------+
+	IsConnected int16 `idl:"name:pfIsConnected" json:"is_connected"`
 	// Return: The IsConnected return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1477,8 +1643,11 @@ func (o *GetBytesInAllQueuesRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 // GetBytesInAllQueuesResponse structure represents the BytesInAllQueues operation response
 type GetBytesInAllQueuesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That             *dcom.ORPCThat `idl:"name:That" json:"that"`
-	BytesInAllQueues *oaut.Variant  `idl:"name:pvBytesInAllQueues" json:"bytes_in_all_queues"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pvBytesInAllQueues: A pointer to a VARIANT that, when successfully completed, contains
+	// a 64-bit integer (VT_I8) that specifies (in bytes) the amount of data stored in all
+	// Queues of the represented QueueManager.QueueCollection.
+	BytesInAllQueues *oaut.Variant `idl:"name:pvBytesInAllQueues" json:"bytes_in_all_queues"`
 	// Return: The BytesInAllQueues return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

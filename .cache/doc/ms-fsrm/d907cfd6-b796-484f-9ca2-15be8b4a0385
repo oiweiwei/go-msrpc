@@ -59,10 +59,9 @@ perform the following actions: </p><ul><li><p><span><span>
 </span></span>Create a new <b>List of Non-Persisted Reports Job Instances</b>
 (section 3.2.1.5).</p>
 </li><li><p><span><span> 
-</span></span>Populate it with <a href="0b493832-f781-4c1a-bddd-d39c9df1680f" data-linktype="relative-path">Non-Persisted Report Job Instances (section 3.2.1.5.1.2)</a>
-copied from the <a href="8f5aa057-1aeb-4430-b548-e841a6c4ac0a" data-linktype="relative-path">Persisted
-Report Jobs (section 3.2.1.5.1.1)</a> in the <b>List of Persisted
-Report Jobs</b>.</p>
+</span></span>Populate it with <a href="0b493832-f781-4c1a-bddd-d39c9df1680f" data-linktype="relative-path">Non-Persisted Report Job
+Instances (section 3.2.1.5.1.2)</a> copied from the <a href="8f5aa057-1aeb-4430-b548-e841a6c4ac0a" data-linktype="relative-path">Persisted Report Jobs (section 3.2.1.5.1.1)</a>
+in the <b>List of Persisted Report Jobs</b>.</p>
 </li><li><p><span><span> 
 </span></span>Populate it with Non-Persisted Report Job Instances in the <b>List
 of Non-Persisted Report Jobs</b> that have a running status of Running.</p>
@@ -74,7 +73,7 @@ set to true.</p>
 </li><li><p><span><span> 
 </span></span>Populate <i>reportJobs</i> with the <b>IFsrmReportJob</b>
 interface pointer (section <a href="e44f5d43-3df5-4342-9a4a-583911290fe0" data-linktype="relative-path">3.2.4.2.34</a>)
-of every Non-Persisted Report Job Instance in this <b>List of Non-Persisted Reports
-Job Instance</b>.</p>
+of every Non-Persisted Report Job Instance in this <b>List of Non-Persisted
+Reports Job Instance</b>.</p>
 </li></ul><p>If there are no report jobs configured on the server, the
 method MUST return an <b>IFsrmCollection</b> object that contains zero objects.</p></div>

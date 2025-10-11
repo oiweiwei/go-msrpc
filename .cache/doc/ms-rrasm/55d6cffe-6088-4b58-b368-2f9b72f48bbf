@@ -1,1 +1,12 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPRIP_IP_ADDRESS</b> structure is used for storing
+interface bindings. A series of structures of this type follows the <a href="1b9836f1-3007-4826-b6e6-60ac2650659d" data-linktype="relative-path"><b>IPRIP_IF_BINDING (section 2.2.1.2.168)</b></a>
+structure. This structure is used in <b>IPRIP_IF_BINDING</b>. Both fields are
+IP address fields in network-order.  </p><dl>
+<dd>
+<div><pre> typedef struct _IPRIP_IP_ADDRESS {
+   DWORD IA_Address;
+   DWORD IA_Netmask;
+ } IPRIP_IP_ADDRESS,
+  *PIPRIP_IP_ADDRESS;
+</pre></div>
+</dd></dl><p><b>IA_Address: </b>The IP address.</p><p><b>IA_Netmask: </b>The net mask. See <a href="https://go.microsoft.com/fwlink/?LinkId=90501" data-linktype="external">[RFC950]</a>.</p></div>

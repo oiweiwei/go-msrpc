@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsCreateOptions enumeration defines the types of
+creation operations.</p><dl>
+<dd>
+<div><pre> enum NtmsCreateOptions
+ {
+   NTMS_OPEN_EXISTING = 0x0001,
+   NTMS_CREATE_NEW = 0x0002,
+   NTMS_OPEN_ALWAYS = 0x0003
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_OPEN_EXISTING:  </b>Open an existing media
+pool by name.</p><p><b>NTMS_CREATE_NEW:  </b>Create a new media pool; if
+a media pool is already present, return ERROR_ALREADY_EXISTS.</p><p><b>NTMS_OPEN_ALWAYS:  </b>Open an existing media
+pool. If the pool does not already exist, it MUST be created.</p></div>

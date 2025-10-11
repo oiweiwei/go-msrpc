@@ -1,0 +1,83 @@
+<div class="content"><p>The TransactionalStatus method is received by the server in
+an RPC_REQUEST packet. In response, the server MUST return the represented <a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">Queue</a>.Transactional
+value.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT TransactionalStatus(
+   [out, retval] long* plTransactionalStatus
+ );
+</pre></div>
+</dd></dl><p><b>plTransactionalStatus: </b>A pointer to a <b>long</b>
+that corresponds to the XACT_STATUS enumeration as defined in the following
+table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQ_XACT_STATUS_XACT</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The represented Queue.Transactional equals True.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_XACT_STATUS_NOT_XACT</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The represented Queue.Transactional equals False.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_XACT_STATUS_UNKNOWN</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The represented Queue.<a href="2f388dcb-36be-44ea-95e7-7e9078c50cc2" data-linktype="relative-path">QueueType</a> equals Public,
+  and the <a href="../ms-mqdmpr/9adb2d90-c63b-43c7-9b9c-804ab96a57d5" data-linktype="relative-path">QueueManager</a>.DirectoryIntegrated
+  of the QueueManager that owns the represented Queue equals False.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <b>ObjectIsInitialized</b> instance variable is False:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST return MQ_ERROR_UNINITIALIZED_OBJECT (0xC00E0094), and MUST take no
+further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>The server MUST generate a <b>QMMgmt Get Info</b> event with the
+following inputs:</p>
+<ul><li><p><span><span>  </span></span><b>iPropID</b>
+= PROPID_MGMT_QUEUE_XACT</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <b>rStatus</b> return value is not equal to MQ_OK
+(0x00000000), the server MUST return <b>rStatus</b> and MUST take no further
+action.</p>
+</li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>If
+the value of the returned rPropVar was &#34;YES&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The <i>plTransactionStatus</i> output variable MUST be set to
+MQ_XACT_STATUS_XACT, and the server MUST take no further action.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the value of the returned rPropVar was &#34;NO&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The <i>plTransactionStatus</i> output variable MUST be set to
+MQ_XACT_STATUS_NOT_XACT, and the server MUST take no further action.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the value of the returned rPropVar was &#34;UNKNOWN&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The <i>plTransactionStatus</i> output variable MUST be set to
+MQ_XACT_STATUS_UNKNOWN, and the server MUST take no further action.</p>
+</li></ul></li></ul></li></ul></div>

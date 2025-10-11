@@ -53,9 +53,9 @@ perform one of the following actions:</p><ul><li><p><span><span>
 FsrmReportGenerationContext_ScheduledReport then the server MUST use  <i>path</i>
 as the <b>Scheduled output directory</b> for <b>reports</b>.</p>
 </li><li><p><span><span> 
-</span></span>If <i>context</i> is equal to
-FsrmReportGenerationContext_InteractiveReport then the server MUST use <i>path</i>
-as the <b>Interactive output directory</b> for <b>reports</b>.</p>
+</span></span>If <i>context</i> is equal to FsrmReportGenerationContext_InteractiveReport
+then the server MUST use <i>path</i> as the <b>Interactive output directory</b>
+for <b>reports</b>.</p>
 </li><li><p><span><span> 
 </span></span>If <i>context</i> is equal to
 FsrmReportGenerationContext_IncidentReport then the server MUST use <i>path</i>

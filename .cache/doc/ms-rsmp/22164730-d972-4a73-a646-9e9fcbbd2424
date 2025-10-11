@@ -1,1 +1,19 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsMountPriority enumeration defines the priority of <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b" data-linktype="relative-path">mount</a> requests.</p><dl>
+<dd>
+<div><pre> enum NtmsMountPriority
+ {
+   NTMS_PRIORITY_DEFAULT = 0,
+   NTMS_PRIORITY_HIGHEST = 15,
+   NTMS_PRIORITY_HIGH = 7,
+   NTMS_PRIORITY_NORMAL = 0,
+   NTMS_PRIORITY_LOW = -7,
+   NTMS_PRIORITY_LOWEST = -15
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_PRIORITY_DEFAULT:  </b>Specify the default
+priority.</p><p><b>NTMS_PRIORITY_HIGHEST:  </b>Specify the highest
+priority.</p><p><b>NTMS_PRIORITY_HIGH:  </b>Specify mounts that are
+time-critical.</p><p><b>NTMS_PRIORITY_NORMAL:  </b>Specify mounts that are
+not time-critical.</p><p><b>NTMS_PRIORITY_LOW:  </b>Specify that mounts be
+performed as a background activity.</p><p><b>NTMS_PRIORITY_LOWEST:  </b>Specify the lowest
+priority.</p></div>

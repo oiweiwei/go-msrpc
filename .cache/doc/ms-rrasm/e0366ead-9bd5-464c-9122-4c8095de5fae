@@ -1,1 +1,49 @@
-<div class="content"></div>
+<div class="content"><p>The <b>BGP_PEER_TO_POLICIES</b> structure<a id="Appendix_A_Target_192"></a><a aria-label="Product behavior note 192" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_192" data-linktype="relative-path">&lt;192&gt;</a> is used to configure BGP
+policies for a BGP peer.</p><dl>
+<dd>
+<div><pre> typedef struct _BGP_PEER_TO_POLICIES {
+   DWORD dwFlags;
+   BGP_IP_ADDRESS peerIP;
+   BGP_POLICY_DIRECTION eDirection;
+   USHORT uPolicyCount;
+   BYTE policyNames[1];
+ } BGP_PEER_TO_POLICIES,
+  *PBGP_PEER_TO_POLICIES;
+</pre></div>
+</dd></dl><p><b>dwFlags: </b>This value MUST be set to one of the
+following values while modifying the BGP peer to policy mapping.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>None of the attributes in the <b>BGP_PEER_TO_POLICIES</b>
+  structure is modified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>One or more attributes in the <b>BGP_PEER_TO_POLICIES</b>
+  structure are modified.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>peerIP: </b>Specifies the IP address of the BGP
+peer for which the policies are configured. This MUST be of type <a href="6f8469c1-3c45-491b-b6e3-e249b27abd74" data-linktype="relative-path"><b>BGP_IP_ADDRESS (section 2.2.1.2.254)</b></a>. 
+</p><p><b>eDirection: </b>Specifies the source of the BGP
+routes to which the BGP policies are applied. This value MUST be of type <a href="cdb0e592-badf-43c6-8331-59859591fe79" data-linktype="relative-path"><b>BGP_POLICY_DIRECTION (section 2.2.1.1.22)</b></a>.  
+</p><p><b>uPolicyCount: </b>Specifies the number of policies
+configured for the BGP peer. This value MUST be greater than zero (0).</p><p><b>policyNames: </b>A list of consecutive policy name
+entries, <b>uPolicyCount</b> in number; each entry MUST be a null-terminated
+Unicode string of 152 bytes.</p></div>

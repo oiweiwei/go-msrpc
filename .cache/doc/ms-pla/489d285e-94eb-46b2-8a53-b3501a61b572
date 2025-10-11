@@ -78,7 +78,7 @@ full XML specification of the data collector set XML is in section <a href="b5be
 <dd>
 <div><pre> &lt;PerformanceCounterDataCollector&gt;
     &lt;!-- elements for DataCollectorType --&gt;
-    &lt;DataSourceName/&gt;
+    &lt;DataSourceName/&gt;
     &lt;SampleInterval/&gt;
     &lt;SegmentMaxRecords/&gt;
     &lt;LogFileFormat/&gt;

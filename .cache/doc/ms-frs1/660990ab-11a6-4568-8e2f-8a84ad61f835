@@ -1,1 +1,17 @@
-<div class="content"></div>
+<div class="content"><p>The DATA_EXTENSION_CHECKSUM structure specifies an MD5
+checksum. The structure of DATA_EXTENSION_CHECKSUM is as follows.</p><dl>
+<dd>
+<div><pre> typedef struct _DATA_EXTENSION_CHECKSUM {
+   DATA_EXTENSION_PREFIX Prefix;
+   UCHAR Data[16];
+ } DATA_EXTENSION_CHECKSUM,
+  *PDATA_EXTENSION_CHECKSUM;
+</pre></div>
+</dd></dl><p><b>Prefix:</b>  Contains a <a href="ad6ee4ae-4a85-4e66-a2a7-45495426da20" data-linktype="relative-path">DATA_EXTENSION_PREFIX</a>
+structure, as specified in section 2.2.3.8 element. The <b>Size</b> member of
+the DATA_EXTENSION_PREFIX structure MUST be set to 0x18. The <b>Type</b> field
+of the DATA_EXTENSION_PREFIX structure MUST be set to 1 to indicate the use of <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_05caca9b-e062-4a6b-8c99-cd5e23f38a11" data-linktype="relative-path">MD5 hashing</a>.</p><p><b>Data:</b>  MUST be a 128-bit MD5 digest
+of <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_64afafeb-a356-4bd0-8993-9c3326dcd8a0" data-linktype="relative-path">staging file</a> and
+attributes, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90275" data-linktype="external">[RFC1321]</a>. See section
+<a href="d61d605a-af2b-4288-9735-a1784cdc28a6" data-linktype="relative-path">2.2.3.10</a> for how the
+MD5 digest is constructed on a staging file and attributes.</p></div>

@@ -1,1 +1,18 @@
-<div class="content"></div>
+<div class="content"><p>The IWindowsDriverUpdate::DriverProvider (opnum 57) method
+retrieves the language-invariant name of the provider of this driver.</p><dl>
+<dd>
+<div><pre> HRESULT DriverProvider(
+   [out, retval] BSTR* retval
+ );
+</pre></div>
+</dd></dl><p><b>retval: </b>A string containing the
+language-invariant name of the provider of this driver.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method SHOULD return the string returned by a call to
+the <b>DriverProvider</b> method on the <b>IWindowsDriverUpdateEntry</b>
+instance referred to by the <b>DefaultWindowsDriverUpdateEntry</b> ADM element.</p></div>

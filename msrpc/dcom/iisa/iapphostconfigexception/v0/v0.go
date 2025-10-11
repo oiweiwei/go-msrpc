@@ -49,25 +49,154 @@ type AppHostConfigExceptionClient interface {
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
 
-	// LineNumber operation.
+	// The LineNumber (opnum 3) method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns a specific line number that might provide more detail
+	// regarding the location of the error in the hierarchy of the administration system.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetLineNumber(context.Context, *GetLineNumberRequest, ...dcerpc.CallOption) (*GetLineNumberResponse, error)
 
-	// FileName operation.
+	// The FileName method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a file name that can provide more detail regarding the location
+	// of the error in the hierarchy of the administration system.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrFileName MUST NOT be NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetFileName(context.Context, *GetFileNameRequest, ...dcerpc.CallOption) (*GetFileNameResponse, error)
 
 	// ConfigPath operation.
 	GetConfigPath(context.Context, *GetConfigPathRequest, ...dcerpc.CallOption) (*GetConfigPathResponse, error)
 
-	// ErrorLine operation.
+	// The ErrorLine method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a textual representation of the specific data in the administration
+	// system that is causing the error.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrErrorLine MUST NOT be NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetErrorLine(context.Context, *GetErrorLineRequest, ...dcerpc.CallOption) (*GetErrorLineResponse, error)
 
-	// PreErrorLine operation.
+	// The PreErrorLine method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a textual representation of the data that precedes the specific
+	// data in the administration system that is causing the error.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrPreErrorLine MUST NOT be NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetPreErrorLine(context.Context, *GetPreErrorLineRequest, ...dcerpc.CallOption) (*GetPreErrorLineResponse, error)
 
-	// PostErrorLine operation.
+	// The PostErrorLine method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a textual representation of the data that follows the specific
+	// data in the administration system that is causing the error.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrPostErrorLine MUST NOT be NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetPostErrorLine(context.Context, *GetPostErrorLineRequest, ...dcerpc.CallOption) (*GetPostErrorLineResponse, error)
 
-	// ErrorString operation.
+	// The ErrorString method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a description of the error that occurred in the administration
+	// system.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrErrorString MUST NOT be NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetErrorString(context.Context, *GetErrorStringRequest, ...dcerpc.CallOption) (*GetErrorStringResponse, error)
 
 	// AlterContext alters the client context.
@@ -440,8 +569,9 @@ func (o *GetLineNumberRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetLineNumberResponse structure represents the LineNumber operation response
 type GetLineNumberResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	LineNumberCount uint32         `idl:"name:pcLineNumber" json:"line_number_count"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pcLineNumber: Contains the line number.
+	LineNumberCount uint32 `idl:"name:pcLineNumber" json:"line_number_count"`
 	// Return: The LineNumber return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -681,8 +811,9 @@ func (o *GetFileNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // GetFileNameResponse structure represents the FileName operation response
 type GetFileNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That     *dcom.ORPCThat `idl:"name:That" json:"that"`
-	FileName *oaut.String   `idl:"name:pbstrFileName" json:"file_name"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrFileName: Contains the file name.
+	FileName *oaut.String `idl:"name:pbstrFileName" json:"file_name"`
 	// Return: The FileName return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1163,8 +1294,9 @@ func (o *GetErrorLineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 // GetErrorLineResponse structure represents the ErrorLine operation response
 type GetErrorLineResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ErrorLine *oaut.String   `idl:"name:pbstrErrorLine" json:"error_line"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrErrorLine: Contains the error data.
+	ErrorLine *oaut.String `idl:"name:pbstrErrorLine" json:"error_line"`
 	// Return: The ErrorLine return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1406,8 +1538,9 @@ func (o *GetPreErrorLineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // GetPreErrorLineResponse structure represents the PreErrorLine operation response
 type GetPreErrorLineResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PreErrorLine *oaut.String   `idl:"name:pbstrPreErrorLine" json:"pre_error_line"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrPreErrorLine: Contains the error data.
+	PreErrorLine *oaut.String `idl:"name:pbstrPreErrorLine" json:"pre_error_line"`
 	// Return: The PreErrorLine return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1649,8 +1782,9 @@ func (o *GetPostErrorLineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // GetPostErrorLineResponse structure represents the PostErrorLine operation response
 type GetPostErrorLineResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PostErrorLine *oaut.String   `idl:"name:pbstrPostErrorLine" json:"post_error_line"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrPostErrorLine: Contains the error data.
+	PostErrorLine *oaut.String `idl:"name:pbstrPostErrorLine" json:"post_error_line"`
 	// Return: The PostErrorLine return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1892,8 +2026,9 @@ func (o *GetErrorStringRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetErrorStringResponse structure represents the ErrorString operation response
 type GetErrorStringResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ErrorString *oaut.String   `idl:"name:pbstrErrorString" json:"error_string"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrErrorString: Contains the error description.
+	ErrorString *oaut.String `idl:"name:pbstrErrorString" json:"error_string"`
 	// Return: The ErrorString return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

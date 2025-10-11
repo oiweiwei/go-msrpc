@@ -1,1 +1,17 @@
-<div class="content"></div>
+<div class="content"><p>The OperationResultCode enumeration defines values that
+describe the result of an update operation.</p><dl>
+<dd>
+<div><pre> typedef  enum tagOperationResultCode
+ {
+   orcNotStarted = 0,
+   orcInProgress = 1,
+   orcSucceeded = 2,
+   orcSucceededWithErrors = 3,
+   orcFailed = 4,
+   orcAborted = 5,
+ } OperationResultCode;
+</pre></div>
+</dd></dl><p><b>orcNotStarted:  </b>The operation is not started.</p><p><b>orcInProgress:  </b>The operation is in progress.</p><p><b>orcSucceeded:  </b>The operation was completed
+successfully.</p><p><b>orcSucceededWithErrors:  </b>The operation is
+complete, but one or more errors occurred during the operation. The results
+might be incomplete.</p><p><b>orcFailed:  </b>The operation failed to complete.</p><p><b>orcAborted:  </b>The operation is canceled.</p></div>

@@ -31,8 +31,35 @@ type UpdateIdentityServer interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
+	// The IUpdateIdentity::RevisionNumber method retrieves the revision number of the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the RevisionNumber ADM element.
 	GetRevisionNumber(context.Context, *GetRevisionNumberRequest) (*GetRevisionNumberResponse, error)
 
+	// The IUpdateIdentity::UpdateID (opnum 9) method retrieves a globally unique string
+	// identifying the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the UpdateID ADM element.
 	GetUpdateID(context.Context, *GetUpdateIDRequest) (*GetUpdateIDResponse, error)
 }
 

@@ -1,0 +1,28 @@
+<div class="content"><p>The IAppHostConstantValue <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides methods
+that access the string names of a specific constant and its corresponding
+value.</p><p>The IAppHostConstantValue interface inherits opnums 0–2 from
+the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="81d6f61e-5fc3-4dc7-84e0-02e8c95d7186" data-linktype="relative-path">Name</a></p>
+  </td>
+  <td>
+  <p>Opnum: 3</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="dc6abfa9-0c75-4a6b-be3f-c2d164823033" data-linktype="relative-path">Value</a></p>
+  </td>
+  <td>
+  <p>Opnum: 4</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

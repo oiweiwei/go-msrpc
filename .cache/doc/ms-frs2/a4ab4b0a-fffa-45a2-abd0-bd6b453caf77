@@ -1,1 +1,17 @@
-<div class="content"></div>
+<div class="content"><p>The VERSION_REQUEST_TYPE enumerated value is used to
+indicate what role the client version vector request has. For more information
+on version vectors see <a href="../ms-frs1/0fa4f914-9442-4b49-93cc-038674a333f1" data-linktype="relative-path">[MS-FRS1]</a>
+section <a href="../ms-frs1/63e5f8af-dcb1-4d84-8732-b3a5d4598675" data-linktype="relative-path">3.1.1.11</a>.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   REQUEST_NORMAL_SYNC = 0,
+   REQUEST_SLOW_SYNC = 1,
+   REQUEST_SUBORDINATE_SYNC = 2
+ } VERSION_REQUEST_TYPE;
+</pre></div>
+</dd></dl><p><b>REQUEST_NORMAL_SYNC:  </b>Indicates that the
+client requests a version vector from the server for standard synchronization.</p><p><b>REQUEST_SLOW_SYNC:  </b>Indicates that the client
+requests a version vector from the server for <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_ae57a184-1a13-48a5-87d7-3f140cc671e8" data-linktype="relative-path">Slow Sync</a>.</p><p><b>REQUEST_SUBORDINATE_SYNC:  </b>Indicates that the
+client requests a version vector from the server for <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_f5025d4e-5211-4722-a5d8-38649090741a" data-linktype="relative-path">selective single master</a>
+mode.</p></div>

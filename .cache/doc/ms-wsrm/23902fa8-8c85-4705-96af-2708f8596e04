@@ -1,1 +1,50 @@
-<div class="content"></div>
+<div class="content"><p>The GetCalendarInfo method gets information about one or all
+calendar events.</p><dl>
+<dd>
+<div><pre> [id(1), helpstring(&#34;method GetCalendarInfo&#34;)] HRESULT GetCalendarInfo(
+   [in] BSTR bstrCalendarName,
+   [out] BSTR* pbstrCalendarXML
+ );
+</pre></div>
+</dd></dl><p><b>bstrCalendarName: </b>A string that specifies the
+name of the calendar event for which information will be returned. If the
+string is &#34;\&#34;, all calendar events are specified.</p><p><b>pbstrCalendarXML: </b>A pointer to a string that
+returns the specified calendar information, in the form of a <a href="c7483312-afa9-4c74-a428-65dd1b96bfa5" data-linktype="relative-path">Calendar</a> element (section
+2.2.5.7). For an example, see the <a href="1fd26c60-e8c3-432c-805a-48fa5407ea34" data-linktype="relative-path">Calendar</a> example  (section
+4.2.6).</p><p>If <b>bstrCalendarName</b> is &#34;\&#34;, all
+calendar events MUST be returned, in the form of a <a href="3117bbe3-df29-4392-a7b7-1e790073e9d2" data-linktype="relative-path">Calendars</a> element (section
+2.2.5.10). For an example, see the <a href="b6933447-8dbb-4034-a08b-81ac22c636c5" data-linktype="relative-path">Calendars</a> example (section
+4.2.7).</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="b573c233-e3b6-4179-896f-90a4eb0ca8ff" data-linktype="relative-path">IWRMCalendar</a> interface
+methods are specified in section 3.2.4.4.</p></div>

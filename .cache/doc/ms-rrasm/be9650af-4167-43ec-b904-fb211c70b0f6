@@ -1,1 +1,28 @@
-<div class="content"></div>
+<div class="content"><p>The routing and remote access service (RRAS) server
+management (RRASM) protocol enables remote management (configuration and
+monitoring) of a RRAS implementation. The RRAS implementation here refers to
+the components that can be configured to provide the following functionality:</p><ul><li><p><span><span> 
+</span></span>Routing</p>
+</li><li><p><span><span> 
+</span></span>Remote access service</p>
+</li><li><p><span><span> 
+</span></span>Site-to-site connectivity</p>
+</li></ul><p>The RRASM protocol is a client/server protocol based on
+remote procedure call (RPC). It comprises RPC methods that enable the remote
+management of an RRAS implementation.</p><p>It also specifies Distributed Component Object Model (DCOM)
+interfaces that enable the remote management of RRAS implementation. As a part
+of remote management of RRAS implementation, a management application uses the
+RPC and DCOM methods to manage the RRAS implementation actively (while RRAS is
+running).</p><p>This protocol also specifies the registry information that
+can be used to specify the overall RRAS configuration. These registry settings
+can be managed remotely using the [MS-RRP] protocol. When RRAS is not active,
+the configurations are managed through the registry information.</p><p>Additionally, for site-to-site connectivity, the settings to
+be used to connect to a remote site are specified in the form of a phonebook
+file. This protocol also specifies the format of the phonebook file used by
+RRAS server. The management application can use the phonebook file format to
+specify the connection configuration to be used for site-to-site connections.</p><p>The client-side Remote Access Service (RAS) is a
+point-to-point or point-to-site service that is not in the RRASM protocol. See
+legacy information in <a href="https://go.microsoft.com/fwlink/?linkid=2150994" data-linktype="external">[MSDOCS-RRAS]</a>
+and <a href="https://go.microsoft.com/fwlink/?linkid=2150995" data-linktype="external">[MSDOCS-RA-API]</a>.
+RAS client uses a different phonebook file; see legacy information in <a href="https://go.microsoft.com/fwlink/?linkid=2151383" data-linktype="external">[MSDOCS-RASpbk]</a>.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are normative.
+All other sections and examples in this specification are informative.</p></div>

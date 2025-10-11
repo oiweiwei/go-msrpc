@@ -51,10 +51,76 @@ type AppHostConfigManagerClient interface {
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
 
-	// GetConfigFile operation.
+	// The GetConfigFile method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns an IAppHostConfigFile for the specific hierarchy path.
+	//
+	// The administration system implementation can choose to fail if the specified hierarchy
+	// path does not have an IAppHostConfigFile container for it. Or it can choose to succeed
+	// and create an empty IAppHostConfigFile container instead.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppConfigFile is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                                            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                                    |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070013 ERROR_INVALID_DATA      | Configuration data or schema on the server are malformed or corrupted.           |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070002 ERROR_FILE_NOT_FOUND    | The server resource (for example, a file or database) corresponding to           |
+	//	|                                    | bstrConfigPath could not be found.                                               |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070005 ERROR_ACCESS_DENIED     | Access to a server resource (for example, a file on a disk) was denied.          |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.                          |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
 	GetConfigFile(context.Context, *GetConfigFileRequest, ...dcerpc.CallOption) (*GetConfigFileResponse, error)
 
-	// GetUniqueConfigPath operation.
+	// The GetUniqueConfigPath method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns the deepest hierarchy path (up to the specified hierarchy
+	// path) that contains a unique set of IAppHostElement objects. For example:
+	//
+	// Assume: At hierarchy path A, a set of IAppHostElement objects exist.
+	//
+	// Assume: At hierarchy path B (deeper than A), the identical set of objects exists.
+	//
+	// Given these assumptions, GetUniqueConfigPath( B ) returns path A. In other words,
+	// the method returns the shallowest path that contains the identical set of IAppHostElement
+	// objects as the specified path.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrUniquePath is not NULL. If
+	// processing fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF].
+	// The following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+-------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                         |
+	//	|             VALUE/CODE             |                               DESCRIPTION                               |
+	//	|                                    |                                                                         |
+	//	+------------------------------------+-------------------------------------------------------------------------+
+	//	+------------------------------------+-------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                                   |
+	//	+------------------------------------+-------------------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                           |
+	//	+------------------------------------+-------------------------------------------------------------------------+
+	//	| 0X80070013 ERROR_INVALID_DATA      | Configuration data or schema on the server are malformed or corrupted.  |
+	//	+------------------------------------+-------------------------------------------------------------------------+
+	//	| 0X00000002 ERROR_PATH_NOT_FOUND    | A server resource (for example, a file on a disk) could not be found.   |
+	//	+------------------------------------+-------------------------------------------------------------------------+
+	//	| 0X80070005 ERROR_ACCESS_DENIED     | Access to a server resource (for example, a file on a disk) was denied. |
+	//	+------------------------------------+-------------------------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.                 |
+	//	+------------------------------------+-------------------------------------------------------------------------+
 	GetUniqueConfigPath(context.Context, *GetUniqueConfigPathRequest, ...dcerpc.CallOption) (*GetUniqueConfigPathResponse, error)
 
 	// AlterContext alters the client context.
@@ -375,8 +441,9 @@ func (o *xxx_GetConfigFileOperation) UnmarshalNDRResponse(ctx context.Context, w
 // GetConfigFileRequest structure represents the GetConfigFile operation request
 type GetConfigFileRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ConfigPath *oaut.String   `idl:"name:bstrConfigPath" json:"config_path"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrConfigPath: The hierarchy path for the IAppHostConfigFile to retrieve.
+	ConfigPath *oaut.String `idl:"name:bstrConfigPath" json:"config_path"`
 }
 
 func (o *GetConfigFileRequest) xxx_ToOp(ctx context.Context, op *xxx_GetConfigFileOperation) *xxx_GetConfigFileOperation {
@@ -413,7 +480,8 @@ func (o *GetConfigFileRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetConfigFileResponse structure represents the GetConfigFile operation response
 type GetConfigFileResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat          `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppConfigFile: Contains an IAppHostConfigFile object for the specified path.
 	ConfigFile *iisa.AppHostConfigFile `idl:"name:ppConfigFile" json:"config_file"`
 	// Return: The GetConfigFile return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -668,8 +736,9 @@ func (o *xxx_GetUniqueConfigPathOperation) UnmarshalNDRResponse(ctx context.Cont
 // GetUniqueConfigPathRequest structure represents the GetUniqueConfigPath operation request
 type GetUniqueConfigPathRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ConfigPath *oaut.String   `idl:"name:bstrConfigPath" json:"config_path"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrConfigPath: The hierarchy path for which to find the shallowest equivalent path.
+	ConfigPath *oaut.String `idl:"name:bstrConfigPath" json:"config_path"`
 }
 
 func (o *GetUniqueConfigPathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUniqueConfigPathOperation) *xxx_GetUniqueConfigPathOperation {
@@ -706,8 +775,9 @@ func (o *GetUniqueConfigPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 // GetUniqueConfigPathResponse structure represents the GetUniqueConfigPath operation response
 type GetUniqueConfigPathResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	UniquePath *oaut.String   `idl:"name:pbstrUniquePath" json:"unique_path"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrUniquePath: Contains the shallowest equivalent path.
+	UniquePath *oaut.String `idl:"name:pbstrUniquePath" json:"unique_path"`
 	// Return: The GetUniqueConfigPath return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

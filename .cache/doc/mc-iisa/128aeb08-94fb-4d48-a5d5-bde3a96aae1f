@@ -1,0 +1,57 @@
+<div class="content"><p>The Collection method is received by the server in an
+RPC_REQUEST packet. In response, the server returns an <a href="5b32b6df-8364-4ba9-8d04-bfe0a4891a57" data-linktype="relative-path">IAppHostElementCollection</a>
+that represents a collection of &#34;collection IAppHostElement&#34; objects.
+If the specific <a href="59774887-09e3-4de5-ad8e-4794f404b123" data-linktype="relative-path">IAppHostElement</a>
+does not support this type of child object, it indicates this in the return.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT Collection(
+   [out, retval] IAppHostElementCollection** ppCollection
+ );
+</pre></div>
+</dd></dl><p><b>ppCollection: </b>Contains an
+IAppHostElementCollection that represents the collection child elements. If the
+specific IAppHostElement does not support this type of child element, this
+parameter is NULL.</p><p><b>Return Values: </b>The server MUST return zero if
+it successfully processes the message that is received from the client. If
+processing fails, the server MUST return a nonzero <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+code as defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following table describes the error conditions that MUST be handled and the
+corresponding error codes. A server MAY return additional
+implementation-specific error codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0X00000000</p>
+  <p>NO_ERROR</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One or more parameters are incorrect or null.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X80070013</p>
+  <p>ERROR_INVALID_DATA</p>
+  </td>
+  <td>
+  <p>Configuration data or schema on the server are
+  malformed or corrupted.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

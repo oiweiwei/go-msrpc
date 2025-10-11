@@ -1,1 +1,16 @@
-<div class="content"></div>
+<div class="content"><p>The <b>ROUTER_CONNECTION_STATE</b> type enumerates the
+possible states of an interface on the RRAS server.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   ROUTER_IF_STATE_UNREACHABLE,
+   ROUTER_IF_STATE_DISCONNECTED,
+   ROUTER_IF_STATE_CONNECTING,
+   ROUTER_IF_STATE_CONNECTED
+ } ROUTER_CONNECTION_STATE;
+</pre></div>
+</dd></dl><p><b>ROUTER_IF_STATE_UNREACHABLE: </b>The interface is
+unreachable.</p><p><b>ROUTER_IF_STATE_DISCONNECTED: </b>The interface is
+reachable but disconnected.</p><p><b>ROUTER_IF_STATE_CONNECTING: </b>The interface is
+in the process of connecting.</p><p><b>ROUTER_IF_STATE_CONNECTED: </b>The interface is
+connected.</p></div>

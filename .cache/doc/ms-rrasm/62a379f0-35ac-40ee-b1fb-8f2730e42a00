@@ -1,1 +1,46 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IGMP_MIB_GROUP_INFO_V3</b> provides information about
+a group.</p><dl>
+<dd>
+<div><pre> typedef struct _IGMP_MIB_GROUP_INFO_V3 
+ {
+   union {
+     DWORD IfIndex;
+     DWORD GroupAddr;
+   };
+   DWORD IpAddr;
+   DWORD GroupUpTime;
+   DWORD GroupExpiryTime;
+   DWORD LastReporter;
+   DWORD V1HostPresentTimeLeft;
+   DWORD Flags;
+   DWORD Version;
+   DWORD Size;
+   DWORD FilterType;
+   DWORD V2HostPresentTimeLeft;
+   DWORD NumSources;
+ } IGMP_MIB_GROUP_INFO_V3,
+  *PIGMP_MIB_GROUP_INFO_V3;
+</pre></div>
+</dd></dl><p><b>IfIndex: </b>The interface for which this entry
+contains information for an IP multicast group address.</p><p><b>GroupAddr: </b>The IP multicast group address for
+which this entry contains information.</p><p><b>IpAddr: </b>The IP address of the interface.</p><p><b>GroupUpTime: </b>The time, in seconds, since the
+group membership was up.</p><p><b>GroupExpiryTime: </b>The time, in seconds, before
+the group membership expires.</p><p><b>LastReporter: </b>The IP address of the source of
+the last membership report received for this IP multicast group address on this
+interface. If no membership report has been received, this object has the value
+0.0.0.0.</p><p><b>V1HostPresentTimeLeft: </b>The time remaining
+until the local router will assume that there are no longer any IGMP version 1
+members on the IP subnet attached to this interface. Upon hearing any IGMPv1
+membership report, this value is reset to the group membership timer. While
+this time remaining is nonzero, the local router ignores any IGMPv1 leave
+messages for this group that it receives on this interface.</p><p><b>Flags: </b>This MUST be 0x1000 if IGMPv3
+information is available and a <b>IGMP_MIB_GROUP_INFO_V3</b> structure MUST be
+used. All other values have no meaning.</p><p><b>Version: </b>The IGMP version. It MUST be 3.</p><p><b>Size: </b>The size of the structure.</p><p><b>FilterType: </b>Indicates whether the sources
+specified need to be included or excluded. It MUST be either EXCLUSION
+(0x00000000) or INCLUSION (0x00000001).</p><p><b>V2HostPresentTimeLeft: </b>The time remaining
+until the local router will assume that there are no longer any IGMP version 2
+members on the IP subnet attached to this interface. Upon hearing any IGMPv2
+membership report, this value is reset to the group membership timer. While
+this time remaining is nonzero, the local router ignores any IGMPv2 leave
+messages for this group that it receives on this interface.</p><p><b>NumSources: </b>The number of entries of <b>IGMP_MIB_GROUP_SOURCE_INFO_V3</b>.</p><p><b>Sources: </b>The <b>IGMP_MIB_GROUP_SOURCE_INFO_V3</b>
+structure (section <a href="47c47dd8-a2ec-454a-a701-d7127bb60a3a" data-linktype="relative-path">2.2.1.2.179</a>).</p></div>

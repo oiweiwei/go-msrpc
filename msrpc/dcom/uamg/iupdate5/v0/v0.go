@@ -49,8 +49,42 @@ type Update5Client interface {
 	// IUpdate4 retrieval method.
 	Update4() iupdate4.Update4Client
 
+	// The IWindowsDriverUpdate5::AutoSelection (opnum 68) method retrieves a value describing
+	// when the update is recommended to be selected automatically in the UI.
+	//
+	// The IUpdate5::AutoSelection (opnum 59) method retrieves a value describing when the
+	// update is recommended to be selected automatically in a user interface.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the AutoSelection ADM element.
 	GetAutoSelection(context.Context, *GetAutoSelectionRequest, ...dcerpc.CallOption) (*GetAutoSelectionResponse, error)
 
+	// The IUpdate5::AutoDownload (opnum 60) method retrieves a value describing when the
+	// update is recommended to be downloaded automatically.
+	//
+	// The IWindowsDriverUpdate5::AutoDownload (opnum 69) method retrieves a value describing
+	// when the update is recommended to be downloaded automatically.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the AutoDownload ADM element.
 	GetAutoDownload(context.Context, *GetAutoDownloadRequest, ...dcerpc.CallOption) (*GetAutoDownloadResponse, error)
 
 	// AlterContext alters the client context.
@@ -323,7 +357,12 @@ func (o *GetAutoSelectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // GetAutoSelectionResponse structure represents the AutoSelection operation response
 type GetAutoSelectionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat         `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An AutoSelectionMode (section 2.2.6) enumeration value that specifies the
+	// recommendation for whether the update is to be selected automatically in a user interface.
+	//
+	// retval: An AutoSelectionMode (section 2.2.6) enumeration value that specifies whether
+	// the update is to be selected automatically in a user interface.
 	ReturnValue uamg.AutoSelectionMode `idl:"name:retval" json:"return_value"`
 	// Return: The AutoSelection return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -530,7 +569,9 @@ func (o *GetAutoDownloadRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // GetAutoDownloadResponse structure represents the AutoDownload operation response
 type GetAutoDownloadResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat        `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An AutoDownloadMode (section 2.2.7) enumeration value that specifies the
+	// recommendation for whether the update is to be downloaded automatically.
 	ReturnValue uamg.AutoDownloadMode `idl:"name:retval" json:"return_value"`
 	// Return: The AutoDownload return value.
 	Return int32 `idl:"name:Return" json:"return"`

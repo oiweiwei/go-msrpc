@@ -1,1 +1,207 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IGMP_MIB_GET_OUTPUT_DATA</b> structure is written
+into the output data on calling the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="9102e585-2f62-4408-bfb6-02a6460cc883" data-linktype="relative-path"><b>RMIBEntryGetFirst (section 3.1.4.31)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="50f78033-d248-4272-b4b9-a2519a0f304d" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.1.4.32)</b></a><span>  </span></p>
+</li></ul><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TypeID</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Count</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Buffer
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>TypeID (4 bytes): </b>Specifies the type of entry
+being populated.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IGMP_IF_STATS_ID</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Returns the statistics for an interface, see <a href="819a2393-e15e-403d-b79e-dcc881049a29" data-linktype="relative-path"><b>IGMP_MIB_IF_STATS</b></a>
+  for more details. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_IF_GROUPS_LIST_ID</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Returns the list of multicast group members on an
+  interface, <a href="8fc7a277-b135-47e2-af2a-65d16cb8f8ad" data-linktype="relative-path"><b>IGMP_MIB_IF_GROUPS_LIST</b></a>.
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_GROUP_IFS_LIST_ID</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>Returns the list of interfaces joined for that group, <a href="9fb8b42d-3f12-4909-b0e0-8fa7c20b58d2" data-linktype="relative-path"><b>IGMP_MIB_GROUP_IFS_LIST</b></a>.
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_PROXY_IF_INDEX_ID</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>Returns the index of interface owned by the IGMP
+  proxy.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Flags (4 bytes): </b>This MUST be a combination of
+the following flags.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IGMP_ENUM_FOR_RAS_CLIENTS</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Enumerate for RAS clients only.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_ENUM_ONE_ENTRY</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Returns only one interface group entry.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_ENUM_ALL_INTERFACES_GROUPS</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Enumerate all interfaces. If the enumeration reaches
+  the end of an interface, it will go to the next interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_ENUM_ALL_TABLES</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Enumerate all tables.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_ENUM_SUPPORT_FORMAT_IGMPV3</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Set if IGMPv3 is supported.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_ENUM_INTERFACE_TABLE_BEGIN</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>Indicates the beginning of the table.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_ENUM_INTERFACE_TABLE_CONTINUE</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>The enumeration for the interface has to continue.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_ENUM_INTERFACE_TABLE_END</p>
+  <p>0x00000400</p>
+  </td>
+  <td>
+  <p>End of the enumeration for the interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_ENUM_FORMAT_IGMPV3</p>
+  <p>0x00001000</p>
+  </td>
+  <td>
+  <p>A set of IGMPv3 information is present.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Count (4 bytes): </b>The number of entries being
+returned.</p><p><b>Buffer (variable): </b>One of the structures
+specified previously depending on the <b>TypeId</b>.</p></div>

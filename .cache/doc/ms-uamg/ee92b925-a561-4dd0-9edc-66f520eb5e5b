@@ -1,1 +1,23 @@
-<div class="content"></div>
+<div class="content"><p>The IUpdateServiceCollection::Item (opnum 8) method
+retrieves an item from the collection by index.</p><dl>
+<dd>
+<div><pre> HRESULT Item(
+   [in] LONG index,
+   [out, retval] IUpdateService** retval
+ );
+</pre></div>
+</dd></dl><p><b>index: </b>The zero-based index of the item to
+retrieve.</p><p><b>retval: </b>The item at the given <i>index</i>.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><dl>
+<dd>
+<p>If the <i>index</i> is less than
+0x00000000 or greater than or equal to the number of items in the collection,
+the server MUST return an error.</p>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method SHOULD return the item at the given <i>index</i>
+in the <b>List</b> ADM element.</p></div>

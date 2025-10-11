@@ -1,1 +1,33 @@
-<div class="content"></div>
+<div class="content"><p>The EfsRpcRemoveUsersFromFile method is used to revoke a user&#39;s
+access to an encrypted object. This method revokes the ability of the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private key</a> corresponding
+to a given <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_2069b65d-b546-4198-abfd-768badc2258e" data-linktype="relative-path">X.509</a> <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> to decrypt the
+object.</p><dl>
+<dd>
+<div><pre> DWORD EfsRpcRemoveUsersFromFile(
+   [in] handle_t binding_h,
+   [in, string] wchar_t* FileName,
+   [in] ENCRYPTION_CERTIFICATE_HASH_LIST* Users
+ );
+</pre></div>
+</dd></dl><p><b>binding_h: </b>This is an <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_1cf35308-abab-4123-9cbd-99c42dc9a6ff" data-linktype="relative-path">binding</a> handle parameter,
+as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+and <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a>.</p><p><b>FileName: </b>An EFSRPC identifier as specified in
+section <a href="9db7433f-be13-4605-993f-3695a2d2916e" data-linktype="relative-path">2.2.1</a>.</p><p><b>Users: </b>A list of certificate hashes,
+represented by an <a href="2718804c-6ab9-45fd-98cf-541bc3b6bc75" data-linktype="relative-path">ENCRYPTION_CERTIFICATE_HASH_LIST</a>
+structure, whose access is to be removed.</p><p><b>Return Values: </b>The server MUST return 0 if it
+successfully processes the message received from the client. The server MUST
+return a nonzero value if processing fails.</p><dl>
+<dd>
+<p>If no object exists on the server with the specified
+name, or if the object exists and is not encrypted, the server MUST return a
+nonzero value. The server SHOULD verify that the calling user is authorized to
+access the object, SHOULD verify that the calling user possesses a private <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">key</a> corresponding to a user
+certificate present in the <a href="3166cf4a-e085-47be-94c6-b69bddf274ff" data-linktype="relative-path">EFSRPC
+Metadata</a> for the object, and MUST return a nonzero value if this
+verification fails. If the calling user is authorized to access the object and
+the set of user certificates on the object contains only one entry, the server
+MUST return a nonzero value.</p>
+</dd></dl><p>If none of the preceding errors occur, the server MUST
+remove the parts of the object&#39;s EFSRPC Metadata that refer to the user
+certificates listed in the Users structure.</p></div>

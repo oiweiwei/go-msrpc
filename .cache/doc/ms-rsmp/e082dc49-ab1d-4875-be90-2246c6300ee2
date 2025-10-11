@@ -1,1 +1,16 @@
-<div class="content"></div>
+<div class="content"><p>The NTMS_MOUNT_INFORMATION structure defines <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b" data-linktype="relative-path">mount</a> information for the
+management of removable storage libraries.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_MOUNT_INFORMATION {
+   DWORD dwSize;
+ #ifdef __midl
+   [ptr] LPNTMS_ASYNC_IO lpReserved;
+ #else
+   LPVOID lpReserved;
+ #endif
+ } NTMS_MOUNT_INFORMATION,
+  *LPNTMS_MOUNT_INFORMATION;
+</pre></div>
+</dd></dl><p><b>dwSize:</b>  The size, in bytes, of the
+structure.</p><p><b>lpReserved:</b>  Unused. This value MUST
+be NULL and MUST be ignored on receipt.</p></div>

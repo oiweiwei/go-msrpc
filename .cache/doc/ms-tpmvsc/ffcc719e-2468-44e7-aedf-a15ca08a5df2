@@ -1,1 +1,99 @@
-<div class="content"></div>
+<div class="content"><p>This structure is used to serialize a PIN policy for use by
+the ITpmVirtualSmartCardManager2 interface as specified in section <a href="2d3a5cb4-0909-4055-80d9-3f9c8160cd39" data-linktype="relative-path">3.3.4.1</a>.<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="9f9c883f-15f8-45be-affb-5c0bd13325a8#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a></p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">minLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">maxLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">uppercaseLettersPolicyOption</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">lowercaseLettersPolicyOption</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">digitsPolicyOption</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">specialCharactersPolicyOption</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">otherCharactersPolicyOption</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Reserved: </b> This reserved field contains a
+32-bit unsigned integer in little-endian encoding that MUST equal 1.</p><p><b>minLength: </b> The minimum length permitted for a
+PIN assigned to the new smart card, represented as a 32-bit unsigned integer in
+little-endian encoding.</p><p><b>maxLength: </b> The maximum length permitted for a
+PIN assigned to the new smart card, represented as a 32-bit unsigned integer in
+little-endian encoding.</p><p><b>uppercaseLettersPolicyOption: </b>A
+SmartCardPinCharacterPolicyOption, defined in section <a href="9e831ea1-3053-4188-a93c-e9d4e6259b5a" data-linktype="relative-path">2.2.1.3</a>, encoded in
+little-endian format. This value indicates whether uppercase letters are
+permitted in a PIN assigned to the new smart card. </p><p><b>lowercaseLettersPolicyOption: </b>A
+SmartCardPinCharacterPolicyOption, defined in section 2.2.1.3, encoded in
+little-endian format. This value indicates whether lowercase letters are
+permitted in a PIN assigned to the new smart card.</p><p><b>digitsPolicyOption: </b>A
+SmartCardPinCharacterPolicyOption, defined in section 2.2.1.3, encoded in
+little-endian format. This value indicates whether numeric digits are permitted
+in a PIN assigned to the new smart card.</p><p><b>specialCharactersPolicyOption: </b>A
+SmartCardPinCharacterPolicyOption, defined in section 2.2.1.3, encoded in
+little-endian format. This value indicates whether printable ASCII characters
+other than digits and letters are permitted in a PIN assigned to the new smart
+card.</p><p><b>otherCharactersPolicyOption: </b>A
+SmartCardPinCharacterPolicyOption, defined in section 2.2.1.3, encoded in
+little-endian format. This value indicates whether all byte values are
+permitted in a PIN assigned to the new smart card, including non-printable
+ASCII characters and character codes from 0x80 through 0xFF.</p></div>

@@ -1,1 +1,78 @@
-<div class="content"></div>
+<div class="content"><p>The <b>BGP_POLICY_MODIFY</b> structure<a id="Appendix_A_Target_188"></a><a aria-label="Product behavior note 188" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_188" data-linktype="relative-path">&lt;188&gt;</a> specifies an attribute of the
+BGP route that MUST be modified if the policy is matched.</p><dl>
+<dd>
+<div><pre> typedef struct _BGP_POLICY_MODIFY  {
+   BGP_POLICY_MODIFY_ATTR_TYPE eAttrType;
+   union {
+     DWORD dwCommunity;
+     DWORD dwLocalPref;
+     BGP_IP_ADDRESS nextHop;
+     DWORD dwMed;
+   } ModifyAttr;
+ } BGP_POLICY_MODIFY,
+  *PBGP_POLICY_MODIFY;
+</pre></div>
+</dd></dl><p><b>eAttrType: </b>Specifies the attribute type that
+is used to modify a BGP route. This value MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>AddCommunity</p>
+  <p>(0x1)</p>
+  </td>
+  <td>
+  <p>A community attribute with the value specified in the <b>dwCommunity</b>
+  field is added to the BGP route.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RemoveCommunity</p>
+  <p>(0x2)</p>
+  </td>
+  <td>
+  <p>A community attribute with the value specified in the <b>dwCommunity</b>
+  field is removed from the BGP route (if present).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NewLocalPref</p>
+  <p>(0x3)</p>
+  </td>
+  <td>
+  <p>A Local preference attribute with the value specified
+  in the <b>dwLocalPref</b> field is added or modified to the BGP route.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NewNextHop</p>
+  <p>(0x4)</p>
+  </td>
+  <td>
+  <p>The next hop specified in the <b>nextHop</b> field is
+  updated to the BGP route.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NewMed</p>
+  <p>(0x5)</p>
+  </td>
+  <td>
+  <p>The <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_5b00ad13-368b-4290-a5a1-c65e16edf60e" data-linktype="relative-path">MED</a>
+  attribute in the BGP route is updated with the MED attribute specified in the
+  <b>dwMed</b> field.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwCommunity: </b>Specifies the value of the
+community attribute used to modify a BGP route.</p><p><b>dwLocalPref: </b>Specifies the value of the local
+preference that is used to modify the path attribute of a BGP route. </p><p><b>nextHop: </b>Specifies the value of the next hop
+that is used to modify the path attribute of a BGP route</p><p><b>dwMed: </b>Specifies the value of the MED that is
+used to modify the MED attribute of a BGP route.</p></div>

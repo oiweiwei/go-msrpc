@@ -1,0 +1,12 @@
+<div class="content"><p>The BOID structure specifies a value that uniquely identifies
+the unit of work for a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transactional</a>
+operation.</p><dl>
+<dd>
+<div><pre> typedef struct BOID {
+   unsigned char rgb[16];
+ } BOID;
+</pre></div>
+</dd></dl><p><b>rgb:</b>  An array of bytes that contain
+a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">globally unique identifier
+(GUID)</a> as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a>.</p></div>

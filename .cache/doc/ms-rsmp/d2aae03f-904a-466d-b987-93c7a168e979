@@ -1,1 +1,84 @@
-<div class="content"></div>
+<div class="content"><p> The IdentifyNtmsSlot method identifies the media in a storage
+<a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a1f0ab90-f3c0-46b8-9c77-d0d7508ede94" data-linktype="relative-path">slot</a>.</p><dl>
+<dd>
+<div><pre> HRESULT IdentifyNtmsSlot(
+   [in] LPNTMS_GUID lpSlotId,
+   [in] DWORD dwOption
+ );
+</pre></div>
+</dd></dl><p><b>lpSlotId: </b>A pointer to the identifier of the
+slot containing the media to identify </p><p><b>dwOption: </b>A value from the <a href="a5e8a819-69c1-4924-94da-27e26fdd981e" data-linktype="relative-path">NtmsDismountOptions (section 2.2.1.9)</a>
+enumeration specifying what to do with the media after identification is
+complete. If <i>dwOption</i> does not contain a valid value, the default value
+NTMS_DISMOUNT_IMMEDIATE is taken.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to an object was denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D1</p>
+  <p>ERROR_LIBRARY_OFFLINE</p>
+  </td>
+  <td>
+  <p>The library identifier refers to an offline library.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D8</p>
+  <p>ERROR_OBJECT_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The object was not found.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpSlotId</i>
+is not NULL and verify that <i>dwOption</i> is equal to either
+NTMS_DISMOUNT_DEFERRED, NTMS_DISMOUNT_IMMEDIATE, or 0. If parameter validation
+fails, the server MUST immediately fail the operation and return
+ERROR_INVALID_PARAMETER (0x80070057) as either the slot identifier or option is
+invalid.</p><p>If parameter validation succeeds, the server MUST check the
+access rights to the media, verify that the slot is valid, and determine the
+library that the slot belongs to. If the client does not have the required
+access rights, NTMS_CONTROL_ACCESS to the library is denied and the server MUST
+return ERROR_ACCESS_DENIED (0x80070005). Other security errors are possible,
+but they indicate a security subsystem error. If the slot is not valid, the
+server MUST return ERROR_OBJECT_NOT_FOUND (0x800710D8).</p><p>The library MUST be an online library to perform an
+inventory. If the library is offline, the server MUST return
+ERROR_LIBRARY_OFFLINE (0x800710D1.</p><p>The server then identifies the media in the specified slot.
+If the specified <i>dwOption</i> is equal to NTMS_DISMOUNT_DEFERRED, the server
+MUST leave the media in the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a>
+and mark it for deferred <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a8ebf8eb-a5f7-406a-b211-9f9c08ee15d3" data-linktype="relative-path">dismount</a>.
+If <i>dwOption</i> is set to NTMS_DISMOUNT_IMMEDIATE, the server MUST dismount
+the media immediately.</p><p>On completion of an asynchronous operation, notification
+will be sent with the identifier lpSlotId.</p></div>

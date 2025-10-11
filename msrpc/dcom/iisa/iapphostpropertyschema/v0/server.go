@@ -37,43 +37,288 @@ type AppHostPropertySchemaServer interface {
 	// Type operation.
 	GetType(context.Context, *GetTypeRequest) (*GetTypeResponse, error)
 
-	// DefaultValue operation.
+	// The DefaultValue method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns the system-wide default value for the specified property, as defined
+	// by the administration system.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-------------------------------------------------------------------+
+	//	|               RETURN               |                                                                   |
+	//	|             VALUE/CODE             |                            DESCRIPTION                            |
+	//	|                                    |                                                                   |
+	//	+------------------------------------+-------------------------------------------------------------------+
+	//	+------------------------------------+-------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                             |
+	//	+------------------------------------+-------------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                     |
+	//	+------------------------------------+-------------------------------------------------------------------+
+	//	| 0X80070032 ERROR_NOT_SUPPORTED     | The default value has a type that is not supported by the schema. |
+	//	+------------------------------------+-------------------------------------------------------------------+
 	GetDefaultValue(context.Context, *GetDefaultValueRequest) (*GetDefaultValueResponse, error)
 
-	// IsRequired operation.
+	// The IsRequired method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns whether the specified property is required to be set on the server
+	// when the parent IAppHostElement exists.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetIsRequired(context.Context, *GetIsRequiredRequest) (*GetIsRequiredResponse, error)
 
-	// IsUniqueKey operation.
+	// The IsUniqueKey method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns whether the specified property must be unique compared to all
+	// other properties of the peer collection of IAppHostElement objects. In other words,
+	// it applies only to properties that are members of the collection of IAppHostElement
+	// objects.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetIsUniqueKey(context.Context, *GetIsUniqueKeyRequest) (*GetIsUniqueKeyResponse, error)
 
-	// IsCombinedKey operation.
+	// The IsCombinedKey method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns whether the specified property is part of a group of properties
+	// that combine to be unique compared to all other properties of peer collection IAppHostElement
+	// objects. In other words, it applies only to properties that are members of collection
+	// IAppHostElement objects.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetIsCombinedKey(context.Context, *GetIsCombinedKeyRequest) (*GetIsCombinedKeyResponse, error)
 
-	// IsExpanded operation.
+	// The IsExpanded method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns whether the specified property supports being expanded on the
+	// server side to expand any embedded system environment variables.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetIsExpanded(context.Context, *GetIsExpandedRequest) (*GetIsExpandedResponse, error)
 
-	// ValidationType operation.
+	// The ValidationType method is received by the server in an RPC_REQUEST packet. In
+	// response, the server returns a string representing additional custom validation done
+	// when processing the corresponding property. The details of the validation are an
+	// implementation detail of the administration system.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// received from the client. In this case, *pbstrValidationType is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetValidationType(context.Context, *GetValidationTypeRequest) (*GetValidationTypeResponse, error)
 
-	// ValidationParameter operation.
+	// The ValidationParameter method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns any parameter that applies to the ValidationType
+	// of the specified property. Again, this is implementation-specific.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, pbstrValidationParameter is not NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetValidationParameter(context.Context, *GetValidationParameterRequest) (*GetValidationParameterResponse, error)
 
 	// GetMetadata operation.
 	GetMetadata(context.Context, *GetMetadataRequest) (*GetMetadataResponse, error)
 
-	// IsCaseSensitive operation.
+	// The IsCaseSensitive method is received by the server in an RPC_REQUEST packet. In
+	// response, the server returns whether the corresponding property is compared to others
+	// in a case-sensitive manner, when determining equality for key (combined/unique) evaluation.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetIsCaseSensitive(context.Context, *GetIsCaseSensitiveRequest) (*GetIsCaseSensitiveResponse, error)
 
-	// PossibleValues operation.
+	// The PossibleValues method is received by the server in an RPC_REQUEST packet. In
+	// response, the server returns a collection of the possible constant values for the
+	// specified property, if applicable. The administration system determines the applicability.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppValues is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetPossibleValues(context.Context, *GetPossibleValuesRequest) (*GetPossibleValuesResponse, error)
 
-	// DoesAllowInfinite operation.
+	// The DoesAllowInfinite method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns whether the property supports having an infinite
+	// value set.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetDoesAllowInfinite(context.Context, *GetDoesAllowInfiniteRequest) (*GetDoesAllowInfiniteResponse, error)
 
-	// IsEncrypted operation.
+	// The IsEncrypted method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns whether the corresponding IAppHostProperty will be encrypted when
+	// it is persisted in the administration system.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetIsEncrypted(context.Context, *GetIsEncryptedRequest) (*GetIsEncryptedResponse, error)
 
-	// TimeSpanFormat operation.
+	// The TimeSpanFormat method is received by the server in an RPC_REQUEST packet. In
+	// response, the server returns a format string that describes how the corresponding
+	// property is supposed to be formatted if the property represents a time span.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrTimeSpanFormat is not NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                        |
+	//	|             VALUE/CODE             |                              DESCRIPTION                               |
+	//	|                                    |                                                                        |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                                  |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                          |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.                |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X80070013 ERROR_INVALID_DATA      | Configuration data or schema on the server are malformed or corrupted. |
+	//	+------------------------------------+------------------------------------------------------------------------+
 	GetTimeSpanFormat(context.Context, *GetTimeSpanFormatRequest) (*GetTimeSpanFormatResponse, error)
 }
 

@@ -1,1 +1,48 @@
-<div class="content"></div>
+<div class="content"><p>The GetConditionalPolicy function returns conditions for a
+specified conditional policy.</p><dl>
+<dd>
+<div><pre> [id(14), helpstring(&#34;method GetConditionalPolicy&#34;)] HRESULT GetConditionalPolicy(
+   [in] BSTR bstrPolicyName,
+   [out] BSTR* pbstrPolicyInfo
+ );
+</pre></div>
+</dd></dl><p><b>bstrPolicyName: </b>The name of the conditional
+policy for which conditions are to be returned.<a id="Appendix_A_Target_111"></a><a aria-label="Product behavior note 111" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_111" data-linktype="relative-path">&lt;111&gt;</a></p><p><b>pbstrPolicyInfo: </b>A pointer to a string that
+returns the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_559b0a4d-161b-4664-9c10-4fab98b97f1f" data-linktype="relative-path">resource policy</a>
+conditions, in the form of a <a href="f00d308a-d050-4368-a663-b740f11087e5" data-linktype="relative-path">ConditionalPolicy
+element</a> (section 2.2.5.12). For an example, see <a href="11562c25-a21c-400a-84b5-2ca8e97bac47" data-linktype="relative-path">ConditionalPolicy example</a>
+(section 4.2.9).</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid or the specified
+  policy name is not found.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="a03f4cd5-ad33-46aa-94e7-2c9a92f02b6f" data-linktype="relative-path">IWRMPolicy</a> interface
+methods are specified in section 3.2.4.7.</p></div>

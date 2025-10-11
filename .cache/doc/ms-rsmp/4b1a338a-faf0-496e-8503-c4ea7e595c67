@@ -1,1 +1,32 @@
-<div class="content"></div>
+<div class="content"><p>The RSM_MESSAGE structure describes a message.</p><dl>
+<dd>
+<div><pre> typedef struct _RSM_MESSAGE {
+   [unique] LPGUID lpguidOperation;
+   DWORD dwNtmsType;
+   DWORD dwState;
+   DWORD dwFlags;
+   DWORD dwPriority;
+   DWORD dwErrorCode;
+   [string, unique] wchar_t* lpszComputerName;
+   [string] wchar_t* lpszApplication;
+   [string] wchar_t* lpszUser;
+   [string] wchar_t* lpszTimeSubmitted;
+   [string] wchar_t* lpszMessage;
+ } RSM_MESSAGE,
+  *LPRSM_MESSAGE;
+</pre></div>
+</dd></dl><p><b>lpguidOperation:</b>  A pointer to the
+identifier of the operation to which the message refers.</p><p><b>dwNtmsType:</b>  A value from the <a href="5b190198-a0cb-4e20-90a3-234009357051" data-linktype="relative-path">NtmsObjectsTypes (section 2.2.1.6)</a>
+enumeration specifying the type of object to which the message refers.</p><p><b>dwState:</b>  A value from the <a href="6a134167-f95b-4b75-95ca-d5d98dff34f9" data-linktype="relative-path">NtmsLmState (section 2.2.1.10)</a>
+enumeration specifying the state of the operation to which the message refers.</p><p><b>dwFlags:</b>  This parameter is unused.
+It MUST be 0 and MUST be ignored on receipt.</p><p><b>dwPriority:</b>  The priority of the
+message.</p><p><b>dwErrorCode:</b>  An
+implementation-specific, nonzero error code.</p><p><b>lpszComputerName:</b>  A null-terminated
+sequence of Unicode characters specifying the name of the computer from which
+the message was sent.</p><p><b>lpszApplication:</b>  A null-terminated
+sequence of Unicode characters specifying the name of the application sending
+the message.</p><p><b>lpszUser:</b>  A null-terminated
+sequence of Unicode characters specifying the name of the user sending the
+message.</p><p><b>lpszTimeSubmitted:</b>  The
+null-terminated time at which the message was created.</p><p><b>lpszMessage:</b>  The null-terminated
+description of the message.</p></div>

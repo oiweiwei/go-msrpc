@@ -1,1 +1,83 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPX_STATIC_SERVICE_INFO</b> structure MAY<a id="Appendix_A_Target_85"></a><a aria-label="Product behavior note 85" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_85" data-linktype="relative-path">&lt;85&gt;</a> be used to carry the IPX server
+information. When this structure is encapsulated in <a href="c99955ec-6d18-4665-8d5b-e124de63a368" data-linktype="relative-path"><b>RTR_TOC_ENTRY (section 2.2.1.2.4)</b></a>,
+the <b>InfoType</b> value used MUST be 0x00000003. </p><dl>
+<dd>
+<div><pre> typedef IPX_SERVER_ENTRY IPX_STATIC_SERVICE_INFO, *PIPX_STATIC_SERVICE_INFO;
+  
+ typedef struct _IPX_SERVER_ENTRY {
+   USHORT Type;
+   UCHAR Name[48];
+   UCHAR Network[4];
+   UCHAR Node[6];
+   UCHAR Socket[2];
+   USHORT HopCount;
+ } IPX_SERVER_ENTRY,
+  *PIPX_SERVER_ENTRY;
+</pre></div>
+</dd></dl><p><b>Type: </b>Indicates the contents of the payload
+portion of the IPX packet. It allows a number of client protocols to use the
+IPX and be identified by the IPX router. </p><dl>
+<dd>
+<p>Routers can <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_ffbe7b55-8e84-4f41-a18d-fc29191a4cda" data-linktype="relative-path">filter</a> the IPX traffic based
+on the Packet <b>Type</b> field. For example, some routers by default do not
+propagate NetBIOS over IPX broadcast traffic and MUST be manually configured to
+enable packets with a packet type value of 20. The following table lists some
+common defined values of the IPX packet type.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>Unspecified</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>RIP</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0004</p>
+  </td>
+  <td>
+  <p>SAP/Normal IPX</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0005</p>
+  </td>
+  <td>
+  <p>SPX</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0014</p>
+  </td>
+  <td>
+  <p>IPX WAN broadcast (used for NetBIOS over IPX
+  broadcasts)</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Name: </b>A null-terminated Unicode string giving
+the name of the interface.</p><p><b>Network: </b>This MUST be the 4-byte IPX network
+number in hexadecimal (8 hexadecimal digits).</p><p><b>Node: </b>Identifies a node on an IPX network. The
+6-byte fields can be used to store physical addresses, also known as media
+access control (MAC) addresses.</p><p><b>Socket: </b>Identifies the software process
+addresses of the destination and source applications. With multiple processes
+communicating between the same two computers, the IPX network and node numbers
+are the same. The IPX socket number is a software process identifier that is
+used to forward the IPX payload to the proper process.</p><p><b>HopCount: </b>This MUST be the number of routers
+to be traversed to get to the network number.</p></div>

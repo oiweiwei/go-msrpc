@@ -8,8 +8,8 @@
 </pre></div>
 </dd></dl><p><b>bstrXml: </b>Supplies a string that contains the
 XML specifying the data collector to create. The possible data collector
-definitions can be as follows: IPerformanceCounterDataCollector (section <a href="489d285e-94eb-46b2-8a53-b3501a61b572" data-linktype="relative-path">3.2.4.6</a>), IConfigurationDataCollector
-(section <a href="0f979443-9db2-4805-b2ea-e1540d8b0533" data-linktype="relative-path">3.2.4.7</a>),
+definitions can be as follows: IPerformanceCounterDataCollector (section <a href="489d285e-94eb-46b2-8a53-b3501a61b572" data-linktype="relative-path">3.2.4.6</a>),
+IConfigurationDataCollector (section <a href="0f979443-9db2-4805-b2ea-e1540d8b0533" data-linktype="relative-path">3.2.4.7</a>),
 IAlertDataCollector (section <a href="07d907e9-10ed-42f6-9135-9131657a240f" data-linktype="relative-path">3.2.4.8</a>),
 ITraceDataCollector (section <a href="94e049b9-532a-4c3a-ada2-43c75802e825" data-linktype="relative-path">3.2.4.9</a>),
 and IApiTracingDataCollector (section <a href="fed87908-2a85-4cf6-b4ac-723b81b00e1b" data-linktype="relative-path">3.2.4.10</a>). The XML for

@@ -1,1 +1,24 @@
-<div class="content"></div>
+<div class="content"><p>The IUpdate::Deadline (opnum 13) method retrieves the
+date-time before which the update is installed.</p><dl>
+<dd>
+<div><pre> HRESULT Deadline(
+   [out, retval] VARIANT* retval
+ );
+</pre></div>
+</dd></dl><p><b>retval: </b>Specifies the <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_f2369991-a884-4843-a8fa-1505b6d5ece7" data-linktype="relative-path">Coordinated
+Universal Time (UTC)</a></span> date-time by which the update is installed or
+uninstalled, depending upon its deployment action. If there is no deadline for
+this update, the <b>vt</b> field MUST be set to VT_EMPTY, as specified in <span><a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a></span>
+section <span><a href="../ms-oaut/3fe7db9f-5803-4dc4-9d14-5425d3f5461f" data-linktype="relative-path">2.2.7</a></span>.
+Otherwise, the <b>vt</b> member MUST be set to VT_DATE, and the date-time of
+the deadline is stored in the <b>date</b> field.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>If the <b>HasDeadline</b> ADM element is set to TRUE, the
+server SHOULD set the <b>vt</b> field of <i>retval</i> to VT_DATE and return
+the value of the <b>Deadline</b> ADM element in the date field of <i>retval</i>.</p><p>Otherwise, if the <b>HasDeadline</b> ADM element is set to
+FALSE, the server SHOULD set the <b>vt</b> field of <i>retval</i> to VT_EMPTY.</p></div>

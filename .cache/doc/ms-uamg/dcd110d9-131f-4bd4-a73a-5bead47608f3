@@ -1,1 +1,12 @@
-<div class="content"></div>
+<div class="content"><p>The UpdateServiceOption enumeration defines values that
+control how an <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_1692cfd4-4b1d-4566-9820-8171465bbc4b" data-linktype="relative-path">update service</a></span> is
+removed.</p><dl>
+<dd>
+<div><pre> typedef enum tagUpdateServiceOption
+ {
+   usoNonVolatileService = 0x00000001,
+ } UpdateServiceOption;
+</pre></div>
+</dd></dl><p><b>usoNonVolatileService:  </b>The service is to be
+treated as nonvolatile; removal of the service requires an explicit call to do
+so.</p></div>

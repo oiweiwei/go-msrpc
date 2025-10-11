@@ -1,1 +1,185 @@
-<div class="content"></div>
+<div class="content"><p> A Marshaled Stream (including the EFSRPC Metadata stream)
+MUST be formatted as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Length</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p align="center">0x4e</p>
+  </td>
+  <td colspan="8">
+  <p align="center">0x00</p>
+  </td>
+  <td colspan="8">
+  <p align="center">0x54</p>
+  </td>
+  <td colspan="8">
+  <p align="center">0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p align="center">0x46</p>
+  </td>
+  <td colspan="8">
+  <p align="center">0x00</p>
+  </td>
+  <td colspan="8">
+  <p align="center">0x53</p>
+  </td>
+  <td colspan="8">
+  <p align="center">0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Flag</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Name
+  Length</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Stream
+  Name (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Stream
+  Data Segment 1 (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Stream
+  Data Segment n (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Length (4 bytes): </b>The length, in bytes, of
+this <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_f3529cd8-50da-4f36-aa0b-66af455edbb6" data-linktype="relative-path">stream</a> header from
+the start of this field to the end of the <b>Stream Name</b> field. It MUST be
+a 32-bit unsigned integer in little-endian format.</p><p><b>Flag (4 bytes): </b> This MUST be a 32-bit
+unsigned integer in little-endian format. It MUST be set to 0x00000000 if the
+stream data is encrypted with the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_3a58e275-3d9f-4b66-8c8d-9808cd0cd8ff" data-linktype="relative-path">FEK</a>. Otherwise, it MUST be
+set to 0x00000001. It MUST always be set to zero in the case of the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_334ff89b-b2a6-4e9c-beba-92f03e24d95b" data-linktype="relative-path">EFSRPC Metadata</a> stream, and
+ignored by the server in that case.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>FEK encryption present</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>FEK encryption not present</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved (8 bytes): </b>This field MUST be set to
+zero and ignored.</p><p><b>Name Length (4 bytes): </b> The length, in bytes,
+of the <b>Stream Name</b> field. It MUST be a 32-bit unsigned integer in
+little-endian format. This field MUST be set to 0x00000002 for the <a href="3166cf4a-e085-47be-94c6-b69bddf274ff" data-linktype="relative-path">EFSRPC Metadata</a> stream.</p><p><b>Stream Name (variable): </b> The name of the
+stream. This is set to either a null-terminated <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string in UTF-16
+encoding, or an integer value stored in binary form. For the EFSRPC Metadata
+stream, this is always set to 0x1910. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x1910</p>
+  </td>
+  <td>
+  <p>EFSRPC Metadata stream</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Stream Data Segment 1 ... n: </b>These <a href="5464320a-f822-4cf8-9fa2-a8bd11bcc4e1" data-linktype="relative-path">segments</a> MUST contain the
+contents of the stream as well as some metadata for reassembling the segments.
+For encrypted streams, these segments MUST also contain some metadata to aid in
+decryption. They MUST be formatted as specified in section 2.2.3.2.</p></div>

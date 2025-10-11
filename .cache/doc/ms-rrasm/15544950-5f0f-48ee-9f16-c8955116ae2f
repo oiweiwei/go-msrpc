@@ -1,1 +1,16 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MPRAPI_TUNNEL_CONFIG_PARAMS_3</b> structure<a id="Appendix_A_Target_178"></a><a aria-label="Product behavior note 178" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_178" data-linktype="relative-path">&lt;178&gt;</a> is used to get or set
+configuration of various tunnels on a RAS server.</p><dl>
+<dd>
+<div><pre> typedef struct _MPRAPI_TUNNEL_CONFIG_PARAMS_3 {
+   IKEV2_CONFIG_PARAMS_3 IkeConfigParams;
+   PPTP_CONFIG_PARAMS_1 PptpConfigParams;
+   L2TP_CONFIG_PARAMS_2 L2tpConfigParams;
+   SSTP_CONFIG_PARAMS_1 SstpConfigParams;
+ } MPRAPI_TUNNEL_CONFIG_PARAMS_3,
+  *PMPRAPI_TUNNEL_CONFIG_PARAMS_3;
+</pre></div>
+</dd></dl><p><b>IkeConfigParams: </b>MUST be an <a href="131120b7-7bed-4f8a-8701-163e4ceed53f" data-linktype="relative-path"><b>IKEV2_CONFIG_PARAMS_3 (section 2.2.1.2.248</b></a><span>8</span>) structure. This is used to get or set IKEv2 tunnel
+parameters.  </p><p><b>PptpConfigParams: </b>MUST be a <a href="5b3e81b0-ade2-492a-a3c6-4175799aca74" data-linktype="relative-path"><b>PPTP_CONFIG_PARAMS_1 (section 2.2.1.2.138)</b></a>
+structure. This is used to get or set PPTP tunnel parameters.  </p><p><b>L2tpConfigParams: </b>MUST be an <a href="1fdc4214-9bf1-4bad-9b93-dda6e105aa4c" data-linktype="relative-path"><b>L2TP_CONFIG_PARAMS_2 (section 2.2.1.2.271)</b></a>
+structure. This is used to get or set L2TP tunnel parameters.  </p><p><b>SstpConfigParams: </b>MUST be an <a href="bde091de-d9f8-4e14-bce9-5755c3d21e6c" data-linktype="relative-path"><b>SSTP_CONFIG_PARAMS_1 (section 2.2.1.2.141)</b></a>
+structure. This is used to get or set SSTP tunnel parameters.  </p></div>

@@ -49,32 +49,438 @@ type AccountingClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The CreateAccountingDb method creates the database for accounting data.<40>
+	//
+	// Return Values: This method returns 0x00000000 for success, or a negative HRESULT
+	// value (shown in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------+------------------------------------------+
+	//	|                RETURN                |                                          |
+	//	|              VALUE/CODE              |               DESCRIPTION                |
+	//	|                                      |                                          |
+	//	+--------------------------------------+------------------------------------------+
+	//	+--------------------------------------+------------------------------------------+
+	//	| 0x00000000 S_OK                      | Operation is successful.                 |
+	//	+--------------------------------------+------------------------------------------+
+	//	| 0xC1FF01F7 WRM_ERR_ACCOUNTING_FAILED | WSRM encountered an error in accounting. |
+	//	+--------------------------------------+------------------------------------------+
+	//
+	// Additional IWRMAccounting interface methods are specified in section 3.2.4.3.
 	CreateAccountingDB(context.Context, *CreateAccountingDBRequest, ...dcerpc.CallOption) (*CreateAccountingDBResponse, error)
 
+	// The GetAccountingMetadata method retrieves accounting metadata, which includes column
+	// names, types, and other attributes of the accounting tables.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (int the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IWRMAccounting interface methods are specified in section 3.2.4.3.
 	GetAccountingMetadata(context.Context, *GetAccountingMetadataRequest, ...dcerpc.CallOption) (*GetAccountingMetadataResponse, error)
 
+	// The ExecuteAccountingQuery method executes an accounting query.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                         RETURN                         |                                                                                  |
+	//	|                       VALUE/CODE                       |                                   DESCRIPTION                                    |
+	//	|                                                        |                                                                                  |
+	//	+--------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                                        | Operation successful.                                                            |
+	//	+--------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                                | One or more arguments are invalid.                                               |
+	//	+--------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF01FA WRM_ERR_WYUKON_NOT_CONNECTABLE              | Cannot establish a connection to the accounting database.<41>                    |
+	//	+--------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF01FE WRM_ERR_JET_INVALID_COLUMN_NAME             | The query has been canceled. One or more of the column names specified in the    |
+	//	|                                                        | accounting query are invalid.                                                    |
+	//	+--------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0200 WRM_ERR_JET_PIVOTABLE_COLUMN_NOT_GROUPED_BY | One or more SQL SELECT columns cannot be selected because of the current SQL     |
+	//	|                                                        | GROUP BY settings. These columns MUST be grouped to be selected.                 |
+	//	+--------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0201 WRM_ERR_JET_INVALID_GROUP_BY_COL            | One or more columns specified for SQL GROUP BY is either invalid or cannot be    |
+	//	|                                                        | grouped on.                                                                      |
+	//	+--------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0203 WRM_ERR_JET_SERVER_TOO_BUSY                 | The server can service only one accounting request at a time.<42>                |
+	//	+--------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0207 WRM_ERR_JET_SERVICE_BEING_SHUT_DOWN         | The query has been aborted since the management service is being shut down.      |
+	//	+--------------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// The error WRM_ERR_JET_PIVOTABLE_COLUMN_NOT_GROUPED_BY is returned in cases where
+	// a column with the IsVisible attribute set to FALSE is included in the SQL SELECT
+	// column while there are some columns in the group column collection. The following
+	// sample AccountingQueryCondition XML (section 2.2.5.5) SHOULD return this error:
+	//
+	// Additional IWRMAccounting interface methods are specified in section 3.2.4.3.
 	ExecuteAccountingQuery(context.Context, *ExecuteAccountingQueryRequest, ...dcerpc.CallOption) (*ExecuteAccountingQueryResponse, error)
 
+	// The GetRawAccountingData method returns raw accounting data from the accounting database
+	// (section 3.2.1.2).
+	//
+	// Return Values: This method returns 0x00000000 for success, or a negative HRESULT
+	// value (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                  RETURN                   |                                                                                  |
+	//	|                VALUE/CODE                 |                                   DESCRIPTION                                    |
+	//	|                                           |                                                                                  |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                           | Operation successful.                                                            |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                   | One or more arguments are invalid.                                               |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF01F7 WRM_ERR_ACCOUNTING_FAILED      | WSRM encountered an error in accounting.                                         |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF01FA WRM_ERR_WYUKON_NOT_CONNECTABLE | Cannot establish a connection to the accounting database due to an error other   |
+	//	|                                           | than one of the errors of the WRM_ERR_WYUKON_CORRUPTED return value.             |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF01FB WRM_ERR_WYUKON_CORRUPTED       | Cannot establish a connection to the accounting database; either the database is |
+	//	|                                           | in single-user mode and already connected, or it is in an invalid or corrupted   |
+	//	|                                           | state.                                                                           |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF01FC WRM_ERR_WYUKON_NOT_INSTALLED   | The accounting database is not installed on the specified server.                |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0203 WRM_ERR_JET_SERVER_TOO_BUSY    | The server can service only one accounting request at a time.<44>                |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMAccounting interface methods are specified in section 3.2.4.3.
 	GetRawAccountingData(context.Context, *GetRawAccountingDataRequest, ...dcerpc.CallOption) (*GetRawAccountingDataResponse, error)
 
+	// The GetNextAccountingDataBatch method gets the next batch of data in a previously
+	// initiated query to the accounting database.<45>
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                  RETURN                   |                                                                                  |
+	//	|                VALUE/CODE                 |                                   DESCRIPTION                                    |
+	//	|                                           |                                                                                  |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                           | Operation successful.                                                            |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x81FF0217 WRM_WRN_WSRM_INCOMPLETE_FETCH  | Data was fetched incompletely; the connection to the database might have         |
+	//	|                                           | terminated.                                                                      |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF01FA WRM_ERR_WYUKON_NOT_CONNECTABLE | Cannot establish a connection to the accounting database.                        |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0203 WRM_ERR_JET_SERVER_TOO_BUSY    | The server can service only one accounting request at a time.<46>                |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// The method GetNextAccountingDataBatch returns data from the accounting database if
+	// all the data was not retrieved by previous calls to this method or either of the
+	// methods ExecuteAccountingQuery (section 3.2.4.3.3) or GetRawAccountingData (section
+	// 3.2.4.3.4). The availability of additional database data is indicated by the value
+	// returned in the pbIsThereMoreData parameter of each of these methods.
+	//
+	// If ExecuteAccountingQuery or GetRawAccountingData had returned indicating no more
+	// accounting data to be retrieved, and still GetNextAccountingDataBatch is called,
+	// pbstrResult is returned as NULL.
+	//
+	// Additional IWRMAccounting interface methods are specified in section 3.2.4.3.
 	GetNextAccountingDataBatch(context.Context, *GetNextAccountingDataBatchRequest, ...dcerpc.CallOption) (*GetNextAccountingDataBatchResponse, error)
 
+	// The DeleteAccountingData method deletes accounting data within a specified time period
+	// from the accounting database (section 3.2.1.2). If there is no accounting data present
+	// between the specified dates, the functions returns SUCCESS while no accounting data
+	// is deleted.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                  RETURN                   |                                                                                  |
+	//	|                VALUE/CODE                 |                                   DESCRIPTION                                    |
+	//	|                                           |                                                                                  |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                           | Operation successful.                                                            |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                   | One or more arguments are invalid.<48>                                           |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF01FA WRM_ERR_WYUKON_NOT_CONNECTABLE | Cannot establish a connection to the accounting database.                        |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF01FB WRM_ERR_WYUKON_CORRUPTED       | Cannot establish a connection to the accounting database; either the database    |
+	//	|                                           | is in single user mode and already connected or it is in an invalid or corrupted |
+	//	|                                           | state.                                                                           |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0203 WRM_ERR_JET_SERVER_TOO_BUSY    | The server can service only one accounting request at a time.                    |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMAccounting interface methods are specified in section 3.2.4.3.
 	DeleteAccountingData(context.Context, *DeleteAccountingDataRequest, ...dcerpc.CallOption) (*DeleteAccountingDataResponse, error)
 
+	// The DefragmentDB method is not implemented. It MUST return a success code.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: This method returns 0x00000000 for success.
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IWRMAccounting interface methods are specified in section 3.2.4.3.
 	DefragmentDB(context.Context, *DefragmentDBRequest, ...dcerpc.CallOption) (*DefragmentDBResponse, error)
 
+	// The CancelAccountingQuery method cancels a previously-initiated query to the accounting
+	// database.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------------------------+---------------------------------------------------------------+
+	//	|                  RETURN                   |                                                               |
+	//	|                VALUE/CODE                 |                          DESCRIPTION                          |
+	//	|                                           |                                                               |
+	//	+-------------------------------------------+---------------------------------------------------------------+
+	//	+-------------------------------------------+---------------------------------------------------------------+
+	//	| 0x00000000 S_OK                           | Operation successful.                                         |
+	//	+-------------------------------------------+---------------------------------------------------------------+
+	//	| 0xC1FF01FA WRM_ERR_WYUKON_NOT_CONNECTABLE | Cannot establish a connection to the accounting database.<49> |
+	//	+-------------------------------------------+---------------------------------------------------------------+
+	//
+	// The method CancelAccountingQuery cancels a query to the accounting database after
+	// previous calls to either of the methods ExecuteAccountingQuery (section 3.2.4.3.3)
+	// or GetRawAccountingData (section 3.2.4.3.4) and before a call to the method GetNextAccountingDataBatch
+	// (section 3.2.4.3.5). The availability of additional database data is indicated by
+	// the value returned in the pbIsThereMoreData parameter of each method.
+	//
+	// Additional IWRMAccounting interface methods are specified in section 3.2.4.3.
 	CancelAccountingQuery(context.Context, *CancelAccountingQueryRequest, ...dcerpc.CallOption) (*CancelAccountingQueryResponse, error)
 
+	// The RegisterAccountingClient method registers an accounting client for remote accounting
+	// on an accounting server. A default accounting database SHOULD<50> be defined.
+	//
+	// Note  This method is expected to be called remotely by the WSRM management service
+	// that is acting as an accounting client. A client SHOULD NOT call this method.
+	//
+	// Return Values: This method returns 0x00000000 for success, or a negative HRESULT
+	// value (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+----------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                          RETURN                          |                                                                                  |
+	//	|                        VALUE/CODE                        |                                   DESCRIPTION                                    |
+	//	|                                                          |                                                                                  |
+	//	+----------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                                          | Operation successful.                                                            |
+	//	+----------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                                  | One or more arguments are invalid.                                               |
+	//	+----------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0209 WRM_ERR_ACC_DISABLED_FOR_REMOTE_CLIENT        | WSRM encountered an error in accounting.                                         |
+	//	+----------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF020C WRM_ERR_REMOTE_SERVICE_NOT_SETUP_FOR_REMOTING | Connection to the remote server could not be established. The server is not set  |
+	//	|                                                          | up for remote accounting. This error is returned when an accounting client is    |
+	//	|                                                          | trying to register itself on an accounting server machine which itself is an     |
+	//	|                                                          | accounting client.<51>                                                           |
+	//	+----------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0212 WRM_ERR_INVALID_OPERATION                     | The operation is invalid. This error is returned when a WSRM management service  |
+	//	|                                                          | acting as an accounting client tries to register itself twice, as when this      |
+	//	|                                                          | method is called with the same DCOM interface instance.                          |
+	//	+----------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0216 WRM_ERR_DBSERVER_CANNOT_BE_REMOTE             | Data cannot be logged on the remote system. This error is returned when an       |
+	//	|                                                          | accounting client calls this method on the accounting server but accounting is   |
+	//	|                                                          | not yet initialized.<52>                                                         |
+	//	+----------------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// It is possible for multiple WSRM servers to act as accounting clients and have a
+	// common accounting database server.
+	//
+	// Note  Remote accounting is not supported in a workgroup environment.
+	//
+	// Additional IWRMAccounting interface methods are specified in section 3.2.4.3.
 	RegisterAccountingClient(context.Context, *RegisterAccountingClientRequest, ...dcerpc.CallOption) (*RegisterAccountingClientResponse, error)
 
+	// The DumpAccountingData method dumps accounting data from a remote server acting as
+	// an accounting client to the server currently acting as its accounting database server.
+	// The time interval of dumping data SHOULD be set by the client by using the SetConfig
+	// method call of the management service running on the accounting client.
+	//
+	// Note  This method is expected to be called remotely by the WSRM management service
+	// that is acting as an accounting client. A client SHOULD NOT call this method.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                      RETURN                       |                                                                                  |
+	//	|                    VALUE/CODE                     |                                   DESCRIPTION                                    |
+	//	|                                                   |                                                                                  |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                                   | Operation successful.                                                            |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                           | One or more arguments are invalid.                                               |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0209 WRM_ERR_ACC_DISABLED_FOR_REMOTE_CLIENT | Accounting is disabled on the remote accounting server.                          |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF020A WRM_ERR_ACC_CLIENT_CONN_TERMINATED     | Connection to remote server failed. The remote connection has been terminated    |
+	//	|                                                   | by the accounting server because the accounting functionality of the accounting  |
+	//	|                                                   | client was disabled.                                                             |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF020E WRM_ERR_ACC_NO_CONNECTION              | The operation failed. There is no existing connection to the remote database     |
+	//	|                                                   | server.                                                                          |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// It is possible for multiple WSRM servers to have a common accounting database server.
+	//
+	// Note  Remote accounting is not supported in a workgroup environment.
+	//
+	// Additional IWRMAccounting interface methods are specified in section 3.2.4.3.
 	DumpAccountingData(context.Context, *DumpAccountingDataRequest, ...dcerpc.CallOption) (*DumpAccountingDataResponse, error)
 
+	// The GetAccountingClients method gets the names of all servers that are acting as
+	// accounting clients on the current server.
+	//
+	// Return Values: This method returns 0x00000000 for success, or a negative HRESULT
+	// value (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                   RETURN                   |                                                                                  |
+	//	|                 VALUE/CODE                 |                                   DESCRIPTION                                    |
+	//	|                                            |                                                                                  |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                            | Operation successful.                                                            |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0210 WRM_ERR_CLIENTSTATUS_ACC_OFF    | Accounting functionality is currently turned off on the accounting server. There |
+	//	|                                            | are no clients logging data to this machine.                                     |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0211 WRM_ERR_CLIENTSTATUS_ACC_REMOTE | Accounting is currently being done on a remote machine. There are no clients     |
+	//	|                                            | logging data to this machine.                                                    |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// The GetAccountingClients method can be used to find the names of WSRM servers, acting
+	// as accounting clients, for which the current server is acting as an accounting server.
+	//
+	// Note  Remote accounting is not supported in a workgroup environment.
+	//
+	// Additional IWRMAccounting interface methods are specified in section 3.2.4.3.
 	GetAccountingClients(context.Context, *GetAccountingClientsRequest, ...dcerpc.CallOption) (*GetAccountingClientsResponse, error)
 
+	// The SetAccountingClientStatus method sets the status of accounting functionality
+	// of servers that are in the remote accounting client role. Status of accounting functionality
+	// is controlled by the Enabled attribute in bstrClientIds XML. If the Enabled attribute
+	// in the bstrClientIds XML is specified as "true", the accounting functionality for
+	// the WSRM server, whose name is specified as the value of the respective AccountingClient
+	// node, is enabled; otherwise, if it is specified as "false", the accounting functionality
+	// is disabled. The DumpAccountingData method does not store accounting data in the
+	// database if the status of the accounting functionality of the respective server is
+	// disabled using the SetAccountingClientStatus method.<53>
+	//
+	// Return Values: This method returns 0x00000000 for success, or a negative HRESULT
+	// value (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                     RETURN                     |                                                                                  |
+	//	|                   VALUE/CODE                   |                                   DESCRIPTION                                    |
+	//	|                                                |                                                                                  |
+	//	+------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                                | Operation successful.                                                            |
+	//	+------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                        | One or more arguments are invalid.                                               |
+	//	+------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF020F WRM_ERR_SETCLIENTSTATUS_XML_INVALID | The operation failed. XML data provided is invalid.                              |
+	//	+------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0210 WRM_ERR_CLIENTSTATUS_ACC_OFF        | Accounting is currently turned off. There are no clients logging data to this    |
+	//	|                                                | machine.                                                                         |
+	//	+------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0211 WRM_ERR_CLIENTSTATUS_ACC_REMOTE     | Accounting is currently being done on a remote machine. There are no clients     |
+	//	|                                                | logging data to this machine.                                                    |
+	//	+------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Note  Remote accounting is not supported in a workgroup environment.
+	//
+	// Additional IWRMAccounting interface methods are specified in section 3.2.4.3.
 	SetAccountingClientStatus(context.Context, *SetAccountingClientStatusRequest, ...dcerpc.CallOption) (*SetAccountingClientStatusResponse, error)
 
+	// The CheckAccountingConnection method determines the status of the connection to the
+	// accounting server.
+	//
+	// Note  This method is expected to be called remotely by the WSRM management service.
+	// In a remote accounting scenario, this method is called by the accounting client's
+	// WSRM service to check the connection status. A WSRM client SHOULD NOT call this method.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: This method returns 0x00000000 for success, or a negative HRESULT
+	// value (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                      RETURN                       |                                                                                  |
+	//	|                    VALUE/CODE                     |                                   DESCRIPTION                                    |
+	//	|                                                   |                                                                                  |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                                   | Operation successful.                                                            |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0209 WRM_ERR_ACC_DISABLED_FOR_REMOTE_CLIENT | Accounting is disabled on the remote accounting server.                          |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF020A WRM_ERR_ACC_CLIENT_CONN_TERMINATED     | Connection to remote accounting server failed. The remote connection has been    |
+	//	|                                                   | terminated by the accounting server because the accounting functionality of the  |
+	//	|                                                   | accounting client was disabled.<54>                                              |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF020E WRM_ERR_ACC_NO_CONNECTION              | The operation failed. There is no existing connection to the remote database     |
+	//	|                                                   | server.                                                                          |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// It is possible for multiple WSRM servers to have a common accounting database server.
+	// <55>
+	//
+	// Note  Remote accounting is not supported in a workgroup environment.
+	//
+	// Additional IWRMAccounting interface methods are specified in section 3.2.4.3.
 	CheckAccountingConnection(context.Context, *CheckAccountingConnectionRequest, ...dcerpc.CallOption) (*CheckAccountingConnectionResponse, error)
 
+	// The SetClientPermissions method adds or removes a specified client for remote accounting
+	// on a server and makes the required changes for DCOM permissions; that is, it adds
+	// the machine account of the accounting client to the Distributed COM Users group (see
+	// [MS-SAMR] section 3.1.4.2) of the accounting server.
+	//
+	// Return Values: This method returns 0x00000000 for success, or a negative HRESULT
+	// value (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                      RETURN                      |                                                                                  |
+	//	|                    VALUE/CODE                    |                                   DESCRIPTION                                    |
+	//	|                                                  |                                                                                  |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                                  | Operation successful.                                                            |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0213 WRM_ERR_INVALID_DBSERVER_NAME         | Could not establish a connection to the database server. Either the server name  |
+	//	|                                                  | is invalid or the machine executing this method does not have permission to      |
+	//	|                                                  | perform an account lookup.                                                       |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0214 WRM_ERR_PERMISSION_GRANT_UNSUCCESSFUL | Could not grant permissions to the current machine to log data remotely. This    |
+	//	|                                                  | error is returned when a server machine denies access to a requesting machine.   |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// It is possible for multiple WSRM servers to have a common accounting server.
+	//
+	// Note  Remote accounting is not supported in a workgroup environment.
+	//
+	// Additional IWRMAccounting interface methods are specified in section 3.2.4.3.
 	SetClientPermissions(context.Context, *SetClientPermissionsRequest, ...dcerpc.CallOption) (*SetClientPermissionsResponse, error)
 
 	// AlterContext alters the client context.
@@ -703,11 +1109,15 @@ func (o *xxx_CreateAccountingDBOperation) UnmarshalNDRResponse(ctx context.Conte
 // CreateAccountingDBRequest structure represents the CreateAccountingDb operation request
 type CreateAccountingDBRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ServerName  *oaut.String   `idl:"name:bstrServerName" json:"server_name"`
-	WindowsAuth bool           `idl:"name:bWindowsAuth" json:"windows_auth"`
-	UserName    *oaut.String   `idl:"name:bstrUserName" json:"user_name"`
-	Password    *oaut.String   `idl:"name:bstrPasswd" json:"password"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrServerName: Name of the server where the accounting database MUST be created.
+	ServerName *oaut.String `idl:"name:bstrServerName" json:"server_name"`
+	// bWindowsAuth: This parameter MUST be ignored.
+	WindowsAuth bool `idl:"name:bWindowsAuth" json:"windows_auth"`
+	// bstrUserName: User name for creating the database.
+	UserName *oaut.String `idl:"name:bstrUserName" json:"user_name"`
+	// bstrPasswd: Password of the user.
+	Password *oaut.String `idl:"name:bstrPasswd" json:"password"`
 }
 
 func (o *CreateAccountingDBRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateAccountingDBOperation) *xxx_CreateAccountingDBOperation {
@@ -990,8 +1400,10 @@ func (o *GetAccountingMetadataRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 // GetAccountingMetadataResponse structure represents the GetAccountingMetadata operation response
 type GetAccountingMetadataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That     *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Metadata *oaut.String   `idl:"name:pbstrMetaData" json:"metadata"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrMetaData: A pointer to a string that returns accounting metadata in the form
+	// of an AccountingMetaData XML element (section 2.2.5.3).
+	Metadata *oaut.String `idl:"name:pbstrMetaData" json:"metadata"`
 	// Return: The GetAccountingMetadata return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1360,10 +1772,18 @@ func (o *xxx_ExecuteAccountingQueryOperation) UnmarshalNDRResponse(ctx context.C
 // ExecuteAccountingQueryRequest structure represents the ExecuteAccountingQuery operation request
 type ExecuteAccountingQueryRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This            *dcom.ORPCThis `idl:"name:This" json:"this"`
-	AccountingQuery *oaut.String   `idl:"name:bstrAccountingQuery" json:"accounting_query"`
-	StartingDate    *oaut.String   `idl:"name:bstrStartingDate" json:"starting_date"`
-	EndingDate      *oaut.String   `idl:"name:bstrEndingDate" json:"ending_date"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrAccountingQuery: A string that specifies an AccountingQueryCondition element
+	// (section 2.2.5.5) in XML. For an example, see section 4.2.5.
+	AccountingQuery *oaut.String `idl:"name:bstrAccountingQuery" json:"accounting_query"`
+	// bstrStartingDate: A string that specifies the starting date for the query, in date-and-time
+	// format (section 2.2.1.3). If this value is not in the correct format, the date range
+	// is ignored and the complete set of accounting data is returned.
+	StartingDate *oaut.String `idl:"name:bstrStartingDate" json:"starting_date"`
+	// bstrEndingDate: A string that specifies the ending date for the query, in date-and-time
+	// format. If this value is not in the correct format, the date range is ignored and
+	// the complete set of accounting data is returned.
+	EndingDate *oaut.String `idl:"name:bstrEndingDate" json:"ending_date"`
 }
 
 func (o *ExecuteAccountingQueryRequest) xxx_ToOp(ctx context.Context, op *xxx_ExecuteAccountingQueryOperation) *xxx_ExecuteAccountingQueryOperation {
@@ -1404,9 +1824,12 @@ func (o *ExecuteAccountingQueryRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // ExecuteAccountingQueryResponse structure represents the ExecuteAccountingQuery operation response
 type ExecuteAccountingQueryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Result          *oaut.String   `idl:"name:pbstrResult" json:"result"`
-	IsThereMoreData bool           `idl:"name:pbIsThereMoreData" json:"is_there_more_data"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrResult: A pointer to a string that returns the requested data.
+	Result *oaut.String `idl:"name:pbstrResult" json:"result"`
+	// pbIsThereMoreData: A pointer to a Boolean value that specifies whether more data
+	// is available.
+	IsThereMoreData bool `idl:"name:pbIsThereMoreData" json:"is_there_more_data"`
 	// Return: The ExecuteAccountingQuery return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1777,10 +2200,18 @@ func (o *xxx_GetRawAccountingDataOperation) UnmarshalNDRResponse(ctx context.Con
 // GetRawAccountingDataRequest structure represents the GetRawAccountingData operation request
 type GetRawAccountingDataRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This         *dcom.ORPCThis `idl:"name:This" json:"this"`
-	StartingDate *oaut.String   `idl:"name:bstrStartingDate" json:"starting_date"`
-	EndingDate   *oaut.String   `idl:"name:bstrEndingDate" json:"ending_date"`
-	MachineName  *oaut.String   `idl:"name:bstrMachineName" json:"machine_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrStartingDate: A string that specifies the starting date of the data, in date-and-time
+	// format (section 2.2.1.3). If this value is not in the correct format, the date range
+	// is ignored and the complete set of accounting data is returned.
+	StartingDate *oaut.String `idl:"name:bstrStartingDate" json:"starting_date"`
+	// bstrEndingDate: A string that specifies the ending date of the data, in date-and-time
+	// format. If this value is not in the correct format, the date range is ignored and
+	// the complete set of accounting data is returned.
+	EndingDate *oaut.String `idl:"name:bstrEndingDate" json:"ending_date"`
+	// bstrMachineName: A string that specifies the machine name of the accounting database
+	// server. A default accounting database SHOULD<43> be defined.
+	MachineName *oaut.String `idl:"name:bstrMachineName" json:"machine_name"`
 }
 
 func (o *GetRawAccountingDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRawAccountingDataOperation) *xxx_GetRawAccountingDataOperation {
@@ -1821,9 +2252,101 @@ func (o *GetRawAccountingDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 // GetRawAccountingDataResponse structure represents the GetRawAccountingData operation response
 type GetRawAccountingDataResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Result          *oaut.String   `idl:"name:pbstrResult" json:"result"`
-	IsThereMoreData bool           `idl:"name:pbIsThereMoreData" json:"is_there_more_data"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrResult: A pointer to a string that returns raw accounting data.
+	//
+	// The string is formatted as a set of rows representing accounting process entries.
+	// Rows are delimited by carriage return escape characters (\r). Each row of raw accounting
+	// data contains 38 columns delimited by newline escape characters (\n).
+	//
+	// The following table lists the 38 columns in order of their position in the row.
+	//
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	|                            |                                                                           |
+	//	|           COLUMN           |                                DESCRIPTION                                |
+	//	|                            |                                                                           |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| TimeStamp                  | See CreationSystemTime of accounting database in section 3.2.1.2.         |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| ComputerName               | See ComputerName of accounting database in section 3.2.1.2.               |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| ProcessId                  | See ProcessId of accounting database in section 3.2.1.2.                  |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| ProcessName                | See ImageName of accounting database in section 3.2.1.2.                  |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| Domain                     | See DomainName of accounting database in section 3.2.1.2.                 |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| User                       | See UserName of accounting database in section 3.2.1.2.                   |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| PolicyName                 | See PolicyName of accounting database in section 3.2.1.2.                 |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| PolicySetTime              | See PolicySetTime of accounting database in section 3.2.1.2.              |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| ProcessMatchingCriteria    | See ResourceGroupName of accounting database in section 3.2.1.2.          |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| CreationTime               | See CreationTime of accounting database in section 3.2.1.2.               |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| EndTime                    | See EndTime of accounting database in section 3.2.1.2.                    |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| ProgramPath                | See ImagePath of accounting database in section 3.2.1.2.                  |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| CommandLine                | See ProcessCommandLine of accounting database in section 3.2.1.2.         |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| SessionId                  | See SessionId of accounting database in section 3.2.1.2.                  |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| ThreadCount                | See ThreadCount of accounting database in section 3.2.1.2.                |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| TotalCPU                   | See TotalCPU of accounting database in section 3.2.1.2.                   |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| ElapsedTime                | See ElapsedTime of accounting database in section 3.2.1.2.                |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| KernelModeTime             | See KernelModeTime of accounting database in section 3.2.1.2.             |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| UserModeTime               | See UserModeTime of accounting database in section 3.2.1.2.               |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| PageFileUsage              | See PageFileUsage of accounting database in section 3.2.1.2.              |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| PeakPageFileUsage          | See PeakPageFileUsage of accounting database in section 3.2.1.2.          |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| PageFaultCount             | See PageFaultCount of accounting database in section 3.2.1.2.             |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| VirtualSize                | See VirtualSize of accounting database in section 3.2.1.2.                |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| PeakVirtualSize            | See PeakVirtualSize of accounting database in section 3.2.1.2.            |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| WorkingSetSize             | See WorkingSetSize of accounting database in section 3.2.1.2.             |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| PeakWorkingSetSize         | See PeakWorkingSetSize of accounting database in section 3.2.1.2.         |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| PrivatePageCount           | See PrivatePageCount of accounting database in section 3.2.1.2.           |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| QuotaPagedPoolUsage        | See QuotaPagedPoolUsage of accounting database in section 3.2.1.2.        |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| QuotaPeakPagedPoolUsage    | See QuotaPeakPagedPoolUsage of accounting database in section 3.2.1.2.    |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| QuotaNonPagedPoolUsage     | See QuotaNonPagedPoolUsage of accounting database in section 3.2.1.2.     |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| QuotaPeakNonPagedPoolUsage | See QuotaPeakNonPagedPoolUsage of accounting database in section 3.2.1.2. |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| ReadOperationCount         | See ReadOperationCount of accounting database in section 3.2.1.2.         |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| ReadTransferCount          | See ReadTransferCount of accounting database in section 3.2.1.2.          |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| WriteOperationCount        | See WriteOperationCount of accounting database in section 3.2.1.2.        |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| WriteTransferCount         | See WriteTransferCount of accounting database in section 3.2.1.2.         |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| OtherOperationCount        | See OtherOperationCount of accounting database in section 3.2.1.2.        |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| OtherTransferCount         | See OtherTransferCount of accounting database in section 3.2.1.2.         |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	//	| GroupId                    | See GroupId of accounting database in section 3.2.1.2.                    |
+	//	+----------------------------+---------------------------------------------------------------------------+
+	Result *oaut.String `idl:"name:pbstrResult" json:"result"`
+	// pbIsThereMoreData: A pointer to a Boolean value that returns whether more data is
+	// available.
+	IsThereMoreData bool `idl:"name:pbIsThereMoreData" json:"is_there_more_data"`
 	// Return: The GetRawAccountingData return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2088,9 +2611,12 @@ func (o *GetNextAccountingDataBatchRequest) UnmarshalNDR(ctx context.Context, r 
 // GetNextAccountingDataBatchResponse structure represents the GetNextAccountingDataBatch operation response
 type GetNextAccountingDataBatchResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Result          *oaut.String   `idl:"name:pbstrResult" json:"result"`
-	IsThereMoreData bool           `idl:"name:pbIsThereMoreData" json:"is_there_more_data"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrResult: A pointer to a string that returns the requested data.
+	Result *oaut.String `idl:"name:pbstrResult" json:"result"`
+	// pbIsThereMoreData: A pointer to a Boolean value that specifies whether more data
+	// is available.
+	IsThereMoreData bool `idl:"name:pbIsThereMoreData" json:"is_there_more_data"`
 	// Return: The GetNextAccountingDataBatch return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2393,10 +2919,18 @@ func (o *xxx_DeleteAccountingDataOperation) UnmarshalNDRResponse(ctx context.Con
 // DeleteAccountingDataRequest structure represents the DeleteAccountingData operation request
 type DeleteAccountingDataRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This         *dcom.ORPCThis `idl:"name:This" json:"this"`
-	StartingDate *oaut.String   `idl:"name:bstrStartingDate" json:"starting_date"`
-	EndingDate   *oaut.String   `idl:"name:bstrEndingDate" json:"ending_date"`
-	MachineName  *oaut.String   `idl:"name:bstrMachineName" json:"machine_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrStartingDate: A string that specifies the starting date for the deletion, in
+	// date-and-time format (section 2.2.1.3). If this value is not in the correct format,
+	// the date range is ignored and the complete set of accounting data is deleted.
+	StartingDate *oaut.String `idl:"name:bstrStartingDate" json:"starting_date"`
+	// bstrEndingDate: A string that specifies the ending date for the deletion, in date-and-time
+	// format. If this value is not in the correct format, the date range is ignored and
+	// the complete set of accounting data is deleted.
+	EndingDate *oaut.String `idl:"name:bstrEndingDate" json:"ending_date"`
+	// bstrMachineName: A string that specifies the name of the machine whose accounting
+	// data is to be deleted. A default accounting database SHOULD<47> be defined.
+	MachineName *oaut.String `idl:"name:bstrMachineName" json:"machine_name"`
 }
 
 func (o *DeleteAccountingDataRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteAccountingDataOperation) *xxx_DeleteAccountingDataOperation {
@@ -2808,7 +3342,9 @@ func (o *xxx_CancelAccountingQueryOperation) UnmarshalNDRResponse(ctx context.Co
 type CancelAccountingQueryRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Flag bool           `idl:"name:flag" json:"flag"`
+	// flag: A Boolean value that specifies FALSE to stop reading data from the database
+	// and release the connection, and TRUE to read all remaining data and release the connection.
+	Flag bool `idl:"name:flag" json:"flag"`
 }
 
 func (o *CancelAccountingQueryRequest) xxx_ToOp(ctx context.Context, op *xxx_CancelAccountingQueryOperation) *xxx_CancelAccountingQueryOperation {
@@ -3050,8 +3586,9 @@ func (o *xxx_RegisterAccountingClientOperation) UnmarshalNDRResponse(ctx context
 // RegisterAccountingClientRequest structure represents the RegisterAccountingClient operation request
 type RegisterAccountingClientRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ClientID *oaut.String   `idl:"name:bstrClientId" json:"client_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrClientId: A string that specifies a client machine name.
+	ClientID *oaut.String `idl:"name:bstrClientId" json:"client_id"`
 }
 
 func (o *RegisterAccountingClientRequest) xxx_ToOp(ctx context.Context, op *xxx_RegisterAccountingClientOperation) *xxx_RegisterAccountingClientOperation {
@@ -3293,8 +3830,10 @@ func (o *xxx_DumpAccountingDataOperation) UnmarshalNDRResponse(ctx context.Conte
 // DumpAccountingDataRequest structure represents the DumpAccountingData operation request
 type DumpAccountingDataRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	AccountingData *oaut.String   `idl:"name:bstrAccountingData" json:"accounting_data"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrAccountingData: A string that specifies the accounting data to be dumped, in
+	// the form of an AccountingProcessList element (section 2.2.5.4).
+	AccountingData *oaut.String `idl:"name:bstrAccountingData" json:"accounting_data"`
 }
 
 func (o *DumpAccountingDataRequest) xxx_ToOp(ctx context.Context, op *xxx_DumpAccountingDataOperation) *xxx_DumpAccountingDataOperation {
@@ -3571,8 +4110,10 @@ func (o *GetAccountingClientsRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 // GetAccountingClientsResponse structure represents the GetAccountingClients operation response
 type GetAccountingClientsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ClientIDs *oaut.String   `idl:"name:pbstrClientIds" json:"client_ids"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrClientIds: A pointer to a string that returns the machine names of all accounting
+	// clients, in the form of an AccountingClientList element (section 2.2.5.1).
+	ClientIDs *oaut.String `idl:"name:pbstrClientIds" json:"client_ids"`
 	// Return: The GetAccountingClients return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3779,8 +4320,12 @@ func (o *xxx_SetAccountingClientStatusOperation) UnmarshalNDRResponse(ctx contex
 // SetAccountingClientStatusRequest structure represents the SetAccountingClientStatus operation request
 type SetAccountingClientStatusRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ClientIDs *oaut.String   `idl:"name:bstrClientIds" json:"client_ids"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrClientIds: A string that specifies the machine names of all accounting clients,
+	// in the form of an AccountingClientList element (section 2.2.5.1). For an example,
+	// see section 4.2.1. The value of the Enabled attribute specifies the accounting functionality
+	// status of the accounting clients.
+	ClientIDs *oaut.String `idl:"name:bstrClientIds" json:"client_ids"`
 }
 
 func (o *SetAccountingClientStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_SetAccountingClientStatusOperation) *xxx_SetAccountingClientStatusOperation {
@@ -4236,9 +4781,12 @@ func (o *xxx_SetClientPermissionsOperation) UnmarshalNDRResponse(ctx context.Con
 // SetClientPermissionsRequest structure represents the SetClientPermissions operation request
 type SetClientPermissionsRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ClientID       *oaut.String   `idl:"name:bstrClientId" json:"client_id"`
-	AddPermissions bool           `idl:"name:fAddPermissions" json:"add_permissions"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrClientId: A string that identifies the client machine name whose account is to
+	// be added or removed.
+	ClientID *oaut.String `idl:"name:bstrClientId" json:"client_id"`
+	// fAddPermissions: TRUE to add and FALSE to remove.
+	AddPermissions bool `idl:"name:fAddPermissions" json:"add_permissions"`
 }
 
 func (o *SetClientPermissionsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetClientPermissionsOperation) *xxx_SetClientPermissionsOperation {

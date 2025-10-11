@@ -49,7 +49,11 @@ type TransactionClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
-	// Transaction operation.
+	// The Transaction method is received by the server in an RPC_REQUEST packet. In response,
+	// the server SHOULD return E_NOTIMPL (0x80004001).
+	//
+	// Return Values: The method SHOULD<33> return E_NOTIMPL (0x80004001) and take no further
+	// action.
 	GetTransaction(context.Context, *GetTransactionRequest, ...dcerpc.CallOption) (*GetTransactionResponse, error)
 
 	// Commit operation.
@@ -348,8 +352,9 @@ func (o *GetTransactionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetTransactionResponse structure represents the Transaction operation response
 type GetTransactionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Transaction int32          `idl:"name:plTransaction" json:"transaction"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// plTransaction: A pointer to a long that identifies the underlying transaction.
+	Transaction int32 `idl:"name:plTransaction" json:"transaction"`
 	// Return: The Transaction return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

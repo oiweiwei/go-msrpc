@@ -59,8 +59,8 @@ this will be referred to as the <b>affected notification period</b>.</p>
 MUST return FSRM_E_NOT_FOUND.</p>
 </li><li><p><span><span> 
 </span></span>The server MUST create a new <b>IFsrmCollection</b> object and
-populate it with any <b>notifications</b> from the affected notification
-period&#39;s <b>Notification period.Notifications</b> property.</p>
+populate it with any <b>notifications</b> from the affected notification period&#39;s
+<b>Notification period.Notifications</b> property.</p>
 </li><li><p><span><span> 
 </span></span>The server MUST assign the new <b>IFsrmCollection</b> object to <i>actions</i>.</p>
 </li></ul></div>

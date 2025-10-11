@@ -49,10 +49,68 @@ type RemoteSessionManagementClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The GetRemoteUserCategories method retrieves user categories information from the
+	// WSRM server.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IWRMRemoteSessionMgmt interface methods are specified in section 3.2.4.9.
 	GetRemoteUserCategories(context.Context, *GetRemoteUserCategoriesRequest, ...dcerpc.CallOption) (*GetRemoteUserCategoriesResponse, error)
 
+	// The SetRemoteUserCategories method sets user categories information on the WSRM server.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | Operation successful.                                                            |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG              | One or more arguments are invalid.                                               |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                      | be processed.<114>                                                               |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMRemoteSessionMgmt interface methods are specified in section 3.2.4.9.
 	SetRemoteUserCategories(context.Context, *SetRemoteUserCategoriesRequest, ...dcerpc.CallOption) (*SetRemoteUserCategoriesResponse, error)
 
+	// The RefreshRemoteSessionWeights method forces reallocation of CPU quotas for the
+	// sessions run by users according to the category type specified in bstrTargetUserSessions.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER | The XML data is invalid or cannot be processed.                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006F WRM_ERR_ID_VALUE          | The specified name contains characters that are invalid. The name cannot         |
+	//	|                                      | start with a hyphen (-), cannot contain spaces, and cannot contain any of the    |
+	//	|                                      | following characters: \ / ? * | : < > " , ;                                      |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | Operation successful.                                                            |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMRemoteSessionMgmt interface methods are specified in section 3.2.4.9.
 	RefreshRemoteSessionWeights(context.Context, *RefreshRemoteSessionWeightsRequest, ...dcerpc.CallOption) (*RefreshRemoteSessionWeightsResponse, error)
 
 	// AlterContext alters the client context.
@@ -381,8 +439,10 @@ func (o *GetRemoteUserCategoriesRequest) UnmarshalNDR(ctx context.Context, r ndr
 // GetRemoteUserCategoriesResponse structure represents the GetRemoteUserCategories operation response
 type GetRemoteUserCategoriesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That                     *dcom.ORPCThat `idl:"name:That" json:"that"`
-	RemoteUserCategoriesInfo *oaut.String   `idl:"name:pbstrRemoteUserCategoriesInfo" json:"remote_user_categories_info"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrRemoteUserCategoriesInfo: A pointer to a string that returns categories of remote
+	// session users, in the format of a Users element (section 2.2.5.30).
+	RemoteUserCategoriesInfo *oaut.String `idl:"name:pbstrRemoteUserCategoriesInfo" json:"remote_user_categories_info"`
 	// Return: The GetRemoteUserCategories return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -589,8 +649,10 @@ func (o *xxx_SetRemoteUserCategoriesOperation) UnmarshalNDRResponse(ctx context.
 // SetRemoteUserCategoriesRequest structure represents the SetRemoteUserCategories operation request
 type SetRemoteUserCategoriesRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                     *dcom.ORPCThis `idl:"name:This" json:"this"`
-	RemoteUserCategoriesInfo *oaut.String   `idl:"name:bstrRemoteUserCategoriesInfo" json:"remote_user_categories_info"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrRemoteUserCategoriesInfo: A string that specifies categories of remote session
+	// users, in the format of a Users element (section 2.2.5.30).
+	RemoteUserCategoriesInfo *oaut.String `idl:"name:bstrRemoteUserCategoriesInfo" json:"remote_user_categories_info"`
 }
 
 func (o *SetRemoteUserCategoriesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetRemoteUserCategoriesOperation) *xxx_SetRemoteUserCategoriesOperation {
@@ -855,7 +917,22 @@ type RefreshRemoteSessionWeightsRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This                *dcom.ORPCThis `idl:"name:This" json:"this"`
 	TaregetUserSessions *oaut.String   `idl:"name:bstrTaregetUserSessions" json:"tareget_user_sessions"`
-	UpdateAll           bool           `idl:"name:bUpdateAll" json:"update_all"`
+	// bUpdateAll: A Boolean value that specifies whether to recursively delete all instances
+	// of the specified machine group.
+	//
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	|                  |                                                                                  |
+	//	|      VALUE       |                                     MEANING                                      |
+	//	|                  |                                                                                  |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| FALSE 0x00000000 | Only the CPU quotas for users specified in bstrTargetUserSessions are            |
+	//	|                  | reallocated according to their category type.                                    |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| TRUE 0x00000001  | The CPU quotas for all remote sessions are reallocated according to the category |
+	//	|                  | type specified in bstrTargetUserSessions.                                        |
+	//	+------------------+----------------------------------------------------------------------------------+
+	UpdateAll bool `idl:"name:bUpdateAll" json:"update_all"`
 }
 
 func (o *RefreshRemoteSessionWeightsRequest) xxx_ToOp(ctx context.Context, op *xxx_RefreshRemoteSessionWeightsOperation) *xxx_RefreshRemoteSessionWeightsOperation {

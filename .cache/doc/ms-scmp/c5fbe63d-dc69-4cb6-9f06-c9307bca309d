@@ -1,1 +1,66 @@
-<div class="content"></div>
+<div class="content"><p>The QuerySnapshotsByVolume method retrieves a collection of <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow copy</a> objects that
+are present on a specified <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a>
+of the server.</p><dl>
+<dd>
+<div><pre> HRESULT QuerySnapshotsByVolume(
+   [in] VSS_PWSZ pwszVolumeName,
+   [in] VSS_ID ProviderId,
+   [out] IVssEnumObject** ppEnum
+ );
+</pre></div>
+</dd></dl><p><b>pwszVolumeName: </b>A null-terminated <a href="../ms-dtyp/845b6fa4-c34a-4b90-824d-60e98533dfb5" data-linktype="relative-path">UNICODE</a>
+string that contains the <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_1b153cd0-e3f3-4383-bc66-d5ad482c9766" data-linktype="relative-path">drive
+letter</a>, <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_513fcb37-059f-475c-a13d-e89b302f8ae8" data-linktype="relative-path">mount point</a>,
+or <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_ae3b4c60-05dc-4011-bd62-753ef23bb3cd" data-linktype="relative-path">volume mount name</a> for
+which the existing shadow copy collection is requested.</p><p><b>ProviderId: </b>MUST be set to the <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_c714f43b-a2c0-4a47-b022-deeeabf318b3" data-linktype="relative-path">shadow copy provider</a> <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a> as described in <a href="551c5477-a603-469e-9ac0-e4c4d23db9ee" data-linktype="relative-path">Standards
+Assignments (section 1.9)</a>.</p><p><b>ppEnum: </b>A pointer to an <a href="1fff5a29-7f95-4237-9792-0743b75739fa" data-linktype="relative-path">IVssEnumObject</a> pointer
+that upon completion, contains a collection of shadow copies that exist on the
+server for the specified volume. Each element in the collection MUST be a <a href="5091e34f-2812-4ef3-9477-e763c89017ab" data-linktype="relative-path">VSS_SNAPSHOT_PROP</a>
+structure. A caller MUST release the received <i>ppEnum</i> when the caller is done
+with it.</p><p><b>Return Values: </b>The method MUST return zero
+when it has succeeded or an implementation-specific nonzero error code on
+failure.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>Returned when <i>pwszVolumeName</i> or <i>ppEnum</i>
+  is NULL or when ProviderId is GUID_NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80042304</p>
+  <p>VSS_E_PROVIDER_NOT_REGISTERED</p>
+  </td>
+  <td>
+  <p>Returned when the provider with ID ProviderId does not
+  exist on the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>E_ACCESSDENIED</p>
+  </td>
+  <td>
+  <p>Returned when the user making the request does not
+  have sufficient privileges to perform the operation.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>No exceptions are thrown except those that are thrown by the
+underlying <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>After the server receives this message, it MUST verify that <i>ppEnum</i>
+is not NULL.</p><p>The server MUST set the <i>ppEnum</i> pointer to an instance
+of IVssEnumObject that contains a VSS_SNAPSHOT_PROP structure for each shadow
+copy for the specified volume on the server. If the server has no shadow copies
+on the specified volume, it MUST return an empty IVssEnumObject object.</p></div>

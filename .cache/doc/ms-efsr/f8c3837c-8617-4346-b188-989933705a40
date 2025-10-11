@@ -1,1 +1,203 @@
-<div class="content"></div>
+<div class="content"><p>Each individual Key List Entry MUST be formatted as follows.
+</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Length</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Offset to
+  Public Key Information</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Encrypted
+  FEK Length</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Offset to
+  Encrypted FEK</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Flags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Data Fields
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Length (4 bytes): </b>MUST be equal to the length
+of this key list entry in bytes. It MUST be a 32-bit unsigned integer in
+little-endian format.</p><p><b>Offset to Public Key Information (4 bytes): </b>MUST
+contain the offset to the <b>Public Key Information</b> field in bytes from the
+start of this entry. It MUST be a 32-bit unsigned integer in little-endian
+format. The <b>Public Key Information</b> field MUST be completely contained
+inside the <b>Data Fields</b>.</p><p><b>Encrypted FEK Length (4 bytes): </b>MUST be set to
+the length of the data in the <b>Encrypted FEK</b> field, in bytes. It MUST be
+a 32-bit unsigned integer in little-endian format.</p><p><b>Offset to Encrypted FEK (4 bytes): </b>MUST
+contain the offset to the <b>Encrypted FEK</b> field, in bytes from the start
+of this entry. It MUST be a 32-bit unsigned integer in little-endian format.
+The <b>Encrypted FEK</b> MUST be completely contained inside the <b>Data</b>
+fields.</p><p><b>Flags (4 bytes): </b>This field MUST indicate the
+algorithm used to encrypt the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_3a58e275-3d9f-4b66-8c8d-9808cd0cd8ff" data-linktype="relative-path">FEK</a>
+in this key list entry. It MUST be a 32-bit unsigned integer in little-endian
+format. EFSRPC servers SHOULD support all the values listed below, and MUST
+ignore any unsupported values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The <b>Encrypted FEK</b> field is encrypted using <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_3f85a24a-f32a-4322-9e99-eba6ae802cd6" data-linktype="relative-path">RSA</a>, with a <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_4cf96ca0-e3a9-4165-8d1a-a21b1397007a" data-linktype="relative-path">public key</a> belonging to a
+  user or <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_c2d1bb54-31a8-4918-a163-39a7851c347a" data-linktype="relative-path">DRA</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The <b>Encrypted FEK</b> field is encrypted using
+  AES-256, with a <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">key</a>
+  that is obtained by signing the non-terminated <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string
+  &#34;MICROSOFTE&#34; (20 bytes long) with the user&#39;s RSA and computing the
+  SHA-256 hash of the result.</p>
+  <p>This value is used when a user&#39;s <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private key</a> is stored on
+  a smart card to improve performance by minimizing the number of smart card
+  accesses.<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="cecd911d-7105-45cc-a7c8-348335d6f03f#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Data Fields (variable): </b>This field MUST
+contain the following items, in any order, at the locations indicated by the
+respective <b>Offset</b> fields previously listed. These items MUST be
+completely contained inside this field and MUST NOT overlap each other. There
+MUST NOT be unused areas within this field spanning more than 8 contiguous
+bytes.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Public Key
+  Information (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Encrypted
+  FEK (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Public Key Information
+(variable): </b>This field MUST contain information about the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_2069b65d-b546-4198-abfd-768badc2258e" data-linktype="relative-path">X.509</a> <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> that contains
+the RSA public key, which is used to encrypt the <b>Encrypted FEK</b> field. It
+MUST be formatted as specified in section <a href="db88e723-1ff7-4351-a518-e1c60ee391a7" data-linktype="relative-path">2.2.2.1.3</a>.</p>
+</dd>
+<dd>
+<p><b>Encrypted FEK (variable):
+</b>This field MUST contain information about the FEK, encrypted as indicated
+by the contents of the <b>Flags</b> field. It MUST be formatted as specified in
+section <a href="00933615-c9cf-4d51-9d9a-bb3fb33a3560" data-linktype="relative-path">2.2.2.1.5</a>.</p>
+</dd></dl></div>

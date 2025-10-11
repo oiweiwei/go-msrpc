@@ -1,1 +1,435 @@
-<div class="content"></div>
+<div class="content"><p>The <b>ROUTER_CUSTOM_IKEv2_POLICY_0</b> structure<a id="Appendix_A_Target_166"></a><a aria-label="Product behavior note 166" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_166" data-linktype="relative-path">&lt;166&gt;</a> is used to get or set
+configuration parameters to be used during <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_1da1a69c-0703-4351-a7a7-59ca46047566" data-linktype="relative-path">quick mode security association
+(QM SA)</a> or <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_d334f339-380f-4f63-9e8a-04b4226653df" data-linktype="relative-path">main mode
+security association (MM SA)</a> negotiation for IKEv2 <a href="https://go.microsoft.com/fwlink/?LinkId=90469" data-linktype="external">[RFC4306]</a> and L2TP
+devices.</p><dl>
+<dd>
+<div><pre> typedef struct _ROUTER_CUSTOM_IKEv2_POLICY_0 {
+   DWORD dwIntegrityMethod;
+   DWORD dwEncryptionMethod;
+   DWORD dwCipherTransformConstant;
+   DWORD dwAuthTransformConstant;
+   DWORD dwPfsGroup;
+   DWORD dwDhGroup;
+ } ROUTER_CUSTOM_IKEv2_POLICY_0,
+  *PROUTER_CUSTOM_IKEv2_POLICY_0,
+  ROUTER_CUSTOM_L2TP_POLICY_0,
+  *PROUTER_CUSTOM_L2TP_POLICY_0;
+</pre></div>
+</dd></dl><p><b>dwIntegrityMethod: </b>Specifies the integrity
+check algorithm to be negotiated during MM SA negotiation [RFC4306]. This
+SHOULD have one of the following values. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>INTEGRITY_MD5</p>
+  <p>(0x0)</p>
+  </td>
+  <td>
+  <p>Specifies MD5 hash algorithm.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>INTEGRITY_SHA1</p>
+  <p>(0x1)</p>
+  </td>
+  <td>
+  <p>Specifies SHA1 hash algorithm.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>INTEGRITY_SHA_256</p>
+  <p>(0x2)</p>
+  </td>
+  <td>
+  <p>Specifies a 256-bit SHA encryption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>INTEGRITY_SHA_384</p>
+  <p>(0x3)</p>
+  </td>
+  <td>
+  <p>Specifies a 384-bit SHA encryption.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwEncryptionMethod: </b>Specifies the encryption
+algorithm to be negotiated during MM SA negotiation [RFC4306]. This SHOULD have
+one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CIPHER_DES</p>
+  <p>(0x0)</p>
+  </td>
+  <td>
+  <p>Specifies DES encryption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CIPHER_3DES </p>
+  <p>(0x1)</p>
+  </td>
+  <td>
+  <p>Specifies 3DES encryption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CIPHER_AES_128</p>
+  <p>(0x2)</p>
+  </td>
+  <td>
+  <p>Specifies AES-128 encryption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CIPHER_AES_192</p>
+  <p>(0x3)</p>
+  </td>
+  <td>
+  <p>Specifies AES-192 encryption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CIPHER_AES_256</p>
+  <p>(0x4)</p>
+  </td>
+  <td>
+  <p>Specifies AES-256 encryption.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwCipherTransformConstant: </b>Specifies the
+encryption algorithm to be negotiated during QM SA negotiation [RFC4306]. This
+SHOULD have one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CIPHER_CONFIG_CBC_DES</p>
+  <p>(0x1)</p>
+  </td>
+  <td>
+  <p>DES (Data Encryption Standard) algorithm. CBC (Cipher
+  Block Chaining) mode of operation. <a href="https://go.microsoft.com/fwlink/?LinkId=90350" data-linktype="external">[RFC2410]</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CIPHER_CONFIG_CBC_3DES</p>
+  <p>(0x2)</p>
+  </td>
+  <td>
+  <p>3DES algorithm. CBC mode of operation. <a href="https://go.microsoft.com/fwlink/?LinkId=90355" data-linktype="external">[RFC2451]</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CIPHER_CONFIG_CBC_AES_128</p>
+  <p>(0x3)</p>
+  </td>
+  <td>
+  <p>AES-128 (Advanced Encryption Standard) algorithm. CBC
+  mode of operation. <a href="https://go.microsoft.com/fwlink/?LinkId=90436" data-linktype="external">[RFC3602]</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CIPHER_CONFIG_CBC_AES_192</p>
+  <p>(0x4)</p>
+  </td>
+  <td>
+  <p>AES-192 algorithm. CBC mode of operation. [RFC3602]</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CIPHER_CONFIG_CBC_AES_256</p>
+  <p>(0x5)   </p>
+  </td>
+  <td>
+  <p>AES-256 algorithm. CBC mode of operation. [RFC3602]</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CIPHER_CONFIG_GCM_AES_128</p>
+  <p>(0x6)</p>
+  </td>
+  <td>
+  <p>AES-128 algorithm. GCM (Galois Counter Mode) mode of
+  operation. <a href="https://go.microsoft.com/fwlink/?LinkId=90457" data-linktype="external">[RFC4106]</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CIPHER_CONFIG_GCM_AES_192</p>
+  <p>(0x7)</p>
+  </td>
+  <td>
+  <p>AES-192 algorithm. GCM (Galois Counter Mode) mode of
+  operation. [RFC4106]</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CIPHER_CONFIG_GCM_AES_256</p>
+  <p>(0x8)</p>
+  </td>
+  <td>
+  <p>AES-256 algorithm. GCM (Galois Counter Mode) mode of
+  operation. [RFC4106]</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwAuthTransformConstant: </b>Specifies the hash
+algorithm to be negotiated during QM SA negotiation [RFC4306]. This SHOULD have
+one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>AUTH_CONFIG_HMAC_MD5_96</p>
+  <p>(0x0)</p>
+  </td>
+  <td>
+  <p><a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_ba024019-a866-41df-99a5-764b7eab2e1e" data-linktype="relative-path">Hash-based
+  Message Authentication Code (HMAC)</a> secret key authentication algorithm.
+  MD5data integrity and data origin authentication algorithm. <a href="https://go.microsoft.com/fwlink/?LinkId=90343" data-linktype="external">[RFC2403]</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AUTH_CONFIG_HMAC_SHA_1_96</p>
+  <p>(0x1)</p>
+  </td>
+  <td>
+  <p>HMAC secret key authentication algorithm. SHA-1
+  (Secure Hash Algorithm) data integrity and data origin authentication
+  algorithm. <a href="https://go.microsoft.com/fwlink/?LinkId=90344" data-linktype="external">[RFC2404]</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AUTH_CONFIG_HMAC_SHA_256_128</p>
+  <p>(0x2)</p>
+  </td>
+  <td>
+  <p>HMAC secret key authentication algorithm. SHA-256 data
+  integrity and data origin authentication algorithm.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AUTH_CONFIG_GCM_AES_128</p>
+  <p>(0x3)</p>
+  </td>
+  <td>
+  <p>GCM (Galois Counter Mode) secret key authentication
+  algorithm. AES(Advanced Encryption Standard) data integrity and data origin
+  authentication algorithm, with 128-bit key.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AUTH_CONFIG_GCM_AES_192</p>
+  <p>(0x4)</p>
+  </td>
+  <td>
+  <p>GCM secret key authentication algorithm. AES data
+  integrity and data origin authentication algorithm, with 192-bit key.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AUTH_CONFIG_GCM_AES_256</p>
+  <p>(0x5)</p>
+  </td>
+  <td>
+  <p>GCM secret key authentication algorithm. AES data
+  integrity and data origin authentication algorithm, with 256-bit key.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwPfsGroup: </b>Specifies the Diffie-Hellman
+algorithm to be used for Quick Mode Perfect Forward Secrecy (PFS) [RFC4306]. This
+SHOULD have one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PFS_NONE</p>
+  <p>(0x0)</p>
+  </td>
+  <td>
+  <p>Specifies no Quick Mode PFS.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PFS_1</p>
+  <p>(0x1)</p>
+  </td>
+  <td>
+  <p>Specifies Diffie- Hellman group 1.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PFS_2</p>
+  <p>(0x2)</p>
+  </td>
+  <td>
+  <p>Specifies Diffie- Hellman group 2.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PFS_2048</p>
+  <p>(0x3)</p>
+  </td>
+  <td>
+  <p>Specifies Diffie- Hellman group 2048.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PFS_ECP_256</p>
+  <p>(0x4)</p>
+  </td>
+  <td>
+  <p>Specifies Diffie- Hellman ECP group 256.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PFS_ECP_384</p>
+  <p>(0x5)</p>
+  </td>
+  <td>
+  <p>Specifies Diffie- Hellman ECP group 384.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PFS_MM</p>
+  <p>(0x6)</p>
+  </td>
+  <td>
+  <p>Use the same Diffie- Hellman as the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_91a6fd2e-dbcc-46fa-a7ae-0a72e85b74a6" data-linktype="relative-path">main mode (MM)</a> that contains
+  this quick mode (QM).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PFS_24</p>
+  <p>(0x7)</p>
+  </td>
+  <td>
+  <p>Specifies Diffie- Hellman group 24.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwDhGroup: </b>Specifies the type of
+Diffie-Hellman group used for <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_294fef97-5790-4d41-971e-dd255b783e68" data-linktype="relative-path">Internet
+Key Exchange (IKE)</a> key generation during MM SA negotiation [RFC4306]. This
+SHOULD have one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DH_GROUP_NONE</p>
+  <p>(0x0)</p>
+  </td>
+  <td>
+  <p>No key exchange algorithms defined.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DH_GROUP_1</p>
+  <p>(0x1)</p>
+  </td>
+  <td>
+  <p>Do key exchange with Diffie-Hellman group 1.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DH_GROUP_2</p>
+  <p>(0x2)</p>
+  </td>
+  <td>
+  <p>Do key exchange with Diffie-Hellman group 2.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DH_GROUP_14</p>
+  <p>(0x3)</p>
+  </td>
+  <td>
+  <p>Do key exchange with Diffie-Hellman group 14.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DH_GROUP_2048</p>
+  <p>(0x3)</p>
+  </td>
+  <td>
+  <p>Do key exchange with Diffie-Hellman group 14. This
+  group was called Diffie-Hellman group 2048 when it was introduced. The name
+  has been changed to match standard terminology.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DH_ECP_256</p>
+  <p>(0x4)</p>
+  </td>
+  <td>
+  <p>Do key exchange with elliptic curve Diffie-Hellman
+  256.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DH_ECP_384</p>
+  <p>(0x5)</p>
+  </td>
+  <td>
+  <p>Do key exchange with elliptic curve Diffie-Hellman
+  384.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DH_GROUP_24</p>
+  <p>(0x6)</p>
+  </td>
+  <td>
+  <p>Do key exchange with Diffie-Hellman group 24.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

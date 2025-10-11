@@ -1,1 +1,11 @@
-<div class="content"></div>
+<div class="content"><p>The File Replication Service (FRS) Protocol is used to
+replicate files and folders among servers on the network. This protocol enables
+duplicate files and folders to be maintained on multiple servers. FRS  is used
+to maintain duplicate copies of data files in the system volume (SYSVOL) system
+folders on multiple domain controllers in a domain. FRS is used to replicate
+data files among Distributed File System (DFS) shares. Detailed technical
+reference material for the Remote Procedure Call (RPC) interfaces, packet
+formats, and data structures required for interoperation using FRS are
+provided.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

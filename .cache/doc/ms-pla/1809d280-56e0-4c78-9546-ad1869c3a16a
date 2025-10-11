@@ -106,11 +106,11 @@ objects that implement the IDataCollectorSet interface.</p><table><thead>
   <p>List of keywords associated with the data collector
   sets. Keywords are metadata for describing a data collector set; they are not
   parsed by the data collector set. They are intended to help the end user
-  understand the contents of the data collector set, and serve no functional purpose
-  as to how the data collector set is executed on the server. There MUST be at
-  most 256 keywords that are associated with a data collector set; each keyword
-  MUST NOT be more than 1024 characters in length. The keyword string cannot be
-  the empty string, nor can the keyword string contain the semicolon
+  understand the contents of the data collector set, and serve no functional
+  purpose as to how the data collector set is executed on the server. There MUST
+  be at most 256 keywords that are associated with a data collector set; each
+  keyword MUST NOT be more than 1024 characters in length. The keyword string
+  cannot be the empty string, nor can the keyword string contain the semicolon
   (&#34;;&#34;) character.</p>
   </td>
  </tr><tr>
@@ -165,12 +165,12 @@ objects that implement the IDataCollectorSet interface.</p><table><thead>
   <p>R </p>
   </td>
   <td>
-  <p>List of schedules that determines when the data
-  collector set runs automatically. Each schedule specifies a time when the
-  data collector will be started, the first day it will be started at that
-  time, the last day it will be started at that time, and the days of the week
-  it will be started. Each schedule is specified by an object implementing the
-  ISchedule interface, specified in section <a href="6822e6fc-c23e-4ca3-9164-2d9b19eaa727" data-linktype="relative-path">3.2.4.12</a>.</p>
+  <p>List of schedules that determines when the data collector
+  set runs automatically. Each schedule specifies a time when the data
+  collector will be started, the first day it will be started at that time, the
+  last day it will be started at that time, and the days of the week it will be
+  started. Each schedule is specified by an object implementing the ISchedule
+  interface, specified in section <a href="6822e6fc-c23e-4ca3-9164-2d9b19eaa727" data-linktype="relative-path">3.2.4.12</a>.</p>
   </td>
  </tr><tr>
   <td>

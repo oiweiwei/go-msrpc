@@ -1,1 +1,10 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_ICMP</b> structure contains the ICMP statistics.
+This structure is used in <b>MIB_OPAQUE_INFO</b> (section <a href="169e435d-a975-4c1c-bf41-55fd2bd76125" data-linktype="relative-path">2.2.1.2.52</a>) structure.</p><dl>
+<dd>
+<div><pre> typedef struct _MIB_ICMP {
+   MIBICMPINFO stats;
+ } MIB_ICMP,
+  *PMIB_ICMP;
+</pre></div>
+</dd></dl><p><b>stats: </b>An <a href="33d66d79-c877-4b24-b823-802838d65ec0" data-linktype="relative-path"><b>MIBICMPINFO (section 2.2.1.2.26)</b></a>
+structure that contains the ICMP statistics. </p></div>

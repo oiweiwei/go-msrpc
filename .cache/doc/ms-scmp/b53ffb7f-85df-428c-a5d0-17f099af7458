@@ -1,1 +1,12 @@
-<div class="content"></div>
+<div class="content"><p>The VSS_OBJECT_PROP structure specifies the union of object
+types that can be enumerated by the <a href="1fff5a29-7f95-4237-9792-0743b75739fa" data-linktype="relative-path">IVssEnumObject</a> <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _VSS_OBJECT_PROP {
+   VSS_OBJECT_TYPE Type;
+   [switch_is(Type)] VSS_OBJECT_UNION Obj;
+ } VSS_OBJECT_PROP;
+</pre></div>
+</dd></dl><p><b>Type:</b>  A value defined in the <a href="0df29f18-631d-4aa5-9fdc-78faa07e1187" data-linktype="relative-path">VSS_OBJECT_TYPE
+enumeration (section 2.2.2.1)</a> that specifies the type of object
+that is contained in the <b>Obj</b> union structure.</p><p><b>Obj:</b>  A <a href="f63af19f-bc5c-4a20-afaf-4f6e0f7c1045" data-linktype="relative-path">VSS_OBJECT_UNION
+structure (section 2.2.3.1)</a>.</p></div>

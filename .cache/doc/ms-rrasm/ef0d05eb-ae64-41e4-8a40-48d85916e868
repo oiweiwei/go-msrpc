@@ -1,1 +1,18 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IP_NAT_ADDRESS_MAPPING</b> structure holds a static
+mapping that ties an address from this NAT interface&#39;s address pool to a
+specific private-machine&#39;s address.</p><p><b>Note</b>  This address MUST fall within one of
+the ranges comprising the pool as specified by the <a href="4aea660a-1f49-4ab5-bdf0-bae122a7c5c2" data-linktype="relative-path"><b>IP_NAT_ADDRESS_RANGE</b></a>
+structures.</p><dl>
+<dd>
+<div><pre> typedef struct _IP_NAT_ADDRESS_MAPPING {
+   ULONG PrivateAddress;
+   ULONG PublicAddress;
+   BOOLEAN AllowInboundSessions;
+ } IP_NAT_ADDRESS_MAPPING, *PIP_NAT_ADDRESS_MAPPING;
+</pre></div>
+</dd></dl><p><b>PrivateAddress: </b>The private IP address of the
+translation.</p><p><b>PublicAddress: </b>The public IP address of the
+translation.</p><p><b>AllowInboundSessions:</b> This is of type BOOLEAN
+(<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/51bbfbb1-08e2-4c13-a95e-1eaa7d310670" data-linktype="relative-path">2.2.4</a>).
+Specifies whether sessions from public networks are allowed.</p></div>

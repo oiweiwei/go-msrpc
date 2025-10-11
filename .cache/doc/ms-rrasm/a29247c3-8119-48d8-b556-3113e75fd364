@@ -1,1 +1,9 @@
-<div class="content"></div>
+<div class="content"><p>The <b>OSPF_ROUTE_FILTER</b> structure MAY<a id="Appendix_A_Target_144"></a><a aria-label="Product behavior note 144" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_144" data-linktype="relative-path">&lt;144&gt;</a> be used as part of <a href="027f5f7a-ae39-44f2-95ac-f557c881a069" data-linktype="relative-path"><b>OSPF_ROUTE_FILTER_INFO
+(section 2.2.1.2.209)</b></a> structure.</p><dl>
+<dd>
+<div><pre> typedef struct _OSPF_ROUTE_FILTER {
+   DWORD dwAddress;
+   DWORD dwMask;
+ } OSPF_ROUTE_FILTER, *POSPF_ROUTE_FILTER;
+</pre></div>
+</dd></dl><p><b>dwAddress: </b>The IPV4 address or subnet.</p><p><b>dwMask: </b>The IP subnet mask. See <a href="https://go.microsoft.com/fwlink/?LinkId=90501" data-linktype="external">[RFC950]</a>.</p></div>

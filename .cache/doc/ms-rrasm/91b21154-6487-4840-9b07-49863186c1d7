@@ -1,1 +1,26 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_TCPROW</b> structure contains information for an
+IPv4 TCP connection. This structure is used in the following structures: </p><ul><li><p><span><span> 
+</span></span><b>MIB_OPAQUE_INFO</b> (section <a href="169e435d-a975-4c1c-bf41-55fd2bd76125" data-linktype="relative-path">2.2.1.2.52</a>)</p>
+</li><li><p><span><span> 
+</span></span><b>MIB_TCPTABLE</b> (section <a href="e944eb35-ab38-41af-9b9a-384d0b3e11a3" data-linktype="relative-path">2.2.1.2.57</a>)</p>
+<div><pre> typedef struct _MIB_TCPROW {
+   union {
+     DWORD dwState;
+     MIB_TCP_STATE State;
+   };
+   DWORD dwLocalAddr;
+   DWORD dwLocalPort;
+   DWORD dwRemoteAddr;
+   DWORD dwRemotePort;
+ } MIB_TCPROW,
+  *PMIB_TCPROW;
+</pre></div>
+</li></ul><p><b>dwState: </b>The state of the TCP <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_866b0055-ceba-4acf-a692-98452943b981" data-linktype="relative-path">connection</a>. This member can
+be one of the enums in the <a href="882bec9c-2fb6-4acd-a9b6-dabcab1ac0d6" data-linktype="relative-path"><b>MIB_TCP_STATE (section 2.2.1.1.11)</b></a>
+enumeration. </p><p><b>State: </b>The state of the TCP connection.<a id="Appendix_A_Target_37"></a><a aria-label="Product behavior note 37" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_37" data-linktype="relative-path">&lt;37&gt;</a></p><p><b>dwLocalAddr: </b>The local IPv4 address for the
+TCP connection on the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_18fbc2e7-8c0f-420a-bc43-0c3261d25eb2" data-linktype="relative-path">local
+computer</a>. A value of zero (0) indicates the listener can accept a
+connection on any <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a>.</p><p><b>dwLocalPort: </b>The local <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">port</a> number in <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_502de58c-ffc0-4dda-8fcb-b152b2c31fba" data-linktype="relative-path">network byte order</a> for the
+TCP connection on the local computer.</p><p><b>dwRemoteAddr: </b>The IPv4 address for the TCP
+connection on the remote computer.</p><p><b>dwRemotePort: </b>The remote port number in network
+byte order for the TCP connection on the remote computer.</p></div>

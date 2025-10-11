@@ -31,10 +31,78 @@ type SnapshotManagementServer interface {
 	// IUnknown base class.
 	iunknown.UnknownServer
 
+	// The GetProviderMgmtInterface method retrieves the IVssDifferentialSoftwareSnapshotMgmt
+	// interface.
+	//
+	// Return Values: The method MUST return the following error code for the specific conditions.
+	//
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                  RETURN                  |                                                                                  |
+	//	|                VALUE/CODE                |                                   DESCRIPTION                                    |
+	//	|                                          |                                                                                  |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80042304 VSS_E_PROVIDER_NOT_REGISTERED | Returned when the provider with ID ProviderId does not exist on the server.      |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                  | Returned when ppItf is NULL or REFIID is not equal to                            |
+	//	|                                          | __uuidof(IVssDifferentialSoftwareSnapshotMgmt).                                  |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 E_ACCESSDENIED                | Returned when the user making the request does not have sufficient privileges to |
+	//	|                                          | perform the operation.                                                           |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// No exceptions are thrown except those that are thrown by the underlying RPC protocol
+	// [MS-RPCE].
 	GetProviderManagementInterface(context.Context, *GetProviderManagementInterfaceRequest) (*GetProviderManagementInterfaceResponse, error)
 
+	// The QueryVolumesSupportedForSnapshots method retrieves from the server a collection
+	// of volumes that support shadow copies.
+	//
+	// Return Values: The method MUST return zero when it has succeeded or an implementation-specific
+	// nonzero error code on failure.
+	//
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                  RETURN                  |                                                                                  |
+	//	|                VALUE/CODE                |                                   DESCRIPTION                                    |
+	//	|                                          |                                                                                  |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                  | Returned when ProviderId is GUID_NULL or when ppEnum is NULL.                    |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80042304 VSS_E_PROVIDER_NOT_REGISTERED | Returned when the provider with ID ProviderId does not exist on the server.      |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 E_ACCESSDENIED                | Returned when the user making the request does not have sufficient privileges to |
+	//	|                                          | perform the operation.                                                           |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// No exceptions are thrown except those that are thrown by the underlying RPC protocol
+	// [MS-RPCE].
 	QueryVolumesSupportedForSnapshots(context.Context, *QueryVolumesSupportedForSnapshotsRequest) (*QueryVolumesSupportedForSnapshotsResponse, error)
 
+	// The QuerySnapshotsByVolume method retrieves a collection of shadow copy objects that
+	// are present on a specified volume of the server.
+	//
+	// Return Values: The method MUST return zero when it has succeeded or an implementation-specific
+	// nonzero error code on failure.
+	//
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                  RETURN                  |                                                                                  |
+	//	|                VALUE/CODE                |                                   DESCRIPTION                                    |
+	//	|                                          |                                                                                  |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                  | Returned when pwszVolumeName or ppEnum is NULL or when ProviderId is GUID_NULL.  |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80042304 VSS_E_PROVIDER_NOT_REGISTERED | Returned when the provider with ID ProviderId does not exist on the server.      |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 E_ACCESSDENIED                | Returned when the user making the request does not have sufficient privileges to |
+	//	|                                          | perform the operation.                                                           |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// No exceptions are thrown except those that are thrown by the underlying RPC protocol
+	// [MS-RPCE].
+	//
+	// After the server receives this message, it MUST verify that ppEnum is not NULL.
 	QuerySnapshotsByVolume(context.Context, *QuerySnapshotsByVolumeRequest) (*QuerySnapshotsByVolumeResponse, error)
 }
 

@@ -1,1 +1,39 @@
-<div class="content"></div>
+<div class="content"><p>The IUpdateServiceManager::SetOption (opnum 14) method sets
+options on this interface. The &#34;AllowedServiceID&#34; option restricts
+the IUpdateServiceManager::RegisterServiceWithAU (opnum 10) (section <span><a href="35bd409b-f802-43a8-ab88-c18fa172b636" data-linktype="relative-path">3.44.4.2)</a></span>
+method to work only with the given service ID. The &#34;AllowWarningUI&#34;
+option controls whether a warning UI is displayed when changing the service
+registered with the <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_b1d92af1-3c57-42f7-936f-8c56fb75e818" data-linktype="relative-path">automatic update agent</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT SetOption(
+   [in] BSTR optionName,
+   [in] VARIANT optionValue
+ );
+</pre></div>
+</dd></dl><p><b>optionName: </b>MUST be set either to
+&#34;AllowedServiceID&#34; or &#34;AllowWarningUI&#34;.</p><p><b>optionValue: </b>If <i>optionName</i> is
+&#34;AllowedServiceID&#34;, the <b>vt</b> member MUST be set to VT_BSTR, as
+specified in <span><a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a></span>
+section <span><a href="../ms-oaut/3fe7db9f-5803-4dc4-9d14-5425d3f5461f" data-linktype="relative-path">2.2.7</a></span>,
+and the <b>bstrVal</b> member MUST contain the identifier of the service to
+which to restrict the
+IUpdateServiceManager::RegisterServiceWithAU (section 3.44.4.2)
+method.</p><dl>
+<dd>
+<p>If <i>optionName</i> is &#34;AllowWarningUI&#34;,
+the <b>vt</b> member MUST be set to VT_BOOL, as specified in [MS-OAUT] section
+2.2.7, and the <b>boolVal</b> member MUST be set to VARIANT_TRUE if a warning
+UI is allowed to be displayed when changing the service registered with the automatic
+update agent, or VARIANT_FALSE if a warning UI is not allowed to be displayed.</p>
+</dd></dl><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b>  data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>If <i>optionName</i> is &#34;AllowedServiceID&#34;, this
+method SHOULD set the value of the <b>AllowedServiceID</b> ADM element to the
+string stored in <i>optionValue</i>. If <i>optionName</i> is
+&#34;AllowWarningUI&#34;, this method SHOULD set the value of the <b>AllowWarningUI</b>
+ADM element to the VARIANT_BOOL stored in <i>optionValue</i>.</p></div>

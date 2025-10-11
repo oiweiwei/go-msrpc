@@ -1,1 +1,72 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IGMP_MIB_IF_GROUPS_LIST</b> structure is an MIB entry
+that stores the list of multicast groups that are members of that interface.
+This structure has variable length. The structure is followed by <b>NumGroups</b>
+number of <a href="f4a610c9-dc21-41ee-b5f5-e7c86219f107" data-linktype="relative-path"><b>IGMP_MIB_GROUP_INFO (section 2.2.1.2.176)</b></a>
+structures.  </p><dl>
+<dd>
+<div><pre> typedef struct _IGMP_MIB_IF_GROUPS_LIST {
+   DWORD IfIndex;
+   DWORD IpAddr;
+   DWORD IfType;
+   DWORD NumGroups;
+   BYTE Buffer[1];
+ } IGMP_MIB_IF_GROUPS_LIST,
+  *PIGMP_MIB_IF_GROUPS_LIST;
+</pre></div>
+</dd></dl><p><b>IfIndex: </b>Index of the interface</p><p><b>IpAddr: </b>IP address of the interface</p><p><b>IfType: </b>Type of the interface, MUST be one of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IGMP_IF_NOT_RAS</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The interface is connected to a LAN</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_IF_RAS_ROUTER</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The interface is connected to another router over RAS</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_IF_RAS_SERVER</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The entry corresponds to a RAS server if it contains
+  stats, then it represents summarized stats</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_IF_RAS_CLIENT</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The entry corresponds to a RAS client</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_IF_PROXY</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>then one of the 1st 4 flags still will be set to
+  enable switch from proxy to IGMP router</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>NumGroups: </b>Number of <b>IGMP_MIB_GROUP_INFO</b>
+structures</p><p><b>Buffer: </b>MUST point to <b>IGMP_MIB_GROUP_INFO</b>.</p></div>

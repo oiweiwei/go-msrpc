@@ -1,1 +1,204 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MPRAPI_OBJECT_HEADER_IDL</b> structure SHOULD<a id="Appendix_A_Target_116"></a><a aria-label="Product behavior note 116" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_116" data-linktype="relative-path">&lt;116&gt;</a> define the version of the
+structure that needs to be used by the following methods and structures:</p><ul><li><p><span><span> 
+</span></span><a href="d1261e41-c4cf-4a11-8eba-9f161f33dcb9" data-linktype="relative-path"><b>RRasAdminConnectionEnumEx (section 3.1.4.46)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="2d1031a2-3df3-458e-9b9c-b5477b4130f1" data-linktype="relative-path"><b>RRasAdminConnectionGetInfoEx (section 3.1.4.47)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="d9078168-75b2-4d5d-93b6-f39b29736682" data-linktype="relative-path"><b>RAS_CONNECTION_EX_1_IDL (section 2.2.1.2.133)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="453989e4-59d7-4915-9958-d9cd2c277b9a" data-linktype="relative-path"><b>MPR_SERVER_EX_1 (section 2.2.1.2.142)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="438f3bb9-06fa-4c06-a772-8c8d7bf6e62a" data-linktype="relative-path"><b>MPR_SERVER_SET_CONFIG_EX_1 (section 2.2.1.2.145)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="ff12a4cb-d190-4476-b674-0048ac93d911" data-linktype="relative-path"><b>RAS_UPDATE_CONNECTION_1_IDL (section 2.2.1.2.147)</b></a><span> </span></p>
+</li><li><p><span><span> 
+</span></span><a href="f27f87a5-bd12-4c77-b484-d583453bd471" data-linktype="relative-path"><b>MPR_SERVER_SET_CONFIG_EX_2 (section 2.2.1.2.241)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="6f9a70b4-6222-4976-a93f-f853fa19d7b2" data-linktype="relative-path"><b>MPR_SERVER_EX_2 (section 2.2.1.2.242)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="54f68223-7380-45b3-bc09-1168944831be" data-linktype="relative-path"><b>MPR_IF_CUSTOMINFOEX_0 (section 2.2.1.2.244)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="c4043842-b5a8-4768-9689-6fe258777266" data-linktype="relative-path"><b>MPR_SERVER_SET_CONFIG_EX_3 (section 2.2.1.2.250)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="4795f906-fc58-41b9-9cb9-977165835b98" data-linktype="relative-path"><b>MPR_SERVER_EX_3 (section 2.2.1.2.251)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="d0d5f606-5c82-48de-ab99-d106e797813a" data-linktype="relative-path"><b>MPR_IF_CUSTOMINFOEX_1 (section 2.2.1.2.269)</b></a><span>  </span></p>
+<div><pre> typedef struct _MPRAPI_OBJECT_HEADER_IDL {
+   UCHAR revision;
+   UCHAR type;
+   USHORT size;
+ } MPRAPI_OBJECT_HEADER_IDL,
+  *PMPRAPI_OBJECT_HEADER_IDL;
+</pre></div>
+</li></ul><p><b>revision: </b>This represents the version of the
+structure that is being used depending on the numeric value in the <b>type</b>
+field. The following values are supported. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MPRAPI_RAS_CONNECTION_OBJECT_REVISION_1</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>Represents revision 1 of the structure
+  RAS_CONNECTION_EX_1_IDL (section 2.2.1.2.133) if <b>type</b> is
+  0x01.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRAPI_MPR_SERVER_SET_CONFIG_OBJECT_REVISION_1</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>Represents revision 1 of the structure MPR_SERVER_SET_CONFIG_EX_1 (section 2.2.1.2.145)
+  if <b>type</b> is 0x03.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRAPI_MPR_SERVER_SET_CONFIG_OBJECT_REVISION_2</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>Represents revision 2 of the structure
+  MPR_SERVER_SET_CONFIG_EX_2 (section 2.2.1.2.241) if <b>type</b> is
+  0x03.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRAPI_MPR_SERVER_SET_CONFIG_OBJECT_REVISION_3</p>
+  <p>0x03</p>
+  </td>
+  <td>
+  <p>Represents revision 3 of the structure
+  MPR_SERVER_SET_CONFIG_EX_3 (section 2.2.1.2.250) if <b>type</b> is
+  0x03.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRAPI_MPR_SERVER_OBJECT_REVISION_1</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>Represents revision 1 of the structure
+  MPR_SERVER_EX_1 (section 2.2.1.2.142) if <b>type</b> is 0x02.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRAPI_MPR_SERVER_OBJECT_REVISION_2</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>Represents revision 2 of the structure
+  MPR_SERVER_EX_2 (section 2.2.1.2.242) if <b>type</b> is 0x02.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRAPI_MPR_SERVER_OBJECT_REVISION_3</p>
+  <p>0x03</p>
+  </td>
+  <td>
+  <p>Represents revision 3 of the structure MPR_SERVER_EX_3 (section 2.2.1.2.251)
+  if <b>type</b> is 0x02.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRAPI_RAS_UPDATE_CONNECTION_OBJECT_REVISION_1</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>Represents revision 1 of the structure
+  RAS_UPDATE_CONNECTION_1_IDL (section 2.2.1.2.147) if <b>type</b> is
+  0x05.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRAPI_MPR_IF_CUSTOM_CONFIG_OBJECT_REVISION_1</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>Represents revision 1 of the structure
+  MPR_IF_CUSTOMINFOEX_0 (section 2.2.1.2.244) if <b>type</b> is 0x06.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRAPI_MPR_IF_CUSTOM_CONFIG_OBJECT_REVISION_2</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>Represents revision 2 of the structure
+  MPR_IF_CUSTOMINFOEX_1 (section 2.2.1.2.269) if <b>type</b> is 0x06.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>type: </b>The following represents the type of
+structure being used.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MPRAPI_OBJECT_TYPE_RAS_CONNECTION_OBJECT</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>Represents a <a href="244bfb40-58d4-416f-a883-382e763fe609" data-linktype="relative-path">RAS_CONNECTION_EX_IDL (section 2.2.1.2.134)</a>
+  structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRAPI_OBJECT_TYPE_MPR_SERVER_OBJECT</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>Represents an <b>MPR_SERVER_EX</b> structure
+  (MPR_SERVER_EX_1 (section 2.2.1.2.142) structure or an
+  MPR_SERVER_EX_2 (section 2.2.1.2.242)) based on the value of <b>revision</b>.
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRAPI_OBJECT_TYPE_MPR_SERVER_SET_CONFIG_OBJECT</p>
+  <p>0x03</p>
+  </td>
+  <td>
+  <p>Represents an MPR_SERVER_SET_CONFIG_EX structure (an
+  MPR_SERVER_SET_CONFIG_EX_1 or an
+  MPR_SERVER_SET_CONFIG_EX_2 (section 2.2.1.2.241) structure based on
+  the value of <b>revision</b>).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRAPI_OBJECT_TYPE_UPDATE_CONNECTION_OBJECT</p>
+  <p>0x05</p>
+  </td>
+  <td>
+  <p>Represents a
+  RAS_UPDATE_CONNECTION_1_IDL (section 2.2.1.2.147) structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRAPI_OBJECT_TYPE_IF_CUSTOM_CONFIG_OBJECT</p>
+  <p>0x06</p>
+  </td>
+  <td>
+  <p>Represents an <a href="89cbdcda-d307-4445-861f-d411107a8bbe" data-linktype="relative-path">MPR_IF_CUSTOMINFOEX_IDL (section 2.2.1.2.245)</a>
+  structure.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>size: </b>Size of the BLOB (structure) being
+passed based on the type and revision. </p></div>

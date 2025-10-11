@@ -1,1 +1,12 @@
-<div class="content"></div>
+<div class="content"><p>The EFS_RPC_BLOB type is used to represent a generic <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_ad861812-8cb0-497a-80bb-13c95aa4e425" data-linktype="relative-path">binary large object (BLOB)</a>
+(that is, an opaque data type).</p><dl>
+<dd>
+<div><pre> typedef struct _EFS_RPC_BLOB {
+   [range(0,266240)] DWORD cbData;
+   [size_is(cbData)] unsigned char* bData;
+ } EFS_RPC_BLOB,
+  *PEFS_RPC_BLOB;
+</pre></div>
+</dd></dl><p><b>cbData:</b>  The length, in bytes, of
+the data object in the bData field.</p><p><b>bData:</b>  The contents of the data
+object.<a id="Appendix_A_Target_25"></a><a aria-label="Product behavior note 25" href="cecd911d-7105-45cc-a7c8-348335d6f03f#Appendix_A_25" data-linktype="relative-path">&lt;25&gt;</a></p></div>

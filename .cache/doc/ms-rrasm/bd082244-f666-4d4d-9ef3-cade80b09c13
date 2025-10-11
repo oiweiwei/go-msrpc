@@ -1,1 +1,117 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPRIP_GLOBAL_CONFIG</b> structure contains global
+configuration for the IPRIP. This structure is used in structures <a href="45250002-d774-4bc2-ab2e-6992341b5f45" data-linktype="relative-path"><b>IPRIP_MIB_GET_INPUT_DATA (section 2.2.1.2.161)</b></a>,
+<a href="4fc16996-6de7-4f99-8cea-40e1f42931e1" data-linktype="relative-path"><b>IPRIP_MIB_GET_OUTPUT_DATA (section 2.2.1.2.162)</b></a>,
+and in the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="071439e7-a9fd-40e4-91f7-ab756108e82f" data-linktype="relative-path"><b>RRouterInterfaceTransportSetGlobalInfo</b></a><span> (</span>section 3.1.4.10<span>) </span></p>
+</li><li><p><span><span> 
+</span></span><a href="14ad8d26-d7d7-48dd-914d-da962d5d7049" data-linktype="relative-path"><b>RRouterInterfaceTransportGetGlobalInfo</b></a><span> (</span>section 3.1.4.11<span>) </span></p>
+</li></ul><p>There is only one instance of this entry in the MIB.
+Following it is an array of <b>GC_PeerFilterCount</b> DWORDs, each of which
+contains an IP address which is a peer which will be accepted or rejected
+depending on the value of <b>GC_PeerFilterMode</b>. If the <b>GC_PeerFilterMode</b>
+is set to IPRIP_FILTER_EXCLUDE, routes will be rejected which come from the
+routers whose addresses are in the peer array, and all other routers will be
+accepted. </p><p>Likewise, if the <b>GC_PeerFilterMode</b> is set to
+IPRIP_FILTER_INCLUDE, routes will only be accepted if they are from the routers
+in the peer array.</p><dl>
+<dd>
+<div><pre> typedef struct _IPRIP_GLOBAL_CONFIG  {
+   DWORD GC_LoggingLevel;
+   DWORD GC_MaxRecvQueueSize;
+   DWORD GC_MaxSendQueueSize;
+   DWORD GC_MinTriggeredUpdateInterval;
+   DWORD GC_PeerFilterMode;
+   DWORD GC_PeerFilterCount;
+ } IPRIP_GLOBAL_CONFIG,
+  *PIPRIP_GLOBAL_CONFIG;
+</pre></div>
+</dd></dl><p><b>GC_LoggingLevel: </b>Specifies the logging level.
+This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPRIP_LOGGING_NONE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>No logging is done.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_LOGGING_ERROR</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Only errors are logged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_LOGGING_WARN</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Errors and warnings are logged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_LOGGING_INFO</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Errors, warnings, and information is logged.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>GC_MaxRecvQueueSize: </b>The maximum queue size of
+outstanding RIP messages that need to be processed.</p><p><b>GC_MaxSendQueueSize: </b>The maximum queue size
+for outstanding RIP messages that have been sent out.</p><p><b>GC_MinTriggeredUpdateInterval: </b>The minimum
+amount of time router waits before it sends triggered updates.</p><p><b>GC_PeerFilterMode: </b>Specifies whether route
+changes from all the IP addresses are accepted. It MUST be one of the following
+values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPRIP_FILTER_DISABLED</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Updates from all the IP addresses are accepted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_FILTER_INCLUDE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Updates only from the IP addresses specified in this
+  structure after GC_PeerFilterCount are accepted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_FILTER_EXCLUDE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Ignores updates from the IP addresses specified in
+  this structure after GC_PeerFilterCount.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>GC_PeerFilterCount: </b>The number of IP addresses
+in this structure after this field.</p></div>

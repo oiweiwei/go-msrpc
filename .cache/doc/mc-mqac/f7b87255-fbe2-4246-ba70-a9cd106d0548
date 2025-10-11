@@ -1,0 +1,79 @@
+<div class="content"><p>The MQACCESS enumeration defines values that indicate the
+requested access mode for opening a <a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">Queue</a>.
+When a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a> is opened
+for exclusive access, other clients of this protocol MUST NOT be permitted to
+open the same queue. Also, a client of this protocol MUST NOT acquire exclusive
+access to a queue that is already opened by any other client.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MQ_RECEIVE_ACCESS = 1,
+   MQ_SEND_ACCESS = 2,
+   MQ_PEEK_ACCESS = 0x0020,
+   MQ_ADMIN_ACCESS = 0x0080
+ } MQACCESS;
+</pre></div>
+</dd></dl><p><b>MQ_RECEIVE_ACCESS:  </b>The <a href="../ms-mqdmpr/e2005510-8785-414e-9a71-fa313fa6e119" data-linktype="relative-path">OpenQueueDescriptor</a>
+that is created by the <a href="d1a87420-f35d-4ad3-9338-993b12431368" data-linktype="relative-path">IMSMQQueueInfo4::Open</a>
+method represents permission granted by the <a href="../ms-mqdmpr/9adb2d90-c63b-43c7-9b9c-804ab96a57d5" data-linktype="relative-path">QueueManager</a>
+to read and delete <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>s
+from the <b>MessagePositionList</b> contained by the Queue that is referenced
+by the OpenQueueDescriptor.</p><p><b>MQ_SEND_ACCESS:  </b>The OpenQueueDescriptor that
+is created by the Open method represents permission granted by the QueueManager
+to insert new Messages into the <b>MessagePositionList</b> contained by the
+Queue that is referenced by the OpenQueueDescriptor. This value is not valid
+when combined with MQ_ADMIN_ACCESS.</p><p><b>MQ_PEEK_ACCESS:  </b>The OpenQueueDescriptor that
+is created by the Open method represents permission granted by the QueueManager
+to read (but not delete) Messages from the <b>MessagePositionList</b> contained
+by the Queue that is referenced by the OpenQueueDescriptor.</p><p><b>MQ_ADMIN_ACCESS:  </b>The MQ_ADMIN_ACCESS bit
+modifies the interpretation of the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_390ae273-7109-44eb-981f-aa157e6b37c0" data-linktype="relative-path">format name</a> by the Open
+method. When specified, this value indicates that the <a href="../ms-mqdmpr/d53d687d-49c4-4b6f-af29-351f7341b423" data-linktype="relative-path">OutgoingQueue</a>
+that transfers to the <a href="7d8d0dab-699c-4121-9ee4-226a2dbced2e" data-linktype="relative-path">ApplicationQueue</a>
+that is identified by the specified format name is to be opened, rather than
+the ApplicationQueue itself.</p><p>Note the difference between <a href="59223a4e-4d09-45f6-8873-411840519d19" data-linktype="relative-path">MQSHARE</a> and MQACCESS:</p><ul><li><p><span><span> 
+</span></span>MQACCESS determines the access to <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">messages</a> within a queue,
+such as read-only or read/write access to messages.</p>
+</li><li><p><span><span> 
+</span></span>MQSHARE specifies whether a client has exclusive access to a
+queue, thereby making the queue inaccessible to other clients.</p>
+</li></ul><p>Used by:</p><ul><li><p><span><span> 
+</span></span>IMSMQQueueInfo::Open</p>
+</li></ul><p>The MQACCESS enumeration values correspond to the
+enumeration values for <b>QueueAccessType</b> as shown in the following table:</p><table><thead>
+  <tr>
+   <th>
+   <p>MQACCESS</p>
+   </th>
+   <th>
+   <p>QueueAccessType</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQ_RECEIVE_ACCESS</p>
+  </td>
+  <td>
+  <p>ReceiveAccess</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_SEND_ACCESS</p>
+  </td>
+  <td>
+  <p>SendAccess</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_PEEK_ACCESS</p>
+  </td>
+  <td>
+  <p>PeekAccess</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_ADMIN_ACCESS</p>
+  </td>
+  <td>
+  <p>PeekAdminAccess &amp; ~PeekAccess</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

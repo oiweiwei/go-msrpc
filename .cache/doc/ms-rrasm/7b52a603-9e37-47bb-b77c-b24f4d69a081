@@ -1,1 +1,70 @@
-<div class="content"></div>
+<div class="content"><p>The <b>SAP_IF_FILTERS</b> structure MAY<a id="Appendix_A_Target_105"></a><a aria-label="Product behavior note 105" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_105" data-linktype="relative-path">&lt;105&gt;</a> be used to contain
+information about the SAP interface <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_ffbe7b55-8e84-4f41-a18d-fc29191a4cda" data-linktype="relative-path">filters</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _SAP_IF_FILTERS {
+   ULONG SupplyFilterAction;
+   ULONG SupplyFilterCount;
+   ULONG ListenFilterAction;
+   ULONG ListenFilterCount;
+   SAP_SERVICE_FILTER_INFO ServiceFilter[1];
+ } SAP_IF_FILTERS,
+  *PSAP_IF_FILTERS;
+</pre></div>
+</dd></dl><p><b>SupplyFilterAction: </b>This MUST be set to
+0x00000001 to permit data and to 0x00000002 to deny data.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Permit data</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Deny data</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>SupplyFilterCount: </b>The count of supply
+filters.</p><p><b>ListenFilterAction: </b>This MUST be set to
+0x00000001 to permit data and to 0x00000002 to deny data.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Permit data</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Deny data</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ListenFilterCount: </b>The count of listen
+filters.</p><p><b>ServiceFilter: </b>This is a <a href="dc87442a-f688-4b7f-b982-d1c9ac275bae" data-linktype="relative-path"><b>SAP_SERVICE_FILTER_INFO (section 2.2.1.2.112)</b></a>.  
+</p></div>

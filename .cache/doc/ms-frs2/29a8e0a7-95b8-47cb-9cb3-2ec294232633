@@ -1,1 +1,85 @@
-<div class="content"></div>
+<div class="content"><p>The EstablishSession method is used to establish a <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_064adaf1-86c7-43e5-a157-b0949980181e" data-linktype="relative-path">replicated folder</a> session
+between the client and server after the client has successfully established an
+outbound connection with the server via a call to the <a href="2c51e5f4-bef1-4e29-9292-b63f1d5ccff6" data-linktype="relative-path">EstablishConnection</a>
+method. A replicated folder session with the server is required before most
+other operations associated with the specified replicated folder can be
+performed.</p><dl>
+<dd>
+<div><pre> DWORD EstablishSession(
+   [in] FRS_CONNECTION_ID connectionId,
+   [in] FRS_CONTENT_SET_ID contentSetId
+ );
+</pre></div>
+</dd></dl><p><b>connectionId: </b>The <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a> of
+an outbound connection (see the <b>objectGUID</b> attribute specified in
+section <a href="afd3c10a-9783-4df7-ae2b-13e56c37ab03" data-linktype="relative-path">2.3.11</a>) that
+the client established by a previous call to the EstablishConnection method.</p><p><b>contentSetId: </b>The GUID of the replicated
+folder (see the <b>objectGUID</b> specified in section <a href="3cd01848-1a7d-4e5e-9511-44dca4e46ce0" data-linktype="relative-path">2.3.7</a>) in the specified
+connection&#39;s <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_fcc139c9-86ff-4414-bc66-5f63e4465b6d" data-linktype="relative-path">replication
+group</a>.</p><p><b>Return Values: </b>The method MUST return 0 on
+success or a nonzero error code on failure. For protocol purposes all nonzero
+values MUST be treated as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00002342</p>
+  <p>FRS_ERROR_CONNECTION_INVALID</p>
+  </td>
+  <td>
+  <p>The connection is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00002375</p>
+  <p>FRS_ERROR_CONTENTSET_READ_ONLY</p>
+  </td>
+  <td>
+  <p>The replicated folder is read-only.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Validating the session request:</b> The server validates
+the session request by performing the following checks: </p><ul><li><p><span><span> 
+</span></span>If an outbound connection for the specified connection is not
+established between the client and server (see the EstablishConnection method)
+then the server MUST fail the call with the FRS_ERROR_CONNECTION_INVALID failure
+value.</p>
+</li><li><p><span><span> 
+</span></span>If the server is not currently participating in the replication
+of the specified replicated folder, then the server MUST fail the call with an
+implementation-defined failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the specified replicated folder is read-only (see the <b>msDFSR-ReadOnly</b>
+attribute specified in section <a href="3588b343-4076-4776-b5c0-78e2b3d91ed3" data-linktype="relative-path">2.3.3</a>) then the server
+MUST fail the call with the FRS_ERROR_CONTENTSET_READ_ONLY failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the specified replicated folder is disabled (see the <b>msDFSR-Enabled</b>
+attribute specified in section 2.3.3) then the server MUST fail the call with
+an implementation-defined failure value.</p>
+</li></ul><p><b>Actions Triggered:</b> Upon successfully validating the
+session request, the server establishes a replicated folder session for the
+specified replicated folder with the client. </p><p>The server MUST ensure that no more than one replicated
+folder session for a unique <i>connectionId</i> / <i>contentSetId</i> pair
+exists with the client at the same time. If a replicated folder session with
+the client already exists for the same unique <i>connectionId</i> / <i>contentSetId</i>
+pair, the server MUST replace the pre-existing session with a new session. The
+pre-existing replicated folder session MUST be torn down by the server, and all
+outstanding calls associated with the pre-existing session MUST be completed
+with an implementation-defined failure value.</p></div>

@@ -21,6 +21,6 @@ a log file.</p><p><b>FsrmClassificationLoggingFlags_ClassificationsInSystemLog:<
 If the FsrmClassificationLoggingFlags_ClassificationsInSystemLog flag is set,
 File Server Resource Manager will log how files are classified during automatic
 classification in the System event log.</p><p><b>FsrmClassificationLoggingFlags_ErrorsInSystemLog:</b> 
-If the FsrmClassificationLoggingFlags_ErrorsInSystemLog flag is set, File Server
-Resource Manager will log errors that occur during automatic classification in
-the System event log.</p></div>
+If the FsrmClassificationLoggingFlags_ErrorsInSystemLog flag is set, File
+Server Resource Manager will log errors that occur during automatic
+classification in the System event log.</p></div>

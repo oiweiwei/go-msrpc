@@ -66,8 +66,8 @@ success, or a nonzero error code on failure.</p><dl>
 </dd></dl><p>Upon receiving this message, the server MUST validate
 parameters:</p><ul><li><p><span><span> 
 </span></span>Verify that <i>quota</i> is not NULL.</p>
-</li></ul><p>If any validation fails, the server MUST terminate
-processing and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
+</li></ul><p>If any validation fails, the server MUST terminate processing
+and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
 perform the following actions or return a nonzero error code.</p><ul><li><p><span><span> 
 </span></span>Create a new <a href="428a07ce-42ef-4822-98ba-c298c26adbb3" data-linktype="relative-path">Non-Persisted
 Directory Quota Instance</a> and populate its configuration and state data from

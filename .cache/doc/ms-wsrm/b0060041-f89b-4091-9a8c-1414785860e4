@@ -1,1 +1,85 @@
-<div class="content"></div>
+<div class="content"><p>The SetAccountingClientStatus method sets the status of
+accounting functionality of servers that are in the remote <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_bb8795a8-ff43-416b-976a-6257b68fe7fa" data-linktype="relative-path">accounting client</a> role.
+Status of accounting functionality is controlled by the <b>Enabled</b>
+attribute in <i>bstrClientIds</i> XML. If the <b>Enabled</b> attribute in the <b>bstrClientIds</b>
+XML is specified as &#34;true&#34;, the accounting functionality for the WSRM
+server, whose name is specified as the value of the respective AccountingClient
+node, is enabled; otherwise, if it is specified as &#34;false&#34;, the
+accounting functionality is disabled. The <a href="993f9ef8-ad02-4965-a148-bf82b93246e5" data-linktype="relative-path">DumpAccountingData</a> method
+does not store accounting data in the database if the status of the accounting
+functionality of the respective server is disabled using the
+SetAccountingClientStatus method.<a id="Appendix_A_Target_53"></a><a aria-label="Product behavior note 53" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_53" data-linktype="relative-path">&lt;53&gt;</a></p><dl>
+<dd>
+<div><pre> [id(12), helpstring(&#34;method SetAccountingClientStatus&#34;)] HRESULT SetAccountingClientStatus(
+   [in] BSTR bstrClientIds
+ );
+</pre></div>
+</dd></dl><p><b>bstrClientIds: </b>A string that specifies the
+machine names of all accounting clients, in the form of an <a href="163f18fa-b2f8-4d42-a6da-cbabd6260289" data-linktype="relative-path">AccountingClientList</a>
+element (section 2.2.5.1). For an example, see section <a href="95846fce-1be6-4a8e-aac9-9676f099a55a" data-linktype="relative-path">4.2.1</a>. The value of the <b>Enabled</b>
+attribute specifies the accounting functionality status of the accounting
+clients.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success, or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF020F</p>
+  <p>WRM_ERR_SETCLIENTSTATUS_XML_INVALID</p>
+  </td>
+  <td>
+  <p>The operation failed. XML data provided is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0210</p>
+  <p>WRM_ERR_CLIENTSTATUS_ACC_OFF</p>
+  </td>
+  <td>
+  <p><a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1156c8ef-4d49-462b-9f76-aebcb6c57011" data-linktype="relative-path">Accounting</a>
+  is currently turned off. There are no clients logging data to this machine.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0211</p>
+  <p>WRM_ERR_CLIENTSTATUS_ACC_REMOTE</p>
+  </td>
+  <td>
+  <p>Accounting is currently being done on a remote
+  machine. There are no clients logging data to this machine.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Note</b>  Remote accounting is not supported in
+a workgroup environment.</p><p>Additional <a href="d5942816-752f-480a-9712-38ef0a248b6a" data-linktype="relative-path">IWRMAccounting</a> interface
+methods are specified in section 3.2.4.3.</p></div>

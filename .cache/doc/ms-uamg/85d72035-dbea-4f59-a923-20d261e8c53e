@@ -1,1 +1,21 @@
-<div class="content"></div>
+<div class="content"><p>The SearchScope enumeration defines values that describe the
+combination of per-user and per-machine updates for which to search.</p><dl>
+<dd>
+<div><pre> typedef  enum tagSearchScope
+ {
+   searchScopeDefault = 0,
+   searchScopeMachineOnly = 1,
+   searchScopeCurrentUserOnly = 2,
+   searchScopeMachineAndCurrentUser = 3,
+   searchScopeMachineAndAllUsers = 4,
+   searchScopeAllUsers = 5
+ } SearchScope;
+</pre></div>
+</dd></dl><p><b>searchScopeDefault:  </b>Use the default search
+scope defined by the <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_362092cf-7fb5-43eb-92e1-c3e4affdd92b" data-linktype="relative-path">update agent</a></span>. This
+SHOULD be equivalent to <b>searchScopeMachineOnly</b>.</p><p><b>searchScopeMachineOnly:  </b>Search for
+per-machine update only.</p><p><b>searchScopeCurrentUserOnly:  </b>Search for
+per-user updates for the calling user only.</p><p><b>searchScopeMachineAndCurrentUser:  </b>Search for
+per-machine updates and per-user updates for the calling user.</p><p><b>searchScopeMachineAndAllUsers:  </b>Search for
+per-machine updates and per-user updates for all users.</p><p><b>searchScopeAllUsers:  </b>Search for per-user
+updates for all users.</p></div>

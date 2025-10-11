@@ -1,1 +1,34 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RASI_CONNECTION_3</b> structure contains information
+for a connection, including the GUID that identifies the connection, the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_f30fdc41-d7c1-422e-b5a8-9dcce071ebeb" data-linktype="relative-path">Network Access Protection (NAP)</a>,
+and the PPP-related data for the connection.</p><dl>
+<dd>
+<div><pre> typedef struct _RASI_CONNECTION_3 {
+   DWORD dwVersion;
+   DWORD dwSize;
+   DWORD dwConnection;
+   WCHAR wszUserName[257];
+   ROUTER_INTERFACE_TYPE dwInterfaceType;
+   GUID guid;
+   PPP_INFO_3 PppInfo3;
+   RAS_QUARANTINE_STATE rasQuarState;
+   FILETIME timer;
+ } RASI_CONNECTION_3,
+  *PRASI_CONNECTION_3;
+</pre></div>
+</dd></dl><p><b>dwVersion: </b>Determines the version of the <b>RASI_CONNECTION_3</b>
+structure used.</p><p><b>dwSize: </b>This SHOULD be set to 0. This MAY be
+used to specify the size, in bytes, of this<b> RASI_CONNECTION_3</b> structure.</p><p><b>dwConnection: </b>Contains the connection handle
+that specifies a unique identifier of a connection.</p><p><b>wszUserName: </b>Specifies a null-terminated
+Unicode string that contains the name of the user on this connection.</p><p><b>dwInterfaceType: </b>A <b>ROUTER_INTERFACE_TYPE</b>
+(section <a href="849c1f9e-9d6f-4408-840e-ee9ae253ae01" data-linktype="relative-path">2.2.1.1.1</a>)
+value that specifies the type of interface.</p><p><b>guid: </b>Specifies a GUID that identifies the
+connection. For an incoming connection, this GUID is valid only as long as the
+connection is active.</p><p><b>PppInfo3: </b>Specifies a <b>PPP_INFO_3</b>
+(section <a href="b76fc63b-1288-4f8a-a14b-410193fc6602" data-linktype="relative-path">2.2.1.2.74</a>)
+structure<a id="Appendix_A_Target_60"></a><a aria-label="Product behavior note 60" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_60" data-linktype="relative-path">&lt;60&gt;</a> that contains information about
+the PPP negotiation for this connection.</p><p><b>rasQuarState: </b>Specifies the NAP quarantine
+state for the connection through the <b>RAS_QUARANTINE_STATE</b> (section <a href="4393ed23-2164-4283-8198-e704da2664f4" data-linktype="relative-path">2.2.1.1.3</a>)<span><span> </span></span>that
+contains the quarantine state of this connection.</p><p><b>timer: </b>Specifies the NAP probation time for
+the connection in the UTC. This value is valid only if the <b>rasQuarState</b>
+has a value of RAS_QUAR_STATE_PROBATION (see <b>RAS_QUARANTINE_STATE </b>section
+2.2.1.1.3).</p></div>

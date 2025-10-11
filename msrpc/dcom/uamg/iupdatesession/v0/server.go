@@ -31,10 +31,93 @@ type UpdateSessionServer interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
+	// The IUpdateSearcher::ClientApplicationID (opnum 10) method retrieves the string used
+	// to identify the current client application.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 9) method sets the identifier of the
+	// calling application.
+	//
+	// The IUpdateHistoryEntry::ClientApplicationID (opnum 16) method retrieves the ID of
+	// the application that initiated the operation.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 16) method sets a string that
+	// identifies the client application that is using this interface.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 8) method retrieves the identifier
+	// of the calling application.
+	//
+	// The IUpdateSearcher::ClientApplicationID (opnum 11) method sets the string used to
+	// identify the current client application.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 15) method retrieves a string
+	// that identifies the client application that is using this interface.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ClientApplicationID ADM element.
 	GetClientApplicationID(context.Context, *GetClientApplicationIDRequest) (*GetClientApplicationIDResponse, error)
 
+	// The IUpdateSearcher::ClientApplicationID (opnum 10) method retrieves the string used
+	// to identify the current client application.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 9) method sets the identifier of the
+	// calling application.
+	//
+	// The IUpdateHistoryEntry::ClientApplicationID (opnum 16) method retrieves the ID of
+	// the application that initiated the operation.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 16) method sets a string that
+	// identifies the client application that is using this interface.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 8) method retrieves the identifier
+	// of the calling application.
+	//
+	// The IUpdateSearcher::ClientApplicationID (opnum 11) method sets the string used to
+	// identify the current client application.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 15) method retrieves a string
+	// that identifies the client application that is using this interface.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ClientApplicationID ADM element.
 	SetClientApplicationID(context.Context, *SetClientApplicationIDRequest) (*SetClientApplicationIDResponse, error)
 
+	// The IUpdateSession::ReadOnly (opnum 10) method returns whether the session is read-only.
+	//
+	// The IUpdateCollection::ReadOnly (opnum 12) method returns whether the collection
+	// is read-only.
+	//
+	// The IStringCollection::ReadOnly (opnum 12) method retrieves whether the collection
+	// is read-only.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ReadOnly ADM element.
 	GetReadOnly(context.Context, *GetReadOnlyRequest) (*GetReadOnlyResponse, error)
 
 	// Opnum11NotUsedOnWire operation.
@@ -43,6 +126,27 @@ type UpdateSessionServer interface {
 	// Opnum12NotUsedOnWire operation.
 	// Opnum12NotUsedOnWire
 
+	// The IUpdateSession::CreateUpdateSearcher (opnum 13) method retrieves an instance
+	// of the IUpdateSearcher interface.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return a newly created object implementing the IUpdateSearcher
+	// interface.
+	//
+	// The returned IUpdateSearcher instance SHOULD use the current value of the server's
+	// ClientApplicationID ADM element as the client application ID for operations that
+	// it performs. The IUpdateSearcher instance SHOULD use the current value of the server's
+	// UserLocale ADM element to determine the language in which to generate localized results
+	// for operations that it performs.
 	CreateUpdateSearcher(context.Context, *CreateUpdateSearcherRequest) (*CreateUpdateSearcherResponse, error)
 
 	// Opnum14NotUsedOnWire operation.

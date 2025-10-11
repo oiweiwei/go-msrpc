@@ -57,43 +57,288 @@ type AppHostPropertySchemaClient interface {
 	// Type operation.
 	GetType(context.Context, *GetTypeRequest, ...dcerpc.CallOption) (*GetTypeResponse, error)
 
-	// DefaultValue operation.
+	// The DefaultValue method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns the system-wide default value for the specified property, as defined
+	// by the administration system.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-------------------------------------------------------------------+
+	//	|               RETURN               |                                                                   |
+	//	|             VALUE/CODE             |                            DESCRIPTION                            |
+	//	|                                    |                                                                   |
+	//	+------------------------------------+-------------------------------------------------------------------+
+	//	+------------------------------------+-------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                             |
+	//	+------------------------------------+-------------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                     |
+	//	+------------------------------------+-------------------------------------------------------------------+
+	//	| 0X80070032 ERROR_NOT_SUPPORTED     | The default value has a type that is not supported by the schema. |
+	//	+------------------------------------+-------------------------------------------------------------------+
 	GetDefaultValue(context.Context, *GetDefaultValueRequest, ...dcerpc.CallOption) (*GetDefaultValueResponse, error)
 
-	// IsRequired operation.
+	// The IsRequired method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns whether the specified property is required to be set on the server
+	// when the parent IAppHostElement exists.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetIsRequired(context.Context, *GetIsRequiredRequest, ...dcerpc.CallOption) (*GetIsRequiredResponse, error)
 
-	// IsUniqueKey operation.
+	// The IsUniqueKey method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns whether the specified property must be unique compared to all
+	// other properties of the peer collection of IAppHostElement objects. In other words,
+	// it applies only to properties that are members of the collection of IAppHostElement
+	// objects.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetIsUniqueKey(context.Context, *GetIsUniqueKeyRequest, ...dcerpc.CallOption) (*GetIsUniqueKeyResponse, error)
 
-	// IsCombinedKey operation.
+	// The IsCombinedKey method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns whether the specified property is part of a group of properties
+	// that combine to be unique compared to all other properties of peer collection IAppHostElement
+	// objects. In other words, it applies only to properties that are members of collection
+	// IAppHostElement objects.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetIsCombinedKey(context.Context, *GetIsCombinedKeyRequest, ...dcerpc.CallOption) (*GetIsCombinedKeyResponse, error)
 
-	// IsExpanded operation.
+	// The IsExpanded method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns whether the specified property supports being expanded on the
+	// server side to expand any embedded system environment variables.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetIsExpanded(context.Context, *GetIsExpandedRequest, ...dcerpc.CallOption) (*GetIsExpandedResponse, error)
 
-	// ValidationType operation.
+	// The ValidationType method is received by the server in an RPC_REQUEST packet. In
+	// response, the server returns a string representing additional custom validation done
+	// when processing the corresponding property. The details of the validation are an
+	// implementation detail of the administration system.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// received from the client. In this case, *pbstrValidationType is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetValidationType(context.Context, *GetValidationTypeRequest, ...dcerpc.CallOption) (*GetValidationTypeResponse, error)
 
-	// ValidationParameter operation.
+	// The ValidationParameter method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns any parameter that applies to the ValidationType
+	// of the specified property. Again, this is implementation-specific.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, pbstrValidationParameter is not NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetValidationParameter(context.Context, *GetValidationParameterRequest, ...dcerpc.CallOption) (*GetValidationParameterResponse, error)
 
 	// GetMetadata operation.
 	GetMetadata(context.Context, *GetMetadataRequest, ...dcerpc.CallOption) (*GetMetadataResponse, error)
 
-	// IsCaseSensitive operation.
+	// The IsCaseSensitive method is received by the server in an RPC_REQUEST packet. In
+	// response, the server returns whether the corresponding property is compared to others
+	// in a case-sensitive manner, when determining equality for key (combined/unique) evaluation.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetIsCaseSensitive(context.Context, *GetIsCaseSensitiveRequest, ...dcerpc.CallOption) (*GetIsCaseSensitiveResponse, error)
 
-	// PossibleValues operation.
+	// The PossibleValues method is received by the server in an RPC_REQUEST packet. In
+	// response, the server returns a collection of the possible constant values for the
+	// specified property, if applicable. The administration system determines the applicability.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppValues is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetPossibleValues(context.Context, *GetPossibleValuesRequest, ...dcerpc.CallOption) (*GetPossibleValuesResponse, error)
 
-	// DoesAllowInfinite operation.
+	// The DoesAllowInfinite method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns whether the property supports having an infinite
+	// value set.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetDoesAllowInfinite(context.Context, *GetDoesAllowInfiniteRequest, ...dcerpc.CallOption) (*GetDoesAllowInfiniteResponse, error)
 
-	// IsEncrypted operation.
+	// The IsEncrypted method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns whether the corresponding IAppHostProperty will be encrypted when
+	// it is persisted in the administration system.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetIsEncrypted(context.Context, *GetIsEncryptedRequest, ...dcerpc.CallOption) (*GetIsEncryptedResponse, error)
 
-	// TimeSpanFormat operation.
+	// The TimeSpanFormat method is received by the server in an RPC_REQUEST packet. In
+	// response, the server returns a format string that describes how the corresponding
+	// property is supposed to be formatted if the property represents a time span.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrTimeSpanFormat is not NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                        |
+	//	|             VALUE/CODE             |                              DESCRIPTION                               |
+	//	|                                    |                                                                        |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                                  |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                          |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.                |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X80070013 ERROR_INVALID_DATA      | Configuration data or schema on the server are malformed or corrupted. |
+	//	+------------------------------------+------------------------------------------------------------------------+
 	GetTimeSpanFormat(context.Context, *GetTimeSpanFormatRequest, ...dcerpc.CallOption) (*GetTimeSpanFormatResponse, error)
 
 	// AlterContext alters the client context.
@@ -1144,8 +1389,9 @@ func (o *GetDefaultValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // GetDefaultValueResponse structure represents the DefaultValue operation response
 type GetDefaultValueResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
-	DefaultValue *oaut.Variant  `idl:"name:pDefaultValue" json:"default_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pDefaultValue: A VARIANT that contains the system default value.
+	DefaultValue *oaut.Variant `idl:"name:pDefaultValue" json:"default_value"`
 	// Return: The DefaultValue return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1351,8 +1597,10 @@ func (o *GetIsRequiredRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetIsRequiredResponse structure represents the IsRequired operation response
 type GetIsRequiredResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IsRequired int16          `idl:"name:pfIsRequired" json:"is_required"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pfIsRequired: A Boolean value that states whether an attribute is required to be
+	// present in the parent IAppHostElement.
+	IsRequired int16 `idl:"name:pfIsRequired" json:"is_required"`
 	// Return: The IsRequired return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1560,8 +1808,10 @@ func (o *GetIsUniqueKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetIsUniqueKeyResponse structure represents the IsUniqueKey operation response
 type GetIsUniqueKeyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IsUniqueKey int16          `idl:"name:pfIsUniqueKey" json:"is_unique_key"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pfIsUniqueKey: A Boolean value that states whether an attribute is required to be
+	// unique in the specified collection of the parent IAppHostElement.
+	IsUniqueKey int16 `idl:"name:pfIsUniqueKey" json:"is_unique_key"`
 	// Return: The IsUniqueKey return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1769,8 +2019,10 @@ func (o *GetIsCombinedKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // GetIsCombinedKeyResponse structure represents the IsCombinedKey operation response
 type GetIsCombinedKeyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IsCombinedKey int16          `idl:"name:pfIsCombinedKey" json:"is_combined_key"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pfIsCombinedKey: A Boolean value that states whether an attribute is part of a combined
+	// key in the specified collection of the parent IAppHostElement object.
+	IsCombinedKey int16 `idl:"name:pfIsCombinedKey" json:"is_combined_key"`
 	// Return: The IsCombinedKey return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1976,8 +2228,10 @@ func (o *GetIsExpandedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetIsExpandedResponse structure represents the IsExpanded operation response
 type GetIsExpandedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IsExpanded int16          `idl:"name:pfIsExpanded" json:"is_expanded"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pfIsExpanded: Set to whether the specified property supports environment variable
+	// expansion.
+	IsExpanded int16 `idl:"name:pfIsExpanded" json:"is_expanded"`
 	// Return: The IsExpanded return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2219,8 +2473,9 @@ func (o *GetValidationTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // GetValidationTypeResponse structure represents the ValidationType operation response
 type GetValidationTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ValidationType *oaut.String   `idl:"name:pbstrValidationType" json:"validation_type"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrValidationType: Set to name of validation type performed on server.
+	ValidationType *oaut.String `idl:"name:pbstrValidationType" json:"validation_type"`
 	// Return: The ValidationType return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2462,8 +2717,9 @@ func (o *GetValidationParameterRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // GetValidationParameterResponse structure represents the ValidationParameter operation response
 type GetValidationParameterResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That                *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ValidationParameter *oaut.String   `idl:"name:pbstrValidationParameter" json:"validation_parameter"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrValidationParameter: Set to the parameter of the validation type.
+	ValidationParameter *oaut.String `idl:"name:pbstrValidationParameter" json:"validation_parameter"`
 	// Return: The ValidationParameter return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2962,8 +3218,9 @@ func (o *GetIsCaseSensitiveRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 // GetIsCaseSensitiveResponse structure represents the IsCaseSensitive operation response
 type GetIsCaseSensitiveResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IsCaseSensitive int16          `idl:"name:pfIsCaseSensitive" json:"is_case_sensitive"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pfIsCaseSensitive: A Boolean value about whether the property is treated as case-sensitive.
+	IsCaseSensitive int16 `idl:"name:pfIsCaseSensitive" json:"is_case_sensitive"`
 	// Return: The IsCaseSensitive return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3205,7 +3462,8 @@ func (o *GetPossibleValuesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // GetPossibleValuesResponse structure represents the PossibleValues operation response
 type GetPossibleValuesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That   *dcom.ORPCThat                       `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppValues: Contains the collection of possible values.
 	Values *iisa.AppHostConstantValueCollection `idl:"name:ppValues" json:"values"`
 	// Return: The PossibleValues return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -3414,8 +3672,11 @@ func (o *GetDoesAllowInfiniteRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 // GetDoesAllowInfiniteResponse structure represents the DoesAllowInfinite operation response
 type GetDoesAllowInfiniteResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
-	AllowInfinite int16          `idl:"name:pfAllowInfinite" json:"allow_infinite"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pfAllowInfinite: A pointer to a Boolean value that, if set to TRUE, indicates that
+	// the property that is represented by this IAppHostPropertySchema supports infinite
+	// values.
+	AllowInfinite int16 `idl:"name:pfAllowInfinite" json:"allow_infinite"`
 	// Return: The DoesAllowInfinite return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3623,8 +3884,11 @@ func (o *GetIsEncryptedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetIsEncryptedResponse structure represents the IsEncrypted operation response
 type GetIsEncryptedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IsEncrypted int16          `idl:"name:pfIsEncrypted" json:"is_encrypted"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pfIsEncrypted: A pointer to a Boolean value that, if set to TRUE, indicates that
+	// the property that is represented by this IAppHostPropertySchema will be encrypted
+	// when persisted.
+	IsEncrypted int16 `idl:"name:pfIsEncrypted" json:"is_encrypted"`
 	// Return: The IsEncrypted return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3866,8 +4130,9 @@ func (o *GetTimeSpanFormatRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // GetTimeSpanFormatResponse structure represents the TimeSpanFormat operation response
 type GetTimeSpanFormatResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
-	TimeSpanFormat *oaut.String   `idl:"name:pbstrTimeSpanFormat" json:"time_span_format"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrTimeSpanFormat: Contains the format string of the time span for the property.
+	TimeSpanFormat *oaut.String `idl:"name:pbstrTimeSpanFormat" json:"time_span_format"`
 	// Return: The TimeSpanFormat return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

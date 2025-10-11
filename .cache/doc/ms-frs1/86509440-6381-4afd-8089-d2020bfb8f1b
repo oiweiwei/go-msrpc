@@ -1,1 +1,18 @@
-<div class="content"></div>
+<div class="content"><p>The COMM_BLOCK packet element structure is as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _COMM_BLOCK {
+   USHORT CommType;
+   ULONG Length;
+   ULONG DataLength;
+   UCHAR Data[];
+ } COMM_BLOCK,
+  *PCOMM_BLOCK;
+</pre></div>
+</dd></dl><p><b>CommType:</b> A 16-bit, unsigned integer that
+indicates the type of this <a href="194f8fff-d903-44b7-9530-c66f5366f8c7" data-linktype="relative-path">COMM_PACKET</a>
+element. MUST be set to 0x0009.</p><p><b>Length:</b> A 32-bit, unsigned integer that
+indicates the length in bytes of the data following the Length field. MUST be
+set to the sum of 4 and the length of the Data field.</p><p><b>DataLength:</b> A 32-bit, unsigned integer that
+MUST indicate the length in bytes of the <b>Data</b> field.</p><p><b>Data:</b> A binary large object (BLOB) that contains
+the block of <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_64afafeb-a356-4bd0-8993-9c3326dcd8a0" data-linktype="relative-path">staging file</a>
+data that is being transmitted.<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="d18cc589-677e-4133-97e5-113641792c5e#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p></div>

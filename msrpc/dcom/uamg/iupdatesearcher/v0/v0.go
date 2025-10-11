@@ -51,20 +51,228 @@ type UpdateSearcherClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The IUpdateSearcher::CanAutomaticallyUpgradeService (opnum 9) method sets whether
+	// the update agent can automatically upgrade itself before performing a search initiated
+	// through this instance.
+	//
+	// The IUpdateSearcher::CanAutomaticallyUpgradeService (opnum 8) method retrieves whether
+	// the update agent can automatically upgrade itself before performing a search initiated
+	// through this instance.
+	//
+	// Return Values: The method MUST return information an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// If value is neither VARIANT_TRUE nor VARIANT_FALSE, this method MUST return an error.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD set the value of the CanAutomaticallyUpgradeService ADM element
+	// to the contents of the value parameter.
 	GetCanAutomaticallyUpgradeService(context.Context, *GetCanAutomaticallyUpgradeServiceRequest, ...dcerpc.CallOption) (*GetCanAutomaticallyUpgradeServiceResponse, error)
 
+	// The IUpdateSearcher::CanAutomaticallyUpgradeService (opnum 9) method sets whether
+	// the update agent can automatically upgrade itself before performing a search initiated
+	// through this instance.
+	//
+	// The IUpdateSearcher::CanAutomaticallyUpgradeService (opnum 8) method retrieves whether
+	// the update agent can automatically upgrade itself before performing a search initiated
+	// through this instance.
+	//
+	// Return Values: The method MUST return information an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// If value is neither VARIANT_TRUE nor VARIANT_FALSE, this method MUST return an error.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD set the value of the CanAutomaticallyUpgradeService ADM element
+	// to the contents of the value parameter.
 	SetCanAutomaticallyUpgradeService(context.Context, *SetCanAutomaticallyUpgradeServiceRequest, ...dcerpc.CallOption) (*SetCanAutomaticallyUpgradeServiceResponse, error)
 
+	// The IUpdateSearcher::ClientApplicationID (opnum 10) method retrieves the string used
+	// to identify the current client application.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 9) method sets the identifier of the
+	// calling application.
+	//
+	// The IUpdateHistoryEntry::ClientApplicationID (opnum 16) method retrieves the ID of
+	// the application that initiated the operation.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 16) method sets a string that
+	// identifies the client application that is using this interface.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 8) method retrieves the identifier
+	// of the calling application.
+	//
+	// The IUpdateSearcher::ClientApplicationID (opnum 11) method sets the string used to
+	// identify the current client application.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 15) method retrieves a string
+	// that identifies the client application that is using this interface.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ClientApplicationID ADM element.
 	GetClientApplicationID(context.Context, *GetClientApplicationIDRequest, ...dcerpc.CallOption) (*GetClientApplicationIDResponse, error)
 
+	// The IUpdateSearcher::ClientApplicationID (opnum 10) method retrieves the string used
+	// to identify the current client application.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 9) method sets the identifier of the
+	// calling application.
+	//
+	// The IUpdateHistoryEntry::ClientApplicationID (opnum 16) method retrieves the ID of
+	// the application that initiated the operation.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 16) method sets a string that
+	// identifies the client application that is using this interface.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 8) method retrieves the identifier
+	// of the calling application.
+	//
+	// The IUpdateSearcher::ClientApplicationID (opnum 11) method sets the string used to
+	// identify the current client application.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 15) method retrieves a string
+	// that identifies the client application that is using this interface.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ClientApplicationID ADM element.
 	SetClientApplicationID(context.Context, *SetClientApplicationIDRequest, ...dcerpc.CallOption) (*SetClientApplicationIDResponse, error)
 
+	// The IUpdateSearcher::IncludePotentiallySupersededUpdates (opnum 12) method retrieves
+	// whether the search results include updates that are superseded by other updates in
+	// the search results.
+	//
+	// The IUpdateSearcher::IncludePotentiallySupersededUpdates (opnum 13) method sets whether
+	// the search results include updates that are superseded by other updates in the search
+	// results.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the IncludePotentiallySupersededUpdates ADM
+	// element.
 	GetIncludePotentiallySupersededUpdates(context.Context, *GetIncludePotentiallySupersededUpdatesRequest, ...dcerpc.CallOption) (*GetIncludePotentiallySupersededUpdatesResponse, error)
 
+	// The IUpdateSearcher::IncludePotentiallySupersededUpdates (opnum 12) method retrieves
+	// whether the search results include updates that are superseded by other updates in
+	// the search results.
+	//
+	// The IUpdateSearcher::IncludePotentiallySupersededUpdates (opnum 13) method sets whether
+	// the search results include updates that are superseded by other updates in the search
+	// results.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the IncludePotentiallySupersededUpdates ADM
+	// element.
 	SetIncludePotentiallySupersededUpdates(context.Context, *SetIncludePotentiallySupersededUpdatesRequest, ...dcerpc.CallOption) (*SetIncludePotentiallySupersededUpdatesResponse, error)
 
+	// The ServerSelection enumeration defines values that describe the type of server to
+	// use for an update search operation.
+	//
+	// The IUpdateSearcher::ServerSelection (opnum 14) method retrieves the type of update
+	// server used to search against.
+	//
+	// The IUpdateSearcher::ServerSelection (Opnum 15) method sets the type of update server
+	// used to search against.
+	//
+	// The IUpdateHistoryEntry::ServerSelection (opnum 17) method describes the type of
+	// update service that provided the update for which the operation was performed.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ServerSelection ADM element.
 	GetServerSelection(context.Context, *GetServerSelectionRequest, ...dcerpc.CallOption) (*GetServerSelectionResponse, error)
 
+	// The ServerSelection enumeration defines values that describe the type of server to
+	// use for an update search operation.
+	//
+	// The IUpdateSearcher::ServerSelection (opnum 14) method retrieves the type of update
+	// server used to search against.
+	//
+	// The IUpdateSearcher::ServerSelection (Opnum 15) method sets the type of update server
+	// used to search against.
+	//
+	// The IUpdateHistoryEntry::ServerSelection (opnum 17) method describes the type of
+	// update service that provided the update for which the operation was performed.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ServerSelection ADM element.
 	SetServerSelection(context.Context, *SetServerSelectionRequest, ...dcerpc.CallOption) (*SetServerSelectionResponse, error)
 
 	// Opnum16NotUsedOnWire operation.
@@ -73,20 +281,219 @@ type UpdateSearcherClient interface {
 	// Opnum17NotUsedOnWire operation.
 	// Opnum17NotUsedOnWire
 
+	// The IUpdateSearcher::EscapeString (opnum 18) method escapes a string such that it
+	// can be used as a literal value in a search criteria string.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method MUST return the escaped string.
 	EscapeString(context.Context, *EscapeStringRequest, ...dcerpc.CallOption) (*EscapeStringResponse, error)
 
+	// The IUpdateSearcher::QueryHistory (opnum 19) method retrieves a collection of history
+	// events.
+	//
+	// The IUpdateSession3::QueryHistory (Opnum 17) method retrieves relevant update history
+	// entries.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	QueryHistory(context.Context, *QueryHistoryRequest, ...dcerpc.CallOption) (*QueryHistoryResponse, error)
 
+	// The IUpdateSearcher::Search (opnum 20) method performs an update search.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD trigger the update agent to perform an update search through an
+	// implementation-dependent<41> interface.
+	//
+	// The update search MUST be restricted to updates meeting the criteria specified. If
+	// the criteria parameter is NULL or the empty string, the server SHOULD trigger the
+	// update agent to use default search criteria, as defined by the update agent.
+	//
+	// If the value of the CanAutomaticallyUpgradeService ADM element is VARIANT_TRUE, the
+	// search operation MAY automatically upgrade the update agent.
+	//
+	// If the value of the IncludePotentiallySupersededUpdates ADM element is VARIANT_TRUE,
+	// the search operation results SHOULD include updates superseded by other updates in
+	// the search results. Otherwise, the search operation results SHOULD NOT include updates
+	// superseded by other updates in the search results.
+	//
+	// If the value of the Online ADM element is VARIANT_TRUE, the search operation SHOULD
+	// go online.
+	//
+	// The following table specifies the update server against which the search operation
+	// SHOULD be performed.
+	//
+	//	+------------------------------------------+-------------------------------------------------------------------------+
+	//	|     VALUE OF THE SERVERSELECTION ADM     |                         UPDATE SERVER TO SEARCH                         |
+	//	|                 ELEMENT                  |                                 AGAINST                                 |
+	//	+------------------------------------------+-------------------------------------------------------------------------+
+	//	+------------------------------------------+-------------------------------------------------------------------------+
+	//	| ssDefault                                | Implementation-defined by the update agent.                             |
+	//	+------------------------------------------+-------------------------------------------------------------------------+
+	//	| ssManagedServer                          | An update server managed by an administrator.                           |
+	//	+------------------------------------------+-------------------------------------------------------------------------+
+	//	| ssWindowsUpdate                          | The Windows Update update server                                        |
+	//	+------------------------------------------+-------------------------------------------------------------------------+
+	//	| ssOthers                                 | The update server identified by the value of the ServiceID ADM element. |
+	//	+------------------------------------------+-------------------------------------------------------------------------+
+	//
+	// If the value of the IgnoreDownloadPriority ADM element is VARIANT_TRUE, the search
+	// operation SHOULD ignore the download priority of updates when computing update supersedence.
+	//
+	// The following table specifies the set of updates for which the search operation SHOULD
+	// be performed.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------+
+	//	|     VALUE OF THE SEARCHSCOPE ADM     |                       UPDATES TO SEARCH                        |
+	//	|               ELEMENT                |                              FOR                               |
+	//	+--------------------------------------+----------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------+
+	//	| searchScopeDefault                   | Per-machine updates only.                                      |
+	//	+--------------------------------------+----------------------------------------------------------------+
+	//	| searchScopeMachineOnly               | Per-machine updates only.                                      |
+	//	+--------------------------------------+----------------------------------------------------------------+
+	//	| searchScopeCurrentUserOnly           | Per-user updates for the calling user only.                    |
+	//	+--------------------------------------+----------------------------------------------------------------+
+	//	| searchScopeMachineAndCurrentUser     | Per-machine updates and per-user updates for the calling user. |
+	//	+--------------------------------------+----------------------------------------------------------------+
+	//	| searchScopeMachineAndAllUsers        | Per-machine updates and per-user updates for all users.        |
+	//	+--------------------------------------+----------------------------------------------------------------+
+	//	| searchScopeAllUsers                  | Per-user updates for all users.                                |
+	//	+--------------------------------------+----------------------------------------------------------------+
 	Search(context.Context, *SearchRequest, ...dcerpc.CallOption) (*SearchResponse, error)
 
+	// The IUpdateSearcher::Online (opnum 22) method sets whether a search performed by
+	// using this interface is an online search.
+	//
+	// The IUpdateSearcher::Online (opnum 21) method retrieves whether a search performed
+	// by using this interface is an online search.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD set the value of the Online ADM element to the value parameter.
 	GetOnline(context.Context, *GetOnlineRequest, ...dcerpc.CallOption) (*GetOnlineResponse, error)
 
+	// The IUpdateSearcher::Online (opnum 22) method sets whether a search performed by
+	// using this interface is an online search.
+	//
+	// The IUpdateSearcher::Online (opnum 21) method retrieves whether a search performed
+	// by using this interface is an online search.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD set the value of the Online ADM element to the value parameter.
 	SetOnline(context.Context, *SetOnlineRequest, ...dcerpc.CallOption) (*SetOnlineResponse, error)
 
+	// The IUpdateSearcher::GetTotalHistoryCount (opnum 23) method retrieves the total number
+	// of history events stored on the computer.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the HistoryCount ADM element.
 	GetTotalHistoryCount(context.Context, *GetTotalHistoryCountRequest, ...dcerpc.CallOption) (*GetTotalHistoryCountResponse, error)
 
+	// The IUpdateService::ServiceID (opnum 16) method retrieves the unique identifier for
+	// the update service.
+	//
+	// The IUpdateHistoryEntry::ServiceID (opnum 18) method retrieves the unique identifier
+	// of the update service that provided the update for which the operation was performed.
+	//
+	// The IUpdateSearcher::ServiceID (opnum 24) method retrieves the unique identifier
+	// of the update server used to search against.
+	//
+	// The IUpdateSearcher::ServiceID (opnum 25) method sets the unique identifier of the
+	// update server used to search against.
+	//
+	// The IUpdateServiceRegistration::ServiceID (opnum 9) method retrieves the service
+	// identifier.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ServiceID ADM element.
 	GetServiceID(context.Context, *GetServiceIDRequest, ...dcerpc.CallOption) (*GetServiceIDResponse, error)
 
+	// The IUpdateService::ServiceID (opnum 16) method retrieves the unique identifier for
+	// the update service.
+	//
+	// The IUpdateHistoryEntry::ServiceID (opnum 18) method retrieves the unique identifier
+	// of the update service that provided the update for which the operation was performed.
+	//
+	// The IUpdateSearcher::ServiceID (opnum 24) method retrieves the unique identifier
+	// of the update server used to search against.
+	//
+	// The IUpdateSearcher::ServiceID (opnum 25) method sets the unique identifier of the
+	// update server used to search against.
+	//
+	// The IUpdateServiceRegistration::ServiceID (opnum 9) method retrieves the service
+	// identifier.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ServiceID ADM element.
 	SetServiceID(context.Context, *SetServiceIDRequest, ...dcerpc.CallOption) (*SetServiceIDResponse, error)
 
 	// AlterContext alters the client context.
@@ -641,8 +1048,10 @@ func (o *GetCanAutomaticallyUpgradeServiceRequest) UnmarshalNDR(ctx context.Cont
 // GetCanAutomaticallyUpgradeServiceResponse structure represents the CanAutomaticallyUpgradeService operation response
 type GetCanAutomaticallyUpgradeServiceResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be VARIANT_TRUE if the update agent can automatically upgrade itself
+	// before performing a search initiated through this instance, or VARIANT_FALSE otherwise.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The CanAutomaticallyUpgradeService return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -815,8 +1224,11 @@ func (o *xxx_SetCanAutomaticallyUpgradeServiceOperation) UnmarshalNDRResponse(ct
 // SetCanAutomaticallyUpgradeServiceRequest structure represents the CanAutomaticallyUpgradeService operation request
 type SetCanAutomaticallyUpgradeServiceRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Value int16          `idl:"name:value" json:"value"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// value: Set to VARIANT_TRUE to allow the update agent to automatically upgrade itself,
+	// if it is an older version, before performing a search through this instance; otherwise,
+	// set to VARIANT_FALSE to disallow automatic upgrading of the update agent.
+	Value int16 `idl:"name:value" json:"value"`
 }
 
 func (o *SetCanAutomaticallyUpgradeServiceRequest) xxx_ToOp(ctx context.Context, op *xxx_SetCanAutomaticallyUpgradeServiceOperation) *xxx_SetCanAutomaticallyUpgradeServiceOperation {
@@ -1093,8 +1505,17 @@ func (o *GetClientApplicationIDRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // GetClientApplicationIDResponse structure represents the ClientApplicationID operation response
 type GetClientApplicationIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: Returns a string identifying the client application using the interface.
+	//
+	// retval: A string identifying the client application that initiated the operation.
+	//
+	// retval: The identifier of the calling application previously set using the IUpdateSession::ClientApplicationID
+	// (opnum 9) (section 3.16.4.2) method. If no identifier was previously set, this MUST
+	// be NULL or the empty string.
+	//
+	// retval: A string identifying the client application that is using this interface.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The ClientApplicationID return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1301,8 +1722,13 @@ func (o *xxx_SetClientApplicationIDOperation) UnmarshalNDRResponse(ctx context.C
 // SetClientApplicationIDRequest structure represents the ClientApplicationID operation request
 type SetClientApplicationIDRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Value *oaut.String   `idl:"name:value" json:"value"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// value: The identifier of the calling application.
+	//
+	// value: A string that identifies the client application that is using this interface.
+	//
+	// value: A string used to identify the client application using the interface.
+	Value *oaut.String `idl:"name:value" json:"value"`
 }
 
 func (o *SetClientApplicationIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetClientApplicationIDOperation) *xxx_SetClientApplicationIDOperation {
@@ -1545,8 +1971,10 @@ func (o *GetIncludePotentiallySupersededUpdatesRequest) UnmarshalNDR(ctx context
 // GetIncludePotentiallySupersededUpdatesResponse structure represents the IncludePotentiallySupersededUpdates operation response
 type GetIncludePotentiallySupersededUpdatesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: Indicates whether the results of searches performed by using this interface
+	// include updates that are superseded by other updates.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The IncludePotentiallySupersededUpdates return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1719,8 +2147,10 @@ func (o *xxx_SetIncludePotentiallySupersededUpdatesOperation) UnmarshalNDRRespon
 // SetIncludePotentiallySupersededUpdatesRequest structure represents the IncludePotentiallySupersededUpdates operation request
 type SetIncludePotentiallySupersededUpdatesRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Value int16          `idl:"name:value" json:"value"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// value: Indicates whether the results of searches performed by using this interface
+	// include updates that are superseded by other updates.
+	Value int16 `idl:"name:value" json:"value"`
 }
 
 func (o *SetIncludePotentiallySupersededUpdatesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetIncludePotentiallySupersededUpdatesOperation) *xxx_SetIncludePotentiallySupersededUpdatesOperation {
@@ -1963,7 +2393,13 @@ func (o *GetServerSelectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 // GetServerSelectionResponse structure represents the ServerSelection operation response
 type GetServerSelectionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat       `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A value from the ServerSelection (section 2.2.11) enumeration that indicates
+	// the type of update server against which to perform search operations initiated by
+	// using this interface.
+	//
+	// retval: A value from the ServerSelection (section 2.2.11) enumeration that indicates
+	// the type of update service that provided the update for which the operation was performed.
 	ReturnValue uamg.ServerSelection `idl:"name:retval" json:"return_value"`
 	// Return: The ServerSelection return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -2004,8 +2440,11 @@ func (o *GetServerSelectionResponse) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // xxx_SetServerSelectionOperation structure represents the ServerSelection operation
 type xxx_SetServerSelectionOperation struct {
-	This   *dcom.ORPCThis       `idl:"name:This" json:"this"`
-	That   *dcom.ORPCThat       `idl:"name:That" json:"that"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// value: A value from the ServerSelection (section 2.2.11) enumeration that indicates
+	// the type of update server against which to perform search operations initiated by
+	// using this interface.
 	Value  uamg.ServerSelection `idl:"name:value" json:"value"`
 	Return int32                `idl:"name:Return" json:"return"`
 }
@@ -2137,7 +2576,14 @@ func (o *xxx_SetServerSelectionOperation) UnmarshalNDRResponse(ctx context.Conte
 // SetServerSelectionRequest structure represents the ServerSelection operation request
 type SetServerSelectionRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis       `idl:"name:This" json:"this"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// value: A value from the ServerSelection (section 2.2.11) enumeration that indicates
+	// the type of update server against which to perform search operations initiated by
+	// using this interface.
+	//
+	// value: A value from the ServerSelection (section 2.2.11) enumeration that indicates
+	// the type of update server against which to perform search operations initiated by
+	// using this interface.
 	Value uamg.ServerSelection `idl:"name:value" json:"value"`
 }
 
@@ -2425,8 +2871,9 @@ func (o *xxx_EscapeStringOperation) UnmarshalNDRResponse(ctx context.Context, w 
 // EscapeStringRequest structure represents the EscapeString operation request
 type EscapeStringRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Unescaped *oaut.String   `idl:"name:unescaped" json:"unescaped"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// unescaped: The string to escape.
+	Unescaped *oaut.String `idl:"name:unescaped" json:"unescaped"`
 }
 
 func (o *EscapeStringRequest) xxx_ToOp(ctx context.Context, op *xxx_EscapeStringOperation) *xxx_EscapeStringOperation {
@@ -2463,8 +2910,9 @@ func (o *EscapeStringRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 // EscapeStringResponse structure represents the EscapeString operation response
 type EscapeStringResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: Resulting escaped string.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The EscapeString return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2695,9 +3143,11 @@ func (o *xxx_QueryHistoryOperation) UnmarshalNDRResponse(ctx context.Context, w 
 // QueryHistoryRequest structure represents the QueryHistory operation request
 type QueryHistoryRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	StartIndex int32          `idl:"name:startIndex" json:"start_index"`
-	Count      int32          `idl:"name:count" json:"count"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// startIndex: The zero-based index of the first history entry to retrieve.
+	StartIndex int32 `idl:"name:startIndex" json:"start_index"`
+	// count: The number of entries to retrieve.
+	Count int32 `idl:"name:count" json:"count"`
 }
 
 func (o *QueryHistoryRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryHistoryOperation) *xxx_QueryHistoryOperation {
@@ -2736,7 +3186,10 @@ func (o *QueryHistoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 // QueryHistoryResponse structure represents the QueryHistory operation response
 type QueryHistoryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat                     `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An IUpdateHistoryEntryCollection containing the history entries requested.
+	// If fewer entries are available than requested in the count parameter, only the entries
+	// available are retrieved.
 	ReturnValue *uamg.UpdateHistoryEntryCollection `idl:"name:retval" json:"return_value"`
 	// Return: The QueryHistory return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -2989,8 +3442,75 @@ func (o *xxx_SearchOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 // SearchRequest structure represents the Search operation request
 type SearchRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Criteria *oaut.String   `idl:"name:criteria" json:"criteria"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// criteria: A string specifying criteria that updates are required to meet in order
+	// to be returned in the search results.
+	//
+	// The server MUST support criteria specified by the following ABNF grammar.
+	//
+	// criteria = andgroup *[1,*WSP "or" 1,*WSP andgroup] /  andgroup = andgroup *[1,*WSP
+	// "and" 1,*WSP andgroup] / "(" *WSP andgroup *WSP ")" / criterion  criterion = propertyname
+	// *WSP operator *WSP value / "(" *WSP criterion *WSP ")"  propertyname = "Type" / "DeploymentAction"
+	// / "IsAssigned" / "AutoSelectOnWebSites" / "BrowseOnly" / "UpdateID" / "RevisionNumber"
+	// / "CategoryIDs" / "IsInstalled" / "IsHidden" /  "IsPresent" / "RebootRequired"
+	// operator = "=" / "!=" / "contains"  value = string / integer  string = "'" *CHAR
+	// "'"  integer = ["-"] 1*DIGIT
+	//
+	// The CHAR and DIGIT production rules are specified in [RFC5234] section B.1.
+	//
+	// Integer values MUST be specified in base 10. String values MUST be escaped (using
+	// the IUpdateSearcher::EscapeString (opnum 18) method) before being enclosed in single
+	// quotation marks, as specified by the preceding grammar. String comparisons MUST be
+	// case-insensitive.
+	//
+	// The server MUST support the following update properties with the given operators
+	// and value types.
+	//
+	//	+----------------------+---------------------+------------------------+----------------------------------------------------------------------------------+
+	//	|   UPDATE PROPERTY    |      OPERATORS      |         VALUE          |                                                                                  |
+	//	|         NAME         |      SUPPORTED      |          TYPE          |                                   DESCRIPTION                                    |
+	//	|                      |                     |                        |                                                                                  |
+	//	+----------------------+---------------------+------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------+---------------------+------------------------+----------------------------------------------------------------------------------+
+	//	| Type                 | =, !=               | String                 | Compares the update's type to that given.                                        |
+	//	+----------------------+---------------------+------------------------+----------------------------------------------------------------------------------+
+	//	| DeploymentAction     | =                   | String                 | Finds updates with the given deployment action. If this criterion is not         |
+	//	|                      |                     |                        | specified, the search operation MUST return only updates with a DeploymentAction |
+	//	|                      |                     |                        | of "Installation".                                                               |
+	//	+----------------------+---------------------+------------------------+----------------------------------------------------------------------------------+
+	//	| IsAssigned           | =                   | Integer MUST be 0 or 1 | The value is treated as a Boolean. The value determines whether the search       |
+	//	|                      |                     |                        | operation finds updates that are intended for processing by an automatic update  |
+	//	|                      |                     |                        | agent.                                                                           |
+	//	+----------------------+---------------------+------------------------+----------------------------------------------------------------------------------+
+	//	| AutoSelectOnWebsites | =                   | Integer MUST be 0 or 1 | The value is treated as a Boolean. The value determines whether the search       |
+	//	|                      |                     |                        | operation finds updates that are intended to be automatically selected from web  |
+	//	|                      |                     |                        | user interfaces.                                                                 |
+	//	+----------------------+---------------------+------------------------+----------------------------------------------------------------------------------+
+	//	| BrowseOnly           | =                   | Integer MUST be 0 or 1 | The value is treated as a Boolean. The value determines whether the search       |
+	//	|                      |                     |                        | operation finds updates that are not intended for processing by an automatic     |
+	//	|                      |                     |                        | update agent.                                                                    |
+	//	+----------------------+---------------------+------------------------+----------------------------------------------------------------------------------+
+	//	| UpdateID             | =, !=               | String                 | Compares the update's ID to that given.                                          |
+	//	+----------------------+---------------------+------------------------+----------------------------------------------------------------------------------+
+	//	| RevisionNumber       | =                   | Integer                | Finds updates with the given revision number.                                    |
+	//	+----------------------+---------------------+------------------------+----------------------------------------------------------------------------------+
+	//	| CategoryIDs          | Contains            | String                 | Finds updates belonging to the given category.                                   |
+	//	+----------------------+---------------------+------------------------+----------------------------------------------------------------------------------+
+	//	| IsInstalled          | =                   | Integer MUST be 0 or 1 | The value is treated as a Boolean. The value determines whether the search       |
+	//	|                      |                     |                        | operation finds updates that are installed.                                      |
+	//	+----------------------+---------------------+------------------------+----------------------------------------------------------------------------------+
+	//	| IsHidden             | =                   | Integer MUST be 0 or 1 | The value is treated as a Boolean. The value determines whether the search       |
+	//	|                      |                     |                        | operation finds updates that have been hidden by a user.                         |
+	//	+----------------------+---------------------+------------------------+----------------------------------------------------------------------------------+
+	//	| IsPresent            | =                   | Integer MUST be 0 or 1 | The value is treated as a Boolean. The value determines whether the search       |
+	//	|                      |                     |                        | operation finds updates that are present, that is, updates that have been        |
+	//	|                      |                     |                        | installed for one or more products.                                              |
+	//	+----------------------+---------------------+------------------------+----------------------------------------------------------------------------------+
+	//	| RebootRequired       | =                   | Integer MUST be 0 or 1 | The value is treated as a Boolean. The value determines whether the search       |
+	//	|                      |                     |                        | operation finds updates that currently require a reboot to complete installation |
+	//	|                      |                     |                        | or uninstallation.                                                               |
+	//	+----------------------+---------------------+------------------------+----------------------------------------------------------------------------------+
+	Criteria *oaut.String `idl:"name:criteria" json:"criteria"`
 }
 
 func (o *SearchRequest) xxx_ToOp(ctx context.Context, op *xxx_SearchOperation) *xxx_SearchOperation {
@@ -3027,7 +3547,8 @@ func (o *SearchRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // SearchResponse structure represents the Search operation response
 type SearchResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat     `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An ISearchResult instance with the results of the search.
 	ReturnValue *uamg.SearchResult `idl:"name:retval" json:"return_value"`
 	// Return: The Search return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -3234,8 +3755,10 @@ func (o *GetOnlineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 // GetOnlineResponse structure represents the Online operation response
 type GetOnlineResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if the search operation can contact the
+	// server or to VARIANT_FALSE if it uses local data only.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The Online return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3406,8 +3929,10 @@ func (o *xxx_SetOnlineOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 // SetOnlineRequest structure represents the Online operation request
 type SetOnlineRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Value int16          `idl:"name:value" json:"value"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// value: MUST be set either to VARIANT_TRUE if the search operation can contact the
+	// server or to VARIANT_FALSE if it uses local data only.
+	Value int16 `idl:"name:value" json:"value"`
 }
 
 func (o *SetOnlineRequest) xxx_ToOp(ctx context.Context, op *xxx_SetOnlineOperation) *xxx_SetOnlineOperation {
@@ -3650,8 +4175,9 @@ func (o *GetTotalHistoryCountRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 // GetTotalHistoryCountResponse structure represents the GetTotalHistoryCount operation response
 type GetTotalHistoryCountResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int32          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The total number of history entries stored on the computer.
+	ReturnValue int32 `idl:"name:retval" json:"return_value"`
 	// Return: The GetTotalHistoryCount return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3891,8 +4417,17 @@ func (o *GetServiceIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 // GetServiceIDResponse structure represents the ServiceID operation response
 type GetServiceIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A string uniquely identifying the service.
+	//
+	// retval: A string containing the unique identifier of the update service that provided
+	// the update for which the operation was performed.
+	//
+	// retval: A string containing the unique identifier of the update server to use for
+	// search.
+	//
+	// retval: A string identifying the service.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The ServiceID return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -4097,8 +4632,10 @@ func (o *xxx_SetServiceIDOperation) UnmarshalNDRResponse(ctx context.Context, w 
 // SetServiceIDRequest structure represents the ServiceID operation request
 type SetServiceIDRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Value *oaut.String   `idl:"name:value" json:"value"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// value: A string containing the unique identifier of the update server to use for
+	// the search.
+	Value *oaut.String `idl:"name:value" json:"value"`
 }
 
 func (o *SetServiceIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetServiceIDOperation) *xxx_SetServiceIDOperation {

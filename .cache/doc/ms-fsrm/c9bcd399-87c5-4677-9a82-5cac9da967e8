@@ -47,7 +47,8 @@ success, or a nonzero error code on failure.</p><dl>
   NULL.</span></p>
   </li></ul></td>
  </tr></tbody></table>
-</dd></dl><p>Upon receiving this message, the server MUST validate parameters:</p><ul><li><p><span><span> 
+</dd></dl><p>Upon receiving this message, the server MUST validate
+parameters:</p><ul><li><p><span><span> 
 </span></span>Verify that <i>taskName</i> is not NULL.</p>
 </li><li><p><span><span> 
 </span></span>Verify that <i>reportJob</i> is not NULL.</p>

@@ -1,1 +1,16 @@
-<div class="content"></div>
+<div class="content"><p>The OBJECT_TYPE enumeration defines types of objects on
+which an operation can be performed. The WSRM objects are used by the <a href="68e40055-8a54-46c0-8907-c02e3a6def52" data-linktype="relative-path">GetDependencies (section 3.2.4.1.6)</a>
+and <a href="4faf20ce-353c-4f5a-86ec-98164389d7a0" data-linktype="relative-path">ExportObjects (section 3.2.4.2.1)</a>
+methods.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum 
+ {
+   OBJECT_SELECTION_CRITERIA = 1,
+   OBJECT_POLICY = 2,
+   OBJECT_SCHEDULE = 3
+ } OBJECT_TYPE;
+</pre></div>
+</dd></dl><p><b>OBJECT_SELECTION_CRITERIA:</b>  The target object
+is a <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_65daee12-445f-41c0-8456-f728063bef24" data-linktype="relative-path">process matching
+criteria (PMC)</a>.</p><p><b>OBJECT_POLICY:  </b>The target object is a policy.</p><p><b>OBJECT_SCHEDULE:  </b>The target object is a
+calendar or a schedule object.</p></div>

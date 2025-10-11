@@ -1,0 +1,105 @@
+<div class="content"><p>The IAppHostElement <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides methods
+to the base administration system object of this whole project.</p><p>The administration system is a container of IAppHostElement
+objects. IAppHostElement objects are primarily an <i>n</i>-way-tree object,
+with each IAppHostElement object primarily containing:</p><ul><li><p><span><span> 
+</span></span>Zero or more <a href="564b4c1f-13a0-40c4-974b-1cbbd41764b3" data-linktype="relative-path">IAppHostProperty</a>
+objects. Each has its own unique fixed name.</p>
+</li><li><p><span><span> 
+</span></span>Zero or more child IAppHostElement objects (hence the <i>n</i>-way-tree
+description). Each has its own unique fixed name.</p>
+</li><li><p><span><span> 
+</span></span>An optional collection of zero or more special child IAppHostElement
+objects that are called collection objects. Each typically has the same fixed
+name.</p>
+</li><li><p><span><span> 
+</span></span>Zero or more <a href="9154a520-ce4f-43e1-95c2-63590cfea206" data-linktype="relative-path">IAppHostMethod</a>
+objects, which are additional extension methods that can be executed on the
+specified IAppHostElement object.</p>
+</li></ul><p>The IAppHostElement interface inherits opnums 0–2 from the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="952550fc-1c59-4e4d-98b3-53017761cd8a" data-linktype="relative-path">Name</a></p>
+  </td>
+  <td>
+  <p>Opnum: 3</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="128aeb08-94fb-4d48-a5d5-bde3a96aae1f" data-linktype="relative-path">Collection</a></p>
+  </td>
+  <td>
+  <p>Opnum: 4</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="feb558fb-6434-4243-9411-84962f2e618f" data-linktype="relative-path">Properties</a></p>
+  </td>
+  <td>
+  <p>Opnum: 5</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="d562dd91-43d1-477f-8ae8-6eb4c3a6ca3d" data-linktype="relative-path">ChildElements</a></p>
+  </td>
+  <td>
+  <p>Opnum: 6</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="5f91ec3e-0192-4873-94ab-b940e9b67e78" data-linktype="relative-path">GetMetadata</a></p>
+  </td>
+  <td>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="72d7a862-f8ed-40ca-ac6c-bfd52cfc29ba" data-linktype="relative-path">SetMetadata</a></p>
+  </td>
+  <td>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="3f80b67d-9155-4fac-b5cd-118d64ac68f9" data-linktype="relative-path">Schema</a></p>
+  </td>
+  <td>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="9305daa2-14f3-4fa5-96a5-91349d24c868" data-linktype="relative-path">GetElementByName</a></p>
+  </td>
+  <td>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="7ad00f83-8cd2-4f0a-80e6-98236b05e3c6" data-linktype="relative-path">GetPropertyByName</a></p>
+  </td>
+  <td>
+  <p>Opnum: 11</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="ff655bb2-b718-4ebf-9d20-b33640e5070c" data-linktype="relative-path">Clear</a></p>
+  </td>
+  <td>
+  <p>Opnum: 12</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="07e23b13-05aa-4a10-b99b-f899801c278e" data-linktype="relative-path">Methods</a></p>
+  </td>
+  <td>
+  <p>Opnum: 13</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

@@ -31,12 +31,68 @@ type ImageInformationServer interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
+	// The IImageInformation::AltText (opnum 8) method retrieves the alternate text for
+	// the image.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the AltText ADM element.
 	GetAltText(context.Context, *GetAltTextRequest) (*GetAltTextResponse, error)
 
+	// The IImageInformation::Height (opnum 9) method retrieves the height of the image,
+	// in pixels.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Height ADM element.
 	GetHeight(context.Context, *GetHeightRequest) (*GetHeightResponse, error)
 
+	// The IImageInformation::Source (opnum 10) method retrieves the source location of
+	// the image.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Source ADM element.
 	GetSource(context.Context, *GetSourceRequest) (*GetSourceResponse, error)
 
+	// The IImageInformation::Width (opnum 11) method retrieves the width of the image,
+	// in pixels.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Width ADM element.
 	GetWidth(context.Context, *GetWidthRequest) (*GetWidthResponse, error)
 }
 

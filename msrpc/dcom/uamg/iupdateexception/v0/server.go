@@ -31,10 +31,53 @@ type UpdateExceptionServer interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
+	// The IUpdateException::Message (opnum 8) method retrieves the message for this exception.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Message ADM element.
 	GetMessage(context.Context, *GetMessageRequest) (*GetMessageResponse, error)
 
+	// The IUpdateException::HResult (opnum 9) method retrieves the HRESULT describing the
+	// error.
+	//
+	// The IUpdateHistoryEntry::HResult (opnum 10) method retrieves the HRESULT from the
+	// operation.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the HResult ADM element.
 	GetHResult(context.Context, *GetHResultRequest) (*GetHResultResponse, error)
 
+	// The IUpdateException::Context (opnum 10) method retrieves the context for the exception.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Context ADM element.
 	GetContext(context.Context, *GetContextRequest) (*GetContextResponse, error)
 }
 

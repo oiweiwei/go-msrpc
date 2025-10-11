@@ -1,1 +1,105 @@
-<div class="content"></div>
+<div class="content"><p>The <b>GetSetCalledId</b> structure contains information
+specific to the REQTYPE_GETCALLEDID and REQTYPE_SETCALLEDID in the <a href="fcb89c61-ced3-43ba-a2ef-4c6f4a2d40a6" data-linktype="relative-path"><b>ReqTypes (section 2.2.1.1.18)</b></a>
+enumeration.  </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>retcode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>fWrite</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>guidDevice
+  (16 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>rdi (472
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>rciInfo
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>retcode (4 bytes): </b>Specifies the return status
+as explained in section <a href="c39d153e-2f97-4e11-8aff-bcf983869dc9" data-linktype="relative-path">2.2.1.2.218</a>
+for the retcode field. </p><p><b>fWrite (4 bytes): </b>If set to 1, specifies that <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_2a60a7bb-4e40-4fd9-9fb4-4827036f2346" data-linktype="relative-path">CalledId</a> information MUST
+be stored on RRAS. If set to 0, CalledId information MUST not be stored.</p><p><b>dwSize (4 bytes): </b>Specifies the size, in
+bytes, of the rciInfo structure, including the rciInfo.bCalledId buffer, which
+is specified by the <b>dwSize</b> member of the <a href="f765d6a6-12a7-454a-a6cb-27c13fcb9e11" data-linktype="relative-path"><b>RAS_CALLEDID_INFO</b></a>
+structure. </p><p><b>guidDevice (16 bytes): </b>This value MUST be set
+to 0 when sent and ignored on receipt.</p><p><b>rdi (472 bytes): </b>Specifies the <b>RAS_DEVICE_INFO</b>
+structure as defined in section <a href="9909200a-64ab-4a38-aee3-6ae3425a564a" data-linktype="relative-path">2.2.1.2.219</a>. </p><p><b>rciInfo (variable): </b>Specifies the <b>RAS_CALLEDID_INFO</b>
+structure as defined in section 2.2.1.2.221.</p></div>

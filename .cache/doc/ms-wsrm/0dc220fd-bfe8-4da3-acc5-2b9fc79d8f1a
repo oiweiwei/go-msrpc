@@ -1,1 +1,105 @@
-<div class="content"></div>
+<div class="content"><p>The ModifyMachineGroup method modifies an existing machine
+group. The method replaces or merges the machine group information according to
+the value specified in the <b>enumMGMergeOptions</b> member. </p><dl>
+<dd>
+<div><pre> [id(3), helpstring(&#34;method ModifyMachineGroup&#34;)] HRESULT ModifyMachineGroup(
+   [in] BSTR bstrMachineGroupId,
+   [in] BSTR bstrMachineGroupInfo,
+   [in] MACHINE_GROUP_MERGE_OPTIONS enumMGMergeOptions
+ );
+</pre></div>
+</dd></dl><p><b>bstrMachineGroupId: </b>A string that specifies
+the identifier of the machine group to be modified.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>bstrMachineGroupInfo: </b>A string that specifies
+the new information for the machine group, in the format specified in <a href="d137388f-8b86-4a30-8848-7ffb6029f276" data-linktype="relative-path">MachineGroup</a> element
+(section <a href="9c604cb0-5522-4dc6-a479-e1ea2578c3ba" data-linktype="relative-path">2.2.5.18</a>).</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>enumMGMergeOptions: </b>Options for machine group
+modification, from the <a href="77ef0d38-39f3-4bdf-bd65-c36725c669d2" data-linktype="relative-path">MACHINE_GROUP_MERGE_OPTIONS</a>
+enumeration (section 2.2.3.4).<a id="Appendix_A_Target_89"></a><a aria-label="Product behavior note 89" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_89" data-linktype="relative-path">&lt;89&gt;</a></p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.<a id="Appendix_A_Target_90"></a><a aria-label="Product behavior note 90" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_90" data-linktype="relative-path">&lt;90&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0070</p>
+  <p>WRM_ERR_TAGS_NOT_IN_ORDER</p>
+  </td>
+  <td>
+  <p>The <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a>
+  data that is maintained by the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1517eb9b-d2b2-48f0-bf23-bde76923ed30" data-linktype="relative-path">management service</a> is
+  invalid or cannot be processed.<a id="Appendix_A_Target_91"></a><a aria-label="Product behavior note 91" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_91" data-linktype="relative-path">&lt;91&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0385</p>
+  <p>WRM_ERR_MACHINE_GROUP_LIMIT_EXCEEDED</p>
+  </td>
+  <td>
+  <p>The total number of machine groups as specified in <b>bstrMachineGroupInfo</b>,
+  has exceeded an implementation-defined limit.<a id="Appendix_A_Target_92"></a><a aria-label="Product behavior note 92" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_92" data-linktype="relative-path">&lt;92&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0387</p>
+  <p>WRM_ERR_MACHINES_LIMIT_IN_MACHINEGROUP_EXCEEDED</p>
+  </td>
+  <td>
+  <p>The machine group information could not be modified
+  because the total number of machines directly under a machine group has
+  exceeded an implementation-defined limit.<a id="Appendix_A_Target_93"></a><a aria-label="Product behavior note 93" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_93" data-linktype="relative-path">&lt;93&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0388</p>
+  <p>WRM_ERR_MACHINEGROUP_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>A machine group with the specified name in <i>bstrMachineGroupInfo</i>
+  XML already exists in the entire <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_c18a91a3-689f-4e5e-9a91-c7b8f5402c5e" data-linktype="relative-path">WSRM configuration</a>. For
+  example, if <b>ModifyMachineGroup</b> is used to modify a machine group ID
+  that is identical to the existing group ID, this error will be generated.<a id="Appendix_A_Target_94"></a><a aria-label="Product behavior note 94" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_94" data-linktype="relative-path">&lt;94&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0389</p>
+  <p>WRM_ERR_MACHINEGROUPID_INVALID</p>
+  </td>
+  <td>
+  <p>The specified machine group ID is invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="959a6150-11e3-44ec-b6cd-78da5b2c9e00" data-linktype="relative-path">IWRMMachineGroup</a> interface
+methods are specified in section 3.2.4.6.</p></div>

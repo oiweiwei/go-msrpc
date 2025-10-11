@@ -1,1 +1,199 @@
-<div class="content"></div>
+<div class="content"><p>The AllocateNtmsMedia method <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_0e546e86-71c4-45cc-9ef1-4a78f6cb425a" data-linktype="relative-path">allocates</a> a piece of
+available media.</p><dl>
+<dd>
+<div><pre> HRESULT AllocateNtmsMedia(
+   [in] LPNTMS_GUID lpMediaPool,
+   [in, unique] LPNTMS_GUID lpPartition,
+   [in, out] LPNTMS_GUID lpMediaId,
+   [in] DWORD dwOptions,
+   [in] DWORD dwTimeout,
+   [in, out] LPNTMS_ALLOCATION_INFORMATION lpAllocateInformation
+ );
+</pre></div>
+</dd></dl><p><b>lpMediaPool: </b>A pointer to the identifier of
+the media pool from which the media is allocated.</p><p><b>lpPartition: </b>A pointer to the partition
+identifier of the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_55db62c5-a84f-43b7-a037-b44ecd8fb92f" data-linktype="relative-path">side</a>
+that MUST be used for a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_05349689-4cd0-4643-a13e-9f552ecf3346" data-linktype="relative-path">logical
+media</a> identifier. This feature MUST be used to allocate a particular side
+or to import media.</p><p><b>lpMediaId: </b>A pointer to the identifier of the
+allocated medium.</p><p><b>dwOptions: </b>A bitmap of allocation options from
+the <a href="27f6c402-d3bb-438d-b499-3edd03837a51" data-linktype="relative-path">NtmsAllocateOptions (section 2.2.3.1)</a>
+enumeration.</p><p><b>dwTimeout: </b>The maximum time, in milliseconds,
+allowed to allocate the specified media. If this parameter is -1, the function
+MUST NOT time out. If this parameter is 0, it MUST NOT wait for media.</p><p><b>lpAllocateInformation: </b>A pointer to an <a href="4a5f60bc-5202-4490-84d5-f62e162fca5b" data-linktype="relative-path">NTMS_ALLOCATION_INFORMATION (section 2.2.3.6)</a>
+structure that MUST be filled with the source media pool from which the medium
+was taken. A NULL pointer MUST be passed if this information is not needed.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>NTMS_MODIFY_ACCESS to the library is denied; other
+  security errors are possible, but indicate a security subsystem error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>An allocation error occurred during processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The media or media pool identifiers are missing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800704C7</p>
+  <p>ERROR_CANCELLED</p>
+  </td>
+  <td>
+  <p>The operator canceled the request for new media.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800705B4</p>
+  <p>ERROR_TIMEOUT</p>
+  </td>
+  <td>
+  <p>The time-out event expired before the medium was
+  available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CC</p>
+  <p>ERROR_INVALID_MEDIA</p>
+  </td>
+  <td>
+  <p>The partition identifier or logical <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_746b1ad1-e1ad-4120-9986-fef919a2eaf7" data-linktype="relative-path">media identifier</a> was
+  invalid when combined with the NTMS_ALLOCATE_NEXT flag.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CE</p>
+  <p>ERROR_INVALID_MEDIA_POOL</p>
+  </td>
+  <td>
+  <p>The media pool identifier is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D0</p>
+  <p>ERROR_MEDIA_OFFLINE</p>
+  </td>
+  <td>
+  <p>The specified media are offline and cannot be
+  allocated.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D4</p>
+  <p>ERROR_MEDIA_UNAVAILABLE</p>
+  </td>
+  <td>
+  <p>No media have been allocated in the specified
+  time-out.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database is inaccessible or damaged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DA</p>
+  <p>ERROR_DATABASE_FULL</p>
+  </td>
+  <td>
+  <p>The database is full.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DF</p>
+  <p>ERROR_DEVICE_NOT_AVAILABLE</p>
+  </td>
+  <td>
+  <p>An intermediate resource is not available.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpPartition</i>
+and <i>lpMediaId</i> are not NULL. If parameter validation fails, the server
+MUST immediately fail the operation and return ERROR_INVALID_PARAMETER
+(0x80070057). </p><p>If parameter validation succeeds, the server MUST perform
+the following actions:</p><ul><li><p><span><span> 
+</span></span>Verify that the caller has permission to control the media pool
+specified in the call. If the client does not have the required access rights,
+the server MUST immediately fail the operation and return ERROR_ACCESS_DENIED
+(0x80070005).</p>
+</li><li><p><span><span> 
+</span></span>If no errors were found while checking the partition but the
+partition was not suitable, the reason for its unsuitability (ReasonCode) MUST
+be passed back as the error code.</p>
+</li><li><p><span><span> 
+</span></span>If the NTMS_ALLOCATE_NEXT option is specified, the server
+attempts to allocate the next partition, which MUST be on the same media as the
+partition (that is, pointed by <i>lpPartition</i>).</p>
+</li><li><p><span><span> 
+</span></span>The server looks for an available partition in all the available <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drives</a>. If none is found,
+the server asks the operator to add one before repeating the search.</p>
+</li></ul><p>The AllocateNtmsMedia method returns an LMID. If the
+partition identifier or logical media identifier was invalid when combined with
+the NTMS_ALLOCATE_NEXT flag, the server MUST return ERROR_INVALID_MEDIA
+(0x800710CC).</p><p>If the specified media pool does not contain any available
+online media, AllocateNtmsMedia might, depending upon the policy of the media pool,
+search the free media pool for the specified medium to move to the specified
+media pool. Media from the designated media pool are allocated first, and then
+free media are moved and allocated.</p><p>If the media pool contains any available online media, a medium
+from the pool is allocated.</p><p>If the media pool is automatically configured to allocate
+media from the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_58cd2daf-1d47-44a9-a725-a9459fd5efaf" data-linktype="relative-path">free pool</a>,
+and the free pool contains available online media, a medium is moved to the specified
+pool and allocated.<a id="Appendix_A_Target_30"></a><a aria-label="Product behavior note 30" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_30" data-linktype="relative-path">&lt;30&gt;</a></p><p>When the NTMS_ALLOCATE_NEXT value is specified, the <i>lpMediaId</i>
+parameter MUST point to a valid media ID at the time of invocation. In this
+case, <i>lpMediaId</i> is used as an IN and OUT parameter. The next side of the
+multiple-sided medium specified by <i>lpMediaId</i> MUST be allocated, and the
+new partition ID is returned through <i>lpMediaId</i> (overwriting the original
+media ID that was passed in).</p><p>If NTMS_ALLOCATE_ERROR_IF_UNAVAILABLE is specified,
+ERROR_MEDIA_UNAVAILABLE MUST be returned if no media are available.</p><p>When necessary, the server generates an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_4676b5f2-6ecd-463c-8218-811911038e63" data-linktype="relative-path">operator request</a> to insert
+new or available media. If the time specified in the <i>dwTimeout</i> parameter
+elapses before the operator request is handled, RSM MUST return ERROR_TIMEOUT
+and delete the operator request.</p><p>If the user cancels the allocation request, the server MUST
+return ERROR_CANCELLED (0x800704C7).</p><p>When an application requires new media that contain data, a
+user or administrator places the media in a library or drive. The server
+identifies the media and places it in the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_c74372fa-bcae-4710-8b24-996fa2b676ac" data-linktype="relative-path">import pool</a>. The
+application searches the import pool, moves the media to its <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_15b985cc-5c71-4573-873a-275218a37a3d" data-linktype="relative-path">application pool</a>, and
+allocates it. This routine process can be streamlined and made atomic through a
+single call to AllocateNtmsMedia. After searching the import pool the
+application can call AllocateNtmsMedia, passing the partition ID of the side as
+the value of the <i>lpPartition</i> parameter. The server then moves the media
+to the specified media pool, changes the media state to allocated, and returns
+an LMID.</p><p>For two-sided media, the flip side MUST remain in the Import
+state and is not available for use until imported.</p><p>Only application pools can be specified for allocation by
+using the AllocateNtmsMedia method.</p><p>On completion of an asynchronous operation, notification is
+sent with the identifier <b>lpMediaId</b>.</p></div>

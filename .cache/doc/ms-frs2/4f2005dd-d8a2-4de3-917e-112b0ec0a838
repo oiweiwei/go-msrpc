@@ -1,1 +1,50 @@
-<div class="content"></div>
+<div class="content"><p>A structure that contains information about updates that
+were not processed by a client.</p><dl>
+<dd>
+<div><pre> typedef struct _FRS_UPDATE_CANCEL_DATA {
+   FRS_UPDATE blockingUpdate;
+   FRS_CONTENT_SET_ID contentSetId;
+   FRS_DATABASE_ID gvsnDatabaseId;
+   FRS_DATABASE_ID uidDatabaseId;
+   FRS_DATABASE_ID parentDatabaseId;
+   DWORDLONG gvsnVersion;
+   DWORDLONG uidVersion;
+   DWORDLONG parentVersion;
+   unsigned long cancelType;
+   long isUidValid;
+   long isParentUidValid;
+   long isBlockerValid;
+ } FRS_UPDATE_CANCEL_DATA;
+</pre></div>
+</dd></dl><p><b>blockingUpdate:</b>  All <b>integer</b>
+fields MUST be set to zero and all <b>string</b> fields MUST be set to empty.</p><p><b>contentSetId:</b>  The content set where
+the blocking update resides.</p><p><b>gvsnDatabaseId:</b>  The <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a>
+part of the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_b2063d4f-ec5f-4417-9dc8-7ab381e2beab" data-linktype="relative-path">GVSN</a> of the
+update that could not be processed.</p><p><b>uidDatabaseId:</b>  Unused. MUST be set
+to zero by the client and MUST be ignored on receipt by the server.</p><p><b>parentDatabaseId:</b>  Unused. MUST be
+set to zero by the client and MUST be ignored on receipt by the server.</p><p><b>gvsnVersion:</b>  The <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_dad98bb4-1dd5-404f-a742-3c3195292945" data-linktype="relative-path">VSN</a> part of the GVSN of the
+update that could not be processed.</p><p><b>uidVersion:</b>  Unused. MUST be set to
+zero by the client and MUST be ignored on receipt by the server.</p><p><b>parentVersion:</b>  Unused. MUST be set
+to zero by the client and MUST be ignored on receipt by the server.</p><p><b>cancelType:</b>  The cause for canceling
+the processing of the update. It MUST be set to the following value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>UNSPECIFIED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>No reason is indicated by the client. The GVSN and <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_3d9dd73b-8923-43cc-ac95-8103f17683d7" data-linktype="relative-path">UID</a> indicate which update
+  was not processed by the client.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>isUidValid:</b>  MUST be zero.</p><p><b>isParentUidValid:</b>  MUST be zero.</p><p><b>isBlockerValid:</b>  MUST be zero.</p></div>

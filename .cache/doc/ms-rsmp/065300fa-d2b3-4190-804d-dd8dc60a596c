@@ -1,1 +1,93 @@
-<div class="content"></div>
+<div class="content"><p>The OpenNtmsServerSessionA method sets up a session with the
+server. All input parameters for this method are optional.</p><dl>
+<dd>
+<div><pre> HRESULT OpenNtmsServerSessionA(
+   [in, unique] const  char* lpServer,
+   [in, unique] const  char* lpApplication,
+   [in] const  char* lpClientName,
+   [in] const  char* lpUserName,
+   [in] DWORD dwOptions
+ );
+</pre></div>
+</dd></dl><p><b>lpServer: </b>The null-terminated DNS or WINS name
+of the computer with which to set up the session. If this parameter is NULL,
+the current computer name MUST be used.</p><p><b>lpApplication: </b>The null-terminated unique
+character string that identifies the application. This name identifies
+resources and requests made by the operator. It is optional and can be NULL.</p><p><b>lpClientName: </b>The null-terminated DNS or WINS
+name of the computer sending the request.</p><p><b>lpUserName: </b>A null-terminated sequence of
+characters specifying the name of the interactive user sending the request.</p><p><b>dwOptions: </b>This parameter is unused. It MUST
+be sent as 0 and MUST be ignored on receipt.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to an object was denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070015</p>
+  <p>ERROR_NOT_READY</p>
+  </td>
+  <td>
+  <p>The service has not started. The application is to
+  wait and retry its request.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800704BA</p>
+  <p>ERROR_INVALID_COMPUTERNAME</p>
+  </td>
+  <td>
+  <p>The format of the supplied computer name is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070719</p>
+  <p>RPC_S_NO_INTERFACES</p>
+  </td>
+  <td>
+  <p>The server is using an older version of RSM than that
+  of the client.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST perform the
+following actions:</p><ul><li><p><span><span> 
+</span></span>Initialize a session object.</p>
+</li><li><p><span><span> 
+</span></span>Verify the type of session.</p>
+</li><li><p><span><span> 
+</span></span>Use &#34;RSM&#34; as the application name if none has been
+provided in <i>lpApplication</i>.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the user has the required access rights.</p>
+</li><li><p><span><span> 
+</span></span>Initialize an RSM database.</p>
+</li><li><p><span><span> 
+</span></span>Return the handle that uniquely identifies the session.</p>
+</li></ul><p>If the service has not started, the server MUST return
+ERROR_NOT_READY (0x80070015). If the input parameters lpServer or lpClientName
+are not NULL, the supplied computer name format is checked for invalidity. If
+the name is invalid, the server MUST return ERROR_INVALID_COMPUTERNAME
+(0x800704BA). If the server is using an older version of RSM than that of the
+client, the server MUST return RPC_S_NO_INTERFACES (0x80070719).</p><p>Strings sent to this method as parameters MUST be
+ASCII-encoded. </p></div>

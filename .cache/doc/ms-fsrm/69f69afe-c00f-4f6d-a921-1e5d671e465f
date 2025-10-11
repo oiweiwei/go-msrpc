@@ -64,8 +64,8 @@ any value other than what is specified in section 2.2.1.2.5, the server MUST
 return FSRM_E_NOT_SUPPORTED.</p>
 </li></ul><p>Upon successful validation of parameters, the server MUST
 perform the following actions:</p><ul><li><p><span><span> 
-</span></span>Create a new <b>List of Non-Persisted File Screen Exception Instances</b>
-(section 3.2.1.3).</p>
+</span></span>Create a new <b>List of Non-Persisted File Screen Exception
+Instances</b> (section 3.2.1.3).</p>
 </li><li><p><span><span> 
 </span></span>Populate it with <a href="0902b6bb-43d6-4d38-bc17-a691e9245855" data-linktype="relative-path">Non-Persisted File Screen
 Exception Instances (section 3.2.1.3.2.2)</a> copied from the <a href="19db08c4-2033-47fc-b307-66b0488efcac" data-linktype="relative-path">Persisted File Screen

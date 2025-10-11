@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>The <b>BGP_ASN_RANGE</b> structure<a id="Appendix_A_Target_185"></a><a aria-label="Product behavior note 185" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_185" data-linktype="relative-path">&lt;185&gt;</a> is used to represent an <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_334e9ddc-96ff-4099-83c7-7ff8d3c20ff1" data-linktype="relative-path">autonomous system number (ASN)</a>
+range.</p><dl>
+<dd>
+<div><pre> typedef struct _BGP_ASN_RANGE {
+   DWORD dwStartRange;
+   DWORD dwEndRange;
+ } BGP_ASN_RANGE,
+  *PBGP_ASN_RANGE;
+</pre></div>
+</dd></dl><p><b>dwStartRange: </b>Specifies the first ASN in the
+range. This value MUST be between 1 and 65534.</p><p><b>dwEndRange: </b>Specifies the last ASN in the
+range. This value MUST be greater than or equal to <b>dwStartRange</b>. This
+value MUST be between 1 and 65534. </p></div>

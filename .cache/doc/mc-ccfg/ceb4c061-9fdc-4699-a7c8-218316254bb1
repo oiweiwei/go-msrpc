@@ -1,0 +1,4 @@
+<div class="content"><p>The ClusCfg Protocol provides a <a href="6f99e32f-d3b3-4431-b0e6-122f5d1ca71e#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">DCOM</a> interface that enables
+a client to restore a <a href="6f99e32f-d3b3-4431-b0e6-122f5d1ca71e#gt_762051d8-4fdc-437e-af9d-3f4da77c3c7d" data-linktype="relative-path">node</a>
+back to its pre-cluster installation state. For more information about
+clustering, see <a href="https://go.microsoft.com/fwlink/?LinkId=89973" data-linktype="external">[MSDN-CLUS]</a>.</p></div>

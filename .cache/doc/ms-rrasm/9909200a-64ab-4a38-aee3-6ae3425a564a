@@ -1,1 +1,48 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RAS_DEVICE_INFO</b> structure contains device
+information.</p><dl>
+<dd>
+<div><pre> typedef struct _RAS_DEVICE_INFO {
+   DWORD dwVersion;
+   BOOL fWrite;
+   BOOL fRasEnabled;
+   BOOL fRouterEnabled;
+   BOOL fRouterOutboundEnabled;
+   DWORD dwTapiLineId;
+   DWORD dwError;
+   DWORD dwNumEndPoints;
+   DWORD dwMaxOutCalls;
+   DWORD dwMaxInCalls;
+   DWORD dwMinWanEndPoints;
+   DWORD dwMaxWanEndPoints;
+   RASDEVICETYPE eDeviceType;
+   GUID guidDevice;
+   CHAR szPortName[17];
+   CHAR szDeviceName[129];
+   WCHAR wszDeviceName[129];
+ } RAS_DEVICE_INFO,
+  *PRAS_DEVICE_INFO;
+</pre></div>
+</dd></dl><p><b>dwVersion: </b>Specifies the version of the Rasrpc
+server.<a id="Appendix_A_Target_155"></a><a aria-label="Product behavior note 155" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_155" data-linktype="relative-path">&lt;155&gt;</a></p><p><b>fWrite: </b>If set to 1, specifies that device
+information needs to be stored on RRAS. If set to 0, specifies that the device
+information does not need to be stored.</p><p><b>fRasEnabled: </b>If set to 1, specifies that the
+device is enabled for incoming connections. If set to 0, specifies that the
+device is not enabled for incoming connections.</p><p><b>fRouterEnabled: </b>If set to 1, specifies that
+the device is enabled for both incoming and outgoing demand-dial connection. If
+set to 0, specifies that the device is not enabled for both incoming and
+outgoing demand-dial connection.</p><p><b>fRouterOutboundEnabled: </b>If set to 1, specifies
+that the device is enabled for outgoing Demand dial connection. This can be set
+to 1 only when <b>fRouterEnabled</b> is set to 0.<a id="Appendix_A_Target_156"></a><a aria-label="Product behavior note 156" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_156" data-linktype="relative-path">&lt;156&gt;</a></p><p><b>dwTapiLineId: </b>Unique <b>TAPI</b> identifier
+for the device.</p><p><b>dwError: </b>Specifies the return status as
+explained in section <a href="c39d153e-2f97-4e11-8aff-bcf983869dc9" data-linktype="relative-path">2.2.1.2.218</a>
+for the <b>retcode</b> field. </p><p><b>dwNumEndPoints: </b>Specifies the number of WAN
+end points available for the device.</p><p><b>dwMaxOutCalls: </b>Specifies the maximum number of
+outgoing connections allowed on the device.</p><p><b>dwMaxInCalls: </b>Specifies the maximum number of
+incoming connections allowed on the device.</p><p><b>dwMinWanEndPoints: </b>Specifies the minimum
+number of WAN <b>end points</b> allowed on the device.</p><p><b>dwMaxWanEndPoints: </b>Specifies the maximum
+number of WAN <b>end points</b> allowed on the device.</p><p><b>eDeviceType: </b>Specifies the <b>RASDEVICETYPE</b>
+enumeration type.</p><p><b>guidDevice: </b>A <b>GUID</b> uniquely identifying
+the device. This value MUST NOT be used when eDeviceType is RDT_Modem.</p><p><b>szPortName: </b>Specifies a null-terminated ASCII
+string specifying the Port Name.</p><p><b>szDeviceName: </b>Specifies a null-terminated
+ASCII string specifying the Device Name.</p><p><b>wszDeviceName: </b>SHOULD<a id="Appendix_A_Target_157"></a><a aria-label="Product behavior note 157" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_157" data-linktype="relative-path">&lt;157&gt;</a> contain a null-terminated
+Unicode string specifying the Device Name.<span> </span></p></div>

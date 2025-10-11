@@ -1,1 +1,23 @@
-<div class="content"></div>
+<div class="content"><p>The IMPORT_TYPE enumeration defines modes for importing
+objects when <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_a4814539-33e8-4599-a479-3f211a7b032f" data-linktype="relative-path">conflicting
+objects</a> are present in the configuration.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum 
+ {
+   OVERWRITE_IMPORT = 1,
+   IGNORE_EXISTING_IMPORT = 2,
+   OVERRIDE_EXISTING_IMPORT = 3,
+   SMART_MERGE_RENAME_EXISTING_IMPORT = 4,
+   SMART_MERGE_RENAME_IMPORTED_IMPORT = 5,
+ } IMPORT_TYPE;
+</pre></div>
+</dd></dl><p><b>OVERWRITE_IMPORT:  </b>Specifies that objects of a
+given type SHOULD be removed prior to importing more objects of that type.</p><p><b>IGNORE_EXISTING_IMPORT:  </b>Specifies that the
+import of objects that conflict with existing objects in the configuration
+SHOULD be ignored.</p><p><b>OVERRIDE_EXISTING_IMPORT:  </b>Specifies that the
+import of objects that conflict with existing objects in the configuration
+SHOULD cause the existing objects to be deleted.</p><p><b>SMART_MERGE_RENAME_EXISTING_IMPORT:  </b>Specifies
+that existing objects in the configuration that conflict with imported objects
+SHOULD be renamed prior to importing.</p><p><b>SMART_MERGE_RENAME_IMPORTED_IMPORT:  </b>Specifies
+that imported objects that conflict with existing objects in the configuration
+SHOULD be renamed prior to importing.</p></div>

@@ -1,1 +1,18 @@
-<div class="content"></div>
+<div class="content"><p>An entry of a <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_b5d43ea0-cf01-4294-b0d8-0b0362d4a3a2" data-linktype="relative-path">version chain vector</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _FRS_VERSION_VECTOR {
+   GUID dbGuid;
+   DWORDLONG low;
+   DWORDLONG high;
+ } FRS_VERSION_VECTOR;
+</pre></div>
+</dd></dl><p><b>dbGuid:</b>  The <a href="../ms-dtyp/49e490b8-f972-45d6-a3a4-99f924998d97" data-linktype="relative-path">GUID</a> for
+the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_00f35ba3-4dbb-4ff9-8e27-572a6aea1b15" data-linktype="relative-path">database</a> originating
+the versions in the interval (low, high).</p><p><b>low:</b>  Lower bound for <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_dad98bb4-1dd5-404f-a742-3c3195292945" data-linktype="relative-path">VSN</a> interval.</p><p><b>high:</b>  Upper bound for VSN interval.
+The value of this member SHOULD be greater than the value of the <b>low</b>
+member.<a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="c43938b1-6e96-48ec-9725-5e5d42089f49#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a></p><p>The number indicated by &#34;low&#34; is excluded from the
+version chain vector. The number indicated by &#34;high&#34; is included in
+the version chain vector. Thus, [low, high] indicates a half-open interval of
+unsigned integers. The <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_6ea49fb3-42c8-42a5-b246-cd7321981287" data-linktype="relative-path">GVSNs</a>
+that are included in this entry are the following: { (dbGuid, low+1), …,
+(dbGuid, high) }.</p></div>

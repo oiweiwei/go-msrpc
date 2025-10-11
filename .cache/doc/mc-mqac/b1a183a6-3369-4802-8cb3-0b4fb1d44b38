@@ -1,0 +1,25 @@
+<div class="content"><p>The IsTransactional2 method is received by the server in an
+RPC_REQUEST packet. In response, the server returns a value that indicates
+whether the <i>referenced queue</i> is <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transactional</a> or
+nontransactional.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT IsTransactional2(
+   [out, retval] VARIANT_BOOL* pisTransactional
+ );
+</pre></div>
+</dd></dl><p><b>pisTransactional: </b>A pointer to a <a href="../ms-oaut/7b39eb24-9d39-498a-bcd8-75c38e5823d0" data-linktype="relative-path">VARIANT_BOOL</a>
+that indicates whether the queue is transactional or nontransactional.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the server MUST abide by the
+following contract:</p><ul><li><p><span><span> 
+</span></span>If <i>IsRefreshed</i> is FALSE call <a href="e4072abd-b433-4b22-a4ed-8f654d182705" data-linktype="relative-path">Refresh</a> (section
+3.10.4.1.29).</p>
+</li><li><p><span><span> 
+</span></span>If Refresh returns a value other than S_OK (0x00000000), return
+the HRESULT returned by Refresh and take no further action.</p>
+</li><li><p><span><span> 
+</span></span>Set the <i>pisTransactional</i> output parameter to the value of
+refQueue.Transactional.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK (0x00000000), and take no further action.</p>
+</li></ul></div>

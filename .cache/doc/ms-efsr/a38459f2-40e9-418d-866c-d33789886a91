@@ -1,1 +1,159 @@
-<div class="content"></div>
+<div class="content"><p> The Data Segment Encryption Header MUST be formatted as
+follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Starting
+  File Offset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Length</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Bytes
+  Within Stream Size</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Bytes
+  Within VDL</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>0x0000</p>
+  </td>
+  <td colspan="8">
+  <p>Data Unit
+  Shift</p>
+  </td>
+  <td colspan="8">
+  <p>Chunk Shift</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>Cluster
+  Shift</p>
+  </td>
+  <td colspan="8">
+  <p>0x01</p>
+  </td>
+  <td colspan="16">
+  <p>Number of
+  Data Blocks</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Data Block
+  Sizes (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Extended
+  Header (16 bytes, optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Starting File Offset (8 bytes): </b>This field
+MUST contain an unsigned 64-bit integer in little-endian format denoting the
+offset, in bytes, into the stream being serialized of the first data byte
+contained in this data segment.</p><p><b>Length (4 bytes): </b>The length of this header,
+in bytes, measured from the beginning of the <b>Starting File Offset</b> field
+to the end of the <b>Data Segment Encryption Header</b>. It MUST be a 32-bit
+unsigned integer in little-endian format. Any unused bytes within this
+structure MUST be set to zero and ignored by the server.</p><p><b>Bytes Within Stream Size (4 bytes): </b>The number
+of bytes contained within this stream data segment that fall within the stream
+size. It MUST be a 32-bit unsigned integer in little-endian format. This can be
+less than the number of bytes actually present due to padding required by the
+encryption algorithm.</p><p><b>Bytes Within VDL (4 bytes): </b>The number of
+bytes contained within this stream data segment that fall within the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_802f5450-7e2b-4e6d-85ec-306971174ab1" data-linktype="relative-path">valid data length (VDL)</a>. It
+MUST be a 32-bit unsigned integer in little-endian format. This can be less
+than the number of bytes actually present due to padding required by the
+encryption algorithm. Bytes beyond the VDL MUST be set to zero after
+decryption.</p><p><b>Data Unit Shift (1 byte): </b>The base-2 logarithm
+of the data unit size. It MUST be an 8-bit unsigned integer. For files that are
+not <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_57c7faf0-6002-4b1a-b8fc-fc9244d5a6e5" data-linktype="relative-path">sparse files</a>, the
+data unit size MUST be set to the size of the data in this segment. For sparse
+files, it MUST be equal to the size of a compression unit, which is the
+smallest unit that all holes MUST be a multiple of.</p><p><b>Chunk Shift (1 byte): </b>The base-2 logarithm of
+the chunk size. It MUST be an 8-bit unsigned integer. The chunk size MUST be
+equal to the data unit size.</p><p><b>Cluster Shift (1 byte): </b>The base-2 logarithm
+of the cluster size in bytes. It MUST be an 8-bit unsigned integer. It MUST be
+equal to the smallest unit of allocation in the underlying <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file system</a>.</p><p><b>Number of Data Blocks (2 bytes): </b>This field
+MUST contain the number of data blocks specified in this segment. It MUST be a
+16-bit unsigned integer in little-endian format. It MUST be equal to the number
+of entries in the <b>Data Block Sizes</b> field specified next.</p><p><b>Data Block Sizes (variable): </b>This field MUST
+consist of a sequence of unsigned 32-bit values in little-endian format,
+denoting the sizes of the successive data blocks in the <b>Stream Data</b>
+field that follows this header. Each value in the sequence MUST be less than or
+equal to the data unit size, unless it spans the VDL or a hole in the case of a
+sparse file.</p><p><b>Extended Header (16 bytes): </b>This field is
+optional, and its presence is indicated by the four-byte signature located at
+the start of this field. If this field is present, the server SHOULD interpret
+it as defined in section <a href="9f6beece-d6c3-483f-a969-5af841b88f1e" data-linktype="relative-path">2.2.3.4</a>.
+The server MAY ignore this field.<a id="Appendix_A_Target_20"></a><a aria-label="Product behavior note 20" href="cecd911d-7105-45cc-a7c8-348335d6f03f#Appendix_A_20" data-linktype="relative-path">&lt;20&gt;</a></p></div>

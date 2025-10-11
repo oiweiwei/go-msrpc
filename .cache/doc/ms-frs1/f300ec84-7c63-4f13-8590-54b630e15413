@@ -1,1 +1,139 @@
-<div class="content"></div>
+<div class="content"><p>The COMM_COMMAND element contains the communication packet
+type. The structure of the COMM_COMMAND packet element is as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _COMM_COMMAND {
+   USHORT CommType;
+   ULONG Length;
+   ULONG Data;
+ } COMM_COMMAND,
+  *PCOMM_COMMAND;
+</pre></div>
+</dd></dl><p><b>CommType:</b>   A 16-bit, unsigned
+integer that indicates the type of this <a href="194f8fff-d903-44b7-9530-c66f5366f8c7" data-linktype="relative-path">COMM_PACKET</a> element. MUST
+be set to 0x0002.</p><p><b>Length:</b>   A 32-bit, unsigned integer
+that indicates the length in bytes of the data following the Length field. MUST
+be 0x00000004.</p><p><b>Data:</b>   A 32-bit, unsigned integer
+that indicates the communication packet type. The value of this field MUST be
+one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CMD_REMOTE_CO</p>
+  <p>0x00000218</p>
+  </td>
+  <td>
+  <p>To send a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_e7b1d6d0-b341-47d2-b0d6-e2aa4cc6345d" data-linktype="relative-path">remote change order</a> to a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_31ffd71b-0426-40ec-9a10-a174a364ecef" data-linktype="relative-path">downstream partner</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CMD_RECEIVING_STAGE</p>
+  <p>0x00000238</p>
+  </td>
+  <td>
+  <p>To transmit a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_64afafeb-a356-4bd0-8993-9c3326dcd8a0" data-linktype="relative-path">staging file</a> to a
+  downstream partner.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CMD_REMOTE_CO_DONE</p>
+  <p>0x00000250</p>
+  </td>
+  <td>
+  <p>To inform the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_4daf1e81-3ffe-4656-8074-a9914b14a60c" data-linktype="relative-path">upstream partner</a> that
+  processing the remote change order is complete. This packet also includes the
+  change order command that has completed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CMD_ABORT_FETCH</p>
+  <p>0x00000246</p>
+  </td>
+  <td>
+  <p>To inform the downstream partner that the staging file
+  data cannot be sent. This command tells the partner to abort the fetch
+  operation on the staging file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CMD_RETRY_FETCH</p>
+  <p>0x00000244</p>
+  </td>
+  <td>
+  <p>To inform the downstream partner that the request for
+  the staging file data cannot be fulfilled at this time and that the request
+  has to be retried at a later time.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CMD_NEED_JOIN</p>
+  <p>0x00000121</p>
+  </td>
+  <td>
+  <p>To inform the upstream partner that a Join operation
+  is needed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CMD_START_JOIN</p>
+  <p>0x00000122</p>
+  </td>
+  <td>
+  <p>To inform the downstream partner that a Join operation
+  is starting.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CMD_JOINING</p>
+  <p>0x00000130</p>
+  </td>
+  <td>
+  <p>To send a version vector to an upstream partner.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CMD_JOINED</p>
+  <p>0x00000128</p>
+  </td>
+  <td>
+  <p>To inform the downstream partner that the Join is
+  successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CMD_UNJOIN_REMOTE</p>
+  <p>0x00000148</p>
+  </td>
+  <td>
+  <p>To inform an upstream partner on completion of a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_08e27cf3-b8d0-407e-9c9c-99d4ce06efc2" data-linktype="relative-path">version vector join (vvjoin)</a>
+  over a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_efd19057-36a8-4a9a-a4bc-4a70d6c048b9" data-linktype="relative-path">volatile connection</a>.
+  This command requests that the upstream partner disconnect the connection so
+  that it can be torn down.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CMD_VVJOIN_DONE</p>
+  <p>0x00000136</p>
+  </td>
+  <td>
+  <p>To inform the downstream partner that all <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_576a8417-dd00-4f9e-b52f-c9a2e3766a8a" data-linktype="relative-path">change orders</a> were sent
+  out during initial sync.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CMD_SEND_STAGE</p>
+  <p>0x00000228</p>
+  </td>
+  <td>
+  <p>To request staging data from an upstream partner.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

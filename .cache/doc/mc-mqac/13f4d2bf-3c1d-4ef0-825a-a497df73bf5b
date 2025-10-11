@@ -1,0 +1,109 @@
+<div class="content"><p>The Init method is received by the server in an RPC_REQUEST
+packet. In response, the server initializes the object to represent the state
+of a <a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">Queue</a>.
+The represented Queue MUST have Queue.Active set to True. If the represented
+Queue.Active is False, or the Pathname and FormatName input parameters cannot
+be resolved, this method MUST return an error without setting the <b>ObjectIsInitialized</b>
+instance variable to True. This method MUST be called prior to calling any
+other operation on <a href="c6ec8c75-48ac-44c3-8f5a-5972c1540fe8" data-linktype="relative-path">MSMQManagement</a>.</p><dl>
+<dd>
+<div><pre> HRESULT Init(
+   [in, optional] VARIANT* Machine,
+   [in, optional] VARIANT* Pathname,
+   [in, optional] VARIANT* FormatName
+ );
+</pre></div>
+</dd></dl><p><b>Machine: </b>A pointer to a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_a3af3eaf-64b7-499b-a95f-193cd4c27812" data-linktype="relative-path">VARIANT</a> that contains a <a href="../ms-dtyp/692a42a9-06ce-4394-b9bc-5d2a50440168" data-linktype="relative-path">BSTR</a>
+that contains a string representation of a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_9a7bc8b3-3374-4608-8f73-be20a90b898b" data-linktype="relative-path">computer name</a> in the DNS or
+<a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_b86c44e6-57df-4c48-8163-5e3fa7bdcff4" data-linktype="relative-path">NetBIOS</a> format. If this
+parameter is not specified or is NULL, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST ignore this
+parameter.</p><p><b>Pathname: </b>A pointer to a VARIANT that contains
+a BSTR that contains a string representation of the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_78c4af57-f564-4aa9-a40d-f54ea6bd8766" data-linktype="relative-path">path name</a> describing a
+Queue.</p><p><b>FormatName: </b>A pointer to a VARIANT that
+contains a BSTR that contains a string representation of the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_390ae273-7109-44eb-981f-aa157e6b37c0" data-linktype="relative-path">format name</a> describing a
+Queue.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the server MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>Pathname</i> input parameter is NULL or is not
+specified and the <i>FormatName</i> input parameter is NULL or is not
+specified:</p>
+<ul><li><p><span><span>  </span></span>Return
+MQ_ERROR_INVALID_PARAMETER (0xC00E0006), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>Pathname</i> input parameter is not NULL and the <i>FormatName</i>
+input parameter is not NULL:</p>
+<ul><li><p><span><span>  </span></span>Return
+MQ_ERROR_INVALID_PARAMETER (0xC00E0006), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>Machine</i> input parameter is specified and is not NULL:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST set the <b>ComputerName</b> instance variable to the value of the <i>Machine</i>
+input parameter.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>FormatName</i> input parameter is specified and is not
+NULL and the <i>Pathname</i> input parameter is NULL:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST set the <b>QueueFormatName</b> instance variable to the value of
+the <i>FormatName</i> input parameter.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>Pathname</i> input parameter is specified and is not
+NULL, and the <i>FormatName</i> input parameter is NULL:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST generate a Get Queue Format Name From Pathname event (section <a href="608bb4d4-b9eb-43c8-86fd-df63a57aac1e" data-linktype="relative-path">3.1.6.2</a>) with the
+following inputs:</p>
+<ul><li><p><span><span> 
+</span></span><i>iPathName</i> = the <i>Pathname</i> input parameter</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the <b>rStatus</b> return value is not equal to MQ_OK (0x0000000), the server
+MUST return an error HRESULT, and take no further action. </p>
+</li><li><p><span><span>  </span></span>The
+server MUST set the <b>QueueFormatName</b> instance variable to the value of
+the <i>FormatName</i> return value.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>The server MUST perform the following actions to initialize the <b>hQmmgmtBind</b>
+instance variable:</p>
+<ul><li><p><span><span>  </span></span>Create
+an RPC binding handle as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> section 2,
+&#34;Introduction to the RPC API&#34;.</p>
+</li><li><p><span><span>  </span></span>The
+creation method MUST include:</p>
+<ul><li><p><span><span> 
+</span></span>If the <b>ComputerName</b> instance variable is not NULL:</p>
+<ul><li><p><span><span> 
+</span></span>The <b>ComputerName</b> instance variable as the server name.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span> 
+</span></span>The local <b>QueueManager.ComputerName</b> as the server name.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>The RPC standards and transport method defined in [MS-MQMR]
+(sections <a href="../ms-mqmr/485d278d-91bb-406a-889d-b397483d02e1" data-linktype="relative-path">1.9</a>
+and <a href="../ms-mqmr/6e6367ec-996a-41af-a563-59c1dfd3405e" data-linktype="relative-path">2.1</a>).</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the server successfully creates the RPC binding handle:</p>
+<ul><li><p><span><span> 
+</span></span>The server MUST set the <b>hQmmgmtBind</b> instance variable to
+the created RPC binding handle.</p>
+</li></ul></li><li><p><span><span>  </span></span>Else:</p>
+<ul><li><p><span><span> 
+</span></span>The server must return an error HRESULT and take no further
+action.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>The server MUST generate a <b>QMMgmt Get Info</b> event with the
+following inputs:</p>
+<ul><li><p><span><span>  </span></span><b>iPropID</b>
+= PROPID_MGMT_QUEUE_LOCATION</p>
+</li><li><p><span><span>  </span></span>If
+the <b>rStatus</b> return value is not equal to MQ_OK (0x00000000), the server
+MUST return <b>rStatus</b> and take no further action.</p>
+</li><li><p><span><span>  </span></span>Else:</p>
+<ul><li><p><span><span> 
+</span></span>If the value of the returned <b>rPropVar</b> was
+&#34;Remote&#34;, set the QueueIsOutgoing instance variable to True.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>The server MUST set the <b>ObjectIsInitialized</b> instance
+variable to True.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK.</p>
+</li></ul></div>

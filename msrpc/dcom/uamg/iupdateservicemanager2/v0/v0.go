@@ -51,12 +51,109 @@ type UpdateServiceManager2Client interface {
 	// IUpdateServiceManager retrieval method.
 	UpdateServiceManager() iupdateservicemanager.UpdateServiceManagerClient
 
+	// The IUpdateSearcher::ClientApplicationID (opnum 10) method retrieves the string used
+	// to identify the current client application.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 9) method sets the identifier of the
+	// calling application.
+	//
+	// The IUpdateHistoryEntry::ClientApplicationID (opnum 16) method retrieves the ID of
+	// the application that initiated the operation.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 16) method sets a string that
+	// identifies the client application that is using this interface.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 8) method retrieves the identifier
+	// of the calling application.
+	//
+	// The IUpdateSearcher::ClientApplicationID (opnum 11) method sets the string used to
+	// identify the current client application.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 15) method retrieves a string
+	// that identifies the client application that is using this interface.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ClientApplicationID ADM element.
 	GetClientApplicationID(context.Context, *GetClientApplicationIDRequest, ...dcerpc.CallOption) (*GetClientApplicationIDResponse, error)
 
+	// The IUpdateSearcher::ClientApplicationID (opnum 10) method retrieves the string used
+	// to identify the current client application.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 9) method sets the identifier of the
+	// calling application.
+	//
+	// The IUpdateHistoryEntry::ClientApplicationID (opnum 16) method retrieves the ID of
+	// the application that initiated the operation.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 16) method sets a string that
+	// identifies the client application that is using this interface.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 8) method retrieves the identifier
+	// of the calling application.
+	//
+	// The IUpdateSearcher::ClientApplicationID (opnum 11) method sets the string used to
+	// identify the current client application.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 15) method retrieves a string
+	// that identifies the client application that is using this interface.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ClientApplicationID ADM element.
 	SetClientApplicationID(context.Context, *SetClientApplicationIDRequest, ...dcerpc.CallOption) (*SetClientApplicationIDResponse, error)
 
+	// The IUpdateServiceManager2::QueryServiceRegistration (opnum 17) method retrieves
+	// the update service registration record for a service.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the service registration record for the identified service
+	// from the ServiceRegistrations ADM element.
 	QueryServiceRegistration(context.Context, *QueryServiceRegistrationRequest, ...dcerpc.CallOption) (*QueryServiceRegistrationResponse, error)
 
+	// The IUpdateServiceManager2::AddService2 (opnum 18) method registers an update service
+	// with the update agent.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD trigger the update agent to add this update service through an
+	// implementation-dependent<48> interface. This method SHOULD add the given service
+	// to the Services ADM element maintained by the IUpdateServiceManager (section 3.44)
+	// interface and return an IUpdateServiceRegistration instance that represents the service
+	// registration.
 	AddService2(context.Context, *AddService2Request, ...dcerpc.CallOption) (*AddService2Response, error)
 
 	// AlterContext alters the client context.
@@ -405,8 +502,17 @@ func (o *GetClientApplicationIDRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // GetClientApplicationIDResponse structure represents the ClientApplicationID operation response
 type GetClientApplicationIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: Returns a string identifying the client application using the interface.
+	//
+	// retval: A string identifying the client application that initiated the operation.
+	//
+	// retval: The identifier of the calling application previously set using the IUpdateSession::ClientApplicationID
+	// (opnum 9) (section 3.16.4.2) method. If no identifier was previously set, this MUST
+	// be NULL or the empty string.
+	//
+	// retval: A string identifying the client application that is using this interface.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The ClientApplicationID return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -613,8 +719,13 @@ func (o *xxx_SetClientApplicationIDOperation) UnmarshalNDRResponse(ctx context.C
 // SetClientApplicationIDRequest structure represents the ClientApplicationID operation request
 type SetClientApplicationIDRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Value *oaut.String   `idl:"name:value" json:"value"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// value: The identifier of the calling application.
+	//
+	// value: A string that identifies the client application that is using this interface.
+	//
+	// value: A string used to identify the client application using the interface.
+	Value *oaut.String `idl:"name:value" json:"value"`
 }
 
 func (o *SetClientApplicationIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetClientApplicationIDOperation) *xxx_SetClientApplicationIDOperation {
@@ -903,8 +1014,9 @@ func (o *xxx_QueryServiceRegistrationOperation) UnmarshalNDRResponse(ctx context
 // QueryServiceRegistrationRequest structure represents the QueryServiceRegistration operation request
 type QueryServiceRegistrationRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ServiceID *oaut.String   `idl:"name:serviceID" json:"service_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// serviceID: A string identifying an update service.
+	ServiceID *oaut.String `idl:"name:serviceID" json:"service_id"`
 }
 
 func (o *QueryServiceRegistrationRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceRegistrationOperation) *xxx_QueryServiceRegistrationOperation {
@@ -941,7 +1053,8 @@ func (o *QueryServiceRegistrationRequest) UnmarshalNDR(ctx context.Context, r nd
 // QueryServiceRegistrationResponse structure represents the QueryServiceRegistration operation response
 type QueryServiceRegistrationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat                  `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An IUpdateServiceRegistration (section 3.46.4) instance for the given service.
 	ReturnValue *uamg.UpdateServiceRegistration `idl:"name:retval" json:"return_value"`
 	// Return: The QueryServiceRegistration return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1254,10 +1367,17 @@ func (o *xxx_AddService2Operation) UnmarshalNDRResponse(ctx context.Context, w n
 // AddService2Request structure represents the AddService2 operation request
 type AddService2Request struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ServiceID            *oaut.String   `idl:"name:serviceID" json:"service_id"`
-	Flags                int32          `idl:"name:flags" json:"flags"`
-	AuthorizationCabPath *oaut.String   `idl:"name:authorizationCabPath" json:"authorization_cab_path"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// serviceID: A string identifying the service.
+	ServiceID *oaut.String `idl:"name:serviceID" json:"service_id"`
+	// flags: A bitmask created with values from the AddServiceFlag (section 2.2.15) enumeration
+	// specifying options.
+	Flags int32 `idl:"name:flags" json:"flags"`
+	// authorizationCabPath: The filesystem path of the authorization cabinet file containing
+	// information required for a service registration. If this is NULL or the empty string,
+	// the server SHOULD search for the authorization cabinet file online when a network
+	// connection is available.
+	AuthorizationCabPath *oaut.String `idl:"name:authorizationCabPath" json:"authorization_cab_path"`
 }
 
 func (o *AddService2Request) xxx_ToOp(ctx context.Context, op *xxx_AddService2Operation) *xxx_AddService2Operation {
@@ -1298,7 +1418,8 @@ func (o *AddService2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // AddService2Response structure represents the AddService2 operation response
 type AddService2Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat                  `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An IUpdateServiceRegistration instance.
 	ReturnValue *uamg.UpdateServiceRegistration `idl:"name:retval" json:"return_value"`
 	// Return: The AddService2 return value.
 	Return int32 `idl:"name:Return" json:"return"`

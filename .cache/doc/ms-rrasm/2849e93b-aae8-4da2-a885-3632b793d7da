@@ -1,1 +1,16 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RASMAN_DISCONNECT_TYPE</b> enumeration indicates
+different types of disconnection requests for a given <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_76717edf-a943-4324-bce3-807df4b53153" data-linktype="relative-path">RAS port</a>.</p><dl>
+<dd>
+<div><pre> typedef enum _RASMAN_DISCONNECT_TYPE
+ {
+   USER_REQUESTED = 0,
+   REMOTE_DISCONNECTION = 1,
+   HARDWARE_FAILURE = 2,
+   NOT_DISCONNECTED = 3
+ } RASMAN_DISCONNECT_TYPE;
+</pre></div>
+</dd></dl><p><b>USER_REQUESTED: </b>The local user requested the
+disconnect action.</p><p><b>REMOTE_DISCONNECTION: </b>The remote dial-up or <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_16a7bb90-2875-41d6-bab2-3c63891f08b9" data-linktype="relative-path">VPN</a> client requested the
+disconnect action.</p><p><b>HARDWARE_FAILURE: </b>The hardware attached to
+this RAS port has failed.</p><p><b>NOT_DISCONNECTED: </b>The port is not
+disconnected.</p></div>

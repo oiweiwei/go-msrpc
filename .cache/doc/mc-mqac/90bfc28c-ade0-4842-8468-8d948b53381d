@@ -1,0 +1,48 @@
+<div class="content"><p>The MQMSGAUTHLEVEL enumeration defines values for the <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>.<b>AuthenticationLevel</b>
+property. Specific values in this enumeration indicate the manner in which a
+Message is to be cryptographically signed when inserted in the <a href="../ms-mqdmpr/d53d687d-49c4-4b6f-af29-351f7341b423" data-linktype="relative-path">OutgoingQueue</a>
+by the <a href="fd62e459-7b6a-41d7-ba4c-741e0f49cec7" data-linktype="relative-path">MSMQMessage4::Send</a>
+method. A value is reserved to indicate that the Send operation MUST NOT
+cryptographically sign the Message.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MQMSG_AUTH_LEVEL_NONE = 0,
+   MQMSG_AUTH_LEVEL_ALWAYS = 1,
+   MQMSG_AUTH_LEVEL_MSMQ10 = 2,
+   MQMSG_AUTH_LEVEL_SIG10 = 2,
+   MQMSG_AUTH_LEVEL_MSMQ20 = 4,
+   MQMSG_AUTH_LEVEL_SIG20 = 4,
+   MQMSG_AUTH_LEVEL_SIG30 = 8
+ } MQMSGAUTHLEVEL;
+</pre></div>
+</dd></dl><p><b>MQMSG_AUTH_LEVEL_NONE:  </b>The Message that was
+inserted into the OutgoingQueue by the Send operation is not digitally signed.</p><p><b>MQMSG_AUTH_LEVEL_ALWAYS:  </b>Prior to inserting
+the Message into the OutgoingQueue, the Send operation MUST digitally sign the
+Message. For OutgoingQueues that transfer to destination <a href="7d8d0dab-699c-4121-9ee4-226a2dbced2e" data-linktype="relative-path">ApplicationQueue</a>s using
+the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_86e94a12-324e-45b7-ae03-7491d189f05c" data-linktype="relative-path">SOAP Reliable Messaging
+Protocol (SRMP)</a> <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a>
+transfer process, an <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_42b577ca-a377-4062-8bbd-73d6283bd35f" data-linktype="relative-path">XML
+digital signature</a> MUST be created. For any other OutgoingQueue, this value
+SHOULD <a id="Appendix_A_Target_4"></a><a aria-label="Product behavior note 4" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_4" data-linktype="relative-path">&lt;4&gt;</a>be interpreted as equivalent to
+MQMSG_AUTH_LEVEL_SIG30.</p><p><b>MQMSG_AUTH_LEVEL_MSMQ10:  </b>Prior to inserting
+the Message into the OutgoingQueue, the Send operation MUST digitally sign the
+Message according to the algorithm described in <a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a>
+section <a href="../ms-mqmq/303416bb-b821-4a18-ac0d-adc3ea44cc77" data-linktype="relative-path">2.2.20.6</a>,
+where the SecurityHeader.Flags.AS value is 0x1.</p><p><b>MQMSG_AUTH_LEVEL_SIG10:  </b>Prior to inserting
+the Message into the OutgoingQueue, the Send operation MUST digitally sign the
+Message according to the algorithm described in [MS-MQMQ] section 2.2.20.6,
+where the SecurityHeader.Flags.AS value is 0x1.</p><p><b>MQMSG_AUTH_LEVEL_MSMQ20:  </b>Prior to inserting
+the Message into the OutgoingQueue, the Send operation MUST digitally sign the
+Message according to the algorithm described in [MS-MQMQ] section 2.2.20.6,
+where the SecurityHeader.Flags.AS value is 0x3.</p><p><b>MQMSG_AUTH_LEVEL_SIG20:  </b>Prior to inserting
+the Message into the OutgoingQueue, the Send operation MUST digitally sign the
+Message according to the algorithm described in [MS-MQMQ] section 2.2.20.6,
+where the SecurityHeader.Flags.AS value is 0x3.</p><p><b>MQMSG_AUTH_LEVEL_SIG30:  </b>Prior to inserting
+the Message into the OutgoingQueue, the Send operation MUST digitally sign the
+Message according to the algorithm described in [MS-MQMQ] section 2.2.20.6,
+where the SecurityHeader.Flags.AS value is 0x5.</p><p>Used by:</p><ul><li><p><span><span> 
+</span></span>get <a href="e6c4a64b-3864-4606-897e-aa2a40d2e984" data-linktype="relative-path">IMSMQMessage::AuthLevel</a></p>
+</li><li><p><span><span> 
+</span></span>put <a href="441c0a67-a991-44cc-b451-b5ec5176c7d9" data-linktype="relative-path">IMSMQMessage::AuthLevel</a></p>
+</li></ul></div>

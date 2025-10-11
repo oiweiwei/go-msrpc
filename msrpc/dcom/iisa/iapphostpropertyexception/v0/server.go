@@ -31,13 +31,60 @@ type AppHostPropertyExceptionServer interface {
 	// IAppHostConfigException base class.
 	iapphostconfigexception.AppHostConfigExceptionServer
 
-	// InvalidValue operation.
+	// The InvalidValue method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a string representation of the invalid value that is encountered
+	// by the administration system when processing property.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrValue is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetInvalidValue(context.Context, *GetInvalidValueRequest) (*GetInvalidValueResponse, error)
 
-	// ValidationFailureReason operation.
+	// The ValidationFailureReason method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns a description of the error that is encountered.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrValidationReason is not NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetValidationFailureReason(context.Context, *GetValidationFailureReasonRequest) (*GetValidationFailureReasonResponse, error)
 
-	// ValidationFailureParameters operation.
+	// The ValidationFailureParameters method is currently reserved for future use. The
+	// server MUST return ERROR_NOT_SUPPORTED (as defined in [MS-ERREF]) to indicate that
+	// the method isnt implemented.
+	//
+	// Return Values: The server MUST return ERROR_NOT_SUPPORTED (as defined in [MS-ERREF])
+	// to indicate that the method isn't implemented.
 	GetValidationFailureParameters(context.Context, *GetValidationFailureParametersRequest) (*GetValidationFailureParametersResponse, error)
 }
 

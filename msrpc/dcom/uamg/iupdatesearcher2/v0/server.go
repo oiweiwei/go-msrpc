@@ -31,8 +31,42 @@ type UpdateSearcher2Server interface {
 	// IUpdateSearcher base class.
 	iupdatesearcher.UpdateSearcherServer
 
+	// The IUpdateSearcher2::IgnoreDownloadPriority (opnum 26) method retrieves whether
+	// the update download priority is ignored.
+	//
+	// The IUpdateSearcher2::IgnoreDownloadPriority (opnum 27) method sets whether the update
+	// download priority is ignored.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the IgnoreDownloadPriority ADM element.
 	GetIgnoreDownloadPriority(context.Context, *GetIgnoreDownloadPriorityRequest) (*GetIgnoreDownloadPriorityResponse, error)
 
+	// The IUpdateSearcher2::IgnoreDownloadPriority (opnum 26) method retrieves whether
+	// the update download priority is ignored.
+	//
+	// The IUpdateSearcher2::IgnoreDownloadPriority (opnum 27) method sets whether the update
+	// download priority is ignored.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the IgnoreDownloadPriority ADM element.
 	SetIgnoreDownloadPriority(context.Context, *SetIgnoreDownloadPriorityRequest) (*SetIgnoreDownloadPriorityResponse, error)
 }
 

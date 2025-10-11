@@ -1,0 +1,80 @@
+<div class="content"><p>The IAppHostProperty <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides methods that
+access properties that can be contained under an <a href="59774887-09e3-4de5-ad8e-4794f404b123" data-linktype="relative-path">IAppHostElement</a> object.</p><p>IAppHostElement objects can contain zero or more
+IAppHostProperty objects. These IAppHostProperty objects typically represent a
+single setting or attribute set on an IAppHostElement but can be multiple
+settings or sets.</p><p>The IAppHostProperty interface inherits opnums 0–2 from the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="fa19b1f4-95e4-40a4-b97b-d7622e649f46" data-linktype="relative-path">Name</a></p>
+  </td>
+  <td>
+  <p>Opnum: 3</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="40af30a7-e913-4a3b-9bf7-19c31754b11f" data-linktype="relative-path">Value</a></p>
+  </td>
+  <td>
+  <p>&#34;getter&#34;</p>
+  <p>Opnum: 4</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="035eafce-2087-47ef-9e4f-5beb2dff76e4" data-linktype="relative-path">Value</a></p>
+  </td>
+  <td>
+  <p>&#34;setter&#34;</p>
+  <p>Opnum: 5</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="f915b68e-287b-4bd6-a13e-d0bd9570d34e" data-linktype="relative-path">Clear</a></p>
+  </td>
+  <td>
+  <p>Opnum: 6</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="f0374c22-0e0a-4c85-8194-1d89ebbcfc13" data-linktype="relative-path">StringValue</a></p>
+  </td>
+  <td>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="9527d5e1-9cc6-407f-8729-80badd45b8f3" data-linktype="relative-path">Exception</a></p>
+  </td>
+  <td>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="db780c5f-79cf-4c2d-bc02-92f9d68cf184" data-linktype="relative-path">GetMetadata</a></p>
+  </td>
+  <td>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="a0a72512-8a3c-495e-90d1-ad72c5a17df3" data-linktype="relative-path">SetMetadata</a></p>
+  </td>
+  <td>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="5442a971-4ea9-4178-97f3-0bb95fd6351b" data-linktype="relative-path">Schema</a></p>
+  </td>
+  <td>
+  <p>Opnum: 11</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

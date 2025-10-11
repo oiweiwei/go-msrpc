@@ -52,19 +52,124 @@ type NTFrsAPIClient interface {
 	// Opnum3NotUsedOnWire operation.
 	// Opnum3NotUsedOnWire
 
+	// The NtFrsApi_Rpc_Set_DsPollingIntervalW method adjusts the interval at which Active
+	// Directory is polled (see section 3.1.5.1) for updates unless both LongInterval and
+	// ShortInterval are 0, and then MUST initiate a polling cycle.
+	//
+	// Return Values: The method MUST return 0 on success or a nonzero error code on failure.
+	// All nonzero values MUST be treated as equivalent failures unless otherwise specified.
+	//
+	//	+--------------------------+------------------------------------+
+	//	|          RETURN          |                                    |
+	//	|        VALUE/CODE        |            DESCRIPTION             |
+	//	|                          |                                    |
+	//	+--------------------------+------------------------------------+
+	//	+--------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS | The method completed successfully. |
+	//	+--------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	SetDSPollingIntervalW(context.Context, *SetDSPollingIntervalWRequest, ...dcerpc.CallOption) (*SetDSPollingIntervalWResponse, error)
 
+	// The NtFrsApi_Rpc_Get_DsPollingIntervalW method MUST return the current Active Directory
+	// polling intervals.
+	//
+	// Provides the current, long, and short polling intervals. All polling intervals are
+	// in minutes.
+	//
+	// Return Values: The method MUST return 0 on success or a nonzero error code on failure.
+	// All nonzero values MUST be treated as equivalent failures unless otherwise specified.
+	//
+	//	+--------------------------+------------------------------------+
+	//	|          RETURN          |                                    |
+	//	|        VALUE/CODE        |            DESCRIPTION             |
+	//	|                          |                                    |
+	//	+--------------------------+------------------------------------+
+	//	+--------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS | The method completed successfully. |
+	//	+--------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	GetDSPollingIntervalW(context.Context, *GetDSPollingIntervalWRequest, ...dcerpc.CallOption) (*GetDSPollingIntervalWResponse, error)
 
 	// Opnum6NotUsedOnWire operation.
 	// Opnum6NotUsedOnWire
 
+	// The NtFrsApi_Rpc_InfoW method MUST return internal information. The method is not
+	// used in server-to-server interoperation. The vendor MUST fill the BLOB with implementation-dependent
+	// data structures.
+	//
+	// Return Values: The method MUST return 0 on success or a nonzero error code on failure.
+	// All nonzero values MUST be treated as equivalent failures unless otherwise specified.
+	//
+	//	+--------------------------+------------------------------------+
+	//	|          RETURN          |                                    |
+	//	|        VALUE/CODE        |            DESCRIPTION             |
+	//	|                          |                                    |
+	//	+--------------------------+------------------------------------+
+	//	+--------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS | The method completed successfully. |
+	//	+--------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	InfoW(context.Context, *InfoWRequest, ...dcerpc.CallOption) (*InfoWResponse, error)
 
+	// This method is not used by FRS.
+	//
+	// Return Values: The method MUST return 0 on success or a nonzero error code on failure.
+	// All nonzero values MUST be treated as equivalent failures unless otherwise specified.
+	//
+	//	+--------------------------+------------------------------------+
+	//	|          RETURN          |                                    |
+	//	|        VALUE/CODE        |            DESCRIPTION             |
+	//	|                          |                                    |
+	//	+--------------------------+------------------------------------+
+	//	+--------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS | The method completed successfully. |
+	//	+--------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	IsPathReplicated(context.Context, *IsPathReplicatedRequest, ...dcerpc.CallOption) (*IsPathReplicatedResponse, error)
 
+	// The NtFrsApi_Rpc_WriterCommand method MUST deactivate or reactivate the replication
+	// of the specified Replica Set.
+	//
+	// Return Values: The method MUST return 0 on success or a nonzero error code on failure.
+	// All nonzero values MUST be treated as equivalent failures unless otherwise specified.
+	//
+	//	+--------------------------+------------------------------------+
+	//	|          RETURN          |                                    |
+	//	|        VALUE/CODE        |            DESCRIPTION             |
+	//	|                          |                                    |
+	//	+--------------------------+------------------------------------+
+	//	+--------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS | The method completed successfully. |
+	//	+--------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	WriterCommand(context.Context, *WriterCommandRequest, ...dcerpc.CallOption) (*WriterCommandResponse, error)
 
+	// This call MUST trigger replication on the connection even if the schedule is off.
+	//
+	// Return Values: The method MUST return 0 on success or a nonzero error code on failure.
+	// All nonzero values MUST be treated as equivalent failures unless otherwise specified.
+	//
+	//	+--------------------------+------------------------------------+
+	//	|          RETURN          |                                    |
+	//	|        VALUE/CODE        |            DESCRIPTION             |
+	//	|                          |                                    |
+	//	+--------------------------+------------------------------------+
+	//	+--------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS | The method completed successfully. |
+	//	+--------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	ForceReplication(context.Context, *ForceReplicationRequest, ...dcerpc.CallOption) (*ForceReplicationResponse, error)
 
 	// AlterContext alters the client context.
@@ -276,9 +381,28 @@ func (o *xxx_SetDSPollingIntervalWOperation) UnmarshalNDRResponse(ctx context.Co
 
 // SetDSPollingIntervalWRequest structure represents the NtFrsApi_Rpc_Set_DsPollingIntervalW operation request
 type SetDSPollingIntervalWRequest struct {
+	// UseShortInterval: If nonzero, requests that the server initiate a polling cycle using
+	// the short interval. If 0, requests that the server initiate a polling cycle using
+	// the long interval.
+	//
+	//	+-------------------------+---------------------------------+
+	//	|                         |                                 |
+	//	|          VALUE          |             MEANING             |
+	//	|                         |                                 |
+	//	+-------------------------+---------------------------------+
+	//	+-------------------------+---------------------------------+
+	//	| 0x00000000              | Value in LongInterval is used.  |
+	//	+-------------------------+---------------------------------+
+	//	| 0x00000001 — 0xFFFFFFFF | Value in ShortInterval is used. |
+	//	+-------------------------+---------------------------------+
 	UseShortInterval uint32 `idl:"name:UseShortInterval" json:"use_short_interval"`
-	LongInterval     uint32 `idl:"name:LongInterval" json:"long_interval"`
-	ShortInterval    uint32 `idl:"name:ShortInterval" json:"short_interval"`
+	// LongInterval: Long interval in minutes. A 0x00000000 value indicates that the LongInterval
+	// MUST NOT be modified by this call.<58>
+	LongInterval uint32 `idl:"name:LongInterval" json:"long_interval"`
+	// ShortInterval: Short interval in minutes. A 0x00000000 value indicates that the ShortInterval
+	// MUST NOT be modified by this call. If both ShortInterval and LongInterval are set,
+	// then the minimum of both will be used as the ShortInterval value.<59>
+	ShortInterval uint32 `idl:"name:ShortInterval" json:"short_interval"`
 }
 
 func (o *SetDSPollingIntervalWRequest) xxx_ToOp(ctx context.Context, op *xxx_SetDSPollingIntervalWOperation) *xxx_SetDSPollingIntervalWOperation {
@@ -484,8 +608,12 @@ func (o *GetDSPollingIntervalWRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 
 // GetDSPollingIntervalWResponse structure represents the NtFrsApi_Rpc_Get_DsPollingIntervalW operation response
 type GetDSPollingIntervalWResponse struct {
-	Interval      uint32 `idl:"name:Interval" json:"interval"`
-	LongInterval  uint32 `idl:"name:LongInterval" json:"long_interval"`
+	// Interval: Current interval in minutes, which MUST be the same value as either LongInterval
+	// or ShortInterval (see section 3.1.2).
+	Interval uint32 `idl:"name:Interval" json:"interval"`
+	// LongInterval: Long interval in minutes.
+	LongInterval uint32 `idl:"name:LongInterval" json:"long_interval"`
+	// ShortInterval: Short interval in minutes.
 	ShortInterval uint32 `idl:"name:ShortInterval" json:"short_interval"`
 	// Return: The NtFrsApi_Rpc_Get_DsPollingIntervalW return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -749,8 +877,27 @@ func (o *xxx_InfoWOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 
 // InfoWRequest structure represents the NtFrsApi_Rpc_InfoW operation request
 type InfoWRequest struct {
+	// BlobSize: The size of the Blob parameter in bytes. MUST be one of the following values,
+	// to fit the returned information in the Blob.
+	//
+	//	+----------------------------------------+--------------------+
+	//	|                                        |                    |
+	//	|                 VALUE                  |      MEANING       |
+	//	|                                        |                    |
+	//	+----------------------------------------+--------------------+
+	//	+----------------------------------------+--------------------+
+	//	| NTFRSAPI_DEFAULT_INFO_SIZE (64 * 1024) | Default info size. |
+	//	+----------------------------------------+--------------------+
+	//	| NTFRSAPI_MINIMUM_INFO_SIZE ( 1 * 1024) | Minimum info size. |
+	//	+----------------------------------------+--------------------+
 	BlobSize uint32 `idl:"name:BlobSize" json:"blob_size"`
-	Blob     []byte `idl:"name:Blob;size_is:(BlobSize);pointer:unique" json:"blob"`
+	// Blob: Custom binary format object that contains internal information about FRS. Vendors
+	// MUST choose their own implementation-dependent data structures for the Blob parameter
+	// to dump debug/tracing-related information. This protocol does not require a specific
+	// format for the information in this BLOB. This structure is not used for server-to-server
+	// interoperation, and the vendor can fill the BLOB with implementation-dependent data
+	// structures.<60><61>
+	Blob []byte `idl:"name:Blob;size_is:(BlobSize);pointer:unique" json:"blob"`
 }
 
 func (o *InfoWRequest) xxx_ToOp(ctx context.Context, op *xxx_InfoWOperation) *xxx_InfoWOperation {
@@ -789,6 +936,12 @@ type InfoWResponse struct {
 	// XXX: BlobSize is an implicit input depedency for output parameters
 	BlobSize uint32 `idl:"name:BlobSize" json:"blob_size"`
 
+	// Blob: Custom binary format object that contains internal information about FRS. Vendors
+	// MUST choose their own implementation-dependent data structures for the Blob parameter
+	// to dump debug/tracing-related information. This protocol does not require a specific
+	// format for the information in this BLOB. This structure is not used for server-to-server
+	// interoperation, and the vendor can fill the BLOB with implementation-dependent data
+	// structures.<60><61>
 	Blob []byte `idl:"name:Blob;size_is:(BlobSize);pointer:unique" json:"blob"`
 	// Return: The NtFrsApi_Rpc_InfoW return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -1010,7 +1163,28 @@ func (o *xxx_IsPathReplicatedOperation) UnmarshalNDRResponse(ctx context.Context
 
 // IsPathReplicatedRequest structure represents the NtFrsApi_Rpc_IsPathReplicated operation request
 type IsPathReplicatedRequest struct {
-	Path                     string `idl:"name:Path;string;pointer:unique" json:"path"`
+	// Path: Local path being queried.<63>
+	Path string `idl:"name:Path;string;pointer:unique" json:"path"`
+	// ReplicaSetTypeOfInterest: Replica set type identified by the path. The value MUST
+	// be one of the following.
+	//
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                         |                                                                                  |
+	//	|                  VALUE                  |                                     MEANING                                      |
+	//	|                                         |                                                                                  |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000                              | Indicates any replica set.                                                       |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| FRS_RSTYPE_ENTERPRISE_SYSVOL 0x00000001 | Indicates the replica set for the enterprise system volume (SYSVOL).             |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| FRS_RSTYPE_DOMAIN_SYSVOL 0x00000002     | Indicates the replica set for the domain SYSVOL.                                 |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| FRS_RSTYPE_DFS 0x00000003               | Indicates the replica set for the distributed file system, as specified in       |
+	//	|                                         | [MS-DFSNM].                                                                      |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| FRS_RSTYPE_OTHER 0x00000004             | Indicates none of the previous types.                                            |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
 	SetTypeOfInterestReplica uint32 `idl:"name:ReplicaSetTypeOfInterest" json:"set_type_of_interest_replica"`
 }
 
@@ -1047,9 +1221,54 @@ func (o *IsPathReplicatedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 
 // IsPathReplicatedResponse structure represents the NtFrsApi_Rpc_IsPathReplicated operation response
 type IsPathReplicatedResponse struct {
-	Replicated     uint32     `idl:"name:Replicated" json:"replicated"`
-	Primary        uint32     `idl:"name:Primary" json:"primary"`
-	Root           uint32     `idl:"name:Root" json:"root"`
+	// Replicated: Boolean value that indicates if the replica set is replicated by the
+	// domain controller (DC). The value MUST be one of the following.
+	//
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	|                  |                                                                                  |
+	//	|      VALUE       |                                     MEANING                                      |
+	//	|                  |                                                                                  |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| FALSE 0x00000000 | The Path parameter is not part of a replica set of the type specified in         |
+	//	|                  | ReplicaSetTypeOfInterest. If this value is returned, Primary, Root, and          |
+	//	|                  | ReplicaSetGuid are set to NULL.                                                  |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| TRUE 0x00000001  | The Path parameter is part of a replica set of the type specified in             |
+	//	|                  | ReplicaSetTypeOfInterest.                                                        |
+	//	+------------------+----------------------------------------------------------------------------------+
+	Replicated uint32 `idl:"name:Replicated" json:"replicated"`
+	// Primary: Indicates if the computer is the first computer for the replica set for
+	// initial sync. The value MUST be one of the following.
+	//
+	//	+------------+----------------------------------------------------------------------------+
+	//	|            |                                                                            |
+	//	|   VALUE    |                                  MEANING                                   |
+	//	|            |                                                                            |
+	//	+------------+----------------------------------------------------------------------------+
+	//	+------------+----------------------------------------------------------------------------+
+	//	| 0x00000000 | Current computer is not the primary computer for the matching replica set. |
+	//	+------------+----------------------------------------------------------------------------+
+	//	| 0x00000001 | Current computer is the primary computer for the matching replica set.     |
+	//	+------------+----------------------------------------------------------------------------+
+	//	| 0x00000002 | Matching replica set does not have a primary computer.                     |
+	//	+------------+----------------------------------------------------------------------------+
+	Primary uint32 `idl:"name:Primary" json:"primary"`
+	// Root: A Boolean value that indicates if the path is the replica tree root for the
+	// replica set. The value MUST be one of the following.
+	//
+	//	+------------------+-------------------------------------------------------------------------------+
+	//	|                  |                                                                               |
+	//	|      VALUE       |                                    MEANING                                    |
+	//	|                  |                                                                               |
+	//	+------------------+-------------------------------------------------------------------------------+
+	//	+------------------+-------------------------------------------------------------------------------+
+	//	| FALSE 0x00000000 | The Path parameter is not the replica tree root for the matching replica set. |
+	//	+------------------+-------------------------------------------------------------------------------+
+	//	| TRUE 0x00000001  | The Path parameter is the replica tree root for the matching replica set.     |
+	//	+------------------+-------------------------------------------------------------------------------+
+	Root uint32 `idl:"name:Root" json:"root"`
+	// ReplicaSetGuid: GUID for the matching replica set.
 	SetGUIDReplica *dtyp.GUID `idl:"name:ReplicaSetGuid" json:"set_guid_replica"`
 	// Return: The NtFrsApi_Rpc_IsPathReplicated return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -1170,6 +1389,21 @@ func (o *xxx_WriterCommandOperation) UnmarshalNDRResponse(ctx context.Context, w
 
 // WriterCommandRequest structure represents the NtFrsApi_Rpc_WriterCommand operation request
 type WriterCommandRequest struct {
+	// Command: A 32-bit unsigned integer that indicates if the FRS can install new files.
+	// It MUST be one of the following.
+	//
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                           |                                                                                  |
+	//	|                   VALUE                   |                                     MEANING                                      |
+	//	|                                           |                                                                                  |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTFRSAPI_WRITER_COMMAND_FREEZE 0x00000001 | Prevent the FRS from installing new files. FRS MUST continue                     |
+	//	|                                           | sending/receiving/processing updates. However, the updates received will not be  |
+	//	|                                           | installed to the file system unless NTFRSAPI_WRITER_COMMAND_THAW is received.    |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTFRSAPI_WRITER_COMMAND_THAW 0x00000002   | Allow the FRS to install new files.                                              |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
 	Command uint32 `idl:"name:Command" json:"command"`
 }
 
@@ -1472,10 +1706,15 @@ func (o *xxx_ForceReplicationOperation) UnmarshalNDRResponse(ctx context.Context
 
 // ForceReplicationRequest structure represents the NtFrsApi_Rpc_ForceReplication operation request
 type ForceReplicationRequest struct {
+	// ReplicaSetGuid: A pointer to the globally unique identifier (GUID) of the replica
+	// set.
 	SetGUIDReplica *dtyp.GUID `idl:"name:ReplicaSetGuid;pointer:unique" json:"set_guid_replica"`
-	CxtionGUID     *dtyp.GUID `idl:"name:CxtionGuid;pointer:unique" json:"cxtion_guid"`
-	SetNameReplica string     `idl:"name:ReplicaSetName;string;pointer:unique" json:"set_name_replica"`
-	PartnerDNSName string     `idl:"name:PartnerDnsName;string;pointer:unique" json:"partner_dns_name"`
+	// CxtionGuid: A pointer to the GUID of the upstream partner connection.
+	CxtionGUID *dtyp.GUID `idl:"name:CxtionGuid;pointer:unique" json:"cxtion_guid"`
+	// ReplicaSetName: The replica set name.
+	SetNameReplica string `idl:"name:ReplicaSetName;string;pointer:unique" json:"set_name_replica"`
+	// PartnerDnsName: The fully qualified domain name of the upstream partner.
+	PartnerDNSName string `idl:"name:PartnerDnsName;string;pointer:unique" json:"partner_dns_name"`
 }
 
 func (o *ForceReplicationRequest) xxx_ToOp(ctx context.Context, op *xxx_ForceReplicationOperation) *xxx_ForceReplicationOperation {

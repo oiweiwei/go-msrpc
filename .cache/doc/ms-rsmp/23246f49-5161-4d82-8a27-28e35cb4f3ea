@@ -1,1 +1,62 @@
-<div class="content"></div>
+<div class="content"><p>The CancelNtmsLibraryRequest method cancels outstanding <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_f8da5142-cddf-49b1-b24c-a352db74cbbb" data-linktype="relative-path">library requests</a>.</p><dl>
+<dd>
+<div><pre> HRESULT CancelNtmsLibraryRequest(
+   [in] LPNTMS_GUID lpRequestId
+ );
+</pre></div>
+</dd></dl><p><b>lpRequestId: </b>A pointer to the identifier of
+the request to cancel.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Method completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to object is denied; only an administrator of
+  the server can cancel library requests.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p> Input parameter is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D8</p>
+  <p>ERROR_OBJECT_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The identifier of the library request object was not
+  found.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpRequestId</i>
+is not NULL. If it is NULL, the server MUST immediately fail the operation and
+return ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the <i>lpRequestId</i> is an outstanding request identifier. If the
+request identifier is not outstanding, the server MUST return
+ERROR_OBJECT_NOT_FOUND (0x8000710D8) and take no further action.</p><p>If the library is busy, the server MUST queue the
+cancellation and return success (S_OK); otherwise, the server MUST cancel the
+specified library request and return success (S_OK).</p><p>On completion of an asynchronous operation, notification
+will be sent with the identifier lpRequestId.</p></div>

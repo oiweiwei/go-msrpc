@@ -1,1 +1,19 @@
-<div class="content"></div>
+<div class="content"><p>The structure of the COMM_BLOCK_SIZE packet element is as
+follows:</p><dl>
+<dd>
+<div><pre> typedef struct _COMM_BLOCK_SIZE {
+   USHORT CommType;
+   ULONG Length;
+   ULONGLONG Data;
+ } COMM_BLOCK_SIZE,
+  *PCOMM_BLOCK_SIZE;
+</pre></div>
+</dd></dl><p><b>CommType:</b>   A 16-bit, unsigned
+integer that indicates the type of this <a href="194f8fff-d903-44b7-9530-c66f5366f8c7" data-linktype="relative-path">COMM_PACKET</a> element. MUST
+be set to 0x000A.</p><p><b>Length:</b>   A 32-bit, unsigned integer
+that indicates the length in bytes of the data following the Length field. MUST
+be 0x00000008.</p><p><b>Data:</b>   A 64-bit, unsigned integer
+representing the size in bytes of the data in the <a href="86509440-6381-4afd-8089-d2020bfb8f1b" data-linktype="relative-path">COMM_BLOCK</a> element. If
+Data is 0, COMM_BLOCK MUST NOT be included in the packet. When sending compressed
+data in the COMM_BLOCK element, this field MUST contain the size of the
+compressed data.</p></div>

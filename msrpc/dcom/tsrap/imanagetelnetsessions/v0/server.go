@@ -31,10 +31,36 @@ type ManageTelnetSessionsServer interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
+	// The GetTelnetSessions method is used to query the telnet server for information about
+	// all active telnet sessions.
+	//
+	// Return Values: The server MUST return zero if the method is successful. The server
+	// MUST return 0x01 if processing fails and set output parameters to NULL. These are
+	// in addition to the values that can be returned by the underlying [MS-DCOM] implementation.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// DCOM protocol [MS-DCOM].
 	GetTelnetSessions(context.Context, *GetTelnetSessionsRequest) (*GetTelnetSessionsResponse, error)
 
+	// The TerminateSession method terminates a telnet session.
+	//
+	// Return Values: The server MUST return zero if the method is successful. The server
+	// MUST return 0x01 if processing fails. These are in addition to the values that can
+	// be returned by the underlying [MS-DCOM] implementation.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// DCOM protocol [MS-DCOM].
 	TerminateSession(context.Context, *TerminateSessionRequest) (*TerminateSessionResponse, error)
 
+	// The SendMsgToASession method directs the telnet server to send a text message to
+	// the telnet client that initiated the session.
+	//
+	// Return Values: The server MUST return zero if the method is successful. The server
+	// MUST return 0x01 if processing fails. These are in addition to the values that can
+	// be returned by the underlying [MS-DCOM] implementation.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// DCOM protocol [MS-DCOM].
 	SendMessageToASession(context.Context, *SendMessageToASessionRequest) (*SendMessageToASessionResponse, error)
 }
 

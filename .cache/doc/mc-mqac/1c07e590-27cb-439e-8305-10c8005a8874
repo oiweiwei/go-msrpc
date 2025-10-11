@@ -1,0 +1,32 @@
+<div class="content"><p>The NextHops method is received by the server in an
+RPC_REQUEST packet. In response, the server MUST return the represented <a href="../ms-mqdmpr/d53d687d-49c4-4b6f-af29-351f7341b423" data-linktype="relative-path">OutgoingQueue</a>.NextHops.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT NextHops(
+   [out, retval] VARIANT* pvNextHops
+ );
+</pre></div>
+</dd></dl><p><b>pvNextHops: </b>A pointer to a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_a3af3eaf-64b7-499b-a95f-193cd4c27812" data-linktype="relative-path">VARIANT</a> that contains an
+array of zero or more strings (VT_ARRAY | VT_BSTR) that specify the routing
+addresses.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <b>ObjectIsInitialized</b> instance variable is False:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST return MQ_ERROR_UNINITIALIZED_OBJECT (0xC00E0094), and MUST take no
+further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>The server MUST generate a <b>QMMgmt Get Info</b> event with the
+following inputs:</p>
+<ul><li><p><span><span>  </span></span><b>iPropID</b>
+= PROPID_MGMT_QUEUE_NEXTHOPS</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <b>rStatus</b> return value is not equal to MQ_OK
+(0x00000000), the server MUST return <b>rStatus</b> and MUST take no further
+action.</p>
+</li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>The
+<i>pvNextHops</i> output variable MUST be set to the value of the returned
+rPropVar. </p>
+</li></ul></li></ul></div>

@@ -1,1 +1,213 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IFROW</b> structure stores information about a
+specific interface.</p><dl>
+<dd>
+<div><pre> typedef struct _MIB_IFROW {
+   WCHAR wszName[256];
+   DWORD dwIndex;
+   DWORD dwType;
+   DWORD dwMtu;
+   DWORD dwSpeed;
+   DWORD dwPhysAddrLen;
+   BYTE bPhysAddr[8];
+   DWORD dwAdminStatus;
+   DWORD dwOperStatus;
+   DWORD dwLastChange;
+   DWORD dwInOctets;
+   DWORD dwInUcastPkts;
+   DWORD dwInNUcastPkts;
+   DWORD dwInDiscards;
+   DWORD dwInErrors;
+   DWORD dwInUnknownProtos;
+   DWORD dwOutOctets;
+   DWORD dwOutUcastPkts;
+   DWORD dwOutNUcastPkts;
+   DWORD dwOutDiscards;
+   DWORD dwOutErrors;
+   DWORD dwOutQLen;
+   DWORD dwDescrLen;
+   BYTE bDescr[256];
+ } MIB_IFROW;
+</pre></div>
+</dd></dl><p><b>wszName: </b>A pointer to a Unicode string that
+contains the name of the interface.</p><p><b>dwIndex: </b>The index that identifies the
+interface. This index value is not persistent and can change when a network
+adapter is disabled and then enabled.</p><p><b>dwType: </b>The interface type as defined by the
+Internet Assigned Names Authority (IANA) <a href="https://go.microsoft.com/fwlink/?LinkId=89884" data-linktype="external">[IANAifType]</a>.</p><dl>
+<dd>
+<p>The following table lists common values for the
+interface type, although many other values are possible.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IF_TYPE_OTHER</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Another type of network interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_TYPE_ETHERNET_CSMACD</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>An Ethernet network interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_TYPE_ISO88025_TOKENRING</p>
+  <p>0x00000009</p>
+  </td>
+  <td>
+  <p>A token ring network interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_TYPE_PPP</p>
+  <p>0x00000017</p>
+  </td>
+  <td>
+  <p>A PPP network interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_TYPE_SOFTWARE_LOOPBACK</p>
+  <p>0x00000018</p>
+  </td>
+  <td>
+  <p>A software loopback network interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_TYPE_ATM</p>
+  <p>0x00000027</p>
+  </td>
+  <td>
+  <p>An ATM network interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_TYPE_IEEE80211</p>
+  <p>0x00000047</p>
+  </td>
+  <td>
+  <p>An IEEE 802.11 wireless network interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_TYPE_TUNNEL</p>
+  <p>0x00000083</p>
+  </td>
+  <td>
+  <p>A tunnel type encapsulation network interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_TYPE_IEEE1394</p>
+  <p>0x00000090</p>
+  </td>
+  <td>
+  <p>An IEEE 1394 (FireWire) high-performance serial bus
+  network interface.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwMtu: </b>The maximum transmission unit (MTU)
+size in bytes.</p><p><b>dwSpeed: </b>The speed of the interface in bits
+per second.</p><p><b>dwPhysAddrLen: </b>The length, in bytes, of the
+physical address specified by the <b>bPhysAddr</b> member.</p><p><b>bPhysAddr: </b>The physical address of the adapter
+for this interface.</p><p><b>dwAdminStatus: </b>The administrative status of
+the interface. It can be either enabled or disabled.</p><p><b>dwOperStatus: </b>The operational status of the
+interface.</p><dl>
+<dd>
+<p>This member can be one of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IF_OPER_STATUS_NON_OPERATIONAL</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>LAN adapter has been disabled, for example, because of
+  an address conflict.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_OPER_STATUS_UNREACHABLE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>WAN adapter that is not connected.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_OPER_STATUS_DISCONNECTED</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>For LAN adapters: network cable disconnected. For WAN
+  adapters: no carrier.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_OPER_STATUS_CONNECTING</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>WAN adapter that is in the process of connecting.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_OPER_STATUS_CONNECTED</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>WAN adapter that is connected to a remote peer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_OPER_STATUS_OPERATIONAL</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Default status for LAN adapters.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwLastChange: </b>The length of time, in
+hundredths of seconds, starting from the last computer restart, when the
+interface entered its current operational state.<a id="Appendix_A_Target_32"></a><a aria-label="Product behavior note 32" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_32" data-linktype="relative-path">&lt;32&gt;</a></p><p><b>dwInOctets: </b>The number of octets of data
+received through this interface.</p><p><b>dwInUcastPkts: </b>The number of unicast packets
+received through this interface.</p><p><b>dwInNUcastPkts: </b>The number of nonunicast
+packets received through this interface. Broadcast and multicast packets are
+included.</p><p><b>dwInDiscards: </b>The number of incoming packets
+that were discarded even though they did not have errors.</p><p><b>dwInErrors: </b>The number of incoming packets
+that were discarded because of errors.</p><p><b>dwInUnknownProtos: </b>The number of incoming
+packets that were discarded because the protocol was unknown.</p><p><b>dwOutOctets: </b>The number of octets of data sent
+through this interface.</p><p><b>dwOutUcastPkts: </b>The number of unicast packets
+sent through this interface.</p><p><b>dwOutNUcastPkts: </b>The number of nonunicast
+packets sent through this interface. Broadcast and multicast packets are
+included.</p><p><b>dwOutDiscards: </b>The number of outgoing packets
+that were discarded even though they did not have errors.</p><p><b>dwOutErrors: </b>The number of outgoing packets
+that were discarded because of errors.</p><p><b>dwOutQLen: </b>The transmit queue length. This
+field is not currently used.</p><p><b>dwDescrLen: </b>The length, in bytes, of the <b>bDescr</b>
+member.</p><p><b>bDescr: </b>A null-terminated ASCII string that
+contains the description of the interface.</p></div>

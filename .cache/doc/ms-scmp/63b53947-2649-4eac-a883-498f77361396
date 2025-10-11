@@ -1,1 +1,22 @@
-<div class="content"></div>
+<div class="content"><p>The VSS_MGMT_OBJECT_UNION specifies the union of object
+types that can be defined by the <a href="1de0b5f9-49f5-46b3-a0a7-9caadd9733df" data-linktype="relative-path">VSS_MGMT_OBJECT_PROP
+structure (section 2.2.3.6)</a>.</p><dl>
+<dd>
+<div><pre> [switch_type(VSS_MGMT_OBJECT_TYPE)] 
+ typedef union  {
+   [case(VSS_MGMT_OBJECT_VOLUME)] 
+     VSS_VOLUME_PROP Vol;
+   [case(VSS_MGMT_OBJECT_DIFF_VOLUME)] 
+     VSS_DIFF_VOLUME_PROP DiffVol;
+   [case(VSS_MGMT_OBJECT_DIFF_AREA)] 
+     VSS_DIFF_AREA_PROP DiffArea;
+   [default];
+ } VSS_MGMT_OBJECT_UNION;
+</pre></div>
+</dd></dl><p><b>Vol:</b>  The structure specifies an <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_57484dae-5eef-4485-bfe4-db22b9cd90d6" data-linktype="relative-path">original volume</a> object as a
+<a href="01c8e09c-c52d-4262-92e8-c0436096b868" data-linktype="relative-path">VSS_VOLUME_PROP
+structure (section 2.2.3.7)</a>.</p><p><b>DiffVol:</b>  The structure specifies a <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_9abab753-55aa-4455-bb21-7b51a32654fa" data-linktype="relative-path">shadow copy storage volume</a>
+as a <a href="d7a7bbd5-30ab-4dd3-aa4a-40ea45f6303b" data-linktype="relative-path">VSS_DIFF_VOLUME_PROP</a>
+structure.</p><p><b>DiffArea:</b>  The structure specifies a
+<a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_d85fc09f-c375-4e90-952d-7c95a8e244dd" data-linktype="relative-path">shadow copy storage</a>
+object as a <a href="2f8e7fef-ab50-4479-9b3b-571b0d608e59" data-linktype="relative-path">VSS_DIFF_AREA_PROP</a>.</p></div>

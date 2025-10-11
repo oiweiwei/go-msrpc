@@ -1,0 +1,34 @@
+<div class="content"><p>This document specifies the Message Queuing (MSMQ): ActiveX
+Client Protocol, a collection of Distributed Component Object Model (DCOM) <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+interfaces that expose <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a>
+queuing functionality for use by client applications. Operations that a client
+would perform by using this protocol include:</p><ul><li><p><span><span> 
+</span></span>Queuing system management.</p>
+</li><li><p><span><span> 
+</span></span>Queue management.</p>
+</li><li><p><span><span> 
+</span></span>Queue discovery.</p>
+</li><li><p><span><span> 
+</span></span><a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">Transaction</a>
+management.</p>
+</li><li><p><span><span> 
+</span></span>Sending and receiving messages.</p>
+</li></ul><p><b>Notational Conventions</b></p><p>The following notational conventions are used throughout
+this document:</p><ul><li><p><span><span> 
+</span></span>The period, or &#34;dot&#34; (&#34;.&#34;), notation is used
+to refer to a property of a system abstract data model element. If <b>A</b>
+refers to an element of the system abstract data model, <b>A</b>.<b>Property</b>
+denotes the <b>Property</b> property of the element <b>A</b>.</p>
+</li><li><p><span><span> 
+</span></span>The elements of the abstract data models that are defined in
+section <a href="8af4863f-ecd4-43a0-8097-a29b08546a58" data-linktype="relative-path">3</a> are referred
+to as instance variables. The names of instance variables and local input
+parameters are formatted in <i>italics</i>. Elements of the abstract data model
+in <a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a>
+that are referred to in this document are in <b>bold</b> and non-italicized.</p>
+</li><li><p><span><span> 
+</span></span>A monospace font is used for all method signatures and <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_73177eec-4092-420f-92c5-60b2478df824" data-linktype="relative-path">Interface Definition Language
+(IDL)</a> declarations.</p>
+</li></ul><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

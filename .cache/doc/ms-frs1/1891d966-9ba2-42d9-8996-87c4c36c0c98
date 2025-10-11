@@ -1,1 +1,105 @@
-<div class="content"></div>
+<div class="content"><p>The NtFrsApi_Rpc_WriterCommand method MUST deactivate or
+reactivate the replication of the specified Replica Set.</p><dl>
+<dd>
+<div><pre> unsigned long NtFrsApi_Rpc_WriterCommand(
+   [in] handle_t Handle,
+   [in] unsigned long Command
+ );
+</pre></div>
+</dd></dl><p><b>Handle: </b><a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> binding handle obtained
+when the partner authenticates with the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_20f21413-875c-4ebf-9913-a3282fbb779f" data-linktype="relative-path">file replication service (FRS)</a>,
+as specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.
+For RPC binding handle transport, see section <a href="ec349ec6-f3c9-48f6-9723-ac35a91999aa" data-linktype="relative-path">2.1</a>.</p><p><b>Command: </b>A 32-bit unsigned integer that
+indicates if the FRS can <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_1c492b3c-efbd-4b1c-a5a7-7ef279ad989c" data-linktype="relative-path">install</a>
+new files. It MUST be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTFRSAPI_WRITER_COMMAND_FREEZE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Prevent the FRS from installing new files. FRS MUST
+  continue sending/receiving/processing updates. However, the updates received
+  will not be installed to the file system unless NTFRSAPI_WRITER_COMMAND_THAW
+  is received. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTFRSAPI_WRITER_COMMAND_THAW</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Allow the FRS to install new files.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>The method MUST return 0 on
+success or a nonzero error code on failure. All nonzero values MUST be treated
+as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol [MS-RPCE].</p><p><b>Validating the NtFrsApi_Rpc WriterCommand request: </b>The
+server must validate the NtFrsApi_Rpc WriterCommand request by performing the
+following checks.</p><ul><li><p><span><span> 
+</span></span>If <b>IsWriterCommandCheckEnabled</b> is set to &#34;None&#34;,
+the server MUST fail the call with an implementation specific value.</p>
+</li><li><p><span><span> 
+</span></span>If <b>IsWriterCommandCheckEnabled</b> is set to
+&#34;Disabled&#34;, the server MUST process the request without performing an
+access check.</p>
+</li><li><p><span><span> 
+</span></span>If <b>IsWriterCommandCheckEnabled</b> is set to
+&#34;Enabled&#34;, the server MUST check whether the calling client is
+authorized to perform that function. If the calling client is not authorized to
+perform that function, the server MUST return ERROR_NOT_AUTHENTICATED.</p>
+<ul><li><p><span><span>  </span></span>If <b>WriterCommandAccessRequired</b>
+is set to &#34;None&#34;, the server MUST fail the call with an
+implementation-specific value.</p>
+</li><li><p><span><span>  </span></span>If <b>WriterCommandAccessRequired</b>
+is set to &#34;Read&#34;, the server MUST check whether the caller has read
+access. If the caller does not have read access, the server MUST return
+FRS_ERR_INSUFFICIENT_PRIV.</p>
+</li><li><p><span><span>  </span></span>If <b>WriterCommandAccessRequired</b>
+is set to &#34;Write&#34;, the server MUST check whether the caller has write
+access. If the caller does not have write access, the server MUST return
+FRS_ERR_INSUFFICIENT_PRIV.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the server is not able to verify the passed-in parameters,
+then it MUST ignore the failure and succeed the call.</p>
+</li></ul><p><b>Actions Triggered: </b>If the command is
+NTFRSAPI_WRITER_COMMAND_FREEZE, FRS MUST stop installing new files for all
+replica sets. If the command is NTFRSAPI_WRITER_COMMAND_THAW, FRS MUST resume
+installing new files. When FRS is frozen, the Partner continues to participate
+in replication, <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_576a8417-dd00-4f9e-b52f-c9a2e3766a8a" data-linktype="relative-path">change
+orders</a> are passed between partners, and <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_64afafeb-a356-4bd0-8993-9c3326dcd8a0" data-linktype="relative-path">staging files</a> are
+transmitted to and from the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a>.
+The staging files MUST remain in the staged state as long as FRS is frozen. Staging
+files can only be installed into the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_2773cf8b-f1fa-4a40-8f22-0a8f4ddae5b4" data-linktype="relative-path">replica tree</a> when FRS is in
+the thawed state.</p></div>

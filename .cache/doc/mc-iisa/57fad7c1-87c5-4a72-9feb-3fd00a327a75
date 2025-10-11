@@ -1,0 +1,41 @@
+<div class="content"><p>The IAppHostWritableAdminManager <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides methods
+that access a writable version of an administration system. It extends the <a href="0d8b3e85-b028-42a1-a373-3fbb8be6e57e" data-linktype="relative-path">IAppHostAdminManager</a>,
+which is a read-only interface. The IAppHostWritableAdminManager adds methods
+to allow writing to the administration system, the most important of which is
+the CommitChanges method, which instructs the administration system to persist
+any in-memory changes that it has accumulated.</p><p>The IAppHostWritableAdminManager interface inherits opnums
+0–6 from the IAppHostAdminManager interface, as defined in this protocol
+specification and the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="d6f991c2-82d8-4d06-a275-f3aaae63efb7" data-linktype="relative-path">CommitChanges</a></p>
+  </td>
+  <td>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="e83fb590-c603-408c-af9d-0e999c4af97d" data-linktype="relative-path">CommitPath</a></p>
+  </td>
+  <td>
+  <p>&#34;getter&#34;</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="66a019b7-0ab8-4193-baa2-cb6d5f56a40c" data-linktype="relative-path">CommitPath</a></p>
+  </td>
+  <td>
+  <p>&#34;setter&#34;</p>
+  <p>Opnum: 9</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

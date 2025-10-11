@@ -1,1 +1,40 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsLmOperation enumeration defines the types of
+operation requests.</p><dl>
+<dd>
+<div><pre> enum NtmsLmOperation
+ {
+   NTMS_LM_REMOVE = 0,
+   NTMS_LM_DISABLECHANGER = 1,
+   NTMS_LM_DISABLELIBRARY = 1,
+   NTMS_LM_ENABLECHANGER = 2,
+   NTMS_LM_ENABLELIBRARY = 2,
+   NTMS_LM_DISABLEDRIVE = 3,
+   NTMS_LM_ENABLEDRIVE = 4,
+   NTMS_LM_DISABLEMEDIA = 5,
+   NTMS_LM_ENABLEMEDIA = 6,
+   NTMS_LM_UPDATEOMID = 7,
+   NTMS_LM_INVENTORY = 8,
+   NTMS_LM_DOORACCESS = 9,
+   NTMS_LM_EJECT = 10,
+   NTMS_LM_EJECTCLEANER = 11,
+   NTMS_LM_INJECT = 12,
+   NTMS_LM_INJECTCLEANER = 13,
+   NTMS_LM_PROCESSOMID = 14,
+   NTMS_LM_CLEANDRIVE = 15,
+   NTMS_LM_DISMOUNT = 16,
+   NTMS_LM_MOUNT = 17,
+   NTMS_LM_WRITESCRATCH = 18,
+   NTMS_LM_CLASSIFY = 19,
+   NTMS_LM_RESERVECLEANER = 20,
+   NTMS_LM_RELEASECLEANER = 21,
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_LM_REMOVE:  </b>Remove a work item from the
+queue.</p><p><b>NTMS_LM_DISABLECHANGER:  </b>Disable a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_898fa8ab-42d5-439f-9415-1589599fe913" data-linktype="relative-path">changer</a>.</p><p><b>NTMS_LM_DISABLELIBRARY:  </b>Disable a library.</p><p><b>NTMS_LM_ENABLECHANGER:  </b>Enable a changer.</p><p><b>NTMS_LM_ENABLELIBRARY:  </b>Enable a library.</p><p><b>NTMS_LM_DISABLEDRIVE:  </b>Disable a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a>.</p><p><b>NTMS_LM_ENABLEDRIVE:  </b>Enable a drive.</p><p><b>NTMS_LM_DISABLEMEDIA:  </b>Disable a piece of
+media.</p><p><b>NTMS_LM_ENABLEMEDIA:  </b>Enable a piece of media.</p><p><b>NTMS_LM_UPDATEOMID:  </b>Update an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_e88a9ca7-9b8d-4dca-9338-59c98e1a5f13" data-linktype="relative-path">on-media identifier</a>.</p><p><b>NTMS_LM_INVENTORY:  </b>Perform an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_38cb8216-53ff-4936-a5c4-4d8d7672950a" data-linktype="relative-path">inventory</a> of a library.</p><p><b>NTMS_LM_DOORACCESS:  </b>Allow access to media
+through a library unit <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_52b64896-966d-41bd-849a-36602125506b" data-linktype="relative-path">door</a>.</p><p><b>NTMS_LM_EJECT:  </b><a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a22dff61-81ae-4414-8242-3d28f4c70c31" data-linktype="relative-path">Eject</a> a piece of media from
+a library.</p><p><b>NTMS_LM_EJECTCLEANER:  </b>Eject a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_95e53eb6-39e3-43ed-905e-ff1f427446d2" data-linktype="relative-path">cleaner</a>.</p><p><b>NTMS_LM_INJECT:  </b>Insert a piece of media into
+a library.</p><p><b>NTMS_LM_INJECTCLEANER:  </b>Insert a cleaner.</p><p><b>NTMS_LM_PROCESSOMID:  </b>Process an on-media
+identifier of a piece of media.</p><p><b>NTMS_LM_CLEANDRIVE:  </b>Clean a drive.</p><p><b>NTMS_LM_DISMOUNT:  </b><a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a8ebf8eb-a5f7-406a-b211-9f9c08ee15d3" data-linktype="relative-path">Dismount</a> a piece of media
+from a drive.</p><p><b>NTMS_LM_MOUNT:  </b><a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b" data-linktype="relative-path">Mount</a> a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_55db62c5-a84f-43b7-a037-b44ecd8fb92f" data-linktype="relative-path">side</a> to a drive.</p><p><b>NTMS_LM_WRITESCRATCH:  </b>Write to a free label.</p><p><b>NTMS_LM_CLASSIFY:  </b>Classify a piece of media.</p><p><b>NTMS_LM_RESERVECLEANER:  </b>Reserve a cleaner <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a1f0ab90-f3c0-46b8-9c77-d0d7508ede94" data-linktype="relative-path">slot</a>.</p><p><b>NTMS_LM_RELEASECLEANER:</b>  Release a cleaner
+slot.</p></div>

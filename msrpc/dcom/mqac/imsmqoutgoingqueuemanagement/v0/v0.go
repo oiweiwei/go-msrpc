@@ -51,22 +51,250 @@ type OutgoingQueueManagementClient interface {
 	// IMSMQManagement retrieval method.
 	Management() imsmqmanagement.ManagementClient
 
-	// State operation.
+	// The State method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the represented OutgoingQueue.State.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
+	//
+	// When the server processes this call, it MUST follow these guidelines:
+	//
+	// * If the *ObjectIsInitialized* instance variable is False:
+	//
+	// * The server MUST return MQ_ERROR_UNINITIALIZED_OBJECT (0xC00E0094), and MUST take
+	// no further action.
+	//
+	// * The server MUST generate a *QMMgmt Get Info* event with the following inputs:
+	//
+	// * *iPropID* = PROPID_MGMT_QUEUE_STATE
+	//
+	// * If the *rStatus* return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return *rStatus* and MUST take no further action.
+	//
+	// * Else:
+	//
+	// * If the value of the returned *rPropVar* was "LOCAL CONNECTION":
+	//
+	// * The server MUST set the plState output variable to MQ_QUEUE_STATE_LOCAL_CONNECTION,
+	// and MUST take no further action.
+	//
+	// * If the value of the returned *rPropVar* was "DISCONNECTED":
+	//
+	// * The server MUST set the plState output variable to MQ_QUEUE_STATE_DISCONNECTED,
+	// and MUST take no further action.
+	//
+	// * If the value of the returned *rPropVar* was "LOCKED":
+	//
+	// * The server MUST set the plState output variable to MQ_QUEUE_STATE_LOCKED, and MUST
+	// take no further action.
+	//
+	// * If the value of the returned *rPropVar* was "WAITING":
+	//
+	// * The server MUST set the plState output variable to MQ_QUEUE_STATE_WAITING, and
+	// MUST take no further action.
+	//
+	// * If the value of the returned *rPropVar* was "NEED VALIDATION":
+	//
+	// * The server MUST set the plState output variable to MQ_QUEUE_STATE_NEEDVALIDATE,
+	// and MUST take no further action.
+	//
+	// * If the value of the returned *rPropVar* was "ONHOLD":
+	//
+	// * The server MUST set the plState output variable to MQ_QUEUE_STATE_ONHOLD, and MUST
+	// take no further action.
+	//
+	// * If the value of the returned *rPropVar* was "INACTIVE":
+	//
+	// * The server MUST set the plState output variable to MQ_QUEUE_STATE_NONACTIVE, and
+	// MUST take no further action.
+	//
+	// * If the value of the returned *rPropVar* was "CONNECTED":
+	//
+	// * The server MUST set the plState output variable to MQ_QUEUE_STATE_CONNECTED, and
+	// MUST take no further action.
+	//
+	// * If the value of the returned *rPropVar* was "DISCONNECTING":
+	//
+	// * The server MUST set the plState output variable to MQ_QUEUE_STATE_DISCONNECTING,
+	// and MUST take no further action.
 	GetState(context.Context, *GetStateRequest, ...dcerpc.CallOption) (*GetStateResponse, error)
 
-	// NextHops operation.
+	// The NextHops method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the represented OutgoingQueue.NextHops.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
 	GetNextHops(context.Context, *GetNextHopsRequest, ...dcerpc.CallOption) (*GetNextHopsResponse, error)
 
-	// EodGetSendInfo operation.
+	// The EodGetSendInfo method is received by the server in an RPC_REQUEST packet. In
+	// response, the server MUST return the represented OutgoingQueue.OutgoingTransferInfoReference.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
+	//
+	// When the server processes this call, it MUST follow these guidelines:
+	//
+	// * If the *ObjectIsInitialized* instance variable is False:
+	//
+	// * The server MUST return MQ_ERROR_UNINITIALIZED_OBJECT (0xC00E0094), and MUST take
+	// no further action.
+	//
+	// * The server MUST create a local variable tempCollection and initialize it as an
+	// empty collection.
+	//
+	// * The server MUST generate a QMMgmt Get Info event with the following input:
+	//
+	// * PROPID_MGMT_QUEUE_EOD_LAST_ACK
+	//
+	// * If the rStatus return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return rStatus and MUST take no further action.
+	//
+	// * The value of the returned rPropVa MUST be added to tempCollection.
+	//
+	// * The server MUST generate a QMMgmt Get Info event with the following input:
+	//
+	// * PROPID_MGMT_QUEUE_EOD_LAST_ACK_TIME
+	//
+	// * If the rStatus return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return rStatus and MUST take no further action.
+	//
+	// * The value of the returned rPropVa MUST be added to tempCollection.
+	//
+	// * The server MUST generate a QMMgmt Get Info event with the following input:
+	//
+	// * PROPID_MGMT_QUEUE_EOD_LAST_ACK_COUNT
+	//
+	// * If the rStatus return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return rStatus and MUST take no further action.
+	//
+	// * The value of the returned rPropVa MUST be added to tempCollection.
+	//
+	// * The server MUST generate a QMMgmt Get Info event with the following input:
+	//
+	// * PROPID_MGMT_QUEUE_EOD_FIRST_NON_ACK
+	//
+	// * If the rStatus return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return rStatus and MUST take no further action.
+	//
+	// * The value of the returned rPropVa MUST be added to tempCollection.
+	//
+	// * The server MUST generate a QMMgmt Get Info event with the following input:
+	//
+	// * PROPID_MGMT_QUEUE_EOD_LAST_NON_ACK
+	//
+	// * If the rStatus return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return rStatus and MUST take no further action.
+	//
+	// * The value of the returned rPropVa MUST be added to tempCollection.
+	//
+	// * The server MUST generate a QMMgmt Get Info event with the following input:
+	//
+	// * PROPID_MGMT_QUEUE_EOD_NEXT_SEQ
+	//
+	// * If the rStatus return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return rStatus and MUST take no further action.
+	//
+	// * The value of the returned rPropVa MUST be added to tempCollection.
+	//
+	// * The server MUST generate a QMMgmt Get Info event with the following input:
+	//
+	// * PROPID_MGMT_QUEUE_EOD_NO_READ_COUNT
+	//
+	// * If the rStatus return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return rStatus and MUST take no further action.
+	//
+	// * The value of the returned rPropVa MUST be added to tempCollection.
+	//
+	// * The server MUST generate a QMMgmt Get Info event with the following input:
+	//
+	// * PROPID_MGMT_QUEUE_EOD_NO_ACK_COUNT
+	//
+	// * If the rStatus return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return rStatus and MUST take no further action.
+	//
+	// * The value of the returned rPropVa MUST be added to tempCollection.
+	//
+	// * The server MUST generate a QMMgmt Get Info event with the following input:
+	//
+	// * PROPID_MGMT_QUEUE_EOD_RESEND_TIME
+	//
+	// * If the rStatus return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return rStatus and MUST take no further action.
+	//
+	// * The value of the returned rPropVa MUST be added to tempCollection.
+	//
+	// * The server MUST generate a QMMgmt Get Info event with the following input:
+	//
+	// * PROPID_MGMT_QUEUE_EOD_RESEND_INTERVAL
+	//
+	// * If the rStatus return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return rStatus and MUST take no further action.
+	//
+	// * The value of the returned rPropVa MUST be added to tempCollection.
+	//
+	// * The server MUST generate a QMMgmt Get Info event with the following input:
+	//
+	// * PROPID_MGMT_QUEUE_EOD_RESEND_COUNT
+	//
+	// * If the rStatus return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return rStatus and MUST take no further action.
+	//
+	// * The value of the returned rPropVa MUST be added to tempCollection.
+	//
+	// * The server MUST copy tempCollection to the ppCollection output variable and return
+	// S_OK (0x00000000).
 	EODGetSendInfo(context.Context, *EODGetSendInfoRequest, ...dcerpc.CallOption) (*EODGetSendInfoResponse, error)
 
-	// Resume operation.
+	// The Resume method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST resume the transfer of messages from the represented outgoing Queue.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.<20>
+	//
+	// When the server processes this call, it MUST follow these guidelines:
+	//
+	// * If the *ObjectIsInitialized* instance variable is False:
+	//
+	// * The server MUST return MQ_ERROR_UNINITIALIZED_OBJECT (0xC00E0094), and MUST take
+	// no further action.
+	//
+	// * The server MUST generate a QMMgmtAction event with the following inputs:
+	//
+	// * *iAction* = "RESUME"
+	//
+	// * The server MUST return rStatus, and MUST take no further action.
 	Resume(context.Context, *ResumeRequest, ...dcerpc.CallOption) (*ResumeResponse, error)
 
-	// Pause operation.
+	// The Pause method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST pause the transmission of messages from the referenced OutgoingQueue.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.<21>
 	Pause(context.Context, *PauseRequest, ...dcerpc.CallOption) (*PauseResponse, error)
 
-	// EodResend operation.
+	// The EodResend method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST resend the pending sequence of transactional messages in the represented
+	// OutgoingQueue.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.<22>
+	//
+	// * If the *ObjectIsInitialized* instance variable is False:
+	//
+	// * The server ( 3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703
+	// ) MUST return MQ_ERROR_UNINITIALIZED_OBJECT (0xC00E0094) and take no further action.
+	//
+	// * The server MUST generate a QMMgmtAction event with the following inputs:
+	//
+	// * iAction = "Pause"
+	//
+	// * The server MUST return rStatus, and take no further action.
 	EODResend(context.Context, *EODResendRequest, ...dcerpc.CallOption) (*EODResendResponse, error)
 
 	// AlterContext alters the client context.
@@ -419,8 +647,10 @@ func (o *GetStateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 // GetStateResponse structure represents the State operation response
 type GetStateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat `idl:"name:That" json:"that"`
-	State int32          `idl:"name:plState" json:"state"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// plState: A pointer to a long that corresponds to the QUEUE_STATE (section 2.2.2.19)
+	// enumeration.
+	State int32 `idl:"name:plState" json:"state"`
 	// Return: The State return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -662,8 +892,9 @@ func (o *GetNextHopsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // GetNextHopsResponse structure represents the NextHops operation response
 type GetNextHopsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That     *dcom.ORPCThat `idl:"name:That" json:"that"`
-	NextHops *oaut.Variant  `idl:"name:pvNextHops" json:"next_hops"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pvNextHops: A pointer to a VARIANT that contains an array of zero or more strings (VT_ARRAY | VT_BSTR) that specify the routing addresses.
+	NextHops *oaut.Variant `idl:"name:pvNextHops" json:"next_hops"`
 	// Return: The NextHops return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -905,7 +1136,8 @@ func (o *EODGetSendInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // EODGetSendInfoResponse structure represents the EodGetSendInfo operation response
 type EODGetSendInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat   `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppCollection: A pointer to an EODSourceInfo (section 2.2.4.2) collection.
 	Collection *mqac.Collection `idl:"name:ppCollection" json:"collection"`
 	// Return: The EodGetSendInfo return value.
 	Return int32 `idl:"name:Return" json:"return"`

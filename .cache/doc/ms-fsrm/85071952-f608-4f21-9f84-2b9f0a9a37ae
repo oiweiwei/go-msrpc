@@ -15,8 +15,8 @@ structure, which contains a <a href="../ms-oaut/04e72b3f-5731-4508-9bb4-de29fbd0
 of VARIANT structures. The VARIANT structures contained in the SAFEARRAY MUST
 be <a href="../ms-dtyp/692a42a9-06ce-4394-b9bc-5d2a50440168" data-linktype="relative-path">BSTR</a>
 string values, each representing a local directory path that needs to be
-verified as supported by the File Server Resource Manager Protocol storage.</p><p><b>serializedTask: </b>Contains the XML
-representation of the task to be modified.<a id="Appendix_A_Target_64"></a><a aria-label="Product behavior note 64" href="1cc8408c-3c9b-4510-9585-e4a8d0d40e27#Appendix_A_64" data-linktype="relative-path">&lt;64&gt;</a></p><p><b>Return Values: </b>The method MUST return zero on
+verified as supported by the File Server Resource Manager Protocol storage.</p><p><b>serializedTask: </b>Contains the XML representation
+of the task to be modified.<a id="Appendix_A_Target_64"></a><a aria-label="Product behavior note 64" href="1cc8408c-3c9b-4510-9585-e4a8d0d40e27#Appendix_A_64" data-linktype="relative-path">&lt;64&gt;</a></p><p><b>Return Values: </b>The method MUST return zero on
 success, or a nonzero error code on failure.</p><dl>
 <dd>
 <table><thead>

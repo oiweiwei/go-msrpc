@@ -6,13 +6,14 @@ the server.</p><dl>
    [in, ref] const VARIANT* pEntryValue
  );
 </pre></div>
-</dd></dl><p><b>bstrEntryName: </b>A <a href="05bfaf02-3616-41d8-bcb7-26432e265716" data-linktype="relative-path">BSTR</a> that specifies the
-name of the property to set. The Unicode string value SHOULD be one of the property
-name values listed in <a href="c8894946-8439-4285-9515-f575620cc0af" data-linktype="relative-path">ResponderProperties</a>.
-</p><p><b>pEntryValue: </b>A pointer to <a href="689dfe0e-527a-47a4-a3c2-4c4cddb72ad9" data-linktype="relative-path">VARIANT</a> data. </p><p>The following processing rules apply:</p><ol><li><p><span>    </span>The vt member of
+</dd></dl><p><b>bstrEntryName: </b>A <span><a href="05bfaf02-3616-41d8-bcb7-26432e265716" data-linktype="relative-path">BSTR</a></span> that specifies
+the name of the property to set. The Unicode string value SHOULD be one of the
+property name values listed in <span><a href="c8894946-8439-4285-9515-f575620cc0af" data-linktype="relative-path">ResponderProperties</a></span>.
+</p><p><b>pEntryValue: </b>A pointer to <span><a href="689dfe0e-527a-47a4-a3c2-4c4cddb72ad9" data-linktype="relative-path">VARIANT</a></span>
+data. </p><p>The following processing rules apply:</p><ol><li><p><span>    </span>The vt member of
 the VARIANT referenced by pEntryValue SHOULD match the type specified in
-section <a href="5d4e4cd4-7ec3-4733-9093-ece17d843a6d" data-linktype="relative-path">3.2.4.1.1</a> for
-the property corresponding to the bstrEntryName value.<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="ff1216b3-6fb4-4be8-b256-fb7055b1e86d#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a></p>
+section <span><a href="5d4e4cd4-7ec3-4733-9093-ece17d843a6d" data-linktype="relative-path">3.2.4.1.1</a></span> for the
+property corresponding to the bstrEntryName value.<a id="Appendix_A_Target_15"></a><a aria-label="Product behavior note 15" href="ff1216b3-6fb4-4be8-b256-fb7055b1e86d#Appendix_A_15" data-linktype="relative-path">&lt;15&gt;</a></p>
 </li><li><p><span>    </span>If the <b>vt</b>
 member of the VARIANT referenced by <i>pEntryValue</i> is VT_EMPTY and the
 server has a property configured with the same name as the value of <i>bstrEntryName</i>,

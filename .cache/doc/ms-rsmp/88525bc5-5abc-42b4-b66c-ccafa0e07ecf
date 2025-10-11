@@ -1,1 +1,46 @@
-<div class="content"></div>
+<div class="content"><p>The ConnectCallback method connects a connection point to
+the sink. </p><dl>
+<dd>
+<div><pre> HRESULT ConnectCallback(
+   [in] IUnknown* pUnkCP,
+   [in] IUnknown* pUnkSink
+ );
+</pre></div>
+</dd></dl><p><b>pUnkCP: </b>A pointer to the IUnknown interface (<a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+section <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">3.1.1.5.8</a>)
+of the connection point. </p><p><b>pUnkSink: </b>A pointer to the IUnknown interface
+of the sink.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is missing. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the client sink MUST verify
+that both <i>pUnkCP</i> and <i>pUnkSink</i> are not NULL. If parameter
+validation fails, the server MUST immediately fail the operation and return
+ERROR_INVALID_PARAMETER (0x80070057).</p><p>Otherwise, the client MUST create a connection between the
+connection point of a client object (that is, <i>pUnkCP</i>) and a client&#39;s
+sink and return S_OK.</p><p>The client MUST save a cookie that uniquely identifies the
+connection.</p></div>

@@ -2,7 +2,7 @@
 of <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_56f7f556-18df-4592-8e2e-68d81fbed565" data-linktype="relative-path">property definition</a>
 types that can be used to define file classification properties.</p><dl>
 <dd>
-<div><pre> typedef  enum _FsrmPropertyDefinitionType
+<div><pre> typedef  enum _FsrmPropertyDefinitionType
  {
    FsrmPropertyDefinitionType_Unknown = 0,
    FsrmPropertyDefinitionType_OrderedList = 1,

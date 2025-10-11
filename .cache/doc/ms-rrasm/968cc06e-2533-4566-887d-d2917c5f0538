@@ -1,1 +1,39 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IFFILTER_INFO</b> structure is used to specify the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_ffbe7b55-8e84-4f41-a18d-fc29191a4cda" data-linktype="relative-path">filter</a> settings for an
+interface. When this structure is encapsulated within the <a href="c99955ec-6d18-4665-8d5b-e124de63a368" data-linktype="relative-path"><b>RTR_TOC_ENTRY (section 2.2.1.2.4)</b></a>
+structure, the <b>InfoType</b> value used MUST be 0xFFFF000D or 0xFFFF0014 to
+specify IPv4 interface filter or IPv6 interface filter information. </p><dl>
+<dd>
+<div><pre> typedef struct _IFFILTER_INFO {
+   BOOL bEnableFragChk;
+ } IFFILTER_INFO,
+  *PIFFILTER_INFO;
+</pre></div>
+</dd></dl><p><b>bEnableFragChk: </b>When this field is set to
+TRUE, the fragmented packets are filtered at the interface and dropped. If this
+field is set to FALSE, the fragment checking is not done at the interface.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRUE</p>
+  </td>
+  <td>
+  <p>Fragment checking is done at the interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FALSE</p>
+  </td>
+  <td>
+  <p>Fragment checking is not done at the interface.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

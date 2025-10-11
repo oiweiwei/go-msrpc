@@ -31,20 +31,166 @@ type WindowsDriverUpdateServer interface {
 	// IUpdate base class.
 	iupdate.UpdateServer
 
+	// The IWindowsDriverUpdate::DriverClass (opnum 53) method retrieves the class of this
+	// driver.
+	//
+	// The IWindowsDriverUpdateEntry::DriverClass (opnum 8) method retrieves the class of
+	// this driver.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the string returned by a call to the DriverClass method
+	// on the IWindowsDriverUpdateEntry instance referred to by the DefaultWindowsDriverUpdateEntry
+	// ADM element.
 	GetDriverClass(context.Context, *GetDriverClassRequest) (*GetDriverClassResponse, error)
 
+	// The IWindowsDriverUpdateEntry::DriverHardwareID (opnum 9) method retrieves the hardware
+	// ID or compatible ID that this driver matches to be installable.
+	//
+	// The IWindowsDriverUpdate::DriverHardwareID (opnum 54) method retrieves the hardware
+	// ID or compatible ID that this driver matches to be installable.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the DriverHardwareID ADM element.
 	GetDriverHardwareID(context.Context, *GetDriverHardwareIDRequest) (*GetDriverHardwareIDResponse, error)
 
+	// The IWindowsDriverUpdate::DriverManufacturer (opnum 55) method retrieves the language-invariant
+	// name of the driver manufacturer.
+	//
+	// The IWindowsDriverUpdateEntry::DriverManufacturer (opnum 10) method retrieves the
+	// language-invariant name of the driver manufacturer.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the string returned by a call to the DriverManufacturer
+	// method on the IWindowsDriverUpdateEntry instance referred to by the DefaultWindowsDriverUpdateEntry
+	// ADM element.
 	GetDriverManufacturer(context.Context, *GetDriverManufacturerRequest) (*GetDriverManufacturerResponse, error)
 
+	// The IWindowsDriverUpdate::DriverModel (opnum 56) method retrieves the language-invariant
+	// model name of the device for which this driver is intended.
+	//
+	// The IWindowsDriverUpdateEntry::DriverModel (opnum 11) method retrieves the language-invariant
+	// model name of the device for which this driver is intended.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the string returned by a call to the DriverModel method
+	// on the IWindowsDriverUpdateEntry instance referred to by the DefaultWindowsDriverUpdateEntry
+	// ADM element.
 	GetDriverModel(context.Context, *GetDriverModelRequest) (*GetDriverModelResponse, error)
 
+	// The IWindowsDriverUpdate::DriverProvider (opnum 57) method retrieves the language-invariant
+	// name of the provider of this driver.
+	//
+	// The IWindowsDriverUpdateEntry::DriverProvider (opnum 12) method retrieves the language-invariant
+	// name of the provider of this driver.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the string returned by a call to the DriverProvider method
+	// on the IWindowsDriverUpdateEntry instance referred to by the DefaultWindowsDriverUpdateEntry
+	// ADM element.
 	GetDriverProvider(context.Context, *GetDriverProviderRequest) (*GetDriverProviderResponse, error)
 
+	// The IWindowsDriverUpdate::DriverVerDate (opnum 58) method retrieves the version date
+	// of the driver.
+	//
+	// The IWindowsDriverUpdateEntry::DriverVerDate (opnum 13) method retrieves the version
+	// date of the driver.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value returned by a call to the DriverVerDate method
+	// on the IWindowsDriverUpdateEntry instance referred to by the DefaultWindowsDriverUpdateEntry
+	// ADM element.
 	GetDriverVerDate(context.Context, *GetDriverVerDateRequest) (*GetDriverVerDateResponse, error)
 
+	// The IWindowsDriverUpdateEntry::DeviceProblemNumber (opnum 14) method retrieves the
+	// problem number of the device this driver matches.
+	//
+	// The IWindowsDriverUpdate::DeviceProblemNumber (opnum 59) method retrieves the problem
+	// number of the device this driver matches.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the DeviceProblemNumber ADM element.
 	GetDeviceProblemNumber(context.Context, *GetDeviceProblemNumberRequest) (*GetDeviceProblemNumberResponse, error)
 
+	// The IWindowsDriverUpdateEntry::DeviceStatus (opnum 15) method retrieves the status
+	// of the device this driver matches.
+	//
+	// The IWindowsDriverUpdate::DeviceStatus (opnum 60) method retrieves the status of
+	// the device this driver matches.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the DeviceStatus ADM element.
 	GetDeviceStatus(context.Context, *GetDeviceStatusRequest) (*GetDeviceStatusResponse, error)
 }
 

@@ -33,9 +33,8 @@ the server as the client expects. The client MUST ignore the validation
 property if the Commit method fails. The validation property will be NULL, and
 an error code returned, in the case that the data collector set contains an
 IApiTracingDataCollectorSet and there are array elements that are part of both
-the IApiTracingDataCollectorSet::IncludeApis array and
-IApiTracingDataCollectorSet::ExcludeApis array (in other words, there is
-overlap between the two arrays). </p><p><b>Return Values: </b>This method MUST return an
+the IApiTracingDataCollectorSet::IncludeApis array and IApiTracingDataCollectorSet::ExcludeApis
+array (in other words, there is overlap between the two arrays). </p><p><b>Return Values: </b>This method MUST return an
 HRESULT with the severity bit clear on success as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>;
 otherwise, it MUST return one of the errors as defined in <a href="590752a5-ddc3-49e4-9914-147a90bd0193" data-linktype="relative-path">2.2.1</a> or one of the errors
 as defined in [MS-ERREF] section <a href="../ms-erref/0642cb2f-2075-4469-918c-4441e69c548a" data-linktype="relative-path">2.1</a>.</p></div>

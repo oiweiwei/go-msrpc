@@ -1,1 +1,21 @@
-<div class="content"></div>
+<div class="content"><p>The <b>OSPF_NBMA_NEIGHBOR_PARAM</b> structure MAY<a id="Appendix_A_Target_152"></a><a aria-label="Product behavior note 152" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_152" data-linktype="relative-path">&lt;152&gt;</a> be used to contain the OSPF
+NBMA neighbor parameters and is used in the following methods: </p><ul><li><p><span><span> 
+</span></span><a href="927c5bf1-ac91-4325-b945-0d96a58f609b" data-linktype="relative-path"><b>RRouterInterfaceTransportAdd (section 3.1.4.18)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="ec9ba293-45e9-4f12-b9af-7e77ec96c90e" data-linktype="relative-path"><b>RRouterInterfaceTransportGetInfo (section 3.1.4.19)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="209ba5e7-876e-4406-a05c-65b7e5fb2380" data-linktype="relative-path"><b>RRouterInterfaceTransportSetInfo (section 3.1.4.20)</b></a><span>  </span></p>
+<div><pre> typedef struct _OSPF_NBMA_NEIGHBOR_PARAM {
+   DWORD type;
+   DWORD create;
+   DWORD enable;
+   DWORD neighborIpAddr;
+   DWORD intfIpAddr;
+   DWORD neighborPriority;
+ } OSPF_NBMA_NEIGHBOR_PARAM, *POSPF_NBMA_NEIGHBOR_PARAM;
+</pre></div>
+</li></ul><p><b>type: </b>This MUST be set to
+OSPF_NEIGHBOR_PARAM_TYPE.</p><p><b>create: </b>Set to 1 if the configuration needs to
+be created or set to 2 if it needs to be deleted.</p><p><b>enable: </b>Set to 1 if the configuration needs to
+be created or set to 2 if it needs to be deleted.</p><p><b>neighborIpAddr: </b>The neighbor IP address.</p><p><b>intfIpAddr: </b>The interface IP address.</p><p><b>neighborPriority: </b>The priority of the
+neighbor.</p></div>

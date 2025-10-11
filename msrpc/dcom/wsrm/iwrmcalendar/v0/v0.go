@@ -49,32 +49,362 @@ type CalendarClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The GetCalendarInfo method gets information about one or all calendar events.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------+------------------------------------+
+	//	|         RETURN          |                                    |
+	//	|       VALUE/CODE        |            DESCRIPTION             |
+	//	|                         |                                    |
+	//	+-------------------------+------------------------------------+
+	//	+-------------------------+------------------------------------+
+	//	| 0x00000000 S_OK         | Operation successful.              |
+	//	+-------------------------+------------------------------------+
+	//	| 0x80070057 E_INVALIDARG | One or more arguments are invalid. |
+	//	+-------------------------+------------------------------------+
+	//
+	// Additional IWRMCalendar interface methods are specified in section 3.2.4.4.
 	GetCalendarInfo(context.Context, *GetCalendarInfoRequest, ...dcerpc.CallOption) (*GetCalendarInfoResponse, error)
 
+	// The CreateCalendar method creates a new calendar event.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                  RETURN                   |                                                                                  |
+	//	|                VALUE/CODE                 |                                   DESCRIPTION                                    |
+	//	|                                           |                                                                                  |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                           | Operation successful.                                                            |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                   | One or more arguments are invalid.                                               |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER      | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                           | be processed.<57>                                                                |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0258 WRM_ERR_CAL_DUPLICATE_CALENDAR | A calendar event with the specified name already exists.                         |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF025B WRM_ERR_CAL_MAX_CAL_EXCEEDED   | The number of calendar events that exist at one time has exceeded an             |
+	//	|                                           | implementation-defined limit.<58>                                                |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMCalendar interface methods are specified in section 3.2.4.4.
 	CreateCalendar(context.Context, *CreateCalendarRequest, ...dcerpc.CallOption) (*CreateCalendarResponse, error)
 
+	// The ModifyCalendar method modifies an existing calendar event.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                    RETURN                    |                                                                                  |
+	//	|                  VALUE/CODE                  |                                   DESCRIPTION                                    |
+	//	|                                              |                                                                                  |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                              | Operation successful.                                                            |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                      | One or more arguments are invalid.                                               |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0069 WRM_ERR_OLD_INFORMATION           | The XML timestamp is out of date.                                                |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER         | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                              | be processed.<60>                                                                |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0260 WRM_ERR_CAL_INTERVAL_TOO_LONG     | The calendar recurrence interval value MUST be from 1 to 999.                    |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0263 WRM_ERR_CAL_INVALID_MONTH         | The month value MUST be from 1 to 12.                                            |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0264 WRM_ERR_CAL_INVALID_MONTHDAY      | The days of the month MUST have a value from 1 to 31.                            |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0265 WRM_ERR_CAL_INVALID_YEARDAY       | The day of the year cannot be zero and SHOULD NOT exceed the number of days in   |
+	//	|                                              | the selected year.<61>                                                           |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0266 WRM_ERR_CAL_INVALID_WEEKNO        | The weeks of the year MUST have a value from 1 to 53.                            |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0267 WRM_ERR_CAL_INVALID_SETPOS        | The value of the monthly instance of a day of the week is invalid.               |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0269 WRM_ERR_CAL_SCHEDULE_NAME_INVALID | The specified schedule name does not exist.                                      |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0275 WRM_ERR_CAL_INVALID_DURATION      | The specified calendar event duration is invalid. Specify a duration using the   |
+	//	|                                              | format dd:hh:mm.                                                                 |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMCalendar interface methods are specified in section 3.2.4.4.
 	ModifyCalendar(context.Context, *ModifyCalendarRequest, ...dcerpc.CallOption) (*ModifyCalendarResponse, error)
 
+	// The DeleteCalendar method deletes a specified calendar event.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	|                 RETURN                  |                                                                                  |
+	//	|               VALUE/CODE                |                                   DESCRIPTION                                    |
+	//	|                                         |                                                                                  |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                         | Operation successful.                                                            |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                 | One or more arguments are invalid.                                               |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006F WRM_ERR_ID_VALUE             | The specified name contains characters that are invalid. The name cannot         |
+	//	|                                         | start with a hyphen ("-") and cannot contain spaces or any of the following      |
+	//	|                                         | characters: \ / ? * | : < > " , ;.                                               |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0259 WRM_ERR_CAL_UNKNOWN_CALENDAR | The specified calendar event does not exist.                                     |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMCalendar interface methods are specified in section 3.2.4.4.
 	DeleteCalendar(context.Context, *DeleteCalendarRequest, ...dcerpc.CallOption) (*DeleteCalendarResponse, error)
 
+	// The RenameCalendar method renames a specified calendar event.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                  RETURN                   |                                                                                  |
+	//	|                VALUE/CODE                 |                                   DESCRIPTION                                    |
+	//	|                                           |                                                                                  |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                           | Operation successful.                                                            |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                   | One or more arguments are invalid.                                               |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006F WRM_ERR_ID_VALUE               | The specified name contains characters that are invalid. The name cannot         |
+	//	|                                           | start with a hyphen ("-") and cannot contain spaces or any of the following      |
+	//	|                                           | characters: \ / ? * | : < > " , ;.                                               |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0258 WRM_ERR_CAL_DUPLICATE_CALENDAR | A calendar event with the specified name already exists.                         |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0259 WRM_ERR_CAL_UNKNOWN_CALENDAR   | The specified calendar event does not exist.                                     |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF025A WRM_ERR_CAL_NAME_TOO_LONG      | The calendar name has exceeded an implementation-defined limit.<63>.             |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMCalendar interface methods are specified in section 3.2.4.4.
 	RenameCalendar(context.Context, *RenameCalendarRequest, ...dcerpc.CallOption) (*RenameCalendarResponse, error)
 
+	// The ComputeEvents method computes the calendar events in a specified time interval.
+	// It returns the list of all calendar events from the system in pbstrEvents with a
+	// start time greater than or equal to the one specified in szStartTime and with an
+	// end time less than or equal to the one specified in szEndTime. If the method is called
+	// with fMergeEvents set to TRUE, conflicting events are merged and returned in pbstrConflicts.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------+------------------------------------+
+	//	|         RETURN          |                                    |
+	//	|       VALUE/CODE        |            DESCRIPTION             |
+	//	|                         |                                    |
+	//	+-------------------------+------------------------------------+
+	//	+-------------------------+------------------------------------+
+	//	| 0x00000000 S_OK         | Operation successful.              |
+	//	+-------------------------+------------------------------------+
+	//	| 0x80070057 E_INVALIDARG | One or more arguments are invalid. |
+	//	+-------------------------+------------------------------------+
+	//
+	// Additional IWRMCalendar interface methods are specified in section 3.2.4.4.
 	ComputeEvents(context.Context, *ComputeEventsRequest, ...dcerpc.CallOption) (*ComputeEventsResponse, error)
 
+	// The GetScheduleInfo method gets information about a specified schedule object.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-----------------------------------------+-----------------------------------------------+
+	//	|                 RETURN                  |                                               |
+	//	|               VALUE/CODE                |                  DESCRIPTION                  |
+	//	|                                         |                                               |
+	//	+-----------------------------------------+-----------------------------------------------+
+	//	+-----------------------------------------+-----------------------------------------------+
+	//	| 0x00000000 S_OK                         | Operation successful.                         |
+	//	+-----------------------------------------+-----------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                 | One or more arguments are invalid.            |
+	//	+-----------------------------------------+-----------------------------------------------+
+	//	| 0xC1FF0271 WRM_ERR_CAL_UNKNOWN_SCHEDULE | The specified schedule object does not exist. |
+	//	+-----------------------------------------+-----------------------------------------------+
+	//
+	// Additional IWRMCalendar interface methods are specified in section 3.2.4.4.
 	GetScheduleInfo(context.Context, *GetScheduleInfoRequest, ...dcerpc.CallOption) (*GetScheduleInfoResponse, error)
 
+	// The CreateSchedule method creates a new schedule object.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                  RETURN                   |                                                                                  |
+	//	|                VALUE/CODE                 |                                   DESCRIPTION                                    |
+	//	|                                           |                                                                                  |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                           | Operation successful.                                                            |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                   | One or more arguments are invalid.                                               |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER      | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                           | be processed.<64>                                                                |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF025C WRM_ERR_CAL_MAX_SCHED_EXCEEDED | The number of schedules has exceeded an implementation-defined limit.<65>        |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0270 WRM_ERR_CAL_DUPLICATE_SCHEDULE | The specified schedule object already exists.                                    |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMCalendar interface methods are specified in section 3.2.4.4.
 	CreateSchedule(context.Context, *CreateScheduleRequest, ...dcerpc.CallOption) (*CreateScheduleResponse, error)
 
+	// The ModifySchedule method modifies the specified schedule of the calendar.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	|                 RETURN                  |                                                                                  |
+	//	|               VALUE/CODE                |                                   DESCRIPTION                                    |
+	//	|                                         |                                                                                  |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                         | Operation successful.                                                            |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                 | One or more arguments are invalid.                                               |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0069 WRM_ERR_OLD_INFORMATION      | The XML timestamp is out of date.                                                |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER    | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                         | be processed.<67>                                                                |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0271 WRM_ERR_CAL_UNKNOWN_SCHEDULE | The specified schedule object does not exist.                                    |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMCalendar interface methods are specified in section 3.2.4.4.
 	ModifySchedule(context.Context, *ModifyScheduleRequest, ...dcerpc.CallOption) (*ModifyScheduleResponse, error)
 
+	// The DeleteSchedule method deletes an existing schedule object.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	|                 RETURN                  |                                                                                  |
+	//	|               VALUE/CODE                |                                   DESCRIPTION                                    |
+	//	|                                         |                                                                                  |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                         | Operation successful.                                                            |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0272 WRM_ERR_CAL_SCHEDULE_IN_USE  | The selected schedule is currently in use with a calendar. Delete or edit the    |
+	//	|                                         | calendar first.                                                                  |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0271 WRM_ERR_CAL_UNKNOWN_SCHEDULE | The specified schedule object does not exist.                                    |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                 | One or more arguments are invalid.                                               |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMCalendar interface methods are specified in section 3.2.4.4.
 	DeleteSchedule(context.Context, *DeleteScheduleRequest, ...dcerpc.CallOption) (*DeleteScheduleResponse, error)
 
+	// The RenameSchedule method renames a specified schedule object. If the schedule object
+	// is being referenced by some calendar object, then the calendar object is also updated
+	// with the new name.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                    RETURN                    |                                                                                  |
+	//	|                  VALUE/CODE                  |                                   DESCRIPTION                                    |
+	//	|                                              |                                                                                  |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                              | Operation successful.                                                            |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                      | One or more arguments are invalid.                                               |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006F WRM_ERR_ID_VALUE                  | The specified name contains characters that are invalid. The name cannot         |
+	//	|                                              | start with a hyphen ("-") and cannot contain spaces or any of the following      |
+	//	|                                              | characters: \ / ? * | : < > " , ;.                                               |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0270 WRM_ERR_CAL_DUPLICATE_SCHEDULE    | The new schedule name is already taken by an existing schedule object.           |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0271 WRM_ERR_CAL_UNKNOWN_SCHEDULE      | The specified schedule object does not exist.                                    |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0273 WRM_ERR_CAL_SCHEDULE_NAME_TOOLONG | The schedule object name has exceeded an implementation-defined limit.<68>       |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMCalendar interface methods are specified in section 3.2.4.4.
 	RenameSchedule(context.Context, *RenameScheduleRequest, ...dcerpc.CallOption) (*RenameScheduleResponse, error)
 
+	// The MoveBeforeCalendar method moves a calendar event before the specified reference
+	// event. The caller can choose to control the move depending on whether the current
+	// resource policy is affected.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-----------------------------------------+----------------------------------------------+
+	//	|                 RETURN                  |                                              |
+	//	|               VALUE/CODE                |                 DESCRIPTION                  |
+	//	|                                         |                                              |
+	//	+-----------------------------------------+----------------------------------------------+
+	//	+-----------------------------------------+----------------------------------------------+
+	//	| 0x00000000 S_OK                         | Operation successful.                        |
+	//	+-----------------------------------------+----------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                 | One or more arguments are invalid.           |
+	//	+-----------------------------------------+----------------------------------------------+
+	//	| 0xC1FF0259 WRM_ERR_CAL_UNKNOWN_CALENDAR | The specified calendar event does not exist. |
+	//	+-----------------------------------------+----------------------------------------------+
+	//
+	// Additional IWRMCalendar interface methods are specified in section 3.2.4.4.
 	MoveBeforeCalendar(context.Context, *MoveBeforeCalendarRequest, ...dcerpc.CallOption) (*MoveBeforeCalendarResponse, error)
 
+	// The MoveAfterCalendar method moves a calendar event after the specified reference
+	// event. The caller can choose to control the move depending on whether the current
+	// resource policy is affected.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-----------------------------------------+----------------------------------------------+
+	//	|                 RETURN                  |                                              |
+	//	|               VALUE/CODE                |                 DESCRIPTION                  |
+	//	|                                         |                                              |
+	//	+-----------------------------------------+----------------------------------------------+
+	//	+-----------------------------------------+----------------------------------------------+
+	//	| 0x00000000 S_OK                         | Operation successful.                        |
+	//	+-----------------------------------------+----------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                 | One or more arguments are invalid.           |
+	//	+-----------------------------------------+----------------------------------------------+
+	//	| 0xC1FF0259 WRM_ERR_CAL_UNKNOWN_CALENDAR | The specified calendar event does not exist. |
+	//	+-----------------------------------------+----------------------------------------------+
+	//
+	// Additional IWRMCalendar interface methods are specified in section 3.2.4.4.
 	MoveAfterCalendar(context.Context, *MoveAfterCalendarRequest, ...dcerpc.CallOption) (*MoveAfterCalendarResponse, error)
 
+	// The GetServerTimeZone method gets the current time zone setting of the server.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------+------------------------------------+
+	//	|         RETURN          |                                    |
+	//	|       VALUE/CODE        |            DESCRIPTION             |
+	//	|                         |                                    |
+	//	+-------------------------+------------------------------------+
+	//	+-------------------------+------------------------------------+
+	//	| 0x00000000 S_OK         | Operation successful.              |
+	//	+-------------------------+------------------------------------+
+	//	| 0x80070057 E_INVALIDARG | One or more arguments are invalid. |
+	//	+-------------------------+------------------------------------+
+	//
+	// Additional IWRMCalendar interface methods are specified in section 3.2.4.4.
 	GetServerTimeZone(context.Context, *GetServerTimeZoneRequest, ...dcerpc.CallOption) (*GetServerTimeZoneResponse, error)
 
 	// AlterContext alters the client context.
@@ -633,8 +963,10 @@ func (o *xxx_GetCalendarInfoOperation) UnmarshalNDRResponse(ctx context.Context,
 // GetCalendarInfoRequest structure represents the GetCalendarInfo operation request
 type GetCalendarInfoRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This         *dcom.ORPCThis `idl:"name:This" json:"this"`
-	CalendarName *oaut.String   `idl:"name:bstrCalendarName" json:"calendar_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrCalendarName: A string that specifies the name of the calendar event for which
+	// information will be returned. If the string is "\", all calendar events are specified.
+	CalendarName *oaut.String `idl:"name:bstrCalendarName" json:"calendar_name"`
 }
 
 func (o *GetCalendarInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCalendarInfoOperation) *xxx_GetCalendarInfoOperation {
@@ -671,8 +1003,15 @@ func (o *GetCalendarInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // GetCalendarInfoResponse structure represents the GetCalendarInfo operation response
 type GetCalendarInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	CalendarXML *oaut.String   `idl:"name:pbstrCalendarXML" json:"calendar_xml"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrCalendarXML: A pointer to a string that returns the specified calendar information,
+	// in the form of a Calendar element (section 2.2.5.7). For an example, see the Calendar
+	// example  (section 4.2.6).
+	//
+	// If bstrCalendarName is "\", all calendar events MUST be returned, in the form of
+	// a Calendars element (section 2.2.5.10). For an example, see the Calendars example
+	// (section 4.2.7).
+	CalendarXML *oaut.String `idl:"name:pbstrCalendarXML" json:"calendar_xml"`
 	// Return: The GetCalendarInfo return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -898,9 +1237,28 @@ func (o *xxx_CreateCalendarOperation) UnmarshalNDRResponse(ctx context.Context, 
 // CreateCalendarRequest structure represents the CreateCalendar operation request
 type CreateCalendarRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This               *dcom.ORPCThis `idl:"name:This" json:"this"`
-	CalendarXML        *oaut.String   `idl:"name:bstrCalendarXML" json:"calendar_xml"`
-	ChangeActivePolicy bool           `idl:"name:bChangeActivePolicy" json:"change_active_policy"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrCalendarXML: A string that specifies the new calendar event, in the form of a
+	// Calendar element (section 2.2.5.7). For an example, see Calendar Example (section
+	// 4.2.8).
+	CalendarXML *oaut.String `idl:"name:bstrCalendarXML" json:"calendar_xml"`
+	// bChangeActivePolicy: A Boolean value that specifies whether the configuration changes
+	// made by this method call SHOULD change the current active policy, if applicable,
+	// of the system.<56>
+	//
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	|                  |                                                                                  |
+	//	|      VALUE       |                                     MEANING                                      |
+	//	|                  |                                                                                  |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| FALSE 0x00000000 | The current active policy of the system SHOULD NOT be changed by the method      |
+	//	|                  | call.                                                                            |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| TRUE 0x00000001  | If applicable, the current active policy of the system SHOULD be changed by the  |
+	//	|                  | method call.                                                                     |
+	//	+------------------+----------------------------------------------------------------------------------+
+	ChangeActivePolicy bool `idl:"name:bChangeActivePolicy" json:"change_active_policy"`
 }
 
 func (o *CreateCalendarRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateCalendarOperation) *xxx_CreateCalendarOperation {
@@ -1184,10 +1542,48 @@ func (o *xxx_ModifyCalendarOperation) UnmarshalNDRResponse(ctx context.Context, 
 // ModifyCalendarRequest structure represents the ModifyCalendar operation request
 type ModifyCalendarRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This               *dcom.ORPCThis `idl:"name:This" json:"this"`
-	CalendarXML        *oaut.String   `idl:"name:bstrCalendarXML" json:"calendar_xml"`
-	Overwrite          bool           `idl:"name:bOverwrite" json:"overwrite"`
-	ChangeActivePolicy bool           `idl:"name:bChangeActivePolicy" json:"change_active_policy"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrCalendarXML: A string that specifies the calendar event, in the form of a Calendar
+	// element (section 2.2.5.7).
+	CalendarXML *oaut.String `idl:"name:bstrCalendarXML" json:"calendar_xml"`
+	// bOverwrite: A Boolean value that specifies whether to ignore the timestamp of the
+	// specified calendar event when validating.
+	//
+	// A timestamp MUST be defined inside a common node at the root level of an XML element,
+	// as shown in the Calendar example (section 4.2.6). The format of a timestamp is specified
+	// in section 2.2.1.4.
+	//
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	|                  |                                                                                  |
+	//	|      VALUE       |                                     MEANING                                      |
+	//	|                  |                                                                                  |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| FALSE 0x00000000 | The timestamp of the new calendar event MUST specify a time that is later        |
+	//	|                  | than or equal to the timestamp of any modifications made to a calendar or        |
+	//	|                  | schedule object on the server. Otherwise, the modification SHOULD fail, and      |
+	//	|                  | WRM_ERR_OLD_INFORMATION SHOULD be returned.                                      |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| TRUE 0x00000001  | The calendar event is validated and modified without checking the timestamp.     |
+	//	+------------------+----------------------------------------------------------------------------------+
+	Overwrite bool `idl:"name:bOverwrite" json:"overwrite"`
+	// bChangeActivePolicy: A Boolean value that specifies whether the configuration changes
+	// made by this method call SHOULD change the current active policy, if applicable,
+	// of the system.<59>
+	//
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	|                  |                                                                                  |
+	//	|      VALUE       |                                     MEANING                                      |
+	//	|                  |                                                                                  |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| FALSE 0x00000000 | The current active policy of the system SHOULD NOT be changed by the method      |
+	//	|                  | call.                                                                            |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| TRUE 0x00000001  | If applicable, the current active policy of the system SHOULD be changed by the  |
+	//	|                  | method call.                                                                     |
+	//	+------------------+----------------------------------------------------------------------------------+
+	ChangeActivePolicy bool `idl:"name:bChangeActivePolicy" json:"change_active_policy"`
 }
 
 func (o *ModifyCalendarRequest) xxx_ToOp(ctx context.Context, op *xxx_ModifyCalendarOperation) *xxx_ModifyCalendarOperation {
@@ -1452,9 +1848,28 @@ func (o *xxx_DeleteCalendarOperation) UnmarshalNDRResponse(ctx context.Context, 
 // DeleteCalendarRequest structure represents the DeleteCalendar operation request
 type DeleteCalendarRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This               *dcom.ORPCThis `idl:"name:This" json:"this"`
-	CalendarName       *oaut.String   `idl:"name:bstrCalendarName" json:"calendar_name"`
-	ChangeActivePolicy bool           `idl:"name:bChangeActivePolicy" json:"change_active_policy"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrCalendarName: A string that specifies the name of the calendar event.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
+	CalendarName *oaut.String `idl:"name:bstrCalendarName" json:"calendar_name"`
+	// bChangeActivePolicy: A Boolean value that specifies whether the configuration changes
+	// made by this method call SHOULD change the current active policy, if applicable,
+	// of the system.<62>
+	//
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	|                  |                                                                                  |
+	//	|      VALUE       |                                     MEANING                                      |
+	//	|                  |                                                                                  |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| FALSE 0x00000000 | The current active policy of the system SHOULD NOT be changed by the method      |
+	//	|                  | call.                                                                            |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| TRUE 0x00000001  | If applicable, the current active policy of the system SHOULD be changed by the  |
+	//	|                  | method call.                                                                     |
+	//	+------------------+----------------------------------------------------------------------------------+
+	ChangeActivePolicy bool `idl:"name:bChangeActivePolicy" json:"change_active_policy"`
 }
 
 func (o *DeleteCalendarRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteCalendarOperation) *xxx_DeleteCalendarOperation {
@@ -1743,9 +2158,12 @@ func (o *xxx_RenameCalendarOperation) UnmarshalNDRResponse(ctx context.Context, 
 // RenameCalendarRequest structure represents the RenameCalendar operation request
 type RenameCalendarRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This            *dcom.ORPCThis `idl:"name:This" json:"this"`
-	OldCalendarName *oaut.String   `idl:"name:bstrOldCalendarName" json:"old_calendar_name"`
-	NewCalendarName *oaut.String   `idl:"name:bstrNewCalendarName" json:"new_calendar_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrOldCalendarName: A string that specifies the current name of the calendar event
+	// to be renamed.
+	OldCalendarName *oaut.String `idl:"name:bstrOldCalendarName" json:"old_calendar_name"`
+	// bstrNewCalendarName: A string that specifies the new name of the calendar event.
+	NewCalendarName *oaut.String `idl:"name:bstrNewCalendarName" json:"new_calendar_name"`
 }
 
 func (o *RenameCalendarRequest) xxx_ToOp(ctx context.Context, op *xxx_RenameCalendarOperation) *xxx_RenameCalendarOperation {
@@ -2149,10 +2567,31 @@ func (o *xxx_ComputeEventsOperation) UnmarshalNDRResponse(ctx context.Context, w
 // ComputeEventsRequest structure represents the ComputeEvents operation request
 type ComputeEventsRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	StartTime   *oaut.String   `idl:"name:szStartTime" json:"start_time"`
-	EndTime     *oaut.String   `idl:"name:szEndTime" json:"end_time"`
-	MergeEvents bool           `idl:"name:fMergeEvents" json:"merge_events"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// szStartTime: A string that specifies the start time to compute calendar events, in
+	// time format (section 2.2.1.3).
+	StartTime *oaut.String `idl:"name:szStartTime" json:"start_time"`
+	// szEndTime: A string that specifies the end time to compute calendar events, in time
+	// format.
+	EndTime *oaut.String `idl:"name:szEndTime" json:"end_time"`
+	// fMergeEvents: A Boolean value that specifies whether to merge calendar events. All
+	// conflicting events, that is, those whose start time and end time overlap, are returned
+	// in pbstrConflicts. If the fMergeEvents value is TRUE, conflicting events are merged
+	// into a new event with the start-time DtTmStart element picked from the event with
+	// the earliest start time and the end-time DtTmEnd, PolicyName, and CalendarName elements
+	// picked from the event with the latest end time.
+	//
+	//	+------------------+----------------------------------------------+
+	//	|                  |                                              |
+	//	|      VALUE       |                   MEANING                    |
+	//	|                  |                                              |
+	//	+------------------+----------------------------------------------+
+	//	+------------------+----------------------------------------------+
+	//	| FALSE 0x00000000 | The server SHOULD NOT merge calendar events. |
+	//	+------------------+----------------------------------------------+
+	//	| TRUE 0x00000001  | The server SHOULD merge calendar events.     |
+	//	+------------------+----------------------------------------------+
+	MergeEvents bool `idl:"name:fMergeEvents" json:"merge_events"`
 }
 
 func (o *ComputeEventsRequest) xxx_ToOp(ctx context.Context, op *xxx_ComputeEventsOperation) *xxx_ComputeEventsOperation {
@@ -2193,9 +2632,15 @@ func (o *ComputeEventsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // ComputeEventsResponse structure represents the ComputeEvents operation response
 type ComputeEventsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Events    *oaut.String   `idl:"name:pbstrEvents" json:"events"`
-	Conflicts *oaut.String   `idl:"name:pbstrConflicts" json:"conflicts"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrEvents: A pointer to a string that returns a list of events that are computed
+	// during execution, in the form of an Events element (section 2.2.5.15). For an example,
+	// see Events Example (section 4.2.12).
+	Events *oaut.String `idl:"name:pbstrEvents" json:"events"`
+	// pbstrConflicts: A pointer to a string that returns a list of conflicting events during
+	// the specified time interval, in the form of an Events element (section 2.2.5.15).
+	// For an example, see Events Example (section 4.2.12).
+	Conflicts *oaut.String `idl:"name:pbstrConflicts" json:"conflicts"`
 	// Return: The ComputeEvents return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2449,8 +2894,10 @@ func (o *xxx_GetScheduleInfoOperation) UnmarshalNDRResponse(ctx context.Context,
 // GetScheduleInfoRequest structure represents the GetScheduleInfo operation request
 type GetScheduleInfoRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This         *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ScheduleName *oaut.String   `idl:"name:bstrScheduleName" json:"schedule_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrScheduleName: A string that specifies the name of the schedule object for which
+	// information is required.
+	ScheduleName *oaut.String `idl:"name:bstrScheduleName" json:"schedule_name"`
 }
 
 func (o *GetScheduleInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetScheduleInfoOperation) *xxx_GetScheduleInfoOperation {
@@ -2487,8 +2934,11 @@ func (o *GetScheduleInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // GetScheduleInfoResponse structure represents the GetScheduleInfo operation response
 type GetScheduleInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ScheduleXML *oaut.String   `idl:"name:pbstrScheduleXML" json:"schedule_xml"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrScheduleXML: A pointer to a string that returns the specified schedule object
+	// information structure, in the form of a Schedule element (section 2.2.5.26). Sample
+	// XML is provided in Schedule XML Example (section 4.2.22).
+	ScheduleXML *oaut.String `idl:"name:pbstrScheduleXML" json:"schedule_xml"`
 	// Return: The GetScheduleInfo return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2693,8 +3143,10 @@ func (o *xxx_CreateScheduleOperation) UnmarshalNDRResponse(ctx context.Context, 
 // CreateScheduleRequest structure represents the CreateSchedule operation request
 type CreateScheduleRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ScheduleXML *oaut.String   `idl:"name:bstrScheduleXML" json:"schedule_xml"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrScheduleXML: A string that specifies the new schedule, in the form of a Schedule
+	// element (section 2.2.5.26). Sample XML is provided in Schedule Example (section 4.2.22).
+	ScheduleXML *oaut.String `idl:"name:bstrScheduleXML" json:"schedule_xml"`
 }
 
 func (o *CreateScheduleRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateScheduleOperation) *xxx_CreateScheduleOperation {
@@ -2976,10 +3428,49 @@ func (o *xxx_ModifyScheduleOperation) UnmarshalNDRResponse(ctx context.Context, 
 // ModifyScheduleRequest structure represents the ModifySchedule operation request
 type ModifyScheduleRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This               *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ScheduleXML        *oaut.String   `idl:"name:bstrScheduleXML" json:"schedule_xml"`
-	Overwrite          bool           `idl:"name:bOverwrite" json:"overwrite"`
-	ChangeActivePolicy bool           `idl:"name:bChangeActivePolicy" json:"change_active_policy"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrScheduleXML: A string that specifies the modified schedule, in the form of a
+	// Schedule element (section 2.2.5.26). Sample XML is provided in Schedule Example (section
+	// 4.2.22).
+	ScheduleXML *oaut.String `idl:"name:bstrScheduleXML" json:"schedule_xml"`
+	// bOverwrite: A Boolean value that specifies whether to ignore the timestamp of the
+	// specified schedule object when validating.
+	//
+	// A timestamp MUST be defined inside a common node at the root level of an XML element,
+	// as shown in the Calendar example (section 4.2.6). The format of a timestamp is specified
+	// in section 2.2.1.4.
+	//
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	|                  |                                                                                  |
+	//	|      VALUE       |                                     MEANING                                      |
+	//	|                  |                                                                                  |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| FALSE 0x00000000 | The timestamp of the new schedule object MUST specify a time that is later       |
+	//	|                  | than or equal to the timestamp of any modifications made to a calendar or        |
+	//	|                  | schedule object on the server. Otherwise, the modification SHOULD fail, and      |
+	//	|                  | WRM_ERR_OLD_INFORMATION SHOULD be returned.                                      |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| TRUE 0x00000001  | The schedule object is validated and modified without checking the timestamp.    |
+	//	+------------------+----------------------------------------------------------------------------------+
+	Overwrite bool `idl:"name:bOverwrite" json:"overwrite"`
+	// bChangeActivePolicy: A Boolean value that specifies whether the configuration changes
+	// made by this method call SHOULD change the current active policy, if applicable,
+	// of the system.<66>
+	//
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	|                  |                                                                                  |
+	//	|      VALUE       |                                     MEANING                                      |
+	//	|                  |                                                                                  |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| FALSE 0x00000000 | The current active policy of the system SHOULD NOT be changed by the method      |
+	//	|                  | call.                                                                            |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| TRUE 0x00000001  | If applicable, the current active policy of the system SHOULD be changed by the  |
+	//	|                  | method call.                                                                     |
+	//	+------------------+----------------------------------------------------------------------------------+
+	ChangeActivePolicy bool `idl:"name:bChangeActivePolicy" json:"change_active_policy"`
 }
 
 func (o *ModifyScheduleRequest) xxx_ToOp(ctx context.Context, op *xxx_ModifyScheduleOperation) *xxx_ModifyScheduleOperation {
@@ -3223,8 +3714,9 @@ func (o *xxx_DeleteScheduleOperation) UnmarshalNDRResponse(ctx context.Context, 
 // DeleteScheduleRequest structure represents the DeleteSchedule operation request
 type DeleteScheduleRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This         *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ScheduleName *oaut.String   `idl:"name:bstrScheduleName" json:"schedule_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrScheduleName: A string that specifies the name of the schedule object to be deleted.
+	ScheduleName *oaut.String `idl:"name:bstrScheduleName" json:"schedule_name"`
 }
 
 func (o *DeleteScheduleRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteScheduleOperation) *xxx_DeleteScheduleOperation {
@@ -3511,9 +4003,12 @@ func (o *xxx_RenameScheduleOperation) UnmarshalNDRResponse(ctx context.Context, 
 // RenameScheduleRequest structure represents the RenameSchedule operation request
 type RenameScheduleRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This            *dcom.ORPCThis `idl:"name:This" json:"this"`
-	OldScheduleName *oaut.String   `idl:"name:bstrOldScheduleName" json:"old_schedule_name"`
-	NewScheduleName *oaut.String   `idl:"name:bstrNewScheduleName" json:"new_schedule_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrOldScheduleName: A string that specifies the current name of the schedule object
+	// to be renamed.
+	OldScheduleName *oaut.String `idl:"name:bstrOldScheduleName" json:"old_schedule_name"`
+	// bstrNewScheduleName: A string that specifies the new name of the schedule object.
+	NewScheduleName *oaut.String `idl:"name:bstrNewScheduleName" json:"new_schedule_name"`
 }
 
 func (o *RenameScheduleRequest) xxx_ToOp(ctx context.Context, op *xxx_RenameScheduleOperation) *xxx_RenameScheduleOperation {
@@ -3825,10 +4320,29 @@ func (o *xxx_MoveBeforeCalendarOperation) UnmarshalNDRResponse(ctx context.Conte
 // MoveBeforeCalendarRequest structure represents the MoveBeforeCalendar operation request
 type MoveBeforeCalendarRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	CalendarName          *oaut.String   `idl:"name:bstrCalendarName" json:"calendar_name"`
-	ReferenceCalendarName *oaut.String   `idl:"name:bstrRefCalendarName" json:"reference_calendar_name"`
-	ChangeActivePolicy    bool           `idl:"name:bChangeActivePolicy" json:"change_active_policy"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrCalendarName: A string that specifies the name of the calendar event to be moved.
+	CalendarName *oaut.String `idl:"name:bstrCalendarName" json:"calendar_name"`
+	// bstrRefCalendarName: A string that specifies the name of a reference calendar event,
+	// before which the specified event is to be moved.
+	ReferenceCalendarName *oaut.String `idl:"name:bstrRefCalendarName" json:"reference_calendar_name"`
+	// bChangeActivePolicy: A Boolean value that specifies whether the configuration changes
+	// made by this method call SHOULD change the current active policy, if applicable,
+	// of the system.<69>
+	//
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	|                  |                                                                                  |
+	//	|      VALUE       |                                     MEANING                                      |
+	//	|                  |                                                                                  |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| FALSE 0x00000000 | The current active policy of the system SHOULD NOT be changed by the method      |
+	//	|                  | call.                                                                            |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| TRUE 0x00000001  | If applicable, the current active policy of the system SHOULD be changed by the  |
+	//	|                  | method call.                                                                     |
+	//	+------------------+----------------------------------------------------------------------------------+
+	ChangeActivePolicy bool `idl:"name:bChangeActivePolicy" json:"change_active_policy"`
 }
 
 func (o *MoveBeforeCalendarRequest) xxx_ToOp(ctx context.Context, op *xxx_MoveBeforeCalendarOperation) *xxx_MoveBeforeCalendarOperation {
@@ -4140,10 +4654,29 @@ func (o *xxx_MoveAfterCalendarOperation) UnmarshalNDRResponse(ctx context.Contex
 // MoveAfterCalendarRequest structure represents the MoveAfterCalendar operation request
 type MoveAfterCalendarRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	CalendarName          *oaut.String   `idl:"name:bstrCalendarName" json:"calendar_name"`
-	ReferenceCalendarName *oaut.String   `idl:"name:bstrRefCalendarName" json:"reference_calendar_name"`
-	ChangeActivePolicy    bool           `idl:"name:bChangeActivePolicy" json:"change_active_policy"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrCalendarName: A string that specifies the name of the calendar event to be moved.
+	CalendarName *oaut.String `idl:"name:bstrCalendarName" json:"calendar_name"`
+	// bstrRefCalendarName: A string that specifies the name of a reference calendar event,
+	// after which the specified event is to be moved.
+	ReferenceCalendarName *oaut.String `idl:"name:bstrRefCalendarName" json:"reference_calendar_name"`
+	// bChangeActivePolicy: A Boolean value that specifies whether the configuration changes
+	// made by this method call SHOULD change the current active policy, if applicable,
+	// of the system.<70>
+	//
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	|                  |                                                                                  |
+	//	|      VALUE       |                                     MEANING                                      |
+	//	|                  |                                                                                  |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| FALSE 0x00000000 | The current active policy of the system SHOULD NOT be changed by the method      |
+	//	|                  | call.                                                                            |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| TRUE 0x00000001  | If applicable, the current active policy of the system SHOULD be changed by the  |
+	//	|                  | method call.                                                                     |
+	//	+------------------+----------------------------------------------------------------------------------+
+	ChangeActivePolicy bool `idl:"name:bChangeActivePolicy" json:"change_active_policy"`
 }
 
 func (o *MoveAfterCalendarRequest) xxx_ToOp(ctx context.Context, op *xxx_MoveAfterCalendarOperation) *xxx_MoveAfterCalendarOperation {
@@ -4388,8 +4921,10 @@ func (o *GetServerTimeZoneRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // GetServerTimeZoneResponse structure represents the GetServerTimeZone operation response
 type GetServerTimeZoneResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ServerTimeZone int32          `idl:"name:pnServerTimeZone" json:"server_time_zone"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pnServerTimeZone: A pointer to a 32-bit signed integer that returns the server time
+	// zone.
+	ServerTimeZone int32 `idl:"name:pnServerTimeZone" json:"server_time_zone"`
 	// Return: The GetServerTimeZone return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

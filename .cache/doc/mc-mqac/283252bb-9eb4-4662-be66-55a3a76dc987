@@ -1,0 +1,58 @@
+<div class="content"><p>The IsConnected method is received by the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in an RPC_REQUEST
+packet. In response, the server MUST return a <a href="../ms-dtyp/51bbfbb1-08e2-4c13-a95e-1eaa7d310670" data-linktype="relative-path">BOOLEAN</a>
+value that indicates the connection status of the represented <a href="../ms-mqdmpr/9adb2d90-c63b-43c7-9b9c-804ab96a57d5" data-linktype="relative-path">QueueManager</a>.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT IsConnected(
+   [out, retval] VARIANT_BOOL* pfIsConnected
+ );
+</pre></div>
+</dd></dl><p><b>pfIsConnected: </b>A pointer to a <a href="../ms-oaut/7b39eb24-9d39-498a-bcd8-75c38e5823d0" data-linktype="relative-path">VARIANT_BOOL</a>
+that, when successfully completed, contains one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>VARIANT_TRUE</p>
+  <p>0xffff</p>
+  </td>
+  <td>
+  <p>The represented QueueManager is connected to the
+  network and the directory.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VARIANT_FALSE</p>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>The represented QueueManager is disconnected from the
+  network and the directory.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When the server processes this call, it MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>ComputerName</i> instance variable is NULL:</p>
+<ul><li><p><span><span>  </span></span>Set
+the <i>pfIsConnected</i> output variable to local
+QueueManager.ConnectionActive.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST generate a QMMgmt Get Info event with the following inputs:</p>
+<ul><li><p><span><span> 
+</span></span>iPropID = PROPID_MGMT_MSMQ_CONNECTED</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the <i>rStatus</i> return value is not equal to MQ_OK (0x00000000), the server
+MUST return <i>rStatus</i> and MUST take no further action. Otherwise, the <i>pfIsConnected</i>
+output variable MUST be set to the value of the returned <i>rPropVar</i>.</p>
+</li></ul></li></ul></div>

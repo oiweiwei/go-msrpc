@@ -31,7 +31,12 @@ type EnumConnectionsServer interface {
 	// IUnknown base class.
 	iunknown.UnknownServer
 
-	// Next operation.
+	// The Next method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns an MSMQQueueInfo4 object that represents a public queue in the
+	// ResultQueueCollection.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Next(context.Context, *NextRequest) (*NextResponse, error)
 
 	// Skip operation.

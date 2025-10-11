@@ -1,1 +1,44 @@
-<div class="content"></div>
+<div class="content"><p> The <b>RASI_PORT_1</b> structure contains information about
+a RRAS port.</p><dl>
+<dd>
+<div><pre> typedef struct _RASI_PORT_1 {
+   DWORD dwPort;
+   DWORD dwConnection;
+   RAS_HARDWARE_CONDITION dwHardwareCondition;
+   DWORD dwLineSpeed;
+   DWORD dwBytesXmited;
+   DWORD dwBytesRcved;
+   DWORD dwFramesXmited;
+   DWORD dwFramesRcved;
+   DWORD dwCrcErr;
+   DWORD dwTimeoutErr;
+   DWORD dwAlignmentErr;
+   DWORD dwHardwareOverrunErr;
+   DWORD dwFramingErr;
+   DWORD dwBufferOverrunErr;
+   DWORD dwCompressionRatioIn;
+   DWORD dwCompressionRatioOut;
+ } RASI_PORT_1,
+  *PRASI_PORT_1;
+</pre></div>
+</dd></dl><p><b>dwPort: </b>A unique identifier that specifies the
+port.</p><p><b>dwConnection: </b>A unique identifier that
+specifies the connection.</p><p><b>dwHardwareCondition: </b>A <a href="30cb08a9-3995-423b-b672-089323f41af7" data-linktype="relative-path"><b>RAS_HARDWARE_CONDITION (section 2.2.1.1.5)</b></a>
+value that specifies the condition of a port specified in <b>dwPort</b>. </p><p><b>dwLineSpeed: </b>Specifies the line speed of the
+port, represented in bits per second.</p><p><b>dwBytesXmited: </b>Specifies the bytes transmitted
+on the port. This value is the number of bytes of compressed data.</p><p><b>dwBytesRcved: </b>Specifies the bytes received on
+the port. This value is the number of bytes of compressed data. </p><p><b>dwFramesXmited: </b>Specifies the frames
+transmitted on the port.</p><p><b>dwFramesRcved: </b>Specifies the frames received
+on the port.</p><p><b>dwCrcErr: </b>Specifies the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_9cb45a36-92bb-4c14-b2fd-2ad7e2979bfd" data-linktype="relative-path">cyclic redundancy check (CRC)</a>
+errors on the port.</p><p><b>dwTimeoutErr: </b>Specifies the time-out errors on
+the port.</p><p><b>dwAlignmentErr: </b>Specifies the alignment errors
+on the port.</p><p><b>dwHardwareOverrunErr: </b>Specifies the hardware-overrun
+errors on the port.</p><p><b>dwFramingErr: </b>Specifies the framing errors on
+the port.</p><p><b>dwBufferOverrunErr: </b>Specifies the
+buffer-overrun errors on the port.</p><p><b>dwCompressionRatioIn: </b>Specifies a percentage
+that indicates the degree to which data received on this connection is
+compressed. The ratio is the size of the compressed data divided by the size of
+the same data in an uncompressed state.</p><p><b>dwCompressionRatioOut: </b>Specifies a percentage
+indicating the degree to which data transmitted on this connection is compressed.
+The ratio is the size of the compressed data divided by the size of the same
+data in an uncompressed state.</p></div>

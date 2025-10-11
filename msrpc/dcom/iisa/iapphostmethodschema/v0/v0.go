@@ -54,10 +54,48 @@ type AppHostMethodSchemaClient interface {
 	// Name operation.
 	GetName(context.Context, *GetNameRequest, ...dcerpc.CallOption) (*GetNameResponse, error)
 
-	// InputSchema operation.
+	// The InputSchema method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns the schema and constraints of the input parameters to the method
+	// call. This can be NULL if no input parameters are defined for the method.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetInputSchema(context.Context, *GetInputSchemaRequest, ...dcerpc.CallOption) (*GetInputSchemaResponse, error)
 
-	// OutputSchema operation.
+	// The OutputSchema method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns the schema and constraints of the output parameters to the method
+	// call. This can be NULL if no output parameters are defined for the method.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetOutputSchema(context.Context, *GetOutputSchemaRequest, ...dcerpc.CallOption) (*GetOutputSchemaResponse, error)
 
 	// GetMetadata operation.
@@ -648,7 +686,8 @@ func (o *GetInputSchemaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetInputSchemaResponse structure represents the InputSchema operation response
 type GetInputSchemaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppInputSchema: Contains the input parameter schema.
 	InputSchema *iisa.AppHostElementSchema `idl:"name:ppInputSchema" json:"input_schema"`
 	// Return: The InputSchema return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -891,7 +930,8 @@ func (o *GetOutputSchemaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // GetOutputSchemaResponse structure represents the OutputSchema operation response
 type GetOutputSchemaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That         *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppOutputSchema: Contains the output parameter schema.
 	OutputSchema *iisa.AppHostElementSchema `idl:"name:ppOutputSchema" json:"output_schema"`
 	// Return: The OutputSchema return value.
 	Return int32 `idl:"name:Return" json:"return"`

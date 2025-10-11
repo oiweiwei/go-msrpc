@@ -1,1 +1,27 @@
-<div class="content"></div>
+<div class="content"><p>The <b>OSPF_AREA_PARAM</b> structure MAY<a id="Appendix_A_Target_148"></a><a aria-label="Product behavior note 148" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_148" data-linktype="relative-path">&lt;148&gt;</a> be used to contain the OSPF
+area parameters and is used by the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="071439e7-a9fd-40e4-91f7-ab756108e82f" data-linktype="relative-path"><b>RRouterInterfaceTransportSetGlobalInfo (section 3.1.4.10)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="14ad8d26-d7d7-48dd-914d-da962d5d7049" data-linktype="relative-path"><b>RRouterInterfaceTransportGetGlobalInfo (section 3.1.4.11)</b></a><span>  </span></p>
+</li></ul><p>When calling <b>RRouterInterfaceTransportSetGlobalInfo</b>
+you MUST NOT delete the area with the areaId set to 0.0.0.0, which works as the
+backbone area for the OSPF, otherwise the method will return a failure.</p><dl>
+<dd>
+<div><pre> typedef struct _OSPF_AREA_PARAM {
+   DWORD type;
+   DWORD create;
+   DWORD enable;
+   DWORD areaId;
+   DWORD authType;
+   DWORD importASExtern;
+   DWORD stubMetric;
+   DWORD importSumAdv;
+ } OSPF_AREA_PARAM, *POSPF_AREA_PARAM;
+</pre></div>
+</dd></dl><p><b>type: </b>This MUST be set to OSPF_AREA_PARAM_TYPE.</p><p><b>create: </b>Set to 1 if the configuration needs to
+be created or set to 2 if it needs to be deleted.</p><p><b>enable: </b>Set to 1 if the configuration needs to
+be enabled or set to 2 if it needs to be deleted.</p><p><b>areaId: </b>Set to 0 if it is border. Otherwise,
+set to any nonzero value.</p><p><b>authType: </b>Set to 1 if there is no password or
+set to 2 for a simple password.</p><p><b>importASExtern: </b>Set to 1 if yes, 2 for no.</p><p><b>stubMetric: </b>Stub area metric. It MUST be set
+to a value between 1 and USHORTMAX/2.</p><p><b>importSumAdv: </b>The import summary
+advertisement. Set to 1 if yes, 2 for no.</p></div>

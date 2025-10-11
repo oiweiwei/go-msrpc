@@ -1,0 +1,73 @@
+<div class="content"><p>The AddElement method is received by the server in an
+RPC_REQUEST packet. In response, the server attempts to add a newly created <a href="59774887-09e3-4de5-ad8e-4794f404b123" data-linktype="relative-path">IAppHostElement</a> object to
+the specified collection.</p><p>This function adds an element to the current collection of
+elements.</p><dl>
+<dd>
+<div><pre> HRESULT AddElement(
+   [in] IAppHostElement* pElement,
+   [in, defaultvalue(-1)] int cPosition
+ );
+</pre></div>
+</dd></dl><p><b>pElement: </b>The element to add to the
+collection.</p><p><b>cPosition: </b>The position at which the element
+was added to the collection. If -1, the new element is appended. Otherwise, the
+position represents the zero-based index to the collection.</p><p><b>Return Values: </b>The server MUST return zero if
+it successfully processes the message that is received from the client. If
+processing fails, the server MUST return a nonzero <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+code as defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following table describes the error conditions that MUST be handled and the
+corresponding error codes. A server MAY return additional
+implementation-specific error codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0X00000000</p>
+  <p>NO_ERROR</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One or more parameters are incorrect or null.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X00000008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>Not enough memory is available to process this
+  command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X80070021</p>
+  <p>ERROR_LOCK_VIOLATION</p>
+  </td>
+  <td>
+  <p>The instance is not editable.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X80070585</p>
+  <p>ERROR_INVALID_INDEX</p>
+  </td>
+  <td>
+  <p>The index specified by cPosition is invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

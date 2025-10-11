@@ -1,1 +1,35 @@
-<div class="content"></div>
+<div class="content"><p>The GetRemoteUserCategories method retrieves user categories
+information from the WSRM server.</p><dl>
+<dd>
+<div><pre> [id(1), helpstring(&#34;method GetRemoteUserCategories&#34;)] HRESULT GetRemoteUserCategories(
+   [out] BSTR* pbstrRemoteUserCategoriesInfo
+ );
+</pre></div>
+</dd></dl><p><b>pbstrRemoteUserCategoriesInfo: </b>A pointer to a
+string that returns categories of remote session users, in the format of a <a href="f017360f-f03d-4747-adf4-0ea4725300ad" data-linktype="relative-path">Users</a> element (section
+2.2.5.30).</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="e92c2589-b1ae-4bee-980a-b1f96710b4e7" data-linktype="relative-path">IWRMRemoteSessionMgmt</a>
+interface methods are specified in section 3.2.4.9.</p></div>

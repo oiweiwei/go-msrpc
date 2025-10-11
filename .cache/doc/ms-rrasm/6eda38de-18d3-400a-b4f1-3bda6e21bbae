@@ -1,1 +1,42 @@
-<div class="content"></div>
+<div class="content"><p>The <b>L2TP_CONFIG_PARAMS_1</b> structure<a id="Appendix_A_Target_125"></a><a aria-label="Product behavior note 125" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_125" data-linktype="relative-path">&lt;125&gt;</a> is used to get or set the
+device configuration for L2TP on RAS Server.</p><dl>
+<dd>
+<div><pre> typedef struct _L2TP_CONFIG_PARAMS_1 {
+   DWORD dwNumPorts;
+   DWORD dwPortFlags;
+ } L2TP_CONFIG_PARAMS_1,
+  *PL2TP_CONFIG_PARAMS_1;
+</pre></div>
+</dd></dl><p><b>dwNumPorts: </b>Specifies the number of ports
+configured on the (L2TP) device. This value cannot exceed the server port
+limit.<a id="Appendix_A_Target_126"></a><a aria-label="Product behavior note 126" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_126" data-linktype="relative-path">&lt;126&gt;</a></p><p><b>dwPortFlags: </b>Specifies the type of port
+configured on L2TP devices. Possible flag values are as follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MPR_ENABLE_RAS_ON_DEVICE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>L2TP is enabled to accept Remote Access client
+  connection.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_ENABLE_ROUTING_ON_DEVICE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>L2TP is enabled to accept demand-dial connections.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

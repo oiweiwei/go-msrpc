@@ -1,1 +1,158 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RequestBuffer</b> structure is a generic information
+container used by the <a href="1c26855f-e9af-4b40-8888-51d8b581fcd0" data-linktype="relative-path"><b>RasRpcSubmitRequest (section 3.4.4.5)</b></a>
+method to set or retrieve information on RRAS server.  </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RB_PCBIndex</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RB_Reqtype</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RB_Dummy
+  (optional)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RB_Done</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Alignment</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>RB_Buffer
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>RB_PCBIndex (4 bytes): </b>A unique identifier for
+the port.</p><p><b>RB_Reqtype (4 bytes): </b>A <a href="fcb89c61-ced3-43ba-a2ef-4c6f4a2d40a6" data-linktype="relative-path"><b>ReqTypes (section</b></a><span><b> </b></span><a href="fcb89c61-ced3-43ba-a2ef-4c6f4a2d40a6" data-linktype="relative-path">2.2.1.1.18</a>) enumeration
+value indicating the request type sent to the server. </p><p><b>RB_Dummy (4 bytes): </b>SHOULD<a id="Appendix_A_Target_153"></a><a aria-label="Product behavior note 153" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_153" data-linktype="relative-path">&lt;153&gt;</a> be set to the size of the
+ULONG_PTR on the client.</p><p><b>RB_Done (4 bytes): </b>MUST be set to zero (0)
+when sent and MUST be ignored on receipt.</p><p><b>Alignment (8 bytes): </b>MUST be set to zero (0)
+when sent and MUST be ignored on receipt.</p><p><b>RB_Buffer (variable): </b>A pointer to the buffer
+that contains the information specific to the <b>RB_Reqtype</b> request type.
+This information MUST be one of the following structures depending upon the <b>RB_Reqtype</b>
+<b>ReqTypes</b>.</p><dl>
+<dd>
+<dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>ReqTypes</p>
+   </th>
+   <th>
+   <p>Structure</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>REQTYPE_SETDEVICECONFIGINFO </p>
+  </td>
+  <td>
+  <p><a href="c39d153e-2f97-4e11-8aff-bcf983869dc9" data-linktype="relative-path"><b>DeviceConfigInfo (section 2.2.1.2.218)</b></a><span>  </span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REQTYPE_GETDEVICECONFIGINFO</p>
+  </td>
+  <td>
+  <p><b>DeviceConfigInfo (section 2.2.1.2.218)</b><span>  </span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REQTYPE_GETCALLEDID </p>
+  </td>
+  <td>
+  <p><a href="029d774a-7fd0-4a7f-b27d-6dff88400b26" data-linktype="relative-path"><b>GetSetCalledId (section 2.2.1.2.220)</b></a><span>  </span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REQTYPE_SETCALLEDID</p>
+  </td>
+  <td>
+  <p><b>GetSetCalledId (section 2.2.1.2.220)</b><span>  </span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REQTYPE_GETNDISWANDRIVERCAPS</p>
+  </td>
+  <td>
+  <p><a href="b96869a1-9e64-4667-af1c-5f6e16aa949d" data-linktype="relative-path"><b>GetNdiswanDriverCapsStruct (section 2.2.1.2.222)</b></a><span>  </span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REQTYPE_GETDEVCONFIG</p>
+  </td>
+  <td>
+  <p><a href="f0998ceb-4787-4fc3-8959-e6b0fb66522c" data-linktype="relative-path"><b>GetDevConfigStruct (section 2.2.1.2.224)</b></a><span>  </span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REQTYPE_PORTENUM</p>
+  </td>
+  <td>
+  <p><a href="7a190095-587e-4edf-be3f-95d326e34d19" data-linktype="relative-path"><b>Enum (section 2.2.1.2.225)</b></a><span>  </span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REQTYPE_GETINFO</p>
+  </td>
+  <td>
+  <p><a href="2a475b52-78cc-45bf-915d-b5c6355d82fa" data-linktype="relative-path"><b>Info (section 2.2.1.2.227)</b></a><span>  </span></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl></dd></dl><p> </p></div>

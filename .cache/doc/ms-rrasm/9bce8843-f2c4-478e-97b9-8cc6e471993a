@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IP_NAT_DIRECTION</b> enumeration contains <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_67a3ad2c-4ad7-4386-b588-9387b24d86b8" data-linktype="relative-path">Network Address Translator
+(NAT)</a> directions.</p><dl>
+<dd>
+<div><pre> typedef enum _IP_NAT_DIRECTION
+ {
+   NatInboundDirection = 0,
+   NatOutboundDirection
+ } IP_NAT_DIRECTION,
+  *PIP_NAT_DIRECTION;
+</pre></div>
+</dd></dl><p><b>NatInboundDirection: </b>The packet was received
+from a public address and is to be sent to private address.</p><p><b>NatOutboundDirection: </b>The packet was received
+from a private address and is to be sent to public address.</p></div>

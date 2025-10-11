@@ -1,1 +1,83 @@
-<div class="content"></div>
+<div class="content"><p>The DumpAccountingData method dumps <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1156c8ef-4d49-462b-9f76-aebcb6c57011" data-linktype="relative-path">accounting</a> data from a
+remote server acting as an <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_bb8795a8-ff43-416b-976a-6257b68fe7fa" data-linktype="relative-path">accounting
+client</a> to the server currently acting as its accounting database server. The
+time interval of dumping data SHOULD be set by the client by using the <b>SetConfig</b>
+method call of the management service running on the accounting client.</p><p><b>Note</b>  This method is expected to be called
+remotely by the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_d83f4163-fac6-4d2e-b143-a7e0420b6e4b" data-linktype="relative-path">WSRM
+management service</a> that is acting as an accounting client. A client SHOULD
+NOT call this method.</p><dl>
+<dd>
+<div><pre> [id(10), helpstring(&#34;method DumpAccountingData&#34;)] HRESULT DumpAccountingData(
+   [in] BSTR bstrAccountingData
+ );
+</pre></div>
+</dd></dl><p><b>bstrAccountingData: </b>A string that specifies
+the accounting data to be dumped, in the form of an <a href="9ade355f-3ee0-4bb1-9f18-88c4f1402c2b" data-linktype="relative-path">AccountingProcessList</a>
+element (section 2.2.5.4).</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0209</p>
+  <p>WRM_ERR_ACC_DISABLED_FOR_REMOTE_CLIENT</p>
+  </td>
+  <td>
+  <p>Accounting is disabled on the remote accounting
+  server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF020A</p>
+  <p>WRM_ERR_ACC_CLIENT_CONN_TERMINATED</p>
+  </td>
+  <td>
+  <p>Connection to remote server failed. The remote
+  connection has been terminated by the accounting server because the
+  accounting functionality of the accounting client was disabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF020E</p>
+  <p>WRM_ERR_ACC_NO_CONNECTION</p>
+  </td>
+  <td>
+  <p>The operation failed. There is no existing connection
+  to the remote database server. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>It is possible for multiple WSRM servers to have a common accounting
+database server. </p><p><b>Note</b>  Remote accounting is not supported in
+a workgroup environment.</p><p>Additional <a href="d5942816-752f-480a-9712-38ef0a248b6a" data-linktype="relative-path">IWRMAccounting</a> interface
+methods are specified in section 3.2.4.3.</p></div>

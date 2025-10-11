@@ -9,8 +9,8 @@ screens</a>.</p>
 </span></span>Define a <a href="809180e0-571e-40a0-8067-ffe89cbdcc40#gt_b2a5fac3-064b-4f84-9679-74dfb2ce5d2e" data-linktype="relative-path">property
 schema</a> that can be used to label files stored on the server.</p>
 </li><li><p><span><span> 
-</span></span>Retrieve and modify the values assigned to classification properties
-for files stored on the server.</p>
+</span></span>Retrieve and modify the values assigned to classification
+properties for files stored on the server.</p>
 </li><li><p><span><span> 
 </span></span>Configure automatic mechanisms to assign values to classification
 properties.</p>
@@ -89,11 +89,11 @@ which will automatically create directory quotas on existing and newly created
 subfolders.</p><p><b>File Screens:</b></p><p>A file screen restricts the types of files that can be
 stored in a specific directory and its subdirectories. For each file screen,
 there is a configurable list of blocked file groups that define a set of
-patterns, based on the file name, that will be restricted. When a file is created
-or renamed, the server evaluates whether the file name matches a pattern in any
-file group configured on a parent portion of the path. If a match is found, the
-file is blocked, and a set of highly customizable FSRM notifications configured
-for the file screen will be raised.</p><p>In addition to configuring file screens, a client can
+patterns, based on the file name, that will be restricted. When a file is
+created or renamed, the server evaluates whether the file name matches a
+pattern in any file group configured on a parent portion of the path. If a
+match is found, the file is blocked, and a set of highly customizable FSRM
+notifications configured for the file screen will be raised.</p><p>In addition to configuring file screens, a client can
 request that the server create a file screen exception that defines a list of
 file groups that are specifically allowed in a specific directory and its
 subdirectories. A file screen exception will typically be configured on a

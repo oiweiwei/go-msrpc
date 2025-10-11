@@ -1,1 +1,138 @@
-<div class="content"></div>
+<div class="content"><p>The NTMS_LIBREQUESTINFORMATIONA structure describes the
+properties of a work request, in ASCII.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_LIBREQUESTINFORMATIONA {
+   DWORD OperationCode;
+   DWORD OperationOption;
+   DWORD State;
+   NTMS_GUID PartitionId;
+   NTMS_GUID DriveId;
+   NTMS_GUID PhysMediaId;
+   NTMS_GUID Library;
+   NTMS_GUID SlotId;
+   SYSTEMTIME TimeQueued;
+   SYSTEMTIME TimeCompleted;
+   char szApplication[64];
+   char szUser[64];
+   char szComputer[64];
+   DWORD dwErrorCode;
+   NTMS_GUID WorkItemId;
+   DWORD dwPriority;
+ } NTMS_LIBREQUESTINFORMATIONA;
+</pre></div>
+</dd></dl><p><b>OperationCode:</b>  A value from the <a href="1fcfe730-c093-432d-b1cb-67cd94fe87b1" data-linktype="relative-path">NtmsLmOperation</a>
+enumeration specifying the type of operation requested. </p><p><b>OperationOption:</b>  Options specific
+to a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_f8da5142-cddf-49b1-b24c-a352db74cbbb" data-linktype="relative-path">library request</a>.
+The following table shows the meanings if <b>OperationCode</b> is set to
+LM_MOUNT, LM_DISMOUNT, or LM_EJECT.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IMMEDIATE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The operation MUST be completed immediately.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DEFERRED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The operation MUST be completed only when the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a1f0ab90-f3c0-46b8-9c77-d0d7508ede94" data-linktype="relative-path">slot</a> is later required
+  for an operation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FORCEIMMEDIATE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The operation MUST be completed immediately. The
+  operation will complete even if there are open handles to the medium.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FORCEDEFERRED</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The operation MUST be completed only when the slot is
+  later required for an operation. The operation MUST complete even if there
+  are open handles to the medium.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>INJECTMANY</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The operation applies to multiple slots.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The following table shows the
+meanings if <b>OperationCode</b> is set to LM_INVENTORY.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FULL_INVENTORY</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>A complete <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_38cb8216-53ff-4936-a5c4-4d8d7672950a" data-linktype="relative-path">inventory</a> of media MUST
+  be done.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SLOTS_ONLY</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Only the media loaded into slots MUST be inventoried.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>State:</b>  A value from the <a href="6a134167-f95b-4b75-95ca-d5d98dff34f9" data-linktype="relative-path">NtmsLmState (section 2.2.1.10)</a>
+enumeration specifying the state of the work request.</p><p><b>PartitionId:</b>  The identifier of a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_55db62c5-a84f-43b7-a037-b44ecd8fb92f" data-linktype="relative-path">side</a> for which the request
+is submitted to the server.</p><p><b>DriveId:</b>  The identifier of a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a> that is being
+serviced.</p><p><b>PhysMediaId:</b>  The identifier of a
+piece of <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_9036b269-4f3b-4353-a1d0-54f5c686ec2c" data-linktype="relative-path">physical media</a>
+that is being serviced.</p><p><b>Library:</b>  The identifier of the
+library for the request.</p><p><b>SlotId:</b>  The identifier of the slot
+of the piece of physical media that is being serviced.</p><p><b>TimeQueued:</b>  A <a href="../ms-dtyp/2fefe8dd-ab48-4e33-a7d5-7171455a9289" data-linktype="relative-path">SYSTEMTIME</a>
+structure specifying the time at which the request was submitted to the server.
+</p><p><b>TimeCompleted:</b>  A SYSTEMTIME
+structure specifying the time at which the request was completed. </p><p><b>szApplication:</b>   A null-terminated
+sequence of ASCII characters specifying the name of the application that
+submitted the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_4676b5f2-6ecd-463c-8218-811911038e63" data-linktype="relative-path">operator
+request</a>.<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p><p><b>szUser:</b>   A null-terminated sequence
+of ASCII characters specifying the name of the interactive user who submitted
+the operator request.<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p><p><b>szComputer:</b>   A null-terminated
+sequence of ASCII characters specifying the name of the computer that submitted
+the operator request.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p><p><b>dwErrorCode:</b>  An
+implementation-specific nonzero error code that returns with <b>State</b> set
+to the NTMS_LM_FAILED value.<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p><p><b>WorkItemId:</b>  The associated
+identifier for the request, which was assigned by a server when it received a
+request from a client to perform an operation on a library.</p><p><b>dwPriority:</b>  The priority of the
+request.</p></div>

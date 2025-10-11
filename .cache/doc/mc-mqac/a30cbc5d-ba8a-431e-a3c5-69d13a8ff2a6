@@ -1,0 +1,11 @@
+<div class="content"><p>The Transaction method is received by the server in an
+RPC_REQUEST packet. In response, the server SHOULD return E_NOTIMPL
+(0x80004001).</p><dl>
+<dd>
+<div><pre> [propget] HRESULT Transaction(
+   [out, retval] long* plTransaction
+ );
+</pre></div>
+</dd></dl><p><b>plTransaction: </b>A pointer to a <b>long</b> that
+identifies the underlying <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a>.</p><p><b>Return Values: </b>The method SHOULD<a id="Appendix_A_Target_33"></a><a aria-label="Product behavior note 33" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_33" data-linktype="relative-path">&lt;33&gt;</a> return E_NOTIMPL (0x80004001)
+and take no further action.</p></div>

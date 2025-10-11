@@ -1,1 +1,53 @@
-<div class="content"></div>
+<div class="content"><p>The NTMS_DRIVEINFORMATIONA structure describes the
+properties of a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a>
+object, as a sequence of ASCII characters.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_DRIVEINFORMATIONA {
+   DWORD Number;
+   DWORD State;
+   NTMS_GUID DriveType;
+   char szDeviceName[64];
+   char szSerialNumber[32];
+   char szRevision[32];
+   unsigned short ScsiPort;
+   unsigned short ScsiBus;
+   unsigned short ScsiTarget;
+   unsigned short ScsiLun;
+   DWORD dwMountCount;
+   SYSTEMTIME LastCleanedTs;
+   NTMS_GUID SavedPartitionId;
+   NTMS_GUID Library;
+   GUID Reserved;
+   DWORD dwDeferDismountDelay;
+ } NTMS_DRIVEINFORMATIONA;
+</pre></div>
+</dd></dl><p><b>Number:</b>  The number of the drive in
+the library. Some <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_898fa8ab-42d5-439f-9415-1589599fe913" data-linktype="relative-path">changers</a>
+assign the number 0 to the first of their drives; other changers number the
+first drive 1. </p><p><b>State:</b>  A value from the <a href="fdf51f4c-d185-46e8-a56e-4065948a3135" data-linktype="relative-path">NtmsDriveState</a> enumeration
+specifying the state of the drive. </p><p><b>DriveType:</b>  The identifier of the
+type object for the drive.</p><p><b>szDeviceName:</b>   A null-terminated
+sequence of ASCII characters specifying the name of the device path to access the
+drive.</p><p><b>szSerialNumber:</b>   The
+null-terminated serial number of the drive. </p><p><b>szRevision:</b>   A null-terminated
+sequence of ASCII characters specifying the revision of the drive. </p><p><b>ScsiPort:</b>  The SCSI <a href="https://go.microsoft.com/fwlink/?LinkId=90512" data-linktype="external">[ANSI-131-1994]</a> host
+adapter to which the drive is connected.</p><p><b>ScsiBus:</b>  The SCSI bus to which the
+drive is connected.</p><p><b>ScsiTarget:</b>  The SCSI target
+identifier of the drive.</p><p><b>ScsiLun:</b>  The SCSI logical unit
+identifier of the drive.</p><p><b>dwMountCount:</b>  The number of times
+the drive has had media <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b" data-linktype="relative-path">mounted</a>
+in it. If the drive supports the reporting of a unique serial number, this
+value MUST be the number of times the drive has been mounted since RSM began
+managing this drive. If the drive does not support unique serial numbers, this
+member MUST indicate the number of mounts to all the drives at that mount
+location. </p><p><b>LastCleanedTs:</b>  A <a href="../ms-dtyp/2fefe8dd-ab48-4e33-a7d5-7171455a9289" data-linktype="relative-path">SYSTEMTIME</a>
+structure that specifies the last time the drive was cleaned. </p><p><b>SavedPartitionId:</b>  The partition
+identifier of the medium in the drive. If this value is NULL and the drive is
+marked as full, the medium was loaded by a user, and it MUST be identified and
+given a partition identifier.</p><p><b>Library:</b>  The identifier of the
+library that contains the drive. </p><p><b>Reserved:</b>  This parameter is unused.
+It MUST be 0 and MUST be ignored on receipt.</p><p><b>dwDeferDismountDelay:</b>  Minimum
+number of seconds that media will remain in the drive of an online library
+after a deferred <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a8ebf8eb-a5f7-406a-b211-9f9c08ee15d3" data-linktype="relative-path">dismount</a>
+is performed; the default is 5 minutes. This member does not apply to
+stand-alone libraries. </p></div>

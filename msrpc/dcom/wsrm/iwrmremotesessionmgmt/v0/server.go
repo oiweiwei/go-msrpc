@@ -31,10 +31,68 @@ type RemoteSessionManagementServer interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
+	// The GetRemoteUserCategories method retrieves user categories information from the
+	// WSRM server.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IWRMRemoteSessionMgmt interface methods are specified in section 3.2.4.9.
 	GetRemoteUserCategories(context.Context, *GetRemoteUserCategoriesRequest) (*GetRemoteUserCategoriesResponse, error)
 
+	// The SetRemoteUserCategories method sets user categories information on the WSRM server.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | Operation successful.                                                            |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG              | One or more arguments are invalid.                                               |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                      | be processed.<114>                                                               |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMRemoteSessionMgmt interface methods are specified in section 3.2.4.9.
 	SetRemoteUserCategories(context.Context, *SetRemoteUserCategoriesRequest) (*SetRemoteUserCategoriesResponse, error)
 
+	// The RefreshRemoteSessionWeights method forces reallocation of CPU quotas for the
+	// sessions run by users according to the category type specified in bstrTargetUserSessions.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER | The XML data is invalid or cannot be processed.                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006F WRM_ERR_ID_VALUE          | The specified name contains characters that are invalid. The name cannot         |
+	//	|                                      | start with a hyphen (-), cannot contain spaces, and cannot contain any of the    |
+	//	|                                      | following characters: \ / ? * | : < > " , ;                                      |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | Operation successful.                                                            |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMRemoteSessionMgmt interface methods are specified in section 3.2.4.9.
 	RefreshRemoteSessionWeights(context.Context, *RefreshRemoteSessionWeightsRequest) (*RefreshRemoteSessionWeightsResponse, error)
 }
 

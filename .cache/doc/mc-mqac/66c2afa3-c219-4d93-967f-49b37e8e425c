@@ -1,0 +1,88 @@
+<div class="content"><p>The ForeignStatus method is received by the server in an
+RPC_REQUEST packet. In response, the server MUST return an enumerated value to
+indicate whether a <a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">Queue</a>
+is a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_ee553c1a-b390-42d5-a785-2412a31f98fb" data-linktype="relative-path">foreign queue</a> or an
+<a href="../ms-mqdmpr/d53d687d-49c4-4b6f-af29-351f7341b423" data-linktype="relative-path">OutgoingQueue</a>
+that transfers <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">messages</a>
+to a foreign queue.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT ForeignStatus(
+   [out, retval] long* plForeignStatus
+ );
+</pre></div>
+</dd></dl><p><b>plForeignStatus: </b>A pointer to a <b>long</b> that
+corresponds to the FOREIGN_STATUS enumeration as defined in the following
+table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQ_STATUS_FOREIGN</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The represented Queue is a foreign queue, or an
+  OutgoingQueue that transfers to a foreign queue.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_STATUS_NOT_FOREIGN</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The represented Queue is not a foreign queue, or an
+  OutgoingQueue that transfers to a foreign queue.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>STATUS_UNKNOWN</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_b8a2f77c-783c-49d0-a724-1393de48ad8a" data-linktype="relative-path">message
+  queuing system</a> is unable to determine whether the represented Queue is a
+  foreign queue.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+processes this call, it MUST follow these guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <b>ObjectIsInitialized</b> instance variable is False:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST return MQ_ERROR_UNINITIALIZED_OBJECT (0xC00E0094) and MUST take no
+further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>The server MUST generate a <b>QMMgmt Get Info</b> event with the
+following inputs:</p>
+<ul><li><p><span><span>  </span></span>iPropID
+= PROPID_MGMT_QUEUE_FOREIGN</p>
+</li><li><p><span><span>  </span></span>If
+the <b>rStatus</b> return value is not equal to MQ_OK (0x00000000), the server
+MUST return <b>rStatus</b> and MUST take no further action.</p>
+</li><li><p><span><span>  </span></span>Else:</p>
+<ul><li><p><span><span> 
+</span></span>If the value of the returned <b>rPropVar</b> was &#34;Yes&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The <b>pIForeignStatus</b> output variable MUST be set to
+MQ_STATUS_FOREIGN, and the server MUST take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the value of the returned <b>rPropVar</b> was &#34;No&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The <b>pIForeignStatus</b> output variable MUST be set to
+MQ_STATUS_NOT_FOREIGN, and the server MUST take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the value of the returned <b>rPropVar</b> was
+&#34;Unknown&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The <b>pIForeignStatus</b> output variable MUST be set to
+MQ_STATUS_UNKNOWN, and the server MUST take no further action.</p>
+</li></ul></li></ul></li></ul></li></ul></div>

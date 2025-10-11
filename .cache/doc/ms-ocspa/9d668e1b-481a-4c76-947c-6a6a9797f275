@@ -1,18 +1,19 @@
 <div class="content"><p>The GetHashAlgorithms method retrieves the list of hash
-algorithms available at the responder that could be used along with the <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_6a2366ee-fc9c-4406-963d-eac335ed8fc5" data-linktype="relative-path">signing certificate</a>
-associated with a <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_11c04cbf-4128-46bd-8b12-02b405424539" data-linktype="relative-path">revocation
-configuration</a> to sign <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_9076fc31-afc2-4c3d-9fd4-bf011837b362" data-linktype="relative-path">OCSP</a>
-responses.</p><dl>
+algorithms available at the responder that could be used along with the <span><a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_6a2366ee-fc9c-4406-963d-eac335ed8fc5" data-linktype="relative-path">signing
+certificate</a></span> associated with a <span><a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_11c04cbf-4128-46bd-8b12-02b405424539" data-linktype="relative-path">revocation configuration</a></span>
+to sign <span><a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_9076fc31-afc2-4c3d-9fd4-bf011837b362" data-linktype="relative-path">OCSP</a></span> responses.</p><dl>
 <dd>
 <div><pre> HRESULT GetHashAlgorithms(
    [in, ref] const BSTR bstrCAId,
    [out, ref] VARIANT* pHashAlgorithms
  );
 </pre></div>
-</dd></dl><p><b>bstrCAId: </b>A <a href="05bfaf02-3616-41d8-bcb7-26432e265716" data-linktype="relative-path">BSTR</a> that specifies the <a href="71ee5299-c869-447e-9ac5-6a6d8de38a90" data-linktype="relative-path">RevocationConfigurationId</a>.</p><p><b>pHashAlgorithms: </b> A pointer to a <a href="689dfe0e-527a-47a4-a3c2-4c4cddb72ad9" data-linktype="relative-path">VARIANT</a> that is of type
-VT_ARRAY | VT_BSTR. Each element in the array is the name of a hash algorithm
-that could be used along with the signing certificate associated with a
-revocation configuration identified by <i>bstrCAId</i> to sign OCSP responses.</p><p>The following processing rules apply:</p><ol><li><p><span>    </span>If <i>bstrCAId</i>
+</dd></dl><p><b>bstrCAId: </b>A <span><a href="05bfaf02-3616-41d8-bcb7-26432e265716" data-linktype="relative-path">BSTR</a></span> that specifies
+the <span><a href="71ee5299-c869-447e-9ac5-6a6d8de38a90" data-linktype="relative-path">RevocationConfigurationId</a></span>.</p><p><b>pHashAlgorithms: </b> A pointer to a <span><a href="689dfe0e-527a-47a4-a3c2-4c4cddb72ad9" data-linktype="relative-path">VARIANT</a></span>
+that is of type VT_ARRAY | VT_BSTR. Each element in the array is the name of a
+hash algorithm that could be used along with the signing certificate associated
+with a revocation configuration identified by <i>bstrCAId</i> to sign OCSP
+responses.</p><p>The following processing rules apply:</p><ol><li><p><span>    </span>If <i>bstrCAId</i>
 or <i>pHashAlgorithms</i> has a NULL value, the responder MUST fail the
 request.  The error code SHOULD be 0x800706f4.</p>
 </li><li><p><span>    </span>If a revocation
@@ -25,6 +26,6 @@ associated with it, the server SHOULD return the list of hash algorithms that
 can be used with the public key associated with the signing certificate to sign
 OCSP responses. </p>
 </li><li><p><span>    </span>If the
-revocation configuration does not have a signing certificate property associated
-with it, the server SHOULD return a default list of hash algorithms.<a id="Appendix_A_Target_18"></a><a aria-label="Product behavior note 18" href="ff1216b3-6fb4-4be8-b256-fb7055b1e86d#Appendix_A_18" data-linktype="relative-path">&lt;18&gt;</a></p>
+revocation configuration does not have a signing certificate property
+associated with it, the server SHOULD return a default list of hash algorithms.<a id="Appendix_A_Target_22"></a><a aria-label="Product behavior note 22" href="ff1216b3-6fb4-4be8-b256-fb7055b1e86d#Appendix_A_22" data-linktype="relative-path">&lt;22&gt;</a></p>
 </li></ol></div>

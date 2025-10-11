@@ -82,12 +82,12 @@ validation ValueMap: </p><dl>
   following properties MUST be ignored if the StreamMode is not plaFile:
   FileName, LogAppend, LogCircular, LogOverwrite, FileNameFormat, and
   FileNameFormatPattern.</p>
-  <p>For TraceSession, the following properties MUST be
-  ignored: RootPath, Duration, Description, Keywords, Segment,
-  SegmentMaxDuration, SerialNumber, Subdirectory, SubdirectoryFormat,
-  SubdirectoryFormatPattern, Task, Schedules,
-  TraceDataCollector[1]/FileNameFormat, TraceDataCollector[1]/FileNameFormatPattern,
-  and TraceDataCollector[1]/LogOverwrite.</p>
+  <p>For TraceSession, the following properties MUST be ignored:
+  RootPath, Duration, Description, Keywords, Segment, SegmentMaxDuration,
+  SerialNumber, Subdirectory, SubdirectoryFormat, SubdirectoryFormatPattern,
+  Task, Schedules, TraceDataCollector[1]/FileNameFormat,
+  TraceDataCollector[1]/FileNameFormatPattern, and
+  TraceDataCollector[1]/LogOverwrite.</p>
   <p>If IDataCollectorSet::Commit() with the flag
   plaUpdateRunningInstance set is called on an IDataCollectorSet of type
   TraceSession, as specified in section <a href="4bdc93e4-efac-4f1d-8aea-f01422899ae5" data-linktype="relative-path">3.2.1</a>, the following

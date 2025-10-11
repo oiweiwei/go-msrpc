@@ -31,8 +31,38 @@ type UpdateSession2Server interface {
 	// IUpdateSession base class.
 	iupdatesession.UpdateSessionServer
 
+	// The IUpdateSession2::UserLocale (opnum 14) method gets the language for update results.
+	//
+	// The IUpdateSession2::UserLocale (opnum 15) method sets the language for update results.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the UserLocale ADM element.
 	GetUserLocale(context.Context, *GetUserLocaleRequest) (*GetUserLocaleResponse, error)
 
+	// The IUpdateSession2::UserLocale (opnum 14) method gets the language for update results.
+	//
+	// The IUpdateSession2::UserLocale (opnum 15) method sets the language for update results.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the UserLocale ADM element.
 	SetUserLocale(context.Context, *SetUserLocaleRequest) (*SetUserLocaleResponse, error)
 }
 

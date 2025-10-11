@@ -1,1 +1,19 @@
-<div class="content"></div>
+<div class="content"><p>The <b>OSPF_AREA_RANGE_PARAM</b> structure MAY<a id="Appendix_A_Target_149"></a><a aria-label="Product behavior note 149" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_149" data-linktype="relative-path">&lt;149&gt;</a> be used to contain the OSPF
+area range parameters. This structure is used by the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="071439e7-a9fd-40e4-91f7-ab756108e82f" data-linktype="relative-path"><b>RRouterInterfaceTransportSetGlobalInfo (section 3.1.4.10)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="14ad8d26-d7d7-48dd-914d-da962d5d7049" data-linktype="relative-path"><b>RRouterInterfaceTransportGetGlobalInfo (section 3.1.4.11)</b></a><span>  </span></p>
+<div><pre> typedef struct _OSPF_AREA_RANGE_PARAM {
+   DWORD type;
+   DWORD create;
+   DWORD enable;
+   DWORD areaId;
+   DWORD rangeNet;
+   DWORD rangeMask;
+ } OSPF_AREA_RANGE_PARAM, *POSPF_AREA_RANGE_PARAM;
+</pre></div>
+</li></ul><p><b>type: </b>This MUST be set to
+OSPF_AREA_RANGE_PARAM_TYPE.</p><p><b>create: </b>Set to 1 if the configuration needs to
+be created or set to 2 if it needs to be deleted.</p><p><b>enable: </b>Set to 1 if the configuration needs to
+be enabled or set to 2 if it needs to be deleted.</p><p><b>areaId: </b>Set to 0 if it is a border. Otherwise,
+set it to any nonzero value.</p><p><b>rangeNet: </b>The IP address of the subnet.</p><p><b>rangeMask: </b>The mask of the IP address subnet.</p></div>

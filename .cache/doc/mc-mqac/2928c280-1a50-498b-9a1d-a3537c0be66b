@@ -1,0 +1,83 @@
+<div class="content"><p>The Delete method is received by the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in an RPC_REQUEST
+packet. In response, the server deletes the <i>referenced queue</i>.</p><dl>
+<dd>
+<div><pre> HRESULT Delete();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the server MUST abide by the
+following contract:</p><ul><li><p><span><span> 
+</span></span>Generate <a href="9bc1500e-4141-4d00-a55b-7b5506b9a372" data-linktype="relative-path">Update
+QueueFormatName</a> event (section 3.10.6.1).</p>
+</li><li><p><span><span> 
+</span></span>If <i>rStatus</i> is an error HRESULT return an error HRESULT,
+and take no further action.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>QueueFormatName</b> instance variable is NULL:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error HRESULT, and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <b>QueueFormatName</b> instance variable identifies more
+than one queue or contains an HTTP or multicast <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_390ae273-7109-44eb-981f-aa157e6b37c0" data-linktype="relative-path">format name</a>:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error HRESULT, and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Look up the <a href="7d8d0dab-699c-4121-9ee4-226a2dbced2e" data-linktype="relative-path">ApplicationQueue</a>,
+referred to as <i>iQueueRef</i>, identified by the <b>QueueFormatName</b>
+instance variable.</p>
+<ul><li><p><span><span>  </span></span>If
+ApplicationQueue does not exist:</p>
+<ul><li><p><span><span> 
+</span></span>Return an error HRESULT, and take no further action.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Define <b>IsLocal</b> as a <a href="../ms-dtyp/51bbfbb1-08e2-4c13-a95e-1eaa7d310670" data-linktype="relative-path">BOOLEAN</a>
+value that equals True if the identified ApplicationQueue belongs to the
+QueueCollection of the local QueueManager. Otherwise, <b>IsLocal</b> equals
+False.</p>
+</li><li><p><span><span> 
+</span></span>Define <b>IsPublic</b> as a BOOLEAN value that equals True if the
+identified ApplicationQueue has <a href="2f388dcb-36be-44ea-95e7-7e9078c50cc2" data-linktype="relative-path">QueueType</a> set to Public.
+Otherwise, <b>IsPublic</b> equals False.</p>
+</li><li><p><span><span> 
+</span></span>If <b>IsLocal</b> equals False and <b>IsPublic</b> equals False:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error HRESULT, and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <b>IsLocal</b> equals True and <b>IsPublic</b> equals False:</p>
+<ul><li><p><span><span>  </span></span>Perform
+an access check by invoking the Access Check Algorithm ([MS-DTYP] section <a href="../ms-dtyp/4f1bbcbb-814a-4c70-a11e-2a5b8779a6f9" data-linktype="relative-path">2.5.3.2</a>)
+with the following parameters:</p>
+<ul><li><p><span><span> 
+</span></span>SecurityDescriptor: <i>iQueueRef.Security</i>.</p>
+</li><li><p><span><span> 
+</span></span>Token: the security token of the caller.<a id="Appendix_A_Target_46"></a><a aria-label="Product behavior note 46" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_46" data-linktype="relative-path">&lt;46&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>Access Request mask: <b>MQSEC_DELETE_QUEUE</b> as defined in
+Section <a href="../ms-mqmq/e5f0e8f9-d67b-4ac0-93a4-1e7e96e87a8c" data-linktype="relative-path">2.2.24</a>
+of [MS-MQMQ].</p>
+</li><li><p><span><span> 
+</span></span>Object Tree: NULL.</p>
+</li><li><p><span><span> 
+</span></span>PrincipalSelfSubst SID: NULL.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the Access Check Algorithm does not return success:</p>
+<ul><li><p><span><span> 
+</span></span>Return an error HRESULT, and take no further action.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Generate the <a href="../ms-mqdmpr/624910fc-cdad-499a-b253-baed6fc8e3f5" data-linktype="relative-path">Delete
+Queue</a> event as defined in <a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a>
+section 3.1.7.1.4 with the following arguments:</p>
+<ul><li><p><span><span>  </span></span><i>iQueue</i>
+= <i>iQueueRef</i>.</p>
+</li><li><p><span><span>  </span></span><i>iSkipDirectory</i>
+= False.</p>
+</li><li><p><span><span>  </span></span>If
+the rStatus return value from Delete Queue is not Success:</p>
+<ul><li><p><span><span> 
+</span></span>Return an error HRESULT, and take no further action.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Reset all the instance variables to the values described in the
+initialization section of the <a href="d22779e5-7d4d-4711-bdf0-3d47adb6c5df" data-linktype="relative-path">MSMQQueueInfo</a> object.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK (0x00000000), and take no further action.</p>
+</li></ul></div>

@@ -31,14 +31,24 @@ type ObjectManagement2Server interface {
 	// INtmsObjectManagement1 base class.
 	intmsobjectmanagement1.ObjectManagement1Server
 
+	// The EnumerateNtmsObjectR method enumerates the objects of the container specified
+	// by lpContainerId.
 	EnumerateNTMSObjectR(context.Context, *EnumerateNTMSObjectRRequest) (*EnumerateNTMSObjectRResponse, error)
 
+	// The GetNtmsUIOptionsA method enumerates the list of computer names to which the specified
+	// type of UI is being directed for an object, with strings encoded using ASCII.
 	GetNTMSUIOptionsA(context.Context, *GetNTMSUIOptionsARequest) (*GetNTMSUIOptionsAResponse, error)
 
+	// The GetNtmsUIOptionsW method enumerates the list of computer names to which the specified
+	// type of UI is being directed for an object. This method encodes strings using Unicode.
 	GetNTMSUIOptionsW(context.Context, *GetNTMSUIOptionsWRequest) (*GetNTMSUIOptionsWResponse, error)
 
+	// The SetNtmsUIOptionsA method modifies the list of computer names to which the specified
+	// type of UI is being directed for an object, with strings encoded using ASCII.
 	SetNTMSUIOptionsA(context.Context, *SetNTMSUIOptionsARequest) (*SetNTMSUIOptionsAResponse, error)
 
+	// The SetNtmsUIOptionsW method modifies the list of computer names to which the specified
+	// type of UI is being directed for an object, with strings encoded using Unicode.
 	SetNTMSUIOptionsW(context.Context, *SetNTMSUIOptionsWRequest) (*SetNTMSUIOptionsWResponse, error)
 }
 

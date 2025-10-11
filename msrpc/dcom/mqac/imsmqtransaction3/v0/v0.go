@@ -49,7 +49,14 @@ type Transaction3Client interface {
 	// IMSMQTransaction2 retrieval method.
 	Transaction2() imsmqtransaction2.Transaction2Client
 
-	// ITransaction operation.
+	// The ITransaction method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns the ITransaction interface on the underlying transaction object.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
+	//
+	// The pvarITransaction output parameter MUST be set to the ITransaction interface pointer
+	// of the Transaction instance variable.
 	GetITransaction(context.Context, *GetITransactionRequest, ...dcerpc.CallOption) (*GetITransactionResponse, error)
 
 	// AlterContext alters the client context.
@@ -336,8 +343,10 @@ func (o *GetITransactionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // GetITransactionResponse structure represents the ITransaction operation response
 type GetITransactionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ITransaction *oaut.Variant  `idl:"name:pvarITransaction" json:"i_transaction"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pvarITransaction: A pointer to a VARIANT (VT_UNKNOWN or VT_EMPTY) that, when successfully
+	// completed, contains the underlying transaction object.
+	ITransaction *oaut.Variant `idl:"name:pvarITransaction" json:"i_transaction"`
 	// Return: The ITransaction return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

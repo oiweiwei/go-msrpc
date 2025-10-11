@@ -1,1 +1,80 @@
-<div class="content"></div>
+<div class="content"><p>The <b>FILTER_DESCRIPTOR</b> structure MUST be used while
+specifying IPv4 <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_ffbe7b55-8e84-4f41-a18d-fc29191a4cda" data-linktype="relative-path">filters</a>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">dwNumFilters</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">faDefaultAction</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">fiFilter
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwVersion (4 bytes): </b>A 32-bit integer in <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_502de58c-ffc0-4dda-8fcb-b152b2c31fba" data-linktype="relative-path">network byte order</a> used to
+specify the version. It MUST be 0x00000001. No other versions are defined.</p><p><b>dwNumFilters (4 bytes): </b>A 32-bit integer in
+network byte order used to specify the number of filters. It MUST be greater
+than 0.</p><p><b>faDefaultAction (4 bytes): </b>A 32-bit integer in
+network byte order used to specify the action for the filter. It MUST be <a href="c5a5872b-86d6-48e3-b71c-83def9d45af4" data-linktype="relative-path"><b>FORWARD_ACTION (section
+2.2.1.1.7)</b></a>.</p><p><b>fiFilter (variable): </b>This MUST contain the
+actual five-tuple filters as specified in section <a href="2aeaf0bd-bf87-4906-94cb-494f379e8c2e" data-linktype="relative-path">2.2.1.2.6</a>.</p><p>When this structure is used as an embedded structure in <a href="c99955ec-6d18-4665-8d5b-e124de63a368" data-linktype="relative-path"><b>RTR_TOC_ENTRY (section 2.2.1.2.4)</b></a>,
+the <b>infoType</b> of <b>RTR_TOC_ENTRY</b> MUST have the value 0xFFFF0001,
+0xFFFF0002, or 0xFFFF0009 to specify an IPv4 in filter, an IPv4 out filter, or
+an IPv4 demand-dial filter respectively.</p><p>This structure is used in the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="927c5bf1-ac91-4325-b945-0d96a58f609b" data-linktype="relative-path"><b>RRouterInterfaceTransportAdd (section 3.1.4.18)</b></a></p>
+</li><li><p><span><span> 
+</span></span><a href="ec9ba293-45e9-4f12-b9af-7e77ec96c90e" data-linktype="relative-path"><b>RRouterInterfaceTransportGetInfo (section 3.1.4.19)</b></a></p>
+</li><li><p><span><span> 
+</span></span><a href="209ba5e7-876e-4406-a05c-65b7e5fb2380" data-linktype="relative-path"><b>RRouterInterfaceTransportSetInfo (section 3.1.4.20)</b></a></p>
+</li><li><p><span><span> 
+</span></span><a href="9829344c-f22b-4d53-946b-20542ec43be4" data-linktype="relative-path"><b>RRouterInterfaceTransportCreate (section 3.1.4.38)</b></a></p>
+</li></ul></div>

@@ -12,8 +12,8 @@ storage module types. </p><dl>
 </pre></div>
 </dd></dl><p><b>FsrmStorageModuleType_Unknown:  </b>The module
 type is unknown. Do not use this value.</p><p><b>FsrmStorageModuleType_Cache:  </b>If the <b>FsrmStorageModuleType_Cache</b>
-flag is set, the classification properties are cached for quick access by storage
-module.</p><p><b>FsrmStorageModuleType_InFile:  </b>If the <b>FsrmStorageModuleType_InFile</b>
+flag is set, the classification properties are cached for quick access by
+storage module.</p><p><b>FsrmStorageModuleType_InFile:  </b>If the <b>FsrmStorageModuleType_InFile</b>
 flag is set, the classification properties are cached within the file itself by
 storage. </p><p><b>FsrmStorageModuleType_Database:  </b>If the <b>FsrmStorageModuleType_Database</b>
 flag is set, the classification properties are cached outside the file (such as

@@ -1,1 +1,21 @@
-<div class="content"></div>
+<div class="content"><p>The IUpdateSession::CreateUpdateSearcher (opnum 13) method
+retrieves an instance of the <b>IUpdateSearcher</b> interface.</p><dl>
+<dd>
+<div><pre> HRESULT CreateUpdateSearcher(
+   [out, retval] IUpdateSearcher** retval
+ );
+</pre></div>
+</dd></dl><p><b>retval:</b> An IUpdateSearcher instance.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method SHOULD return a newly created object
+implementing the <b>IUpdateSearcher</b> interface.</p><p>The returned <b>IUpdateSearcher</b> instance SHOULD use the
+current value of the server&#39;s <b>ClientApplicationID</b> ADM element as the
+client application ID for operations that it performs. The <b>IUpdateSearcher</b>
+instance SHOULD use the current value of the server&#39;s <b>UserLocale</b> ADM
+element to determine the language in which to generate localized results for
+operations that it performs.</p></div>

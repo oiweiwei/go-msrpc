@@ -1,1 +1,83 @@
-<div class="content"></div>
+<div class="content"><p>The EfsRpcAddUsersToFileEx method is used to grant the
+possessors of the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private
+keys</a> corresponding to certain <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_2069b65d-b546-4198-abfd-768badc2258e" data-linktype="relative-path">X.509</a> <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificates</a> the ability to
+decrypt the object.</p><dl>
+<dd>
+<div><pre> DWORD EfsRpcAddUsersToFileEx(
+   [in] handle_t binding_h,
+   [in] DWORD dwFlags,
+   [in, unique] EFS_RPC_BLOB* Reserved,
+   [in, string] wchar_t* FileName,
+   [in] ENCRYPTION_CERTIFICATE_LIST* EncryptionCertificates
+ );
+</pre></div>
+</dd></dl><p><b>binding_h: </b>This is an <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_1cf35308-abab-4123-9cbd-99c42dc9a6ff" data-linktype="relative-path">binding</a> handle parameter,
+as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+and <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a>.</p><p><b>dwFlags: </b>This MUST be set to a bitwise OR of 0
+or more of the following flags. The descriptions of the flags are specified in
+the following table. If the EFSRPC_ADDUSERFLAG_REPLACE_DDF flag is used, then
+the <i>EncryptionCertificates</i> parameter MUST contain exactly one
+certificate.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Name</p>
+   </th>
+   <th>
+   <p>Value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>EFSRPC_ADDUSERFLAG_ADD_POLICY_KEYTYPE</p>
+  </td>
+  <td>
+  <p>0x00000002</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EFSRPC_ADDUSERFLAG_REPLACE_DDF</p>
+  </td>
+  <td>
+  <p>0x00000004</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved: </b>This parameter is not used. It MUST
+be set to NULL by the client and ignored by the server.</p><p><b>FileName: </b>An EFSRPC identifier, as specified
+in section <a href="9db7433f-be13-4605-993f-3695a2d2916e" data-linktype="relative-path">2.2.1</a>.</p><p><b>EncryptionCertificates: </b>A list of
+certificates, represented by an <a href="d5e14019-e104-4ac1-abb9-525ec4f716a7" data-linktype="relative-path">ENCRYPTION_CERTIFICATE_LIST</a>
+structure, which are to be given access to the object.</p><p><b>Return Values: </b>The server MUST return 0 if it
+successfully processes the message received from the client. The server MUST
+return a nonzero value if processing fails.</p><dl>
+<dd>
+<p>If no object exists on the server with the specified
+name, or if it exists and is not encrypted, the server MUST return a nonzero
+value.</p>
+</dd>
+<dd>
+<p>If the EFSRPC_ADDUSERFLAG_REPLACE_DDF flag is set in
+the <i>dwFlags</i> parameter, and the <i>EncryptionCertificates</i> parameter
+contains more than one certificate, the server MUST return a nonzero value.</p>
+</dd>
+<dd>
+<p>If the EFSRPC_ADDUSERFLAG_REPLACE_DDF flag is set in
+the <i>dwFlags</i> parameter, and the calling user does not have the ability to
+decrypt the object, the server MUST return a nonzero value.</p>
+</dd>
+<dd>
+<p>If the EFSRPC_ADDUSERFLAG_REPLACE_DDF flag is set in
+the <i>dwFlags</i> parameter, and the user certificate in the <i>EncryptionCertificates</i>
+parameter already has access to the object, then the server MUST return a zero
+value.</p>
+</dd></dl><p>If the EFSRPC_ADDUSERFLAG_ADD_POLICY_KEYTYPE flag is
+specified in the <i>dwFlags</i> parameter, then for each certificate specified
+in the <i>EncryptionCertificates</i> parameter, the server MUST check whether
+the private <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">key</a> for the
+certificate is stored on a smart card. If the key is stored, the server MUST
+return a nonzero value; otherwise, the server MUST ignore this flag.</p><p>If the EFSRPC_ADDUSERFLAG_REPLACE_DDF flag is set in the <i>dwFlags</i>
+parameter, and the calling user has the ability to decrypt the object, then the
+certificate in the <i>EncryptionCertificates</i> parameter is to be given
+access to the object, replacing one of the calling user&#39;s user certificates
+through which he currently has access.</p></div>

@@ -1,1 +1,614 @@
-<div class="content"></div>
+<div class="content"><p>The NTMS_MEDIATYPEINFORMATION structure defines the
+properties specific to a type of media supported by RSM.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_MEDIATYPEINFORMATION {
+   DWORD MediaType;
+   DWORD NumberOfSides;
+   DWORD ReadWriteCharacteristics;
+   DWORD DeviceType;
+ } NTMS_MEDIATYPEINFORMATION;
+</pre></div>
+</dd></dl><p><b>MediaType:</b>  Each disk or tape driver
+reports the media type enumeration value of the medium that is currently <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b" data-linktype="relative-path">mounted</a> in the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a>. This media type
+value MUST be unique, and is mapped to a human-readable string in the object <b>szName</b>
+member of a <a href="9252e471-a237-453a-9727-dbff3c125510" data-linktype="relative-path">NTMS_OBJECTINFORMATIONA</a>
+or <a href="7a583c21-ca5c-4de4-9b65-96f2e1261625" data-linktype="relative-path">NTMS_OBJECTINFORMATIONW</a>
+structure.</p><p><b>MediaType</b> MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DDS_4mm</p>
+  <p>0x00000020 </p>
+  </td>
+  <td>
+  <p>Tape - DAT, DDS1, DDS2, and so on (all vendors)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MiniQic</p>
+  <p>0x00000021</p>
+  </td>
+  <td>
+  <p>Tape - miniQIC tape</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Travan</p>
+  <p>0x00000022</p>
+  </td>
+  <td>
+  <p>Tape - Travan tape (TR-1, TR-2, TR-3, and so on)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>QIC</p>
+  <p>0x00000023</p>
+  </td>
+  <td>
+  <p>Tape - QIC tape</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MP_8mm</p>
+  <p>0x00000024</p>
+  </td>
+  <td>
+  <p>Tape - 8 mm Exabyte metal particle tape</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AME_8mm</p>
+  <p>0x00000025</p>
+  </td>
+  <td>
+  <p>Tape - 8 mm Exabyte advanced metal evaporative tape</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AIT1_8mm</p>
+  <p>0x00000026</p>
+  </td>
+  <td>
+  <p>Tape - 8 mm Sony AIT</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DLT</p>
+  <p>0x00000027</p>
+  </td>
+  <td>
+  <p>Tape - DLT compact tape (IIIxt or IV)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NCTP</p>
+  <p>0x00000028</p>
+  </td>
+  <td>
+  <p>Tape - Philips NCTP tape</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IBM_3480</p>
+  <p>0x00000029</p>
+  </td>
+  <td>
+  <p>Tape - IBM 3480 tape</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IBM_3490E</p>
+  <p>0x0000002a</p>
+  </td>
+  <td>
+  <p>Tape - IBM 3490E tape</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IBM_Magstar_3590</p>
+  <p>0x0000002b</p>
+  </td>
+  <td>
+  <p>Tape - IBM Magstar 3590 tape</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IBM_Magstar_MP</p>
+  <p>0x0000002c</p>
+  </td>
+  <td>
+  <p>Tape - IBM Magstar MP tape</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>STK_DATA_D3</p>
+  <p>0x0000002d</p>
+  </td>
+  <td>
+  <p>Tape - STK Data D3 tape</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SONY_DTF</p>
+  <p>0x0000002e</p>
+  </td>
+  <td>
+  <p>Tape - Sony DTF tape</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DV_6mm</p>
+  <p>0x0000002f</p>
+  </td>
+  <td>
+  <p>Tape - 6 mm digital video tape</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DMI</p>
+  <p>0x00000030</p>
+  </td>
+  <td>
+  <p>Tape - Exabyte DMI tape and compatibles</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SONY_D2</p>
+  <p>0x00000031</p>
+  </td>
+  <td>
+  <p>Tape - Sony D2S and D2L tape</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CLEANER_CARTRIDGE</p>
+  <p>0x00000032</p>
+  </td>
+  <td>
+  <p>Cleaner (all drive types that support drive cleaners)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CD_ROM</p>
+  <p>0x00000033</p>
+  </td>
+  <td>
+  <p>Optical disk - CD</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CD_R</p>
+  <p>0x00000034</p>
+  </td>
+  <td>
+  <p>Optical disk - CD-Recordable (write once)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CD_RW</p>
+  <p>0x00000035</p>
+  </td>
+  <td>
+  <p>Optical disk - CD-Rewritable</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DVD_ROM</p>
+  <p>0x00000036</p>
+  </td>
+  <td>
+  <p>Optical disk - DVD-ROM</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DVD_R</p>
+  <p>0x00000037</p>
+  </td>
+  <td>
+  <p>Optical disk - DVD-Recordable (write once)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DVD_RW</p>
+  <p>0x00000038</p>
+  </td>
+  <td>
+  <p>Optical disk - DVD-Rewritable</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MO_3_RW</p>
+  <p>0x00000039</p>
+  </td>
+  <td>
+  <p>Optical disk - 3.5 inch rewritable MO disk</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MO_5_WO</p>
+  <p>0x0000003a</p>
+  </td>
+  <td>
+  <p>Optical disk - MO 5.25 inch write once</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MO_5_RW</p>
+  <p>0x0000003b</p>
+  </td>
+  <td>
+  <p>Optical disk - MO 5.25 inch rewritable (not LIMDOW)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MO_5_LIMDOW</p>
+  <p>0x0000003c</p>
+  </td>
+  <td>
+  <p>Optical disk - MO 5.25 inch rewritable (LIMDOW)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PC_5_WO</p>
+  <p>0x0000003d</p>
+  </td>
+  <td>
+  <p>Optical disk - Phase change 5.25 inch write once
+  optical</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PC_5_RW</p>
+  <p>0x0000003e</p>
+  </td>
+  <td>
+  <p>Optical disk - Phase change 5.25 inch rewritable</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PD_5_RW</p>
+  <p>0x0000003f</p>
+  </td>
+  <td>
+  <p>Optical disk - Phase change dual rewritable</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ABL_5_WO</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>Optical disk - Ablative 5.25 inch write once optical</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PINNACLE_APEX_5_RW</p>
+  <p>0x00000041</p>
+  </td>
+  <td>
+  <p>Optical disk - Pinnacle Apex 4.6GB rewritable optical</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SONY_12_WO</p>
+  <p>0x00000042</p>
+  </td>
+  <td>
+  <p>Optical disk - Sony 12 inch write once</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PHILIPS_12_WO</p>
+  <p>0x00000043</p>
+  </td>
+  <td>
+  <p>Optical disk - Philips/LMS 12 inch write once</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>HITACHI_12_WO</p>
+  <p>0x00000044</p>
+  </td>
+  <td>
+  <p>Optical disk - Hitachi 12 inch write once</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CYGNET_12_WO</p>
+  <p>0x00000045</p>
+  </td>
+  <td>
+  <p>Optical disk - Cygnet/ATG 12 inch write once</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>KODAK_14_WO</p>
+  <p>0x00000046</p>
+  </td>
+  <td>
+  <p>Optical disk - Kodak 14 inch write once</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MO_NFR_525</p>
+  <p>0x00000047</p>
+  </td>
+  <td>
+  <p>Optical disk - Near field recording (Terastor)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NIKON_12_RW</p>
+  <p>0x00000048</p>
+  </td>
+  <td>
+  <p>Optical disk - Nikon 12 inch rewritable</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IOMEGA_ZIP</p>
+  <p>0x00000049</p>
+  </td>
+  <td>
+  <p>Magnetic disk - Iomega Zip</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IOMEGA_JAZ</p>
+  <p>0x0000004a</p>
+  </td>
+  <td>
+  <p>Magnetic disk - Iomega Jaz</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SYQUEST_EZ135</p>
+  <p>0x0000004b</p>
+  </td>
+  <td>
+  <p>Magnetic disk - Syquest EZ135</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SYQUEST_EZFLYER</p>
+  <p>0x0000004c</p>
+  </td>
+  <td>
+  <p>Magnetic disk - Syquest EzFlyer</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SYQUEST_SYJET</p>
+  <p>0x0000004d</p>
+  </td>
+  <td>
+  <p>Magnetic disk - Syquest SyJet</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AVATAR_F2</p>
+  <p>0x0000004e</p>
+  </td>
+  <td>
+  <p>Magnetic disk - 2.5 inch floppy</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MP2_8mm</p>
+  <p>0x0000004f</p>
+  </td>
+  <td>
+  <p>Tape - 8 millimeter Hitachi tape</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DST_S</p>
+  <p>0x00000050</p>
+  </td>
+  <td>
+  <p>Ampex DST small tapes</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DST_M</p>
+  <p>0x00000051</p>
+  </td>
+  <td>
+  <p>Ampex DST medium tapes</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DST_L</p>
+  <p>0x00000052</p>
+  </td>
+  <td>
+  <p>Ampex DST large tapes</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VXATape_1</p>
+  <p>0x00000053</p>
+  </td>
+  <td>
+  <p>Ecrix 8 millimeter tape</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VXATape_2</p>
+  <p>0x00000054</p>
+  </td>
+  <td>
+  <p>Ecrix 8 millimeter tape</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>STK_9840</p>
+  <p>0x00000055</p>
+  </td>
+  <td>
+  <p>STK 9840</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LTO_Ultrium</p>
+  <p>0x00000056</p>
+  </td>
+  <td>
+  <p>IBM, HP, Seagate LTO Ultrium</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>LTO_Accelis</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>IBM, HP, Seagate LTO Accelis</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DVD_RAM</p>
+  <p>0x00000058</p>
+  </td>
+  <td>
+  <p>Optical disk - DVD-RAM</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AIT_8mm</p>
+  <p>0x00000059</p>
+  </td>
+  <td>
+  <p>AIT2 or higher</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADR_1</p>
+  <p>0x0000005a</p>
+  </td>
+  <td>
+  <p>OnStream ADR Mediatypes</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ADR_2</p>
+  <p>0x0000005b</p>
+  </td>
+  <td>
+  <p>OnStream ADR Mediatypes</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>STK_9940</p>
+  <p>0x0000005c</p>
+  </td>
+  <td>
+  <p>STK 9940</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>SAIT</p>
+  <p>0x0000005d</p>
+  </td>
+  <td>
+  <p>SAIT tapes</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>NumberOfSides:</b>  The number of <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_55db62c5-a84f-43b7-a037-b44ecd8fb92f" data-linktype="relative-path">sides</a> on the media. </p><p><b>ReadWriteCharacteristics:</b>  Identifies
+the read/write characteristics of the media type. This MUST be one of the
+following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_MEDIARW_UNKNOWN</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Unknown media characteristics. This value can be used
+  to initialize <b>ReadWriteCharacteristics</b> before a final value is
+  assigned.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_MEDIARW_REWRITABLE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Media that can be written to more than once. This
+  includes magnetic tape, magnetic disk, and some optical disk media.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_MEDIARW_WRITEONCE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Media that can be written to only one time. Some
+  optical media (for example, 5.25-inch, 12-inch, 14-inch WORM, and CD-R) are
+  designed to be write-once.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_MEDIARW_READONLY</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Media that cannot be written to, such as a CD-ROM and
+  a DVD-ROM.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>DeviceType:</b>  The SCSI device type <a href="https://go.microsoft.com/fwlink/?LinkId=90512" data-linktype="external">[ANSI-131-1994]</a> as
+reported from device inquiry data. This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FILE_DEVICE_CD_ROM</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>CD-ROM device.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILE_DEVICE_DISK</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>Direct-access device.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILE_DEVICE_TAPE</p>
+  <p>0x0000001F</p>
+  </td>
+  <td>
+  <p>Sequential-access device.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

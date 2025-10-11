@@ -1,1 +1,140 @@
-<div class="content"></div>
+<div class="content"><p>The ExecuteAccountingQuery method executes an <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1156c8ef-4d49-462b-9f76-aebcb6c57011" data-linktype="relative-path">accounting</a> query.</p><dl>
+<dd>
+<div><pre> [id(3), helpstring(&#34;method ExecuteAccountingQuery&#34;)] HRESULT ExecuteAccountingQuery(
+   [in] BSTR bstrAccountingQuery,
+   [in] BSTR bstrStartingDate,
+   [in] BSTR bstrEndingDate,
+   [out] BSTR* pbstrResult,
+   [out] BOOL* pbIsThereMoreData
+ );
+</pre></div>
+</dd></dl><p><b>bstrAccountingQuery: </b>A string that specifies
+an <a href="b2c8a8a6-85df-4159-af48-f498eb9a22a0" data-linktype="relative-path">AccountingQueryCondition
+element (section 2.2.5.5)</a> in <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a>. For an example, see
+section <a href="f581e53f-213a-4f09-bf38-533e969850de" data-linktype="relative-path">4.2.5</a>.</p><p><b>bstrStartingDate: </b>A string that specifies the
+starting date for the query, in <a href="edaf1cfc-12b2-4093-8ff8-227c21f9bff5" data-linktype="relative-path">date-and-time</a> format
+(section 2.2.1.3). If this value is not in the correct format, the date range
+is ignored and the complete set of accounting data is returned.</p><p><b>bstrEndingDate: </b>A string that specifies the
+ending date for the query, in date-and-time format. If this value is not in the
+correct format, the date range is ignored and the complete set of accounting
+data is returned.</p><p><b>pbstrResult: </b>A pointer to a string that
+returns the requested data.</p><dl>
+<dd>
+<p>This string is formatted as a set of rows
+representing <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_9a8eeb7e-bb30-4936-8793-51d73698344e" data-linktype="relative-path">accounting
+process</a> entries. Rows are delimited by carriage return escape characters
+(\r). Each row is a set of columns delimited by newline escape characters (\n).
+The columns correspond in number and order to the columns specified in the
+AccountingQueryCondition element in the <i>bstrAccountingQuery</i> parameter.</p>
+</dd></dl><p><b>pbIsThereMoreData: </b>A pointer to a Boolean
+value that specifies whether more data is available.</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF01FA</p>
+  <p>WRM_ERR_WYUKON_NOT_CONNECTABLE</p>
+  </td>
+  <td>
+  <p>Cannot establish a connection to the accounting
+  database.<a id="Appendix_A_Target_41"></a><a aria-label="Product behavior note 41" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_41" data-linktype="relative-path">&lt;41&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF01FE</p>
+  <p>WRM_ERR_JET_INVALID_COLUMN_NAME</p>
+  </td>
+  <td>
+  <p>The query has been canceled. One or more of the column
+  names specified in the accounting query are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0200</p>
+  <p>WRM_ERR_JET_PIVOTABLE_COLUMN_NOT_GROUPED_BY</p>
+  </td>
+  <td>
+  <p>One or more SQL <b>SELECT</b> columns cannot be
+  selected because of the current SQL <b>GROUP BY</b> settings. These columns
+  MUST be grouped to be selected.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0201</p>
+  <p>WRM_ERR_JET_INVALID_GROUP_BY_COL</p>
+  </td>
+  <td>
+  <p>One or more columns specified for SQL <b>GROUP BY</b>
+  is either invalid or cannot be grouped on.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0203</p>
+  <p>WRM_ERR_JET_SERVER_TOO_BUSY</p>
+  </td>
+  <td>
+  <p>The server can service only one accounting request at
+  a time.<a id="Appendix_A_Target_42"></a><a aria-label="Product behavior note 42" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_42" data-linktype="relative-path">&lt;42&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0207</p>
+  <p>WRM_ERR_JET_SERVICE_BEING_SHUT_DOWN</p>
+  </td>
+  <td>
+  <p>The query has been aborted since the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1517eb9b-d2b2-48f0-bf23-bde76923ed30" data-linktype="relative-path">management service</a> is
+  being shut down.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The error <b>WRM_ERR_JET_PIVOTABLE_COLUMN_NOT_GROUPED_BY</b>
+is returned in cases where a column with the <b>IsVisible</b> attribute set to
+FALSE is included in the SQL <b>SELECT</b> column while there are some columns
+in the group column collection. The following sample AccountingQueryCondition
+XML (section 2.2.5.5) SHOULD return this error:</p>
+</dd>
+<dd>
+<div><pre>  
+ &lt;AccountingQueryCondition&gt;
+     &lt;SelectFieldCollection&gt;
+         &lt;Column&gt;ProcessName&lt;/Column&gt;
+         &lt;Column&gt;ProcessId&lt;/Column&gt;
+     &lt;/SelectFieldCollection&gt;
+     &lt;GroupColumnCollection&gt;
+         &lt;Column&gt;ProcessName&lt;/Column&gt;
+     &lt;/GroupColumnCollection&gt;
+     &lt;OrderColumnCollection /&gt;
+     &lt;HavingClause /&gt;
+ &lt;/AccountingQueryCondition&gt;
+</pre></div>
+</dd></dl><p>Additional <a href="d5942816-752f-480a-9712-38ef0a248b6a" data-linktype="relative-path">IWRMAccounting</a> interface
+methods are specified in section 3.2.4.3.</p></div>

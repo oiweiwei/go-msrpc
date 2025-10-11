@@ -1,1 +1,23 @@
-<div class="content"></div>
+<div class="content"><p>The IUpdateSearcher::EscapeString (opnum 18) method escapes
+a string such that it can be used as a literal value in a search criteria
+string.</p><dl>
+<dd>
+<div><pre> HRESULT EscapeString(
+   [in] BSTR unescaped,
+   [out, retval] BSTR* retval
+ );
+</pre></div>
+</dd></dl><p><b>unescaped: </b>The string to escape.</p><p><b>retval: </b>Resulting escaped string.</p><dl>
+<dd>
+<p>Strings are escaped as follows: all single-quote
+(&#39;), open square bracket ([), and close square bracket (]) characters in the
+unescaped string MUST be replaced with [&#39;], [[], and []] sequences,
+respectively.</p>
+</dd></dl><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method MUST return the escaped string.</p></div>

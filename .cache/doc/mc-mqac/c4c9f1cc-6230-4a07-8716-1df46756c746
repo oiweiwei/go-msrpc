@@ -1,0 +1,28 @@
+<div class="content"><p>The XACTTC enumeration defines the commit behavior of a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a>. The values in
+this enumeration indicate the synchronous, asynchronous, or two-phased behavior
+of the transaction.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   XACTTC_NONE = 0x0000,
+   XACTTC_SYNC_PHASEONE = 0x0001,
+   XACTTC_SYNC_PHASETWO = 0x0002,
+   XACTTC_SYNC = 0x0002,
+   XACTTC_ASYNC_PHASEONE = 0x0004,
+   XACTTC_ASYNC = 0x0004
+ } XACTTC;
+</pre></div>
+</dd></dl><p><b>XACTTC_NONE:  </b>The default commit behavior of
+the transaction coordinator is used.</p><p><b>XACTTC_SYNC_PHASEONE:  </b>The commit method
+returns after <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_3f6748df-7ed2-4569-8a8d-805a0cfd8eb1" data-linktype="relative-path">phase one</a>
+of the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_41b6ce49-256f-4a26-94a6-a520b9d5e541" data-linktype="relative-path">two-phase commit</a>
+is completed.</p><p><b>XACTTC_SYNC_PHASETWO:  </b>The commit method
+returns after <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_5167af73-5707-4d35-a2b3-454db06407f5" data-linktype="relative-path">phase two</a>
+of the two-phase commit is completed.</p><p><b>XACTTC_SYNC:  </b>The commit method returns after
+phase two of the two-phase commit is completed.</p><p><b>XACTTC_ASYNC_PHASEONE:  </b>The <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_573d9061-e2ef-443a-8edd-c36c6df45abd" data-linktype="relative-path">commit request</a> is performed
+asynchronously.</p><p><b>XACTTC_ASYNC:  </b>The commit request is performed
+asynchronously.</p><p>Used by:</p><ul><li><p><span><span> 
+</span></span><a href="78fb0ab6-c519-4de1-a49f-839907f07d3d" data-linktype="relative-path">ITransaction::Commit</a></p>
+</li><li><p><span><span> 
+</span></span><a href="ce43a803-e25e-4246-ad7c-97045b302d45" data-linktype="relative-path">IMSMQTransaction::Commit</a></p>
+</li></ul></div>

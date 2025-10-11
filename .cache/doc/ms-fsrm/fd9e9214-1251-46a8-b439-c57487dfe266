@@ -56,8 +56,7 @@ success, or a nonzero error code on failure.</p><dl>
  </tr></tbody></table>
 </dd></dl><p>Upon receiving this message, the server MUST validate
 parameters:</p><ul><li><p><span><span> 
-</span></span>If <i>fileScreens</i> is NULL, the server MUST return
-E_INVALIDARG.</p>
+</span></span>If <i>fileScreens</i> is NULL, the server MUST return E_INVALIDARG.</p>
 </li><li><p><span><span> 
 </span></span>If <i>options</i> contains <b>FsrmEnumOptions_Asynchronous</b> or
 any value other than what is specified in section 2.2.1.2.5, the server MUST
@@ -73,10 +72,9 @@ Screen Instances (section 3.2.1.3.1.2)</a> copied from the <a href="73d37c2e-5d4
 Screens (section 3.2.1.3.1.1)</a> in the <b>List of Persisted File
 Screens</b> according to the following rules:</p>
 <ul><li><p><span><span>  </span></span>If <i>path</i>
-ends with &#34;\*&#34;, the server MUST populate this <b>List of
-Non-Persisted File Screen Instances</b> with a copy of every Persisted File
-Screen from the <b>List of Persisted File Screens</b> that belongs to an immediate
-subdirectory of <i>path</i>.</p>
+ends with &#34;\*&#34;, the server MUST populate this <b>List of Non-Persisted
+File Screen Instances</b> with a copy of every Persisted File Screen from the <b>List
+of Persisted File Screens</b> that belongs to an immediate subdirectory of <i>path</i>.</p>
 </li><li><p><span><span>  </span></span>If <i>path</i>
 ends with &#34;\...&#34;, the server MUST populate this <b>List of
 Non-Persisted File Screen Instances</b> with a copy of every Persisted File

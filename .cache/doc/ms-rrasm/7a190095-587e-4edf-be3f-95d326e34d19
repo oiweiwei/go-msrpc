@@ -1,1 +1,68 @@
-<div class="content"></div>
+<div class="content"><p>The <b>Enum</b> structure contains information specific to
+the <b>REQTYPE_PORTENUM</b> <a href="fcb89c61-ced3-43ba-a2ef-4c6f4a2d40a6" data-linktype="relative-path"><b>ReqTypes (section 2.2.1.1.18)</b></a>
+value. </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">retcode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">size</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">entries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">buffer
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>retcode (4 bytes): </b>Specifies the return status
+as explained in section <a href="c39d153e-2f97-4e11-8aff-bcf983869dc9" data-linktype="relative-path">2.2.1.2.218</a>
+for the <b>retcode</b> field.</p><p><b>size (4 bytes): </b>Specifies the size in bytes of
+the <b>buffer</b>.</p><p><b>entries (4 bytes): </b>Specifies the number of
+port entries as pointed by the <b>buffer</b>.</p><p><b>buffer (variable): </b>Points to the array of <a href="795a440d-86be-4710-8d61-5d92dd0fd3c6" data-linktype="relative-path"><b>RASMAN_PORT_32 (section</b></a><span><b> </b></span>2.2.1.2.226) structures.  </p></div>

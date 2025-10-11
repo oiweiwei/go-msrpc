@@ -1,1 +1,23 @@
-<div class="content"></div>
+<div class="content"><p>The Microsoft OCSP Administration Protocol consists of a set
+of <span><a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">DCOM</a></span>
+interfaces <span><a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a></span>
+that allows administrative tools to configure the properties of a responder. </p><p>A responder is a server implementation of the <span><a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_9076fc31-afc2-4c3d-9fd4-bf011837b362" data-linktype="relative-path">Online
+Certificate Status Protocol (OCSP)</a></span>. A responder can be configured to
+provide revocation information for <span><a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificates</a></span> issued
+by one or more <span><a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_c925d5d7-a442-4ba4-9586-5f94ccec847a" data-linktype="relative-path">certificate authorities (CAs)</a></span>
+by creating a <span><a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_11c04cbf-4128-46bd-8b12-02b405424539" data-linktype="relative-path">revocation configuration</a></span>
+for each CA key. A responder also has properties that apply generically across
+all revocation configurations. These properties are sometimes referenced as
+&#34;responder-wide&#34; properties or simply <span><a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_3a8d9bce-0efe-456f-a351-a061ca997dd1" data-linktype="relative-path">responder properties</a></span>.</p><p>Using this protocol, administrative tools can perform such
+functions as getting or setting responder properties, creating and removing
+revocation configurations, and retrieving <span><a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_6a2366ee-fc9c-4406-963d-eac335ed8fc5" data-linktype="relative-path">signing certificates</a></span>
+from a responder.</p><p>The participants in this protocol are as follows:</p><ul><li><p><span><span> 
+</span></span><span><a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_688a239d-e58b-42df-b622-da727dca4227" data-linktype="relative-path">Online Responder</a></span>
+computer.</p>
+</li><li><p><span><span> 
+</span></span>Administrator computer: A client computer that performs remote
+configuration or administration tasks on the Online Responder computer.</p>
+</li></ul><p>The protocol uses the IOCSPAdminD DCOM interface, which
+offers the 10 methods documented in the following sections. These methods allow
+the administrator to set and retrieve properties, set and retrieve security
+information, and to test whether the service is responding.</p></div>

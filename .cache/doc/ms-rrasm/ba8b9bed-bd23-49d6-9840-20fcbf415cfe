@@ -1,1 +1,46 @@
-<div class="content"></div>
+<div class="content"><p>The <b>PROJECTION_INFO_IDL_1</b> union is used in <a href="d9078168-75b2-4d5d-93b6-f39b29736682" data-linktype="relative-path"><b>RAS_CONNECTION_EX_1_IDL (section 2.2.1.2.133)</b></a>
+structure as a placeholder for <a href="ec995980-0a4b-421f-ab29-b18a021d1320" data-linktype="relative-path"><b>PPP_PROJECTION_INFO_1 (section 2.2.1.2.130)</b></a>
+structure or <a href="2696c821-a06f-4020-a3b3-96b88aecb7af" data-linktype="relative-path"><b>IKEV2_PROJECTION_INFO_1 (section 2.2.1.2.131)</b></a>
+structure.   </p><dl>
+<dd>
+<div><pre>typedef union _PROJECTION_INFO_IDL_1  switch (UCHAR projectionInfoType) ProjectInfoObject
+ {
+    case 1:
+     PPP_PROJECTION_INFO_1 PppProjectionInfo;
+    case 2:
+     IKEV2_PROJECTION_INFO_1 Ikev2ProjectionInfo;
+ } ProjectionInfoObject} PROJECTION_INFO_IDL_1,
+  *PPROJECTION_INFO_IDL_1;
+</pre></div>
+</dd></dl><p><b>projectionInfoType: </b>Specifies if the
+projection is for a PPP-based or IKEv2-based tunnel.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MPRAPI_PPP_PROJECTION_INFO_TYPE</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>Data corresponds to <b>PPP_PROJECTION_INFO_1</b>. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRAPI_IKEV2_PROJECTION_INFO_TYPE</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>Data corresponds to <b>IKEV2_PROJECTION_INFO_1</b>. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>PppProjectionInfo: </b>Contains a <b>PPP_PROJECTION_INFO_1</b>
+for a PPP-based tunnel.</p><p><b>Ikev2ProjectionInfo: </b>Contains an <b>IKEV2_PROJECTION_INFO_1</b>
+for an IKEv2-based tunnel. </p></div>

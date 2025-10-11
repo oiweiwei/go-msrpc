@@ -1,1 +1,28 @@
-<div class="content"></div>
+<div class="content"><p>The Shadow Copy Management Protocol provides a mechanism for
+remote configuration of <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow
+copies</a>. Through the Shadow Copy Management Protocol, a client performs
+operations to enumerate shadow copies and configure the storage size and
+location that are used to maintain the shadow copies on the server.</p><p>The Shadow Copy Management Protocol is expressed as a set of
+<a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">DCOM</a> <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interfaces</a>. The server end
+of the protocol implements support for the DCOM interfaces to manage shadow
+copy configuration objects. The client end of the protocol invokes method calls
+on the interfaces to perform shadow copy configuration tasks on the server.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="a416d651-f4e6-478a-ac85-fc89431348ac#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a> Specifically, the protocol is
+used for the following purposes:</p><ul><li><p><span><span> 
+</span></span>Enumerating the <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volumes</a>
+on the server that can be shadow copied.</p>
+</li><li><p><span><span> 
+</span></span>Enumerating the shadow copies that are currently available on the
+server and that are point-in-time copies of a specified <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_57484dae-5eef-4485-bfe4-db22b9cd90d6" data-linktype="relative-path">original volume</a>.</p>
+</li><li><p><span><span> 
+</span></span>Enumerating the volumes on the server that can be used as <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_d85fc09f-c375-4e90-952d-7c95a8e244dd" data-linktype="relative-path">shadow copy storage</a>.</p>
+</li><li><p><span><span> 
+</span></span>Creating, modifying, enumerating, and deleting the <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_34a368ce-08be-44b8-8d15-cfa0d4ac176e" data-linktype="relative-path">shadow copy storage association</a>
+objects that define the location and size of shadow copy storage for specific
+original volumes.</p>
+</li><li><p><span><span> 
+</span></span>Querying all the shadow copy storage association objects on the
+server that provide shadow copy storage for a specified original volume.</p>
+</li><li><p><span><span> 
+</span></span>Querying all the shadow copy storage association objects on the
+server that are located on a specified <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_9abab753-55aa-4455-bb21-7b51a32654fa" data-linktype="relative-path">shadow copy storage volume</a>.</p>
+</li></ul></div>

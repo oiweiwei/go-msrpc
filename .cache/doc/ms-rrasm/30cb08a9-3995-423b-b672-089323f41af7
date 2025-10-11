@@ -1,1 +1,12 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RAS_HARDWARE_CONDITION</b> enumeration type specifies
+hardware status information about a given <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_76717edf-a943-4324-bce3-807df4b53153" data-linktype="relative-path">RAS port</a>.</p><dl>
+<dd>
+<div><pre> typedef enum _RAS_HARDWARE_CONDITION
+ {
+   RAS_HARDWARE_OPERATIONAL,
+   RAS_HARDWARE_FAILURE
+ } RAS_HARDWARE_CONDITION;
+</pre></div>
+</dd></dl><p><b>RAS_HARDWARE_OPERATIONAL: </b>The hardware
+attached to this RAS port is operational and is ready to receive client calls.</p><p><b>RAS_HARDWARE_FAILURE: </b>The hardware attached to
+this RAS port has failed.</p></div>

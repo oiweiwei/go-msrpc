@@ -1,0 +1,34 @@
+<div class="content"><p>The ClearInvalidSections method is received by the server in
+an RPC_REQUEST packet. In response, the server MAY clear any invalid <a href="59774887-09e3-4de5-ad8e-4794f404b123" data-linktype="relative-path">IAppHostElement</a> objects
+that exist in the specific <a href="3687acff-fb79-4e02-8349-6ca2f49df2a5" data-linktype="relative-path">IAppHostConfigFile</a>.</p><dl>
+<dd>
+<div><pre> HRESULT ClearInvalidSections();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>This method MUST return S_OK
+(0x00000000) on success, and a failure result (as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/32cce05d-3a39-4c7e-8f66-5e788e1107cf" data-linktype="relative-path">2</a>)
+on failure. All failure results MUST be treated identically. The following
+table specifies failure results specific to this method.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80070032</p>
+  <p>ERROR_NOT_SUPPORTED</p>
+  </td>
+  <td>
+  <p>The request is not supported.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>When processing this call, the server MUST do the following:</p><ul><li><p><span><span> 
+</span></span>If clearing invalid sections is not supported, the server MUST
+return ERROR_NOT_SUPPORTED.</p>
+</li></ul></div>

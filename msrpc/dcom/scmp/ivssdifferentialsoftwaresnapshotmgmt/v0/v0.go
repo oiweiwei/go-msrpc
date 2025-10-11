@@ -49,14 +49,133 @@ type DifferentialSoftwareSnapshotManagementClient interface {
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
 
+	// The AddDiffArea method creates a shadow copy storage association for a shadow copy.
+	//
+	// Return Values: The method MUST return the following error code for the specific conditions.
+	//
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                         RETURN                          |                                                                                  |
+	//	|                       VALUE/CODE                        |                                   DESCRIPTION                                    |
+	//	|                                                         |                                                                                  |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8004230d VSS_E_OBJECT_ALREADY_EXISTS                  | The object already exists on the server.                                         |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                                 | R returned when pwszVolumeName or pwszDiffAreaVolumeName is NULL, or if          |
+	//	|                                                         | llMaximumDiffSpace is 0.                                                         |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8004230c VSS_E_VOLUME_NOT_SUPPORTED                   | Returned when the pwszVolumeName does not support shadow copies, or              |
+	//	|                                                         | pwszDiffAreaVolumeName does not support shadow copy storage.                     |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8004231e VSS_E_MAXIMUM_DIFF-AREA_ASSOCIATIONS_REACHED | Returned when the maximum number of diff area associations for pwszVolumeName    |
+	//	|                                                         | has been reached.                                                                |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80042306 VSS_E_PROVIDER_VETO                          | Returned when the snapshot provider receives an expected error and tries to veto |
+	//	|                                                         | the impending operation.                                                         |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 E_ACCESSDENIED                               | Returned when the user making the request does not have sufficient privileges to |
+	//	|                                                         | perform the operation.                                                           |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// No exceptions are thrown except those that are thrown by the underlying RPC protocol
+	// specified in [MS-RPCE].
 	AddDiffArea(context.Context, *AddDiffAreaRequest, ...dcerpc.CallOption) (*AddDiffAreaResponse, error)
 
+	// The ChangeDiffAreaMaximumSize method changes the maximum size of a shadow copy storage
+	// association on the server.
+	//
+	// Return Values: The method MUST return the following error code for the specific conditions.
+	//
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                 |                                                                                  |
+	//	|              VALUE/CODE               |                                   DESCRIPTION                                    |
+	//	|                                       |                                                                                  |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80042308 VSS_E_OBJECT_NOT_FOUND     | The object does not exist on the server.                                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG               | Returned when pwszVolumeName or pwszDiffAreaVolume is NULL.                      |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8004231d VSS_E_VOLUME_IN_USE        | Returned when llMaximumDiffSpace is zero, and the diff area cannot be deleted    |
+	//	|                                       | because shadow copies are still being stored.                                    |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8004231f VSS_E_INSUFFICIENT_STORAGE | Returned if a nonzero size is specified in llMaximumDiffSpace that is smaller    |
+	//	|                                       | than the size required for storing a single shadow copy.                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 E_ACCESSDENIED             | Returned when the user making the request does not have sufficient privileges to |
+	//	|                                       | perform the operation.                                                           |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// No exceptions are thrown except those that are thrown by the underlying RPC protocol
+	// [MS-RPCE].
 	ChangeDiffAreaMaximumSize(context.Context, *ChangeDiffAreaMaximumSizeRequest, ...dcerpc.CallOption) (*ChangeDiffAreaMaximumSizeResponse, error)
 
+	// The QueryVolumesSupportedForDiffAreas method retrieves from the server the collection
+	// of volumes that can be used as a shadow copy storage volume for a specified original
+	// volume.
+	//
+	// Return Values: The method MUST return zero when it has succeeded or an implementation-specific
+	// nonzero error code on failure.
+	//
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	|          RETURN           |                                                                                  |
+	//	|        VALUE/CODE         |                                   DESCRIPTION                                    |
+	//	|                           |                                                                                  |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG   | Returned when pwszOriginalVolumeName or ppEnum is NULL.                          |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 E_ACCESSDENIED | Returned when the user making the request does not have sufficient privileges to |
+	//	|                           | perform the operation.                                                           |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//
+	// No exceptions are thrown except those that are thrown by the underlying RPC protocol
+	// [MS-RPCE].
 	QueryVolumesSupportedForDiffAreas(context.Context, *QueryVolumesSupportedForDiffAreasRequest, ...dcerpc.CallOption) (*QueryVolumesSupportedForDiffAreasResponse, error)
 
+	// The QueryDiffAreasForVolume method retrieves from the server the collection of shadow
+	// copy storage associations that are being used for shadow copy storage for a specified
+	// original volume.
+	//
+	// Return Values: The method MUST return zero when it has succeeded or an implementation-specific
+	// nonzero error code on failure.
+	//
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	|          RETURN           |                                                                                  |
+	//	|        VALUE/CODE         |                                   DESCRIPTION                                    |
+	//	|                           |                                                                                  |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG   | Returned when pwszVolumeName or ppEnum is NULL.                                  |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 E_ACCESSDENIED | Returned when the user making the request does not have sufficient privileges to |
+	//	|                           | perform the operation.                                                           |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//
+	// No exceptions are thrown except those that are thrown by the underlying RPC protocol
+	// [MS-RPCE].
 	QueryDiffAreasForVolume(context.Context, *QueryDiffAreasForVolumeRequest, ...dcerpc.CallOption) (*QueryDiffAreasForVolumeResponse, error)
 
+	// The QueryDiffAreasOnVolume method retrieves from the server the collection of shadow
+	// copy storage associations that are located on a specified volume.
+	//
+	// Return Values: The method MUST return zero when it has succeeded or an implementation-specific
+	// nonzero error code on failure.
+	//
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	|          RETURN           |                                                                                  |
+	//	|        VALUE/CODE         |                                   DESCRIPTION                                    |
+	//	|                           |                                                                                  |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG   | Returned when pwszVolumeName or ppEnum is NULL.                                  |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 E_ACCESSDENIED | Returned when the user making the request does not have sufficient privileges to |
+	//	|                           | perform the operation.                                                           |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//
+	// No exceptions are thrown except those that are thrown by the underlying RPC protocol
+	// [MS-RPCE].
 	QueryDiffAreasOnVolume(context.Context, *QueryDiffAreasOnVolumeRequest, ...dcerpc.CallOption) (*QueryDiffAreasOnVolumeResponse, error)
 
 	// Opnum08NotUsedOnWire operation.
@@ -435,10 +554,20 @@ func (o *xxx_AddDiffAreaOperation) UnmarshalNDRResponse(ctx context.Context, w n
 // AddDiffAreaRequest structure represents the AddDiffArea operation request
 type AddDiffAreaRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This               *dcom.ORPCThis `idl:"name:This" json:"this"`
-	VolumeName         string         `idl:"name:pwszVolumeName" json:"volume_name"`
-	DiffAreaVolumeName string         `idl:"name:pwszDiffAreaVolumeName" json:"diff_area_volume_name"`
-	MaximumDiffSpace   int64          `idl:"name:llMaximumDiffSpace" json:"maximum_diff_space"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// pwszVolumeName:  A null-terminated UNICODE string that contains the drive letter,
+	// mount point, or volume mount name of the volume for which the shadow copy is made.
+	// This is the original volume.
+	VolumeName string `idl:"name:pwszVolumeName" json:"volume_name"`
+	// pwszDiffAreaVolumeName: A null-terminated UNICODE string that contains the drive
+	// letter, mount point, or volume mount name of the volume on which the shadow copy
+	// storage is located for the volume that is specified in pwszVolumeName. This is the
+	// shadow copy storage volume.
+	DiffAreaVolumeName string `idl:"name:pwszDiffAreaVolumeName" json:"diff_area_volume_name"`
+	// llMaximumDiffSpace: The maximum number of BYTEs that the shadow copy storage will
+	// occupy. The server MAY automatically delete shadow copies based on an implementation-specific
+	// algorithm that reclaims space for newer shadow copies.
+	MaximumDiffSpace int64 `idl:"name:llMaximumDiffSpace" json:"maximum_diff_space"`
 }
 
 func (o *AddDiffAreaRequest) xxx_ToOp(ctx context.Context, op *xxx_AddDiffAreaOperation) *xxx_AddDiffAreaOperation {
@@ -726,10 +855,20 @@ func (o *xxx_ChangeDiffAreaMaximumSizeOperation) UnmarshalNDRResponse(ctx contex
 // ChangeDiffAreaMaximumSizeRequest structure represents the ChangeDiffAreaMaximumSize operation request
 type ChangeDiffAreaMaximumSizeRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This               *dcom.ORPCThis `idl:"name:This" json:"this"`
-	VolumeName         string         `idl:"name:pwszVolumeName" json:"volume_name"`
-	DiffAreaVolumeName string         `idl:"name:pwszDiffAreaVolumeName" json:"diff_area_volume_name"`
-	MaximumDiffSpace   int64          `idl:"name:llMaximumDiffSpace" json:"maximum_diff_space"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// pwszVolumeName: A null-terminated UNICODE string that contains the drive letter,
+	// mount point, or volume mount name of the volume for which the shadow copy is made.
+	// This is the original volume.
+	VolumeName string `idl:"name:pwszVolumeName" json:"volume_name"`
+	// pwszDiffAreaVolumeName: A null-terminated UNICODE string that contains the drive
+	// letter, mount point, or volume mount name of the volume on which the shadow copy
+	// storage is located for the volume specified in pwszVolumeName. This is the shadow
+	// copy storage volume.
+	DiffAreaVolumeName string `idl:"name:pwszDiffAreaVolumeName" json:"diff_area_volume_name"`
+	// llMaximumDiffSpace: The maximum number of BYTEs that the shadow copy storage will
+	// occupy. The server MAY automatically delete shadow copies based on an implementation-specific
+	// algorithm that reclaims space for newer shadow copies.
+	MaximumDiffSpace int64 `idl:"name:llMaximumDiffSpace" json:"maximum_diff_space"`
 }
 
 func (o *ChangeDiffAreaMaximumSizeRequest) xxx_ToOp(ctx context.Context, op *xxx_ChangeDiffAreaMaximumSizeOperation) *xxx_ChangeDiffAreaMaximumSizeOperation {
@@ -1013,8 +1152,10 @@ func (o *xxx_QueryVolumesSupportedForDiffAreasOperation) UnmarshalNDRResponse(ct
 // QueryVolumesSupportedForDiffAreasRequest structure represents the QueryVolumesSupportedForDiffAreas operation request
 type QueryVolumesSupportedForDiffAreasRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This               *dcom.ORPCThis `idl:"name:This" json:"this"`
-	OriginalVolumeName string         `idl:"name:pwszOriginalVolumeName" json:"original_volume_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// pwszOriginalVolumeName: A null-terminated UNICODE string that contains the drive
+	// letter, mount point, or volume mount name of the original volume.
+	OriginalVolumeName string `idl:"name:pwszOriginalVolumeName" json:"original_volume_name"`
 }
 
 func (o *QueryVolumesSupportedForDiffAreasRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryVolumesSupportedForDiffAreasOperation) *xxx_QueryVolumesSupportedForDiffAreasOperation {
@@ -1051,7 +1192,12 @@ func (o *QueryVolumesSupportedForDiffAreasRequest) UnmarshalNDR(ctx context.Cont
 // QueryVolumesSupportedForDiffAreasResponse structure represents the QueryVolumesSupportedForDiffAreas operation response
 type QueryVolumesSupportedForDiffAreasResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppEnum: A pointer to an IVssEnumMgmtObject pointer that upon completion, contains
+	// a collection of volumes that can be used to create shadow copy storage associations
+	// with the specified original volume. Each element in the collection MUST be a VSS_DIFF_VOLUME_PROP
+	// structure. A caller MUST release the ppEnum received when the caller is done with
+	// it.
 	Enum *scmp.EnumManagementObject `idl:"name:ppEnum" json:"enum"`
 	// Return: The QueryVolumesSupportedForDiffAreas return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1297,8 +1443,11 @@ func (o *xxx_QueryDiffAreasForVolumeOperation) UnmarshalNDRResponse(ctx context.
 // QueryDiffAreasForVolumeRequest structure represents the QueryDiffAreasForVolume operation request
 type QueryDiffAreasForVolumeRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	VolumeName string         `idl:"name:pwszVolumeName" json:"volume_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// pwszVolumeName: A null-terminated UNICODE string that contains the drive letter,
+	// mount point, or volume mount name of the original volume for which the existing shadow
+	// copy association collection is requested.
+	VolumeName string `idl:"name:pwszVolumeName" json:"volume_name"`
 }
 
 func (o *QueryDiffAreasForVolumeRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryDiffAreasForVolumeOperation) *xxx_QueryDiffAreasForVolumeOperation {
@@ -1335,7 +1484,12 @@ func (o *QueryDiffAreasForVolumeRequest) UnmarshalNDR(ctx context.Context, r ndr
 // QueryDiffAreasForVolumeResponse structure represents the QueryDiffAreasForVolume operation response
 type QueryDiffAreasForVolumeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppEnum: A pointer to an IVssEnumMgmtObject pointer that upon completion, contains
+	// a collection of shadow copy storage associations that are providing shadow copy storage
+	// for the specified original volume. Each element in the collection MUST be a VSS_DIFF_AREA_PROP
+	// structure. A caller MUST release the ppEnum received when the caller is done with
+	// it.
 	Enum *scmp.EnumManagementObject `idl:"name:ppEnum" json:"enum"`
 	// Return: The QueryDiffAreasForVolume return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1581,8 +1735,11 @@ func (o *xxx_QueryDiffAreasOnVolumeOperation) UnmarshalNDRResponse(ctx context.C
 // QueryDiffAreasOnVolumeRequest structure represents the QueryDiffAreasOnVolume operation request
 type QueryDiffAreasOnVolumeRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	VolumeName string         `idl:"name:pwszVolumeName" json:"volume_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// pwszVolumeName: A null-terminated UNICODE string that contains the drive letter,
+	// mount point, or volume mount name of the shadow copy storage volume on which the
+	// existing shadow copy association collection is requested.
+	VolumeName string `idl:"name:pwszVolumeName" json:"volume_name"`
 }
 
 func (o *QueryDiffAreasOnVolumeRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryDiffAreasOnVolumeOperation) *xxx_QueryDiffAreasOnVolumeOperation {
@@ -1619,7 +1776,11 @@ func (o *QueryDiffAreasOnVolumeRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // QueryDiffAreasOnVolumeResponse structure represents the QueryDiffAreasOnVolume operation response
 type QueryDiffAreasOnVolumeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppEnum: A pointer to an IVssEnumMgmtObject pointer that upon completion, contains
+	// a collection of shadow copy storage associations that are located on the specified
+	// volume. Each element in the collection MUST be a VSS_DIFF_AREA_PROP structure. A
+	// caller MUST release the ppEnum received when the caller is done with it.
 	Enum *scmp.EnumManagementObject `idl:"name:ppEnum" json:"enum"`
 	// Return: The QueryDiffAreasOnVolume return value.
 	Return int32 `idl:"name:Return" json:"return"`

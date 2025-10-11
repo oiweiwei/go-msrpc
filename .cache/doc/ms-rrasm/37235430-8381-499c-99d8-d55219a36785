@@ -1,1 +1,125 @@
-<div class="content"></div>
+<div class="content"><p>The <b>EAPTLS_USER_PROPERTIES</b> structure is used to store
+the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_5de8ef80-3a1d-4ec8-bf8c-321972e06eae" data-linktype="relative-path">EAP</a> Transport Layer
+Security (TLS) user properties.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSize</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>fFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Hash (24
+  bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>pwszDiffUser</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwPinOffset</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>pwszPin</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>usLength</p>
+  </td>
+  <td colspan="16">
+  <p>usMaximumLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>ucSeed</p>
+  </td>
+  <td colspan="24">
+  <p>awszString
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>reserved (4 bytes): </b>This MUST be 0x00000000.</p><p><b>dwVersion (4 bytes): </b>This MUST be 0x00000001.</p><p><b>dwSize (4 bytes): </b>This MUST be the number of
+bytes in this structure.</p><p><b>fFlags (4 bytes): </b>Unused; it MUST be set to
+0x00000000.</p><p><b>Hash (24 bytes): </b>An <a href="29a6448f-a56a-4f3b-ad4b-bf6e3ec8cd3e" data-linktype="relative-path"><b>EAPTLS_HASH
+(section2.2.1.2.127)</b></a> structure that MUST contain the hash for the user
+certificate.  </p><p><b>pwszDiffUser (4 bytes): </b>Pointer to a
+null-terminated <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a>
+string that contains the EAP identity to send. The string SHOULD be stored
+starting at <b>awszString</b>.</p><p><b>dwPinOffset (4 bytes): </b>Offset from the end of
+this structure to where the PIN is stored. This SHOULD be set to
+sizeof(pwszDiffUser).</p><p><b>pwszPin (4 bytes): </b>Pointer to a
+null-terminated Unicode string that contains the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_7c0fcc4a-476a-4d3a-87c0-7a503c14ef05" data-linktype="relative-path">smart card</a> PIN.</p><p><b>usLength (2 bytes): </b>Unused; it MUST be set to
+zero (0).</p><p><b>usMaximumLength (2 bytes): </b>Unused; it MUST be
+set to zero (0).</p><p><b>ucSeed (1 byte): </b>Unused; it MUST be set to
+zero (0).</p><p><b>awszString (variable): </b>Storage for <b>pwszDiffUser</b>
+and <b>pwszPin</b>.</p></div>

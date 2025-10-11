@@ -51,24 +51,228 @@ type ResourceManagerClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The RetrieveEventList method is not implemented and always returns an error.
+	//
+	// Return Values: This method returns E_NOTIMPL, unless a parameter error is found.
+	//
+	//	+----------------------+-----------------------------------+
+	//	|        RETURN        |                                   |
+	//	|      VALUE/CODE      |            DESCRIPTION            |
+	//	|                      |                                   |
+	//	+----------------------+-----------------------------------+
+	//	+----------------------+-----------------------------------+
+	//	| 0x80004001 E_NOTIMPL | This function is not implemented. |
+	//	+----------------------+-----------------------------------+
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	RetrieveEventList(context.Context, *RetrieveEventListRequest, ...dcerpc.CallOption) (*RetrieveEventListResponse, error)
 
+	// The GetSystemAffinity method gets the processor affinity of the system.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	GetSystemAffinity(context.Context, *GetSystemAffinityRequest, ...dcerpc.CallOption) (*GetSystemAffinityResponse, error)
 
+	// The ImportXMLFiles method loads a specified WSRM configuration.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | Operation successful.                                                            |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG              | One or more arguments are invalid.                                               |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                      | be processed.<27>                                                                |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// The ImportXMLFiles method can be used to manage system resources by importing a valid
+	// RAP.
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	ImportXMLFiles(context.Context, *ImportXMLFilesRequest, ...dcerpc.CallOption) (*ImportXMLFilesResponse, error)
 
+	// The ExportXMLFiles method saves the current WSRM configuration.<28>
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                      | be processed.<29>                                                                |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | Operation successful.                                                            |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	ExportXMLFiles(context.Context, *ExportXMLFilesRequest, ...dcerpc.CallOption) (*ExportXMLFilesResponse, error)
 
+	// The RestoreXMLFiles method restores the WSRM configuration to a specified state.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | Operation successful.                                                            |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                      | be processed.<31>                                                                |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG              | One or more arguments are invalid.                                               |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// This method can be used to reset the WSRM server state to a known value in case some
+	// data becomes corrupted and the server cannot proceed.
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	RestoreXMLFiles(context.Context, *RestoreXMLFilesRequest, ...dcerpc.CallOption) (*RestoreXMLFilesResponse, error)
 
+	// The GetDependencies method returns a list of WSRM objects that are being used or
+	// that depend on a specified object.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                    RETURN                    |                                                                                  |
+	//	|                  VALUE/CODE                  |                                   DESCRIPTION                                    |
+	//	|                                              |                                                                                  |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                              | Operation successful.                                                            |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006F WRM_ERR_ID_VALUE                  | The specified name contains characters that are invalid. The name cannot         |
+	//	|                                              | start with a hyphen ("-") and cannot contain spaces or any of the following      |
+	//	|                                              | characters: \ / ? * | : < > " , ;.                                               |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80004005 E_FAIL                            | Either an object with the specified name and type was not found or its           |
+	//	|                                              | dependency list could not be created.                                            |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0271 WRM_ERR_CAL_UNKNOWN_SCHEDULE      | A calendar name or an invalid schedule name was passed in bstrObjectName for     |
+	//	|                                              | OBJECT_SCHEDULE enumObject.                                                      |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF013A WRM_ERR_DEPENDENCIES_FOR_RESIDUAL | This is a residual PMC and is a part of all policies. All processes that do      |
+	//	|                                              | not match any of the PMC specified by a user in a policy automatically match to  |
+	//	|                                              | residual PMC.                                                                    |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// The server SHOULD process this method call as follows:
+	//
+	// * If a PMC object is specified, this method MUST return a list of policies that make
+	// use of the PMC.
+	//
+	// * If a resource policy object ( e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_3731cbe9-91f2-49a8-b63f-6f5f7b69b05a
+	// ) is specified, this method MUST return a list of calendar ( e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_7204b2ed-dcef-4434-be15-6451f92d03fb
+	// ) events, conditions, and schedules that make use of the resource policy ( e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_559b0a4d-161b-4664-9c10-4fab98b97f1f
+	// ).
+	//
+	// * If a schedule object is specified, this method MUST return a list of calendar events
+	// making use of the schedule.
+	//
+	// * If a calendar object is specified, this method MUST return WRM_ERR_CAL_UNKNOWN_SCHEDULE.
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	GetDependencies(context.Context, *GetDependenciesRequest, ...dcerpc.CallOption) (*GetDependenciesResponse, error)
 
+	// The GetServiceList method provides a list of services that are registered with the
+	// server and are not excluded by the exclusion list. This list of services is expected
+	// to be used for defining process matching criteria (PMC).
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	GetServiceList(context.Context, *GetServiceListRequest, ...dcerpc.CallOption) (*GetServiceListResponse, error)
 
+	// The GetIISAppPoolNames method returns a list of all the application pools on the
+	// WSRM server that are defined by and known to the IIS server.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	GetIISAppPoolNames(context.Context, *GetIISAppPoolNamesRequest, ...dcerpc.CallOption) (*GetIISAppPoolNamesResponse, error)
 
+	// The GetServerName method returns the server name.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.<33>
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	GetServerName(context.Context, *GetServerNameRequest, ...dcerpc.CallOption) (*GetServerNameResponse, error)
 
+	// The GetCurrentMemory method determines the total amount of physical memory in the
+	// system.
+	//
+	// Return Values: This method returns 0x00000001 for success or 0x00000000 if an error
+	// occurs.
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000        | An error occurred.    |
+	//	+-------------------+-----------------------+
+	//	| 0x00000001 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	GetCurrentMemory(context.Context, *GetCurrentMemoryRequest, ...dcerpc.CallOption) (*GetCurrentMemoryResponse, error)
 
 	// AlterContext alters the client context.
@@ -537,8 +741,9 @@ func (o *RetrieveEventListRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // RetrieveEventListResponse structure represents the RetrieveEventList operation response
 type RetrieveEventListResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
-	EventList *oaut.String   `idl:"name:pbstrEventList" json:"event_list"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrEventList: Not used.
+	EventList *oaut.String `idl:"name:pbstrEventList" json:"event_list"`
 	// Return: The RetrieveEventList return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -746,8 +951,11 @@ func (o *GetSystemAffinityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // GetSystemAffinityResponse structure represents the GetSystemAffinity operation response
 type GetSystemAffinityResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
-	SystemAffinity uint64         `idl:"name:pdwSysAffinity" json:"system_affinity"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pdwSysAffinity: A pointer to a 64-bit unsigned integer that returns a processor affinity
+	// information structure, which is a bit vector where each bit represents the processors
+	// that are configured into a system.
+	SystemAffinity uint64 `idl:"name:pdwSysAffinity" json:"system_affinity"`
 	// Return: The GetSystemAffinity return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1093,11 +1301,24 @@ func (o *xxx_ImportXMLFilesOperation) UnmarshalNDRResponse(ctx context.Context, 
 // ImportXMLFilesRequest structure represents the ImportXMLFiles operation request
 type ImportXMLFilesRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PMCXML         *oaut.String   `idl:"name:bstrPMCXml" json:"pmc_xml"`
-	PolicyXML      *oaut.String   `idl:"name:bstrPolicyXml" json:"policy_xml"`
-	CalendarXML    *oaut.String   `idl:"name:bstrCalendarXml" json:"calendar_xml"`
-	ConditionalXML *oaut.String   `idl:"name:bstrConditionalXml" json:"conditional_xml"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrPMCXml: A string that specifies the PMCs to be loaded by the server, in the form
+	// of a ProcessMatchingCriteriaCollection element (section 2.2.5.25). For an example,
+	// see ProcessMatchingCriteriaCollection example (section 4.2.21). This parameter is
+	// ignored if it is NULL.
+	PMCXML *oaut.String `idl:"name:bstrPMCXml" json:"pmc_xml"`
+	// bstrPolicyXml: A string that specifies resource policies to be loaded by the server,
+	// in the form of a PolicyCollection element (section 2.2.5.22). This parameter is ignored
+	// if it is NULL.
+	PolicyXML *oaut.String `idl:"name:bstrPolicyXml" json:"policy_xml"`
+	// bstrCalendarXml: A string that specifies calendars to be loaded by the server, in
+	// the form of a CalendarsCollection element (section 2.2.5.11). For an example, see
+	// CalendarsCollection example (section 4.2.8). This parameter is ignored if it is NULL.
+	CalendarXML *oaut.String `idl:"name:bstrCalendarXml" json:"calendar_xml"`
+	// bstrConditionalXml: A string that specifies conditions to be loaded by the server,
+	// in the form of a ConditionalPolicy element (section 2.2.5.12). For an example, see
+	// section 4.2.9. This parameter is ignored if it is NULL.
+	ConditionalXML *oaut.String `idl:"name:bstrConditionalXml" json:"conditional_xml"`
 }
 
 func (o *ImportXMLFilesRequest) xxx_ToOp(ctx context.Context, op *xxx_ImportXMLFilesOperation) *xxx_ImportXMLFilesOperation {
@@ -1519,11 +1740,21 @@ func (o *ExportXMLFilesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // ExportXMLFilesResponse structure represents the ExportXMLFiles operation response
 type ExportXMLFilesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PMCXML         *oaut.String   `idl:"name:pbstrPMCXml" json:"pmc_xml"`
-	PolicyXML      *oaut.String   `idl:"name:pbstrPolicyXml" json:"policy_xml"`
-	CalendarXML    *oaut.String   `idl:"name:pbstrCalendarXml" json:"calendar_xml"`
-	ConditionalXML *oaut.String   `idl:"name:pbstrConditionalXml" json:"conditional_xml"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrPMCXml: A pointer to a string that returns process matching criteria (PMC) in
+	// the form of a ProcessMatchingCriteriaCollection element (section 2.2.5.25). For an
+	// example, see ProcessMatchingCriteriaCollection example (section 4.2.21).
+	PMCXML *oaut.String `idl:"name:pbstrPMCXml" json:"pmc_xml"`
+	// pbstrPolicyXml: A pointer to a string that returns a resource policy in the form
+	// of a PolicyCollection element (section 2.2.5.22).
+	PolicyXML *oaut.String `idl:"name:pbstrPolicyXml" json:"policy_xml"`
+	// pbstrCalendarXml: A pointer to a string that returns a calendar in the form of a
+	// CalendarsCollection element (section 2.2.5.11). For an example, see CalendarsCollection
+	// Example (section 4.2.8).
+	CalendarXML *oaut.String `idl:"name:pbstrCalendarXml" json:"calendar_xml"`
+	// pbstrConditionalXml: A pointer to a string that returns a condition in the form of
+	// a ConditionalPolicy element (section 2.2.5.12). For an example, see section 4.2.9.
+	ConditionalXML *oaut.String `idl:"name:pbstrConditionalXml" json:"conditional_xml"`
 	// Return: The ExportXMLFiles return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1700,7 +1931,8 @@ func (o *xxx_RestoreXMLFilesOperation) UnmarshalNDRResponse(ctx context.Context,
 // RestoreXMLFilesRequest structure represents the RestoreXMLFiles operation request
 type RestoreXMLFilesRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis   `idl:"name:This" json:"this"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// enumRestore: A value that specifies the state to restore.
 	EnumRestore wsrm.RestoreMode `idl:"name:enumRestore" json:"enum_restore"`
 }
 
@@ -2001,8 +2233,12 @@ func (o *xxx_GetDependenciesOperation) UnmarshalNDRResponse(ctx context.Context,
 // GetDependenciesRequest structure represents the GetDependencies operation request
 type GetDependenciesRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis  `idl:"name:This" json:"this"`
-	ObjectName *oaut.String    `idl:"name:bstrObjectName" json:"object_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrObjectName: A string that specifies the name of the object whose dependencies
+	// are to be returned.
+	ObjectName *oaut.String `idl:"name:bstrObjectName" json:"object_name"`
+	// enumObject: An OBJECT_TYPE enumeration (section 2.2.3.6) value that specifies the
+	// type of object specified in bstrObjectName.
 	EnumObject wsrm.ObjectType `idl:"name:enumObject" json:"enum_object"`
 }
 
@@ -2042,8 +2278,11 @@ func (o *GetDependenciesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // GetDependenciesResponse structure represents the GetDependencies operation response
 type GetDependenciesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
-	DependencyList *oaut.String   `idl:"name:pbstrDependencyList" json:"dependency_list"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrDependencyList: A pointer to a string that returns the dependencies for the
+	// object specified in bstrObjectName, in the form of a DependencyList element (section
+	// 2.2.5.14). For an example, see section 4.2.11.
+	DependencyList *oaut.String `idl:"name:pbstrDependencyList" json:"dependency_list"`
 	// Return: The GetDependencies return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2283,8 +2522,10 @@ func (o *GetServiceListRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetServiceListResponse structure represents the GetServiceList operation response
 type GetServiceListResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ServiceList *oaut.String   `idl:"name:pbstrServiceList" json:"service_list"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrServiceList: A pointer to a string that returns a list of services, in the form
+	// of a ServiceList element (section 2.2.5.28). For an example, see section 4.2.23.
+	ServiceList *oaut.String `idl:"name:pbstrServiceList" json:"service_list"`
 	// Return: The GetServiceList return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2573,9 +2814,13 @@ func (o *GetIISAppPoolNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 // GetIISAppPoolNamesResponse structure represents the GetIISAppPoolNames operation response
 type GetIISAppPoolNamesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IISAppPoolList  *oaut.String   `idl:"name:pbstrIISAppPoolList" json:"iis_app_pool_list"`
-	SystemDirectory *oaut.String   `idl:"name:pbstrSystemDirectory" json:"system_directory"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrIISAppPoolList: A pointer to a string in the format of the AppPoolList element
+	// (section 2.2.5.6) that returns an IIS application pool list structure.
+	IISAppPoolList *oaut.String `idl:"name:pbstrIISAppPoolList" json:"iis_app_pool_list"`
+	// pbstrSystemDirectory: A pointer to a string that returns implementation-specific
+	// system directory information.<32>
+	SystemDirectory *oaut.String `idl:"name:pbstrSystemDirectory" json:"system_directory"`
 	// Return: The GetIISAppPoolNames return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2817,8 +3062,9 @@ func (o *GetServerNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetServerNameResponse structure represents the GetServerName operation response
 type GetServerNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ServerName *oaut.String   `idl:"name:pbstrServerName" json:"server_name"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrServerName: A pointer to a string that returns the server name.
+	ServerName *oaut.String `idl:"name:pbstrServerName" json:"server_name"`
 	// Return: The GetServerName return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3026,8 +3272,10 @@ func (o *GetCurrentMemoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // GetCurrentMemoryResponse structure represents the GetCurrentMemory operation response
 type GetCurrentMemoryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
-	CurrentMemory uint64         `idl:"name:pdwCurrMemory" json:"current_memory"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pdwCurrMemory: A pointer to a 64-bit unsigned integer that returns the current system
+	// memory size, in bytes.
+	CurrentMemory uint64 `idl:"name:pdwCurrMemory" json:"current_memory"`
 	// Return: The GetCurrentMemory return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

@@ -1,1 +1,66 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPBOOTP_MIB_GET_OUTPUT_DATA</b> structure is passed
+as output data for the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="340672df-1018-44a6-b1b8-509348062857" data-linktype="relative-path"><b>RMIBEntryGetFirst (section 3.2.4.31)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="12830348-d502-4b45-adc3-e5853d42d0c9" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.2.4.32)</b></a><span>  </span></p>
+</li></ul><p><b>Note</b>  At the end of a table <b>RMIBEntryGetNext</b>
+wraps to the next table.</p><dl>
+<dd>
+<div><pre> typedef struct _IPBOOTP_MIB_GET_OUTPUT_DATA {
+   DWORD IMGOD_TypeID;
+   DWORD IMGOD_IfIndex;
+   BYTE IMGOD_Buffer[1];
+ } IPBOOTP_MIB_GET_OUTPUT_DATA,
+  *PIPBOOTP_MIB_GET_OUTPUT_DATA;
+</pre></div>
+</dd></dl><p><b>IMGOD_TypeID: </b>It MUST be one of the following
+values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPBOOTP_GLOBAL_CONFIG_ID</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The global configuration for the IPBOOTP, <a href="4419f3c5-188e-4824-8006-39ad9b105b9d" data-linktype="relative-path"><b>IPBOOTP_GLOBAL_CONFIG</b></a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPBOOTP_IF_STATS_ID</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The per interface statistics, <a href="47142262-b369-4527-98c6-94f4bf9147f4" data-linktype="relative-path"><b>IPBOOTP_IF_STATS</b></a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPBOOTP_IF_CONFIG_ID</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The <a href="7c328ccb-406a-4e6c-9987-e89297d9ac89" data-linktype="relative-path"><b>IPBOOTP_IF_CONFIG</b></a>
+  Identifier.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPBOOTP_IF_BINDING_ID</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The IP addresses to which each interface is bound, <a href="02273e6a-7a6d-4a00-a05c-57633c5f0884" data-linktype="relative-path"><b>IPBOOTP_IF_BINDING</b></a>.
+  </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IMGOD_IfIndex: </b>The index of the interface.</p><p><b>IMGOD_Buffer: </b>One of the structures in the
+previous table based on <b>IMGOD_TypeID</b>.</p></div>

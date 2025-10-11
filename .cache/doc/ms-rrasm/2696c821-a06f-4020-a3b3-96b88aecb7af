@@ -1,1 +1,113 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IKEV2_PROJECTION_INFO_1</b> structure SHOULD<a id="Appendix_A_Target_118"></a><a aria-label="Product behavior note 118" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_118" data-linktype="relative-path">&lt;118&gt;</a> contain information obtained
+during <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_294fef97-5790-4d41-971e-dd255b783e68" data-linktype="relative-path">Internet Key Exchange
+(IKE)</a> negotiation.</p><dl>
+<dd>
+<div><pre> typedef struct IKEV2_PROJECTION_INFO_1 {
+   DWORD dwIPv4NegotiationError;
+   WCHAR wszAddress[16];
+   WCHAR wszRemoteAddress[16];
+   ULONG64 IPv4SubInterfaceIndex;
+   DWORD dwIPv6NegotiationError;
+   UCHAR bInterfaceIdentifier[8];
+   UCHAR bRemoteInterfaceIdentifier[8];
+   UCHAR bPrefix[8];
+   DWORD dwPrefixLength;
+   ULONG64 IPv6SubInterfaceIndex;
+   DWORD dwOptions;
+   DWORD dwAuthenticationProtocol;
+   DWORD dwEapTypeId;
+   DWORD dwCompressionAlgorithm;
+   DWORD dwEncryptionMethod;
+ } IKEV2_PROJECTION_INFO_1,
+  *PIKEV2_PROJECTION_INFO_1;
+</pre></div>
+</dd></dl><p><b>dwIPv4NegotiationError: </b>Specifies if an
+Internal IPv4 address <a href="https://go.microsoft.com/fwlink/?LinkId=90469" data-linktype="external">[RFC4306]</a>
+has been successfully assigned. A value of zero (0) indicates success. A
+nonzero value indicates failure.</p><p><b>wszAddress: </b>The same as <b>wszAddress</b> in <a href="ec995980-0a4b-421f-ab29-b18a021d1320" data-linktype="relative-path"><b>PPP_PROJECTION_INFO_1</b></a>.
+</p><p><b>wszRemoteAddress: </b>The same as <b>wszRemoteAddress</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>IPv4SubInterfaceIndex: </b>The same as <b>IPv4SubInterfaceIndex</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwIPv6NegotiationError: </b>The same as <b>dwIPv5NegotiationError</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>bInterfaceIdentifier: </b>The same as <b>bInterfaceIdentifier</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>bRemoteInterfaceIdentifier: </b>The same as <b>bRemoteInterfaceIdentifier</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>bPrefix: </b>The same as <b>bPrefix</b> in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwPrefixLength: </b>The same as <b>dwPrefixLength</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>IPv6SubInterfaceIndex: </b>The same as <b>IPv6SubInterfaceIndex</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwOptions: </b>Not used.</p><p><b>dwAuthenticationProtocol: </b>Specifies the
+authentication protocol used to authenticate the remote computer. It MUST be
+one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MPRAPI_IKEV2_AUTH_USING_CERT</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Using x.509 machine certificate <a href="https://go.microsoft.com/fwlink/?LinkId=90356" data-linktype="external">[RFC2459]</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRAPI_IKEV2_AUTH_USING_EAP</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p><a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_dde5e3b6-7aba-4797-8efd-8de034d99354" data-linktype="relative-path">Extensible
+  Authentication Protocol (EAP)</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwEapTypeId: </b>Specifies the type identifier of
+the EAP used to authenticate the local computer. The value of this member is
+valid only if <b>dwAuthenticationProtocol</b> is MPRAPI_IKEV2_AUTH_USING_EAP <a href="https://go.microsoft.com/fwlink/?LinkId=89882" data-linktype="external">[IANA-EAP]</a>.</p><p><b>dwCompressionAlgorithm: </b>Not used.</p><p><b>dwEncryptionMethod: </b>Specifies the encryption
+method used in the connection. It MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPSEC_CIPHER_TYPE_3DES</p>
+  <p>2</p>
+  </td>
+  <td>
+  <p>Specifies 3DES encryption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPSEC_CIPHER_TYPE_AES_128</p>
+  <p>3</p>
+  </td>
+  <td>
+  <p>Specifies AES-128 encryption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPSEC_CIPHER_TYPE_AES_192</p>
+  <p>4</p>
+  </td>
+  <td>
+  <p>Specifies AES-192 encryption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPSEC_CIPHER_TYPE_AES_256</p>
+  <p>5</p>
+  </td>
+  <td>
+  <p>Specifies AES-256 encryption.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

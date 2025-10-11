@@ -1,1 +1,891 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MPRI_INTERFACE_2</b> structure<a id="Appendix_A_Target_62"></a><a aria-label="Product behavior note 62" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_62" data-linktype="relative-path">&lt;62&gt;</a> is used to contain data for a
+router demand-dial <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a>.
+This structure is used in the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="72bead5c-821f-4e98-bacd-0de279552379" data-linktype="relative-path"><b>RRouterInterfaceCreate (section 3.1.4.13)</b></a><span> </span></p>
+</li><li><p><span><span> 
+</span></span><a href="2fbcf316-2082-4f98-878b-eab5d0c2da1d" data-linktype="relative-path"><b>RRouterInterfaceGetInfo (section 3.1.4.14)</b></a><span> </span></p>
+</li><li><p><span><span> 
+</span></span><a href="615c1081-5d03-415a-b57c-76876bb2cf23" data-linktype="relative-path"><b>RRouterInterfaceSetInfo (section 3.1.4.15)</b></a><span> </span></p>
+<div><pre> typedef struct _MPRI_INTERFACE_2 {
+   WCHAR wszInterfaceName[257];
+   DWORD dwInterface;
+   BOOL fEnabled;
+   ROUTER_INTERFACE_TYPE dwIfType;
+   ROUTER_CONNECTION_STATE dwConnectionState;
+   DWORD fUnReachabilityReasons;
+   DWORD dwLastError;
+   DWORD dwfOptions;
+   WCHAR szLocalPhoneNumber[129];
+   PWCHAR szAlternates;
+   DWORD ipaddr;
+   DWORD ipaddrDns;
+   DWORD ipaddrDnsAlt;
+   DWORD ipaddrWins;
+   DWORD ipaddrWinsAlt;
+   DWORD dwfNetProtocols;
+   WCHAR szDeviceType[17];
+   WCHAR szDeviceName[129];
+   WCHAR szX25PadType[33];
+   WCHAR szX25Address[201];
+   WCHAR szX25Facilities[201];
+   WCHAR szX25UserData[201];
+   DWORD dwChannels;
+   DWORD dwSubEntries;
+   DWORD dwDialMode;
+   DWORD dwDialExtraPercent;
+   DWORD dwDialExtraSampleSeconds;
+   DWORD dwHangUpExtraPercent;
+   DWORD dwHangUpExtraSampleSeconds;
+   DWORD dwIdleDisconnectSeconds;
+   DWORD dwType;
+   DWORD dwEncryptionType;
+   DWORD dwCustomAuthKey;
+   DWORD dwCustomAuthDataSize;
+   LPBYTE lpbCustomAuthData;
+   GUID guidId;
+   DWORD dwVpnStrategy;
+ } MPRI_INTERFACE_2,
+  *PMPRI_INTERFACE_2;
+</pre></div>
+</li></ul><p><b>wszInterfaceName: </b>Specifies a Unicode string
+that contains the name of a valid interface. This value MUST be specified
+during the call to the <b>RRouterInterfaceCreate</b><a id="Appendix_A_Target_63"></a><a aria-label="Product behavior note 63" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_63" data-linktype="relative-path">&lt;63&gt;</a> method and cannot be modified
+after the interface is created.<a id="Appendix_A_Target_64"></a><a aria-label="Product behavior note 64" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_64" data-linktype="relative-path">&lt;64&gt;</a></p><p><b>dwInterface: </b>Specifies a unique identifier of
+the interface. This is a read-only field and cannot be set or modified.</p><p><b>fEnabled: </b>Specifies whether the interface is
+enabled. The value TRUE is greater than zero (0) if the interface is enabled,
+or FALSE is zero (0) if the interface is disabled by an administrator.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRUE</p>
+  <p>&gt;0</p>
+  </td>
+  <td>
+  <p>The interface is enabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0</p>
+  </td>
+  <td>
+  <p>The interface is disabled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwIfType: </b>A <a href="849c1f9e-9d6f-4408-840e-ee9ae253ae01" data-linktype="relative-path"><b>ROUTER_INTERFACE_TYPE (section 2.2.1.1.1)</b></a>
+value that specifies the type of  interface.</p><p><b>dwConnectionState: </b>A <a href="3286822c-7051-40a9-b448-8f5cc5236b97" data-linktype="relative-path"><b>ROUTER_CONNECTION_STATE (section 2.2.1.1.2)</b></a>
+value that specifies the current state of the interface (for example:
+connected, disconnected, or unreachable). This is a read-only field and cannot
+be set or modified.  </p><p><b>fUnReachabilityReasons: </b>A value that describes
+the reason that the interface is unreachable. This is a read-only field and
+cannot be set or modified. The following is the list of possible values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MPR_INTERFACE_ADMIN_DISABLED</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The administrator has disabled the interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_INTERFACE_CONNECTION_FAILURE</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The previous connection attempt failed. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_INTERFACE_DIALOUT_HOURS_RESTRICTION</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Dial-out is not allowed at the current time.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_INTERFACE_OUT_OF_RESOURCES</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>No ports or devices are available for use.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_INTERFACE_SERVICE_PAUSED</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The service is paused.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_INTERFACE_NO_MEDIA_SENSE</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>The network cable is disconnected from the network
+  card.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_INTERFACE_NO_DEVICE</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>The network card has been removed from the machine.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwLastError: </b>Contains a nonzero value if the
+interface fails to connect. This value is a Win32 error code as defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+This is a read-only field and cannot be set or modified.</p><p><b>dwfOptions: </b>A value that specifies the bit flags that
+are used to set connection options. This value SHOULD<a id="Appendix_A_Target_65"></a><a aria-label="Product behavior note 65" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_65" data-linktype="relative-path">&lt;65&gt;</a> be a combination of the flags
+listed in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MPRIO_SpecificIpAddr</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>If this flag is set, the RRAS server attempts to use
+  the IP address specified by the ipaddr field as the IP address for the
+  dial-up connection. If this flag is not set, the value of the <b>ipaddr</b>
+  member is ignored.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_SpecificNameServers</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>If this flag is set, the RRAS server uses the <b>ipaddrDns</b>,
+  <b>ipaddrDnsAlt</b>, <b>ipaddrWins</b>, and <b>ipaddrWinsAlt</b> members to
+  specify the name server addresses for the dial-up connection. If this flag is
+  not set, the RRAS server ignores these members.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_IpHeaderCompression</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>If this flag is set, the RRAS server negotiates to use
+  the IP header compression on PPP connections. The IP header compression can
+  significantly improve performance.</p>
+  <p>If this flag is not set, the IP header compression is
+  not negotiated.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_RemoteDefaultGateway</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>If this flag is set, the default route for the IP
+  packets is through the dial-up adapter when the connection is active. If this
+  flag is cleared, the default route is not modified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_DisableLcpExtensions</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>If this flag is set, the PPP LCP extensions defined in
+  <a href="https://go.microsoft.com/fwlink/?LinkId=95580" data-linktype="external">[RFC1570]</a> are
+  disabled for the connection associated with the interface. This flag MUST not
+  be set, unless interoperating with some older PPP implementations that do not
+  support LCP extensions.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_SwCompression</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>If this flag is set, software compression is
+  negotiated on the link. Setting this flag causes the PPP to attempt to
+  negotiate a Compression Control Protocol (CCP) with the server. This flag
+  SHOULD be set by default but clearing it can reduce the negotiation period if
+  the server does not support a compatible compression protocol.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_RequireEncryptedPw</p>
+  <p>0x00000400</p>
+  </td>
+  <td>
+  <p>If this flag is set, only secure password schemes can
+  be used to authenticate the client with the server. This prevents the PPP
+  from using the PAP plaintext authentication protocol to authenticate the
+  client. However, the <a href="../ms-chap/8fea1dd1-66d6-4874-88a5-34bcdbb58907" data-linktype="relative-path">[MS-CHAP]</a>,
+  MD5-CHAP, and SPAP authentication protocols are supported. For increased
+  security, set this flag. For increased interoperability, clear this flag.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_RequireMsEncryptedPw</p>
+  <p>0x00000800</p>
+  </td>
+  <td>
+  <p>If this flag is set, it prevents the PPP from using
+  the PAP plaintext authentication protocol, MD5-CHAP, or SPAP. For increased
+  security, set this flag. For increased interoperability, clear this flag.
+  This flag takes precedence over <b>MPRIO_RequireEncryptedPw</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_RequireDataEncryption</p>
+  <p>0x00001000</p>
+  </td>
+  <td>
+  <p>If this flag is set, data encryption MUST be
+  negotiated successfully or the connection is dropped. This flag is ignored
+  unless MPRIO_RequireMsEncryptedPw is also set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_UseLogonCredentials</p>
+  <p>0x00004000</p>
+  </td>
+  <td>
+  <p>If this flag is set, the RRAS server uses the
+  username, password, and domain of the currently logged-on user when dialing
+  this entry. This flag is ignored unless MPRIO_RequireMsEncryptedPw is also
+  set. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_PromoteAlternates</p>
+  <p>0x00008000</p>
+  </td>
+  <td>
+  <p>This flag has an effect when alternate phone numbers
+  are defined by the <b>szAlternates</b> member. If this flag is set, an
+  alternate phone number that connects successfully becomes the primary phone
+  number, and the current primary phone number is moved to the alternate list.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_SecureLocalFiles</p>
+  <p>0x00010000</p>
+  </td>
+  <td>
+  <p>If this flag is set, the RRAS server checks for an
+  existing remote file system and remote printer bindings before making a
+  connection with this entry. Typically, this flag is set on <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_578e5404-4b0d-4388-8345-8c38eb9e164b" data-linktype="relative-path">phone book</a> entries for
+  public networks to remind users to break connections to their private network
+  before connecting to a public network.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_RequireEAP</p>
+  <p>0x00020000</p>
+  </td>
+  <td>
+  <p>If this flag is set, <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_dde5e3b6-7aba-4797-8efd-8de034d99354" data-linktype="relative-path">Extensible Authentication
+  Protocol (EAP)</a> MUST be supported for authentication.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_RequirePAP</p>
+  <p>0x00040000</p>
+  </td>
+  <td>
+  <p>If this flag is set, Password Authentication Protocol
+  (PAP) MUST be supported for authentication.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_RequireSPAP</p>
+  <p>0x00080000</p>
+  </td>
+  <td>
+  <p>If this flag is set, Shiva&#39;s Password Authentication
+  Protocol (SPAP) MUST be supported for authentication.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_SharedPhoneNumbers</p>
+  <p>0x00800000</p>
+  </td>
+  <td>
+  <p>This flag is not used.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_RequireCHAP</p>
+  <p>0x08000000</p>
+  </td>
+  <td>
+  <p>If this flag is set, the Challenge Handshake
+  Authentication Protocol (CHAP) MUST be supported for authentication.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_RequireMsCHAP</p>
+  <p>0x10000000</p>
+  </td>
+  <td>
+  <p>If this flag is set, the Microsoft Challenge Handshake
+  Authentication Protocol [MS-CHAP] MUST be supported for authentication.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_RequireMsCHAP2</p>
+  <p>0x20000000</p>
+  </td>
+  <td>
+  <p>If this flag is set, version 2 of the [MS-CHAP] MUST
+  be supported for authentication.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_IpSecPreSharedKey</p>
+  <p>0x80000000</p>
+  </td>
+  <td>
+  <p>Configured the demand-dial interface to use <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_f140c18d-b996-4067-bf71-34baa6907ba1" data-linktype="relative-path">preshared key</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_RequireMachineCertificates</p>
+  <p>0x01000000</p>
+  </td>
+  <td>
+  <p>If this flag is set, the machine certificate is to be
+  used for IKEv2 authentication.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_UsePreSharedKeyForIkev2Initiator</p>
+  <p>0x02000000</p>
+  </td>
+  <td>
+  <p>If this flag is set, a preshared key is to be used by
+  the initiator of the IKEv2 connection for authentication.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIO_UsePreSharedKeyForIkev2Responder</p>
+  <p>0x04000000</p>
+  </td>
+  <td>
+  <p>If this flag is set, a preshared key is to be used by
+  the responder of the IKEv2 connection for authentication.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>szLocalPhoneNumber: </b>A null-terminated Unicode
+string that contains the local telephone number or the destination IP, IPv4, or
+IPv6 address.</p><p><b>szAlternates: </b>Offset from the beginning of
+this structure where the alternate phone numbers are stored. If no alternate
+phone number is available, this value MUST be set to 0. Alternate phone numbers
+are a list of consecutive null-terminated Unicode strings. The last string is
+terminated by two consecutive null characters. The strings are alternate phone
+numbers that the router dials, in the order listed, if the primary number fails
+to connect. For more information, see the description of <b>szLocalPhoneNumber</b>.
+The alternate phone numbers MUST be stored after the CustomAuthData field that
+is appended at the end of this structure.</p><p><b>ipaddr: </b>A value that specifies the IP address
+to be used while this connection is active. This member is ignored unless <b>dwfOptions</b>
+specifies the MPRIO_SpecificIpAddr flag.</p><p><b>ipaddrDns: </b>A value that specifies the IP
+address of the DNS server to be used while this connection is active. This
+member is ignored unless <b>dwfOptions</b> specifies the
+MPRIO_SpecificNameServers flag.</p><p><b>ipaddrDnsAlt: </b>A value that specifies the IP
+address of a secondary or backup DNS server to be used while this connection is
+active. This member is ignored unless <b>dwfOptions</b> specifies the
+MPRIO_SpecificNameServers flag.</p><p><b>ipaddrWins: </b>A value that specifies the IP
+address of the WINS server to be used while this connection is active. This
+member is ignored unless <b>dwfOptions</b> specifies the
+MPRIO_SpecificNameServers flag.</p><p><b>ipaddrWinsAlt: </b>A value that specifies the IP
+address of a secondary WINS server to be used while this connection is active.
+This member is ignored unless <b>dwfOptions</b> specifies the
+MPRIO_SpecificNameServers flag.</p><p><b>dwfNetProtocols: </b>A value that specifies the
+network protocols to negotiate. This member can be a combination of the
+following flags.<a id="Appendix_A_Target_66"></a><a aria-label="Product behavior note 66" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_66" data-linktype="relative-path">&lt;66&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MPRNP_Ipx</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Negotiate the IPX protocol.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRNP_Ip</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Negotiate the TCP/IPv4 protocol.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRNP_Ipv6</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Negotiate the TCP/IPv6 protocol.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>szDeviceType: </b>A value that specifies a
+null-terminated Unicode string that indicates the RRAS server device type that
+is referenced by <b>szDeviceName</b>. This is a read-only field that is
+computed based on the value of <b>szDeviceName</b>. This member can be one of
+the following string constants.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MPRDT_Modem</p>
+  <p>&#34;Modem&#34;</p>
+  </td>
+  <td>
+  <p>A modem that is accessed through a COM port.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_Isdn</p>
+  <p>&#34;Isdn&#34;</p>
+  </td>
+  <td>
+  <p>An ISDN adapter with the corresponding NDISWAN driver
+  installed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_X25</p>
+  <p>&#34;x25&#34;</p>
+  </td>
+  <td>
+  <p>An X.25 adapter with the corresponding NDISWAN driver
+  installed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_Vpn</p>
+  <p>&#34;Vpn&#34;</p>
+  </td>
+  <td>
+  <p>A VPN connection.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_Pad</p>
+  <p>&#34;Pad&#34;</p>
+  </td>
+  <td>
+  <p>A packet assembler/disassembler.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_Generic</p>
+  <p>&#34;GENERIC&#34;</p>
+  </td>
+  <td>
+  <p>Generic.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_Serial</p>
+  <p>&#34;SERIAL&#34;</p>
+  </td>
+  <td>
+  <p>Direct serial connection through a serial port.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_FrameRelay</p>
+  <p>&#34;FRAMERELAY&#34;</p>
+  </td>
+  <td>
+  <p>Frame relay.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_Atm</p>
+  <p>&#34;ATM&#34;</p>
+  </td>
+  <td>
+  <p>Asynchronous transfer mode.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_Sonet</p>
+  <p>&#34;SONET&#34;</p>
+  </td>
+  <td>
+  <p>Sonet.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_SW56</p>
+  <p>&#34;SW56&#34;</p>
+  </td>
+  <td>
+  <p>Switched 56K access.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_Irda</p>
+  <p>&#34;IRDA&#34;</p>
+  </td>
+  <td>
+  <p>An Infrared Data Association (IrDA)-compliant device.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_Parallel</p>
+  <p>&#34;PARALLEL&#34;</p>
+  </td>
+  <td>
+  <p>Direct parallel connection through a parallel port.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>szDeviceName: </b>Specifies a null-terminated
+Unicode string that contains the name of a telephony application programming
+interface (<a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_d4a340b8-46f3-42a1-be27-1c00a2d59ffc" data-linktype="relative-path">TAPI</a>) device
+to use with this phone book entry, for example, &#34;Fabrikam Inc 28800
+External&#34;. To enumerate all available RAS-capable devices, use the <a href="0553ccf0-5b52-4131-b277-4f2644eb41e7" data-linktype="relative-path"><b>RRouterDeviceEnum (section 3.1.4.37)</b></a>
+function. </p><p><b>szX25PadType: </b>Contains a null-terminated
+Unicode string that identifies the X.25 PAD type. This value SHOULD be set to
+an empty string (&#34;&#34;) unless the entry dials using an X.25 PAD.<a id="Appendix_A_Target_67"></a><a aria-label="Product behavior note 67" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_67" data-linktype="relative-path">&lt;67&gt;</a></p><p><b>szX25Address:</b> Contains a null-terminated
+Unicode string that identifies the X.25 address to connect to. This value
+SHOULD be set to an empty string (&#34;&#34;) unless the entry dials using an
+X.25 PAD or native X.25 device.<a id="Appendix_A_Target_68"></a><a aria-label="Product behavior note 68" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_68" data-linktype="relative-path">&lt;68&gt;</a></p><p><b>szX25Facilities:</b> Contains a null-terminated
+Unicode string that specifies the facilities to request from the X.25 host at
+connection time. This member is ignored if <b>szX25Address</b> is an empty
+string (&#34;&#34;).</p><p><b>szX25UserData: </b>Contains a null-terminated
+Unicode string that specifies additional connection data supplied to the X.25
+host at connection time. This member is ignored if <b>szX25Address</b> is an
+empty string (&#34;&#34;).</p><p><b>dwChannels: </b>Not used and MUST be set to zero
+(0).</p><p><b>dwSubEntries: </b>A value that specifies the
+number of multilink subentries associated with this entry. This is a read-only
+field that cannot be set or modified. Multilink subentries can be added and
+configured as described in <a href="0ba65f78-98e2-4b7d-a0da-5fb96be1ef75" data-linktype="relative-path">3.1.4.40</a>.
+Multilink subentries can be removed by updating the Media section of the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_7653fbde-27ea-4593-bf47-46064b0a1c29" data-linktype="relative-path">phonebook file</a> as specified
+in <a href="3e9d99a7-249e-4e0e-a940-cedf4170ae0f" data-linktype="relative-path">2.2.2.2.96</a>.</p><p><b>dwDialMode: </b>Indicates whether the RRAS server
+dials all of this entry&#39;s multilink subentries when the entry is first
+connected. This member can be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Dial the first available device only.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDM_DialAll</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Dial all subentries initially.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDM_DialAsNeeded</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Adjust the number of subentries as bandwidth is
+  required. The RRAS server uses the <b>dwDialExtraPercent</b>, <b>dwDialExtraSampleSeconds</b>,
+  <b>dwDialHangUpExtraPercent</b>, and <b>dwHangUpExtraSampleSeconds</b>
+  members to determine when to dial or disconnect a subentry. This value SHOULD<a id="Appendix_A_Target_69"></a><a aria-label="Product behavior note 69" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_69" data-linktype="relative-path">&lt;69&gt;</a> be ignored and treated
+  identically to MPRDM_DialAll.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwDialExtraPercent: </b>A value that specifies the
+percentage of the total bandwidth that is available from the currently
+connected subentries. The RRAS server dials an additional subentry when the
+total bandwidth that is used exceeds the percentage limit (<b>dwDialExtraPercent</b>)
+of the available bandwidth for at least <b>dwDialExtraSampleSeconds</b>
+seconds. </p><dl>
+<dd>
+<p>This member is ignored unless the <b>dwDialMode</b>
+member specifies the MPRDM_DialAsNeeded flag.</p>
+</dd></dl><p><b>dwDialExtraSampleSeconds: </b>A value that
+specifies the time, in seconds, for which current bandwidth usage MUST exceed
+the threshold that is specified by <b>dwHangUpExtraSampleSeconds</b> before the
+RRAS server dials an additional subentry. </p><dl>
+<dd>
+<p>This member is ignored unless the <b>dwDialMode</b>
+member specifies the MPRDM_DialAsNeeded flag.</p>
+</dd></dl><p><b>dwHangUpExtraPercent: </b>A value that specifies
+the percentage of the total bandwidth that is available from the currently
+connected subentries. The RRAS server terminates (hangs up) an existing
+subentry connection when the total bandwidth used is less than the percentage
+limit, indicated by <b>dwHangUpExtraPercent</b>, of the available bandwidth for
+at least <b>dwHangUpExtraSampleSeconds</b> seconds.</p><dl>
+<dd>
+<p>This member is ignored unless the <b>dwDialMode</b>
+member specifies the MPRDM_DialAsNeeded flag.</p>
+</dd></dl><p><b>dwHangUpExtraSampleSeconds: </b>A value that
+specifies the time, in seconds, for which current bandwidth usage MUST be less
+than the threshold that is specified by <b>dwHangUpExtraPercent</b> before the
+RRAS server terminates an existing subentry connection. </p><dl>
+<dd>
+<p>This member is ignored unless the <b>dwDialMode</b>
+member specifies the MPRDM_DialAsNeeded flag.</p>
+</dd></dl><p><b>dwIdleDisconnectSeconds: </b>A value that
+specifies the time, in seconds, after which an idle connection is terminated.
+Unless the idle time-out is disabled, the entire connection is terminated if
+the connection is idle for the specified <b>dwIdleDisconnectSeconds</b>. This
+member can specify either a time-out value or one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MPRIDS_UseGlobalValue</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Use the user preference value as the default.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRIDS_Disabled</p>
+  <p>0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>There is no idle time-out for this connection.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwType: </b>A value that specifies the type of
+phone book entry. This is a read-only field and specifies the type of entry
+based on the value of the <b>szDeviceType</b> member. This member can be one of
+the following types.<a id="Appendix_A_Target_70"></a><a aria-label="Product behavior note 70" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_70" data-linktype="relative-path">&lt;70&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MPRET_Phone</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Phone line (for example: modem, ISDN, or X.25).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRET_Vpn</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Virtual private network (VPN).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRET_Direct</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Direct serial or parallel connection.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwEncryptionType: </b>A value that specifies the
+type of encryption to use for Microsoft Point-to-Point Encryption (MPPE) with
+the connection. This member can be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MPR_ET_None</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Do not use encryption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_ET_Require</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Use encryption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_ET_RequireMax</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Use maximum-strength encryption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_ET_Optional</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>If possible, use encryption.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The value of the <b>dwEncryptionType</b>
+does not affect how passwords are encrypted. Whether passwords are encrypted
+and how passwords are encrypted is determined by the authentication protocol
+(for example: PAP, [MS-CHAP], or <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_5de8ef80-3a1d-4ec8-bf8c-321972e06eae" data-linktype="relative-path">EAP</a>).</p>
+</dd></dl><p><b>dwCustomAuthKey: </b>A value that specifies the
+authentication key to be provided to an EAP vendor.</p><p><b>dwCustomAuthDataSize: </b>A value that specifies
+the size of the data pointed to by the <b>lpbCustomAuthData</b> member.</p><p><b>lpbCustomAuthData: </b>Offset from the beginning
+of this structure where the <b>CustomAuthData</b> is stored. If <b>CustomAuthData</b>
+is not specified, it MUST be set to 0. <b>CustomAuthData</b> is the
+authentication data to use with EAP. <b>CustomAuthData</b> MUST be appended to
+the end of this structure.</p><p><b>guidId: </b>The <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> that represents this
+phone book entry. This member is read-only.</p><p><b>dwVpnStrategy: </b>The VPN strategy to use when
+dialing a VPN connection. This member can have one of the following values.<a id="Appendix_A_Target_71"></a><a aria-label="Product behavior note 71" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_71" data-linktype="relative-path">&lt;71&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MPR_VS_Default</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The RRAS server dials the PPTP first. If the PPTP
+  fails, the L2TP is attempted. If the L2TP fails, the IKEv2 is attempted. The
+  protocol that succeeds is tried first in subsequent dialing for this entry.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_VS_PptpOnly</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The RRAS server dials only the PPTP.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_VS_PptpFirst</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The RRAS server always dials the PPTP first, the L2TP
+  second, and the IKEv2 third.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_VS_L2tpOnly</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The RRAS server dials only the L2TP.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_VS_L2tpFirst</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The RRAS server dials the L2TP first, the PPTP second,
+  and the IKEv2 third.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_VS_Ikev2Only</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>The RRAS server dials only the IKEv2.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_VS_Ikev2First</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The RRAS server dials the IKEv2 first, the PPTP
+  second, and the L2TP third.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

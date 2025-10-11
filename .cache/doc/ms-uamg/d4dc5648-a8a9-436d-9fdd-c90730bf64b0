@@ -1,1 +1,17 @@
-<div class="content"></div>
+<div class="content"><p>The DeploymentAction enumeration defines values that
+describe the server-defined action to be taken on the update by the <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_362092cf-7fb5-43eb-92e1-c3e4affdd92b" data-linktype="relative-path">update
+agent</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum tagDeploymentAction
+ {
+   daNone = 0,
+   daInstallation = 1,
+   daUninstallation = 2,
+   daDetection = 3,
+ } DeploymentAction;
+</pre></div>
+</dd></dl><p><b>daNone:  </b>The update inherits the deployment
+action from its bundled updates.</p><p><b>daInstallation:  </b>The update SHOULD be
+installed on the computer and/or for the specified user.</p><p><b>daUninstallation:  </b>The update SHOULD be
+uninstalled from the computer and/or for the specified user.</p><p><b>daDetection:  </b>The update is deployed only to
+determine the applicability of the update. The update SHOULD NOT be installed.</p></div>

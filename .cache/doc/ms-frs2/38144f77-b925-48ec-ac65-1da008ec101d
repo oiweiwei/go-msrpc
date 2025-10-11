@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>Configuration parameters for the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_33572936-6f55-4561-8599-8380eb71d725" data-linktype="relative-path">RDC FilterMax algorithm</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _FRS_RDC_PARAMETERS_FILTERMAX {
+   [range(CONFIG_RDC_HORIZONSIZE_MIN, CONFIG_RDC_HORIZONSIZE_MAX)] 
+     unsigned short horizonSize;
+   [range(CONFIG_RDC_HASHWINDOWSIZE_MIN, CONFIG_RDC_HASHWINDOWSIZE_MAX)] 
+     unsigned short windowSize;
+ } FRS_RDC_PARAMETERS_FILTERMAX;
+</pre></div>
+</dd></dl><p><b>horizonSize:</b>  See <a href="../ms-rdc/5b027295-0b63-45b9-8f62-0e49448350d9" data-linktype="relative-path">[MS-RDC]</a>
+for the definition of the <i>horizon</i> parameter of the FilterMax algorithm.</p><p><b>windowSize:</b>  See [MS-RDC] for the
+definition of the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_b7e2b611-0af5-4fec-8af2-3f9ce7bad205" data-linktype="relative-path">hash</a>
+window parameter of the FilterMax algorithm.</p></div>

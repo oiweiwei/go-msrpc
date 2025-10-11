@@ -1,0 +1,22 @@
+<div class="content"><p>The QueueInfo method is received by the server in an
+RPC_REQUEST packet. In response, the server returns an <a href="d22779e5-7d4d-4711-bdf0-3d47adb6c5df" data-linktype="relative-path">MSMQQueueInfo</a> object that
+represents the <i>referenced queue</i>.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT QueueInfo(
+   [out, retval] IMSMQQueueInfo** ppqinfo
+ );
+</pre></div>
+</dd></dl><p><b>ppqinfo: </b>A pointer to an <a href="6014d18a-38fc-4fe2-83f0-11a963c69615" data-linktype="relative-path">IMSMQQueueInfo4</a> interface
+pointer that contains the MSMQQueueInfo object that represents the <i>referenced
+queue</i>.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>IsInitialized</i> instance variable is False:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error OLE_E_BLANK (0x80040007), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Set the <i>ppqinfo</i> output variable to <i>MSMQQueueInfoObject</i>.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK (0x00000000), and take no further action.</p>
+</li></ul></div>

@@ -1,0 +1,4 @@
+<div class="content"><p>This protocol is intended to provide read/write access to
+administrative configuration data that is located on a remote server computer.
+The administrative configuration data is implementation-specific for each
+server.</p></div>

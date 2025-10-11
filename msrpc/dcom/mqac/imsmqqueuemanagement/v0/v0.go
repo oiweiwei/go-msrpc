@@ -49,13 +49,83 @@ type QueueManagementClient interface {
 	// IMSMQManagement retrieval method.
 	Management() imsmqmanagement.ManagementClient
 
-	// JournalMessageCount operation.
+	// The JournalMessageCount method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return the number of messages in the Queue that is associated
+	// with the represented Queue.JournalQueueReference.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
+	//
+	// When the server processes this call, it MUST follow these guidelines:
+	//
+	// * If the *ObjectIsInitialized* instance variable is False:
+	//
+	// * The server MUST return MQ_ERROR_UNINITIALIZED_OBJECT (0xC00E0094), and MUST take
+	// no further action.
+	//
+	// * The server MUST generate a *QMMgmt Get Info* event with the following inputs:
+	//
+	// * *iPropID* = PROPID_MGMT_QUEUE_JOURNAL_MESSAGE_COUNT
+	//
+	// * If the *rStatus* return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return *rStatus* and MUST take no further action.
+	//
+	// * Else:
+	//
+	// * The plJournalMessageCount output variable MUST be set to the value of the returned
+	// *rPropVar*.
 	GetJournalMessageCount(context.Context, *GetJournalMessageCountRequest, ...dcerpc.CallOption) (*GetJournalMessageCountResponse, error)
 
-	// BytesInJournal operation.
+	// The BytesInJournal method is received by the server in an RPC_REQUEST packet. In
+	// response, the server MUST return the Queue.TotalBytes of the Queue that is associated
+	// with the represented Queue.JournalQueueReference.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
+	//
+	// When the server processes this call, it MUST follow these guidelines:
+	//
+	// * If the *ObjectIsInitialized* instance variable is False:
+	//
+	// * The server MUST return MQ_ERROR_UNINITIALIZED_OBJECT (0xC00E0094), and MUST take
+	// no further action.
+	//
+	// * The server MUST generate a *QMMgmt Get Info* event with the following inputs:
+	//
+	// * *iPropID* = PROPID_MGMT_QUEUE_BYTES_IN_JOURNAL
+	//
+	// * If the *rStatus* return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return *rStatus* and MUST take no further action.
+	//
+	// * Else:
+	//
+	// * The plJournalMessageCount output variable MUST be set to the value of the returned
+	// *rPropVar*.
 	GetBytesInJournal(context.Context, *GetBytesInJournalRequest, ...dcerpc.CallOption) (*GetBytesInJournalResponse, error)
 
-	// EodGetReceiveInfo operation.
+	// The EodGetReceiveInfo method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return the represented Queue.IncomingTransactionalTransferInfoCollection.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
+	//
+	// When the server processes this call, it MUST follow these guidelines:
+	//
+	// * If the *ObjectIsInitialized* instance variable is False:
+	//
+	// * The server MUST return MQ_ERROR_UNINITIALIZED_OBJECT (0xC00E0094), and MUST take
+	// no further action.
+	//
+	// * The server MUST generate a *QMMgmt Get Info* event with the following inputs:
+	//
+	// * *iPropID* = PROPID_MGMT_EOD_SOURCE_INFO
+	//
+	// * If the *rStatus* return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return *rStatus* and MUST take no further action.
+	//
+	// * Else:
+	//
+	// * The pvCollection output variable MUST be set to the returned *rPropVar*.
 	EODGetReceiveInfo(context.Context, *EODGetReceiveInfoRequest, ...dcerpc.CallOption) (*EODGetReceiveInfoResponse, error)
 
 	// AlterContext alters the client context.
@@ -350,8 +420,10 @@ func (o *GetJournalMessageCountRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // GetJournalMessageCountResponse structure represents the JournalMessageCount operation response
 type GetJournalMessageCountResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That                *dcom.ORPCThat `idl:"name:That" json:"that"`
-	JournalMessageCount int32          `idl:"name:plJournalMessageCount" json:"journal_message_count"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// plJournalMessageCount: A pointer to a long that, when successfully completed, contains
+	// the number of messages in the Queue that is associated with the represented Queue.JournalQueueReference.
+	JournalMessageCount int32 `idl:"name:plJournalMessageCount" json:"journal_message_count"`
 	// Return: The JournalMessageCount return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -593,8 +665,11 @@ func (o *GetBytesInJournalRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // GetBytesInJournalResponse structure represents the BytesInJournal operation response
 type GetBytesInJournalResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
-	BytesInJournal *oaut.Variant  `idl:"name:pvBytesInJournal" json:"bytes_in_journal"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pvBytesInJournal: A pointer to a VARIANT that, when successfully completed, contains
+	// an unsigned 64-bit integer (VT_UI8) that specifies the number of message bytes in
+	// the Queue that is associated with the represented Queue.JournalQueueReference.
+	BytesInJournal *oaut.Variant `idl:"name:pvBytesInJournal" json:"bytes_in_journal"`
 	// Return: The BytesInJournal return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -836,8 +911,9 @@ func (o *EODGetReceiveInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // EODGetReceiveInfoResponse structure represents the EodGetReceiveInfo operation response
 type EODGetReceiveInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Collection *oaut.Variant  `idl:"name:pvCollection" json:"collection"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pvCollection: A pointer to a VARIANT that contains an array of VARIANTs (VT_ARRAY | VT_VARIANT) in which each VARIANT contains an EODTargetInfo (section 2.2.4.1) collection.
+	Collection *oaut.Variant `idl:"name:pvCollection" json:"collection"`
 	// Return: The EodGetReceiveInfo return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

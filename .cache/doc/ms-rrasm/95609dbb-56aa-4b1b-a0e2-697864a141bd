@@ -1,1 +1,62 @@
-<div class="content"></div>
+<div class="content"><p>The <b>DIM_INFORMATION_CONTAINER</b> structure specifies a
+generic information container used by certain methods to store and retrieve
+information.</p><dl>
+<dd>
+<div><pre> typedef struct _DIM_INFORMATION_CONTAINER {
+   DWORD dwBufferSize;
+   [size_is(dwBufferSize)] LPBYTE pBuffer;
+ } DIM_INFORMATION_CONTAINER,
+  *PDIM_INFORMATION_CONTAINER;
+</pre></div>
+</dd></dl><p><b>dwBufferSize: </b>This MUST be set to the size, in
+bytes, of the data being pointed to by <b>pBuffer</b>.</p><p><b>pBuffer: </b>A pointer to a buffer of size <b>dwBufferSize</b>
+that contains the information. The information contained in this buffer is
+specific to the API in which this structure is used. </p><dl>
+<dd>
+<p>This information can be any of the following
+structures:</p>
+</dd></dl><ul><li><p><span><span>  </span></span><a href="5d243bef-8203-46ea-970a-962590f56200" data-linktype="relative-path">MPR_SERVER_0</a></p>
+</li><li><p><span><span>  </span></span><a href="12ffcd88-5613-4ccb-ba5c-c281aec368cb" data-linktype="relative-path">MPR_SERVER_1</a></p>
+</li><li><p><span><span>  </span></span><a href="7f9bfc09-26be-42e8-83d0-fe4ebf384abe" data-linktype="relative-path">MPR_SERVER_2</a></p>
+</li><li><p><span><span>  </span></span><a href="e979f770-cb84-426a-9b43-1ce5eec2d169" data-linktype="relative-path">RASI_CONNECTION_0</a></p>
+</li><li><p><span><span>  </span></span><a href="617795bc-29d6-4698-bbaf-2e07bc34bd61" data-linktype="relative-path">RASI_CONNECTION_1</a></p>
+</li><li><p><span><span>  </span></span><a href="9a183ab0-5b55-4be5-baea-25b1357a62bb" data-linktype="relative-path">RASI_CONNECTION_2</a></p>
+</li><li><p><span><span>  </span></span><a href="9b17d836-13c1-4772-b1fa-24c74fae1918" data-linktype="relative-path">RASI_CONNECTION_3</a></p>
+</li><li><p><span><span>  </span></span><a href="ed4beef4-11ba-413f-abf4-2659412169e8" data-linktype="relative-path">RASI_PORT_0</a></p>
+</li><li><p><span><span>  </span></span><a href="f6b91be9-338a-41b4-9b24-2d5ab26dd9be" data-linktype="relative-path">RASI_PORT_1</a></p>
+</li><li><p><span><span>  </span></span><a href="1c0f45b1-e5f4-4479-86cf-5f7753b4697c" data-linktype="relative-path">MPRI_INTERFACE_0</a></p>
+</li><li><p><span><span>  </span></span><a href="bb6d1b31-4515-44cd-9297-2768221d1397" data-linktype="relative-path">MPRI_INTERFACE_1</a></p>
+</li><li><p><span><span>  </span></span><a href="0b5fa6fc-b3f2-4a3f-9bfd-96963bfbb03d" data-linktype="relative-path">MPRI_INTERFACE_2</a> </p>
+</li></ul><p><b>DIM_INFORMATION_CONTAINER</b> specifies a generic
+information container used by the following methods to store and retrieve
+information:</p><ul><li><p><span><span> 
+</span></span><a href="6b444061-7d03-4899-a1b0-feb5d8645377" data-linktype="relative-path">RMprAdminServerGetInfo (section 3.1.4.1)</a></p>
+</li><li><p><span><span> 
+</span></span><a href="023913fc-f438-47c9-a52b-6e45e0190c6c" data-linktype="relative-path">RRasAdminConnectionEnum (section 3.1.4.2)</a></p>
+</li><li><p><span><span> 
+</span></span><a href="cb8a4769-8b8c-4c33-84f2-d3418162599f" data-linktype="relative-path">RRasAdminConnectionGetInfo (section 3.1.4.3)</a></p>
+</li><li><p><span><span> 
+</span></span><a href="7f77ce09-b084-47ff-a1e0-6fd30cab5744" data-linktype="relative-path">RRasAdminPortEnum (section 3.1.4.5)</a></p>
+</li><li><p><span><span> 
+</span></span><a href="f5b9fb82-ead5-46a7-83a0-dc177fa7c55c" data-linktype="relative-path">RRasAdminPortGetInfo (section 3.1.4.6)</a></p>
+</li><li><p><span><span> 
+</span></span><a href="72bead5c-821f-4e98-bacd-0de279552379" data-linktype="relative-path">RRouterInterfaceCreate (section 3.1.4.13)</a></p>
+</li><li><p><span><span> 
+</span></span><a href="2fbcf316-2082-4f98-878b-eab5d0c2da1d" data-linktype="relative-path">RRouterInterfaceGetInfo (section 3.1.4.14)</a></p>
+</li><li><p><span><span> 
+</span></span><a href="615c1081-5d03-415a-b57c-76876bb2cf23" data-linktype="relative-path">RRouterInterfaceSetInfo (section 3.1.4.15)</a></p>
+</li><li><p><span><span> 
+</span></span><a href="0d19911e-f4d7-47f0-b615-90feef69831c" data-linktype="relative-path">RRouterInterfaceEnum (section 3.1.4.21)</a></p>
+</li><li><p><span><span> 
+</span></span><a href="7a027868-0815-4cee-90ca-f57e7b673498" data-linktype="relative-path">RRouterInterfaceDeviceGetInfo (section 3.1.4.39)</a></p>
+</li><li><p><span><span> 
+</span></span><a href="0ba65f78-98e2-4b7d-a0da-5fb96be1ef75" data-linktype="relative-path">RRouterInterfaceDeviceSetInfo (section 3.1.4.40)</a></p>
+</li><li><p><span><span> 
+</span></span><a href="dcad4e29-723b-4832-84d8-5bfac7895b2e" data-linktype="relative-path">RRouterInterfaceSetCredentialsEx (section 3.1.4.41)</a></p>
+</li><li><p><span><span> 
+</span></span><a href="434d62e9-77b7-4cce-bbda-03a20685ae74" data-linktype="relative-path">RRouterInterfaceGetCredentialsEx (section 3.1.4.42)</a></p>
+</li><li><p><span><span> 
+</span></span><a href="40aecae7-0ea5-4d3a-9186-cbd0bf6ad608" data-linktype="relative-path">RMprAdminServerSetInfo (section 3.1.4.44)</a></p>
+</li><li><p><span><span> 
+</span></span><a href="0553ccf0-5b52-4131-b277-4f2644eb41e7" data-linktype="relative-path">RRouterDeviceEnum (section 3.1.4.37)</a></p>
+</li></ul></div>

@@ -1,0 +1,51 @@
+<div class="content"><p>The MQTRANSACTION enumeration defines values that are passed
+to methods that occur in the scope of a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a>. Specific
+values in this enumeration indicate the manner in which an operation obtains a
+transaction identifier. A value is reserved to indicate that the operation is
+not to be performed in the scope of a transaction.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MQ_NO_TRANSACTION = 0,
+   MQ_MTS_TRANSACTION = 1,
+   MQ_XA_TRANSACTION = 2,
+   MQ_SINGLE_MESSAGE = 3
+ } MQTRANSACTION;
+</pre></div>
+</dd></dl><p><b>MQ_NO_TRANSACTION:  </b>The operation is not to be
+performed in the context of a transaction. Therefore, the operation is to be
+immediately executed to completion.</p><p><b>MQ_MTS_TRANSACTION:  </b>The operation MUST be
+performed in the context of an MSDTC coordinated transaction (see <a href="../ms-dtco/c367c571-33f3-44ac-85cb-4b9ebbb2779d" data-linktype="relative-path">[MS-DTCO]</a>).
+The transaction identifier is to be obtained from the Component Object Model
+(COM) activation context, as defined in <a href="../ms-com/a846e48d-bbc9-4b28-9650-601810cf3af0" data-linktype="relative-path">[MS-COM]</a>.</p><p><b>MQ_XA_TRANSACTION:  </b>A coordinated transaction,
+as defined by <a href="https://go.microsoft.com/fwlink/?LinkId=89820" data-linktype="external">[C193]</a>.</p><dl>
+<dd>
+<p>The transaction identifier is to be obtained from
+the COM activation context, as defined in [MS-COM].</p>
+</dd></dl><p><b>MQ_SINGLE_MESSAGE:  </b>The operation is not to be
+performed in the context of a transaction. This flag is required when sending a
+single <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a> to, or
+receiving a single message from, a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_49b6c0e7-59fc-40af-b627-df18c392327b" data-linktype="relative-path">transactional queue</a>, when
+not coordinating a transaction with systems beyond message queuing.</p><p>Used by:</p><ul><li><p><span><span> 
+</span></span><a href="cc3f6a28-2017-4c05-a9eb-3917b4589490" data-linktype="relative-path">IMSMQQueue::Receive</a></p>
+</li><li><p><span><span> 
+</span></span><a href="d90332f9-b08e-43a7-9202-ab674e04fda2" data-linktype="relative-path">IMSMQQueue::Receive_v1</a></p>
+</li><li><p><span><span> 
+</span></span><a href="9caeb774-ce74-440d-9dd7-893323ac3867" data-linktype="relative-path">IMSMQQueue::ReceiveByLookupId</a></p>
+</li><li><p><span><span> 
+</span></span><a href="9fdc2a8b-33e4-492c-aaaf-395e51e417b1" data-linktype="relative-path">IMSMQQueue::ReceiveCurrent</a></p>
+</li><li><p><span><span> 
+</span></span><a href="3d7b1577-3acf-4f5e-88bc-1bfc86112987" data-linktype="relative-path">IMSMQQueue::ReceiveCurrent_v1</a></p>
+</li><li><p><span><span> 
+</span></span><a href="edd765b0-b6ab-4e60-a659-60f2c88ed23e" data-linktype="relative-path">IMSMQQueue::ReceiveFirstByLookupId</a></p>
+</li><li><p><span><span> 
+</span></span><a href="8a4ec556-5e06-401f-b396-19ada9a4f120" data-linktype="relative-path">IMSMQQueue::ReceiveLastByLookupId</a></p>
+</li><li><p><span><span> 
+</span></span><a href="f87135e3-1c3e-48a2-9282-1bcf0d59a59e" data-linktype="relative-path">IMSMQQueue::ReceiveNextByLookupId</a></p>
+</li><li><p><span><span> 
+</span></span><a href="49d898f5-cbf9-4965-b6e3-0bbefa18cb2c" data-linktype="relative-path">IMSMQQueue::ReceivePreviousByLookupId</a></p>
+</li><li><p><span><span> 
+</span></span><a href="1327ff6d-33f9-4986-80d7-f264d15a460f" data-linktype="relative-path">IMSMQQueue::ReceiveByLookupIdAllowPeek</a></p>
+</li><li><p><span><span> 
+</span></span><a href="fd62e459-7b6a-41d7-ba4c-741e0f49cec7" data-linktype="relative-path">IMSMQMessage::Send</a></p>
+</li></ul></div>

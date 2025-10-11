@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The <b>BGP_POLICY_DIRECTION</b> enumeration<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a> enumerates the values that
+specify the source of the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_10fb4236-73b3-4c84-ad83-1e288ede860f" data-linktype="relative-path">Border
+Gateway Protocol (BGP)</a> routes on which the BGP policy is applied.</p><dl>
+<dd>
+<div><pre> typedef enum _BGP_POLICY_DIRECTION
+ {
+   DirectionIngress = 1,
+   DirectionEgress = 2
+ } BGP_POLICY_DIRECTION,
+  *PBGP_POLICY_DIRECTION;
+</pre></div>
+</dd></dl><p><b>DirectionIngress: </b>The BGP policy is applied to
+the BGP routes advertised by BGP peers. </p><p><b>DirectionEgress: </b>The BGP policy is applied to
+the BGP routes advertised by the BGP speaker.</p></div>

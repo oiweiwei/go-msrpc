@@ -45,8 +45,8 @@ value. If the <i>actionType</i> is <b>FsrmActionType_Unknown</b>, the parameter
 MUST be considered an invalid value.</p>
 </li><li><p><span><span> 
 </span></span>Verify that <i>delayTimeMinutes</i> is not NULL.</p>
-</li></ul><p>If any validation fails, the server MUST terminate
-processing and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
+</li></ul><p>If any validation fails, the server MUST terminate processing
+and return a nonzero error code.</p><p>Upon successful validation of parameters, the server MUST
 perform the following actions or return a nonzero error code.</p><ul><li><p><span><span> 
 </span></span>Verify that Run limit interval is present for <i>actionType</i>.<a id="Appendix_A_Target_55"></a><a aria-label="Product behavior note 55" href="1cc8408c-3c9b-4510-9585-e4a8d0d40e27#Appendix_A_55" data-linktype="relative-path">&lt;55&gt;</a></p>
 </li></ul><p>The server MUST set <i>delayTimeMinutes</i> to the <b>general

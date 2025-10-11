@@ -1,1 +1,138 @@
-<div class="content"></div>
+<div class="content"><p>The EFSRPC raw data format is used by the EFSRPC raw
+methods. The output of the <a href="a3a6d95f-ebd5-4a08-9d19-6b6c1b7d41f6" data-linktype="relative-path">EfsRpcReadFileRaw</a>
+method MUST conform to this format. The input to the <a href="b4fa10e8-31bb-4dd4-87af-1c4a3dedf417" data-linktype="relative-path">EfsRpcWriteFileRaw</a> method
+MUST conform to the EFSRPC Raw Data Format. The details of this format are
+implementation dependent. An EFSRPC client SHOULD NOT parse this format and
+SHOULD NOT rely on it having any particular structure. An EFSRPC server MUST
+validate input data passed to it by the EfsRpcWriteFileRaw method, and SHOULD
+abort the EfsRpcWriteFileRaw operation with an RPC exception if this data is in
+an unsupported format.</p><p>The EFSRPC Raw Data Format SHOULD be formatted as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x01</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>0x52</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x4f</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>0x42</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x53</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EFSRPC
+  Metadata Stream (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Additional
+  Stream 1 (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Additional
+  Stream n (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Reserved (8 bytes): </b>MUST be set to zero and
+ignored.</p><p><b>EFSRPC Metadata Stream (variable): </b>This field
+MUST be formatted as specified in section <a href="053f87fb-4896-4307-8ece-f23dc8e9762d" data-linktype="relative-path">2.2.3.1</a>. This field MUST
+contain the <a href="3166cf4a-e085-47be-94c6-b69bddf274ff" data-linktype="relative-path">EFSRPC Metadata</a>
+for the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_a04c146a-de3b-4e4b-829f-a9e772f3fe25" data-linktype="relative-path">file</a>, along with
+a header. The structure of the EFSRPC Metadata is specified in section 2.2.2.</p><p><b>Additional Stream 1 ... n: </b>These MUST
+correspond to marshaled versions of all the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_f3529cd8-50da-4f36-aa0b-66af455edbb6" data-linktype="relative-path">streams</a> (except for <a href="625335e5-a423-4d1c-be51-c696c32aa2eb" data-linktype="relative-path">EFSRPC Metadata</a>) in the
+given file. They are optional and might not exist (for example, for <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_6afebb3e-5358-4ab8-b0fc-fcc8de47fcc1" data-linktype="relative-path">folders</a> with no alternate
+streams). For more information on <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_86f79a17-c0be-4937-8660-0cf6ce5ddc1a" data-linktype="relative-path">NTFS</a> file streams, see <a href="https://go.microsoft.com/fwlink/?LinkId=90200" data-linktype="external">[MSFT-NTFS]</a>. These
+fields MUST be formatted as specified in section 2.2.3.1. </p></div>

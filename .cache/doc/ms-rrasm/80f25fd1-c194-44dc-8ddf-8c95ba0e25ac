@@ -1,1 +1,26 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPX_STATIC_ROUTE_INFO</b> structure MAY<a id="Appendix_A_Target_84"></a><a aria-label="Product behavior note 84" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_84" data-linktype="relative-path">&lt;84&gt;</a> be used to carry the route
+information for an IPX interface. When this structure is encapsulated within
+the <a href="c99955ec-6d18-4665-8d5b-e124de63a368" data-linktype="relative-path"><b>RTR_TOC_ENTRY (section 2.2.1.2.4)</b></a>,
+the <b>InfoType</b> value used MUST be 0x00000002. </p><dl>
+<dd>
+<div><pre> typedef struct _IPX_STATIC_ROUTE_INFO {
+   union {
+     ULONG DwordAlign;
+     UCHAR Network[4];
+   };
+   USHORT TickCount;
+   USHORT HopCount;
+   UCHAR NextHopMacAddress[6];
+ } IPX_STATIC_ROUTE_INFO,
+  *PIPX_STATIC_ROUTE_INFO;
+</pre></div>
+</dd></dl><p><b>DwordAlign: </b>This field of the union MUST NOT
+be used.</p><p><b>Network: </b>This member MUST be the 4-byte IPX
+network number in hexadecimal (8 hexadecimal digits). For example,
+1abe32.0000.0c33.2331. The first 32 bits represent the network address and the
+remaining bits represent the node address; that is, the format is network.node.
+</p><p><b>TickCount: </b>This MUST be the number of ticks to
+get to the network number. One unit of tick count is approximately 1/18
+seconds.</p><p><b>HopCount: </b>This MUST be the number of routers
+to be traversed to get to the network number.</p><p><b>NextHopMacAddress: </b>This MUST be the 6-byte MAC
+address of the next hop in hexadecimal (12 hexadecimal digits).</p></div>

@@ -1,1 +1,242 @@
-<div class="content"></div>
+<div class="content"><p>The SetNtmsObjectInformationA method changes the information
+of an object, with strings encoded using ASCII.</p><dl>
+<dd>
+<div><pre> HRESULT SetNtmsObjectInformationA(
+   [in] LPNTMS_GUID lpObjectId,
+   [in] LPNTMS_OBJECTINFORMATIONA lpInfo
+ );
+</pre></div>
+</dd></dl><p><b>lpObjectId: </b>A pointer to the identifier of the
+object to change.</p><p><b>lpInfo: </b> A pointer to an <a href="9252e471-a237-453a-9727-dbff3c125510" data-linktype="relative-path">NTMS_OBJECTINFORMATIONA</a>
+structure describing the properties of the object to change.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to an object was denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>An allocation failure occurred during processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database query or update failed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DA</p>
+  <p>ERROR_DATABASE_FULL</p>
+  </td>
+  <td>
+  <p>The database is full.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that
+both <i>lpObjectId</i> and <i>lpInfo</i> are not NULL. If parameter validation
+fails, the server MUST immediately fail the operation and return
+ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights. If the client does not have the
+required access rights, the server MUST return ERROR_ACCESS_DENIED
+(0x80070005).</p><p>All writable properties (as specified in the following
+table) for the object MUST be read from the NTMS_OBJECTINFORMATIONA structure
+and written to the database, regardless of any write operations that have
+occurred between the time this application called the <a href="885e2963-2386-4ce6-a2e0-0ae1b3927c08" data-linktype="relative-path">GetNtmsServerObjectInformationA</a>
+method and the SetNtmsObjectInformationA method. </p><p>The following objects have members that can be updated.</p><table><thead>
+  <tr>
+   <th>
+   <p> Object </p>
+   </th>
+   <th>
+   <p> Members </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_CHANGER</p>
+  </td>
+  <td>
+  <p><b>szDescription</b></p>
+  <p>MAY require NTMS_MODIFY_ACCESS to the library.<a id="Appendix_A_Target_33"></a><a aria-label="Product behavior note 33" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_33" data-linktype="relative-path">&lt;33&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_CHANGER_TYPE</p>
+  </td>
+  <td>
+  <p><b>szDescription</b></p>
+  <p>MAY require NTMS_MODIFY_ACCESS to the computer.<a id="Appendix_A_Target_34"></a><a aria-label="Product behavior note 34" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_34" data-linktype="relative-path">&lt;34&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_COMPUTER</p>
+  </td>
+  <td>
+  <p><b>dwMediaPoolPolicy</b></p>
+  <p><b>dwLibRequestFlags</b></p>
+  <p><b>dwLibRequestPurgeTime</b></p>
+  <p><b>dwOpRequestFlags</b></p>
+  <p><b>dwOpRequestPurgeTime</b></p>
+  <p><b>szDescription</b></p>
+  <p>MAY require NTMS_MODIFY_ACCESS to the computer.<a id="Appendix_A_Target_35"></a><a aria-label="Product behavior note 35" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_35" data-linktype="relative-path">&lt;35&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_DRIVE</p>
+  </td>
+  <td>
+  <p><b>dwDeferDismountDelay</b></p>
+  <p><b>szDescription</b></p>
+  <p>MAY require NTMS_MODIFY_ACCESS to the library.<a id="Appendix_A_Target_36"></a><a aria-label="Product behavior note 36" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_36" data-linktype="relative-path">&lt;36&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_DRIVE_TYPE</p>
+  </td>
+  <td>
+  <p><b>szDescription</b></p>
+  <p>MAY require NTMS_MODIFY_ACCESS to the computer.<a id="Appendix_A_Target_37"></a><a aria-label="Product behavior note 37" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_37" data-linktype="relative-path">&lt;37&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_IEDOOR</p>
+  </td>
+  <td>
+  <p><b>MaxOpenSecs</b></p>
+  <p><b>szDescription</b></p>
+  <p>MAY require NTMS_MODIFY_ACCESS to the library.<a id="Appendix_A_Target_38"></a><a aria-label="Product behavior note 38" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_38" data-linktype="relative-path">&lt;38&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_IEPORT</p>
+  </td>
+  <td>
+  <p><b>MaxExtendSecs</b></p>
+  <p><b>szDescription</b></p>
+  <p>MAY require NTMS_MODIFY_ACCESS to the library.<a id="Appendix_A_Target_39"></a><a aria-label="Product behavior note 39" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_39" data-linktype="relative-path">&lt;39&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_LIBRARY</p>
+  </td>
+  <td>
+  <p><b>AutoRecovery</b></p>
+  <p><b>dwCleanerUsesRemaining</b></p>
+  <p><b>dwFlags</b></p>
+  <p><b>InventoryMethod</b></p>
+  <p><b>szDescription</b></p>
+  <p><b>szName</b></p>
+  <p>MAY require NTMS_CONTROL_ACCESS to the library.<a id="Appendix_A_Target_40"></a><a aria-label="Product behavior note 40" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_40" data-linktype="relative-path">&lt;40&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_LIBREQUEST</p>
+  </td>
+  <td>
+  <p><b>szDescription</b></p>
+  <p>MAY require NTMS_MODIFY_ACCESS to the library.<a id="Appendix_A_Target_41"></a><a aria-label="Product behavior note 41" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_41" data-linktype="relative-path">&lt;41&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_LOGICAL_MEDIA</p>
+  </td>
+  <td>
+  <p><b>szDescription</b></p>
+  <p><b>szName</b></p>
+  <p>MAY require NTMS_MODIFY_ACCESS to the media pool of
+  the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_05349689-4cd0-4643-a13e-9f552ecf3346" data-linktype="relative-path">logical media</a>.<a id="Appendix_A_Target_42"></a><a aria-label="Product behavior note 42" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_42" data-linktype="relative-path">&lt;42&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_MEDIA_POOL</p>
+  </td>
+  <td>
+  <p><b>AllocationPolicy</b></p>
+  <p><b>DeallocationPolicy</b></p>
+  <p><b>dwMaxAllocates</b></p>
+  <p><b>MediaType</b></p>
+  <p><b>szDescription</b></p>
+  <p><b>szName</b></p>
+  <p>MAY require NTMS_MODIFY_ACCESS to the media pool.<a id="Appendix_A_Target_43"></a><a aria-label="Product behavior note 43" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_43" data-linktype="relative-path">&lt;43&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_MEDIA_TYPE</p>
+  </td>
+  <td>
+  <p><b>szDescription</b></p>
+  <p>MAY require NTMS_MODIFY_ACCESS to the computer.<a id="Appendix_A_Target_44"></a><a aria-label="Product behavior note 44" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_44" data-linktype="relative-path">&lt;44&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_OPREQUEST</p>
+  </td>
+  <td>
+  <p><b>szDescription</b></p>
+  <p>MAY require NTMS_MODIFY_ACCESS to the computer.<a id="Appendix_A_Target_45"></a><a aria-label="Product behavior note 45" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_45" data-linktype="relative-path">&lt;45&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_PARTITION</p>
+  </td>
+  <td>
+  <p><b>szName</b></p>
+  <p><b>szDescription</b></p>
+  <p>MAY require NTMS_MODIFY_ACCESS to the media pool of
+  the side.<a id="Appendix_A_Target_46"></a><a aria-label="Product behavior note 46" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_46" data-linktype="relative-path">&lt;46&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_PHYSICAL_MEDIA</p>
+  </td>
+  <td>
+  <p><b>szDescription</b></p>
+  <p><b>szName</b></p>
+  <p>MAY require NTMS_MODIFY_ACCESS to the media pool.<a id="Appendix_A_Target_47"></a><a aria-label="Product behavior note 47" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_47" data-linktype="relative-path">&lt;47&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_STORAGESLOT</p>
+  </td>
+  <td>
+  <p><b>szDescription</b></p>
+  <p>MAY require NTMS_MODIFY_ACCESS to the library.<a id="Appendix_A_Target_48"></a><a aria-label="Product behavior note 48" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_48" data-linktype="relative-path">&lt;48&gt;</a></p>
+  </td>
+ </tr></tbody></table><p>Strings sent to this method as parameters MUST be
+ASCII-encoded.</p></div>

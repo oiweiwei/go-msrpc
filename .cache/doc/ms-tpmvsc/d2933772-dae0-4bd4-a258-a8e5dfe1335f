@@ -1,1 +1,7 @@
-<div class="content"></div>
+<div class="content"><p>The DCOM Interfaces for Trusted Platform Module (TPM)
+Virtual Smart Card Management Protocol is used to manage <a href="348a1d4a-acc7-43ea-9413-b7e92ae9682d#gt_51714f66-75dc-4642-bd63-73b8b2825067" data-linktype="relative-path">virtual smart cards (VSCs)</a>
+on a remote machine, such as those based on trusted platform modules (TPM). It
+provides methods for a protocol client to request creation and destruction of
+VSCs and to monitor the status of these operations.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

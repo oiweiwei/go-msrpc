@@ -1,1 +1,215 @@
-<div class="content"></div>
+<div class="content"><p> The <b>PPP_CCP_INFO</b> structure contains information that
+describes the results of a <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_5764951f-c86b-47b2-840b-7a0cf02ba5b5" data-linktype="relative-path">Compression
+Control Protocol (CCP)</a> negotiation.</p><dl>
+<dd>
+<div><pre> typedef struct _PPP_CCP_INFO {
+   DWORD dwError;
+   DWORD dwCompressionAlgorithm;
+   DWORD dwOptions;
+   DWORD dwRemoteCompressionAlgorithm;
+   DWORD dwRemoteOptions;
+ } PPP_CCP_INFO;
+</pre></div>
+</dd></dl><p><b>dwError: </b>Specifies an error if the negotiation
+were unsuccessful. Zero (0) indicates success.</p><p><b>dwCompressionAlgorithm: </b>Specifies the
+compression algorithm used by the local computer. The following table shows the
+possible values for this member.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The local computer has not negotiated any compression
+  algorithm.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RASCCPCA_MPPC</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>Microsoft Point-to-Point Compression (MPPC) Protocol.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RASCCPCA_STAC</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>STAC LZS data compression algorithm <a href="https://go.microsoft.com/fwlink/?LinkId=149932" data-linktype="external">[RFC1974]</a> option 4.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwOptions: </b>Specifies the compression options on the
+local computer. The following options are supported.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>No additional compression options are available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PPP_CCP_COMPRESSION</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Compression without encryption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PPP_CCP_HISTORYLESS</p>
+  <p>0x01000000</p>
+  </td>
+  <td>
+  <p>Microsoft Point-to-Point Encryption (MPPE) in
+  stateless mode. The session key is changed after every packet. This mode
+  improves performance on high-latency networks, or networks that experience
+  significant packet loss.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PPP_CCP_ENCRYPTION40BIT</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>MPPE using 40-bit keys.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PPP_CCP_ENCRYPTION56BIT</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>MPPE using 56-bit keys.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PPP_CCP_ENCRYPTION128BIT</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>MPPE using 128-bit keys.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwRemoteCompressionAlgorithm: </b>Specifies the
+compression algorithm used by the remote computer. The following table shows
+the possible values for this member.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The remote computer has not negotiated any compression
+  algorithm.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RASCCPCA_MPPC</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>MPPC Protocol.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RASCCPCA_STAC</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>STAC option 4.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwRemoteOptions: </b>Specifies the compression
+options on the remote computer. The following options are supported.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>No additional compression options are available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PPP_CCP_COMPRESSION</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Compression without encryption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PPP_CCP_HISTORYLESS</p>
+  <p>0x01000000</p>
+  </td>
+  <td>
+  <p>MPPE in stateless mode. The session key is changed
+  after every packet. This mode improves performance on high-latency networks,
+  or networks that experience significant packet loss.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PPP_CCP_ENCRYPTION40BIT</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>MPPE using 40-bit keys.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PPP_CCP_ENCRYPTION56BIT</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>MPPE using 56-bit keys.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PPP_CCP_ENCRYPTION128BIT</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>MPPE using 128-bit keys.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

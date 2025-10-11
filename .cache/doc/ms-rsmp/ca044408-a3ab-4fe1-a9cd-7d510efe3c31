@@ -1,1 +1,85 @@
-<div class="content"></div>
+<div class="content"><p>The WaitForNtmsOperatorRequest method waits for an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_4676b5f2-6ecd-463c-8218-811911038e63" data-linktype="relative-path">operator request</a>.</p><dl>
+<dd>
+<div><pre> HRESULT WaitForNtmsOperatorRequest(
+   [in] LPNTMS_GUID lpRequestId,
+   [in] DWORD dwTimeout
+ );
+</pre></div>
+</dd></dl><p><b>lpRequestId: </b>A pointer to the identifier of
+the request for which to wait.</p><p><b>dwTimeout: </b>The number of milliseconds to wait.
+To check for an operator request, specify a time-out value of 0. If a value of
+0xFFFFFFFF is specified, this method does not time out.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to one or more objects is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>An invalid parameter was found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800704C7</p>
+  <p>ERROR_CANCELLED</p>
+  </td>
+  <td>
+  <p>The operator request was canceled by an administrator.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800705B4</p>
+  <p>ERROR_TIMEOUT</p>
+  </td>
+  <td>
+  <p>The time specified in the <i>dwTimeout</i> parameter
+  elapsed before completion of the operator request.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800708CA</p>
+  <p>ERROR_NOT_CONNECTED</p>
+  </td>
+  <td>
+  <p>Unable to connect to the service.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D8</p>
+  <p>ERROR_OBJECT_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>Unable to find the operator request object. Object
+  requests are flushed from the database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpRequestId</i>
+is not NULL. If parameter validation fails, the server MUST immediately fail
+the operation and return ERROR_INVALID_PARAMETER (0x80070057).</p><p>This method MUST wait for an operator request to complete or
+be refused, and return when the request is completed or refused appropriately.</p><p>The method MUST return a time-out error if the request is
+not completed or not refused in <i>dwTimeout</i>.</p></div>

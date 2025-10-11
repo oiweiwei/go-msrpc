@@ -1,0 +1,21 @@
+<div class="content"><p>The TransactionId method is received by the server in an
+RPC_REQUEST packet. In response, the server MUST return the represented
+Message.TransactionalMessageSequenceIdentifier.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT TransactionId(
+   [out, retval] VARIANT* pvarXactId
+ );
+</pre></div>
+</dd></dl><p><b>pvarXactId: </b>A pointer to a <a href="../ms-oaut/a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">VARIANT</a>
+that contains a 20-byte array (VT_ARRAY | VT_UI1) containing the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a> identifier. The
+format for this ID MUST follow the structure as defined in <a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a>
+section <a href="../ms-mqmq/653f80a3-6585-4cca-bb7f-5154b4ad0fab" data-linktype="relative-path">2.2.8</a>,
+where the Lineage part is the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>
+of the sending computer and the Uniquifier part is a transaction sequence
+number.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>Set the <i>pvarXactId</i> output parameter to the value of the
+represented Message.TransactionalMessageSequenceIdentifier.</p>
+</li></ul></div>

@@ -31,7 +31,14 @@ type Query2Server interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
-	// LookupQueue operation.
+	// The LookupQueue method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return a pointer to an IMSMQQueueInfos4 interface pointer. The returned
+	// interface allows the client to enumerate over a collection of Queues. The queue query
+	// represents search criteria based on any combination of Queue.Identifier, Queue.Type,
+	// Queue.Label, Queue.CreateTime, Queue.ModifyTime, or Queue.MulticastAddress properties.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	LookupQueue(context.Context, *LookupQueueRequest) (*LookupQueueResponse, error)
 
 	// Properties operation.

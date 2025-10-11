@@ -91,13 +91,13 @@ func readUnionURLs(p string) (map[string]map[string][]string, error) {
 func indexURL(n string) (string, string) {
 	n = strings.TrimPrefix(n, "ms-")
 	for _, idx := range indexes {
-		if idx[0][strings.LastIndex(idx[0], "/")+1:] == n {
+		if idxn := idx[0][strings.LastIndex(idx[0], "/")+1:]; idxn == n || idxn == "mc-"+n {
 			if strings.Contains(idx[1], "/") {
 				ridx := strings.Split(idx[1], "/")
 				return ridx[0], ridx[1]
 			}
-			if strings.HasPrefix(n, "mc-") {
-				return n, idx[1]
+			if strings.HasPrefix(idxn, "mc-") {
+				return "mc-" + n, idx[1]
 			}
 			if strings.Count(idx[0], "/") > 0 {
 				return strings.ReplaceAll(idx[0], n, "ms-"+n), idx[1]
@@ -140,7 +140,7 @@ func (i *index) UnmarshalJSON(b []byte) error {
 }
 
 var (
-	re = regexp.MustCompile(`^(?:[A-Za-z_0-9]+::)?_?([A-Za-z_0-9]+)(?: [mM]ethod)?(?: \([Oo]pnum:? ?\d+\))? ?(?:[mM]ethod|[sS]tructure|Structurestructure|[eE]numeration|[pP]acket)$`)
+	re = regexp.MustCompile(`^(?:[A-Za-z_0-9]+::)?_?([A-Za-z_0-9]+)(?: [mM]ethod)?(?: \(get\))?(?: \([Oo]pnum:? ?\d+\))? ?(?:[mM]ethod|[sS]tructure|Structurestructure|[eE]numeration|[pP]acket)$`)
 )
 
 func (i *index) enumerate() [][2]string {

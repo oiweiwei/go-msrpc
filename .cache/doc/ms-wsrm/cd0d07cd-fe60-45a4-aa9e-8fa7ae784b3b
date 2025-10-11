@@ -1,1 +1,44 @@
-<div class="content"></div>
+<div class="content"><p>The IsEnabled method returns whether a type of <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_c18a91a3-689f-4e5e-9a91-c7b8f5402c5e" data-linktype="relative-path">WSRM configuration</a> object
+is enabled or disabled.</p><dl>
+<dd>
+<div><pre> [id(3), helpstring(&#34;method IsEnabled&#34;)] HRESULT IsEnabled(
+   [out] BOOL* pbEnable,
+   [in] CONFIGTYPE enumConfigType
+ );
+</pre></div>
+</dd></dl><p><b>pbEnable: </b>A pointer to a Boolean value that
+indicates whether the WSRM configuration object is enabled or disabled.</p><p><b>enumConfigType: </b>A <a href="c7d0ac7a-d7f4-492c-93cf-df63e3970229" data-linktype="relative-path">CONFIGTYPE</a> enumeration
+(section 2.2.3.1) value that specifies the type of WSRM configuration object.</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="38d3fffd-48ad-4e02-a7ce-b13da6304c80" data-linktype="relative-path">IWRMConfig</a> interface
+methods are specified in section 3.2.4.5.</p></div>

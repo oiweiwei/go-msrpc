@@ -10,9 +10,8 @@ contains a <a href="../ms-oaut/a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linkty
 structure, which contains a <a href="../ms-oaut/04e72b3f-5731-4508-9bb4-de29fbd0f781" data-linktype="relative-path">SAFEARRAY</a>
 of VARIANT structures. The VARIANT structures contained in the SAFEARRAY MUST
 be <a href="../ms-dtyp/692a42a9-06ce-4394-b9bc-5d2a50440168" data-linktype="relative-path">BSTR</a>
-string values, each representing a local directory path that needs to be
-verified as supported by the File Server Resource Manager Protocol storage
-reports.</p><p><b>Return Values: </b>The method MUST return zero on
+string values, each representing a local directory path that needs to be verified
+as supported by the File Server Resource Manager Protocol storage reports.</p><p><b>Return Values: </b>The method MUST return zero on
 success, or a nonzero error code on failure.</p><table><thead>
   <tr>
    <th>

@@ -31,7 +31,12 @@ type AppHostChangeHandlerServer interface {
 	// IUnknown base class.
 	iunknown.UnknownServer
 
-	// OnSectionChanges operation.
+	// The OnSectionChanges method is called by the server by using an RPC_REQUEST packet.
+	// This method is called when a change in the path of the administration system hierarchy
+	// is detected. The callee (the client-implemented object) can react to this notification
+	// as it determines. It can return any error and the server MUST ignore it.
+	//
+	// Return Values: The return value MUST be ignored by the server.
 	OnSectionChanges(context.Context, *OnSectionChangesRequest) (*OnSectionChangesResponse, error)
 }
 

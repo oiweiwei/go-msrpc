@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsOperationalState enumeration defines the operational
+state of an object.</p><dl>
+<dd>
+<div><pre> enum NtmsOperationalState
+ {
+   NTMS_READY = 0,
+   NTMS_INITIALIZING = 10,
+   NTMS_NEEDS_SERVICE = 20,
+   NTMS_NOT_PRESENT = 21
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_READY:  </b>The object is ready.</p><p><b>NTMS_INITIALIZING:  </b>The object is initializing
+and is not yet available.</p><p><b>NTMS_NEEDS_SERVICE:  </b>The object has failed and
+requires service.</p><p><b>NTMS_NOT_PRESENT:  </b>The object is not present.</p></div>

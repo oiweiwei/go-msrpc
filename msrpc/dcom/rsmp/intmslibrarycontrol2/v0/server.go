@@ -31,6 +31,7 @@ type LibraryControl2Server interface {
 	// INtmsLibraryControl1 base class.
 	intmslibrarycontrol1.LibraryControl1Server
 
+	// The IdentifyNtmsSlot method identifies the media in a storage slot.
 	IdentifyNTMSSlot(context.Context, *IdentifyNTMSSlotRequest) (*IdentifyNTMSSlotResponse, error)
 }
 

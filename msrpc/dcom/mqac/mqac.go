@@ -1,4 +1,60 @@
 // The mqac package implements the MQAC client protocol.
+//
+// # Introduction
+//
+// This document specifies the Message Queuing (MSMQ): ActiveX Client Protocol, a collection
+// of Distributed Component Object Model (DCOM) [MS-DCOM] interfaces that expose message
+// queuing functionality for use by client applications. Operations that a client would
+// perform by using this protocol include:
+//
+// * Queuing system management.
+//
+// * Queue management.
+//
+// * Queue discovery.
+//
+// * Transaction ( 3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_61e1de21-a78d-4d20-b184-eda380386871
+// ) management.
+//
+// * Sending and receiving messages.
+//
+// # Notational Conventions
+//
+// The following notational conventions are used throughout this document:
+//
+// * The period, or "dot" ("."), notation is used to refer to a property of a system
+// abstract data model element. If *A* refers to an element of the system abstract data
+// model, *A*. *Property* denotes the *Property* property of the element *A*.
+//
+// * The elements of the abstract data models that are defined in section 3 ( 8af4863f-ecd4-43a0-8097-a29b08546a58
+// ) are referred to as instance variables. The names of instance variables and local
+// input parameters are formatted in italics. Elements of the abstract data model in
+// [MS-MQDMPR] ( ../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47 ) that are referred
+// to in this document are in *bold* and non-italicized.
+//
+// * A monospace font is used for all method signatures and Interface Definition Language
+// (IDL) ( 3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_73177eec-4092-420f-92c5-60b2478df824
+// ) declarations.
+//
+// # Overview
+//
+// The MSMQ: ActiveX Client Protocol defines how clients interact with a queue manager
+// to perform message queuing operations as shown in the protocol diagram in [MS-MQDMPR]
+// section 1.4.
+//
+// This document describes the client protocol that exercises an abstract system model
+// rather than a specific implementation. However, some aspects of the client protocol
+// reference specific details of the implementation of the Microsoft message queuing
+// system (known as Microsoft Message Queuing (MSMQ)). Where that happens, the abstract
+// meaning of the concepts is described together with informative references to the
+// specific MSMQ implementation details.
+//
+// A message queuing system consists of one or more queue managers that facilitate message
+// exchanges between clients of this protocol and a directory that exposes relevant
+// information about the queue managers. Clients of this protocol primarily discover
+// information in a directory and operate via queue managers. A message queuing system
+// implementation is not restricted to any particular distributed system topology as
+// long as the externally visible behavior adheres to what is described in this document.
 package mqac
 
 import (
@@ -32,7 +88,12 @@ var (
 )
 
 // BOID structure represents BOID RPC structure.
+//
+// The BOID structure specifies a value that uniquely identifies the unit of work for
+// a transactional operation.
 type BOID struct {
+	// rgb:  An array of bytes that contain a globally unique identifier (GUID) as specified
+	// in [MS-DTYP] section 2.3.4.
 	Data []byte `idl:"name:rgb" json:"data"`
 }
 
@@ -77,13 +138,30 @@ func (o *BOID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // TransactionInfo structure represents XACTTRANSINFO RPC structure.
+//
+// The XACTTRANSINFO structure is defined as follows.
 type TransactionInfo struct {
-	UOW                  *BOID  `idl:"name:uow" json:"uow"`
-	IsolationLevel       int32  `idl:"name:isoLevel" json:"isolation_level"`
-	IsolationFlags       uint32 `idl:"name:isoFlags" json:"isolation_flags"`
-	TCSupported          uint32 `idl:"name:grfTCSupported" json:"tc_supported"`
-	RMSupported          uint32 `idl:"name:grfRMSupported" json:"rm_supported"`
+	// uow:  This is of type BOID.
+	UOW *BOID `idl:"name:uow" json:"uow"`
+	// isoLevel:  The isoLevel property contains a LONG value that corresponds to the values
+	// defined for the OLETX_ISOLATION_LEVEL enumeration, as defined in [MS-DTCO] section
+	// 2.2.6.9.
+	IsolationLevel int32 `idl:"name:isoLevel" json:"isolation_level"`
+	// isoFlags:  The isoFlags property contains a ULONG value that corresponds to the values
+	// defined for the OLETX_ISOLATION_FLAGS enumeration, as defined in [MS-DTCO] section
+	// 2.2.6.8.
+	IsolationFlags uint32 `idl:"name:isoFlags" json:"isolation_flags"`
+	// grfTCSupported:  The grfTCSupported property specifies a bitmask that indicates which
+	// XACTTC flags (section 2.2.2.21) this transaction implementation supports.
+	TCSupported uint32 `idl:"name:grfTCSupported" json:"tc_supported"`
+	// grfRMSupported:  The grfRMSupported property is reserved for future use, and the
+	// server MUST set the value of this property to zero.
+	RMSupported uint32 `idl:"name:grfRMSupported" json:"rm_supported"`
+	// grfTCSupportedRetaining:  The grfTCSupportedRetaining property is reserved for future
+	// use, and the server MUST set the value of this property to zero.
 	TCSupportedRetaining uint32 `idl:"name:grfTCSupportedRetaining" json:"tc_supported_retaining"`
+	// grfRMSupportedRetaining:  The grfRMSupportedRetaining property is reserved for future
+	// use, and the server MUST set the value of this property to zero.
 	RMSupportedRetaining uint32 `idl:"name:grfRMSupportedRetaining" json:"rm_supported_retaining"`
 }
 
@@ -164,15 +242,34 @@ func (o *TransactionInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 }
 
 // TransactionCommitType type represents XACTTC RPC enumeration.
+//
+// The XACTTC enumeration defines the commit behavior of a transaction. The values in
+// this enumeration indicate the synchronous, asynchronous, or two-phased behavior of
+// the transaction.
 type TransactionCommitType uint16
 
 var (
-	TransactionCommitTypeNone          TransactionCommitType = 0
-	TransactionCommitTypeSyncPhaseOne  TransactionCommitType = 1
-	TransactionCommitTypeSyncPhaseTwo  TransactionCommitType = 2
-	TransactionCommitTypeSync          TransactionCommitType = 2
+	// XACTTC_NONE:  The default commit behavior of the transaction coordinator is used.
+	TransactionCommitTypeNone TransactionCommitType = 0
+	// XACTTC_SYNC_PHASEONE:  The commit method returns after phase one of the two-phase
+	// commit is completed.
+	TransactionCommitTypeSyncPhaseOne TransactionCommitType = 1
+	// XACTTC_SYNC_PHASETWO:  The commit method returns after phase two of the two-phase
+	// commit is completed.
+	TransactionCommitTypeSyncPhaseTwo TransactionCommitType = 2
+	// XACTTC_SYNC:  The commit method returns after phase two of the two-phase commit
+	// is completed.
+	TransactionCommitTypeSync TransactionCommitType = 2
+	// XACTTC_ASYNC_PHASEONE:  The commit request is performed asynchronously.
 	TransactionCommitTypeAsyncPhaseOne TransactionCommitType = 4
-	TransactionCommitTypeAsync         TransactionCommitType = 4
+	// XACTTC_ASYNC:  The commit request is performed asynchronously.
+	//
+	// Used by:
+	//
+	// * ITransaction::Commit ( 78fb0ab6-c519-4de1-a49f-839907f07d3d )
+	//
+	// * IMSMQTransaction::Commit ( ce43a803-e25e-4246-ad7c-97045b302d45 )
+	TransactionCommitTypeAsync TransactionCommitType = 4
 )
 
 func (o TransactionCommitType) String() string {
@@ -2746,6 +2843,9 @@ func (o *TransactionDispenser) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 }
 
 // ITransaction structure represents ITransaction RPC structure.
+//
+// The ITransaction method is received by the server in an RPC_REQUEST packet. In response,
+// the server returns the ITransaction interface on the underlying transaction object.
 type ITransaction dcom.InterfacePointer
 
 func (o *ITransaction) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }

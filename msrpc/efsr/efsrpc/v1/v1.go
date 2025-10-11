@@ -41,51 +41,299 @@ var (
 
 // efsrpc interface.
 type EfsrpcClient interface {
+
+	// The EfsRpcOpenFileRaw method is used to open an encrypted object on the server for
+	// backup or restore. It allocates resources that MUST be released by calling the EfsRpcCloseRaw
+	// method.<42>
+	//
+	// Return Values: The server MUST return 0 if it successfully processes the message
+	// received from the client. The server MUST return a nonzero value if processing fails.
+	//
+	// First, the server SHOULD perform any additional access checks prescribed by the implementation.
+	// If any of these checks fail, it MUST return a nonzero value.
+	//
+	// EFSRPC servers SHOULD return an error unless at least one of the following conditions
+	// is true:
+	//
+	// * The calling user has a private key ( 230807ac-20be-494f-86e3-4c8ac23ea584#gt_6fca10f4-e829-42ab-ad40-1566585060ca
+	// ) that grants the user authorized access to the file.
+	//
+	// * The *CREATE_FOR_IMPORT* flag is set, and the user has restore rights on the server.
+	//
+	// * The *CREATE_FOR_IMPORT* flag is not set, and the user has backup rights on the
+	// server.
+	//
+	// If the CREATE_FOR_IMPORT flag is set, the server MUST attempt to create an object
+	// with the given name and prepare it for writing data received in future EfsRpcWriteFileRaw
+	// calls. The server MUST return a nonzero value if this fails.
+	//
+	// If the CREATE_FOR_IMPORT flag is not set, the server MUST attempt to locate the object
+	// requested and prepare it for reading data to be sent through future EfsRpcReadFileRaw
+	// calls. The server MUST return a nonzero value if it fails.
+	//
+	// If the server supports the CREATE_FOR_DIR flag, and this flag is set:
+	//
+	// * If the *CREATE_FOR_IMPORT* flag is not set:
+	//
+	// * If the data object referred to by FileName exists on the server and is not a container
+	// for other objects, the server SHOULD return a nonzero value.
+	//
+	// * Otherwise, the server SHOULD ignore the *CREATE_FOR_DIR* flag.
+	//
+	// * If the *CREATE_FOR_IMPORT* flag is set, the server MUST attempt to create a container
+	// with the given name and prepare it for writing data received in future EfsRpcWriteFileRaw
+	// calls. The server MUST return a nonzero value if this fails.
+	//
+	// If the server supports the OVERWRITE_HIDDEN flag, and this flag is set:
+	//
+	// * If the *CREATE_FOR_IMPORT* flag is not set, the server SHOULD ignore this flag.
+	//
+	// * If the *CREATE_FOR_IMPORT* flag is set, the server SHOULD overwrite an existing
+	// object even if the object is "hidden". The meaning of "hidden" is specific to the
+	// implementation of the data store, and this meaning does not affect protocol behavior.
 	OpenFileRaw(context.Context, *OpenFileRawRequest, ...dcerpc.CallOption) (*OpenFileRawResponse, error)
 
+	// The method EfsRpcReadFileRaw is used by a client to obtain marshaled data for an
+	// encrypted object from the server.
+	//
+	// Return Values: The server MUST return 0 if it successfully processes the message
+	// received from the client.
+	//
+	// If called with a context handle that has not been obtained by calling the EfsRpcOpenFileRaw
+	// method without the CREATE_FOR_IMPORT flag set, the server SHOULD throw an RPC exception.
 	ReadFileRaw(context.Context, *ReadFileRawRequest, ...dcerpc.CallOption) (*ReadFileRawResponse, error)
 
+	// The method EfsRpcWriteFileRaw is used to create an encrypted object on the server
+	// from the marshaled data provided by the client.
+	//
+	// Return Values: The server MUST return 0 if it successfully processes the message
+	// received from the client.
+	//
+	// If called with a context handle that has not been obtained by calling EfsRpcOpenFileRaw
+	// with the CREATE_FOR_IMPORT flag set, the server MUST abort the operation. In this
+	// case, it SHOULD throw an RPC exception.
 	WriteFileRaw(context.Context, *WriteFileRawRequest, ...dcerpc.CallOption) (*WriteFileRawResponse, error)
 
+	// The EfsRpcCloseRaw method is called to release any resources allocated by the EfsRpcOpenFileRaw
+	// method, or by subsequent calls to the EfsRpcReadFileRaw or EfsRpcWriteFileRaw methods.
+	//
+	// Return Values: This method has no return values.
 	CloseRaw(context.Context, *CloseRawRequest, ...dcerpc.CallOption) (*CloseRawResponse, error)
 
 	// EfsRpcEncryptFileSrv operation.
 	EncryptFileServer(context.Context, *EncryptFileServerRequest, ...dcerpc.CallOption) (*EncryptFileServerResponse, error)
 
+	// The EfsRpcDecryptFileSrv method is used to convert an existing encrypted object to
+	// the unencrypted state in the server's data store.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// received from the client. The server MUST return a nonzero value if processing fails.
+	//
+	// If no object exists on the server with the specified name, the server MUST return
+	// a nonzero value. If the object exists and is not encrypted, the server MUST return
+	// success.
+	//
+	// Otherwise, the server performs the following actions to convert the object in its
+	// data store to an unencrypted state:
+	//
+	// * If the data object referred to by FileName is a container for other objects, the
+	// server MUST clear the attribute on the container that instructs the data store to
+	// encrypt any new objects created in that container. The server MAY decrypt encrypted
+	// objects that were already in the container before this message was received.
+	//
+	// * Otherwise, the server SHOULD:
+	//
+	// * Check that the calling user has access to a private key that will decrypt the file;
+	// if the user does not have access, return a nonzero value.
+	//
+	// * Decrypt the object and discard its EFSRPC Metadata ( 3166cf4a-e085-47be-94c6-b69bddf274ff
+	// ).
+	//
+	// * Return 0 to indicate success.
 	DecryptFileServer(context.Context, *DecryptFileServerRequest, ...dcerpc.CallOption) (*DecryptFileServerResponse, error)
 
 	// EfsRpcQueryUsersOnFile operation.
 	QueryUsersOnFile(context.Context, *QueryUsersOnFileRequest, ...dcerpc.CallOption) (*QueryUsersOnFileResponse, error)
 
+	// The EfsRpcQueryRecoveryAgents method is used to query the EFSRPC Metadata of an encrypted
+	// object for the X.509 certificates of the data recovery agents whose private keys
+	// can be used to decrypt the object.
+	//
+	// Return Values: The server MUST return 0 if it successfully processes the message
+	// received from the client. The server MUST return a nonzero value if processing fails.
 	QueryRecoveryAgents(context.Context, *QueryRecoveryAgentsRequest, ...dcerpc.CallOption) (*QueryRecoveryAgentsResponse, error)
 
+	// The EfsRpcRemoveUsersFromFile method is used to revoke a user's access to an encrypted
+	// object. This method revokes the ability of the private key corresponding to a given
+	// X.509 certificate to decrypt the object.
+	//
+	// Return Values: The server MUST return 0 if it successfully processes the message
+	// received from the client. The server MUST return a nonzero value if processing fails.
+	//
+	// If none of the preceding errors occur, the server MUST remove the parts of the object's
+	// EFSRPC Metadata that refer to the user certificates listed in the Users structure.
 	RemoveUsersFromFile(context.Context, *RemoveUsersFromFileRequest, ...dcerpc.CallOption) (*RemoveUsersFromFileResponse, error)
 
+	// The EfsRpcAddUsersToFile method is used to grant the possessors of the private keys
+	// corresponding to certain X.509 certificates the ability to decrypt the object.
+	//
+	// Return Values: The server MUST return 0 if it successfully processes the message
+	// received from the client. The server MUST return a nonzero value if processing fails.
+	//
+	// If no object exists on the server with the specified name, or if the object exists
+	// and is not encrypted, the server MUST return a nonzero value. Otherwise, the server
+	// MUST modify the object's EFSRPC Metadata such that all the user certificates listed
+	// in the Users structure have the ability to decrypt the object.
 	AddUsersToFile(context.Context, *AddUsersToFileRequest, ...dcerpc.CallOption) (*AddUsersToFileResponse, error)
 
 	// Opnum10NotUsedOnWire operation.
 	// Opnum10NotUsedOnWire
 
+	// Return Values: The EFSRPC server SHOULD return a nonzero value. However, the server
+	// MAY<45> process this as described in section 3.1.4.2.13.
 	NotSupported(context.Context, *NotSupportedRequest, ...dcerpc.CallOption) (*NotSupportedResponse, error)
 
+	// The EfsRpcFileKeyInfo method is used to query and modify information about the keys
+	// used to encrypt a given object.
+	//
+	// Return Values: The server MUST return 0 if it successfully processes the message
+	// received from the client. The server MUST return a nonzero value if processing fails.
+	//
+	// If no object exists on the server with the specified name the server MUST return
+	// a nonzero value.
+	//
+	// If the InfoClass parameter is not equal to CHECK_ENCRYPTION_STATUS and the object
+	// with the specified name is not encrypted, the server MUST return a nonzero value.
+	//
+	// If the value in the InfoClass parameter is unsupported by the server, the server
+	// MUST return a nonzero value.
+	//
+	// If the value in the InfoClass parameter is equal to BASIC_KEY_INFO, the server SHOULD
+	// read the EFSRPC Metadata of the object referred to by the FileName argument and return
+	// information about its FEK in an EFS_KEY_INFO structure within the KeyInfo argument.
+	//
+	// If the value in the InfoClass parameter is equal to UPDATE_KEY_USED, the implementation
+	// supports this value, and the FileName parameter does not satisfy the implementation-specific
+	// requirements for this operation<47>, the server MUST return a nonzero value.
+	//
+	// If the value in the InfoClass parameter is equal to UPDATE_KEY_USED, the implementation
+	// supports this value, and the FileName parameter does satisfy all implementation-specific
+	// requirements, the server MUST update the EFSRPC Metadata of all the data objects
+	// referred by FileName in an implementation-specific way<48>, and return a newline-separated
+	// list of EFSRPC Identifiers thus updated in the KeyInfo parameter.
+	//
+	// If the value in the InfoClass parameter is equal to CHECK_ENCRYPTION_STATUS, the
+	// server MUST return an EFS_ENCRYPTION_STATUS_INFO structure in the KeyInfo parameter,
+	// which provides a hint to the client what error code would be returned if encryption
+	// was attempted on this object without any further user interaction or higher-level
+	// events.
+	//
+	// If the value in the InfoClass parameter is equal to CHECK_DECRYPTION_STATUS, the
+	// server SHOULD return ERROR_REQUIRES_INTERACTIVE_WINDOWSTATION ([MS-ERREF] section
+	// 2.2). The server MAY, instead, return an EFS_DECRYPTION_STATUS_INFO structure in
+	// the KeyInfo parameter, which provides a hint to the client what error code would
+	// be returned if decryption were attempted on this object without any further user
+	// interaction or higher-level events.
 	FileKeyInfo(context.Context, *FileKeyInfoRequest, ...dcerpc.CallOption) (*FileKeyInfoResponse, error)
 
+	// The EfsRpcDuplicateEncryptionInfoFile method is used to duplicate the EFSRPC Metadata
+	// of one encrypted object and attach it to another encrypted object. This is typically
+	// done when copying objects to maintain the same set of keys and users for the copy
+	// as for the original.
+	//
+	// Return Values: The server MUST return 0 if it successfully processes the message
+	// received from the client. The server MUST return a nonzero value if processing fails.<50>
+	//
+	// If no object exists on the server with the name specified in the SrcFileName parameter,
+	// or if it exists and is not encrypted, the server MUST return a nonzero value.
+	//
+	// * If an object exists with the name specified in the DestFileName parameter, the
+	// server MUST return a nonzero value.
+	//
+	// * If no object exists with the name specified in the DestFileName parameter, the
+	// server MUST create a new object with this name and duplicate the EFSRPC Metadata
+	// from the SrcFileName parameter into it. If the object specified in SrcFileName is
+	// a container for other objects, the server MUST create the object as a container for
+	// objects, and it MUST encrypt any objects that are subsequently placed in the container
+	// after this message has been processed. Otherwise, the server MUST create the object
+	// as a non-container encrypted data object.
+	//
+	// If an encrypted object exists with the name specified in the SrcFileName and dwCreationDisposition
+	// parameters is not equal to CREATE_NEW, then:
+	//
+	// * If an object already exists with the name specified in the DestFileName parameter,
+	// the server MUST check whether the object referred to by SrcFileName is of the same
+	// type (either simple object or container for other objects); if the object is not
+	// of the same type, the server MUST return a nonzero value. In addition, if the object
+	// referred to by DestFileName is a container for other objects, and it is not already
+	// encrypted, the server MUST return a nonzero value. Otherwise, the server SHOULD overwrite
+	// the object, clear its existing attributes, create a new object in its place with
+	// the attributes specified, and duplicate the EFSRPC Metadata from the SrcFileName
+	// parameter into it.
+	//
+	// * If no object exists with the name specified in the DestFileName parameter, the
+	// server MUST create a new object with this name and duplicate the EFSRPC Metadata
+	// from the SrcFileName parameter into it. If the object specified in SrcFileName is
+	// a container for other objects, the server MUST create the object as a container for
+	// objects, and it MUST encrypt any objects that are subsequently placed in the container
+	// after this message has been processed. Otherwise, the server MUST create the object
+	// as a non-container encrypted data object.
+	//
+	// In duplicating the EFSRPC Metadata from the SrcFileName parameter to the DestFileName
+	// parameter, the server MAY<51> change the metadata. However, upon successful completion,
+	// the set of users and DRAs with access to the DestFileName parameter MUST be the same
+	// set of users who had access to the SrcFileName parameter at the outset.
 	DuplicateEncryptionInfoFile(context.Context, *DuplicateEncryptionInfoFileRequest, ...dcerpc.CallOption) (*DuplicateEncryptionInfoFileResponse, error)
 
 	// Opnum14NotUsedOnWire operation.
 	// Opnum14NotUsedOnWire
 
+	// The EfsRpcAddUsersToFileEx method is used to grant the possessors of the private
+	// keys corresponding to certain X.509 certificates the ability to decrypt the object.
+	//
+	// Return Values: The server MUST return 0 if it successfully processes the message
+	// received from the client. The server MUST return a nonzero value if processing fails.
+	//
+	// If no object exists on the server with the specified name, or if it exists and is
+	// not encrypted, the server MUST return a nonzero value.
+	//
+	// If the EFSRPC_ADDUSERFLAG_REPLACE_DDF flag is set in the dwFlags parameter, and the
+	// EncryptionCertificates parameter contains more than one certificate, the server MUST
+	// return a nonzero value.
+	//
+	// If the EFSRPC_ADDUSERFLAG_REPLACE_DDF flag is set in the dwFlags parameter, and the
+	// calling user does not have the ability to decrypt the object, the server MUST return
+	// a nonzero value.
+	//
+	// If the EFSRPC_ADDUSERFLAG_ADD_POLICY_KEYTYPE flag is specified in the dwFlags parameter,
+	// then for each certificate specified in the EncryptionCertificates parameter, the
+	// server MUST check whether the private key for the certificate is stored on a smart
+	// card. If the key is stored, the server MUST return a nonzero value; otherwise, the
+	// server MUST ignore this flag.
+	//
+	// If the EFSRPC_ADDUSERFLAG_REPLACE_DDF flag is set in the dwFlags parameter, and the
+	// calling user has the ability to decrypt the object, then the certificate in the EncryptionCertificates
+	// parameter is to be given access to the object, replacing one of the calling user's
+	// user certificates through which he currently has access.
 	AddUsersToFileEx(context.Context, *AddUsersToFileExRequest, ...dcerpc.CallOption) (*AddUsersToFileExResponse, error)
 
+	// Return Values: The server SHOULD return a nonzero value.<54>
 	FileKeyInfoEx(context.Context, *FileKeyInfoExRequest, ...dcerpc.CallOption) (*FileKeyInfoExResponse, error)
 
 	// Opnum17NotUsedOnWire operation.
 	// Opnum17NotUsedOnWire
 
+	// Return Values: The server SHOULD return a nonzero value.<57>
 	GetEncryptedFileMetadata(context.Context, *GetEncryptedFileMetadataRequest, ...dcerpc.CallOption) (*GetEncryptedFileMetadataResponse, error)
 
+	// Return Values: The server SHOULD return a nonzero value.<62>
 	SetEncryptedFileMetadata(context.Context, *SetEncryptedFileMetadataRequest, ...dcerpc.CallOption) (*SetEncryptedFileMetadataResponse, error)
 
+	// The EfsRpcFlushEfsCache method causes EFS to flush the logical cache that holds all
+	// the sensitive information required to perform EFSRPC operations for the calling user.
+	//
+	// Return Values: The server MUST return 0 if it successfully processes the message
+	// received from the client. The server MUST return a nonzero value if processing fails.
 	FlushEFSCache(context.Context, *FlushEFSCacheRequest, ...dcerpc.CallOption) (*FlushEFSCacheResponse, error)
 
 	// EfsRpcEncryptFileExSrv operation.
@@ -278,9 +526,14 @@ func (o *xxx_ExportImportPipe) Close() error {
 }
 
 // Blob structure represents EFS_RPC_BLOB RPC structure.
+//
+// The EFS_RPC_BLOB type is used to represent a generic binary large object (BLOB) (that
+// is, an opaque data type).
 type Blob struct {
+	// cbData:  The length, in bytes, of the data object in the bData field.
 	DataLength uint32 `idl:"name:cbData" json:"data_length"`
-	Data       []byte `idl:"name:bData;size_is:(cbData)" json:"data"`
+	// bData:  The contents of the data object.<25>
+	Data []byte `idl:"name:bData;size_is:(cbData)" json:"data"`
 }
 
 func (o *Blob) xxx_PreparePayload(ctx context.Context) error {
@@ -383,7 +636,12 @@ func (o *Blob) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // CompatibilityInfo structure represents EFS_COMPATIBILITY_INFO RPC structure.
+//
+// The EFS_COMPATIBILITY_INFO type is used to represent information about the compatibility
+// restrictions of an encrypted file.
 type CompatibilityInfo struct {
+	// EfsVersion:  The EfsVersion associated with the EFSRPC Metadata. Valid values for
+	// the EfsVersion field are described in sections 2.2.2.1, 2.2.2.2, and 2.2.2.3.<29>
 	Version uint32 `idl:"name:EfsVersion" json:"version"`
 }
 
@@ -419,9 +677,14 @@ func (o *CompatibilityInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 }
 
 // HashBlob structure represents EFS_HASH_BLOB RPC structure.
+//
+// The EFS_HASH_BLOB type is used to represent an X.509 certificate hash.
 type HashBlob struct {
+	// cbData:  The number of bytes in the bData buffer.
 	DataLength uint32 `idl:"name:cbData" json:"data_length"`
-	Data       []byte `idl:"name:bData;size_is:(cbData)" json:"data"`
+	// bData:  The SHA-1 hash of an X.509 certificate. For more information on SHA-1, see
+	// [FIPS180-4].<22>
+	Data []byte `idl:"name:bData;size_is:(cbData)" json:"data"`
 }
 
 func (o *HashBlob) xxx_PreparePayload(ctx context.Context) error {
@@ -524,11 +787,23 @@ func (o *HashBlob) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // EncryptionCertificateHash structure represents ENCRYPTION_CERTIFICATE_HASH RPC structure.
+//
+// The ENCRYPTION_CERTIFICATE_HASH type is used to represent a single certificate hash.
+// For more information on certificates, see [X509].
 type EncryptionCertificateHash struct {
-	TotalLength        uint32    `idl:"name:cbTotalLength" json:"total_length"`
-	UserSID            *dtyp.SID `idl:"name:UserSid" json:"user_sid"`
-	Hash               *HashBlob `idl:"name:Hash" json:"hash"`
-	DisplayInformation string    `idl:"name:lpDisplayInformation;string" json:"display_information"`
+	// cbTotalLength:  The length, in bytes, of the structure.
+	TotalLength uint32 `idl:"name:cbTotalLength" json:"total_length"`
+	// UserSid:  The SID of the user who owns the certificate. This is intended only as
+	// a hint. It MAY be set to zero if no such hint is available. The structure of an RPC
+	// SID is specified in [MS-DTYP], section 2.4.2.3.
+	UserSID *dtyp.SID `idl:"name:UserSid" json:"user_sid"`
+	// Hash:  A pointer to an EFS_HASH_BLOB (2.2.7) structure.
+	Hash *HashBlob `idl:"name:Hash" json:"hash"`
+	// lpDisplayInformation:  A string that contains the subject or principal name of the
+	// account the certification is assigned to. The subject name and the principal name
+	// can be the same. This is only intended as a hint for display purposes, and is implementation-dependent.
+	// This field MAY be set to NULL if no such information is available.
+	DisplayInformation string `idl:"name:lpDisplayInformation;string" json:"display_information"`
 }
 
 func (o *EncryptionCertificateHash) xxx_PreparePayload(ctx context.Context) error {
@@ -656,9 +931,15 @@ func (o *EncryptionCertificateHash) UnmarshalNDR(ctx context.Context, w ndr.Read
 }
 
 // EncryptionCertificateHashList structure represents ENCRYPTION_CERTIFICATE_HASH_LIST RPC structure.
+//
+// The ENCRYPTION_CERTIFICATE_HASH_LIST type is used to represent a set of certificate
+// hashes.
 type EncryptionCertificateHashList struct {
-	CertHash uint32                       `idl:"name:nCert_Hash" json:"cert_hash"`
-	Users    []*EncryptionCertificateHash `idl:"name:Users;size_is:(nCert_Hash, )" json:"users"`
+	// nCert_Hash:  The number of certificate hashes in the list.
+	CertHash uint32 `idl:"name:nCert_Hash" json:"cert_hash"`
+	// Users:  A pointer to an array of pointers to ENCRYPTION_CERTIFICATE_HASH (2.2.10)
+	// structures. This array is of size nCert_Hash.<24>
+	Users []*EncryptionCertificateHash `idl:"name:Users;size_is:(nCert_Hash, )" json:"users"`
 }
 
 func (o *EncryptionCertificateHashList) xxx_PreparePayload(ctx context.Context) error {
@@ -789,10 +1070,31 @@ func (o *EncryptionCertificateHashList) UnmarshalNDR(ctx context.Context, w ndr.
 }
 
 // CertificateBlob structure represents EFS_CERTIFICATE_BLOB RPC structure.
+//
+// The EFS_CERTIFICATE_BLOB type is used to represent the encoded contents of an X.509
+// certificate.
 type CertificateBlob struct {
+	// dwCertEncodingType:  The certificate encoding type. This MUST be set to one of the
+	// following values. If set to any other value, the certificate is considered invalid
+	// and behavior is undefined.
+	//
+	//	+------------+----------------------------------------+
+	//	|            |                                        |
+	//	|   VALUE    |                MEANING                 |
+	//	|            |                                        |
+	//	+------------+----------------------------------------+
+	//	+------------+----------------------------------------+
+	//	| 0x00000001 | Certificate uses X.509 ASN.1 encoding. |
+	//	+------------+----------------------------------------+
+	//	| 0x00000002 | Certificate uses X.509 NDR encoding.   |
+	//	+------------+----------------------------------------+
 	CertEncodingType uint32 `idl:"name:dwCertEncodingType" json:"cert_encoding_type"`
-	DataLength       uint32 `idl:"name:cbData" json:"data_length"`
-	Data             []byte `idl:"name:bData;size_is:(cbData)" json:"data"`
+	// cbData:  The number of bytes in the bData buffer.
+	DataLength uint32 `idl:"name:cbData" json:"data_length"`
+	// bData:  An encoded X.509 certificate. Its format is specified by the dwCertEncodingType
+	// member. For more information on ASN encoding, see [X690]. NDR encoding is specified
+	// in [C706].<21>
+	Data []byte `idl:"name:bData;size_is:(cbData)" json:"data"`
 }
 
 func (o *CertificateBlob) xxx_PreparePayload(ctx context.Context) error {
@@ -1140,11 +1442,39 @@ func (o *EncryptionCertificateList) UnmarshalNDR(ctx context.Context, w ndr.Read
 }
 
 // EncryptedFileMetadataSignature structure represents ENCRYPTED_FILE_METADATA_SIGNATURE RPC structure.
+//
+// The ENCRYPTED_FILE_METADATA_SIGNATURE structure is used by the client to prove to
+// the server that it possesses a private key that is authorized to decrypt a given
+// object.
 type EncryptedFileMetadataSignature struct {
-	EFSAccessType         uint32                         `idl:"name:dwEfsAccessType" json:"efs_access_type"`
-	CertificatesAdded     *EncryptionCertificateHashList `idl:"name:CertificatesAdded" json:"certificates_added"`
-	EncryptionCertificate *EncryptionCertificate         `idl:"name:EncryptionCertificate" json:"encryption_certificate"`
-	StreamSignature       *Blob                          `idl:"name:EfsStreamSignature" json:"stream_signature"`
+	// dwEfsAccessType:  The operation being performed. It MUST be set to one of the following
+	// values.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                      |                                                                                  |
+	//	|                VALUE                 |                                     MEANING                                      |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| EFS_METADATA_ADD_USER 0x00000001     | One or more additional user certificates are being granted access to the object. |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| EFS_METADATA_REMOVE_USER 0x00000002  | One or more user certificates are having their access to the object revoked.     |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| EFS_METADATA_REPLACE_USER 0x00000004 | One or more user certificates with access to the object are being replaced.      |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| EFS_METADATA_GENERAL_OP 0x00000008   | A change is being made to the metadata that is not fully described by exactly    |
+	//	|                                      | one of the previous options.                                                     |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	EFSAccessType uint32 `idl:"name:dwEfsAccessType" json:"efs_access_type"`
+	// CertificatesAdded:   The X.509 certificates whose corresponding private keys are
+	// to be granted or denied the ability to decrypt the object.
+	CertificatesAdded *EncryptionCertificateHashList `idl:"name:CertificatesAdded" json:"certificates_added"`
+	// EncryptionCertificate:   The X.509 certificates whose corresponding private key the
+	// caller claims to possess.
+	EncryptionCertificate *EncryptionCertificate `idl:"name:EncryptionCertificate" json:"encryption_certificate"`
+	// EfsStreamSignature:  The signature obtained by signing the SHA-1 hash of the new
+	// EFSRPC Metadata with the private RSA key corresponding to EncryptionCertificate.
+	StreamSignature *Blob `idl:"name:EfsStreamSignature" json:"stream_signature"`
 }
 
 func (o *EncryptedFileMetadataSignature) xxx_PreparePayload(ctx context.Context) error {
@@ -1281,10 +1611,20 @@ func (o *EncryptedFileMetadataSignature) UnmarshalNDR(ctx context.Context, w ndr
 }
 
 // KeyInfo structure represents EFS_KEY_INFO RPC structure.
+//
+// The EFS_KEY_INFO type is used to represent information about a key of a symmetric
+// cryptosystem.
 type KeyInfo struct {
-	Version   uint32 `idl:"name:dwVersion" json:"version"`
-	Entropy   uint32 `idl:"name:Entropy" json:"entropy"`
+	// dwVersion:  The version of this data structure. It MUST be equal to 0x00000001.
+	Version uint32 `idl:"name:dwVersion" json:"version"`
+	// Entropy:  The actual number of bits of entropy or true randomness in the key. This
+	// value, divided by 8, MUST be less than or equal to the value of the KeyLength member.
+	Entropy uint32 `idl:"name:Entropy" json:"entropy"`
+	// Algorithm:  The cryptographic algorithm with which the key is intended to be used.
 	Algorithm uint32 `idl:"name:Algorithm" json:"algorithm"`
+	// KeyLength:  The total length, in bytes, of the key. This value, multiplied by 8,
+	// MUST be greater than or equal to the value of the Entropy member. Valid combinations
+	// of Entropy, Algorithm, and KeyLength are specified in section 2.2.13.
 	KeyLength uint32 `idl:"name:KeyLength" json:"key_length"`
 }
 
@@ -1338,10 +1678,22 @@ func (o *KeyInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // DecryptionStatusInfo structure represents EFS_DECRYPTION_STATUS_INFO RPC structure.
+//
+// The EFS_DECRYPTION_STATUS_INFO type is used to represent the predicted outcome if
+// an attempt were made to read the plaintext of an encrypted object.
 type DecryptionStatusInfo struct {
+	// dwDecryptionError:  The error code returned if decryption were attempted. If the
+	// operation were to succeed, this value MUST be zero. Otherwise it MUST be set to a
+	// nonzero value.
 	DecryptionError uint32 `idl:"name:dwDecryptionError" json:"decryption_error"`
-	HashOffset      uint32 `idl:"name:dwHashOffset" json:"hash_offset"`
-	HashLength      uint32 `idl:"name:cbHash" json:"hash_length"`
+	// dwHashOffset:  The offset of the appended certificate hash in bytes from the start
+	// of this structure.
+	HashOffset uint32 `idl:"name:dwHashOffset" json:"hash_offset"`
+	// cbHash:  The length in bytes of the appended certificate hash.
+	//
+	// If dwDecryptionError is nonzero, the preceding fields are followed by the hash of
+	// a certificate whose corresponding private key is required for the decryption to succeed.
+	HashLength uint32 `idl:"name:cbHash" json:"hash_length"`
 }
 
 func (o *DecryptionStatusInfo) xxx_PreparePayload(ctx context.Context) error {
@@ -1388,8 +1740,16 @@ func (o *DecryptionStatusInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 }
 
 // EncryptionStatusInfo structure represents EFS_ENCRYPTION_STATUS_INFO RPC structure.
+//
+// The EFS_ENCRYPTION_STATUS_INFO structure is used to represent the predicted outcome
+// if an attempt were made to convert an unencrypted object to an encrypted state.
 type EncryptionStatusInfo struct {
-	HasCurrentKey   bool   `idl:"name:bHasCurrentKey" json:"has_current_key"`
+	// bHasCurrentKey:  A Boolean value signifying whether an appropriate key was found
+	// that could be used for encryption.
+	HasCurrentKey bool `idl:"name:bHasCurrentKey" json:"has_current_key"`
+	// dwEncryptionError:  The error code returned if encryption were attempted. If the
+	// operation were to succeed, this value MUST be zero. Otherwise, it MUST be set to
+	// a nonzero value.
 	EncryptionError uint32 `idl:"name:dwEncryptionError" json:"encryption_error"`
 }
 
@@ -2053,8 +2413,39 @@ func (o *xxx_OpenFileRawOperation) UnmarshalNDRResponse(ctx context.Context, w n
 
 // OpenFileRawRequest structure represents the EfsRpcOpenFileRaw operation request
 type OpenFileRawRequest struct {
+	// FileName: An EFSRPC identifier, as specified in section 2.2.1.
 	FileName string `idl:"name:FileName;string" json:"file_name"`
-	Flags    int32  `idl:"name:Flags" json:"flags"`
+	// Flags: This MUST be set to some combination of the following values. All servers
+	// and clients MUST support the CREATE_FOR_IMPORT flag. Servers that implement a hierarchical
+	// encrypted store, such as the NTFS file system, SHOULD also support the CREATE_FOR_DIR
+	// flag. Servers SHOULD support the OVERWRITE_HIDDEN flag, and MAY interpret it in implementation-specific
+	// ways. A client MUST ensure that all the flags it does not support are set to zero.
+	// A server MUST ignore all flags it does not support. Flag values are specified in
+	// the following table.
+	//
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                       |                                                                                  |
+	//	|                 VALUE                 |                                     MEANING                                      |
+	//	|                                       |                                                                                  |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| CREATE_FOR_IMPORT 0x00000001          | Open the object for writing (that is, restore). If this flag is not set, open    |
+	//	|                                       | the object for reading (that is, backup).                                        |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| CREATE_FOR_DIR 0x00000002             | This flag is only intended for use in conjunction with the CREATE_FOR_IMPORT     |
+	//	|                                       | flag. It indicates that the object being restored is a container for other       |
+	//	|                                       | objects.<43>                                                                     |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| OVERWRITE_HIDDEN 0x00000004           | This flag is only intended for use in conjunction with the CREATE_FOR_IMPORT     |
+	//	|                                       | flag. This flag indicates a request from the client for the server to overwrite  |
+	//	|                                       | an existing object even if the existing object is "hidden". The meaning of       |
+	//	|                                       | "hidden" is specific to the implementation of the data store, and this meaning   |
+	//	|                                       | does not affect protocol behavior.                                               |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| EFS_DROP_ALTERNATE_STREAMS 0x00000010 | This flag indicates that content from any alternate data streams, if present and |
+	//	|                                       | implemented by the storage system, will be ignored.                              |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	Flags int32 `idl:"name:Flags" json:"flags"`
 }
 
 func (o *OpenFileRawRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenFileRawOperation) *xxx_OpenFileRawOperation {
@@ -2090,6 +2481,9 @@ func (o *OpenFileRawRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 
 // OpenFileRawResponse structure represents the EfsRpcOpenFileRaw operation response
 type OpenFileRawResponse struct {
+	// hContext: An implementation-specific context handle that is used in subsequent calls
+	// by the client to the EfsRpcReadFileRaw method, EfsRpcWriteFileRaw method, or EfsRpcCloseRaw
+	// method.
 	Context *Context `idl:"name:hContext" json:"context"`
 	// Return: The EfsRpcOpenFileRaw return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -2278,6 +2672,8 @@ type ReadFileRawRequest struct {
 	// XXX: EfsOutPipe is an implicit input depedency for output parameters
 	OutPipe ExportImportPipe `idl:"name:EfsOutPipe" json:"out_pipe"`
 
+	// hContext: A context handle returned by the EfsRpcOpenFileRaw method, which MUST have
+	// been called without the CREATE_FOR_IMPORT flag.
 	Context *Context `idl:"name:hContext" json:"context"`
 }
 
@@ -2320,6 +2716,9 @@ func (o *ReadFileRawRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 
 // ReadFileRawResponse structure represents the EfsRpcReadFileRaw operation response
 type ReadFileRawResponse struct {
+	// EfsOutPipe: A pipe structure. The push procedure of this pipe will be called with
+	// the marshaled data. The structure of this marshaled data is specified in section
+	// 2.2.3.
 	OutPipe ExportImportPipe `idl:"name:EfsOutPipe" json:"out_pipe"`
 	// Return: The EfsRpcReadFileRaw return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -2505,8 +2904,13 @@ func (o *xxx_WriteFileRawOperation) UnmarshalNDRResponse(ctx context.Context, w 
 
 // WriteFileRawRequest structure represents the EfsRpcWriteFileRaw operation request
 type WriteFileRawRequest struct {
-	Context *Context         `idl:"name:hContext" json:"context"`
-	InPipe  ExportImportPipe `idl:"name:EfsInPipe" json:"in_pipe"`
+	// hContext: A context handle returned by the EfsRpcOpenFileRaw method, which MUST have
+	// been called with the CREATE_FOR_IMPORT flag.
+	Context *Context `idl:"name:hContext" json:"context"`
+	// EfsInPipe: A pipe structure. The pull procedure of this pipe is expected to provide
+	// the marshaled data. The structure of this marshaled data is specified in section
+	// 2.2.3.
+	InPipe ExportImportPipe `idl:"name:EfsInPipe" json:"in_pipe"`
 }
 
 func (o *WriteFileRawRequest) xxx_ToOp(ctx context.Context, op *xxx_WriteFileRawOperation) *xxx_WriteFileRawOperation {
@@ -2966,7 +3370,10 @@ func (o *xxx_DecryptFileServerOperation) UnmarshalNDRResponse(ctx context.Contex
 
 // DecryptFileServerRequest structure represents the EfsRpcDecryptFileSrv operation request
 type DecryptFileServerRequest struct {
+	// FileName: An EFSRPC identifier as specified in section 2.2.1.
 	FileName string `idl:"name:FileName;string" json:"file_name"`
+	// OpenFlag: This parameter is unused and MUST be ignored by the server. It MUST be
+	// set to zero by the client.
 	OpenFlag uint32 `idl:"name:OpenFlag" json:"open_flag"`
 }
 
@@ -3354,6 +3761,7 @@ func (o *xxx_QueryRecoveryAgentsOperation) UnmarshalNDRResponse(ctx context.Cont
 
 // QueryRecoveryAgentsRequest structure represents the EfsRpcQueryRecoveryAgents operation request
 type QueryRecoveryAgentsRequest struct {
+	// FileName: An EFSRPC identifier as specified in section 2.2.1.
 	FileName string `idl:"name:FileName;string" json:"file_name"`
 }
 
@@ -3388,6 +3796,8 @@ func (o *QueryRecoveryAgentsRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // QueryRecoveryAgentsResponse structure represents the EfsRpcQueryRecoveryAgents operation response
 type QueryRecoveryAgentsResponse struct {
+	// RecoveryAgents: A list of certificate hashes, represented by an ENCRYPTION_CERTIFICATE_HASH_LIST
+	// structure.
 	RecoveryAgents *EncryptionCertificateHashList `idl:"name:RecoveryAgents" json:"recovery_agents"`
 	// Return: The EfsRpcQueryRecoveryAgents return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -3530,8 +3940,11 @@ func (o *xxx_RemoveUsersFromFileOperation) UnmarshalNDRResponse(ctx context.Cont
 
 // RemoveUsersFromFileRequest structure represents the EfsRpcRemoveUsersFromFile operation request
 type RemoveUsersFromFileRequest struct {
-	FileName string                         `idl:"name:FileName;string" json:"file_name"`
-	Users    *EncryptionCertificateHashList `idl:"name:Users" json:"users"`
+	// FileName: An EFSRPC identifier as specified in section 2.2.1.
+	FileName string `idl:"name:FileName;string" json:"file_name"`
+	// Users: A list of certificate hashes, represented by an ENCRYPTION_CERTIFICATE_HASH_LIST
+	// structure, whose access is to be removed.
+	Users *EncryptionCertificateHashList `idl:"name:Users" json:"users"`
 }
 
 func (o *RemoveUsersFromFileRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveUsersFromFileOperation) *xxx_RemoveUsersFromFileOperation {
@@ -3704,7 +4117,10 @@ func (o *xxx_AddUsersToFileOperation) UnmarshalNDRResponse(ctx context.Context, 
 
 // AddUsersToFileRequest structure represents the EfsRpcAddUsersToFile operation request
 type AddUsersToFileRequest struct {
-	FileName               string                     `idl:"name:FileName;string" json:"file_name"`
+	// FileName: An EFSRPC nonzero name, as specified in section 2.2.1.
+	FileName string `idl:"name:FileName;string" json:"file_name"`
+	// EncryptionCertificates: A list of certificates, represented by an ENCRYPTION_CERTIFICATE_LIST
+	// structure, which are to be given access to the object.
 	EncryptionCertificates *EncryptionCertificateList `idl:"name:EncryptionCertificates" json:"encryption_certificates"`
 }
 
@@ -4152,7 +4568,41 @@ func (o *xxx_FileKeyInfoOperation) UnmarshalNDRResponse(ctx context.Context, w n
 
 // FileKeyInfoRequest structure represents the EfsRpcFileKeyInfo operation request
 type FileKeyInfoRequest struct {
-	FileName  string `idl:"name:FileName;string" json:"file_name"`
+	// FileName: An EFSRPC identifier, as specified in section 2.2.1.
+	FileName string `idl:"name:FileName;string" json:"file_name"`
+	// InfoClass: One of the values in the following table. With the exception of UPDATE_KEY_USED
+	// (0x00000100), a server SHOULD support all of these values. A server MAY choose to
+	// support UPDATE_KEY_USED.<46>
+	//
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                     |                                                                                  |
+	//	|                VALUE                |                                     MEANING                                      |
+	//	|                                     |                                                                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| BASIC_KEY_INFO 0x00000001           | Request information about the keys used to encrypt the object's contents.        |
+	//	|                                     | On success, the server will return the information in an EFS_KEY_INFO            |
+	//	|                                     | (2.2.14)structure in the KeyInfo parameter.                                      |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| CHECK_COMPATIBILITY_INFO 0x00000002 | Requests the EfsVersion for the encrypted file. On success, the server will      |
+	//	|                                     | return the information in an EFS_COMPATIBILITY_INFO structure in the KeyInfo     |
+	//	|                                     | parameter.                                                                       |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| UPDATE_KEY_USED 0x00000100          | Update the user certificates used to give a specific user access to an object.   |
+	//	|                                     | The server will populate the KeyInfo parameter with a zero-terminated, wide      |
+	//	|                                     | character Unicode string that contains a newline-separated list of names of      |
+	//	|                                     | objects successfully updated.                                                    |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| CHECK_DECRYPTION_STATUS 0x00000200  | Request a hint from the server as to whether the given object could be           |
+	//	|                                     | successfully decrypted without further user intervention or higher-level         |
+	//	|                                     | events. The server will return this information in an EFS_DECRYPTION_STATUS_INFO |
+	//	|                                     | structure in the KeyInfo parameter.                                              |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| CHECK_ENCRYPTION_STATUS 0x00000400  | Request a hint from the server as to whether the given object could be           |
+	//	|                                     | successfully encrypted without further user intervention or higher-level         |
+	//	|                                     | events. The server will return this information in an EFS_ENCRYPTION_STATUS_INFO |
+	//	|                                     | structure in the KeyInfo parameter.                                              |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
 	InfoClass uint32 `idl:"name:InfoClass" json:"info_class"`
 }
 
@@ -4189,6 +4639,7 @@ func (o *FileKeyInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 
 // FileKeyInfoResponse structure represents the EfsRpcFileKeyInfo operation response
 type FileKeyInfoResponse struct {
+	// KeyInfo: Returned by the server, as previously specified.
 	KeyInfo *Blob `idl:"name:KeyInfo" json:"key_info"`
 	// Return: The EfsRpcFileKeyInfo return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -4410,12 +4861,54 @@ func (o *xxx_DuplicateEncryptionInfoFileOperation) UnmarshalNDRResponse(ctx cont
 
 // DuplicateEncryptionInfoFileRequest structure represents the EfsRpcDuplicateEncryptionInfoFile operation request
 type DuplicateEncryptionInfoFileRequest struct {
-	SourceFileName             string `idl:"name:SrcFileName;string" json:"source_file_name"`
-	DestinationFileName        string `idl:"name:DestFileName;string" json:"destination_file_name"`
-	CreationDisposition        uint32 `idl:"name:dwCreationDisposition" json:"creation_disposition"`
-	Attributes                 uint32 `idl:"name:dwAttributes" json:"attributes"`
-	RelativeSecurityDescriptor *Blob  `idl:"name:RelativeSD;pointer:unique" json:"relative_security_descriptor"`
-	InheritHandle              bool   `idl:"name:bInheritHandle" json:"inherit_handle"`
+	// SrcFileName:  An EFSRPC identifier, as specified in section 2.2.1.
+	SourceFileName string `idl:"name:SrcFileName;string" json:"source_file_name"`
+	// DestFileName: An EFSRPC identifier, as specified in section 2.2.1.
+	DestinationFileName string `idl:"name:DestFileName;string" json:"destination_file_name"`
+	// dwCreationDisposition: This parameter specifies what action the server is advised
+	// to take if the object referred to by DestFileName does not already exist. It MUST
+	// be one of the following values.
+	//
+	//	+--------------------------+----------------------------------------------------------------------------------+
+	//	|                          |                                                                                  |
+	//	|          VALUE           |                                     MEANING                                      |
+	//	|                          |                                                                                  |
+	//	+--------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------+----------------------------------------------------------------------------------+
+	//	| CREATE_NEW 0x00000001    | Do not overwrite the data object referred to by DestFileName if it already       |
+	//	|                          | exists.                                                                          |
+	//	+--------------------------+----------------------------------------------------------------------------------+
+	//	| CREATE_ALWAYS 0x00000002 | Overwrite the data object referred to by DestFileName if it already exists.      |
+	//	+--------------------------+----------------------------------------------------------------------------------+
+	CreationDisposition uint32 `idl:"name:dwCreationDisposition" json:"creation_disposition"`
+	// dwAttributes: Desired attributes for the target object. Clients SHOULD set this parameter
+	// to the bitwise OR of zero or more of the following values. Servers SHOULD support
+	// all of these values. These values can be interpreted by the underlying server data
+	// store, and they do not affect protocol behavior.
+	//
+	//	+-----------------------------------------------+-----------------------------------------------------------------------------+
+	//	|                                               |                                                                             |
+	//	|                     VALUE                     |                                   MEANING                                   |
+	//	|                                               |                                                                             |
+	//	+-----------------------------------------------+-----------------------------------------------------------------------------+
+	//	+-----------------------------------------------+-----------------------------------------------------------------------------+
+	//	| FILE_ATTRIBUTE_HIDDEN 0x00000002              | The file is hidden (not displayed in normal folder listings).               |
+	//	+-----------------------------------------------+-----------------------------------------------------------------------------+
+	//	| FILE_ATTRIBUTE_ARCHIVE 0x00000020             | This attribute is used by applications to mark files for backup or removal. |
+	//	+-----------------------------------------------+-----------------------------------------------------------------------------+
+	//	| FILE_ATTRIBUTE_TEMPORARY 0x00000100           | The file is being used for temporary storage.                               |
+	//	+-----------------------------------------------+-----------------------------------------------------------------------------+
+	//	| FILE_ATTRIBUTE_NOT_CONTENT_INDEXED 0x00002000 | The file's contents are not to be indexed by the content indexing service.  |
+	//	+-----------------------------------------------+-----------------------------------------------------------------------------+
+	//	| FILE_ATTRIBUTE_NORMAL 0x00000080              | No other attributes are to be set.                                          |
+	//	+-----------------------------------------------+-----------------------------------------------------------------------------+
+	Attributes uint32 `idl:"name:dwAttributes" json:"attributes"`
+	// RelativeSD: Relative security descriptor for the target object. The format of this
+	// is implementation-dependent.<49>
+	RelativeSecurityDescriptor *Blob `idl:"name:RelativeSD;pointer:unique" json:"relative_security_descriptor"`
+	// bInheritHandle: This parameter SHOULD be set to FALSE by the client and SHOULD be
+	// ignored by the server.
+	InheritHandle bool `idl:"name:bInheritHandle" json:"inherit_handle"`
 }
 
 func (o *DuplicateEncryptionInfoFileRequest) xxx_ToOp(ctx context.Context, op *xxx_DuplicateEncryptionInfoFileOperation) *xxx_DuplicateEncryptionInfoFileOperation {
@@ -4641,8 +5134,26 @@ func (o *xxx_AddUsersToFileExOperation) UnmarshalNDRResponse(ctx context.Context
 
 // AddUsersToFileExRequest structure represents the EfsRpcAddUsersToFileEx operation request
 type AddUsersToFileExRequest struct {
-	Flags                  uint32                     `idl:"name:dwFlags" json:"flags"`
-	FileName               string                     `idl:"name:FileName;string" json:"file_name"`
+	// dwFlags: This MUST be set to a bitwise OR of 0 or more of the following flags. The
+	// descriptions of the flags are specified in the following table. If the EFSRPC_ADDUSERFLAG_REPLACE_DDF
+	// flag is used, then the EncryptionCertificates parameter MUST contain exactly one
+	// certificate.
+	//
+	//	+---------------------------------------+------------+
+	//	|                                       |            |
+	//	|                 NAME                  |   VALUE    |
+	//	|                                       |            |
+	//	+---------------------------------------+------------+
+	//	+---------------------------------------+------------+
+	//	| EFSRPC_ADDUSERFLAG_ADD_POLICY_KEYTYPE | 0x00000002 |
+	//	+---------------------------------------+------------+
+	//	| EFSRPC_ADDUSERFLAG_REPLACE_DDF        | 0x00000004 |
+	//	+---------------------------------------+------------+
+	Flags uint32 `idl:"name:dwFlags" json:"flags"`
+	// FileName: An EFSRPC identifier, as specified in section 2.2.1.
+	FileName string `idl:"name:FileName;string" json:"file_name"`
+	// EncryptionCertificates: A list of certificates, represented by an ENCRYPTION_CERTIFICATE_LIST
+	// structure, which are to be given access to the object.
 	EncryptionCertificates *EncryptionCertificateList `idl:"name:EncryptionCertificates" json:"encryption_certificates"`
 }
 
@@ -4895,9 +5406,14 @@ func (o *xxx_FileKeyInfoExOperation) UnmarshalNDRResponse(ctx context.Context, w
 
 // FileKeyInfoExRequest structure represents the EfsRpcFileKeyInfoEx operation request
 type FileKeyInfoExRequest struct {
+	// dwFileKeyInfoFlags: This parameter is reserved. It MUST be set to zero by the client
+	// and ignored by the server.
 	FileKeyInfoFlags uint32 `idl:"name:dwFileKeyInfoFlags" json:"file_key_info_flags"`
-	FileName         string `idl:"name:FileName;string" json:"file_name"`
-	InfoClass        uint32 `idl:"name:InfoClass" json:"info_class"`
+	// FileName: An EFSRPC identifier, as specified in section 2.2.1.
+	FileName string `idl:"name:FileName;string" json:"file_name"`
+	// InfoClass: One of the values specified for the InfoClass parameter of the EfsRpcFileKeyInfo
+	// method.
+	InfoClass uint32 `idl:"name:InfoClass" json:"info_class"`
 }
 
 func (o *FileKeyInfoExRequest) xxx_ToOp(ctx context.Context, op *xxx_FileKeyInfoExOperation) *xxx_FileKeyInfoExOperation {
@@ -4935,6 +5451,7 @@ func (o *FileKeyInfoExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 
 // FileKeyInfoExResponse structure represents the EfsRpcFileKeyInfoEx operation response
 type FileKeyInfoExResponse struct {
+	// KeyInfo: The server SHOULD ignore this parameter.<53>
 	KeyInfo *Blob `idl:"name:KeyInfo" json:"key_info"`
 	// Return: The EfsRpcFileKeyInfoEx return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -5096,6 +5613,7 @@ func (o *xxx_GetEncryptedFileMetadataOperation) UnmarshalNDRResponse(ctx context
 
 // GetEncryptedFileMetadataRequest structure represents the EfsRpcGetEncryptedFileMetadata operation request
 type GetEncryptedFileMetadataRequest struct {
+	// FileName: An EFSRPC identifier, as specified in section 2.2.1.
 	FileName string `idl:"name:FileName;string;pointer:ref" json:"file_name"`
 }
 
@@ -5130,6 +5648,7 @@ func (o *GetEncryptedFileMetadataRequest) UnmarshalNDR(ctx context.Context, r nd
 
 // GetEncryptedFileMetadataResponse structure represents the EfsRpcGetEncryptedFileMetadata operation response
 type GetEncryptedFileMetadataResponse struct {
+	// EfsStreamBlob: The server SHOULD ignore this parameter.<56>
 	StreamBlob *Blob `idl:"name:EfsStreamBlob;pointer:ref" json:"stream_blob"`
 	// Return: The EfsRpcGetEncryptedFileMetadata return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -5366,10 +5885,17 @@ func (o *xxx_SetEncryptedFileMetadataOperation) UnmarshalNDRResponse(ctx context
 
 // SetEncryptedFileMetadataRequest structure represents the EfsRpcSetEncryptedFileMetadata operation request
 type SetEncryptedFileMetadataRequest struct {
-	FileName         string                          `idl:"name:FileName;string;pointer:ref" json:"file_name"`
-	OldEFSStreamBlob *Blob                           `idl:"name:OldEfsStreamBlob;pointer:unique" json:"old_efs_stream_blob"`
-	NewEFSStreamBlob *Blob                           `idl:"name:NewEfsStreamBlob;pointer:ref" json:"new_efs_stream_blob"`
-	NewEFSSignature  *EncryptedFileMetadataSignature `idl:"name:NewEfsSignature;pointer:unique" json:"new_efs_signature"`
+	// FileName: An EFSRPC identifier as specified in section 2.2.1.
+	FileName string `idl:"name:FileName;string;pointer:ref" json:"file_name"`
+	// OldEfsStreamBlob: This parameter SHOULD be set to NULL by the client and ignored
+	// by the server.<59>
+	OldEFSStreamBlob *Blob `idl:"name:OldEfsStreamBlob;pointer:unique" json:"old_efs_stream_blob"`
+	// NewEfsStreamBlob: This parameter SHOULD be set to a zero-length EFS_RPC_BLOB by the
+	// client and ignored by the server.<60>
+	NewEFSStreamBlob *Blob `idl:"name:NewEfsStreamBlob;pointer:ref" json:"new_efs_stream_blob"`
+	// NewEfsSignature:  This parameter SHOULD be set to NULL by the client and ignored
+	// by the server.<61>
+	NewEFSSignature *EncryptedFileMetadataSignature `idl:"name:NewEfsSignature;pointer:unique" json:"new_efs_signature"`
 }
 
 func (o *SetEncryptedFileMetadataRequest) xxx_ToOp(ctx context.Context, op *xxx_SetEncryptedFileMetadataOperation) *xxx_SetEncryptedFileMetadataOperation {

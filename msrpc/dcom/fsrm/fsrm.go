@@ -716,7 +716,7 @@ var (
 	// FsrmAccountType_LocalService:  Run the command or module definition under a restricted
 	// account without network access (see [MSDN-LocSvcAcct] for more information).<11>
 	AccountTypeLocalService AccountType = 2
-	// FsrmAccountType_LocalSystem:  Run the command or module definition under an administrative
+	// FsrmAccountType_LocalSystem:  Run the command or module definition under an administrative
 	// account with network access. See [MSDN-LocSysAcct] for more information.<12>
 	AccountTypeLocalSystem AccountType = 3
 	// FsrmAccountType_InProc:  Run the module definition in an administrative account
@@ -1552,7 +1552,7 @@ func (o FileManagementType) String() string {
 type FileManagementLoggingFlags uint16
 
 var (
-	// FsrmFileManagementLoggingFlags_None: Indicates that no flags are set.
+	// FsrmFileManagementLoggingFlags_None:  Indicates that no flags are set.
 	FileManagementLoggingFlagsNone FileManagementLoggingFlags = 0
 	// FsrmFileManagementLoggingFlags_Error:  If the FsrmFileManagementLoggingFlags_Error
 	// flag is set, File Server Resource Manager logs errors that occur when running the

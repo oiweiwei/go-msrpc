@@ -1,0 +1,29 @@
+<div class="content"><p>The DestinationQueueInfo method is received by the server in
+an RPC_REQUEST packet. In response, the server MUST return an <a href="6014d18a-38fc-4fe2-83f0-11a963c69615" data-linktype="relative-path">IMSMQQueueInfo</a> interface
+pointer to an <a href="d22779e5-7d4d-4711-bdf0-3d47adb6c5df" data-linktype="relative-path">MSMQQueueInfo</a>
+object that represents the Queue identified by the represented
+Message.DestinationQueueFormatName.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT DestinationQueueInfo(
+   [out, retval] IMSMQQueueInfo4** ppqinfoDest
+ );
+</pre></div>
+</dd></dl><p><b>ppqinfoDest: </b>A pointer to a pointer to an
+IMSMQQueueInfo interface that upon successful completion will contain an <a href="48d37ac3-e585-4c3e-a075-42a18f317bcc" data-linktype="relative-path">MSMQQueue</a> object that
+represents the destination <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a>
+for the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a>.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>Create a new MSMQQueueInfo object instance.</p>
+</li><li><p><span><span> 
+</span></span>Set the <i>QueueFormatName</i> instance variable of the created
+MSMQQueueInfo object to the value of the represented
+Message.DestinationQueueFormatName.</p>
+</li><li><p><span><span> 
+</span></span>Call MSMQQueueInfo::Refresh on the created MSMQQueueInfo
+instance.</p>
+</li><li><p><span><span> 
+</span></span>Set the <i>ppqinfoDest</i> output parameter to a pointer to an
+IMSMQQueueInfo interface for the newly created MSMQQueueInfo object.</p>
+</li></ul></div>

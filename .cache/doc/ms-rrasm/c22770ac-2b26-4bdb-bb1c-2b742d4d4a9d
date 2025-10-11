@@ -1,1 +1,66 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IP_DNS_PROXY_MIB_QUERY</b> structure is passed to <a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a>
+method to retrieve the DNS proxy information.  </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Oid</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Index</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Oid (4 bytes): </b>This MUST be set to 0x00000000.</p><p><b>Index (4 bytes): </b>This MUST be the index of the
+interface.</p><p><b>Data (variable): </b>This MUST be an <a href="8286dd0e-abd3-4a87-b391-f99993fb42ea" data-linktype="relative-path"><b>IP_DNS_PROXY_STATISTICS</b></a>
+structure.</p><dl>
+<dd>
+<p><b>Note</b>  <b>Index</b> and <b>Data</b>
+are of variable size and while calculating the structure size, the size of <b>Index</b>
+or <b>Data</b> needs to be added. <b>Data</b> is unused and has been kept for
+extensibility.</p>
+</dd></dl></div>

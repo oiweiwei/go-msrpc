@@ -48,8 +48,8 @@ success, or a nonzero error code on failure.</p><dl>
 parameters:</p><ul><li><p><span><span> 
 </span></span>Verify that <i>filter</i> contains a valid FsrmReportFilter
 value.</p>
-</li></ul><p>If any validation fails, the server MUST terminate
-processing and return a nonzero error code.</p><p>If <b>filter</b> is <b>FsrmReportFilter_Property</b>, the
+</li></ul><p>If any validation fails, the server MUST terminate processing
+and return a nonzero error code.</p><p>If <b>filter</b> is <b>FsrmReportFilter_Property</b>, the
 server MUST perform the following actions:</p><ul><li><p><span><span> 
 </span></span>If <b>filterValue</b> contains a valid <b>Name</b> of a <a href="00194c43-c91d-447d-9c24-0725f48d4219" data-linktype="relative-path">Persisted Property Definition</a>
 on the server whose <a href="aeb8c879-da1a-4676-8d16-d7f85bac7a04" data-linktype="relative-path">Property

@@ -1,1 +1,25 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsPartitionState enumeration defines the states of a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_55db62c5-a84f-43b7-a037-b44ecd8fb92f" data-linktype="relative-path">side</a>.</p><dl>
+<dd>
+<div><pre> enum NtmsPartitionState
+ {
+   NTMS_PARTSTATE_UNKNOWN = 0,
+   NTMS_PARTSTATE_UNPREPARED = 1,
+   NTMS_PARTSTATE_INCOMPATIBLE = 2,
+   NTMS_PARTSTATE_DECOMMISSIONED = 3,
+   NTMS_PARTSTATE_AVAILABLE = 4,
+   NTMS_PARTSTATE_ALLOCATED = 5,
+   NTMS_PARTSTATE_COMPLETE = 6,
+   NTMS_PARTSTATE_FOREIGN = 7,
+   NTMS_PARTSTATE_IMPORT = 8,
+   NTMS_PARTSTATE_RESERVED = 9
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_PARTSTATE_UNKNOWN:  </b>The side is in an
+unknown state.</p><p><b>NTMS_PARTSTATE_UNPREPARED:  </b>The medium is
+waiting for a free label to be applied.</p><p><b>NTMS_PARTSTATE_INCOMPATIBLE:  </b>The medium was
+found to be incompatible with the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a> in which it is <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b" data-linktype="relative-path">mounted</a>.</p><p><b>NTMS_PARTSTATE_DECOMMISSIONED:  </b>The medium is
+unsuitable for data storage and is no longer usable.</p><p><b>NTMS_PARTSTATE_AVAILABLE:  </b>The medium is
+available to be <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_0e546e86-71c4-45cc-9ef1-4a78f6cb425a" data-linktype="relative-path">allocated</a>.</p><p><b>NTMS_PARTSTATE_ALLOCATED:  </b>The medium has been
+allocated to an application.</p><p><b>NTMS_PARTSTATE_COMPLETE:  </b>The medium has been
+completely written and marked as complete by an application.</p><p><b>NTMS_PARTSTATE_FOREIGN:  </b>The medium is in an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_5bc9b72a-2582-4345-9234-a253c8a21b64" data-linktype="relative-path">unrecognized pool</a>.</p><p><b>NTMS_PARTSTATE_IMPORT:  </b>The medium is in the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_c74372fa-bcae-4710-8b24-996fa2b676ac" data-linktype="relative-path">import pool</a>.</p><p><b>NTMS_PARTSTATE_RESERVED:  </b>The side is
+reserved.</p></div>

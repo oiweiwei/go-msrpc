@@ -2,7 +2,22 @@
 //
 // # Introduction
 //
+// The Update Agent Management Protocol uses DCOM as its transport layer. It provides
+// a set of types and interfaces that allow callers to manage an update agent and to
+// invoke some update agent operations, such as an update search.
+//
 // # Overview
+//
+// The Update Agent Management Protocol defines a set of types and interfaces that allow
+// clients to manage an update agent. The protocol implements two primary classes of
+// functionality: (1) managing the set of update services registered with an update
+// agent and (2) performing an update search with the update agent and returning the
+// results.
+//
+// The client and server can be on the same machine, or they can be on different machines
+// connected by a network. A client can use the functionality provided by this protocol
+// to perform an update search on the server machine against an update service of the
+// client's choice.
 package uamg
 
 import (
@@ -36,12 +51,28 @@ var (
 )
 
 // DownloadPriority type represents DownloadPriority RPC enumeration.
+//
+// The IUpdate::DownloadPriority (opnum 51) method retrieves the download priority for
+// the update.
+//
+// The DownloadPriority enumeration defines values describing the recommended download
+// priority of an update. It is up to the update agent implementation to define the
+// relative differences between download priority levels.<1>
 type DownloadPriority uint32
 
 var (
-	DownloadPriorityLow       DownloadPriority = 1
-	DownloadPriorityNormal    DownloadPriority = 2
-	DownloadPriorityHigh      DownloadPriority = 3
+	// dpLow:  The update service recommends that the update agent SHOULD use fewer resources
+	// to download the update than it uses for updates with dpNormal or dpHigh priority.
+	DownloadPriorityLow DownloadPriority = 1
+	// dpNormal:  The update service recommends that the update agent SHOULD use more resources
+	// to download the update than it uses for updates with dpLow priority, but fewer resources
+	// than it uses for updates with dpHigh priority.
+	DownloadPriorityNormal DownloadPriority = 2
+	// dpHigh:  The update service recommends that the update agent SHOULD use more resources
+	// to download the update than it uses for updates with dpLow or dpNormal priority.
+	DownloadPriorityHigh DownloadPriority = 3
+	// dpExtraHigh:  The update service recommends that the update agent SHOULD use all
+	// available resources to download the update as quickly as possible.
 	DownloadPriorityExtraHigh DownloadPriority = 4
 )
 
@@ -60,13 +91,26 @@ func (o DownloadPriority) String() string {
 }
 
 // AutoSelectionMode type represents AutoSelectionMode RPC enumeration.
+//
+// The AutoSelectionMode enumeration defines values describing the recommendation for
+// whether an update is automatically selected in a user interface (UI).
 type AutoSelectionMode uint32
 
 var (
+	// asLetWindowsUpdateDecide:  The update service recommends that a user interface implementation
+	// SHOULD decide whether to automatically select the update. This decision is implementation-specific
+	// and can involve other properties of the update and/or the administrator's configuration
+	// of the user interface. <2>
 	AutoSelectionModeLetWindowsUpdateDecide AutoSelectionMode = 0
-	AutoSelectionModeInterfaceDownloaded    AutoSelectionMode = 1
-	AutoSelectionModeNeverAutoSelect        AutoSelectionMode = 2
-	AutoSelectionModeAlwaysAutoSelect       AutoSelectionMode = 3
+	// asAutoSelectIfDownloaded:  The update service recommends that a user interface implementation
+	// SHOULD automatically select the update if the update is already downloaded.
+	AutoSelectionModeInterfaceDownloaded AutoSelectionMode = 1
+	// asNeverAutoSelect:  The update service recommends that a user interface implementation
+	// SHOULD NOT automatically select the update.
+	AutoSelectionModeNeverAutoSelect AutoSelectionMode = 2
+	// asAlwaysAutoSelect:  The update service recommends that a user interface implementation
+	// SHOULD automatically select the update.
+	AutoSelectionModeAlwaysAutoSelect AutoSelectionMode = 3
 )
 
 func (o AutoSelectionMode) String() string {
@@ -84,12 +128,25 @@ func (o AutoSelectionMode) String() string {
 }
 
 // AutoDownloadMode type represents AutoDownloadMode RPC enumeration.
+//
+// The AutoDownloadMode enumeration defines values describing the recommendation for
+// whether an update is downloaded automatically by an update agent.
 type AutoDownloadMode uint32
 
 var (
+	// adLetWindowsUpdateDecide:  The update service recommends that the update agent SHOULD
+	// decide on its own whether to automatically download the update. This decision is
+	// implementation-specific and can involve other properties of the update and/or the
+	// administrator's configuration of the update agent. In Windows, the update agent has
+	// an option to allow automatic download of important updates and another option to
+	// allow automatic download of recommended updates.<3>
 	AutoDownloadModeADLetWindowsUpdateDecide AutoDownloadMode = 0
-	AutoDownloadModeADNeverAutoDownload      AutoDownloadMode = 1
-	AutoDownloadModeADAlwaysAutoDownload     AutoDownloadMode = 2
+	// adNeverAutoDownload:  The update service recommends that the update agent SHOULD
+	// NOT automatically download the update.
+	AutoDownloadModeADNeverAutoDownload AutoDownloadMode = 1
+	// adAlwaysAutoDownload:  The update service recommends that the update agent SHOULD
+	// automatically download the update.
+	AutoDownloadModeADAlwaysAutoDownload AutoDownloadMode = 2
 )
 
 func (o AutoDownloadMode) String() string {
@@ -105,11 +162,23 @@ func (o AutoDownloadMode) String() string {
 }
 
 // InstallationImpact type represents InstallationImpact RPC enumeration.
+//
+// The InstallationImpact enumeration defines values that describe the level of impact
+// resulting from installing or uninstalling an update.
 type InstallationImpact uint32
 
 var (
-	InstallationImpactNormal                    InstallationImpact = 0
-	InstallationImpactMinor                     InstallationImpact = 1
+	// iiNormal:  Installing or uninstalling an update results in a level of impact on
+	// the target computer that is typical of most updates.
+	InstallationImpactNormal InstallationImpact = 0
+	// iiMinor:  Installing or uninstalling an update results in an insignificant impact
+	// on the target computer. For example, this can apply to an update to the signatures
+	// of an antivirus application.
+	InstallationImpactMinor InstallationImpact = 1
+	// iiRequiresExclusiveHandling:  Installing or uninstalling an update has such a high
+	// impact on the target computer that the update is required to be installed or uninstalled
+	// exclusively. This value can apply to a major update such as an operating system service
+	// pack.
 	InstallationImpactRequiresExclusiveHandling InstallationImpact = 2
 )
 
@@ -126,12 +195,22 @@ func (o InstallationImpact) String() string {
 }
 
 // InstallationRebootBehavior type represents InstallationRebootBehavior RPC enumeration.
+//
+// The InstallationRebootBehavior enumeration defines values that describe the reboot
+// behavior of installing or uninstalling an update.
 type InstallationRebootBehavior uint32
 
 var (
-	InstallationRebootBehaviorNeverReboots         InstallationRebootBehavior = 0
+	// irbNeverReboots:  The update never requires a system restart during or after an
+	// installation or an uninstallation.
+	InstallationRebootBehaviorNeverReboots InstallationRebootBehavior = 0
+	// irbAlwaysRequiresReboot:  The update always requires a system restart after a successful
+	// installation or uninstallation.
 	InstallationRebootBehaviorAlwaysRequiresReboot InstallationRebootBehavior = 1
-	InstallationRebootBehaviorCanRequestReboot     InstallationRebootBehavior = 2
+	// irbCanRequestReboot:  The update might or might not require a system restart after
+	// an installation or uninstallation. The need to restart is determined after the update
+	// is installed or uninstalled.
+	InstallationRebootBehaviorCanRequestReboot InstallationRebootBehavior = 2
 )
 
 func (o InstallationRebootBehavior) String() string {
@@ -147,15 +226,25 @@ func (o InstallationRebootBehavior) String() string {
 }
 
 // OperationResultCode type represents OperationResultCode RPC enumeration.
+//
+// The OperationResultCode enumeration defines values that describe the result of an
+// update operation.
 type OperationResultCode uint32
 
 var (
-	OperationResultCodeNotStarted          OperationResultCode = 0
-	OperationResultCodeInProgress          OperationResultCode = 1
-	OperationResultCodeSucceeded           OperationResultCode = 2
+	// orcNotStarted:  The operation is not started.
+	OperationResultCodeNotStarted OperationResultCode = 0
+	// orcInProgress:  The operation is in progress.
+	OperationResultCodeInProgress OperationResultCode = 1
+	// orcSucceeded:  The operation was completed successfully.
+	OperationResultCodeSucceeded OperationResultCode = 2
+	// orcSucceededWithErrors:  The operation is complete, but one or more errors occurred
+	// during the operation. The results might be incomplete.
 	OperationResultCodeSucceededWithErrors OperationResultCode = 3
-	OperationResultCodeFailed              OperationResultCode = 4
-	OperationResultCodeAborted             OperationResultCode = 5
+	// orcFailed:  The operation failed to complete.
+	OperationResultCodeFailed OperationResultCode = 4
+	// orcAborted:  The operation is canceled.
+	OperationResultCodeAborted OperationResultCode = 5
 )
 
 func (o OperationResultCode) String() string {
@@ -177,13 +266,30 @@ func (o OperationResultCode) String() string {
 }
 
 // ServerSelection type represents ServerSelection RPC enumeration.
+//
+// The ServerSelection enumeration defines values that describe the type of server to
+// use for an update search operation.
+//
+// The IUpdateSearcher::ServerSelection (opnum 14) method retrieves the type of update
+// server used to search against.
+//
+// The IUpdateSearcher::ServerSelection (Opnum 15) method sets the type of update server
+// used to search against.
+//
+// The IUpdateHistoryEntry::ServerSelection (opnum 17) method describes the type of
+// update service that provided the update for which the operation was performed.
 type ServerSelection uint32
 
 var (
-	ServerSelectionDefault       ServerSelection = 0
+	// ssDefault:  Search the default server for updates that match the search criteria.
+	ServerSelectionDefault ServerSelection = 0
+	// ssManagedServer:  Search only the managed server for updates that match the search
+	// criteria.
 	ServerSelectionManagedServer ServerSelection = 1
+	// ssWindowsUpdate:  Search the Windows Update service over the Internet.
 	ServerSelectionWindowsUpdate ServerSelection = 2
-	ServerSelectionOthers        ServerSelection = 3
+	// ssOthers:  Search another server, to be specified by other means.
+	ServerSelectionOthers ServerSelection = 3
 )
 
 func (o ServerSelection) String() string {
@@ -201,11 +307,15 @@ func (o ServerSelection) String() string {
 }
 
 // UpdateType type represents UpdateType RPC enumeration.
+//
+// The UpdateType enumeration defines values that describe the type of an update.
 type UpdateType uint32
 
 var (
+	// utSoftware:  Indicates that the update is a software update.
 	UpdateTypeSoftware UpdateType = 1
-	UpdateTypeDriver   UpdateType = 2
+	// utDriver:  Indicates that the update is a driver update.
+	UpdateTypeDriver UpdateType = 2
 )
 
 func (o UpdateType) String() string {
@@ -219,10 +329,15 @@ func (o UpdateType) String() string {
 }
 
 // UpdateOperation type represents UpdateOperation RPC enumeration.
+//
+// The UpdateOperation enumeration defines values that describe the type of an update
+// operation.
 type UpdateOperation uint32
 
 var (
-	UpdateOperationInstallation   UpdateOperation = 1
+	// uoInstallation:  Install the update on the target computer.
+	UpdateOperationInstallation UpdateOperation = 1
+	// uoUninstallation:  Uninstall the update from the target computer.
 	UpdateOperationUninstallation UpdateOperation = 2
 )
 
@@ -237,13 +352,26 @@ func (o UpdateOperation) String() string {
 }
 
 // DeploymentAction type represents DeploymentAction RPC enumeration.
+//
+// The IUpdate::DeploymentAction (opnum 49) method retrieves the deployment action for
+// the update.
+//
+// The DeploymentAction enumeration defines values that describe the server-defined
+// action to be taken on the update by the update agent.
 type DeploymentAction uint32
 
 var (
-	DeploymentActionNone           DeploymentAction = 0
-	DeploymentActionInstallation   DeploymentAction = 1
+	// daNone:  The update inherits the deployment action from its bundled updates.
+	DeploymentActionNone DeploymentAction = 0
+	// daInstallation:  The update SHOULD be installed on the computer and/or for the specified
+	// user.
+	DeploymentActionInstallation DeploymentAction = 1
+	// daUninstallation:  The update SHOULD be uninstalled from the computer and/or for
+	// the specified user.
 	DeploymentActionUninstallation DeploymentAction = 2
-	DeploymentActionDetection      DeploymentAction = 3
+	// daDetection:  The update is deployed only to determine the applicability of the
+	// update. The update SHOULD NOT be installed.
+	DeploymentActionDetection DeploymentAction = 3
 )
 
 func (o DeploymentAction) String() string {
@@ -261,11 +389,17 @@ func (o DeploymentAction) String() string {
 }
 
 // UpdateExceptionContext type represents UpdateExceptionContext RPC enumeration.
+//
+// The UpdateExceptionContext enumeration defines values that describe the context in
+// which an error has occurred.
 type UpdateExceptionContext uint32
 
 var (
-	UpdateExceptionContextGeneral          UpdateExceptionContext = 1
-	UpdateExceptionContextWindowsDriver    UpdateExceptionContext = 2
+	// uecGeneral:  The exception is not tied to any context.
+	UpdateExceptionContextGeneral UpdateExceptionContext = 1
+	// uecWindowsDriver:  The exception is related to one or more Windows drivers.
+	UpdateExceptionContextWindowsDriver UpdateExceptionContext = 2
+	// uecWindowsInstaller:  The exception is related to Windows  Installer.
 	UpdateExceptionContextWindowsInstaller UpdateExceptionContext = 3
 )
 
@@ -282,12 +416,19 @@ func (o UpdateExceptionContext) String() string {
 }
 
 // UpdateServiceRegistrationState type represents UpdateServiceRegistrationState RPC enumeration.
+//
+// The UpdateServiceRegistrationState enumeration defines values that describe the state
+// of a service's registration.
 type UpdateServiceRegistrationState uint32
 
 var (
+	// usrsNotRegistered:  The service is not registered.
 	UpdateServiceRegistrationStateNotRegistered UpdateServiceRegistrationState = 1
-	UpdateServiceRegistrationStatePending       UpdateServiceRegistrationState = 2
-	UpdateServiceRegistrationStateRegistered    UpdateServiceRegistrationState = 3
+	// usrsRegistrationPending:  The service is pending registration. Registration will
+	// be attempted the next time that the update agent contacts an update service.
+	UpdateServiceRegistrationStatePending UpdateServiceRegistrationState = 2
+	// usrsRegistered:  The service is registered.
+	UpdateServiceRegistrationStateRegistered UpdateServiceRegistrationState = 3
 )
 
 func (o UpdateServiceRegistrationState) String() string {
@@ -303,15 +444,31 @@ func (o UpdateServiceRegistrationState) String() string {
 }
 
 // SearchScope type represents SearchScope RPC enumeration.
+//
+// The IUpdateSearcher3::SearchScope (opnum 28) method returns the scope of the search.
+//
+// The SearchScope enumeration defines values that describe the combination of per-user
+// and per-machine updates for which to search.
+//
+// The IUpdateSearcher3::SearchScope (opnum 29) method sets the scope of the search.
 type SearchScope uint32
 
 var (
-	SearchScopeDefault               SearchScope = 0
-	SearchScopeMachineOnly           SearchScope = 1
-	SearchScopeCurrentUserOnly       SearchScope = 2
+	// searchScopeDefault:  Use the default search scope defined by the update agent. This
+	// SHOULD be equivalent to searchScopeMachineOnly.
+	SearchScopeDefault SearchScope = 0
+	// searchScopeMachineOnly:  Search for per-machine update only.
+	SearchScopeMachineOnly SearchScope = 1
+	// searchScopeCurrentUserOnly:  Search for per-user updates for the calling user only.
+	SearchScopeCurrentUserOnly SearchScope = 2
+	// searchScopeMachineAndCurrentUser:  Search for per-machine updates and per-user updates
+	// for the calling user.
 	SearchScopeMachineAndCurrentUser SearchScope = 3
-	SearchScopeMachineAndAllUsers    SearchScope = 4
-	SearchScopeAllUsers              SearchScope = 5
+	// searchScopeMachineAndAllUsers:  Search for per-machine updates and per-user updates
+	// for all users.
+	SearchScopeMachineAndAllUsers SearchScope = 4
+	// searchScopeAllUsers:  Search for per-user updates for all users.
+	SearchScopeAllUsers SearchScope = 5
 )
 
 func (o SearchScope) String() string {
@@ -333,12 +490,24 @@ func (o SearchScope) String() string {
 }
 
 // AddServiceFlag type represents AddServiceFlag RPC enumeration.
+//
+// The AddServiceFlag enumeration defines values that control how an update service
+// is registered.
 type AddServiceFlag uint16
 
 var (
+	// asfAllowPendingRegistration:  Allows the update agent to process the service registration
+	// at a later time if the service registration cannot be performed before returning
+	// from the IUpdateServiceManager2::AddService2 (opnum 18) (section 3.44.5.4) method
+	// call.
 	AddServiceFlagAllowPendingRegistration AddServiceFlag = 1
-	AddServiceFlagAllowOnlineRegistration  AddServiceFlag = 2
-	AddServiceFlagRegisterServiceWithAU    AddServiceFlag = 4
+	// asfAllowOnlineRegistration:  Allows the update agent to process the service registration
+	// during the IUpdateServiceManager2::AddService2 (opnum 18) method call if network
+	// connectivity is available.
+	AddServiceFlagAllowOnlineRegistration AddServiceFlag = 2
+	// asfRegisterServiceWithAU:  Registers the service with the automatic update agent
+	// when the service is added.
+	AddServiceFlagRegisterServiceWithAU AddServiceFlag = 4
 )
 
 func (o AddServiceFlag) String() string {
@@ -354,9 +523,14 @@ func (o AddServiceFlag) String() string {
 }
 
 // UpdateServiceOption type represents UpdateServiceOption RPC enumeration.
+//
+// The UpdateServiceOption enumeration defines values that control how an update service
+// is removed.
 type UpdateServiceOption uint16
 
 var (
+	// usoNonVolatileService:  The service is to be treated as nonvolatile; removal of
+	// the service requires an explicit call to do so.
 	UpdateServiceOptionNonVolatileService UpdateServiceOption = 1
 )
 

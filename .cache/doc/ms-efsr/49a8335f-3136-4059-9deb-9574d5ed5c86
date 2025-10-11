@@ -1,1 +1,19 @@
-<div class="content"></div>
+<div class="content"><p>The EFS_KEY_INFO type is used to represent information about
+a <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">key</a> of a symmetric
+cryptosystem.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwVersion;
+   unsigned long Entropy;
+   ALG_ID Algorithm;
+   unsigned long KeyLength;
+ } EFS_KEY_INFO;
+</pre></div>
+</dd></dl><p><b>dwVersion:</b>  The version of this data
+structure. It MUST be equal to 0x00000001.</p><p><b>Entropy:</b>  The actual number of bits
+of entropy or true randomness in the key. This value, divided by 8, MUST be
+less than or equal to the value of the <b>KeyLength</b> member.</p><p><b>Algorithm:</b>  The cryptographic
+algorithm with which the key is intended to be used.</p><p><b>KeyLength:</b>  The total length, in
+bytes, of the key. This value, multiplied by 8, MUST be greater than or equal
+to the value of the <b>Entropy</b> member. Valid combinations of Entropy,
+Algorithm, and KeyLength are specified in section <a href="4cc8e6ae-99aa-483e-99c1-ab4c0ee46294" data-linktype="relative-path">2.2.13</a>.</p></div>

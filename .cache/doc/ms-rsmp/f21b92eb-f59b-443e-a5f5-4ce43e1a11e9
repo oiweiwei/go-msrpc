@@ -1,1 +1,46 @@
-<div class="content"></div>
+<div class="content"><p>The RSM Remote Protocol provides a mechanism for the remote
+configuration and management of removable storage devices such as <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_e15a2eb2-9f8f-4e34-a38d-b44de24f8b08" data-linktype="relative-path">robotic</a> <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_898fa8ab-42d5-439f-9415-1589599fe913" data-linktype="relative-path">changers</a>, media <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_ba47762a-6279-48b3-9a11-eeb239876e31" data-linktype="relative-path">libraries</a>, and tape <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drives</a>. It allows multiple
+clients to manage removable media within a single-server system, and share
+local robotic media libraries, tape drives, and disk drives. The protocol also
+enables clients to obtain notifications of changes to these storage objects.</p><p>Two entities are involved in the RSM Remote Protocol: the
+server, whose storage is configured, and the client, which accesses and
+requests changes to the server&#39;s storage configuration.</p><p>The RSM Remote Protocol is expressed as a set of DCOM
+interfaces <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>.</p><p>The client end of the protocol invokes method calls on the
+interface to perform various tasks with the removable storage on the server.
+The client also implements some DCOM interfaces to get notifications for
+changes in the removable storage.</p><p>The server end of the protocol implements DCOM interfaces to
+provide the following functions:<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a></p><ul><li><p><span><span> 
+</span></span><b>Session Management</b></p>
+<p>This interface is used to open and
+close sessions. Establishing a session is a prerequisite to using the other
+functions of the RSM Remote Protocol.</p>
+</li><li><p><span><span> 
+</span></span><b>Media Library Management</b></p>
+<p>The Media Library Management
+interface provides functions that:</p>
+<ul><li><p><span><span>  </span></span><a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a22dff61-81ae-4414-8242-3d28f4c70c31" data-linktype="relative-path">Eject</a> or <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_5e9a10ec-4dc8-457c-bac6-4df3af609f40" data-linktype="relative-path">inject</a> media from a
+library.</p>
+</li><li><p><span><span>  </span></span>Reserve
+or release a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a1f0ab90-f3c0-46b8-9c77-d0d7508ede94" data-linktype="relative-path">slot</a> for
+cleaning.</p>
+</li><li><p><span><span>  </span></span>Clean
+the drive.</p>
+</li><li><p><span><span>  </span></span>Eject
+or inject a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_95e53eb6-39e3-43ed-905e-ff1f427446d2" data-linktype="relative-path">cleaner</a>. </p>
+</li></ul></li><li><p><span><span> 
+</span></span><b>Object Management </b></p>
+<p>During the initialization process,
+the server performs an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_38cb8216-53ff-4936-a5c4-4d8d7672950a" data-linktype="relative-path">inventory</a>
+of media libraries, tape drives, robotic changers, and so on. The object
+management functions allow a client to create, delete, modify, or enumerate
+these objects. The server also maintains a record of all configured objects in
+the RSM database, which can be used across sessions. </p>
+</li><li><p><span><span> 
+</span></span><b>Media Management</b></p>
+<p>The media management functions
+enable a client to perform any of the following functions:</p>
+<ul><li><p><span><span>  </span></span>Create
+or delete a media pool.</p>
+</li><li><p><span><span>  </span></span><a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b" data-linktype="relative-path">Mount</a> or <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a8ebf8eb-a5f7-406a-b211-9f9c08ee15d3" data-linktype="relative-path">dismount</a> media.</p>
+</li><li><p><span><span>  </span></span><a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_0e546e86-71c4-45cc-9ef1-4a78f6cb425a" data-linktype="relative-path">Allocate</a>, <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a8986e06-b078-4c42-86bc-178390427f04" data-linktype="relative-path">deallocate</a>, or <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_d753ed1c-ff6a-4179-81ea-10ba369e1cca" data-linktype="relative-path">decommission</a> media.</p>
+</li></ul></li></ul></div>

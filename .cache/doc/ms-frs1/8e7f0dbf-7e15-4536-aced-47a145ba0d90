@@ -1,1 +1,24 @@
-<div class="content"></div>
+<div class="content"><p>The FrsNOP method verifies that the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> connection for this
+interface is functioning properly. This method is not used by <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_20f21413-875c-4ebf-9913-a3282fbb779f" data-linktype="relative-path">FRS</a>.</p><dl>
+<dd>
+<div><pre> unsigned long FrsNOP();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p> </p>
+  </td>
+  <td>
+  <p>The method MUST return 0.</p>
+  </td>
+ </tr></tbody></table><p>On receiving this message, the server MUST do nothing and
+return 0. </p></div>

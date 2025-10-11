@@ -57,10 +57,55 @@ type AppHostSectionDefinitionCollectionClient interface {
 	// Item operation.
 	GetItem(context.Context, *GetItemRequest, ...dcerpc.CallOption) (*GetItemResponse, error)
 
-	// AddSection operation.
+	// The AddSection method is received by the server in an RPC_REQUEST packet. In response,
+	// the server adds a section definition to the administration system.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppConfigSection is not NULL. If
+	// processing fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF].
+	// The following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X800700B7 ERROR_ALREADY_EXISTS    | A section with name bstrSectionName already exists.     |
+	//	+------------------------------------+---------------------------------------------------------+
 	AddSection(context.Context, *AddSectionRequest, ...dcerpc.CallOption) (*AddSectionResponse, error)
 
-	// DeleteSection operation.
+	// The DeleteSection method is received by the server in an RPC_REQUEST packet. In response,
+	// the server deletes the specified section definition.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	|             RETURN              |                                                                                  |
+	//	|           VALUE/CODE            |                                   DESCRIPTION                                    |
+	//	|                                 |                                                                                  |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR             | The operation completed successfully.                                            |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070585 ERROR_INVALID_INDEX  | The integer index specified by varIndex is invalid, or the section with name     |
+	//	|                                 | specified by cIndex could not be found.                                          |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070021 ERROR_LOCK_VIOLATION | The instance is set to read-only.                                                |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X00000002 ERROR_PATH_NOT_FOUND | The system cannot find the path specified.The section could not be found.        |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
 	DeleteSection(context.Context, *DeleteSectionRequest, ...dcerpc.CallOption) (*DeleteSectionResponse, error)
 
 	// AlterContext alters the client context.
@@ -902,8 +947,9 @@ func (o *xxx_AddSectionOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 // AddSectionRequest structure represents the AddSection operation request
 type AddSectionRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	SectionName *oaut.String   `idl:"name:bstrSectionName" json:"section_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrSectionName: The name of the new section definition to add.
+	SectionName *oaut.String `idl:"name:bstrSectionName" json:"section_name"`
 }
 
 func (o *AddSectionRequest) xxx_ToOp(ctx context.Context, op *xxx_AddSectionOperation) *xxx_AddSectionOperation {
@@ -940,7 +986,8 @@ func (o *AddSectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 // AddSectionResponse structure represents the AddSection operation response
 type AddSectionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That          *dcom.ORPCThat                 `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppConfigSection: Contains the newly added or created section definition.
 	ConfigSection *iisa.AppHostSectionDefinition `idl:"name:ppConfigSection" json:"config_section"`
 	// Return: The AddSection return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1129,8 +1176,11 @@ func (o *xxx_DeleteSectionOperation) UnmarshalNDRResponse(ctx context.Context, w
 // DeleteSectionRequest structure represents the DeleteSection operation request
 type DeleteSectionRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
-	VarIndex *oaut.Variant  `idl:"name:varIndex" json:"var_index"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// varIndex:  A VARIANT index that specifies the section definition to delete. If the
+	// VARIANT is of type integer, the index is a zero-based index to the collection. If
+	// the VARIANT is of type string, the index is the string name of the section definition.
+	VarIndex *oaut.Variant `idl:"name:varIndex" json:"var_index"`
 }
 
 func (o *DeleteSectionRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteSectionOperation) *xxx_DeleteSectionOperation {

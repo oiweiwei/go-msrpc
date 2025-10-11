@@ -1,1 +1,157 @@
-<div class="content"></div>
+<div class="content"><p>The EjectNtmsCleaner method <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a22dff61-81ae-4414-8242-3d28f4c70c31" data-linktype="relative-path">ejects</a> the cleaning <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a71cfd0c-a569-4544-8127-7ae496bca92b" data-linktype="relative-path">cartridge</a> from the
+currently reserved <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_95e53eb6-39e3-43ed-905e-ff1f427446d2" data-linktype="relative-path">cleaner</a>
+<a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a1f0ab90-f3c0-46b8-9c77-d0d7508ede94" data-linktype="relative-path">slot</a>.</p><dl>
+<dd>
+<div><pre> HRESULT EjectNtmsCleaner(
+   [in] LPNTMS_GUID lpLibrary,
+   [in, out] LPNTMS_GUID lpEjectOperation,
+   [in] DWORD dwAction
+ );
+</pre></div>
+</dd></dl><p><b>lpLibrary: </b>A pointer to the identifier of the
+media library from which the cleaner will be ejected.</p><p><b>lpEjectOperation: </b>A pointer to GUID of the
+insert process library operation. If the value of <b>dwAction</b> is
+NTMS_EJECT_START, this parameter receives the GUID of the operation from
+server; if the value of <b>dwAction</b> is NTMS_EJECT_STOP, this parameter must
+be set to the GUID of the operation to be stopped.</p><p><b>dwAction: </b> One of the NTMS_EJECT_START or
+NTMS_EJECT_STOP values from the <a href="6e787121-1c98-4390-a34b-c5e9ce2d33d6" data-linktype="relative-path">NtmsEjectOperation (section 2.2.2.1)</a>
+enumeration, specifying the operation to perform.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to one or more objects is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070006</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The session handle is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>Not enough storage is available to process this
+  command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The parameter is incorrect.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800708CA</p>
+  <p>ERROR_NOT_CONNECTED</p>
+  </td>
+  <td>
+  <p>Unable to connect to the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CD</p>
+  <p>ERROR_INVALID_LIBRARY</p>
+  </td>
+  <td>
+  <p>The library is not found in the database.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D1</p>
+  <p>ERROR_LIBRARY_OFFLINE</p>
+  </td>
+  <td>
+  <p>The library identifier refers to an offline library.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D5</p>
+  <p>ERROR_RESOURCE_DISABLED</p>
+  </td>
+  <td>
+  <p>A resource required for this operation is disabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DD</p>
+  <p>ERROR_INVALID_OPERATION</p>
+  </td>
+  <td>
+  <p> The NTMS_EJECT_STOP action was performed on an
+  invalid operation identifier.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that
+both <i>lpLibrary</i> and <i>lpEjectOperation</i> are not NULL, and that
+dwAction is equal to NTMS_EJECT_START or NTMS_EJECT_STOP. If parameter
+validation fails, the server MUST immediately fail the operation and return
+ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST check
+access rights to the library and verify that the library is enabled and online
+before processing further. If the client does not have the required access
+rights, the server MUST return ERROR_ACCESS_DENIED (0x80070005). If the library
+or drive is disabled, the server MUST return ERROR_RESOURCE_DISABLED
+(0x800710D5). If the library is offline, the server MUST return ERROR_LIBRARY_OFFLINE
+(0x800710D1).</p><p>The action taken by the server depends on the value of <i>dwAction</i>.
+The following table lists all possible values for <i>dwAction</i>.</p><table><thead>
+  <tr>
+   <th>
+   <p> Value </p>
+   </th>
+   <th>
+   <p> Meaning </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_EJECT_START</p>
+  </td>
+  <td>
+  <p>Starts the eject operation with a port. The specified
+  medium is ejected until the time-out event occurs or the method is called
+  again with NTMS_EJECT_STOP. The time-out value is specified in the library
+  object and is applied to all ejections in the library.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_EJECT_STOP</p>
+  </td>
+  <td>
+  <p>For libraries with NTMS_IEPORT objects, terminates the
+  ejection process that is specified by <i>lpEjectOperation</i> prior to the
+  time-out event lapsing. For libraries without NTMS_IEPORT objects, the server
+  MUST return ERROR_INVALID_OPERATION.</p>
+  </td>
+ </tr></tbody></table><p>The EjectNtmsCleaner method ejects the cleaning cartridge
+from the currently reserved cleaner slot.</p><p>If the library that is specified in the EjectNtmsCleaner
+method has an NTMS_IEPORT object, RSM uses the NTMS_IEPORT object to eject the
+cleaner. If there is no NTMS_IEPORT object, the NTMS_IEDOOR object is used to
+allow the operator to gain access to the cleaner slot.</p><p>Ejected cleaner cartridges are not tracked in the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_f248d7b8-b3e9-421e-96c4-78551324fd86" data-linktype="relative-path">offline library</a>.</p><p>On completion of an asynchronous operation, notification
+will be sent with the identifier lpEjectOperation.</p></div>

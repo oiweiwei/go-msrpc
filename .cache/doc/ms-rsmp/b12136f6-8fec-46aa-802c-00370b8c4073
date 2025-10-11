@@ -1,1 +1,105 @@
-<div class="content"></div>
+<div class="content"><p>The DeleteNtmsMedia method deletes a physical piece of
+offline media by removing all references to it.</p><dl>
+<dd>
+<div><pre> HRESULT DeleteNtmsMedia(
+   [in] LPNTMS_GUID lpMediaId
+ );
+</pre></div>
+</dd></dl><p><b>lpMediaId: </b>A pointer to the identifier of a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_9036b269-4f3b-4353-a1d0-54f5c686ec2c" data-linktype="relative-path">physical medium</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>NTMS_MODIFY_ACCESS to the library is denied; other
+  security errors are possible but indicate a security subsystem error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>An allocation error occurred during processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_746b1ad1-e1ad-4120-9986-fef919a2eaf7" data-linktype="relative-path">media
+  identifier</a> is missing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CC</p>
+  <p>ERROR_INVALID_MEDIA</p>
+  </td>
+  <td>
+  <p>The media identifier is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CE</p>
+  <p>ERROR_INVALID_MEDIA_POOL</p>
+  </td>
+  <td>
+  <p>The media pool of the media is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database is inaccessible or damaged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DA</p>
+  <p>ERROR_DATABASE_FULL</p>
+  </td>
+  <td>
+  <p>The database is full.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007139F</p>
+  <p>ERROR_INVALID_STATE</p>
+  </td>
+  <td>
+  <p>The media is not offline.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpMediaId</i>
+is not NULL. If it is NULL, the server MUST immediately fail the operation and
+return ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights. If the client does not have the
+required access rights, the server MUST return ERROR_ACCESS_DENIED
+(0x80070005).</p><p>The DeleteNtmsMedia method deletes a physical piece of
+offline media from the server by removing all references to the specified
+medium from the database.</p><p>Media specified by the DeleteNtmsMedia method MUST be
+located in an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_f248d7b8-b3e9-421e-96c4-78551324fd86" data-linktype="relative-path">offline
+library</a> and not have a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_55db62c5-a84f-43b7-a037-b44ecd8fb92f" data-linktype="relative-path">side</a>
+in the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_0e546e86-71c4-45cc-9ef1-4a78f6cb425a" data-linktype="relative-path">allocated</a>,
+completed, or reserved states.</p></div>

@@ -1,1 +1,564 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RMIBEntryGet</b> method<a id="Appendix_A_Target_291"></a><a aria-label="Product behavior note 291" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_291" data-linktype="relative-path">&lt;291&gt;</a>
+retrieves the value of a RRAS MIB entry that corresponds to the transport and
+that matches the information specified in <i>pInfoStuct</i>.</p><dl>
+<dd>
+<div><pre> DWORD RMIBEntryGet(
+   [in] DIM_HANDLE hDimServer,
+   [in] DWORD dwPid,
+   [in] DWORD dwRoutingPid,
+   [in, out] PDIM_MIB_ENTRY_CONTAINER pInfoStuct
+ );
+</pre></div>
+</dd></dl><p><b>hDimServer: </b>A handle to the RRASM server where
+the call is to be executed, see section <a href="1f8cdbcc-9791-4a35-ad78-878b8d110e15" data-linktype="relative-path">3.1.3</a>.</p><p><b>dwPid: </b>Specifies the transport protocol. The
+value of this parameter MUST be one from the following table.<a id="Appendix_A_Target_292"></a><a aria-label="Product behavior note 292" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_292" data-linktype="relative-path">&lt;292&gt;</a> The method MUST return an
+error for any other values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PID_IPX</p>
+  <p>0x0000002B</p>
+  </td>
+  <td>
+  <p>An IPX protocol MIB entry is to be retrieved.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PID_IP</p>
+  <p>0x00000021</p>
+  </td>
+  <td>
+  <p>An IPv4 protocol MIB entry is to be retrieved.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PID_IPV6</p>
+  <p>0x00000057</p>
+  </td>
+  <td>
+  <p>An IPv6 protocol MIB entry is to be retrieved.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwRoutingPid: </b>If <i>dwPid</i> is PID_IP and if
+<i>dwRoutingPid</i> is 10000, then <b>pMibInEntry</b> MUST point to <b>MIB_OPAQUE_QUERY</b> (section
+<a href="3ca0723e-36ea-448a-a97e-1906dd3d07a6" data-linktype="relative-path">2.2.1.2.53</a>). The <b>dwVarId</b>
+field of <b>MIB_OPAQUE_QUERY</b> MUST be one of the following values. <b>pMibOutEntry</b>
+MUST be interpreted as a pointer to <b>MIB_OPAQUE_QUERY</b>. See section
+2.2.1.2.53 for details on the structure retrieved by the <b>rgdwVarIndex</b>
+field of <b>MIB_OPAQUE_QUERY</b> for different <b>dwVarId</b> values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>dwVarId Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IF_NUMBER</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Number of interfaces on the machine.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_TABLE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Information about interface table.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_ROW</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Information about a particular interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_STATS</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Information about the IP protocol.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_ADDRTABLE</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Table of IPv4 address entries.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_ADDRROW</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Information for a particular IPv4 address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_FORWARDNUMBER</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>Information about number of routes in a particular IP
+  routing table.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_FORWARDTABLE</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>Table of IPv4 route entries.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NETTABLE</p>
+  <p>0x00000009</p>
+  </td>
+  <td>
+  <p>Table of ARP entries for IPv4 addresses.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NETROW</p>
+  <p>0x0000000A</p>
+  </td>
+  <td>
+  <p>Information about an ARP table entry for an IPv4
+  address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ICMP_STATS</p>
+  <p>0x0000000B</p>
+  </td>
+  <td>
+  <p>Statistics for ICMP messages on a particular computer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TCP_STATS</p>
+  <p>0x0000000C</p>
+  </td>
+  <td>
+  <p>Statistics for the TCP protocol running on the local
+  computer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>UDP_STATS</p>
+  <p>0x0000000F</p>
+  </td>
+  <td>
+  <p>Statistics for the UDP running on the local computer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MCAST_MFE</p>
+  <p>0x00000012</p>
+  </td>
+  <td>
+  <p>Information for an IP multicast forwarding entry.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MCAST_MFE_STATS</p>
+  <p>0x00000013</p>
+  </td>
+  <td>
+  <p>Statistics associated with an MFE.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MCAST_IF_ENTRY</p>
+  <p>0x00000017</p>
+  </td>
+  <td>
+  <p>Information about an IP multicast interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ROUTE_MATCHING</p>
+  <p>0x0000001F</p>
+  </td>
+  <td>
+  <p>Information about a matching IP route.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BEST_IF</p>
+  <p>0x00000014</p>
+  </td>
+  <td>
+  <p>Index of the interface that has the best route to a
+  particular destination IPv4 address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MCAST_GLOBAL</p>
+  <p>0x00000018</p>
+  </td>
+  <td>
+  <p>Global information for IP multicast on a particular
+  computer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_STATUS</p>
+  <p>0x00000019</p>
+  </td>
+  <td>
+  <p>Status information for a particular interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MCAST_BOUNDARY</p>
+  <p>0x0000001A</p>
+  </td>
+  <td>
+  <p>Information about a router&#39;s scoped IPv4 multicast
+  address boundaries.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MCAST_SCOPE</p>
+  <p>0x0000001B</p>
+  </td>
+  <td>
+  <p>Information about a multicast scope.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>If <i>dwPid</i> is PID_IPV6 and <i>dwRoutingPid</i>
+is 10000, then <b>pMibInEntry</b> MUST point to <b>MIB_OPAQUE_QUERY</b> (section
+2.2.1.2.53). The <b>dwVarId</b> field of <b>pMibInEntry</b> MUST be one of the
+following values. <b>pMibOutEntry</b> MUST be interpreted as a pointer to <b>MIB_OPAQUE_QUERY</b>.
+See section 2.2.1.2.53 for details on the structure retrieved by the <b>rgdwVarIndex</b>
+field of <b>MIB_OPAQUE_QUERY</b> for different <b>dwVarId</b> values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>dwVarId Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  <p>IF_TABLE</p>
+  </td>
+  <td>
+  <p>Information about interface table.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000008</p>
+  <p>IP_FORWARDROW</p>
+  </td>
+  <td>
+  <p>Information about an IPv6 network route.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>If <i>dwPid</i> is PID_IP and if <i>dwRoutingPid</i>
+is not IPRTRMGR_PID (0x00002710), then <i>dwRoutingPid</i> MUST be one of the
+entries in the <b>Value</b> column and <i>pMibInEntry</i> MUST be the
+corresponding entry in the <b>Structure to be pointed to by pMibInEntry</b>
+column in the following table. The routing protocols specified in the following
+table are valid only if the protocol is already initialized by <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_f2515a6c-776c-43b4-a671-0c0963f60d11" data-linktype="relative-path">RRAS</a> for IPv4. RRAS
+initializes a protocol when a RTR_TOC_ENTRY with the <b>InfoType</b>
+corresponding to the protocol is present in the global configuration. The <a href="071439e7-a9fd-40e4-91f7-ab756108e82f" data-linktype="relative-path"><b>RRouterInterfaceTransportSetGlobalInfo</b></a>
+method enables specifying the global configuration through the <b>pGlobalInfo</b>
+member of <b>pInfoStruct</b>.  </p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+   <th>
+   <p>Structure to be pointed to by pMibInEntry.</p>
+   </th>
+   <th>
+   <p>Remarks</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MS_IP_BOOTP</p>
+  <p>0x0000270F</p>
+  </td>
+  <td>
+  <p>An entry in IBOOTPMIB needs to be retrieved.</p>
+  </td>
+  <td>
+  <p><b>IPBOOTP_MIB_GET_INPUT_DATA</b></p>
+  </td>
+  <td>
+  <p>See section <a href="46db75a0-7e95-490e-aac5-c8c96df8c57c" data-linktype="relative-path">2.2.1.2.152</a> for details
+  on how to populate <b>IPBOOTP_MIB_GET_INPUT_DATA</b> to retrieve different
+  types of MIB entries. </p>
+  <p>When this method returns <b>pMibOutEntry</b>, <i>pInfoStruct</i>
+  MUST be cast to <b>IPBOOTP_MIB_GET_OUTPUT_DATA</b>. See section <a href="ce9b2f8e-aaa6-4d39-b935-28815acca0ff" data-linktype="relative-path">2.2.1.2.157</a> on how to
+  interpret the data returned.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MS_IP_NAT</p>
+  <p>0x81372715</p>
+  </td>
+  <td>
+  <p>An entry in the NAT MIB needs to be retrieved.</p>
+  </td>
+  <td>
+  <p><b>IP_NAT_MIB_QUERY</b></p>
+  </td>
+  <td>
+  <p>See <b>IP_NAT_MIB_QUERY</b> (section <a href="02a17b1a-22a6-4295-bc7d-f3b781c01332" data-linktype="relative-path">2.2.1.2.182)</a> for details
+  on how to populate this structure to retrieve the entries required. The
+  values are returned in <b>IP_NAT_MIB_QUERY</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MS_IP_DNS_PROXY</p>
+  <p>0x81372713</p>
+  </td>
+  <td>
+  <p>An entry in DNS Proxy MIB needs to be retrieved.</p>
+  </td>
+  <td>
+  <p><b>IP_DNS_PROXY_MIB_QUERY</b></p>
+  </td>
+  <td>
+  <p>See section <a href="c22770ac-2b26-4bdb-bb1c-2b742d4d4a9d" data-linktype="relative-path">2.2.1.2.186</a> for details
+  on how to populate <b>IP_DNS_PROXY_MIB_QUERY</b>. The values are returned in <b>IP_DNS_PROXY_MIB_QUERY</b>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MS_IP_DHCP_ALLOCATOR</p>
+  <p>0x81372714</p>
+  </td>
+  <td>
+  <p>An entry in auto DHCP MIB is retrieved.</p>
+  </td>
+  <td>
+  <p><b>IP_AUTO_DHCP_MIB_QUERY</b></p>
+  </td>
+  <td>
+  <p>See section <a href="a85fd7a5-b937-4daa-a703-a0c1fcb0069a" data-linktype="relative-path">2.2.1.2.188</a> for details
+  on how to populate <b>IP_AUTO_DHCP_MIB_QUERY</b>. The values are returned in
+  the same structure. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MS_IP_OSPF<a id="Appendix_A_Target_293"></a><a aria-label="Product behavior note 293" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_293" data-linktype="relative-path">&lt;293&gt;</a></p>
+  <p>0x0000000D</p>
+  </td>
+  <td>
+  <p>An entry in OSPF MIB needs to be retrieved.</p>
+  </td>
+  <td>
+  <p><b>MIB_DA_MSG</b></p>
+  <p><b>MIB_DA_MSG</b></p>
+  <p><b>OSPF_GLOBAL_PARAM</b></p>
+  <p><b>OSPF_ROUTE_FILTER_INFO</b></p>
+  <p><b>OSPF_PROTO_FILTER_INFO</b></p>
+  <p><b>OSPF_AREA_PARAM</b></p>
+  <p><b>OSPF_AREA_RANGE_PARAM</b></p>
+  <p><b>OSPF_VIRT_INTERFACE_PARAM</b></p>
+  <p><b>OSPF_NBMA_NEIGHBOR_PARAM</b></p>
+  </td>
+  <td>
+  <p> </p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>If <i>dwPid</i> is PID_IPV6 and if
+<i>dwRoutingPid</i> is not IPRTRMGR_PID (0x00002710), then dwRoutingPid MUST be
+one of the entries in the <b>Value</b> column and <b>pMibInEntry</b> MUST be
+the corresponding entry in the <b>Structure to be pointed to by pMibInEntry</b>
+in the following table. The routing protocols specified in the following table
+are valid only if the protocol is already initialized by RRAS for IPv6. RRAS
+initializes a protocol when a RTR_TOC_ENTRY with the <b>InfoType</b>
+corresponding to the protocol is present in the global configuration. The <b>RRouterInterfaceTransportSetGlobalInfo</b>
+method enables specifying the global configuration through the <b>pGlobalInfo</b>
+member of <b>pInfoStuct</b>.  </p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+   <th>
+   <p>Structure to be pointed to by pMibInEntry</p>
+   </th>
+   <th>
+   <p>Remarks</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MS_IPV6_DHCP</p>
+  <p>0x000003E7</p>
+  </td>
+  <td>
+  <p>An entry in DHCPv6 Relay agent MIB needs to be retrieved.</p>
+  </td>
+  <td>
+  <p>DHCPV6R_MIB_GET_INPUT_DATA</p>
+  </td>
+  <td>
+  <p>See section <a href="c16ecd43-fa27-4146-a55b-5721f6500f2f" data-linktype="relative-path">2.2.1.2.160</a> on how to
+  populate DHCPV6R_MIB_GET_INPUT_DATA. The values are retuned in
+  DHCPV6R_MIB_GET_OUTPUT_DATA.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pInfoStuct: </b>This MUST be a pointer to the
+structure <a href="4305d67f-9273-49fe-a067-909b6ae8a341" data-linktype="relative-path"><b>DIM_MIB_ENTRY_CONTAINER (section 2.2.1.2.19)</b></a>
+with valid <b>dwMibInEntrySize</b> and <b>pMibInEntry</b> fields. <b>dwMibInEntrySize</b>
+MUST be set to the size of data being passed in <b>pMibInEntry</b>. <b>dwMibOutEntrySize</b>
+and <b>pMibOutEntry</b> are populated by the server. The caller frees the
+memory pointed to by <i>pInfoStuct</i>.   </p><dl>
+<dd>
+<p>If <i>dwPid</i> is PID_IPX, <i>dwRoutingPid</i>
+MUST be one of the entries in the Value column and <i>pMibInEntry</i> MUST be
+the corresponding entry in the Structure to be pointed to by <i>pMibInEntry</i>
+in the return values table. </p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+   <th>
+   <p>Structure to be pointed to by pMibInEntry.</p>
+   </th>
+   <th>
+   <p>Remarks</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPX_PROTOCOL_BASE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>IPX related information. The call was successful.</p>
+  </td>
+  <td>
+  <p>IPX_MIB_GET_INPUT_DATA </p>
+  </td>
+  <td>
+  <p>See section <a href="25b333ba-d914-4569-9abe-c2be448d09a0" data-linktype="relative-path">2.2.1.2.105</a> for details
+  on how to populate IPX_MIB_GET_INPUT_DATA to retrieve different types of MIB
+  entries and how to interpret the data returned.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>A 32-bit, unsigned integer
+value that indicates return status. A return value of ERROR_SUCCESS
+(0x00000000) indicates that the operation was completed successfully;
+otherwise, it contains an error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+or in section <a href="5c0c991a-0d3d-4fe5-9503-5128d0d49fe1" data-linktype="relative-path">2.2.4</a>.
+All values that are not in the table that follows MUST be treated the same by
+the RRASM client. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_SUCCESS</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The calling application does not have sufficient
+  privileges, as specified in section <a href="9373431f-ed29-4639-9f8b-743267c9f9b6" data-linktype="relative-path">2.1.1.1</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 29.</p><p>When processing this call, the RRASM server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate, as specified in section 2.1.1.1, whether this method
+was called by a client that has access to the method. If the client does not have
+access, then return error ERROR_ACCESS_DENIED (0x00000005).</p>
+</li><li><p><span><span> 
+</span></span>If <i>pInfoStuct</i> is NULL, return an error other than those in
+the preceding table.</p>
+</li><li><p><span><span> 
+</span></span>If <i>dwPid</i> is not specified in the <b>SupportedTransportsList</b>,
+return an error other than those specified in the preceding table.</p>
+</li><li><p><span><span> 
+</span></span>Call the abstract interface <b>Invoke DIMSVC</b> method
+specifying the operation and the parameters to enable RRAS server to perform
+the required management task.</p>
+</li><li><p><span><span> 
+</span></span>Return any error status returned by the RRAS server while
+processing the request. Otherwise, fill the MIB information returned by the
+RRAS server in the pInfoStruct and return ERROR_SUCCESS (0x00000000).</p>
+</li></ul><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

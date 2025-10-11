@@ -1,1 +1,85 @@
-<div class="content"></div>
+<div class="content"><p>The NTMS_PARTITIONINFORMATIONW structure describes the
+properties of a media <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_55db62c5-a84f-43b7-a037-b44ecd8fb92f" data-linktype="relative-path">side</a>
+object, as a sequence of Unicode characters. Unicode encoding is specified in <a href="https://go.microsoft.com/fwlink/?LinkId=90550" data-linktype="external">[UNICODE]</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_PARTITIONINFORMATIONW {
+   NTMS_GUID PhysicalMedia;
+   NTMS_GUID LogicalMedia;
+   DWORD State;
+   unsigned short Side;
+   DWORD dwOmidLabelIdLength;
+   byte OmidLabelId[255];
+   [string] wchar_t szOmidLabelType[64];
+   [string] wchar_t szOmidLabelInfo[256];
+   DWORD dwMountCount;
+   DWORD dwAllocateCount;
+   LARGE_INTEGER Capacity;
+ } NTMS_PARTITIONINFORMATIONW;
+</pre></div>
+</dd></dl><p><b>PhysicalMedia:</b>  The identifier of
+the medium that contains the side.</p><p><b>LogicalMedia:</b>  The identifier of the
+piece of <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_05349689-4cd0-4643-a13e-9f552ecf3346" data-linktype="relative-path">logical media</a>
+that contains the side. This MUST be set to GUID_NULL if the side is not <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_0e546e86-71c4-45cc-9ef1-4a78f6cb425a" data-linktype="relative-path">allocated</a>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>&#34;GUID_NULL&#34;</p>
+  </td>
+  <td>
+  <p>The side is not allocated.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>State:</b>  A value from the <a href="bdf99d44-7849-4a94-93ec-270a3e8c4eb3" data-linktype="relative-path">NtmsPartitionState (section 2.2.4.7)</a>
+enumeration describing the state of the side.</p><p><b>Side:</b>  A zero-relative value that
+indicates which side of a multisided media this is. For single-sided media,
+this value MUST be 0. For dual-sided media, one NTMS_PARTITIONINFORMATIONW
+record MUST have its member set to 0, and a second NTMS_PARTITIONINFORMATIONW
+record MUST have its member set to 1.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Media\Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>The only side of single-sided media or the first side
+  of dual-sided media.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>The second side of dual-sided media.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwOmidLabelIdLength:</b>  The length of
+the label identification string of the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_e88a9ca7-9b8d-4dca-9338-59c98e1a5f13" data-linktype="relative-path">on-media identifier</a>.</p><p><b>OmidLabelId:</b>   The label identifier
+of the on-media identifier.</p><p><b>szOmidLabelType:</b>   A null-terminated
+sequence of Unicode UTF-16 characters specifying the label type of the on-media
+identifier. </p><p><b>szOmidLabelInfo:</b>   A null-terminated
+sequence of Unicode characters specifying the label information of the on-media
+identifier. </p><p><b>dwMountCount:</b>  The number of times
+the medium has been <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b" data-linktype="relative-path">mounted</a>
+into a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a>. This
+member is initialized to 0 when the object is created in the server information
+database.</p><p><b>dwAllocateCount:</b>  The number of
+times the medium has been allocated.</p><p><b>Capacity:</b>  The number of bytes available
+on this side.</p></div>

@@ -1,1 +1,15 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPRIP_GLOBAL_STATS</b> structure contains global
+statistics for the IP RIP. There is only one instance, so this entry has no
+index. This structure is read-only. This structure is used in <a href="45250002-d774-4bc2-ab2e-6992341b5f45" data-linktype="relative-path"><b>IPRIP_MIB_GET_INPUT_DATA (section 2.2.1.2.161)</b></a>
+and <a href="4fc16996-6de7-4f99-8cea-40e1f42931e1" data-linktype="relative-path"><b>IPRIP_MIB_GET_OUTPUT_DATA (section 2.2.1.2.162)</b></a>
+structures.  </p><dl>
+<dd>
+<div><pre> typedef struct _IPRIP_GLOBAL_STATS {
+   DWORD GS_SystemRouteChanges;
+   DWORD GS_TotalResponsesSent;
+ } IPRIP_GLOBAL_STATS,
+  *PIPRIP_GLOBAL_STATS;
+</pre></div>
+</dd></dl><p><b>GS_SystemRouteChanges: </b>The number of global
+route changes due to the IPRIP.</p><p><b>GS_TotalResponsesSent: </b>The count of global RIP
+responses sent.</p></div>

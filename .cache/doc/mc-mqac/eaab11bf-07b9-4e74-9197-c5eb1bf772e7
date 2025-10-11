@@ -1,0 +1,295 @@
+<div class="content"><p>The MQMSGCLASS enumeration defines values that indicate the
+classification of a <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>.
+A Message can originate from a client of this protocol, or it can be generated
+by the operations that pertain to the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a> transfer process.
+The values defined for this enumeration indicate the reason that the Message
+was generated.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MQMSG_CLASS_NORMAL = 0x0,
+   MQMSG_CLASS_REPORT = 0x1,
+   MQMSG_CLASS_ACK_REACH_QUEUE = 0x2,
+   MQMSG_CLASS_ACK_RECEIVE = 0x4000,
+   MQMSG_CLASS_NACK_BAD_DST_Q = 0x8000,
+   MQMSG_CLASS_NACK_PURGED = 0x8001,
+   MQMSG_CLASS_NACK_REACH_QUEUE_TIMEOUT = 0x8002,
+   MQMSG_CLASS_NACK_Q_EXCEED_QUOTA = 0x8003,
+   MQMSG_CLASS_NACK_ACCESS_DENIED = 0x8004,
+   MQMSG_CLASS_NACK_HOP_COUNT_EXCEEDED = 0x8005,
+   MQMSG_CLASS_NACK_BAD_SIGNATURE = 0x8006,
+   MQMSG_CLASS_NACK_BAD_ENCRYPTION = 0x8007,
+   MQMSG_CLASS_NACK_COULD_NOT_ENCRYPT = 0x8008,
+   MQMSG_CLASS_NACK_NOT_TRANSACTIONAL_Q = 0x8009,
+   MQMSG_CLASS_NACK_NOT_TRANSACTIONAL_MSG = 0x800a,
+   MQMSG_CLASS_NACK_UNSUPPORTED_CRYPTO_PROVIDER = 0x800b,
+   MQMSG_CLASS_NACK_SOURCE_COMPUTER_GUID_CHANGED = 0x800c,
+   MQMSG_CLASS_NACK_Q_DELETED = 0xc000,
+   MQMSG_CLASS_NACK_Q_PURGED = 0xc001,
+   MQMSG_CLASS_NACK_RECEIVE_TIMEOUT = 0xc002,
+   MQMSG_CLASS_NACK_RECEIVE_TIMEOUT_AT_SENDER = 0xc003
+ } MQMSGCLASS;
+</pre></div>
+</dd></dl><p><b>MQMSG_CLASS_NORMAL:  </b>The message originated
+from a client of this protocol via a call to <a href="fd62e459-7b6a-41d7-ba4c-741e0f49cec7" data-linktype="relative-path">MSMQMessage4::Send</a>.</p><p><b>MQMSG_CLASS_REPORT:  </b>The message was generated
+by the route tracing feature of the message transfer process. Messages of type
+MQMSG_CLASS_REPORT are generated while Messages for which <b>TracingRequested</b>
+is True arrive at <a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">Queue</a>s
+along the route to the final destination.</p><p><b>MQMSG_CLASS_ACK_REACH_QUEUE:  </b>The message was
+generated as a result of a Message successfully arriving at its destination <a href="7d8d0dab-699c-4121-9ee4-226a2dbced2e" data-linktype="relative-path">ApplicationQueue</a>.</p><p><b>MQMSG_CLASS_ACK_RECEIVE:  </b>The message was
+generated when a Message was successfully retrieved by a client of this
+protocol.</p><p><b>MQMSG_CLASS_NACK_BAD_DST_Q:  </b>The message was
+generated to indicate that delivery of the Message was canceled because the
+destination ApplicationQueue was unreachable.</p><p><b>MQMSG_CLASS_NACK_PURGED:  </b>The message was
+generated to indicate that the Message was deleted prior to arriving at the
+destination ApplicationQueue.</p><p><b>MQMSG_CLASS_NACK_REACH_QUEUE_TIMEOUT:  </b>The
+message was generated to indicate that the Message.<b>TimeToReachQueue</b>
+timer expired before the Message arrived at the destination ApplicationQueue.</p><p><b>MQMSG_CLASS_NACK_Q_EXCEED_QUOTA:  </b>The message
+was generated to indicate that the Message was not inserted into the
+destination ApplicationQueue because doing so would exceed the <b>Quota</b>.</p><p><b>MQMSG_CLASS_NACK_ACCESS_DENIED:  </b>The message
+was generated to indicate that the Message was not inserted into the
+destination ApplicationQueue because the user identified by Message.<b>SenderIdentifier</b>
+did not have sufficient rights to insert the Message.</p><p><b>MQMSG_CLASS_NACK_HOP_COUNT_EXCEEDED:  </b>The
+message was generated to indicate that delivery of the Message was canceled
+because it exceeded the maximum number of allowed routing hops.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a></p><p><b>MQMSG_CLASS_NACK_BAD_SIGNATURE:  </b>The message
+was generated to indicate that the Message was not inserted into the
+destination ApplicationQueue because the digital signature accompanying the
+Message was not successfully validated.</p><p><b>MQMSG_CLASS_NACK_BAD_ENCRYPTION:  </b>The message
+was generated to indicate that the Message was not inserted into the
+destination ApplicationQueue because the Message could not be decrypted
+successfully.</p><p><b>MQMSG_CLASS_NACK_COULD_NOT_ENCRYPT:  </b>The
+message was generated to indicate that the Message was canceled prior to
+delivery because the Message could not be successfully encrypted.</p><p><b>MQMSG_CLASS_NACK_NOT_TRANSACTIONAL_Q:  </b>The
+message was generated to indicate that the Message was not inserted into the
+destination ApplicationQueue because the Message was sent as part of a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a> but the
+destination ApplicationQueue.<b>Transactional</b> property equals False.</p><p><b>MQMSG_CLASS_NACK_NOT_TRANSACTIONAL_MSG:  </b>The
+message was generated to indicate that the Message was not inserted into the
+destination ApplicationQueue because the Message was not sent as part of a
+transaction but the destination ApplicationQueue.<b>Transactional</b> property
+equals True.</p><p><b>MQMSG_CLASS_NACK_UNSUPPORTED_CRYPTO_PROVIDER:  </b>The
+message was generated to indicate that the Message was not inserted into the
+destination ApplicationQueue because the destination <a href="../ms-mqdmpr/9adb2d90-c63b-43c7-9b9c-804ab96a57d5" data-linktype="relative-path">QueueManager</a>
+does not support a cryptography library sufficient to decrypt the Message or
+validate its signature.</p><p><b>MQMSG_CLASS_NACK_SOURCE_COMPUTER_GUID_CHANGED:  </b>The
+message was generated to indicate that delivery of the Message was canceled
+because the <b>Identifier</b> property of the QueueManager that originated the
+Message changed.<a id="Appendix_A_Target_2"></a><a aria-label="Product behavior note 2" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_2" data-linktype="relative-path">&lt;2&gt;</a></p><p><b>MQMSG_CLASS_NACK_Q_DELETED:  </b>The message was
+generated to indicate that the destination ApplicationQueue was deleted before
+the Message was received by a client of this protocol.</p><p><b>MQMSG_CLASS_NACK_Q_PURGED:  </b>The message was
+generated to indicate that the destination ApplicationQueue was purged before
+the Message was received by a client of this protocol.</p><p><b>MQMSG_CLASS_NACK_RECEIVE_TIMEOUT:  </b>The message
+was generated to indicate that the Message.<b>TimeToBeReceived</b> timer
+expired before the Message was received from the destination ApplicationQueue
+by a client of this protocol.</p><p><b>MQMSG_CLASS_NACK_RECEIVE_TIMEOUT_AT_SENDER:  </b>The
+message was generated to indicate that the Message.<b>TimeToBeReceived</b>
+timer expired before the Message was inserted into the destination
+ApplicationQueue.</p><p>Used by:</p><ul><li><p><span><span> 
+</span></span>get <a href="09c668a9-2331-4f21-80db-92a1dd9cbfb2" data-linktype="relative-path">IMSMQMessage::Class</a></p>
+</li><li><p><span><span> 
+</span></span>get <a href="d64b4b6e-96b2-4268-808d-d0f4b8de18e4" data-linktype="relative-path">IMSMQMessage::MsgClass</a></p>
+</li><li><p><span><span> 
+</span></span>put <a href="831c2d42-43b6-446c-abf2-4b034c1e6b51" data-linktype="relative-path">IMSMQMessage::MsgClass</a></p>
+</li></ul><p>The MQMSGCLASS enumeration values map to the enumeration
+values for Message.<b>Class</b> as shown in the following table:</p><table><thead>
+  <tr>
+   <th>
+   <p>MQMSGCLASS enumeration constants</p>
+   </th>
+   <th>
+   <p>Message.Class</p>
+   </th>
+   <th>
+   <p>Constant Values</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQMSG_CLASS_NORMAL</p>
+  </td>
+  <td>
+  <p>Normal</p>
+  </td>
+  <td>
+  <p>0x0000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_REPORT</p>
+  </td>
+  <td>
+  <p>Report</p>
+  </td>
+  <td>
+  <p>0x0001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_ACK_REACH_QUEUE</p>
+  </td>
+  <td>
+  <p>AckReachQueue</p>
+  </td>
+  <td>
+  <p>0x0002</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_ACK_RECEIVE</p>
+  </td>
+  <td>
+  <p>AckReceive </p>
+  </td>
+  <td>
+  <p>0x4000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_BAD_DST_Q</p>
+  </td>
+  <td>
+  <p>NackBadDestQueue</p>
+  </td>
+  <td>
+  <p>0x8000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_DELETED</p>
+  </td>
+  <td>
+  <p>NackPurged </p>
+  </td>
+  <td>
+  <p>0x8001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_REACH_QUEUE_TIMEOUT</p>
+  </td>
+  <td>
+  <p>NackReachQueueTimeout </p>
+  </td>
+  <td>
+  <p>0x8002</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_Q_EXCEED_QUOTA</p>
+  </td>
+  <td>
+  <p>NackQueueExceedQuota </p>
+  </td>
+  <td>
+  <p>0x8003</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>NackAccessDenied </p>
+  </td>
+  <td>
+  <p>0x8004</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_HOP_COUNT_EXCEEDED</p>
+  </td>
+  <td>
+  <p>NackHopCountExceeded </p>
+  </td>
+  <td>
+  <p>0x8005</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_BAD_SIGNATURE</p>
+  </td>
+  <td>
+  <p>NackBadSignature </p>
+  </td>
+  <td>
+  <p>0x8006</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_BAD_ENCRYPTION</p>
+  </td>
+  <td>
+  <p>NackBadEncryption </p>
+  </td>
+  <td>
+  <p>0x8007</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_NOT_TRANSACTIONAL_Q</p>
+  </td>
+  <td>
+  <p>NackNotTransactionalQueue</p>
+  </td>
+  <td>
+  <p>0x8009</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_NOT_TRANSACTIONAL_MSG</p>
+  </td>
+  <td>
+  <p>NackNotTransactionalMessage</p>
+  </td>
+  <td>
+  <p>0x800A</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_UNSUPPORTED_CRYPTO_PROVIDER</p>
+  </td>
+  <td>
+  <p>NackUnsupportedCryptoProvider </p>
+  </td>
+  <td>
+  <p>0x800B</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_SOURCE_COMPUTER_GUID_CHANGED</p>
+  </td>
+  <td>
+  <p>NackSourceComputerGuidChanged</p>
+  </td>
+  <td>
+  <p>0x800C</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_Q_DELETED</p>
+  </td>
+  <td>
+  <p>NackQueueDeleted </p>
+  </td>
+  <td>
+  <p>0xC000</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_Q_PURGED</p>
+  </td>
+  <td>
+  <p>NackQueuePurged </p>
+  </td>
+  <td>
+  <p>0xC001</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CLASS_NACK_RECEIVE_TIMEOUT</p>
+  </td>
+  <td>
+  <p>NackReceiveTimeout</p>
+  </td>
+  <td>
+  <p>0xC002</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

@@ -1,1 +1,12 @@
-<div class="content"></div>
+<div class="content"><p>The UpdateOperation enumeration defines values that describe
+the type of an update operation.</p><dl>
+<dd>
+<div><pre> typedef  enum tagUpdateOperation
+ {
+   uoInstallation = 1,
+   uoUninstallation = 2,
+ } UpdateOperation;
+</pre></div>
+</dd></dl><p><b>uoInstallation:  </b>Install the update on the
+target computer.</p><p><b>uoUninstallation:  </b>Uninstall the update from
+the target computer.</p></div>

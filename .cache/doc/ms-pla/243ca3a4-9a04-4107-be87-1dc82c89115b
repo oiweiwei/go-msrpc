@@ -3,9 +3,9 @@ or a collection of event trace data providers, updates the properties of the
 original provider with information from one of the passed-in provider(s). If
 only one provider is passed-in, information from that provider is used. If
 multiple providers are passed-in, information is used from the first provider
-in the collection that has the same value for the ITraceDataProvider::Guid
-property as the original ITraceDataProvider. The Guid in this context refers to
-the COM interface property which is used as a <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_1a61d947-4d31-4365-b2b4-5249de682b56" data-linktype="relative-path">PLA-UID</a> and does not comply
+in the collection that has the same value for the ITraceDataProvider::Guid property
+as the original ITraceDataProvider. The Guid in this context refers to the COM
+interface property which is used as a <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_1a61d947-4d31-4365-b2b4-5249de682b56" data-linktype="relative-path">PLA-UID</a> and does not comply
 with the semantics of <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>
 specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.
 </p><p>If no provider from the passed-in collection has the same

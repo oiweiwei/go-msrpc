@@ -1,1 +1,76 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IFSTATUS</b> structure stores status information
+for a specific interface.</p><dl>
+<dd>
+<div><pre> typedef struct _MIB_IFSTATUS {
+   DWORD dwIfIndex;
+   DWORD dwAdminStatus;
+   DWORD dwOperationalStatus;
+   BOOL bMHbeatActive;
+   BOOL bMHbeatAlive;
+ } MIB_IFSTATUS,
+  *PMIB_IFSTATUS;
+</pre></div>
+</dd></dl><p><b>dwIfIndex: </b>The index that identifies the
+interface.</p><p><b>dwAdminStatus: </b>The administrative status of
+the interface, that is, whether the interface is administratively enabled or
+disabled.</p><p><b>dwOperationalStatus: </b>The operational status of
+the interface. This member can be one of the values defined in <a href="3286822c-7051-40a9-b448-8f5cc5236b97" data-linktype="relative-path"><b>ROUTER_CONNECTION_STATE (section 2.2.1.1.2)</b></a>.
+</p><p><b>bMHbeatActive: </b>Specifies whether multicast
+heartbeat detection is enabled. A value of TRUE indicates that heartbeat
+detection is enabled. A value of FALSE indicates that heartbeat detection is
+disabled.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRUE</p>
+  </td>
+  <td>
+  <p>Heartbeat detection is enabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FALSE</p>
+  </td>
+  <td>
+  <p>Heartbeat detection is disabled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>bMHbeatAlive: </b>Specifies whether the multicast
+heartbeat dead interval has been exceeded. A value of FALSE indicates that the
+interval has been exceeded. A value of TRUE indicates that the interval has not
+been exceeded.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRUE</p>
+  </td>
+  <td>
+  <p>Heartbeat dead interval has not been exceeded.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FALSE</p>
+  </td>
+  <td>
+  <p>Heartbeat dead interval has been exceeded.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

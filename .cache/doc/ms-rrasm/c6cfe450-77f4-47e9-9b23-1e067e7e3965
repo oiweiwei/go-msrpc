@@ -1,1 +1,15 @@
-<div class="content"></div>
+<div class="content"><p>The <b>PPP_NBFCP_INFO</b> structure MAY<a id="Appendix_A_Target_46"></a><a aria-label="Product behavior note 46" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_46" data-linktype="relative-path">&lt;46&gt;</a> be used to contain the result
+of a PPP <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_7041f7ad-71a9-4e5c-8256-1b86a1731dcf" data-linktype="relative-path">NetBEUI</a> Framer
+(NBF) projection operation.</p><dl>
+<dd>
+<div><pre> typedef struct _PPP_NBFCP_INFO {
+   DWORD dwError;
+   WCHAR wszWksta[17];
+ } PPP_NBFCP_INFO;
+</pre></div>
+</dd></dl><p><b>dwError: </b>Specifies the result of the PPP
+control protocol negotiation. A value of zero (0) indicates success. A nonzero
+value indicates failure and is the actual fatal error that occurred during the
+control protocol negotiation.</p><p><b>wszWksta: </b>Specifies a null-terminated <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string that is the
+local workstation&#39;s computer name. This unique computer name is the closest <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_b86c44e6-57df-4c48-8163-5e3fa7bdcff4" data-linktype="relative-path">NetBIOS</a> equivalent to a
+client&#39;s NetBEUI address on a remote access connection.</p></div>

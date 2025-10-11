@@ -1,1 +1,59 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPBOOTP_MIB_GET_INPUT_DATA</b> structure is passed as
+input data for the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="9102e585-2f62-4408-bfb6-02a6460cc883" data-linktype="relative-path"><b>RMIBEntryGetFirst (section 3.1.4.31)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="50f78033-d248-4272-b4b9-a2519a0f304d" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.1.4.32)</b></a><span>  </span></p>
+<div><pre> typedef struct _IPBOOTP_MIB_GET_INPUT_DATA {
+   DWORD IMGID_TypeID;
+   DWORD IMGID_IfIndex;
+ } IPBOOTP_MIB_GET_INPUT_DATA,
+  *PIPBOOTP_MIB_GET_INPUT_DATA;
+</pre></div>
+</li></ul><p><b>IMGID_TypeID: </b>This MUST be one of the
+following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPBOOTP_GLOBAL_CONFIG_ID</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The global configuration for the IPBOOTP.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPBOOTP_IF_STATS_ID</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The per-interface statistics.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPBOOTP_IF_CONFIG_ID</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The per-interface configuration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPBOOTP_IF_BINDING_ID</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The IP addresses to which each interface is bound.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IMGID_IfIndex: </b>The index of the interface.</p></div>

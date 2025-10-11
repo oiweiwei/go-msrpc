@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsAccessMask enumeration defines generic access
+levels.</p><dl>
+<dd>
+<div><pre> enum NtmsAccessMask
+ {
+   NTMS_USE_ACCESS = 1,
+   NTMS_MODIFY_ACCESS = 2,
+   NTMS_CONTROL_ACCESS = 3
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_USE_ACCESS:  </b>Indicates use access to an
+object.</p><p><b>NTMS_MODIFY_ACCESS:  </b>Indicates modify access
+to an object.</p><p><b>NTMS_CONTROL_ACCESS:  </b>Indicates control access
+to an object.</p></div>

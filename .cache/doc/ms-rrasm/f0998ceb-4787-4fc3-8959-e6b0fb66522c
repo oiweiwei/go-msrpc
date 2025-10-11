@@ -1,1 +1,88 @@
-<div class="content"></div>
+<div class="content"><p>The <b>GetDevConfigStruct</b> structure contains information
+specific to the REQTYPE_GETDEVCONFIG in the <a href="fcb89c61-ced3-43ba-a2ef-4c6f4a2d40a6" data-linktype="relative-path"><b>ReqTypes (section 2.2.1.1.18)</b></a>
+enumeration.  </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>retcode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>devicetype
+  (17 bytes)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>...</p>
+  </td>
+  <td colspan="24">
+  <p>size</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>...</p>
+  </td>
+  <td colspan="24">
+  <p>config
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>retcode (4 bytes): </b>Specifies the return status
+as explained in section <a href="c39d153e-2f97-4e11-8aff-bcf983869dc9" data-linktype="relative-path">2.2.1.2.218</a>
+for <b>retcode</b> field.</p><p><b>devicetype (17 bytes): </b>Specifies a
+null-terminated ASCII string that indicates the RRAS server device type as
+specified for the <b>wszDeviceType</b> field in the <a href="ed4beef4-11ba-413f-abf4-2659412169e8" data-linktype="relative-path"><b>RASI_PORT_0 (section</b></a><span><b> </b></span>2.2.1.2.75) structure.  </p><p><b>size (4 bytes): </b>Specifies the size in bytes of
+the configuration data as specified by <b>config</b>.</p><p><b>config (variable): Tapi</b> device configuration
+blob as specified by <b>GetDevConfig.lpDeviceConfig</b> in section 2.2.4.1.3.33
+of <a href="../ms-trp/b42a983f-601c-4afc-b4a7-a08c3f79cbc7" data-linktype="relative-path">[MS-TRP]</a>.</p></div>

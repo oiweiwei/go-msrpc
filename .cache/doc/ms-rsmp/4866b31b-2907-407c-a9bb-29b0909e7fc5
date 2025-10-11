@@ -1,1 +1,21 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsMountOptions enumeration defines options for <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b" data-linktype="relative-path">mount</a> operations.</p><dl>
+<dd>
+<div><pre> enum NtmsMountOptions
+ {
+   NTMS_MOUNT_READ = 0x0001,
+   NTMS_MOUNT_WRITE = 0x0002,
+   NTMS_MOUNT_ERROR_NOT_AVAILABLE = 0x0004,
+   NTMS_MOUNT_ERROR_OFFLINE = 0x0008,
+   NTMS_MOUNT_SPECIFIC_DRIVE = 0x0010,
+   NTMS_MOUNT_NOWAIT = 0x0020
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_MOUNT_READ:  </b>Mount the media with read
+access enabled.</p><p><b>NTMS_MOUNT_WRITE:  </b>Mount the media with write
+access enabled. Media that are marked as completed MUST NOT be mounted with
+write access enabled.</p><p><b>NTMS_MOUNT_ERROR_NOT_AVAILABLE:  </b>Return an
+error if the media or a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a>
+is not available.</p><p><b>NTMS_MOUNT_ERROR_OFFLINE:  </b>Return an error if
+the media specified is not currently in an online library.</p><p><b>NTMS_MOUNT_SPECIFIC_DRIVE:  </b>Mount the media
+into the drives.</p><p><b>NTMS_MOUNT_NOWAIT:  </b>Specify that the server
+MUST NOT wait for the mount request to complete.</p></div>

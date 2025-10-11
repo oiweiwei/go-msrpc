@@ -2,7 +2,30 @@
 //
 // # Introduction
 //
+// This document specifies the Telnet Server Remote Administration Protocol. Telnet
+// Server Remote Administration Protocol provides a [MS-DCOM] interface used for performing
+// management tasks on telnet server. Telnet Server Remote Administration Protocol specifies
+// an interface that:
+//
+// * Get information regarding all the telnet sessions handled by telnet server at any
+// given instance.
+//
+// * Send message to a session.
+//
+// * Terminate a session.
+//
 // # Overview
+//
+// The Telnet Server Remote Administration Protocol is a Distributed Component Object
+// Model (DCOM) Protocol [MS-DCOM] interface that is exposed by a DCOM server and consumed
+// by a DCOM client. A client uses the Telnet Server Remote Administration Protocol
+// by invoking DCOM method calls on the interface exposed by the DCOM server that implements
+// the protocol.
+//
+// Telnet Server Remote Administration Protocol is a stateless protocol. An implementation
+// can call any of the methods any number of times and in any order. Each call to a
+// method in the DCOM/COM interface is independent of any other call to the same or
+// different method.
 package tsrap
 
 import (

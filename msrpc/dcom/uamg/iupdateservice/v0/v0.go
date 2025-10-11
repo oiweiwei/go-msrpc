@@ -51,30 +51,225 @@ type UpdateServiceClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The ICategory::Name (opnum 8) method retrieves the name of the update category.
+	//
+	// The IUpdateService::Name (opnum 8) method retrieves the name of the update service.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Name ADM element.
 	GetName(context.Context, *GetNameRequest, ...dcerpc.CallOption) (*GetNameResponse, error)
 
+	// The IUpdateService::ContentValidationCert (opnum 9) method retrieves a cryptographic
+	// hash of the certificate used to sign content delivered by this update service.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ContentValidationCert ADM element.
 	GetContentValidationCert(context.Context, *GetContentValidationCertRequest, ...dcerpc.CallOption) (*GetContentValidationCertResponse, error)
 
+	// The IUpdateService::ExpirationDate (opnum 10) method retrieves the date on which
+	// the authorization cabinet file for the update service expires.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ExpirationDate ADM element.
 	GetExpirationDate(context.Context, *GetExpirationDateRequest, ...dcerpc.CallOption) (*GetExpirationDateResponse, error)
 
+	// The IUpdateService::IsManaged (opnum 11) method retrieves whether the update service
+	// is managed by an administrator.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the IsManaged ADM element.
 	GetIsManaged(context.Context, *GetIsManagedRequest, ...dcerpc.CallOption) (*GetIsManagedResponse, error)
 
+	// The IUpdateService::IsRegisteredWithAU (opnum 12) method retrieves whether the update
+	// service is registered with the automatic update agent.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the IsRegisteredWithAU ADM element.
 	GetIsRegisteredWithAU(context.Context, *GetIsRegisteredWithAURequest, ...dcerpc.CallOption) (*GetIsRegisteredWithAUResponse, error)
 
+	// The IUpdateService::IssueDate (opnum 13) method retrieves the date on which the authorization
+	// cabinet file for the update service was issued.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the IssueDate ADM element.
 	GetIssueDate(context.Context, *GetIssueDateRequest, ...dcerpc.CallOption) (*GetIssueDateResponse, error)
 
+	// The IUpdateService::OffersWindowsUpdates (opnum 14) method retrieves whether the
+	// update service offers updates for Windows.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the OffersWindowsUpdates ADM element.
 	GetOffersWindowsUpdates(context.Context, *GetOffersWindowsUpdatesRequest, ...dcerpc.CallOption) (*GetOffersWindowsUpdatesResponse, error)
 
+	// The IUpdateService::RedirectUrls (opnum 15) method retrieves a collection of URLs
+	// that provide the locations of the redirector cabinet files for the update service.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the RedirectUrls ADM element.
 	GetRedirectUrls(context.Context, *GetRedirectUrlsRequest, ...dcerpc.CallOption) (*GetRedirectUrlsResponse, error)
 
+	// The IUpdateService::ServiceID (opnum 16) method retrieves the unique identifier for
+	// the update service.
+	//
+	// The IUpdateHistoryEntry::ServiceID (opnum 18) method retrieves the unique identifier
+	// of the update service that provided the update for which the operation was performed.
+	//
+	// The IUpdateSearcher::ServiceID (opnum 24) method retrieves the unique identifier
+	// of the update server used to search against.
+	//
+	// The IUpdateSearcher::ServiceID (opnum 25) method sets the unique identifier of the
+	// update server used to search against.
+	//
+	// The IUpdateServiceRegistration::ServiceID (opnum 9) method retrieves the service
+	// identifier.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ServiceID ADM element.
 	GetServiceID(context.Context, *GetServiceIDRequest, ...dcerpc.CallOption) (*GetServiceIDResponse, error)
 
+	// The IUpdateService::IsScanPackageService (opnum 17) method retrieves whether the
+	// update service is based on a scan package.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the IsScanPackageService ADM element.
 	GetIsScanPackageService(context.Context, *GetIsScanPackageServiceRequest, ...dcerpc.CallOption) (*GetIsScanPackageServiceResponse, error)
 
+	// The IUpdateService::CanRegisterWithAU (opnum 18) method retrieves whether the update
+	// service can be registered with the automatic update agent.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the CanRegisterWithAU ADM element.
 	GetCanRegisterWithAU(context.Context, *GetCanRegisterWithAURequest, ...dcerpc.CallOption) (*GetCanRegisterWithAUResponse, error)
 
+	// The IUpdateService::ServiceUrl (opnum 19) method retrieves the URL for the update
+	// service.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ServiceUrl ADM element.
 	GetServiceURL(context.Context, *GetServiceURLRequest, ...dcerpc.CallOption) (*GetServiceURLResponse, error)
 
+	// The IUpdateService::SetupPrefix (opnum 20) method retrieves the prefix for the setup
+	// files for this update service.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the SetupPrefix ADM element.
 	GetSetupPrefix(context.Context, *GetSetupPrefixRequest, ...dcerpc.CallOption) (*GetSetupPrefixResponse, error)
 
 	// AlterContext alters the client context.
@@ -601,8 +796,11 @@ func (o *GetNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // GetNameResponse structure represents the Name operation response
 type GetNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The localized name of the category.
+	//
+	// retval: The name of the service.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The Name return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -844,8 +1042,9 @@ func (o *GetContentValidationCertRequest) UnmarshalNDR(ctx context.Context, r nd
 // GetContentValidationCertResponse structure represents the ContentValidationCert operation response
 type GetContentValidationCertResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.Variant  `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An array of bytes containing the hash. The vt member MUST be set to VT_ARRAY | VT_UI1, as specified in [MS-OAUT] section 2.2.7, and the parray member MUST contain a pointer to the array.
+	ReturnValue *oaut.Variant `idl:"name:retval" json:"return_value"`
 	// Return: The ContentValidationCert return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1051,8 +1250,9 @@ func (o *GetExpirationDateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // GetExpirationDateResponse structure represents the ExpirationDate operation response
 type GetExpirationDateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue float64        `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The expiration date, in UTC.
+	ReturnValue float64 `idl:"name:retval" json:"return_value"`
 	// Return: The ExpirationDate return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1258,8 +1458,10 @@ func (o *GetIsManagedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 // GetIsManagedResponse structure represents the IsManaged operation response
 type GetIsManagedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if the service is a managed service or
+	// to VARIANT_FALSE if not.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The IsManaged return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1467,8 +1669,10 @@ func (o *GetIsRegisteredWithAURequest) UnmarshalNDR(ctx context.Context, r ndr.R
 // GetIsRegisteredWithAUResponse structure represents the IsRegisteredWithAU operation response
 type GetIsRegisteredWithAUResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if the service is registered with the
+	// automatic update agent or to VARIANT_FALSE if not.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The IsRegisteredWithAU return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1674,8 +1878,10 @@ func (o *GetIssueDateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 // GetIssueDateResponse structure represents the IssueDate operation response
 type GetIssueDateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue float64        `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The issue date in UTC (Coordinated Universal Time), stored as a DATE, as
+	// specified in [MS-OAUT] section 2.2.25.
+	ReturnValue float64 `idl:"name:retval" json:"return_value"`
 	// Return: The IssueDate return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1883,8 +2089,10 @@ func (o *GetOffersWindowsUpdatesRequest) UnmarshalNDR(ctx context.Context, r ndr
 // GetOffersWindowsUpdatesResponse structure represents the OffersWindowsUpdates operation response
 type GetOffersWindowsUpdatesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if the service offers updates for Windows
+	// or to VARIANT_FALSE if not.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The OffersWindowsUpdates return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2124,7 +2332,9 @@ func (o *GetRedirectUrlsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // GetRedirectUrlsResponse structure represents the RedirectUrls operation response
 type GetRedirectUrlsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat         `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An IStringCollection instance containing URLs. If no redirect URL is available,
+	// then this MUST be an empty IStringCollection instance.
 	ReturnValue *uamg.StringCollection `idl:"name:retval" json:"return_value"`
 	// Return: The RedirectUrls return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -2365,8 +2575,17 @@ func (o *GetServiceIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 // GetServiceIDResponse structure represents the ServiceID operation response
 type GetServiceIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A string uniquely identifying the service.
+	//
+	// retval: A string containing the unique identifier of the update service that provided
+	// the update for which the operation was performed.
+	//
+	// retval: A string containing the unique identifier of the update server to use for
+	// search.
+	//
+	// retval: A string identifying the service.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The ServiceID return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2574,8 +2793,10 @@ func (o *GetIsScanPackageServiceRequest) UnmarshalNDR(ctx context.Context, r ndr
 // GetIsScanPackageServiceResponse structure represents the IsScanPackageService operation response
 type GetIsScanPackageServiceResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if the update service is based on a scan
+	// package or to VARIANT_FALSE if not.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The IsScanPackageService return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2783,8 +3004,10 @@ func (o *GetCanRegisterWithAURequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 // GetCanRegisterWithAUResponse structure represents the CanRegisterWithAU operation response
 type GetCanRegisterWithAUResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if the update service can be registered
+	// with the automatic update agent or to VARIANT_FALSE if not.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The CanRegisterWithAU return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3024,8 +3247,9 @@ func (o *GetServiceURLRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetServiceURLResponse structure represents the ServiceUrl operation response
 type GetServiceURLResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The URL for the update service.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The ServiceUrl return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3265,8 +3489,9 @@ func (o *GetSetupPrefixRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetSetupPrefixResponse structure represents the SetupPrefix operation response
 type GetSetupPrefixResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The prefix for setup files.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The SetupPrefix return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

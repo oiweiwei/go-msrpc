@@ -31,45 +31,81 @@ type LibraryControl1Server interface {
 	// IUnknown base class.
 	iunknown.UnknownServer
 
+	// The EjectNtmsMedia method ejects media from theport of a library.
 	EjectNTMSMedia(context.Context, *EjectNTMSMediaRequest) (*EjectNTMSMediaResponse, error)
 
+	// The InjectNtmsMedia method allows media to be inserted into the port of an online
+	// library.
 	InjectNTMSMedia(context.Context, *InjectNTMSMediaRequest) (*InjectNTMSMediaResponse, error)
 
+	// The AccessNtmsLibraryDoor method unlocks the door of an online library.
 	AccessNTMSLibraryDoor(context.Context, *AccessNTMSLibraryDoorRequest) (*AccessNTMSLibraryDoorResponse, error)
 
+	// The CleanNtmsDrive method queues a cleaning request for a drive.
 	CleanNTMSDrive(context.Context, *CleanNTMSDriveRequest) (*CleanNTMSDriveResponse, error)
 
+	// The DismountNtmsDrive method moves a medium from a drive to its storage slot.
 	DismountNTMSDrive(context.Context, *DismountNTMSDriveRequest) (*DismountNTMSDriveResponse, error)
 
+	// The InventoryNtmsLibrary method queues a request to perform an inventory of an online
+	// library.
 	InventoryNTMSLibrary(context.Context, *InventoryNTMSLibraryRequest) (*InventoryNTMSLibraryResponse, error)
 
 	// INtmsLibraryControl1_LocalOnlyOpnum09 operation.
 	LibraryControl1LocalOnlyOpnum09(context.Context, *LibraryControl1LocalOnlyOpnum09Request) (*LibraryControl1LocalOnlyOpnum09Response, error)
 
+	// The CancelNtmsLibraryRequest method cancels outstanding library requests.
 	CancelNTMSLibraryRequest(context.Context, *CancelNTMSLibraryRequestRequest) (*CancelNTMSLibraryRequestResponse, error)
 
+	// The ReserveNtmsCleanerSlot method reserves a slot in an online library for a drive
+	// cleaner cartridge.
 	ReserveNTMSCleanerSlot(context.Context, *ReserveNTMSCleanerSlotRequest) (*ReserveNTMSCleanerSlotResponse, error)
 
+	// The ReleaseNtmsCleanerSlot method removes an existing slot reservation for a cleaning
+	// cartridge.
 	ReleaseNTMSCleanerSlot(context.Context, *ReleaseNTMSCleanerSlotRequest) (*ReleaseNTMSCleanerSlotResponse, error)
 
+	// The InjectNtmsCleaner method allows a cleaner cartridge to be inserted into an online
+	// library unit.
 	InjectNTMSCleaner(context.Context, *InjectNTMSCleanerRequest) (*InjectNTMSCleanerResponse, error)
 
+	// The EjectNtmsCleaner method ejects the cleaning cartridge from the currently reserved
+	// cleaner slot.
 	EjectNTMSCleaner(context.Context, *EjectNTMSCleanerRequest) (*EjectNTMSCleanerResponse, error)
 
+	// The DeleteNtmsLibrary method deletes a library and all the devices in it. Any media
+	// in the library are moved to the offline library.
 	DeleteNTMSLibrary(context.Context, *DeleteNTMSLibraryRequest) (*DeleteNTMSLibraryResponse, error)
 
+	// The DeleteNtmsDrive method deletes a drive.
 	DeleteNTMSDrive(context.Context, *DeleteNTMSDriveRequest) (*DeleteNTMSDriveResponse, error)
 
+	// The GetNtmsRequestOrder method retrieves the order in which a request will be processed
+	// in the library queue.
 	GetNTMSRequestOrder(context.Context, *GetNTMSRequestOrderRequest) (*GetNTMSRequestOrderResponse, error)
 
+	// The SetNtmsRequestOrder method sets the order in which a request will be processed
+	// in the library queue.
 	SetNTMSRequestOrder(context.Context, *SetNTMSRequestOrderRequest) (*SetNTMSRequestOrderResponse, error)
 
+	// The DeleteNtmsRequests method deletes a request or a list of requests. Requests that
+	// have already been submitted or are queued, waiting, or in progress MUST NOT be deleted.
 	DeleteNTMSRequests(context.Context, *DeleteNTMSRequestsRequest) (*DeleteNTMSRequestsResponse, error)
 
+	// The BeginNtmsDeviceChangeDetection method begins a device change detection session.
+	// The libraries for which media change detection is required MUST be set using the
+	// SetNtmsDeviceChangeDetection method. Implementation of this method is optional.<23>
+	// The server MAY return a non-implemented error (ERROR_CALL_NOT_IMPLEMENTED, 0x80070078).<24>
 	BeginNTMSDeviceChangeDetection(context.Context, *BeginNTMSDeviceChangeDetectionRequest) (*BeginNTMSDeviceChangeDetectionResponse, error)
 
+	// The SetNtmsDeviceChangeDetection method sets one or more target devices for change
+	// detection. Implementation of this method is optional.<25> The server MAY return a
+	// non-implemented error (ERROR_CALL_NOT_IMPLEMENTED, 0x80070078). <26>
 	SetNTMSDeviceChangeDetection(context.Context, *SetNTMSDeviceChangeDetectionRequest) (*SetNTMSDeviceChangeDetectionResponse, error)
 
+	// The EndNtmsDeviceChangeDetection method ends device change detection for one or more
+	// target devices. Implementation of this method is optional.<27> The server MAY return
+	// a non-implemented error (ERROR_CALL_NOT_IMPLEMENTED, 0x80070078). <28>
 	EndNTMSDeviceChangeDetection(context.Context, *EndNTMSDeviceChangeDetectionRequest) (*EndNTMSDeviceChangeDetectionResponse, error)
 }
 

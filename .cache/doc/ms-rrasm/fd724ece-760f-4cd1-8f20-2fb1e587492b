@@ -1,1 +1,76 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IP_DNS_PROXY_INTERFACE_INFO</b> structure holds
+per-interface configuration for the DNS proxy. The configuration currently only
+allows the proxy to be disabled on a given interface. The proxy runs in
+promiscuous-interface mode so that all interfaces are added to it and it is
+enabled on all of them by default. Hence, the configuration need only be
+present for those interfaces on which the proxy is not to be run.</p><dl>
+<dd>
+<div><pre> typedef struct _IP_DNS_PROXY_INTERFACE_INFO {
+   ULONG Flags;
+ } IP_DNS_PROXY_INTERFACE_INFO, *PIP_DNS_PROXY_INTERFACE_INFO;
+</pre></div>
+</dd></dl><p><b>Flags: </b>It MUST be a combination of the
+following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IP_DNS_PROXY_INTERFACE_FLAG_DISABLED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The DNS proxy is disabled on the interface. This flag
+  overrides the rest of the flags. The DNS proxy will not be enabled on this
+  interface regardless of other flags being present.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_DNS_PROXY_INTERFACE_FLAG_DEFAULT</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The interface is marked as the default DNS proxy. All
+  DNS queries will be sent over this interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_INTERFACE_FLAG_DELETED</p>
+  <p>0x80000000</p>
+  </td>
+  <td>
+  <p>The DNS proxy is disabled on the interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_INTERFACE_FLAG_BOUND</p>
+  <p>0x40000000</p>
+  </td>
+  <td>
+  <p>The DNS proxy socket is bound on the interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_INTERFACE_FLAG_ENABLED</p>
+  <p>0x20000000</p>
+  </td>
+  <td>
+  <p>The DNS proxy is enabled on the interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DNS_INTERFACE_FLAG_CONFIGURED</p>
+  <p>0x10000000</p>
+  </td>
+  <td>
+  <p>The DNS proxy is configured on the interface.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

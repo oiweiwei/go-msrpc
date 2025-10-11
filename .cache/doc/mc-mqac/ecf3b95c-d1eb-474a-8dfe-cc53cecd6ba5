@@ -1,0 +1,32 @@
+<div class="content"><p>The FindConnectionPoint method is received by the server in
+an RPC_REQUEST packet. In response, the server MUST return a pointer to an
+IConnectionPoint interface pointer for a specified <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_76ad3105-3f05-479d-a40c-c9c8fa2ebd83" data-linktype="relative-path">IID</a>.</p><dl>
+<dd>
+<div><pre> HRESULT FindConnectionPoint(
+   [in] REFIID riid,
+   [out] IConnectionPoint** ppCP
+ );
+</pre></div>
+</dd></dl><p><b>riid: </b>The IID of the interface whose
+connection point object is being requested.</p><p><b>ppCP: </b>A pointer to a pointer to an <a href="0a8e2f5d-3f39-4494-a639-36d8787e3c03" data-linktype="relative-path">IConnectionPoint</a> interface
+that supports the interface identified by the IID in the <i>riid</i> input
+parameter.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.<a id="Appendix_A_Target_98"></a><a aria-label="Product behavior note 98" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_98" data-linktype="relative-path">&lt;98&gt;</a></p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>ppCP</i> output parameter equals NULL:</p>
+<ul><li><p><span><span>  </span></span>Return
+E_POINTER (0x80000005), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>riid</i> input parameter is NOT equal to the IID of the
+<a href="b910c6a9-81db-4b87-b049-20eabf8853eb" data-linktype="relative-path">_DMSMQEventEvents</a>
+interface ({D7D6E078-DCCD-11d0-AA4B-0060970DEBAE}):</p>
+<ul><li><p><span><span>  </span></span>Return
+CONNECT_E_NOCONNECTION (0x80040200), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>Set
+the <i>ppCP</i> output parameter to a pointer to an IConnectionPoint interface
+for the <a href="6102da49-1a16-4862-a4d1-ad092c5101a4" data-linktype="relative-path">MSMQEvent</a>
+object.</p>
+</li></ul></li></ul></div>

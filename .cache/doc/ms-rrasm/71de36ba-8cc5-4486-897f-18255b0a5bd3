@@ -1,1 +1,43 @@
-<div class="content"></div>
+<div class="content"><p>The <b>INTERFACE_STATUS_INFO</b> structure contains the
+administrative status of an interface.</p><p>This structure is used in the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="927c5bf1-ac91-4325-b945-0d96a58f609b" data-linktype="relative-path"><b>RRouterInterfaceTransportAdd (section 3.1.4.18)</b></a></p>
+</li><li><p><span><span> 
+</span></span><a href="ec9ba293-45e9-4f12-b9af-7e77ec96c90e" data-linktype="relative-path"><b>RRouterInterfaceTransportGetInfo (section 3.1.4.19)</b></a></p>
+</li><li><p><span><span> 
+</span></span><a href="209ba5e7-876e-4406-a05c-65b7e5fb2380" data-linktype="relative-path"><b>RRouterInterfaceTransportSetInfo (section 3.1.4.20)</b></a></p>
+<div><pre> typedef struct _INTERFACE_STATUS_INFO {
+   IN OUT DWORD dwAdminStatus;
+ } INTERFACE_STATUS_INFO,
+  *PINTERFACE_STATUS_INFO;
+</pre></div>
+</li></ul><p><b>dwAdminStatus: </b>The administrative status of
+the interface. It MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IF_ADMIN_STATUS_UP</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Interface is administratively enabled</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_ADMIN_STATUS_DOWN</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Interface is administratively disabled</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>When this structure is used, the <b>InfoType</b> of <a href="c99955ec-6d18-4665-8d5b-e124de63a368" data-linktype="relative-path"><b>RTR_TOC_ENTRY (section 2.2.1.2.4)</b></a>
+MUST be 0xFFFF0004 to specify IPv4 interface status information.</p></div>

@@ -1,0 +1,38 @@
+<div class="content"><p>The GetTransactionInfo method retrieves information about
+the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a>
+represented by its <a href="3b40a6ae-400f-4551-8167-73c8b1856922" data-linktype="relative-path">TransactionImpl (section 3.8)</a>
+instance.</p><dl>
+<dd>
+<div><pre> HRESULT GetTransactionInfo(
+   [out] XACTTRANSINFO* pinfo
+ );
+</pre></div>
+</dd></dl><p><b>pinfo: </b>A pointer to the caller-allocated <a href="bcd51e37-a63d-4fb5-8df4-213bc5abb87f" data-linktype="relative-path">XACTTRANSINFO</a> structure in
+which the method returns information about the transaction.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.<a id="Appendix_A_Target_32"></a><a aria-label="Product behavior note 32" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_32" data-linktype="relative-path">&lt;32&gt;</a></p><p>When the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+processes this call, it MUST follow these guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>pinfo</i> output variable is NULL:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error HRESULT, and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>isInternal</i> instance variable is True:</p>
+<ul><li><p><span><span>  </span></span>Set
+the uow property of the <i>pinfo</i> output variable to the value of the <i>TransactionIdentifier</i>
+instance variable.</p>
+</li><li><p><span><span>  </span></span>Set
+all the remaining properties of the <i>pinfo</i> output variable to 0.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>Set
+the uow property of the <i>pinfo</i> output variable to the value of the <i>TransactionIdentifier</i>
+instance variable.</p>
+</li><li><p><span><span>  </span></span>Send
+a request to the distributed <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_4553803e-9d8d-407c-ad7d-9e65e01d6eb3" data-linktype="relative-path">transaction
+manager</a> to retrieve the transaction details by using the <i>TransactionIdentifier</i>
+instance variable. For more details about this request, refer to <a href="../ms-dtco/c367c571-33f3-44ac-85cb-4b9ebbb2779d" data-linktype="relative-path">[MS-DTCO]</a>
+section <a href="../ms-dtco/3a6ed3f4-9395-4046-ba10-c334e2337473" data-linktype="relative-path">2.2.8.3.1.1</a>.</p>
+</li><li><p><span><span>  </span></span>Set
+the remaining properties of the <i>pinfo</i> output variable to the values
+obtained from the preceding request.</p>
+</li></ul></li></ul></div>

@@ -1,5 +1,6 @@
-<div class="content"><p>The GetMyRoles method retrieves the <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_1137042c-9b21-48b5-8b33-315152caf650" data-linktype="relative-path">Online Responder Roles</a> <a href="https://go.microsoft.com/fwlink/?LinkId=89839" data-linktype="external">[CIMC-PP]</a> assigned to
-the user that calls the method. </p><dl>
+<div class="content"><p>The GetMyRoles method retrieves the <span><a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_1137042c-9b21-48b5-8b33-315152caf650" data-linktype="relative-path">Online
+Responder Roles</a></span> <span><a href="https://go.microsoft.com/fwlink/?LinkId=89839" data-linktype="external">[CIMC-PP]</a></span>
+assigned to the user that calls the method. </p><dl>
 <dd>
 <div><pre> HRESULT GetMyRoles(
    [out] LONG* pdwRoles
@@ -34,8 +35,8 @@ can be a bitwise OR of the following values.</p><dl>
   </td>
   <td>
   <p>The caller
-  can request the response status for a particular <a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> from the
-  responder.</p>
+  can request the response status for a particular <span><a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a></span> from
+  the responder.</p>
   </td>
  </tr><tr>
   <td>

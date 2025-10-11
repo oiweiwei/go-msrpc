@@ -1,0 +1,109 @@
+<div class="content"><p>The QueueType method is received by the server in an
+RPC_REQUEST packet. In response, the server MUST return the type of the
+referenced <a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">Queue</a>.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT QueueType(
+   [out, retval] long* plQueueType
+ );
+</pre></div>
+</dd></dl><p><b>plQueueType: </b>A pointer to a <b>long</b> that
+corresponds to the QUEUE_TYPE enumeration as defined in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQ_TYPE_PUBLIC</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The represented Queue.QueueType equals Public.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_TYPE_PRIVATE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The represented Queue.QueueType equals Private.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_TYPE_MACHINE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The represented Queue.QueueType equals System.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_TYPE_CONNECTOR</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The represented Queue.QueueType equals Connector.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_TYPE_MULTICAST</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The represented Queue is an <a href="../ms-mqdmpr/d53d687d-49c4-4b6f-af29-351f7341b423" data-linktype="relative-path">OutgoingQueue</a>
+  with the OutgoingQueue.DestinationFormatName specifying a multicast address.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+processes this call, it MUST follow these guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <b>ObjectIsInitialized</b> instance variable is False:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST return MQ_ERROR_UNINITIALIZED_OBJECT (0xC00E0094), and MUST take no
+further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST generate a <b>QMMgmt Get Info</b> event with the following inputs:</p>
+<ul><li><p><span><span> 
+</span></span>iPropID = PROPID_MGMT_QUEUE_TYPE</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the rStatus return value is not equal to MQ_OK (0x00000000), the server MUST
+return rStatus and MUST take no further action.</p>
+</li><li><p><span><span>  </span></span>If
+the value of the returned <b>rPropVar</b> was &#34;PUBLIC&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The <i>plQueueType</i> output variable MUST be set to MQ_TYPE_PUBLIC,
+and the server MUST return S_OK (0x00000000) and MUST take no further action.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the value of the returned was &#34;PRIVATE&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The <i>plQueueType</i> output variable MUST be set to
+MQ_TYPE_PRIVATE, and the server MUST return S_OK (0x00000000) and MUST take no
+further action.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the value of the returned was &#34;MACHINE&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The <i>plQueueType</i> output variable MUST be set to
+MQ_TYPE_MACHINE, and the server MUST return S_OK (0x00000000) and MUST take no
+further action.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the value of the returned was &#34;CONNECTOR&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The <i>plQueueType</i> output variable MUST be set to
+MGMT_TYPE_CONNECTOR, and the server MUST return S_OK (0x00000000) and MUST take
+no further action.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the value of the returned was &#34;MULTICAST&#34;:</p>
+<ul><li><p><span><span> 
+</span></span>The <i>plQueueType</i> output variable MUST be set to
+MQ_TYPE_MULTICAST, and the server MUST return S_OK (0x00000000) and MUST take
+no further action.</p>
+</li></ul></li></ul></li></ul></div>

@@ -1,0 +1,22 @@
+<div class="content"><p>The EodResend method is received by the server in an
+RPC_REQUEST packet. In response, the server MUST resend the pending sequence of
+<a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_3b80e01d-5155-4378-b692-82122af044aa" data-linktype="relative-path">transactional messages</a>
+in the represented <a href="../ms-mqdmpr/d53d687d-49c4-4b6f-af29-351f7341b423" data-linktype="relative-path">OutgoingQueue</a>.</p><dl>
+<dd>
+<div><pre> HRESULT EodResend();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.<a id="Appendix_A_Target_22"></a><a aria-label="Product behavior note 22" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_22" data-linktype="relative-path">&lt;22&gt;</a></p><ul><li><p><span><span> 
+</span></span>If the <b>ObjectIsInitialized</b> instance variable is False:</p>
+<ul><li><p><span><span>  </span></span>The
+<a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST return
+MQ_ERROR_UNINITIALIZED_OBJECT (0xC00E0094) and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>The server MUST generate a QMMgmtAction event with the following
+inputs:</p>
+<ul><li><p><span><span>  </span></span>iAction
+= &#34;Pause&#34;</p>
+</li></ul></li><li><p><span><span> 
+</span></span>The server MUST return rStatus, and take no further action.</p>
+</li></ul></div>

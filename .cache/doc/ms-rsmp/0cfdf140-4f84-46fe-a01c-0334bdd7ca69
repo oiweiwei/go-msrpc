@@ -1,1 +1,110 @@
-<div class="content"></div>
+<div class="content"><p>The EjectNtmsMedia method <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a22dff61-81ae-4414-8242-3d28f4c70c31" data-linktype="relative-path">ejects</a> media from the<a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">port</a> of a library.</p><dl>
+<dd>
+<div><pre> HRESULT EjectNtmsMedia(
+   [in, unique] LPNTMS_GUID lpMediaId,
+   [in, out] LPNTMS_GUID lpEjectOperation,
+   [in] DWORD dwAction
+ );
+</pre></div>
+</dd></dl><p><b>lpMediaId: </b>A pointer to the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_746b1ad1-e1ad-4120-9986-fef919a2eaf7" data-linktype="relative-path">media identifier</a> of the
+media to eject.</p><p><b>lpEjectOperation: </b>A pointer to the identifier
+of the eject process; MUST be used with <i>dwAction</i> set to NTMS_EJECT_STOP.</p><p><b>dwAction: </b>A value from the <a href="6e787121-1c98-4390-a34b-c5e9ce2d33d6" data-linktype="relative-path">NtmsEjectOperation</a>
+enumeration that specifies the action to perform.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800700AA</p>
+  <p>ERROR_BUSY</p>
+  </td>
+  <td>
+  <p>The media or drives are busy.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D1</p>
+  <p>ERROR_LIBRARY_OFFLINE</p>
+  </td>
+  <td>
+  <p>The library identifier refers to an offline library.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D5</p>
+  <p>ERROR_RESOURCE_DISABLED</p>
+  </td>
+  <td>
+  <p>A resource required for this operation is disabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DD</p>
+  <p>ERROR_INVALID_OPERATION</p>
+  </td>
+  <td>
+  <p>A stop was performed on an invalid operation.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>lpMediaId</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>lpEjectOperation</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that the value of <i>dwAction</i> is not greater than the
+value of NTMS_EJECT_FORCE.</p>
+</li></ul><p>If parameter validation fails, the server MUST fail the
+operation immediately and return the corresponding invalid argument error as
+its response to the client. If parameter validation succeeds, the server MUST
+do the following:</p><ul><li><p><span><span> 
+</span></span>If the library is not busy, or if <i>dwAction</i> specifies
+NTMS_EJECT_FORCE, eject the specified medium from the port of the current
+library. If the library is busy and <i>dwAction</i> does not specify
+NTMS_EJECT_FORCE, the server MUST queue the EjectNtmsMedia message and return
+S_OK (0x00000000) indicating that the eject is queued.</p>
+</li><li><p><span><span> 
+</span></span>Move media that are ejected to the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_f248d7b8-b3e9-421e-96c4-78551324fd86" data-linktype="relative-path">offline library</a> by using
+the EjectNtmsMedia method, or delete them from the database. <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_95e53eb6-39e3-43ed-905e-ff1f427446d2" data-linktype="relative-path">Cleaner</a> <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a71cfd0c-a569-4544-8127-7ae496bca92b" data-linktype="relative-path">cartridge</a>, import media,
+unrecognized media, and incompatible media MUST be deleted when ejected.</p>
+</li><li><p><span><span> 
+</span></span>Return an ERROR_BUSY (0x800700AA) if the media are currently in
+use (<a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b" data-linktype="relative-path">mounted</a> or opened).</p>
+</li></ul><p>The EjectNtmsMedia method does not work with the offline
+library. If the library identifier refers to an offline library that cannot
+eject media, the server MUST return ERROR_LIBRARY_OFFLINE (0x800710D1)
+indicating that the media cannot be ejected. Also, if either the library or the
+drive is disabled, the server MUST return ERROR_RESOURCE_DISABLED (0x800710D5).</p><p>If the NTMS_EJECT_STOP flag is specified for <i>dwAction</i>,
+the eject operation specified by the <i>lpEjectOperation</i> parameter MUST be
+stopped. The <i>lpEjectOperation</i> <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> MUST be returned when
+the NTMS_EJECT_START flag is used.</p><p>The NTMS_EJECT_QUEUE flag is used to bundle or batch media
+marked for ejection into a multislot library. Media can be queued for ejection
+by using the queue action when the application has queued all the necessary
+media. The application uses the start command to begin the physical eject
+operation. To do this, the application can use the NTMS_EJECT_START action on
+the last medium or a medium identified by all zeros. If the library does not
+have a port, the <a href="a642d27e-0bd7-4798-9580-33bdabaee04b" data-linktype="relative-path">AccessNtmsLibraryDoor</a>
+method can be used to insert and eject media.</p><p>On completion of an asynchronous operation, notification
+will be sent with the identifier lpEjectOperation.</p></div>

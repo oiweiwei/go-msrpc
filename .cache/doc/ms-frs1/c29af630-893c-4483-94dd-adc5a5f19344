@@ -1,1 +1,100 @@
-<div class="content"></div>
+<div class="content"><p>This is an example to show COMM_PACKET structure:</p><p>+0x000 Major : 0</p><p>+0x004 Minor : 8</p><p>+0x008 CsId : 1</p><p>+0x00c MemLen : 0x200</p><p>+0x010 PktLen : 0x184</p><p>+0x014 UpkLen : 0</p><p>+0x018 Pkt : 0x001a2df0 </p><p>+0x01c DataName : null </p><p>+0x020 DataHandle : null </p><p>The bytes CommPkt-&gt;Pkt points to are:</p><dl>
+<dd>
+<div><pre> 01 00 04 00 00 00 00 00 00 00 02 00 04 00 00 00 22 01
+ 00 00 03 00 32 00 00 00 10 00 00 00 0c 3e 3b 8c 27 64 
+ f6 40 8f fd a4 5a 89 cf 5d 12 1a 00 00 00 43 00 46 00 
+ 53 00 2d 00 33 00 31 00 58 00 2d 00 32 00 41 00 30 00 
+ 32 00 00 00 04 00 32 00 00 00 10 00 00 00 e7 91 90 20 
+ 91 bd 34 45 bf e1 02 02 8f 21 4c eb 1a 00 00 00 43 00 
+ 46 00 53 00 2d 00 33 00 31 00 58 00 2d 00 32 00 41 00 
+ 30 00 31 00 00 00 05 00 60 00 00 00 10 00 00 00 0c 3e 
+ 3b 8c 27 64 f6 40 8f fd a4 5a 89 cf 5d 12 48 00 00 00 
+ 44 00 4f 00 4d 00 41 00 49 00 4e 00 20 00 53 00 59 00 
+ 53 00 54 00 45 00 4d 00 20 00 56 00 4f 00 4c 00 55 00 
+ 4d 00 45 00 20 00 28 00 53 00 59 00 53 00 56 00 4f 00 
+ 4c 00 20 00 53 00 48 00 41 00 52 00 45 00 29 00 00 00 
+ 08 00 62 00 00 00 10 00 00 00 fd f7 aa 2c 59 be d9 48 
+ 87 cf 5b e1 a9 23 16 ca 4a 00 00 00 38 00 30 00 38 00 
+ 42 00 39 00 38 00 46 00 45 00 2d 00 45 00 38 00 36 00 
+ 37 00 2d 00 34 00 46 00 33 00 36 00 2d 00 42 00 34 00 
+ 39 00 44 00 2d 00 44 00 44 00 36 00 36 00 36 00 39 00 
+ 38 00 36 00 36 00 42 00 44 00 33 00 00 00 06 00 14 00 
+ 00 00 10 00 00 00 9b 2d 92 76 3d 3f 2a 62 8a 20 b2 da 
+ fe 56 80 ef 12 00 08 00 00 00 9c 43 1d 03 ef 84 c6 01 
+ 13 00 04 00 00 00 ff ff ff ff
+</pre></div>
+</dd></dl><p>In CommPkt-&gt;Pkt (see section <a href="194f8fff-d903-44b7-9530-c66f5366f8c7" data-linktype="relative-path">2.2.3.5</a>), COMM_COMMAND
+(see section <a href="f300ec84-7c63-4f13-8590-54b630e15413" data-linktype="relative-path">2.2.3.6.2</a>)
+is:</p><dl>
+<dd>
+<div><pre>  
+ 02 00 04 00 00 00 22 01 00 00 
+</pre></div>
+</dd></dl><p>This indicates a CMD_START_JOIN (0x0122) packet.</p><p>CMD_START_JOIN command is composed of the following
+sequence:</p><p>COMM_BOP</p><p>COMM_COMMAND</p><p>COMM_TO</p><p>COMM_FROM</p><p>COMM_REPLICA</p><p>COMM_CXTION</p><p>COMM_JOIN_GUID</p><p>COMM_LAST_JOIN_TIME</p><p>COMM_EOP</p><p>To interpret CommPkt-&gt;Pkt:</p><p>COMM_BOP:</p><dl>
+<dd>
+<div><pre>  
+ 00 1a 2d f0 01 00 04 00 00 00 00 00 00 00 
+</pre></div>
+</dd></dl><p>Every packet starts with this.</p><p>COMM_COMMAND:</p><dl>
+<dd>
+<div><pre>  
+ 02 00 04 00 00 00 22 01 00 00 
+</pre></div>
+</dd></dl><p>This is CMD_START_JOIN command - 0x0122.</p><p>COMM_TO:</p><dl>
+<dd>
+<div><pre>  
+ 03 00 32 00 00 00 10 00 00 00 0c 3e 3b 8c 27 64 f6 40 
+ 8f fd a4 5a 89 cf 5d 12 1a 00 00 00 43 00 46 00 53 00 
+ 2d 00 33 00 31 00 58 00 2d 00 32 00 41 00 30 00 32 00 
+ 00 00 
+</pre></div>
+</dd></dl><p>GUID: 8c3b3e0c-6427-40f6-8ffda45a89cf5d12; name:
+CFS-31X-2a02</p><p>COMM_FROM:</p><dl>
+<dd>
+<div><pre>  
+ 04 00 32 00 00 00 10 00 00 00 e7 91 90 20 91 bd 34 45 
+ bf e1 02 02 8f 21 4c eb 1a 00 00 00 43 00 46 00 53 00 
+ 2d 00 33 00 31 00 58 00 2d 00 32 00 41 00 30 00 31 00 
+ 00 00 
+</pre></div>
+</dd></dl><p>GUID: 209091e7-bd91-4534-bfe102028f214ceb; name:
+CFS-31X-2a01</p><p>COMM_REPLICA:</p><dl>
+<dd>
+<div><pre>  
+ 05 00 60 00 00 00 10 00 00 00 0c 3e 3b 8c 27 64 f6 40 
+ 8f fd a4 5a 89 cf 5d 12 48 00 00 00 44 00 4f 00 4d 00 
+ 41 00 49 00 4e 00 20 00 53 00 59 00 53 00 54 00 45 00 
+ 4d 00 20 00 56 00 4f 00 4c 00 55 00 4d 00 45 00 20 00 
+ 28 00 53 00 59 00 53 00 56 00 4f 00 4c 00 20 00 53 00 
+ 48 00 41 00 52 00 45 00 29 00 00 00 
+</pre></div>
+</dd></dl><p>GUID: 8c3b3e0c-6427-40f6-8ffda45a89cf5d12; name: DOMAIN
+SYSTEM VOLUME (SYSVOL SHARE)</p><p>COMM_CXTION:</p><dl>
+<dd>
+<div><pre>  
+ 08 00 62 00 00 00 10 00 00 00 fd f7 aa 2c 59 be d9 48  ..b..........,Y..H
+ 87 cf 5b e1 a9 23 16 ca 4a 00 00 00 38 00 30 00 38 00  ..[..#..J...8.0.8.
+ 42 00 39 00 38 00 46 00 45 00 2d 00 45 00 38 00 36 00  B.9.8.F.E.-.E.8.6.
+ 37 00 2d 00 34 00 46 00 33 00 36 00 2d 00 42 00 34 00  7.-.4.F.3.6.-.B.4.
+ 39 00 44 00 2d 00 44 00 44 00 36 00 36 00 36 00 39 00  9.D.-.D.D.6.6.6.9.
+ 38 00 36 00 36 00 42 00 44 00 33 00 00 00 
+</pre></div>
+</dd></dl><p>GUID: 2caaf7fd-be59-48d9-87cf5be1a92316ca; name:
+808B98FE-E867-4F36-B49D-DD6669866BD3</p><p>COMM_JOIN_GUID:</p><dl>
+<dd>
+<div><pre>  
+ 06 00 14 00 00 00 10 00 00 00 9b 2d 92 76 3d 3f 2a 62 
+ 8a 20 b2 da fe 56 80 ef 
+</pre></div>
+</dd></dl><p>GUID: 9b 2d 92 76 3d 3f 2a 62 8a 20 b2 da fe 56 80 ef</p><p>COMM_LAST_JOIN_TIME:</p><dl>
+<dd>
+<div><pre>  
+ 12 00 08 00 00 00 9c 43 1d 03 ef 84 c6 01
+</pre></div>
+</dd></dl><p>LastJoinTime: 9c431d03ef84c601.</p><p>COMM_EOP:</p><dl>
+<dd>
+<div><pre>  
+ 13 00 04 00 00 00 ff ff ff ff
+</pre></div>
+</dd></dl><p>Every packet ends with this.</p></div>

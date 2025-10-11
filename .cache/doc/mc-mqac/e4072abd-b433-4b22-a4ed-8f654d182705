@@ -1,0 +1,90 @@
+<div class="content"><p>The Refresh method is received by the server in an
+RPC_REQUEST packet. In response, the server refreshes the properties of the <a href="d22779e5-7d4d-4711-bdf0-3d47adb6c5df" data-linktype="relative-path">MSMQQueueInfo</a> object with
+the values stored in the directory (for public <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queues</a>) or in the local
+QueueManager (for private queues).</p><dl>
+<dd>
+<div><pre> HRESULT Refresh();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST abide by the
+following contract:</p><ul><li><p><span><span> 
+</span></span>Generate <a href="9bc1500e-4141-4d00-a55b-7b5506b9a372" data-linktype="relative-path">Update
+QueueFormatName</a> event (section 3.10.6.1).</p>
+</li><li><p><span><span> 
+</span></span>If <i>rStatus</i> is an error HRESULT return an error HRESULT,
+and take no further action.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>QueueFormatName</i> instance variable is NULL:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error HRESULT, and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>QueueFormatName</i> instance variable identifies more
+than one queue, or contains an HTTP or multicast <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_390ae273-7109-44eb-981f-aa157e6b37c0" data-linktype="relative-path">format name</a>:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error HRESULT, and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Define <i>IsLocal</i> as a <a href="../ms-dtyp/51bbfbb1-08e2-4c13-a95e-1eaa7d310670" data-linktype="relative-path">BOOLEAN</a>
+value that equals True if the queue identified by the <i>QueueFormatName</i>
+instance variable belongs to the QueueCollection of the local QueueManager.
+Otherwise, <i>IsLocal</i> is False.</p>
+</li><li><p><span><span> 
+</span></span>Define <i>IsPublic</i> as a BOOLEAN value that equals True if the
+<i>QueueFormatName</i> instance variable identifies a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_bb49bace-e853-4c7a-b4ab-59f1097c3dc8" data-linktype="relative-path">public queue</a>. Otherwise, <i>IsPublic</i>
+equals False.</p>
+</li><li><p><span><span> 
+</span></span>If <i>IsLocal</i> equals False and <i>IsPublic</i> equals False:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error HRESULT, and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Look up the queue identified by the <i>QueueFormatName</i>
+instance variable. If the queue exists:</p>
+<ul><li><p><span><span>  </span></span>If
+the <i>QueueFormatName</i> does not match the ABNF rule MachineQueuePath
+defined in <a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a>
+section <a href="../ms-mqmq/0f7c2894-f918-4e96-a4bb-93e2b3cfd18f" data-linktype="relative-path">2.1.2</a>,
+the queue is an <a href="7d8d0dab-699c-4121-9ee4-226a2dbced2e" data-linktype="relative-path">ApplicationQueue</a>
+and the protocol MUST set <i>IsApplicationQueue</i> to True. Otherwise, <i>IsApplicationQueue</i>
+MUST be set to False.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error HRESULT, and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <i>IsApplicationQueue</i> equals True:</p>
+<ul><li><p><span><span>  </span></span>If <i>IsPublic</i>
+equals True:</p>
+<ul><li><p><span><span> 
+</span></span>Generate the <a href="../ms-mqdmpr/314c2287-dc0b-4079-b24a-550817c9e9ae" data-linktype="relative-path">Read
+Directory</a> (<a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a>
+section 3.1.7.1.20) event with the following arguments:</p>
+<ul><li><p><span><span> 
+</span></span><i>iDirectoryObjectType</i>: <a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">Queue</a>.</p>
+</li><li><p><span><span> 
+</span></span><i>iFilter</i> = An array of the following attribute-filter
+expressions:</p>
+<ul><li><p><span><span> 
+</span></span>&#34;Identifier&#34; equals ApplicationQueue.Identifier.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>If the query results with returned rStatus not Success:</p>
+<ul><li><p><span><span> 
+</span></span>Return an error HRESULT, and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span> 
+</span></span>Retrieve the returned properties of the public queue, and set the
+instance variables of the MSMQQueueInfo object to the values of the retrieved
+properties, according to the mappings described in the abstract data model
+section for this object, and transitively, according to the definition of the
+public queue.</p>
+</li></ul></li></ul></li><li><p><span><span>  </span></span>Else:</p>
+<ul><li><p><span><span> 
+</span></span>Retrieve the identified properties of the ApplicationQueue, copy
+all properties to refQueue, and set other instance variables of the
+MSMQQueueInfo object to the values of the retrieved properties, according to
+the mappings described in the abstract data model section for this object.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Set <i>IsRefreshed</i> to True.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK (0x00000000), and take no further action.</p>
+</li></ul></div>

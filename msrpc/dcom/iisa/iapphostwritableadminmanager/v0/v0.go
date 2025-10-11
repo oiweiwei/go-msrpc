@@ -49,7 +49,36 @@ type AppHostWritableAdminManagerClient interface {
 	// IAppHostAdminManager retrieval method.
 	AppHostAdminManager() iapphostadminmanager.AppHostAdminManagerClient
 
-	// CommitChanges operation.
+	// The CommitChanges method is received by the server in an RPC_REQUEST packet. In response,
+	// the server commits any in-memory changes that it accumulates to a persisted store.
+	// This behavior essentially writes out the changes that are made by the client.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                        |
+	//	|             VALUE/CODE             |                              DESCRIPTION                               |
+	//	|                                    |                                                                        |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                                  |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.                |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X80070013 ERROR_INVALID_DATA      | Configuration data or schema on the server are malformed or corrupted. |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X00000002 ERROR_PATH_NOT_FOUND    | The system cannot find the path specified.                             |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X80070002 ERROR_FILE_NOT_FOUND    | The system cannot find the file specified.                             |
+	//	+------------------------------------+------------------------------------------------------------------------+
+	//	| 0X80070005 ERROR_ACCESS_DENIED     | Access is denied.                                                      |
+	//	+------------------------------------+------------------------------------------------------------------------+
 	CommitChanges(context.Context, *CommitChangesRequest, ...dcerpc.CallOption) (*CommitChangesResponse, error)
 
 	// CommitPath operation.

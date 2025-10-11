@@ -2,7 +2,61 @@
 //
 // # Introduction
 //
+// The Shadow Copy Management Protocol is used to programmatically enumerate shadow
+// copies and configure shadow copy storage on remote machines. The protocol uses a
+// set of Distributed Component Object Model (DCOM) interfaces to query shadow copies
+// and manage shadow copy storage on a remote machine.
+//
+// This specification describes storage concepts, including volume storage concepts,
+// in the Windows operating system. Although this specification outlines some basic
+// storage concepts, it assumes that the reader has familiarity with these technologies.
+// For background information about storage, disk, and volume concepts, see [MSDN-STC]
+// and [MSDN-VOLMAN].
+//
+// This protocol documentation is intended for use together with publicly available
+// standard specifications, networking programming art, and Microsoft distributed systems
+// concepts. It assumes that the reader is either familiar with this material or has
+// immediate access to it.
+//
+// A protocol specification does not require the use of Microsoft programming tools
+// or programming environments for a Licensee to develop an implementation. Licensees
+// who have access to Microsoft programming tools and environments are free to take
+// advantage of them.
+//
 // # Overview
+//
+// The Shadow Copy Management Protocol provides a mechanism for remote configuration
+// of shadow copies. Through the Shadow Copy Management Protocol, a client performs
+// operations to enumerate shadow copies and configure the storage size and location
+// that are used to maintain the shadow copies on the server.
+//
+// The Shadow Copy Management Protocol is expressed as a set of DCOM interfaces. The
+// server end of the protocol implements support for the DCOM interfaces to manage shadow
+// copy configuration objects. The client end of the protocol invokes method calls on
+// the interfaces to perform shadow copy configuration tasks on the server.<1> Specifically,
+// the protocol is used for the following purposes:
+//
+// * Enumerating the volumes ( 726a3dc9-844e-44c8-9527-236c3bd52dff#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c
+// ) on the server that can be shadow copied.
+//
+// * Enumerating the shadow copies that are currently available on the server and that
+// are point-in-time copies of a specified original volume ( 726a3dc9-844e-44c8-9527-236c3bd52dff#gt_57484dae-5eef-4485-bfe4-db22b9cd90d6
+// ).
+//
+// * Enumerating the volumes on the server that can be used as shadow copy storage (
+// 726a3dc9-844e-44c8-9527-236c3bd52dff#gt_d85fc09f-c375-4e90-952d-7c95a8e244dd ).
+//
+// * Creating, modifying, enumerating, and deleting the shadow copy storage association
+// ( 726a3dc9-844e-44c8-9527-236c3bd52dff#gt_34a368ce-08be-44b8-8d15-cfa0d4ac176e )
+// objects that define the location and size of shadow copy storage for specific original
+// volumes.
+//
+// * Querying all the shadow copy storage association objects on the server that provide
+// shadow copy storage for a specified original volume.
+//
+// * Querying all the shadow copy storage association objects on the server that are
+// located on a specified shadow copy storage volume ( 726a3dc9-844e-44c8-9527-236c3bd52dff#gt_9abab753-55aa-4455-bb21-7b51a32654fa
+// ).
 package scmp
 
 import (
@@ -38,15 +92,26 @@ var (
 )
 
 // ObjectType type represents VSS_OBJECT_TYPE RPC enumeration.
+//
+// The VSS_OBJECT_TYPE enumeration defines the types of objects that can be queried
+// by the IVssEnumObject interface.
 type ObjectType uint32
 
 var (
-	ObjectTypeUnknown     ObjectType = 0
-	ObjectTypeNone        ObjectType = 1
+	// VSS_OBJECT_UNKNOWN:  The object is of an unknown type of shadow copy.
+	ObjectTypeUnknown ObjectType = 0
+	// VSS_OBJECT_NONE:  This value MUST NOT be used and MUST be ignored upon receipt.
+	ObjectTypeNone ObjectType = 1
+	// VSS_OBJECT_SNAPSHOT_SET:  The object is a shadow copy set.
 	ObjectTypeSnapshotSet ObjectType = 2
-	ObjectTypeSnapshot    ObjectType = 3
-	ObjectTypeProvider    ObjectType = 4
-	ObjectTypeCount       ObjectType = 5
+	// VSS_OBJECT_SNAPSHOT:  The object is a shadow copy.
+	ObjectTypeSnapshot ObjectType = 3
+	// VSS_OBJECT_PROVIDER:  This value is not used by the Shadow Copy Management Protocol
+	// and MUST NOT be referenced. It MUST be ignored on receipt.
+	ObjectTypeProvider ObjectType = 4
+	// VSS_OBJECT_TYPE_COUNT:  This value is the number of VSS_OBJECT_TYPE values in the
+	// enumeration.
+	ObjectTypeCount ObjectType = 5
 )
 
 func (o ObjectType) String() string {
@@ -68,10 +133,16 @@ func (o ObjectType) String() string {
 }
 
 // SnapshotState type represents VSS_SNAPSHOT_STATE RPC enumeration.
+//
+// The VSS_SNAPSHOT_STATE enumeration defines the set of valid states of a shadow copy.
 type SnapshotState uint32
 
 var (
+	// VSS_SS_UNKNOWN:  The shadow copy state is unknown. This is a restricted shadow copy
+	// state. Shadow copies that are managed with this protocol MUST NOT appear in this
+	// state.
 	SnapshotStateUnknown SnapshotState = 0
+	// VSS_SS_CREATED:  The shadow copy is created.
 	SnapshotStateCreated SnapshotState = 12
 )
 
@@ -86,14 +157,28 @@ func (o SnapshotState) String() string {
 }
 
 // VolumeSnapshotAttributes type represents VSS_VOLUME_SNAPSHOT_ATTRIBUTES RPC enumeration.
+//
+// The VSS_VOLUME_SNAPSHOT_ATTRIBUTES enumeration defines the set of valid attribute
+// flags for a shadow copy.
 type VolumeSnapshotAttributes uint32
 
 var (
-	VolumeSnapshotAttributesPersistent       VolumeSnapshotAttributes = 1
-	VolumeSnapshotAttributesNoAutorecovery   VolumeSnapshotAttributes = 2
+	// VSS_VOLSNAP_ATTR_PERSISTENT:  The shadow copy persists on the system despite rebooting
+	// the machine.
+	VolumeSnapshotAttributesPersistent VolumeSnapshotAttributes = 1
+	// VSS_VOLSNAP_ATTR_NO_AUTORECOVERY:  The shadow copy is created as read-only. Applications
+	// are not provided an opportunity to modify its contents.
+	VolumeSnapshotAttributesNoAutorecovery VolumeSnapshotAttributes = 2
+	// VSS_VOLSNAP_ATTR_CLIENT_ACCESSIBLE:  The shadow copy is of a specific type that
+	// can be exposed remotely through the SMB Protocol [MS-SMB].
 	VolumeSnapshotAttributesClientAccessible VolumeSnapshotAttributes = 4
-	VolumeSnapshotAttributesNoAutoRelease    VolumeSnapshotAttributes = 8
-	VolumeSnapshotAttributesNoWriters        VolumeSnapshotAttributes = 16
+	// VSS_VOLSNAP_ATTR_NO_AUTO_RELEASE:  The shadow copy is not deleted after the client
+	// releases all references to the local interface that is used to create the shadow
+	// copy.
+	VolumeSnapshotAttributesNoAutoRelease VolumeSnapshotAttributes = 8
+	// VSS_VOLSNAP_ATTR_NO_WRITERS:  The shadow copy is created without any application-specific
+	// participation.
+	VolumeSnapshotAttributesNoWriters VolumeSnapshotAttributes = 16
 )
 
 func (o VolumeSnapshotAttributes) String() string {
@@ -113,13 +198,20 @@ func (o VolumeSnapshotAttributes) String() string {
 }
 
 // ManagementObjectType type represents VSS_MGMT_OBJECT_TYPE RPC enumeration.
+//
+// The VSS_MGMT_OBJECT_TYPE enumeration defines the types of objects that can be queried
+// by the IVssEnumMgmtType interface.
 type ManagementObjectType uint32
 
 var (
-	ManagementObjectTypeUnknown    ManagementObjectType = 0
-	ManagementObjectTypeVolume     ManagementObjectType = 1
+	// VSS_MGMT_OBJECT_UNKNOWN:  The object is of an unknown type.
+	ManagementObjectTypeUnknown ManagementObjectType = 0
+	// VSS_MGMT_OBJECT_VOLUME:  The object is an original volume.
+	ManagementObjectTypeVolume ManagementObjectType = 1
+	// VSS_MGMT_OBJECT_DIFF_VOLUME:  The object is a shadow copy storage volume.
 	ManagementObjectTypeDiffVolume ManagementObjectType = 2
-	ManagementObjectTypeDiffArea   ManagementObjectType = 3
+	// VSS_MGMT_OBJECT_DIFF_AREA:  The object is shadow copy storage.
+	ManagementObjectTypeDiffArea ManagementObjectType = 3
 )
 
 func (o ManagementObjectType) String() string {
@@ -137,9 +229,14 @@ func (o ManagementObjectType) String() string {
 }
 
 // ProviderType type represents VSS_PROVIDER_TYPE RPC enumeration.
+//
+// The VSS_PROVIDER_TYPE enumeration defines the set of valid shadow copy provider types.
+// This enumeration is not used by the Shadow Copy Management Protocol; it MUST NOT
+// be referenced and MUST be ignored on receipt.
 type ProviderType uint32
 
 var (
+	// VSS_PROV_UNKNOWN:  The shadow copy provider type is unknown.
 	ProviderTypeUnknown ProviderType = 0
 )
 
@@ -227,20 +324,58 @@ func (o *ID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // SnapshotProperty structure represents VSS_SNAPSHOT_PROP RPC structure.
+//
+// The VSS_SNAPSHOT_PROP structure provides information about a shadow copy object.
 type SnapshotProperty struct {
-	SnapshotID           *ID           `idl:"name:m_SnapshotId" json:"snapshot_id"`
-	SnapshotSetID        *ID           `idl:"name:m_SnapshotSetId" json:"snapshot_set_id"`
-	SnapshotsCount       int32         `idl:"name:m_lSnapshotsCount" json:"snapshots_count"`
-	SnapshotDeviceObject string        `idl:"name:m_pwszSnapshotDeviceObject" json:"snapshot_device_object"`
-	OriginalVolumeName   string        `idl:"name:m_pwszOriginalVolumeName" json:"original_volume_name"`
-	OriginatingMachine   string        `idl:"name:m_pwszOriginatingMachine" json:"originating_machine"`
-	ServiceMachine       string        `idl:"name:m_pwszServiceMachine" json:"service_machine"`
-	ExposedName          string        `idl:"name:m_pwszExposedName" json:"exposed_name"`
-	ExposedPath          string        `idl:"name:m_pwszExposedPath" json:"exposed_path"`
-	ProviderID           *ID           `idl:"name:m_ProviderId" json:"provider_id"`
-	SnapshotAttributes   int32         `idl:"name:m_lSnapshotAttributes" json:"snapshot_attributes"`
-	CreationTimestamp    int64         `idl:"name:m_tsCreationTimestamp" json:"creation_timestamp"`
-	Status               SnapshotState `idl:"name:m_eStatus" json:"status"`
+	// m_SnapshotId:  The VSS_ID (section 2.2.1.1) that identifies this shadow copy object.
+	SnapshotID *ID `idl:"name:m_SnapshotId" json:"snapshot_id"`
+	// m_SnapshotSetId:  The VSS_ID that identifies the shadow copy set of which this shadow
+	// copy object is a member. All shadow copy objects in the same snapshot set MUST have
+	// the same value for m_SnapshotSetId.
+	SnapshotSetID *ID `idl:"name:m_SnapshotSetId" json:"snapshot_set_id"`
+	// m_lSnapshotsCount:  The number of shadow copies in the shadow copy set when it was
+	// originally created. It is possible that individual shadow copies that make up the
+	// shadow copy set are deleted so that, at any time, it is possible that the number
+	// of shadow copies currently in the snapshot set is less than m_lSnapshotCount.
+	SnapshotsCount int32 `idl:"name:m_lSnapshotsCount" json:"snapshots_count"`
+	// m_pwszSnapshotDeviceObject:  The null-terminated character string that contains the
+	// name of the volume device for the shadow copy volume object on the server.<5>
+	SnapshotDeviceObject string `idl:"name:m_pwszSnapshotDeviceObject" json:"snapshot_device_object"`
+	// m_pwszOriginalVolumeName:  The null-terminated character string that contains the
+	// volume mount name of the volume from which a shadow copy was obtained in order to
+	// generate this shadow copy object.
+	OriginalVolumeName string `idl:"name:m_pwszOriginalVolumeName" json:"original_volume_name"`
+	// m_pwszOriginatingMachine:  The null-terminated character string that contains the
+	// name of the machine that hosts the original volume. The server MUST populate this
+	// string with the fully qualified domain name (FQDN) of the server machine. For this
+	// protocol, the value of m_pwszOriginatingMachine and m_pwszServiceMachine MUST be
+	// the same.
+	OriginatingMachine string `idl:"name:m_pwszOriginatingMachine" json:"originating_machine"`
+	// m_pwszServiceMachine:  The null-terminated character string that contains the name
+	// of the machine on which the shadow copy was created. The server MUST populate this
+	// string with the FQDN of the server machine. For this protocol, the value of m_pwszOriginatingMachine
+	// and m_pwszServiceMachine MUST be the same.
+	ServiceMachine string `idl:"name:m_pwszServiceMachine" json:"service_machine"`
+	// m_pwszExposedName:  The null-terminated character string that contains the drive
+	// letter, mount point, or SMB share name if the shadow copy is exposed on the server.
+	// For this protocol, the server MUST set this value to NULL.
+	ExposedName string `idl:"name:m_pwszExposedName" json:"exposed_name"`
+	// m_pwszExposedPath:  The null-terminated character string that contains the full,
+	// root-relative path to a folder on the shadow copy that is to be exposed as an SMB
+	// share. For this protocol, the server MUST set this value to NULL.
+	ExposedPath string `idl:"name:m_pwszExposedPath" json:"exposed_path"`
+	// m_ProviderId:  The VSS_ID of the VSS provider that was used to create the shadow
+	// copy.
+	ProviderID *ID `idl:"name:m_ProviderId" json:"provider_id"`
+	// m_lSnapshotAttributes:  The attributes of the shadow copy. The value of this LONG
+	// value is a combination of the values that are defined in VSS_VOLUME_SNAPSHOT_ATTRIBUTES.
+	SnapshotAttributes int32 `idl:"name:m_lSnapshotAttributes" json:"snapshot_attributes"`
+	// m_tsCreationTimestamp:  The time stamp that defines when the shadow copy was created.
+	CreationTimestamp int64 `idl:"name:m_tsCreationTimestamp" json:"creation_timestamp"`
+	// m_eStatus:  A value from the VSS_SNAPSHOT_STATE enumeration (section 2.2.2.4) that
+	// defines the state of the snapshot. For this protocol, the value of m_eStatus MUST
+	// be VSS_SS_CREATED.
+	Status SnapshotState `idl:"name:m_eStatus" json:"status"`
 }
 
 func (o *SnapshotProperty) xxx_PreparePayload(ctx context.Context) error {
@@ -494,6 +629,10 @@ func (o *SnapshotProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 }
 
 // ProviderProperty structure represents VSS_PROVIDER_PROP RPC structure.
+//
+// The VSS_PROVIDER_PROP structure provides information about a shadow copy provider.
+// This structure is not used by this protocol. It MUST NOT be referenced and MUST be
+// ignored on receipt.
 type ProviderProperty struct {
 	ProviderID        *ID           `idl:"name:m_ProviderId" json:"provider_id"`
 	ProviderName      string        `idl:"name:m_pwszProviderName" json:"provider_name"`
@@ -636,6 +775,9 @@ func (o *ProviderProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 }
 
 // ObjectUnion structure represents VSS_OBJECT_UNION RPC union.
+//
+// The VSS_OBJECT_UNION defines the union of object types that can be defined by the
+// VSS_OBJECT_PROP structure (section 2.2.3.2).
 type ObjectUnion struct {
 	// Types that are assignable to Value
 	//
@@ -748,6 +890,8 @@ func (o *ObjectUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw ui
 //
 // It has following labels: 3
 type ObjectUnion_Snap struct {
+	// Snap:  The structure specifies a shadow copy object as a VSS_SNAPSHOT_PROP structure
+	// (section 2.2.3.3).
 	Snap *SnapshotProperty `idl:"name:Snap" json:"snap"`
 }
 
@@ -779,6 +923,9 @@ func (o *ObjectUnion_Snap) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 //
 // It has following labels: 4
 type ObjectUnion_Provider struct {
+	// Prov:  The structure specifies a VSS provider object. The Shadow Copy Management
+	// Protocol is not used to manage VSS provider objects; therefore, this member MUST
+	// NOT be referenced and MUST be ignored on receipt.
 	Provider *ProviderProperty `idl:"name:Prov" json:"provider"`
 }
 
@@ -807,8 +954,14 @@ func (o *ObjectUnion_Provider) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 }
 
 // ObjectProperty structure represents VSS_OBJECT_PROP RPC structure.
+//
+// The VSS_OBJECT_PROP structure specifies the union of object types that can be enumerated
+// by the IVssEnumObject interface.
 type ObjectProperty struct {
-	Type   ObjectType   `idl:"name:Type" json:"type"`
+	// Type:  A value defined in the VSS_OBJECT_TYPE enumeration (section 2.2.2.1) that
+	// specifies the type of object that is contained in the Obj union structure.
+	Type ObjectType `idl:"name:Type" json:"type"`
+	// Obj:  A VSS_OBJECT_UNION structure (section 2.2.3.1).
 	Object *ObjectUnion `idl:"name:Obj;switch_is:Type" json:"object"`
 }
 
@@ -861,8 +1014,15 @@ func (o *ObjectProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // VolumeProperty structure represents VSS_VOLUME_PROP RPC structure.
+//
+// The VSS_VOLUME_PROP structure defines properties of a volume.
 type VolumeProperty struct {
-	VolumeName        string `idl:"name:m_pwszVolumeName" json:"volume_name"`
+	// m_pwszVolumeName:  A null-terminated character string that contains the volume mount
+	// name of the volume.
+	VolumeName string `idl:"name:m_pwszVolumeName" json:"volume_name"`
+	// m_pwszVolumeDisplayName:  A null-terminated character string that contains a mount
+	// point path for the volume. If the volume has no mount points, the string MUST be
+	// equal to m_pwszVolumeName.
 	VolumeDisplayName string `idl:"name:m_pwszVolumeDisplayName" json:"volume_display_name"`
 }
 
@@ -942,11 +1102,21 @@ func (o *VolumeProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // DiffVolumeProperty structure represents VSS_DIFF_VOLUME_PROP RPC structure.
+//
+// The VSS_DIFF_VOLUME_PROP structure defines the properties of a shadow copy storage
+// volume.
 type DiffVolumeProperty struct {
-	VolumeName        string `idl:"name:m_pwszVolumeName" json:"volume_name"`
+	// m_pwszVolumeName:  A null-terminated character string that contains the volume mount
+	// name of the volume.
+	VolumeName string `idl:"name:m_pwszVolumeName" json:"volume_name"`
+	// m_pwszVolumeDisplayName:  A null-terminated character string that contains one of
+	// the mount point paths for the volume. If the volume has no mount points, the string
+	// MUST be equal to m_pwszVolumeName.
 	VolumeDisplayName string `idl:"name:m_pwszVolumeDisplayName" json:"volume_display_name"`
-	VolumeFreeSpace   int64  `idl:"name:m_llVolumeFreeSpace" json:"volume_free_space"`
-	VolumeTotalSpace  int64  `idl:"name:m_llVolumeTotalSpace" json:"volume_total_space"`
+	// m_llVolumeFreeSpace:  The amount of free space, in BYTEs, on the volume.
+	VolumeFreeSpace int64 `idl:"name:m_llVolumeFreeSpace" json:"volume_free_space"`
+	// m_llVolumeTotalSpace:  The total size, in BYTEs, of the volume.
+	VolumeTotalSpace int64 `idl:"name:m_llVolumeTotalSpace" json:"volume_total_space"`
 }
 
 func (o *DiffVolumeProperty) xxx_PreparePayload(ctx context.Context) error {
@@ -1037,12 +1207,26 @@ func (o *DiffVolumeProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 }
 
 // DiffAreaProperty structure represents VSS_DIFF_AREA_PROP RPC structure.
+//
+// The VSS_DIFF_AREA_PROP structure defines a shadow copy storage association and the
+// current sizes of the shadow copy storage.
 type DiffAreaProperty struct {
-	VolumeName         string `idl:"name:m_pwszVolumeName" json:"volume_name"`
+	// m_pwszVolumeName:  A null-terminated character string that contains the volume mount
+	// name of the original volume that is or will be shadow copied.
+	VolumeName string `idl:"name:m_pwszVolumeName" json:"volume_name"`
+	// m_pwszDiffAreaVolumeName:  A null-terminated character string that contains the volume
+	// mount name of the shadow copy storage volume where shadow copy differential data
+	// will be located for the volume specified in m_pwszVolumeName.
 	DiffAreaVolumeName string `idl:"name:m_pwszDiffAreaVolumeName" json:"diff_area_volume_name"`
-	MaximumDiffSpace   int64  `idl:"name:m_llMaximumDiffSpace" json:"maximum_diff_space"`
-	AllocatedDiffSpace int64  `idl:"name:m_llAllocatedDiffSpace" json:"allocated_diff_space"`
-	UsedDiffSpace      int64  `idl:"name:m_llUsedDiffSpace" json:"used_diff_space"`
+	// m_llMaximumDiffSpace:  The maximum number of BYTEs that will be consumed on the shadow
+	// copy storage volume to maintain shadow copies.
+	MaximumDiffSpace int64 `idl:"name:m_llMaximumDiffSpace" json:"maximum_diff_space"`
+	// m_llAllocatedDiffSpace:   The number of BYTEs currently allocated for shadow copy
+	// storage space. This value MUST be less than or equal to m_llMaximumDiffSpace.
+	AllocatedDiffSpace int64 `idl:"name:m_llAllocatedDiffSpace" json:"allocated_diff_space"`
+	// m_llUsedDiffSpace:   The number of BYTEs currently in use on the shadow copy storage
+	// volume to maintain shadow copies. This value MUST be less than or equal to m_llAllocatedDiffSpace.
+	UsedDiffSpace int64 `idl:"name:m_llUsedDiffSpace" json:"used_diff_space"`
 }
 
 func (o *DiffAreaProperty) xxx_PreparePayload(ctx context.Context) error {
@@ -1139,6 +1323,9 @@ func (o *DiffAreaProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 }
 
 // ManagementObjectUnion structure represents VSS_MGMT_OBJECT_UNION RPC union.
+//
+// The VSS_MGMT_OBJECT_UNION specifies the union of object types that can be defined
+// by the VSS_MGMT_OBJECT_PROP structure (section 2.2.3.6).
 type ManagementObjectUnion struct {
 	// Types that are assignable to Value
 	//
@@ -1274,6 +1461,8 @@ func (o *ManagementObjectUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Rea
 //
 // It has following labels: 1
 type ManagementObjectUnion_Volume struct {
+	// Vol:  The structure specifies an original volume object as a VSS_VOLUME_PROP structure
+	// (section 2.2.3.7).
 	Volume *VolumeProperty `idl:"name:Vol" json:"volume"`
 }
 
@@ -1305,6 +1494,8 @@ func (o *ManagementObjectUnion_Volume) UnmarshalNDR(ctx context.Context, w ndr.R
 //
 // It has following labels: 2
 type ManagementObjectUnion_DiffVolume struct {
+	// DiffVol:  The structure specifies a shadow copy storage volume as a VSS_DIFF_VOLUME_PROP
+	// structure.
 	DiffVolume *DiffVolumeProperty `idl:"name:DiffVol" json:"diff_volume"`
 }
 
@@ -1336,6 +1527,7 @@ func (o *ManagementObjectUnion_DiffVolume) UnmarshalNDR(ctx context.Context, w n
 //
 // It has following labels: 3
 type ManagementObjectUnion_DiffArea struct {
+	// DiffArea:  The structure specifies a shadow copy storage object as a VSS_DIFF_AREA_PROP.
 	DiffArea *DiffAreaProperty `idl:"name:DiffArea" json:"diff_area"`
 }
 
@@ -1364,8 +1556,14 @@ func (o *ManagementObjectUnion_DiffArea) UnmarshalNDR(ctx context.Context, w ndr
 }
 
 // ManagementObjectProperty structure represents VSS_MGMT_OBJECT_PROP RPC structure.
+//
+// The VSS_MGMT_OBJECT_PROP structure defines the union of object types that can be
+// enumerated by the IVssEnumMgmtObject interface.
 type ManagementObjectProperty struct {
-	Type   ManagementObjectType   `idl:"name:Type" json:"type"`
+	// Type:  A value that is defined in the VSS_MGMT_OBJECT_TYPE enumeration that specifies
+	// the type of object that is contained in the Obj union structure.
+	Type ManagementObjectType `idl:"name:Type" json:"type"`
+	// Obj:  A VSS_MGMT_OBJECT_UNION structure.
 	Object *ManagementObjectUnion `idl:"name:Obj;switch_is:Type" json:"object"`
 }
 

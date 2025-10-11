@@ -1,1 +1,211 @@
-<div class="content"></div>
+<div class="content"><p>The NTMS_LIBRARYINFORMATION structure defines properties
+specific to a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_ba47762a-6279-48b3-9a11-eeb239876e31" data-linktype="relative-path">library</a>
+object.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_LIBRARYINFORMATION {
+   DWORD LibraryType;
+   NTMS_GUID CleanerSlot;
+   NTMS_GUID CleanerSlotDefault;
+   BOOL LibrarySupportsDriveCleaning;
+   BOOL BarCodeReaderInstalled;
+   DWORD InventoryMethod;
+   DWORD dwCleanerUsesRemaining;
+   DWORD FirstDriveNumber;
+   DWORD dwNumberOfDrives;
+   DWORD FirstSlotNumber;
+   DWORD dwNumberOfSlots;
+   DWORD FirstDoorNumber;
+   DWORD dwNumberOfDoors;
+   DWORD FirstPortNumber;
+   DWORD dwNumberOfPorts;
+   DWORD FirstChangerNumber;
+   DWORD dwNumberOfChangers;
+   DWORD dwNumberOfMedia;
+   DWORD dwNumberOfMediaTypes;
+   DWORD dwNumberOfLibRequests;
+   GUID Reserved;
+   BOOL AutoRecovery;
+   DWORD dwFlags;
+ } NTMS_LIBRARYINFORMATION;
+</pre></div>
+</dd></dl><p><b>LibraryType:</b>  The library type
+object. This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_LIBRARYTYPE_UNKNOWN</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The library type cannot be determined. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_LIBRARYTYPE_OFFLINE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The library is not accessible. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_LIBRARYTYPE_ONLINE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>A <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_e15a2eb2-9f8f-4e34-a38d-b44de24f8b08" data-linktype="relative-path">robotic</a>
+  element that automates the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b" data-linktype="relative-path">mounting</a>
+  and <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a8ebf8eb-a5f7-406a-b211-9f9c08ee15d3" data-linktype="relative-path">dismounting</a> of
+  media into one or more <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drives</a>.
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_LIBRARYTYPE_STANDALONE</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>A stand-alone drive that is modeled as a library with
+  one drive in RSM. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>CleanerSlot:</b>  Specifies, for each
+library, the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a1f0ab90-f3c0-46b8-9c77-d0d7508ede94" data-linktype="relative-path">slot</a> that
+was assigned to the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_95e53eb6-39e3-43ed-905e-ff1f427446d2" data-linktype="relative-path">cleaner</a>
+<a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a71cfd0c-a569-4544-8127-7ae496bca92b" data-linktype="relative-path">cartridge</a>. If no cleaner
+slot is defined for this library, this member MUST be NULL.</p><p><b>CleanerSlotDefault:</b>  Specifies a
+library&#39;s default or preferred cleaner slot. If there is no preferred slot,
+this MUST be NULL.</p><p><b>LibrarySupportsDriveCleaning:</b>  Used
+by drives requiring cleaning under automated control. If TRUE, automatic drive
+cleaning operations are enabled; otherwise, cleaning operations are not
+enabled.</p><p><b>BarCodeReaderInstalled:</b>  This MUST
+return TRUE if a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_d4650c0f-44cb-4988-8aa6-ca8c3ffdf1a0" data-linktype="relative-path">bar code
+reader</a> is installed in a library; otherwise, it MUST return FALSE.</p><p><b>InventoryMethod:</b>  A default or
+user-selected method for performing an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_38cb8216-53ff-4936-a5c4-4d8d7672950a" data-linktype="relative-path">inventory</a> of this library.
+This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_INVENTORY_NONE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>An inventory MUST NOT be performed after the library <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_52b64896-966d-41bd-849a-36602125506b" data-linktype="relative-path">door</a> is closed. An
+  inventory might be required if a mount label check fails. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_INVENTORY_FAST</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>If the library has a bar code reader installed, a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_0c1aa461-4c32-4e8b-bb45-577085c32afb" data-linktype="relative-path">bar code</a> inventory MUST
+  be performed. If the library does not have a bar code reader, a differential
+  inventory MUST be performed (slots that transitioned from empty to full are
+  added).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_INVENTORY_OMID</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>A full inventory MUST be performed. A full inventory
+  involves mounting each side in a library and reading the on-media
+  identification from the media.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwCleanerUsesRemaining:</b>  The number
+of uses remaining on the cleaner in the library. This member MUST be 0 if no
+cleaner is present, or if the library does not support cleaning.</p><p><b>FirstDriveNumber:</b>  The number of the
+first drive in the library.</p><p><b>dwNumberOfDrives:</b>  The number of
+drives in the library.</p><p><b>FirstSlotNumber:</b>  The number of the
+first slot in the library.</p><p><b>dwNumberOfSlots:</b>  The number of
+slots in the library.</p><p><b>FirstDoorNumber:</b>  The number of the
+first access door in the library.</p><p><b>dwNumberOfDoors:</b>  The number of
+access doors in the library.</p><p><b>FirstPortNumber:</b>  The number of the
+first <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_e2c6dee3-9f37-4fe2-b970-ae3c00a8ed70" data-linktype="relative-path">IE port</a> in the
+library.</p><p><b>dwNumberOfPorts:</b>  The number of IE
+ports in the library.</p><p><b>FirstChangerNumber:</b>  The number of
+the first <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_898fa8ab-42d5-439f-9415-1589599fe913" data-linktype="relative-path">changer</a> in the
+library.</p><p><b>dwNumberOfChangers:</b>  The number of
+changers in the library.</p><p><b>dwNumberOfMedia:</b>  The number of
+media in the online or <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_f248d7b8-b3e9-421e-96c4-78551324fd86" data-linktype="relative-path">offline
+library</a>.</p><p><b>dwNumberOfMediaTypes:</b>  The number of
+media types that the library supports.</p><p><b>dwNumberOfLibRequests:</b>  The number
+of current <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_f8da5142-cddf-49b1-b24c-a352db74cbbb" data-linktype="relative-path">library requests</a>.</p><p><b>Reserved:</b>  This MUST be 0 and MUST
+be ignored on receipt.</p><p><b>AutoRecovery:</b>  If the mount operation
+fails and this member is TRUE, a full inventory MUST be performed. If this
+member is FALSE, a full inventory MUST NOT be performed. The failure can be
+either a hardware or a label mismatch. For ATAPI CD libraries, this member MUST
+NOT be set to FALSE. The default value is TRUE.</p><p><b>dwFlags:</b>  This member MUST be one or
+more of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_LIBRARYFLAG_FIXEDOFFLINE</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>The library is an offline library, not a library that
+  is not present.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_LIBRARYFLAG_CLEANERPRESENT</p>
+  <p>0x02</p>
+  </td>
+  <td>
+  <p>A cleaner is present in the changer. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_LIBRARYFLAG_IGNORECLEANERUSESREMAINING</p>
+  <p>0x08</p>
+  </td>
+  <td>
+  <p>The cleaner cartridge MUST be used until it no longer
+  cleans the drive, instead of keeping track of the number of cleanings left.
+  This flag MUST NOT be set by the client. The server MUST set the flag if <b>dwCleanerUsesRemaining</b>
+  is 0xFFFFFFFF, and the server MUST clear the flag otherwise.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_LIBRARYFLAG_RECOGNIZECLEANERBARCODE</p>
+  <p>0x10</p>
+  </td>
+  <td>
+  <p>Bar-coded cartridges that have CLN as a prefix MUST be
+  treated as cleaner cartridges, instead of mounting them in the drive to
+  identify them.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The NTMS_LIBRARYINFORMATION structure defines properties
+specific to a library object.</p></div>

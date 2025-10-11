@@ -53,8 +53,7 @@ success, or a nonzero error code on failure.</p><dl>
 </dd></dl><p>The server MUST perform the following steps or return a
 nonzero error code.</p><ol><li><p><span>    </span>If a Property
 Definition Instance with the Property Definition Instance specified by <i>propertyName</i>
-does not exist, the server MUST return
-FSRM_E_PARTIAL_CLASSIFICATION_PROPERTY_NOT_FOUND.</p>
+does not exist, the server MUST return FSRM_E_PARTIAL_CLASSIFICATION_PROPERTY_NOT_FOUND.</p>
 </li><li><p><span>    </span>Perform the <a href="8fe62844-c8f1-4317-9752-9706ea401638" data-linktype="relative-path">Retrieve Stored Classification
 Properties</a> for the file.</p>
 </li><li><p><span>    </span>If the <a href="a4da1447-54a5-4b37-b135-bfa7481aed1c" data-linktype="relative-path">List of Property Definition

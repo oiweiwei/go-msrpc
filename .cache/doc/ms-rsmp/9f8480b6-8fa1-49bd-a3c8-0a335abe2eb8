@@ -1,1 +1,39 @@
-<div class="content"></div>
+<div class="content"><p>The NTMS_CHANGERTYPEINFORMATIONA structure describes the properties
+specific to a type of <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_898fa8ab-42d5-439f-9415-1589599fe913" data-linktype="relative-path">changer</a>,
+as a sequence of ASCII characters.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_CHANGERTYPEINFORMATIONA {
+   char szVendor[128];
+   char szProduct[128];
+   DWORD DeviceType;
+ } NTMS_CHANGERTYPEINFORMATIONA;
+</pre></div>
+</dd></dl><p><b>szVendor:</b>   A null-terminated
+sequence of ASCII characters specifying the name of the changer vendor,
+acquired from device inquiry data. If no name is available, this MUST contain
+an empty string.</p><p><b>szProduct:</b>   A null-terminated sequence
+of ASCII characters specifying the name of the changer product, acquired
+through SCSI commands. If no name is available, this MUST contain an empty
+string.</p><p><b>DeviceType:</b>  The following SCSI
+device type <a href="https://go.microsoft.com/fwlink/?LinkId=90512" data-linktype="external">[ANSI-131-1994]</a>
+acquired from device inquiry data.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FILE_DEVICE_CHANGER</p>
+  <p>0x00000030</p>
+  </td>
+  <td>
+  <p>Device is a changer.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

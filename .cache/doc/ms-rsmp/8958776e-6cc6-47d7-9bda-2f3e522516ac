@@ -1,1 +1,99 @@
-<div class="content"></div>
+<div class="content"><p>The DeleteNtmsDrive method deletes a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a>.</p><dl>
+<dd>
+<div><pre> HRESULT DeleteNtmsDrive(
+   [in] LPNTMS_GUID lpDriveId
+ );
+</pre></div>
+</dd></dl><p><b>lpDriveId: </b>A pointer to the identifier of the
+drive to delete.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to an object was denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007000F</p>
+  <p>ERROR_INVALID_DRIVE</p>
+  </td>
+  <td>
+  <p>The drive identifier is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CD</p>
+  <p>ERROR_INVALID_LIBRARY</p>
+  </td>
+  <td>
+  <p>The library identifier is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database query or update failed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DA</p>
+  <p>ERROR_DATABASE_FULL</p>
+  </td>
+  <td>
+  <p>The database is full.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007139F</p>
+  <p>ERROR_INVALID_STATE</p>
+  </td>
+  <td>
+  <p>An unexpected state was encountered.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpDriveId</i>
+is not NULL. If it is NULL, the server MUST immediately fail the operation and
+return ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST check
+access rights to the library and verify that the library is enabled and offline
+before further processing. If the client does not have the required access
+rights, NTMS_MODIFY_ACCESS to the library is denied, and the server MUST return
+ERROR_ACCESS_DENIED (0x80070005). Other security errors are possible but
+indicate a security subsystem error. If the library is disabled or online, the
+server MUST return ERROR_INVALID_STATE (0x8007139F).</p><p>If this drive belongs to a standalone library (that is, the
+number of slots in the library is zero) the server MUST delete the library,
+thereby leaving the media, drive and library objects in a state that is
+consistent with the physical state.</p><p>The DeleteNtmsDrive method deletes a drive from the RSM
+database. If the drive is not a standalone drive, then the drive MUST have <i>dwOperationalState</i>
+set to NTMS_NOT_PRESENT. If the drive does not have <i>dwOperationalState</i>
+set to NTMS_NOT_PRESENT, the server MUST fail the operation and return
+ERROR_INVALID_STATE (0x8007139F).</p></div>

@@ -1,1 +1,105 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IPSTATS</b> structure stores information about
+the IP protocol running on a specific computer. This structure is used in <b>MIB_OPAQUE_INFO</b> (section
+<a href="169e435d-a975-4c1c-bf41-55fd2bd76125" data-linktype="relative-path">2.2.1.2.52</a>) structure.</p><dl>
+<dd>
+<div><pre> typedef struct _MIB_IPSTATS {
+   union {
+     DWORD dwForwarding;
+     MIB_IPSTATS_FORWARDING Forwarding;
+   };
+   DWORD dwDefaultTTL;
+   DWORD dwInReceives;
+   DWORD dwInHdrErrors;
+   DWORD dwInAddrErrors;
+   DWORD dwForwDatagrams;
+   DWORD dwInUnknownProtos;
+   DWORD dwInDiscards;
+   DWORD dwInDelivers;
+   DWORD dwOutRequests;
+   DWORD dwRoutingDiscards;
+   DWORD dwOutDiscards;
+   DWORD dwOutNoRoutes;
+   DWORD dwReasmTimeout;
+   DWORD dwReasmReqds;
+   DWORD dwReasmOks;
+   DWORD dwReasmFails;
+   DWORD dwFragOks;
+   DWORD dwFragFails;
+   DWORD dwFragCreates;
+   DWORD dwNumIf;
+   DWORD dwNumAddr;
+   DWORD dwNumRoutes;
+ } MIB_IPSTATS,
+  *PMIB_IPSTATS;
+</pre></div>
+</dd></dl><p><b>dwForwarding: </b>Specifies whether IP forwarding
+is enabled or disabled. This value MUST be 0xFFFFFFFF or one of the following
+values. If set to 0xFFFFFFFF, <a href="61ae7aea-8604-4bf3-8ae5-88542152cf8e" data-linktype="relative-path"><b>RMIBEntrySet</b></a> does
+not change the current value of <b>dwForwarding</b>. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>IP Forwarding enabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>IP Forwarding not enabled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Forwarding: </b>Specifies whether IP forwarding is
+enabled or disabled.<a id="Appendix_A_Target_36"></a><a aria-label="Product behavior note 36" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_36" data-linktype="relative-path">&lt;36&gt;</a></p><p><b>dwDefaultTTL: </b>The default initial TTL for <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_96ea17cd-226a-48f8-aa14-38d2d3ae60a5" data-linktype="relative-path">datagrams</a> originating on a
+specific computer. This value MUST be 0xFFFFFFFF or a value less than or equal
+to 255.</p><p><b>dwInReceives: </b>The number of datagrams
+received. This is a read-only field and MUST be ignored while writing.</p><p><b>dwInHdrErrors: </b>The number of datagrams
+received that have header errors. This is a read-only field and MUST be ignored
+while writing.</p><p><b>dwInAddrErrors: </b>The number of datagrams
+received that have address errors. This is a read-only field and MUST be
+ignored while writing.</p><p><b>dwForwDatagrams: </b>The number of datagrams
+forwarded. This is a read-only field and MUST be ignored while writing.</p><p><b>dwInUnknownProtos: </b>The number of datagrams
+received that have an unknown protocol. This is a read-only field and MUST be
+ignored while writing.</p><p><b>dwInDiscards: </b>The number of received datagrams
+discarded. This is a read-only field and MUST be ignored while writing.</p><p><b>dwInDelivers: </b>The number of received datagrams
+delivered. This is a read-only field and MUST be ignored while writing.</p><p><b>dwOutRequests: </b>The number of outgoing
+datagrams that the IP is requested to transmit. This number does not include forwarded
+datagrams. This is a read-only field and MUST be ignored while writing.</p><p><b>dwRoutingDiscards: </b>The number of outgoing
+datagrams discarded. This is a read-only field and MUST be ignored while
+writing.</p><p><b>dwOutDiscards: </b>The number of transmitted
+datagrams to be discarded. This is a read-only field and MUST be ignored while
+writing.</p><p><b>dwOutNoRoutes: </b>The number of datagrams for
+which this computer did not have a route to the destination IP address. These
+datagrams were discarded. This is a read-only field and MUST be ignored while
+writing.</p><p><b>dwReasmTimeout: </b>The amount of time allowed for
+all pieces of a fragmented datagram to arrive. If all pieces do not arrive
+within this time, the datagram is discarded. This is a read-only field and MUST
+be ignored while writing.</p><p><b>dwReasmReqds: </b>The number of datagrams that
+require reassembly. This is a read-only field and MUST be ignored while
+writing.</p><p><b>dwReasmOks: </b>The number of datagrams that were
+successfully reassembled. This is a read-only field and MUST be ignored while
+writing.</p><p><b>dwReasmFails: </b>The number of datagrams that
+cannot be reassembled. This is a read-only field and MUST be ignored while
+writing.</p><p><b>dwFragOks: </b>The number of datagrams that were
+fragmented successfully. This is a read-only field and MUST be ignored while
+writing.</p><p><b>dwFragFails: </b>The number of datagrams that have
+not been fragmented because the IP header specifies no fragmentation. These
+datagrams are discarded. This is a read-only field and MUST be ignored while
+writing.</p><p><b>dwFragCreates: </b>The number of fragments created.
+This is a read-only field and MUST be ignored while writing.</p><p><b>dwNumIf: </b>The number of interfaces. This is a
+read-only field and MUST be ignored while writing.</p><p><b>dwNumAddr: </b>The number of IP addresses
+associated with this computer. This is a read-only field and MUST be ignored
+while writing.</p><p><b>dwNumRoutes: </b>The number of routes in the IP
+routing table. This is a read-only field and MUST be ignored while writing.</p></div>

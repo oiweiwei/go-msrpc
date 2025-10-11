@@ -1,1 +1,152 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IPMCAST_MFE_STATS</b> structure stores the
+statistics associated with an MFE.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwGroup</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSource</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwSrcMask</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwUpStrmNgbr</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwInIfIndex</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwInIfProtocol</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRouteProtocol</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRouteNetwork</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwRouteMask</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ulUpTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ulExpiryTime</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ulNumOutIf</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ulInPkts</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ulInOctets</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ulPktsDifferentIf</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ulQueueOverflow</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>rgmiosOutStats
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwGroup (4 bytes): </b>The multicast group for
+this MFE. A value of zero (0) indicates a wildcard group.</p><p><b>dwSource (4 bytes): </b>The range of source
+addresses for this MFE. A value of zero (0) indicates a wildcard source.</p><p><b>dwSrcMask (4 bytes): </b>The IPv4 subnet mask that
+corresponds to the <b>dwSource</b>. The <b>dwSource</b> and the <b>dwSrcMask</b>
+members are used together to define a range of sources.</p><p><b>dwUpStrmNgbr (4 bytes): </b>The <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_4daf1e81-3ffe-4656-8074-a9914b14a60c" data-linktype="relative-path">upstream</a> neighbor that is
+related to this MFE.</p><p><b>dwInIfIndex (4 bytes): </b>The index of the
+incoming interface that is related to this MFE.</p><p><b>dwInIfProtocol (4 bytes): </b>The <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_edf0a770-0034-4c2d-8acd-68508bac32ae" data-linktype="relative-path">routing protocol</a> that owns
+the incoming interface that is related to this MFE.</p><p><b>dwRouteProtocol (4 bytes): </b>The protocol that
+created the route. It is the enum <a href="c40401df-9ef7-42aa-b336-759c2086e476" data-linktype="relative-path"><b>MIB_IPFORWARD_PROTO
+(section</b></a><span><b> </b></span>2.2.1.1.9).  </p><p><b>dwRouteNetwork (4 bytes): </b>The address
+associated with the route referred to by the <b>dwRouteProtocol</b>.</p><p><b>dwRouteMask (4 bytes): </b>The mask associated
+with the route referred to by the <b>dwRouteProtocol</b>.</p><p><b>ulUpTime (4 bytes): </b>The time, in 100ths of a
+second, since the MFE was created. </p><p><b>ulExpiryTime (4 bytes): </b>The time, in 100ths of
+a second, until the MFE will be deleted. A value of zero (0) is specified if
+the MFE is not subject to aging requirements.</p><p><b>ulNumOutIf (4 bytes): </b>The number of interfaces
+in the outgoing interface list for this MFE.</p><p><b>ulInPkts (4 bytes): </b>The number of packets that
+have been forwarded that matched this MFE.</p><p><b>ulInOctets (4 bytes): </b>The number of octets of
+data forwarded that match this MFE.</p><p><b>ulPktsDifferentIf (4 bytes): </b>The number of
+packets matching this MFE that were dropped due to an incoming interface check.</p><p><b>ulQueueOverflow (4 bytes): </b>The number of
+packets matching this MFE that were dropped due to a queue overflow. There is
+one queue per MFE.</p><p><b>rgmiosOutStats (variable): </b>A pointer to a
+table of outgoing interface statistics that are implemented as an array of <a href="d3c5893d-df44-4239-bc47-84d558098e6a" data-linktype="relative-path"><b>MIB_IPMCAST_OIF_STATS
+(section</b></a><span> </span>2.2.1.2.45) structures. The
+number of entries in the table is specified by the value of the <b>ulNumOutIf</b>
+member. </p></div>

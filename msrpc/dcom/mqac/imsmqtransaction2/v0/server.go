@@ -31,7 +31,43 @@ type Transaction2Server interface {
 	// IMSMQTransaction base class.
 	imsmqtransaction.TransactionServer
 
-	// InitNew operation.
+	// The InitNew method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST initialize an MSMQ transaction object to represent an existing underlying
+	// transaction object.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
+	//
+	// When the server processes this call, it MUST follow these guidelines:
+	//
+	// * If the Transaction instance variable is NOT NULL:
+	//
+	// * Return MQ_ERROR_TRANSACTION_USAGE (0xC00E0050), and take no further action.
+	//
+	// * Retrieve the transaction object, referred to as rTransObj , from the varTransaction
+	// VARIANT based on the type of the VARIANT as follows:
+	//
+	// * If varTransaction.vt is VT_UNKNOWN then set rTransObj to varTransaction.punkVal.
+	//
+	//   - Else if varTransaction.vt is VT_UNKNOWN | VT_BYREF then set rTransObj to varTransaction.ppunkVal.
+	//
+	// * Else if varTransaction.vt is VT_DISPATCH then set rTransObj to varTransaction.pdispVal.
+	//
+	//   - Else if varTransaction.vt is VT_ DISPATCH | VT_BYREF then set rTransObj to varTransaction.ppdispVal.
+	//
+	// * Otherwise return E_INVALIDARG (0x80070057).
+	//
+	// * Retrieve the transaction object that is implementing the ITransaction interface
+	// by calling IUnknown::QueryInterface ( ../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c
+	// ) (section 3.1 ( 6b1800d7-4e98-48be-997e-57f09ce52d41 ) ) on rTransObj , passing
+	// the interface identifier ( 3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_76ad3105-3f05-479d-a40c-c9c8fa2ebd83
+	// ) of ITransaction.
+	//
+	// * Return E_INVALIDARG (0x80070057) if the varTransaction input parameter does not
+	// implement the ITransaction interface, and take no further action.
+	//
+	// * Set the Transaction instance variable to the value of the transaction object previously
+	// obtained.
 	InitNew(context.Context, *InitNewRequest) (*InitNewResponse, error)
 
 	// Properties operation.

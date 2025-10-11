@@ -1,1 +1,23 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MPR_SERVER_EX_1</b> structure<a id="Appendix_A_Target_130"></a><a aria-label="Product behavior note 130" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_130" data-linktype="relative-path">&lt;130&gt;</a> be used to get or set the
+configuration of a RAS server.</p><dl>
+<dd>
+<div><pre> typedef struct _MPR_SERVER_EX_1 {
+   MPRAPI_OBJECT_HEADER_IDL Header;
+   BOOL fLanOnlyMode;
+   DWORD dwUpTime;
+   DWORD dwTotalPorts;
+   DWORD dwPortsInUse;
+   DWORD Reserved;
+   MPRAPI_TUNNEL_CONFIG_PARAMS_1 ConfigParams;
+ } MPR_SERVER_EX_1,
+  *PMPR_SERVER_EX_1;
+</pre></div>
+</dd></dl><p><b>Header: </b>This specifies the version of the <b>MPR_SERVER_EX_1
+</b>structure; and MUST be a <a href="abab767e-8f43-40c6-bb13-ff65307f05ef" data-linktype="relative-path"><b>MPRAPI_OBJECT_HEADER_IDL (section 2.2.1.2.129)</b></a>
+whose revision field MUST be 0x01, and whose type field MUST be 0x02.  </p><p><b>fLanOnlyMode: </b>Specifies whether RRAS is
+running on the router. If TRUE, RRAS is not running as the router; if FALSE,
+RRAS is running as router.</p><p><b>dwUpTime: </b>Specifies the elapsed time, in
+seconds, since the router was started.</p><p><b>dwTotalPorts: </b>Specifies the number of ports on
+the system.</p><p><b>dwPortsInUse: </b>Specifies the number of ports
+currently in use.</p><p><b>Reserved: </b>Unused, MUST be set to 0.</p><p><b>ConfigParams: </b>This MUST be a <a href="fa42c251-f3c7-4713-bc51-0e15c58ec17f" data-linktype="relative-path"><b>MPRAPI_TUNNEL_CONFIG_PARAMS_1</b></a>
+structure. </p></div>

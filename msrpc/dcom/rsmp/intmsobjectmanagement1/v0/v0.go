@@ -49,22 +49,36 @@ type ObjectManagement1Client interface {
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
 
+	// The GetNtmsObjectSecurity method retrieves the security descriptor of an object.
 	GetNTMSObjectSecurity(context.Context, *GetNTMSObjectSecurityRequest, ...dcerpc.CallOption) (*GetNTMSObjectSecurityResponse, error)
 
+	// The SetNtmsObjectSecurity method changes the security descriptor of an object.
 	SetNTMSObjectSecurity(context.Context, *SetNTMSObjectSecurityRequest, ...dcerpc.CallOption) (*SetNTMSObjectSecurityResponse, error)
 
+	// The GetNtmsObjectAttributeA method retrieves private data of an object, with strings
+	// encoded using ASCII.
 	GetNTMSObjectAttributeA(context.Context, *GetNTMSObjectAttributeARequest, ...dcerpc.CallOption) (*GetNTMSObjectAttributeAResponse, error)
 
+	// The GetNtmsObjectAttributeW method retrieves private data from an object, with strings
+	// encoded using Unicode.
 	GetNTMSObjectAttributeW(context.Context, *GetNTMSObjectAttributeWRequest, ...dcerpc.CallOption) (*GetNTMSObjectAttributeWResponse, error)
 
+	// The SetNtmsObjectAttributeA method changes the private data of an object, with strings
+	// encoded using ASCII.
 	SetNTMSObjectAttributeA(context.Context, *SetNTMSObjectAttributeARequest, ...dcerpc.CallOption) (*SetNTMSObjectAttributeAResponse, error)
 
+	// The SetNtmsObjectAttributeW method changes the private data of an object, with strings
+	// encoded using Unicode.
 	SetNTMSObjectAttributeW(context.Context, *SetNTMSObjectAttributeWRequest, ...dcerpc.CallOption) (*SetNTMSObjectAttributeWResponse, error)
 
+	// The EnumerateNtmsObject method enumerates the objects of the container specified
+	// by the lpContainerId parameter.
 	EnumerateNTMSObject(context.Context, *EnumerateNTMSObjectRequest, ...dcerpc.CallOption) (*EnumerateNTMSObjectResponse, error)
 
+	// The DisableNtmsObject method disables an object.
 	DisableNTMSObject(context.Context, *DisableNTMSObjectRequest, ...dcerpc.CallOption) (*DisableNTMSObjectResponse, error)
 
+	// The EnableNtmsObject method enables an object.
 	EnableNTMSObject(context.Context, *EnableNTMSObjectRequest, ...dcerpc.CallOption) (*EnableNTMSObjectResponse, error)
 
 	// AlterContext alters the client context.
@@ -551,11 +565,17 @@ func (o *xxx_GetNTMSObjectSecurityOperation) UnmarshalNDRResponse(ctx context.Co
 // GetNTMSObjectSecurityRequest structure represents the GetNtmsObjectSecurity operation request
 type GetNTMSObjectSecurityRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ObjectID            *dtyp.GUID     `idl:"name:lpObjectId" json:"object_id"`
-	Type                uint32         `idl:"name:dwType" json:"type"`
-	SecurityInformation uint32         `idl:"name:SecurityInformation" json:"security_information"`
-	Length              uint32         `idl:"name:nLength" json:"length"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpObjectId: A pointer to the identifier of the object for which to retrieve information.
+	ObjectID *dtyp.GUID `idl:"name:lpObjectId" json:"object_id"`
+	// dwType: A value from the NtmsObjectsTypes (section 2.2.1.6) enumeration specifying
+	// the type of the object.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// SecurityInformation: A SECURITY_INFORMATION structure specifying the security data
+	// to retrieve.
+	SecurityInformation uint32 `idl:"name:SecurityInformation" json:"security_information"`
+	// nLength: The size, in bytes, of the client buffer for lpSecurityDescriptor.
+	Length uint32 `idl:"name:nLength" json:"length"`
 }
 
 func (o *GetNTMSObjectSecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSObjectSecurityOperation) *xxx_GetNTMSObjectSecurityOperation {
@@ -601,9 +621,34 @@ type GetNTMSObjectSecurityResponse struct {
 	Length uint32 `idl:"name:nLength" json:"length"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That               *dcom.ORPCThat `idl:"name:That" json:"that"`
-	SecurityDescriptor []byte         `idl:"name:lpSecurityDescriptor;size_is:(nLength)" json:"security_descriptor"`
-	LengthNeeded       uint32         `idl:"name:lpnLengthNeeded" json:"length_needed"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpSecurityDescriptor: A pointer to a SECURITY_DESCRIPTOR structure that describes
+	// the security of the object.
+	SecurityDescriptor []byte `idl:"name:lpSecurityDescriptor;size_is:(nLength)" json:"security_descriptor"`
+	// lpnLengthNeeded: A pointer to the required size of lpSecurityDescriptor if the specified
+	// client buffer was not large enough.
+	//
+	//	+----------------------------------------+------------------------------------------------+
+	//	|                 RETURN                 |                                                |
+	//	|               VALUE/CODE               |                  DESCRIPTION                   |
+	//	|                                        |                                                |
+	//	+----------------------------------------+------------------------------------------------+
+	//	+----------------------------------------+------------------------------------------------+
+	//	| 0x00000000 S_OK                        | The call was successful.                       |
+	//	+----------------------------------------+------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED         | Access to an object was denied.                |
+	//	+----------------------------------------+------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER     | A parameter is not valid.                      |
+	//	+----------------------------------------+------------------------------------------------+
+	//	| 0x8007007A ERROR_INSUFFICIENT_BUFFER   | The specified buffer size is not large enough. |
+	//	+----------------------------------------+------------------------------------------------+
+	//	| 0x80070546 ERROR_NO_SECURITY_ON_OBJECT | The object has no security information.        |
+	//	+----------------------------------------+------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND      | The object was not found.                      |
+	//	+----------------------------------------+------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE      | The database query or update failed.           |
+	//	+----------------------------------------+------------------------------------------------+
+	LengthNeeded uint32 `idl:"name:lpnLengthNeeded" json:"length_needed"`
 	// Return: The GetNtmsObjectSecurity return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -883,12 +928,40 @@ func (o *xxx_SetNTMSObjectSecurityOperation) UnmarshalNDRResponse(ctx context.Co
 // SetNTMSObjectSecurityRequest structure represents the SetNtmsObjectSecurity operation request
 type SetNTMSObjectSecurityRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ObjectID            *dtyp.GUID     `idl:"name:lpObjectId" json:"object_id"`
-	Type                uint32         `idl:"name:dwType" json:"type"`
-	SecurityInformation uint32         `idl:"name:SecurityInformation" json:"security_information"`
-	SecurityDescriptor  []byte         `idl:"name:lpSecurityDescriptor;size_is:(nLength)" json:"security_descriptor"`
-	Length              uint32         `idl:"name:nLength" json:"length"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpObjectId: A pointer to the identifier of the object for which to change security
+	// information.
+	ObjectID *dtyp.GUID `idl:"name:lpObjectId" json:"object_id"`
+	// dwType: A value from the NtmsObjectsTypes (section 2.2.1.6) enumeration specifying
+	// the type of the object.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// SecurityInformation: A SECURITY_INFORMATION structure specifying the security data
+	// to change.
+	SecurityInformation uint32 `idl:"name:SecurityInformation" json:"security_information"`
+	// lpSecurityDescriptor: A pointer to a SECURITY_DESCRIPTOR structure that describes
+	// the security descriptor to write to the object.
+	SecurityDescriptor []byte `idl:"name:lpSecurityDescriptor;size_is:(nLength)" json:"security_descriptor"`
+	// nLength: The length, in bytes, of lpSecurityDescriptor.
+	//
+	//	+------------------------------------+-------------------------------------------------------------------+
+	//	|               RETURN               |                                                                   |
+	//	|             VALUE/CODE             |                            DESCRIPTION                            |
+	//	|                                    |                                                                   |
+	//	+------------------------------------+-------------------------------------------------------------------+
+	//	+------------------------------------+-------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                          |
+	//	+------------------------------------+-------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Privileges required to modify the security descriptor are denied. |
+	//	+------------------------------------+-------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | A parameter is not valid.                                         |
+	//	+------------------------------------+-------------------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND  | The object was not found.                                         |
+	//	+------------------------------------+-------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE  | The database query or update failed.                              |
+	//	+------------------------------------+-------------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL     | The database is full.                                             |
+	//	+------------------------------------+-------------------------------------------------------------------+
+	Length uint32 `idl:"name:nLength" json:"length"`
 }
 
 func (o *SetNTMSObjectSecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNTMSObjectSecurityOperation) *xxx_SetNTMSObjectSecurityOperation {
@@ -1234,11 +1307,20 @@ func (o *xxx_GetNTMSObjectAttributeAOperation) UnmarshalNDRResponse(ctx context.
 // GetNTMSObjectAttributeARequest structure represents the GetNtmsObjectAttributeA operation request
 type GetNTMSObjectAttributeARequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ObjectID            *dtyp.GUID     `idl:"name:lpObjectId" json:"object_id"`
-	Type                uint32         `idl:"name:dwType" json:"type"`
-	AttributeName       uint8          `idl:"name:lpAttributeName" json:"attribute_name"`
-	AttributeBufferSize uint32         `idl:"name:lpdwAttributeBufferSize" json:"attribute_buffer_size"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpObjectId: A pointer to the identifier of the object for which to retrieve private
+	// data.
+	ObjectID *dtyp.GUID `idl:"name:lpObjectId" json:"object_id"`
+	// dwType: A value from the NtmsObjectsTypes (section 2.2.1.6) enumeration specifying
+	// the type of the object.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// lpAttributeName: A null-terminated sequence of ASCII characters specifying the name
+	// of the extended attribute to retrieve. The attribute name MUST be identical to that
+	// specified when creating this attribute using SetNtmsObjectAttributeA.
+	AttributeName uint8 `idl:"name:lpAttributeName" json:"attribute_name"`
+	// lpdwAttributeBufferSize: A pointer to the size, in bytes, of the client buffer for
+	// lpAttributeData.
+	AttributeBufferSize uint32 `idl:"name:lpdwAttributeBufferSize" json:"attribute_buffer_size"`
 }
 
 func (o *GetNTMSObjectAttributeARequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeAOperation) *xxx_GetNTMSObjectAttributeAOperation {
@@ -1284,9 +1366,39 @@ type GetNTMSObjectAttributeAResponse struct {
 	AttributeBufferSize uint32 `idl:"name:lpdwAttributeBufferSize" json:"attribute_buffer_size"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
-	AttributeData []byte         `idl:"name:lpAttributeData;size_is:(lpdwAttributeBufferSize);length_is:(lpAttributeSize)" json:"attribute_data"`
-	AttributeSize uint32         `idl:"name:lpAttributeSize" json:"attribute_size"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpAttributeData: A buffer containing the attribute.
+	AttributeData []byte `idl:"name:lpAttributeData;size_is:(lpdwAttributeBufferSize);length_is:(lpAttributeSize)" json:"attribute_data"`
+	// lpAttributeSize: The size of lpAttributeData. If the specified client buffer was
+	// not large enough, lpAttributeSize MUST point to the required size of lpAttributeData;
+	// otherwise, it MUST point to the number of bytes that are returned by the server in
+	// the buffer lpAttributeData.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | The call was successful.                                                         |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED       | Access to the object is denied; other security errors are possible but indicate  |
+	//	|                                      | a security subsystem error.                                                      |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER   | The parameter is not valid.                                                      |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007007A ERROR_INSUFFICIENT_BUFFER | The specified buffer size is not large enough.                                   |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800700E8 ERROR_NO_DATA             | The specified attribute is greater than or equal to NTMS_MAXATTR_LENGTH, defined |
+	//	|                                      | in the Platform SDK file NTMSApi.h.                                              |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800706C6 ERROR_RPC_S_INVALID_BOUND | The array bounds are invalid.                                                    |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND    | The specified attribute was not found.                                           |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE    | The database query or update failed.                                             |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	AttributeSize uint32 `idl:"name:lpAttributeSize" json:"attribute_size"`
 	// Return: The GetNtmsObjectAttributeA return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1599,11 +1711,20 @@ func (o *xxx_GetNTMSObjectAttributeWOperation) UnmarshalNDRResponse(ctx context.
 // GetNTMSObjectAttributeWRequest structure represents the GetNtmsObjectAttributeW operation request
 type GetNTMSObjectAttributeWRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ObjectID            *dtyp.GUID     `idl:"name:lpObjectId" json:"object_id"`
-	Type                uint32         `idl:"name:dwType" json:"type"`
-	AttributeName       string         `idl:"name:lpAttributeName;string" json:"attribute_name"`
-	AttributeBufferSize uint32         `idl:"name:lpdwAttributeBufferSize" json:"attribute_buffer_size"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpObjectId: A pointer to the identifier of the object for which to retrieve private
+	// data.
+	ObjectID *dtyp.GUID `idl:"name:lpObjectId" json:"object_id"`
+	// dwType: A value from the NtmsObjectsTypes (section 2.2.1.6) enumeration specifying
+	// the type of the object.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// lpAttributeName: A null-terminated sequence of Unicode characters specifying the
+	// name of the extended attribute to retrieve. The attribute name MUST be identical
+	// to that specified when creating this attribute using SetNtmsObjectAttributeW.
+	AttributeName string `idl:"name:lpAttributeName;string" json:"attribute_name"`
+	// lpdwAttributeBufferSize: A pointer to the size, in bytes, of the client buffer for
+	// lpAttributeData.
+	AttributeBufferSize uint32 `idl:"name:lpdwAttributeBufferSize" json:"attribute_buffer_size"`
 }
 
 func (o *GetNTMSObjectAttributeWRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeWOperation) *xxx_GetNTMSObjectAttributeWOperation {
@@ -1649,9 +1770,37 @@ type GetNTMSObjectAttributeWResponse struct {
 	AttributeBufferSize uint32 `idl:"name:lpdwAttributeBufferSize" json:"attribute_buffer_size"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
-	AttributeData []byte         `idl:"name:lpAttributeData;size_is:(lpdwAttributeBufferSize);length_is:(lpAttributeSize)" json:"attribute_data"`
-	AttributeSize uint32         `idl:"name:lpAttributeSize" json:"attribute_size"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpAttributeData: A buffer containing the attribute.
+	AttributeData []byte `idl:"name:lpAttributeData;size_is:(lpdwAttributeBufferSize);length_is:(lpAttributeSize)" json:"attribute_data"`
+	// lpAttributeSize: The size of lpAttributeData. If the specified client buffer was
+	// not large enough, lpAttributeSize MUST point to the required size of lpAttributeData;
+	// otherwise, it MUST point to the number of bytes that are returned by the server in
+	// the buffer lpAttributeData.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | The call was successful.                                                         |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED       | Access to the object is denied; other security errors are possible but indicate  |
+	//	|                                      | a security subsystem error.                                                      |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER   | The parameter is not valid.                                                      |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007007A ERROR_INSUFFICIENT_BUFFER | The specified buffer size is not large enough.                                   |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800700E8 ERROR_NO_DATA             | The specified attribute is greater than or equal to NTMS_MAXATTR_LENGTH, defined |
+	//	|                                      | in the Platform SDK file NTMSApi.h.                                              |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND    | The specified attribute was not found.                                           |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE    | The database query or update failed.                                             |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	AttributeSize uint32 `idl:"name:lpAttributeSize" json:"attribute_size"`
 	// Return: The GetNtmsObjectAttributeW return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1931,12 +2080,44 @@ func (o *xxx_SetNTMSObjectAttributeAOperation) UnmarshalNDRResponse(ctx context.
 // SetNTMSObjectAttributeARequest structure represents the SetNtmsObjectAttributeA operation request
 type SetNTMSObjectAttributeARequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This          *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ObjectID      *dtyp.GUID     `idl:"name:lpObjectId" json:"object_id"`
-	Type          uint32         `idl:"name:dwType" json:"type"`
-	AttributeName uint8          `idl:"name:lpAttributeName" json:"attribute_name"`
-	AttributeData []byte         `idl:"name:lpAttributeData;size_is:(AttributeSize)" json:"attribute_data"`
-	AttributeSize uint32         `idl:"name:AttributeSize" json:"attribute_size"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpObjectId: A pointer to the identifier of the object for which to set private data.
+	ObjectID *dtyp.GUID `idl:"name:lpObjectId" json:"object_id"`
+	// dwType: A value from the NtmsObjectsTypes (section 2.2.1.6) enumeration specifying
+	// the type of the object.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// lpAttributeName: A null-terminated sequence of ASCII characters specifying the name
+	// of the extended attribute to set. The client can give any name to the extended attribute
+	// and MUST use the same name in the GetNtmsObjectAttributeA method.
+	AttributeName uint8 `idl:"name:lpAttributeName" json:"attribute_name"`
+	// lpAttributeData: A buffer containing the attribute.
+	AttributeData []byte `idl:"name:lpAttributeData;size_is:(AttributeSize)" json:"attribute_data"`
+	// AttributeSize: The size of lpAttributeData.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access to the object is denied; other security errors are possible but indicate  |
+	//	|                                    | a security subsystem error.                                                      |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY | An allocation failure occurred during processing.                                |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | The parameter is not valid.                                                      |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007007B ERROR_INVALID_NAME      | The attribute name is invalid or too long. The NTMS_MAXATTR_NAMELEN              |
+	//	|                                    | value, defined in the Platform SDK file NTMSApi.h, specifies the maximum         |
+	//	|                                    | null-terminated attribute name length.                                           |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND  | The object was not found.                                                        |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800708CA ERROR_NOT_CONNECTED     | Unable to connect to the RSM service.                                            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	AttributeSize uint32 `idl:"name:AttributeSize" json:"attribute_size"`
 }
 
 func (o *SetNTMSObjectAttributeARequest) xxx_ToOp(ctx context.Context, op *xxx_SetNTMSObjectAttributeAOperation) *xxx_SetNTMSObjectAttributeAOperation {
@@ -2249,12 +2430,44 @@ func (o *xxx_SetNTMSObjectAttributeWOperation) UnmarshalNDRResponse(ctx context.
 // SetNTMSObjectAttributeWRequest structure represents the SetNtmsObjectAttributeW operation request
 type SetNTMSObjectAttributeWRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This          *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ObjectID      *dtyp.GUID     `idl:"name:lpObjectId" json:"object_id"`
-	Type          uint32         `idl:"name:dwType" json:"type"`
-	AttributeName string         `idl:"name:lpAttributeName;string" json:"attribute_name"`
-	AttributeData []byte         `idl:"name:lpAttributeData;size_is:(AttributeSize)" json:"attribute_data"`
-	AttributeSize uint32         `idl:"name:AttributeSize" json:"attribute_size"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpObjectId: A pointer to the identifier of the object for which to set private data.
+	ObjectID *dtyp.GUID `idl:"name:lpObjectId" json:"object_id"`
+	// dwType: A value from the NtmsObjectsTypes (section 2.2.1.6) enumeration specifying
+	// the type of the object.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// lpAttributeName: A null-terminated sequence of Unicode characters specifying the
+	// name of the extended attribute to set. The client can give any name to the extended
+	// attribute and MUST use the same name in the GetNtmsObjectAttributeW method.
+	AttributeName string `idl:"name:lpAttributeName;string" json:"attribute_name"`
+	// lpAttributeData: The buffer containing the attribute.
+	AttributeData []byte `idl:"name:lpAttributeData;size_is:(AttributeSize)" json:"attribute_data"`
+	// AttributeSize: The size of lpAttributeData.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access to the object is denied; other security errors are possible but indicate  |
+	//	|                                    | a security subsystem error.                                                      |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY | An allocation failure occurred during processing.                                |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | The parameter is not valid.                                                      |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007007B ERROR_INVALID_NAME      | The attribute name is invalid or too long. The NTMS_MAXATTR_NAMELEN              |
+	//	|                                    | value, defined in the Platform SDK file NTMSApi.h, specifies the maximum         |
+	//	|                                    | null-terminated attribute name length.                                           |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND  | The object was not found.                                                        |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800708CA ERROR_NOT_CONNECTED     | Unable to connect to the RSM service.                                            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	AttributeSize uint32 `idl:"name:AttributeSize" json:"attribute_size"`
 }
 
 func (o *SetNTMSObjectAttributeWRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNTMSObjectAttributeWOperation) *xxx_SetNTMSObjectAttributeWOperation {
@@ -2631,11 +2844,38 @@ func (o *xxx_EnumerateNTMSObjectOperation) UnmarshalNDRResponse(ctx context.Cont
 // EnumerateNTMSObjectRequest structure represents the EnumerateNtmsObject operation request
 type EnumerateNTMSObjectRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ContainerID    *dtyp.GUID     `idl:"name:lpContainerId;pointer:unique" json:"container_id"`
-	ListBufferSize uint32         `idl:"name:lpdwListBufferSize" json:"list_buffer_size"`
-	Type           uint32         `idl:"name:dwType" json:"type"`
-	Options        uint32         `idl:"name:dwOptions" json:"options"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpContainerId: A pointer to the GUID of the container for which to enumerate objects;
+	// can be set to NULL to enumerate all objects of type dwType.
+	ContainerID *dtyp.GUID `idl:"name:lpContainerId;pointer:unique" json:"container_id"`
+	// lpdwListBufferSize: A pointer to the size, in bytes, of lpList.
+	ListBufferSize uint32 `idl:"name:lpdwListBufferSize" json:"list_buffer_size"`
+	// dwType: A value from the NtmsObjectsTypes (section 2.2.1.6) enumeration specifying
+	// the type of the object.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// dwOptions: This parameter is unused. It MUST be 0 and MUST be ignored on receipt.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | The call was successful.                                                         |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED       | Access to an object was denied.                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY   | An allocation failure occurred during processing.                                |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER   | The lpdwListSize pointer is NULL, or lpContainerId is not of the object type     |
+	//	|                                      | specified by dwType.                                                             |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007007A ERROR_INSUFFICIENT_BUFFER | The specified buffer size is too small. The required size is returned in the     |
+	//	|                                      | lpdwListSize parameter.                                                          |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND    | The lpContainerId is not the identifier of any container in the database.        |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	Options uint32 `idl:"name:dwOptions" json:"options"`
 }
 
 func (o *EnumerateNTMSObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumerateNTMSObjectOperation) *xxx_EnumerateNTMSObjectOperation {
@@ -2681,9 +2921,11 @@ type EnumerateNTMSObjectResponse struct {
 	ListBufferSize uint32 `idl:"name:lpdwListBufferSize" json:"list_buffer_size"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That     *dcom.ORPCThat `idl:"name:That" json:"that"`
-	List     []*dtyp.GUID   `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(lpdwListBufferSize)" json:"list"`
-	ListSize uint32         `idl:"name:lpdwListSize" json:"list_size"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpList: An array of object identifiers.
+	List []*dtyp.GUID `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(lpdwListBufferSize)" json:"list"`
+	// lpdwListSize: A pointer to the number of elements in lpList.
+	ListSize uint32 `idl:"name:lpdwListSize" json:"list_size"`
 	// Return: The EnumerateNtmsObject return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2888,9 +3130,34 @@ func (o *xxx_DisableNTMSObjectOperation) UnmarshalNDRResponse(ctx context.Contex
 // DisableNTMSObjectRequest structure represents the DisableNtmsObject operation request
 type DisableNTMSObjectRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Type     uint32         `idl:"name:dwType" json:"type"`
-	ObjectID *dtyp.GUID     `idl:"name:lpObjectId" json:"object_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// dwType: One of the NTMS_DRIVE, NTMS_LIBRARY, or NTMS_PHYSICAL_MEDIA values from the
+	// NtmsObjectsTypes (section 2.2.1.6) enumeration, specifying the type of the object.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// lpObjectId: A pointer to the identifier of the object to disable.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | NTMS_CONTROL_ACCESS to the library containing the object is denied.              |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | The parameter is NULL or invalid.                                                |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D1 ERROR_LIBRARY_OFFLINE   | The lpObjectId parameter refers to an offline library that cannot be enabled or  |
+	//	|                                    | disabled.                                                                        |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND  | The lpObjectId parameter is invalid.                                             |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE  | The database is inaccessible or damaged.                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007139F ERROR_INVALID_STATE     | The object is already disabled.                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	ObjectID *dtyp.GUID `idl:"name:lpObjectId" json:"object_id"`
 }
 
 func (o *DisableNTMSObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_DisableNTMSObjectOperation) *xxx_DisableNTMSObjectOperation {
@@ -3122,9 +3389,34 @@ func (o *xxx_EnableNTMSObjectOperation) UnmarshalNDRResponse(ctx context.Context
 // EnableNTMSObjectRequest structure represents the EnableNtmsObject operation request
 type EnableNTMSObjectRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Type     uint32         `idl:"name:dwType" json:"type"`
-	ObjectID *dtyp.GUID     `idl:"name:lpObjectId" json:"object_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// dwType: One of the NTMS_DRIVE, NTMS_LIBRARY, or NTMS_PHYSICAL_MEDIA values from the
+	// NtmsObjectsTypes (section 2.2.1.6) enumeration, specifying the type of the object.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// lpObjectId: A pointer to the identifier of the object to enable.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | NTMS_CONTROL_ACCESS to the library containing the object is denied.              |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | The parameter is NULL or invalid.                                                |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D1 ERROR_LIBRARY_OFFLINE   | The lpObjectId parameter refers to an offline library that cannot be enabled or  |
+	//	|                                    | disabled.                                                                        |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND  | The lpObjectId parameter is invalid.                                             |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE  | The database is inaccessible or damaged.                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007139F ERROR_INVALID_STATE     | The object is already enabled.                                                   |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	ObjectID *dtyp.GUID `idl:"name:lpObjectId" json:"object_id"`
 }
 
 func (o *EnableNTMSObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_EnableNTMSObjectOperation) *xxx_EnableNTMSObjectOperation {

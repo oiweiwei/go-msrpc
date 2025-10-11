@@ -1,0 +1,59 @@
+<div class="content"><p>The DeleteLocation method is received by the server in an
+RPC_REQUEST packet. In response, the server attempts to delete the specific
+subpath container (the <a href="1939cfaf-92c9-40b5-9cca-791c531c01e6" data-linktype="relative-path">IAppHostConfigLocation</a>
+object).</p><dl>
+<dd>
+<div><pre> HRESULT DeleteLocation(
+   [in] VARIANT cIndex
+ );
+</pre></div>
+</dd></dl><p><b>cIndex: </b>A <a href="../ms-oaut/a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">VARIANT</a>,
+which is used to specify the IAppHostConfigLocation object to delete. If the
+VARIANT is of type integer, the index is a zero-based index to the collection
+of <a href="59774887-09e3-4de5-ad8e-4794f404b123" data-linktype="relative-path">IAppHostElement</a>
+objects, where 0 indicates the first IAppHostElement object, 1 the second, and
+so on. If the VARIANT is of type string, the index is the name of the subpath
+being deleted.</p><p><b>Return Values: </b>The server MUST return zero if
+it successfully processes the message that is received from the client. If
+processing fails, the server MUST return a nonzero <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+code as defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following table describes the error conditions that MUST be handled and the
+corresponding error codes. A server MAY return additional
+implementation-specific error codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0X00000000</p>
+  <p>NO_ERROR</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The instance is not editable.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X80070585</p>
+  <p>ERROR_INVALID_INDEX</p>
+  </td>
+  <td>
+  <p>The integer index specified by cIndex is invalid, or
+  the location with name specified by cIndex could not be found.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>
