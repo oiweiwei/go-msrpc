@@ -1,1 +1,198 @@
-<div class="content"></div>
+<div class="content"><p>To prepare a file for replication to another computer, the
+computer that sends the file will construct a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_64afafeb-a356-4bd0-8993-9c3326dcd8a0" data-linktype="relative-path">staging file</a>. A staging
+file is an archive consisting of the original file contents (that is, its data)
+as well as metadata related to it such as security information.</p><p>The STAGE_HEADER MUST appear at the beginning of each
+staging file. Reparse data for the file MUST appear immediately following the
+STAGE_HEADER if reparse data is associated with the file. After the reparse
+data (if present) MUST come the file data. The file data MUST be in the
+Microsoft backup format, as specified in <a href="../ms-bkup/f67950c8-d583-469a-83dd-c4ff4cedf533" data-linktype="relative-path">[MS-BKUP]</a>.
+An <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_05caca9b-e062-4a6b-8c99-cd5e23f38a11" data-linktype="relative-path">MD5 hash</a> MUST be
+calculated over all stream data, so the receiving system can verify the
+integrity of the transmitted file. If compression is enabled, the stream data
+MUST be compressed as 64-kilobyte blocks (the file data is read in 64-KB blocks
+to be compressed on each block).<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="d18cc589-677e-4133-97e5-113641792c5e#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a></p><p>The overall format of a staging file is as follows.</p><table><thead>
+  <tr>
+   <th>
+   <p>STAGE_HEADER </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Optional Reparse Data (only for reparse points)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>File Data (might be compressed)</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> </p>
+  </td>
+ </tr></tbody></table><p>The format of the STAGE_HEADER MUST be as follows.</p><dl>
+<dd>
+<div><pre> typedef struct _STAGE_HEADER {
+   ULONG Major;
+   ULONG Minor;
+   ULONG DataHigh;
+   ULONG DataLow;
+   USHORT Compression;
+   UCHAR NotUsed[6];
+   FILE_NETWORK_OPEN_INFORMATION Attributes;
+   CHANGE_ORDER_COMMAND ChangeOrderCommand;
+   FILE_OBJECTID_BUFFER FileObjId;
+   CO_RECORD_EXTENSION_WIN2K CocExt;
+   GUID CompressionGuid;
+   ULONG EncryptedDataHigh;
+   ULONG EncryptedDataLow;
+   LARGE_INTEGER EncryptedDataSize;
+   BOOL ReparseDataPresent;
+   ULONG ReparsePointDataHigh;
+   ULONG ReparsePointDataLow;
+   ULONG Padding2;
+ } STAGE_HEADER,
+  *PSTAGE_HEADER;
+</pre></div>
+</dd></dl><p><b>Major:</b>  A 32-bit, unsigned integer
+indicating the major version of the structure. This field MUST be 0.</p><p><b>Minor:</b>  A 32-bit, unsigned integer
+indicating the minor version of the staging file. This field exists in all
+versions of the staging file.</p><dl>
+<dd>
+<p>This field MUST contain one of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTFRS_STAGE_MINOR_0</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Minor version is 0. This value MUST NOT be used.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTFRS_STAGE_MINOR_1</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Minor version is 1. ChangeOrder Record extension added
+  to stage file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTFRS_STAGE_MINOR_2</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Minor version is 2. Compression GUID added to stage
+  file.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTFRS_STAGE_MINOR_3</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Minor version is 3. Reparse Point data added to stage
+  file.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>NTFRS_STAGE_MINOR_1 is the earliest version.
+NTFRS_STAGE_MINOR_0 was never used in any products, and the server MUST NOT
+consider it to be a valid value.<a id="Appendix_A_Target_14"></a><a aria-label="Product behavior note 14" href="d18cc589-677e-4133-97e5-113641792c5e#Appendix_A_14" data-linktype="relative-path">&lt;14&gt;</a></p>
+</dd>
+<dd>
+<p>The following field specifications in this section
+define the usage of the Minor values in the context of particular fields.</p>
+</dd></dl><ul><li><p><span><span>  </span></span>CocExt</p>
+</li><li><p><span><span>  </span></span>CompressionGuid</p>
+</li><li><p><span><span>  </span></span>EncryptedDataHigh</p>
+</li><li><p><span><span>  </span></span>EncryptedDataLow</p>
+</li><li><p><span><span>  </span></span>EncryptedDataSize</p>
+</li><li><p><span><span>  </span></span>ReparseDataPresent</p>
+</li><li><p><span><span>  </span></span>ReparsePointDataHigh</p>
+</li><li><p><span><span>  </span></span>ReparsePointDataLow</p>
+</li></ul><p><b>DataHigh:</b>  A 32-bit, unsigned
+integer that specifies the higher four bytes of the offset from the beginning
+of the staging file to the file data. This field exists in all versions of the
+staging file. </p><p><b>DataLow:</b>  A 32-bit, unsigned integer
+that specifies the lower four bytes of the offset from the beginning of the
+staging file to the file data. This field exists in all versions of the staging
+file.</p><p><b>Compression:</b>  A 16-bit, unsigned
+integer that MUST be set to 0 and MUST be ignored on receipt.</p><p><b>NotUsed:</b>  Not used. MUST be 0. MUST
+be ignored on receipt.</p><p><b>Attributes:</b>  A structure of type <a href="../ms-fscc/26d261db-58d1-4513-a548-074448cbb146" data-linktype="relative-path">FILE_NETWORK_OPEN_INFORMATION</a>
+that describes the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_a04c146a-de3b-4e4b-829f-a9e772f3fe25" data-linktype="relative-path">file</a>,
+as specified in <a href="../ms-fscc/efbfe127-73ad-4140-9967-ec6500e66d5e" data-linktype="relative-path">[MS-FSCC]</a>
+section 2.4.33, for the definition of this structure. This field exists in all
+versions of the staging file. </p><p><b>ChangeOrderCommand:</b>  A structure of
+type <a href="93ac0801-c3cf-4dfc-80a4-c2bff7a9b09b" data-linktype="relative-path">CHANGE_ORDER_COMMAND</a>
+that contains a copy of the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_576a8417-dd00-4f9e-b52f-c9a2e3766a8a" data-linktype="relative-path">change
+order</a> that was used to generate this staging file. The <b>ChangeOrderCommand.Extension</b>
+member is always set to NULL. This field exists in all versions of the staging
+file.</p><p><b>FileObjId:</b>  A structure of type <a href="../ms-fscc/5982df01-4b94-4feb-a6cd-26a5eeaa9880" data-linktype="relative-path">FILE_OBJECTID_BUFFER</a>.
+For the definition of this structure, see [MS-FSCC] section 2.1.3. This field
+exists in all versions of the staging file. Only the <b>ObjectId</b> field of
+this structure is used; all other fields in this structure MUST be 0 and MUST
+be ignored.</p><p><b>CocExt:</b>  A <a href="ae7e3371-5538-4f74-bde2-a48d318b1571" data-linktype="relative-path">CO_RECORD_EXTENSION_WIN2K</a>
+structure. This field exists in staging file minor versions greater than or
+equal to NTFRS_STAGE_MINOR_1.</p><p><b>CompressionGuid:</b>  A <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a>
+that is initialized to the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>
+for the compression algorithm used. FRS defines these GUIDs (see section <a href="bb8b1f75-c1ba-4edd-938c-7615283aa70f" data-linktype="relative-path">2.2.3.6.12</a>). If
+compression is not enabled, the GUID MUST be set to 0. This field exists in
+staging file minor versions greater than or equal to NTFRS_STAGE_MINOR_2.</p><p><b>EncryptedDataHigh:</b>  A 32-bit,
+unsigned integer. Not used. MUST be 0. MUST be ignored on receipt. This field
+exists in staging file minor versions greater than or equal to
+NTFRS_STAGE_MINOR_2.</p><p><b>EncryptedDataLow:</b>  A 32-bit,
+unsigned integer. Not used. MUST be 0. MUST be ignored on receipt. This field
+exists in staging file minor versions greater than or equal to
+NTFRS_STAGE_MINOR_2.</p><p><b>EncryptedDataSize:</b>  A <a href="../ms-dtyp/e904b1ba-f774-4203-ba1b-66485165ab1a" data-linktype="relative-path">LARGE_INTEGER</a>.
+Not used. MUST be 0. MUST be ignored on receipt. This field exists in staging
+file minor versions greater than or equal to NTFRS_STAGE_MINOR_2.</p><p><b>ReparseDataPresent:</b>  A 32-bit,
+unsigned integer that is set to a nonzero value if this replicated file is a
+reparse point. If the file is not a reparse point, ReparseDataPresent MUST be
+set to zero. If the replicated file is a reparse point, ReparseDataPresent MUST
+be set to a nonzero value, and the staging file will contain reparse data in
+addition to the actual file data. This field exists in staging file minor
+versions equal to NTFRS_STAGE_MINOR_3.</p><p><b>ReparsePointDataHigh:</b>  A 32-bit,
+unsigned integer that specifies the higher four bytes of the offset from the
+beginning of the staging file to the reparse data. This field exists in staging
+file minor versions equal to NTFRS_STAGE_MINOR_3. </p><p><b>ReparsePointDataLow:</b>  A 32-bit,
+unsigned integer that specifies the lower four bytes of the offset from the
+beginning of the staging file to the reparse data. This field exists in staging
+file minor versions equal to NTFRS_STAGE_MINOR_3.</p><p><b>Padding2:</b>  Four bytes. Not Used.
+MUST be 0. MUST be ignored on receipt.</p><p>The staging file structure MUST contain the STAGE_HEADER
+initialized as specified above. If the file is a reparse point
+(ReparseDataPresent is set to nonzero in the STAGE_HEADER), the reparse data
+MUST exist at the offset specified by ReparsePointDataLow and
+ReparsePointDataHigh. After the reparse data (if present) the file data itself
+MUST be present. The file data can be found by the offset specified by DataLow
+and DataHigh.</p><p>If the replicated file is not a reparse point, the data
+offset MUST be set to 0x0400. If the replicated file is a reparse point, the
+data offset MUST be set to 0x0400 + ReparseDataLength + 0x18.</p><p>The file data MUST be processed in chunks of 64KB blocks
+and, if file compression is enabled (that is, the <b>CompressionGuid</b> member
+is set to a nonzero value), each 64KB chunk of file data is compressed using
+the algorithm specified by the CompressionGuid of STAGE_HEADER.</p><p>The MD5 digest is generated on all file data before
+compression. This includes the WIN32_STREAM_ID (as specified in [MS-BKUP])
+structures. However, the first stream from the file contains a
+SECURITY_DESCRIPTOR structure, as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">2.4.6</a>.
+For the purpose of generating the MD5 digest, certain bits must be cleared.
+These bits are all found in the second 16-bit, unsigned integer in the
+SECURITY_DESCRIPTOR. To clear the proper bits, set bitwise AND 0xF3D4 to the
+second 16-bit, unsigned integer in the SECURITY_DESCRIPTOR.</p><p>Once the MD5 digest is calculated, the bits MUST be restored
+to their previous state before being compressed (if necessary). The bits MUST
+be written to the staging file.</p></div>

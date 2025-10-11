@@ -1,0 +1,17 @@
+<div class="content"><p>The MSMQ: ActiveX Client Protocol defines how <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">clients</a> interact with a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_476f10ed-08f0-4887-b583-59d5cf909979" data-linktype="relative-path">queue manager</a> to perform message
+queuing operations as shown in the protocol diagram in <a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a>
+section <a href="../ms-mqdmpr/c0fb28d5-966b-40b0-a883-c05820918514" data-linktype="relative-path">1.4</a>.</p><p>This document describes the client protocol that exercises
+an abstract system model rather than a specific implementation. However, some
+aspects of the client protocol reference specific details of the implementation
+of the Microsoft <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_b8a2f77c-783c-49d0-a724-1393de48ad8a" data-linktype="relative-path">message
+queuing system</a> (known as <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_70ce3665-ae64-44b4-88fe-7c1dcdcd5417" data-linktype="relative-path">Microsoft
+Message Queuing (MSMQ)</a>). Where that happens, the abstract meaning of the
+concepts is described together with informative references to the specific MSMQ
+implementation details.</p><p>A message queuing system consists of one or more queue
+managers that facilitate <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a>
+exchanges between clients of this protocol and a directory that exposes
+relevant information about the queue managers. Clients of this protocol
+primarily discover information in a directory and operate via queue managers. A
+message queuing system implementation is not restricted to any particular
+distributed system topology as long as the externally visible behavior adheres
+to what is described in this document.</p></div>

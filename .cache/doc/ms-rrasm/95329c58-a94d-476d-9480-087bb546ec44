@@ -1,1 +1,22 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RAS_PORT_CONDITION</b> enumerated type specifies
+information regarding the connection condition of a given <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_76717edf-a943-4324-bce3-807df4b53153" data-linktype="relative-path">RAS port</a>.</p><dl>
+<dd>
+<div><pre> typedef enum _RAS_PORT_CONDITION
+ {
+   RAS_PORT_NON_OPERATIONAL,
+   RAS_PORT_DISCONNECTED,
+   RAS_PORT_CALLING_BACK,
+   RAS_PORT_LISTENING,
+   RAS_PORT_AUTHENTICATING,
+   RAS_PORT_AUTHENTICATED,
+   RAS_PORT_INITIALIZING
+ } RAS_PORT_CONDITION;
+</pre></div>
+</dd></dl><p><b>RAS_PORT_NON_OPERATIONAL: </b>The port is
+non-operational.</p><p><b>RAS_PORT_DISCONNECTED: </b>The port is
+disconnected.</p><p><b>RAS_PORT_CALLING_BACK: </b>The port is in the
+process of a calling back a dialed connection.</p><p><b>RAS_PORT_LISTENING: </b>The port is listening for
+incoming calls.</p><p><b>RAS_PORT_AUTHENTICATING: </b>The user connected to
+the port is being authenticated.</p><p><b>RAS_PORT_AUTHENTICATED: </b>The port has
+authenticated a user.</p><p><b>RAS_PORT_INITIALIZING: </b>The port is
+initializing.</p></div>

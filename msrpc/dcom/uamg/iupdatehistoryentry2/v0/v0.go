@@ -49,6 +49,23 @@ type UpdateHistoryEntry2Client interface {
 	// IUpdateHistoryEntry retrieval method.
 	UpdateHistoryEntry() iupdatehistoryentry.UpdateHistoryEntryClient
 
+	// The IUpdate::Categories (opnum 12) method retrieves a collection of the categories
+	// to which the update belongs.
+	//
+	// The IUpdateHistoryEntry2::Categories (opnum 22) method retrieves a collection of
+	// the update categories to which an update belongs.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the Categories ADM element.
 	GetCategories(context.Context, *GetCategoriesRequest, ...dcerpc.CallOption) (*GetCategoriesResponse, error)
 
 	// AlterContext alters the client context.
@@ -335,7 +352,11 @@ func (o *GetCategoriesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetCategoriesResponse structure represents the Categories operation response
 type GetCategoriesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat           `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An ICategoryCollection instance containing the categories to which this update
+	// belongs.
+	//
+	// retval: A collection of the update categories to which an update belongs.
 	ReturnValue *uamg.CategoryCollection `idl:"name:retval" json:"return_value"`
 	// Return: The Categories return value.
 	Return int32 `idl:"name:Return" json:"return"`

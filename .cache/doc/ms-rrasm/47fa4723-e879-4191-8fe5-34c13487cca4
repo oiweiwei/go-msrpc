@@ -1,1 +1,38 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RASDEVICETYPE</b> type enumeration defines the different
+device types on the RRAS server.</p><dl>
+<dd>
+<div><pre> typedef enum _RASDEVICETYPE
+ {
+   RDT_Modem = 0,
+   RDT_X25,
+   RDT_Isdn,
+   RDT_Serial,
+   RDT_FrameRelay,
+   RDT_Atm,
+   RDT_Sonet,
+   RDT_Sw56,
+   RDT_Tunnel_Pptp,
+   RDT_Tunnel_L2tp,
+   RDT_Irda,
+   RDT_Parallel,
+   RDT_Other,
+   RDT_PPPoE,
+   RDT_Tunnel_Sstp,
+   RDT_Tunnel_Ikev2,
+   RDT_Tunnel = 0x00010000,
+   RDT_Direct = 0x00020000,
+   RDT_Null_Modem = 0x00040000,
+   RDT_Broadband = 0x00080000
+ } RASDEVICETYPE;
+</pre></div>
+</dd></dl><p><b>RDT_Modem: </b>Modem device</p><p><b>RDT_X25: </b>X.25 device</p><p><b>RDT_Isdn: </b>ISDN device</p><p><b>RDT_Serial: </b>Serial port device</p><p><b>RDT_FrameRelay: </b>Frame relay device</p><p><b>RDT_Atm: </b>Asynchronous transfer mode (ATM)
+device</p><p><b>RDT_Sonet: </b>Sonet device</p><p><b>RDT_Sw56: </b>Switched 56K access device</p><p><b>RDT_Tunnel_Pptp: </b>PPTP device</p><p><b>RDT_Tunnel_L2tp: </b>L2TP device</p><p><b>RDT_Irda: </b>Infrared Data Association (IrDA)
+device.</p><p><b>RDT_Parallel: </b>Parallel port device.</p><p><b>RDT_Other: </b>Any other device.</p><p><b>RDT_PPPoE: </b>PPPoE device.<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p><p><b>RDT_Tunnel_Sstp: </b>SSTP device.<a id="Appendix_A_Target_11"></a><a aria-label="Product behavior note 11" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_11" data-linktype="relative-path">&lt;11&gt;</a></p><p><b>RDT_Tunnel_Ikev2: </b>IKEv2 device.<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p><p><b>RDT_Tunnel: </b>Specifies the tunnel device class
+like PPTP, L2TP, SSTP, IKEv2.</p><p><b>RDT_Direct: </b>Specifies the direct device class
+like Serial, Parallel.</p><p><b>RDT_Null_Modem: </b>Specifies modem device class
+like Modem, Isdn, Irda.</p><p><b>RDT_Broadband: </b>Specifies broadband device
+class like PPPoE.<a id="Appendix_A_Target_13"></a><a aria-label="Product behavior note 13" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_13" data-linktype="relative-path">&lt;13&gt;</a></p><dl>
+<dd>
+<p>The final four values (RDT_Tunnel, RDT_Direct,
+RDT_Null_Modem, RDT_Broadband) are used to specify the class of the device.</p>
+</dd></dl></div>

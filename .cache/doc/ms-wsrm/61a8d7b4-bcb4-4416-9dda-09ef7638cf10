@@ -1,1 +1,40 @@
-<div class="content"></div>
+<div class="content"><p>The GetCurrentPolicy method returns the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_2ced4dc1-842a-4bf8-bdac-0e8d505d5ce6" data-linktype="relative-path">current resource policy</a>.</p><dl>
+<dd>
+<div><pre> [id(11), helpstring(&#34;method GetCurrentPolicy&#34;)] HRESULT GetCurrentPolicy(
+   [out] BSTR* pbstrCurrentPolicyInfo,
+   [out] MANAGEMENT_TYPE* enumManage
+ );
+</pre></div>
+</dd></dl><p><b>pbstrCurrentPolicyInfo: </b>A pointer to a string
+that returns the current resource policy, in the form of a <a href="e6be8e0b-2ecb-4305-8f7c-ac378cc1900f" data-linktype="relative-path">Policy element</a> (section
+2.2.5.21). For an example, see <a href="4600dd8b-3ef5-4390-9bfd-c291a6f45080" data-linktype="relative-path">Policy example</a> (section
+4.2.19). If <i>enumManage</i> is <b>PROFILING</b>, this parameter returns the
+info of the policy whose name was specified when setting PROFILING mode using
+the <b>SetCurrentPolicy</b> method.</p><p><b>enumManage: </b>A pointer to a <a href="6eb9c5e7-3b5c-4177-99b4-028b1fb9e5a5" data-linktype="relative-path">MANAGEMENT_TYPE enumeration</a>
+(section 2.2.3.5) value that returns the current mode in which the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1517eb9b-d2b2-48f0-bf23-bde76923ed30" data-linktype="relative-path">management service</a> is
+operating.</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="a03f4cd5-ad33-46aa-94e7-2c9a92f02b6f" data-linktype="relative-path">IWRMPolicy</a> interface
+methods are specified in section 3.2.4.7.</p></div>

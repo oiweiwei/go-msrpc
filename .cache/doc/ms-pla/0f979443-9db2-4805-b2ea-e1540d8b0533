@@ -117,10 +117,10 @@ that implement the IConfigurationDataCollector interface.</p><table><thead>
   collection continues. The PLA Protocol allows users to log registry keys to
   understand the configured status of a remote system. Registry keys are used
   to refer to state information that is stored on the system about an
-  application, driver, or the system. For example, what default settings the
-  user has saved for an application might be associated with a particular
-  registry key; to retrieve that information, the registry key is specified.
-  The format used for the registry keys is specified in <a href="../ms-rrp/0fa3191d-bb79-490a-81bd-54c2601b7a78" data-linktype="relative-path">[MS-RRP]</a>
+  application, driver, or the system. For example, what default settings the user
+  has saved for an application might be associated with a particular registry
+  key; to retrieve that information, the registry key is specified. The format
+  used for the registry keys is specified in <a href="../ms-rrp/0fa3191d-bb79-490a-81bd-54c2601b7a78" data-linktype="relative-path">[MS-RRP]</a>
   section <a href="../ms-rrp/77526078-ea8b-4090-884f-ed4fb24596c2" data-linktype="relative-path">3.1.1.1</a>.</p>
   </td>
  </tr><tr>

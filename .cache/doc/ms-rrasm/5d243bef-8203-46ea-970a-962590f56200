@@ -1,1 +1,44 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MPR_SERVER_0</b> structure contains configuration
+information for a router.</p><dl>
+<dd>
+<div><pre> typedef struct MPR_SERVER_0 {
+   BOOL fLanOnlyMode;
+   DWORD dwUpTime;
+   DWORD dwTotalPorts;
+   DWORD dwPortsInUse;
+ } MPR_SERVER_0,
+  *PMPR_SERVER_0;
+</pre></div>
+</dd></dl><p><b>fLanOnlyMode: </b>This is of type <a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">BOOL</a>. It
+specifies whether the RRAS server is running in LAN only mode or not. If the
+value is 1, the RRAS server is not routing; if the value is 0, then the RRAS
+server is functioning as a router.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>The RRAS server is functioning as a router.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>The RRAS server is not routing.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwUpTime: </b>Specifies the elapsed time (in
+seconds) since the router was started.</p><p><b>dwTotalPorts: </b>Specifies the number of ports on
+the router.</p><p><b>dwPortsInUse: </b>Specifies the number of ports on
+the router currently in use.</p></div>

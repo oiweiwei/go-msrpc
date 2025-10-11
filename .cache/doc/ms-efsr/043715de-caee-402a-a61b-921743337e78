@@ -1,1 +1,36 @@
-<div class="content"></div>
+<div class="content"><p>The EfsRpcDecryptFileSrv method is used to convert an
+existing encrypted object to the unencrypted state in the server&#39;s data store.</p><dl>
+<dd>
+<div><pre> long EfsRpcDecryptFileSrv(
+   [in] handle_t binding_h,
+   [in, string] wchar_t* FileName,
+   [in] unsigned long OpenFlag
+ );
+</pre></div>
+</dd></dl><p><b>binding_h: </b>This is an <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_1cf35308-abab-4123-9cbd-99c42dc9a6ff" data-linktype="relative-path">binding</a> handle parameter,
+as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+and <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a>.</p><p><b>FileName: </b>An EFSRPC identifier as specified in
+section <a href="9db7433f-be13-4605-993f-3695a2d2916e" data-linktype="relative-path">2.2.1</a>.</p><p><b>OpenFlag: </b>This parameter is unused and MUST be
+ignored by the server. It MUST be set to zero by the client.</p><p><b>Return Values: </b>The server MUST return zero if
+it successfully processes the message received from the client. The server MUST
+return a nonzero value if processing fails.</p><p>If no object exists on the server with the specified name,
+the server MUST return a nonzero value. If the object exists and is not
+encrypted, the server MUST return success.</p><p>Otherwise, the server performs the following actions to
+convert the object in its data store to an unencrypted state:</p><ul><li><p><span><span> 
+</span></span>If the data object referred to by <i>FileName</i> is a container
+for other objects, the server MUST clear the attribute on the container that
+instructs the data store to encrypt any new objects created in that container.
+The server MAY decrypt encrypted objects that were already in the container
+before this message was received.</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, the server SHOULD:</p>
+<ul><li><p><span><span>  </span></span>Check
+that the calling user has access to a private key that will decrypt the file;
+if the user does not have access, return a nonzero value.</p>
+</li><li><p><span><span>  </span></span>Decrypt
+the object and discard its <a href="3166cf4a-e085-47be-94c6-b69bddf274ff" data-linktype="relative-path">EFSRPC
+Metadata</a>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return 0 to indicate success.</p>
+</li></ul></div>

@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>This document specifies the Telnet Server Remote
+Administration Protocol. Telnet Server Remote Administration Protocol provides
+a <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+interface used for performing management tasks on telnet server. Telnet Server
+Remote Administration Protocol specifies an interface that:</p><ul><li><p><span><span> 
+</span></span>Get information regarding all the telnet sessions handled by
+telnet server at any given instance.</p>
+</li><li><p><span><span> 
+</span></span>Send message to a session.</p>
+</li><li><p><span><span> 
+</span></span>Terminate a session.</p>
+</li></ul><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

@@ -1,1 +1,19 @@
-<div class="content"></div>
+<div class="content"><p>The <b>SAP_INTERFACE</b> structure MAY<a id="Appendix_A_Target_109"></a><a aria-label="Product behavior note 109" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_109" data-linktype="relative-path">&lt;109&gt;</a> be used to contain
+information about an SAP interface. This structure is returned as part of the
+following methods:</p><ul><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="9102e585-2f62-4408-bfb6-02a6460cc883" data-linktype="relative-path"><b>RMIBEntryGetFirst (section 3.1.4.31)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="50f78033-d248-4272-b4b9-a2519a0f304d" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.1.4.32)</b></a><span>  </span></p>
+<div><pre> typedef struct _SAP_INTERFACE {
+   ULONG InterfaceIndex;
+   SAP_IF_INFO SapIfInfo;
+   SAP_IF_STATS SapIfStats;
+ } SAP_INTERFACE,
+  *PSAP_INTERFACE;
+</pre></div>
+</li></ul><p><b>InterfaceIndex: </b>This MUST be the index of the
+interface.</p><p><b>SapIfInfo: </b>This MUST be a <a href="2912b1a6-5156-4d76-8bd3-2403c5dbf032" data-linktype="relative-path"><b>SAP_IF_INFO (section 2.2.1.2.121)</b></a>
+structure. </p><p><b>SapIfStats: </b>This MUST be a <a href="8eb2bd91-9373-4953-a018-1310cea85115" data-linktype="relative-path"><b>SAP_IF_STATS (section 2.2.1.2.116)</b></a>
+structure.  </p></div>

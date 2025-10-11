@@ -1,1 +1,26 @@
-<div class="content"></div>
+<div class="content"><p>The IStringCollection::RemoveAt (opnum 17) method removes an
+item from the collection.</p><dl>
+<dd>
+<div><pre> HRESULT RemoveAt(
+   [in] LONG index
+ );
+</pre></div>
+</dd></dl><p><b>index: </b>The index of the string to remove.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><dl>
+<dd>
+<p>If the collection is read-only,
+the server SHOULD return WU_E_NOT_SUPPORTED (0x80240037).</p>
+</dd>
+<dd>
+<p>If the index is less than
+0x00000000 or greater than or equal to the number of items in the collection,
+the server SHOULD return WU_E_INVALIDINDEX (0x80240007).</p>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method SHOULD remove the item in its <b>List</b> ADM
+element at the given index and decrement the value of its <b>Count</b> ADM
+element.</p></div>

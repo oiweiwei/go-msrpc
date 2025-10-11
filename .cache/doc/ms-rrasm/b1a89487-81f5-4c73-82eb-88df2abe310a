@@ -1,1 +1,18 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IPMCAST_IF_ENTRY</b> structure stores information
+about an IP <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_70b74a6e-db1d-4648-bedd-5a524dfe6396" data-linktype="relative-path">multicast</a>
+interface.</p><dl>
+<dd>
+<div><pre> typedef struct _MIB_IPMCAST_IF_ENTRY {
+   DWORD dwIfIndex;
+   DWORD dwTtl;
+   DWORD dwProtocol;
+   DWORD dwRateLimit;
+   ULONG ulInMcastOctets;
+   ULONG ulOutMcastOctets;
+ } MIB_IPMCAST_IF_ENTRY,
+  *PMIB_IPMCAST_IF_ENTRY;
+</pre></div>
+</dd></dl><p><b>dwIfIndex: </b>The index of this interface.</p><p><b>dwTtl: </b>The TTL value for this interface.</p><p><b>dwProtocol: </b>The <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_7b41283f-48fc-4d09-b463-b5e1996b3c68" data-linktype="relative-path">multicast routing protocol</a> 
+that owns this interface.</p><p><b>dwRateLimit: </b>The rate limit of this interface.</p><p><b>ulInMcastOctets: </b>The number of octets of
+multicast data received through this interface.</p><p><b>ulOutMcastOctets: </b>The number of octets of
+multicast data sent through this interface.</p></div>

@@ -31,6 +31,22 @@ type Update4Server interface {
 	// IUpdate3 base class.
 	iupdate3.Update3Server
 
+	// The IUpdate4::PerUser (opnum 58) method retrieves whether the update is per user.
+	//
+	// The IWindowsDriverUpdate4::PerUser (opnum 67) method retrieves whether the update
+	// is per user.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the PerUser ADM element.
 	GetPerUser(context.Context, *GetPerUserRequest) (*GetPerUserResponse, error)
 }
 

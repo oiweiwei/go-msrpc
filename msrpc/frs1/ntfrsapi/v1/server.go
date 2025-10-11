@@ -38,19 +38,124 @@ type NTFrsAPIServer interface {
 	// Opnum3NotUsedOnWire operation.
 	// Opnum3NotUsedOnWire
 
+	// The NtFrsApi_Rpc_Set_DsPollingIntervalW method adjusts the interval at which Active
+	// Directory is polled (see section 3.1.5.1) for updates unless both LongInterval and
+	// ShortInterval are 0, and then MUST initiate a polling cycle.
+	//
+	// Return Values: The method MUST return 0 on success or a nonzero error code on failure.
+	// All nonzero values MUST be treated as equivalent failures unless otherwise specified.
+	//
+	//	+--------------------------+------------------------------------+
+	//	|          RETURN          |                                    |
+	//	|        VALUE/CODE        |            DESCRIPTION             |
+	//	|                          |                                    |
+	//	+--------------------------+------------------------------------+
+	//	+--------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS | The method completed successfully. |
+	//	+--------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	SetDSPollingIntervalW(context.Context, *SetDSPollingIntervalWRequest) (*SetDSPollingIntervalWResponse, error)
 
+	// The NtFrsApi_Rpc_Get_DsPollingIntervalW method MUST return the current Active Directory
+	// polling intervals.
+	//
+	// Provides the current, long, and short polling intervals. All polling intervals are
+	// in minutes.
+	//
+	// Return Values: The method MUST return 0 on success or a nonzero error code on failure.
+	// All nonzero values MUST be treated as equivalent failures unless otherwise specified.
+	//
+	//	+--------------------------+------------------------------------+
+	//	|          RETURN          |                                    |
+	//	|        VALUE/CODE        |            DESCRIPTION             |
+	//	|                          |                                    |
+	//	+--------------------------+------------------------------------+
+	//	+--------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS | The method completed successfully. |
+	//	+--------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	GetDSPollingIntervalW(context.Context, *GetDSPollingIntervalWRequest) (*GetDSPollingIntervalWResponse, error)
 
 	// Opnum6NotUsedOnWire operation.
 	// Opnum6NotUsedOnWire
 
+	// The NtFrsApi_Rpc_InfoW method MUST return internal information. The method is not
+	// used in server-to-server interoperation. The vendor MUST fill the BLOB with implementation-dependent
+	// data structures.
+	//
+	// Return Values: The method MUST return 0 on success or a nonzero error code on failure.
+	// All nonzero values MUST be treated as equivalent failures unless otherwise specified.
+	//
+	//	+--------------------------+------------------------------------+
+	//	|          RETURN          |                                    |
+	//	|        VALUE/CODE        |            DESCRIPTION             |
+	//	|                          |                                    |
+	//	+--------------------------+------------------------------------+
+	//	+--------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS | The method completed successfully. |
+	//	+--------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	InfoW(context.Context, *InfoWRequest) (*InfoWResponse, error)
 
+	// This method is not used by FRS.
+	//
+	// Return Values: The method MUST return 0 on success or a nonzero error code on failure.
+	// All nonzero values MUST be treated as equivalent failures unless otherwise specified.
+	//
+	//	+--------------------------+------------------------------------+
+	//	|          RETURN          |                                    |
+	//	|        VALUE/CODE        |            DESCRIPTION             |
+	//	|                          |                                    |
+	//	+--------------------------+------------------------------------+
+	//	+--------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS | The method completed successfully. |
+	//	+--------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	IsPathReplicated(context.Context, *IsPathReplicatedRequest) (*IsPathReplicatedResponse, error)
 
+	// The NtFrsApi_Rpc_WriterCommand method MUST deactivate or reactivate the replication
+	// of the specified Replica Set.
+	//
+	// Return Values: The method MUST return 0 on success or a nonzero error code on failure.
+	// All nonzero values MUST be treated as equivalent failures unless otherwise specified.
+	//
+	//	+--------------------------+------------------------------------+
+	//	|          RETURN          |                                    |
+	//	|        VALUE/CODE        |            DESCRIPTION             |
+	//	|                          |                                    |
+	//	+--------------------------+------------------------------------+
+	//	+--------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS | The method completed successfully. |
+	//	+--------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	WriterCommand(context.Context, *WriterCommandRequest) (*WriterCommandResponse, error)
 
+	// This call MUST trigger replication on the connection even if the schedule is off.
+	//
+	// Return Values: The method MUST return 0 on success or a nonzero error code on failure.
+	// All nonzero values MUST be treated as equivalent failures unless otherwise specified.
+	//
+	//	+--------------------------+------------------------------------+
+	//	|          RETURN          |                                    |
+	//	|        VALUE/CODE        |            DESCRIPTION             |
+	//	|                          |                                    |
+	//	+--------------------------+------------------------------------+
+	//	+--------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS | The method completed successfully. |
+	//	+--------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	ForceReplication(context.Context, *ForceReplicationRequest) (*ForceReplicationResponse, error)
 }
 

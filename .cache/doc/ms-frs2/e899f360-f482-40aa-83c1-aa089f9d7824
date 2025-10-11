@@ -1,1 +1,17 @@
-<div class="content"></div>
+<div class="content"><p>In response to a request for updates, a server MUST use a
+value of the UPDATE_STATUS enumerated type to specify whether it was able to
+send all updates that pertain to an argument <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_b5d43ea0-cf01-4294-b0d8-0b0362d4a3a2" data-linktype="relative-path">version chain vector</a>.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   UPDATE_STATUS_DONE = 2,
+   UPDATE_STATUS_MORE = 3
+ } UPDATE_STATUS;
+</pre></div>
+</dd></dl><p><b>UPDATE_STATUS_DONE:  </b>There are no more updates
+that pertain to the argument version chain vector. In other words, the server
+does not have any updates whose versions belong to the version chain vector
+passed in by the client.</p><p><b>UPDATE_STATUS_MORE:  </b>There are potentially
+more updates (<a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_9d8e0963-13fa-4e19-a97f-7ce6bc90d20f" data-linktype="relative-path">tombstone</a>,
+if the client requested tombstones; live, if the client requested live) from
+the argument version chain vector.</p></div>

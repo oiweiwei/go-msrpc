@@ -1,1 +1,122 @@
-<div class="content"></div>
+<div class="content"><p> </p><p>The EfsRpcOpenFileRaw method is used to open an encrypted
+object on the server for backup or restore. It allocates resources that MUST be
+released by calling the <a href="c5da8aa7-fe38-4940-8d40-2cebbd887cba" data-linktype="relative-path">EfsRpcCloseRaw</a>
+method.<a id="Appendix_A_Target_42"></a><a aria-label="Product behavior note 42" href="cecd911d-7105-45cc-a7c8-348335d6f03f#Appendix_A_42" data-linktype="relative-path">&lt;42&gt;</a></p><dl>
+<dd>
+<div><pre> long EfsRpcOpenFileRaw(
+   [in] handle_t binding_h,
+   [out] PEXIMPORT_CONTEXT_HANDLE* hContext,
+   [in, string] wchar_t* FileName,
+   [in] long Flags
+ );
+</pre></div>
+</dd></dl><p><b>binding_h: </b>An explicit <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_1cf35308-abab-4123-9cbd-99c42dc9a6ff" data-linktype="relative-path">binding</a> handle created by
+the client. This is an RPC binding handle parameter, as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> and <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a>.</p><p><b>hContext: </b>An implementation-specific context
+handle that is used in subsequent calls by the client to the <a href="a3a6d95f-ebd5-4a08-9d19-6b6c1b7d41f6" data-linktype="relative-path">EfsRpcReadFileRaw</a> method, <a href="b4fa10e8-31bb-4dd4-87af-1c4a3dedf417" data-linktype="relative-path">EfsRpcWriteFileRaw</a> method,
+or EfsRpcCloseRaw method.</p><p><b>FileName: </b>An EFSRPC identifier, as specified
+in section <a href="9db7433f-be13-4605-993f-3695a2d2916e" data-linktype="relative-path">2.2.1</a>.</p><p><b>Flags: </b>This MUST be set to some combination of
+the following values. All servers and clients MUST support the <b>CREATE_FOR_IMPORT</b>
+flag. Servers that implement a hierarchical encrypted store, such as the NTFS
+file system, SHOULD also support the <b>CREATE_FOR_DIR</b> flag. Servers SHOULD
+support the <b>OVERWRITE_HIDDEN</b> flag, and MAY interpret it in
+implementation-specific ways. A client MUST ensure that all the flags it does
+not support are set to zero. A server MUST ignore all flags it does not
+support. Flag values are specified in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CREATE_FOR_IMPORT</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Open the object for writing (that is, restore). If
+  this flag is not set, open the object for reading (that is, backup).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CREATE_FOR_DIR</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>This flag is only intended for use in conjunction with
+  the <b>CREATE_FOR_IMPORT</b> flag. It indicates that the object being
+  restored is a container for other objects.<a id="Appendix_A_Target_43"></a><a aria-label="Product behavior note 43" href="cecd911d-7105-45cc-a7c8-348335d6f03f#Appendix_A_43" data-linktype="relative-path">&lt;43&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>OVERWRITE_HIDDEN</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>This flag is only intended for use in conjunction with
+  the <b>CREATE_FOR_IMPORT</b> flag. This flag indicates a request from the
+  client for the server to overwrite an existing object even if the existing
+  object is &#34;hidden&#34;. The meaning of &#34;hidden&#34; is specific
+  to the implementation of the data store, and this meaning does not affect
+  protocol behavior.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EFS_DROP_ALTERNATE_STREAMS   </p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>This flag indicates that content from any alternate
+  data streams, if present and implemented by the storage system, will be
+  ignored.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>The server MUST return 0 if it
+successfully processes the message received from the client. The server MUST
+return a nonzero value if processing fails.</p><p>First, the server SHOULD perform any additional access
+checks prescribed by the implementation. If any of these checks fail, it MUST
+return a nonzero value.</p><p>EFSRPC servers SHOULD return an error unless at least one of
+the following conditions is true:</p><ul><li><p><span><span> 
+</span></span>The calling user has a <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private key</a> that grants the
+user authorized access to the file. </p>
+</li><li><p><span><span> 
+</span></span>The <b>CREATE_FOR_IMPORT</b> flag is set, and the user has
+restore rights on the server. </p>
+</li><li><p><span><span> 
+</span></span>The <b>CREATE_FOR_IMPORT</b> flag is not set, and the user has
+backup rights on the server.</p>
+</li></ul><p>If the <b>CREATE_FOR_IMPORT</b> flag is set, the server MUST
+attempt to create an object with the given name and prepare it for writing data
+received in future EfsRpcWriteFileRaw calls. The server MUST return a nonzero
+value if this fails.</p><p>If the <b>CREATE_FOR_IMPORT</b> flag is not set, the server
+MUST attempt to locate the object requested and prepare it for reading data to
+be sent through future EfsRpcReadFileRaw calls. The server MUST return a
+nonzero value if it fails.</p><p>If the server supports the <b>CREATE_FOR_DIR</b> flag, and
+this flag is set:</p><ul><li><p><span><span> 
+</span></span>If the <b>CREATE_FOR_IMPORT</b> flag is not set:</p>
+<ul><li><p><span><span>  </span></span>If
+the data object referred to by <i>FileName</i> exists on the server and is not
+a container for other objects, the server SHOULD return a nonzero value.</p>
+</li><li><p><span><span>  </span></span>Otherwise,
+the server SHOULD ignore the <b>CREATE_FOR_DIR</b> flag.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <b>CREATE_FOR_IMPORT</b> flag is set, the server MUST
+attempt to create a container with the given name and prepare it for writing
+data received in future EfsRpcWriteFileRaw calls. The server MUST return a
+nonzero value if this fails.</p>
+</li></ul><p>If the server supports the <b>OVERWRITE_HIDDEN</b> flag, and
+this flag is set:</p><ul><li><p><span><span> 
+</span></span>If the <b>CREATE_FOR_IMPORT</b> flag is not set, the server
+SHOULD ignore this flag.</p>
+</li><li><p><span><span> 
+</span></span>If the <b>CREATE_FOR_IMPORT</b> flag is set, the server SHOULD
+overwrite an existing object even if the object is &#34;hidden&#34;. The
+meaning of &#34;hidden&#34; is specific to the implementation of the data
+store, and this meaning does not affect protocol behavior.</p>
+</li></ul><p>The server MUST ignore any flags that it does not support.</p><p>On success, the server MUST create an appropriate context
+handle and return it to the client.</p></div>

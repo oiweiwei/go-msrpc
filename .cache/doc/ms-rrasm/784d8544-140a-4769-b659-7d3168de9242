@@ -1,1 +1,188 @@
-<div class="content"></div>
+<div class="content"><p>The <b>INTERFACE_ROUTE_INFO</b> structure MAY<a id="Appendix_A_Target_25"></a><a aria-label="Product behavior note 25" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_25" data-linktype="relative-path">&lt;25&gt;</a> be used or <a href="5dca234b-bea4-4e67-958e-5459a32a7b71" data-linktype="relative-path"><b>MIB_IPFORWARDROW (section 2.2.1.2.35)</b></a>
+structure MAY<a id="Appendix_A_Target_26"></a><a aria-label="Product behavior note 26" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_26" data-linktype="relative-path">&lt;26&gt;</a> be used to specify the routes
+to be added or deleted on the RRAS server. Whenever this structure is used, the
+<b>InfoType</b> of <a href="c99955ec-6d18-4665-8d5b-e124de63a368" data-linktype="relative-path"><b>RTR_TOC_ENTRY (section 2.2.1.2.4)</b></a>
+structure MUST be 0xFFFF0005 to specify IP route information.<a id="Appendix_A_Target_27"></a><a aria-label="Product behavior note 27" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_27" data-linktype="relative-path">&lt;27&gt;</a></p><p>This structure is used in the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="927c5bf1-ac91-4325-b945-0d96a58f609b" data-linktype="relative-path">RRouterInterfaceTransportAdd (section 3.1.4.18)</a></p>
+</li><li><p><span><span> 
+</span></span><a href="ec9ba293-45e9-4f12-b9af-7e77ec96c90e" data-linktype="relative-path">RRouterInterfaceTransportGetInfo (section 3.1.4.19)</a></p>
+</li><li><p><span><span> 
+</span></span><a href="209ba5e7-876e-4406-a05c-65b7e5fb2380" data-linktype="relative-path">RRouterInterfaceTransportSetInfo (section 3.1.4.20)</a></p>
+<div><pre> typedef struct _INTERFACE_ROUTE_INFO {
+   union {
+     struct {
+       DWORD dwRtInfoDest;
+       DWORD dwRtInfoMask;
+       DWORD dwRtInfoPolicy;
+       DWORD dwRtInfoNextHop;
+       DWORD dwRtInfoAge;
+       DWORD dwRtInfoNextHopAS;
+       DWORD dwRtInfoMetric1;
+       DWORD dwRtInfoMetric2;
+       DWORD dwRtInfoMetric3;
+     };
+     struct {
+       IN6_ADDR DestinationPrefix;
+       DWORD DestPrefixLength;
+       IN6_ADDR NextHopAddress;
+       ULONG ValidLifeTime;
+       DWORD Flags;
+       ULONG Metric;
+     };
+   };
+   DWORD dwRtInfoIfIndex;
+   DWORD dwRtInfoType;
+   DWORD dwRtInfoProto;
+   DWORD dwRtInfoPreference;
+   DWORD dwRtInfoViewSet;
+   BOOL bV4;
+ } INTERFACE_ROUTE_INFO,
+  *PINTERFACE_ROUTE_INFO;
+</pre></div>
+</li></ul><p><b>dwRtInfoDest: </b>This MUST be the destination
+IPv4 address of the route. An entry with an IPv4 address of 0.0.0.0 is
+considered a default route. This member cannot be set to a multicast IPv4
+address.</p><p><b>dwRtInfoMask: </b>This MUST be the IPv4 subnet
+mask to be logically ANDed with the destination IPv4 address before being
+compared to the value in the <b>dwRtInfoDest</b> member. See <a href="https://go.microsoft.com/fwlink/?LinkId=90501" data-linktype="external">[RFC950]</a>.</p><p><b>dwRtInfoPolicy: </b>This MUST be set to the
+conditions that would cause the selection of a multipath route (the set of <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_348e9ede-8752-4382-a8a5-e9613378ca9d" data-linktype="relative-path">next hops</a> for a given
+destination). This member is typically in IP TOS format. The encoding of this
+member is specified in <a href="https://go.microsoft.com/fwlink/?LinkId=119993" data-linktype="external">[RFC1354]</a>.</p><p><b>dwRtInfoNextHop: </b>This MUST be the IPv4 address
+of the next system in the route. Otherwise, this member SHOULD be an IPv4
+address of 0.0.0.0.</p><p><b>dwRtInfoAge: </b>This MUST be the number of
+seconds since the route was added or modified in the network <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_c8605177-11ad-432e-bb3d-591165aca429" data-linktype="relative-path">routing table</a>.</p><p><b>dwRtInfoNextHopAS: </b>This MUST be the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_93140239-7bb7-4e8b-aecc-597e6b733f02" data-linktype="relative-path">autonomous system</a> number of
+the next hop. When this member is unknown or not relevant to the protocol or
+routing mechanism specified in <b>dwRtInfoProto</b>, this value SHOULD be set
+to 0. This value is documented in [RFC1354].</p><p><b>dwRtInfoMetric1: </b>This MUST be the primary
+routing metric value for this route. The semantics of this metric are
+determined by the routing protocol specified in the <b>dwRtInfoProto</b>
+member. If this metric is not used, its value SHOULD be set to -1. This value
+is documented in [RFC1354].</p><p><b>dwRtInfoMetric2: </b>This MUST be an alternate
+routing metric value for this route. The semantics of this metric are
+determined by the routing protocol specified in the <b>dwRtInfoProto</b>
+member. If this metric is not used, its value SHOULD be set to -1. This value
+is documented in [RFC1354].</p><p><b>dwRtInfoMetric3: </b>This MUST be an alternate
+routing metric value for this route. The semantics of this metric are
+determined by the routing protocol specified in the <b>dwRtInfoProto</b>
+member. If this metric is not used, its value SHOULD be set to -1. This value
+is documented in [RFC1354].</p><p><b>DestinationPrefix: </b>This MUST be the IPv6
+address prefix for the destination IP address for this route.</p><p><b>DestPrefixLength: </b>The length, in bits, of the
+site prefix or network part of the IP address specified in <b>DestinationPrefix</b>.
+Any value greater than 128 is an illegal value. A value of 255 is commonly used
+to represent an illegal value. </p><p><b>NextHopAddress: </b>This MUST be the IPv6 address
+of the next system or gateway for a remote route. If the route is to a local
+loopback address or an IP address on the local link, the next hop is
+unspecified (all zeros). For a local loopback route, this member SHOULD be an
+IPv6 address of 0::0.</p><p><b>ValidLifeTime: </b>The maximum time, in seconds,
+the IP route entry is valid. A value of 0xFFFFFFFF is infinite.</p><p><b>Flags: </b>Reserved. This MUST be set to 0.</p><p><b>Metric: </b>The route metric offset for this IP
+route entry. The semantics of this metric are determined by the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_edf0a770-0034-4c2d-8acd-68508bac32ae" data-linktype="relative-path">routing protocol</a> specified
+in <b>dwRtInfoProto</b>. If this metric is not used, its value SHOULD be set to
+-1. This value is documented in <a href="https://go.microsoft.com/fwlink/?LinkId=119995" data-linktype="external">[RFC4292]</a>.</p><p><b>dwRtInfoIfIndex: </b>This MUST be the index of the local
+interface through which the next hop of this route is reachable.</p><p><b>dwRtInfoType: </b>This MUST be the route type as
+specified in [RFC1354].</p><dl>
+<dd>
+<p>The following list shows the possible values for
+this member.<a id="Appendix_A_Target_28"></a><a aria-label="Product behavior note 28" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_28" data-linktype="relative-path">&lt;28&gt;</a></p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MIB_IPROUTE_TYPE_OTHER</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>A type other than what is specified in [RFC1354].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MIB_IPROUTE_TYPE_INVALID</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>An invalid route is logically deleted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MIB_IPROUTE_TYPE_DIRECT</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>A local route where the next hop is the final
+  destination (a local interface).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MIB_IPROUTE_TYPE_INDIRECT</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The remote route where the next hop is not the final
+  destination (a remote destination).</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwRtInfoProto: </b>The protocol or routing
+mechanism that generated the route. It MUST be one of the values specified in
+the <b>MIB_IPFORWARD_PROTO</b> enumeration.</p><p><b>dwRtInfoPreference: </b>Specifies the route
+preference as determined by the routing protocol in <b>dwRtInfoProto</b>.</p><p><b>dwRtInfoViewSet: </b>Specifies the Route
+Information Table <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_3f793b0b-9509-4df0-89f9-92f07954beb8" data-linktype="relative-path">views</a>.
+It MUST be a combination of the following values, or a combination of
+RTM_VIEW_MASK_UCAST and RTM_VIEW_MASK_MCAST.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>RTM_VIEW_MASK_ANY</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>This value is used to define or set the mask for the
+  Route Information Table view. This value is a mask for any type of route.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RTM_VIEW_MASK_UCAST</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>This value is used to define or set the mask for Route
+  Information Table view. This value is a mask for unicast routes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RTM_VIEW_MASK_MCAST</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>This value is used to define or set the mask for the
+  Route Information Table view. This value is a mask for multicast routes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RTM_VIEW_MASK_ALL</p>
+  <p>0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>This value is used to define or set the mask for the
+  Route Information Table view. This value is a mask for all types of routes.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>bV4: </b>Set to 1 if it is an IPV4 route; set to 0
+to indicate an IPV6 route. For an IPV4 route, the first structure in the union
+is used. For an IPV6 route, the second structure in the union is used.</p></div>

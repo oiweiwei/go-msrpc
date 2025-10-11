@@ -1,1 +1,62 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IP_NAT_GLOBAL_INFO</b> structure holds the global
+configuration information for NAT. This structure is used in the following
+methods:</p><ul><li><p><span><span> 
+</span></span><a href="071439e7-a9fd-40e4-91f7-ab756108e82f" data-linktype="relative-path"><b>RRouterInterfaceTransportSetGlobalInfo (section 3.1.4.10)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="14ad8d26-d7d7-48dd-914d-da962d5d7049" data-linktype="relative-path"><b>RRouterInterfaceTransportGetGlobalInfo (section 3.1.4.11)</b></a><span>  </span></p>
+<div><pre> typedef struct _IP_NAT_GLOBAL_INFO {
+   ULONG LoggingLevel;
+   ULONG Flags;
+   RTR_INFO_BLOCK_HEADER Header;
+ } IP_NAT_GLOBAL_INFO, *PIP_NAT_GLOBAL_INFO;
+</pre></div>
+</li></ul><p><b>LoggingLevel: </b>Specifies the logging level. It MUST
+be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPNATHLP_LOGGING_NONE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>No logging is done.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPNATHLP_LOGGING_ERROR</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Only errors are logged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPNATHLP_LOGGING_WARN</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Errors and warnings are logged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPNATHLP_LOGGING_INFO</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Errors, warnings, and information is logged.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Flags: </b>This MUST be set to 0.</p><p><b>Header: </b>This MUST be <a href="402d2cc2-dd94-487a-9bb1-fab6728c3e7d" data-linktype="relative-path"><b>RTR_INFO_BLOCK_HEADER (section 2.2.1.2.3)</b></a>.
+The <b>InfoType</b> field of header MUST be either 0x00000000 or 0xFFFF0001. If
+it is 0x0000000, there is no other information beyond the header and the rest
+of the fields MUST be zero. If the <b>InfoType</b> is 0xFFFF0001, the Offset
+MUST point to a structure of type <b>IP_NAT_TIMEOUT</b> (section <a href="bd3decb9-5427-4249-bd8c-1b7c343c7d36" data-linktype="relative-path">2.2.1.2.196)</a>.  </p></div>

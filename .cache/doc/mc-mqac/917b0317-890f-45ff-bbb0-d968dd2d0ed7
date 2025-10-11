@@ -1,0 +1,22 @@
+<div class="content"><p>The IsWorldReadable2 method is received by the server in an
+RPC_REQUEST packet. In response, the server returns a <a href="../ms-dtyp/51bbfbb1-08e2-4c13-a95e-1eaa7d310670" data-linktype="relative-path">BOOLEAN</a>,
+which indicates whether the <i>referenced queue</i> is accessible to everyone,
+or only to the owner and the system administrators.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT IsWorldReadable2(
+   [out, retval] VARIANT_BOOL* pisWorldReadable
+ );
+</pre></div>
+</dd></dl><p><b>pisWorldReadable: </b>A pointer to a <a href="../ms-oaut/7b39eb24-9d39-498a-bcd8-75c38e5823d0" data-linktype="relative-path">VARIANT_BOOL</a>
+that indicates whether the <i>referenced queue</i> is accessible to everyone,
+or only to the owner and the system administrators.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000).</p><p>When processing this call, the server MUST abide by the
+following contract:</p><p>If only the owner security principal has
+MQSEC_TAKE_QUEUE_OWNERSHIP permissions for the <i>referenced queue</i> as
+defined by the security descriptor in the refQueue.Security attribute:</p><ul><li><p><span><span> 
+</span></span>Set the <i>pisWorldReadable</i> output parameter to FALSE.</p>
+</li></ul><p>Else:</p><ul><li><p><span><span> 
+</span></span>Set the <i>pisWorldReadable</i> output parameter to TRUE.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK (0x00000000), and take no further action.</p>
+</li></ul></div>

@@ -1,0 +1,37 @@
+<div class="content"><p>The FireArrivedErrorEvent method is received by the server
+in an RPC_REQUEST packet. In response, the server MUST provide notification of
+an error relating to the arrival of a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a>.</p><dl>
+<dd>
+<div><pre> HRESULT FireArrivedErrorEvent(
+   [in] IMSMQQueue* pq,
+   [in] HRESULT hrStatus,
+   [in] long msgcursor
+ );
+</pre></div>
+</dd></dl><p><b>pq: </b>A pointer to an <a href="71652068-5a7b-4b42-81f5-5e83ca8d07c8" data-linktype="relative-path">IMSMQQueue</a> interface that
+upon success will be cast to an IDispatch pointer and forwarded on to the
+client.</p><p><b>hrStatus: </b>An <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+value that specifies the error code that was received from the Queue where the <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>
+was delivered.</p><p><b>msgcursor: </b>A <b>long</b> value that specifies
+the value of the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursor</a>
+option that was specified through the <i>Cursor</i> input parameter that was
+passed to the <a href="e9d4a14a-4979-48ef-8b42-ef251f1ec592" data-linktype="relative-path">IMSMQQueue4::EnableNotification</a>
+operation to associate this <a href="6102da49-1a16-4862-a4d1-ad092c5101a4" data-linktype="relative-path">MSMQEvent</a>
+with the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a>. This
+parameter corresponds to the <a href="f0456e8d-2f85-4c5b-ad2c-13b730ebfa77" data-linktype="relative-path">MQMSGCURSOR</a>
+(section 2.2.2.8) enum.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error HRESULT on failure.</p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>Cast <i>pq</i> to an IDispatch pointer <i>pq1</i>.</p>
+</li><li><p><span><span> 
+</span></span>Cast <i>hrStatus</i> to a long value <i>hrStatus1</i>.</p>
+</li><li><p><span><span> 
+</span></span>Call the <a href="cf8c1f55-0f43-465e-96bc-3316d9b05f76" data-linktype="relative-path">_DMSMQEventEvents::ArrivedError</a>
+method with the following inputs:</p>
+<ul><li><p><span><span>  </span></span><i>Queue</i>
+= <i>pq1</i></p>
+</li><li><p><span><span>  </span></span><i>ErrorCode</i>
+= <i>hrStatus1</i></p>
+</li><li><p><span><span>  </span></span><i>Cursor</i>
+= <i>msgcursor</i></p>
+</li></ul></li></ul></div>

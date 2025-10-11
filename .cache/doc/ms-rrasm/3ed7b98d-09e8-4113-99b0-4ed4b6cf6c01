@@ -1,1 +1,386 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_DA_MSG</b> structure MAY<a id="Appendix_A_Target_137"></a><a aria-label="Product behavior note 137" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_137" data-linktype="relative-path">&lt;137&gt;</a> be used for retrieving OSPF
+MIB entries in the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="9102e585-2f62-4408-bfb6-02a6460cc883" data-linktype="relative-path"><b>RMIBEntryGetFirst (section 3.1.4.31)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="50f78033-d248-4272-b4b9-a2519a0f304d" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.1.4.32)</b></a><span>  </span></p>
+<div><pre> typedef struct _MIB_DA_MSG {
+   UINT32 op_code;
+   UINT32 ret_code;
+   UINT32 in_snmp_id[44];
+   UINT32 obj_id[17];
+   UINT32 attr_id;
+   UINT32 inst_id[23];
+   UINT32 next_snmp_id[44];
+   UINT32 creator;
+   UINT32 attr_type;
+   UINT32 inst_cnt;
+   UINT32 map_flag;
+   ULONG_PTR data[32];
+ } MIB_DA_MSG;
+</pre></div>
+</li></ul><p><b>op_code: </b>This MUST have one of the following
+values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ASN_RFC1157_GETREQUEST</p>
+  <p>0x000000A0</p>
+  </td>
+  <td>
+  <p>MIB get request: <b>RMIBEntryGet (section 3.1.4.30)</b><span>  </span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ASN_RFC1157_GETNEXTREQUEST</p>
+  <p>0x000000A1</p>
+  </td>
+  <td>
+  <p>MIB get next request: <b>RMIBEntryGetNext (section 3.1.4.32)</b><span>  </span></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ASN_RFC1157_SETREQUEST</p>
+  <p>0x000000A3</p>
+  </td>
+  <td>
+  <p>MIB set request: <a href="61ae7aea-8604-4bf3-8ae5-88542152cf8e" data-linktype="relative-path"><b>RMIBEntrySet (section 3.1.4.29)</b></a><span>  </span></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ret_code: </b>This contains a return value which
+MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MIB_OK</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>All other values</p>
+  </td>
+  <td>
+  <p>The call was not successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>in_snmp_id: </b>Contains the index of the entry
+that needs to be retrieved.</p><dl>
+<dd>
+<p><b>in_snmp_id[0]</b> contains the length (excluding
+the zeroth element) of the data passed in <b>in_snmp_id</b>. in_snmp_id[1]
+onwards contains the MIB object identifier <a href="https://go.microsoft.com/fwlink/?LinkId=144664" data-linktype="external">[RFC1850]</a>.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value in_snmp_id[1] and beyond</p>
+   </th>
+   <th>
+   <p>Meaning [RFC 1850]</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>g_oidOspfAreaEntry</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 2, 1 }</p>
+  </td>
+  <td>
+  <p>Open Shortest Path First (OSPF) area entry. See
+  ospfAreaEntry, section 3.2 in [RFC1850].</p>
+  <p>Information describing the configured parameters and
+  cumulative statistics of one of the router&#39;s attached areas.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfLsdbEntry</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 3, 1 }</p>
+  </td>
+  <td>
+  <p>A single link state advertisement. See ospfLsdbEntry,
+  section 3.4 in [RFC1850]. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfNbrEntry</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 7, 1 }</p>
+  </td>
+  <td>
+  <p>The information regarding a single neighbor. See
+  OspfNbrEntry, section 3.10 in [RFC1850]. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfVIEntry</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 6, 1 }</p>
+  </td>
+  <td>
+  <p>The information about a single Virtual Interface. See
+  OspfVirtIfEntry, section 3.9 in [RFC1850].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfAreaState</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 2, 1, 3 }</p>
+  </td>
+  <td>
+  <p>Retrieves the state. This value indicates the state of
+  the OSPF Area, either up(0x00000001), or down(0x00000002). See
+  ospfAreaStatus, section 3.2 in [RFC1850].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfAreaSpfCount</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 2, 1, 9 }</p>
+  </td>
+  <td>
+  <p>Retrieves the number of times the SPF algorithm has
+  run for the area. See ospfSpfRuns, section 3.2 in [RFC1850].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfLsdbAge</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 3, 1, 6 }</p>
+  </td>
+  <td>
+  <p>Retrieves the age of the link state advertisement in
+  seconds. See ospfLsdbAge, section 3.4 in [RFC1850] and section 12.1.1 LS age
+  in <a href="https://go.microsoft.com/fwlink/?LinkId=144662" data-linktype="external">[RFC2328]</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfLsdbSequence</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 3, 1, 5 }</p>
+  </td>
+  <td>
+  <p>Retrieves the sequence. The OSPF Sequence Number is a
+  32-bit signed integer. It starts with the value &#39;80000001&#39;h, or &#39;7FFFFFFF&#39;h,
+  and increments until &#39;7FFFFFFF&#39;h. Thus, a typical sequence number will be
+  very negative. The sequence number field is a signed 32-bit integer. It is
+  used to detect old and duplicate link state advertisements. The space of
+  sequence numbers is linearly ordered. The larger the sequence number the more
+  recent the advertisement. See ospfLsdbSequence, section 3.4 of [RFC1850] and
+  LS sequence number, section 12.1.6 in [RFC2328].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfNbrRtrId</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 7, 1, 7 }</p>
+  </td>
+  <td>
+  <p>Retrieves the router ID. A 32-bit integer uniquely
+  identifying the neighboring router in the autonomous system. See
+  ospfNbrRtrId, section 3.10 in [RFC1850].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfNbrState</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 7, 1, 3 }</p>
+  </td>
+  <td>
+  <p>Retrieves the state. The state of the Virtual Neighbor
+  Relationship. It can be down (0x00000001), attempt (0x00000002), init
+  (0x00000003), twoWay (0x00000004), exchangeStart (0x00000005), exchange
+  (0x00000006), loading (0x00000007), and full (0x00000008) See ospfNbrState,
+  section 3.10 in [RFC1850].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfNbrPriority</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 7, 1, 9 }</p>
+  </td>
+  <td>
+  <p>Retrieves the priority. The priority of this neighbor
+  in the designated router election algorithm. The value 0 signifies that the
+  neighbor is not eligible to become the designated router on this particular
+  network. See ospfNbrPriority, section 3.10 in [RFC1850].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfNbrEvents</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 7, 1, 10 }</p>
+  </td>
+  <td>
+  <p>Retrieves the event count. The number of times this
+  neighbor relationship has changed state, or that an error has occurred. See
+  ospfNbrEvents, section 3.10 in [RFC1850].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfNbrLSRetransQLen</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 7, 1, 11 }</p>
+  </td>
+  <td>
+  <p>Retrieves the queue length. See ospfNbrLsRetransQLen,
+  section 3.10 in [RFC1850].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfVIState</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 6, 1, 3 }</p>
+  </td>
+  <td>
+  <p>Retrieves the state. See ospfVirtIfState, section 3.9
+  in [RFC1850].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfVIDrops</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 6, 1, 21}</p>
+  </td>
+  <td>
+  <p>The number of OSPF packets dropped on Virtual
+  Interfaces. The data returned is a 32-bit integer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfVIRxHellos</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 6, 1, 16 }</p>
+  </td>
+  <td>
+  <p>The number of OSPF Hello packets received on Virtual
+  Interfaces. Data returned is a 32-bit integer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfVITxHellos</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 6, 1, 11 }</p>
+  </td>
+  <td>
+  <p>The number of OSPF Hello packets transmitted on the
+  Virtual Interfaces. The data returned is a 32-bit integer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfIfArea</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 5, 1, 6 }</p>
+  </td>
+  <td>
+  <p>See ospfIfAreaId, section 3.7 in [RFC1850].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfIfType</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 5, 1, 7 }</p>
+  </td>
+  <td>
+  <p>See ospfIfType, section 3.7 in [RFC1850].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfIfState</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 5, 1, 3 }</p>
+  </td>
+  <td>
+  <p>See ospfIfState, section 3.7 in [RFC1850].</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfIfRxDBDescripts</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 5, 1, 24 }</p>
+  </td>
+  <td>
+  <p>The number of OSPF DataBase Description packets
+  received. The data returned is a 32-bit integer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfIfRxLinkStateAcks</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 5, 1, 27 }</p>
+  </td>
+  <td>
+  <p>The number of OSPF Link State Acknowledgements
+  received. The data returned is a 32-bit integer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfIfRxLinkStateReqs</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 5, 1, 25 }</p>
+  </td>
+  <td>
+  <p>The number of OSPF Link State Requests received. The
+  data returned is a 32-bit integer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfIfRxLinkStateUpds</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 5, 1, 26 }</p>
+  </td>
+  <td>
+  <p>The number of OSPF Link State Updates received. The
+  ata returned is a 32-bit integer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfIfTxDBDescripts</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 5, 1, 19 }</p>
+  </td>
+  <td>
+  <p>The number of OSPF DataBase Description packets
+  transmitted. The data returned is a 32-bit integer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfIfTxLinkStateAcks</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 5, 1, 22 }</p>
+  </td>
+  <td>
+  <p>The number of OSPF Link State Update packets
+  transmitted. The data returned is a 32-bit integer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfIfTxLinkStateReqs</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 5, 1, 20 }</p>
+  </td>
+  <td>
+  <p>The number of OSPF Link State Request packets
+  transmitted. The data returned is a 32-bit integer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfIfTxLinkStateUpds</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 5, 1, 21 }</p>
+  </td>
+  <td>
+  <p>The number of OSPF Link State Update packets
+  transmitted. The data returned is a 32-bit integer.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>g_oidOspfIfDrops</p>
+  <p>{ 4, 1, 18, 3, 5, 3, 2, 3, 5, 1, 28 }</p>
+  </td>
+  <td>
+  <p>The number of OSPF packets dropped because of invalid
+  information in the packet. The data returned is a 32-bit integer.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>obj_id: </b>Unused and MUST be set to zero (0).</p><p><b>attr_id: </b>Unused and MUST be set to zero (0).</p><p><b>inst_id: </b>Unused and MUST be set to zero (0).</p><p><b>next_snmp_id: </b>Unused and MUST be set to zero
+(0).</p><p><b>creator: </b>Unused and MUST be set to zero (0).</p><p><b>attr_type: </b>Unused and MUST be set to zero (0).</p><p><b>inst_cnt: </b>Unused and MUST be set to zero (0).</p><p><b>map_flag: </b>Unused and MUST be set to zero (0).</p><p><b>data: </b>Contains the data returned by the OSPF
+MIB based on the entry requested in the previous table. See [RFC1850] for more
+information about how to interpret the returned data. The length of the data
+returned is specified in <b>dwMibOutEntrySize</b> of <i>pInfoStruct</i> in the
+call to <b>RMIBEntryGet</b>, <b>RMIBEntryGetFirst</b>, and <b>RMIBEntryGetNext</b>.</p></div>

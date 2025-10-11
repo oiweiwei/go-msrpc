@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPX_GLOBAL_INFO</b> structure MAY<a id="Appendix_A_Target_81"></a><a aria-label="Product behavior note 81" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_81" data-linktype="relative-path">&lt;81&gt;</a> be used to give the global IPX
+information for the RRAS server. When this structure is encapsulated in <a href="c99955ec-6d18-4665-8d5b-e124de63a368" data-linktype="relative-path"><b>RTR_TOC_ENTRY (section 2.2.1.2.4)</b></a>,
+the <b>InfoType</b> value used MUST be 0x00000009. </p><dl>
+<dd>
+<div><pre> typedef struct _IPX_GLOBAL_INFO {
+   ULONG RoutingTableHashSize;
+   ULONG EventLogMask;
+ } IPX_GLOBAL_INFO,
+  *PIPX_GLOBAL_INFO;
+</pre></div>
+</dd></dl><p><b>RoutingTableHashSize: </b>The hash size of the IPX
+routing table.</p><p><b>EventLogMask: </b>Mask to manage event logging on
+the IPX interface on the RRAS server.</p></div>

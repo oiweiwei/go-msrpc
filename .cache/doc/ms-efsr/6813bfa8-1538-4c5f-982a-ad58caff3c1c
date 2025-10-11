@@ -1,1 +1,145 @@
-<div class="content"></div>
+<div class="content"><p>The EfsRpcFileKeyInfo method is used to query and modify
+information about the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">keys</a>
+used to encrypt a given object.</p><dl>
+<dd>
+<div><pre> DWORD EfsRpcFileKeyInfo(
+   [in] handle_t binding_h,
+   [in, string] wchar_t* FileName,
+   [in] DWORD InfoClass,
+   [out] EFS_RPC_BLOB** KeyInfo
+ );
+</pre></div>
+</dd></dl><p><b>binding_h: </b>This is an <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_1cf35308-abab-4123-9cbd-99c42dc9a6ff" data-linktype="relative-path">binding</a> handle parameter,
+as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+and <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a>.</p><p><b>FileName: </b>An EFSRPC identifier, as specified
+in section <a href="9db7433f-be13-4605-993f-3695a2d2916e" data-linktype="relative-path">2.2.1</a>.</p><p><b>InfoClass: </b>One of the values in the following
+table. With the exception of UPDATE_KEY_USED (0x00000100), a server SHOULD
+support all of these values. A server MAY choose to support UPDATE_KEY_USED.<a id="Appendix_A_Target_46"></a><a aria-label="Product behavior note 46" href="cecd911d-7105-45cc-a7c8-348335d6f03f#Appendix_A_46" data-linktype="relative-path">&lt;46&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>BASIC_KEY_INFO</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Request information about the keys used to encrypt the
+  object&#39;s contents. On success, the server will return the information in an <a href="49a8335f-3136-4059-9deb-9574d5ed5c86" data-linktype="relative-path">EFS_KEY_INFO</a>
+  (2.2.14)structure in the <i>KeyInfo</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CHECK_COMPATIBILITY_INFO</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Requests the EfsVersion for the encrypted file. On
+  success, the server will return the information in an <a href="08ad49d7-29e4-4c50-b2c1-8c21df94f947" data-linktype="relative-path">EFS_COMPATIBILITY_INFO</a>
+  structure in the <i>KeyInfo</i> parameter. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>UPDATE_KEY_USED</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>Update the user <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificates</a> used to give
+  a specific user access to an object. The server will populate the <i>KeyInfo</i>
+  parameter with a zero-terminated, wide character <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string that
+  contains a newline-separated list of names of objects successfully updated.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CHECK_DECRYPTION_STATUS</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>Request a hint from the server as to whether the given
+  object could be successfully decrypted without further user intervention or
+  higher-level events. The server will return this information in an <a href="9d10b7b1-cc92-404e-a589-640193cc0681" data-linktype="relative-path">EFS_DECRYPTION_STATUS_INFO</a>
+  structure in the <i>KeyInfo</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CHECK_ENCRYPTION_STATUS</p>
+  <p>0x00000400</p>
+  </td>
+  <td>
+  <p>Request a hint from the server as to whether the given
+  object could be successfully encrypted without further user intervention or
+  higher-level events. The server will return this information in an <a href="bc8eef94-813a-4ff0-ad75-4614e992b2ca" data-linktype="relative-path">EFS_ENCRYPTION_STATUS_INFO</a>
+  structure in the <i>KeyInfo</i> parameter.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>KeyInfo: </b>Returned by the server, as previously
+specified.</p><p><b>Return Values: </b>The server MUST return 0 if it
+successfully processes the message received from the client. The server MUST
+return a nonzero value if processing fails.</p><dl>
+<dd>
+<p>If no object exists on the server with the specified
+name the server MUST return a nonzero value.</p>
+</dd>
+<dd>
+<p>If the <i>InfoClass</i> parameter is not equal to
+CHECK_ENCRYPTION_STATUS and the object with the specified name is not
+encrypted, the server MUST return a nonzero value.</p>
+</dd>
+<dd>
+<p>If the value in the <i>InfoClass</i> parameter is
+unsupported by the server, the server MUST return a nonzero value.</p>
+</dd>
+<dd>
+<p>If the value in the <i>InfoClass</i> parameter is
+equal to BASIC_KEY_INFO, the server SHOULD read the <a href="3166cf4a-e085-47be-94c6-b69bddf274ff" data-linktype="relative-path">EFSRPC Metadata</a> of the
+object referred to by the FileName argument and return information about its <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_3a58e275-3d9f-4b66-8c8d-9808cd0cd8ff" data-linktype="relative-path">FEK</a> in an EFS_KEY_INFO
+structure within the KeyInfo argument.</p>
+</dd>
+<dd>
+<p>If the value in the <i>InfoClass</i> parameter is
+equal to UPDATE_KEY_USED, the implementation supports this value, and the <i>FileName</i>
+parameter does not satisfy the implementation-specific requirements for this
+operation<a id="Appendix_A_Target_47"></a><a aria-label="Product behavior note 47" href="cecd911d-7105-45cc-a7c8-348335d6f03f#Appendix_A_47" data-linktype="relative-path">&lt;47&gt;</a>, the server MUST return a
+nonzero value.</p>
+</dd>
+<dd>
+<p>If the value in the <i>InfoClass</i> parameter is
+equal to UPDATE_KEY_USED, the implementation supports this value, and the <i>FileName</i>
+parameter does satisfy all implementation-specific requirements, the server
+MUST update the EFSRPC Metadata of all the data objects referred by <i>FileName</i>
+in an implementation-specific way<a id="Appendix_A_Target_48"></a><a aria-label="Product behavior note 48" href="cecd911d-7105-45cc-a7c8-348335d6f03f#Appendix_A_48" data-linktype="relative-path">&lt;48&gt;</a>, and
+return a newline-separated list of EFSRPC Identifiers thus updated in the <i>KeyInfo</i>
+parameter.</p>
+</dd>
+<dd>
+<p>If the value in the <i>InfoClass</i> parameter is
+equal to CHECK_ENCRYPTION_STATUS, the server MUST return an
+EFS_ENCRYPTION_STATUS_INFO structure in the <i>KeyInfo</i> parameter, which
+provides a hint to the client what error code would be returned if encryption
+was attempted on this object without any further user interaction or
+higher-level events.</p>
+</dd>
+<dd>
+<p>If the value in the <i>InfoClass</i> parameter is
+equal to CHECK_DECRYPTION_STATUS, the server SHOULD return
+ERROR_REQUIRES_INTERACTIVE_WINDOWSTATION (<a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/18d8fbe8-a967-4f1c-ae50-99ca8e491d2d" data-linktype="relative-path">2.2</a>).
+The server MAY, instead, return an EFS_DECRYPTION_STATUS_INFO structure in the <i>KeyInfo</i>
+parameter, which provides a hint to the client what error code would be
+returned if decryption were attempted on this object without any further user
+interaction or higher-level events.</p>
+</dd>
+<dd>
+<p>If the value of the InfoClass parameter is equal to
+CHECK_COMPATIBILITY_INFO, the server MUST return an EFS_COMPATIBILITY_INFO
+structure in the KeyInfo parameter, which provides the EFSVersion of the EFSRPC
+metadata associated with the file.</p>
+</dd></dl></div>

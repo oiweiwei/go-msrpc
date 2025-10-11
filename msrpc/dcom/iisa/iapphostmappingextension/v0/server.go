@@ -31,13 +31,87 @@ type AppHostMappingExtensionServer interface {
 	// IUnknown base class.
 	iunknown.UnknownServer
 
-	// GetSiteNameFromSiteId operation.
+	// The GetSiteNameFromSiteId method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns a string name for the specific integer site ID, which
+	// is a concept that is implemented on the administration system (it is an implementation
+	// detail).
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrSiteName is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070002 ERROR_FILE_NOT_FOUND    | The configuration has no site with ID dwSiteId.         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070490 ERROR_NOT_FOUND         | The configuration contains no sites.                    |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetSiteNameFromSiteID(context.Context, *GetSiteNameFromSiteIDRequest) (*GetSiteNameFromSiteIDResponse, error)
 
-	// GetSiteIdFromSiteName operation.
+	// The GetSiteIdFromSiteName method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns a unique integer ID for the specific site name. Site
+	// name and ID are implementation details of the administration system.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070002 ERROR_FILE_NOT_FOUND    | The configuration has no site with name bstrSiteName.   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070490 ERROR_NOT_FOUND         | The configuration contains no sites.                    |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetSiteIDFromSiteName(context.Context, *GetSiteIDFromSiteNameRequest) (*GetSiteIDFromSiteNameResponse, error)
 
-	// GetSiteElementFromSiteId operation.
+	// The GetSiteElementFromSiteId method is received by the server in an RPC_REQUEST packet.
+	// In response, the server obtains the site section element from a specific site ID
+	// in order to access site configuration and properties.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070002 ERROR_FILE_NOT_FOUND    | The given site ID could not be found.                   |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetSiteElementFromSiteID(context.Context, *GetSiteElementFromSiteIDRequest) (*GetSiteElementFromSiteIDResponse, error)
 
 	// MapPath operation.

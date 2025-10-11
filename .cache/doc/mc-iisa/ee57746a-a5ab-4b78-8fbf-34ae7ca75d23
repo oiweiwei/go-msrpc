@@ -1,0 +1,86 @@
+<div class="content"><p>The IAppHostSectionDefinition <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides methods
+that access a declaration of the <a href="59774887-09e3-4de5-ad8e-4794f404b123" data-linktype="relative-path">IAppHostElement</a> object
+that is supported by the administration system. A declaration is distinct from
+the existence of an IAppHostElement in the administration system.</p><p>The IAppHostSectionDefinition interface inherits opnums 0–2
+from the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="bd838252-c4aa-4b42-b34c-5279f5b5ffb3" data-linktype="relative-path">Name</a></p>
+  </td>
+  <td>
+  <p>Opnum: 3</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="8c657e55-c8bd-44c0-810c-cd05bb6084c2" data-linktype="relative-path">Type</a></p>
+  </td>
+  <td>
+  <p>&#34;getter&#34;</p>
+  <p>Opnum: 4</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="5eee2ca3-6369-4c29-ab8d-29e7364f1f07" data-linktype="relative-path">Type</a></p>
+  </td>
+  <td>
+  <p>&#34;setter&#34;</p>
+  <p>Opnum: 5</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="a1fd6193-ba99-43c8-9205-1f1b1430956d" data-linktype="relative-path">OverrideModeDefault</a></p>
+  </td>
+  <td>
+  <p>&#34;getter&#34;</p>
+  <p>Opnum: 6</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="2526255b-053a-4762-a199-f3c2140757dc" data-linktype="relative-path">OverrideModeDefault</a></p>
+  </td>
+  <td>
+  <p>&#34;setter&#34;</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="d515580e-fb9d-4ff0-bd5c-8c0b86167291" data-linktype="relative-path">AllowDefinition</a></p>
+  </td>
+  <td>
+  <p>&#34;getter&#34;</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="2cf21612-b087-4511-bcd6-b97188472c45" data-linktype="relative-path">AllowDefinition</a></p>
+  </td>
+  <td>
+  <p>&#34;setter&#34;</p>
+  <p>Opnum: 9</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="bc56f8a5-a89e-4d8f-bce8-129291210624" data-linktype="relative-path">AllowLocation</a></p>
+  </td>
+  <td>
+  <p>&#34;getter&#34;</p>
+  <p>Opnum: 10</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="50469e26-914f-4cfe-a359-a068b730d683" data-linktype="relative-path">AllowLocation</a></p>
+  </td>
+  <td>
+  <p>&#34;setter&#34;</p>
+  <p>Opnum: 11</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

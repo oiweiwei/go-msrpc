@@ -1,1 +1,257 @@
-<div class="content"></div>
+<div class="content"><p>The MountNtmsMedia method <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b" data-linktype="relative-path">mounts</a> one or more pieces
+of media.</p><dl>
+<dd>
+<div><pre> HRESULT MountNtmsMedia(
+   [in, size_is(dwCount)] LPNTMS_GUID lpMediaId,
+   [in, out, size_is(dwCount)] LPNTMS_GUID lpDriveId,
+   [in] DWORD dwCount,
+   [in] DWORD dwOptions,
+   [in] int dwPriority,
+   [in] DWORD dwTimeout,
+   [in, out] LPNTMS_MOUNT_INFORMATION lpMountInformation
+ );
+</pre></div>
+</dd></dl><p><b>lpMediaId: </b>An array of <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_05349689-4cd0-4643-a13e-9f552ecf3346" data-linktype="relative-path">logical media</a> identifiers
+or media <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_55db62c5-a84f-43b7-a037-b44ecd8fb92f" data-linktype="relative-path">side</a>
+identifiers. Each entry in the array MUST be unique.</p><p><b>lpDriveId: </b>An array of <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a> identifiers that
+correspond to the media listed in the <i>lpMediaId</i> parameter. This array
+MUST either specify a list of drives into which media will be mounted or
+receive the list of drives into which media will be mounted when the operation
+completes.</p><p><b>dwCount: </b>The number of elements in the <i>lpMediaId</i>
+and <i>lpDriveId</i> arrays.</p><p><b>dwOptions: </b>A bitmap of mount options from the <a href="4866b31b-2907-407c-a9bb-29b0909e7fc5" data-linktype="relative-path">NtmsMountOptions (section 2.2.3.3)</a>
+enumeration.</p><p><b>dwPriority: </b>A value from the <a href="22164730-d972-4a73-a646-9e9fcbbd2424" data-linktype="relative-path">NtmsMountPriority (section 2.2.3.4)</a>
+enumeration specifying the priority of the mount request.</p><p><b>dwTimeout: </b>The maximum time, in milliseconds,
+allowed for mounting of the specified media. To wait as long as the mount
+takes, this parameter MUST be set to 0xFFFFFFFF. If <b>dwOptions</b> is
+specified as NTMS_MOUNT_NOWAIT, ignore this value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>Use this value to wait as long as required for the
+  mount to occur.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>lpMountInformation: </b>This parameter is
+currently unused. It MUST be sent as NULL and ignored on receipt.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to an object was denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>A allocation failure occurred during processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007000F</p>
+  <p>ERROR_INVALID_DRIVE</p>
+  </td>
+  <td>
+  <p>The drive identifier is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070013</p>
+  <p>ERROR_WRITE_PROTECT</p>
+  </td>
+  <td>
+  <p>The media state is set to NTMS_PARTSTATE_COMPLETE,
+  from the <a href="bdf99d44-7849-4a94-93ec-270a3e8c4eb3" data-linktype="relative-path">NtmsPartitionState</a>
+  enumeration, and the NTMS_MOUNT_WRITE value was specified.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800700AA</p>
+  <p>ERROR_BUSY</p>
+  </td>
+  <td>
+  <p>The media or drives are busy.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800705B4</p>
+  <p>ERROR_TIMEOUT</p>
+  </td>
+  <td>
+  <p>The time-out event expired before the medium was
+  available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CC</p>
+  <p>ERROR_INVALID_MEDIA</p>
+  </td>
+  <td>
+  <p>The media identifier is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CD</p>
+  <p>ERROR_INVALID_LIBRARY</p>
+  </td>
+  <td>
+  <p>The library identifier is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CF</p>
+  <p>ERROR_DRIVE_MEDIA_MISMATCH</p>
+  </td>
+  <td>
+  <p>The specified media and drive are not in the same
+  library.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D0</p>
+  <p>ERROR_MEDIA_OFFLINE</p>
+  </td>
+  <td>
+  <p>The specified media is offline and cannot be
+  allocated.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D5</p>
+  <p>ERROR_RESOURCE_DISABLED</p>
+  </td>
+  <td>
+  <p>A resource required for this operation is disabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database query or update failed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DA</p>
+  <p>ERROR_DATABASE_FULL</p>
+  </td>
+  <td>
+  <p>The database is full.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710E0</p>
+  <p>ERROR_REQUEST_REFUSED</p>
+  </td>
+  <td>
+  <p>The request is refused as a user canceled the request
+  through the user interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007139E</p>
+  <p>ERROR_RESOURCE_NOT_AVAILABLE</p>
+  </td>
+  <td>
+  <p>The specified resource is not available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007139F</p>
+  <p>ERROR_INVALID_STATE</p>
+  </td>
+  <td>
+  <p>An unexpected state was encountered.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800704C7</p>
+  <p>ERROR_CANCELLED</p>
+  </td>
+  <td>
+  <p>The request was cancelled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>dwCount</i>
+is not 0, verify that <i>lpMediaId</i> is not NULL, and verify that <i>lpDriveId</i>
+is not NULL. If parameter validation fails, the server MUST immediately fail
+the operation and return ERROR_INVALID_PARAMETER (0x80070057).</p><p>The server MUST check the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_9036b269-4f3b-4353-a1d0-54f5c686ec2c" data-linktype="relative-path">physical media</a> that are
+specified to verify that the mount request can be fulfilled. It MUST also check
+the validity of the physical media to ensure that they are in valid libraries,
+and verify that the drive IDs passed in are valid.</p><p>If the media state is set to NTMS_PARTSTATE_COMPLETE from
+the NtmsPartitionState enumeration, and the NTMS_MOUNT_WRITE value was
+specified, the server MUST return ERROR_WRITE_PROTECT (0x80070013).</p><p>The MountNtmsMedia method queues a request to mount the
+specified media, then waits the number of milliseconds specified in the <i>dwTimeout</i>
+parameter for the mount to complete or for an error to be detected. If the
+server cannot complete the mount operation before <i>dwTimeout</i> expires, the
+server MUST cancel the request and return an error. If the specified media are
+in an offline library, the server MUST return ERROR_MEDIA_OFFLINE (0x800710D0).
+If the specified medium is in use or a drive is not available, the process
+blocks up to the time-out value and returns ERROR_BUSY (0x800700AA). If the
+NTMS_MOUNT_ERROR_NOT_AVAILABLE value is specified, the method MUST return an
+immediate error when a resource (medium or drive) is unavailable.</p><p>The time-out value of 0xFFFFFFFF can be used to make the
+method wait without timing out. When a nonzero time-out value is specified in
+the <i>dwTimeout</i> parameter, the server MUST wait for all the media that are
+specified in <i>lpMediaId</i> to become mounted. If the specified time elapses
+before all the media are mounted, the MountNtmsMedia method MUST return an
+error and cancels the request. The application can examine the status that is
+returned and resubmit the request, if desired.</p><p>When multiple media to be mounted are specified with a
+single call, all the specified media MUST be in a single library. If any of the
+specified media are offline, none of the media will be mounted until all the
+media are online.</p><p>If the specified medium is offline, the server MUST post an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_4676b5f2-6ecd-463c-8218-811911038e63" data-linktype="relative-path">operator request</a> to mount
+the media and the MountNtmsMedia method waits for the period of time that is
+specified in the <i>dwTimeout</i> parameter. If the wait period exceeds the
+parameter, the mount request is canceled, and the server MUST return
+ERROR_TIMEOUT (0x800705B4).</p><p>If the media cannot be mounted because either the library or
+media is offline and the client has specified NTMS_MOUNT_ERROR_OFFLINE in <b>dwOptions</b>,
+then the server MUST return ERROR_MEDIA_OFFLINE (0x800710D0).</p><p>If the specified medium is offline and the client has not
+specified NTMS_MOUNT_ERROR_OFFLINE in <b>dwOptions</b>, the server MUST post an
+operator request to mount the media and then wait for the period of time
+specified by the <b>dwTimeout</b> parameter.</p><p>If the specified medium is online, the server requests the
+mount.</p><p>If a drive or medium is unavailable, the server MUST send
+the request, and the MountNtmsMedia method waits for the period of time that is
+specified in the <i>dwTimeout</i> parameter. If the wait period exceeds the
+parameter, the mount request is canceled, and the server MUST return
+ERROR_TIMEOUT (0x800705B4).</p></div>

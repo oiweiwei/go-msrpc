@@ -1,1 +1,373 @@
-<div class="content"></div>
+<div class="content"><p>The IUpdateSearcher::Search (opnum 20) method performs an
+update search.</p><dl>
+<dd>
+<div><pre> HRESULT Search(
+   [in] BSTR criteria,
+   [out, retval] ISearchResult** retval
+ );
+</pre></div>
+</dd></dl><p><b>criteria: </b>A string specifying criteria that
+updates are required to meet in order to be returned in the search results.</p><dl>
+<dd>
+<p>The server MUST support criteria specified by the
+following ABNF grammar.</p>
+<dl>
+<dd>
+<div><pre>  
+ criteria = andgroup *[1,*WSP &#34;or&#34; 1,*WSP andgroup] /
+  
+ andgroup = andgroup *[1,*WSP &#34;and&#34; 1,*WSP andgroup] / &#34;(&#34; *WSP andgroup *WSP &#34;)&#34; / criterion
+  
+ criterion = propertyname *WSP operator *WSP value / &#34;(&#34; *WSP criterion *WSP &#34;)&#34;
+  
+ propertyname = &#34;Type&#34; / &#34;DeploymentAction&#34; / &#34;IsAssigned&#34; / 
+    &#34;AutoSelectOnWebSites&#34; / &#34;BrowseOnly&#34; / &#34;UpdateID&#34; / &#34;RevisionNumber&#34; /
+    &#34;CategoryIDs&#34; / &#34;IsInstalled&#34; / &#34;IsHidden&#34; /  &#34;IsPresent&#34; /
+    &#34;RebootRequired&#34;
+  
+ operator = &#34;=&#34; / &#34;!=&#34; / &#34;contains&#34;
+  
+ value = string / integer
+  
+ string = &#34;&#39;&#34; *CHAR &#34;&#39;&#34;
+  
+ integer = [&#34;-&#34;] 1*DIGIT
+</pre></div>
+</dd></dl></dd>
+<dd>
+<p>The CHAR and DIGIT production
+rules are specified in <span><a href="https://go.microsoft.com/fwlink/?LinkId=123096" data-linktype="external">[RFC5234]</a></span>
+section B.1.</p>
+</dd>
+<dd>
+<p>Integer values MUST be specified
+in base 10. String values MUST be escaped (using the
+IUpdateSearcher::EscapeString (opnum 18) method) before being enclosed in
+single quotation marks, as specified by the preceding grammar. String
+comparisons MUST be case-insensitive.</p>
+</dd>
+<dd>
+<p>The server MUST support the
+following update properties with the given operators and value types.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Update property name</p>
+   </th>
+   <th>
+   <p>Operators supported</p>
+   </th>
+   <th>
+   <p>Value type</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>Type</p>
+  </td>
+  <td>
+  <p>=, !=</p>
+  </td>
+  <td>
+  <p>String</p>
+  </td>
+  <td>
+  <p>Compares the update&#39;s type to that given.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DeploymentAction</p>
+  </td>
+  <td>
+  <p>=</p>
+  </td>
+  <td>
+  <p>String</p>
+  </td>
+  <td>
+  <p>Finds updates with the given deployment action. If
+  this criterion is not specified, the search operation MUST return only
+  updates with a DeploymentAction of &#34;Installation&#34;.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IsAssigned</p>
+  </td>
+  <td>
+  <p>=</p>
+  </td>
+  <td>
+  <p>Integer</p>
+  <p>MUST be 0 or 1</p>
+  </td>
+  <td>
+  <p>The value is treated as a Boolean.</p>
+  <p>The value determines whether the search operation
+  finds updates that are intended for processing by an <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_b1d92af1-3c57-42f7-936f-8c56fb75e818" data-linktype="relative-path">automatic
+  update agent</a></span>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>AutoSelectOnWebsites</p>
+  </td>
+  <td>
+  <p>=</p>
+  </td>
+  <td>
+  <p>Integer</p>
+  <p>MUST be 0 or 1</p>
+  </td>
+  <td>
+  <p>The value is treated as a Boolean.</p>
+  <p>The value determines whether the search operation
+  finds updates that are intended to be automatically selected from web user
+  interfaces.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>BrowseOnly</p>
+  </td>
+  <td>
+  <p>=</p>
+  </td>
+  <td>
+  <p>Integer</p>
+  <p>MUST be 0 or 1</p>
+  </td>
+  <td>
+  <p>The value is treated as a Boolean.</p>
+  <p>The value determines whether the search operation
+  finds updates that are not intended for processing by an automatic update
+  agent.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>UpdateID</p>
+  </td>
+  <td>
+  <p>=, !=</p>
+  </td>
+  <td>
+  <p>String</p>
+  </td>
+  <td>
+  <p>Compares the update&#39;s ID to that given.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RevisionNumber</p>
+  </td>
+  <td>
+  <p>=</p>
+  </td>
+  <td>
+  <p>Integer</p>
+  </td>
+  <td>
+  <p>Finds updates with the given revision number.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CategoryIDs</p>
+  </td>
+  <td>
+  <p>Contains</p>
+  </td>
+  <td>
+  <p>String</p>
+  </td>
+  <td>
+  <p>Finds updates belonging to the given category.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IsInstalled</p>
+  </td>
+  <td>
+  <p>=</p>
+  </td>
+  <td>
+  <p>Integer</p>
+  <p>MUST be 0 or 1</p>
+  </td>
+  <td>
+  <p>The value is treated as a Boolean.</p>
+  <p>The value determines whether the search operation
+  finds updates that are installed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IsHidden</p>
+  </td>
+  <td>
+  <p>=</p>
+  </td>
+  <td>
+  <p>Integer</p>
+  <p>MUST be 0 or 1</p>
+  </td>
+  <td>
+  <p>The value is treated as a Boolean.</p>
+  <p>The value determines whether the search operation
+  finds updates that have been hidden by a user.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IsPresent</p>
+  </td>
+  <td>
+  <p>=</p>
+  </td>
+  <td>
+  <p>Integer</p>
+  <p>MUST be 0 or 1</p>
+  </td>
+  <td>
+  <p>The value is treated as a Boolean.</p>
+  <p>The value determines whether the search operation
+  finds updates that are present, that is, updates that have been installed for
+  one or more products.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RebootRequired</p>
+  </td>
+  <td>
+  <p>=</p>
+  </td>
+  <td>
+  <p>Integer</p>
+  <p>MUST be 0 or 1</p>
+  </td>
+  <td>
+  <p>The value is treated as a Boolean.</p>
+  <p>The value determines whether the search operation
+  finds updates that currently require a reboot to complete installation or
+  uninstallation.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>retval: </b>An <b>ISearchResult</b> instance with
+the results of the search.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><dl>
+<dd>
+<p>If the criteria string cannot be
+parsed by the search criteria grammar specified preceding, the method MUST
+return an error.</p>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>The server SHOULD trigger the <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_362092cf-7fb5-43eb-92e1-c3e4affdd92b" data-linktype="relative-path">update agent</a></span> to
+perform an update search through an implementation-dependent<a id="Appendix_A_Target_41"></a><a aria-label="Product behavior note 41" href="50faf1ae-d0ab-42cb-87e2-33f30391e807#Appendix_A_41" data-linktype="relative-path">&lt;41&gt;</a> interface.</p><p>The update search MUST be restricted to updates meeting the <i>criteria</i>
+specified. If the <i>criteria</i> parameter is NULL or the empty string, the
+server SHOULD trigger the update agent to use default search criteria, as
+defined by the update agent.</p><p>If the value of the <b>CanAutomaticallyUpgradeService</b>
+ADM element is VARIANT_TRUE, the search operation MAY automatically upgrade the
+update agent.</p><p>If the value of the <b>IncludePotentiallySupersededUpdates</b>
+ADM element is VARIANT_TRUE, the search operation results SHOULD include
+updates superseded by other updates in the search results. Otherwise, the
+search operation results SHOULD NOT include updates superseded by other updates
+in the search results.</p><p>If the value of the <b>Online</b> ADM element is VARIANT_TRUE,
+the search operation SHOULD go online.</p><p>The following table specifies the update server against
+which the search operation SHOULD be performed.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value of the ServerSelection ADM element</p>
+   </th>
+   <th>
+   <p>Update server to search against</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><b>ssDefault</b></p>
+  </td>
+  <td>
+  <p>Implementation-defined by the update agent.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>ssManagedServer</b></p>
+  </td>
+  <td>
+  <p>An update server managed by an administrator.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>ssWindowsUpdate</b></p>
+  </td>
+  <td>
+  <p>The Windows Update update server</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>ssOthers</b></p>
+  </td>
+  <td>
+  <p>The update server identified by the value of the <b>ServiceID</b>
+  ADM element.</p>
+  </td>
+ </tr></tbody></table><p>If the value of the <b>IgnoreDownloadPriority</b> ADM
+element is VARIANT_TRUE, the search operation SHOULD ignore the download
+priority of updates when computing update supersedence.</p><p>The following table specifies the set of updates for which
+the search operation SHOULD be performed.</p><table><thead>
+  <tr>
+   <th>
+   <p>Value of the SearchScope ADM element</p>
+   </th>
+   <th>
+   <p>Updates to search for</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><b>searchScopeDefault</b></p>
+  </td>
+  <td>
+  <p>Per-machine updates only.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>searchScopeMachineOnly</b></p>
+  </td>
+  <td>
+  <p>Per-machine updates only.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>searchScopeCurrentUserOnly</b></p>
+  </td>
+  <td>
+  <p>Per-user updates for the calling user only.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>searchScopeMachineAndCurrentUser</b></p>
+  </td>
+  <td>
+  <p>Per-machine updates and per-user updates for the
+  calling user.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>searchScopeMachineAndAllUsers</b></p>
+  </td>
+  <td>
+  <p>Per-machine updates and per-user updates for all
+  users.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><b>searchScopeAllUsers</b></p>
+  </td>
+  <td>
+  <p>Per-user updates for all users.</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

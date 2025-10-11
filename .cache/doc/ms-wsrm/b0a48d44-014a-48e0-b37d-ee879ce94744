@@ -1,1 +1,107 @@
-<div class="content"></div>
+<div class="content"><p>The CreateCalendar method creates a new calendar event.</p><dl>
+<dd>
+<div><pre> [id(2), helpstring(&#34;method CreateCalendar&#34;)] HRESULT CreateCalendar(
+   [in] BSTR bstrCalendarXML,
+   [in] BOOL bChangeActivePolicy
+ );
+</pre></div>
+</dd></dl><p><b>bstrCalendarXML: </b>A string that specifies the
+new calendar event, in the form of a <a href="c7483312-afa9-4c74-a428-65dd1b96bfa5" data-linktype="relative-path">Calendar</a> element (section
+2.2.5.7). For an example, see <a href="1fd26c60-e8c3-432c-805a-48fa5407ea34" data-linktype="relative-path">Calendar Example</a> (section <a href="d0f9f144-01b1-4f21-b179-f51df713b0ca" data-linktype="relative-path">4.2.8</a>).</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>bChangeActivePolicy: </b>A Boolean value that
+specifies whether the configuration changes made by this method call SHOULD
+change the current active policy, if applicable, of the system.<a id="Appendix_A_Target_56"></a><a aria-label="Product behavior note 56" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_56" data-linktype="relative-path">&lt;56&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The current active policy of the system SHOULD NOT be
+  changed by the method call.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>If applicable, the current active policy of the system
+  SHOULD be changed by the method call.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0070</p>
+  <p>WRM_ERR_TAGS_NOT_IN_ORDER</p>
+  </td>
+  <td>
+  <p>The <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a>
+  data that is maintained by the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1517eb9b-d2b2-48f0-bf23-bde76923ed30" data-linktype="relative-path">management service</a> is
+  invalid or cannot be processed.<a id="Appendix_A_Target_57"></a><a aria-label="Product behavior note 57" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_57" data-linktype="relative-path">&lt;57&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0258</p>
+  <p>WRM_ERR_CAL_DUPLICATE_CALENDAR</p>
+  </td>
+  <td>
+  <p>A calendar event with the specified name already
+  exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF025B</p>
+  <p>WRM_ERR_CAL_MAX_CAL_EXCEEDED</p>
+  </td>
+  <td>
+  <p>The number of calendar events that exist at one time
+  has exceeded an implementation-defined limit.<a id="Appendix_A_Target_58"></a><a aria-label="Product behavior note 58" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_58" data-linktype="relative-path">&lt;58&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="b573c233-e3b6-4179-896f-90a4eb0ca8ff" data-linktype="relative-path">IWRMCalendar</a> interface
+methods are specified in section 3.2.4.4.</p></div>

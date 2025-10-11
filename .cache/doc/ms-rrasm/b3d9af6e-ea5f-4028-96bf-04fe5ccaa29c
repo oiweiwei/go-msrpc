@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IF_TABLE_INDEX</b> structure MAY<a id="Appendix_A_Target_90"></a><a aria-label="Product behavior note 90" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_90" data-linktype="relative-path">&lt;90&gt;</a> be used to specify the index
+within the Interface Table. It is used in the <a href="9e132641-0b75-45b5-818c-a996828b4745" data-linktype="relative-path"><b>IPX_MIB_INDEX 
+(section</b></a> 2.2.1.2.104) structure. </p><dl>
+<dd>
+<div><pre> typedef struct _IF_TABLE_INDEX {
+   ULONG InterfaceIndex;
+ } IF_TABLE_INDEX,
+  *PIF_TABLE_INDEX;
+</pre></div>
+</dd></dl><p><b>InterfaceIndex: </b>The local index value for the
+network interface. This index value MAY change when a network adapter is
+disabled and then enabled, or under other circumstances, and need not be
+persistent.</p></div>

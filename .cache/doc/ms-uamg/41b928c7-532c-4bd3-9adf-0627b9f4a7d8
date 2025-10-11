@@ -1,1 +1,20 @@
-<div class="content"></div>
+<div class="content"><p>The IUpdateSession2::UserLocale (opnum 14) method gets the
+language for update results.</p><dl>
+<dd>
+<div><pre> HRESULT UserLocale(
+   [out, retval] LCID* retval
+ );
+</pre></div>
+</dd></dl><p><b>retval: </b>An <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_c7f99c66-592f-4053-b62a-878c189653b6" data-linktype="relative-path">LCID</a></span> that contains
+the ID of the locale for results of operations in this session. If no locale is
+set by using IUpdateSession2::UserLocale (opnum 15) (section <span><a href="54b19641-7ea1-463f-bba2-850ad2a76dd6" data-linktype="relative-path">3.16.5.2)</a></span>,
+this MUST contain the current user&#39;s default locale as obtained from the
+system.<a id="Appendix_A_Target_17"></a><a aria-label="Product behavior note 17" href="50faf1ae-d0ab-42cb-87e2-33f30391e807#Appendix_A_17" data-linktype="relative-path">&lt;17&gt;</a></p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method SHOULD return the value of the <b>UserLocale</b>
+ADM element. </p></div>

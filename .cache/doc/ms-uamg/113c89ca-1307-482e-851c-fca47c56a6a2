@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The UpdateExceptionContext enumeration defines values that
+describe the context in which an error has occurred.</p><dl>
+<dd>
+<div><pre> typedef  enum tagUpdateExceptionContext
+ {
+   uecGeneral = 1,
+   uecWindowsDriver = 2,
+   uecWindowsInstaller = 3,
+ } UpdateExceptionContext;
+</pre></div>
+</dd></dl><p><b>uecGeneral:  </b>The exception is not tied to any
+context.</p><p><b>uecWindowsDriver:  </b>The exception is related to
+one or more Windows drivers.</p><p><b>uecWindowsInstaller:  </b>The exception is related
+to Windows  Installer.</p></div>

@@ -49,8 +49,12 @@ type ObjectManagement3Client interface {
 	// INtmsObjectManagement2 retrieval method.
 	ObjectManagement2() intmsobjectmanagement2.ObjectManagement2Client
 
+	// The GetNtmsObjectAttributeAR method retrieves private data from an object, with strings
+	// encoded using ASCII.
 	GetNTMSObjectAttributeAR(context.Context, *GetNTMSObjectAttributeARRequest, ...dcerpc.CallOption) (*GetNTMSObjectAttributeARResponse, error)
 
+	// The GetNtmsObjectAttributeWR method retrieves private data from an object, with strings
+	// encoded using Unicode.
 	GetNTMSObjectAttributeWR(context.Context, *GetNTMSObjectAttributeWRRequest, ...dcerpc.CallOption) (*GetNTMSObjectAttributeWRResponse, error)
 
 	// AlterContext alters the client context.
@@ -433,11 +437,16 @@ func (o *xxx_GetNTMSObjectAttributeAROperation) UnmarshalNDRResponse(ctx context
 // GetNTMSObjectAttributeARRequest structure represents the GetNtmsObjectAttributeAR operation request
 type GetNTMSObjectAttributeARRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ObjectID            *dtyp.GUID     `idl:"name:lpObjectId" json:"object_id"`
-	Type                uint32         `idl:"name:dwType" json:"type"`
-	AttributeName       uint8          `idl:"name:lpAttributeName" json:"attribute_name"`
-	AttributeBufferSize uint32         `idl:"name:lpdwAttributeBufferSize" json:"attribute_buffer_size"`
+	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
+	ObjectID *dtyp.GUID     `idl:"name:lpObjectId" json:"object_id"`
+	// dwType: The value from the NtmsObjectsTypes (section 2.2.1.6) enumeration specifying
+	// the type of the object.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// lpAttributeName: A null-terminated sequence of ASCII characters specifying the name
+	// of the extended attribute to retrieve.
+	AttributeName uint8 `idl:"name:lpAttributeName" json:"attribute_name"`
+	// lpdwAttributeBufferSize: A pointer to the size of the lpAttributeData buffer.
+	AttributeBufferSize uint32 `idl:"name:lpdwAttributeBufferSize" json:"attribute_buffer_size"`
 }
 
 func (o *GetNTMSObjectAttributeARRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeAROperation) *xxx_GetNTMSObjectAttributeAROperation {
@@ -483,10 +492,67 @@ type GetNTMSObjectAttributeARResponse struct {
 	AttributeBufferSize uint32 `idl:"name:lpdwAttributeBufferSize" json:"attribute_buffer_size"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That                *dcom.ORPCThat `idl:"name:That" json:"that"`
-	AttributeData       []byte         `idl:"name:lpAttributeData;size_is:(lpdwAttributeBufferSize);length_is:(lpAttributeSize)" json:"attribute_data"`
-	AttributeSize       uint32         `idl:"name:lpAttributeSize" json:"attribute_size"`
-	ActualAttributeSize uint32         `idl:"name:lpActualAttributeSize" json:"actual_attribute_size"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpAttributeData: A buffer containing the attribute.
+	AttributeData []byte `idl:"name:lpAttributeData;size_is:(lpdwAttributeBufferSize);length_is:(lpAttributeSize)" json:"attribute_data"`
+	// lpAttributeSize: A pointer to the size of the attribute returned in the lpAttributeData
+	// buffer. This will point to 0 when the function returns with an insufficient input
+	// buffer error.
+	AttributeSize uint32 `idl:"name:lpAttributeSize" json:"attribute_size"`
+	// lpActualAttributeSize: A pointer to the actual size of the attribute.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | The call was successful.                                                         |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED       | Access to an object was denied.                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER   | A parameter is not valid.                                                        |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007007A ERROR_INSUFFICIENT_BUFFER | The specified buffer size is not large enough.                                   |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800700E8 ERROR_NO_DATA             | The specified attribute is greater than or equal to the NTMS_MAXATTR_LENGTH      |
+	//	|                                      | value, specified in the Platform SDK file NTMSApi.h.                             |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800708CA ERROR_NOT_CONNECTED       | Unable to connect to the server.                                                 |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND    | The object was not found.                                                        |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE    | The database query or update failed.                                             |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// After the server receives this message, it MUST:
+	//
+	// * Verify that ObjectId is not NULL.
+	//
+	// * Verify that lpAttributeData is not NULL.
+	//
+	// * Verify that lpAttributeName is not NULL.
+	//
+	// * Verify that lpAttributeSize is not NULL.
+	//
+	// * Verify that dwType is a valid object type.
+	//
+	// If parameter validation fails, the server MUST immediately fail the operation and
+	// return ERROR_INVALID_PARAMETER (0x80070057).
+	//
+	// If parameter validation succeeds, the server MUST verify that the user has the required
+	// access rights, get the value of the extended attribute that is specified by lpAttributeName,
+	// return it to the user in the buffer that is pointed to by lpAttributeData, and set
+	// the size of the data that is copied in the lpAttributeData in lpAttributeSize. If
+	// the client does not have the required access rights, the server MUST return ERROR_ACCESS_DENIED
+	// (0x80070005).
+	//
+	// If the buffer size that is specified by lpdwAttributeBufferSize is too small, the
+	// server MUST return ERROR_INSUFFICIENT_BUFFER (0x8007007A) with lpActualAttributeSize
+	// set to the required size and lpAttributeSize set to zero.
+	//
+	// Strings that are sent to this method as parameters MUST be ASCII-encoded.
+	ActualAttributeSize uint32 `idl:"name:lpActualAttributeSize" json:"actual_attribute_size"`
 	// Return: The GetNtmsObjectAttributeAR return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -814,11 +880,16 @@ func (o *xxx_GetNTMSObjectAttributeWROperation) UnmarshalNDRResponse(ctx context
 // GetNTMSObjectAttributeWRRequest structure represents the GetNtmsObjectAttributeWR operation request
 type GetNTMSObjectAttributeWRRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ObjectID            *dtyp.GUID     `idl:"name:lpObjectId" json:"object_id"`
-	Type                uint32         `idl:"name:dwType" json:"type"`
-	AttributeName       string         `idl:"name:lpAttributeName;string" json:"attribute_name"`
-	AttributeBufferSize uint32         `idl:"name:lpdwAttributeBufferSize" json:"attribute_buffer_size"`
+	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
+	ObjectID *dtyp.GUID     `idl:"name:lpObjectId" json:"object_id"`
+	// dwType: The value from the NtmsObjectsTypes (section 2.2.1.6) enumeration specifying
+	// the type of the object.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// lpAttributeName: A null-terminated sequence of Unicode characters specifying the
+	// name of the extended attribute to retrieve.
+	AttributeName string `idl:"name:lpAttributeName;string" json:"attribute_name"`
+	// lpdwAttributeBufferSize: A pointer to the size of the lpAttributeData buffer.
+	AttributeBufferSize uint32 `idl:"name:lpdwAttributeBufferSize" json:"attribute_buffer_size"`
 }
 
 func (o *GetNTMSObjectAttributeWRRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSObjectAttributeWROperation) *xxx_GetNTMSObjectAttributeWROperation {
@@ -864,10 +935,40 @@ type GetNTMSObjectAttributeWRResponse struct {
 	AttributeBufferSize uint32 `idl:"name:lpdwAttributeBufferSize" json:"attribute_buffer_size"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That                *dcom.ORPCThat `idl:"name:That" json:"that"`
-	AttributeData       []byte         `idl:"name:lpAttributeData;size_is:(lpdwAttributeBufferSize);length_is:(lpAttributeSize)" json:"attribute_data"`
-	AttributeSize       uint32         `idl:"name:lpAttributeSize" json:"attribute_size"`
-	ActualAttributeSize uint32         `idl:"name:lpActualAttributeSize" json:"actual_attribute_size"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpAttributeData: A buffer containing the attribute.
+	AttributeData []byte `idl:"name:lpAttributeData;size_is:(lpdwAttributeBufferSize);length_is:(lpAttributeSize)" json:"attribute_data"`
+	// lpAttributeSize: A pointer to the size of the attribute returned in the lpAttributeData
+	// buffer. This will point to zero when the function returns with an insufficient input
+	// buffer error.
+	AttributeSize uint32 `idl:"name:lpAttributeSize" json:"attribute_size"`
+	// lpActualAttributeSize: A pointer to the size of the attribute in the lpAttributeData
+	// buffer.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | The call was successful.                                                         |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED       | Access to an object was denied.                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER   | A parameter is not valid.                                                        |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007007A ERROR_INSUFFICIENT_BUFFER | The specified buffer size is not large enough.                                   |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800700E8 ERROR_NO_DATA             | The specified attribute is greater than or equal to the NTMS_MAXATTR_LENGTH      |
+	//	|                                      | value, specified in the Platform SDK file NTMSApi.h.                             |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800708CA ERROR_NOT_CONNECTED       | Unable to connect to the server.                                                 |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND    | The object was not found.                                                        |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE    | The database query or update failed.                                             |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	ActualAttributeSize uint32 `idl:"name:lpActualAttributeSize" json:"actual_attribute_size"`
 	// Return: The GetNtmsObjectAttributeWR return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

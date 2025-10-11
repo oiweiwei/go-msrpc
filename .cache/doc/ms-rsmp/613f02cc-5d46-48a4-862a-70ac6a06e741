@@ -1,1 +1,151 @@
-<div class="content"></div>
+<div class="content"><p>The InjectNtmsMedia method allows media to be inserted into
+the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">port</a> of an online
+library.</p><dl>
+<dd>
+<div><pre> HRESULT InjectNtmsMedia(
+   [in] LPNTMS_GUID lpLibraryId,
+   [in, out] LPNTMS_GUID lpInjectOperation,
+   [in] DWORD dwAction
+ );
+</pre></div>
+</dd></dl><p><b>lpLibraryId: </b>A pointer to the identifier of a
+media library.</p><p><b>lpInjectOperation: </b>A pointer to the identifier
+of the insert process. In the case of a NTMS_INJECT_START or
+NTMS_INJECT_STARTMANY operation, this MUST be an out parameter, and the server
+will return the lpInjectOperation identifier immediately after starting the
+operation. In the case of a NTMS_INJECT_STOP or NTMS_INJECT_RETRACT operation,
+this MUST be an input parameter.</p><dl>
+<dd>
+<p>The lpInjectOperation identifier received in an
+NTMS_INJECT_START operation is used only in a NTMS_INJECT_STOP operation. The
+lpInjectOperation identifier received in a NTMS_INJECT_STARTMANY operation is
+used only in the NTMS_INJECT_STOP and NTMS_INJECT_RETRACT operations.</p>
+</dd></dl><p><b>dwAction: </b>A value from the <a href="ae6eb3ea-8929-4ba6-870f-7f118c7301cc" data-linktype="relative-path">NtmsInjectOperation</a>
+enumeration, specifying the operation to perform.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The insert is queued.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>NTMS_CONTROL_ACCESS to the library is denied; other
+  security errors are possible but indicate a security subsystem error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>An allocation failure occurred during processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is missing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D1</p>
+  <p>ERROR_LIBRARY_OFFLINE</p>
+  </td>
+  <td>
+  <p>The library identifier refers to an offline library
+  that cannot inject media.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database is inaccessible or damaged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DA</p>
+  <p>ERROR_DATABASE_FULL</p>
+  </td>
+  <td>
+  <p>The database is full.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DD</p>
+  <p>ERROR_INVALID_OPERATION</p>
+  </td>
+  <td>
+  <p>The NTMS_INJECT_STOP action was performed on an
+  invalid operation identifier.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DF</p>
+  <p>ERROR_DEVICE_NOT_AVAILABLE</p>
+  </td>
+  <td>
+  <p>The library is disabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710E2</p>
+  <p>ERROR_LIBRARY_FULL</p>
+  </td>
+  <td>
+  <p>The library is full, and no slot is available for use.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>lpLibraryId</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>lpInjectOperation</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>dwAction</i> is not greater than
+NTMS_INJECT_STARTMANY.</p>
+</li></ul><p>If parameter validation fails, the server MUST immediately
+fail the operation and return ERROR_INVALID_PARAMETER (0x80070057). If the
+library is offline, the method MUST return ERROR_LIBRARY_OFFLINE (0x800710D1).</p><p>Because libraries vary in functionality of the NTMS_IEPORT
+object, each device might operate slightly differently. The following steps
+specify how the RSM server generally handles a media <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_5e9a10ec-4dc8-457c-bac6-4df3af609f40" data-linktype="relative-path">inject</a> request:</p><ol><li><p><span>    </span>The server
+allows, unlocks, or extends the NTMS_IEPORT.</p>
+</li><li><p><span>    </span>The server
+checks to see whether there is a full NTMS_IEPORT, a retracted NTMS_IEPORT, a
+Stop Inject command, or a time-out value. If none of these have occurred, the
+server MUST continue to wait. (Multicartridge IE ports are not scanned for full
+status.)</p>
+</li><li><p><span>    </span>When one of the
+preceding events occurs, the NTMS_IEPORT MUST be locked; each medium in the
+NTMS_IEPORT is moved to a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a1f0ab90-f3c0-46b8-9c77-d0d7508ede94" data-linktype="relative-path">slot</a>;
+and an Identify Medium command is queued for each medium. If there are not
+enough slots for the media in the NTMS_IEPORT object, the media MUST remain in
+the NTMS_IEPORT object and an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_4676b5f2-6ecd-463c-8218-811911038e63" data-linktype="relative-path">operator
+request</a> is sent, requesting that media be removed from the library. If an
+NTMS_INJECT_STOP action was issued on an invalid operation identifier, the
+InjectNtmsMedia method MUST return ERROR_INVALID_OPERATION (0x800710DD). If
+there are no free slots, the InjectNtmsMedia method MUST return
+ERROR_LIBRARY_FULL (0x800710E2).</p>
+</li></ol><p>If the library specified by the InjectNtmsMedia method does
+not have a port, the <a href="a642d27e-0bd7-4798-9580-33bdabaee04b" data-linktype="relative-path">AccessNtmsLibraryDoor</a>
+method can be used to insert and <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a22dff61-81ae-4414-8242-3d28f4c70c31" data-linktype="relative-path">eject</a> media.</p><p>On completion of an asynchronous operation, notification
+will be sent with the identifier lpInjectOperation.</p></div>

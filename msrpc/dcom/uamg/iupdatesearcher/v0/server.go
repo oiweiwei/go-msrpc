@@ -31,20 +31,228 @@ type UpdateSearcherServer interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
+	// The IUpdateSearcher::CanAutomaticallyUpgradeService (opnum 9) method sets whether
+	// the update agent can automatically upgrade itself before performing a search initiated
+	// through this instance.
+	//
+	// The IUpdateSearcher::CanAutomaticallyUpgradeService (opnum 8) method retrieves whether
+	// the update agent can automatically upgrade itself before performing a search initiated
+	// through this instance.
+	//
+	// Return Values: The method MUST return information an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// If value is neither VARIANT_TRUE nor VARIANT_FALSE, this method MUST return an error.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD set the value of the CanAutomaticallyUpgradeService ADM element
+	// to the contents of the value parameter.
 	GetCanAutomaticallyUpgradeService(context.Context, *GetCanAutomaticallyUpgradeServiceRequest) (*GetCanAutomaticallyUpgradeServiceResponse, error)
 
+	// The IUpdateSearcher::CanAutomaticallyUpgradeService (opnum 9) method sets whether
+	// the update agent can automatically upgrade itself before performing a search initiated
+	// through this instance.
+	//
+	// The IUpdateSearcher::CanAutomaticallyUpgradeService (opnum 8) method retrieves whether
+	// the update agent can automatically upgrade itself before performing a search initiated
+	// through this instance.
+	//
+	// Return Values: The method MUST return information an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// If value is neither VARIANT_TRUE nor VARIANT_FALSE, this method MUST return an error.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD set the value of the CanAutomaticallyUpgradeService ADM element
+	// to the contents of the value parameter.
 	SetCanAutomaticallyUpgradeService(context.Context, *SetCanAutomaticallyUpgradeServiceRequest) (*SetCanAutomaticallyUpgradeServiceResponse, error)
 
+	// The IUpdateSearcher::ClientApplicationID (opnum 10) method retrieves the string used
+	// to identify the current client application.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 9) method sets the identifier of the
+	// calling application.
+	//
+	// The IUpdateHistoryEntry::ClientApplicationID (opnum 16) method retrieves the ID of
+	// the application that initiated the operation.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 16) method sets a string that
+	// identifies the client application that is using this interface.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 8) method retrieves the identifier
+	// of the calling application.
+	//
+	// The IUpdateSearcher::ClientApplicationID (opnum 11) method sets the string used to
+	// identify the current client application.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 15) method retrieves a string
+	// that identifies the client application that is using this interface.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ClientApplicationID ADM element.
 	GetClientApplicationID(context.Context, *GetClientApplicationIDRequest) (*GetClientApplicationIDResponse, error)
 
+	// The IUpdateSearcher::ClientApplicationID (opnum 10) method retrieves the string used
+	// to identify the current client application.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 9) method sets the identifier of the
+	// calling application.
+	//
+	// The IUpdateHistoryEntry::ClientApplicationID (opnum 16) method retrieves the ID of
+	// the application that initiated the operation.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 16) method sets a string that
+	// identifies the client application that is using this interface.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 8) method retrieves the identifier
+	// of the calling application.
+	//
+	// The IUpdateSearcher::ClientApplicationID (opnum 11) method sets the string used to
+	// identify the current client application.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 15) method retrieves a string
+	// that identifies the client application that is using this interface.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ClientApplicationID ADM element.
 	SetClientApplicationID(context.Context, *SetClientApplicationIDRequest) (*SetClientApplicationIDResponse, error)
 
+	// The IUpdateSearcher::IncludePotentiallySupersededUpdates (opnum 12) method retrieves
+	// whether the search results include updates that are superseded by other updates in
+	// the search results.
+	//
+	// The IUpdateSearcher::IncludePotentiallySupersededUpdates (opnum 13) method sets whether
+	// the search results include updates that are superseded by other updates in the search
+	// results.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the IncludePotentiallySupersededUpdates ADM
+	// element.
 	GetIncludePotentiallySupersededUpdates(context.Context, *GetIncludePotentiallySupersededUpdatesRequest) (*GetIncludePotentiallySupersededUpdatesResponse, error)
 
+	// The IUpdateSearcher::IncludePotentiallySupersededUpdates (opnum 12) method retrieves
+	// whether the search results include updates that are superseded by other updates in
+	// the search results.
+	//
+	// The IUpdateSearcher::IncludePotentiallySupersededUpdates (opnum 13) method sets whether
+	// the search results include updates that are superseded by other updates in the search
+	// results.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the IncludePotentiallySupersededUpdates ADM
+	// element.
 	SetIncludePotentiallySupersededUpdates(context.Context, *SetIncludePotentiallySupersededUpdatesRequest) (*SetIncludePotentiallySupersededUpdatesResponse, error)
 
+	// The ServerSelection enumeration defines values that describe the type of server to
+	// use for an update search operation.
+	//
+	// The IUpdateSearcher::ServerSelection (opnum 14) method retrieves the type of update
+	// server used to search against.
+	//
+	// The IUpdateSearcher::ServerSelection (Opnum 15) method sets the type of update server
+	// used to search against.
+	//
+	// The IUpdateHistoryEntry::ServerSelection (opnum 17) method describes the type of
+	// update service that provided the update for which the operation was performed.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ServerSelection ADM element.
 	GetServerSelection(context.Context, *GetServerSelectionRequest) (*GetServerSelectionResponse, error)
 
+	// The ServerSelection enumeration defines values that describe the type of server to
+	// use for an update search operation.
+	//
+	// The IUpdateSearcher::ServerSelection (opnum 14) method retrieves the type of update
+	// server used to search against.
+	//
+	// The IUpdateSearcher::ServerSelection (Opnum 15) method sets the type of update server
+	// used to search against.
+	//
+	// The IUpdateHistoryEntry::ServerSelection (opnum 17) method describes the type of
+	// update service that provided the update for which the operation was performed.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ServerSelection ADM element.
 	SetServerSelection(context.Context, *SetServerSelectionRequest) (*SetServerSelectionResponse, error)
 
 	// Opnum16NotUsedOnWire operation.
@@ -53,20 +261,219 @@ type UpdateSearcherServer interface {
 	// Opnum17NotUsedOnWire operation.
 	// Opnum17NotUsedOnWire
 
+	// The IUpdateSearcher::EscapeString (opnum 18) method escapes a string such that it
+	// can be used as a literal value in a search criteria string.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method MUST return the escaped string.
 	EscapeString(context.Context, *EscapeStringRequest) (*EscapeStringResponse, error)
 
+	// The IUpdateSearcher::QueryHistory (opnum 19) method retrieves a collection of history
+	// events.
+	//
+	// The IUpdateSession3::QueryHistory (Opnum 17) method retrieves relevant update history
+	// entries.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	QueryHistory(context.Context, *QueryHistoryRequest) (*QueryHistoryResponse, error)
 
+	// The IUpdateSearcher::Search (opnum 20) method performs an update search.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD trigger the update agent to perform an update search through an
+	// implementation-dependent<41> interface.
+	//
+	// The update search MUST be restricted to updates meeting the criteria specified. If
+	// the criteria parameter is NULL or the empty string, the server SHOULD trigger the
+	// update agent to use default search criteria, as defined by the update agent.
+	//
+	// If the value of the CanAutomaticallyUpgradeService ADM element is VARIANT_TRUE, the
+	// search operation MAY automatically upgrade the update agent.
+	//
+	// If the value of the IncludePotentiallySupersededUpdates ADM element is VARIANT_TRUE,
+	// the search operation results SHOULD include updates superseded by other updates in
+	// the search results. Otherwise, the search operation results SHOULD NOT include updates
+	// superseded by other updates in the search results.
+	//
+	// If the value of the Online ADM element is VARIANT_TRUE, the search operation SHOULD
+	// go online.
+	//
+	// The following table specifies the update server against which the search operation
+	// SHOULD be performed.
+	//
+	//	+------------------------------------------+-------------------------------------------------------------------------+
+	//	|     VALUE OF THE SERVERSELECTION ADM     |                         UPDATE SERVER TO SEARCH                         |
+	//	|                 ELEMENT                  |                                 AGAINST                                 |
+	//	+------------------------------------------+-------------------------------------------------------------------------+
+	//	+------------------------------------------+-------------------------------------------------------------------------+
+	//	| ssDefault                                | Implementation-defined by the update agent.                             |
+	//	+------------------------------------------+-------------------------------------------------------------------------+
+	//	| ssManagedServer                          | An update server managed by an administrator.                           |
+	//	+------------------------------------------+-------------------------------------------------------------------------+
+	//	| ssWindowsUpdate                          | The Windows Update update server                                        |
+	//	+------------------------------------------+-------------------------------------------------------------------------+
+	//	| ssOthers                                 | The update server identified by the value of the ServiceID ADM element. |
+	//	+------------------------------------------+-------------------------------------------------------------------------+
+	//
+	// If the value of the IgnoreDownloadPriority ADM element is VARIANT_TRUE, the search
+	// operation SHOULD ignore the download priority of updates when computing update supersedence.
+	//
+	// The following table specifies the set of updates for which the search operation SHOULD
+	// be performed.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------+
+	//	|     VALUE OF THE SEARCHSCOPE ADM     |                       UPDATES TO SEARCH                        |
+	//	|               ELEMENT                |                              FOR                               |
+	//	+--------------------------------------+----------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------+
+	//	| searchScopeDefault                   | Per-machine updates only.                                      |
+	//	+--------------------------------------+----------------------------------------------------------------+
+	//	| searchScopeMachineOnly               | Per-machine updates only.                                      |
+	//	+--------------------------------------+----------------------------------------------------------------+
+	//	| searchScopeCurrentUserOnly           | Per-user updates for the calling user only.                    |
+	//	+--------------------------------------+----------------------------------------------------------------+
+	//	| searchScopeMachineAndCurrentUser     | Per-machine updates and per-user updates for the calling user. |
+	//	+--------------------------------------+----------------------------------------------------------------+
+	//	| searchScopeMachineAndAllUsers        | Per-machine updates and per-user updates for all users.        |
+	//	+--------------------------------------+----------------------------------------------------------------+
+	//	| searchScopeAllUsers                  | Per-user updates for all users.                                |
+	//	+--------------------------------------+----------------------------------------------------------------+
 	Search(context.Context, *SearchRequest) (*SearchResponse, error)
 
+	// The IUpdateSearcher::Online (opnum 22) method sets whether a search performed by
+	// using this interface is an online search.
+	//
+	// The IUpdateSearcher::Online (opnum 21) method retrieves whether a search performed
+	// by using this interface is an online search.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD set the value of the Online ADM element to the value parameter.
 	GetOnline(context.Context, *GetOnlineRequest) (*GetOnlineResponse, error)
 
+	// The IUpdateSearcher::Online (opnum 22) method sets whether a search performed by
+	// using this interface is an online search.
+	//
+	// The IUpdateSearcher::Online (opnum 21) method retrieves whether a search performed
+	// by using this interface is an online search.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD set the value of the Online ADM element to the value parameter.
 	SetOnline(context.Context, *SetOnlineRequest) (*SetOnlineResponse, error)
 
+	// The IUpdateSearcher::GetTotalHistoryCount (opnum 23) method retrieves the total number
+	// of history events stored on the computer.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the HistoryCount ADM element.
 	GetTotalHistoryCount(context.Context, *GetTotalHistoryCountRequest) (*GetTotalHistoryCountResponse, error)
 
+	// The IUpdateService::ServiceID (opnum 16) method retrieves the unique identifier for
+	// the update service.
+	//
+	// The IUpdateHistoryEntry::ServiceID (opnum 18) method retrieves the unique identifier
+	// of the update service that provided the update for which the operation was performed.
+	//
+	// The IUpdateSearcher::ServiceID (opnum 24) method retrieves the unique identifier
+	// of the update server used to search against.
+	//
+	// The IUpdateSearcher::ServiceID (opnum 25) method sets the unique identifier of the
+	// update server used to search against.
+	//
+	// The IUpdateServiceRegistration::ServiceID (opnum 9) method retrieves the service
+	// identifier.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ServiceID ADM element.
 	GetServiceID(context.Context, *GetServiceIDRequest) (*GetServiceIDResponse, error)
 
+	// The IUpdateService::ServiceID (opnum 16) method retrieves the unique identifier for
+	// the update service.
+	//
+	// The IUpdateHistoryEntry::ServiceID (opnum 18) method retrieves the unique identifier
+	// of the update service that provided the update for which the operation was performed.
+	//
+	// The IUpdateSearcher::ServiceID (opnum 24) method retrieves the unique identifier
+	// of the update server used to search against.
+	//
+	// The IUpdateSearcher::ServiceID (opnum 25) method sets the unique identifier of the
+	// update server used to search against.
+	//
+	// The IUpdateServiceRegistration::ServiceID (opnum 9) method retrieves the service
+	// identifier.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ServiceID ADM element.
 	SetServiceID(context.Context, *SetServiceIDRequest) (*SetServiceIDResponse, error)
 }
 

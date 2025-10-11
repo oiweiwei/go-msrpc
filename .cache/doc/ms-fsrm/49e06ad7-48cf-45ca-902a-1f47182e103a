@@ -45,8 +45,7 @@ success, or a nonzero error code on failure.</p><dl>
   (section 2.2.1.2.5) values.</p>
   </td>
  </tr></tbody></table>
-</dd></dl><p>Upon receiving this message, the server MUST validate
-parameters:</p><ul><li><p><span><span> 
+</dd></dl><p>Upon receiving this message, the server MUST validate parameters:</p><ul><li><p><span><span> 
 </span></span>If <i>quotas</i> is NULL, the server MUST return E_INVALIDARG.</p>
 </li><li><p><span><span> 
 </span></span>If <i>options</i> contains <b>FsrmEnumOptions_Asynchronous</b> or

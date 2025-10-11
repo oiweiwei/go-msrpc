@@ -1,0 +1,16 @@
+<div class="content"><p>The Count method is received by the server in an RPC_REQUEST
+packet. In response, the server MUST return the total number of elements in the
+<i>VariantCollection</i> instance variable.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT Count(
+   [out, retval] long* pCount
+ );
+</pre></div>
+</dd></dl><p><b>pCount: </b>A pointer to a <b>long</b> that
+contains the number of elements in the <i>VariantCollection</i> instance
+variable.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the server MUST follow these guidelines:</p><ul><li><p><span><span> 
+</span></span>The <i>pCount</i> output parameter MUST be set to the number of
+elements in the <i>VariantCollection</i> instance variable.</p>
+</li></ul></div>

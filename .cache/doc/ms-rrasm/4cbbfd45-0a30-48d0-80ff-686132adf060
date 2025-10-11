@@ -1,1 +1,33 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IP_AUTO_DHCP_STATISTICS</b> structure contains the
+DHCP auto-discovery statistics. This structure defines the statistics kept by
+the DHCP allocator, and is accessible to the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="077dbddb-b09f-4384-bc7e-612a7b044999" data-linktype="relative-path"><b>RMIBEntryGet (section 3.2.4.30)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="340672df-1018-44a6-b1b8-509348062857" data-linktype="relative-path"><b>RMIBEntryGetFirst (section 3.2.4.31)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="12830348-d502-4b45-adc3-e5853d42d0c9" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.2.4.32)</b></a><span>  </span></p>
+<div><pre> typedef struct _IP_AUTO_DHCP_STATISTICS {
+   ULONG MessagesIgnored;
+   ULONG BootpOffersSent;
+   ULONG DiscoversReceived;
+   ULONG InformsReceived;
+   ULONG OffersSent;
+   ULONG RequestsReceived;
+   ULONG AcksSent;
+   ULONG NaksSent;
+   ULONG DeclinesReceived;
+   ULONG ReleasesReceived;
+ } IP_AUTO_DHCP_STATISTICS,
+  *PIP_AUTO_DHCP_STATISTICS;
+</pre></div>
+</li></ul><p><b>MessagesIgnored: </b>The count of the messages
+ignored.</p><p><b>BootpOffersSent: </b>The count of the IPBOOTP
+offers sent.</p><p><b>DiscoversReceived: </b>The count of the discover
+messages received.</p><p><b>InformsReceived: </b>The count of the INFORM
+messages received.</p><p><b>OffersSent: </b>The count of the OFFER messages
+sent.</p><p><b>RequestsReceived: </b>The count of the REQUEST
+messages received.</p><p><b>AcksSent: </b>The count of the acknowledge control
+packets (ACKs) sent.</p><p><b>NaksSent: </b>The count of the negative
+acknowledge (NAK) messages sent.</p><p><b>DeclinesReceived: </b>The count of the DECLINE
+messages received.</p><p><b>ReleaseReceived: </b>The count of the RELEASE
+messages received.</p></div>

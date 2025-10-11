@@ -47,6 +47,20 @@ type UpdateDownloadContent2Client interface {
 	// IUpdateDownloadContent retrieval method.
 	UpdateDownloadContent() iupdatedownloadcontent.UpdateDownloadContentClient
 
+	// The IUpdateDownloadContent2::IsDeltaCompressedContent (opnum 9) method retrieves
+	// whether the content is delta-compressed.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the IsDeltaCompressedContent ADM element.
 	GetIsDeltaCompressedContent(context.Context, *GetIsDeltaCompressedContentRequest, ...dcerpc.CallOption) (*GetIsDeltaCompressedContentResponse, error)
 
 	// AlterContext alters the client context.
@@ -301,8 +315,10 @@ func (o *GetIsDeltaCompressedContentRequest) UnmarshalNDR(ctx context.Context, r
 // GetIsDeltaCompressedContentResponse structure represents the IsDeltaCompressedContent operation response
 type GetIsDeltaCompressedContentResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be VARIANT_TRUE if the content is delta-compressed or VARIANT_FALSE
+	// if not.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The IsDeltaCompressedContent return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

@@ -51,97 +51,722 @@ type UpdateClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The IUpdate::Title (opnum 8) method retrieves the localized title of the update.
+	//
+	// The IUpdateHistoryEntry::Title (opnum 13) method retrieves the title of the update
+	// for which the operation was performed.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the Title ADM element.
 	GetTitle(context.Context, *GetTitleRequest, ...dcerpc.CallOption) (*GetTitleResponse, error)
 
+	// The IUpdate::AutoSelectOnWebSites (opnum 9) method retrieves whether the update is
+	// recommended to be selected automatically in website UIs.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the AutoSelectOnWebSites ADM element.
 	GetAutoSelectOnWebSites(context.Context, *GetAutoSelectOnWebSitesRequest, ...dcerpc.CallOption) (*GetAutoSelectOnWebSitesResponse, error)
 
+	// The IUpdate::BundledUpdates (opnum 10) method retrieves a collection of the updates
+	// bundled by the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the BundledUpdates ADM element.
 	GetBundledUpdates(context.Context, *GetBundledUpdatesRequest, ...dcerpc.CallOption) (*GetBundledUpdatesResponse, error)
 
+	// The IUpdate::CanRequireSource (opnum 11) method retrieves whether the installation
+	// of the update can require source media.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the CanRequireSource ADM element.
 	GetCanRequireSource(context.Context, *GetCanRequireSourceRequest, ...dcerpc.CallOption) (*GetCanRequireSourceResponse, error)
 
+	// The IUpdate::Categories (opnum 12) method retrieves a collection of the categories
+	// to which the update belongs.
+	//
+	// The IUpdateHistoryEntry2::Categories (opnum 22) method retrieves a collection of
+	// the update categories to which an update belongs.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the Categories ADM element.
 	GetCategories(context.Context, *GetCategoriesRequest, ...dcerpc.CallOption) (*GetCategoriesResponse, error)
 
+	// The IUpdate::Deadline (opnum 13) method retrieves the date-time before which the
+	// update is installed.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// If the HasDeadline ADM element is set to TRUE, the server SHOULD set the vt field
+	// of retval to VT_DATE and return the value of the Deadline ADM element in the date
+	// field of retval.
+	//
+	// Otherwise, if the HasDeadline ADM element is set to FALSE, the server SHOULD set
+	// the vt field of retval to VT_EMPTY.
 	GetDeadline(context.Context, *GetDeadlineRequest, ...dcerpc.CallOption) (*GetDeadlineResponse, error)
 
+	// The IUpdate::DeltaCompressedContentAvailable (opnum 14) method retrieves whether
+	// delta-compressed content is available for the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the DeltaCompressedContentAvailable ADM element.
 	GetDeltaCompressedContentAvailable(context.Context, *GetDeltaCompressedContentAvailableRequest, ...dcerpc.CallOption) (*GetDeltaCompressedContentAvailableResponse, error)
 
+	// The IUpdate::DeltaCompressedContentPreferred (opnum 15) method retrieves whether
+	// delta-compressed content is preferred for the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the DeltaCompressedContentPreferred ADM element.
 	GetDeltaCompressedContentPreferred(context.Context, *GetDeltaCompressedContentPreferredRequest, ...dcerpc.CallOption) (*GetDeltaCompressedContentPreferredResponse, error)
 
+	// The ICategory::Description (opnum 11) method retrieves the description of the update
+	// category.
+	//
+	// The IUpdateHistoryEntry::Description (opnum 14) method retrieves the description
+	// of the update for which the operation is performed.
+	//
+	// The IUpdate::Description (opnum 16) method retrieves the localized description for
+	// the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Description ADM element.
 	GetDescription(context.Context, *GetDescriptionRequest, ...dcerpc.CallOption) (*GetDescriptionResponse, error)
 
+	// The  IUpdate::EulaAccepted (opnum 17) method retrieves whether the software license
+	// terms associated with the update have been accepted by a user.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// If the value of the HasEula ADM element is TRUE, the server SHOULD return the value
+	// of the EulaAccepted ADM element. Otherwise, if the value of the HasEula ADM element
+	// is FALSE, the server SHOULD return VARIANT_TRUE.
 	GetEulaAccepted(context.Context, *GetEulaAcceptedRequest, ...dcerpc.CallOption) (*GetEulaAcceptedResponse, error)
 
+	// The IUpdate::EulaText (opnum 18) method retrieves the text of the software license
+	// terms associated with the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// If the value of the HasEula ADM element is TRUE, the server SHOULD return the value
+	// of the EulaText ADM element. Otherwise, if the value of the HasEula ADM element is
+	// FALSE, the server SHOULD return NULL or the empty string.
 	GetEulaText(context.Context, *GetEulaTextRequest, ...dcerpc.CallOption) (*GetEulaTextResponse, error)
 
+	// The IUpdate::HandlerID (opnum 19) method retrieves the URI identifying the handler
+	// for the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the HandlerID ADM element.
 	GetHandlerID(context.Context, *GetHandlerIDRequest, ...dcerpc.CallOption) (*GetHandlerIDResponse, error)
 
+	// The IUpdate::Identity (opnum 20) method retrieves the unique identity of the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the Identity ADM element.
 	GetIdentity(context.Context, *GetIdentityRequest, ...dcerpc.CallOption) (*GetIdentityResponse, error)
 
+	// The ICategory::Image (opnum 12) method retrieves an IImageInformation interface instance
+	// that contains information on the image associated with the update category.
+	//
+	// The IUpdate::Image (opnum 21) method retrieves a localized image associated with
+	// the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Image ADM element.
 	GetImage(context.Context, *GetImageRequest, ...dcerpc.CallOption) (*GetImageResponse, error)
 
+	// The IUpdate::InstallationBehavior (opnum 22) method retrieves a description of the
+	// installation behavior of the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the InstallationBehavior ADM element.
 	GetInstallationBehavior(context.Context, *GetInstallationBehaviorRequest, ...dcerpc.CallOption) (*GetInstallationBehaviorResponse, error)
 
+	// The IUpdate::IsBeta (opnum 23) method retrieves whether the update is a beta release.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the IsBeta ADM element.
 	GetIsBeta(context.Context, *GetIsBetaRequest, ...dcerpc.CallOption) (*GetIsBetaResponse, error)
 
+	// The IUpdate::IsDownloaded (opnum 24) method retrieves whether the update is currently
+	// cached by the update agent.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the IsDownloaded ADM element.
 	GetIsDownloaded(context.Context, *GetIsDownloadedRequest, ...dcerpc.CallOption) (*GetIsDownloadedResponse, error)
 
+	// The IUpdate::IsHidden (opnum 25) method retrieves whether the update has been hidden
+	// by a user.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the IsHidden ADM element.
 	GetIsHidden(context.Context, *GetIsHiddenRequest, ...dcerpc.CallOption) (*GetIsHiddenResponse, error)
 
 	// Opnum26NotUsedOnWire operation.
 	// Opnum26NotUsedOnWire
 
+	// The IUpdate::IsInstalled (opnum 27) method retrieves whether the update is installed.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the IsInstalled ADM element.
 	GetIsInstalled(context.Context, *GetIsInstalledRequest, ...dcerpc.CallOption) (*GetIsInstalledResponse, error)
 
+	// The IUpdate::IsMandatory (opnum 28) method retrieves whether the installation of
+	// the update is mandatory.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the IsMandatory ADM element.
 	GetIsMandatory(context.Context, *GetIsMandatoryRequest, ...dcerpc.CallOption) (*GetIsMandatoryResponse, error)
 
+	// The IUpdate::IsUninstallable (opnum 29) method retrieves whether the update can be
+	// uninstalled.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the IsUninstallable ADM element.
 	GetIsUninstallable(context.Context, *GetIsUninstallableRequest, ...dcerpc.CallOption) (*GetIsUninstallableResponse, error)
 
+	// The IUpdate::Languages (opnum 30) method retrieves a collection of languages supported
+	// by the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the Languages ADM element.
 	GetLanguages(context.Context, *GetLanguagesRequest, ...dcerpc.CallOption) (*GetLanguagesResponse, error)
 
+	// The IUpdate::LastDeploymentChangeTime (opnum 31) method retrieves the date-time when
+	// the update was last published.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the LastDeploymentChangeTime ADM element.
 	GetLastDeploymentChangeTime(context.Context, *GetLastDeploymentChangeTimeRequest, ...dcerpc.CallOption) (*GetLastDeploymentChangeTimeResponse, error)
 
+	// The IUpdate::MaxDownloadSize (opnum 32) method retrieves the maximum download size
+	// of the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the MaxDownloadSize ADM element.
 	GetMaxDownloadSize(context.Context, *GetMaxDownloadSizeRequest, ...dcerpc.CallOption) (*GetMaxDownloadSizeResponse, error)
 
+	// The IUpdate::MinDownloadSize (opnum 33) method retrieves the minimum download size
+	// of the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the MinDownloadSize ADM element.
 	GetMinDownloadSize(context.Context, *GetMinDownloadSizeRequest, ...dcerpc.CallOption) (*GetMinDownloadSizeResponse, error)
 
+	// The IUpdate::MoreInfoUrls (opnum 34) method retrieves a collection of URLs of documents
+	// that contain more information about the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the MoreInfoUrls ADM element.
 	GetMoreInfoUrls(context.Context, *GetMoreInfoUrlsRequest, ...dcerpc.CallOption) (*GetMoreInfoUrlsResponse, error)
 
+	// The IUpdate::MsrcSeverity (opnum 35) method retrieves a rating of the severity of
+	// the problem that the update fixes.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the MsrcSeverity ADM element.
 	GetMsrcSeverity(context.Context, *GetMsrcSeverityRequest, ...dcerpc.CallOption) (*GetMsrcSeverityResponse, error)
 
+	// The IUpdate::RecommendedCpuSpeed (opnum 36) method retrieves the CPU speed recommended
+	// for the installation of the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the RecommendedCpuSpeed ADM element.
 	GetRecommendedCpuSpeed(context.Context, *GetRecommendedCpuSpeedRequest, ...dcerpc.CallOption) (*GetRecommendedCpuSpeedResponse, error)
 
+	// The IUpdate::RecommendedHardDiskSpace (opnum 37) method retrieves the free hard disk
+	// space recommended for the installation of the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the RecommendedHardDiskSpace ADM element.
 	GetRecommendedHardDiskSpace(context.Context, *GetRecommendedHardDiskSpaceRequest, ...dcerpc.CallOption) (*GetRecommendedHardDiskSpaceResponse, error)
 
+	// The IUpdate::RecommendedMemory (opnum 38) method retrieves the amount of memory recommended
+	// for the installation of the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the RecommendedMemory ADM element.
 	GetRecommendedMemory(context.Context, *GetRecommendedMemoryRequest, ...dcerpc.CallOption) (*GetRecommendedMemoryResponse, error)
 
+	// The IUpdate::ReleaseNotes (opnum 39) method retrieves the localized release notes
+	// for the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the ReleaseNotes ADM element.
 	GetReleaseNotes(context.Context, *GetReleaseNotesRequest, ...dcerpc.CallOption) (*GetReleaseNotesResponse, error)
 
+	// The IUpdate::SecurityBulletinIDs (opnum 40) method retrieves the security bulletin
+	// IDs associated with the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the SecurityBulletinIDs ADM element.
 	GetSecurityBulletinIDs(context.Context, *GetSecurityBulletinIDsRequest, ...dcerpc.CallOption) (*GetSecurityBulletinIDsResponse, error)
 
+	// The IUpdate::SupersededUpdateIDs (opnum 41) method retrieves a collection of the
+	// IDs of updates that are superseded by the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the SupersededUpdateIDs ADM element.
 	GetSupersededUpdateIDs(context.Context, *GetSupersededUpdateIDsRequest, ...dcerpc.CallOption) (*GetSupersededUpdateIDsResponse, error)
 
+	// The IUpdate::SupportUrl (opnum 42) method retrieves a URL for a document containing
+	// support information for the update.
+	//
+	// The IUpdateHistoryEntry::SupportUrl (opnum 21) method retrieves the support URL for
+	// the update for which the operation was performed.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the SupportUrl ADM element.
 	GetSupportURL(context.Context, *GetSupportURLRequest, ...dcerpc.CallOption) (*GetSupportURLResponse, error)
 
+	// The ICategory::Type (opnum 15) method retrieves the type of the update category.
+	//
+	// The IUpdate::Type (opnum 43) method retrieves the type of the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Type ADM element.
 	GetType(context.Context, *GetTypeRequest, ...dcerpc.CallOption) (*GetTypeResponse, error)
 
+	// The IUpdateHistoryEntry::UninstallationNotes (opnum 20) method retrieves the uninstallation
+	// notes for the update for which the operation was performed.
+	//
+	// The IUpdate::UninstallationNotes (opnum 44) method retrieves the localized uninstallation
+	// notes for the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the result of the UninstallationNotes ADM element.
 	GetUninstallationNotes(context.Context, *GetUninstallationNotesRequest, ...dcerpc.CallOption) (*GetUninstallationNotesResponse, error)
 
+	// The IUpdate::UninstallationBehavior (opnum 45) method retrieves a description of
+	// the uninstallation behavior for the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the UninstallationBehavior ADM element.
 	GetUninstallationBehavior(context.Context, *GetUninstallationBehaviorRequest, ...dcerpc.CallOption) (*GetUninstallationBehaviorResponse, error)
 
+	// The IUpdate::UninstallationSteps (opnum 46) method retrieves a list of localized
+	// uninstallation steps for the update.
+	//
+	// The IUpdateHistoryEntry::UninstallationSteps (opnum 19) method retrieves the uninstallation
+	// steps for the update for which the operation was performed.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the UninstallationSteps ADM element.
 	GetUninstallationSteps(context.Context, *GetUninstallationStepsRequest, ...dcerpc.CallOption) (*GetUninstallationStepsResponse, error)
 
+	// The IUpdate::KBArticleIDs (opnum 47) method retrieves a list of Knowledge Base article
+	// IDs associated with the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the KBArticleIDs ADM element.
 	GetKbArticleIDs(context.Context, *GetKbArticleIDsRequest, ...dcerpc.CallOption) (*GetKbArticleIDsResponse, error)
 
 	// Opnum48NotUsedOnWire operation.
 	// Opnum48NotUsedOnWire
 
+	// The IUpdate::DeploymentAction (opnum 49) method retrieves the deployment action for
+	// the update.
+	//
+	// The DeploymentAction enumeration defines values that describe the server-defined
+	// action to be taken on the update by the update agent.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the DeploymentAction ADM element.
 	GetDeploymentAction(context.Context, *GetDeploymentActionRequest, ...dcerpc.CallOption) (*GetDeploymentActionResponse, error)
 
 	// Opnum50NotUsedOnWire operation.
 	// Opnum50NotUsedOnWire
 
+	// The IUpdate::DownloadPriority (opnum 51) method retrieves the download priority for
+	// the update.
+	//
+	// The DownloadPriority enumeration defines values describing the recommended download
+	// priority of an update. It is up to the update agent implementation to define the
+	// relative differences between download priority levels.<1>
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the DownloadPriority ADM element.
 	GetDownloadPriority(context.Context, *GetDownloadPriorityRequest, ...dcerpc.CallOption) (*GetDownloadPriorityResponse, error)
 
+	// The IUpdate::DownloadContents (opnum 52) method retrieves a collection of download
+	// content URLs for the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the DownloadContents ADM element.
 	GetDownloadContents(context.Context, *GetDownloadContentsRequest, ...dcerpc.CallOption) (*GetDownloadContentsResponse, error)
 
 	// AlterContext alters the client context.
@@ -1248,8 +1873,13 @@ func (o *GetTitleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 // GetTitleResponse structure represents the Title operation response
 type GetTitleResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The localized title of the update.
+	//
+	// retval: The localized title of the update for which the operation is performed. The
+	// title SHOULD be in the language of the user who initiated the operation but MAY be
+	// in the language of the current calling user.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The Title return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1457,8 +2087,10 @@ func (o *GetAutoSelectOnWebSitesRequest) UnmarshalNDR(ctx context.Context, r ndr
 // GetAutoSelectOnWebSitesResponse structure represents the AutoSelectOnWebSites operation response
 type GetAutoSelectOnWebSitesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be VARIANT_TRUE if the update is to be selected in website UIs or VARIANT_FALSE
+	// if it is not to be selected in UIs.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The AutoSelectOnWebSites return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1698,7 +2330,9 @@ func (o *GetBundledUpdatesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // GetBundledUpdatesResponse structure represents the BundledUpdates operation response
 type GetBundledUpdatesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat         `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An IUpdateCollection instance containing an ordered list of the updates bundled
+	// by this update.
 	ReturnValue *uamg.UpdateCollection `idl:"name:retval" json:"return_value"`
 	// Return: The BundledUpdates return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1905,8 +2539,10 @@ func (o *GetCanRequireSourceRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 // GetCanRequireSourceResponse structure represents the CanRequireSource operation response
 type GetCanRequireSourceResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be VARIANT_TRUE if the update can require source media or VARIANT_FALSE
+	// if the update never requires source media.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The CanRequireSource return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2146,7 +2782,11 @@ func (o *GetCategoriesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetCategoriesResponse structure represents the Categories operation response
 type GetCategoriesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat           `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An ICategoryCollection instance containing the categories to which this update
+	// belongs.
+	//
+	// retval: A collection of the update categories to which an update belongs.
 	ReturnValue *uamg.CategoryCollection `idl:"name:retval" json:"return_value"`
 	// Return: The Categories return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -2387,8 +3027,13 @@ func (o *GetDeadlineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // GetDeadlineResponse structure represents the Deadline operation response
 type GetDeadlineResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.Variant  `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: Specifies the Coordinated Universal Time (UTC) date-time by which the update
+	// is installed or uninstalled, depending upon its deployment action. If there is no
+	// deadline for this update, the vt field MUST be set to VT_EMPTY, as specified in [MS-OAUT]
+	// section 2.2.7. Otherwise, the vt member MUST be set to VT_DATE, and the date-time
+	// of the deadline is stored in the date field.
+	ReturnValue *oaut.Variant `idl:"name:retval" json:"return_value"`
 	// Return: The Deadline return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2596,8 +3241,10 @@ func (o *GetDeltaCompressedContentAvailableRequest) UnmarshalNDR(ctx context.Con
 // GetDeltaCompressedContentAvailableResponse structure represents the DeltaCompressedContentAvailable operation response
 type GetDeltaCompressedContentAvailableResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if there is delta-compressed content available
+	// for this update or to VARIANT_FALSE if not.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The DeltaCompressedContentAvailable return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2805,8 +3452,10 @@ func (o *GetDeltaCompressedContentPreferredRequest) UnmarshalNDR(ctx context.Con
 // GetDeltaCompressedContentPreferredResponse structure represents the DeltaCompressedContentPreferred operation response
 type GetDeltaCompressedContentPreferredResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if delta-compressed content is preferred
+	// or to VARIANT_FALSE if not.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The DeltaCompressedContentPreferred return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3046,8 +3695,18 @@ func (o *GetDescriptionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetDescriptionResponse structure represents the Description operation response
 type GetDescriptionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set to a string containing the description of the category, or MUST
+	// be set to NULL or the empty string if there is no description for the category.
+	//
+	// retval: The localized description of the update for which the operation is performed.
+	// The description SHOULD be in the language of the user who initiated the operation
+	// but MAY be in the language of the current calling user. If there is no description
+	// of the update, the retval MUST be set either to NULL or to the empty string.
+	//
+	// retval: A localized description of the update. If there is no description of the
+	// update, this MUST be set to NULL or the empty string.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The Description return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3253,8 +3912,12 @@ func (o *GetEulaAcceptedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // GetEulaAcceptedResponse structure represents the EulaAccepted operation response
 type GetEulaAcceptedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if the software license terms associated
+	// with this update have been accepted by a user on the computer or to VARIANT_FALSE
+	// if not. If no software license terms are associated with this update, retval MUST
+	// be set to VARIANT_TRUE.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The EulaAccepted return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3494,8 +4157,11 @@ func (o *GetEulaTextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // GetEulaTextResponse structure represents the EulaText operation response
 type GetEulaTextResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The localized text of the software license terms associated with the update.
+	// If no software license terms are associated with the update, retval MUST be set to
+	// NULL or the empty string.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The EulaText return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3735,8 +4401,10 @@ func (o *GetHandlerIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 // GetHandlerIDResponse structure represents the HandlerID operation response
 type GetHandlerIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A URI identifying a handler that manages the download, installation, and
+	// uninstallation of the update.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The HandlerID return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3976,7 +4644,8 @@ func (o *GetIdentityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // GetIdentityResponse structure represents the Identity operation response
 type GetIdentityResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat       `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An IUpdateIdentity instance that uniquely identifies the update.
 	ReturnValue *uamg.UpdateIdentity `idl:"name:retval" json:"return_value"`
 	// Return: The Identity return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -4217,7 +4886,14 @@ func (o *GetImageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 // GetImageResponse structure represents the Image operation response
 type GetImageResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat         `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set to an instance of IImageInformation that describes the image
+	// associated with the category, or MUST be set to NULL if no image is associated with
+	// the category.
+	//
+	// retval: An IImageInformation instance that contains information about the localized
+	// image associated with the update. If no image is associated with the update, retval
+	// MUST be set to NULL.
 	ReturnValue *uamg.ImageInformation `idl:"name:retval" json:"return_value"`
 	// Return: The Image return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -4460,7 +5136,9 @@ func (o *GetInstallationBehaviorRequest) UnmarshalNDR(ctx context.Context, r ndr
 // GetInstallationBehaviorResponse structure represents the InstallationBehavior operation response
 type GetInstallationBehaviorResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An InstallationBehavior instance defining the behavior of the installation
+	// operation for this update.
 	ReturnValue *uamg.InstallationBehavior `idl:"name:retval" json:"return_value"`
 	// Return: The InstallationBehavior return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -4667,8 +5345,10 @@ func (o *GetIsBetaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 // GetIsBetaResponse structure represents the IsBeta operation response
 type GetIsBetaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if the update is a beta release or to
+	// VARIANT_FALSE if it is not.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The IsBeta return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -4874,8 +5554,10 @@ func (o *GetIsDownloadedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // GetIsDownloadedResponse structure represents the IsDownloaded operation response
 type GetIsDownloadedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if all the update content has been cached
+	// on the computer or to VARIANT_FALSE if not.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The IsDownloaded return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -5081,8 +5763,10 @@ func (o *GetIsHiddenRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // GetIsHiddenResponse structure represents the IsHidden operation response
 type GetIsHiddenResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if the update has been hidden by a user
+	// or to VARIANT_FALSE if not.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The IsHidden return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -5288,8 +5972,10 @@ func (o *GetIsInstalledRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetIsInstalledResponse structure represents the IsInstalled operation response
 type GetIsInstalledResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if the update was installed when the search
+	// that produced this IUpdate instance was performed or to VARIANT_FALSE if not.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The IsInstalled return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -5495,8 +6181,10 @@ func (o *GetIsMandatoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetIsMandatoryResponse structure represents the IsMandatory operation response
 type GetIsMandatoryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if the installation of the update is mandatory
+	// or to VARIANT_FALSE if not.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The IsMandatory return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -5702,8 +6390,10 @@ func (o *GetIsUninstallableRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 // GetIsUninstallableResponse structure represents the IsUninstallable operation response
 type GetIsUninstallableResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if the update can be uninstalled or to
+	// VARIANT_FALSE otherwise.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The IsUninstallable return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -5943,7 +6633,9 @@ func (o *GetLanguagesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 // GetLanguagesResponse structure represents the Languages operation response
 type GetLanguagesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat         `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An IStringCollection instance containing the languages supported by this
+	// update. Languages are identified using identifiers specified by [W3C-XSD].
 	ReturnValue *uamg.StringCollection `idl:"name:retval" json:"return_value"`
 	// Return: The Languages return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -6152,8 +6844,9 @@ func (o *GetLastDeploymentChangeTimeRequest) UnmarshalNDR(ctx context.Context, r
 // GetLastDeploymentChangeTimeResponse structure represents the LastDeploymentChangeTime operation response
 type GetLastDeploymentChangeTimeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue float64        `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The date-time, in UTC, when the update was last published on the server.
+	ReturnValue float64 `idl:"name:retval" json:"return_value"`
 	// Return: The LastDeploymentChangeTime return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -6368,8 +7061,10 @@ func (o *GetMaxDownloadSizeRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 // GetMaxDownloadSizeResponse structure represents the MaxDownloadSize operation response
 type GetMaxDownloadSizeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.Decimal  `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A DECIMAL, as specified in [MS-OAUT] section 2.2.26, set to the maximum number
+	// of bytes that might need to be downloaded for the update.
+	ReturnValue *oaut.Decimal `idl:"name:retval" json:"return_value"`
 	// Return: The MaxDownloadSize return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -6584,8 +7279,10 @@ func (o *GetMinDownloadSizeRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 // GetMinDownloadSizeResponse structure represents the MinDownloadSize operation response
 type GetMinDownloadSizeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.Decimal  `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A DECIMAL, as specified in [MS-OAUT] section 2.2.26, set to the minimum number
+	// of bytes that might need to be downloaded for this update.
+	ReturnValue *oaut.Decimal `idl:"name:retval" json:"return_value"`
 	// Return: The MinDownloadSize return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -6825,7 +7522,10 @@ func (o *GetMoreInfoUrlsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // GetMoreInfoUrlsResponse structure represents the MoreInfoUrls operation response
 type GetMoreInfoUrlsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat         `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An IStringCollection instance containing URLs of documents that contain additional,
+	// localized information about the update. If there is no additional information for
+	// the update, the IStringCollection instance MUST be empty.
 	ReturnValue *uamg.StringCollection `idl:"name:retval" json:"return_value"`
 	// Return: The MoreInfoUrls return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -7066,8 +7766,11 @@ func (o *GetMsrcSeverityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // GetMsrcSeverityResponse structure represents the MsrcSeverity operation response
 type GetMsrcSeverityResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A string indicating the severity of the issue fixed by this update as defined
+	// by the Microsoft Security Response Center (MSRC). The string SHOULD be set to an
+	// enumerated list of values. <24>
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The MsrcSeverity return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -7275,8 +7978,10 @@ func (o *GetRecommendedCpuSpeedRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // GetRecommendedCpuSpeedResponse structure represents the RecommendedCpuSpeed operation response
 type GetRecommendedCpuSpeedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int32          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The recommended CPU speed, in megahertz, for installation of the update.
+	// If there is no recommended CPU speed for the update, retval MUST be set to 0x00000000.
+	ReturnValue int32 `idl:"name:retval" json:"return_value"`
 	// Return: The RecommendedCpuSpeed return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -7484,8 +8189,11 @@ func (o *GetRecommendedHardDiskSpaceRequest) UnmarshalNDR(ctx context.Context, r
 // GetRecommendedHardDiskSpaceResponse structure represents the RecommendedHardDiskSpace operation response
 type GetRecommendedHardDiskSpaceResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int32          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The recommended free disk space, in megabytes, for installation of the update.
+	// If there is no recommended hard disk space for this update, retval MUST be set to
+	// 0x00000000.
+	ReturnValue int32 `idl:"name:retval" json:"return_value"`
 	// Return: The RecommendedHardDiskSpace return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -7691,8 +8399,11 @@ func (o *GetRecommendedMemoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 // GetRecommendedMemoryResponse structure represents the RecommendedMemory operation response
 type GetRecommendedMemoryResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int32          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The recommended amount of physical memory, in megabytes, for installation
+	// of the update. If there is no recommended amount of physical memory for this update,
+	// retval MUST be set to 0x00000000.
+	ReturnValue int32 `idl:"name:retval" json:"return_value"`
 	// Return: The RecommendedMemory return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -7932,8 +8643,10 @@ func (o *GetReleaseNotesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // GetReleaseNotesResponse structure represents the ReleaseNotes operation response
 type GetReleaseNotesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The localized release notes for this update. If there are no release notes,
+	// retval MUST be set either to NULL or to the empty string.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The ReleaseNotes return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -8175,7 +8888,10 @@ func (o *GetSecurityBulletinIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // GetSecurityBulletinIDsResponse structure represents the SecurityBulletinIDs operation response
 type GetSecurityBulletinIDsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat         `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An IStringCollection instance containing the security bulletin IDs associated
+	// with this update. If no security bulletin IDs are associated with this update, retval
+	// MUST be set to an empty IStringCollection instance.
 	ReturnValue *uamg.StringCollection `idl:"name:retval" json:"return_value"`
 	// Return: The SecurityBulletinIDs return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -8418,7 +9134,10 @@ func (o *GetSupersededUpdateIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // GetSupersededUpdateIDsResponse structure represents the SupersededUpdateIDs operation response
 type GetSupersededUpdateIDsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat         `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An IStringCollection instance containing the IDs of the updates superseded
+	// by the update. If this update does not supersede any updates, retval MUST be set
+	// to an empty IStringCollection instance.
 	ReturnValue *uamg.StringCollection `idl:"name:retval" json:"return_value"`
 	// Return: The SupersededUpdateIDs return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -8659,8 +9378,15 @@ func (o *GetSupportURLRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetSupportURLResponse structure represents the SupportUrl operation response
 type GetSupportURLResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A URL for a document containing localized support information for the update.
+	// If there is no support information for this update, retval MUST be set either to
+	// NULL or to the empty string.
+	//
+	// retval: The URL for a document containing support information for the update for
+	// which this operation was performed. If no support information is available, retval
+	// MUST be set either to NULL or to the empty string.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The SupportUrl return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -8866,7 +9592,21 @@ func (o *GetTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // GetTypeResponse structure represents the Type operation response
 type GetTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A string containing the type of this category. The string MUST be set to
+	// one of the following values:
+	//
+	// * "Company", if this category refers to the company or organization that has public
+	// ownership and support accountability for the updates belonging to the category.
+	//
+	// * "ProductFamily", if this category refers to a related set of products.
+	//
+	// * "Product", if this category refers to a single product.
+	//
+	// * "UpdateClassification", for all other cases.
+	//
+	// retval: A value of the UpdateType (section 2.2.3) enumeration that describes the
+	// type of the update.
 	ReturnValue uamg.UpdateType `idl:"name:retval" json:"return_value"`
 	// Return: The Type return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -9109,8 +9849,15 @@ func (o *GetUninstallationNotesRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // GetUninstallationNotesResponse structure represents the UninstallationNotes operation response
 type GetUninstallationNotesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: Uninstallation notes for the update for which the operation was performed.
+	// The uninstallation notes SHOULD be in the language of the user who initiated the
+	// operation but MAY be in the language of the current calling user. If no uninstallation
+	// notes are available,  retval MUST be set either to NULL or to the empty string.
+	//
+	// retval: The uninstallation notes for this update. If there are no uninstallation
+	// notes, retval MUST be set either to NULL or to the empty string.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The UninstallationNotes return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -9352,7 +10099,10 @@ func (o *GetUninstallationBehaviorRequest) UnmarshalNDR(ctx context.Context, r n
 // GetUninstallationBehaviorResponse structure represents the UninstallationBehavior operation response
 type GetUninstallationBehaviorResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An IInstallationBehavior instance describing the behavior of the uninstallation
+	// operation for this update. If the update cannot be uninstalled, retval MUST be set
+	// to NULL.
 	ReturnValue *uamg.InstallationBehavior `idl:"name:retval" json:"return_value"`
 	// Return: The UninstallationBehavior return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -9595,7 +10345,16 @@ func (o *GetUninstallationStepsRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // GetUninstallationStepsResponse structure represents the UninstallationSteps operation response
 type GetUninstallationStepsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat         `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An IStringCollection interface containing localized strings that specify
+	// the uninstallation steps for the update. If there are no uninstallation steps for
+	// the update, retval MUST be set to an empty IStringCollection.
+	//
+	// retval: An ordered list of human-readable localized steps for uninstalling the update
+	// for which this operation was performed. The uninstallation steps SHOULD be in the
+	// language of the user who initiated the operation but MAY be in the language of the
+	// current calling user. If no uninstallation steps are available, retval MUST be set
+	// to an empty IStringCollection list.
 	ReturnValue *uamg.StringCollection `idl:"name:retval" json:"return_value"`
 	// Return: The UninstallationSteps return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -9836,7 +10595,10 @@ func (o *GetKbArticleIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // GetKbArticleIDsResponse structure represents the KBArticleIDs operation response
 type GetKbArticleIDsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat         `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An IStringCollection interface containing the IDs of Knowledge Base articles
+	// for the update. If there are no Knowledge Base articles for the update, retval MUST
+	// be set to an empty IStringCollection.
 	ReturnValue *uamg.StringCollection `idl:"name:retval" json:"return_value"`
 	// Return: The KBArticleIDs return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -10043,7 +10805,9 @@ func (o *GetDeploymentActionRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 // GetDeploymentActionResponse structure represents the DeploymentAction operation response
 type GetDeploymentActionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat        `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A DeploymentAction (section 2.2.4) enumeration value that indicates the action
+	// for which the update is deployed.
 	ReturnValue uamg.DeploymentAction `idl:"name:retval" json:"return_value"`
 	// Return: The DeploymentAction return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -10250,7 +11014,9 @@ func (o *GetDownloadPriorityRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 // GetDownloadPriorityResponse structure represents the DownloadPriority operation response
 type GetDownloadPriorityResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat        `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A DownloadPriority (section 2.2.5) enumeration value that indicates the recommended
+	// download priority for the update.
 	ReturnValue uamg.DownloadPriority `idl:"name:retval" json:"return_value"`
 	// Return: The DownloadPriority return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -10491,7 +11257,9 @@ func (o *GetDownloadContentsRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 // GetDownloadContentsResponse structure represents the DownloadContents operation response
 type GetDownloadContentsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat                        `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An IUpdateDownloadContentCollection (section 3.26.4) containing the URLs
+	// of downloadable content associated with the update.
 	ReturnValue *uamg.UpdateDownloadContentCollection `idl:"name:retval" json:"return_value"`
 	// Return: The DownloadContents return value.
 	Return int32 `idl:"name:Return" json:"return"`

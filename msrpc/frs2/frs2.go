@@ -2,7 +2,139 @@
 //
 // # Introduction
 //
+// The Distributed File System: Replication (DFS-R) Protocol is a remote procedure call
+// (RPC) that replicates files between servers. DFS-R enables creation of multimaster
+// optimistic file replication systems. It is multimaster, because files can be changed
+// by any member that participates in replicating shared files. It is optimistic, because
+// files can be updated without any prior consensus or serialization. Therefore, files
+// can be changed by any member without requiring the member to prevent other members
+// from changing the files.
+//
+// DFS-R is designed to replicate files, attributes, and file metadata. DFS-R is intended
+// to interoperate with the user-level file system semantics: Files are replicated when
+// the applications that modify them close the files. File replication is designed to
+// be performed asynchronously, such that updates made on one member are processed at
+// the rate at which the receiving machine is able to receive the updates, without any
+// real-time restrictions on when the changes must be propagated. DFS-R allows user-level
+// file system operations to continue independent of protocol operations.
+//
 // # Overview
+//
+// The Distributed File System: Replication (DFS-R) Protocol is used to implement a
+// multimaster file replication system. In this system, no single computer is a master,
+// but rather all computers in the replication system share their knowledge by exchanging
+// version chain vectors, updates, and files. A computer can take dual roles as both
+// a client and a server. As a client, a computer retrieves replicated metadata and
+// replicated files from a server. Conversely, as a server, a computer serves replicated
+// metadata and replicated files to a client.
+//
+// DFS-R takes a three-tiered approach to file replication:
+//
+// *
+//
+// Version chain vectors are retrieved from a server to determine which file versions
+// are known to the server but not to the client. The protocol requires that a server
+// ensures that the global version sequence numbers (GVSN) ( 81169399-de63-4f92-8da0-91bd31e3c24c#gt_6ea49fb3-42c8-42a5-b246-cd7321981287
+// ) of all replicated files and file metadata that it maintains in persistent storage
+// ( 81169399-de63-4f92-8da0-91bd31e3c24c#gt_05028436-8377-415f-b9a1-1e0665864138 )
+// (that is, saved to disk) are eventually included in its version chain vector, such
+// that the state of a server's knowledge can be determined by examining the version
+// chain vectors alone.
+//
+// *
+//
+// Updates, which summarize file metadata, are retrieved from a server. The client uses
+// the version chain vector received from the server to limit the set of updates that
+// are retrieved from the server. To retrieve all updates known to the server but not
+// to the client, it is sufficient to request updates with a GVSN ( 81169399-de63-4f92-8da0-91bd31e3c24c#gt_b2063d4f-ec5f-4417-9dc8-7ab381e2beab
+// ) range over the version chain vector received from the server less the version chain
+// vector maintained by the client. The updates contain file system ( 81169399-de63-4f92-8da0-91bd31e3c24c#gt_528b06a4-e67c-43b3-a02d-8738858a691d
+// ) information about the replicated files but not about the file data ( 81169399-de63-4f92-8da0-91bd31e3c24c#gt_5fa0434e-0f2f-47bb-afbc-cdf47058941c
+// ). The information includes the coordinates of the file in terms of a unique identifier
+// (UID) ( 81169399-de63-4f92-8da0-91bd31e3c24c#gt_3d9dd73b-8923-43cc-ac95-8103f17683d7
+// ) identifying the file across different versions of the file, the GVSN (identifying
+// a particular version of the file on a particular machine), a reference to the file's
+// parent directory in terms of a UID for the parent resource (directories are treated
+// as files), and a file name.
+//
+// *
+//
+// File data is retrieved if a client determines that the file data corresponding to
+// a received update  is required to be downloaded in order for the client to synchronize
+// with the server.
+//
+// The process of retrieving updates alternates with retrieving version chain vectors.
+// A client first registers a callback with the server to retrieve the latest version
+// chain vector from the server. When receiving the server's version chain vector, the
+// client retrieves all updates pertaining to it, using successive calls to the server.
+// Finally, when a client cannot retrieve more updates from the version chain vector,
+// it registers another callback with the server to retrieve the server's version chain
+// vector the next time that the version vector, for more information on version vectors
+// see [MS-FRS1] section 3.1.1.11, changes relative to the last time that the callback
+// was registered.
+//
+// File data can be downloaded at the same time the client retrieves version chain vectors
+// and updates. File downloads thus proceed as an independent process of synchronizing
+// version chain vectors and updates. The client specifies which file data to download
+// based on the UID in the file metadata.
+//
+// Clients can update their previously saved version chain vector based on the server's
+// version chain vector after a completed synchronization; that is, when all updates
+// pertaining to a version chain vector have been processed and all file data that is
+// required by a client to synchronize with a server has been downloaded. A client's
+// version chain vector is updated by taking the union of its version chain vector and
+// the server's version chain vector.
+//
+// The version chain vectors themselves are an abstract measure of the knowledge of
+// a member. They record the versions of files a member (DFS-R) has received, processed,
+// and either discarded or stored in persistent storage. A member can combine its version
+// chain vector with that of a partner by taking the union of the two vectors. The resulting
+// version chain vector will also include the versions of files that the partner, and
+// by transitivity, all its partners, have processed. The difference between the version
+// chain vectors from two members determines a superset of the set of updates required
+// to synchronize one member with the contents from the other member.
+//
+// To enable replication across multiple replicated folders, clients and servers isolate
+// all activities that belong to one replicated folder in a replication session. Thus,
+// DFS-R contains a separate layer for establishing replication activity for each replicated
+// folder.
+//
+// To summarize DFS-R at the level of detail described so far, the following sequence
+// of activities occur for a client computer:
+//
+// *
+//
+// A client establishes a connection ( 81169399-de63-4f92-8da0-91bd31e3c24c#gt_866b0055-ceba-4acf-a692-98452943b981
+// ) with a server.
+//
+// *
+//
+// For each (in parallel) replicated folder that is shared between the client and the
+// server, the client establishes a replication session.
+//
+// *
+//
+// For each replication session, the client requests the server version chain vectors.
+//
+// *
+//
+// When the client receives a version chain vector from the server, it calculates the
+// versions that are not known to it and requests updates from the server pertaining
+// to these versions.
+//
+// *
+//
+// The client processes updates from the server as it receives them. While processing
+// a requested update, the client machine can decide that the server updates correspond
+// to file content that it needs to retrieve. It then requests the file from the server.
+//
+// *
+//
+// The client registers a request for updated version chain vectors from the server
+// when the client has received all updates from the previous version chain vector.
+//
+// At a very high level, this sequence of events can be summarized as shown in the following
+// sequence diagram.
 package frs2
 
 import (
@@ -546,10 +678,22 @@ func (o *Epoque) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // VersionVector structure represents FRS_VERSION_VECTOR RPC structure.
+//
+// An entry of a version chain vector.
 type VersionVector struct {
+	// dbGuid:  The GUID for the database originating the versions in the interval (low,
+	// high).
 	DBGUID *dtyp.GUID `idl:"name:dbGuid" json:"db_guid"`
-	Low    uint64     `idl:"name:low" json:"low"`
-	High   uint64     `idl:"name:high" json:"high"`
+	// low:  Lower bound for VSN interval.
+	Low uint64 `idl:"name:low" json:"low"`
+	// high:  Upper bound for VSN interval. The value of this member SHOULD be greater than
+	// the value of the low member.<4>
+	//
+	// The number indicated by "low" is excluded from the version chain vector. The number
+	// indicated by "high" is included in the version chain vector. Thus, [low, high] indicates
+	// a half-open interval of unsigned integers. The GVSNs that are included in this entry
+	// are the following: { (dbGuid, low+1), …, (dbGuid, high) }.
+	High uint64 `idl:"name:high" json:"high"`
 }
 
 func (o *VersionVector) xxx_PreparePayload(ctx context.Context) error {
@@ -605,9 +749,15 @@ func (o *VersionVector) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // EpoqueVector structure represents FRS_EPOQUE_VECTOR RPC structure.
+//
+// An entry of an epoque vector.
 type EpoqueVector struct {
+	// machine:  Unused. MUST be 0. MUST be ignored on receipt.
 	Machine *dtyp.GUID `idl:"name:machine" json:"machine"`
-	Epoque  *Epoque    `idl:"name:epoque" json:"epoque"`
+	// epoque:  Unused. MUST be 0. MUST be ignored on receipt.
+	//
+	// Epoque vectors are attributes of the response payload, as specified in section 2.2.1.4.12.
+	Epoque *Epoque `idl:"name:epoque" json:"epoque"`
 }
 
 func (o *EpoqueVector) xxx_PreparePayload(ctx context.Context) error {
@@ -672,6 +822,11 @@ func (o *EpoqueVector) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // IDGVSN structure represents FRS_ID_GVSN RPC structure.
+//
+// A (UID, GVSN) pair.
+//
+// An FRS_ID_GVSN encodes a pair that consists of a UID and a GVSN. It is used as part
+// of the messages for Slow Sync.
 type IDGVSN struct {
 	UIDDBGUID   *dtyp.GUID `idl:"name:uidDbGuid" json:"uid_db_guid"`
 	UIDVersion  uint64     `idl:"name:uidVersion" json:"uid_version"`
@@ -747,24 +902,78 @@ func (o *IDGVSN) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // Update structure represents FRS_UPDATE RPC structure.
+//
+// A structure that contains file metadata related to a particular file being processed
+// by Distributed File System Replication (DFS-R).
 type Update struct {
-	Present       int32          `idl:"name:present" json:"present"`
-	Conflict      int32          `idl:"name:nameConflict" json:"conflict"`
-	Attributes    uint32         `idl:"name:attributes" json:"attributes"`
-	Fence         *dtyp.Filetime `idl:"name:fence" json:"fence"`
-	Clock         *dtyp.Filetime `idl:"name:clock" json:"clock"`
-	CreateTime    *dtyp.Filetime `idl:"name:createTime" json:"create_time"`
-	ContentSetID  *ContentSetID  `idl:"name:contentSetId" json:"content_set_id"`
-	Hash          []byte         `idl:"name:hash" json:"hash"`
-	Similarity    []byte         `idl:"name:rdcSimilarity" json:"similarity"`
-	UIDDBGUID     *dtyp.GUID     `idl:"name:uidDbGuid" json:"uid_db_guid"`
-	UIDVersion    uint64         `idl:"name:uidVersion" json:"uid_version"`
-	GVSNDBGUID    *dtyp.GUID     `idl:"name:gvsnDbGuid" json:"gvsn_db_guid"`
-	GVSNVersion   uint64         `idl:"name:gvsnVersion" json:"gvsn_version"`
-	ParentDBGUID  *dtyp.GUID     `idl:"name:parentDbGuid" json:"parent_db_guid"`
-	ParentVersion uint64         `idl:"name:parentVersion" json:"parent_version"`
-	Name          string         `idl:"name:name;string" json:"name"`
-	Flags         int32          `idl:"name:flags" json:"flags"`
+	// present:  Indicates whether the file exists or has been deleted. The value MUST be
+	// either 0 or 1.
+	//
+	//	+------------+------------------------+
+	//	|            |                        |
+	//	|   VALUE    |        MEANING         |
+	//	|            |                        |
+	//	+------------+------------------------+
+	//	+------------+------------------------+
+	//	| 0x00000000 | File has been deleted. |
+	//	+------------+------------------------+
+	//	| 0x00000001 | File exists.           |
+	//	+------------+------------------------+
+	Present int32 `idl:"name:present" json:"present"`
+	// nameConflict:  Set if this update was tombstone due to a name conflict. The value
+	// MUST be either 0 or 1. This field MUST be 0 if present is 1.
+	Conflict int32 `idl:"name:nameConflict" json:"conflict"`
+	// attributes:  The file's attributes.
+	Attributes uint32 `idl:"name:attributes" json:"attributes"`
+	// fence:  The fence clock.
+	Fence *dtyp.Filetime `idl:"name:fence" json:"fence"`
+	// clock:  Logical, last change clock.
+	Clock *dtyp.Filetime `idl:"name:clock" json:"clock"`
+	// createTime:  File creation time.
+	CreateTime *dtyp.Filetime `idl:"name:createTime" json:"create_time"`
+	// contentSetId:  The content set ID (replicated folder) that this file belongs to.
+	ContentSetID *ContentSetID `idl:"name:contentSetId" json:"content_set_id"`
+	// hash:  The SHA-1 hash of the file.
+	Hash []byte `idl:"name:hash" json:"hash"`
+	// rdcSimilarity:  The similarity hash of the file. The value will be all zeros if the
+	// similarity data was not computed. See [MS-RDC], 3.1.5.4.
+	Similarity []byte `idl:"name:rdcSimilarity" json:"similarity"`
+	// uidDbGuid:  The GUID portion of the file's UID. Same as the database GUID of the
+	// replicated folder where this file originated.
+	UIDDBGUID *dtyp.GUID `idl:"name:uidDbGuid" json:"uid_db_guid"`
+	// uidVersion:  The VSN portion of the file's UID. This is assigned when the file is
+	// created.
+	UIDVersion uint64 `idl:"name:uidVersion" json:"uid_version"`
+	// gvsnDbGuid:  The GUID portion of the file's GVSN. Same as the database GUID of the
+	// replicated folder where this file was last updated.
+	GVSNDBGUID *dtyp.GUID `idl:"name:gvsnDbGuid" json:"gvsn_db_guid"`
+	// gvsnVersion:  The VSN portion of the file's GVSN. This is assigned when the file
+	// was last updated.
+	GVSNVersion uint64 `idl:"name:gvsnVersion" json:"gvsn_version"`
+	// parentDbGuid:  The GUID portion of the UID of the file's parent. Same as the database
+	// GUID of the replicated folder where this file's parent originated.
+	ParentDBGUID *dtyp.GUID `idl:"name:parentDbGuid" json:"parent_db_guid"`
+	// parentVersion:  The VSN portion of the UID of the file's parent. This is assigned
+	// when the parent of the file was created.
+	ParentVersion uint64 `idl:"name:parentVersion" json:"parent_version"`
+	// name:  The file name, in UTF-16 form, of the file.
+	Name string `idl:"name:name;string" json:"name"`
+	// flags:  A flags bitmask. The value SHOULD be 0 or FRS_UPDATE_FLAG_CLOCK_DECREMENTED.
+	// The client MUST ignore any bits other than FRS_UPDATE_FLAG_CLOCK_DECREMENTED.
+	//
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                              |                                                                                  |
+	//	|                    VALUE                     |                                     MEANING                                      |
+	//	|                                              |                                                                                  |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000                                   | The update is normal.                                                            |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| FRS_UPDATE_FLAG_CLOCK_DECREMENTED 0x00000010 | The update is the result of a dirty shutdown on the remote partner and the clock |
+	//	|                                              | has been decremented by the remote partner. The client MAY assign a new GVSN     |
+	//	|                                              | when installing an update with this flag.                                        |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	Flags int32 `idl:"name:flags" json:"flags"`
 }
 
 func (o *Update) xxx_PreparePayload(ctx context.Context) error {
@@ -1018,19 +1227,50 @@ func (o *Update) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // UpdateCancelData structure represents FRS_UPDATE_CANCEL_DATA RPC structure.
+//
+// A structure that contains information about updates that were not processed by a
+// client.
 type UpdateCancelData struct {
-	BlockingUpdate   *Update       `idl:"name:blockingUpdate" json:"blocking_update"`
-	ContentSetID     *ContentSetID `idl:"name:contentSetId" json:"content_set_id"`
-	GVSNDatabaseID   *DatabaseID   `idl:"name:gvsnDatabaseId" json:"gvsn_database_id"`
-	UIDDatabaseID    *DatabaseID   `idl:"name:uidDatabaseId" json:"uid_database_id"`
-	ParentDatabaseID *DatabaseID   `idl:"name:parentDatabaseId" json:"parent_database_id"`
-	GVSNVersion      uint64        `idl:"name:gvsnVersion" json:"gvsn_version"`
-	UIDVersion       uint64        `idl:"name:uidVersion" json:"uid_version"`
-	ParentVersion    uint64        `idl:"name:parentVersion" json:"parent_version"`
-	CancelType       uint32        `idl:"name:cancelType" json:"cancel_type"`
-	IsUIDValid       int32         `idl:"name:isUidValid" json:"is_uid_valid"`
-	IsParentUIDValid int32         `idl:"name:isParentUidValid" json:"is_parent_uid_valid"`
-	IsBlockerValid   int32         `idl:"name:isBlockerValid" json:"is_blocker_valid"`
+	// blockingUpdate:  All integer fields MUST be set to zero and all string fields MUST
+	// be set to empty.
+	BlockingUpdate *Update `idl:"name:blockingUpdate" json:"blocking_update"`
+	// contentSetId:  The content set where the blocking update resides.
+	ContentSetID *ContentSetID `idl:"name:contentSetId" json:"content_set_id"`
+	// gvsnDatabaseId:  The GUID part of the GVSN of the update that could not be processed.
+	GVSNDatabaseID *DatabaseID `idl:"name:gvsnDatabaseId" json:"gvsn_database_id"`
+	// uidDatabaseId:  Unused. MUST be set to zero by the client and MUST be ignored on
+	// receipt by the server.
+	UIDDatabaseID *DatabaseID `idl:"name:uidDatabaseId" json:"uid_database_id"`
+	// parentDatabaseId:  Unused. MUST be set to zero by the client and MUST be ignored
+	// on receipt by the server.
+	ParentDatabaseID *DatabaseID `idl:"name:parentDatabaseId" json:"parent_database_id"`
+	// gvsnVersion:  The VSN part of the GVSN of the update that could not be processed.
+	GVSNVersion uint64 `idl:"name:gvsnVersion" json:"gvsn_version"`
+	// uidVersion:  Unused. MUST be set to zero by the client and MUST be ignored on receipt
+	// by the server.
+	UIDVersion uint64 `idl:"name:uidVersion" json:"uid_version"`
+	// parentVersion:  Unused. MUST be set to zero by the client and MUST be ignored on
+	// receipt by the server.
+	ParentVersion uint64 `idl:"name:parentVersion" json:"parent_version"`
+	// cancelType:  The cause for canceling the processing of the update. It MUST be set
+	// to the following value.
+	//
+	//	+------------------------+----------------------------------------------------------------------------------+
+	//	|                        |                                                                                  |
+	//	|         VALUE          |                                     MEANING                                      |
+	//	|                        |                                                                                  |
+	//	+------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------+----------------------------------------------------------------------------------+
+	//	| UNSPECIFIED 0x00000001 | No reason is indicated by the client. The GVSN and UID indicate which update was |
+	//	|                        | not processed by the client.                                                     |
+	//	+------------------------+----------------------------------------------------------------------------------+
+	CancelType uint32 `idl:"name:cancelType" json:"cancel_type"`
+	// isUidValid:  MUST be zero.
+	IsUIDValid int32 `idl:"name:isUidValid" json:"is_uid_valid"`
+	// isParentUidValid:  MUST be zero.
+	IsParentUIDValid int32 `idl:"name:isParentUidValid" json:"is_parent_uid_valid"`
+	// isBlockerValid:  MUST be zero.
+	IsBlockerValid int32 `idl:"name:isBlockerValid" json:"is_blocker_valid"`
 }
 
 func (o *UpdateCancelData) xxx_PreparePayload(ctx context.Context) error {
@@ -1182,9 +1422,16 @@ func (o *UpdateCancelData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 }
 
 // SourceNeed structure represents FRS_RDC_SOURCE_NEED RPC structure.
+//
+// A file range specification for RDC downloads.
 type SourceNeed struct {
+	// needOffset:  The offset in the marshaled source file.
 	NeedOffset uint64 `idl:"name:needOffset" json:"need_offset"`
-	NeedSize   uint64 `idl:"name:needSize" json:"need_size"`
+	// needSize:  The number of data (uncompressed), in bytes, to retrieve.
+	//
+	// The client uses this structure to request source data from the server when downloading
+	// a file with RDC.
+	NeedSize uint64 `idl:"name:needSize" json:"need_size"`
 }
 
 func (o *SourceNeed) xxx_PreparePayload(ctx context.Context) error {
@@ -1225,9 +1472,14 @@ func (o *SourceNeed) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // TransportFlags type represents TransportFlags RPC enumeration.
+//
+// The TransportFlags enumerated type has only one flag defined, TRANSPORT_SUPPORTS_RDC_SIMILARITY.
 type TransportFlags uint16
 
 var (
+	// TRANSPORT_SUPPORTS_RDC_SIMILARITY:  This bitmask flag value is used to indicate
+	// to a client that a DFS-R server is capable of using the similarity features of RDC
+	// (as specified in [MS-RDC], section 3.1.5.4).
 	TransportFlagsSupportsRDCSimilarity TransportFlags = 1
 )
 
@@ -1240,11 +1492,17 @@ func (o TransportFlags) String() string {
 }
 
 // FileCompressionTypes type represents RDC_FILE_COMPRESSION_TYPES RPC enumeration.
+//
+// The RDC_FILE_COMPRESSION_TYPES enumerated type identifies the data compression algorithm
+// used for the file transfer.
 type FileCompressionTypes uint16
 
 var (
+	// RDC_UNCOMPRESSED:  Data is not compressed. This value MUST be sent whenever an RDC_FILE_COMPRESSION_TYPES
+	// enum value is required.
 	FileCompressionTypesUncompressed FileCompressionTypes = 0
-	FileCompressionTypesXPress       FileCompressionTypes = 1
+	// RDC_XPRESS:  Not used.
+	FileCompressionTypesXPress FileCompressionTypes = 1
 )
 
 func (o FileCompressionTypes) String() string {
@@ -1258,13 +1516,21 @@ func (o FileCompressionTypes) String() string {
 }
 
 // ChunkerAlgorithm type represents RDC_CHUNKER_ALGORITHM RPC enumeration.
+//
+// The RDC_CHUNKER_ALGORITHM enumerated type identifies the RDC chunking algorithm used
+// to generate the signatures for the file to be transferred.
 type ChunkerAlgorithm uint16
 
 var (
+	// RDC_FILTERGENERIC:  Not used.
 	ChunkerAlgorithmFiltergeneric ChunkerAlgorithm = 0
-	ChunkerAlgorithmFilterMax     ChunkerAlgorithm = 1
-	ChunkerAlgorithmFilterPoint   ChunkerAlgorithm = 2
-	ChunkerAlgorithmMaxalgorithm  ChunkerAlgorithm = 3
+	// RDC_FILTERMAX:  RDC FilterMax algorithm is used. This value MUST be sent whenever
+	// an RDC_CHUNKER_ALGORITHM enum value is required.
+	ChunkerAlgorithmFilterMax ChunkerAlgorithm = 1
+	// RDC_FILTERPOINT:  Not used.
+	ChunkerAlgorithmFilterPoint ChunkerAlgorithm = 2
+	// RDC_MAXALGORITHM:  Not used.
+	ChunkerAlgorithmMaxalgorithm ChunkerAlgorithm = 3
 )
 
 func (o ChunkerAlgorithm) String() string {
@@ -1282,12 +1548,20 @@ func (o ChunkerAlgorithm) String() string {
 }
 
 // UpdateRequestType type represents UPDATE_REQUEST_TYPE RPC enumeration.
+//
+// The UPDATE_REQUEST_TYPE enumerated type specifies the type of updates being requested
+// when the client calls the RequestUpdates method.
 type UpdateRequestType uint16
 
 var (
-	UpdateRequestTypeAll        UpdateRequestType = 0
+	// UPDATE_REQUEST_ALL:  Request all updates that pertain to a version chain vector.
+	UpdateRequestTypeAll UpdateRequestType = 0
+	// UPDATE_REQUEST_TOMBSTONES:  Request only tombstone updates that pertain to a version
+	// chain vector.
 	UpdateRequestTypeTombstones UpdateRequestType = 1
-	UpdateRequestTypeLive       UpdateRequestType = 2
+	// UPDATE_REQUEST_LIVE:  Request only non-tombstone updates that pertain to a version
+	// chain vector.
+	UpdateRequestTypeLive UpdateRequestType = 2
 )
 
 func (o UpdateRequestType) String() string {
@@ -1306,7 +1580,13 @@ func (o UpdateRequestType) String() string {
 type UpdateStatus uint16
 
 var (
+	// UPDATE_STATUS_DONE:  There are no more updates that pertain to the argument version
+	// chain vector. In other words, the server does not have any updates whose versions
+	// belong to the version chain vector passed in by the client.
 	UpdateStatusDone UpdateStatus = 2
+	// UPDATE_STATUS_MORE:  There are potentially more updates (tombstone, if the client
+	// requested tombstones; live, if the client requested live) from the argument version
+	// chain vector.
 	UpdateStatusMore UpdateStatus = 3
 )
 
@@ -1321,10 +1601,16 @@ func (o UpdateStatus) String() string {
 }
 
 // RecordsStatus type represents RECORDS_STATUS RPC enumeration.
+//
+// The RECORDS_STATUS enumerated type is used for an output parameter of a Slow Sync
+// request. It indicates whether the server has more records in the scope of the replicated
+// folder over which Slow Sync is performed.
 type RecordsStatus uint16
 
 var (
+	// RECORDS_STATUS_DONE:  No more records are waiting to be transmitted on the server.
 	RecordsStatusDone RecordsStatus = 0
+	// RECORDS_STATUS_MORE:  More records are waiting to be transmitted on the server.
 	RecordsStatusMore RecordsStatus = 1
 )
 
@@ -1339,11 +1625,21 @@ func (o RecordsStatus) String() string {
 }
 
 // VersionRequestType type represents VERSION_REQUEST_TYPE RPC enumeration.
+//
+// The VERSION_REQUEST_TYPE enumerated value is used to indicate what role the client
+// version vector request has. For more information on version vectors see [MS-FRS1]
+// section 3.1.1.11.
 type VersionRequestType uint16
 
 var (
-	VersionRequestTypeNormalSync      VersionRequestType = 0
-	VersionRequestTypeSlowSync        VersionRequestType = 1
+	// REQUEST_NORMAL_SYNC:  Indicates that the client requests a version vector from the
+	// server for standard synchronization.
+	VersionRequestTypeNormalSync VersionRequestType = 0
+	// REQUEST_SLOW_SYNC:  Indicates that the client requests a version vector from the
+	// server for Slow Sync.
+	VersionRequestTypeSlowSync VersionRequestType = 1
+	// REQUEST_SUBORDINATE_SYNC:  Indicates that the client requests a version vector from
+	// the server for selective single master mode.
 	VersionRequestTypeSubordinateSync VersionRequestType = 2
 )
 
@@ -1360,11 +1656,18 @@ func (o VersionRequestType) String() string {
 }
 
 // VersionChangeType type represents VERSION_CHANGE_TYPE RPC enumeration.
+//
+// A client version vector request uses a value of VERSION_CHANGE_TYPE to indicate whether
+// it is requesting a version chain vector change notification or a full version chain
+// vector.
 type VersionChangeType uint16
 
 var (
+	// CHANGE_NOTIFY:  The client requests notification only for a change of the server’s
+	// version chain vector.
 	VersionChangeTypeNotify VersionChangeType = 0
-	VersionChangeTypeAll    VersionChangeType = 2
+	// CHANGE_ALL:  The client requests to receive the full version vector of the server.
+	VersionChangeTypeAll VersionChangeType = 2
 )
 
 func (o VersionChangeType) String() string {
@@ -1378,11 +1681,20 @@ func (o VersionChangeType) String() string {
 }
 
 // RequestedStagingPolicy type represents FRS_REQUESTED_STAGING_POLICY RPC enumeration.
+//
+// The FRS_REQUESTED_STAGING_POLICY enumerated type indicates the staging policy for
+// the server to use.
 type RequestedStagingPolicy uint16
 
 var (
-	RequestedStagingPolicyServerDefault     RequestedStagingPolicy = 0
-	RequestedStagingPolicyRequired          RequestedStagingPolicy = 1
+	// SERVER_DEFAULT:  The client indicates to the server that the server is free to use
+	// or bypass its cache.
+	RequestedStagingPolicyServerDefault RequestedStagingPolicy = 0
+	// STAGING_REQUIRED:  The client indicates to the server to store the served content
+	// in its cache.
+	RequestedStagingPolicyRequired RequestedStagingPolicy = 1
+	// RESTAGING_REQUIRED:  The client indicates to the server to purge existing content
+	// from its cache.
 	RequestedStagingPolicyRestagingRequired RequestedStagingPolicy = 2
 )
 
@@ -1399,9 +1711,15 @@ func (o RequestedStagingPolicy) String() string {
 }
 
 // ParametersFilterMax structure represents FRS_RDC_PARAMETERS_FILTERMAX RPC structure.
+//
+// Configuration parameters for the RDC FilterMax algorithm.
 type ParametersFilterMax struct {
+	// horizonSize:  See [MS-RDC] for the definition of the horizon parameter of the FilterMax
+	// algorithm.
 	HorizonSize uint16 `idl:"name:horizonSize" json:"horizon_size"`
-	WindowSize  uint16 `idl:"name:windowSize" json:"window_size"`
+	// windowSize:  See [MS-RDC] for the definition of the hash window parameter of the
+	// FilterMax algorithm.
+	WindowSize uint16 `idl:"name:windowSize" json:"window_size"`
 }
 
 func (o *ParametersFilterMax) xxx_PreparePayload(ctx context.Context) error {
@@ -1448,8 +1766,13 @@ func (o *ParametersFilterMax) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 }
 
 // ParametersFilterPoint structure represents FRS_RDC_PARAMETERS_FILTERPOINT RPC structure.
+//
+// Configuration for the FilterPoint RDC algorithm. This algorithm and its configuration
+// parameters are not used.
 type ParametersFilterPoint struct {
+	// minChunkSize:  Unused. MUST be 0 and MUST be ignored on receipt.
 	MinChunkSize uint16 `idl:"name:minChunkSize" json:"min_chunk_size"`
+	// maxChunkSize:  Unused. MUST be 0 and MUST be ignored on receipt.
 	MaxChunkSize uint16 `idl:"name:maxChunkSize" json:"max_chunk_size"`
 }
 
@@ -1491,8 +1814,13 @@ func (o *ParametersFilterPoint) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 }
 
 // ParametersGeneric structure represents FRS_RDC_PARAMETERS_GENERIC RPC structure.
+//
+// Binary large object (BLOB) for alternate RDC algorithms.
 type ParametersGeneric struct {
-	ChunkerType       uint16 `idl:"name:chunkerType" json:"chunker_type"`
+	// chunkerType:  The chunkerType MUST be RDC_FILTERMAX, as specified in section 2.2.1.2.3.
+	ChunkerType uint16 `idl:"name:chunkerType" json:"chunker_type"`
+	// chunkerParameters:  Not used. This is a generic parameter block, which allows for
+	// space in future protocol versions.
 	ChunkerParameters []byte `idl:"name:chunkerParameters" json:"chunker_parameters"`
 }
 
@@ -1555,7 +1883,11 @@ func (o *ParametersGeneric) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 }
 
 // Parameters structure represents FRS_RDC_PARAMETERS RPC structure.
+//
+// Union of RDC algorithm options.
 type Parameters struct {
+	// rdcChunkerAlgorithm:  MUST be RDC_FILTERMAX, as specified in section 2.2.1.2.3, for
+	// compatibility.
 	ChunkerAlgorithm uint16            `idl:"name:rdcChunkerAlgorithm" json:"chunker_algorithm"`
 	Union            *Parameters_Union `idl:"name:u;switch_is:rdcChunkerAlgorithm" json:"union"`
 }
@@ -1609,6 +1941,8 @@ func (o *Parameters) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // Parameters_Union structure represents FRS_RDC_PARAMETERS union anonymous member.
+//
+// Union of RDC algorithm options.
 type Parameters_Union struct {
 	// Types that are assignable to Value
 	//
@@ -1746,6 +2080,8 @@ func (o *Parameters_Union) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, 
 //
 // It has following labels: 0
 type Parameters_Union_FilterGeneric struct {
+	// filterGeneric:  Placeholder only to fill out the enumeration. Never used, because
+	// rdcChunkerAlgorithm MUST NOT have this value.
 	FilterGeneric *ParametersGeneric `idl:"name:filterGeneric" json:"filter_generic"`
 }
 
@@ -1777,6 +2113,8 @@ func (o *Parameters_Union_FilterGeneric) UnmarshalNDR(ctx context.Context, w ndr
 //
 // It has following labels: 1
 type Parameters_Union_FilterMax struct {
+	// filterMax:  The parameters, as specified in [MS-RDC], necessary for the RDC FilterMax
+	// algorithm.
 	FilterMax *ParametersFilterMax `idl:"name:filterMax" json:"filter_max"`
 }
 
@@ -1808,6 +2146,11 @@ func (o *Parameters_Union_FilterMax) UnmarshalNDR(ctx context.Context, w ndr.Rea
 //
 // It has following labels: 2
 type Parameters_Union_FilterPoint struct {
+	// filterPoint:  Never used because rdcChunkerAlgorithm MUST NOT have this value.
+	//
+	// The server returns an array of these structures, one each for each level of RDC signatures
+	// that are available. The client uses these parameters to ensure that the local signatures
+	// match the signatures that will be returned from the server.
 	FilterPoint *ParametersFilterPoint `idl:"name:filterPoint" json:"filter_point"`
 }
 
@@ -1836,14 +2179,33 @@ func (o *Parameters_Union_FilterPoint) UnmarshalNDR(ctx context.Context, w ndr.R
 }
 
 // FileInfo structure represents FRS_RDC_FILEINFO RPC structure.
+//
+// File information specific to RDC downloads.
 type FileInfo struct {
-	OnDiskFileSize           uint64               `idl:"name:onDiskFileSize" json:"on_disk_file_size"`
-	FileSizeEstimate         uint64               `idl:"name:fileSizeEstimate" json:"file_size_estimate"`
-	Version                  uint16               `idl:"name:rdcVersion" json:"version"`
-	MinimumCompatibleVersion uint16               `idl:"name:rdcMinimumCompatibleVersion" json:"minimum_compatible_version"`
-	SignatureLevels          uint8                `idl:"name:rdcSignatureLevels" json:"signature_levels"`
-	CompressionAlgorithm     FileCompressionTypes `idl:"name:compressionAlgorithm" json:"compression_algorithm"`
-	FilterParameters         []*Parameters        `idl:"name:rdcFilterParameters;size_is:(rdcSignatureLevels)" json:"filter_parameters"`
+	// onDiskFileSize:  An estimate for the on-disk, compressed, marshaled source file.
+	// The server SHOULD make this estimate as accurate as possible, but the protocol does
+	// not require that it be exact.<5>
+	OnDiskFileSize uint64 `idl:"name:onDiskFileSize" json:"on_disk_file_size"`
+	// fileSizeEstimate:  An estimate for the on-disk, uncompressed, unmarshaled source
+	// file. The server SHOULD make this estimate as accurate as possible, but the protocol
+	// does not require that it be exact.<6>
+	FileSizeEstimate uint64 `idl:"name:fileSizeEstimate" json:"file_size_estimate"`
+	// rdcVersion:   The current RDC version. It MUST be CONFIG_RDC_VERSION.
+	Version uint16 `idl:"name:rdcVersion" json:"version"`
+	// rdcMinimumCompatibleVersion:  The minimum version of the client-side RDC that is
+	// compatible with the server-side RDC (rdcVersion). It MUST be CONFIG_RDC_VERSION_COMPATIBLE.
+	MinimumCompatibleVersion uint16 `idl:"name:rdcMinimumCompatibleVersion" json:"minimum_compatible_version"`
+	// rdcSignatureLevels:  The depth of the RDC signatures that are available for the client
+	// to retrieve. The server MUST allow the client to get signatures at least to this
+	// depth (using RdcGetSignatures (section 3.2.4.1.10)).<7>
+	SignatureLevels uint8 `idl:"name:rdcSignatureLevels" json:"signature_levels"`
+	// compressionAlgorithm:  This field MUST be set to RDC_UNCOMPRESSED and MUST be ignored
+	// on receipt. Despite the name of this field, data compression is always used as specified
+	// in section 3.2.4.1.14.
+	CompressionAlgorithm FileCompressionTypes `idl:"name:compressionAlgorithm" json:"compression_algorithm"`
+	// rdcFilterParameters:  The array of RDC chunker parameters used, one each for the
+	// levels of RDC signatures that are available.
+	FilterParameters []*Parameters `idl:"name:rdcFilterParameters;size_is:(rdcSignatureLevels)" json:"filter_parameters"`
 }
 
 func (o *FileInfo) xxx_PreparePayload(ctx context.Context) error {
@@ -1984,12 +2346,22 @@ func (o *FileInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // AsyncVersionVectorResponse structure represents FRS_ASYNC_VERSION_VECTOR_RESPONSE RPC structure.
+//
+// Version chain vector response payload.
 type AsyncVersionVectorResponse struct {
-	Generation         uint64           `idl:"name:vvGeneration" json:"generation"`
-	VersionVectorCount uint32           `idl:"name:versionVectorCount" json:"version_vector_count"`
-	VersionVector      []*VersionVector `idl:"name:versionVector;size_is:(versionVectorCount)" json:"version_vector"`
-	EpoqueVectorCount  uint32           `idl:"name:epoqueVectorCount" json:"epoque_vector_count"`
-	EpoqueVector       []*EpoqueVector  `idl:"name:epoqueVector;size_is:(epoqueVectorCount)" json:"epoque_vector"`
+	// vvGeneration:  The time stamp associated with the version chain vector on the server.
+	// The time stamp is incremented every time a server updates its version chain vector.
+	// This gives a way to track whether a client has the newest version of the version
+	// chain vector known to the server.
+	Generation uint64 `idl:"name:vvGeneration" json:"generation"`
+	// versionVectorCount:  Number of elements in the versionVector array.
+	VersionVectorCount uint32 `idl:"name:versionVectorCount" json:"version_vector_count"`
+	// versionVector:  An array of FRS_VERSION_VECTOR triples.
+	VersionVector []*VersionVector `idl:"name:versionVector;size_is:(versionVectorCount)" json:"version_vector"`
+	// epoqueVectorCount:  Number of elements in the epoqueVector array.
+	EpoqueVectorCount uint32 `idl:"name:epoqueVectorCount" json:"epoque_vector_count"`
+	// epoqueVector:  An array of FRS_EPOQUE_VECTOR pairs.
+	EpoqueVector []*EpoqueVector `idl:"name:epoqueVector;size_is:(epoqueVectorCount)" json:"epoque_vector"`
 }
 
 func (o *AsyncVersionVectorResponse) xxx_PreparePayload(ctx context.Context) error {
@@ -2190,10 +2562,16 @@ func (o *AsyncVersionVectorResponse) UnmarshalNDR(ctx context.Context, w ndr.Rea
 }
 
 // AsyncResponseContext structure represents FRS_ASYNC_RESPONSE_CONTEXT RPC structure.
+//
+// Version chain vector response payload envelope.
 type AsyncResponseContext struct {
-	SequenceNumber uint32                      `idl:"name:sequenceNumber" json:"sequence_number"`
-	Status         uint32                      `idl:"name:status" json:"status"`
-	Result         *AsyncVersionVectorResponse `idl:"name:result" json:"result"`
+	// sequenceNumber:  Sequence number that associates the response context with a version
+	// vector request.
+	SequenceNumber uint32 `idl:"name:sequenceNumber" json:"sequence_number"`
+	// status:  Error/success status of version vector request.
+	Status uint32 `idl:"name:status" json:"status"`
+	// result:  Response payload, comprising a version chain vector.
+	Result *AsyncVersionVectorResponse `idl:"name:result" json:"result"`
 }
 
 func (o *AsyncResponseContext) xxx_PreparePayload(ctx context.Context) error {

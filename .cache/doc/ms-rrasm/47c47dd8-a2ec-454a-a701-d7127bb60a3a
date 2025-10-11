@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IGMP_MIB_GROUP_SOURCE_INFO_V3</b> structure provides
+information about each source IP endpoint. </p><dl>
+<dd>
+<div><pre> typedef struct _IGMP_MIB_GROUP_SOURCE_INFO_V3 {
+     DWORD       Source;
+     DWORD       SourceExpiryTime;
+     DWORD       SourceUpTime;
+     DWORD       Flags;
+ } IGMP_MIB_GROUP_SOURCE_INFO_V3, *PIGMP_MIB_GROUP_SOURCE_INFO_V3;
+</pre></div>
+</dd></dl><p><b>Source:</b> IP endpoint address of a source.</p><p><b>SourceExpiryTime:</b> The time, in seconds, that remains
+before source expires. Not valid for exclusion mode.</p><p><b>SourceUpTime:</b> The time, in seconds since the source
+was up.</p><p><b>Flags:</b> Reserved. This is unused and SHOULD be NULL,
+or MAY be set to 0x00000000.</p></div>

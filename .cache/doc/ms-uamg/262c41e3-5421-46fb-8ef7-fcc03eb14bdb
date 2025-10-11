@@ -1,1 +1,27 @@
-<div class="content"></div>
+<div class="content"><p>The IUpdateServiceManager::AddScanPackageService (opnum 13)
+method registers an <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_1692cfd4-4b1d-4566-9820-8171465bbc4b" data-linktype="relative-path">update service</a></span> based
+on a <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_efa03c41-0885-4c04-9d0d-e3e7cb54f018" data-linktype="relative-path">scan
+package</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT AddScanPackageService(
+   [in] BSTR serviceName,
+   [in] BSTR scanFileLocation,
+   [in, defaultvalue(0)] LONG flags,
+   [out, retval] IUpdateService** ppService
+ );
+</pre></div>
+</dd></dl><p><b>serviceName: </b>The name of the service.</p><p><b>scanFileLocation: </b>The filesystem path of the
+scan package file.</p><p><b>flags: </b>A bitmask produced from values from the
+<span><a href="dcd110d9-131f-4bd4-a73a-5bead47608f3" data-linktype="relative-path">UpdateServiceOption (section 2.2.14)</a></span>
+enumeration value.</p><p><b>ppService: </b>An <b>IUpdateService</b> instance
+representing a service based on the scan package.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method SHOULD trigger the <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_362092cf-7fb5-43eb-92e1-c3e4affdd92b" data-linktype="relative-path">update agent</a></span> to add
+a service based on this scan package through an implementation-dependent<a id="Appendix_A_Target_47"></a><a aria-label="Product behavior note 47" href="50faf1ae-d0ab-42cb-87e2-33f30391e807#Appendix_A_47" data-linktype="relative-path">&lt;47&gt;</a> interface. This method SHOULD
+add the given service to the <b>Services</b> ADM element and return an
+IUpdateService instance representing the added service.</p></div>

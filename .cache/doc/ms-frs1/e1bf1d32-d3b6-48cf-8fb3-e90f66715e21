@@ -1,1 +1,19 @@
-<div class="content"></div>
+<div class="content"><p>The COMM_CO_EXTENSION_2 element MUST contain a <a href="93ac0801-c3cf-4dfc-80a4-c2bff7a9b09b" data-linktype="relative-path">CHANGE_ORDER_RECORD_EXTENSION</a>
+structure, which is an extension to the CHANGE_ORDER_COMMAND structure. The
+structure of the COMM_CO_EXTENSION_2 packet element is as follows.</p><dl>
+<dd>
+<div><pre> typedef struct _COMM_CO_EXTENSION_2 {
+   USHORT CommType;
+   ULONG Length;
+   CHANGE_ORDER_RECORD_EXTENSION Data;
+ } COMM_CO_EXTENSION_2,
+  *PCOMM_CO_EXTENSION_2;
+</pre></div>
+</dd></dl><p><b>CommType:</b>   A 16-bit, unsigned
+integer that indicates the type of this <a href="194f8fff-d903-44b7-9530-c66f5366f8c7" data-linktype="relative-path">COMM_PACKET</a> element. MUST
+set to 0x0017.</p><p><b>Length:</b>   A 32-bit, unsigned integer
+that indicates the length in bytes of the data following the Length field. MUST
+be set to the <b>FieldSize</b> member of the <a href="59ecc0a0-d3cf-4887-98ee-9bfe5046536a" data-linktype="relative-path">CHANGE_ORDER_RECORD_EXTENSION</a>
+structure, which is 0x00000048 (72 bytes).</p><p><b>Data:</b>   The data that is being
+transmitted in the form of a CHANGE_ORDER_RECORD_EXTENSION (see section
+2.2.3.4).</p></div>

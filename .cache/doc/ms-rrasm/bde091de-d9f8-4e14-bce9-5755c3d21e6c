@@ -1,1 +1,38 @@
-<div class="content"></div>
+<div class="content"><p>The <b>SSTP_CONFIG_PARAMS_1</b> structure<a id="Appendix_A_Target_128"></a><a aria-label="Product behavior note 128" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_128" data-linktype="relative-path">&lt;128&gt;</a> be used to get or set the
+device configuration for SSTP on a RAS Server <a href="../ms-sstp/c50ed240-56f3-4309-8e0c-1644898f0ea8" data-linktype="relative-path">[MS-SSTP]</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _SSTP_CONFIG_PARAMS_1 {
+   DWORD dwNumPorts;
+   DWORD dwPortFlags;
+   BOOL isUseHttps;
+   DWORD certAlgorithm;
+   SSTP_CERT_INFO_1 sstpCertDetails;
+ } SSTP_CONFIG_PARAMS_1,
+  *PSSTP_CONFIG_PARAMS_1;
+</pre></div>
+</dd></dl><p><b>dwNumPorts: </b>Specifies the number of ports
+configured on that (SSTP) device. This value cannot exceed the server port
+limit.<a id="Appendix_A_Target_129"></a><a aria-label="Product behavior note 129" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_129" data-linktype="relative-path">&lt;129&gt;</a></p><p><b>dwPortFlags: </b>Specifies the type of port
+configured on SSTP devices. Possible flag values are as follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MPR_ENABLE_RAS_ON_DEVICE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Remote Access is enabled for SSTP.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>isUseHttps: </b>MUST be set to TRUE if HTTPS used,
+MUST be set to FALSE if HTTPS is not used.</p><p><b>certAlgorithm: </b>MUST be set to 0x0000800C.</p><p><b>sstpCertDetails: </b>MUST be a <a href="76c9167c-41f9-4234-9b4c-e7866ce0ae00" data-linktype="relative-path"><b>SSTP_CERT_INFO_1</b></a>
+structure. </p></div>

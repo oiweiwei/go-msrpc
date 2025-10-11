@@ -1,0 +1,37 @@
+<div class="content"><p>The ActiveQueues method is received by the server in an
+RPC_REQUEST packet. In response, the server MUST return an array of strings
+that contain the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_390ae273-7109-44eb-981f-aa157e6b37c0" data-linktype="relative-path">format
+names</a> of all the represented <a href="../ms-mqdmpr/9adb2d90-c63b-43c7-9b9c-804ab96a57d5" data-linktype="relative-path">QueueManager</a>.QueueCollection.Queues,
+where <a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">Queue</a>.Active
+is equal to True.</p><dl>
+<dd>
+<div><pre> HRESULT ActiveQueues(
+   [out, retval] VARIANT* pvActiveQueues
+ );
+</pre></div>
+</dd></dl><p><b>pvActiveQueues: </b>A pointer to a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_a3af3eaf-64b7-499b-a95f-193cd4c27812" data-linktype="relative-path">VARIANT</a> that, when
+successfully completed, contains an array of zero or more strings (VT_ARRAY |
+VT_BSTR) that specify the format names of all the represented
+QueueManager.QueueCollection.Queues, where Queue.Active is equal to True.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+processes this call, it MUST follow these guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>ComputerName</i> instance variable is NULL:</p>
+<ul><li><p><span><span>  </span></span>Identify
+all the local QueueManager.QueueCollection.Queues, where Queue.Active is equal
+to True.</p>
+</li><li><p><span><span>  </span></span>Set
+the <i>pvActiveQueues</i> output variable to an array that contains the format
+names that specify all the identified Queues.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST generate a <a href="a0b1e28b-0f93-415d-8753-e3e1133678db" data-linktype="relative-path">QMMgmt
+Get Info</a> event with the following inputs:</p>
+<ul><li><p><span><span> 
+</span></span>iPropID = PROPID_MGMT_MSMQ_ACTIVEQUEUES</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the <i>rStatus</i> return value is not equal to MQ_OK (0x00000000), the server
+MUST return <i>rStatus</i> and MUST take no further action. Otherwise, the <i>pvActiveQueues</i>
+output variable MUST be set to the value of the returned <i>rPropVar</i>.</p>
+</li></ul></li></ul></div>

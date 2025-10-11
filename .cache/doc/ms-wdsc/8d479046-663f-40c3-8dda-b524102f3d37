@@ -53,9 +53,8 @@ that registered the Endpoint GUID.</p>
 </span></span>Service Provider MUST validate the Operation Header (section <a href="9cb0480c-33b0-4379-9d12-939d583529b5" data-linktype="relative-path">2.2.1.2</a>) and extract the <a href="c9ecc8ee-2046-4ef2-b2ec-329fde7f8b01#gt_1b22a3a6-f2e9-438d-9b61-274ec834a114" data-linktype="relative-path">OpCode</a>. The server MUST
 return failure if invalid.</p>
 </li><li><p><span><span> 
-</span></span>Service Provider MUST validate that it offers the requested
-OpCode under the registered Endpoint, and if invalid the server MUST return
-failure.</p>
+</span></span>Service Provider MUST validate that it offers the requested OpCode
+under the registered Endpoint, and if invalid the server MUST return failure.</p>
 </li><li><p><span><span> 
 </span></span>Service Provider MUST validate and extract all variables from the
 Variables Section (section <a href="30d5d776-df09-419f-8a04-9e9d41c7a516" data-linktype="relative-path">2.2.1.3</a>),

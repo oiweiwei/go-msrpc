@@ -1,1 +1,55 @@
-<div class="content"></div>
+<div class="content"><p>The ExportXml method exports objects from the configuration.</p><dl>
+<dd>
+<div><pre> [id(4), helpstring(&#34;method ExportXml&#34;)] HRESULT ExportXml(
+   [out] BSTR *pbstrPMCXml,
+   [out] BSTR *pbstrPolicyXml,
+   [out] BSTR *pbstrCalendarXml,
+   [out] BSTR *pbstrConditionalXml,
+   [out] BSTR *pbstrMachineGroupXml,
+   [out] BSTR *pbstrConfigurationXmls
+ );
+</pre></div>
+</dd></dl><p><b>pbstrPMCXml: </b>A pointer to a string that
+returns <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_65daee12-445f-41c0-8456-f728063bef24" data-linktype="relative-path">process matching
+criteria (PMC)</a>, in the form of a <a href="361984a5-60a9-4e17-99ce-95c4a1e898c3" data-linktype="relative-path">ProcessMatchingCriteriaCollection</a>
+element (section 2.2.5.25). For an example, see <a href="702d097a-9c16-4a63-8254-89e349a182d4" data-linktype="relative-path">ProcessMatchingCriteriaCollection</a>
+example (section 4.2.21).</p><p><b>pbstrPolicyXml: </b>A pointer to a string that
+returns a <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_559b0a4d-161b-4664-9c10-4fab98b97f1f" data-linktype="relative-path">resource policy</a>,
+in the form of a <a href="1c010046-ccb3-41cb-8490-b181b715b16b" data-linktype="relative-path">PolicyCollection
+element (section 2.2.5.22)</a>.</p><p><b>pbstrCalendarXml: </b>A pointer to a string that
+returns a <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_7204b2ed-dcef-4434-be15-6451f92d03fb" data-linktype="relative-path">calendar</a>, in
+the form of a <a href="04f7e237-6892-4d93-8867-de7b62aef6e0" data-linktype="relative-path">CalendarsCollection</a>
+element (section 2.2.5.11). For an example, see <a href="d0f9f144-01b1-4f21-b179-f51df713b0ca" data-linktype="relative-path">CalendarsCollection</a>
+example (section 4.2.8).</p><p><b>pbstrConditionalXml: </b>A pointer to a string
+that SHOULD return a conditional policy, in the format of a <a href="f00d308a-d050-4368-a663-b740f11087e5" data-linktype="relative-path">ConditionalPolicy</a> element
+(section 2.2.5.12).</p><p><b>pbstrMachineGroupXml: </b>A pointer to a string
+that SHOULD return a <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_f4153c8c-848d-4db5-b9cc-4113e5f1e406" data-linktype="relative-path">machine
+group</a>, in the format of a <a href="d137388f-8b86-4a30-8848-7ffb6029f276" data-linktype="relative-path">MachineGroup</a> element
+(section 2.2.5.17).</p><p><b>pbstrConfigurationXmls: </b>A pointer to a string
+that SHOULD return a configuration, in the format of a <a href="8dffd3a5-d731-459b-81de-7a33287a4901" data-linktype="relative-path">ConfigurationFiles</a> element
+(section 2.2.5.13).</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="255d6a15-9358-41e6-9e70-e8bb09847dc8" data-linktype="relative-path">IResourceManager2</a>
+interface methods are specified in section 3.2.4.2.</p></div>

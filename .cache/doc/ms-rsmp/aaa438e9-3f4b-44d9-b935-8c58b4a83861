@@ -1,1 +1,51 @@
-<div class="content"></div>
+<div class="content"><p>The RecallMessage method retrieves a message from the send
+queue.</p><dl>
+<dd>
+<div><pre> HRESULT RecallMessage(
+   [in] LPGUID lpGuid
+ );
+</pre></div>
+</dd></dl><p><b>lpGuid: </b>A pointer to the identifier of the
+message to retrieve.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is missing.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>After the server receives this message, it MUST verify that <i>lpGuid</i>
+is not equal to NULL. If parameter validation fails, the server MUST
+immediately fail the operation and return ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST perform
+the following actions:</p><ul><li><p><span><span> 
+</span></span>Create an event for synchronization.</p>
+</li><li><p><span><span> 
+</span></span>Get the Destination List from the Sent Message List, and verify
+that it is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Find the message in the Sent Message List.</p>
+</li><li><p><span><span> 
+</span></span>Remove the message from the list.</p>
+</li></ul><p>If there are no more active requests, the server MUST hide
+any existing notifications, destroy the handler object and its corresponding
+dialog, and free the message object.</p></div>

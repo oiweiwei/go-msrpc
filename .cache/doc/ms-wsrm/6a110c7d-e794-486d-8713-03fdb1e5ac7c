@@ -1,1 +1,82 @@
-<div class="content"></div>
+<div class="content"><p>The <b>GetResourceGroupInfo</b> method gets information
+about the resource group with the specified ID. If the ID is &#34;\&#34;,
+this method returns all selection criteria.</p><dl>
+<dd>
+<div><pre> [id(1), helpstring(&#34;method GetResourceGroupInfo&#34;)] HRESULT GetResourceGroupInfo(
+   [in] BSTR bstrResourceGroupName,
+   [out] BSTR* pbstrResourceGroupInfo
+ );
+</pre></div>
+</dd></dl><p><b>bstrResourceGroupName: </b>A string that specifies
+the name of the selection criteria.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>pbstrResourceGroupInfo: </b>A pointer to a string
+that returns the selection criteria, in the form of a <a href="b31d31ce-1030-43c6-abff-ea77edb2d5b7" data-linktype="relative-path">ProcessMatchingCriteria</a>
+element (section 2.2.5.24). For an example, see the <a href="84880779-fe33-4629-8c94-31d81a429585" data-linktype="relative-path">ProcessMatchingCriteria</a>
+example (section 4.2.20).</p><dl>
+<dd>
+<p>If <i>bstrResourceGroupName</i> is &#34;\&#34;,
+all resource groups MUST be returned, in the form of a <a href="361984a5-60a9-4e17-99ce-95c4a1e898c3" data-linktype="relative-path">ProcessMatchingCriteriaCollection</a>
+element (section 2.2.5.25). For an example, see the <a href="702d097a-9c16-4a63-8254-89e349a182d4" data-linktype="relative-path">ProcessMatchingCriteriaCollection</a>
+example (section 4.2.21).</p>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF006F</p>
+  <p>WRM_ERR_ID_VALUE</p>
+  </td>
+  <td>
+  <p>The specified name contains characters that are
+  invalid. The name cannot start with a hyphen (&#34;-&#34;), cannot contain
+  spaces, and cannot contain any of the following characters; &#34;\&#34;
+  cannot be used with other characters.</p>
+  <dl>
+<dd>
+<div><pre> /   ? * | : &lt; &gt; &#34; , ;
+</pre></div>
+</dd></dl>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF012E</p>
+  <p>WRM_ERR_RESOURCEGROUPID_INVALID</p>
+  </td>
+  <td>
+  <p>The request has been aborted because the specified
+  resource group does not exist.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="a314adf4-0bff-40d1-a5b2-d909dcf176a3" data-linktype="relative-path">IWRMResourceGroup</a>
+interface methods are specified in section 3.2.4.10.</p></div>

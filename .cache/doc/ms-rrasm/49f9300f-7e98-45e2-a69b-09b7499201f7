@@ -1,1 +1,89 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IPMCAST_SCOPE</b> structure contains a multicast
+scope name and the associated IPv4 multicast group address and mask that define
+the scope. This structure is used in <b>MIB_OPAQUE_INFO</b> (section <a href="169e435d-a975-4c1c-bf41-55fd2bd76125" data-linktype="relative-path">2.2.1.2.52</a>) structure.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD dwGroupAddress;
+   DWORD dwGroupMask;
+   WCHAR snNameBuffer[256];
+   DWORD dwStatus;
+   BYTE reserved[492];
+ } MIB_IPMCAST_SCOPE,
+  *PMIB_IPMCAST_SCOPE;
+</pre></div>
+</dd></dl><p><b>dwGroupAddress: </b>A 32-bit integer
+representation of the IPv4 group address which, when combined with the
+corresponding value in <b>dwGroupMask</b>, identifies the group range for which
+the multicast scope exists. </p><dl>
+<dd>
+<p><b>Note</b>  Scoped addresses MUST come
+from the range 239.0.0.0 to 239.255.255.255 as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=119994" data-linktype="external">[RFC2365]</a>.</p>
+</dd></dl><p><b>dwGroupMask: </b>A 32-bit integer representation
+of the IPv4 group address mask which, when combined with the corresponding
+value in <b>dwGroupAddress</b>, identifies the group range for which the
+multicast scope exists.</p><p><b>snNameBuffer: </b>A Unicode string, suitable for
+display to multicast application users, that contains the text name associated
+with the multicast scope.</p><dl>
+<dd>
+<p>If no name is specified, the default name is the
+string representation of the scoped address in <b>dwGroupAddress</b> with the
+address and mask length appended and separated by a backslash &#34;/&#34;
+character, of the form &#34;239.*.*.*.x/y&#34;, where <b>x</b> is the address
+length and <b>y</b> is the mask length.</p>
+</dd></dl><p><b>dwStatus: </b>A status value that describes the
+current status of this row in an MFE scope table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Row has an active status.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Row has a notInService status.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Row has a notReady status.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Row has a createAndGo status.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Row has a createAndWait status.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>Row has a destroy status.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>reserved: </b>An array of 492 bytes that SHOULD be
+set to 0 and ignored on receive. </p></div>

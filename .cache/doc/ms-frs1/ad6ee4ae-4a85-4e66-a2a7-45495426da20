@@ -1,1 +1,46 @@
-<div class="content"></div>
+<div class="content"><p>The DATA_EXTENSION_PREFIX structure contains a data
+component size and type. The structure of DATA_EXTENSION_PREFIX is as follows.</p><dl>
+<dd>
+<div><pre> typedef struct _DATA_EXTENSION_PREFIX {
+   ULONG Size;
+   LONG Type;
+ } DATA_EXTENSION_PREFIX,
+  *PDATA_EXTENSION_PREFIX;
+</pre></div>
+</dd></dl><p><b>Size:</b>   A 32-bit, unsigned integer
+that specifies the size of the data component, including this prefix.</p><p><b>Type:</b>   A 32-bit, unsigned integer
+that specifies the type of the data component. It MUST be one of the following
+values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Terminates a data extension record. MUST NOT be used.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Data checksum record using an <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_05caca9b-e062-4a6b-8c99-cd5e23f38a11" data-linktype="relative-path">MD5 hash</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Data retry time-out record.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

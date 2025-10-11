@@ -1,1 +1,17 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsUITypes enumeration defines the type of a UI
+message.</p><dl>
+<dd>
+<div><pre> enum NtmsUITypes 
+ {
+   NTMS_UITYPE_INVALID = 0,
+   NTMS_UITYPE_INFO = 1,
+   NTMS_UITYPE_REQ = 2,
+   NTMS_UITYPE_ERR = 3,
+   NTMS_UITYPE_MAX = 4
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_UITYPE_INVALID:  </b>Message is of an invalid
+type.</p><p><b>NTMS_UITYPE_INFO:  </b>Message is of the user
+information type and provides information.</p><p><b>NTMS_UITYPE_REQ:  </b>Message is of the user
+information type and is a request.</p><p><b>NTMS_UITYPE_ERR:  </b>Message is of the user
+information type and is an error.</p><p><b>NTMS_UITYPE_MAX:  </b>Maximum possible value.</p></div>

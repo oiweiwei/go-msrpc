@@ -1,1 +1,17 @@
-<div class="content"></div>
+<div class="content"><p>The CO_RECORD_EXTENSION_WIN2K structure MUST be formatted as
+follows:</p><dl>
+<dd>
+<div><pre> typedef struct _CO_RECORD_EXTENSION_WIN2K {
+   ULONG FieldSize;
+   USHORT Major;
+   USHORT OffsetCount;
+   ULONG Offset;
+   ULONG OffsetLast;
+   DATA_EXTENSION_CHECKSUM DataChecksum;
+ } CO_RECORD_EXTENSION_WIN2K,
+  *PCO_RECORD_EXTENSION_WIN2K;
+</pre></div>
+</dd></dl><p><b>FieldSize:</b> A 32-bit, unsigned integer that
+indicates the size of structure CO_RECORD_EXTENSION_WIN2K. MUST be 0x00000028. </p><p><b>Major:</b> Version of the
+CO_RECORD_EXTENSION_WIN2K structure. MUST be 0.</p><p><b>OffsetCount:</b> MUST be 0x0001.</p><p><b>Offset:</b> MUST be 0x00000010.</p><p><b>OffsetLast:</b> MUST be 0.</p><p><b>DataChecksum:</b> <a href="660990ab-11a6-4568-8e2f-8a84ad61f835" data-linktype="relative-path">DATA_EXTENSION_CHECKSUM</a>
+structure, as specified in section 2.2.3.7.</p></div>

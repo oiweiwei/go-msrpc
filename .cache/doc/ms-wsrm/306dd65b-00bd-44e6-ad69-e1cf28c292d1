@@ -1,1 +1,36 @@
-<div class="content"></div>
+<div class="content"><p>The GetSystemAffinity method gets the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_df640a69-f2b2-45ab-83ed-a174869764fc" data-linktype="relative-path">processor affinity</a> of the
+system.</p><dl>
+<dd>
+<div><pre> [id(2), helpstring(&#34;method GetSystemAffinity&#34;)] HRESULT GetSystemAffinity(
+   [out] DWORD64* pdwSysAffinity
+ );
+</pre></div>
+</dd></dl><p><b>pdwSysAffinity: </b>A pointer to a 64-bit unsigned
+integer that returns a processor affinity information structure, which is a bit
+vector where each bit represents the processors that are configured into a
+system.</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="7c62a2fd-63f4-435f-8fc8-c94e4509f6fd" data-linktype="relative-path">IResourceManager</a> interface
+methods are specified in section 3.2.4.1.</p></div>

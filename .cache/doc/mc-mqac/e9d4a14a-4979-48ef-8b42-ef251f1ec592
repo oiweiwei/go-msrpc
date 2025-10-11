@@ -1,0 +1,177 @@
+<div class="content"><p>The EnableNotification method is received by the server in
+an RPC_REQUEST packet. In response, the server starts event notification for
+asynchronously receiving or peeking <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">messages</a>.</p><dl>
+<dd>
+<div><pre> HRESULT EnableNotification(
+   [in] IMSMQEvent3* Event,
+   [in, optional] VARIANT* Cursor,
+   [in, optional] VARIANT* ReceiveTimeout
+ );
+</pre></div>
+</dd></dl><p><b>Event: </b>A pointer to an <a href="c0c5d109-dfab-42c1-966a-350faad3f8a8" data-linktype="relative-path">IMSMQEvent3</a> interface. If <i>Event</i>
+is NULL, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST
+return an error E_INVALIDARG (0x80070057).</p><p><b>Cursor: </b>A <a href="../ms-oaut/a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">VARIANT</a>
+pointer to a signed integer that corresponds to one of the <a href="f0456e8d-2f85-4c5b-ad2c-13b730ebfa77" data-linktype="relative-path">MQMSGCURSOR</a> ( section
+2.2.2.8) enumeration values.</p><dl>
+<dd>
+<p>If this parameter is not specified by the client,
+the server MUST use the default value MQMSG_FIRST (0x00000000).</p>
+</dd></dl><p><b>ReceiveTimeout: </b>A pointer to a VARIANT that
+contains a long value (VT_I4) that specifies the time, in milliseconds, that
+the server MUST NOT exceed while waiting for a new message to arrive.</p><dl>
+<dd>
+<p>If this parameter is not specified by the client,
+the server MUST use the default value INFINITE (0xFFFFFFFF).</p>
+</dd></dl><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the server MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>Cursor</i> input parameter is not equal to MQMSG_FIRST,
+MQMSG_CURRENT, or MQMSG_NEXT:</p>
+<ul><li><p><span><span>  </span></span>Return
+E_INVALIDARG (0x80070057), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>IsInitialized</i> instance variable equals False:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error OLE_E_BLANK (0x80040007), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>IsClosed</i> instance variable equals True:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error MQ_ERROR_INVALID_HANDLE (0xC00E0007), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>Event</i> input parameter is NULL:</p>
+<ul><li><p><span><span>  </span></span>Return
+E_INVALIDARG (0x80070057), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If refQueue.AccessType is not equal to PeekAccess or
+PeekAdminAccess:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error MQ_ERROR_ACCESS_DENIED (0xC00E0025), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>Cursor</i> input parameter equals MQMSG_NEXT:</p>
+<ul><li><p><span><span>  </span></span>Advance
+the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursor</a> represented
+by the <i>Cursor</i> instance variable.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return S_OK (0x00000000), and take no further action.</p>
+</li></ul><p>Asynchronously:</p><ul><li><p><span><span> 
+</span></span>If the <i>Cursor</i> input parameter equals MQMSG_NEXT or
+MQMSG_CURRENT:</p>
+<ul><li><p><span><span>  </span></span>Define
+<i>suitable message</i> as a <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>,
+identified by the cursor represented by the <i>Cursor</i> instance variable, in
+the <b>MessagePositionList</b> of the <i>referenced queue</i> for which the
+MessagePosition.State attribute does not equal Locked or
+Message.AllowPeekWhenLocked equals True.</p>
+</li><li><p><span><span>  </span></span>Starting
+from the Message identified by the cursor represented by the <i>Cursor</i>
+instance variable, continually advance the cursor, seeking a <i>suitable
+message</i>. If the cursor reaches <i>EndQueue</i> state, wait for more
+messages to arrive. The cursor is advanced seeking a <i>suitable message</i> by
+doing the following:</p>
+</li></ul></li><li><p><span><span> 
+</span></span>While a suitable message is not found:</p>
+<ul><li><p><span><span>  </span></span>The
+Peek Next Message event MUST be generated with the following arguments:</p>
+<ul><li><p><span><span> 
+</span></span><i>iQueueDesc</i>: MUST be set to a reference to the <a href="../ms-mqdmpr/e2005510-8785-414e-9a71-fa313fa6e119" data-linktype="relative-path">OpenQueueDescriptor</a>
+object that specifies the <i>referenced queue</i>.</p>
+</li><li><p><span><span> 
+</span></span><i>iTimeout</i>: MUST be set to <i>ReceiveTimeout</i>.</p>
+</li><li><p><span><span> 
+</span></span><i>iCursor</i>: MUST be set to a reference to the <i>Cursor</i>
+instance variable.</p>
+</li><li><p><span><span> 
+</span></span>If the returned rStatus is not MQ_OK:</p>
+<ul><li><p><span><span> 
+</span></span>If the returned rStatus is MQ_ERROR_ILLEGAL_CURSOR_ACTION, and
+the <i>ReceiveTimeout</i> input parameter equals 0:</p>
+<ul><li><p><span><span> 
+</span></span>Fire the <a href="cf8c1f55-0f43-465e-96bc-3316d9b05f76" data-linktype="relative-path">ArrivedError</a>
+(section 3.16.4.4.2) event on the <a href="6102da49-1a16-4862-a4d1-ad092c5101a4" data-linktype="relative-path">MSMQEvent</a> object that is
+identified by the <i>Event</i> input parameter. Specify the <i>ErrorCode</i>
+parameter as MQ_ERROR_MESSAGE_NOT_FOUND (0xc00e0008), and take no further
+action.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>If the returned rStatus is MQ_ERROR_IO_TIMEOUT, and the <i>ReceiveTimeout</i>
+input parameter is greater than 0 and does not equal INFINITE, and the time-out
+identified by the <i>ReceiveTimeout</i> input parameter expires:</p>
+<ul><li><p><span><span> 
+</span></span>Fire the ArrivedError event on the MSMQEvent object identified by
+the <i>Event</i> input parameter. Specify the <i>ErrorCode</i> parameter as
+MQ_ERROR_IO_TIMEOUT (0xc00e001b), and take no further action.</p>
+</li></ul></li></ul></li><li><p><span><span>  </span></span>Else,
+if the returned rStatus is MQ_OK:</p>
+<ul><li><p><span><span> 
+</span></span>If the Message returned in rMessage is a <i>suitable message</i>:</p>
+<ul><li><p><span><span> 
+</span></span>Fire the <a href="9f3a65f2-2bff-4d24-abf0-acec6b2c7291" data-linktype="relative-path">Arrived</a>
+(section 3.16.4.4.1) event on the MSMQEvent object identified by the <i>Event</i>
+input parameter, and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If iCursor.MessagePositionReference is equivalent to
+iQueue.MessagePositionList.End:</p>
+<ul><li><p><span><span> 
+</span></span>The Wait for New Message event MUST be raised with the following
+arguments:</p>
+<ul><li><p><span><span> 
+</span></span><i>iQueueDesc</i>: Reference to an OpenQueueDescriptor that
+specifies the queue that this event will wait on.</p>
+</li><li><p><span><span> 
+</span></span><i>iTimeout</i>: The amount of time to wait in seconds.</p>
+</li><li><p><span><span> 
+</span></span><i>iDestructiveRead</i>: This value MUST be set to False.</p>
+</li><li><p><span><span> 
+</span></span><i>iCursor</i>: Reference to a <i>Cursor</i> object that is
+associated with this wait request.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the returned rStatus equals Success:</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Set iCursor.MessagePositionReference to the returned
+rMessagePosition.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>Define
+<i>suitable message</i> as the Message at the head of the <b>MessagePositionList</b>
+of the <i>referenced queue</i> for which the MessagePosition.State attribute
+does not equal Locked or Message.AllowPeekWhenLocked equals True.</p>
+</li><li><p><span><span>  </span></span>Attempt
+to retrieve the <i>suitable message</i>.</p>
+<ul><li><p><span><span> 
+</span></span>If no <i>suitable message</i> can be located:</p>
+<ul><li><p><span><span> 
+</span></span>If the <i>ReceiveTimeout</i> input parameter is 0:</p>
+<ul><li><p><span><span> 
+</span></span>Fire the ArrivedError event on the MSMQEvent object identified by
+the <i>Event</i> input parameter. Specify the <i>ErrorCode</i> parameter as
+MQ_ERROR_MESSAGE_NOT_FOUND (0xc00e0008), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>ReceiveTimeout</i> input parameter is INFINITE (0xFFFFFFFF):</p>
+<ul><li><p><span><span> 
+</span></span>Wait until a <i>suitable message</i> is available.</p>
+</li><li><p><span><span> 
+</span></span>Fire the Arrived event on the MSMQEvent object identified by the <i>Event</i>
+input parameter, and take no further action.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>ReceiveTimeout</i> input parameter is neither 0 nor
+INFINITE (0xFFFFFFFF):</p>
+</li><li><p><span><span> 
+</span></span>Wait until either of the following events occurs:</p>
+<ul><li><p><span><span> 
+</span></span>The time-out specified by the <i>ReceiveTimeout</i> input
+parameters expires:</p>
+<ul><li><p><span><span> 
+</span></span>Fire the ArrivedError event on the MSMQEvent object that is
+identified by the <i>Event</i> input parameter. Specify the <i>ErrorCode</i>
+parameter as MQ_ERROR_IO_TIMEOUT (0xc00e001b), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>A <i>suitable message</i> becomes available:</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Fire the Arrived event on the MSMQEvent object identified by the <i>Event</i>
+input parameter, and take no further action.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Else, if one or more <i>suitable messages</i> are available:</p>
+<ul><li><p><span><span> 
+</span></span>Fire the Arrived event on the MSMQEvent object identified by the <i>Event</i>
+input parameter, and take no further action.</p>
+</li></ul></li></ul></li></ul></li></ul></div>

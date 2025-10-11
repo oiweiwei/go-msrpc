@@ -1,1 +1,21 @@
-<div class="content"></div>
+<div class="content"><p>The <b>PPP_INFO_3</b> structure<a id="Appendix_A_Target_58"></a><a aria-label="Product behavior note 58" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_58" data-linktype="relative-path">&lt;58&gt;</a> be used
+to report the results of the various PPP projection operations for a
+connection.</p><dl>
+<dd>
+<div><pre> typedef struct _PPP_INFO_3 {
+   PPP_NBFCP_INFO nbf;
+   PPP_IPCP_INFO2 ip;
+   PPP_IPV6_CP_INFO ipv6;
+   PPP_CCP_INFO ccp;
+   PPP_LCP_INFO lcp;
+ } PPP_INFO_3;
+</pre></div>
+</dd></dl><p><b>nbf: </b>A <a href="c6cfe450-77f4-47e9-9b23-1e067e7e3965" data-linktype="relative-path"><b>PPP_NBFCP_INFO (section 2.2.1.2.64)</b></a>
+structure that contains information about NetBEUI Framer (NBF) for a
+connection. </p><p><b>ip: </b>A <a href="04fc5990-59e4-4670-b7dd-35e0dd8acc5d" data-linktype="relative-path"><b>PPP_IPCP_INFO2 (section 2.2.1.2.66)</b></a>
+structure that contains the IPv4 information for a connection. </p><p><b>ipv6: </b>A <a href="2478eedf-98a6-4712-a4eb-7812ea2e2032" data-linktype="relative-path"><b>PPP_IPV6_CP_INFO (section 2.2.1.2.68)</b></a>
+structure that contains the IPv6 information for a connection. </p><p><b>ccp: </b>A <a href="daafb95c-e858-4770-ae5f-e4344f94c617" data-linktype="relative-path"><b>PPP_CCP_INFO (section 2.2.1.2.70)</b></a>
+structure that contains the compression information details for a given
+connection. </p><p><b>lcp: </b>A <a href="4532a920-e20e-4fb0-8f72-22a95c3e5553" data-linktype="relative-path"><b>PPP_LCP_INFO (section 2.2.1.2.71)</b></a>
+structure that contains the compression information related to the Link Control
+Protocol (LCP) for a given connection. </p></div>

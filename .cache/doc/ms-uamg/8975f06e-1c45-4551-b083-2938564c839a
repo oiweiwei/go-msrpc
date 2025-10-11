@@ -1,1 +1,22 @@
-<div class="content"></div>
+<div class="content"><p>The IAutomaticUpdatesResults::LastInstallationSuccessDate
+(opnum 9) method retrieves the date-time of the most recent successful
+installation done by the <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_b1d92af1-3c57-42f7-936f-8c56fb75e818" data-linktype="relative-path">automatic update agent</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT LastInstallationSuccessDate(
+   [out, retval] VARIANT* retval
+ );
+</pre></div>
+</dd></dl><p><b>retval: </b>If the date-time for the last
+successful update search is not known, the <b>vt</b> field MUST be set to
+VT_EMPTY. Otherwise, the <b>vt</b> member MUST be set to VT_DATE, and the
+date-time of the last successful update installation MUST be stored in the <b>date</b>
+field.</p><p><b>Return Values: </b>The method MUST return
+information in an <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> data
+structure. The severity bit in the structure identifies the following
+conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method SHOULD return a VARIANT containing the value of
+the <b>LastInstallationSuccessDate</b> ADM element.</p></div>

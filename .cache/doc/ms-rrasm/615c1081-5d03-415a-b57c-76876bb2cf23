@@ -1,1 +1,206 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RRouterInterfaceSetInfo</b> method<a id="Appendix_A_Target_264"></a><a aria-label="Product behavior note 264" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_264" data-linktype="relative-path">&lt;264&gt;</a> sets information for a
+specified interface, <i>hInterface</i>, on a specified server, <i>hDimServer</i>.</p><dl>
+<dd>
+<div><pre> DWORD RRouterInterfaceSetInfo(
+   [in] DIM_HANDLE hDimServer,
+   [in] DWORD dwLevel,
+   [in] PDIM_INFORMATION_CONTAINER pInfoStruct,
+   [in] DWORD hInterface
+ );
+</pre></div>
+</dd></dl><p><b>hDimServer: </b>A handle to the RRASM server where
+the call is executed, see section <a href="1f8cdbcc-9791-4a35-ad78-878b8d110e15" data-linktype="relative-path">3.1.3</a>.</p><p><b>dwLevel: </b>This is of type <b>DWORD</b> and
+SHOULD be set to any of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p> pInfoStruct-&gt;pBuffer MUST be set to point to a <a href="1c0f45b1-e5f4-4479-86cf-5f7753b4697c" data-linktype="relative-path"><b>MPRI_INTERFACE_0 (section 2.2.1.2.81)</b></a>.
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>pInfoStruct-&gt;pBuffer MUST be set to point to a <a href="bb6d1b31-4515-44cd-9297-2768221d1397" data-linktype="relative-path"><b>MPRI_INTERFACE_1 (section 2.2.1.2.82)</b></a>. 
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>pInfoStruct-&gt;pBuffer MUST be set to point to a <a href="0b5fa6fc-b3f2-4a3f-9bfd-96963bfbb03d" data-linktype="relative-path"><b>MPRI_INTERFACE_2 (section 2.2.1.2.83)</b></a>. 
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>3</p>
+  </td>
+  <td>
+  <p>pInfoStruct-&gt;pBuffer MUST be set to point to a <a href="c73d2b22-5861-4d89-8878-1cec7e71ca37" data-linktype="relative-path"><b>MPRI_INTERFACE_3 (section 2.2.1.2.84)</b></a>.<a id="Appendix_A_Target_265"></a><a aria-label="Product behavior note 265" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_265" data-linktype="relative-path">&lt;265&gt;</a> </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>pInfoStruct: </b>This is a pointer of type <a href="95609dbb-56aa-4b1b-a0e2-697864a141bd" data-linktype="relative-path"><b>DIM_INFORMATION_CONTAINER (section 2.2.1.2.1)</b></a>
+and MUST be set to the following, based on <i>dwLevel</i>. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>dwLevel</p>
+   </th>
+   <th>
+   <p>pInfoStruct-&gt;size</p>
+   </th>
+   <th>
+   <p>pInfoStruct-&gt;pBuffer</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>This MUST be set to the size of the data being passed
+  in MPRI_INTERFACE_0 (section 2.2.1.2.81).</p>
+  </td>
+  <td>
+  <p>This MUST be set to point to MPRI_INTERFACE_0.</p>
+  <p>Only the <b>fEnabled</b> field of this structure can
+  be modified; the rest of the fields MUST be populated as returned by <a href="2fbcf316-2082-4f98-878b-eab5d0c2da1d" data-linktype="relative-path">RRouterInterfaceGetInfo (section 3.1.4.14)</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>This MUST be set to the size of the data being passed
+  in MPRI_INTERFACE_1 (section 2.2.1.2.82).</p>
+  </td>
+  <td>
+  <p>This MUST be set to point to MPRI_INTERFACE_1.</p>
+  <p>In addition to the fields for MPRI_INTERFACE_0, <b>lpwsDialoutHoursRestriction</b>
+  can be set. Setting other values has no effect. The values MUST be populated
+  as returned by RRouterInterfaceGetInfo.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>This MUST be set to the size of
+  MPRI_INTERFACE_2 (section 2.2.1.2.83). Otherwise, an error is
+  returned.</p>
+  </td>
+  <td>
+  <p>This MUST be set to point to MPRI_INTERFACE_2.</p>
+  <p>The <b>dwIfType</b> of MPRI_INTERFACE_0 MUST be set to
+  ROUTER_IF_TYPE_FULL_ROUTER.</p>
+  <p>The <b>szAlternates</b> of MPRI_INTERFACE_2 MUST be
+  set to 0.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>3</p>
+  </td>
+  <td>
+  <p>This MUST be set to the size of
+  MPRI_INTERFACE_3 (section 2.2.1.2.84). Otherwise, an error is returned.</p>
+  </td>
+  <td>
+  <p>This MUST be set to point to MPRI_INTERFACE_3.</p>
+  <p>The <b>dwIfType</b> of MPRI_INTERFACE_3 MUST be set to
+  ROUTER_IF_TYPE_FULL_ROUTER.</p>
+  <p>The <b>szAlternates</b> of MPRI_INTERFACE_0 MUST be
+  set to 0. The values of the ipv6addrDns and ipv6addrDnsAlt members of
+  MPRI_INTERFACE_3 SHOULD be ignored by the server.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>If the interface type, specified
+at the time the interface was created using <a href="72bead5c-821f-4e98-bacd-0de279552379" data-linktype="relative-path"><b>RRouterInterfaceCreate (section 3.1.4.13)</b></a>,
+is either ROUTER_IF_TYPE_DEDICATED or ROUTER_IF_TYPE_INTERNAL and if <b>fEnabled</b>
+is set to FALSE, an error is returned.  </p>
+</dd>
+<dd>
+<p>When the <b>dwLevel</b> value is
+either 2 or 3 and the <b>dwfOptions</b> member does not contain any of the
+flags MPRIO_RequirePAP, MPRIO_RequireCHAP, MPRIO_RequireMsCHAP2, or
+MPRIO_RequireEAP, then the <b>dwfOptions </b>value SHOULD be modified to enable
+MPRIO_RequireMsCHAP2, MPRIO_RequireCHAP, and <b>MPRIO_RequirePAP</b>. </p>
+</dd></dl><p><b>hInterface: </b>The unique identifier of an
+interface. This can be obtained from <b>RRouterInterfaceCreate</b> or <a href="b4cc4f8f-e2bc-4e8f-a521-08a0558d3e44" data-linktype="relative-path"><b>RRouterInterfaceGetHandle (section 3.1.4.12)</b></a>.
+Since the RRASM does not manage the interface handles, the RRAS server SHOULD
+check to ensure that this handle is a valid interface handle.  </p><p><b>Return Values: </b>A 32-bit, unsigned integer
+value that indicates return status. A return value of ERROR_SUCCESS
+(0x00000000) indicates that the operation was completed successfully;
+otherwise, it contains an error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+or in section <a href="5c0c991a-0d3d-4fe5-9503-5128d0d49fe1" data-linktype="relative-path">2.2.4</a>.
+All values that are not in the table that follows MUST be treated the same by
+the RRASM client.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_SUCCESS</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The calling application does not have sufficient
+  privileges, as specified in section <a href="9373431f-ed29-4639-9f8b-743267c9f9b6" data-linktype="relative-path">2.1.1.1</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 14.</p><p>When processing this call, the RRASM server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate, as specified in section 2.1.1.1, whether this method
+was called by a client that has access to the method. If the client does not
+have access, then return error ERROR_ACCESS_DENIED (0x00000005).</p>
+</li><li><p><span><span> 
+</span></span>If <i>pInfoStruct</i> is NULL, return an error other than those
+in the preceding table.</p>
+</li><li><p><span><span> 
+</span></span>If <i>dwLevel</i> is not supported, return an error other than
+those in the preceding table.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>hInterface</i> value specified is not associated with
+an interface entry in <b>InterfaceList</b> that has a matching interface handle
+(value being the same), return an error other than one of the errors specified
+in the preceding table.</p>
+</li><li><p><span><span> 
+</span></span>Call the abstract interface <b>Invoke DIMSVC </b>method
+specifying the operation and the parameters to enable RRAS server to perform
+the required management task.</p>
+</li><li><p><span><span> 
+</span></span>Return any error that the RRAS server returns while processing
+this request. Otherwise return ERROR_SUCCESS (0x00000000). </p>
+</li></ul><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

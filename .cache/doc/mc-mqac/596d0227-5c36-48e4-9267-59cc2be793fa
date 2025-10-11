@@ -1,0 +1,46 @@
+<div class="content"><p>The MQMSGJOURNAL enumeration defines flags for the <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>.<b>PositiveJournalingRequested</b>
+and Message.<b>NegativeJournalingRequested</b> properties. The values of the
+enumeration indicate the source journaling mode for the Message. Source
+journaling is the process of retaining copies of <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">messages</a> that are sent. Two
+forms of source journaling are defined:</p><ul><li><p><span><span> 
+</span></span><a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_c713e359-791f-4391-ac06-24490f64336c" data-linktype="relative-path">Positive
+source journaling</a>: The <a href="../ms-mqdmpr/9adb2d90-c63b-43c7-9b9c-804ab96a57d5" data-linktype="relative-path">QueueManager</a>
+that sent the Message retains a copy of the message only if it is successfully
+delivered.</p>
+</li><li><p><span><span> 
+</span></span><a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_9b444f65-c629-408f-89d0-d042b0487eb4" data-linktype="relative-path">Negative
+source journaling</a>: The QueueManager that sent the Message retains a copy of
+the message only if it is not successfully delivered. This behavior is also
+known as dead-lettering.</p>
+<div><pre> typedef enum 
+ {
+   MQMSG_JOURNAL_NONE = 0,
+   MQMSG_DEADLETTER = 1,
+   MQMSG_JOURNAL = 2
+ } MQMSGJOURNAL;
+</pre></div>
+</li></ul><p><b>MQMSG_JOURNAL_NONE:  </b>Neither positive nor
+negative source-journaling is requested for the Message.</p><p><b>MQMSG_DEADLETTER:  </b>Negative source journaling
+is requested for the Message.</p><dl>
+<dd>
+<p>If this value is specified for a Message, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_b8a2f77c-783c-49d0-a724-1393de48ad8a" data-linktype="relative-path">message queuing system</a> MUST
+copy the message to the QueueManager.<b>SystemDeadletterQueue</b> if the
+Message is not successfully delivered to the destination <a href="7d8d0dab-699c-4121-9ee4-226a2dbced2e" data-linktype="relative-path">ApplicationQueue</a>. If the <b>Quota</b>
+for the QueueManager.<b>SystemDeadletterQueue</b> is exceeded, the Message MUST
+be discarded. When this enumeration is specified, Message.<b>NegativeJournalingRequested</b>
+MUST be set to True.</p>
+</dd></dl><p><b>MQMSG_JOURNAL:  </b>Positive source journaling is
+requested for the Message.</p><dl>
+<dd>
+<p>If this value is specified for a Message, the
+message queuing system MUST copy the message to the QueueManager.<b>SystemJournalQueue</b>
+if the Message is successfully delivered to the destination ApplicationQueue.
+If the <b>Quota</b> for the QueueManager.<b>SystemJournalQueue</b> is exceeded,
+the Message MUST be discarded. When this enumeration is specified, Message.<b>PositiveJournalingRequested</b>
+MUST be set to True.</p>
+</dd></dl><p>MQMSG_DEADLETTER and MQMSG_JOURNAL MAY be specified to
+enable both forms of source journaling.</p><p>Used by:</p><ul><li><p><span><span> 
+</span></span>get <a href="59efe5b1-bf60-4c31-960f-c701bb9f768c" data-linktype="relative-path">IMSMQMessage::Journal</a></p>
+</li><li><p><span><span> 
+</span></span>put <a href="4ae00fd3-df31-45dc-9059-05c3e09ed457" data-linktype="relative-path">IMSMQMessage::Journal</a></p>
+</li></ul></div>

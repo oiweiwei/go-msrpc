@@ -1,1 +1,57 @@
-<div class="content"></div>
+<div class="content"><p>The VSS_SNAPSHOT_PROP structure provides information about a
+<a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow copy</a> object.</p><dl>
+<dd>
+<div><pre> typedef struct _VSS_SNAPSHOT_PROP {
+   VSS_ID m_SnapshotId;
+   VSS_ID m_SnapshotSetId;
+   LONG m_lSnapshotsCount;
+   VSS_PWSZ m_pwszSnapshotDeviceObject;
+   VSS_PWSZ m_pwszOriginalVolumeName;
+   VSS_PWSZ m_pwszOriginatingMachine;
+   VSS_PWSZ m_pwszServiceMachine;
+   VSS_PWSZ m_pwszExposedName;
+   VSS_PWSZ m_pwszExposedPath;
+   VSS_ID m_ProviderId;
+   LONG m_lSnapshotAttributes;
+   VSS_TIMESTAMP m_tsCreationTimestamp;
+   VSS_SNAPSHOT_STATE m_eStatus;
+ } VSS_SNAPSHOT_PROP;
+</pre></div>
+</dd></dl><p><b>m_SnapshotId:</b>  The <a href="a451a29b-2762-4eeb-934e-be9482b6adbb" data-linktype="relative-path">VSS_ID (section 2.2.1.1)</a>
+that identifies this shadow copy object.</p><p><b>m_SnapshotSetId:</b>  The VSS_ID that
+identifies the <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_32d6d594-cd61-4aa8-83f9-8504b8518f21" data-linktype="relative-path">shadow copy
+set</a> of which this shadow copy object is a member. All shadow copy objects
+in the same <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_24e415c9-f158-4de0-b687-598511501c68" data-linktype="relative-path">snapshot</a> set
+MUST have the same value for <b>m_SnapshotSetId</b>.</p><p><b>m_lSnapshotsCount:</b>  The number of
+shadow copies in the shadow copy set when it was originally created. It is
+possible that individual shadow copies that make up the shadow copy set are
+deleted so that, at any time, it is possible that the number of shadow copies
+currently in the snapshot set is less than <b>m_lSnapshotCount</b>.</p><p><b>m_pwszSnapshotDeviceObject:</b>  The
+null-terminated character string that contains the name of the <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a> device for the
+shadow copy volume object on the server.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="a416d651-f4e6-478a-ac85-fc89431348ac#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></p><p><b>m_pwszOriginalVolumeName:</b>  The
+null-terminated character string that contains the <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_ae3b4c60-05dc-4011-bd62-753ef23bb3cd" data-linktype="relative-path">volume mount name</a> of the
+volume from which a shadow copy was obtained in order to generate this shadow
+copy object.</p><p><b>m_pwszOriginatingMachine:</b>  The
+null-terminated character string that contains the name of the machine that
+hosts the <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_57484dae-5eef-4485-bfe4-db22b9cd90d6" data-linktype="relative-path">original volume</a>.
+The server MUST populate this string with the <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_1769aec9-237e-44ed-9014-1abb3ec6de6e" data-linktype="relative-path">fully qualified domain name
+(FQDN)</a> of the server machine. For this protocol, the value of <b>m_pwszOriginatingMachine</b>
+and <b>m_pwszServiceMachine</b> MUST be the same.</p><p><b>m_pwszServiceMachine:</b>  The
+null-terminated character string that contains the name of the machine on which
+the shadow copy was created. The server MUST populate this string with the FQDN
+of the server machine. For this protocol, the value of <b>m_pwszOriginatingMachine</b>
+and <b>m_pwszServiceMachine</b> MUST be the same.</p><p><b>m_pwszExposedName:</b>  The
+null-terminated character string that contains the <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_1b153cd0-e3f3-4383-bc66-d5ad482c9766" data-linktype="relative-path">drive letter</a>, <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_513fcb37-059f-475c-a13d-e89b302f8ae8" data-linktype="relative-path">mount point</a>, or SMB share
+name if the shadow copy is exposed on the server. For this protocol, the server
+MUST set this value to NULL.</p><p><b>m_pwszExposedPath:</b>  The
+null-terminated character string that contains the full, root-relative <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_2cd71385-2d9c-4ab8-bf4a-7b258816d613" data-linktype="relative-path">path</a> to a folder on the
+shadow copy that is to be exposed as an SMB share. For this protocol, the
+server MUST set this value to NULL.</p><p><b>m_ProviderId:</b>  The VSS_ID of the <a href="64b16984-ba91-404e-90ff-c619fe124c45" data-linktype="relative-path">VSS provider</a> that was used
+to create the shadow copy.</p><p><b>m_lSnapshotAttributes:</b>  The
+attributes of the shadow copy. The value of this <a href="../ms-dtyp/29d44d70-382f-4998-9d76-8a1fe93e445c" data-linktype="relative-path">LONG</a>
+value is a combination of the values that are defined in
+VSS_VOLUME_SNAPSHOT_ATTRIBUTES.</p><p><b>m_tsCreationTimestamp:</b>  The time
+stamp that defines when the shadow copy was created.</p><p><b>m_eStatus:</b>  A value from the <a href="77808617-2567-4332-8076-b72cd399db04" data-linktype="relative-path">VSS_SNAPSHOT_STATE
+enumeration (section 2.2.2.4)</a> that defines the state of the
+snapshot. For this protocol, the value of <b>m_eStatus</b> MUST be
+VSS_SS_CREATED.</p></div>

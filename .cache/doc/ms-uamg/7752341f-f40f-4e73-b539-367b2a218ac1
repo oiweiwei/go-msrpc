@@ -1,1 +1,23 @@
-<div class="content"></div>
+<div class="content"><p>The IUpdateServiceRegistration::IsPendingRegistrationWithAU
+(opnum 10) method retrieves whether the service is pending registration with
+the <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_b1d92af1-3c57-42f7-936f-8c56fb75e818" data-linktype="relative-path">automatic
+update agent</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT IsPendingRegistrationWithAU(
+   [out, retval] VARIANT_BOOL* retval
+ );
+</pre></div>
+</dd></dl><p><b>retval: </b>MUST be set either to VARIANT_TRUE if
+the service is pending registration with the automatic update agent or to
+VARIANT_FALSE if not.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li><li><p><span><span>  </span></span>If
+no service registration record is found for the given service ID, the server
+MUST return an error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method SHOULD return the value of the <b>IsPendingRegistrationWithAU</b>
+ADM element.</p></div>

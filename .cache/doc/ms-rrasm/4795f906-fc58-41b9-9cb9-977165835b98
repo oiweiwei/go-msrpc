@@ -1,1 +1,24 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MPR_SERVER_EX_3</b> structure<a id="Appendix_A_Target_180"></a><a aria-label="Product behavior note 180" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_180" data-linktype="relative-path">&lt;180&gt;</a> is used to get or set the
+configuration of a RAS server.</p><dl>
+<dd>
+<div><pre> typedef struct _MPR_SERVER_EX_3 {
+   MPRAPI_OBJECT_HEADER_IDL Header;
+   BOOL fLanOnlyMode;
+   DWORD dwUpTime;
+   DWORD dwTotalPorts;
+   DWORD dwPortsInUse;
+   DWORD Reserved;
+   MPRAPI_TUNNEL_CONFIG_PARAMS_3 ConfigParams;
+ } MPR_SERVER_EX_3,
+  *PMPR_SERVER_EX_3;
+</pre></div>
+</dd></dl><p><b>Header: </b>This specifies the version of the
+MPR_SERVER_EX_3 structure and MUST be an <a href="abab767e-8f43-40c6-bb13-ff65307f05ef" data-linktype="relative-path"><b>MPRAPI_OBJECT_HEADER_IDL (section 2.2.1.2.129)</b></a>
+whose <b>revision</b> field is 0x03 and whose <b>type</b> field is 0x02.  </p><p><b>fLanOnlyMode: </b>This is the same as <b>fLanOnlyMode</b>
+in <a href="453989e4-59d7-4915-9958-d9cd2c277b9a" data-linktype="relative-path"><b>MPR_SERVER_EX_1</b></a>.
+</p><p><b>dwUpTime: </b>This is the same as <b>dwUpTime</b>
+in MPR_SERVER_EX_1.</p><p><b>dwTotalPorts: </b>This is the same as <b>dwTotalPorts</b>
+in MPR_SERVER_EX_1.</p><p><b>dwPortsInUse: </b>This is the same as <b>dwPortsInUse</b>
+in MPR_SERVER_EX_1.</p><p><b>Reserved: </b>This is the same as <b>Reserved</b>
+in MPR_SERVER_EX_1.</p><p><b>ConfigParams: </b>This MUST be an <a href="15544950-5f0f-48ee-9f16-c8955116ae2f" data-linktype="relative-path"><b>MPRAPI_TUNNEL_CONFIG_PARAMS_3</b></a>
+structure. </p></div>

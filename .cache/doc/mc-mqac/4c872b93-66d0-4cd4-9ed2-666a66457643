@@ -1,0 +1,55 @@
+<div class="content"><p>The MQMSGPRIVLEVEL enumeration defines values for the <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>.<b>PrivacyLevel</b>
+property. Specific values in this enumeration indicate the manner in which a
+Message is to be encrypted when transmitted over the network by the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a> transfer process. A
+value is reserved to indicate that the Message is not to be encrypted.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MQMSG_PRIV_LEVEL_NONE = 0,
+   MQMSG_PRIV_LEVEL_BODY_BASE = 1,
+   MQMSG_PRIV_LEVEL_BODY_ENHANCED = 3
+ } MQMSGPRIVLEVEL;
+</pre></div>
+</dd></dl><p><b>MQMSG_PRIV_LEVEL_NONE:  </b>The Message is not
+encrypted by the message transfer process.</p><p><b>MQMSG_PRIV_LEVEL_BODY_BASE:  </b>During the
+message transfer process, the Message MUST be protected from observation by
+using 40-bit encryption, as defined in <a href="../ms-mqqb/85498b96-f2c8-43b3-a108-c9d6269dc4af" data-linktype="relative-path">[MS-MQQB]</a>
+section <a href="../ms-mqqb/3a2181af-09b3-44f4-8944-4850d8c91c9d" data-linktype="relative-path">3.1.7.1.5</a>.</p><p><b>MQMSG_PRIV_LEVEL_BODY_ENHANCED:  </b>During the
+message transfer process, the Message MUST be protected from observation by
+using 128-bit encryption, as defined in [MS-MQQB] section 3.1.7.1.5.</p><p>Used by:</p><ul><li><p><span><span> 
+</span></span>get <a href="fe6011d8-19cc-48a1-8146-320c66774a64" data-linktype="relative-path">IMSMQMessage::PrivLevel</a></p>
+</li><li><p><span><span> 
+</span></span>put <a href="0f031c9f-211e-4fd2-8901-6305f916dc10" data-linktype="relative-path">IMSMQMessage::PrivLevel</a></p>
+</li></ul><p>The MQMSGPRIVLEVEL enumeration values correspond to the
+enumeration values for Message.<b>PrivacyLevel</b>, as shown in the following
+table:</p><table><thead>
+  <tr>
+   <th>
+   <p>MQMSGPRIVLEVEL</p>
+   </th>
+   <th>
+   <p>Message.PrivacyLevel</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQMSG_PRIV_LEVEL_NONE</p>
+  </td>
+  <td>
+  <p>None</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_PRIV_LEVEL_BODY_BASE</p>
+  </td>
+  <td>
+  <p>Base</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_PRIV_LEVEL_BODY_ENHANCED</p>
+  </td>
+  <td>
+  <p>Enhanced</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

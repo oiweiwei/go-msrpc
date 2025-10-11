@@ -1,1 +1,54 @@
-<div class="content"></div>
+<div class="content"><p>The <b>DHCPV6R_IF_STATS</b> structure stores per interface
+statistics for the DHCPv6 relay agent. This structure is read-only. This
+structure is part of the <a href="f841e214-2cfe-4265-9867-bd1cb685936b" data-linktype="relative-path"><b>DHCPV6R_MIB_GET_OUTPUT_DATA (section 2.2.1.2.156)</b></a>
+structure.  </p><dl>
+<dd>
+<div><pre> typedef struct _DHCPV6R_IF_STATS {
+   DWORD IS_State;
+   DWORD IS_SendFailures;
+   DWORD IS_ReceiveFailures;
+   DWORD IS_RequestsReceived;
+   DWORD IS_RequestsDiscarded;
+   DWORD IS_RepliesReceived;
+   DWORD IS_RepliesDiscarded;
+ } DHCPV6R_IF_STATS,
+  *PDHCPV6R_IF_STATS;
+</pre></div>
+</dd></dl><p><b>IS_State: </b>Contains the status of the DHCPv6
+relay agent. This member is read-only and MUST be a combination of one or more
+of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DHCPV6R_STATE_ENABLED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The interface is enabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DHCPV6R_STATE_BOUND</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The socket is bound and can listen to the DHCPv6 relay
+  agent packets <a href="https://go.microsoft.com/fwlink/?LinkId=90417" data-linktype="external">[RFC3315]</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IS_SendFailures: </b>The number of relay messages
+that could not be sent.</p><p><b>IS_ReceiveFailures: </b>The number of times errors
+were encountered while receiving relay messages.</p><p><b>IS_RequestsReceived: </b>The number of DHCPV6
+relay requests received.</p><p><b>IS_RequestsDiscarded: </b>The number of DHCPV6
+relay requests discarded.</p><p><b>IS_RepliesReceived: </b>The number of DHCPV6 relay
+replies received.</p><p><b>IS_RepliesDiscarded: </b>The number of DHCPV6
+relay replies discarded.</p></div>

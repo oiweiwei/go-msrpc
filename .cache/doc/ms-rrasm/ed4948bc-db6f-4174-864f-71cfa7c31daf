@@ -1,1 +1,25 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MPR_DEVICE_1</b> structure stores information about a
+device used for a link in a multilinked <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_a5f114fd-0784-48a8-96b1-c07447033a0d" data-linktype="relative-path">demand-dial</a> interface. In
+addition to the information in <a href="034e0660-0800-42ea-aa28-ded31fe1b327" data-linktype="relative-path"><b>MPR_DEVICE_0 (section 2.2.1.2.85)</b></a>,
+<b>MPR_DEVICE_1</b> contains phone number information. </p><dl>
+<dd>
+<div><pre> typedef struct _MPR_DEVICE_1 {
+   WCHAR szDeviceType[17];
+   WCHAR szDeviceName[129];
+   WCHAR szLocalPhoneNumber[129];
+   PWCHAR szAlternates;
+ } MPR_DEVICE_1,
+  *PMPR_DEVICE_1;
+</pre></div>
+</dd></dl><p><b>szDeviceType: </b>Specifies a null-terminated
+Unicode string that indicates the device type referenced by <b>szDeviceName</b>.
+See <a href="0b5fa6fc-b3f2-4a3f-9bfd-96963bfbb03d" data-linktype="relative-path"><b>MPRI_INTERFACE_2 (section 2.2.1.2.83)</b></a>
+for a list of possible device types. </p><p><b>szDeviceName: </b>Specifies a null-terminated
+Unicode string that contains the name of the TAPI device to use with this phone
+book entry.</p><p><b>szLocalPhoneNumber: </b>Specifies a
+null-terminated Unicode string that contains a telephone number. The router
+uses the <b>szLocalPhoneNumber</b> string as the entire phone number.</p><p><b>szAlternates: </b>Pointer to a list of consecutive
+null-terminated Unicode strings. The last string is terminated by two
+consecutive null characters. The strings are alternate phone numbers that the
+router dials in the order listed if the primary number (see <b>szLocalPhoneNumber</b>)
+fails to connect. </p></div>

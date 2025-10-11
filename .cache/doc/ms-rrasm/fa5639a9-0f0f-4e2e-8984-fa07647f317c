@@ -1,1 +1,73 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RIP_IF_FILTERS</b> structure<a id="Appendix_A_Target_140"></a><a aria-label="Product behavior note 140" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_140" data-linktype="relative-path">&lt;140&gt;</a> specify the filter data for a
+<a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_05086bce-516b-4913-8e0f-c7190556872d" data-linktype="relative-path">RIP for IPX</a> interface.
+This structure is used in <b>RIP_IF_CONFIG </b>(section <a href="d3d015ab-1559-4be5-994d-b6f9ed7522ec" data-linktype="relative-path">2.2.1.2.206)</a>. Supply
+filters are applied to the RIP updates supplied by the interface, while the
+listening filters are applied to the RIP updates being listened to by the
+interface. </p><dl>
+<dd>
+<div><pre> typedef struct _RIP_IF_FILTERS {
+   ULONG SupplyFilterAction;
+   ULONG SupplyFilterCount;
+   ULONG ListenFilterAction;
+   ULONG ListenFilterCount;
+   RIP_ROUTE_FILTER_INFO RouteFilter[1];
+ } RIP_IF_FILTERS, *PRIP_IF_FILTERS;
+</pre></div>
+</dd></dl><p><b>SupplyFilterAction: </b>This MUST be set to
+0x00000001 to permit data and to 0x00000002 to deny data.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Permit data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Deny data.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>SupplyFilterCount: </b>The count of supply
+filters.</p><p><b>ListenFilterAction: </b>This MUST be set to
+0x00000001 to permit data and to 0x00000002 to deny data.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Permit data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Deny data.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ListenFilterCount: </b>The count of listen
+filters.</p><p><b>RouteFilter: </b>This is a <b>RIP_ROUTE_FILTER_INFO</b> (section
+<a href="bc226bc4-460f-4471-8deb-04fb6430abb2" data-linktype="relative-path">2.2.1.2.203)</a>. </p></div>

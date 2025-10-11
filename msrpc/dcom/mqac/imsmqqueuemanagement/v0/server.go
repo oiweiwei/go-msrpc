@@ -31,13 +31,83 @@ type QueueManagementServer interface {
 	// IMSMQManagement base class.
 	imsmqmanagement.ManagementServer
 
-	// JournalMessageCount operation.
+	// The JournalMessageCount method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return the number of messages in the Queue that is associated
+	// with the represented Queue.JournalQueueReference.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
+	//
+	// When the server processes this call, it MUST follow these guidelines:
+	//
+	// * If the *ObjectIsInitialized* instance variable is False:
+	//
+	// * The server MUST return MQ_ERROR_UNINITIALIZED_OBJECT (0xC00E0094), and MUST take
+	// no further action.
+	//
+	// * The server MUST generate a *QMMgmt Get Info* event with the following inputs:
+	//
+	// * *iPropID* = PROPID_MGMT_QUEUE_JOURNAL_MESSAGE_COUNT
+	//
+	// * If the *rStatus* return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return *rStatus* and MUST take no further action.
+	//
+	// * Else:
+	//
+	// * The plJournalMessageCount output variable MUST be set to the value of the returned
+	// *rPropVar*.
 	GetJournalMessageCount(context.Context, *GetJournalMessageCountRequest) (*GetJournalMessageCountResponse, error)
 
-	// BytesInJournal operation.
+	// The BytesInJournal method is received by the server in an RPC_REQUEST packet. In
+	// response, the server MUST return the Queue.TotalBytes of the Queue that is associated
+	// with the represented Queue.JournalQueueReference.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
+	//
+	// When the server processes this call, it MUST follow these guidelines:
+	//
+	// * If the *ObjectIsInitialized* instance variable is False:
+	//
+	// * The server MUST return MQ_ERROR_UNINITIALIZED_OBJECT (0xC00E0094), and MUST take
+	// no further action.
+	//
+	// * The server MUST generate a *QMMgmt Get Info* event with the following inputs:
+	//
+	// * *iPropID* = PROPID_MGMT_QUEUE_BYTES_IN_JOURNAL
+	//
+	// * If the *rStatus* return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return *rStatus* and MUST take no further action.
+	//
+	// * Else:
+	//
+	// * The plJournalMessageCount output variable MUST be set to the value of the returned
+	// *rPropVar*.
 	GetBytesInJournal(context.Context, *GetBytesInJournalRequest) (*GetBytesInJournalResponse, error)
 
-	// EodGetReceiveInfo operation.
+	// The EodGetReceiveInfo method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return the represented Queue.IncomingTransactionalTransferInfoCollection.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
+	//
+	// When the server processes this call, it MUST follow these guidelines:
+	//
+	// * If the *ObjectIsInitialized* instance variable is False:
+	//
+	// * The server MUST return MQ_ERROR_UNINITIALIZED_OBJECT (0xC00E0094), and MUST take
+	// no further action.
+	//
+	// * The server MUST generate a *QMMgmt Get Info* event with the following inputs:
+	//
+	// * *iPropID* = PROPID_MGMT_EOD_SOURCE_INFO
+	//
+	// * If the *rStatus* return value is not equal to MQ_OK (0x00000000), the server MUST
+	// return *rStatus* and MUST take no further action.
+	//
+	// * Else:
+	//
+	// * The pvCollection output variable MUST be set to the returned *rPropVar*.
 	EODGetReceiveInfo(context.Context, *EODGetReceiveInfoRequest) (*EODGetReceiveInfoResponse, error)
 }
 

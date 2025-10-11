@@ -43,10 +43,51 @@ type AppHostPropertyServer interface {
 	// Clear operation.
 	Clear(context.Context, *ClearRequest) (*ClearResponse, error)
 
-	// StringValue operation.
+	// The StringValue method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns a string representation of the value of the specified property.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrValue is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+--------------------------------------------------------------+
+	//	|               RETURN               |                                                              |
+	//	|             VALUE/CODE             |                         DESCRIPTION                          |
+	//	|                                    |                                                              |
+	//	+------------------------------------+--------------------------------------------------------------+
+	//	+------------------------------------+--------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                        |
+	//	+------------------------------------+--------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                |
+	//	+------------------------------------+--------------------------------------------------------------+
+	//	| 0X80070013 ERROR_INVALID_DATA      | The property has a type that is not permitted by the schema. |
+	//	+------------------------------------+--------------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.      |
+	//	+------------------------------------+--------------------------------------------------------------+
 	GetStringValue(context.Context, *GetStringValueRequest) (*GetStringValueResponse, error)
 
-	// Exception operation.
+	// The Exception method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns administration system exception information that is related to
+	// the processing of the specified property.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppException is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetException(context.Context, *GetExceptionRequest) (*GetExceptionResponse, error)
 
 	// GetMetadata operation.

@@ -1,1 +1,24 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RASMAN_USAGE</b> enumerates the usage for a port. It
+can be any combination of the following values.</p><dl>
+<dd>
+<div><pre> typedef enum _RASMAN_USAGE
+ {
+   CALL_NONE = 0x00,
+   CALL_IN = 0x01,
+   CALL_OUT = 0x02,
+   CALL_ROUTER = 0x04,
+   CALL_LOGON = 0x08,
+   CALL_OUT_ONLY = 0x10,
+   CALL_IN_ONLY = 0x20,
+   CALL_OUTBOUND_ROUTER = 0x40
+ } RASMAN_USAGE;
+</pre></div>
+</dd></dl><p><b>CALL_NONE: </b>Port is not configured for any
+usage.</p><p><b>CALL_IN: </b>Port is configured for incoming
+connection requests.</p><p><b>CALL_OUT: </b>Port is configured for outgoing
+connection requests</p><p><b>CALL_ROUTER: </b>Port is configured for
+demand-dial connection requests.</p><p><b>CALL_LOGON: </b>Port is configured for connection
+during logon.</p><p><b>CALL_OUT_ONLY: </b>Port is configured only for
+outgoing connection requests.</p><p><b>CALL_IN_ONLY: </b>Port is configured only for
+incoming connection requests.</p><p><b>CALL_OUTBOUND_ROUTER: </b>Port is configured for
+outgoing demand-dial connection requests.</p></div>

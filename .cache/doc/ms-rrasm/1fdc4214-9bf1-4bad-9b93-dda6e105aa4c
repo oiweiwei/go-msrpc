@@ -1,1 +1,18 @@
-<div class="content"></div>
+<div class="content"><p>The <b>L2TP_CONFIG_PARAMS_2</b> structure<a id="Appendix_A_Target_200"></a><a aria-label="Product behavior note 200" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_200" data-linktype="relative-path">&lt;200&gt;</a> is used to get or set the
+device configuration for L2TP on a RAS server.</p><dl>
+<dd>
+<div><pre> typedef struct _L2TP_CONFIG_PARAMS_2 {
+   DWORD dwNumPorts;
+   DWORD dwPortFlags;
+   DWORD dwTunnelConfigParamFlags;
+   L2TP_TUNNEL_CONFIG_PARAMS_1 TunnelConfigParams;
+ } L2TP_CONFIG_PARAMS_2,
+  *PL2TP_CONFIG_PARAMS_2;
+</pre></div>
+</dd></dl><p><b>dwNumPorts: </b>This is the same as <b>dwNumPort</b>
+in <a href="6eda38de-18d3-400a-b4f1-3bda6e21bbae" data-linktype="relative-path"><b>L2TP_CONFIG_PARAMS_1 (section 2.2.1.2.139)</b></a>. 
+</p><p><b>dwPortFlags: </b>Same as <b>dwPortFlags</b> in <b>L2TP_CONFIG_PARAMS_1</b>.
+</p><p><b>dwTunnelConfigParamFlags: </b>This SHOULD be set
+to 0x00000001 when sent and ignored on receipt.</p><p><b>TunnelConfigParams: </b>L2TP tunnel related
+parameters. This MUST be an <a href="2af90c95-d724-4368-b966-95fce68781ba" data-linktype="relative-path"><b>L2TP_TUNNEL_CONFIG_PARAMS_1 (section 2.2.1.2.270)</b></a>
+structure.  </p></div>

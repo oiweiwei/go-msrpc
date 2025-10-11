@@ -1,0 +1,50 @@
+<div class="content"><p>The IsDsEnabled method is received by the server in an
+RPC_REQUEST packet. In response, the server MUST return a <a href="../ms-dtyp/51bbfbb1-08e2-4c13-a95e-1eaa7d310670" data-linktype="relative-path">BOOLEAN</a>
+value that indicates whether the local <a href="../ms-mqdmpr/9adb2d90-c63b-43c7-9b9c-804ab96a57d5" data-linktype="relative-path">QueueManager</a>
+is configured to use the directory.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT IsDsEnabled(
+   [out, retval] VARIANT_BOOL* pfIsDsEnabled
+ );
+</pre></div>
+</dd></dl><p><b>pfIsDsEnabled: </b>A pointer to a <a href="../ms-oaut/7b39eb24-9d39-498a-bcd8-75c38e5823d0" data-linktype="relative-path">VARIANT_BOOL</a>
+that when successfully completed, contains one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>VARIANT_TRUE</p>
+  <p>0xffff</p>
+  </td>
+  <td>
+  <p>The local QueueManager is configured to use the
+  directory.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VARIANT_FALSE</p>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>The local QueueManager is not configured to use the
+  directory.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>ComputerName</i> instance variable is not NULL, return
+MQ_ERROR_INVALID_PARAMETER (0xC00E0006) and take no further action.</p>
+</li><li><p><span><span> 
+</span></span>Set the <i>pfIsDsEnabled</i> output variable to a value of the local
+QueueManager.DirectoryIntegrated.</p>
+</li></ul></div>

@@ -1,0 +1,17 @@
+<div class="content"><p>The CompoundMessage method is received by the server in an
+RPC_REQUEST packet. In response, the server MUST return the represented
+Message.SoapCompoundMessage.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT CompoundMessage(
+   [out, retval] VARIANT* pvarCompoundMessage
+ );
+</pre></div>
+</dd></dl><p><b>pvarCompoundMessage: </b>A pointer to a VARIANT
+that contains an array of BYTES (VT_ARRAY | VT_UI1) that contains the entire
+contents of the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_b7c2a473-a468-4c3c-b314-c21ac8c05056" data-linktype="relative-path">SRMP</a> <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a>, including the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_3cfba24a-8d9e-4cb3-8110-fc9147c76a0e" data-linktype="relative-path">SOAP envelope</a> and all <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_316c1e2a-4297-4eba-9ef3-72417ea6075a" data-linktype="relative-path">SOAP attachments</a>.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>Set the <i>pvarCompoundMessage</i> output parameter to the value
+of the represented Message.SoapCompoundMessage.</p>
+</li></ul></div>

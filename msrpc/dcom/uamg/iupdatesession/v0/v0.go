@@ -51,10 +51,93 @@ type UpdateSessionClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The IUpdateSearcher::ClientApplicationID (opnum 10) method retrieves the string used
+	// to identify the current client application.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 9) method sets the identifier of the
+	// calling application.
+	//
+	// The IUpdateHistoryEntry::ClientApplicationID (opnum 16) method retrieves the ID of
+	// the application that initiated the operation.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 16) method sets a string that
+	// identifies the client application that is using this interface.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 8) method retrieves the identifier
+	// of the calling application.
+	//
+	// The IUpdateSearcher::ClientApplicationID (opnum 11) method sets the string used to
+	// identify the current client application.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 15) method retrieves a string
+	// that identifies the client application that is using this interface.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ClientApplicationID ADM element.
 	GetClientApplicationID(context.Context, *GetClientApplicationIDRequest, ...dcerpc.CallOption) (*GetClientApplicationIDResponse, error)
 
+	// The IUpdateSearcher::ClientApplicationID (opnum 10) method retrieves the string used
+	// to identify the current client application.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 9) method sets the identifier of the
+	// calling application.
+	//
+	// The IUpdateHistoryEntry::ClientApplicationID (opnum 16) method retrieves the ID of
+	// the application that initiated the operation.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 16) method sets a string that
+	// identifies the client application that is using this interface.
+	//
+	// The IUpdateSession::ClientApplicationID (opnum 8) method retrieves the identifier
+	// of the calling application.
+	//
+	// The IUpdateSearcher::ClientApplicationID (opnum 11) method sets the string used to
+	// identify the current client application.
+	//
+	// The IUpdateServiceManager2::ClientApplicationID (opnum 15) method retrieves a string
+	// that identifies the client application that is using this interface.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ClientApplicationID ADM element.
 	SetClientApplicationID(context.Context, *SetClientApplicationIDRequest, ...dcerpc.CallOption) (*SetClientApplicationIDResponse, error)
 
+	// The IUpdateSession::ReadOnly (opnum 10) method returns whether the session is read-only.
+	//
+	// The IUpdateCollection::ReadOnly (opnum 12) method returns whether the collection
+	// is read-only.
+	//
+	// The IStringCollection::ReadOnly (opnum 12) method retrieves whether the collection
+	// is read-only.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ReadOnly ADM element.
 	GetReadOnly(context.Context, *GetReadOnlyRequest, ...dcerpc.CallOption) (*GetReadOnlyResponse, error)
 
 	// Opnum11NotUsedOnWire operation.
@@ -63,6 +146,27 @@ type UpdateSessionClient interface {
 	// Opnum12NotUsedOnWire operation.
 	// Opnum12NotUsedOnWire
 
+	// The IUpdateSession::CreateUpdateSearcher (opnum 13) method retrieves an instance
+	// of the IUpdateSearcher interface.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return a newly created object implementing the IUpdateSearcher
+	// interface.
+	//
+	// The returned IUpdateSearcher instance SHOULD use the current value of the server's
+	// ClientApplicationID ADM element as the client application ID for operations that
+	// it performs. The IUpdateSearcher instance SHOULD use the current value of the server's
+	// UserLocale ADM element to determine the language in which to generate localized results
+	// for operations that it performs.
 	CreateUpdateSearcher(context.Context, *CreateUpdateSearcherRequest, ...dcerpc.CallOption) (*CreateUpdateSearcherResponse, error)
 
 	// Opnum14NotUsedOnWire operation.
@@ -417,8 +521,17 @@ func (o *GetClientApplicationIDRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // GetClientApplicationIDResponse structure represents the ClientApplicationID operation response
 type GetClientApplicationIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: Returns a string identifying the client application using the interface.
+	//
+	// retval: A string identifying the client application that initiated the operation.
+	//
+	// retval: The identifier of the calling application previously set using the IUpdateSession::ClientApplicationID
+	// (opnum 9) (section 3.16.4.2) method. If no identifier was previously set, this MUST
+	// be NULL or the empty string.
+	//
+	// retval: A string identifying the client application that is using this interface.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The ClientApplicationID return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -625,8 +738,13 @@ func (o *xxx_SetClientApplicationIDOperation) UnmarshalNDRResponse(ctx context.C
 // SetClientApplicationIDRequest structure represents the ClientApplicationID operation request
 type SetClientApplicationIDRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Value *oaut.String   `idl:"name:value" json:"value"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// value: The identifier of the calling application.
+	//
+	// value: A string that identifies the client application that is using this interface.
+	//
+	// value: A string used to identify the client application using the interface.
+	Value *oaut.String `idl:"name:value" json:"value"`
 }
 
 func (o *SetClientApplicationIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetClientApplicationIDOperation) *xxx_SetClientApplicationIDOperation {
@@ -867,8 +985,16 @@ func (o *GetReadOnlyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // GetReadOnlyResponse structure represents the ReadOnly operation response
 type GetReadOnlyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be VARIANT_TRUE if the session is read-only, or VARIANT_FALSE if not.
+	// See [MS-OAUT] section 2.2.27 for information on these two values.
+	//
+	// retval: MUST be set either to VARIANT_TRUE if the collection is read-only, or to
+	// VARIANT_FALSE if it is not.
+	//
+	// retval: MUST be set either to VARIANT_TRUE if the collection is read-only or to VARIANT_FALSE
+	// if it is not.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The ReadOnly return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1110,7 +1236,8 @@ func (o *CreateUpdateSearcherRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 // CreateUpdateSearcherResponse structure represents the CreateUpdateSearcher operation response
 type CreateUpdateSearcherResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat       `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An IUpdateSearcher instance.
 	ReturnValue *uamg.UpdateSearcher `idl:"name:retval" json:"return_value"`
 	// Return: The CreateUpdateSearcher return value.
 	Return int32 `idl:"name:Return" json:"return"`

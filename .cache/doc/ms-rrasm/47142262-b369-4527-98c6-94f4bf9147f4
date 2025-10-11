@@ -1,1 +1,54 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPBOOTP_IF_STATS</b> structure is an MIB entry,
+stores per interface statistics for the IPBOOTP. All of the IP addresses are in
+network order. This structure is read-only.</p><dl>
+<dd>
+<div><pre> typedef struct _IPBOOTP_IF_STATS {
+   DWORD IS_State;
+   DWORD IS_SendFailures;
+   DWORD IS_ReceiveFailures;
+   DWORD IS_ArpUpdateFailures;
+   DWORD IS_RequestsReceived;
+   DWORD IS_RequestsDiscarded;
+   DWORD IS_RepliesReceived;
+   DWORD IS_RepliesDiscarded;
+ } IPBOOTP_IF_STATS,
+  *PIPBOOTP_IF_STATS;
+</pre></div>
+</dd></dl><p><b>IS_State: </b>Contains status of the IPBOOTP. This
+member is read-only.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPBOOTP_STATE_ENABLED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The interface is enabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPBOOTP_STATE_BOUND</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The socket is bound and can listen to the IPBOOTP
+  packets <a href="https://go.microsoft.com/fwlink/?LinkId=90281" data-linktype="external">[RFC1542]</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IS_SendFailures: </b>The number of relay messages
+that could not be sent.</p><p><b>IS_ReceiveFailures: </b>The number of times errors
+were encountered in receiving relay messages.</p><p><b>IS_ArpUpdateFailures: </b>The number of times
+errors were encountered while updating the ARP cache.</p><p><b>IS_RequestsReceived: </b>The number of IP BOOTP
+requests received.</p><p><b>IS_RequestsDiscarded: </b>The number of IP BOOTP
+requests discarded.</p><p><b>IS_RepliesReceived: </b>The number of IP BOOTP
+replies received.</p><p><b>IS_RepliesDiscarded: </b>The number of IP BOOTP
+replies discarded.</p></div>

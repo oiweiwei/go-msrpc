@@ -1,1 +1,118 @@
-<div class="content"></div>
+<div class="content"><p>The RequestRecords method is used to request all (<a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_3d9dd73b-8923-43cc-ac95-8103f17683d7" data-linktype="relative-path">UID</a>, <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_b2063d4f-ec5f-4417-9dc8-7ab381e2beab" data-linktype="relative-path">GVSN</a>) pairs that correspond
+to live (non-tombstone) records on the server for a specified <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_064adaf1-86c7-43e5-a157-b0949980181e" data-linktype="relative-path">replicated folder</a> during
+slow sync (see section <a href="c8bc1432-683b-4587-8156-e195bb7e1465" data-linktype="relative-path">3.3.1.3</a>).</p><dl>
+<dd>
+<div><pre> DWORD RequestRecords(
+   [in] FRS_CONNECTION_ID connectionId,
+   [in] FRS_CONTENT_SET_ID contentSetId,
+   [in] FRS_DATABASE_ID uidDbGuid,
+   [in] DWORDLONG uidVersion,
+   [in, out] DWORD* maxRecords,
+   [out] DWORD* numRecords,
+   [out] DWORD* numBytes,
+   [out, size_is(,*numBytes)] byte** compressedRecords,
+   [out] RECORDS_STATUS* recordsStatus
+ );
+</pre></div>
+</dd></dl><p><b>connectionId: </b>The <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a> of
+an outbound connection (see the <b>objectGUID</b> attribute specified in
+section <a href="afd3c10a-9783-4df7-ae2b-13e56c37ab03" data-linktype="relative-path">2.3.11</a>) that
+the client established by a previous call to the <a href="2c51e5f4-bef1-4e29-9292-b63f1d5ccff6" data-linktype="relative-path">EstablishConnection</a>
+method.</p><p><b>contentSetId: </b>The GUID of the replicated
+folder (see the <b>objectGUID</b> attribute specified in section <a href="3cd01848-1a7d-4e5e-9511-44dca4e46ce0" data-linktype="relative-path">2.3.7</a>) in the specified
+connection&#39;s <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_fcc139c9-86ff-4414-bc66-5f63e4465b6d" data-linktype="relative-path">replication
+group</a>.</p><p><b>uidDbGuid: </b>A UID database GUID. This
+parameter, along with the <i>uidVersion</i> parameter, specifies an iterator
+into the server&#39;s records. A value of zero specifies a request for all of a
+replicated folder&#39;s records from the server.</p><p><b>uidVersion: </b>A UID version. The parameter,
+along with <i>uidDbGuid</i> parameter, specifies an iterator into the server&#39;s
+records. A value of zero specifies a request for all of a replicated folder&#39;s
+records from the server.</p><p><b>maxRecords: </b>The maximum number of records that
+the server can send to the client. The server returns the lesser of the
+client-specified value and the maximum number of records that the server is
+capable of sending.<a id="Appendix_A_Target_26"></a><a aria-label="Product behavior note 26" href="c43938b1-6e96-48ec-9725-5e5d42089f49#Appendix_A_26" data-linktype="relative-path">&lt;26&gt;</a></p><p><b>numRecords: </b>The number of records written into
+the <i>compressedRecords</i> buffer by the server.</p><p><b>numBytes: </b>The size, in bytes, of the <i>compressedRecords</i>
+buffer.</p><p><b>compressedRecords: </b>The data records,
+compressed using the algorithm specified in section <a href="a6715af1-8c14-416c-bc41-60b2ed2ebd25" data-linktype="relative-path">3.1.1.1</a>.</p><dl>
+<dd>
+<p>The <i>compressedRecords</i> bytes correspond to an
+array of <a href="7657ecff-6835-4226-927c-88622af709ca" data-linktype="relative-path">FRS_ID_GVSN</a>
+entries. DFS-R uses custom marshaling in this RPC call to compress the set of
+transmitted records. The size of the FRS_ID_GVSN array is given by the <i>numRecords</i>
+parameter. The decompression algorithm specified in section <a href="8cb5bae9-edf3-4833-9f0a-9d7e24218d3d" data-linktype="relative-path">3.1.1.2</a> can be used to
+decompress the received data into a buffer of sizeof(FRS_ID_GVSN)*<i>numRecords</i>
+bytes, which can be re-interpreted as an array of FRS_ID_GVSN entries.</p>
+</dd></dl><p><b>recordsStatus: </b>The value from the <a href="b4217cf0-36b7-4027-8797-899dfbf4cf41" data-linktype="relative-path">RECORDS_STATUS</a> enumeration
+that indicates whether more update records are available.</p><p><b>Return Values: </b>This method MUST return 0 on
+success or a nonzero error code on failure. For protocol purposes all nonzero
+values MUST be treated as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00002344</p>
+  <p>FRS_ERROR_CONTENTSET_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The content set was not found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x000024FE</p>
+  <p>FRS_ERROR_CSMAN_OFFLINE</p>
+  </td>
+  <td>
+  <p>The server is not currently participating in the
+  replication of the specified replicated folder.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Validating the asynchronous records request:</b> The
+server validates the records request by performing the following checks: </p><ul><li><p><span><span> 
+</span></span>If an outbound connection for the specified connection is not
+established between the client and server (see the EstablishConnection method)
+then the server MUST fail the call with an implementation-defined failure
+value.</p>
+</li><li><p><span><span> 
+</span></span>If a replicated folder session for the specified replicated
+folder is not established between the client and server (see the <a href="29a8e0a7-95b8-47cb-9cb3-2ec294232633" data-linktype="relative-path">EstablishSession</a> method)
+then the server MUST fail the call with the FRS_ERROR_CONTENTSET_NOT_FOUND
+failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the server is no longer participating in the replication of
+the specified replicated folder, then the server SHOULD fail the call the
+FRS_ERROR_CSMAN_OFFLINE failure value.<a id="Appendix_A_Target_27"></a><a aria-label="Product behavior note 27" href="c43938b1-6e96-48ec-9725-5e5d42089f49#Appendix_A_27" data-linktype="relative-path">&lt;27&gt;</a></p>
+</li></ul><p><b>Actions Triggered:</b> Upon successfully validating the
+records request the server MUST send as many of the requested records as
+possible, up to a limit of the lesser of the client-specified <i>maxRecords</i>
+parameter value and the maximum number of records the server is capable of
+sending. </p><p>The server MUST send records starting at the record
+immediately following the record whose UID iterator is formed by the pair
+(uidDbGuid, uidVersion). If the iterator is zero then the server MUST begin
+returning records from the first of the replicated folder&#39;s records.</p><p>If the iterator, formed by the pair (uidDbGuid, uidVersion),
+is not zero and there are no more records to send following the cursor, then
+the server MUST return 0 records. If there are no more records to send, the
+server MUST set the value of the <i>recordsStatus</i> parameter to
+RECORDS_STATUS_DONE. If there are more records to send, the server MUST set the
+value of the <i>recordsStatus</i> parameter to RECORDS_STATUS_MORE.</p><p><b>Remarks:</b> Provided that the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_05028436-8377-415f-b9a1-1e0665864138" data-linktype="relative-path">persistent store</a> on a
+server is unchanged between calls to RequestRecords, a server MUST be able to
+fill in all updates present in its persistent store in the course of repeated
+calls to RequestRecords. When all updates have been supplied in the RequestRecords
+call, the server MUST be able to resend all updates again if another round of
+RequestRecords arrives.</p></div>

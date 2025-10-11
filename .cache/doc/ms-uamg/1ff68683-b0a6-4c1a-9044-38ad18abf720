@@ -1,1 +1,17 @@
-<div class="content"></div>
+<div class="content"><p>The IUpdate::DownloadContents (opnum 52) method retrieves a
+collection of download content URLs for the update.</p><dl>
+<dd>
+<div><pre> HRESULT DownloadContents(
+   [out, retval] IUpdateDownloadContentCollection** retval
+ );
+</pre></div>
+</dd></dl><p><b>retval: </b>An <span><a href="0e27592d-ba50-4eed-8a4a-b72391efa95f" data-linktype="relative-path">IUpdateDownloadContentCollection (section 3.26.4)</a></span>
+containing the URLs of downloadable content associated with the update.</p><p><b>Return Values: </b>The method MUST return information
+in an <b>HRESULT</b> data structure. The severity bit in the structure
+identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>The server SHOULD return the value of the <b>DownloadContents</b>
+ADM element.</p></div>

@@ -1,1 +1,101 @@
-<div class="content"></div>
+<div class="content"><p>The DeleteNtmsMediaType method deletes a media type from a
+library.</p><dl>
+<dd>
+<div><pre> HRESULT DeleteNtmsMediaType(
+   [in] LPNTMS_GUID lpMediaTypeId,
+   [in] LPNTMS_GUID lpLibId
+ );
+</pre></div>
+</dd></dl><p><b>lpMediaTypeId: </b>A pointer to the identifier of
+a media type to delete from the library.</p><p><b>lpLibId: </b> A pointer to the identifier of the
+library from which to delete the media type.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>NTMS_MODIFY_ACCESS to the library is denied; other
+  security errors are possible but indicate a security subsystem error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>An allocation failure occurred during processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The media type or library identifiers are missing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CD</p>
+  <p>ERROR_INVALID_LIBRARY</p>
+  </td>
+  <td>
+  <p>The library identifier is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D3</p>
+  <p>ERROR_NOT_EMPTY</p>
+  </td>
+  <td>
+  <p>The media pool must be empty to be deleted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database is inaccessible or damaged. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DA</p>
+  <p>ERROR_DATABASE_FULL</p>
+  </td>
+  <td>
+  <p>The database is full.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that
+both <i>lpLibId</i> and <i>lpMediaTypeId</i> are not NULL. If parameter
+validation fails, the server MUST immediately fail the operation and return
+ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights. If the client does not have the
+required access rights, the server MUST return ERROR_ACCESS_DENIED
+(0x80070005).</p><p>The library MUST NOT have any media of the type specified by
+<i>lpMediaTypeId</i> in it to perform this operation. If the library contains
+media of the type specified by <i>lpMediaTypeId</i>, the server MUST return
+ERROR_NOT_EMPTY (0x800710D3).</p><p>If there are no <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_9036b269-4f3b-4353-a1d0-54f5c686ec2c" data-linktype="relative-path">physical media</a> objects of
+the specified media type in the server system and there are no library objects
+that contain the specified media type relation in the server system, the system
+media pools for that media type MUST be deleted. Inability to delete the system
+media pools does not cause the DeleteNtmsMediaType method to fail.</p></div>

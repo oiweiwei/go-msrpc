@@ -1,1 +1,26 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IP_NAT_INTERFACE_STATISTICS</b> structure holds
+statistics for an interface and is part of <b>IP_NAT_MIB_QUERY</b> (section
+<a href="02a17b1a-22a6-4295-bc7d-f3b781c01332" data-linktype="relative-path">2.2.1.2.182)</a> structure.
+</p><dl>
+<dd>
+<div><pre> typedef struct _IP_NAT_INTERFACE_STATISTICS {
+   OUT ULONG TotalMappings;
+   OUT ULONG InboundMappings;
+   OUT ULONG64 BytesForward;
+   OUT ULONG64 BytesReverse;
+   OUT ULONG64 PacketsForward;
+   OUT ULONG64 PacketsReverse;
+   OUT ULONG64 RejectsForward;
+   OUT ULONG64 RejectsReverse;
+ } IP_NAT_INTERFACE_STATISTICS,
+  *PIP_NAT_INTERFACE_STATISTICS;
+</pre></div>
+</dd></dl><p><b>TotalMappings: </b>The count of the total number
+of mappings present in the NAT table.</p><p><b>InboundMappings: </b>The count of the total number
+of inbound mappings present in the NAT table.</p><p><b>BytesForward: </b>The count of the total bytes
+forwarded.</p><p><b>BytesReverse: </b>The count of the total bytes
+reversed.</p><p><b>PacketsForward: </b>The count of the packets
+forwarded.</p><p><b>PacketsReverse: </b>The count of the packets
+reversed.</p><p><b>RejectsForward: </b>The count of the forward
+packets rejected.</p><p><b>RejectsReverse: </b>The count of the reverse
+packets rejected.</p></div>

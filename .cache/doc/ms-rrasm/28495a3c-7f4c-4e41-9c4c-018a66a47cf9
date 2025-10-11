@@ -1,1 +1,16 @@
-<div class="content"></div>
+<div class="content"><p>The <b>PPP_IPXCP_INFO</b> structure MAY<a id="Appendix_A_Target_47"></a><a aria-label="Product behavior note 47" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_47" data-linktype="relative-path">&lt;47&gt;</a> be used to contain the result
+of a <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_d158ba19-bb5e-458e-bcda-38aed4eff053" data-linktype="relative-path">PPP</a> IPX projection
+operation.</p><dl>
+<dd>
+<div><pre> typedef struct _PPP_IPXCP_INFO {
+   DWORD dwError;
+   WCHAR wszAddress[16];
+ } PPP_IPXCP_INFO;
+</pre></div>
+</dd></dl><p><b>dwError: </b>Specifies the result of the PPP
+control protocol negotiation. As value of zero (0) indicates success. A nonzero
+value indicates failure and is the actual fatal error that occurred during the
+control protocol negotiation.</p><p><b>wszAddress: </b>Specifies a null-terminated Unicode
+string that holds the client&#39;s IPX address on the RRAS server connection. This
+address string has the form of &#34;net.node&#34; (for example,
+&#34;1234ABCD.12AB34CD56EF&#34;).</p></div>

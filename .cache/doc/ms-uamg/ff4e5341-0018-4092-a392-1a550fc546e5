@@ -1,1 +1,20 @@
-<div class="content"></div>
+<div class="content"><p>The IUpdateServiceManager::RemoveService (opnum 11) method
+removes an <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_1692cfd4-4b1d-4566-9820-8171465bbc4b" data-linktype="relative-path">update service</a></span> from
+the <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_362092cf-7fb5-43eb-92e1-c3e4affdd92b" data-linktype="relative-path">update
+agent</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT RemoveService(
+   [in] BSTR serviceID
+ );
+</pre></div>
+</dd></dl><p><b>serviceID: </b>A string identifying the registered
+service to remove.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method SHOULD trigger the update agent to remove the
+given service through an implementation-defined interface. The method SHOULD
+remove the given service from the <b>Services</b> ADM element.</p></div>

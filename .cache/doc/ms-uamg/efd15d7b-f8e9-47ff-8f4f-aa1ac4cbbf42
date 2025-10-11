@@ -1,1 +1,17 @@
-<div class="content"></div>
+<div class="content"><p>The IUpdate::IsUninstallable (opnum 29) method retrieves
+whether the update can be uninstalled.</p><dl>
+<dd>
+<div><pre> HRESULT IsUninstallable(
+   [out, retval] VARIANT_BOOL* retval
+ );
+</pre></div>
+</dd></dl><p><b>retval: </b>MUST be set either to VARIANT_TRUE if
+the update can be uninstalled or to VARIANT_FALSE otherwise.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>The server SHOULD return the value of the <b>IsUninstallable</b>
+ADM element.</p></div>

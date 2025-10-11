@@ -1,1 +1,12 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IPSTATS_FORWARDING</b> enumerates different
+forwarding possibilities.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MIB_IP_FORWARDING = 1,
+   MIB_IP_NOT_FORWARDING = 2,
+ } MIB_IPSTATS_FORWARDING,
+  *PMIB_IPSTATS_FORWARDING;
+</pre></div>
+</dd></dl><p><b>MIB_IP_FORWARDING: </b>Forwarding-enabled. </p><p><b>MIB_IP_NOT_FORWARDING: </b>Not forwarding-enabled.
+</p></div>

@@ -1,1 +1,43 @@
-<div class="content"></div>
+<div class="content"><p>The <b>DIM_INTERFACE_CONTAINER</b> structure specifies a
+generic structure used by certain methods to set, create, or retrieve
+information from the RRAS server.</p><dl>
+<dd>
+<div><pre> typedef struct _DIM_INTERFACE_CONTAINER {
+   DWORD fGetInterfaceInfo;
+   DWORD dwInterfaceInfoSize;
+   [size_is(dwInterfaceInfoSize)] LPBYTE pInterfaceInfo;
+   DWORD fGetGlobalInfo;
+   DWORD dwGlobalInfoSize;
+   [size_is(dwGlobalInfoSize)] LPBYTE pGlobalInfo;
+ } DIM_INTERFACE_CONTAINER,
+  *PDIM_INTERFACE_CONTAINER;
+</pre></div>
+</dd></dl><p><b>fGetInterfaceInfo: </b>This field is used to get
+interface information from the server. This MUST be set to TRUE when the client
+needs to retrieve interface information from the server while calling the <a href="14ad8d26-d7d7-48dd-914d-da962d5d7049" data-linktype="relative-path"><b>RRouterInterfaceTransportGetGlobalInfo (section 3.1.4.11)</b></a>
+and <a href="ec9ba293-45e9-4f12-b9af-7e77ec96c90e" data-linktype="relative-path"><b>RRouterInterfaceTransportGetInfo (section 3.1.4.19)</b></a>
+methods.</p><p><b>dwInterfaceInfoSize: </b>This MUST be set to the
+size of <i>pInterfaceInfo</i>.</p><p><b>pInterfaceInfo: </b>This MUST point to a buffer
+that specifies the default client <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> information for
+the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_ae1df61b-660f-439e-ac6b-23ae1e3f7abb" data-linktype="relative-path">transport</a>. The
+buffer MUST contain <a href="402d2cc2-dd94-487a-9bb1-fab6728c3e7d" data-linktype="relative-path"><b>RTR_INFO_BLOCK_HEADER (section 2.2.1.2.3)</b></a>
+with a valid info type of <a href="c99955ec-6d18-4665-8d5b-e124de63a368" data-linktype="relative-path"><b>RTR_TOC_ENTRY (section 2.2.1.2.4)</b></a>.</p><p><b>fGetGlobalInfo: </b>This field is used to get or
+set global information. This field MUST be set to TRUE when the client needs to
+retrieve global information from the server while calling <b>RRouterInterfaceTransportGetGlobalInfo</b>.</p><p><b>dwGlobalInfoSize: </b>This MUST be set to the size
+of <i>pGlobalInfo</i>.</p><p><b>pGlobalInfo: </b>This MUST point to a buffer that
+specifies global information for the transport. The buffer MUST contain a <b>RTR_INFO_BLOCK_HEADER</b>
+with a valid info type of <b>RTR_TOC_ENTRY</b>.</p><p>The <b>DIM_INTERFACE_CONTAINER</b> specifies a generic
+structure used by the following methods to set, create, or retrieve information
+from the RRAS server:</p><ul><li><p><span><span> 
+</span></span><a href="071439e7-a9fd-40e4-91f7-ab756108e82f" data-linktype="relative-path"><b>RRouterInterfaceTransportSetGlobalInfo (section 3.1.4.10)</b></a></p>
+</li><li><p><span><span> 
+</span></span><b>RRouterInterfaceTransportGetGlobalInfo (section 3.1.4.11)</b></p>
+</li><li><p><span><span> 
+</span></span><a href="927c5bf1-ac91-4325-b945-0d96a58f609b" data-linktype="relative-path"><b>RRouterInterfaceTransportAdd (section 3.1.4.18)</b></a></p>
+</li><li><p><span><span> 
+</span></span><b>RRouterInterfaceTransportGetInfo (section 3.1.4.19)</b></p>
+</li><li><p><span><span> 
+</span></span><a href="209ba5e7-876e-4406-a05c-65b7e5fb2380" data-linktype="relative-path"><b>RRouterInterfaceTransportSetInfo (section 3.1.4.20)</b></a></p>
+</li><li><p><span><span> 
+</span></span><a href="9829344c-f22b-4d53-946b-20542ec43be4" data-linktype="relative-path"><b>RRouterInterfaceTransportCreate (section 3.1.4.38)</b></a></p>
+</li></ul></div>

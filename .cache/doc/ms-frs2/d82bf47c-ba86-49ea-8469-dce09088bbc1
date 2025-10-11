@@ -1,1 +1,52 @@
-<div class="content"></div>
+<div class="content"><p>The RdcClose method informs the server that the server
+context information can be released.</p><dl>
+<dd>
+<div><pre> DWORD RdcClose(
+   [in, out] PFRS_SERVER_CONTEXT* serverContext
+ );
+</pre></div>
+</dd></dl><p><b>serverContext: </b>The context handle that
+represents the requested file replication operation. The client MUST specify a
+server context that was retrieved by a previously successful call to the <a href="908b4cc2-9915-4e31-84b8-f6b3e09b7c03" data-linktype="relative-path">InitializeFileTransferAsync</a>
+method.</p><p><b>Return Values: </b>This method MUST return 0 on
+success or a nonzero error code on failure. For protocol purposes all nonzero
+values MUST be treated as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The context is invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Validating the close context request:</b> The server MUST
+validate the request by performing the following checks. </p><ul><li><p><span><span> 
+</span></span>If the specified server context was not retrieved by a previously
+successful call to the InitializeFileTransferAsync method, then the server MUST
+fail the call with the ERROR_INVALID_PARAMETER failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the server has already closed the server context, the server
+MUST fail the call with an implementation-defined failure value.</p>
+</li></ul><p><b>Actions Triggered:</b> The server closes and cleans up
+all resources associated with the server context. The serverContext MUST not be
+used any more by the client after a successful call to the RdcClose method.</p></div>

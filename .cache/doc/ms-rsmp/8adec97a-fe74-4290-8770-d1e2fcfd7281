@@ -1,1 +1,21 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsMediaState enumeration defines the physical states
+of media.</p><dl>
+<dd>
+<div><pre> enum NtmsMediaState
+ {
+   NTMS_MEDIASTATE_IDLE = 0,
+   NTMS_MEDIASTATE_INUSE = 1,
+   NTMS_MEDIASTATE_MOUNTED = 2,
+   NTMS_MEDIASTATE_LOADED = 3,
+   NTMS_MEDIASTATE_UNLOADED = 4,
+   NTMS_MEDIASTATE_OPERROR = 5,
+   NTMS_MEDIASTATE_OPREQ = 6
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_MEDIASTATE_IDLE:  </b>The medium is in a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a1f0ab90-f3c0-46b8-9c77-d0d7508ede94" data-linktype="relative-path">slot</a> in a library, in a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a8ebf8eb-a5f7-406a-b211-9f9c08ee15d3" data-linktype="relative-path">dismounted</a> <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a>, or in an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_f248d7b8-b3e9-421e-96c4-78551324fd86" data-linktype="relative-path">offline library</a>.</p><p><b>NTMS_MEDIASTATE_INUSE:  </b>The medium is marked
+as being in use.</p><p><b>NTMS_MEDIASTATE_MOUNTED:  </b>The medium is placed
+in a drive.</p><p><b>NTMS_MEDIASTATE_LOADED:  </b>The medium is
+available.</p><p><b>NTMS_MEDIASTATE_UNLOADED:  </b>The medium is ready
+to be removed from a drive.</p><p><b>NTMS_MEDIASTATE_OPERROR:  </b>The medium is in a
+recoverable error state. No operator intervention is required.</p><p><b>NTMS_MEDIASTATE_OPREQ:  </b>The medium is waiting
+for an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_4676b5f2-6ecd-463c-8218-811911038e63" data-linktype="relative-path">operator request</a>.</p></div>

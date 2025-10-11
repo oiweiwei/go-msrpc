@@ -1,1 +1,29 @@
-<div class="content"></div>
+<div class="content"><p>The <b>PPP_IPV6_CP_INFO</b> structure contains the result of
+a <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_d158ba19-bb5e-458e-bcda-38aed4eff053" data-linktype="relative-path">PPP</a> control protocol
+negotiation for IPv6.</p><dl>
+<dd>
+<div><pre> typedef struct _PPP_IPV6CP_INFO {
+   DWORD dwVersion;
+   DWORD dwSize;
+   DWORD dwError;
+   BYTE bInterfaceIdentifier[8];
+   BYTE bRemoteInterfaceIdentifier[8];
+   DWORD dwOptions;
+   DWORD dwRemoteOptions;
+   BYTE bPrefix[8];
+   DWORD dwPrefixLength;
+ } PPP_IPV6_CP_INFO,
+  *PPPP_IPV6_CP_INFO;
+</pre></div>
+</dd></dl><p><b>dwVersion: </b>Specifies the version of the <b>PPP_IPV6_CP_INFO</b>
+structure used. Currently this field is not used and MUST be set to zero (0). </p><p><b>dwSize: </b>This SHOULD be set to 0. This MAY be
+used to specify the size, in bytes, of this <b>PPP_IPV6_CP_INFO</b> structure.</p><p><b>dwError: </b>Specifies the result of the PPP
+control protocol negotiation. A value of zero (0) indicates success. A nonzero
+value indicates failure and is the actual fatal error that occurred during the
+control protocol negotiation.</p><p><b>bInterfaceIdentifier: </b>Specifies the 64-bit <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_76ad3105-3f05-479d-a40c-c9c8fa2ebd83" data-linktype="relative-path">interface identifier</a> of the
+IPv6 server interface.</p><p><b>bRemoteInterfaceIdentifier: </b>Specifies the 64-bit
+interface identifier of the IPv6 client interface.</p><p><b>dwOptions: </b>Currently this is not used and MUST
+be set to zero (0).</p><p><b>dwRemoteOptions: </b>Currently this is not used
+and MUST be set to zero (0).</p><p><b>bPrefix: </b>Specifies the address prefix of the
+IPv6 client interface.</p><p><b>dwPrefixLength: </b>The length, in bits, of the
+address prefix.</p></div>

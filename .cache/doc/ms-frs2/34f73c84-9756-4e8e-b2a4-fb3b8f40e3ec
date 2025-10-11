@@ -1,1 +1,28 @@
-<div class="content"></div>
+<div class="content"><p>Union of <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_a0d8116e-63f3-418b-afea-ca6258840e92" data-linktype="relative-path">RDC</a>
+algorithm options.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   unsigned short rdcChunkerAlgorithm;
+   [switch_is(rdcChunkerAlgorithm)] 
+     union {
+     [case(RDC_FILTERGENERIC)] 
+       FRS_RDC_PARAMETERS_GENERIC filterGeneric;
+     [case(RDC_FILTERMAX)] 
+       FRS_RDC_PARAMETERS_FILTERMAX filterMax;
+     [case(RDC_FILTERPOINT)] 
+       FRS_RDC_PARAMETERS_FILTERPOINT filterPoint;
+   } u;
+ } FRS_RDC_PARAMETERS;
+</pre></div>
+</dd></dl><p><b>rdcChunkerAlgorithm:</b>  MUST be
+RDC_FILTERMAX, as specified in section <a href="9cc63d63-15fc-499f-a8db-d2cd85895617" data-linktype="relative-path">2.2.1.2.3</a>, for
+compatibility. </p><p><b>filterGeneric:</b>  Placeholder only to
+fill out the enumeration. Never used, because <b>rdcChunkerAlgorithm</b> MUST
+NOT have this value.</p><p><b>filterMax:</b>  The parameters, as
+specified in <a href="../ms-rdc/5b027295-0b63-45b9-8f62-0e49448350d9" data-linktype="relative-path">[MS-RDC]</a>,
+necessary for the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_33572936-6f55-4561-8599-8380eb71d725" data-linktype="relative-path">RDC
+FilterMax algorithm</a>.</p><p><b>filterPoint:</b>  Never used because <b>rdcChunkerAlgorithm</b>
+MUST NOT have this value.</p><p>The server returns an array of these structures, one each
+for each level of RDC signatures that are available. The client uses these
+parameters to ensure that the local signatures match the signatures that will
+be returned from the server.</p></div>

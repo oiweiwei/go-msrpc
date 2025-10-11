@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>The <b>OSPF_FILTER_ACTION</b> enumeration is used to
+determine whether or not a route is added to the OSPF database.</p><dl>
+<dd>
+<div><pre> typedef enum _OSPF_FILTER_ACTION
+ {
+   ACTION_DROP = 0,
+   ACTION_ACCEPT = 1
+ } OSPF_FILTER_ACTION,
+  *POSPF_FILTER_ACTION;
+</pre></div>
+</dd></dl><p><b>ACTION_DROP: </b>The route is not added to the
+OSPF database.</p><p><b>ACTION_ACCEPT: </b>The route is added to the OSPF
+database.</p></div>

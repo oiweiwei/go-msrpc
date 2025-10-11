@@ -31,13 +31,71 @@ type AppHostMethodInstanceServer interface {
 	// IUnknown base class.
 	iunknown.UnknownServer
 
-	// Input operation.
+	// The Input method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns an IAppHostElement in which input parameters can be specified
+	// for the specified method instance call. If the method does not support input parameters,
+	// no IAppHostElement is returned.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetInput(context.Context, *GetInputRequest) (*GetInputResponse, error)
 
-	// Output operation.
+	// The Output method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns an IAppHostElement from which output parameters are retrieved
+	// after the specified method instance has been executed. If the method does not support
+	// output parameters, no IAppHostElement is returned.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetOutput(context.Context, *GetOutputRequest) (*GetOutputResponse, error)
 
-	// Execute operation.
+	// The Execute method is received by the server in an RPC_REQUEST packet. In response,
+	// the server actually executes the specified custom method.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+---------------------+---------------------------------------+
+	//	|       RETURN        |                                       |
+	//	|     VALUE/CODE      |              DESCRIPTION              |
+	//	|                     |                                       |
+	//	+---------------------+---------------------------------------+
+	//	+---------------------+---------------------------------------+
+	//	| 0X00000000 NO_ERROR | The operation completed successfully. |
+	//	+---------------------+---------------------------------------+
 	Execute(context.Context, *ExecuteRequest) (*ExecuteResponse, error)
 
 	// GetMetadata operation.

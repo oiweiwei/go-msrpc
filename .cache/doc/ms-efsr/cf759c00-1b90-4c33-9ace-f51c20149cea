@@ -1,1 +1,31 @@
-<div class="content"></div>
+<div class="content"><p>The EfsRpcQueryRecoveryAgents method is used to query the <a href="3166cf4a-e085-47be-94c6-b69bddf274ff" data-linktype="relative-path">EFSRPC Metadata</a> of an
+encrypted object for the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_2069b65d-b546-4198-abfd-768badc2258e" data-linktype="relative-path">X.509</a>
+<a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificates</a> of the data
+recovery agents whose private <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">keys</a>
+can be used to decrypt the object.</p><dl>
+<dd>
+<div><pre> DWORD EfsRpcQueryRecoveryAgents(
+   [in] handle_t binding_h,
+   [in, string] wchar_t* FileName,
+   [out] ENCRYPTION_CERTIFICATE_HASH_LIST** RecoveryAgents
+ );
+</pre></div>
+</dd></dl><p><b>binding_h: </b>This is an <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>  <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_1cf35308-abab-4123-9cbd-99c42dc9a6ff" data-linktype="relative-path">binding</a> handle parameter,
+as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+and <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a>.</p><p><b>FileName: </b>An EFSRPC identifier as specified in
+section <a href="9db7433f-be13-4605-993f-3695a2d2916e" data-linktype="relative-path">2.2.1</a>. </p><p><b>RecoveryAgents: </b>A list of certificate hashes,
+represented by an <a href="2718804c-6ab9-45fd-98cf-541bc3b6bc75" data-linktype="relative-path">ENCRYPTION_CERTIFICATE_HASH_LIST</a>
+structure.</p><p><b>Return Values: </b>The server MUST return 0 if it
+successfully processes the message received from the client. The server MUST
+return a nonzero value if processing fails.</p><dl>
+<dd>
+<p>If no object exists on the server with the specified
+name, or if the object exists and is not encrypted, the server MUST return a
+nonzero value. Otherwise, the server MUST read the object&#39;s EFSRPC Metadata and
+return a list of the hashes of all the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_c2d1bb54-31a8-4918-a163-39a7851c347a" data-linktype="relative-path">DRA</a> certificates that have
+access to the object in the <i>RecoveryAgents</i> parameter. The server MUST
+NOT include any certificates that were not added by virtue of being defined as
+DRAs in administrative policy. If no DRAs are defined on the object, the call
+MUST return success and this list MUST be empty.</p>
+</dd></dl></div>

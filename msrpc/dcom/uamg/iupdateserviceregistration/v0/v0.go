@@ -51,12 +51,83 @@ type UpdateServiceRegistrationClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The IUpdateServiceRegistration::RegistrationState (opnum 8) method retrieves an enumeration
+	// value that describes the state of the service registration.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the RegistrationState ADM element.
 	GetRegistrationState(context.Context, *GetRegistrationStateRequest, ...dcerpc.CallOption) (*GetRegistrationStateResponse, error)
 
+	// The IUpdateService::ServiceID (opnum 16) method retrieves the unique identifier for
+	// the update service.
+	//
+	// The IUpdateHistoryEntry::ServiceID (opnum 18) method retrieves the unique identifier
+	// of the update service that provided the update for which the operation was performed.
+	//
+	// The IUpdateSearcher::ServiceID (opnum 24) method retrieves the unique identifier
+	// of the update server used to search against.
+	//
+	// The IUpdateSearcher::ServiceID (opnum 25) method sets the unique identifier of the
+	// update server used to search against.
+	//
+	// The IUpdateServiceRegistration::ServiceID (opnum 9) method retrieves the service
+	// identifier.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ServiceID ADM element.
 	GetServiceID(context.Context, *GetServiceIDRequest, ...dcerpc.CallOption) (*GetServiceIDResponse, error)
 
+	// The IUpdateServiceRegistration::IsPendingRegistrationWithAU (opnum 10) method retrieves
+	// whether the service is pending registration with the automatic update agent.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// * If no service registration record is found for the given service ID, the server
+	// MUST return an error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the IsPendingRegistrationWithAU ADM element.
 	GetIsPendingRegistrationWithAU(context.Context, *GetIsPendingRegistrationWithAURequest, ...dcerpc.CallOption) (*GetIsPendingRegistrationWithAUResponse, error)
 
+	// The IUpdateServiceRegistration::Service (opnum 11) method retrieves information about
+	// the service.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Service ADM element.
 	GetService(context.Context, *GetServiceRequest, ...dcerpc.CallOption) (*GetServiceResponse, error)
 
 	// AlterContext alters the client context.
@@ -371,7 +442,9 @@ func (o *GetRegistrationStateRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 // GetRegistrationStateResponse structure represents the RegistrationState operation response
 type GetRegistrationStateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat                      `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A value from the UpdateServiceRegistrationState (section 2.2.13) enumeration
+	// that describes the state of the service registration.
 	ReturnValue uamg.UpdateServiceRegistrationState `idl:"name:retval" json:"return_value"`
 	// Return: The RegistrationState return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -614,8 +687,17 @@ func (o *GetServiceIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 // GetServiceIDResponse structure represents the ServiceID operation response
 type GetServiceIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A string uniquely identifying the service.
+	//
+	// retval: A string containing the unique identifier of the update service that provided
+	// the update for which the operation was performed.
+	//
+	// retval: A string containing the unique identifier of the update server to use for
+	// search.
+	//
+	// retval: A string identifying the service.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The ServiceID return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -823,8 +905,10 @@ func (o *GetIsPendingRegistrationWithAURequest) UnmarshalNDR(ctx context.Context
 // GetIsPendingRegistrationWithAUResponse structure represents the IsPendingRegistrationWithAU operation response
 type GetIsPendingRegistrationWithAUResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set either to VARIANT_TRUE if the service is pending registration
+	// with the automatic update agent or to VARIANT_FALSE if not.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The IsPendingRegistrationWithAU return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1064,7 +1148,9 @@ func (o *GetServiceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 // GetServiceResponse structure represents the Service operation response
 type GetServiceResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat       `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An IUpdateService2 instance representing the update service associated with
+	// this service registration request.
 	ReturnValue *uamg.UpdateService2 `idl:"name:retval" json:"return_value"`
 	// Return: The Service return value.
 	Return int32 `idl:"name:Return" json:"return"`

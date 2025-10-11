@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>The VSS_MGMT_OBJECT_PROP structure defines the union of
+object types that can be enumerated by the <a href="7b274c35-057f-4d99-9038-b451e31590a2" data-linktype="relative-path">IVssEnumMgmtObject</a> <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _VSS_MGMT_OBJECT_PROP {
+   VSS_MGMT_OBJECT_TYPE Type;
+   [switch_is(Type)] VSS_MGMT_OBJECT_UNION Obj;
+ } VSS_MGMT_OBJECT_PROP;
+</pre></div>
+</dd></dl><p><b>Type:</b>  A value that is defined in
+the <a href="0fe403c8-61a1-4bf5-890b-c9ba1af84d65" data-linktype="relative-path">VSS_MGMT_OBJECT_TYPE</a>
+enumeration that specifies the type of object that is contained in the <b>Obj</b>
+union structure.</p><p><b>Obj:</b>  A <a href="63b53947-2649-4eac-a883-498f77361396" data-linktype="relative-path">VSS_MGMT_OBJECT_UNION</a>
+structure.</p></div>

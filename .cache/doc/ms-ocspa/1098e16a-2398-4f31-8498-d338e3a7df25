@@ -1,1 +1,6 @@
-<div class="content"></div>
+<div class="content"><p>This document specifies the Microsoft OCSP Administration
+Protocol. The protocol consists of a set of <span><a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">Distributed Component Object
+Model (DCOM)</a></span> interfaces that allow administrative tools to configure
+the properties of the <span><a href="801063f5-7eda-4bfe-99ef-84c1ea3849a1#gt_688a239d-e58b-42df-b622-da727dca4227" data-linktype="relative-path">Online Responder</a></span>.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

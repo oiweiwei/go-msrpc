@@ -9,8 +9,8 @@ different options for logging when running a file management job.</p><dl>
    FsrmFileManagementLoggingFlags_Audit = 0x00000004
  } FsrmFileManagementLoggingFlags;
 </pre></div>
-</dd></dl><p><b>FsrmFileManagementLoggingFlags_None:</b> 
-Indicates that no flags are set.</p><p><b>FsrmFileManagementLoggingFlags_Error:</b>  If the
+</dd></dl><p><b>FsrmFileManagementLoggingFlags_None:</b>  Indicates
+that no flags are set.</p><p><b>FsrmFileManagementLoggingFlags_Error:</b>  If the
 FsrmFileManagementLoggingFlags_Error flag is set, File Server Resource Manager
 logs errors that occur when running the file management job to the error log.</p><p><b>FsrmFileManagementLoggingFlags_Information: </b> If
 the FsrmFileManagementLoggingFlags_Information flag is set, File Server

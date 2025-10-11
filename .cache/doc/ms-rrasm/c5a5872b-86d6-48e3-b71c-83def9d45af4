@@ -1,1 +1,12 @@
-<div class="content"></div>
+<div class="content"><p>The <b>FORWARD_ACTION</b> enumeration type specifies the
+type of action to be taken in a <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_ffbe7b55-8e84-4f41-a18d-fc29191a4cda" data-linktype="relative-path">filter</a>.</p><dl>
+<dd>
+<div><pre> typedef enum _FORWARD_ACTION
+ {
+   FORWARD = 0,
+   DROP = 1,
+ } FORWARD_ACTION;
+</pre></div>
+</dd></dl><p><b>FORWARD: </b>Allows the traffic to pass through
+the filter.</p><p><b>DROP: </b>Does not allow the traffic to pass
+through the filter: drops the traffic.</p></div>

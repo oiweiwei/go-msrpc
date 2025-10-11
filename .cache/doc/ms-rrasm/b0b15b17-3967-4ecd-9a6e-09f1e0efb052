@@ -1,1 +1,66 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPX_MIB_SET_INPUT_DATA</b> structure MAY<a id="Appendix_A_Target_103"></a><a aria-label="Product behavior note 103" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_103" data-linktype="relative-path">&lt;103&gt;</a> be used in <a href="61ae7aea-8604-4bf3-8ae5-88542152cf8e" data-linktype="relative-path"><b>RMIBEntrySet (section 3.1.4.29)</b></a>
+method.  </p><dl>
+<dd>
+<div><pre> typedef struct _IPX_MIB_SET_INPUT_DATA {
+   ULONG TableId;
+   IPX_MIB_ROW MibRow;
+ } IPX_MIB_SET_INPUT_DATA,
+  *PIPX_MIB_SET_INPUT_DATA;
+</pre></div>
+</dd></dl><p><b>TableId: </b>Specifies the type of tables. It MUST
+be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>IPX_BASE_ENTRY</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>IPX_INTERFACE_TABLE</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>IPX_DEST_TABLE</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>IPX_STATIC_ROUTE_TABLE</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>IPX_SERV_TABLE</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>IPX_STATIC_SERV_TABLE</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>MibRow: </b>An <a href="f2c379b8-ece9-46d0-8aa8-f7ccba54d3eb" data-linktype="relative-path"><b>IPX_MIB_ROW (section 2.2.1.2.110)</b></a>
+structure. </p></div>

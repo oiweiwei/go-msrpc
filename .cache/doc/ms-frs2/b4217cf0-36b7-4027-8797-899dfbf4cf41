@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The RECORDS_STATUS enumerated type is used for an output
+parameter of a <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_ae57a184-1a13-48a5-87d7-3f140cc671e8" data-linktype="relative-path">Slow Sync</a>
+request. It indicates whether the server has more records in the scope of the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_064adaf1-86c7-43e5-a157-b0949980181e" data-linktype="relative-path">replicated folder</a> over
+which Slow Sync is performed.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   RECORDS_STATUS_DONE = 0,
+   RECORDS_STATUS_MORE = 1
+ } RECORDS_STATUS;
+</pre></div>
+</dd></dl><p><b>RECORDS_STATUS_DONE:  </b>No more records are
+waiting to be transmitted on the server.</p><p><b>RECORDS_STATUS_MORE:  </b>More records are waiting
+to be transmitted on the server.</p></div>

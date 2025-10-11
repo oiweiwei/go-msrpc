@@ -1,1 +1,19 @@
-<div class="content"></div>
+<div class="content"><p>The Shadow Copy Management Protocol is used to
+programmatically enumerate <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow
+copies</a> and configure <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_d85fc09f-c375-4e90-952d-7c95a8e244dd" data-linktype="relative-path">shadow
+copy storage</a> on remote machines. The protocol uses a set of <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">Distributed Component Object
+Model (DCOM)</a> <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interfaces</a>
+to query shadow copies and manage shadow copy storage on a remote machine. </p><p>This specification describes storage concepts, including <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a> storage concepts, in
+the Windows operating system. Although this specification outlines some basic
+storage concepts, it assumes that the reader has familiarity with these
+technologies. For background information about storage, disk, and volume
+concepts, see <a href="https://go.microsoft.com/fwlink/?LinkId=90139" data-linktype="external">[MSDN-STC]</a>
+and <a href="https://go.microsoft.com/fwlink/?LinkId=90154" data-linktype="external">[MSDN-VOLMAN]</a>.</p><p>This protocol documentation is intended for use together
+with publicly available standard specifications, networking programming art,
+and Microsoft distributed systems concepts. It assumes that the reader is
+either familiar with this material or has immediate access to it.</p><p>A protocol specification does not require the use of
+Microsoft programming tools or programming environments for a Licensee to
+develop an implementation. Licensees who have access to Microsoft programming
+tools and environments are free to take advantage of them.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

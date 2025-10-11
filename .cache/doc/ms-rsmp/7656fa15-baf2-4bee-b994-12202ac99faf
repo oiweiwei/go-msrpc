@@ -1,1 +1,130 @@
-<div class="content"></div>
+<div class="content"><p>The NTMS_MEDIAPOOLINFORMATION structure defines the
+properties specific to a media pool object.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_MEDIAPOOLINFORMATION {
+   DWORD PoolType;
+   NTMS_GUID MediaType;
+   NTMS_GUID Parent;
+   DWORD AllocationPolicy;
+   DWORD DeallocationPolicy;
+   DWORD dwMaxAllocates;
+   DWORD dwNumberOfPhysicalMedia;
+   DWORD dwNumberOfLogicalMedia;
+   DWORD dwNumberOfMediaPools;
+ } NTMS_MEDIAPOOLINFORMATION;
+</pre></div>
+</dd></dl><p><b>PoolType:</b>  An NTMS-supported media
+pool type.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_POOLTYPE_UNKNOWN</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Unknown pool type.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_POOLTYPE_SCRATCH</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Media that are available to other applications.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_POOLTYPE_FOREIGN</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Media that have been written to and that do not
+  contain a recognizable <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_e88a9ca7-9b8d-4dca-9338-59c98e1a5f13" data-linktype="relative-path">on-media
+  identifier</a> label type or label ID.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_POOLTYPE_IMPORT</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Media that have been written to and that have a
+  recognizable on-media identifier label type but an unrecognizable label ID.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_POOLTYPE_APPLICATION</p>
+  <p>0x00003E8</p>
+  </td>
+  <td>
+  <p>A media pool that is created by an application. One or
+  more application media pools can be created per system.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>MediaType:</b>  A single media type that
+makes up each media pool.</p><p><b>Parent:</b>  A parent media pool or
+NULL.</p><p><b>AllocationPolicy:</b>  A bitfield that
+specifies the action at allocation time. This MUST be the following value, or
+left as 0.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_ALLOCATE_FROMSCRATCH</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Draw media from the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_58cd2daf-1d47-44a9-a725-a9459fd5efaf" data-linktype="relative-path">free pool</a> if none is
+  available in the pool. The default is not to draw from free pool.</p>
+  <p>Return media to free when available. The default is
+  not to return to free.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>DeallocationPolicy:</b>  A bitfield that
+specifies action at deallocation time. This member can be the following value
+or left as 0.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_DEALLOCATE_TOSCRATCH</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Return media to free when available. The default is
+  not to return to free.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwMaxAllocates:</b>  The maximum number
+of times the medium can be <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_0e546e86-71c4-45cc-9ef1-4a78f6cb425a" data-linktype="relative-path">allocated</a>
+and <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a8986e06-b078-4c42-86bc-178390427f04" data-linktype="relative-path">deallocated</a>.</p><p><b>dwNumberOfPhysicalMedia:</b>  The number
+of <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_9036b269-4f3b-4353-a1d0-54f5c686ec2c" data-linktype="relative-path">physical media</a> in
+this media pool.</p><p><b>dwNumberOfLogicalMedia:</b>  The number
+of <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_05349689-4cd0-4643-a13e-9f552ecf3346" data-linktype="relative-path">logical media</a> in this
+media pool.</p><p><b>dwNumberOfMediaPools:</b>  The number of
+media pools in this media pool.</p></div>

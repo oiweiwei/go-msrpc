@@ -31,7 +31,12 @@ type ApplicationServer interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
-	// MachineIdOfMachineName operation.
+	// The MachineIdOfMachineName method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return a string that contains the QueueManager.Identifier
+	// for the computer name that was passed as the input parameter.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.<9>
 	MachineIDOfMachineName(context.Context, *MachineIDOfMachineNameRequest) (*MachineIDOfMachineNameResponse, error)
 }
 

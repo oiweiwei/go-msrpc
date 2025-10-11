@@ -1,1 +1,90 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IGMP_MIB_GLOBAL_CONFIG</b> structure contains the
+global configuration for the IGMP. This structure is used in the following
+methods:</p><ul><li><p><span><span> 
+</span></span><a href="071439e7-a9fd-40e4-91f7-ab756108e82f" data-linktype="relative-path"><b>RRouterInterfaceTransportSetGlobalInfo
+(section 3.1.4.10)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="14ad8d26-d7d7-48dd-914d-da962d5d7049" data-linktype="relative-path"><b>RRouterInterfaceTransportGetGlobalInfo
+(section 3.1.4.11)</b></a><span> </span></p>
+<div><pre> typedef struct _IGMP_MIB_GLOBAL_CONFIG {
+   DWORD Version;
+   DWORD LoggingLevel;
+   DWORD RasClientStats;
+ } IGMP_MIB_GLOBAL_CONFIG,
+  *PIGMP_MIB_GLOBAL_CONFIG;
+</pre></div>
+</li></ul><p><b>Version: </b>It MUST be one of the following.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IGMP_VERSION_1_2</p>
+  <p>0x00000201</p>
+  </td>
+  <td>
+  <p>IGMPv1 or IGMPv2</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_VERSION_3</p>
+  <p>0x00000301</p>
+  </td>
+  <td>
+  <p>IGMPv3</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>LoggingLevel: </b>Specifies the logging level. It
+MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IGMP_LOGGING_NONE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>No logging is done.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_LOGGING_ERROR</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Only errors are logged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_LOGGING_WARN</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Errors and warnings are logged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_LOGGING_INFO</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Errors, warnings, and information is logged.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>RasClientStats: </b>If <b>RASClientStats</b> is
+nonzero, then per RAS client statistics are maintained.</p></div>

@@ -1,1 +1,66 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IPFORWARDTABLE</b> structure contains a table of
+the IP <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_ad8a294a-8e3c-47e3-a876-7488cd5c8353" data-linktype="relative-path">route</a> entries.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNumEntries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>table
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwNumEntries (4 bytes): </b>Specifies the number
+of route entries in the table.</p><p><b>table (variable): </b>Pointer to a table of route
+entries implemented as an array of <a href="5dca234b-bea4-4e67-958e-5459a32a7b71" data-linktype="relative-path"><b>MIB_IPFORWARDROW (section</b></a><span> </span>2.2.1.2.35) structures. </p><p><b>reserved (8 bytes): </b>An array of 8 bytes that
+SHOULD be set to zero (0) and ignored on receipt.</p></div>

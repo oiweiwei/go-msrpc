@@ -1,0 +1,217 @@
+<div class="content"><p>The Send method is received by the server in an RPC_REQUEST
+packet. In response, the server MUST send a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a>.</p><dl>
+<dd>
+<div><pre> HRESULT Send(
+   [in] IDispatch* DestinationQueue,
+   [in, optional] VARIANT* Transaction
+ );
+</pre></div>
+</dd></dl><p><b>DestinationQueue: </b>A pointer to an <a href="../ms-oaut/ac9c502b-ac1c-4202-8ad4-048ac98afcc9" data-linktype="relative-path">IDispatch</a>
+interface that can reference either an MSMQQueue object instance or an
+MSMQDestination object instance.</p><p><b>Transaction: </b>A pointer to a <a href="../ms-oaut/a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">VARIANT</a>
+that contains either:</p><ul><li><p><span><span> 
+</span></span>A VT_DISPATCH or a VT_DISPATCH | VT_BYREF that points to an
+MSMQTransaction object.</p>
+</li><li><p><span><span> 
+</span></span>A VT_I4 that references one of the following enumeration values
+as defined in section <a href="3ff1f343-d6e9-4bab-848f-6f2b39209762" data-linktype="relative-path">2.2.2.1</a>.</p>
+</li></ul><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the server MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>DestinationQueue</i> input parameter is NULL:</p>
+<ul><li><p><span><span>  </span></span>Return
+E_INVALIDARG (0x80000003), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If either <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message.Class</a>
+OR Message.SenderIdentifier OR Message.SymmetricKey OR Message.Signature OR
+Message.AuthenticationProviderName properties of the represented Message were
+set after this object was initialized AND the represented
+Message.ConnectorTypeIdentifier equals the NULL GUID
+({00000000-0000-0000-0000-000000000000}):</p>
+<ul><li><p><span><span>  </span></span>Return
+MQ_ERROR_MISSING_CONNECTOR_TYPE (0xC00E0055), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If (the represented Message.AuthenticationProviderType is not
+NULL AND the represented Message.AuthenticationProviderName is NULL) OR (the
+represented Message.AuthenticationProviderType is NULL AND the represented
+Message.AuthenticationProviderName is not NULL):</p>
+<ul><li><p><span><span>  </span></span>Return
+MQ_ERROR_INSUFFICIENT_PROPERTIES (0xC00E003F), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Define <i>transactionalSend</i> as a Boolean value set to False.</p>
+</li><li><p><span><span> 
+</span></span>If the <i>Transaction</i> input parameter is NOT NULL:</p>
+<ul><li><p><span><span>  </span></span>If
+the <i>Transaction</i> input parameter is VT_DISPATCH or VT_DISPATCH |
+VT_BYREF:</p>
+<ul><li><p><span><span> 
+</span></span>Define <i>transactionIdentifier</i> as the value of the <i>TransactionIdentifier</i>
+instance variable of the ITransaction object obtained by the
+MSMQTransaction::get_ITransaction method on the MSMQTransaction object obtained
+from the <i>Transaction</i> input parameter.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>transactionalSend</i> to True.</p>
+</li></ul></li><li><p><span><span>  </span></span>Else,
+if the <i>Transaction</i> input parameter is VT_I4:</p>
+<ul><li><p><span><span> 
+</span></span>If the numeric value represented by the <i>Transaction</i> input
+parameter equals either MQ_MTS_TRANSACTION (0x00000001) or MQ_XA_TRANSACTION
+(0x00000002):</p>
+<ul><li><p><span><span> 
+</span></span>Define and retrieve <i>transactionIdentifier</i> as described in
+section 2.2.2.1, using the enum numeric value represented by the <i>Transaction</i>
+input parameter.</p>
+</li><li><p><span><span> 
+</span></span>Set <i>transactionalSend</i> to True.</p>
+</li></ul></li></ul></li><li><p><span><span>  </span></span>Else:</p>
+<ul><li><p><span><span> 
+</span></span>Return an error HRESULT, and take no further action.</p>
+</li></ul></li><li><p><span><span>  </span></span>If <i>transactionalSend</i>
+is True:</p>
+<ul><li><p><span><span> 
+</span></span>Identify the <i>Transaction</i> of the local <b>QueueManager.TransactionCollection</b>
+where the <b>Transaction.Identifier</b> equals the value of <i>transactionIdentifier</i>.</p>
+</li><li><p><span><span> 
+</span></span>If a <i>Transaction</i> cannot be located:</p>
+<ul><li><p><span><span> 
+</span></span>Generate a <a href="../ms-mqdmpr/a44b2ff2-c914-44e2-ac21-4855718b39aa" data-linktype="relative-path">Create
+Transaction</a> event with the following inputs:</p>
+<ul><li><p><span><span> 
+</span></span>iTransactionIdentifier = transactionIdentifier</p>
+</li></ul></li></ul></li></ul></li></ul></li><li><p><span><span> 
+</span></span>If the represented Message.SenderIdentifier equals NULL:</p>
+<ul><li><p><span><span>  </span></span>If
+the <i>SenderIdentifierCache</i> instance variable equals NULL:</p>
+<ul><li><p><span><span> 
+</span></span>Set the represented Message.SenderIdentifier to the SID of the
+caller.<a id="Appendix_A_Target_151"></a><a aria-label="Product behavior note 151" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_151" data-linktype="relative-path">&lt;151&gt;</a></p>
+</li></ul></li><li><p><span><span>  </span></span>Else:</p>
+<ul><li><p><span><span> 
+</span></span>Set the represented Message.SenderIdentifier to the value of the <i>SenderIdentifierCache</i>
+instance variable.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>If the represented Message.SenderCertificate equals NULL:</p>
+<ul><li><p><span><span>  </span></span>If
+the <i>SenderCertificateCache</i> instance variable is NOT NULL:</p>
+<ul><li><p><span><span> 
+</span></span>Set the represented Message.SenderCertificate to the value of the
+<i>SenderCertificateCache</i>.</p>
+</li></ul></li><li><p><span><span>  </span></span>Else:</p>
+<ul><li><p><span><span> 
+</span></span>Set the represented Message.SenderCertificate to the <b>Certificate</b>
+ADM attribute of the <b>InternalCertificate</b> (<a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a>
+section <a href="../ms-mqdmpr/b9c56cb5-9c06-4c07-ad1a-6850ed9c7d6e" data-linktype="relative-path">3.1.1.19</a>)
+ADM element instance from the <b>InternalCertificateCollection</b> ADM attribute
+of the local <b>QueueManager</b> ADM element instance whose <b>InternalCertificate.User</b>
+ADM attribute matches the user identified by the represented
+Message.SenderIdentifier.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>If
+the <i>SenderCertificateCache</i> instance variable equals NULL OR the certificate
+in the <i>SenderCertificateCache</i> does not match the
+Message.SenderCertificate:</p>
+<ul><li><p><span><span> 
+</span></span>The server MAY impose additional requirements on the represented
+Message.SenderCertificate for authentication purposes.<a id="Appendix_A_Target_152"></a><a aria-label="Product behavior note 152" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_152" data-linktype="relative-path">&lt;152&gt;</a></p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Set the represented Message.SourceMachineIdentifier to the local <b>QueueManager.Identifier</b>.</p>
+</li><li><p><span><span> 
+</span></span>If the represented Message.ConnectorTypeIdentifier equals the
+NULL GUID ({00000000-0000-0000-0000-000000000000}):</p>
+<ul><li><p><span><span>  </span></span>Set
+the represented Message.Class to MQMSG_CLASS_NORMAL (0x00000000).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Set the represented Message.Identifier to a new and unique value
+as specified by <a href="../ms-mqmq/b7cc2590-a617-45df-b6a3-1f31102b36fb" data-linktype="relative-path">[MS-MQMQ]</a>
+section <a href="../ms-mqmq/653f80a3-6585-4cca-bb7f-5154b4ad0fab" data-linktype="relative-path">2.2.8</a>.</p>
+</li><li><p><span><span> 
+</span></span>Define <i>queueFormatName</i> as follows:</p>
+<ul><li><p><span><span>  </span></span>If
+the <i>DestinationQueue</i> input parameter represents an MSMQQueue object:</p>
+<ul><li><p><span><span> 
+</span></span>Set <i>queueFormatName</i> to the result of calling
+MSMQQueueInfo::get_FormatName on the MSMQQueueInfo object returned as a result
+of calling the MSMQQueue::get_QueueInfo method on the MSMQQueue object
+represented by the <i>DestinationQueue</i> input parameter.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the <i>DestinationQueue</i> input parameter represents an MSMQDestination
+object:</p>
+<ul><li><p><span><span> 
+</span></span>Set <i>queueFormatName</i> to the result of calling the
+MSMQDestination::get_FormatName method on the MSMQDestination object
+represented by the <i>DestinationQueue</i> input parameter.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Set the represented Message.DestinationQueueFormatName to <i>queueFormatName</i>.</p>
+</li><li><p><span><span> 
+</span></span>Set the represented Message.SentTime to the current time.</p>
+</li><li><p><span><span> 
+</span></span>If the represented Message.TimeToReachQueue is greater than
+Message.TimeToBeReceived:</p>
+<ul><li><p><span><span>  </span></span>Set
+the represented Message.TimeToBeReceived to the same value as
+Message.TimeToReachQueue.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the represented Message.Signature equals NULL:</p>
+<ul><li><p><span><span>  </span></span>If
+the <i>RequestedAuthenticationLevel</i> instance variable is NOT equal to
+MQMSG_AUTH_LEVEL_NONE (0x00000000):</p>
+<ul><li><p><span><span> 
+</span></span>Calculate the hash value using the specified represented
+Message.HashAlgorithm and in the manner identified by the <i>RequestedAuthenticationLevel</i>
+instance variable.</p>
+</li><li><p><span><span> 
+</span></span>Obtain the private key for the certificate contained in the
+represented Message.SenderCertificate.</p>
+</li><li><p><span><span> 
+</span></span>Set the represented Message.Signature to the signature calculated
+using the specified Message.AuthenticationProviderType and
+Message.SenderCertificate and the obtained private key applied to the
+calculated hash value.</p>
+</li><li><p><span><span> 
+</span></span>Set the represented Message.AuthenticationLevel to the associated
+value from the <i>RequestedAuthenticationLevel</i> instance variable. Refer to
+section <a href="90bfc28c-ade0-4842-8468-8d948b53381d" data-linktype="relative-path">2.2.2.16</a> for
+details of the translation.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>If the <i>SOAPBody</i> instance variable is NOT NULL:</p>
+<ul><li><p><span><span>  </span></span>Append
+the <i>SOAPBody</i> instance variable value to the end of the represented
+Message.SoapBody.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>SOAPHeader</i> instance variable is NOT NULL:</p>
+<ul><li><p><span><span>  </span></span>Append
+the <i>SOAPHeader</i> instance variable value to the end of the represented
+Message.SoapHeader.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Define <i>targetQueue</i> as an <i>OpenQueueDescriptor</i> and
+set it as follows:</p>
+<ul><li><p><span><span>  </span></span>If
+the <i>DestinationQueue</i> input parameter represents an MSMQQueue object:</p>
+<ul><li><p><span><span> 
+</span></span>Set <i>targetQueue</i> to the value of the <i>OpenQueueDescriptor</i>
+instance variable of the MSMQQueue object represented by the <i>DestinationQueue</i>
+input parameter.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the <i>DestinationQueue</i> input parameter represents an MSMQDestination
+object:</p>
+<ul><li><p><span><span> 
+</span></span>Set targetQueue to the value of the <i>DestinationOpenQueueDescriptor</i>
+instance variable of the MSMQDestination object represented by the <i>DestinationQueue</i>
+input.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Generate an Enqueue Message to an Open Queue event ([MS-MQDMPR]
+section <a href="../ms-mqdmpr/acfc0306-33e2-4edd-9e4c-8c67f98373b1" data-linktype="relative-path">3.1.7.1.27</a>)
+with the following inputs:</p>
+<ul><li><p><span><span> 
+</span></span>iOpenQueueDescriptor = targetQueue</p>
+</li><li><p><span><span> 
+</span></span>iMessage = The represented Message</p>
+</li><li><p><span><span> 
+</span></span>iTransaction = The identified Transaction</p>
+</li></ul><ul><li><p><span><span>  </span></span>If
+the rStatus return value is not equal to MQ_OK (0x00000000):</p>
+<ul><li><p><span><span> 
+</span></span>Return an error HRESULT, and take no further action.</p>
+</li></ul></li></ul></li></ul></div>

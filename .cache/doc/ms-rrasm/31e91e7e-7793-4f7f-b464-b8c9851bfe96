@@ -1,1 +1,17 @@
-<div class="content"></div>
+<div class="content"><p>The <b>ROUTER_IKEv2_IF_CUSTOM_CONFIG_0</b> structure<a id="Appendix_A_Target_172"></a><a aria-label="Product behavior note 172" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_172" data-linktype="relative-path">&lt;172&gt;</a> is used to get or set IKEv2
+tunnel configuration parameters for IKEv2 tunnel- based demand- dial
+interfaces.</p><dl>
+<dd>
+<div><pre> typedef struct _ROUTER_IKEv2_IF_CUSTOM_CONFIG_0 {
+   DWORD dwSaLifeTime;
+   DWORD dwSaDataSize;
+   CERT_BLOB_1 certificateName;
+   PROUTER_CUSTOM_IKEv2_POLICY_0 customPolicy;
+ } ROUTER_IKEv2_IF_CUSTOM_CONFIG_0,
+  *PROUTER_IKEv2_IF_CUSTOM_CONFIG_0;
+</pre></div>
+</dd></dl><p><b>dwSaLifeTime: </b>Same as <b>dwSaLifeTime</b> in <a href="de7aef9f-4865-4281-b800-db5142bf7a45" data-linktype="relative-path"><b>IKEV2_TUNNEL_CONFIG_PARAMS_1</b></a>.
+</p><p><b>dwSaDataSize: </b>Same as <b>dwSaDataSize</b> in <b>IKEV2_TUNNEL_CONFIG_PARAMS_1</b>.
+</p><p><b>certificateName: </b>Same as <b>certificateName</b>
+in <b>IKEV2_TUNNEL_CONFIG_PARAMS_1</b>. </p><p><b>customPolicy: </b>MUST be a pointer to a <a href="10f3a637-ab9c-49fe-b819-a5337ad54098" data-linktype="relative-path"><b>ROUTER_CUSTOM_IKEv2_POLICY_0</b></a>
+structure. </p></div>

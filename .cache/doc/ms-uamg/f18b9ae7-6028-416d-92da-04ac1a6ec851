@@ -1,1 +1,20 @@
-<div class="content"></div>
+<div class="content"><p>The ISearchResult::Updates (opnum 10) method retrieves the
+updates found during the search.</p><dl>
+<dd>
+<div><pre> HRESULT Updates(
+   [out, retval] IUpdateCollection** retval
+ );
+</pre></div>
+</dd></dl><p><b>retval: </b>A collection of the updates found for
+the computer.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method SHOULD return the value of the <b>Updates</b>
+ADM element. This method MUST return a collection of updates that meet the
+search criteria specified in the call to the IUpdateSearcher::Search (opnum
+20) (section <span><a href="8bc81f1d-0491-463c-a347-a4486b7d83ab" data-linktype="relative-path">3.38.4.11)</a></span> method
+that returned this instance.</p></div>

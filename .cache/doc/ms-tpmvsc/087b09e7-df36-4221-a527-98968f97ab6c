@@ -1,1 +1,34 @@
-<div class="content"></div>
+<div class="content"><p>This method is invoked by the requestor to destroy a
+previously-created <a href="348a1d4a-acc7-43ea-9413-b7e92ae9682d#gt_51714f66-75dc-4642-bd63-73b8b2825067" data-linktype="relative-path">VSC</a>
+on the target.</p><dl>
+<dd>
+<div><pre> HRESULT DestroyVirtualSmartCard(
+         [in, string] const wchar_t* pszInstanceId,
+         [in, unique] ITpmVirtualSmartCardManagerStatusCallback* pStatusCallback,
+         [out] int* pfNeedReboot);
+  
+</pre></div>
+</dd></dl><p><b>pszInstanceId:</b> A Unicode string containing the
+instance identifier for the VSC to be destroyed.</p><p><b>pStatusCallback:</b> A reference to an instance of
+the ITpmVirtualSmartCardManagerStatusCallback DCOM interface on the requestor.
+The server uses this interface to provide feedback on progress and errors. This
+parameter is optional and MUST be set to NULL if absent.</p><p><b>pfNeedReboot:</b> A Boolean value that indicates
+whether or not a reboot is required on the server to complete the destruction
+of the VSC.</p><p><b>Return Values:</b> The server MUST return 0 if it
+successfully locates and destroys the indicated VSC, and a nonzero value
+otherwise.</p><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The server MUST validate the parameters before executing the
+requested operation and fail requests with invalid parameters.</p><p>In response to the request, the server MUST locate the VSC
+using the provided instance identifier from the underlying smart card
+implementation compliant with <a href="https://go.microsoft.com/fwlink/?LinkId=90244" data-linktype="external">[PCSC3]</a>, remove its
+registration with the implementation, and clear all data structures associated
+with the VSC.</p><p>If pStatusCallback is present, the server SHOULD notify the
+client of the progress and errors of the undergoing operation, as specified in
+section <a href="7d7353e4-2474-49fb-a06b-1bfb1a971171" data-linktype="relative-path">3.2.4</a>. The status
+callback happens synchronously with the requested operation. If the status
+callback returns an error code, the server SHOULD try to abort the requested
+operation and roll back all changes related to the operation. If the operation
+is aborted, the server MUST return a non-zero error code to the client, with
+the severity bit in the error code set to 1. If the operation cannot be
+aborted, the server MUST ignore the error from the status callback interface
+and complete the requested operation.</p></div>

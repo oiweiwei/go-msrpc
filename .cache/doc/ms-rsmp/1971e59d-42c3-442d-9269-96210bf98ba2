@@ -1,1 +1,61 @@
-<div class="content"></div>
+<div class="content"><p>The NTMS_OPREQUESTINFORMATIONW structure describes the
+properties of an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_4676b5f2-6ecd-463c-8218-811911038e63" data-linktype="relative-path">operator
+request</a>, in Unicode.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_OPREQUESTINFORMATIONW {
+   DWORD Request;
+   SYSTEMTIME Submitted;
+   DWORD State;
+   [string] wchar_t szMessage[256];
+   DWORD Arg1Type;
+   NTMS_GUID Arg1;
+   DWORD Arg2Type;
+   NTMS_GUID Arg2;
+   [string] wchar_t szApplication[64];
+   [string] wchar_t szUser[64];
+   [string] wchar_t szComputer[64];
+ } NTMS_OPREQUESTINFORMATIONW;
+</pre></div>
+</dd></dl><p><b>Request:</b>  A value from the <a href="d540f894-df65-4d15-b1e0-5fda02a15e67" data-linktype="relative-path">NtmsOpreqCommand</a>
+enumeration that specifies the type of the operator request. </p><p><b>Submitted:</b>  A <a href="../ms-dtyp/2fefe8dd-ab48-4e33-a7d5-7171455a9289" data-linktype="relative-path">SYSTEMTIME</a>
+structure that specifies the time at which the request was submitted. </p><p><b>State:</b>  A value from the <a href="9192510e-5c57-4402-a97e-0e7edf2c15d2" data-linktype="relative-path">NtmsOpreqState</a> enumeration
+that specifies the state of the operator request. </p><p><b>szMessage:</b>   A null-terminated
+operator message text.</p><p><b>Arg1Type:</b>  A value from the <a href="5b190198-a0cb-4e20-90a3-234009357051" data-linktype="relative-path">NtmsObjectsTypes</a>
+enumeration that specifies the type of object in <b>Arg1</b>.</p><p><b>Arg1:</b>  This parameter MUST be set
+based on the value of <b>Request</b>.</p><dl>
+<dd>
+<p>If <b>Request</b> = NTMS_OPREQ_NEWMEDIA
+(0x00000001), <b>Arg1</b> MUST be set to the identifier of the media pool
+requiring new media.</p>
+</dd>
+<dd>
+<p>If <b>Request</b> = NTMS_OPREQ_CLEANER (0x00000002),
+<b>Arg1</b> MUST be set to the identifier of the library requiring the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_95e53eb6-39e3-43ed-905e-ff1f427446d2" data-linktype="relative-path">cleaner</a> <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a71cfd0c-a569-4544-8127-7ae496bca92b" data-linktype="relative-path">cartridge</a>.</p>
+</dd>
+<dd>
+<p>If <b>Request</b> = NTMS_OPREQ_DEVICESERVICE
+(0x00000003), <b>Arg1</b> MUST be set to the identifier of the device requiring
+service.</p>
+</dd>
+<dd>
+<p>If <b>Request</b> = NTMS_OPREQ_MOVEMEDIA
+(0x00000004), <b>Arg1</b> MUST be set to the identifier of the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_9036b269-4f3b-4353-a1d0-54f5c686ec2c" data-linktype="relative-path">physical medium</a> to move.</p>
+</dd></dl><p><b>Arg2Type:</b>  A value from the
+NtmsObjectsTypes enumeration that specifies the type of object in <b>Arg2</b>. </p><p><b>Arg2:</b>  This parameter MUST be set
+based on the value of <b>Request</b>.</p><dl>
+<dd>
+<p>If <b>Request</b> = NTMS_OPREQ_NEWMEDIA
+(0x00000001), <b>Arg2</b> MAY be set to the identifier of the library in which
+the new media MUST be placed.</p>
+</dd>
+<dd>
+<p>If <b>Request</b> = NTMS_OPREQ_MOVEMEDIA
+(0x00000004), <b>Arg2</b> MUST be set to the identifier of the library to which
+the physical medium MUST be moved.</p>
+</dd></dl><p><b>szApplication:</b>   A null-terminated
+sequence of Unicode characters that specifies the name of the application that
+submitted the operator request.</p><p><b>szUser:</b>   A null-terminated sequence
+of Unicode characters that specifies the name of the interactive user who
+submitted the operator request.</p><p><b>szComputer:</b>   A null-terminated
+sequence of Unicode characters that specifies the name of the computer that
+submitted the operator request. </p></div>

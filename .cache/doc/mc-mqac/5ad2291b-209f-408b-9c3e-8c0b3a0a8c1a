@@ -1,0 +1,24 @@
+<div class="content"><p>The Access method is received by the server in an
+RPC_REQUEST packet. In response, the server returns a flag that indicates the
+access mode in which the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a>
+was opened. The access mode specifies whether peek, receive, send, and/or
+administration operations can be performed.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT Access(
+   [out, retval] long* plAccess
+ );
+</pre></div>
+</dd></dl><p><b>plAccess: </b>A pointer to a <b>long</b> that
+corresponds to one of the <a href="f7b87255-fbe2-4246-ba70-a9cd106d0548" data-linktype="relative-path">MQACCESS</a>
+(section 2.2.2.3) enumeration values.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>IsInitialized</i> instance variable is False:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error OLE_E_BLANK (0x80040007), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Set the <i>plAccess</i> output variable to refQueue.AccessType.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK (0x00000000), and take no further action.</p>
+</li></ul></div>

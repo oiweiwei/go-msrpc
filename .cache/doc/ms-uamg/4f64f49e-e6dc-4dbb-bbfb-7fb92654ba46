@@ -1,1 +1,33 @@
-<div class="content"></div>
+<div class="content"><p>The IUpdateSearcher::QueryHistory (opnum 19) method
+retrieves a collection of history events.</p><dl>
+<dd>
+<div><pre> HRESULT QueryHistory(
+   [in] LONG startIndex,
+   [in] LONG count,
+   [out, retval] IUpdateHistoryEntryCollection** retval
+ );
+</pre></div>
+</dd></dl><p><b>startIndex: </b>The zero-based index of the first
+history entry to retrieve.</p><p><b>count: </b>The number of entries to retrieve.</p><p><b>retval: </b>An <b>IUpdateHistoryEntryCollection</b>
+containing the history entries requested. If fewer entries are available than
+requested in the <i>count</i> parameter, only the entries available are
+retrieved.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><dl>
+<dd>
+<p>If the <i>startIndex</i> value is
+less than 0x00000000 or greater than or equal to the number of items in the
+collection, the server MUST return an error.</p>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>The server MUST return an <b>IUpdateHistoryEntryCollection</b>
+instance containing the following history entries, sorted by date in descending
+order:</p><ul><li><p><span><span> 
+</span></span>Only history entries starting from the given <i>startIndex</i>.</p>
+</li><li><p><span><span> 
+</span></span>A maximum of <i>count</i> history entries, starting from <i>startIndex</i>.</p>
+</li></ul><p>This method SHOULD derive these history entries from the <b>HistoryList</b>
+ADM element.</p></div>

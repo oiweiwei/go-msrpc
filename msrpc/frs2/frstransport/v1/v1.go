@@ -43,41 +43,410 @@ var (
 
 // FrsTransport interface.
 type TransportClient interface {
+
+	// The CheckConnectivity method determines whether a server can establish an outbound
+	// connection (see the EstablishConnection method specified in section 3.2.4.1.2).
+	//
+	// Return Values: The method MUST return 0 on success or a nonzero error code on failure.
+	// All nonzero values MUST be treated as equivalent failures unless otherwise specified.
+	//
+	//	+--------------------------+----------------------------------------------------------------------------------+
+	//	|          RETURN          |                                                                                  |
+	//	|        VALUE/CODE        |                                   DESCRIPTION                                    |
+	//	|                          |                                                                                  |
+	//	+--------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS | The method completed successfully. The server is ready to establish the          |
+	//	|                          | specified outbound connection.                                                   |
+	//	+--------------------------+----------------------------------------------------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	CheckConnectivity(context.Context, *CheckConnectivityRequest, ...dcerpc.CallOption) (*CheckConnectivityResponse, error)
 
+	// The EstablishConnection method establishes an outbound connection, uniquely identified
+	// by a replication group ID/connection ID pair, from a client to a server. An outbound
+	// connection to the server is required before most other operations can be performed.
+	//
+	// Return Values: The method MUST return 0 on success or a nonzero error code on failure.
+	// For protocol purposes all nonzero values MUST be treated as equivalent failures unless
+	// otherwise specified.
+	//
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                  RETURN                   |                                                                                  |
+	//	|                VALUE/CODE                 |                                   DESCRIPTION                                    |
+	//	|                                           |                                                                                  |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS                  | The method completed successfully.                                               |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x0000235A FRS_ERROR_INCOMPATIBLE_VERSION | The client's DFS-R protocol version is not compatible with the server's DFS-R    |
+	//	|                                           | protocol version.                                                                |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00002342 FRS_ERROR_CONNECTION_INVALID   | The connection is invalid.                                                       |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	EstablishConnection(context.Context, *EstablishConnectionRequest, ...dcerpc.CallOption) (*EstablishConnectionResponse, error)
 
+	// The EstablishSession method is used to establish a replicated folder session between
+	// the client and server after the client has successfully established an outbound connection
+	// with the server via a call to the EstablishConnection method. A replicated folder
+	// session with the server is required before most other operations associated with
+	// the specified replicated folder can be performed.
+	//
+	// Return Values: The method MUST return 0 on success or a nonzero error code on failure.
+	// For protocol purposes all nonzero values MUST be treated as equivalent failures unless
+	// otherwise specified.
+	//
+	//	+-------------------------------------------+-------------------------------------+
+	//	|                  RETURN                   |                                     |
+	//	|                VALUE/CODE                 |             DESCRIPTION             |
+	//	|                                           |                                     |
+	//	+-------------------------------------------+-------------------------------------+
+	//	+-------------------------------------------+-------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS                  | The method completed successfully.  |
+	//	+-------------------------------------------+-------------------------------------+
+	//	| 0x00002342 FRS_ERROR_CONNECTION_INVALID   | The connection is invalid.          |
+	//	+-------------------------------------------+-------------------------------------+
+	//	| 0x00002375 FRS_ERROR_CONTENTSET_READ_ONLY | The replicated folder is read-only. |
+	//	+-------------------------------------------+-------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	EstablishSession(context.Context, *EstablishSessionRequest, ...dcerpc.CallOption) (*EstablishSessionResponse, error)
 
+	// The RequestUpdates method is used to obtain a specified set of updates (replicated
+	// file metadata) from a server.
+	//
+	// Return Values: The method MUST return 0 on success or a nonzero error code on failure.
+	// For protocol purposes all nonzero values MUST be treated as equivalent failures unless
+	// otherwise specified.
+	//
+	//	+-------------------------------------------+------------------------------------+
+	//	|                  RETURN                   |                                    |
+	//	|                VALUE/CODE                 |            DESCRIPTION             |
+	//	|                                           |                                    |
+	//	+-------------------------------------------+------------------------------------+
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS                  | The method completed successfully. |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00002344 FRS_ERROR_CONTENTSET_NOT_FOUND | The content set was not found.     |
+	//	+-------------------------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	RequestUpdates(context.Context, *RequestUpdatesRequest, ...dcerpc.CallOption) (*RequestUpdatesResponse, error)
 
+	// The RequestVersionVector method is used to obtain the version chain vector persisted
+	// on a server or to request notification when the server's version chain vector changes.
+	//
+	// Return Values: This method MUST return 0 on success or a nonzero error code on failure.
+	// For protocol purposes all nonzero values MUST be treated as equivalent failures unless
+	// otherwise specified.
+	//
+	//	+--------------------------+------------------------------------+
+	//	|         *RETURN          |                                    |
+	//	|       VALUE/CODE*        |            DESCRIPTION             |
+	//	|                          |                                    |
+	//	+--------------------------+------------------------------------+
+	//	+--------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS | The method completed successfully. |
+	//	+--------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	RequestVersionVector(context.Context, *RequestVersionVectorRequest, ...dcerpc.CallOption) (*RequestVersionVectorResponse, error)
 
+	// The AsyncPoll method is used to register an asynchronous callback, associated with
+	// an outbound connection, which the server uses to provide version chain vectors and
+	// notifications of version chain vector changes to the client.
+	//
+	// Return Values: This method MUST return 0 on success or a nonzero error code on failure.
+	// For protocol purposes all nonzero values MUST be treated as equivalent failures unless
+	// otherwise specified.
+	//
+	//	+--------------------------+------------------------------------+
+	//	|          RETURN          |                                    |
+	//	|        VALUE/CODE        |            DESCRIPTION             |
+	//	|                          |                                    |
+	//	+--------------------------+------------------------------------+
+	//	+--------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS | The method completed successfully. |
+	//	+--------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	AsyncPoll(context.Context, *AsyncPollRequest, ...dcerpc.CallOption) (*AsyncPollResponse, error)
 
+	// The RequestRecords method is used to request all (UID, GVSN) pairs that correspond
+	// to live (non-tombstone) records on the server for a specified replicated folder during
+	// slow sync (see section 3.3.1.3).
+	//
+	// Return Values: This method MUST return 0 on success or a nonzero error code on failure.
+	// For protocol purposes all nonzero values MUST be treated as equivalent failures unless
+	// otherwise specified.
+	//
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                  RETURN                   |                                                                                  |
+	//	|                VALUE/CODE                 |                                   DESCRIPTION                                    |
+	//	|                                           |                                                                                  |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS                  | The method completed successfully.                                               |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00002344 FRS_ERROR_CONTENTSET_NOT_FOUND | The content set was not found.                                                   |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x000024FE FRS_ERROR_CSMAN_OFFLINE        | The server is not currently participating in the replication of the specified    |
+	//	|                                           | replicated folder.                                                               |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	RequestRecords(context.Context, *RequestRecordsRequest, ...dcerpc.CallOption) (*RequestRecordsResponse, error)
 
+	// Upon successful completion, the client has notified the server that an update received
+	// from the server could not be processed by the client.
 	UpdateCancel(context.Context, *UpdateCancelRequest, ...dcerpc.CallOption) (*UpdateCancelResponse, error)
 
+	// The RawGetFileData method is used to transfer successive segments of compressed marshaled
+	// data for a file from the server to the client. This method does not use the Remote
+	// Differential Compression Algorithm (as specified in [MS-RDC]) to transfer data.
+	//
+	// Return Values: This method MUST return 0 on success or a nonzero error code on failure.
+	// For protocol purposes all nonzero values MUST be treated as equivalent failures unless
+	// otherwise specified.
+	//
+	//	+-------------------------------------------+------------------------------------+
+	//	|                  RETURN                   |                                    |
+	//	|                VALUE/CODE                 |            DESCRIPTION             |
+	//	|                                           |                                    |
+	//	+-------------------------------------------+------------------------------------+
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS                  | The method completed successfully. |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00000057 ERROR_INVALID_PARAMETER        | The context is invalid.            |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00002344 FRS_ERROR_CONTENTSET_NOT_FOUND | The content set was not found.     |
+	//	+-------------------------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	RawGetFileData(context.Context, *RawGetFileDataRequest, ...dcerpc.CallOption) (*RawGetFileDataResponse, error)
 
+	// The RdcGetSignatures method is used to obtain a file's RDC signature data from the
+	// server.
+	//
+	// Return Values: This method MUST return 0 on success or a nonzero error code on failure.
+	// For protocol purposes all nonzero values MUST be treated as equivalent failures unless
+	// otherwise specified.
+	//
+	//	+-------------------------------------------+------------------------------------+
+	//	|                  RETURN                   |                                    |
+	//	|                VALUE/CODE                 |            DESCRIPTION             |
+	//	|                                           |                                    |
+	//	+-------------------------------------------+------------------------------------+
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS                  | The method completed successfully. |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00000057 ERROR_INVALID_PARAMETER        | The context is invalid.            |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00002344 FRS_ERROR_CONTENTSET_NOT_FOUND | The content set was not found.     |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x0000234B FRS_ERROR_RDC_GENERIC          | Unknown error in RDC.              |
+	//	+-------------------------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method uses the Remote Differential Compression Algorithm, as specified in [MS-RDC],
+	// when replicating a changed file.
 	GetSignatures(context.Context, *GetSignaturesRequest, ...dcerpc.CallOption) (*GetSignaturesResponse, error)
 
+	// The RdcPushSourceNeeds method is used to register requests for file ranges on a server.
+	//
+	// Return Values: This method MUST return 0 on success or a nonzero error code on failure.
+	// For protocol purposes all nonzero values MUST be treated as equivalent failures unless
+	// otherwise specified.
+	//
+	//	+-------------------------------------------+------------------------------------+
+	//	|                  RETURN                   |                                    |
+	//	|                VALUE/CODE                 |            DESCRIPTION             |
+	//	|                                           |                                    |
+	//	+-------------------------------------------+------------------------------------+
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS                  | The method completed successfully. |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00000057 ERROR_INVALID_PARAMETER        | The context is invalid.            |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00002344 FRS_ERROR_CONTENTSET_NOT_FOUND | The content set was not found.     |
+	//	+-------------------------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	PushSourceNeeds(context.Context, *PushSourceNeedsRequest, ...dcerpc.CallOption) (*PushSourceNeedsResponse, error)
 
+	// The RdcGetFileData method is used to obtain file ranges whose requests have previously
+	// been queued on a server by calling the RdcPushSourceNeeds method.
+	//
+	// Return Values: This method MUST return 0 on success or a nonzero error code on failure.
+	// For protocol purposes all nonzero values MUST be treated as equivalent failures unless
+	// otherwise specified.
+	//
+	//	+------------------------------------------+------------------------------------+
+	//	|                  RETURN                  |                                    |
+	//	|                VALUE/CODE                |            DESCRIPTION             |
+	//	|                                          |                                    |
+	//	+------------------------------------------+------------------------------------+
+	//	+------------------------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS                 | The method completed successfully. |
+	//	+------------------------------------------+------------------------------------+
+	//	| 0x00000057 ERROR_INVALID_PARAMETER       | The context is invalid.            |
+	//	+------------------------------------------+------------------------------------+
+	//	| 0x0000234B FRS_ERROR_RDC_GENERIC         | Unknown error in RDC.              |
+	//	+------------------------------------------+------------------------------------+
+	//	| 0x00002358 FRS_ERROR_XPRESS_INVALID_DATA | The compressed data is invalid.    |
+	//	+------------------------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	GetFileData(context.Context, *GetFileDataRequest, ...dcerpc.CallOption) (*GetFileDataResponse, error)
 
+	// The RdcClose method informs the server that the server context information can be
+	// released.
+	//
+	// Return Values: This method MUST return 0 on success or a nonzero error code on failure.
+	// For protocol purposes all nonzero values MUST be treated as equivalent failures unless
+	// otherwise specified.
+	//
+	//	+------------------------------------+------------------------------------+
+	//	|               RETURN               |                                    |
+	//	|             VALUE/CODE             |            DESCRIPTION             |
+	//	|                                    |                                    |
+	//	+------------------------------------+------------------------------------+
+	//	+------------------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS           | The method completed successfully. |
+	//	+------------------------------------+------------------------------------+
+	//	| 0x00000057 ERROR_INVALID_PARAMETER | The context is invalid.            |
+	//	+------------------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	Close(context.Context, *CloseRequest, ...dcerpc.CallOption) (*CloseResponse, error)
 
+	// The InitializeFileTransferAsync method is used by a client to start a file download.
+	// The client supplies an update to specify which file to download. The server provides
+	// its latest version of the update and initial file contents. The server returns information
+	// about the file currently being replicated and the first buffer of data from that
+	// file (if any).
+	//
+	// Return Values: This method MUST return 0 on success or a nonzero error code on failure.
+	// For protocol purposes all nonzero values MUST be treated as equivalent failures unless
+	// otherwise specified.
+	//
+	//	+-------------------------------------------+------------------------------------+
+	//	|                  RETURN                   |                                    |
+	//	|                VALUE/CODE                 |            DESCRIPTION             |
+	//	|                                           |                                    |
+	//	+-------------------------------------------+------------------------------------+
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS                  | The method completed successfully. |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00002342 FRS_ERROR_CONNECTION_INVALID   | The connection is invalid.         |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00002344 FRS_ERROR_CONTENTSET_NOT_FOUND | The content set was not found.     |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x0000234B FRS_ERROR_RDC_GENERIC          | Unknown error in RDC.              |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00002358 FRS_ERROR_XPRESS_INVALID_DATA  | The compressed data is invalid.    |
+	//	+-------------------------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	InitializeFileTransferAsync(context.Context, *InitializeFileTransferAsyncRequest, ...dcerpc.CallOption) (*InitializeFileTransferAsyncResponse, error)
 
 	// Opnum14NotUsedOnWire operation.
 	// Opnum14NotUsedOnWire
 
+	// The RawGetFileDataAsync method is used instead of calling RawGetFileData multiple
+	// times to obtain file data. As specified in [MS-RPCE], the specification for asynchronous
+	// RPC, an RPC client pulls file data from the byte pipe until receiving an end-of-file
+	// notification from the pipe.
+	//
+	// Return Values: This method MUST return 0 on success or a nonzero error code on failure.
+	// For protocol purposes all nonzero values MUST be treated as equivalent failures unless
+	// otherwise specified.
+	//
+	//	+-------------------------------------------+------------------------------------+
+	//	|                  RETURN                   |                                    |
+	//	|                VALUE/CODE                 |            DESCRIPTION             |
+	//	|                                           |                                    |
+	//	+-------------------------------------------+------------------------------------+
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS                  | The method completed successfully. |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00000057 ERROR_INVALID_PARAMETER        | The context is invalid.            |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00002344 FRS_ERROR_CONTENTSET_NOT_FOUND | The content set was not found.     |
+	//	+-------------------------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	RawGetFileDataAsync(context.Context, *RawGetFileDataAsyncRequest, ...dcerpc.CallOption) (*RawGetFileDataAsyncResponse, error)
 
+	// The RdcGetFileDataAsync method is used instead of calling RdcGetFileData multiple
+	// times to obtain file data. As specified in [MS-RPCE], the specification for asynchronous
+	// RPC, an RPC client pulls file data from the byte pipe until receiving an end-of-file
+	// notification from the pipe.
+	//
+	// Return Values: This method MUST return 0 on success or a nonzero error code on failure.
+	// For protocol purposes all nonzero values MUST be treated as equivalent failures unless
+	// otherwise specified.
+	//
+	//	+-------------------------------------------+------------------------------------+
+	//	|                  RETURN                   |                                    |
+	//	|                VALUE/CODE                 |            DESCRIPTION             |
+	//	|                                           |                                    |
+	//	+-------------------------------------------+------------------------------------+
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS                  | The method completed successfully. |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00000057 ERROR_INVALID_PARAMETER        | The context is invalid.            |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00002344 FRS_ERROR_CONTENTSET_NOT_FOUND | The content set was not found.     |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x0000234B FRS_ERROR_RDC_GENERIC          | Unknown error in RDC.              |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00002358 FRS_ERROR_XPRESS_INVALID_DATA  | The compressed data is invalid.    |
+	//	+-------------------------------------------+------------------------------------+
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	GetFileDataAsync(context.Context, *GetFileDataAsyncRequest, ...dcerpc.CallOption) (*GetFileDataAsyncResponse, error)
 
+	// The RdcFileDataTransferKeepAlive method is used to keep the server context alive.
+	//
+	// Return Values: This method MUST return 0 on success or a nonzero error code on failure.
+	// For protocol purposes all nonzero values MUST be treated as equivalent failures unless
+	// otherwise specified.
+	//
+	//	+-------------------------------------------+------------------------------------+
+	//	|                  RETURN                   |                                    |
+	//	|                VALUE/CODE                 |            DESCRIPTION             |
+	//	|                                           |                                    |
+	//	+-------------------------------------------+------------------------------------+
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00000000 ERROR_SUCCESS                  | The method completed successfully. |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00000057 ERROR_INVALID_PARAMETER        | The context is invalid.            |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x00002344 FRS_ERROR_CONTENTSET_NOT_FOUND | The content set was not found.     |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x0000234B FRS_ERROR_RDC_GENERIC          | Unknown error in RDC.              |
+	//	+-------------------------------------------+------------------------------------+
+	//	| 0x0000234B FRS_ERROR_IN_BACKUP_RESTORE    | Paused for backup or restore.      |
+	//	+-------------------------------------------+------------------------------------+
 	FileDataTransferKeepAlive(context.Context, *FileDataTransferKeepAliveRequest, ...dcerpc.CallOption) (*FileDataTransferKeepAliveResponse, error)
 
 	// AlterContext alters the client context.
@@ -486,7 +855,11 @@ func (o *xxx_CheckConnectivityOperation) UnmarshalNDRResponse(ctx context.Contex
 
 // CheckConnectivityRequest structure represents the CheckConnectivity operation request
 type CheckConnectivityRequest struct {
+	// replicaSetId: The GUID of the outbound connection’s replication group (see the
+	// objectGUID attribute specified in section 2.3.5).
 	SetIDReplica *frs2.ReplicaSetID `idl:"name:replicaSetId" json:"set_id_replica"`
+	// connectionId: The GUID of the outbound connection (see the objectGUID attribute specified
+	// in section 2.3.11) in the specified replication group.
 	ConnectionID *frs2.ConnectionID `idl:"name:connectionId" json:"connection_id"`
 }
 
@@ -717,10 +1090,18 @@ func (o *xxx_EstablishConnectionOperation) UnmarshalNDRResponse(ctx context.Cont
 
 // EstablishConnectionRequest structure represents the EstablishConnection operation request
 type EstablishConnectionRequest struct {
-	SetIDReplica              *frs2.ReplicaSetID `idl:"name:replicaSetId" json:"set_id_replica"`
-	ConnectionID              *frs2.ConnectionID `idl:"name:connectionId" json:"connection_id"`
-	DownstreamProtocolVersion uint32             `idl:"name:downstreamProtocolVersion" json:"downstream_protocol_version"`
-	DownstreamFlags           uint32             `idl:"name:downstreamFlags" json:"downstream_flags"`
+	// replicaSetId: The GUID of the outbound connection's replication group (see the objectGUID
+	// attribute specified in section 2.3.5).
+	SetIDReplica *frs2.ReplicaSetID `idl:"name:replicaSetId" json:"set_id_replica"`
+	// connectionId: The GUID of the outbound connection (see the objectGUID attribute specified
+	// in section 2.3.11) in the specified replication group.
+	ConnectionID *frs2.ConnectionID `idl:"name:connectionId" json:"connection_id"`
+	// downstreamProtocolVersion: Identifies the version of the DFS-R protocol implemented
+	// by the client. Currently implemented protocol versions are specified in section 2.2.1.1.1.
+	DownstreamProtocolVersion uint32 `idl:"name:downstreamProtocolVersion" json:"downstream_protocol_version"`
+	// downstreamFlags: This parameter is unused and SHOULD be set to 0 by the client.
+	// <22>
+	DownstreamFlags uint32 `idl:"name:downstreamFlags" json:"downstream_flags"`
 }
 
 func (o *EstablishConnectionRequest) xxx_ToOp(ctx context.Context, op *xxx_EstablishConnectionOperation) *xxx_EstablishConnectionOperation {
@@ -760,8 +1141,14 @@ func (o *EstablishConnectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // EstablishConnectionResponse structure represents the EstablishConnection operation response
 type EstablishConnectionResponse struct {
+	// upstreamProtocolVersion: Receives the version of the DFS-R protocol implemented by
+	// the server. Currently implemented protocol versions are specified in section 2.2.1.1.1.
 	UpstreamProtocolVersion uint32 `idl:"name:upstreamProtocolVersion" json:"upstream_protocol_version"`
-	UpstreamFlags           uint32 `idl:"name:upstreamFlags" json:"upstream_flags"`
+	// upstreamFlags: A flags bitmask. The server MUST set the TRANSPORT_SUPPORTS_RDC_SIMILARITY
+	// bit flag to 1 if the server supports RDC similarity (as specified in [MS-RDC] section
+	// 3.1.5.4). Otherwise, the server MUST clear this bitmask (set all bits to 0). The
+	// client MUST ignore any bit flags other than TRANSPORT_SUPPORTS_RDC_SIMILARITY.
+	UpstreamFlags uint32 `idl:"name:upstreamFlags" json:"upstream_flags"`
 	// Return: The EstablishConnection return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -906,7 +1293,12 @@ func (o *xxx_EstablishSessionOperation) UnmarshalNDRResponse(ctx context.Context
 
 // EstablishSessionRequest structure represents the EstablishSession operation request
 type EstablishSessionRequest struct {
+	// connectionId: The GUID of an outbound connection (see the objectGUID attribute specified
+	// in section 2.3.11) that the client established by a previous call to the EstablishConnection
+	// method.
 	ConnectionID *frs2.ConnectionID `idl:"name:connectionId" json:"connection_id"`
+	// contentSetId: The GUID of the replicated folder (see the objectGUID specified in
+	// section 2.3.7) in the specified connection's replication group.
 	ContentSetID *frs2.ContentSetID `idl:"name:contentSetId" json:"content_set_id"`
 }
 
@@ -1341,13 +1733,35 @@ func (o *xxx_RequestUpdatesOperation) UnmarshalNDRResponse(ctx context.Context, 
 
 // RequestUpdatesRequest structure represents the RequestUpdates operation request
 type RequestUpdatesRequest struct {
-	ConnectionID           *frs2.ConnectionID     `idl:"name:connectionId" json:"connection_id"`
-	ContentSetID           *frs2.ContentSetID     `idl:"name:contentSetId" json:"content_set_id"`
-	CreditsAvailable       uint32                 `idl:"name:creditsAvailable" json:"credits_available"`
-	HashRequested          int32                  `idl:"name:hashRequested" json:"hash_requested"`
-	UpdateRequestType      frs2.UpdateRequestType `idl:"name:updateRequestType" json:"update_request_type"`
-	VersionVectorDiffCount uint32                 `idl:"name:versionVectorDiffCount" json:"version_vector_diff_count"`
-	VersionVectorDiff      []*frs2.VersionVector  `idl:"name:versionVectorDiff;size_is:(versionVectorDiffCount)" json:"version_vector_diff"`
+	// connectionId: The GUID of an outbound connection (see the objectGUID attribute specified
+	// in section 2.3.11) that the client established by a previous call to the EstablishConnection
+	// method.
+	ConnectionID *frs2.ConnectionID `idl:"name:connectionId" json:"connection_id"`
+	// contentSetId: The GUID of the replicated folder (see the objectGUID attribute specified
+	// in section 2.3.7) in the specified connection's replication group.
+	ContentSetID *frs2.ContentSetID `idl:"name:contentSetId" json:"content_set_id"`
+	// creditsAvailable: The maximum number of updates that the client can receive in the
+	// frsUpdate buffer.
+	CreditsAvailable uint32 `idl:"name:creditsAvailable" json:"credits_available"`
+	// hashRequested: The client sets the hashRequested parameter to TRUE to request that
+	// the server compute the hash (see the hash field of the FRS_UPDATE structure specified
+	// in section 2.2.1.4.4) for each update that it sends, or FALSE if the hashes are not
+	// desired. The server SHOULD compute hashes when hashes are requested, although it
+	// is not required to do so. Computing a file's hash requires DFS-R to read the file's
+	// data. It is possible that another process has already opened the file for exclusive
+	// access, which prevents DFS-R from computing the file hash. In this scenario, the
+	// DFS-R server does not compute the hash even if the client requested that it does.
+	HashRequested int32 `idl:"name:hashRequested" json:"hash_requested"`
+	// updateRequestType: The value from the UPDATE_REQUEST_TYPE enumeration that indicates
+	// the type of replication updates requested.
+	UpdateRequestType frs2.UpdateRequestType `idl:"name:updateRequestType" json:"update_request_type"`
+	// versionVectorDiffCount: The number of items specified in the versionVectorDiff parameter.
+	VersionVectorDiffCount uint32 `idl:"name:versionVectorDiffCount" json:"version_vector_diff_count"`
+	// versionVectorDiff: The set of FRS_VERSION_VECTOR structures that specifies what updates
+	// the client requires from the server. This parameter specifies the difference between
+	// the client's version vector and the client's most recent copy of the server's version
+	// vector obtained from a previous call to the RequestVersionVector method.
+	VersionVectorDiff []*frs2.VersionVector `idl:"name:versionVectorDiff;size_is:(versionVectorDiffCount)" json:"version_vector_diff"`
 }
 
 func (o *RequestUpdatesRequest) xxx_ToOp(ctx context.Context, op *xxx_RequestUpdatesOperation) *xxx_RequestUpdatesOperation {
@@ -1396,11 +1810,19 @@ type RequestUpdatesResponse struct {
 	// XXX: creditsAvailable is an implicit input depedency for output parameters
 	CreditsAvailable uint32 `idl:"name:creditsAvailable" json:"credits_available"`
 
-	Update       []*frs2.Update    `idl:"name:frsUpdate;size_is:(creditsAvailable);length_is:(updateCount)" json:"update"`
-	UpdateCount  uint32            `idl:"name:updateCount" json:"update_count"`
+	// frsUpdate: The set of FRS_UPDATE structures that describes the update that occurred
+	// to each of the files to be replicated.
+	Update []*frs2.Update `idl:"name:frsUpdate;size_is:(creditsAvailable);length_is:(updateCount)" json:"update"`
+	// updateCount: The number of updates that the server wrote into the frsUpdate buffer.
+	UpdateCount uint32 `idl:"name:updateCount" json:"update_count"`
+	// updateStatus: The value from the UPDATE_STATUS enumeration that specifies if all
+	// of the requested updates have been sent by the server.
 	UpdateStatus frs2.UpdateStatus `idl:"name:updateStatus" json:"update_status"`
-	GVSNDBGUID   *dtyp.GUID        `idl:"name:gvsnDbGuid" json:"gvsn_db_guid"`
-	GVSNVersion  uint64            `idl:"name:gvsnVersion" json:"gvsn_version"`
+	// gvsnDbGuid: The GVSN GUID (as specified in [MS-DTYP] section 2.3.4) for the last
+	// field in the versionVectorDiff that was processed.
+	GVSNDBGUID *dtyp.GUID `idl:"name:gvsnDbGuid" json:"gvsn_db_guid"`
+	// gvsnVersion: The version of the gvsnDbGuid.
+	GVSNVersion uint64 `idl:"name:gvsnVersion" json:"gvsn_version"`
 	// Return: The RequestUpdates return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -1619,12 +2041,30 @@ func (o *xxx_RequestVersionVectorOperation) UnmarshalNDRResponse(ctx context.Con
 
 // RequestVersionVectorRequest structure represents the RequestVersionVector operation request
 type RequestVersionVectorRequest struct {
-	SequenceNumber uint32                  `idl:"name:sequenceNumber" json:"sequence_number"`
-	ConnectionID   *frs2.ConnectionID      `idl:"name:connectionId" json:"connection_id"`
-	ContentSetID   *frs2.ContentSetID      `idl:"name:contentSetId" json:"content_set_id"`
-	RequestType    frs2.VersionRequestType `idl:"name:requestType" json:"request_type"`
-	ChangeType     frs2.VersionChangeType  `idl:"name:changeType" json:"change_type"`
-	Generation     uint64                  `idl:"name:vvGeneration" json:"generation"`
+	// sequenceNumber: The sequence number for this request. The sequence number is used
+	// to pair the version vector request with the asynchronous response in AsyncPoll. During
+	// a given session, the client SHOULD supply a unique sequence number for each call
+	// to this function or else they will not be able to match server responses via the
+	// AsyncPoll method to the original version vector request.
+	SequenceNumber uint32 `idl:"name:sequenceNumber" json:"sequence_number"`
+	// connectionId: The GUID of an outbound connection (see the objectGUID attribute specified
+	// in section 2.3.11) that the client established by a previous call to the EstablishConnection
+	// method.
+	ConnectionID *frs2.ConnectionID `idl:"name:connectionId" json:"connection_id"`
+	// contentSetId: The GUID of the replicated folder (see the objectGUID attribute specified
+	// in section 2.3.7) in the specified connection's replication group.
+	ContentSetID *frs2.ContentSetID `idl:"name:contentSetId" json:"content_set_id"`
+	// requestType: The value from the VERSION_REQUEST_TYPE enumeration that describes the
+	// type of replication sync to perform.
+	RequestType frs2.VersionRequestType `idl:"name:requestType" json:"request_type"`
+	// changeType: The value from the VERSION_CHANGE_TYPE enumeration that indicates whether
+	// to notify change only or send the entire version chain vector.
+	ChangeType frs2.VersionChangeType `idl:"name:changeType" json:"change_type"`
+	// vvGeneration: The vvGeneration parameter is used to calibrate what incarnation of
+	// the server's version chain vector is known to the client. The client supplies the
+	// last generation number that it received from the server when the requestType parameter
+	// is set to REQUEST_NORMAL_SYNC. Otherwise the client MUST supply zero.
+	Generation uint64 `idl:"name:vvGeneration" json:"generation"`
 }
 
 func (o *RequestVersionVectorRequest) xxx_ToOp(ctx context.Context, op *xxx_RequestVersionVectorOperation) *xxx_RequestVersionVectorOperation {
@@ -1814,6 +2254,9 @@ func (o *xxx_AsyncPollOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 
 // AsyncPollRequest structure represents the AsyncPoll operation request
 type AsyncPollRequest struct {
+	// connectionId: The GUID of an outbound connection (see the objectGUID attribute specified
+	// in section 2.3.11) that the client established by a previous call to the EstablishConnection
+	// method.
 	ConnectionID *frs2.ConnectionID `idl:"name:connectionId" json:"connection_id"`
 }
 
@@ -1848,6 +2291,8 @@ func (o *AsyncPollRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 
 // AsyncPollResponse structure represents the AsyncPoll operation response
 type AsyncPollResponse struct {
+	// response: The FRS_ASYNC_RESPONSE_CONTEXT structure that contains the context for
+	// the requested poll.
 	Response *frs2.AsyncResponseContext `idl:"name:response" json:"response"`
 	// Return: The AsyncPoll return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -2164,11 +2609,25 @@ func (o *xxx_RequestRecordsOperation) UnmarshalNDRResponse(ctx context.Context, 
 
 // RequestRecordsRequest structure represents the RequestRecords operation request
 type RequestRecordsRequest struct {
+	// connectionId: The GUID of an outbound connection (see the objectGUID attribute specified
+	// in section 2.3.11) that the client established by a previous call to the EstablishConnection
+	// method.
 	ConnectionID *frs2.ConnectionID `idl:"name:connectionId" json:"connection_id"`
+	// contentSetId: The GUID of the replicated folder (see the objectGUID attribute specified
+	// in section 2.3.7) in the specified connection's replication group.
 	ContentSetID *frs2.ContentSetID `idl:"name:contentSetId" json:"content_set_id"`
-	UIDDBGUID    *frs2.DatabaseID   `idl:"name:uidDbGuid" json:"uid_db_guid"`
-	UIDVersion   uint64             `idl:"name:uidVersion" json:"uid_version"`
-	MaxRecords   uint32             `idl:"name:maxRecords" json:"max_records"`
+	// uidDbGuid: A UID database GUID. This parameter, along with the uidVersion parameter,
+	// specifies an iterator into the server's records. A value of zero specifies a request
+	// for all of a replicated folder's records from the server.
+	UIDDBGUID *frs2.DatabaseID `idl:"name:uidDbGuid" json:"uid_db_guid"`
+	// uidVersion: A UID version. The parameter, along with uidDbGuid parameter, specifies
+	// an iterator into the server's records. A value of zero specifies a request for all
+	// of a replicated folder's records from the server.
+	UIDVersion uint64 `idl:"name:uidVersion" json:"uid_version"`
+	// maxRecords: The maximum number of records that the server can send to the client.
+	// The server returns the lesser of the client-specified value and the maximum number
+	// of records that the server is capable of sending.<26>
+	MaxRecords uint32 `idl:"name:maxRecords" json:"max_records"`
 }
 
 func (o *RequestRecordsRequest) xxx_ToOp(ctx context.Context, op *xxx_RequestRecordsOperation) *xxx_RequestRecordsOperation {
@@ -2210,11 +2669,21 @@ func (o *RequestRecordsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 
 // RequestRecordsResponse structure represents the RequestRecords operation response
 type RequestRecordsResponse struct {
-	MaxRecords        uint32             `idl:"name:maxRecords" json:"max_records"`
-	RecordsLength     uint32             `idl:"name:numRecords" json:"records_length"`
-	BytesLength       uint32             `idl:"name:numBytes" json:"bytes_length"`
-	CompressedRecords []byte             `idl:"name:compressedRecords;size_is:(, numBytes)" json:"compressed_records"`
-	RecordsStatus     frs2.RecordsStatus `idl:"name:recordsStatus" json:"records_status"`
+	// maxRecords: The maximum number of records that the server can send to the client.
+	// The server returns the lesser of the client-specified value and the maximum number
+	// of records that the server is capable of sending.<26>
+	MaxRecords uint32 `idl:"name:maxRecords" json:"max_records"`
+	// numRecords: The number of records written into the compressedRecords buffer by the
+	// server.
+	RecordsLength uint32 `idl:"name:numRecords" json:"records_length"`
+	// numBytes: The size, in bytes, of the compressedRecords buffer.
+	BytesLength uint32 `idl:"name:numBytes" json:"bytes_length"`
+	// compressedRecords: The data records, compressed using the algorithm specified in
+	// section 3.1.1.1.
+	CompressedRecords []byte `idl:"name:compressedRecords;size_is:(, numBytes)" json:"compressed_records"`
+	// recordsStatus: The value from the RECORDS_STATUS enumeration that indicates whether
+	// more update records are available.
+	RecordsStatus frs2.RecordsStatus `idl:"name:recordsStatus" json:"records_status"`
 	// Return: The RequestRecords return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -2652,8 +3121,14 @@ func (o *xxx_RawGetFileDataOperation) UnmarshalNDRResponse(ctx context.Context, 
 
 // RawGetFileDataRequest structure represents the RawGetFileData operation request
 type RawGetFileDataRequest struct {
+	// serverContext: The context handle that represents the requested file replication
+	// operation. The client MUST specify a pointer to a server context that was retrieved
+	// by a previously successful call to the InitializeFileTransferAsync method. The server
+	// MUST NOT change the value of serverContext and then return the same serverContext
+	// that was passed in.
 	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
-	BufferSize    uint32         `idl:"name:bufferSize" json:"buffer_size"`
+	// bufferSize: The size, in bytes, of dataBuffer.
+	BufferSize uint32 `idl:"name:bufferSize" json:"buffer_size"`
 }
 
 func (o *RawGetFileDataRequest) xxx_ToOp(ctx context.Context, op *xxx_RawGetFileDataOperation) *xxx_RawGetFileDataOperation {
@@ -2692,10 +3167,20 @@ type RawGetFileDataResponse struct {
 	// XXX: bufferSize is an implicit input depedency for output parameters
 	BufferSize uint32 `idl:"name:bufferSize" json:"buffer_size"`
 
+	// serverContext: The context handle that represents the requested file replication
+	// operation. The client MUST specify a pointer to a server context that was retrieved
+	// by a previously successful call to the InitializeFileTransferAsync method. The server
+	// MUST NOT change the value of serverContext and then return the same serverContext
+	// that was passed in.
 	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
-	DataBuffer    []byte         `idl:"name:dataBuffer;size_is:(bufferSize);length_is:(sizeRead)" json:"data_buffer"`
-	SizeRead      uint32         `idl:"name:sizeRead" json:"size_read"`
-	IsEndOfFile   int32          `idl:"name:isEndOfFile" json:"is_end_of_file"`
+	// dataBuffer: The file data received from the server.
+	DataBuffer []byte `idl:"name:dataBuffer;size_is:(bufferSize);length_is:(sizeRead)" json:"data_buffer"`
+	// sizeRead: The size, in bytes, of the file data returned in dataBuffer.
+	SizeRead uint32 `idl:"name:sizeRead" json:"size_read"`
+	// isEndOfFile: The value is TRUE if the end of the specified file has been reached
+	// and there is no more file data to replicate to the client; otherwise, the value is
+	// FALSE.
+	IsEndOfFile int32 `idl:"name:isEndOfFile" json:"is_end_of_file"`
 	// Return: The RawGetFileData return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -2957,10 +3442,20 @@ func (o *xxx_GetSignaturesOperation) UnmarshalNDRResponse(ctx context.Context, w
 
 // GetSignaturesRequest structure represents the RdcGetSignatures operation request
 type GetSignaturesRequest struct {
+	// serverContext: The context handle that represents the requested file replication
+	// operation. The client MUST specify a server context that was retrieved by a previously
+	// successful call to InitializeFileTransferAsync method in which the client set the
+	// rdcDesired parameter to TRUE.
 	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
-	Level         uint8          `idl:"name:level" json:"level"`
-	Offset        uint64         `idl:"name:offset" json:"offset"`
-	Length        uint32         `idl:"name:length" json:"length"`
+	// level: The RDC recursion level being requested. A client MUST specify a number in
+	// the range of 1 to x, where x is the value of the rdcSignatureLevels field of the
+	// rdcInfo structure that was returned by the InitializeFileTransferAsync method call
+	// associated with the specified server context.
+	Level uint8 `idl:"name:level" json:"level"`
+	// offset: The zero-based offset, in bytes, at which to retrieve data from the file.
+	Offset uint64 `idl:"name:offset" json:"offset"`
+	// length: The size, in bytes, of buffer.
+	Length uint32 `idl:"name:length" json:"length"`
 }
 
 func (o *GetSignaturesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSignaturesOperation) *xxx_GetSignaturesOperation {
@@ -3003,7 +3498,9 @@ type GetSignaturesResponse struct {
 	// XXX: length is an implicit input depedency for output parameters
 	Length uint32 `idl:"name:length" json:"length"`
 
-	Buffer   []byte `idl:"name:buffer;size_is:(length);length_is:(sizeRead)" json:"buffer"`
+	// buffer: The file signature data received from the server.
+	Buffer []byte `idl:"name:buffer;size_is:(length);length_is:(sizeRead)" json:"buffer"`
+	// sizeRead: The size, in bytes, of the file data returned in buffer.
 	SizeRead uint32 `idl:"name:sizeRead" json:"size_read"`
 	// Return: The RdcGetSignatures return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -3209,9 +3706,16 @@ func (o *xxx_PushSourceNeedsOperation) UnmarshalNDRResponse(ctx context.Context,
 
 // PushSourceNeedsRequest structure represents the RdcPushSourceNeeds operation request
 type PushSourceNeedsRequest struct {
-	ServerContext *ServerContext     `idl:"name:serverContext" json:"server_context"`
-	SourceNeeds   []*frs2.SourceNeed `idl:"name:sourceNeeds;size_is:(needCount)" json:"source_needs"`
-	NeedCount     uint32             `idl:"name:needCount" json:"need_count"`
+	// serverContext: The context handle that represents the requested file replication
+	// operation. The client MUST specify a server context that was retrieved by a previously
+	// successful call to the InitializeFileTransferAsync method in which the client set
+	// the rdcDesired parameter to TRUE.
+	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
+	// sourceNeeds: The pointer to a set of FRS_RDC_SOURCE_NEED structures that indicate
+	// the offsets and lengths of file data that is sent from the server to the client.
+	SourceNeeds []*frs2.SourceNeed `idl:"name:sourceNeeds;size_is:(needCount)" json:"source_needs"`
+	// needCount: The number of FRS_RDC_SOURCE_NEED structures pointed to by sourceNeeds.
+	NeedCount uint32 `idl:"name:needCount" json:"need_count"`
 }
 
 func (o *PushSourceNeedsRequest) xxx_ToOp(ctx context.Context, op *xxx_PushSourceNeedsOperation) *xxx_PushSourceNeedsOperation {
@@ -3465,8 +3969,13 @@ func (o *xxx_GetFileDataOperation) UnmarshalNDRResponse(ctx context.Context, w n
 
 // GetFileDataRequest structure represents the RdcGetFileData operation request
 type GetFileDataRequest struct {
+	// serverContext: The context handle that represents the requested file replication
+	// operation. The client MUST specify a server context that was retrieved by a previously
+	// successful call to the InitializeFileTransferAsync method in which the client set
+	// the rdcDesired parameter to TRUE.
 	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
-	BufferSize    uint32         `idl:"name:bufferSize" json:"buffer_size"`
+	// bufferSize: The size, in bytes, of dataBuffer
+	BufferSize uint32 `idl:"name:bufferSize" json:"buffer_size"`
 }
 
 func (o *GetFileDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFileDataOperation) *xxx_GetFileDataOperation {
@@ -3505,7 +4014,9 @@ type GetFileDataResponse struct {
 	// XXX: bufferSize is an implicit input depedency for output parameters
 	BufferSize uint32 `idl:"name:bufferSize" json:"buffer_size"`
 
-	DataBuffer   []byte `idl:"name:dataBuffer;size_is:(bufferSize);length_is:(sizeReturned)" json:"data_buffer"`
+	// dataBuffer: The file data received from the server.
+	DataBuffer []byte `idl:"name:dataBuffer;size_is:(bufferSize);length_is:(sizeReturned)" json:"data_buffer"`
+	// sizeReturned: The size, in bytes, of the file data returned in dataBuffer.
 	SizeReturned uint32 `idl:"name:sizeReturned" json:"size_returned"`
 	// Return: The RdcGetFileData return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -3658,6 +4169,9 @@ func (o *xxx_CloseOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 
 // CloseRequest structure represents the RdcClose operation request
 type CloseRequest struct {
+	// serverContext: The context handle that represents the requested file replication
+	// operation. The client MUST specify a server context that was retrieved by a previously
+	// successful call to the InitializeFileTransferAsync method.
 	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
 }
 
@@ -3692,6 +4206,9 @@ func (o *CloseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // CloseResponse structure represents the RdcClose operation response
 type CloseResponse struct {
+	// serverContext: The context handle that represents the requested file replication
+	// operation. The client MUST specify a server context that was retrieved by a previously
+	// successful call to the InitializeFileTransferAsync method.
 	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
 	// Return: The RdcClose return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -4079,11 +4596,31 @@ func (o *xxx_InitializeFileTransferAsyncOperation) UnmarshalNDRResponse(ctx cont
 
 // InitializeFileTransferAsyncRequest structure represents the InitializeFileTransferAsync operation request
 type InitializeFileTransferAsyncRequest struct {
-	ConnectionID  *frs2.ConnectionID          `idl:"name:connectionId" json:"connection_id"`
-	Update        *frs2.Update                `idl:"name:frsUpdate" json:"update"`
-	Desired       int32                       `idl:"name:rdcDesired" json:"desired"`
+	// connectionId: The GUID of an outbound connection (see the objectGUID attribute specified
+	// in section 2.3.11) that the client established by a previous call to the EstablishConnection
+	// method.
+	ConnectionID *frs2.ConnectionID `idl:"name:connectionId" json:"connection_id"`
+	// frsUpdate:  The FRS_UPDATE structure that contains information about the file being
+	// replicated. The fields for the UID in frsUpdate MUST be set to the UID of the file
+	// to be downloaded. All other fields are cleared (zeroed out) or can have the values
+	// provided by the server in the response to a RequestUpdates call. On return, all fields
+	// of frsUpdate MUST contain the values that are held by the server.
+	Update *frs2.Update `idl:"name:frsUpdate" json:"update"`
+	// rdcDesired: The value is TRUE if RDC has to be used when replicating this file; otherwise,
+	// the value is FALSE.
+	Desired int32 `idl:"name:rdcDesired" json:"desired"`
+	// stagingPolicy: The FRS_REQUESTED_STAGING_POLICY enumeration value that indicates
+	// the type of staging requested.  If the client-supplied value of rdcDesired is TRUE
+	// and the client-supplied value of stagingPolicy is SERVER_DEFAULT, then the server
+	// MUST set stagingPolicy to STAGING_REQUIRED. If the client-supplied value of rdcDesired
+	// is FALSE and the client-supplied value of stagingPolicy is STAGING_REQUIRED, then
+	// the server MUST set stagingPolicy to STAGING_REQUIRED. If the client-supplied value
+	// of rdcDesired is FALSE and the client-supplied value of stagingPolicy is RESTAGING_REQUIRED,
+	// then the server MUST set stagingPolicy to RESTAGING_REQUIRED.
 	StagingPolicy frs2.RequestedStagingPolicy `idl:"name:stagingPolicy" json:"staging_policy"`
-	BufferSize    uint32                      `idl:"name:bufferSize" json:"buffer_size"`
+	// bufferSize: The size, in bytes, of dataBuffer. CONFIG_TRANSPORT_MAX_BUFFER_SIZE is
+	// 262,144.
+	BufferSize uint32 `idl:"name:bufferSize" json:"buffer_size"`
 }
 
 func (o *InitializeFileTransferAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_InitializeFileTransferAsyncOperation) *xxx_InitializeFileTransferAsyncOperation {
@@ -4128,13 +4665,35 @@ type InitializeFileTransferAsyncResponse struct {
 	// XXX: bufferSize is an implicit input depedency for output parameters
 	BufferSize uint32 `idl:"name:bufferSize" json:"buffer_size"`
 
-	Update        *frs2.Update                `idl:"name:frsUpdate" json:"update"`
+	// frsUpdate:  The FRS_UPDATE structure that contains information about the file being
+	// replicated. The fields for the UID in frsUpdate MUST be set to the UID of the file
+	// to be downloaded. All other fields are cleared (zeroed out) or can have the values
+	// provided by the server in the response to a RequestUpdates call. On return, all fields
+	// of frsUpdate MUST contain the values that are held by the server.
+	Update *frs2.Update `idl:"name:frsUpdate" json:"update"`
+	// stagingPolicy: The FRS_REQUESTED_STAGING_POLICY enumeration value that indicates
+	// the type of staging requested.  If the client-supplied value of rdcDesired is TRUE
+	// and the client-supplied value of stagingPolicy is SERVER_DEFAULT, then the server
+	// MUST set stagingPolicy to STAGING_REQUIRED. If the client-supplied value of rdcDesired
+	// is FALSE and the client-supplied value of stagingPolicy is STAGING_REQUIRED, then
+	// the server MUST set stagingPolicy to STAGING_REQUIRED. If the client-supplied value
+	// of rdcDesired is FALSE and the client-supplied value of stagingPolicy is RESTAGING_REQUIRED,
+	// then the server MUST set stagingPolicy to RESTAGING_REQUIRED.
 	StagingPolicy frs2.RequestedStagingPolicy `idl:"name:stagingPolicy" json:"staging_policy"`
-	ServerContext *ServerContext              `idl:"name:serverContext" json:"server_context"`
-	FileInfo      *frs2.FileInfo              `idl:"name:rdcFileInfo" json:"file_info"`
-	DataBuffer    []byte                      `idl:"name:dataBuffer;size_is:(bufferSize);length_is:(sizeRead)" json:"data_buffer"`
-	SizeRead      uint32                      `idl:"name:sizeRead" json:"size_read"`
-	IsEndOfFile   int32                       `idl:"name:isEndOfFile" json:"is_end_of_file"`
+	// serverContext: The context handle that represents the requested file replication
+	// operation.
+	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
+	// rdcFileInfo: The FRS_RDC_FILEINFO structure that describes the file whose replication
+	// is in progress.
+	FileInfo *frs2.FileInfo `idl:"name:rdcFileInfo" json:"file_info"`
+	// dataBuffer: The file data received from the server.
+	DataBuffer []byte `idl:"name:dataBuffer;size_is:(bufferSize);length_is:(sizeRead)" json:"data_buffer"`
+	// sizeRead: The size, in bytes, of the file data returned in dataBuffer.
+	SizeRead uint32 `idl:"name:sizeRead" json:"size_read"`
+	// isEndOfFile: The value is TRUE if the end of the specified file has been reached
+	// and there is no more file data to replicate to the client; otherwise, the value is
+	// FALSE.
+	IsEndOfFile int32 `idl:"name:isEndOfFile" json:"is_end_of_file"`
 	// Return: The InitializeFileTransferAsync return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -4344,6 +4903,9 @@ type RawGetFileDataAsyncRequest struct {
 	// XXX: bytePipe is an implicit input depedency for output parameters
 	BytePipe frs2.BytePipe `idl:"name:bytePipe" json:"byte_pipe"`
 
+	// serverContext: The context handle that represents the requested file replication
+	// operation. The client MUST specify a server context that was retrieved by a previously
+	// successful call to the InitializeFileTransferAsync method.
 	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
 }
 
@@ -4386,6 +4948,7 @@ func (o *RawGetFileDataAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // RawGetFileDataAsyncResponse structure represents the RawGetFileDataAsync operation response
 type RawGetFileDataAsyncResponse struct {
+	// bytePipe: The asynchronous RPC byte pipe that contains returned file data.
 	BytePipe frs2.BytePipe `idl:"name:bytePipe" json:"byte_pipe"`
 	// Return: The RawGetFileDataAsync return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -4576,6 +5139,10 @@ type GetFileDataAsyncRequest struct {
 	// XXX: bytePipe is an implicit input depedency for output parameters
 	BytePipe frs2.BytePipe `idl:"name:bytePipe" json:"byte_pipe"`
 
+	// serverContext: The context handle that represents the requested file replication
+	// operation. The client MUST specify a server context that was retrieved by a previously
+	// successful call to the InitializeFileTransferAsync method in which the client set
+	// the rdcDesired parameter to TRUE.
 	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
 }
 
@@ -4618,6 +5185,7 @@ func (o *GetFileDataAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 
 // GetFileDataAsyncResponse structure represents the RdcGetFileDataAsync operation response
 type GetFileDataAsyncResponse struct {
+	// bytePipe: The asynchronous RPC byte pipe that contains returned file data.
 	BytePipe frs2.BytePipe `idl:"name:bytePipe" json:"byte_pipe"`
 	// Return: The RdcGetFileDataAsync return value.
 	Return uint32 `idl:"name:Return" json:"return"`
@@ -4741,6 +5309,9 @@ func (o *xxx_FileDataTransferKeepAliveOperation) UnmarshalNDRResponse(ctx contex
 
 // FileDataTransferKeepAliveRequest structure represents the RdcFileDataTransferKeepAlive operation request
 type FileDataTransferKeepAliveRequest struct {
+	// serverContext: The context handle that represents the requested file replication
+	// operation that was retrieved by a previously successful call to the InitializeFileTransferAsync
+	// method.
 	ServerContext *ServerContext `idl:"name:serverContext" json:"server_context"`
 }
 

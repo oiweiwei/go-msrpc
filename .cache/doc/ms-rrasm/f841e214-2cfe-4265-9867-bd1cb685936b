@@ -1,1 +1,37 @@
-<div class="content"></div>
+<div class="content"><p>The <b>DHCPV6R_MIB_GET_OUTPUT_DATA</b> structure is passed
+as output data for the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="9102e585-2f62-4408-bfb6-02a6460cc883" data-linktype="relative-path"><b>RMIBEntryGetFirst (section 3.1.4.31)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="50f78033-d248-4272-b4b9-a2519a0f304d" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.1.4.32)</b></a><span>  </span></p>
+<div><pre> typedef struct _DHCPV6R_MIB_GET_OUTPUT_DATA {
+   DWORD IMGOD_TypeID;
+   DWORD IMGOD_IfIndex;
+   BYTE IMGOD_Buffer[1];
+ } DHCPV6R_MIB_GET_OUTPUT_DATA,
+  *PDHCPV6R_MIB_GET_OUTPUT_DATA;
+</pre></div>
+</li></ul><p><b>IMGOD_TypeID: </b>It MUST be the following value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DHCPV6R_IF_STATS_ID</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The interface statistics data, <a href="8e488088-aeb2-4f07-af3a-fafc3d7ba22c" data-linktype="relative-path"><b>DHCPV6R_IF_STATS (section 2.2.1.2.158)</b></a>,
+  is specified in the location that starts with IMGOD_Buffer.  </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IMGOD_IfIndex: </b>The index of the interface.</p><p><b>IMGOD_Buffer: </b>This specifies the output data
+corresponding to the type specified by IMGOD_TypeID.</p></div>

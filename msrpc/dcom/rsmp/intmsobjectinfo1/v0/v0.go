@@ -51,16 +51,28 @@ type ObjectInfo1Client interface {
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
 
+	// The GetNtmsServerObjectInformationA method retrieves information about an object,
+	// as a sequence of ASCII characters.
 	GetNTMSServerObjectInformationA(context.Context, *GetNTMSServerObjectInformationARequest, ...dcerpc.CallOption) (*GetNTMSServerObjectInformationAResponse, error)
 
+	// The GetNtmsServerObjectInformationW method retrieves information about an object,
+	// as a sequence of Unicode characters.
 	GetNTMSServerObjectInformationW(context.Context, *GetNTMSServerObjectInformationWRequest, ...dcerpc.CallOption) (*GetNTMSServerObjectInformationWResponse, error)
 
+	// The SetNtmsObjectInformationA method changes the information of an object, with strings
+	// encoded using ASCII.
 	SetNTMSObjectInformationA(context.Context, *SetNTMSObjectInformationARequest, ...dcerpc.CallOption) (*SetNTMSObjectInformationAResponse, error)
 
+	// The SetNtmsObjectInformationW method changes the information of an object, with strings
+	// encoded using Unicode.
 	SetNTMSObjectInformationW(context.Context, *SetNTMSObjectInformationWRequest, ...dcerpc.CallOption) (*SetNTMSObjectInformationWResponse, error)
 
+	// The CreateNtmsMediaA method creates a new offline medium for a media pool, with strings
+	// encoded using ASCII.
 	CreateNTMSMediaA(context.Context, *CreateNTMSMediaARequest, ...dcerpc.CallOption) (*CreateNTMSMediaAResponse, error)
 
+	// The CreateNtmsMediaW method creates a new offline medium for a media pool, with strings
+	// encoded using Unicode.
 	CreateNTMSMediaW(context.Context, *CreateNTMSMediaWRequest, ...dcerpc.CallOption) (*CreateNTMSMediaWResponse, error)
 
 	// AlterContext alters the client context.
@@ -462,10 +474,30 @@ func (o *xxx_GetNTMSServerObjectInformationAOperation) UnmarshalNDRResponse(ctx 
 // GetNTMSServerObjectInformationARequest structure represents the GetNtmsServerObjectInformationA operation request
 type GetNTMSServerObjectInformationARequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ObjectID *dtyp.GUID     `idl:"name:lpObjectId;pointer:unique" json:"object_id"`
-	Type     uint32         `idl:"name:dwType" json:"type"`
-	Size     uint32         `idl:"name:dwSize" json:"size"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpObjectId: A pointer to the identifier of the object for which to retrieve information.
+	ObjectID *dtyp.GUID `idl:"name:lpObjectId;pointer:unique" json:"object_id"`
+	// dwType: A value from the NtmsObjectsTypes enumeration defining the type of the object.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// dwSize: The size, in bytes, of the appropriate structure for lpInfo.
+	//
+	//	+------------------------------------+-----------------------------------------------------------------------+
+	//	|               RETURN               |                                                                       |
+	//	|             VALUE/CODE             |                              DESCRIPTION                              |
+	//	|                                    |                                                                       |
+	//	+------------------------------------+-----------------------------------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                              |
+	//	+------------------------------------+-----------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access denied.                                                        |
+	//	+------------------------------------+-----------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY | An allocation failure occurred during processing.                     |
+	//	+------------------------------------+-----------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | A parameter is missing, or the dwType or dwSize parameter is invalid. |
+	//	+------------------------------------+-----------------------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND  | The lpObjectId parameter is invalid.                                  |
+	//	+------------------------------------+-----------------------------------------------------------------------+
+	Size uint32 `idl:"name:dwSize" json:"size"`
 }
 
 func (o *GetNTMSServerObjectInformationARequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSServerObjectInformationAOperation) *xxx_GetNTMSServerObjectInformationAOperation {
@@ -506,7 +538,9 @@ func (o *GetNTMSServerObjectInformationARequest) UnmarshalNDR(ctx context.Contex
 // GetNTMSServerObjectInformationAResponse structure represents the GetNtmsServerObjectInformationA operation response
 type GetNTMSServerObjectInformationAResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat           `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpInfo: A pointer to an NTMS_OBJECTINFORMATIONA structure describing the properties
+	// of the object.
 	Info *rsmp.ObjectInformationA `idl:"name:lpInfo" json:"info"`
 	// Return: The GetNtmsServerObjectInformationA return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -737,10 +771,30 @@ func (o *xxx_GetNTMSServerObjectInformationWOperation) UnmarshalNDRResponse(ctx 
 // GetNTMSServerObjectInformationWRequest structure represents the GetNtmsServerObjectInformationW operation request
 type GetNTMSServerObjectInformationWRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ObjectID *dtyp.GUID     `idl:"name:lpObjectId" json:"object_id"`
-	Type     uint32         `idl:"name:dwType" json:"type"`
-	Size     uint32         `idl:"name:dwSize" json:"size"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpObjectId: A pointer to the identifier of the object for which to retrieve information.
+	ObjectID *dtyp.GUID `idl:"name:lpObjectId" json:"object_id"`
+	// dwType: A value from the NtmsObjectsTypes enumeration defining the type of the object.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// dwSize: The size, in bytes, of the appropriate structure for lpInfo.
+	//
+	//	+------------------------------------+-----------------------------------------------------------------------+
+	//	|               RETURN               |                                                                       |
+	//	|             VALUE/CODE             |                              DESCRIPTION                              |
+	//	|                                    |                                                                       |
+	//	+------------------------------------+-----------------------------------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                              |
+	//	+------------------------------------+-----------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access denied.                                                        |
+	//	+------------------------------------+-----------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY | An allocation failure occurred during processing.                     |
+	//	+------------------------------------+-----------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | A parameter is missing, or the dwType or dwSize parameter is invalid. |
+	//	+------------------------------------+-----------------------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND  | The lpObjectId parameter is invalid.                                  |
+	//	+------------------------------------+-----------------------------------------------------------------------+
+	Size uint32 `idl:"name:dwSize" json:"size"`
 }
 
 func (o *GetNTMSServerObjectInformationWRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSServerObjectInformationWOperation) *xxx_GetNTMSServerObjectInformationWOperation {
@@ -781,7 +835,9 @@ func (o *GetNTMSServerObjectInformationWRequest) UnmarshalNDR(ctx context.Contex
 // GetNTMSServerObjectInformationWResponse structure represents the GetNtmsServerObjectInformationW operation response
 type GetNTMSServerObjectInformationWResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat           `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpInfo: A pointer to an NTMS_OBJECTINFORMATIONW structure describing the properties
+	// of the object.
 	Info *rsmp.ObjectInformationW `idl:"name:lpInfo" json:"info"`
 	// Return: The GetNtmsServerObjectInformationW return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -986,9 +1042,31 @@ func (o *xxx_SetNTMSObjectInformationAOperation) UnmarshalNDRResponse(ctx contex
 // SetNTMSObjectInformationARequest structure represents the SetNtmsObjectInformationA operation request
 type SetNTMSObjectInformationARequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis           `idl:"name:This" json:"this"`
-	ObjectID *dtyp.GUID               `idl:"name:lpObjectId" json:"object_id"`
-	Info     *rsmp.ObjectInformationA `idl:"name:lpInfo" json:"info"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpObjectId: A pointer to the identifier of the object to change.
+	ObjectID *dtyp.GUID `idl:"name:lpObjectId" json:"object_id"`
+	// lpInfo:  A pointer to an NTMS_OBJECTINFORMATIONA structure describing the properties
+	// of the object to change.
+	//
+	//	+------------------------------------+---------------------------------------------------+
+	//	|               RETURN               |                                                   |
+	//	|             VALUE/CODE             |                    DESCRIPTION                    |
+	//	|                                    |                                                   |
+	//	+------------------------------------+---------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                          |
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access to an object was denied.                   |
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY | An allocation failure occurred during processing. |
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | A parameter is not valid.                         |
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE  | The database query or update failed.              |
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL     | The database is full.                             |
+	//	+------------------------------------+---------------------------------------------------+
+	Info *rsmp.ObjectInformationA `idl:"name:lpInfo" json:"info"`
 }
 
 func (o *SetNTMSObjectInformationARequest) xxx_ToOp(ctx context.Context, op *xxx_SetNTMSObjectInformationAOperation) *xxx_SetNTMSObjectInformationAOperation {
@@ -1229,9 +1307,31 @@ func (o *xxx_SetNTMSObjectInformationWOperation) UnmarshalNDRResponse(ctx contex
 // SetNTMSObjectInformationWRequest structure represents the SetNtmsObjectInformationW operation request
 type SetNTMSObjectInformationWRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis           `idl:"name:This" json:"this"`
-	ObjectID *dtyp.GUID               `idl:"name:lpObjectId" json:"object_id"`
-	Info     *rsmp.ObjectInformationW `idl:"name:lpInfo" json:"info"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpObjectId: A pointer to the identifier of the object to change.
+	ObjectID *dtyp.GUID `idl:"name:lpObjectId" json:"object_id"`
+	// lpInfo:  A pointer to an NTMS_OBJECTINFORMATIONW (section 2.2.4.21) structure describing
+	// the properties of the object to change.
+	//
+	//	+------------------------------------+---------------------------------------------------+
+	//	|               RETURN               |                                                   |
+	//	|             VALUE/CODE             |                    DESCRIPTION                    |
+	//	|                                    |                                                   |
+	//	+------------------------------------+---------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                          |
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access to an object is denied.                    |
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY | An allocation failure occurred during processing. |
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | A parameter is not valid.                         |
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE  | The database query or update failed.              |
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL     | The database is full.                             |
+	//	+------------------------------------+---------------------------------------------------+
+	Info *rsmp.ObjectInformationW `idl:"name:lpInfo" json:"info"`
 }
 
 func (o *SetNTMSObjectInformationWRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNTMSObjectInformationWOperation) *xxx_SetNTMSObjectInformationWOperation {
@@ -1665,12 +1765,60 @@ func (o *xxx_CreateNTMSMediaAOperation) UnmarshalNDRResponse(ctx context.Context
 // CreateNTMSMediaARequest structure represents the CreateNtmsMediaA operation request
 type CreateNTMSMediaARequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis             `idl:"name:This" json:"this"`
-	Media          *rsmp.ObjectInformationA   `idl:"name:lpMedia" json:"media"`
-	List           []*rsmp.ObjectInformationA `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
-	ListBufferSize uint32                     `idl:"name:lpdwListBufferSize" json:"list_buffer_size"`
-	ListCount      uint32                     `idl:"name:dwListCount" json:"list_count"`
-	Options        uint32                     `idl:"name:dwOptions" json:"options"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpMedia: A pointer to an NTMS_OBJECTINFORMATIONA (section 2.2.4.20) structure describing
+	// the properties of the medium to create.
+	Media *rsmp.ObjectInformationA `idl:"name:lpMedia" json:"media"`
+	// lpList: An array of NTMS_OBJECTINFORMATIONA (section 2.2.4.20) structures specifying
+	// the sides of the new medium.
+	List []*rsmp.ObjectInformationA `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
+	// lpdwListBufferSize: A pointer to the size of lpList, in bytes.
+	ListBufferSize uint32 `idl:"name:lpdwListBufferSize" json:"list_buffer_size"`
+	// dwListCount: The number of elements in the lpList array.
+	ListCount uint32 `idl:"name:dwListCount" json:"list_count"`
+	// dwOptions: A bitmap of creation options.
+	//
+	// If a medium with the specified on-media identifier already exists in the system<65>
+	// and the client does not want to duplicate the identifier, the client MUST set dwOptions
+	// to NTMS_ERROR_ON_DUPLICATION (0x00000001) and the server MUST NOT create a medium
+	// with the specified identifier.
+	//
+	// If a medium with the specified on-media identifier already exists in the system<66>
+	// and the client wants to duplicate the identifier, the client MUST set dwOptions to
+	// 0x00000000 and the server MUST create a medium with the specified identifier.
+	//
+	// If a medium with the specified on-media identifier does not exist in the system,<67>
+	// there is no change in the server behavior due to this option.
+	//
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN                |                                                                                  |
+	//	|             VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                     |                                                                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                     | The call was successful.                                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED      | NTMS_USE_ACCESS to the media pool or offline media library is denied; other      |
+	//	|                                     | security errors are possible but indicate a security subsystem error.            |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY  | An allocation failure occurred during processing.                                |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER  | Invalid input parameter.                                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CC ERROR_INVALID_MEDIA      | The option NTMS_ERROR_ON_DUPLICATION was provided, and a medium with this        |
+	//	|                                     | on-media identifier already exists.                                              |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CE ERROR_INVALID_MEDIA_POOL | The specified media pool either does not exist, or is not a valid import or      |
+	//	|                                     | application pool.                                                                |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE   | The database is inaccessible or damaged.                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL      | The database is full.                                                            |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DB ERROR_MEDIA_INCOMPATIBLE | The number of specified sides does not match the number of sides associated with |
+	//	|                                     | the media type of the media pool.                                                |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	Options uint32 `idl:"name:dwOptions" json:"options"`
 }
 
 func (o *CreateNTMSMediaARequest) xxx_ToOp(ctx context.Context, op *xxx_CreateNTMSMediaAOperation) *xxx_CreateNTMSMediaAOperation {
@@ -1720,9 +1868,13 @@ type CreateNTMSMediaAResponse struct {
 	ListCount uint32 `idl:"name:dwListCount" json:"list_count"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat             `idl:"name:That" json:"that"`
-	Media *rsmp.ObjectInformationA   `idl:"name:lpMedia" json:"media"`
-	List  []*rsmp.ObjectInformationA `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpMedia: A pointer to an NTMS_OBJECTINFORMATIONA (section 2.2.4.20) structure describing
+	// the properties of the medium to create.
+	Media *rsmp.ObjectInformationA `idl:"name:lpMedia" json:"media"`
+	// lpList: An array of NTMS_OBJECTINFORMATIONA (section 2.2.4.20) structures specifying
+	// the sides of the new medium.
+	List []*rsmp.ObjectInformationA `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
 	// Return: The CreateNtmsMediaA return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2133,12 +2285,60 @@ func (o *xxx_CreateNTMSMediaWOperation) UnmarshalNDRResponse(ctx context.Context
 // CreateNTMSMediaWRequest structure represents the CreateNtmsMediaW operation request
 type CreateNTMSMediaWRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis             `idl:"name:This" json:"this"`
-	Media          *rsmp.ObjectInformationW   `idl:"name:lpMedia" json:"media"`
-	List           []*rsmp.ObjectInformationW `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
-	ListBufferSize uint32                     `idl:"name:lpdwListBufferSize" json:"list_buffer_size"`
-	ListCount      uint32                     `idl:"name:dwListCount" json:"list_count"`
-	Options        uint32                     `idl:"name:dwOptions" json:"options"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpMedia: A pointer to an NTMS_OBJECTINFORMATIONW (section 2.2.4.21) structure describing
+	// the properties of the medium to create.
+	Media *rsmp.ObjectInformationW `idl:"name:lpMedia" json:"media"`
+	// lpList: An array of NTMS_OBJECTINFORMATIONW (section 2.2.4.21) structures specifying
+	// the sides of the new medium.
+	List []*rsmp.ObjectInformationW `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
+	// lpdwListBufferSize: A pointer to the size of lpList, in bytes.
+	ListBufferSize uint32 `idl:"name:lpdwListBufferSize" json:"list_buffer_size"`
+	// dwListCount: The number of elements in the lpList array.
+	ListCount uint32 `idl:"name:dwListCount" json:"list_count"`
+	// dwOptions: A bitmap of creation options.
+	//
+	// If a medium with the specified on-media identifier already exists in the system<70>
+	// and the client does not want to duplicate the identifier, the client MUST set dwOptions
+	// to NTMS_ERROR_ON_DUPLICATION (0x00000001) and the server MUST NOT create a medium
+	// with the specified identifier.
+	//
+	// If a medium with the specified on-media identifier already exists in the system<71>
+	// and the client wants to duplicate the identifier, the client MUST set dwOptions to
+	// 0x00000000 and the server MUST create a medium with the specified identifier.
+	//
+	// If a medium with the specified on-media identifier does not exist in the system,<72>there
+	// is no change in the server behavior due to this option.
+	//
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN                |                                                                                  |
+	//	|             VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                     |                                                                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                     | The call was successful.                                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED      | NTMS_USE_ACCESS to the media pool or offline media library is denied; other      |
+	//	|                                     | security errors are possible but indicate a security subsystem error.            |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY  | An allocation failure occurred during processing.                                |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER  | Invalid input parameter.                                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CC ERROR_INVALID_MEDIA      | The option NTMS_ERROR_ON_DUPLICATION was provided, and a medium with this        |
+	//	|                                     | on-media identifier already exists.                                              |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710CE ERROR_INVALID_MEDIA_POOL | The specified media pool either does not exist, or is not a valid import or      |
+	//	|                                     | application pool.                                                                |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE   | The database is inaccessible or damaged.                                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL      | The database is full.                                                            |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DB ERROR_MEDIA_INCOMPATIBLE | The number of specified sides does not match the number of sides associated with |
+	//	|                                     | the media type of the media pool.                                                |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	Options uint32 `idl:"name:dwOptions" json:"options"`
 }
 
 func (o *CreateNTMSMediaWRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateNTMSMediaWOperation) *xxx_CreateNTMSMediaWOperation {
@@ -2188,9 +2388,13 @@ type CreateNTMSMediaWResponse struct {
 	ListCount uint32 `idl:"name:dwListCount" json:"list_count"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat             `idl:"name:That" json:"that"`
-	Media *rsmp.ObjectInformationW   `idl:"name:lpMedia" json:"media"`
-	List  []*rsmp.ObjectInformationW `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpMedia: A pointer to an NTMS_OBJECTINFORMATIONW (section 2.2.4.21) structure describing
+	// the properties of the medium to create.
+	Media *rsmp.ObjectInformationW `idl:"name:lpMedia" json:"media"`
+	// lpList: An array of NTMS_OBJECTINFORMATIONW (section 2.2.4.21) structures specifying
+	// the sides of the new medium.
+	List []*rsmp.ObjectInformationW `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(dwListCount)" json:"list"`
 	// Return: The CreateNtmsMediaW return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

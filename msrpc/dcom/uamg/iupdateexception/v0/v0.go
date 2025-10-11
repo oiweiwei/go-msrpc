@@ -51,10 +51,53 @@ type UpdateExceptionClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The IUpdateException::Message (opnum 8) method retrieves the message for this exception.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Message ADM element.
 	GetMessage(context.Context, *GetMessageRequest, ...dcerpc.CallOption) (*GetMessageResponse, error)
 
+	// The IUpdateException::HResult (opnum 9) method retrieves the HRESULT describing the
+	// error.
+	//
+	// The IUpdateHistoryEntry::HResult (opnum 10) method retrieves the HRESULT from the
+	// operation.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the HResult ADM element.
 	GetHResult(context.Context, *GetHResultRequest, ...dcerpc.CallOption) (*GetHResultResponse, error)
 
+	// The IUpdateException::Context (opnum 10) method retrieves the context for the exception.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Context ADM element.
 	GetContext(context.Context, *GetContextRequest, ...dcerpc.CallOption) (*GetContextResponse, error)
 
 	// AlterContext alters the client context.
@@ -381,8 +424,10 @@ func (o *GetMessageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 // GetMessageResponse structure represents the Message operation response
 type GetMessageResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A localized message describing the error. If no message is available, retval
+	// MUST be set either to NULL or to the empty string.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The Message return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -588,8 +633,16 @@ func (o *GetHResultRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 // GetHResultResponse structure represents the HResult operation response
 type GetHResultResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int32          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An HRESULT code describing the error. The severity bit in the structure identifies
+	// the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// retval: The HRESULT from the operation.
+	ReturnValue int32 `idl:"name:retval" json:"return_value"`
 	// Return: The HResult return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -795,7 +848,9 @@ func (o *GetContextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 // GetContextResponse structure represents the Context operation response
 type GetContextResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat              `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A value from the UpdateExceptionContext (section 2.2.8) enumeration that
+	// describes the context for the exception.
 	ReturnValue uamg.UpdateExceptionContext `idl:"name:retval" json:"return_value"`
 	// Return: The Context return value.
 	Return int32 `idl:"name:Return" json:"return"`

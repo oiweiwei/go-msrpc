@@ -84,8 +84,9 @@ properties</a> for the file.</p>
 </li><li><p><span>    </span>If <b>options</b>
 does not contain FsrmGetFilePropertyOptions_NoRuleEvaluation, perform the <a href="5e49c580-6b10-48a6-9661-fab7f9b0c724" data-linktype="relative-path">Generate new classification
 properties</a> action for the file given the list of <b>Property Definition
-Instances</b> from the previous action. If the property definition instance.flags
-of any of the resulting <b>Property Definition Instances</b> contains <a href="70d61c14-fbed-4e94-bfe7-49ae14c1a02c" data-linktype="relative-path">FsrmPropertyFlags_SetByClassifier</a>,
+Instances</b> from the previous action. If the property definition
+instance.flags of any of the resulting <b>Property Definition Instances</b>
+contains <a href="70d61c14-fbed-4e94-bfe7-49ae14c1a02c" data-linktype="relative-path">FsrmPropertyFlags_SetByClassifier</a>,
 add the file to the <a href="c916b18a-8094-42a4-84b8-5c5e57df1e97" data-linktype="relative-path">Report
 item list</a>.</p>
 </li><li><p><span>    </span>If <b>options</b>

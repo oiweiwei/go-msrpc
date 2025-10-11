@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MPR_SERVER_SET_CONFIG_EX_IDL</b> union is used to get
+or set configured parameters for PPTP, L2TP, SSTP, and IKEv2 devices.</p><dl>
+<dd>
+<div><pre> typedef union _MPR_SERVER_SET_CONFIG_EX_IDL switch (UCHAR   revision) ServerSetConfigObject {
+   case 1: MPR_SERVER_SET_CONFIG_EX_1 ServerSetConfig1;
+   case 2: MPR_SERVER_SET_CONFIG_EX_2 ServerSetConfig2;
+   case 3: MPR_SERVER_SET_CONFIG_EX_3 ServerSetConfig3;
+ } MPR_SERVER_SET_CONFIG_EX_IDL,
+  *PMPR_SERVER_SET_CONFIG_EX_IDL;
+</pre></div>
+</dd></dl><p><b>ServerSetConfig1: </b>This MUST be an <a href="438f3bb9-06fa-4c06-a772-8c8d7bf6e62a" data-linktype="relative-path"><b>MPR_SERVER_SET_CONFIG_EX_1</b></a>
+structure. </p><p><b>ServerSetConfig2: </b>This MUST be an <a href="6f9a70b4-6222-4976-a93f-f853fa19d7b2" data-linktype="relative-path"><b>MPR_SERVER_SET_CONFIG_EX_2</b></a>
+structure. </p><p><b>ServerSetConfig3: </b>This MUST be an <a href="c4043842-b5a8-4768-9689-6fe258777266" data-linktype="relative-path"><b>MPR_SERVER_SET_CONFIG_EX_3</b></a>
+structure. </p></div>

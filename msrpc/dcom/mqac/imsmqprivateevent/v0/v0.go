@@ -49,13 +49,30 @@ type PrivateEventClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
-	// Hwnd operation.
+	// The Hwnd method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return a LONG value, which the client MUST ignore. Because the returned
+	// LONG value serves no purpose, the server MAY<90> return 0x00000000.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
+	//
+	// This interface is optional for communication with the client. If implemented, this
+	// interface MUST reside on the server.
 	GetHandle(context.Context, *GetHandleRequest, ...dcerpc.CallOption) (*GetHandleResponse, error)
 
-	// FireArrivedEvent operation.
+	// The FireArrivedEvent method is received by the server in an RPC_REQUEST packet. In
+	// response, the server MUST provide notification of the availability of a Message.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	FireArrivedEvent(context.Context, *FireArrivedEventRequest, ...dcerpc.CallOption) (*FireArrivedEventResponse, error)
 
-	// FireArrivedErrorEvent operation.
+	// The FireArrivedErrorEvent method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST provide notification of an error relating to the arrival
+	// of a message.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	FireArrivedErrorEvent(context.Context, *FireArrivedErrorEventRequest, ...dcerpc.CallOption) (*FireArrivedErrorEventResponse, error)
 
 	// AlterContext alters the client context.
@@ -348,8 +365,10 @@ func (o *GetHandleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 // GetHandleResponse structure represents the Hwnd operation response
 type GetHandleResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Handle int32          `idl:"name:phwnd" json:"handle"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// phwnd: A pointer to a long that MAY contain 0x00000000. The value returned via this
+	// parameter MUST be ignored by the client, and it serves no purpose.
+	Handle int32 `idl:"name:phwnd" json:"handle"`
 	// Return: The Hwnd return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -569,9 +588,15 @@ func (o *xxx_FireArrivedEventOperation) UnmarshalNDRResponse(ctx context.Context
 // FireArrivedEventRequest structure represents the FireArrivedEvent operation request
 type FireArrivedEventRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This          *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Queue         *mqac.Queue    `idl:"name:pq" json:"queue"`
-	MessageCursor int32          `idl:"name:msgcursor" json:"message_cursor"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// pq: A pointer to an IMSMQQueue interface that upon success will be cast to an IDispatch
+	// pointer.
+	Queue *mqac.Queue `idl:"name:pq" json:"queue"`
+	// msgcursor: A long value that specifies the value of the cursor option that was specified
+	// through the Cursor input parameter that was passed to the IMSMQQueue4::EnableNotification
+	// operation to associate this MSMQEvent with MSMQQueue. This parameter corresponds
+	// to the MQMSGCURSOR (section 2.2.2.8) enum.
+	MessageCursor int32 `idl:"name:msgcursor" json:"message_cursor"`
 }
 
 func (o *FireArrivedEventRequest) xxx_ToOp(ctx context.Context, op *xxx_FireArrivedEventOperation) *xxx_FireArrivedEventOperation {
@@ -841,10 +866,18 @@ func (o *xxx_FireArrivedErrorEventOperation) UnmarshalNDRResponse(ctx context.Co
 // FireArrivedErrorEventRequest structure represents the FireArrivedErrorEvent operation request
 type FireArrivedErrorEventRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This          *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Queue         *mqac.Queue    `idl:"name:pq" json:"queue"`
-	Status        int32          `idl:"name:hrStatus" json:"status"`
-	MessageCursor int32          `idl:"name:msgcursor" json:"message_cursor"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// pq: A pointer to an IMSMQQueue interface that upon success will be cast to an IDispatch
+	// pointer and forwarded on to the client.
+	Queue *mqac.Queue `idl:"name:pq" json:"queue"`
+	// hrStatus: An HRESULT value that specifies the error code that was received from the
+	// Queue where the Message was delivered.
+	Status int32 `idl:"name:hrStatus" json:"status"`
+	// msgcursor: A long value that specifies the value of the cursor option that was specified
+	// through the Cursor input parameter that was passed to the IMSMQQueue4::EnableNotification
+	// operation to associate this MSMQEvent with the queue. This parameter corresponds
+	// to the MQMSGCURSOR (section 2.2.2.8) enum.
+	MessageCursor int32 `idl:"name:msgcursor" json:"message_cursor"`
 }
 
 func (o *FireArrivedErrorEventRequest) xxx_ToOp(ctx context.Context, op *xxx_FireArrivedErrorEventOperation) *xxx_FireArrivedErrorEventOperation {

@@ -1,1 +1,94 @@
-<div class="content"></div>
+<div class="content"><p>The DeleteNtmsRequests method deletes a request or a list of
+requests. Requests that have already been submitted or are queued, waiting, or
+in progress MUST NOT be deleted.</p><dl>
+<dd>
+<div><pre> HRESULT DeleteNtmsRequests(
+   [in, size_is(dwCount)] LPNTMS_GUID lpRequestId,
+   [in] DWORD dwType,
+   [in] DWORD dwCount
+ );
+</pre></div>
+</dd></dl><p><b>lpRequestId: </b>An array of library or <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_4676b5f2-6ecd-463c-8218-811911038e63" data-linktype="relative-path">operator request</a>
+identifiers to delete.</p><p><b>dwType: </b> One of the NTMS_LIBREQUEST or
+NTMS_OPREQUEST values from the <a href="5b190198-a0cb-4e20-90a3-234009357051" data-linktype="relative-path">NtmsObjectsTypes (section 2.2.1.6)</a>
+enumeration, specifying the type of operation to cancel.</p><p><b>dwCount: </b> The number of elements in the <i>lpRequestId</i>
+array.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to the object is denied; other security errors
+  are possible but indicate a security subsystem error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The parameter is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database query or update failed.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpRequestId</i>
+is not NULL. If it is NULL, the server MUST immediately fail the operation and
+return ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights. If the client does not have the
+required access rights, NTMS_MODIFY_ACCESS to the library is denied and the
+server MUST return ERROR_ACCESS_DENIED (0x80070005).</p><p>The action taken by the server depends on the value of <i>dwType</i>.
+The following table lists all possible values for <i>dwType</i>.</p><table><thead>
+  <tr>
+   <th>
+   <p> Value </p>
+   </th>
+   <th>
+   <p> Meaning </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_LIBREQUEST</p>
+  </td>
+  <td>
+  <p><a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_f8da5142-cddf-49b1-b24c-a352db74cbbb" data-linktype="relative-path">Library
+  request</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_OPREQUEST</p>
+  </td>
+  <td>
+  <p>Operator request</p>
+  </td>
+ </tr></tbody></table><p>The DeleteNtmsRequests method deletes a request or a list of
+requests from the server database. Library or operator requests that are in a
+completed, failed, refused, or canceled state are removed. Submitted requests,
+queued requests, waiting requests, and in-progress requests are not deleted.</p><p>An error is not returned if a request or list of requests is
+not found.</p></div>

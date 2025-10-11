@@ -49,19 +49,44 @@ type ConnectionPointClient interface {
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
 
-	// GetConnectionInterface operation.
+	// The GetConnectionInterface method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return a pointer to the IID of the interface that client
+	// applications MUST implement for the MSMQEvent object to be able to notify them when
+	// an event is raised.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.<92>
 	GetConnectionInterface(context.Context, *GetConnectionInterfaceRequest, ...dcerpc.CallOption) (*GetConnectionInterfaceResponse, error)
 
-	// GetConnectionPointContainer operation.
+	// The GetConnectionPointContainer method is received by the server in an RPC_REQUEST
+	// packet. In response, the server MUST return a pointer to a pointer to an IConnectionPointContainer
+	// interface for the MSMQEvent object.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.<93>
 	GetConnectionPointContainer(context.Context, *GetConnectionPointContainerRequest, ...dcerpc.CallOption) (*GetConnectionPointContainerResponse, error)
 
-	// Advise operation.
+	// The Advise method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST register a client's callback object to receive event notifications.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.<94>
 	Advise(context.Context, *AdviseRequest, ...dcerpc.CallOption) (*AdviseResponse, error)
 
-	// Unadvise operation.
+	// The Unadvise method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST deregister a client's callback object to cease receiving event notifications.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.<95>
 	Unadvise(context.Context, *UnadviseRequest, ...dcerpc.CallOption) (*UnadviseResponse, error)
 
-	// EnumConnections operation.
+	// The EnumConnections method is received by the server in an RPC_REQUEST packet. In
+	// response, the server MUST return a pointer to an IEnumConnections interface pointer,
+	// as defined in [MSDN-EC], for the client to enumerate all the currently registered
+	// callback objects.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.<96>
 	EnumConnections(context.Context, *EnumConnectionsRequest, ...dcerpc.CallOption) (*EnumConnectionsResponse, error)
 
 	// AlterContext alters the client context.
@@ -406,7 +431,9 @@ func (o *GetConnectionInterfaceRequest) UnmarshalNDR(ctx context.Context, r ndr.
 type GetConnectionInterfaceResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IID  *dcom.IID      `idl:"name:pIID" json:"iid"`
+	// pIID: A pointer to an IID that upon successful completion will contain the IID value
+	// of the _DMSMQEventEvents interface.
+	IID *dcom.IID `idl:"name:pIID" json:"iid"`
 	// Return: The GetConnectionInterface return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -648,8 +675,10 @@ func (o *GetConnectionPointContainerRequest) UnmarshalNDR(ctx context.Context, r
 // GetConnectionPointContainerResponse structure represents the GetConnectionPointContainer operation response
 type GetConnectionPointContainerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat                 `idl:"name:That" json:"that"`
-	CPC  *mqac.ConnectionPointContainer `idl:"name:ppCPC" json:"cpc"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppCPC: A pointer to an IConnectionPointContainer interface pointer for the MSMQEvent
+	// object.
+	CPC *mqac.ConnectionPointContainer `idl:"name:ppCPC" json:"cpc"`
 	// Return: The GetConnectionPointContainer return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -868,7 +897,9 @@ func (o *xxx_AdviseOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 type AdviseRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Sink *dcom.Unknown  `idl:"name:pUnkSink" json:"sink"`
+	// pUnkSink: A pointer to an IUnknown (as specified in [MS-DCOM] section 3.1.1.5.8)
+	// interface for the client object.
+	Sink *dcom.Unknown `idl:"name:pUnkSink" json:"sink"`
 }
 
 func (o *AdviseRequest) xxx_ToOp(ctx context.Context, op *xxx_AdviseOperation) *xxx_AdviseOperation {
@@ -905,8 +936,10 @@ func (o *AdviseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // AdviseResponse structure represents the Advise operation response
 type AdviseResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Cookie uint32         `idl:"name:pdwCookie" json:"cookie"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pdwCookie: A pointer to a unique DWORD value that uniquely identifies the new element
+	// in the ConnectionCollection instance variable.
+	Cookie uint32 `idl:"name:pdwCookie" json:"cookie"`
 	// Return: The Advise return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1077,8 +1110,11 @@ func (o *xxx_UnadviseOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 // UnadviseRequest structure represents the Unadvise operation request
 type UnadviseRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Cookie uint32         `idl:"name:dwCookie" json:"cookie"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// dwCookie: A DWORD value that uniquely identifies the interface pointer for the callback
+	// that is to be deregistered. This corresponds to the value of the "cookie" that was
+	// returned in the call to IConnectionPoint::Advise.
+	Cookie uint32 `idl:"name:dwCookie" json:"cookie"`
 }
 
 func (o *UnadviseRequest) xxx_ToOp(ctx context.Context, op *xxx_UnadviseOperation) *xxx_UnadviseOperation {
@@ -1353,7 +1389,9 @@ func (o *EnumConnectionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // EnumConnectionsResponse structure represents the EnumConnections operation response
 type EnumConnectionsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat        `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppEnum: A pointer to an IEnumConnections interface pointer that upon successful completion
+	// will allow the user to enumerate all the currently registered callback objects.
 	Enum *mqac.EnumConnections `idl:"name:ppEnum" json:"enum"`
 	// Return: The EnumConnections return value.
 	Return int32 `idl:"name:Return" json:"return"`

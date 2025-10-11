@@ -29,8 +29,7 @@ success, or a nonzero error code on failure.</p><dl>
   <p>FSRM_E_NOT_FOUND</p>
   </td>
   <td>
-  <p>An object with the specified ID was not found in the
-  collection.</p>
+  <p>An object with the specified ID was not found in the collection.</p>
   </td>
  </tr><tr>
   <td>
@@ -54,8 +53,8 @@ success, or a nonzero error code on failure.</p><dl>
 </dd></dl><p>Upon receiving this message, the server MUST validate
 parameters:</p><ul><li><p><span><span> 
 </span></span>Verify that <i>entry</i> is not NULL.</p>
-</li></ul><p>If any validation fails, the server MUST terminate processing
-and return a nonzero error code.</p><p>The server MUST do one of the following:</p><ul><li><p><span><span> 
+</li></ul><p>If any validation fails, the server MUST terminate
+processing and return a nonzero error code.</p><p>The server MUST do one of the following:</p><ul><li><p><span><span> 
 </span></span>Set <i>entry</i> to the IDispatch interface of the object whose
 ID matches the value of the <i>id</i> parameter.</p>
 </li><li><p><span><span> 

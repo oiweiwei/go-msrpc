@@ -1,1 +1,20 @@
-<div class="content"></div>
+<div class="content"><p>The structure of the COMM_REPLICA_VERSION_GUID packet
+element is as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _COMM_REPLICA_VERSION_GUID {
+   USHORT CommType;
+   ULONG Length;
+   ULONG DataLength;
+   GUID Data;
+ } COMM_REPLICA_VERSION_GUID,
+  *PCOMM_REPLICA_VERSION_GUID;
+</pre></div>
+</dd></dl><p><b>CommType:</b>   A 16-bit, unsigned
+integer that indicates the type of this <a href="194f8fff-d903-44b7-9530-c66f5366f8c7" data-linktype="relative-path">COMM_PACKET</a> element. MUST
+be set to 0x0014.</p><p><b>Length:</b>   A 32-bit, unsigned integer
+that indicates the length in bytes of the data following the Length field. MUST
+be 0x00000014.</p><p><b>DataLength:</b>   A 32-bit, unsigned
+integer that indicates the length in bytes of the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> field. MUST be
+0x00000010.</p><p><b>Data:</b>   A field of type <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a>
+that specifies a GUID object that represents the machine that provided the
+version vector on the last <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_961ac809-b9b0-4bd7-b35d-ddd53d76e4fe" data-linktype="relative-path">Join</a>.</p></div>

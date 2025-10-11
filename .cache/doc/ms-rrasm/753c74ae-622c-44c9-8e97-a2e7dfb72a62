@@ -1,1 +1,75 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RasRpcGetInstalledProtocolsEx</b> method retrieves
+the protocol information on the RRAS server. The list of protocols is defined
+in the following return value section.</p><dl>
+<dd>
+<div><pre> DWORD RasRpcGetInstalledProtocolsEx(
+   [in] handle_t h,
+   [in] BOOL fRouter,
+   [in] BOOL fRasCli,
+   [in] BOOL fRasSrv
+ );
+</pre></div>
+</dd></dl><p><b>h: </b>An RPC binding handle as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a> section 2.</p><p><b>fRouter: </b>If set to TRUE, protocols enabled for
+Demand Dial are retrieved. If set to FALSE, protocols enabled for Demand Dial
+are not retrieved.</p><p><b>fRasCli: </b>This flag is not used and MUST be set
+to FALSE.</p><p><b>fRasSrv: </b>If set to TRUE, retrieves the
+protocol enabled for RRAS incoming connections. If set to FALSE, protocol for
+RRAS incoming connections are not retrieved.</p><p><b>Return Values: </b>Specifies the return status as
+explained in section <a href="c39d153e-2f97-4e11-8aff-bcf983869dc9" data-linktype="relative-path">2.2.1.2.218</a>
+for the <b>retcode</b> field.</p><dl>
+<dd>
+<p>The return value can be one of the error codes that
+follow. All other error values MUST be treated the same by the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_6132dde1-9eae-4923-987e-9750c3dbca89" data-linktype="relative-path">RRASM client</a>.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>There is no protocol installed on the RRAS server or
+  there is some error when RRAS server retrieves the information.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001 to 0x0000000F</p>
+  </td>
+  <td>
+  <p>Specifies the protocols enabled on the RRAS server.
+  This value SHOULD be a combination of one or more of the following flags:</p>
+  <p>NP_Nbf (0x00000001): NetBEUI protocol is enabled.<a id="Appendix_A_Target_344"></a><a aria-label="Product behavior note 344" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_344" data-linktype="relative-path">&lt;344&gt;</a></p>
+  <p>NP_Ipx (0x00000002): IPX protocol is enabled.<a id="Appendix_A_Target_345"></a><a aria-label="Product behavior note 345" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_345" data-linktype="relative-path">&lt;345&gt;</a></p>
+  <p>NP_Ip (0x00000004): TCP/IPv4 protocol is enabled.</p>
+  <p>NP_Ipv6 (0x00000008): TCP/IPv6 protocol is enabled.<a id="Appendix_A_Target_346"></a><a aria-label="Product behavior note 346" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_346" data-linktype="relative-path">&lt;346&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> This method throws an exception
+with the exception code RPC_S_ACCESS_DENIED (0x00000005) if the client is not
+an <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_eb335f5b-619b-46ed-9138-06e9910108c3" data-linktype="relative-path">administrator</a> on the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_f91f3fc7-d1a1-4a07-8c92-d19eb0c9acb0" data-linktype="relative-path">RRASM server</a>, with access
+permission to perform the operation.<a id="Appendix_A_Target_347"></a><a aria-label="Product behavior note 347" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_347" data-linktype="relative-path">&lt;347&gt;</a></p><dl>
+<dd>
+<p>The opnum field value for this method is 14.</p>
+</dd>
+<dd>
+<p>When processing this call, the RRASM server SHOULD
+do the following:</p>
+</dd></dl><ul><li><p><span><span>  </span></span>Validate
+as specified in section <a href="83a083ac-cd43-44bf-a301-7c88e64a32fe" data-linktype="relative-path">3.3.4</a>
+whether this method was called by a client that is an administrator of the
+RRASM server.</p>
+</li><li><p><span><span>  </span></span>Call
+the abstract interface <b>Invoke RASRPC</b> method specifying the operation and
+the parameters to enable RRAS server to perform the required management task. </p>
+</li><li><p><span><span>  </span></span>If
+all validation is successful, return the installed protocol information as
+provided by the RRAS server.</p>
+</li></ul></div>

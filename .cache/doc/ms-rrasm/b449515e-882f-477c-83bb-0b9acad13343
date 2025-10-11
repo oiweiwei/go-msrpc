@@ -1,1 +1,69 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RRasAdminConnectionClearStats</b> method resets the
+statistics counters for the connection identified by the passed handle in <i>hDimConnection</i>.
+The <i>hDimServer</i> handle specifies the RRASM server on which the call is
+executed.</p><dl>
+<dd>
+<div><pre> DWORD RRasAdminConnectionClearStats(
+   [in] DIM_HANDLE hDimServer,
+   [in] DWORD hDimConnection
+ );
+</pre></div>
+</dd></dl><p><b>hDimServer: </b>A handle to the RRAS server where
+the call is executed, see section <a href="1f8cdbcc-9791-4a35-ad78-878b8d110e15" data-linktype="relative-path">3.1.3</a>.</p><p><b>hDimConnection: </b>This is of type <b>DWORD</b>
+and SHOULD be set to the particular connection identifier for which the
+connection statistics have to be cleared. Obtain this handle by calling <a href="023913fc-f438-47c9-a52b-6e45e0190c6c" data-linktype="relative-path"><b>RRasAdminConnectionEnum (section 3.1.4.2)</b></a>.
+Because RRASM server does not maintain connection handle information, the
+validation of this handle SHOULD be done by the RRAS server implementation. </p><p><b>Return Values: </b>A 32-bit, unsigned integer
+value that indicates return status. A return value of ERROR_SUCCESS
+(0x00000000) indicates that the operation was completed successfully;
+otherwise, it contains an error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+or in section <a href="5c0c991a-0d3d-4fe5-9503-5128d0d49fe1" data-linktype="relative-path">2.2.4</a>.
+All values that are not in the table that follows MUST be treated the same by
+the RRASM client. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_SUCCESS</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The calling application does not have sufficient
+  privileges as specified in section <a href="9373431f-ed29-4639-9f8b-743267c9f9b6" data-linktype="relative-path">2.1.1.1</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 3.</p><p>When processing this call, the RRASM server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate, as specified in section 2.1.1.1, whether this method
+was called by a client that has access to the method. If the client does not
+have access, return error ERROR_ACCESS_DENIED (0x00000005).</p>
+</li><li><p><span><span> 
+</span></span>If the <b>RouterType</b> is ROUTER_TYPE_LAN, return an error
+other than one of the errors listed in the preceding table.</p>
+</li><li><p><span><span> 
+</span></span>Call the abstract interface <b>Invoke DIMSVC</b> method
+specifying the operation and the parameters to enable the RRAS server to
+perform the required management task.</p>
+</li><li><p><span><span> 
+</span></span>If the operation completed successfully, return ERROR_SUCCESS
+(0x00000000).</p>
+</li><li><p><span><span> 
+</span></span>Otherwise, return the error provided by the RRAS server.</p>
+</li></ul><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

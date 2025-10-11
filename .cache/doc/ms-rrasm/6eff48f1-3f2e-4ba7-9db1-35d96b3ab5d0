@@ -1,1 +1,289 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPX_INTERFACE</b> structure MAY<a id="Appendix_A_Target_99"></a><a aria-label="Product behavior note 99" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_99" data-linktype="relative-path">&lt;99&gt;</a> be used to describe the MIB Row
+for <b>IPX_INTERFACE_TABLE</b>. This structure is returned as part of the
+following methods: </p><ul><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a><span> </span></p>
+</li><li><p><span><span> 
+</span></span><a href="9102e585-2f62-4408-bfb6-02a6460cc883" data-linktype="relative-path"><b>RMIBEntryGetFirst (section 3.1.4.31)</b></a><span> </span></p>
+</li><li><p><span><span> 
+</span></span><a href="50f78033-d248-4272-b4b9-a2519a0f304d" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.1.4.32)</b></a><span> </span></p>
+<div><pre> typedef struct _IPX_INTERFACE {
+   ULONG InterfaceIndex;
+   ULONG AdministratorState;
+   ULONG AdapterIndex;
+   UCHAR InterfaceName[48];
+   ULONG InterfaceType;
+   ULONG MediaType;
+   UCHAR NetNumber[4];
+   UCHAR MacAddress[6];
+   ULONG Delay;
+   ULONG Throughput;
+   ULONG NetbiosAccept;
+   ULONG NetbiosDeliver;
+   ULONG EnableIpxWanNegotiation;
+   IPX_IF_STATS IfStats;
+ } IPX_INTERFACE,
+  *PIPX_INTERFACE;
+</pre></div>
+</li></ul><p><b>InterfaceIndex: </b>The local index value for the
+network interface. This index value MAY change when a network adapter is
+disabled and then enabled, or under other circumstances, and need not be
+persistent. </p><p><b>AdministratorState: </b>This MUST be set to the
+desired state of the interface. A value of 0x00000001 disables the interface
+and a value of 0x00000002 enables the interface.</p><p><b>AdapterIndex: </b>The interface index associated
+with the network adapter.</p><p><b>InterfaceName: </b>A null-terminated Unicode
+string that contains the name of the adapter.</p><p><b>InterfaceType: </b>The type of the interface. The
+type MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IF_TYPE_OTHER</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Other</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_TYPE_LAN</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>LAN</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_TYPE_WAN_ROUTER</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>WAN router</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_TYPE_WAN_WORKSTATION</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Remote workstation dialing in</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_TYPE_INTERNAL</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>Internal (virtual) interface</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_TYPE_PERSONAL_WAN_ROUTER</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>Personal WAN router</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_TYPE_ROUTER_WORKSTATION_DIALOUT</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>Local workstation dialing out</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IF_TYPE_STANDALONE_WORKSTATION_DIALOUT</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Stand-alone workstation dialing out</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>MediaType: </b>The type of media. This MUST one of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NdisMedium802_3</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>An Ethernet (802.3) network.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NdisMedium802_5</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>A Token Ring (802.5) network.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NdisMediumFddi</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>A Fiber Distributed Data Interface (FDDI) network.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NdisMediumWan</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>A wide area network (WAN). This type covers various
+  forms of point-to-point and WAN NICs and variant address/header formats that
+  MUST be negotiated between the protocol driver and the underlying driver
+  after the binding is established.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NdisMediumLocalTalk</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>A LocalTalk network. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NdisMediumDix</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>An Ethernet network for which the drivers use the DIX
+  Ethernet header format.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NdisMediumArcnetRaw</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>An ARCNET network.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NdisMediumArcnet878_2</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>An ARCNET (878.2) network.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NdisMediumAtm</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>An ATM network. Connection-oriented client protocol
+  drivers can bind themselves to an underlying miniport driver that returns this
+  value. Otherwise, legacy protocol drivers bind themselves to the
+  system-supplied LanE intermediate driver, which reports its medium type as
+  either NdisMedium802_3 or NdisMedium802_5, depending on how the network
+  administrator configures the LanE driver.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NdisMediumWirelessWan</p>
+  <p>0x00000009</p>
+  </td>
+  <td>
+  <p>A wireless network. NDIS 5.x miniport drivers that
+  support wireless LAN (WLAN) or wireless WAN (WWAN) packets declare their
+  medium as NdisMedium802_3 and emulate Ethernet to higher-level NDIS drivers.<a id="Appendix_A_Target_100"></a><a aria-label="Product behavior note 100" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_100" data-linktype="relative-path">&lt;100&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NdisMediumIrda</p>
+  <p>0x0000000A</p>
+  </td>
+  <td>
+  <p>An infrared (IrDA) network.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NdisMediumBpc</p>
+  <p>0x0000000B</p>
+  </td>
+  <td>
+  <p>A broadcast computer network.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NdisMediumCoWan</p>
+  <p>0x0000000C</p>
+  </td>
+  <td>
+  <p>A wide area network (WAN) in a connection-oriented
+  environment.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NdisMedium1394</p>
+  <p>0x0000000D</p>
+  </td>
+  <td>
+  <p>An IEEE 1394 (FireWire) network.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NdisMediumInfiniBand</p>
+  <p>0x0000000E</p>
+  </td>
+  <td>
+  <p>An InfiniBand network.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NdisMediumTunnel</p>
+  <p>0x0000000F</p>
+  </td>
+  <td>
+  <p>A tunnel network.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NdisMediumNative802_11</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>A native IEEE 802.11 network.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NdisMediumLoopback</p>
+  <p>0x00000011</p>
+  </td>
+  <td>
+  <p>An NDIS loopback network.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>NetNumber: </b>The IPX network number that is
+matched to the destination network number in a packet&#39;s IPX header.</p><p><b>MacAddress: </b>The destination MAC address of the
+IPX packet when it is forwarded to the next hop. For directly attached
+networks, the Forwarding MAC Address field is blank.</p><p><b>Delay: </b>Link delay indicated in milliseconds.</p><p><b>Throughput: </b>Throughput of the interface
+indicated in bits per second.</p><p><b>NetbiosAccept: </b>This MUST be set to 0x00000001
+for the interface to accept NetBIOS broadcast packets.</p><p><b>NetbiosDeliver: </b>This MUST be set to 0x00000000
+on the WAN interface and 0x00000001 on the LAN interface.</p><p><b>EnableIpxWanNegotiation: </b>A value of 0x00000001
+disables the WAN negotiation, and a value of 0x00000002 enables the WAN
+negotiation.</p><p><b>IfStats: </b>The interface statistics. See <a href="f271db74-4a56-4cc6-b14a-4116fb4c7813" data-linktype="relative-path"><b>IPX_IF_STATS (section 2.2.1.2.107)</b></a>. 
+</p></div>

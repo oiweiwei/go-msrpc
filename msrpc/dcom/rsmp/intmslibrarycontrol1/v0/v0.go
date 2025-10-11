@@ -49,45 +49,81 @@ type LibraryControl1Client interface {
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
 
+	// The EjectNtmsMedia method ejects media from theport of a library.
 	EjectNTMSMedia(context.Context, *EjectNTMSMediaRequest, ...dcerpc.CallOption) (*EjectNTMSMediaResponse, error)
 
+	// The InjectNtmsMedia method allows media to be inserted into the port of an online
+	// library.
 	InjectNTMSMedia(context.Context, *InjectNTMSMediaRequest, ...dcerpc.CallOption) (*InjectNTMSMediaResponse, error)
 
+	// The AccessNtmsLibraryDoor method unlocks the door of an online library.
 	AccessNTMSLibraryDoor(context.Context, *AccessNTMSLibraryDoorRequest, ...dcerpc.CallOption) (*AccessNTMSLibraryDoorResponse, error)
 
+	// The CleanNtmsDrive method queues a cleaning request for a drive.
 	CleanNTMSDrive(context.Context, *CleanNTMSDriveRequest, ...dcerpc.CallOption) (*CleanNTMSDriveResponse, error)
 
+	// The DismountNtmsDrive method moves a medium from a drive to its storage slot.
 	DismountNTMSDrive(context.Context, *DismountNTMSDriveRequest, ...dcerpc.CallOption) (*DismountNTMSDriveResponse, error)
 
+	// The InventoryNtmsLibrary method queues a request to perform an inventory of an online
+	// library.
 	InventoryNTMSLibrary(context.Context, *InventoryNTMSLibraryRequest, ...dcerpc.CallOption) (*InventoryNTMSLibraryResponse, error)
 
 	// INtmsLibraryControl1_LocalOnlyOpnum09 operation.
 	LibraryControl1LocalOnlyOpnum09(context.Context, *LibraryControl1LocalOnlyOpnum09Request, ...dcerpc.CallOption) (*LibraryControl1LocalOnlyOpnum09Response, error)
 
+	// The CancelNtmsLibraryRequest method cancels outstanding library requests.
 	CancelNTMSLibraryRequest(context.Context, *CancelNTMSLibraryRequestRequest, ...dcerpc.CallOption) (*CancelNTMSLibraryRequestResponse, error)
 
+	// The ReserveNtmsCleanerSlot method reserves a slot in an online library for a drive
+	// cleaner cartridge.
 	ReserveNTMSCleanerSlot(context.Context, *ReserveNTMSCleanerSlotRequest, ...dcerpc.CallOption) (*ReserveNTMSCleanerSlotResponse, error)
 
+	// The ReleaseNtmsCleanerSlot method removes an existing slot reservation for a cleaning
+	// cartridge.
 	ReleaseNTMSCleanerSlot(context.Context, *ReleaseNTMSCleanerSlotRequest, ...dcerpc.CallOption) (*ReleaseNTMSCleanerSlotResponse, error)
 
+	// The InjectNtmsCleaner method allows a cleaner cartridge to be inserted into an online
+	// library unit.
 	InjectNTMSCleaner(context.Context, *InjectNTMSCleanerRequest, ...dcerpc.CallOption) (*InjectNTMSCleanerResponse, error)
 
+	// The EjectNtmsCleaner method ejects the cleaning cartridge from the currently reserved
+	// cleaner slot.
 	EjectNTMSCleaner(context.Context, *EjectNTMSCleanerRequest, ...dcerpc.CallOption) (*EjectNTMSCleanerResponse, error)
 
+	// The DeleteNtmsLibrary method deletes a library and all the devices in it. Any media
+	// in the library are moved to the offline library.
 	DeleteNTMSLibrary(context.Context, *DeleteNTMSLibraryRequest, ...dcerpc.CallOption) (*DeleteNTMSLibraryResponse, error)
 
+	// The DeleteNtmsDrive method deletes a drive.
 	DeleteNTMSDrive(context.Context, *DeleteNTMSDriveRequest, ...dcerpc.CallOption) (*DeleteNTMSDriveResponse, error)
 
+	// The GetNtmsRequestOrder method retrieves the order in which a request will be processed
+	// in the library queue.
 	GetNTMSRequestOrder(context.Context, *GetNTMSRequestOrderRequest, ...dcerpc.CallOption) (*GetNTMSRequestOrderResponse, error)
 
+	// The SetNtmsRequestOrder method sets the order in which a request will be processed
+	// in the library queue.
 	SetNTMSRequestOrder(context.Context, *SetNTMSRequestOrderRequest, ...dcerpc.CallOption) (*SetNTMSRequestOrderResponse, error)
 
+	// The DeleteNtmsRequests method deletes a request or a list of requests. Requests that
+	// have already been submitted or are queued, waiting, or in progress MUST NOT be deleted.
 	DeleteNTMSRequests(context.Context, *DeleteNTMSRequestsRequest, ...dcerpc.CallOption) (*DeleteNTMSRequestsResponse, error)
 
+	// The BeginNtmsDeviceChangeDetection method begins a device change detection session.
+	// The libraries for which media change detection is required MUST be set using the
+	// SetNtmsDeviceChangeDetection method. Implementation of this method is optional.<23>
+	// The server MAY return a non-implemented error (ERROR_CALL_NOT_IMPLEMENTED, 0x80070078).<24>
 	BeginNTMSDeviceChangeDetection(context.Context, *BeginNTMSDeviceChangeDetectionRequest, ...dcerpc.CallOption) (*BeginNTMSDeviceChangeDetectionResponse, error)
 
+	// The SetNtmsDeviceChangeDetection method sets one or more target devices for change
+	// detection. Implementation of this method is optional.<25> The server MAY return a
+	// non-implemented error (ERROR_CALL_NOT_IMPLEMENTED, 0x80070078). <26>
 	SetNTMSDeviceChangeDetection(context.Context, *SetNTMSDeviceChangeDetectionRequest, ...dcerpc.CallOption) (*SetNTMSDeviceChangeDetectionResponse, error)
 
+	// The EndNtmsDeviceChangeDetection method ends device change detection for one or more
+	// target devices. Implementation of this method is optional.<27> The server MAY return
+	// a non-implemented error (ERROR_CALL_NOT_IMPLEMENTED, 0x80070078). <28>
 	EndNTMSDeviceChangeDetection(context.Context, *EndNTMSDeviceChangeDetectionRequest, ...dcerpc.CallOption) (*EndNTMSDeviceChangeDetectionResponse, error)
 
 	// AlterContext alters the client context.
@@ -777,10 +813,34 @@ func (o *xxx_EjectNTMSMediaOperation) UnmarshalNDRResponse(ctx context.Context, 
 // EjectNTMSMediaRequest structure represents the EjectNtmsMedia operation request
 type EjectNTMSMediaRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	MediaID        *dtyp.GUID     `idl:"name:lpMediaId;pointer:unique" json:"media_id"`
-	EjectOperation *dtyp.GUID     `idl:"name:lpEjectOperation" json:"eject_operation"`
-	Action         uint32         `idl:"name:dwAction" json:"action"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpMediaId: A pointer to the media identifier of the media to eject.
+	MediaID *dtyp.GUID `idl:"name:lpMediaId;pointer:unique" json:"media_id"`
+	// lpEjectOperation: A pointer to the identifier of the eject process; MUST be used
+	// with dwAction set to NTMS_EJECT_STOP.
+	EjectOperation *dtyp.GUID `idl:"name:lpEjectOperation" json:"eject_operation"`
+	// dwAction: A value from the NtmsEjectOperation enumeration that specifies the action
+	// to perform.
+	//
+	//	+------------------------------------+------------------------------------------------------+
+	//	|               RETURN               |                                                      |
+	//	|             VALUE/CODE             |                     DESCRIPTION                      |
+	//	|                                    |                                                      |
+	//	+------------------------------------+------------------------------------------------------+
+	//	+------------------------------------+------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                             |
+	//	+------------------------------------+------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | A parameter is not valid.                            |
+	//	+------------------------------------+------------------------------------------------------+
+	//	| 0x800700AA ERROR_BUSY              | The media or drives are busy.                        |
+	//	+------------------------------------+------------------------------------------------------+
+	//	| 0x800710D1 ERROR_LIBRARY_OFFLINE   | The library identifier refers to an offline library. |
+	//	+------------------------------------+------------------------------------------------------+
+	//	| 0x800710D5 ERROR_RESOURCE_DISABLED | A resource required for this operation is disabled.  |
+	//	+------------------------------------+------------------------------------------------------+
+	//	| 0x800710DD ERROR_INVALID_OPERATION | A stop was performed on an invalid operation.        |
+	//	+------------------------------------+------------------------------------------------------+
+	Action uint32 `idl:"name:dwAction" json:"action"`
 }
 
 func (o *EjectNTMSMediaRequest) xxx_ToOp(ctx context.Context, op *xxx_EjectNTMSMediaOperation) *xxx_EjectNTMSMediaOperation {
@@ -821,8 +881,10 @@ func (o *EjectNTMSMediaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // EjectNTMSMediaResponse structure represents the EjectNtmsMedia operation response
 type EjectNTMSMediaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
-	EjectOperation *dtyp.GUID     `idl:"name:lpEjectOperation" json:"eject_operation"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpEjectOperation: A pointer to the identifier of the eject process; MUST be used
+	// with dwAction set to NTMS_EJECT_STOP.
+	EjectOperation *dtyp.GUID `idl:"name:lpEjectOperation" json:"eject_operation"`
 	// Return: The EjectNtmsMedia return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1060,10 +1122,46 @@ func (o *xxx_InjectNTMSMediaOperation) UnmarshalNDRResponse(ctx context.Context,
 // InjectNTMSMediaRequest structure represents the InjectNtmsMedia operation request
 type InjectNTMSMediaRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This            *dcom.ORPCThis `idl:"name:This" json:"this"`
-	LibraryID       *dtyp.GUID     `idl:"name:lpLibraryId" json:"library_id"`
-	InjectOperation *dtyp.GUID     `idl:"name:lpInjectOperation" json:"inject_operation"`
-	Action          uint32         `idl:"name:dwAction" json:"action"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpLibraryId: A pointer to the identifier of a media library.
+	LibraryID *dtyp.GUID `idl:"name:lpLibraryId" json:"library_id"`
+	// lpInjectOperation: A pointer to the identifier of the insert process. In the case
+	// of a NTMS_INJECT_START or NTMS_INJECT_STARTMANY operation, this MUST be an out parameter,
+	// and the server will return the lpInjectOperation identifier immediately after starting
+	// the operation. In the case of a NTMS_INJECT_STOP or NTMS_INJECT_RETRACT operation,
+	// this MUST be an input parameter.
+	InjectOperation *dtyp.GUID `idl:"name:lpInjectOperation" json:"inject_operation"`
+	// dwAction: A value from the NtmsInjectOperation enumeration, specifying the operation
+	// to perform.
+	//
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                 |                                                                                  |
+	//	|              VALUE/CODE               |                                   DESCRIPTION                                    |
+	//	|                                       |                                                                                  |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                       | The insert is queued.                                                            |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED        | NTMS_CONTROL_ACCESS to the library is denied; other security errors are possible |
+	//	|                                       | but indicate a security subsystem error.                                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY    | An allocation failure occurred during processing.                                |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER    | A parameter is missing.                                                          |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D1 ERROR_LIBRARY_OFFLINE      | The library identifier refers to an offline library that cannot inject media.    |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE     | The database is inaccessible or damaged.                                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL        | The database is full.                                                            |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DD ERROR_INVALID_OPERATION    | The NTMS_INJECT_STOP action was performed on an invalid operation identifier.    |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DF ERROR_DEVICE_NOT_AVAILABLE | The library is disabled.                                                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710E2 ERROR_LIBRARY_FULL         | The library is full, and no slot is available for use.                           |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	Action uint32 `idl:"name:dwAction" json:"action"`
 }
 
 func (o *InjectNTMSMediaRequest) xxx_ToOp(ctx context.Context, op *xxx_InjectNTMSMediaOperation) *xxx_InjectNTMSMediaOperation {
@@ -1104,8 +1202,13 @@ func (o *InjectNTMSMediaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // InjectNTMSMediaResponse structure represents the InjectNtmsMedia operation response
 type InjectNTMSMediaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	InjectOperation *dtyp.GUID     `idl:"name:lpInjectOperation" json:"inject_operation"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpInjectOperation: A pointer to the identifier of the insert process. In the case
+	// of a NTMS_INJECT_START or NTMS_INJECT_STARTMANY operation, this MUST be an out parameter,
+	// and the server will return the lpInjectOperation identifier immediately after starting
+	// the operation. In the case of a NTMS_INJECT_STOP or NTMS_INJECT_RETRACT operation,
+	// this MUST be an input parameter.
+	InjectOperation *dtyp.GUID `idl:"name:lpInjectOperation" json:"inject_operation"`
 	// Return: The InjectNtmsMedia return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1300,9 +1403,35 @@ func (o *xxx_AccessNTMSLibraryDoorOperation) UnmarshalNDRResponse(ctx context.Co
 // AccessNTMSLibraryDoorRequest structure represents the AccessNtmsLibraryDoor operation request
 type AccessNTMSLibraryDoorRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	LibraryID *dtyp.GUID     `idl:"name:lpLibraryId" json:"library_id"`
-	Action    uint32         `idl:"name:dwAction" json:"action"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpLibraryId: A pointer to the identifier of a media library.
+	LibraryID *dtyp.GUID `idl:"name:lpLibraryId" json:"library_id"`
+	// dwAction: One of the NTMS_INVENTORY_NONE, NTMS_INVENTORY_OMID, NTMS_INVENTORY_FAST,
+	// or NTMS_INVENTORY_DEFAULT values from the NtmsInventoryMethod enumeration, specifying
+	// the action to perform when the door is closed.
+	//
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                 |                                                                                  |
+	//	|              VALUE/CODE               |                                   DESCRIPTION                                    |
+	//	|                                       |                                                                                  |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                       | The call was successful.                                                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED        | NTMS_CONTROL_ACCESS to the library is denied; other security errors are possible |
+	//	|                                       | but indicate a security subsystem error.                                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER    | A parameter is not valid.                                                        |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800700D1 ERROR_LIBRARY_OFFLINE      | A library identifier refers to an offline library.                               |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D5 ERROR_RESOURCE_DISABLED    | The resource required for this operation is disabled.                            |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710DC ERROR_RESOURCE_NOT_PRESENT | The resource that is required for this operation does not exist.                 |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE     | The database query or update failed.                                             |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	Action uint32 `idl:"name:dwAction" json:"action"`
 }
 
 func (o *AccessNTMSLibraryDoorRequest) xxx_ToOp(ctx context.Context, op *xxx_AccessNTMSLibraryDoorOperation) *xxx_AccessNTMSLibraryDoorOperation {
@@ -1521,8 +1650,38 @@ func (o *xxx_CleanNTMSDriveOperation) UnmarshalNDRResponse(ctx context.Context, 
 // CleanNTMSDriveRequest structure represents the CleanNtmsDrive operation request
 type CleanNTMSDriveRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	DriveID *dtyp.GUID     `idl:"name:lpDriveId" json:"drive_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpDriveId: A pointer to the identifier of a drive.
+	//
+	//	+---------------------------------------+------------------------------------------------------------------+
+	//	|                RETURN                 |                                                                  |
+	//	|              VALUE/CODE               |                           DESCRIPTION                            |
+	//	|                                       |                                                                  |
+	//	+---------------------------------------+------------------------------------------------------------------+
+	//	+---------------------------------------+------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                       | The call was successful.                                         |
+	//	+---------------------------------------+------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED        | Access to an object was denied.                                  |
+	//	+---------------------------------------+------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY    | An allocation failure occurred during processing.                |
+	//	+---------------------------------------+------------------------------------------------------------------+
+	//	| 0x8007000F ERROR_INVALID_DRIVE        | The drive identifier is not valid.                               |
+	//	+---------------------------------------+------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER    | A parameter is not valid.                                        |
+	//	+---------------------------------------+------------------------------------------------------------------+
+	//	| 0x800710CD ERROR_INVALID_LIBRARY      | The library identifier is not valid.                             |
+	//	+---------------------------------------+------------------------------------------------------------------+
+	//	| 0x800710D5 ERROR_RESOURCE_DISABLED    | The resource required for this operation is disabled.            |
+	//	+---------------------------------------+------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE     | The database query or update failed.                             |
+	//	+---------------------------------------+------------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL        | The database is full.                                            |
+	//	+---------------------------------------+------------------------------------------------------------------+
+	//	| 0x800710DC ERROR_RESOURCE_NOT_PRESENT | The resource that is required for this operation does not exist. |
+	//	+---------------------------------------+------------------------------------------------------------------+
+	//	| 0x800710DF ERROR_DEVICE_NOT_AVAILABLE | The device is not available; it might be disabled or offline.    |
+	//	+---------------------------------------+------------------------------------------------------------------+
+	DriveID *dtyp.GUID `idl:"name:lpDriveId" json:"drive_id"`
 }
 
 func (o *CleanNTMSDriveRequest) xxx_ToOp(ctx context.Context, op *xxx_CleanNTMSDriveOperation) *xxx_CleanNTMSDriveOperation {
@@ -1739,8 +1898,38 @@ func (o *xxx_DismountNTMSDriveOperation) UnmarshalNDRResponse(ctx context.Contex
 // DismountNTMSDriveRequest structure represents the DismountNtmsDrive operation request
 type DismountNTMSDriveRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	DriveID *dtyp.GUID     `idl:"name:lpDriveId" json:"drive_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpDriveId: A pointer to the identifier of a drive.
+	//
+	//	+---------------------------------------+---------------------------------------------------------------+
+	//	|                RETURN                 |                                                               |
+	//	|              VALUE/CODE               |                          DESCRIPTION                          |
+	//	|                                       |                                                               |
+	//	+---------------------------------------+---------------------------------------------------------------+
+	//	+---------------------------------------+---------------------------------------------------------------+
+	//	| 0x00000000 S_OK                       | The call was successful.                                      |
+	//	+---------------------------------------+---------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED        | Access to an object was denied.                               |
+	//	+---------------------------------------+---------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY    | An allocation failure occurred during processing.             |
+	//	+---------------------------------------+---------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER    | A parameter is not valid.                                     |
+	//	+---------------------------------------+---------------------------------------------------------------+
+	//	| 0x8007000F ERROR_INVALID_DRIVE        | The drive identifier is not valid.                            |
+	//	+---------------------------------------+---------------------------------------------------------------+
+	//	| 0x800710CD ERROR_INVALID_LIBRARY      | The library identifier is not valid.                          |
+	//	+---------------------------------------+---------------------------------------------------------------+
+	//	| 0x800710D1 ERROR_LIBRARY_OFFLINE      | The library identifier refers to an offline library.          |
+	//	+---------------------------------------+---------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE     | The database query or update failed.                          |
+	//	+---------------------------------------+---------------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL        | The database is full.                                         |
+	//	+---------------------------------------+---------------------------------------------------------------+
+	//	| 0x800710DF ERROR_DEVICE_NOT_AVAILABLE | The device is not available; it might be disabled or offline. |
+	//	+---------------------------------------+---------------------------------------------------------------+
+	//	| 0x8007139F ERROR_INVALID_STATE        | An unexpected state was encountered.                          |
+	//	+---------------------------------------+---------------------------------------------------------------+
+	DriveID *dtyp.GUID `idl:"name:lpDriveId" json:"drive_id"`
 }
 
 func (o *DismountNTMSDriveRequest) xxx_ToOp(ctx context.Context, op *xxx_DismountNTMSDriveOperation) *xxx_DismountNTMSDriveOperation {
@@ -1970,9 +2159,34 @@ func (o *xxx_InventoryNTMSLibraryOperation) UnmarshalNDRResponse(ctx context.Con
 // InventoryNTMSLibraryRequest structure represents the InventoryNtmsLibrary operation request
 type InventoryNTMSLibraryRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	LibraryID *dtyp.GUID     `idl:"name:lpLibraryId" json:"library_id"`
-	Action    uint32         `idl:"name:dwAction" json:"action"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpLibraryId: A pointer to the identifier of a media library.
+	LibraryID *dtyp.GUID `idl:"name:lpLibraryId" json:"library_id"`
+	// dwAction:  One of the NTMS_INVENTORY_STOP, NTMS_INVENTORY_OMID, NTMS_INVENTORY_FAST,
+	// or NTMS_INVENTORY_DEFAULT values from the NtmsInventoryMethod enumeration, specifying
+	// the action to perform.
+	//
+	//	+------------------------------------+------------------------------------------------------+
+	//	|               RETURN               |                                                      |
+	//	|             VALUE/CODE             |                     DESCRIPTION                      |
+	//	|                                    |                                                      |
+	//	+------------------------------------+------------------------------------------------------+
+	//	+------------------------------------+------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                             |
+	//	+------------------------------------+------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access to the object was denied.                     |
+	//	+------------------------------------+------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | A parameter is not valid.                            |
+	//	+------------------------------------+------------------------------------------------------+
+	//	| 0x800708CA ERROR_NOT_CONNECTED     | Unable to connect to the server.                     |
+	//	+------------------------------------+------------------------------------------------------+
+	//	| 0x800710D1 ERROR_LIBRARY_OFFLINE   | The library identifier refers to an offline library. |
+	//	+------------------------------------+------------------------------------------------------+
+	//	| 0x800710D5 ERROR_RESOURCE_DISABLED | A resource required for this operation is disabled.  |
+	//	+------------------------------------+------------------------------------------------------+
+	//	| 0x800710CD ERROR_INVALID_LIBRARY   | The library identifier is invalid.                   |
+	//	+------------------------------------+------------------------------------------------------+
+	Action uint32 `idl:"name:dwAction" json:"action"`
 }
 
 func (o *InventoryNTMSLibraryRequest) xxx_ToOp(ctx context.Context, op *xxx_InventoryNTMSLibraryOperation) *xxx_InventoryNTMSLibraryOperation {
@@ -2384,8 +2598,25 @@ func (o *xxx_CancelNTMSLibraryRequestOperation) UnmarshalNDRResponse(ctx context
 // CancelNTMSLibraryRequestRequest structure represents the CancelNtmsLibraryRequest operation request
 type CancelNTMSLibraryRequestRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	RequestID *dtyp.GUID     `idl:"name:lpRequestId" json:"request_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpRequestId: A pointer to the identifier of the request to cancel.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | Method completed successfully.                                                   |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access to object is denied; only an administrator of the server can cancel       |
+	//	|                                    | library requests.                                                                |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | Input parameter is invalid.                                                      |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND  | The identifier of the library request object was not found.                      |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	RequestID *dtyp.GUID `idl:"name:lpRequestId" json:"request_id"`
 }
 
 func (o *CancelNTMSLibraryRequestRequest) xxx_ToOp(ctx context.Context, op *xxx_CancelNTMSLibraryRequestOperation) *xxx_CancelNTMSLibraryRequestOperation {
@@ -2624,9 +2855,37 @@ func (o *xxx_ReserveNTMSCleanerSlotOperation) UnmarshalNDRResponse(ctx context.C
 // ReserveNTMSCleanerSlotRequest structure represents the ReserveNtmsCleanerSlot operation request
 type ReserveNTMSCleanerSlotRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Library *dtyp.GUID     `idl:"name:lpLibrary" json:"library"`
-	Slot    *dtyp.GUID     `idl:"name:lpSlot" json:"slot"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpLibrary: A pointer to the identifier of the media library in which to reserve the
+	// slot.
+	Library *dtyp.GUID `idl:"name:lpLibrary" json:"library"`
+	// lpSlot:  A pointer to the identifier of the slot to reserve.
+	//
+	//	+-----------------------------------------+-----------------------------------------------+
+	//	|                 RETURN                  |                                               |
+	//	|               VALUE/CODE                |                  DESCRIPTION                  |
+	//	|                                         |                                               |
+	//	+-----------------------------------------+-----------------------------------------------+
+	//	+-----------------------------------------+-----------------------------------------------+
+	//	| 0x00000000 S_OK                         | The call was successful.                      |
+	//	+-----------------------------------------+-----------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED          | Access to at least one object is denied.      |
+	//	+-----------------------------------------+-----------------------------------------------+
+	//	| 0x80070006 ERROR_INVALID_HANDLE         | The session handle is invalid.                |
+	//	+-----------------------------------------+-----------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER      | A parameter is missing.                       |
+	//	+-----------------------------------------+-----------------------------------------------+
+	//	| 0x800708CA ERROR_NOT_CONNECTED          | Unable to connect to the server.              |
+	//	+-----------------------------------------+-----------------------------------------------+
+	//	| 0x800710CD ERROR_INVALID_LIBRARY        | The library identifier is invalid.            |
+	//	+-----------------------------------------+-----------------------------------------------+
+	//	| 0x800710DF ERROR_DEVICE_NOT_AVAILABLE   | The library is not connected.                 |
+	//	+-----------------------------------------+-----------------------------------------------+
+	//	| 0x800710EB ERROR_CLEANER_SLOT_SET       | A cleaner slot is already reserved.           |
+	//	+-----------------------------------------+-----------------------------------------------+
+	//	| 0x8007138E ERROR_RESOURCE_NOT_AVAILABLE | The specified slot already contains a medium. |
+	//	+-----------------------------------------+-----------------------------------------------+
+	Slot *dtyp.GUID `idl:"name:lpSlot" json:"slot"`
 }
 
 func (o *ReserveNTMSCleanerSlotRequest) xxx_ToOp(ctx context.Context, op *xxx_ReserveNTMSCleanerSlotOperation) *xxx_ReserveNTMSCleanerSlotOperation {
@@ -2845,8 +3104,26 @@ func (o *xxx_ReleaseNTMSCleanerSlotOperation) UnmarshalNDRResponse(ctx context.C
 // ReleaseNTMSCleanerSlotRequest structure represents the ReleaseNtmsCleanerSlot operation request
 type ReleaseNTMSCleanerSlotRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Library *dtyp.GUID     `idl:"name:lpLibrary" json:"library"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpLibrary: A pointer to the identifier of the media library from which to remove
+	// the slot reservation.
+	//
+	// Upon receiving this message, the server MUST validate that lpLibrary is not NULL.
+	// If it is NULL, the server MUST immediately fail the operation and return ERROR_INVALID_PARAMETER
+	// (0x80070057).
+	//
+	// If parameter validation succeeds, the server MUST check access rights to the library
+	// and verify that the library is enabled and online before processing further. If the
+	// client does not have the required access rights, the server MUST return ERROR_ACCESS_DENIED
+	// (0x80070005). If the library is disabled, the server MUST return ERROR_RESOURCE_DISABLED
+	// (0x800710D5). If the library is offline, the server MUST return ERROR_LIBRARY_OFFLINE
+	// (0x800710D1).
+	//
+	// The ReleaseNtmsCleanerSlot method removes an existing slot reservation for a cleaning
+	// cartridge. The slot can then be used for data cartridges. For the ReleaseNtmsCleanerSlot
+	// method to succeed, the slot MUST be present and empty. The library MUST also have
+	// a slot reserved for cleaning.
+	Library *dtyp.GUID `idl:"name:lpLibrary" json:"library"`
 }
 
 func (o *ReleaseNTMSCleanerSlotRequest) xxx_ToOp(ctx context.Context, op *xxx_ReleaseNTMSCleanerSlotOperation) *xxx_ReleaseNTMSCleanerSlotOperation {
@@ -3132,11 +3409,51 @@ func (o *xxx_InjectNTMSCleanerOperation) UnmarshalNDRResponse(ctx context.Contex
 // InjectNTMSCleanerRequest structure represents the InjectNtmsCleaner operation request
 type InjectNTMSCleanerRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This               *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Library            *dtyp.GUID     `idl:"name:lpLibrary" json:"library"`
-	InjectOperation    *dtyp.GUID     `idl:"name:lpInjectOperation" json:"inject_operation"`
-	NumberOfCleansLeft uint32         `idl:"name:dwNumberOfCleansLeft" json:"number_of_cleans_left"`
-	Action             uint32         `idl:"name:dwAction" json:"action"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpLibrary: A pointer to the identifier of the media library into which the cleaner
+	// will be inserted.
+	Library *dtyp.GUID `idl:"name:lpLibrary" json:"library"`
+	// lpInjectOperation: A pointer to the GUID of the insert process library operation.
+	// If the value of dwAction is NTMS_INJECT_START, this parameter receives the GUID for
+	// the operation from server; if the value of dwAction is NTMS_INJECT_STOP, this parameter
+	// must be set to the GUID of the operation to be stopped.
+	InjectOperation *dtyp.GUID `idl:"name:lpInjectOperation" json:"inject_operation"`
+	// dwNumberOfCleansLeft: The number of cleaning cycles remaining on the cleaning media.
+	NumberOfCleansLeft uint32 `idl:"name:dwNumberOfCleansLeft" json:"number_of_cleans_left"`
+	// dwAction: One of the NTMS_INJECT_START or NTMS_INJECT_STOP values from the NtmsInjectOperation
+	// enumeration, specifying the operation to perform.
+	//
+	//	+-----------------------------------------+--------------------------------------------------------------------------------+
+	//	|                 RETURN                  |                                                                                |
+	//	|               VALUE/CODE                |                                  DESCRIPTION                                   |
+	//	|                                         |                                                                                |
+	//	+-----------------------------------------+--------------------------------------------------------------------------------+
+	//	+-----------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                         | The call was successful.                                                       |
+	//	+-----------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED          | Access to at least one object is denied.                                       |
+	//	+-----------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x80070006 ERROR_INVALID_HANDLE         | The session handle is invalid.                                                 |
+	//	+-----------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY      | Not enough storage is available to process this command.                       |
+	//	+-----------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER      | The parameter is incorrect.                                                    |
+	//	+-----------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x800710CD ERROR_INVALID_LIBRARY        | The library is not found in the database.                                      |
+	//	+-----------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x800710D1 ERROR_LIBRARY_OFFLINE        | The library must be online for a cleaner cartridge to be inserted.             |
+	//	+-----------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x800710D5 ERROR_RESOURCE_DISABLED      | A resource required for this operation is disabled.                            |
+	//	+-----------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x800710DF ERROR_DEVICE_NOT_AVAILABLE   | The library is not connected.                                                  |
+	//	+-----------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x800710EC ERROR_CLEANER_SLOT_NOT_SET   | A cleaner slot is not reserved.                                                |
+	//	+-----------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x8007138E ERROR_RESOURCE_NOT_AVAILABLE | The reserved slot is not empty.                                                |
+	//	+-----------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x80070032 ERROR_NOT_SUPPORTED          | The dwaction field is set to NTMS_INJECT_STOP, but there are no library ports. |
+	//	+-----------------------------------------+--------------------------------------------------------------------------------+
+	Action uint32 `idl:"name:dwAction" json:"action"`
 }
 
 func (o *InjectNTMSCleanerRequest) xxx_ToOp(ctx context.Context, op *xxx_InjectNTMSCleanerOperation) *xxx_InjectNTMSCleanerOperation {
@@ -3179,8 +3496,12 @@ func (o *InjectNTMSCleanerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // InjectNTMSCleanerResponse structure represents the InjectNtmsCleaner operation response
 type InjectNTMSCleanerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	InjectOperation *dtyp.GUID     `idl:"name:lpInjectOperation" json:"inject_operation"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpInjectOperation: A pointer to the GUID of the insert process library operation.
+	// If the value of dwAction is NTMS_INJECT_START, this parameter receives the GUID for
+	// the operation from server; if the value of dwAction is NTMS_INJECT_STOP, this parameter
+	// must be set to the GUID of the operation to be stopped.
+	InjectOperation *dtyp.GUID `idl:"name:lpInjectOperation" json:"inject_operation"`
 	// Return: The InjectNtmsCleaner return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3418,10 +3739,45 @@ func (o *xxx_EjectNTMSCleanerOperation) UnmarshalNDRResponse(ctx context.Context
 // EjectNTMSCleanerRequest structure represents the EjectNtmsCleaner operation request
 type EjectNTMSCleanerRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Library        *dtyp.GUID     `idl:"name:lpLibrary" json:"library"`
-	EjectOperation *dtyp.GUID     `idl:"name:lpEjectOperation" json:"eject_operation"`
-	Action         uint32         `idl:"name:dwAction" json:"action"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpLibrary: A pointer to the identifier of the media library from which the cleaner
+	// will be ejected.
+	Library *dtyp.GUID `idl:"name:lpLibrary" json:"library"`
+	// lpEjectOperation: A pointer to GUID of the insert process library operation. If the
+	// value of dwAction is NTMS_EJECT_START, this parameter receives the GUID of the operation
+	// from server; if the value of dwAction is NTMS_EJECT_STOP, this parameter must be
+	// set to the GUID of the operation to be stopped.
+	EjectOperation *dtyp.GUID `idl:"name:lpEjectOperation" json:"eject_operation"`
+	// dwAction:  One of the NTMS_EJECT_START or NTMS_EJECT_STOP values from the NtmsEjectOperation
+	// (section 2.2.2.1) enumeration, specifying the operation to perform.
+	//
+	//	+------------------------------------+------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                              |
+	//	|             VALUE/CODE             |                                 DESCRIPTION                                  |
+	//	|                                    |                                                                              |
+	//	+------------------------------------+------------------------------------------------------------------------------+
+	//	+------------------------------------+------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                                     |
+	//	+------------------------------------+------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access to one or more objects is denied.                                     |
+	//	+------------------------------------+------------------------------------------------------------------------------+
+	//	| 0x80070006 ERROR_INVALID_HANDLE    | The session handle is invalid.                                               |
+	//	+------------------------------------+------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY | Not enough storage is available to process this command.                     |
+	//	+------------------------------------+------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | The parameter is incorrect.                                                  |
+	//	+------------------------------------+------------------------------------------------------------------------------+
+	//	| 0x800708CA ERROR_NOT_CONNECTED     | Unable to connect to the server.                                             |
+	//	+------------------------------------+------------------------------------------------------------------------------+
+	//	| 0x800710CD ERROR_INVALID_LIBRARY   | The library is not found in the database.                                    |
+	//	+------------------------------------+------------------------------------------------------------------------------+
+	//	| 0x800710D1 ERROR_LIBRARY_OFFLINE   | The library identifier refers to an offline library.                         |
+	//	+------------------------------------+------------------------------------------------------------------------------+
+	//	| 0x800710D5 ERROR_RESOURCE_DISABLED | A resource required for this operation is disabled.                          |
+	//	+------------------------------------+------------------------------------------------------------------------------+
+	//	| 0x800710DD ERROR_INVALID_OPERATION | The NTMS_EJECT_STOP action was performed on an invalid operation identifier. |
+	//	+------------------------------------+------------------------------------------------------------------------------+
+	Action uint32 `idl:"name:dwAction" json:"action"`
 }
 
 func (o *EjectNTMSCleanerRequest) xxx_ToOp(ctx context.Context, op *xxx_EjectNTMSCleanerOperation) *xxx_EjectNTMSCleanerOperation {
@@ -3462,8 +3818,12 @@ func (o *EjectNTMSCleanerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // EjectNTMSCleanerResponse structure represents the EjectNtmsCleaner operation response
 type EjectNTMSCleanerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
-	EjectOperation *dtyp.GUID     `idl:"name:lpEjectOperation" json:"eject_operation"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpEjectOperation: A pointer to GUID of the insert process library operation. If the
+	// value of dwAction is NTMS_EJECT_START, this parameter receives the GUID of the operation
+	// from server; if the value of dwAction is NTMS_EJECT_STOP, this parameter must be
+	// set to the GUID of the operation to be stopped.
+	EjectOperation *dtyp.GUID `idl:"name:lpEjectOperation" json:"eject_operation"`
 	// Return: The EjectNtmsCleaner return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3645,8 +4005,32 @@ func (o *xxx_DeleteNTMSLibraryOperation) UnmarshalNDRResponse(ctx context.Contex
 // DeleteNTMSLibraryRequest structure represents the DeleteNtmsLibrary operation request
 type DeleteNTMSLibraryRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	LibraryID *dtyp.GUID     `idl:"name:lpLibraryId" json:"library_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpLibraryId: A pointer to the identifier of the media library to delete.
+	//
+	//	+------------------------------------+----------------------------------------------------------+
+	//	|               RETURN               |                                                          |
+	//	|             VALUE/CODE             |                       DESCRIPTION                        |
+	//	|                                    |                                                          |
+	//	+------------------------------------+----------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                 |
+	//	+------------------------------------+----------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access to the object was denied.                         |
+	//	+------------------------------------+----------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY | An allocation failure occurred during processing.        |
+	//	+------------------------------------+----------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | A parameter is not valid.                                |
+	//	+------------------------------------+----------------------------------------------------------+
+	//	| 0x800710CD ERROR_INVALID_LIBRARY   | The library identifier is invalid.                       |
+	//	+------------------------------------+----------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE  | The database is inaccessible or damaged.                 |
+	//	+------------------------------------+----------------------------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL     | The database is full.                                    |
+	//	+------------------------------------+----------------------------------------------------------+
+	//	| 0x8007139F ERROR_INVALID_STATE     | The library is not in expected state for this operation. |
+	//	+------------------------------------+----------------------------------------------------------+
+	LibraryID *dtyp.GUID `idl:"name:lpLibraryId" json:"library_id"`
 }
 
 func (o *DeleteNTMSLibraryRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteNTMSLibraryOperation) *xxx_DeleteNTMSLibraryOperation {
@@ -3863,8 +4247,32 @@ func (o *xxx_DeleteNTMSDriveOperation) UnmarshalNDRResponse(ctx context.Context,
 // DeleteNTMSDriveRequest structure represents the DeleteNtmsDrive operation request
 type DeleteNTMSDriveRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	DriveID *dtyp.GUID     `idl:"name:lpDriveId" json:"drive_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpDriveId: A pointer to the identifier of the drive to delete.
+	//
+	//	+------------------------------------+--------------------------------------+
+	//	|               RETURN               |                                      |
+	//	|             VALUE/CODE             |             DESCRIPTION              |
+	//	|                                    |                                      |
+	//	+------------------------------------+--------------------------------------+
+	//	+------------------------------------+--------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.             |
+	//	+------------------------------------+--------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access to an object was denied.      |
+	//	+------------------------------------+--------------------------------------+
+	//	| 0x8007000F ERROR_INVALID_DRIVE     | The drive identifier is not valid.   |
+	//	+------------------------------------+--------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | A parameter is not valid.            |
+	//	+------------------------------------+--------------------------------------+
+	//	| 0x800710CD ERROR_INVALID_LIBRARY   | The library identifier is not valid. |
+	//	+------------------------------------+--------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE  | The database query or update failed. |
+	//	+------------------------------------+--------------------------------------+
+	//	| 0x800710DA ERROR_DATABASE_FULL     | The database is full.                |
+	//	+------------------------------------+--------------------------------------+
+	//	| 0x8007139F ERROR_INVALID_STATE     | An unexpected state was encountered. |
+	//	+------------------------------------+--------------------------------------+
+	DriveID *dtyp.GUID `idl:"name:lpDriveId" json:"drive_id"`
 }
 
 func (o *DeleteNTMSDriveRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteNTMSDriveOperation) *xxx_DeleteNTMSDriveOperation {
@@ -4094,8 +4502,9 @@ func (o *xxx_GetNTMSRequestOrderOperation) UnmarshalNDRResponse(ctx context.Cont
 // GetNTMSRequestOrderRequest structure represents the GetNtmsRequestOrder operation request
 type GetNTMSRequestOrderRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	RequestID *dtyp.GUID     `idl:"name:lpRequestId" json:"request_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpRequestId: A pointer to the identifier of a library request.
+	RequestID *dtyp.GUID `idl:"name:lpRequestId" json:"request_id"`
 }
 
 func (o *GetNTMSRequestOrderRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSRequestOrderOperation) *xxx_GetNTMSRequestOrderOperation {
@@ -4132,8 +4541,28 @@ func (o *GetNTMSRequestOrderRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 // GetNTMSRequestOrderResponse structure represents the GetNtmsRequestOrder operation response
 type GetNTMSRequestOrderResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	OrderNumber uint32         `idl:"name:lpdwOrderNumber" json:"order_number"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpdwOrderNumber:  A pointer to the order in the queue in which the request will
+	// be processed. This queue MUST start with order 1.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | NTMS_MODIFY_ACCESS to the library is denied; other security errors are possible  |
+	//	|                                    | but indicate a security subsystem error.                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY | An allocation failure occurred during processing.                                |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | The library identifier is missing.                                               |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE  | The database is inaccessible or damaged.                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	OrderNumber uint32 `idl:"name:lpdwOrderNumber" json:"order_number"`
 	// Return: The GetNtmsRequestOrder return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -4328,9 +4757,30 @@ func (o *xxx_SetNTMSRequestOrderOperation) UnmarshalNDRResponse(ctx context.Cont
 // SetNTMSRequestOrderRequest structure represents the SetNtmsRequestOrder operation request
 type SetNTMSRequestOrderRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	RequestID   *dtyp.GUID     `idl:"name:lpRequestId" json:"request_id"`
-	OrderNumber uint32         `idl:"name:dwOrderNumber" json:"order_number"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpRequestId: A pointer to the identifier of a library request.
+	RequestID *dtyp.GUID `idl:"name:lpRequestId" json:"request_id"`
+	// dwOrderNumber:  The order in the queue in which the request will be processed. This
+	// queue MUST start with order 1.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | NTMS_CONTROL_ACCESS to the library is denied; other security errors are possible |
+	//	|                                    | but indicate a security subsystem error.                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY | An allocation failure occurred during processing.                                |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | The library or operation identifiers are missing.                                |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE  | The database is inaccessible or damaged.                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	OrderNumber uint32 `idl:"name:dwOrderNumber" json:"order_number"`
 }
 
 func (o *SetNTMSRequestOrderRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNTMSRequestOrderOperation) *xxx_SetNTMSRequestOrderOperation {
@@ -4611,10 +5061,30 @@ func (o *xxx_DeleteNTMSRequestsOperation) UnmarshalNDRResponse(ctx context.Conte
 // DeleteNTMSRequestsRequest structure represents the DeleteNtmsRequests operation request
 type DeleteNTMSRequestsRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	RequestID []*dtyp.GUID   `idl:"name:lpRequestId;size_is:(dwCount)" json:"request_id"`
-	Type      uint32         `idl:"name:dwType" json:"type"`
-	Count     uint32         `idl:"name:dwCount" json:"count"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpRequestId: An array of library or operator request identifiers to delete.
+	RequestID []*dtyp.GUID `idl:"name:lpRequestId;size_is:(dwCount)" json:"request_id"`
+	// dwType:  One of the NTMS_LIBREQUEST or NTMS_OPREQUEST values from the NtmsObjectsTypes
+	// (section 2.2.1.6) enumeration, specifying the type of operation to cancel.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// dwCount:  The number of elements in the lpRequestId array.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access to the object is denied; other security errors are possible but indicate  |
+	//	|                                    | a security subsystem error.                                                      |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | The parameter is invalid.                                                        |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE  | The database query or update failed.                                             |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	Count uint32 `idl:"name:dwCount" json:"count"`
 }
 
 func (o *DeleteNTMSRequestsRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteNTMSRequestsOperation) *xxx_DeleteNTMSRequestsOperation {
@@ -4861,8 +5331,36 @@ func (o *BeginNTMSDeviceChangeDetectionRequest) UnmarshalNDR(ctx context.Context
 // BeginNTMSDeviceChangeDetectionResponse structure represents the BeginNtmsDeviceChangeDetection operation response
 type BeginNTMSDeviceChangeDetectionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
-	DetectHandle uint64         `idl:"name:lpDetectHandle" json:"detect_handle"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpDetectHandle: A pointer to the new device change detection handle.
+	//
+	//	+---------------------------------------+------------------------------------------------+
+	//	|                RETURN                 |                                                |
+	//	|              VALUE/CODE               |                  DESCRIPTION                   |
+	//	|                                       |                                                |
+	//	+---------------------------------------+------------------------------------------------+
+	//	+---------------------------------------+------------------------------------------------+
+	//	| 0x00000000 S_OK                       | The call was successful.                       |
+	//	+---------------------------------------+------------------------------------------------+
+	//	| 0x80070006 ERROR_INVALID_HANDLE       | The session handle is not valid.               |
+	//	+---------------------------------------+------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER    | A parameter is not valid.                      |
+	//	+---------------------------------------+------------------------------------------------+
+	//	| 0x80070078 ERROR_CALL_NOT_IMPLEMENTED | This function is not supported on this system. |
+	//	+---------------------------------------+------------------------------------------------+
+	//
+	// If the method is implemented, the server MUST verify that lpDetectHandle is not NULL.
+	// If it is NULL, the server MUST immediately fail the operation and return an invalid
+	// handler error ERROR_INVALID_HANDLE (0x80070006).
+	//
+	// The BeginNtmsDeviceChangeDetection method allows the application to begin a device
+	// change detection session.
+	//
+	// After calling BeginNtmsDeviceChangeDetection, the application can set the stand-alone
+	// libraries for which media change detection is required using the SetNtmsDeviceChangeDetection
+	// method. RSM continues to detect changes for the devices specified until the change
+	// detection session is closed using the EndNtmsDeviceChangeDetection method.
+	DetectHandle uint64 `idl:"name:lpDetectHandle" json:"detect_handle"`
 	// Return: The BeginNtmsDeviceChangeDetection return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -5119,11 +5617,62 @@ func (o *xxx_SetNTMSDeviceChangeDetectionOperation) UnmarshalNDRResponse(ctx con
 // SetNTMSDeviceChangeDetectionRequest structure represents the SetNtmsDeviceChangeDetection operation request
 type SetNTMSDeviceChangeDetectionRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This         *dcom.ORPCThis `idl:"name:This" json:"this"`
-	DetectHandle uint64         `idl:"name:DetectHandle" json:"detect_handle"`
-	ObjectID     []*dtyp.GUID   `idl:"name:lpObjectId;size_is:(dwCount)" json:"object_id"`
-	Type         uint32         `idl:"name:dwType" json:"type"`
-	Count        uint32         `idl:"name:dwCount" json:"count"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// DetectHandle: The device change detection handle, or NULL for a single poll of the
+	// objects in lpObjectId. The handle MUST have come from a prior BeginNtmsDeviceChangeDetection
+	// method invocation.
+	DetectHandle uint64 `idl:"name:DetectHandle" json:"detect_handle"`
+	// lpObjectId: An array of media library, physical media, or media type identifiers,
+	// used to specify the target devices for change detection. All identifiers MUST be
+	// of the same type.
+	ObjectID []*dtyp.GUID `idl:"name:lpObjectId;size_is:(dwCount)" json:"object_id"`
+	// dwType: One of the NTMS_LIBRARY, NTMS_PHYSICAL_MEDIA, or NTMS_MEDIA_TYPE values defined
+	// in the NtmsObjectsTypes (section 2.2.1.6) enumeration, specifying the type of the
+	// objects in lpObjectId.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// dwCount: The number of elements in the lpObjectId array.
+	//
+	//	+---------------------------------------+------------------------------------------------+
+	//	|                RETURN                 |                                                |
+	//	|              VALUE/CODE               |                  DESCRIPTION                   |
+	//	|                                       |                                                |
+	//	+---------------------------------------+------------------------------------------------+
+	//	+---------------------------------------+------------------------------------------------+
+	//	| 0x00000000 S_OK                       | The call was successful.                       |
+	//	+---------------------------------------+------------------------------------------------+
+	//	| 0x80070006 ERROR_INVALID_HANDLE       | The session handle is not valid.               |
+	//	+---------------------------------------+------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER    | A parameter is not valid.                      |
+	//	+---------------------------------------+------------------------------------------------+
+	//	| 0x80070078 ERROR_CALL_NOT_IMPLEMENTED | This function is not supported on this system. |
+	//	+---------------------------------------+------------------------------------------------+
+	//	| 0x800710CC ERROR_INVALID_MEDIA        | The media identifier is not valid.             |
+	//	+---------------------------------------+------------------------------------------------+
+	//	| 0x800710CD ERROR_INVALID_LIBRARY      | The library identifier is not valid.           |
+	//	+---------------------------------------+------------------------------------------------+
+	//
+	// If the method is implemented, the server MUST verify that both DetectHandle and lpObjectId
+	// are not NULL. If parameter validation fails, the server MUST immediately fail the
+	// operation and return ERROR_INVALID_PARAMETER (0x80070057).
+	//
+	// If parameter validation succeeds and dwCount is greater than one, the server MUST
+	// verify that the type of objects specified in the lpObjectId array are all of the
+	// same object type. If the objects specified in the lpObjectId array are not of the
+	// same object type, the server MUST return ERROR_INVALID_PARAMETER (0x80070057).
+	//
+	// The SetNtmsDeviceChangeDetection method sets one or more target devices for change
+	// detection.
+	//
+	// The device can be specified directly by passing library GUIDs, or indirectly by passing
+	// physical media or media type GUIDs. When using indirect specification, only stand-alone
+	// libraries that could contain the media or media type are detected. All devices that
+	// are specified, either directly or indirectly, continue to be detected until the device
+	// change detection handle is closed using the EndNtmsDeviceChangeDetection method.
+	//
+	// This method can also be used to poll for changed media in the specified devices.
+	// This feature is typically used by a UI when opening a leaf node or implementing a
+	// refresh option.
+	Count uint32 `idl:"name:dwCount" json:"count"`
 }
 
 func (o *SetNTMSDeviceChangeDetectionRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNTMSDeviceChangeDetectionOperation) *xxx_SetNTMSDeviceChangeDetectionOperation {
@@ -5337,8 +5886,33 @@ func (o *xxx_EndNTMSDeviceChangeDetectionOperation) UnmarshalNDRResponse(ctx con
 // EndNTMSDeviceChangeDetectionRequest structure represents the EndNtmsDeviceChangeDetection operation request
 type EndNTMSDeviceChangeDetectionRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This         *dcom.ORPCThis `idl:"name:This" json:"this"`
-	DetectHandle uint64         `idl:"name:DetectHandle" json:"detect_handle"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// DetectHandle: The device change detection handle to close. The handle MUST have come
+	// from a prior BeginNtmsDeviceChangeDetection method invocation.
+	//
+	//	+---------------------------------------+------------------------------------------------+
+	//	|                RETURN                 |                                                |
+	//	|              VALUE/CODE               |                  DESCRIPTION                   |
+	//	|                                       |                                                |
+	//	+---------------------------------------+------------------------------------------------+
+	//	+---------------------------------------+------------------------------------------------+
+	//	| 0x00000000 S_OK                       | The call was successful.                       |
+	//	+---------------------------------------+------------------------------------------------+
+	//	| 0x80070006 ERROR_INVALID_HANDLE       | The session handle was is not valid.           |
+	//	+---------------------------------------+------------------------------------------------+
+	//	| 0x80070078 ERROR_CALL_NOT_IMPLEMENTED | This function is not supported on this system. |
+	//	+---------------------------------------+------------------------------------------------+
+	//
+	// If the method is implemented, the server MUST verify that DetectHandle is not NULL.
+	// If it is NULL, the server MUST immediately fail the operation and return an invalid
+	// handler error ERROR_INVALID_HANDLE (0x80070006).
+	//
+	// The EndNtmsDeviceChangeDetection method ends device change detection for any target
+	// devices specified using the SetNtmsDeviceChangeDetection method, and closes the change
+	// detection handle.
+	//
+	// Closing the RSM session also ends all device change detection sessions.
+	DetectHandle uint64 `idl:"name:DetectHandle" json:"detect_handle"`
 }
 
 func (o *EndNTMSDeviceChangeDetectionRequest) xxx_ToOp(ctx context.Context, op *xxx_EndNTMSDeviceChangeDetectionOperation) *xxx_EndNTMSDeviceChangeDetectionOperation {

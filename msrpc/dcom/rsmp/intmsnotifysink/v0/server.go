@@ -31,11 +31,24 @@ type NotifySinkServer interface {
 	// IUnknown base class.
 	iunknown.UnknownServer
 
+	// The ConnectCallback method connects a connection point to the sink.
 	ConnectCallback(context.Context, *ConnectCallbackRequest) (*ConnectCallbackResponse, error)
 
 	// OnNotify operation.
 	OnNotify(context.Context, *OnNotifyRequest) (*OnNotifyResponse, error)
 
+	// The ReleaseCallback method removes a connection point from the sink.
+	//
+	// This method has no parameters.
+	//
+	//	+-------------------+------------------------------------+
+	//	|      RETURN       |                                    |
+	//	|    VALUE/CODE     |            DESCRIPTION             |
+	//	|                   |                                    |
+	//	+-------------------+------------------------------------+
+	//	+-------------------+------------------------------------+
+	//	| 0x00000000 S_OK   | The method completed successfully. |
+	//	+-------------------+------------------------------------+
 	ReleaseCallback(context.Context, *ReleaseCallbackRequest) (*ReleaseCallbackResponse, error)
 }
 

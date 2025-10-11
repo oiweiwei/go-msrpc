@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPXWAN_IF_INFO</b> structure MAY<a id="Appendix_A_Target_83"></a><a aria-label="Product behavior note 83" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_83" data-linktype="relative-path">&lt;83&gt;</a> be used to specify the IPX
+interface data for the WAN interface. When this structure is encapsulated in <a href="c99955ec-6d18-4665-8d5b-e124de63a368" data-linktype="relative-path"><b>RTR_TOC_ENTRY (section 2.2.1.2.4)</b></a>,
+the <b>InfoType</b> value used MUST be 0x00000008. </p><dl>
+<dd>
+<div><pre> typedef struct _IPXWAN_IF_INFO {
+   ULONG Adminstate;
+ } IPXWAN_IF_INFO,
+  *PIPXWAN_IF_INFO;
+</pre></div>
+</dd></dl><p><b>Adminstate: </b>This MUST be set to the desired
+state of the interface. A value of 0x00000001 disables the interface, and a
+value of 0x00000002 enables the interface. This enables or disables the IPXWAN
+negotiation.</p></div>

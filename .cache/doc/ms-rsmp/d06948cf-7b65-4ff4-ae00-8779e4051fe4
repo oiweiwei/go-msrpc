@@ -1,1 +1,120 @@
-<div class="content"></div>
+<div class="content"><p>The GetNtmsObjectAttributeWR method retrieves private data
+from an object, with strings encoded using Unicode.</p><dl>
+<dd>
+<div><pre> HRESULT GetNtmsObjectAttributeWR(
+   [in] LPNTMS_GUID lpObjectId,
+   [in] DWORD dwType,
+   [in, string] const wchar_t* lpAttributeName,
+   [out, size_is(*lpdwAttributeBufferSize), length_is(*lpAttributeSize)] 
+     byte* lpAttributeData,
+   [in] DWORD* lpdwAttributeBufferSize,
+   [out] DWORD* lpAttributeSize,
+   [out] DWORD* lpActualAttributeSize
+ );
+</pre></div>
+</dd></dl><p><b>ObjectId: </b>A pointer to the identifier of the
+object for which to retrieve the attribute.</p><p><b>dwType: </b>The value from the <a href="5b190198-a0cb-4e20-90a3-234009357051" data-linktype="relative-path">NtmsObjectsTypes (section 2.2.1.6)</a>
+enumeration specifying the type of the object.</p><p><b>lpAttributeName: </b>A null-terminated sequence of
+Unicode characters specifying the name of the extended attribute to retrieve.</p><p><b>lpAttributeData: </b>A buffer containing the
+attribute.</p><p><b>lpdwAttributeBufferSize: </b>A pointer to the size
+of the <i>lpAttributeData</i> buffer.</p><p><b>lpAttributeSize: </b>A pointer to the size of the
+attribute returned in the <i>lpAttributeData</i> buffer. This will point to
+zero when the function returns with an insufficient input buffer error.</p><p><b>lpActualAttributeSize: </b>A pointer to the size
+of the attribute in the <i>lpAttributeData</i> buffer.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to an object was denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007007A</p>
+  <p>ERROR_INSUFFICIENT_BUFFER</p>
+  </td>
+  <td>
+  <p>The specified buffer size is not large enough.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800700E8</p>
+  <p>ERROR_NO_DATA</p>
+  </td>
+  <td>
+  <p>The specified attribute is greater than or equal to
+  the NTMS_MAXATTR_LENGTH value, specified in the Platform SDK file NTMSApi.h.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800708CA</p>
+  <p>ERROR_NOT_CONNECTED</p>
+  </td>
+  <td>
+  <p>Unable to connect to the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D8</p>
+  <p>ERROR_OBJECT_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The object was not found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database query or update failed.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST:</p><ul><li><p><span><span> 
+</span></span>Verify that <i>ObjectId</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>lpAttributeData</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>lpAttributeName</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>lpAttributeSize</i> is not NULL.</p>
+</li><li><p><span><span> 
+</span></span>Verify that <i>dwType</i> is a valid object type.</p>
+</li></ul><p>If parameter validation fails, the server MUST immediately
+fail the operation and return ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights, get the value of the extended
+attribute that is specified by <i>lpAttributeName</i>, return it to the user in
+the buffer that is pointed to by <i>lpAttributeData</i>, and set the size of
+the data that is copied in the <i>lpAttributeData</i> in <i>lpAttributeSize</i>.
+If the client does not have the required access rights, the server MUST return
+ERROR_ACCESS_DENIED (0x80070005).</p><p>If the buffer size that is specified by <i>lpdwAttributeBufferSize</i>
+is too small, the server MUST return ERROR_INSUFFICIENT_BUFFER (0x8007007A)
+with <i>lpActualAttributeSize</i> set to the required size and <i>lpAttributeSize</i>
+set to zero.</p><p>Strings sent to this method as parameters MUST be <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> encoded. </p></div>

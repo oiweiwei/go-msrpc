@@ -1,1 +1,40 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RAS_NDISWAN_DRIVER_INFO </b>structure contains the
+encryption capabilities of the RRAS server.</p><dl>
+<dd>
+<div><pre> typedef struct _RAS_NDISWAN_DRIVER_INFO {
+   ULONG DriverCaps;
+   ULONG Reserved;
+ } RAS_NDISWAN_DRIVER_INFO,
+  *P_NDISWAN_DRIVER_INFO;
+</pre></div>
+</dd></dl><p><b>DriverCaps: </b>Specifies the encryption
+capabilities of the RRAS. It MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>RAS_NDISWAN_40BIT_ENABLED</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>40-bit encryption supported</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>RAS_NDISWAN_128BIT_ENABLED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>128-bit encryption supported</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Reserved: </b>MUST be set to zero (0) when sent
+and MUST be ignored on receipt.</p></div>

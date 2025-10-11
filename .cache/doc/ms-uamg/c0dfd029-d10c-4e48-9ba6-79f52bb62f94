@@ -1,1 +1,38 @@
-<div class="content"></div>
+<div class="content"><p>The IUpdateSession3::QueryHistory (Opnum 17) method
+retrieves relevant update history entries.</p><dl>
+<dd>
+<div><pre> HRESULT QueryHistory(
+   [in] BSTR criteria,
+   [in] LONG startIndex,
+   [in] LONG count,
+   [out, retval] IUpdateHistoryEntryCollection** retval
+ );
+</pre></div>
+</dd></dl><p><b>criteria: </b>A string specifying criteria that
+select history entries. The string MUST be one of the following:</p><ul><li><p><span><span>  </span></span>NULL
+or empty, in which case all history entries are selected.</p>
+</li><li><p><span><span>  </span></span>&#34;UpdateID=&#39;&lt;id&gt;&#39;&#34;,
+where &lt;id&gt; is an update identifier. In this case, only history entries
+pertaining to this update are selected.</p>
+</li></ul><p><b>startIndex: </b>The zero-based index of the first
+history entry to retrieve.</p><p><b>count: </b>The number of entries to retrieve.</p><p><b>retval: </b>An <b>IUpdateHistoryEntryCollection</b>
+containing the history entries requested. If fewer entries are available than
+requested in the count parameter, only the entries available are retrieved.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><p>This method MUST return an error if the <i>startIndex</i>
+value is less than 0x00000000 or greater than or equal to the number of items
+in the collection.</p><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method MUST return an <b>IUpdateHistoryEntryCollection</b>
+containing the following history entries, sorted by date in descending order:</p><ul><li><p><span><span> 
+</span></span>Only history entries pertaining to the update specified in <i>criteria</i>,
+if specified.</p>
+</li><li><p><span><span> 
+</span></span>Only history entries starting from the given <i>startIndex</i>.</p>
+</li><li><p><span><span> 
+</span></span>A maximum of <i>count</i> history entries, starting from <i>startIndex</i>.</p>
+</li></ul><p>The server SHOULD derive these history entries from the <b>HistoryList</b>
+ADM element.</p></div>

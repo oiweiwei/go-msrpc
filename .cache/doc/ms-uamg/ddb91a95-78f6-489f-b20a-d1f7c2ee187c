@@ -1,1 +1,20 @@
-<div class="content"></div>
+<div class="content"><p>The IWindowsDriverUpdateEntry::DriverVerDate (opnum 13)
+method retrieves the version date of the driver.</p><dl>
+<dd>
+<div><pre> HRESULT DriverVerDate(
+   [out, retval] DATE* retval
+ );
+</pre></div>
+</dd></dl><p><b>retval: </b>A <b>DATE</b> (<span><a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a></span>
+section <span><a href="../ms-oaut/35c9bf2d-b8e8-4d7d-a50f-367da0d99fce" data-linktype="relative-path">2.2.25</a></span>)
+structure containing the version date of this driver.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span> 
+</span></span>If the severity bit is set to 0, the method completed
+successfully.</p>
+</li><li><p><span><span> 
+</span></span>If the severity bit is set to 1, the method failed and
+encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method SHOULD return the value of the <b>DriverVerDate</b>
+ADM element.</p></div>

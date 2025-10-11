@@ -1,1 +1,62 @@
-<div class="content"></div>
+<div class="content"><p>The <b>GLOBAL_INFO</b> structure is used to set logging
+levels and enable <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_dd7ea7af-92a8-43df-b0f8-0994cb994f7a" data-linktype="relative-path">filtering</a>
+on the RRAS server.</p><p>This structure is used in the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="071439e7-a9fd-40e4-91f7-ab756108e82f" data-linktype="relative-path">RRouterInterfaceTransportSetGlobalInfo (section 3.1.4.10)</a>
+</p>
+</li><li><p><span><span> 
+</span></span><a href="14ad8d26-d7d7-48dd-914d-da962d5d7049" data-linktype="relative-path">RRouterInterfaceTransportGetGlobalInfo (section 3.1.4.11)</a>
+</p>
+<div><pre> typedef struct _GLOBAL_INFO {
+   IN OUT BOOL bFilteringOn;
+   IN OUT DWORD dwLoggingLevel;
+ } GLOBAL_INFO,
+  *PGLOBAL_INFO;
+</pre></div>
+</li></ul><p><b>bFilteringOn:</b> This is of type BOOL (<a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/9d81be47-232e-42cf-8f0d-7a3b29bf2eb2" data-linktype="relative-path">2.2.3</a>).
+This MUST be set to 0x00000001; filtering is always enabled.</p><p><b>dwLoggingLevel: </b>This MUST be set to the
+logging levels so that if the RRAS server has different levels of logging
+information this field specifies the logging level and MUST be one of the
+following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Log no messages.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Log all errors.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Log all warnings and errors.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Log all errors, warnings, and information.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>When this structure is used, the <b>InfoType</b> of <a href="c99955ec-6d18-4665-8d5b-e124de63a368" data-linktype="relative-path"><b>RTR_TOC_ENTRY (section 2.2.1.2.4)</b></a>
+MUST be 0xFFFF0003 or 0xFFFF000F to specify global IP filtering or global lPv6
+filtering. </p></div>

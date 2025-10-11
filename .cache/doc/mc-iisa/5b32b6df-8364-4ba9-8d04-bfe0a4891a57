@@ -1,0 +1,74 @@
+<div class="content"><p>The IAppHostElementCollection interface provides methods
+that access a collection of &#34;collection IAppHostElements&#34;.</p><p>&#34;Collection IAppHostElements&#34; are a special class
+of child <a href="59774887-09e3-4de5-ad8e-4794f404b123" data-linktype="relative-path">IAppHostElement</a>
+objects where all objects typically share the same name but contain different <a href="564b4c1f-13a0-40c4-974b-1cbbd41764b3" data-linktype="relative-path">IAppHostProperty</a> objects.
+This IAppHostElementCollection is a collection of these special objects.</p><p>The IAppHostElementCollection <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> inherits opnums
+0–2 from the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="07489b9b-3d2f-4cc0-983f-b9ba8abf957e" data-linktype="relative-path">Count</a></p>
+  </td>
+  <td>
+  <p>Returns the count of elements.</p>
+  <p>Opnum: 3</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="910a2c4c-eaca-4a12-b318-1e0f662eea16" data-linktype="relative-path">Item</a></p>
+  </td>
+  <td>
+  <p>Returns the value that is associated with the element
+  at the specified index.</p>
+  <p>Opnum: 4</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="fb641e3c-147e-41f4-b4fa-e2b4d2286f99" data-linktype="relative-path">AddElement</a></p>
+  </td>
+  <td>
+  <p>Adds an element to the collection.</p>
+  <p>Opnum: 5</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="95cfc8cf-b79c-4cea-b6ac-c1fe9ddb7b92" data-linktype="relative-path">DeleteElement</a></p>
+  </td>
+  <td>
+  <p>Deletes an element from the collection.</p>
+  <p>Opnum: 6</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="d0e00a45-fd89-4871-9dbd-f4123eec60d4" data-linktype="relative-path">Clear</a></p>
+  </td>
+  <td>
+  <p>Clears an element from the collection.</p>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="6e12c978-ef4c-42e2-8b64-814f56e3077e" data-linktype="relative-path">CreateNewElement</a></p>
+  </td>
+  <td>
+  <p>Creates a new element in the collection.</p>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="8ea1f626-c8dd-4c82-afab-e8833d1893cd" data-linktype="relative-path">Schema</a></p>
+  </td>
+  <td>
+  <p>Returns the Document Object Model (DOM) description
+  for the collection.</p>
+  <p>Opnum: 9</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

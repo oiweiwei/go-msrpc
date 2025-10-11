@@ -1,1 +1,11 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsBarCodeState enumeration defines the state of a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_0c1aa461-4c32-4e8b-bb45-577085c32afb" data-linktype="relative-path">bar code</a>.</p><dl>
+<dd>
+<div><pre> enum NtmsBarCodeState
+ {
+   NTMS_BARCODESTATE_OK = 1,
+   NTMS_BARCODESTATE_UNREADABLE = 2
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_BARCODESTATE_OK:  </b>The medium has a
+readable bar code.</p><p><b>NTMS_BARCODESTATE_UNREADABLE:  </b>The medium
+either does not have a bar code, or the bar code is unreadable.</p></div>

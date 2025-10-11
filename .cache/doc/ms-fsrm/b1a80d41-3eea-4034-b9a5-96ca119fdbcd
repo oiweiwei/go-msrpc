@@ -71,9 +71,9 @@ perform the following actions:</p><ul><li><p><span><span>
 </li><li><p><span><span> 
 </span></span>Populate it with <a href="daf23529-163e-44d5-819b-6ebdfe2850d3" data-linktype="relative-path">Non-Persisted Module
 Definition Instances (section 3.2.1.6.2.2)</a> copied from the <a href="290f855d-d55d-4b16-8617-255931e1be9d" data-linktype="relative-path">Persisted Module
-Definitions (section 3.2.1.6.2.1)</a> in the <b>List of Persisted
-Module Definitions</b> where each copied instance&#39;s <b>Module Type</b> is
-equivalent to <i>moduleType</i>.</p>
+Definitions (section 3.2.1.6.2.1)</a> in the <b>List of Persisted Module
+Definitions</b> where each copied instance&#39;s <b>Module Type</b> is equivalent
+to <i>moduleType</i>.</p>
 </li><li><p><span><span> 
 </span></span>Populate <i>moduleDefinitions</i> with the <b>IFsrmPipelineModuleDefinition</b>
 interface pointer (section <a href="7b7cf0e7-75c5-40b4-a418-de1259a62c94" data-linktype="relative-path">3.2.4.2.43</a>)

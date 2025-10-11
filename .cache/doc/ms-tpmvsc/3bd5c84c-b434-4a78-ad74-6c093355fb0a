@@ -1,1 +1,67 @@
-<div class="content"></div>
+<div class="content"><p>This method is invoked by the requestor to create a <a href="348a1d4a-acc7-43ea-9413-b7e92ae9682d#gt_51714f66-75dc-4642-bd63-73b8b2825067" data-linktype="relative-path">VSC</a> on the target.</p><dl>
+<dd>
+<div><pre> HRESULT CreateVirtualSmartCard(
+         [in, string] const wchar_t* pszFriendlyName,
+         [in] unsigned char bAdminAlgId,
+         [in, size_is(cbAdminKey)] const unsigned char* pbAdminKey,
+         [in] unsigned long cbAdminKey,
+         [in, unique, size_is(cbAdminKcv)] const unsigned char* pbAdminKcv,
+         [in] unsigned long cbAdminKcv,
+         [in, unique, size_is(cbPuk)] const unsigned char* pbPuk,
+         [in] unsigned long cbPuk,
+         [in, size_is(cbPin)] const unsigned char* pbPin,
+         [in] unsigned long cbPin,
+         [in] int fGenerate,
+         [in, unique] ITpmVirtualSmartCardManagerStatusCallback* pStatusCallback,
+         [out, string] wchar_t** ppszInstanceId,
+         [out] int* pfNeedReboot);
+  
+</pre></div>
+</dd></dl><p><b>pszFriendlyName:</b> A Unicode string for use in
+any user interface messages relating to this VSC.</p><p><b>bAdminAlgId:</b> An unsigned byte value. This
+parameter MUST be set to 0x82.</p><p><b>pbAdminKey:</b>  An array of 24 bytes containing a
+TDEA <a href="https://go.microsoft.com/fwlink/?LinkId=131225" data-linktype="external">[SP800-67]</a>
+key intended to be used as the administrative key for the new VSC.</p><p><b>cbAdminKey:</b> A 32-bit unsigned integer value.
+It MUST be set to 24.</p><p><b>pbAdminKcv:</b>  An array of bytes containing the
+Key Check Value (KCV) for the administrative key contained in the pbAdminKey
+parameter. This parameter is optional and MUST be set to NULL if absent. If
+present, it MUST be computed by encrypting eight zero bytes using the TDEA
+[SP800-67] block cipher and taking the first three bytes.</p><p><b>cbAdminKcv:</b> A 32-bit unsigned integer value. It
+MUST be set to 0 if the pbAdmin parameter is NULL, and MUST be set to 3
+otherwise. </p><p><b>pbPuk:</b>  An array of bytes containing the
+desired PUK for the new VSC. This parameter is optional and MUST be set to NULL
+if absent. If present, its length MUST be between 8 and 127 bytes, inclusive.</p><p><b>cbPuk:</b> A 32-bit unsigned integer value. It
+MUST be equal to the length of the pbPuk parameter in bytes. If pbPuk is NULL,
+this parameter MUST be set to 0.</p><p><b>pbPin:</b> An array of bytes containing the
+desired PIN for the new VSC. Its length MUST be between 8 and 127 bytes,
+inclusive.</p><p><b>cbPin:</b> A 32-bit unsigned integer value. It
+MUST be equal to the length of the pbPin parameter in bytes.</p><p><b>fGenerate:</b> A Boolean value that indicates
+whether a file system is to be generated on the new VSC.</p><p><b>pStatusCallback:</b> A reference to an instance of
+the ITpmVirtualSmartCardManagerStatusCallback DCOM interface on the requestor.
+The server uses this interface to provide feedback on progress and errors. This
+parameter is optional and MUST be set to NULL if absent.</p><p><b>ppszInstanceId:</b> A Unicode string containing a
+unique instance identifier for the VSC created by this operation.</p><p><b>pfNeedReboot:</b> A Boolean value that indicates
+whether or not a reboot is required on the server before the newly-created VSC
+is made available to applications.</p><p><b>Return Values:</b> The server MUST return 0 if it
+successfully creates the new VSC, and a nonzero value otherwise.</p><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The server MUST validate the parameters before executing the
+requested operation and fail requests with invalid parameters.</p><p>If pbAdminKcv is present, the server MUST perform admin key
+integrity check. The admin key integrity check is done by encrypting eight zero
+bytes using the TDEA [SP800-67] block cipher, taking the first 3 bytes and
+verifying that it matches the provided pbAdminKcv value. If the computed bytes
+do not match the provided pbAdminKcv value, the admin key integrity check fails
+and the server MUST fail the requested operation.</p><p>If pbPuk is present, the server MUST create a VSC that
+supports PUK-based PIN reset and its PUK is set as the provided pbPuk value.
+Otherwise, the server MUST create a VSC that supports challenge-response-based
+PIN reset through the admin role.</p><p>Upon successful creation of a VSC, the server MUST
+initialize all data structures necessary for the VSC, and register it with the
+underlying smart card implementation compliant with <a href="https://go.microsoft.com/fwlink/?LinkId=90244" data-linktype="external">[PCSC3]</a>. The server
+MUST allocate an instance identifier to the newly-created VSC that is unique
+among all such identifiers in use at that time.</p><p>If pStatusCallback is present, the server SHOULD notify the
+client of the progress and errors of the undergoing operation, as specified in
+section <a href="7d7353e4-2474-49fb-a06b-1bfb1a971171" data-linktype="relative-path">3.2.4</a>. The
+status callback happens synchronously with the requested operation. If the
+status callback returns an error code, the server MUST abort the VSC creation
+and return a non-zero error to the client, with the severity bit in the error
+code set to 1. In this case, the server SHOULD also roll back all changes made
+in respect to the requested operation.</p></div>

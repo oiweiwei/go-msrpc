@@ -1,1 +1,65 @@
-<div class="content"></div>
+<div class="content"><p>The GetProviderMgmtInterface method retrieves the <a href="46290d6a-4387-41fd-a272-d420e14ed568" data-linktype="relative-path">IVssDifferentialSoftwareSnapshotMgmt</a>
+<a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a>.</p><dl>
+<dd>
+<div><pre> HRESULT GetProviderMgmtInterface(
+   [in] VSS_ID ProviderId,
+   [in] REFIID InterfaceId,
+   [out, iid_is(InterfaceId)] IUnknown** ppItf
+ );
+</pre></div>
+</dd></dl><p><b>ProviderId: </b>MUST be set to the <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_c714f43b-a2c0-4a47-b022-deeeabf318b3" data-linktype="relative-path">shadow copy provider</a> <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a> in <a href="551c5477-a603-469e-9ac0-e4c4d23db9ee" data-linktype="relative-path">Standards
+Assignments (section 1.9)</a>.</p><p><b>InterfaceId: </b>MUST be set to the UUID for the
+IVssDifferentialSoftwareSnapshotMgmt interface in Standards
+Assignments (section 1.9).</p><p><b>ppItf: </b>A pointer to an <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+pointer that upon completion contains a pointer to an instance of the interface
+object that is specified by <i>InterfaceId</i>. A caller MUST release the <i>ppItf</i>
+that is received when the caller is done with it.</p><p><b>Return Values: </b>The method MUST return the
+following error code for the specific conditions.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x80042304</p>
+  <p>VSS_E_PROVIDER_NOT_REGISTERED</p>
+  </td>
+  <td>
+  <p>Returned when the provider with ID ProviderId does not
+  exist on the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>Returned when <i>ppItf</i> is NULL or <a href="../ms-oaut/bbde795f-5398-42d8-9f59-3613da03c318" data-linktype="relative-path">REFIID</a>
+  is not equal to __uuidof(IVssDifferentialSoftwareSnapshotMgmt).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>E_ACCESSDENIED</p>
+  </td>
+  <td>
+  <p>Returned when the user making the request does not
+  have sufficient privileges to perform the operation.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>For any other conditions, the
+method MUST return zero when it has succeeded or an implementation-specific
+nonzero error code on failure.</p>
+</dd></dl><p>No exceptions are thrown except those that are thrown by the
+underlying <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>When the server receives this message, it MUST verify that <i>ppItf</i>
+is not NULL.</p><p>The server MUST set <i>ppItf</i> to the IUnknown interface
+of an object that also implements IVssDifferentialSoftwareSnapshotMgmt or
+return an implementation-specific nonzero error code.</p></div>

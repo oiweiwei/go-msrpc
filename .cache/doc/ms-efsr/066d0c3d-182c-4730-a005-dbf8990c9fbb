@@ -1,1 +1,207 @@
-<div class="content"></div>
+<div class="content"><p> The Certificate Data structure MUST be formatted as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Offset
+  to Certificate Thumbprint</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Length
+  of Certificate Thumbprint</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Offset
+  of Container Name</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Offset
+  of Provider Name</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Offset
+  of Display Name</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Data
+  Fields (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Offset to Certificate Thumbprint (4 bytes): </b>Offset
+of the <b>Certificate Thumbprint</b> field from the start of this structure. It
+MUST be a 32-bit unsigned integer in little-endian format.</p><p><b>Length of Certificate Thumbprint (4 bytes): </b>The
+length of the <b>Certificate Thumbprint</b> field. It MUST be a 32-bit unsigned
+integer in little-endian format.</p><p><b>Offset of Container Name (4 bytes): </b>Offset of
+the <b>Container Name</b> field (in bytes) from the start of this structure. It
+MUST be a 32-bit unsigned integer in little-endian format. If this field is set
+to zero, then the <b>Container Name</b> field MUST be absent.</p><p><b>Offset of Provider Name (4 bytes): </b>Offset of
+the <b>Provider Name</b> field (in bytes) from the start of this structure. It
+MUST be a 32-bit unsigned integer in little-endian format. If this field is set
+to zero, the <b>Provider Name</b> field MUST be absent. If a <b>Provider Name</b>
+field is present, a <b>Container Name</b> field MUST also be present.</p><p><b>Offset of Display Name (4 bytes): </b>Offset of
+the <b>Display Name</b> field, (in bytes) from the start of this structure. It
+MUST be a 32-bit unsigned integer in little-endian format. If this field is set
+to zero, then the <b>Display Name</b> field MUST be absent.</p><p><b>Data Fields (variable): </b>This field MUST
+contain the following items, in any order, and at the locations indicated by
+the respective <b>Offset</b> fields previously listed. These items MUST be
+completely contained inside this field and MUST NOT overlap each other. There
+MUST NOT be any unused areas within this field that span more than 8 contiguous
+bytes.</p><dl>
+<dd>
+<table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Certificate
+  Thumbprint (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Container
+  Name (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Provider
+  Name (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">Display
+  Name (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p align="center">...</p>
+  </td>
+ </tr>
+</tbody></table>
+</dd>
+<dd>
+<p><b>Certificate Thumbprint
+(variable): </b>The SHA-1 hash of the DER-encoded form of the certificate. For
+more information on SHA-1, see <a href="https://go.microsoft.com/fwlink/?LinkId=298918" data-linktype="external">[FIPS180-4]</a>. For more
+information on DER encoding, see <a href="https://go.microsoft.com/fwlink/?LinkId=90593" data-linktype="external">[X690]</a>.</p>
+</dd>
+<dd>
+<p><b>Container Name
+(variable): </b>A null-terminated Unicode string in UTF-16 encoding that
+provides a hint as to the public key container in which the key is stored. This
+field MUST always be present if the <b>Provider Name</b> is present. When the <b>Container
+Name</b> field is present, the <b>Offset of Container Name</b> field MUST be
+nonzero; otherwise, this field is ignored by the server and does not affect
+protocol behavior.</p>
+</dd>
+<dd>
+<p><b>Provider Name (variable):
+</b>A null-terminated Unicode string in UTF-16 encoding. This field MUST always
+be present if the <b>Container Name</b> is present. It MUST be omitted if the <b>Offset
+of Provider Name</b> field is 0; otherwise, this field is ignored by the server
+and does not affect protocol behavior.</p>
+</dd>
+<dd>
+<p><b>Display Name (variable): </b>A
+null-terminated Unicode string in UTF-16 encoding that provides a hint as to
+the friendly name that can be used to identify this certificate for display
+purposes. This field MUST be omitted if the <b>Offset of Display Name</b> field
+is 0.</p>
+</dd></dl></div>

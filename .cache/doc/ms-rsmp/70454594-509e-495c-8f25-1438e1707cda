@@ -1,1 +1,199 @@
-<div class="content"></div>
+<div class="content"><p>The SubmitNtmsOperatorRequestA method submits an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_4676b5f2-6ecd-463c-8218-811911038e63" data-linktype="relative-path">operator request</a>, with
+strings encoded using ASCII.</p><dl>
+<dd>
+<div><pre> HRESULT SubmitNtmsOperatorRequestA(
+   [in] DWORD dwRequest,
+   [in, unique] const  char* lpMessage,
+   [in, unique] LPNTMS_GUID lpArg1Id,
+   [in, unique] LPNTMS_GUID lpArg2Id,
+   [out] LPNTMS_GUID lpRequestId
+ );
+</pre></div>
+</dd></dl><p><b>dwRequest: </b>A value from the <a href="d540f894-df65-4d15-b1e0-5fda02a15e67" data-linktype="relative-path">NtmsOpreqCommand (section 2.2.1.7)</a>
+enumeration specifying the type of operation requested. If <b>dwRequest</b> is
+set to NTMS_OPREQ_UNKNOWN, the server MUST return ERROR_INVALID_PARAMETER and
+take no action.</p><p><b>lpMessage: </b>An optional null-terminated message
+string to send to the user. </p><p><b>lpArg1Id: </b>This parameter MUST be set according
+to the value of <i>dwRequest</i>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value of dwRequest</p>
+   </th>
+   <th>
+   <p>lpArg1Id </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_OPREQ_CLEANER</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_OPREQ_DEVICESERVICE</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>MUST be set to a pointer to the identifier of the
+  device that needs service.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_OPREQ_MESSAGE</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_OPREQ_MOVEMEDIA</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>MUST be set to a pointer to the identifier of the
+  piece of <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_9036b269-4f3b-4353-a1d0-54f5c686ec2c" data-linktype="relative-path">physical media</a>
+  to move.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_OPREQ_NEWMEDIA</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>MUST be set to a pointer to the identifier of the
+  media pool from which to retrieve the new media.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>lpArg2Id: </b>This parameter MUST be set according
+to the value of <i>dwRequest</i>. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value of dwRequest</p>
+   </th>
+   <th>
+   <p>lpArg2Id </p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_OPREQ_CLEANER</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_OPREQ_DEVICESERVICE</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_OPREQ_MESSAGE</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>MUST be set to NULL.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_OPREQ_MOVEMEDIA</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>MUST be set to a pointer to the identifier of the
+  target library to which the media MUST be moved.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_OPREQ_NEWMEDIA</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>MUST be set to a pointer to the identifier of the
+  media library to which the new media MUST be added.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>lpRequestId: </b>A pointer to the identifier of
+the created operator request. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to one or more objects is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>An invalid parameter was found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800708CA</p>
+  <p>ERROR_NOT_CONNECTED</p>
+  </td>
+  <td>
+  <p>Unable to connect to the service.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D8</p>
+  <p>ERROR_OBJECT_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>Unable to find the source or destination object.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database query or update failed.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The SubmitNtmsOperatorRequestA method submits an operator
+request, and returns the status of the request (Satisfied or Canceled), or
+times out (if the operator does not act upon the request). Operator requests
+are used to request media, to request that the specified medium be moved from
+one library to another, or to request the server device service.</p><p>Upon receiving this message, the server MUST verify that <i>lpRequestId</i>
+and <i>lpMessage</i> are not NULL. If parameter validation fails, the server
+MUST immediately fail the operation and return ERROR_INVALID_PARAMETER
+(0x80070057).</p><p>The NTMS_OPEREQ_MESSAGE value (in the <i>dwRequest</i>
+parameter) is the request type most often used by applications. The server
+cannot use NTMS_OPEREQ_MESSAGE. RSM uses the other request types as needed.</p><p>Strings sent to this method as parameters MUST be
+ASCII-encoded. </p></div>

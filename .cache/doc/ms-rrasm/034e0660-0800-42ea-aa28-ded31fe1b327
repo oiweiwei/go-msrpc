@@ -1,1 +1,15 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MPR_DEVICE_0</b> structure stores information about a
+device used for a link in a multilinked <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_a5f114fd-0784-48a8-96b1-c07447033a0d" data-linktype="relative-path">demand-dial</a> interface.</p><dl>
+<dd>
+<div><pre> typedef struct _MPR_DEVICE_0 {
+   WCHAR szDeviceType[17];
+   WCHAR szDeviceName[129];
+ } MPR_DEVICE_0,
+  *PMPR_DEVICE_0;
+</pre></div>
+</dd></dl><p><b>szDeviceType: </b>Specifies a null-terminated
+Unicode string that indicates the RRAS server device type referenced by <b>szDeviceName</b>.
+See <a href="0b5fa6fc-b3f2-4a3f-9bfd-96963bfbb03d" data-linktype="relative-path"><b>MPRI_INTERFACE_2 (section 2.2.1.2.83)</b></a>
+for a list of possible device types.  </p><p><b>szDeviceName: </b>Specifies a null-terminated
+Unicode string that contains the name of the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_d4a340b8-46f3-42a1-be27-1c00a2d59ffc" data-linktype="relative-path">TAPI</a> device to use with
+this phone book entry.</p></div>

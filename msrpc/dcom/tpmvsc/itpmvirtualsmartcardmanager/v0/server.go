@@ -31,8 +31,23 @@ type VirtualSmartCardManagerServer interface {
 	// IUnknown base class.
 	iunknown.UnknownServer
 
+	// This method is invoked by the requestor to create a VSC on the target.
+	//
+	// Return Values: The server MUST return 0 if it successfully creates the new VSC, and
+	// a nonzero value otherwise.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	CreateVirtualSmartCard(context.Context, *CreateVirtualSmartCardRequest) (*CreateVirtualSmartCardResponse, error)
 
+	// This method is invoked by the requestor to destroy a previously-created VSC on the
+	// target.
+	//
+	// Return Values: The server MUST return 0 if it successfully locates and destroys the
+	// indicated VSC, and a nonzero value otherwise.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	DestroyVirtualSmartCard(context.Context, *DestroyVirtualSmartCardRequest) (*DestroyVirtualSmartCardResponse, error)
 }
 

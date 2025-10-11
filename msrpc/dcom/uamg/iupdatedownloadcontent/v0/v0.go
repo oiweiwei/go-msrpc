@@ -49,6 +49,20 @@ type UpdateDownloadContentClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The IUpdateDownloadContent::DownloadUrl (opnum 8) method retrieves the location of
+	// the content.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the DownloadUrl ADM element.
 	GetDownloadURL(context.Context, *GetDownloadURLRequest, ...dcerpc.CallOption) (*GetDownloadURLResponse, error)
 
 	// AlterContext alters the client context.
@@ -337,8 +351,9 @@ func (o *GetDownloadURLRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetDownloadURLResponse structure represents the DownloadUrl operation response
 type GetDownloadURLResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A URL specifying the location of the download content.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The DownloadUrl return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

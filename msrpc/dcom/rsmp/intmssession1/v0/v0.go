@@ -49,33 +49,118 @@ type Session1Client interface {
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
 
+	// The OpenNtmsServerSessionW method sets up a session with the server. All input parameters
+	// for this method are optional.
 	OpenNTMSServerSessionW(context.Context, *OpenNTMSServerSessionWRequest, ...dcerpc.CallOption) (*OpenNTMSServerSessionWResponse, error)
 
+	// The OpenNtmsServerSessionA method sets up a session with the server. All input parameters
+	// for this method are optional.
 	OpenNTMSServerSessionA(context.Context, *OpenNTMSServerSessionARequest, ...dcerpc.CallOption) (*OpenNTMSServerSessionAResponse, error)
 
+	// The CloseNtmsSession method closes a session.
+	//
+	// This method has no parameters.
+	//
+	//	+-------------------------------------+------------------------------------------------+
+	//	|               RETURN                |                                                |
+	//	|             VALUE/CODE              |                  DESCRIPTION                   |
+	//	|                                     |                                                |
+	//	+-------------------------------------+------------------------------------------------+
+	//	+-------------------------------------+------------------------------------------------+
+	//	| 0x00000000 S_OK                     | The call was successful.                       |
+	//	+-------------------------------------+------------------------------------------------+
+	//	| 0x800704B1 ERROR_CONNECTION_UNAVAIL | The connection to the server is not available. |
+	//	+-------------------------------------+------------------------------------------------+
+	//
+	// This method will close the session. This method MUST be called when the client has
+	// dereferenced the session. Note, however, that the server might not yet have dereferenced
+	// the session, because one or more interfaces might still be in process. The server,
+	// therefore, does not tear down the session, but rather cleans up the session and releases
+	// the open session reference, allowing the session to be ended when the last reference
+	// is removed.
+	//
+	// If the client has an outstanding synchronous request, the requests MUST be unwound
+	// and canceled.
 	CloseNTMSSession(context.Context, *CloseNTMSSessionRequest, ...dcerpc.CallOption) (*CloseNTMSSessionResponse, error)
 
+	// The SubmitNtmsOperatorRequestW method submits an operator request, with strings encoded
+	// using Unicode.
 	SubmitNTMSOperatorRequestW(context.Context, *SubmitNTMSOperatorRequestWRequest, ...dcerpc.CallOption) (*SubmitNTMSOperatorRequestWResponse, error)
 
+	// The SubmitNtmsOperatorRequestA method submits an operator request, with strings encoded
+	// using ASCII.
 	SubmitNTMSOperatorRequestA(context.Context, *SubmitNTMSOperatorRequestARequest, ...dcerpc.CallOption) (*SubmitNTMSOperatorRequestAResponse, error)
 
+	// The WaitForNtmsOperatorRequest method waits for an operator request.
 	WaitForNTMSOperatorRequest(context.Context, *WaitForNTMSOperatorRequestRequest, ...dcerpc.CallOption) (*WaitForNTMSOperatorRequestResponse, error)
 
+	// The CancelNtmsOperatorRequest method cancels an operator request.
 	CancelNTMSOperatorRequest(context.Context, *CancelNTMSOperatorRequestRequest, ...dcerpc.CallOption) (*CancelNTMSOperatorRequestResponse, error)
 
+	// The SatisfyNtmsOperatorRequest method completes an operator request.
 	SatisfyNTMSOperatorRequest(context.Context, *SatisfyNTMSOperatorRequestRequest, ...dcerpc.CallOption) (*SatisfyNTMSOperatorRequestResponse, error)
 
+	// The ImportNtmsDatabase method imports the state of the server at the next server
+	// restart.
+	//
+	// This method has no parameters.
+	//
+	//	+-----------------------------------+----------------------------------------------------------------------------------+
+	//	|              RETURN               |                                                                                  |
+	//	|            VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                   |                                                                                  |
+	//	+-----------------------------------+----------------------------------------------------------------------------------+
+	//	+-----------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                   | The call was successful.                                                         |
+	//	+-----------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED    | Access to object was denied. For more information regarding object, see section  |
+	//	|                                   | 3.2.5.2.                                                                         |
+	//	+-----------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800708CA ERROR_NOT_CONNECTED    | Unable to connect to the server.                                                 |
+	//	+-----------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE | The database query or update failed.                                             |
+	//	+-----------------------------------+----------------------------------------------------------------------------------+
+	//
+	// The ImportNtmsDatabase method directs the server to import the content of the export
+	// directory into the database upon the next restart. When the server restarts, it MUST
+	// import the already saved database to its current database if the import is set.
 	ImportNTMSDatabase(context.Context, *ImportNTMSDatabaseRequest, ...dcerpc.CallOption) (*ImportNTMSDatabaseResponse, error)
 
+	// The ExportNtmsDatabase method exports the state of the server.
+	//
+	// This method has no parameters.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access to object was denied. For more information regarding object, see section  |
+	//	|                                    | 3.2.5.2.                                                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070020 ERROR_SHARING_VIOLATION | One of the files that needs to be written to is open.                            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800708CA ERROR_NOT_CONNECTED     | Unable to connect to the server.                                                 |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE  | The database query or update failed.                                             |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
 	ExportNTMSDatabase(context.Context, *ExportNTMSDatabaseRequest, ...dcerpc.CallOption) (*ExportNTMSDatabaseResponse, error)
 
 	// Opnum13NotUsedOnWire operation.
 	// Opnum13NotUsedOnWire
 
+	// The AddNotification method registers a client to receive change notifications for
+	// a type of object.
 	AddNotification(context.Context, *AddNotificationRequest, ...dcerpc.CallOption) (*AddNotificationResponse, error)
 
+	// The RemoveNotification method unregisters a client from receiving change notifications
+	// for a type of object.
 	RemoveNotification(context.Context, *RemoveNotificationRequest, ...dcerpc.CallOption) (*RemoveNotificationResponse, error)
 
+	// The DispatchNotification method sends a notification to all registered sinks.
 	DispatchNotification(context.Context, *DispatchNotificationRequest, ...dcerpc.CallOption) (*DispatchNotificationResponse, error)
 
 	// AlterContext alters the client context.
@@ -637,12 +722,40 @@ func (o *xxx_OpenNTMSServerSessionWOperation) UnmarshalNDRResponse(ctx context.C
 // OpenNTMSServerSessionWRequest structure represents the OpenNtmsServerSessionW operation request
 type OpenNTMSServerSessionWRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Server      string         `idl:"name:lpServer;string;pointer:unique" json:"server"`
-	Application string         `idl:"name:lpApplication;string;pointer:unique" json:"application"`
-	ClientName  string         `idl:"name:lpClientName;string" json:"client_name"`
-	UserName    string         `idl:"name:lpUserName;string" json:"user_name"`
-	Options     uint32         `idl:"name:dwOptions" json:"options"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpServer: The null-terminated Domain Name System (DNS) or Windows Internet Naming
+	// Service (WINS) name of the computer with which to set up the session. If this parameter
+	// is NULL, the current computer name MUST be used.
+	Server string `idl:"name:lpServer;string;pointer:unique" json:"server"`
+	// lpApplication: The null-terminated unique character string that identifies the application.
+	// This name identifies resources and operator requests, and is optional.<76>
+	Application string `idl:"name:lpApplication;string;pointer:unique" json:"application"`
+	// lpClientName: The null-terminated DNS or WINS name of the computer sending the request.
+	ClientName string `idl:"name:lpClientName;string" json:"client_name"`
+	// lpUserName: A null-terminated sequence of Unicode characters specifying the name
+	// of the interactive user sending the request.
+	UserName string `idl:"name:lpUserName;string" json:"user_name"`
+	// dwOptions: This parameter is unused. It MUST be sent as 0 and MUST be ignored on
+	// receipt.
+	//
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                 |                                                                                  |
+	//	|              VALUE/CODE               |                                   DESCRIPTION                                    |
+	//	|                                       |                                                                                  |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                       | The call was successful.                                                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED        | Access to an object was denied.                                                  |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070015 ERROR_NOT_READY            | The service has not started. The application is to wait and retry its request.   |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800704BA ERROR_INVALID_COMPUTERNAME | The supplied computer name format is invalid.                                    |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070719 RPC_S_NO_INTERFACES        | The server is using a version of RSM that is older than the version that is used |
+	//	|                                       | by the client.                                                                   |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	Options uint32 `idl:"name:dwOptions" json:"options"`
 }
 
 func (o *OpenNTMSServerSessionWRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenNTMSServerSessionWOperation) *xxx_OpenNTMSServerSessionWOperation {
@@ -960,12 +1073,39 @@ func (o *xxx_OpenNTMSServerSessionAOperation) UnmarshalNDRResponse(ctx context.C
 // OpenNTMSServerSessionARequest structure represents the OpenNtmsServerSessionA operation request
 type OpenNTMSServerSessionARequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Server      string         `idl:"name:lpServer;pointer:unique" json:"server"`
-	Application string         `idl:"name:lpApplication;pointer:unique" json:"application"`
-	ClientName  uint8          `idl:"name:lpClientName" json:"client_name"`
-	UserName    uint8          `idl:"name:lpUserName" json:"user_name"`
-	Options     uint32         `idl:"name:dwOptions" json:"options"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpServer: The null-terminated DNS or WINS name of the computer with which to set
+	// up the session. If this parameter is NULL, the current computer name MUST be used.
+	Server string `idl:"name:lpServer;pointer:unique" json:"server"`
+	// lpApplication: The null-terminated unique character string that identifies the application.
+	// This name identifies resources and requests made by the operator. It is optional
+	// and can be NULL.
+	Application string `idl:"name:lpApplication;pointer:unique" json:"application"`
+	// lpClientName: The null-terminated DNS or WINS name of the computer sending the request.
+	ClientName uint8 `idl:"name:lpClientName" json:"client_name"`
+	// lpUserName: A null-terminated sequence of characters specifying the name of the interactive
+	// user sending the request.
+	UserName uint8 `idl:"name:lpUserName" json:"user_name"`
+	// dwOptions: This parameter is unused. It MUST be sent as 0 and MUST be ignored on
+	// receipt.
+	//
+	//	+---------------------------------------+--------------------------------------------------------------------------------+
+	//	|                RETURN                 |                                                                                |
+	//	|              VALUE/CODE               |                                  DESCRIPTION                                   |
+	//	|                                       |                                                                                |
+	//	+---------------------------------------+--------------------------------------------------------------------------------+
+	//	+---------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                       | The call was successful.                                                       |
+	//	+---------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED        | Access to an object was denied.                                                |
+	//	+---------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x80070015 ERROR_NOT_READY            | The service has not started. The application is to wait and retry its request. |
+	//	+---------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x800704BA ERROR_INVALID_COMPUTERNAME | The format of the supplied computer name is invalid.                           |
+	//	+---------------------------------------+--------------------------------------------------------------------------------+
+	//	| 0x80070719 RPC_S_NO_INTERFACES        | The server is using an older version of RSM than that of the client.           |
+	//	+---------------------------------------+--------------------------------------------------------------------------------+
+	Options uint32 `idl:"name:dwOptions" json:"options"`
 }
 
 func (o *OpenNTMSServerSessionARequest) xxx_ToOp(ctx context.Context, op *xxx_OpenNTMSServerSessionAOperation) *xxx_OpenNTMSServerSessionAOperation {
@@ -1526,11 +1666,55 @@ func (o *xxx_SubmitNTMSOperatorRequestWOperation) UnmarshalNDRResponse(ctx conte
 // SubmitNTMSOperatorRequestWRequest structure represents the SubmitNtmsOperatorRequestW operation request
 type SubmitNTMSOperatorRequestWRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Request uint32         `idl:"name:dwRequest" json:"request"`
-	Message string         `idl:"name:lpMessage;string;pointer:unique" json:"message"`
-	Arg1ID  *dtyp.GUID     `idl:"name:lpArg1Id;pointer:unique" json:"arg1_id"`
-	Arg2ID  *dtyp.GUID     `idl:"name:lpArg2Id;pointer:unique" json:"arg2_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// dwRequest: A value from the NtmsOpreqCommand (section 2.2.1.7) enumeration specifying
+	// the type of operation requested. If dwRequest is set to NTMS_OPREQ_UNKNOWN, the server
+	// MUST return ERROR_INVALID_PARAMETER and take no action.
+	Request uint32 `idl:"name:dwRequest" json:"request"`
+	// lpMessage: An optional null-terminated message string to send to the user.
+	Message string `idl:"name:lpMessage;string;pointer:unique" json:"message"`
+	// lpArg1Id: This parameter MUST be set according to the value of dwRequest.
+	//
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	|              VALUE OF               |                                                                                  |
+	//	|              DWREQUEST              |                                     LPARG1ID                                     |
+	//	|                                     |                                                                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_NEWMEDIA 0x00000001      | MUST be set to a pointer to the identifier of the media pool from which to       |
+	//	|                                     | retrieve the new media.                                                          |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_CLEANER 0x00000002       | Must be set to the pointer to the identifier of the device (library or slot).    |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_DEVICESERVICE 0x00000003 | MUST be set to a pointer to the identifier of the device that needs service.     |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_MOVEMEDIA 0x00000004     | MUST be set to a pointer to the identifier of the piece of physical media to     |
+	//	|                                     | move.                                                                            |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_MESSAGE 0x00000005       | MUST be set to NULL.                                                             |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	Arg1ID *dtyp.GUID `idl:"name:lpArg1Id;pointer:unique" json:"arg1_id"`
+	// lpArg2Id: This parameter MUST be set according to the value of dwRequest.
+	//
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	|              VALUE OF               |                                                                                  |
+	//	|              DWREQUEST              |                                     LPARG2ID                                     |
+	//	|                                     |                                                                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_NEWMEDIA 0x00000001      | MUST be set to a pointer to the identifier of the media library to which the new |
+	//	|                                     | media MUST be added.                                                             |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_CLEANER 0x00000002       | MUST be set to NULL.                                                             |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_DEVICESERVICE 0x00000003 | MUST be set to NULL.                                                             |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_MOVEMEDIA 0x00000004     | MUST be set to a pointer to the identifier of the target library to which the    |
+	//	|                                     | media MUST be moved.                                                             |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_MESSAGE 0x00000005       | MUST be set to NULL.                                                             |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	Arg2ID *dtyp.GUID `idl:"name:lpArg2Id;pointer:unique" json:"arg2_id"`
 }
 
 func (o *SubmitNTMSOperatorRequestWRequest) xxx_ToOp(ctx context.Context, op *xxx_SubmitNTMSOperatorRequestWOperation) *xxx_SubmitNTMSOperatorRequestWOperation {
@@ -1573,8 +1757,34 @@ func (o *SubmitNTMSOperatorRequestWRequest) UnmarshalNDR(ctx context.Context, r 
 // SubmitNTMSOperatorRequestWResponse structure represents the SubmitNtmsOperatorRequestW operation response
 type SubmitNTMSOperatorRequestWResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
-	RequestID *dtyp.GUID     `idl:"name:lpRequestId" json:"request_id"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpRequestId: A pointer to the identifier of the created operator request.
+	//
+	//	+------------------------------------+--------------------------------------------------+
+	//	|               RETURN               |                                                  |
+	//	|             VALUE/CODE             |                   DESCRIPTION                    |
+	//	|                                    |                                                  |
+	//	+------------------------------------+--------------------------------------------------+
+	//	+------------------------------------+--------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                         |
+	//	+------------------------------------+--------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access to one or more objects is denied.         |
+	//	+------------------------------------+--------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | An invalid parameter was found.                  |
+	//	+------------------------------------+--------------------------------------------------+
+	//	| 0x800708CA ERROR_NOT_CONNECTED     | Unable to connect to the service.                |
+	//	+------------------------------------+--------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND  | Unable to find the source or destination object. |
+	//	+------------------------------------+--------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE  | The database query or update failed.             |
+	//	+------------------------------------+--------------------------------------------------+
+	//
+	// The SubmitNtmsOperatorRequestW method submits an operator request, and returns the
+	// status of the request (Satisfied or Canceled), or times out (if the operator does
+	// not act upon the request). Operator requests are used to request media, to request
+	// that the specified medium be moved from one library to another, or to request the
+	// server device service.
+	RequestID *dtyp.GUID `idl:"name:lpRequestId" json:"request_id"`
 	// Return: The SubmitNtmsOperatorRequestW return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1901,11 +2111,55 @@ func (o *xxx_SubmitNTMSOperatorRequestAOperation) UnmarshalNDRResponse(ctx conte
 // SubmitNTMSOperatorRequestARequest structure represents the SubmitNtmsOperatorRequestA operation request
 type SubmitNTMSOperatorRequestARequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Request uint32         `idl:"name:dwRequest" json:"request"`
-	Message string         `idl:"name:lpMessage;pointer:unique" json:"message"`
-	Arg1ID  *dtyp.GUID     `idl:"name:lpArg1Id;pointer:unique" json:"arg1_id"`
-	Arg2ID  *dtyp.GUID     `idl:"name:lpArg2Id;pointer:unique" json:"arg2_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// dwRequest: A value from the NtmsOpreqCommand (section 2.2.1.7) enumeration specifying
+	// the type of operation requested. If dwRequest is set to NTMS_OPREQ_UNKNOWN, the server
+	// MUST return ERROR_INVALID_PARAMETER and take no action.
+	Request uint32 `idl:"name:dwRequest" json:"request"`
+	// lpMessage: An optional null-terminated message string to send to the user.
+	Message string `idl:"name:lpMessage;pointer:unique" json:"message"`
+	// lpArg1Id: This parameter MUST be set according to the value of dwRequest.
+	//
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	|              VALUE OF               |                                                                                  |
+	//	|              DWREQUEST              |                                     LPARG1ID                                     |
+	//	|                                     |                                                                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_CLEANER 0x00000002       | MUST be set to NULL.                                                             |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_DEVICESERVICE 0x00000003 | MUST be set to a pointer to the identifier of the device that needs service.     |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_MESSAGE 0x00000005       | MUST be set to NULL.                                                             |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_MOVEMEDIA 0x00000004     | MUST be set to a pointer to the identifier of the piece of physical media to     |
+	//	|                                     | move.                                                                            |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_NEWMEDIA 0x00000001      | MUST be set to a pointer to the identifier of the media pool from which to       |
+	//	|                                     | retrieve the new media.                                                          |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	Arg1ID *dtyp.GUID `idl:"name:lpArg1Id;pointer:unique" json:"arg1_id"`
+	// lpArg2Id: This parameter MUST be set according to the value of dwRequest.
+	//
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	|              VALUE OF               |                                                                                  |
+	//	|              DWREQUEST              |                                     LPARG2ID                                     |
+	//	|                                     |                                                                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_CLEANER 0x00000002       | MUST be set to NULL.                                                             |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_DEVICESERVICE 0x00000003 | MUST be set to NULL.                                                             |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_MESSAGE 0x00000005       | MUST be set to NULL.                                                             |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_MOVEMEDIA 0x00000004     | MUST be set to a pointer to the identifier of the target library to which the    |
+	//	|                                     | media MUST be moved.                                                             |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQ_NEWMEDIA 0x00000001      | MUST be set to a pointer to the identifier of the media library to which the new |
+	//	|                                     | media MUST be added.                                                             |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	Arg2ID *dtyp.GUID `idl:"name:lpArg2Id;pointer:unique" json:"arg2_id"`
 }
 
 func (o *SubmitNTMSOperatorRequestARequest) xxx_ToOp(ctx context.Context, op *xxx_SubmitNTMSOperatorRequestAOperation) *xxx_SubmitNTMSOperatorRequestAOperation {
@@ -1948,8 +2202,34 @@ func (o *SubmitNTMSOperatorRequestARequest) UnmarshalNDR(ctx context.Context, r 
 // SubmitNTMSOperatorRequestAResponse structure represents the SubmitNtmsOperatorRequestA operation response
 type SubmitNTMSOperatorRequestAResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
-	RequestID *dtyp.GUID     `idl:"name:lpRequestId" json:"request_id"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpRequestId: A pointer to the identifier of the created operator request.
+	//
+	//	+------------------------------------+--------------------------------------------------+
+	//	|               RETURN               |                                                  |
+	//	|             VALUE/CODE             |                   DESCRIPTION                    |
+	//	|                                    |                                                  |
+	//	+------------------------------------+--------------------------------------------------+
+	//	+------------------------------------+--------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                         |
+	//	+------------------------------------+--------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access to one or more objects is denied.         |
+	//	+------------------------------------+--------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | An invalid parameter was found.                  |
+	//	+------------------------------------+--------------------------------------------------+
+	//	| 0x800708CA ERROR_NOT_CONNECTED     | Unable to connect to the service.                |
+	//	+------------------------------------+--------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND  | Unable to find the source or destination object. |
+	//	+------------------------------------+--------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE  | The database query or update failed.             |
+	//	+------------------------------------+--------------------------------------------------+
+	//
+	// The SubmitNtmsOperatorRequestA method submits an operator request, and returns the
+	// status of the request (Satisfied or Canceled), or times out (if the operator does
+	// not act upon the request). Operator requests are used to request media, to request
+	// that the specified medium be moved from one library to another, or to request the
+	// server device service.
+	RequestID *dtyp.GUID `idl:"name:lpRequestId" json:"request_id"`
 	// Return: The SubmitNtmsOperatorRequestA return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2144,9 +2424,36 @@ func (o *xxx_WaitForNTMSOperatorRequestOperation) UnmarshalNDRResponse(ctx conte
 // WaitForNTMSOperatorRequestRequest structure represents the WaitForNtmsOperatorRequest operation request
 type WaitForNTMSOperatorRequestRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	RequestID *dtyp.GUID     `idl:"name:lpRequestId" json:"request_id"`
-	Timeout   uint32         `idl:"name:dwTimeout" json:"timeout"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpRequestId: A pointer to the identifier of the request for which to wait.
+	RequestID *dtyp.GUID `idl:"name:lpRequestId" json:"request_id"`
+	// dwTimeout: The number of milliseconds to wait. To check for an operator request,
+	// specify a time-out value of 0. If a value of 0xFFFFFFFF is specified, this method
+	// does not time out.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access to one or more objects is denied.                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | An invalid parameter was found.                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800704C7 ERROR_CANCELLED         | The operator request was canceled by an administrator.                           |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800705B4 ERROR_TIMEOUT           | The time specified in the dwTimeout parameter elapsed before completion of the   |
+	//	|                                    | operator request.                                                                |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800708CA ERROR_NOT_CONNECTED     | Unable to connect to the service.                                                |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND  | Unable to find the operator request object. Object requests are flushed from the |
+	//	|                                    | database.                                                                        |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	Timeout uint32 `idl:"name:dwTimeout" json:"timeout"`
 }
 
 func (o *WaitForNTMSOperatorRequestRequest) xxx_ToOp(ctx context.Context, op *xxx_WaitForNTMSOperatorRequestOperation) *xxx_WaitForNTMSOperatorRequestOperation {
@@ -2365,8 +2672,29 @@ func (o *xxx_CancelNTMSOperatorRequestOperation) UnmarshalNDRResponse(ctx contex
 // CancelNTMSOperatorRequestRequest structure represents the CancelNtmsOperatorRequest operation request
 type CancelNTMSOperatorRequestRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	RequestID *dtyp.GUID     `idl:"name:lpRequestId" json:"request_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpRequestId: A pointer to the identifier of the request to cancel.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | The user who tried to execute this method does not have administrator            |
+	//	|                                    | privileges. Only a server administrator can cancel operator requests.            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | A parameter is missing.                                                          |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND  | The operator request object identifier was not found. This error occurs if the   |
+	//	|                                    | request is completed prior to cancellation of the operation, or when an invalid  |
+	//	|                                    | request identifier is supplied.                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007139F ERROR_INVALID_STATE     | The request has already been completed or cancelled.                             |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	RequestID *dtyp.GUID `idl:"name:lpRequestId" json:"request_id"`
 }
 
 func (o *CancelNTMSOperatorRequestRequest) xxx_ToOp(ctx context.Context, op *xxx_CancelNTMSOperatorRequestOperation) *xxx_CancelNTMSOperatorRequestOperation {
@@ -2583,8 +2911,27 @@ func (o *xxx_SatisfyNTMSOperatorRequestOperation) UnmarshalNDRResponse(ctx conte
 // SatisfyNTMSOperatorRequestRequest structure represents the SatisfyNtmsOperatorRequest operation request
 type SatisfyNTMSOperatorRequestRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	RequestID *dtyp.GUID     `idl:"name:lpRequestId" json:"request_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpRequestId: A pointer to the identifier of the request to complete.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | The user who tried to execute this method does not have administrator            |
+	//	|                                    | privileges. Only a server administrator can satisfy operator requests.           |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | A parameter is missing.                                                          |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND  | The operator request object identifier was not found. This error occurs if the   |
+	//	|                                    | request is completed before the operation has been satisfied, or when an invalid |
+	//	|                                    | request identifier is supplied.                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	RequestID *dtyp.GUID `idl:"name:lpRequestId" json:"request_id"`
 }
 
 func (o *SatisfyNTMSOperatorRequestRequest) xxx_ToOp(ctx context.Context, op *xxx_SatisfyNTMSOperatorRequestOperation) *xxx_SatisfyNTMSOperatorRequestOperation {
@@ -3177,7 +3524,18 @@ func (o *xxx_AddNotificationOperation) UnmarshalNDRResponse(ctx context.Context,
 type AddNotificationRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Type uint32         `idl:"name:dwType" json:"type"`
+	// dwType: A value from the NtmsObjectsTypes (section 2.2.1.6) enumeration specifying
+	// the type of object for which the client wants to receive change notifications.
+	//
+	//	+-------------------+--------------------------+
+	//	|      RETURN       |                          |
+	//	|    VALUE/CODE     |       DESCRIPTION        |
+	//	|                   |                          |
+	//	+-------------------+--------------------------+
+	//	+-------------------+--------------------------+
+	//	| 0x00000000 S_OK   | The call was successful. |
+	//	+-------------------+--------------------------+
+	Type uint32 `idl:"name:dwType" json:"type"`
 }
 
 func (o *AddNotificationRequest) xxx_ToOp(ctx context.Context, op *xxx_AddNotificationOperation) *xxx_AddNotificationOperation {
@@ -3386,7 +3744,20 @@ func (o *xxx_RemoveNotificationOperation) UnmarshalNDRResponse(ctx context.Conte
 type RemoveNotificationRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Type uint32         `idl:"name:dwType" json:"type"`
+	// dwType: A value from the NtmsObjectsTypes (section 2.2.1.6) enumeration specifying
+	// the type of object for which the client no longer wants to receive change notifications.
+	//
+	//	+--------------------------------+---------------------------------+
+	//	|             RETURN             |                                 |
+	//	|           VALUE/CODE           |           DESCRIPTION           |
+	//	|                                |                                 |
+	//	+--------------------------------+---------------------------------+
+	//	+--------------------------------+---------------------------------+
+	//	| 0x00000000 S_OK                | The call was successful.        |
+	//	+--------------------------------+---------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED | Access to an object was denied. |
+	//	+--------------------------------+---------------------------------+
+	Type uint32 `idl:"name:dwType" json:"type"`
 }
 
 func (o *RemoveNotificationRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveNotificationOperation) *xxx_RemoveNotificationOperation {
@@ -3629,10 +4000,27 @@ func (o *xxx_DispatchNotificationOperation) UnmarshalNDRResponse(ctx context.Con
 // DispatchNotificationRequest structure represents the DispatchNotification operation request
 type DispatchNotificationRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Type      uint32         `idl:"name:dwType" json:"type"`
-	Operation uint32         `idl:"name:dwOperation" json:"operation"`
-	ID        *dtyp.GUID     `idl:"name:lpIdentifier" json:"id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// dwType: A value from the NtmsObjectsTypes (section 2.2.1.6) enumeration specifying
+	// the type of object to which the notification refers.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// dwOperation: A value from the NtmsNotificationOperations (section 2.2.1.8) enumeration
+	// specifying the type of operation to which the notification refers.
+	Operation uint32 `idl:"name:dwOperation" json:"operation"`
+	// lpIdentifier:  A pointer to the identifier of the event for which notification is
+	// being sent.
+	//
+	//	+--------------------------------+---------------------------------+
+	//	|             RETURN             |                                 |
+	//	|           VALUE/CODE           |           DESCRIPTION           |
+	//	|                                |                                 |
+	//	+--------------------------------+---------------------------------+
+	//	+--------------------------------+---------------------------------+
+	//	| 0x00000000 S_OK                | The call was successful.        |
+	//	+--------------------------------+---------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED | Access to an object was denied. |
+	//	+--------------------------------+---------------------------------+
+	ID *dtyp.GUID `idl:"name:lpIdentifier" json:"id"`
 }
 
 func (o *DispatchNotificationRequest) xxx_ToOp(ctx context.Context, op *xxx_DispatchNotificationOperation) *xxx_DispatchNotificationOperation {

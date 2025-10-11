@@ -1,0 +1,28 @@
+<div class="content"><p>The TransactionStatusQueueInfo method is received by the
+server in an RPC_REQUEST packet. In response, the server MUST return an
+IMSMQQueueInfo interface pointer to an MSMQQueueInfo object that represents the
+<a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_c1a6400d-703b-4f9a-a74c-40f1487978d9" data-linktype="relative-path">queue</a> identified by the
+represented Message.TransactionStatusQueueFormatName.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT TransactionStatusQueueInfo(
+   [out, retval] IMSMQQueueInfo4** ppqinfoXactStatus
+ );
+</pre></div>
+</dd></dl><p><b>ppqinfoXactStatus: </b>A pointer to an
+IMSMQQueueInfo interface pointer that upon successful completion will contain
+an MSMQQueue object representing the <b>transaction status queue</b> for the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a>.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>Create a new MSMQQueueInfo object instance.</p>
+</li><li><p><span><span> 
+</span></span>Set the <i>QueueFormatName</i> instance variable of the created
+MSMQQueueInfo object to the value of the represented
+Message.TransactionStatusQueueFormatName.</p>
+</li><li><p><span><span> 
+</span></span>Call MSMQQueueInfo::Refresh on the created MSMQQueueInfo
+instance.</p>
+</li><li><p><span><span> 
+</span></span>Set the <i>ppqinfoXactStatus</i> output parameter to a pointer to
+an IMSMQQueueInfo interface for the newly created MSMQQueueInfo object.</p>
+</li></ul></div>

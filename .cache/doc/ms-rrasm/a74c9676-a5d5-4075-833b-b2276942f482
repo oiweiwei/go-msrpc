@@ -1,1 +1,43 @@
-<div class="content"></div>
+<div class="content"><p>The <b>OSPF_INTERFACE_PARAM</b> structure MAY<a id="Appendix_A_Target_151"></a><a aria-label="Product behavior note 151" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_151" data-linktype="relative-path">&lt;151&gt;</a> be used to contain the OSPF
+Non-Broadcast Multiple Access (NBMA) neighbor parameters and is used in the
+following methods: </p><ul><li><p><span><span> 
+</span></span><a href="927c5bf1-ac91-4325-b945-0d96a58f609b" data-linktype="relative-path"><b>RRouterInterfaceTransportAdd (section 3.1.4.18)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="ec9ba293-45e9-4f12-b9af-7e77ec96c90e" data-linktype="relative-path"><b>RRouterInterfaceTransportGetInfo (section 3.1.4.19)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="209ba5e7-876e-4406-a05c-65b7e5fb2380" data-linktype="relative-path"><b>RRouterInterfaceTransportSetInfo (section 3.1.4.20)</b></a><span>  </span></p>
+<div><pre> typedef struct _OSPF_INTERFACE_PARAM {
+   DWORD type;
+   DWORD create;
+   DWORD enable;
+   DWORD intfIpAddr;
+   DWORD intfSubnetMask;
+   DWORD areaId;
+   DWORD intfType;
+   DWORD routerPriority;
+   DWORD transitDelay;
+   DWORD retransInterval;
+   DWORD helloInterval;
+   DWORD deadInterval;
+   DWORD pollInterval;
+   DWORD metricCost;
+   BYTE password[8];
+   DWORD mtuSize;
+ } OSPF_INTERFACE_PARAM, *POSPF_INTERFACE_PARAM;
+</pre></div>
+</li></ul><p><b>type: </b>This MUST be set to
+OSPF_INTF_PARAM_TYPE.</p><p><b>create: </b>This MUST be set to 1 if the
+configuration needs to be created or set to 2 if it needs to be deleted.</p><p><b>enable: </b>This MUST set to 1 if the
+configuration needs to be enabled or set to 2 if it needs to be deleted.</p><p><b>intfIpAddr: </b>The interface address on which the
+OSPF is enabled.</p><p><b>intfSubnetMask: </b>The interface subnet address
+on which the OSPF is enabled. See <a href="https://go.microsoft.com/fwlink/?LinkId=90501" data-linktype="external">[RFC950]</a>.</p><p><b>areaId: </b>The area ID of the OSPF area of which
+the interface is a part.</p><p><b>intfType: </b>Set to 1 for broadcast, set to 2 for
+NBMA, and set to 3 for point-to-point.</p><p><b>routerPriority: </b>This MUST be set to a value
+between 1 and 255.</p><p><b>transitDelay: </b>This MUST be set to a value
+between 1 and 3600.</p><p><b>retransInterval: </b>This MUST be set to a value
+between 1 and 3600.</p><p><b>helloInterval: </b>This MUST be set to a value
+between 1 and USHORTMAX/2.</p><p><b>deadInterval: </b>This MUST be set to a value
+between 1 and USHORTMAX/2.</p><p><b>pollInterval: </b>This MUST be set to a value
+between 1 and USHORTMAX/2.</p><p><b>metricCost: </b>This MUST be set to a value between
+1 and USHORTMAX/2.</p><p><b>password[8]: </b>The password.</p><p><b>mtuSize: </b>This MUST be set to a value between 1
+and 10000.</p></div>

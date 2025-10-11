@@ -1,1 +1,20 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsOpreqCommand enumeration defines the type of an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_4676b5f2-6ecd-463c-8218-811911038e63" data-linktype="relative-path">operator request</a>.</p><dl>
+<dd>
+<div><pre> enum NtmsOpreqCommand
+ {
+   NTMS_OPREQ_UNKNOWN = 0,
+   NTMS_OPREQ_NEWMEDIA = 1,
+   NTMS_OPREQ_CLEANER = 2,
+   NTMS_OPREQ_DEVICESERVICE = 3,
+   NTMS_OPREQ_MOVEMEDIA = 4,
+   NTMS_OPREQ_MESSAGE = 5
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_OPREQ_UNKNOWN:  </b>The request is of an
+unknown type.</p><p><b>NTMS_OPREQ_NEWMEDIA:  </b>The operator requested
+new media.</p><p><b>NTMS_OPREQ_CLEANER:  </b>The operator requested <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_95e53eb6-39e3-43ed-905e-ff1f427446d2" data-linktype="relative-path">cleaner</a> media.</p><p><b>NTMS_OPREQ_DEVICESERVICE:  </b>The operator
+requested <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a> service.</p><p><b>NTMS_OPREQ_MOVEMEDIA:  </b>The operator requested
+permission to move the specified media to service a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b" data-linktype="relative-path">mount</a> for offline media, or
+to <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a22dff61-81ae-4414-8242-3d28f4c70c31" data-linktype="relative-path">eject</a> media and move
+it to an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_f248d7b8-b3e9-421e-96c4-78551324fd86" data-linktype="relative-path">offline library</a>.</p><p><b>NTMS_OPREQ_MESSAGE:  </b>A message defined by and
+specific to a given application.</p></div>

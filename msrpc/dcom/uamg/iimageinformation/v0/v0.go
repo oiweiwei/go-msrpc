@@ -49,12 +49,68 @@ type ImageInformationClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The IImageInformation::AltText (opnum 8) method retrieves the alternate text for
+	// the image.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD return the value of the AltText ADM element.
 	GetAltText(context.Context, *GetAltTextRequest, ...dcerpc.CallOption) (*GetAltTextResponse, error)
 
+	// The IImageInformation::Height (opnum 9) method retrieves the height of the image,
+	// in pixels.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Height ADM element.
 	GetHeight(context.Context, *GetHeightRequest, ...dcerpc.CallOption) (*GetHeightResponse, error)
 
+	// The IImageInformation::Source (opnum 10) method retrieves the source location of
+	// the image.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Source ADM element.
 	GetSource(context.Context, *GetSourceRequest, ...dcerpc.CallOption) (*GetSourceResponse, error)
 
+	// The IImageInformation::Width (opnum 11) method retrieves the width of the image,
+	// in pixels.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Width ADM element.
 	GetWidth(context.Context, *GetWidthRequest, ...dcerpc.CallOption) (*GetWidthResponse, error)
 
 	// AlterContext alters the client context.
@@ -401,8 +457,10 @@ func (o *GetAltTextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 // GetAltTextResponse structure represents the AltText operation response
 type GetAltTextResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A string containing the alternate text for the image. If no alternate text
+	// for the image exists, then this MUST be NULL.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The AltText return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -608,8 +666,9 @@ func (o *GetHeightRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 // GetHeightResponse structure represents the Height operation response
 type GetHeightResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int32          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The height of the image, in pixels.
+	ReturnValue int32 `idl:"name:retval" json:"return_value"`
 	// Return: The Height return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -849,8 +908,9 @@ func (o *GetSourceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 // GetSourceResponse structure represents the Source operation response
 type GetSourceResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A URL that specifies the location of the image.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The Source return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1056,8 +1116,9 @@ func (o *GetWidthRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 // GetWidthResponse structure represents the Width operation response
 type GetWidthResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int32          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The width of the image, in pixels.
+	ReturnValue int32 `idl:"name:retval" json:"return_value"`
 	// Return: The Width return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

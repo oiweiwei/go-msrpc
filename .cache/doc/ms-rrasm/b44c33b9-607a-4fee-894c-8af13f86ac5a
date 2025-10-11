@@ -1,1 +1,61 @@
-<div class="content"></div>
+<div class="content"><p>The <b>CERT_BLOB_1</b> is a generic structure that contains
+x.509 <a href="https://go.microsoft.com/fwlink/?LinkId=90356" data-linktype="external">[RFC2459]</a>
+certificate information.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cbData</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>pbData
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>cbData (4 bytes): </b>Size (in bytes) of the
+certificate information present in pbData.</p><p><b>pbData (variable):</b> Pointer to the information
+of the certificate. This information depends on the structure in which this
+used. In the methods <a href="de7aef9f-4865-4281-b800-db5142bf7a45" data-linktype="relative-path"><b>IKEV2_TUNNEL_CONFIG_PARAMS_1
+(section 2.2.1.2.136)</b></a>, <b>IKEV2_TUNNEL_CONFIG_PARAMS_2</b> (section <a href="0351b688-0da2-4a6f-bd92-f24a22840f1a" data-linktype="relative-path">2.2.1.2.238</a>), or <a href="34bbe454-370e-4c01-8fab-92c0daf7961b" data-linktype="relative-path"><b>IKEV2_TUNNEL_CONFIG_PARAMS_3
+(section 2.2.1.2.247)</b></a>, this points to the subject name of the
+certificate. In <a href="76c9167c-41f9-4234-9b4c-e7866ce0ae00" data-linktype="relative-path"><b>SSTP_CERT_INFO_1</b></a>,
+<b>pbData</b> contains a SHA-1 hash. </p></div>

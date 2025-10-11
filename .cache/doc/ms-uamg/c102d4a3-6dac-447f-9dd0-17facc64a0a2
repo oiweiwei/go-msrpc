@@ -1,1 +1,23 @@
-<div class="content"></div>
+<div class="content"><p>The DownloadPriority enumeration defines values describing
+the recommended download priority of an update. It is up to the <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_362092cf-7fb5-43eb-92e1-c3e4affdd92b" data-linktype="relative-path">update
+agent</a></span> implementation to define the relative differences between
+download priority levels.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="50faf1ae-d0ab-42cb-87e2-33f30391e807#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a></p><dl>
+<dd>
+<div><pre> typedef  enum tagDownloadPriority
+ {
+   dpLow = 1,
+   dpNormal = 2,
+   dpHigh = 3,
+   dpExtraHigh = 4,
+ } DownloadPriority;
+</pre></div>
+</dd></dl><p><b>dpLow:  </b>The update service recommends that the
+update agent SHOULD use fewer resources to download the update than it uses for
+updates with dpNormal or dpHigh priority.</p><p><b>dpNormal:  </b>The update service recommends that
+the update agent SHOULD use more resources to download the update than it uses
+for updates with dpLow priority, but fewer resources than it uses for updates
+with dpHigh priority.</p><p><b>dpHigh:  </b>The update service recommends that
+the update agent SHOULD use more resources to download the update than it uses
+for updates with dpLow or dpNormal priority.</p><p><b>dpExtraHigh:  </b>The update service recommends
+that the update agent SHOULD use all available resources to download the update
+as quickly as possible.</p></div>

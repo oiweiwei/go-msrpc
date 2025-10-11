@@ -1,0 +1,83 @@
+<div class="content"><p>The AddLocation method is received by the server in an
+RPC_REQUEST packet. In response, the server attempts to create a new subpath
+container in the <a href="3687acff-fb79-4e02-8349-6ca2f49df2a5" data-linktype="relative-path">IAppHostConfigFile</a>
+that provides the specified <a href="4b1ee19e-3418-45df-8ff9-2644ab6c106c" data-linktype="relative-path">IAppHostConfigLocationCollection</a>.</p><dl>
+<dd>
+<div><pre> HRESULT AddLocation(
+   [in] BSTR bstrLocationPath,
+   [out, retval] IAppHostConfigLocation** ppNewLocation
+ );
+</pre></div>
+</dd></dl><p><b>bstrLocationPath: </b>The new subpath to add.</p><p><b>ppNewLocation: </b>Contains a new subpath
+container <a href="1939cfaf-92c9-40b5-9cca-791c531c01e6" data-linktype="relative-path">IAppHostConfigLocation</a>
+object.</p><p><b>Return Values: </b>The server MUST return zero if
+it successfully processes the message that is received from the client. In this
+case, *ppNewLocation is not NULL. If processing fails, the server MUST return a
+nonzero <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+code as defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following table describes the error conditions that MUST be handled and the
+corresponding error codes. A server MAY return additional
+implementation-specific error codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0X00000000</p>
+  <p>NO_ERROR</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>The instance is not editable.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One or more parameters are incorrect or null.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X800700B7</p>
+  <p>ERROR_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>The location path specified by bstrLocationPath cannot
+  be added since it already exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X00000008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>Not enough memory is available to process this
+  command.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X800700A1</p>
+  <p>ERROR_BAD_PATHNAME</p>
+  </td>
+  <td>
+  <p>The server resource (for example, a file or database)
+  corresponding to the path bstrLocationPath could not be found.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

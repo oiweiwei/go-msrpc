@@ -1,1 +1,18 @@
-<div class="content"></div>
+<div class="content"><p>The <b>PPP_INFO</b> structure is used to report the results
+of the various PPP projection operations for a connection.</p><dl>
+<dd>
+<div><pre> typedef struct _PPP_INFO {
+   PPP_NBFCP_INFO nbf;
+   PPP_IPCP_INFO ip;
+   PPP_IPXCP_INFO ipx;
+   PPP_ATCP_INFO at;
+ } PPP_INFO;
+</pre></div>
+</dd></dl><p><b>nbf: </b>A <a href="c6cfe450-77f4-47e9-9b23-1e067e7e3965" data-linktype="relative-path"><b>PPP_NBFCP_INFO (section 2.2.1.2.64)</b></a>
+structure that contains information about the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_7041f7ad-71a9-4e5c-8256-1b86a1731dcf" data-linktype="relative-path">NetBEUI</a> Framer (NBF) for a
+connection. </p><p><b>ip: </b>A <a href="a61b226f-bc4c-4fdd-9683-6b7e80e58737" data-linktype="relative-path"><b>PPP_IPCP_INFO (section 2.2.1.2.65)</b></a>
+structure that contains the IPv4 PPP information for a connection. </p><p><b>ipx: </b>A <a href="28495a3c-7f4c-4e41-9c4c-018a66a47cf9" data-linktype="relative-path"><b>PPP_IPXCP_INFO (section 2.2.1.2.67)</b></a>
+structure<a id="Appendix_A_Target_53"></a><a aria-label="Product behavior note 53" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_53" data-linktype="relative-path">&lt;53&gt;</a> that contains the IPX
+information for a connection.  </p><p><b>at: </b>A <a href="f542b407-ee57-40a1-a2e2-093e37fe9507" data-linktype="relative-path"><b>PPP_ATCP_INFO (section 2.2.1.2.69)</b></a>
+structure<a id="Appendix_A_Target_54"></a><a aria-label="Product behavior note 54" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_54" data-linktype="relative-path">&lt;54&gt;</a> that contains the AppleTalk
+information for a connection. </p></div>

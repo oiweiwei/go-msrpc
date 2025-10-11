@@ -54,22 +54,124 @@ type AppHostElementSchemaClient interface {
 	// Name operation.
 	GetName(context.Context, *GetNameRequest, ...dcerpc.CallOption) (*GetNameResponse, error)
 
-	// DoesAllowUnschematizedProperties operation.
+	// The DoesAllowUnschematizedProperties method is received by the server in an RPC_REQUEST
+	// packet. In response, the server returns whether the corresponding IAppHostElement
+	// supports IAppHostProperty objects.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetDoesAllowUnschematizedProperties(context.Context, *GetDoesAllowUnschematizedPropertiesRequest, ...dcerpc.CallOption) (*GetDoesAllowUnschematizedPropertiesResponse, error)
 
 	// GetMetadata operation.
 	GetMetadata(context.Context, *GetMetadataRequest, ...dcerpc.CallOption) (*GetMetadataResponse, error)
 
-	// CollectionSchema operation.
+	// The CollectionSchema method is received by the server in an RPC_REQUEST packet. If
+	// the specified IAppHostElement object supports child collection elements, the server
+	// returns the schema and constraints of the collection that is contained in the corresponding
+	// IAppHostElement object.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppCollectionSchema is not NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetCollectionSchema(context.Context, *GetCollectionSchemaRequest, ...dcerpc.CallOption) (*GetCollectionSchemaResponse, error)
 
-	// ChildElementSchemas operation.
+	// The ChildElementSchemas method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns the schema and constraints of any child elements
+	// that are contained in the corresponding IAppHostElement object.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppChildSchemas is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetChildElementSchemas(context.Context, *GetChildElementSchemasRequest, ...dcerpc.CallOption) (*GetChildElementSchemasResponse, error)
 
-	// PropertySchemas operation.
+	// The PropertySchemas method is received by the server in an RPC_REQUEST packet. In
+	// response, the server returns the schema and constraints for the IAppHostProperty
+	// objects that are contained in the corresponding IAppHostElement.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppPropertySchemas is not NULL. If
+	// processing fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF].
+	// The following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+-----------------------------------------------+
+	//	|               RETURN               |                                               |
+	//	|             VALUE/CODE             |                  DESCRIPTION                  |
+	//	|                                    |                                               |
+	//	+------------------------------------+-----------------------------------------------+
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.         |
+	//	+------------------------------------+-----------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null. |
+	//	+------------------------------------+-----------------------------------------------+
 	GetPropertySchemas(context.Context, *GetPropertySchemasRequest, ...dcerpc.CallOption) (*GetPropertySchemasResponse, error)
 
-	// IsCollectionDefault operation.
+	// The IsCollectionDefault method is received by the server in an RPC_REQUEST packet.
+	// In response, the server returns whether the corresponding IAppHostElement object
+	// is also considered to be a supported default for other IAppHostElement objects in
+	// the administration system.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetIsCollectionDefault(context.Context, *GetIsCollectionDefaultRequest, ...dcerpc.CallOption) (*GetIsCollectionDefaultResponse, error)
 
 	// AlterContext alters the client context.
@@ -685,8 +787,10 @@ func (o *GetDoesAllowUnschematizedPropertiesRequest) UnmarshalNDR(ctx context.Co
 // GetDoesAllowUnschematizedPropertiesResponse structure represents the DoesAllowUnschematizedProperties operation response
 type GetDoesAllowUnschematizedPropertiesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That               *dcom.ORPCThat `idl:"name:That" json:"that"`
-	AllowUnschematized int16          `idl:"name:pfAllowUnschematized" json:"allow_unschematized"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pfAllowUnschematized: Contains a Boolean that indicates whether the element supports
+	// unschematized IAppHostProperty objects.
+	AllowUnschematized int16 `idl:"name:pfAllowUnschematized" json:"allow_unschematized"`
 	// Return: The DoesAllowUnschematizedProperties return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1219,7 +1323,8 @@ func (o *GetCollectionSchemaRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 // GetCollectionSchemaResponse structure represents the CollectionSchema operation response
 type GetCollectionSchemaResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That             *dcom.ORPCThat                `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppCollectionSchema: Contains an IAppHostCollectionSchema.
 	CollectionSchema *iisa.AppHostCollectionSchema `idl:"name:ppCollectionSchema" json:"collection_schema"`
 	// Return: The CollectionSchema return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1462,7 +1567,9 @@ func (o *GetChildElementSchemasRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // GetChildElementSchemasResponse structure represents the ChildElementSchemas operation response
 type GetChildElementSchemasResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That         *dcom.ORPCThat                       `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppChildSchemas: Contains the schema collection of the supported child IAppHostElement
+	// objects.
 	ChildSchemas *iisa.AppHostElementSchemaCollection `idl:"name:ppChildSchemas" json:"child_schemas"`
 	// Return: The ChildElementSchemas return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1705,7 +1812,8 @@ func (o *GetPropertySchemasRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 // GetPropertySchemasResponse structure represents the PropertySchemas operation response
 type GetPropertySchemasResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat                        `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppPropertySchemas: Contains the collection of IAppHostProperty schema.
 	PropertySchemas *iisa.AppHostPropertySchemaCollection `idl:"name:ppPropertySchemas" json:"property_schemas"`
 	// Return: The PropertySchemas return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1914,8 +2022,10 @@ func (o *GetIsCollectionDefaultRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // GetIsCollectionDefaultResponse structure represents the IsCollectionDefault operation response
 type GetIsCollectionDefaultResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That                *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IsCollectionDefault int16          `idl:"name:pfIsCollectionDefault" json:"is_collection_default"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pfIsCollectionDefault: Contains a Boolean that indicates whether the corresponding
+	// IAppHostElement object is a default for other IAppHostElement objects.
+	IsCollectionDefault int16 `idl:"name:pfIsCollectionDefault" json:"is_collection_default"`
 	// Return: The IsCollectionDefault return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

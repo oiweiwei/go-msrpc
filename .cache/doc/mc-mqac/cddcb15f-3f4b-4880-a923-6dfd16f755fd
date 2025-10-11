@@ -1,0 +1,17 @@
+<div class="content"><p>The MQTRANSACTIONAL enumeration defines values that indicate
+if a <a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">Queue</a>
+is a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_49b6c0e7-59fc-40af-b627-df18c392327b" data-linktype="relative-path">transactional queue</a>.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MQ_TRANSACTIONAL_NONE = 0,
+   MQ_TRANSACTIONAL = 1
+ } MQTRANSACTIONAL;
+</pre></div>
+</dd></dl><p><b>MQ_TRANSACTIONAL_NONE:  </b>The Queue is not a
+transactional queue. The Queue.<b>Transactional</b> element is False.</p><p><b>MQ_TRANSACTIONAL:  </b>The Queue is a
+transactional queue. The Queue.<b>Transactional</b> element is True.</p><p>Used by:</p><ul><li><p><span><span> 
+</span></span>get <a href="edb0a509-bebb-4dd2-9656-89c816c915bf" data-linktype="relative-path">IMSMQQueueInfo::IsTransactional</a></p>
+</li><li><p><span><span> 
+</span></span>put <a href="b1a183a6-3369-4802-8cb3-0b4fb1d44b38" data-linktype="relative-path">IMSMQQueueInfo::IsTransactional</a></p>
+</li></ul></div>

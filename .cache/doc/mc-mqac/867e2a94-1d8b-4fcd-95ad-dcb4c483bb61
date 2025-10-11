@@ -1,0 +1,30 @@
+<div class="content"><p>The QueueGuid method is received by the server in an
+RPC_REQUEST packet. In response, the server returns the Queue.Identifier that
+uniquely identifies the <i>referenced queue</i>.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT QueueGuid(
+   [out, retval] BSTR* pbstrGuidQueue
+ );
+</pre></div>
+</dd></dl><p><b>pbstrGuidQueue: </b>A pointer to a <a href="../ms-oaut/1c9d2cfc-cf7d-4f4b-95bf-584be5defd81" data-linktype="relative-path">BSTR</a>
+that represents a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST abide by the
+following contract:</p><ul><li><p><span><span> 
+</span></span>If <i>IsRefreshed</i> is FALSE call <a href="e4072abd-b433-4b22-a4ed-8f654d182705" data-linktype="relative-path">Refresh</a> (section
+3.10.4.1.29).</p>
+</li><li><p><span><span> 
+</span></span>If Refresh returns a value other than S_OK (0x00000000), return
+the HRESULT returned by Refresh and take no further action.</p>
+</li><li><p><span><span> 
+</span></span>If <i>IsApplicationQueue</i> is TRUE and (<i>IsRefreshed</i> is
+TRUE or <i>IsQueueCreated</i> is TRUE):</p>
+<ul><li><p><span><span>  </span></span>Set
+the <i>pbstrGuidQueue</i> output parameter to the value of refQueue.Identifier.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>Set
+the <i>pbstrGuidQueue</i> output parameter to NULL.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return S_OK (0x00000000), and take no further action.</p>
+</li></ul></div>

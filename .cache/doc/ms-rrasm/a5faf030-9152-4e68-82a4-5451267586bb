@@ -1,1 +1,225 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IGMP_MIB_IF_CONFIG</b> structure contains
+per-interface configuration. This structure is used in the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="927c5bf1-ac91-4325-b945-0d96a58f609b" data-linktype="relative-path"><b>RRouterInterfaceTransportAdd (section 3.1.4.18)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="2c0f9b0e-1f3e-4436-a534-cb30fe0f887f" data-linktype="relative-path"><b>RRouterInterfaceTransportGetInfo (section 3.2.4.19)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="209ba5e7-876e-4406-a05c-65b7e5fb2380" data-linktype="relative-path"><b>RRouterInterfaceTransportSetInfo (section 3.1.4.20)</b></a><span>  </span></p>
+</li></ul><p>All IP address fields MUST be in network order.</p><dl>
+<dd>
+<div><pre> typedef struct _IGMP_MIB_IF_CONFIG {
+   DWORD Version;
+   DWORD IfIndex;
+   DWORD IpAddr;
+   DWORD IfType;
+   DWORD Flags;
+   DWORD IgmpProtocolType;
+   DWORD RobustnessVariable;
+   DWORD StartupQueryInterval;
+   DWORD StartupQueryCount;
+   DWORD GenQueryInterval;
+   DWORD GenQueryMaxResponseTime;
+   DWORD LastMemQueryInterval;
+   DWORD LastMemQueryCount;
+   DWORD OtherQuerierPresentInterval;
+   DWORD GroupMembershipTimeout;
+   DWORD NumStaticGroups;
+ } IGMP_MIB_IF_CONFIG,
+  *PIGMP_MIB_IF_CONFIG;
+</pre></div>
+</dd></dl><p><b>Version: </b>It MUST be one of the following
+values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IGMP_VERSION_1_2</p>
+  <p>0x00000201</p>
+  </td>
+  <td>
+  <p>IGMPv1 or IGMPv2</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_VERSION_3</p>
+  <p>0x00000301</p>
+  </td>
+  <td>
+  <p>IGMPv3</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IfIndex: </b>The index of the interface, it is
+read-only.</p><p><b>IpAddr: </b>The IP address of the interface, it is
+read-only.</p><p><b>IfType: </b>The type of the interface, it is
+read-only. It MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IGMP_IF_NOT_RAS</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The interface is connected to a LAN.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_IF_RAS_ROUTER</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The interface is connected to another router over RAS.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_IF_RAS_SERVER</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The entry corresponds to a RAS server if it contains
+  statistics, then it represents summarized statistics.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_IF_RAS_CLIENT</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The entry corresponds to a RAS client.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_IF_PROXY</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>One of the first four flags will still be set to
+  enable the switch from the proxy to an IGMP router.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Flags: </b>It MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IGMP_INTERFACE_ENABLED_IN_CONFIG</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The interface is enabled in this configuration.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_ACCEPT_RTRALERT_PACKETS_ONLY</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Can accept only router alerts.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IgmpProtocolType: </b>Takes one of the following
+values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IGMP_PROXY</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The interface is an IGMPv2 proxy.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_ROUTER_V1</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The interface is an IGMPv1 router.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_ROUTER_V2</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The interface is an IGMPv2 router.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_ROUTER_V3</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The interface is an IGMPv3 router.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_PROXY_V3</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>The interface is an IGMPv3 proxy.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>RobustnessVariable: </b>The robustness variable is
+a way of indicating the lossy nature of the subnet to which this interface is
+attached. The IGMP can recover from lost IGMP packets (robustness variable is
+set to 1). The robustness variable SHOULD be set to a value of 2 or greater.</p><p><b>StartupQueryInterval: </b>The startup query
+interval is the amount of time in seconds between successive general query
+messages sent by a querier during startup.</p><p><b>StartupQueryCount: </b>The startup query count is
+the number of general query messages sent at startup.</p><p><b>GenQueryInterval: </b>The query interval is the
+amount of time, in seconds, between the IGMP general query messages sent by the
+router (if the router is the querier on this subnet).</p><p><b>GenQueryMaxResponseTime: </b>The query response
+interval is the maximum amount of time, in seconds, that the IGMP router waits
+to receive a response to a general query message.</p><p><b>LastMemQueryInterval: </b>The last member query
+interval is the amount of time, in milliseconds, that the IGMP router waits to
+receive a response to a group-specific query message. The last member query
+interval is also the amount of time, in seconds, between successive
+group-specific query messages.</p><p><b>LastMemQueryCount: </b>The last member query count
+is the number of group-specific query messages sent before the router assumes
+there are no members of the host group being queried on this interface.</p><p><b>OtherQuerierPresentInterval: </b>Displays the
+calculated other querier present interval. The other querier present interval
+is the number of seconds that MUST pass before a multicast router determines
+that there is no other multicast router that can be the querier. The other
+querier present interval is (robustness variable) * (query interval) + (query
+response interval)/2.</p><p><b>GroupMembershipTimeout: </b>Displays the
+calculated group membership interval. The group membership interval is the
+number of seconds that MUST pass before a multicast router determines that
+there are no more members of a host group on a subnet. The group membership
+interval is (robustness variable) * (query interval) + (query response
+interval).</p><p><b>NumStaticGroups: </b>The number of static groups.
+This value MUST be zero (0) when calling RRouterInterfaceTransportAdd and
+RRouterInterfaceTransportSetInfo.</p></div>

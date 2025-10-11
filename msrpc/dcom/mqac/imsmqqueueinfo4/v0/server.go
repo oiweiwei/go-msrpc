@@ -31,7 +31,11 @@ type QueueInfo4Server interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
-	// QueueGuid operation.
+	// The QueueGuid method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns the Queue.Identifier that uniquely identifies the referenced queue.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
 	GetQueueGUID(context.Context, *GetQueueGUIDRequest) (*GetQueueGUIDResponse, error)
 
 	// ServiceTypeGuid operation.
@@ -58,7 +62,31 @@ type QueueInfo4Server interface {
 	// FormatName operation.
 	SetFormatName(context.Context, *SetFormatNameRequest) (*SetFormatNameResponse, error)
 
-	// IsTransactional operation.
+	// The IsTransactional method is received by the server in an RPC_REQUEST packet. In
+	// response, the server returns a value that indicates whether the referenced queue
+	// is transactional or nontransactional.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
+	//
+	// When the server processes this call, it MUST abide by the following contract:
+	//
+	// * If IsRefreshed is FALSE call Refresh ( e4072abd-b433-4b22-a4ed-8f654d182705 ) (section
+	// 3.10.4.1.29).
+	//
+	// * If Refresh returns a value other than S_OK (0x00000000), return the HRESULT returned
+	// by Refresh and take no further action.
+	//
+	// * The Queue ( ../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579 ).Transactional instance
+	// variable is True, and ( IsRefreshed is True or IsQueueCreated is True):
+	//
+	// * Set the pisTransactional output parameter to MQ_TRANSACTIONAL (0x0001).
+	//
+	// * Else:
+	//
+	// * Set the pisTransactional output parameter to MQ_TRANSACTIONAL_NONE (0x0000).
+	//
+	// * Return S_OK (0x00000000), and take no further action.
 	GetIsTransactional(context.Context, *GetIsTransactionalRequest) (*GetIsTransactionalResponse, error)
 
 	// PrivLevel operation.
@@ -85,10 +113,19 @@ type QueueInfo4Server interface {
 	// BasePriority operation.
 	SetBasePriority(context.Context, *SetBasePriorityRequest) (*SetBasePriorityResponse, error)
 
-	// CreateTime operation.
+	// The CreateTime method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns the date and time when the referenced queue was created.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
 	GetCreateTime(context.Context, *GetCreateTimeRequest) (*GetCreateTimeResponse, error)
 
-	// ModifyTime operation.
+	// The ModifyTime method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns the latest date and time when one of the properties of the referenced
+	// queue was updated.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
 	GetModifyTime(context.Context, *GetModifyTimeRequest) (*GetModifyTimeResponse, error)
 
 	// Authenticate operation.
@@ -103,25 +140,60 @@ type QueueInfo4Server interface {
 	// JournalQuota operation.
 	SetJournalQuota(context.Context, *SetJournalQuotaRequest) (*SetJournalQuotaResponse, error)
 
-	// IsWorldReadable operation.
+	// The IsWorldReadable method is received by the server in an RPC_REQUEST packet. In
+	// response, the server returns a BOOLEAN that indicates whether the referenced queue
+	// is accessible to everyone, or only to the owner and the system administrators. This
+	// can be computed through the security descriptor in the Queue.Security attribute.
+	// The owner is the security principal that has MQSEC_TAKE_QUEUE_OWNERSHIP permissions
+	// for the Queue, as defined by the security descriptor in the refQueue.Security attribute.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000).
 	GetIsWorldReadable(context.Context, *GetIsWorldReadableRequest) (*GetIsWorldReadableResponse, error)
 
-	// Create operation.
+	// The Create method is received by the server in an RPC_REQUEST packet. In response,
+	// the server creates a new public or private ApplicationQueue.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
 
-	// Delete operation.
+	// The Delete method is received by the server in an RPC_REQUEST packet. In response,
+	// the server deletes the referenced queue.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 
 	// Open operation.
 	Open(context.Context, *OpenRequest) (*OpenResponse, error)
 
-	// Refresh operation.
+	// The Refresh method is received by the server in an RPC_REQUEST packet. In response,
+	// the server refreshes the properties of the MSMQQueueInfo object with the values stored
+	// in the directory (for public queues) or in the local QueueManager (for private queues).
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Refresh(context.Context, *RefreshRequest) (*RefreshResponse, error)
 
-	// Update operation.
+	// The Update method is received by the server in an RPC_REQUEST packet. In response,
+	// the server updates the directory or the local QueueManager with the current values
+	// of the MSMQQueueInfo object's properties.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 
-	// PathNameDNS operation.
+	// The PathNameDNS method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns the DNS path name that identifies the referenced queue.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetPathNameDNS(context.Context, *GetPathNameDNSRequest) (*GetPathNameDNSResponse, error)
 
 	// Properties operation.
@@ -133,10 +205,19 @@ type QueueInfo4Server interface {
 	// Security operation.
 	SetSecurity(context.Context, *SetSecurityRequest) (*SetSecurityResponse, error)
 
-	// IsTransactional2 operation.
+	// The IsTransactional2 method is received by the server in an RPC_REQUEST packet. In
+	// response, the server returns a value that indicates whether the referenced queue
+	// is transactional or nontransactional.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetIsTransactional2(context.Context, *GetIsTransactional2Request) (*GetIsTransactional2Response, error)
 
-	// IsWorldReadable2 operation.
+	// The IsWorldReadable2 method is received by the server in an RPC_REQUEST packet. In
+	// response, the server returns a BOOLEAN, which indicates whether the referenced queue
+	// is accessible to everyone, or only to the owner and the system administrators.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000).
 	GetIsWorldReadable2(context.Context, *GetIsWorldReadable2Request) (*GetIsWorldReadable2Response, error)
 
 	// MulticastAddress operation.

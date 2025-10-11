@@ -1,1 +1,15 @@
-<div class="content"></div>
+<div class="content"><p>The NTMS_ALLOCATION_INFORMATION structure contains
+information about the source media pool from which a medium was taken.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_ALLOCATION_INFORMATION {
+   DWORD dwSize;
+   byte* lpReserved;
+   NTMS_GUID AllocatedFrom;
+ } NTMS_ALLOCATION_INFORMATION,
+  *LPNTMS_ALLOCATION_INFORMATION;
+</pre></div>
+</dd></dl><p><b>dwSize:</b>  The size, in bytes, of the
+structure.</p><p><b>lpReserved:</b>  Unused. This value MUST
+be NULL and MUST be ignored on receipt.</p><p><b>AllocatedFrom:</b>  The <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> of the media source
+(that is, an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_c74372fa-bcae-4710-8b24-996fa2b676ac" data-linktype="relative-path">import pool</a>
+or any other user-defined pool).</p></div>

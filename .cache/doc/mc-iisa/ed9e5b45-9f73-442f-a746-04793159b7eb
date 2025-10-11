@@ -1,0 +1,7 @@
+<div class="content"><p>This document specifies the Internet Information Services
+(IIS) Application Host COM Protocol. This protocol is a client-to-server protocol
+that enables remote read/write access to server data. The server data can be
+used to define administration, configuration, and operational parameters to an
+application server service, which can be a web server.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>

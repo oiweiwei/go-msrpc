@@ -49,26 +49,241 @@ type UpdateCollectionClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The IStringCollection::Item (opnum 9) method sets an item in the collection.
+	//
+	// The IWindowsDriverUpdateEntryCollection::Item (opnum 8) method retrieves an item
+	// by index.
+	//
+	// );
+	//
+	// The IUpdateDownloadContentCollection::Item (opnum 8) method retrieves an item from
+	// the collection by index.
+	//
+	// The ICategoryCollection::Item (opnum 8) method retrieves an item by index.
+	//
+	// The IUpdateExceptionCollection::Item (opnum 8) method retrieves an item from the
+	// collection by index.
+	//
+	// The IUpdateHistoryEntryCollection::Item (opnum 8) method retrieves an item from the
+	// collection by index.
+	//
+	// The IUpdateCollection::Item (opnum 9) method replaces an item in the collection by
+	// index.
+	//
+	// The IStringCollection::Item (opnum 8) method gets an item by index.
+	//
+	// The IUpdateCollection::Item (opnum 8) method retrieves an item from the collection
+	// by index.
+	//
+	// The IUpdateServiceCollection::Item (opnum 8) method retrieves an item from the collection
+	// by index.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// If the index is less than 0x00000000 or greater than or equal to the number of items
+	// in the collection, the server SHOULD return WU_E_INVALIDINDEX (0x80240007).
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD set the item at the given index in the List ADM element list to
+	// the given value.
 	GetItem(context.Context, *GetItemRequest, ...dcerpc.CallOption) (*GetItemResponse, error)
 
+	// The IStringCollection::Item (opnum 9) method sets an item in the collection.
+	//
+	// The IWindowsDriverUpdateEntryCollection::Item (opnum 8) method retrieves an item
+	// by index.
+	//
+	// );
+	//
+	// The IUpdateDownloadContentCollection::Item (opnum 8) method retrieves an item from
+	// the collection by index.
+	//
+	// The ICategoryCollection::Item (opnum 8) method retrieves an item by index.
+	//
+	// The IUpdateExceptionCollection::Item (opnum 8) method retrieves an item from the
+	// collection by index.
+	//
+	// The IUpdateHistoryEntryCollection::Item (opnum 8) method retrieves an item from the
+	// collection by index.
+	//
+	// The IUpdateCollection::Item (opnum 9) method replaces an item in the collection by
+	// index.
+	//
+	// The IStringCollection::Item (opnum 8) method gets an item by index.
+	//
+	// The IUpdateCollection::Item (opnum 8) method retrieves an item from the collection
+	// by index.
+	//
+	// The IUpdateServiceCollection::Item (opnum 8) method retrieves an item from the collection
+	// by index.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// If the index is less than 0x00000000 or greater than or equal to the number of items
+	// in the collection, the server SHOULD return WU_E_INVALIDINDEX (0x80240007).
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD set the item at the given index in the List ADM element list to
+	// the given value.
 	SetItem(context.Context, *SetItemRequest, ...dcerpc.CallOption) (*SetItemResponse, error)
 
 	// _NewEnum operation.
 	Get_NewEnum(context.Context, *Get_NewEnumRequest, ...dcerpc.CallOption) (*Get_NewEnumResponse, error)
 
+	// The IUpdateExceptionCollection::Count (opnum 10) method retrieves the number of items
+	// in the collection.
+	//
+	// The IUpdateHistoryEntryCollection::Count (opnum 10) method retrieves the number of
+	// items in the collection.
+	//
+	// The IUpdateDownloadContentCollection::Count (opnum 10) method retrieves the number
+	// of items in the collection.
+	//
+	// The IUpdateCollection::Count (opnum 11) method returns the number of items in the
+	// collection.
+	//
+	// The ICategoryCollection::Count (opnum 10) method retrieves a count of the number
+	// of items in the collection of ICategory instances.
+	//
+	// The IWindowsDriverUpdateEntryCollection::Count (opnum 10) method retrieves a count
+	// of the number of items in the collection of IWindowsDriverUpdateEntry instances.
+	//
+	// The IUpdateServiceCollection::Count (opnum 10) method retrieves the number of items
+	// in the collection.
+	//
+	// The IStringCollection::Count (opnum 11) method retrieves a count of the items in
+	// the collection.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Count ADM element.
 	GetCount(context.Context, *GetCountRequest, ...dcerpc.CallOption) (*GetCountResponse, error)
 
+	// The IUpdateSession::ReadOnly (opnum 10) method returns whether the session is read-only.
+	//
+	// The IUpdateCollection::ReadOnly (opnum 12) method returns whether the collection
+	// is read-only.
+	//
+	// The IStringCollection::ReadOnly (opnum 12) method retrieves whether the collection
+	// is read-only.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ReadOnly ADM element.
 	GetReadOnly(context.Context, *GetReadOnlyRequest, ...dcerpc.CallOption) (*GetReadOnlyResponse, error)
 
+	// The IStringCollection::Add (opnum 13) method adds an item to the collection.
+	//
+	// The IUpdateCollection::Add (opnum 13) method adds an item to the collection.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD append the given value to the List ADM element and increment the
+	// value of the Count ADM element.
 	Add(context.Context, *AddRequest, ...dcerpc.CallOption) (*AddResponse, error)
 
+	// The IStringCollection::Clear (opnum 14) method removes all items from the collection.
+	//
+	// This method has no parameters.
+	//
+	// The IUpdateCollection::Clear (opnum 14) method empties the collection.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD empty the List ADM element and set the value of the Count ADM
+	// element to 0.
 	Clear(context.Context, *ClearRequest, ...dcerpc.CallOption) (*ClearResponse, error)
 
 	// Opnum15NotUsedOnWire operation.
 	// Opnum15NotUsedOnWire
 
+	// The IStringCollection::Insert (opnum 16) method inserts an item into the collection
+	// at a given position.
+	//
+	// The IUpdateCollection::Insert (opnum 16) method inserts an item into the collection.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// If the collection is read-only, the server SHOULD return WU_E_NOT_SUPPORTED (0x80240037).
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD insert the given value into its List ADM element at the given
+	// index, and increment the value of its Count ADM element.
 	Insert(context.Context, *InsertRequest, ...dcerpc.CallOption) (*InsertResponse, error)
 
+	// The IStringCollection::RemoveAt (opnum 17) method removes an item from the collection.
+	//
+	// The IUpdateCollection::RemoveAt (opnum 17) method removes an item from the collection.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// If the collection is read-only, the server SHOULD return WU_E_NOT_SUPPORTED (0x80240037).
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD remove the item in its List ADM element at the given index and
+	// decrement the value of its Count ADM element.
 	RemoveAT(context.Context, *RemoveATRequest, ...dcerpc.CallOption) (*RemoveATResponse, error)
 
 	// AlterContext alters the client context.
@@ -493,8 +708,27 @@ func (o *xxx_GetItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 // GetItemRequest structure represents the Item operation request
 type GetItemRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Index int32          `idl:"name:index" json:"index"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// index: The zero-based index of the item to modify.
+	//
+	// index: The zero-indexed position of the item to retrieve.
+	//
+	// index: The zero-based index of the item to retrieve.
+	//
+	// index: The zero-indexed position of the item to retrieve.
+	//
+	// index: The zero-based index of the item to retrieve.
+	//
+	// index: The zero-based index of the item to retrieve.
+	//
+	// index: The zero-based index of the item to replace.
+	//
+	// index: The zero-based index of the item to retrieve.
+	//
+	// index: The zero-based index of the item to retrieve.
+	//
+	// index: The zero-based index of the item to retrieve.
+	Index int32 `idl:"name:index" json:"index"`
 }
 
 func (o *GetItemRequest) xxx_ToOp(ctx context.Context, op *xxx_GetItemOperation) *xxx_GetItemOperation {
@@ -531,8 +765,23 @@ func (o *GetItemRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // GetItemResponse structure represents the Item operation response
 type GetItemResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *uamg.Update   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The IWindowsDriverUpdateEntry instance at the given index.
+	//
+	// retval: The item at the given index.
+	//
+	// retval: The ICategory at the given index.
+	//
+	// retval: The item at the given index.
+	//
+	// retval: The item at the given index.
+	//
+	// retval: The string at the given index.
+	//
+	// retval: The item at the given index.
+	//
+	// retval: The item at the given index.
+	ReturnValue *uamg.Update `idl:"name:retval" json:"return_value"`
 	// Return: The Item return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -750,9 +999,31 @@ func (o *xxx_SetItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 // SetItemRequest structure represents the Item operation request
 type SetItemRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Index int32          `idl:"name:index" json:"index"`
-	Value *uamg.Update   `idl:"name:value" json:"value"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// index: The zero-based index of the item to modify.
+	//
+	// index: The zero-indexed position of the item to retrieve.
+	//
+	// index: The zero-based index of the item to retrieve.
+	//
+	// index: The zero-indexed position of the item to retrieve.
+	//
+	// index: The zero-based index of the item to retrieve.
+	//
+	// index: The zero-based index of the item to retrieve.
+	//
+	// index: The zero-based index of the item to replace.
+	//
+	// index: The zero-based index of the item to retrieve.
+	//
+	// index: The zero-based index of the item to retrieve.
+	//
+	// index: The zero-based index of the item to retrieve.
+	Index int32 `idl:"name:index" json:"index"`
+	// value: The new item to set in the collection.
+	//
+	// value: The item with which to replace the existing item.
+	Value *uamg.Update `idl:"name:value" json:"value"`
 }
 
 func (o *SetItemRequest) xxx_ToOp(ctx context.Context, op *xxx_SetItemOperation) *xxx_SetItemOperation {
@@ -1236,8 +1507,15 @@ func (o *GetCountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 // GetCountResponse structure represents the Count operation response
 type GetCountResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int32          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The number of items in the collection.
+	//
+	// retval: A count of the elements in the collection.
+	//
+	// retval: A count of the elements in the collection.
+	//
+	// retval: The number of elements in the collection.
+	ReturnValue int32 `idl:"name:retval" json:"return_value"`
 	// Return: The Count return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1443,8 +1721,16 @@ func (o *GetReadOnlyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // GetReadOnlyResponse structure represents the ReadOnly operation response
 type GetReadOnlyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be VARIANT_TRUE if the session is read-only, or VARIANT_FALSE if not.
+	// See [MS-OAUT] section 2.2.27 for information on these two values.
+	//
+	// retval: MUST be set either to VARIANT_TRUE if the collection is read-only, or to
+	// VARIANT_FALSE if it is not.
+	//
+	// retval: MUST be set either to VARIANT_TRUE if the collection is read-only or to VARIANT_FALSE
+	// if it is not.
+	ReturnValue int16 `idl:"name:retval" json:"return_value"`
 	// Return: The ReadOnly return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1662,8 +1948,11 @@ func (o *xxx_AddOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reade
 // AddRequest structure represents the Add operation request
 type AddRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Value *uamg.Update   `idl:"name:value" json:"value"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// value: The string to add to the collection.
+	//
+	// value: The item to add to the collection.
+	Value *uamg.Update `idl:"name:value" json:"value"`
 }
 
 func (o *AddRequest) xxx_ToOp(ctx context.Context, op *xxx_AddOperation) *xxx_AddOperation {
@@ -1700,8 +1989,11 @@ func (o *AddRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // AddResponse structure represents the Add operation response
 type AddResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int32          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The index of the added string in the collection.
+	//
+	// retval: The index of the added item.
+	ReturnValue int32 `idl:"name:retval" json:"return_value"`
 	// Return: The Add return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2110,9 +2402,16 @@ func (o *xxx_InsertOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 // InsertRequest structure represents the Insert operation request
 type InsertRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Index int32          `idl:"name:index" json:"index"`
-	Value *uamg.Update   `idl:"name:value" json:"value"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// index: The position at which to insert the string.
+	//
+	// index: The zero-based position at which to insert the item. This can be a position
+	// at the end of the list.
+	Index int32 `idl:"name:index" json:"index"`
+	// value: The string to insert into the collection.
+	//
+	// value: The item to insert into the list.
+	Value *uamg.Update `idl:"name:value" json:"value"`
 }
 
 func (o *InsertRequest) xxx_ToOp(ctx context.Context, op *xxx_InsertOperation) *xxx_InsertOperation {
@@ -2320,8 +2619,11 @@ func (o *xxx_RemoveATOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 // RemoveATRequest structure represents the RemoveAt operation request
 type RemoveATRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Index int32          `idl:"name:index" json:"index"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// index: The index of the string to remove.
+	//
+	// index: The zero-based index of the item to remove.
+	Index int32 `idl:"name:index" json:"index"`
 }
 
 func (o *RemoveATRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveATOperation) *xxx_RemoveATOperation {

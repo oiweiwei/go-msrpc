@@ -243,12 +243,12 @@ func (d *Doc) newDocument(url string) (*goquery.Document, error) {
 	}
 
 	if d.cache != "" {
-		if err := d.DocumentToCache(url, doc.Find("main > div.content > :not(h1, div, nav)").Nodes); err != nil {
-			fmt.Fprintln(LogOutput, "[ERROR]", url)
+		if err := d.DocumentToCache(url, doc.Find("main div.content > :not(h1, div, nav)").Nodes); err != nil {
+			fmt.Fprintln(LogOutput, "[ERROR]", "document to cache", url)
 		}
 	}
 
-	nodes := doc.Find("main > div.content").Nodes
+	nodes := doc.Find("main div.content").Nodes
 	if len(nodes) < 1 {
 		return nil, fmt.Errorf("cannot find div.content element")
 	}

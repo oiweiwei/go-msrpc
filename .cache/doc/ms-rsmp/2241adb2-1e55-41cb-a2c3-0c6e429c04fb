@@ -1,1 +1,89 @@
-<div class="content"></div>
+<div class="content"><p>The DeleteNtmsMediaPool method deletes an application media
+pool.</p><dl>
+<dd>
+<div><pre> HRESULT DeleteNtmsMediaPool(
+   [in] LPNTMS_GUID lpPoolId
+ );
+</pre></div>
+</dd></dl><p><b>lpPoolId: </b>A pointer to the identifier of a
+media pool.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>NTMS_CONTROL_ACCESS to the media pool is denied (for
+  more information, see <a href="https://go.microsoft.com/fwlink/?LinkId=90130" data-linktype="external">[MSDN-SetNtmsObjectSecurity]</a>);
+  other security errors are possible, but indicate a security subsystem error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>An allocation failure occurred during processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The media pool identifier is missing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CE</p>
+  <p>ERROR_INVALID_MEDIA_POOL</p>
+  </td>
+  <td>
+  <p>Unable to open the media pool or delete the free,
+  import, or unrecognized media pools.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D3</p>
+  <p>ERROR_NOT_EMPTY</p>
+  </td>
+  <td>
+  <p>The media pool must be empty to be deleted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database is inaccessible or damaged.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The DeleteNtmsMediaPool method deletes the specified
+application media pool. Only empty media pools can be deleted with the
+DeleteNtmsMediaPool method. Free, unrecognized, and import media pools are
+managed by RSM and cannot be deleted with DeleteNtmsMediaPool.</p><p>Upon receiving this message, the server MUST verify that <i>lpPoolId</i>
+is not NULL; otherwise, the server MUST immediately fail the operation and
+return ERROR_INVALID_PARAMETER (0x80070057).</p><p>The server MUST verify that the user has the required access
+rights.</p><p>The server MUST check that the parent is not in a SCRATCH/IMPORT/FOREIGN
+media pool; if it is, it MUST NOT perform the delete and MUST return
+ERROR_INVALID_MEDIA_POOL. Otherwise, the server MUST delete the media pool from
+the database.</p></div>

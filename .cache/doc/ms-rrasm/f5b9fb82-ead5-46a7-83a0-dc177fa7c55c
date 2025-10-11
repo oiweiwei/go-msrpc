@@ -1,1 +1,116 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RRasAdminPortGetInfo</b> method retrieves the port
+information for a particular port given in <i>hPort</i> for a specified RRAS
+server using the handle <i>hDimServer</i>. The <i>dwLevel</i> defines the type
+of information requested. The caller MUST pass a pointer to a valid <a href="95609dbb-56aa-4b1b-a0e2-697864a141bd" data-linktype="relative-path"><b>DIM_INFORMATION_CONTAINER (section 2.2.1.2.1)</b></a>,
+where DIM_INFORMATION_CONTAINER.dwBufferSize is initialized to zero (0). The
+caller SHOULD free the memory pointed to by <i>pInfoStruct</i>.  </p><dl>
+<dd>
+<div><pre> DWORD RRasAdminPortGetInfo(
+   [in] DIM_HANDLE hDimServer,
+   [in] DWORD dwLevel,
+   [in] DWORD hPort,
+   [out] PDIM_INFORMATION_CONTAINER pInfoStruct
+ );
+</pre></div>
+</dd></dl><p><b>hDimServer: </b>A handle to the RRASM server where
+the call is executed, see section <a href="1f8cdbcc-9791-4a35-ad78-878b8d110e15" data-linktype="relative-path">3.1.3</a>.</p><p><b>dwLevel: </b>This is of type <b>DWORD</b> and MUST
+be set to any of the following values. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>After the function returns, the memory pointed to by
+  pInfoStruct-&gt;pBuffer is typecast to <a href="ed4beef4-11ba-413f-abf4-2659412169e8" data-linktype="relative-path"><b>RASI_PORT_0 (section 2.2.1.2.75)</b></a>.
+  The size of the array is determined by <i>lpdwEntriesRead</i>.  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>After the function returns, the memory pointed to by
+  pInfoStruct-&gt;pBuffer is typecast to <a href="f6b91be9-338a-41b4-9b24-2d5ab26dd9be" data-linktype="relative-path"><b>RASI_
+  PORT_1 (section 2.2.1.2.76)</b></a>. The size of the array is
+  determined by <i>lpdwEntriesRead</i>.  </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>hPort: </b>This is of type <b>DWORD</b> and MUST
+be set to the particular port identifier for which the port information is
+required. Obtain this handle by calling <a href="7f77ce09-b084-47ff-a1e0-6fd30cab5744" data-linktype="relative-path"><b>RRasAdminPortEnum (section 3.1.4.5)</b></a>.
+Since RRASM server does not maintain any port handle information, the
+validation of this handle SHOULD be done by the RRAS server implementation.  </p><p><b>pInfoStruct: </b>This is a pointer of type <b>DIM_INFORMATION_CONTAINER</b>,
+and <b>DIM_INFORMATION_CONTAINER.dwBufferSize</b> is initialized to zero (0).
+Upon successful return, the pInfoStruct-&gt;pBuffer is typecast to an array of
+the <b>RASI_PORT_0</b> or <b>RASI_ PORT_1</b> structures, based on the <i>dwLevel</i>
+value.</p><p><b>Return Values: </b>A 32-bit, unsigned integer
+value that indicates return status. A return value of ERROR_SUCCESS
+(0x00000000) indicates that the operation was completed successfully;
+otherwise, the value contains an error code, as specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+or section <a href="5c0c991a-0d3d-4fe5-9503-5128d0d49fe1" data-linktype="relative-path">2.2.4</a>. All
+values that are not listed in the table that follows MUST be treated the same
+by the RRASM client.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_SUCCESS</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCESS_DENIED</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The calling application does not have sufficient
+  privileges, as specified in section <a href="9373431f-ed29-4639-9f8b-743267c9f9b6" data-linktype="relative-path">2.1.1.1</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>The opnum field value for this method is 5.</p><p>When processing this call, the RRASM server MUST do the
+following:</p><ul><li><p><span><span> 
+</span></span>Validate, as specified in section 2.1.1.1, whether this method
+was called by a client that has access to the method. If the client does not
+have access, then return error ERROR_ACCESS_DENIED (0x00000005).</p>
+</li><li><p><span><span> 
+</span></span>If the <b>RouterType</b> is ROUTER_TYPE_LAN, return an error
+other than those in the preceding table.</p>
+</li><li><p><span><span> 
+</span></span>If <i>pInfoStruct</i> is NULL, return an error other than those
+in the preceding table.</p>
+</li><li><p><span><span> 
+</span></span>If <i>dwLevel</i> is not supported, return an error other than
+those in the preceding table.</p>
+</li><li><p><span><span> 
+</span></span>Call the abstract interface <b>Invoke DIMSVC</b> method
+specifying the operation and the parameters to enable RRAS server to perform
+the required management task.</p>
+</li><li><p><span><span> 
+</span></span>If the RRAS server successfully processes the request, populate <i>pInfoStruct</i>
+with the information returned by RRAS server. Return ERROR_SUCCESS
+(0x00000000).</p>
+</li><li><p><span><span> 
+</span></span>Otherwise return the error status returned by the RRAS server.</p>
+</li></ul><p>No exceptions are thrown beyond those thrown by the
+underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p></div>

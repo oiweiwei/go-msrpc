@@ -1,1 +1,16 @@
-<div class="content"></div>
+<div class="content"><p>The ServerSelection enumeration defines values that describe
+the type of server to use for an update search operation.</p><dl>
+<dd>
+<div><pre> typedef  enum tagServerSelection
+ {
+   ssDefault = 0,
+   ssManagedServer = 1,
+   ssWindowsUpdate = 2,
+   ssOthers = 3,
+ } ServerSelection;
+</pre></div>
+</dd></dl><p><b>ssDefault:  </b>Search the default server for
+updates that match the search criteria.</p><p><b>ssManagedServer:  </b>Search only the managed
+server for updates that match the search criteria.</p><p><b>ssWindowsUpdate:  </b>Search the Windows Update
+service over the Internet.</p><p><b>ssOthers:  </b>Search another server, to be
+specified by other means.</p></div>

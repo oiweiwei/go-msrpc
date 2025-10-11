@@ -49,8 +49,34 @@ type VirtualSmartCardManagerStatusCallbackClient interface {
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
 
+	// This method is called by the target to indicate the progress of a TPMVSC management
+	// request on the target. The association to a specific ITpmVirtualSmartCardManager
+	// method invocation is made by the causality ID in the underlying DCOM transport, as
+	// specified in [MS-DCOM] section 3.2.4.2.
+	//
+	// Return Values: The server MUST return 0 unless it has been instructed to abort the
+	// TPMVSC management request as specified in section 3.2.6.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD report the status code to the higher-layer protocol or application
+	// that called the associated ITpmVirtualSmartCardManager method.
 	ReportProgress(context.Context, *ReportProgressRequest, ...dcerpc.CallOption) (*ReportProgressResponse, error)
 
+	// This method is called by the target to indicate that an error was encountered during
+	// the execution of a TPMVSC management request on the target. The association to a
+	// specific ITpmVirtualSmartCardManager method invocation is made by the causality ID
+	// in the underlying DCOM transport, as specified in [MS-DCOM] section 3.2.4.2.
+	//
+	// Return Values: The server MUST return 0 unless it has been instructed to abort the
+	// TPMVSC management request as specified in section 3.2.6.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD report the error code to the higher-layer protocol or application
+	// that called the associated ITpmVirtualSmartCardManager method.
 	ReportError(context.Context, *ReportErrorRequest, ...dcerpc.CallOption) (*ReportErrorResponse, error)
 
 	// AlterContext alters the client context.
@@ -290,8 +316,9 @@ func (o *xxx_ReportProgressOperation) UnmarshalNDRResponse(ctx context.Context, 
 // ReportProgressRequest structure represents the ReportProgress operation request
 type ReportProgressRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Status tpmvsc.Status  `idl:"name:Status" json:"status"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// Status: A TPMVSCMGR_STATUS, defined in section 2.2.1.2.
+	Status tpmvsc.Status `idl:"name:Status" json:"status"`
 }
 
 func (o *ReportProgressRequest) xxx_ToOp(ctx context.Context, op *xxx_ReportProgressOperation) *xxx_ReportProgressOperation {
@@ -499,8 +526,9 @@ func (o *xxx_ReportErrorOperation) UnmarshalNDRResponse(ctx context.Context, w n
 // ReportErrorRequest structure represents the ReportError operation request
 type ReportErrorRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Error tpmvsc.Error   `idl:"name:Error" json:"error"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// Error: A TPMVSCMGR_ERROR, defined in section 2.2.1.1.
+	Error tpmvsc.Error `idl:"name:Error" json:"error"`
 }
 
 func (o *ReportErrorRequest) xxx_ToOp(ctx context.Context, op *xxx_ReportErrorOperation) *xxx_ReportErrorOperation {

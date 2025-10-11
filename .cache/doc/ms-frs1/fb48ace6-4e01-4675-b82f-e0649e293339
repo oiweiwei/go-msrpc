@@ -1,1 +1,21 @@
-<div class="content"></div>
+<div class="content"><p>The COMM_CO_EXT_WIN2K element contains a CO_RECORD_EXTENSION_WIN2K
+structure, which is an extension to the <a href="93ac0801-c3cf-4dfc-80a4-c2bff7a9b09b" data-linktype="relative-path">CHANGE_ORDER_COMMAND</a>
+structure that is compatible with down-level clients (NTFRS_COMM_MINOR_3). The
+structure of the COMM_CO_EXT_WIN2K packet element is as follows.</p><dl>
+<dd>
+<div><pre> typedef struct _COMM_CO_EXT_WIN2K {
+   USHORT CommType;
+   ULONG Length;
+   ULONG DataLength;
+   CO_RECORD_EXTENSION_WIN2K Data;
+ } COMM_CO_EXT_WIN2K,
+  *PCOMM_CO_EXT_WIN2K;
+</pre></div>
+</dd></dl><p><b>CommType:</b>   A 16-bit, unsigned
+integer that specifies the type of this <a href="194f8fff-d903-44b7-9530-c66f5366f8c7" data-linktype="relative-path">COMM_PACKET</a> element. MUST
+be 0x0016.</p><p><b>Length:</b>  A 32-bit, unsigned integer
+that indicates the length in bytes of the data following the Length field. MUST
+be 0x0000002C.</p><p><b>DataLength:</b>   A 32-bit, unsigned
+integer that indicates the length in bytes of the data following the DataLength
+field. MUST be 0x00000028.</p><p><b>Data:</b>   The <a href="ae7e3371-5538-4f74-bde2-a48d318b1571" data-linktype="relative-path">CO_RECORD_EXTENSION_WIN2K</a>
+structure being transmitted (see section 2.2.3.3).</p></div>

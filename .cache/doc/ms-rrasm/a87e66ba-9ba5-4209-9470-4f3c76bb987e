@@ -1,1 +1,62 @@
-<div class="content"></div>
+<div class="content"><p>The <b>PPP_PROJECTION_INFO_2</b> structure<a id="Appendix_A_Target_162"></a><a aria-label="Product behavior note 162" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_162" data-linktype="relative-path">&lt;162&gt;</a> contain information obtained
+during the PPP negotiation for the PPP-based tunnels.</p><dl>
+<dd>
+<div><pre> typedef struct _PPP_PROJECTION_INFO_2 {
+   DWORD dwIPv4NegotiationError;
+   WCHAR wszAddress[16];
+   WCHAR wszRemoteAddress[16];
+   DWORD dwIPv4Options;
+   DWORD dwIPv4RemoteOptions;
+   ULONG64 IPv4SubInterfaceIndex;
+   DWORD dwIPv6NegotiationError;
+   UCHAR bInterfaceIdentifier[8];
+   UCHAR bRemoteInterfaceIdentifier[8];
+   UCHAR bPrefix[8];
+   DWORD dwPrefixLength;
+   ULONG64 IPv6SubInterfaceIndex;
+   DWORD dwLcpError;
+   DWORD dwAuthenticationProtocol;
+   DWORD dwAuthenticationData;
+   DWORD dwRemoteAuthenticationProtocol;
+   DWORD dwRemoteAuthenticationData;
+   DWORD dwLcpTerminateReason;
+   DWORD dwLcpRemoteTerminateReason;
+   DWORD dwLcpOptions;
+   DWORD dwLcpRemoteOptions;
+   DWORD dwEapTypeId;
+   DWORD dwEmbeddedEAPTypeId;
+   DWORD dwRemoteEapTypeId;
+   DWORD dwCcpError;
+   DWORD dwCompressionAlgorithm;
+   DWORD dwCcpOptions;
+   DWORD dwRemoteCompressionAlgorithm;
+   DWORD dwCcpRemoteOptions;
+ } PPP_PROJECTION_INFO_2,
+  *PPPP_PROJECTION_INFO_2;
+</pre></div>
+</dd></dl><p><b>dwIPv4NegotiationError: </b>Same as <b>dwIPv4NegotiationError</b>
+in <a href="ec995980-0a4b-421f-ab29-b18a021d1320" data-linktype="relative-path"><b>PPP_PROJECTION_INFO_1 (section 2.2.1.2.130)</b></a>. 
+</p><p><b>wszAddress: </b>Same as <b>wszAddress</b> in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>wszRemoteAddress: </b>Same as <b>wszRemoteAddress</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwIPv4Options: </b>Same as <b>dwIPv4Options</b> in
+<b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwIPv4RemoteOptions: </b>Same as <b>dwIPv4RemoteOptions</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>IPv4SubInterfaceIndex: </b>Same as <b>IPv4SubInterfaceIndex</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwIPv6NegotiationError: </b>Same as <b>dwIPv6NegotiationError</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>bInterfaceIdentifier: </b>Same as <b>bInterfaceIdentifier</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>bRemoteInterfaceIdentifier: </b>Same as <b>bRemoteInterfaceIdentifier</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>bPrefix: </b>Same as <b>bPrefix</b> in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwPrefixLength: </b>Same as <b>bPrefix</b> in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>IPv6SubInterfaceIndex: </b>Same as <b>IPv6SubInterfaceIndex</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwLcpError: </b>Same as <b>dwLcpError</b> in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwAuthenticationProtocol: </b>Same as <b>dwAuthenticationProtocol</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwAuthenticationData: </b>Same as <b>dwAuthenticationData</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwRemoteAuthenticationProtocol: </b>Same as <b>dwRemoteAuthenticationProtocol</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwRemoteAuthenticationData: </b>Same as <b>dwRemoteAuthenticationData</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwLcpTerminateReason: </b>Same as <b>dwLcpTerminateReason</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwLcpRemoteTerminateReason: </b>Same as <b>dwLcpRemoteTerminateReason</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwLcpOptions: </b>Same as <b>dwLcpOptions</b> in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwLcpRemoteOptions: </b>Same as <b>dwLcpRemoteOptions</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwEapTypeId: </b>Same as <b>dwEapTypeId</b> in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwEmbeddedEAPTypeId: </b>Specifies the type
+identifier of the inner EAP method used in the EAP <a href="../ms-peap/5308642b-90c9-4cc4-beec-fb367325c0f9" data-linktype="relative-path">[MS-PEAP]</a>
+authentication. The value of this member is valid only if the <b>dwEapTypeId</b>
+member is set to PEAP (defined in <a href="https://go.microsoft.com/fwlink/?LinkId=89882" data-linktype="external">[IANA-EAP]</a>). The valid
+values are defined in [IANA-EAP].</p><p><b>dwRemoteEapTypeId: </b>Same as <b>dwRemoteEapTypeId</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwCcpError: </b>Same as <b>dwCcpError</b> in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwCompressionAlgorithm: </b>Same as <b>dwCompressionAlgorithm</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwCcpOptions: </b>Same as <b>dwCcpOptions</b> in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwRemoteCompressionAlgorithm: </b>Same as <b>dwRemoteCompressionAlgorithm</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p><p><b>dwCcpRemoteOptions: </b>Same as <b>dwCcpRemoteOptions</b>
+in <b>PPP_PROJECTION_INFO_1</b>.</p></div>

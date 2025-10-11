@@ -1,1 +1,80 @@
-<div class="content"></div>
+<div class="content"><p>The <b>DeviceConfigInfo</b> structure contains information
+specific to the REQTYPE_SETDEVICECONFIGINFO and REQTYPE_GETDEVICECONFIGINFO in
+the <a href="fcb89c61-ced3-43ba-a2ef-4c6f4a2d40a6" data-linktype="relative-path"><b>ReqTypes (section 2.2.1.1.18)</b></a>
+enumeration.  </p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>retcode</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cbBuffer</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>cEntries</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>abdata
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>retcode (4 bytes): </b>A 32-bit, unsigned integer
+value that indicates return status. A return value ERROR_SUCCESS (0x00000000)
+indicates that the operation was completed successfully; otherwise it contains
+an error code, specified in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+or in section <a href="5c0c991a-0d3d-4fe5-9503-5128d0d49fe1" data-linktype="relative-path">2.2.4</a>.</p><p><b>dwVersion (4 bytes): </b>Specifies the version of
+the server.<a id="Appendix_A_Target_154"></a><a aria-label="Product behavior note 154" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_154" data-linktype="relative-path">&lt;154&gt;</a></p><p><b>cbBuffer (4 bytes): </b>This MUST be set to the
+size, in bytes, of the buffer passed in <b>abdata</b>. </p><p><b>cEntries (4 bytes): </b>Specifies the number of
+device entries as returned by the server.</p><p><b>abdata (variable): </b>This refers to the buffer
+that contains the array of <a href="9909200a-64ab-4a38-aee3-6ae3425a564a" data-linktype="relative-path"><b>RAS_DEVICE_INFO
+(section</b></a><span><b> </b></span><a href="9909200a-64ab-4a38-aee3-6ae3425a564a" data-linktype="relative-path">2.2.1.2.219</a>) structures as
+returned by the server. </p></div>

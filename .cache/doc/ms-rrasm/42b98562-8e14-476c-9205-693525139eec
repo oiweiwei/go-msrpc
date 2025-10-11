@@ -1,1 +1,91 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RIP_IF_INFO </b>structure MAY<a id="Appendix_A_Target_141"></a><a aria-label="Product behavior note 141" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_141" data-linktype="relative-path">&lt;141&gt;</a> contain information about the
+RIP for IPX interface. This structure is used in <b>RIP_IF_CONFIG</b> (section
+<a href="d3d015ab-1559-4be5-994d-b6f9ed7522ec" data-linktype="relative-path">2.2.1.2.206)</a> and <a href="049a7ab1-9265-4814-a65a-cb08e726576f" data-linktype="relative-path"><b>RIP_INTERFACE (section 2.2.1.2.124)</b></a>
+structures.   </p><dl>
+<dd>
+<div><pre> typedef struct _RIP_IF_INFO {
+   ULONG AdminState;
+   ULONG UpdateMode;
+   ULONG PacketType;
+   ULONG Supply;
+   ULONG Listen;
+   ULONG PeriodicUpdateInterval;
+   ULONG AgeIntervalMultiplier;
+ } RIP_IF_INFO, *PRIP_IF_INFO;
+</pre></div>
+</dd></dl><p><b>AdminState: </b>This MUST be set to the desired
+state of the interface. A value of 0x00000001 disables the interface, and a
+value of 0x00000002 enables the interface.</p><p><b>UpdateMode: </b>This MUST be set to the RIP update
+mechanism used on the interface. It can have one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Periodic update.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>No update.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>AutoStatic triggered update.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>PacketType: </b>Indicates the RIP packet type used
+on this interface and MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPX_STANDARD_PACKET_TYPE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>IPX standard packet</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_RELIABLE_DELIVERY_PACKET_TYPE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>IPX reliable packet</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Supply: </b>Determines whether to send RIP updates
+on this interface. A value of 0x00000001 disables sending of a RIP updated on
+this interface, and a value of 0x00000002 enables sending of a RIP updated on
+this interface.</p><p><b>Listen: </b>Determines whether to listen for RIP
+updates on this interface. A value of 0x00000001 disables listening for a RIP
+updated on this interface, and a value of 0x00000002 enables listening for a
+RIP updated on this interface.</p><p><b>PeriodicUpdateInterval: </b>This MUST be the
+interval at which the information is updated periodically, in seconds. The
+default value is 60.</p><p><b>AgeIntervalMultiplier: </b>Each time a periodic
+update is done at the server, PeriodicUpdateInterval is multiplied by
+AgeIntervalMultiplier. The default value is 3.</p></div>

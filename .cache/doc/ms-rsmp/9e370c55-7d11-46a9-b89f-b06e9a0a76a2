@@ -1,1 +1,86 @@
-<div class="content"></div>
+<div class="content"><p>The EnableNtmsObject method enables an object.</p><dl>
+<dd>
+<div><pre> HRESULT EnableNtmsObject(
+   [in] DWORD dwType,
+   [in] LPNTMS_GUID lpObjectId
+ );
+</pre></div>
+</dd></dl><p><b>dwType: </b>One of the NTMS_DRIVE, NTMS_LIBRARY,
+or NTMS_PHYSICAL_MEDIA values from the <a href="5b190198-a0cb-4e20-90a3-234009357051" data-linktype="relative-path">NtmsObjectsTypes (section 2.2.1.6)</a>
+enumeration, specifying the type of the object. </p><p><b>lpObjectId: </b>A pointer to the identifier of the
+object to enable.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>NTMS_CONTROL_ACCESS to the library containing the
+  object is denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The parameter is NULL or invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D1</p>
+  <p>ERROR_LIBRARY_OFFLINE</p>
+  </td>
+  <td>
+  <p>The <i>lpObjectId</i> parameter refers to an offline
+  library that cannot be enabled or disabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D8</p>
+  <p>ERROR_OBJECT_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The <i>lpObjectId</i> parameter is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database is inaccessible or damaged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007139F</p>
+  <p>ERROR_INVALID_STATE</p>
+  </td>
+  <td>
+  <p>The object is already enabled.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpObjectId</i>
+is not NULL. If parameter validation fails, the server MUST immediately fail
+the operation and return ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights, and set the object state to
+ENABLED. If the client does not have the required access rights, the server
+MUST return ERROR_ACCESS_DENIED (0x80070005).</p></div>

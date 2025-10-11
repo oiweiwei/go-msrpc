@@ -1,1 +1,19 @@
-<div class="content"></div>
+<div class="content"><p>The <b>OSPF_PROTO_FILTER_INFO</b> structure MAY<a id="Appendix_A_Target_146"></a><a aria-label="Product behavior note 146" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_146" data-linktype="relative-path">&lt;146&gt;</a> be used to contain the OSPF
+protocol filter information and is used by the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="071439e7-a9fd-40e4-91f7-ab756108e82f" data-linktype="relative-path"><b>RRouterInterfaceTransportSetGlobalInfo (section 3.1.4.10)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="14ad8d26-d7d7-48dd-914d-da962d5d7049" data-linktype="relative-path"><b>RRouterInterfaceTransportGetGlobalInfo (section 3.1.4.11)</b></a><span>  </span></p>
+<div><pre> typedef struct _OSPF_PROTO_FILTER_INFO {
+   DWORD type;
+   OSPF_FILTER_ACTION ofaActionOnMatch;
+   DWORD dwNumProtoIds;
+   DWORD pdwProtoId[1];
+ } OSPF_PROTO_FILTER_INFO, *POSPF_PROTO_FILTER_INFO;
+</pre></div>
+</li></ul><p><b>type: </b>This MUST be set to
+OSPF_PROTO_FILTER_INFO_TYPE.</p><p><b>ofaActionOnMatch: </b>Set to 0 or 1 as mentioned
+in <a href="8539bd1e-35c3-4f0e-b469-4f80e21061cb" data-linktype="relative-path"><b>OSPF_FILTER_ACTION (section 2.2.1.1.15)</b></a>. 
+</p><p><b>dwNumProtoIds: </b>The number of protocol IDs
+present in the <b>pdwProtoId</b> field.</p><p><b>pdwProtoId: </b>A list of protocol IDs. This list
+MUST contain one or more values defined in <a href="c40401df-9ef7-42aa-b336-759c2086e476" data-linktype="relative-path"><b>MIB_IPFORWARD_PROTO (section 2.2.1.1.9)</b></a>.
+All other values are ignored.  </p></div>

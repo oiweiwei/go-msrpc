@@ -1,1 +1,21 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsInjectOperation enumeration defines the types of
+actions to perform in an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_5e9a10ec-4dc8-457c-bac6-4df3af609f40" data-linktype="relative-path">inject</a>
+operation.</p><dl>
+<dd>
+<div><pre> enum NtmsInjectOperation
+ {
+   NTMS_INJECT_START = 0,
+   NTMS_INJECT_STOP = 1,
+   NTMS_INJECT_RETRACT = 2,
+   NTMS_INJECT_STARTMANY = 3
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_INJECT_START:  </b>Start the insert operation
+on a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">port</a>. All media in
+the port MUST be inserted until either the operation times out or
+NTMS_INJECT_STOP is issued.</p><p><b>NTMS_INJECT_STOP:  </b>Terminate the insertion
+process.</p><p><b>NTMS_INJECT_RETRACT:  </b>Direct the library to
+retract the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_e2c6dee3-9f37-4fe2-b970-ae3c00a8ed70" data-linktype="relative-path">IE port</a> and
+check for media that the operator placed there.</p><p><b>NTMS_INJECT_STARTMANY:  </b>Direct the IE port to
+open continually and check for media that the operator placed there. If media
+are found, the IE port MUST be reopened to receive more media.</p></div>

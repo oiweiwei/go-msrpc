@@ -1,1 +1,167 @@
-<div class="content"></div>
+<div class="content"><p>The EfsRpcDuplicateEncryptionInfoFile method is used to
+duplicate the <a href="3166cf4a-e085-47be-94c6-b69bddf274ff" data-linktype="relative-path">EFSRPC
+Metadata</a> of one encrypted object and attach it to another encrypted object.
+This is typically done when copying objects to maintain the same set of <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_718bfd46-3cd2-45e8-befa-55f5c9f3be7b" data-linktype="relative-path">keys</a> and users for the copy
+as for the original.</p><dl>
+<dd>
+<div><pre> DWORD EfsRpcDuplicateEncryptionInfoFile(
+   [in] handle_t binding_h,
+   [in, string] wchar_t* SrcFileName,
+   [in, string] wchar_t* DestFileName,
+   [in] DWORD dwCreationDisposition,
+   [in] DWORD dwAttributes,
+   [in, unique] EFS_RPC_BLOB* RelativeSD,
+   [in] BOOL bInheritHandle
+ );
+</pre></div>
+</dd></dl><p><b>binding_h: </b>This is an <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_1cf35308-abab-4123-9cbd-99c42dc9a6ff" data-linktype="relative-path">binding</a> handle parameter,
+as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+and <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a>.</p><p><b>SrcFileName: </b> An EFSRPC identifier, as
+specified in section <a href="9db7433f-be13-4605-993f-3695a2d2916e" data-linktype="relative-path">2.2.1</a>.</p><p><b>DestFileName: </b>An EFSRPC identifier, as
+specified in section 2.2.1.</p><p><b>dwCreationDisposition: </b>This parameter
+specifies what action the server is advised to take if the object referred to
+by <i>DestFileName</i> does not already exist. It MUST be one of the following
+values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CREATE_NEW</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Do not overwrite the data object referred to by <i>DestFileName</i>
+  if it already exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CREATE_ALWAYS</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Overwrite the data object referred to by <i>DestFileName</i>
+  if it already exists.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwAttributes: </b>Desired attributes for the
+target object. Clients SHOULD set this parameter to the bitwise OR of zero or
+more of the following values. Servers SHOULD support all of these values. These
+values can be interpreted by the underlying server data store, and they do not
+affect protocol behavior.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FILE_ATTRIBUTE_HIDDEN</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The file is hidden (not displayed in normal folder
+  listings).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILE_ATTRIBUTE_ARCHIVE</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>This attribute is used by applications to mark files
+  for backup or removal.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILE_ATTRIBUTE_TEMPORARY</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>The file is being used for temporary storage.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILE_ATTRIBUTE_NOT_CONTENT_INDEXED</p>
+  <p>0x00002000</p>
+  </td>
+  <td>
+  <p>The file&#39;s contents are not to be indexed by the
+  content indexing service.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILE_ATTRIBUTE_NORMAL</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>No other attributes are to be set.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>RelativeSD: </b>Relative security descriptor for
+the target object. The format of this is implementation-dependent.<a id="Appendix_A_Target_49"></a><a aria-label="Product behavior note 49" href="cecd911d-7105-45cc-a7c8-348335d6f03f#Appendix_A_49" data-linktype="relative-path">&lt;49&gt;</a></p><p><b>bInheritHandle: </b>This parameter SHOULD be set
+to FALSE by the client and SHOULD be ignored by the server.</p><p><b>Return Values: </b>The server MUST return 0 if it
+successfully processes the message received from the client. The server MUST
+return a nonzero value if processing fails.<a id="Appendix_A_Target_50"></a><a aria-label="Product behavior note 50" href="cecd911d-7105-45cc-a7c8-348335d6f03f#Appendix_A_50" data-linktype="relative-path">&lt;50&gt;</a></p><dl>
+<dd>
+<p>If no object exists on the server with the name
+specified in the <i>SrcFileName</i> parameter, or if it exists and is not
+encrypted, the server MUST return a nonzero value.</p>
+</dd>
+<dd>
+<p>If an encrypted object exists with the name
+specified in the <i>SrcFileName</i> and <i>dwCreationDisposition</i> parameters
+is equal to CREATE_NEW, then:</p>
+</dd></dl><ul><li><p><span><span> 
+</span></span>If an object exists with the name specified in the <i>DestFileName</i>
+parameter, the server MUST return a nonzero value.</p>
+</li><li><p><span><span> 
+</span></span>If no object exists with the name specified in the <i>DestFileName</i>
+parameter, the server MUST create a new object with this name and duplicate the
+EFSRPC Metadata from the <i>SrcFileName</i> parameter into it. If the object
+specified in <i>SrcFileName</i> is a container for other objects, the server
+MUST create the object as a container for objects, and it MUST encrypt any
+objects that are subsequently placed in the container after this message has
+been processed. Otherwise, the server MUST create the object as a non-container
+encrypted data object.</p>
+<p>If an encrypted object exists with the name
+specified in the <i>SrcFileName</i> and <i>dwCreationDisposition</i> parameters
+is not equal to CREATE_NEW, then:</p>
+</li><li><p><span><span> 
+</span></span>If an object already exists with the name specified in the <i>DestFileName</i>
+parameter, the server MUST check whether the object referred to by <i>SrcFileName</i>
+is of the same type (either simple object or container for other objects); if the
+object is not of the same type, the server MUST return a nonzero value. In
+addition, if the object referred to by <i>DestFileName</i> is a container for
+other objects, and it is not already encrypted, the server MUST return a
+nonzero value. Otherwise, the server SHOULD overwrite the object, clear its
+existing attributes, create a new object in its place with the attributes
+specified, and duplicate the EFSRPC Metadata from the <i>SrcFileName</i>
+parameter into it.</p>
+</li><li><p><span><span> 
+</span></span>If no object exists with the name specified in the <i>DestFileName</i>
+parameter, the server MUST create a new object with this name and duplicate the
+EFSRPC Metadata from the <i>SrcFileName</i> parameter into it. If the object
+specified in <i>SrcFileName</i> is a container for other objects, the server
+MUST create the object as a container for objects, and it MUST encrypt any
+objects that are subsequently placed in the container after this message has
+been processed. Otherwise, the server MUST create the object as a non-container
+encrypted data object.</p>
+</li></ul><p>In duplicating the EFSRPC Metadata from the <i>SrcFileName</i>
+parameter to the <i>DestFileName</i> parameter, the server MAY<a id="Appendix_A_Target_51"></a><a aria-label="Product behavior note 51" href="cecd911d-7105-45cc-a7c8-348335d6f03f#Appendix_A_51" data-linktype="relative-path">&lt;51&gt;</a> change the metadata. However,
+upon successful completion, the set of users and <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_c2d1bb54-31a8-4918-a163-39a7851c347a" data-linktype="relative-path">DRAs</a> with access to the <i>DestFileName</i>
+parameter MUST be the same set of users who had access to the <i>SrcFileName</i>
+parameter at the outset.</p></div>

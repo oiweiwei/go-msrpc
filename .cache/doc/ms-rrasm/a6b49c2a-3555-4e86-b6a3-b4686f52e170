@@ -1,1 +1,11 @@
-<div class="content"></div>
+<div class="content"><p>The <b>INTERFACE_ROUTE_ENTRY</b> structure is used to store
+and retrieve entries of the IPv6 ForwardRow based on the dwIndex.</p><dl>
+<dd>
+<div><pre> typedef struct _INTERFACE_ROUTE_ENTRY {
+   DWORD dwIndex;
+   INTERFACE_ROUTE_INFO routeInfo;
+ } INTERFACE_ROUTE_ENTRY,
+  *PINTERFACE_ROUTE_ENTRY;
+</pre></div>
+</dd></dl><p><b>dwIndex: </b>The index to the table of <a href="784d8544-140a-4769-b659-7d3168de9242" data-linktype="relative-path"><b>INTERFACE_ROUTE_INFO</b></a>
+structures defined on RRAS.</p><p><b>routeInfo: </b>This MUST be <b>INTERFACE_ROUTE_INFO</b>.</p></div>

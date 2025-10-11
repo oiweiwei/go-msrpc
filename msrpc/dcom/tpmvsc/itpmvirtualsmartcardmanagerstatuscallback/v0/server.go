@@ -31,8 +31,34 @@ type VirtualSmartCardManagerStatusCallbackServer interface {
 	// IUnknown base class.
 	iunknown.UnknownServer
 
+	// This method is called by the target to indicate the progress of a TPMVSC management
+	// request on the target. The association to a specific ITpmVirtualSmartCardManager
+	// method invocation is made by the causality ID in the underlying DCOM transport, as
+	// specified in [MS-DCOM] section 3.2.4.2.
+	//
+	// Return Values: The server MUST return 0 unless it has been instructed to abort the
+	// TPMVSC management request as specified in section 3.2.6.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD report the status code to the higher-layer protocol or application
+	// that called the associated ITpmVirtualSmartCardManager method.
 	ReportProgress(context.Context, *ReportProgressRequest) (*ReportProgressResponse, error)
 
+	// This method is called by the target to indicate that an error was encountered during
+	// the execution of a TPMVSC management request on the target. The association to a
+	// specific ITpmVirtualSmartCardManager method invocation is made by the causality ID
+	// in the underlying DCOM transport, as specified in [MS-DCOM] section 3.2.4.2.
+	//
+	// Return Values: The server MUST return 0 unless it has been instructed to abort the
+	// TPMVSC management request as specified in section 3.2.6.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// The server SHOULD report the error code to the higher-layer protocol or application
+	// that called the associated ITpmVirtualSmartCardManager method.
 	ReportError(context.Context, *ReportErrorRequest) (*ReportErrorResponse, error)
 }
 

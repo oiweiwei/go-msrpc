@@ -1,1 +1,74 @@
-<div class="content"></div>
+<div class="content"><p>The CreateSchedule method creates a new schedule object.</p><dl>
+<dd>
+<div><pre> [id(8), helpstring(&#34;method CreateSchedule&#34;)] HRESULT CreateSchedule(
+   [in] BSTR bstrScheduleXML
+ );
+</pre></div>
+</dd></dl><p><b>bstrScheduleXML: </b>A string that specifies the
+new schedule, in the form of a <a href="d3c9e4d5-2267-473e-abcd-a8bfae7fc437" data-linktype="relative-path">Schedule</a> element (section
+2.2.5.26). Sample <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_982b7f8e-d516-4fd5-8d5e-1a836081ed85" data-linktype="relative-path">XML</a> is
+provided in <a href="57c93302-3f52-47aa-aae1-7b5ed1dd59dc" data-linktype="relative-path">Schedule
+Example</a> (section 4.2.22).</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0070</p>
+  <p>WRM_ERR_TAGS_NOT_IN_ORDER</p>
+  </td>
+  <td>
+  <p>The XML data that is maintained by the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1517eb9b-d2b2-48f0-bf23-bde76923ed30" data-linktype="relative-path">management service</a> is
+  invalid or cannot be processed.<a id="Appendix_A_Target_64"></a><a aria-label="Product behavior note 64" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_64" data-linktype="relative-path">&lt;64&gt;</a> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF025C</p>
+  <p>WRM_ERR_CAL_MAX_SCHED_EXCEEDED</p>
+  </td>
+  <td>
+  <p>The number of schedules has exceeded an
+  implementation-defined limit.<a id="Appendix_A_Target_65"></a><a aria-label="Product behavior note 65" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_65" data-linktype="relative-path">&lt;65&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0270</p>
+  <p>WRM_ERR_CAL_DUPLICATE_SCHEDULE</p>
+  </td>
+  <td>
+  <p>The specified schedule object already exists.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="b573c233-e3b6-4179-896f-90a4eb0ca8ff" data-linktype="relative-path">IWRMCalendar</a> interface
+methods are specified in section 3.2.4.4.</p></div>

@@ -31,24 +31,228 @@ type ResourceManagerServer interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
+	// The RetrieveEventList method is not implemented and always returns an error.
+	//
+	// Return Values: This method returns E_NOTIMPL, unless a parameter error is found.
+	//
+	//	+----------------------+-----------------------------------+
+	//	|        RETURN        |                                   |
+	//	|      VALUE/CODE      |            DESCRIPTION            |
+	//	|                      |                                   |
+	//	+----------------------+-----------------------------------+
+	//	+----------------------+-----------------------------------+
+	//	| 0x80004001 E_NOTIMPL | This function is not implemented. |
+	//	+----------------------+-----------------------------------+
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	RetrieveEventList(context.Context, *RetrieveEventListRequest) (*RetrieveEventListResponse, error)
 
+	// The GetSystemAffinity method gets the processor affinity of the system.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	GetSystemAffinity(context.Context, *GetSystemAffinityRequest) (*GetSystemAffinityResponse, error)
 
+	// The ImportXMLFiles method loads a specified WSRM configuration.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | Operation successful.                                                            |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG              | One or more arguments are invalid.                                               |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                      | be processed.<27>                                                                |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// The ImportXMLFiles method can be used to manage system resources by importing a valid
+	// RAP.
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	ImportXMLFiles(context.Context, *ImportXMLFilesRequest) (*ImportXMLFilesResponse, error)
 
+	// The ExportXMLFiles method saves the current WSRM configuration.<28>
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                      | be processed.<29>                                                                |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | Operation successful.                                                            |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	ExportXMLFiles(context.Context, *ExportXMLFilesRequest) (*ExportXMLFilesResponse, error)
 
+	// The RestoreXMLFiles method restores the WSRM configuration to a specified state.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | Operation successful.                                                            |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                      | be processed.<31>                                                                |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG              | One or more arguments are invalid.                                               |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// This method can be used to reset the WSRM server state to a known value in case some
+	// data becomes corrupted and the server cannot proceed.
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	RestoreXMLFiles(context.Context, *RestoreXMLFilesRequest) (*RestoreXMLFilesResponse, error)
 
+	// The GetDependencies method returns a list of WSRM objects that are being used or
+	// that depend on a specified object.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                    RETURN                    |                                                                                  |
+	//	|                  VALUE/CODE                  |                                   DESCRIPTION                                    |
+	//	|                                              |                                                                                  |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                              | Operation successful.                                                            |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006F WRM_ERR_ID_VALUE                  | The specified name contains characters that are invalid. The name cannot         |
+	//	|                                              | start with a hyphen ("-") and cannot contain spaces or any of the following      |
+	//	|                                              | characters: \ / ? * | : < > " , ;.                                               |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80004005 E_FAIL                            | Either an object with the specified name and type was not found or its           |
+	//	|                                              | dependency list could not be created.                                            |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0271 WRM_ERR_CAL_UNKNOWN_SCHEDULE      | A calendar name or an invalid schedule name was passed in bstrObjectName for     |
+	//	|                                              | OBJECT_SCHEDULE enumObject.                                                      |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF013A WRM_ERR_DEPENDENCIES_FOR_RESIDUAL | This is a residual PMC and is a part of all policies. All processes that do      |
+	//	|                                              | not match any of the PMC specified by a user in a policy automatically match to  |
+	//	|                                              | residual PMC.                                                                    |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// The server SHOULD process this method call as follows:
+	//
+	// * If a PMC object is specified, this method MUST return a list of policies that make
+	// use of the PMC.
+	//
+	// * If a resource policy object ( e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_3731cbe9-91f2-49a8-b63f-6f5f7b69b05a
+	// ) is specified, this method MUST return a list of calendar ( e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_7204b2ed-dcef-4434-be15-6451f92d03fb
+	// ) events, conditions, and schedules that make use of the resource policy ( e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_559b0a4d-161b-4664-9c10-4fab98b97f1f
+	// ).
+	//
+	// * If a schedule object is specified, this method MUST return a list of calendar events
+	// making use of the schedule.
+	//
+	// * If a calendar object is specified, this method MUST return WRM_ERR_CAL_UNKNOWN_SCHEDULE.
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	GetDependencies(context.Context, *GetDependenciesRequest) (*GetDependenciesResponse, error)
 
+	// The GetServiceList method provides a list of services that are registered with the
+	// server and are not excluded by the exclusion list. This list of services is expected
+	// to be used for defining process matching criteria (PMC).
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	GetServiceList(context.Context, *GetServiceListRequest) (*GetServiceListResponse, error)
 
+	// The GetIISAppPoolNames method returns a list of all the application pools on the
+	// WSRM server that are defined by and known to the IIS server.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	GetIISAppPoolNames(context.Context, *GetIISAppPoolNamesRequest) (*GetIISAppPoolNamesResponse, error)
 
+	// The GetServerName method returns the server name.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.<33>
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	GetServerName(context.Context, *GetServerNameRequest) (*GetServerNameResponse, error)
 
+	// The GetCurrentMemory method determines the total amount of physical memory in the
+	// system.
+	//
+	// Return Values: This method returns 0x00000001 for success or 0x00000000 if an error
+	// occurs.
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000        | An error occurred.    |
+	//	+-------------------+-----------------------+
+	//	| 0x00000001 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IResourceManager interface methods are specified in section 3.2.4.1.
 	GetCurrentMemory(context.Context, *GetCurrentMemoryRequest) (*GetCurrentMemoryResponse, error)
 }
 

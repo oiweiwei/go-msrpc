@@ -1,0 +1,33 @@
+<div class="content"><p>The IsTransactional method is received by the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> in an RPC_REQUEST
+packet. In response, the server returns a value that indicates whether the <i>referenced
+queue</i> is <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transactional</a>
+or nontransactional.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT IsTransactional(
+   [out, retval] short* pisTransactional
+ );
+</pre></div>
+</dd></dl><p><b>pisTransactional: </b>A pointer to a <b>short</b>
+that corresponds to one of the <a href="cddcb15f-3f4b-4880-a923-6dfd16f755fd" data-linktype="relative-path">MQTRANSACTIONAL</a>
+enumeration values.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When the server processes this call, it MUST abide by the
+following contract:</p><ul><li><p><span><span> 
+</span></span>If <i>IsRefreshed</i> is FALSE call <a href="e4072abd-b433-4b22-a4ed-8f654d182705" data-linktype="relative-path">Refresh</a> (section
+3.10.4.1.29).</p>
+</li><li><p><span><span> 
+</span></span>If Refresh returns a value other than S_OK (0x00000000), return
+the HRESULT returned by Refresh and take no further action.</p>
+</li><li><p><span><span> 
+</span></span>The <a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">Queue</a>.Transactional
+instance variable is True, and (<i>IsRefreshed</i> is True or <i>IsQueueCreated</i>
+is True):</p>
+<ul><li><p><span><span>  </span></span> Set
+the <i>pisTransactional</i> output parameter to MQ_TRANSACTIONAL (0x0001).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span> Set
+the <i>pisTransactional</i> output parameter to MQ_TRANSACTIONAL_NONE (0x0000).</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return S_OK (0x00000000), and take no further action.</p>
+</li></ul></div>

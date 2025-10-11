@@ -31,12 +31,69 @@ type InstallationBehaviorServer interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
+	// The IInstallationBehavior::CanRequestUserInput (opnum 8) method retrieves whether
+	// the operation can request user input.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the CanRequestUserInput ADM element.
 	GetCanRequestUserInput(context.Context, *GetCanRequestUserInputRequest) (*GetCanRequestUserInputResponse, error)
 
+	// The IInstallationBehavior::Impact (opnum 9) method retrieves an enumeration value
+	// that describes the impact of the installation or uninstallation operation on the
+	// computer.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Impact ADM element.
 	GetImpact(context.Context, *GetImpactRequest) (*GetImpactResponse, error)
 
+	// The IInstallationBehavior::RebootBehavior (opnum 10) method retrieves an enumeration
+	// value that describes the likelihood that a reboot is needed for this operation.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the RebootBehavior ADM element.
 	GetRebootBehavior(context.Context, *GetRebootBehaviorRequest) (*GetRebootBehaviorResponse, error)
 
+	// The IInstallationBehavior::RequiresNetworkConnectivity (opnum 11) method retrieves
+	// whether the operation can require network connectivity.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the RequiresNetworkConnectivity ADM element.
 	GetRequiresNetworkConnectivity(context.Context, *GetRequiresNetworkConnectivityRequest) (*GetRequiresNetworkConnectivityResponse, error)
 }
 

@@ -1,1 +1,33 @@
-<div class="content"></div>
+<div class="content"><p>File information specific to <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_a0d8116e-63f3-418b-afea-ca6258840e92" data-linktype="relative-path">RDC</a> downloads.</p><dl>
+<dd>
+<div><pre> typedef struct _FRS_RDC_FILEINFO {
+   DWORDLONG onDiskFileSize;
+   DWORDLONG fileSizeEstimate;
+   unsigned short rdcVersion;
+   unsigned short rdcMinimumCompatibleVersion;
+   [range(0, CONFIG_RDC_MAX_LEVELS)] 
+     byte rdcSignatureLevels;
+   RDC_FILE_COMPRESSION_TYPES compressionAlgorithm;
+   [size_is(rdcSignatureLevels)] FRS_RDC_PARAMETERS rdcFilterParameters[*];
+ } FRS_RDC_FILEINFO;
+</pre></div>
+</dd></dl><p><b>onDiskFileSize:</b>  An estimate for the
+on-disk, compressed, marshaled source file. The server SHOULD make this
+estimate as accurate as possible, but the protocol does not require that it be
+exact.<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="c43938b1-6e96-48ec-9725-5e5d42089f49#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></p><p><b>fileSizeEstimate:</b>  An estimate for
+the on-disk, uncompressed, unmarshaled source file. The server SHOULD make this
+estimate as accurate as possible, but the protocol does not require that it be
+exact.<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="c43938b1-6e96-48ec-9725-5e5d42089f49#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p><p><b>rdcVersion:</b>   The current RDC
+version. It MUST be CONFIG_RDC_VERSION.</p><p><b>rdcMinimumCompatibleVersion:</b>  The
+minimum version of the client-side RDC that is compatible with the server-side
+RDC (rdcVersion). It MUST be CONFIG_RDC_VERSION_COMPATIBLE.</p><p><b>rdcSignatureLevels:</b>  The depth of
+the RDC signatures that are available for the client to retrieve. The server
+MUST allow the client to get signatures at least to this depth (using <a href="5b7294f6-26fb-47d6-858a-cbac937d091d" data-linktype="relative-path">RdcGetSignatures (section 3.2.4.1.10)</a>).<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="c43938b1-6e96-48ec-9725-5e5d42089f49#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p><dl>
+<dd>
+<p>A value of 0 indicates that the file to be served is
+not suitable for the RDC protocol, or a non-RDC file transfer is required.</p>
+</dd></dl><p><b>compressionAlgorithm:</b>  This field
+MUST be set to RDC_UNCOMPRESSED and MUST be ignored on receipt. Despite the
+name of this field, data compression is always used as specified in section <a href="908b4cc2-9915-4e31-84b8-f6b3e09b7c03" data-linktype="relative-path">3.2.4.1.14</a>.</p><p><b>rdcFilterParameters:</b>  The array of
+RDC chunker parameters used, one each for the levels of RDC signatures that are
+available.</p></div>

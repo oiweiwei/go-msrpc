@@ -1,1 +1,233 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IP_NAT_INTERFACE_INFO</b> structure is used to
+configure the NAT on an interface. This structure is used in the following
+methods:</p><ul><li><p><span><span> 
+</span></span><a href="927c5bf1-ac91-4325-b945-0d96a58f609b" data-linktype="relative-path"><b>RRouterInterfaceTransportAdd (section 3.1.4.18)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="071439e7-a9fd-40e4-91f7-ab756108e82f" data-linktype="relative-path"><b>RRouterInterfaceTransportSetGlobalInfo (section 3.1.4.10)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="14ad8d26-d7d7-48dd-914d-da962d5d7049" data-linktype="relative-path"><b>RRouterInterfaceTransportGetGlobalInfo (section 3.1.4.11)</b></a><span>  </span></p>
+</li></ul><p>The configuration information uses the <a href="402d2cc2-dd94-487a-9bb1-fab6728c3e7d" data-linktype="relative-path"><b>RTR_INFO_BLOCK_HEADER (section 2.2.1.2.3)</b></a>
+structure. </p><dl>
+<dd>
+<div><pre> typedef struct _IP_NAT_INTERFACE_INFO {
+   ULONG Index;
+   ULONG Flags;
+   RTR_INFO_BLOCK_HEADER Header;
+ } IP_NAT_INTERFACE_INFO, *PIP_NAT_INTERFACE_INFO;
+</pre></div>
+</dd></dl><p><b>Index: </b>This MUST be set to the interface index
+that identifies the interface to be configured.</p><p><b>Flags: </b>This specifies the logging level. It
+MUST be a combination of one or more of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IP_NAT_INTERFACE_FLAGS_BOUNDARY</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Set to mark the interface as a boundary-interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NAT_INTERFACE_FLAGS_NAPT</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Set to enable address-sharing via port-translation.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NAT_INTERFACE_FLAGS_DISABLE_PPTP</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The PPTP is disabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NAT_INTERFACE_FLAGS_FW</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Set to enable the firewall mode on the interface. This
+  works with all other flags. An interface in the firewall mode is much more
+  strict on what inbound packets it will allow to propagate up the stack; in
+  general, it will only allow packets that are part of a locally initiated
+  connection flow (for example, packets for which a mapping or ticket exists).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NAT_INTERFACE_FLAGS_DIALUP</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>This is a dial-up interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NAT_INTERFACE_FLAGS_ALL</p>
+  <p>0x0000007F</p>
+  </td>
+  <td>
+  <p>All of the above.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Header: </b>This MUST be <b>RTR_INFO_BLOCK_HEADER</b>.
+The <b>InfoType</b> field of the header MUST be one of the following and the
+offset MUST point to a structure specified in the following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IP_NAT_PORT_MAPPING_TYPE</p>
+  <p>0xFFFF0003</p>
+  </td>
+  <td>
+  <p><b>IP_NAT_PORT_MAPPING</b> (section <a href="9426b1db-0b7a-454c-9424-79dc2c716bba" data-linktype="relative-path">2.2.1.2.199)</a>. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NAT_ADDRESS_RANGE_TYPE</p>
+  <p>0xFFFF0002</p>
+  </td>
+  <td>
+  <p><b>IP_NAT_ADDRESS_RANGE</b> (section <a href="4aea660a-1f49-4ab5-bdf0-bae122a7c5c2" data-linktype="relative-path">2.2.1.2.198)</a>. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NAT_ADDRESS_MAPPING_TYPE</p>
+  <p>0xFFFF0004</p>
+  </td>
+  <td>
+  <p><b>IP_NAT_ADDRESS_MAPPING</b> (section <a href="ef0d05eb-ae64-41e4-8a40-48d85916e868" data-linktype="relative-path">2.2.1.2.200)</a>. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NAT_ICMP_CONFIG_TYPE</p>
+  <p>0xFFFF0005</p>
+  </td>
+  <td>
+  <p>There is no structure for IP_NAT_ICMP_CONFIG; it&#39;s
+  just a <b>ULONG</b>. The flags in the following table define the behavior.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The values for <b>IP_NAT_ICMP_CONFIG_TYPE</b>
+are as follows:</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IP_NAT_ICMP_ALLOW_OB_DEST_UNREACH</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>The data sent over the Internet that fails to reach
+  this computer due to an error will be discarded and acknowledged with a destination
+  unreachable message explaining the failure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NAT_ICMP_ALLOW_OB_SOURCE_QUENCH</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>When this computer&#39;s ability to process incoming data
+  cannot keep up with the rate of a transmission, data will be dropped and the
+  sender will be asked to slow down.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NAT_ICMP_ALLOW_REDIRECT</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>The data sent from this computer will be rerouted if
+  the default path changes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NAT_ICMP_ALLOW_IB_ECHO</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>The messages sent to this computer will be repeated
+  back to the sender. This is commonly used for troubleshooting, for example,
+  to ping a machine.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NAT_ICMP_ALLOW_IB_ROUTER</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>This computer will respond to requests for information
+  about the routes it recognizes.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NAT_ICMP_ALLOW_OB_TIME_EXCEEDED</p>
+  <p>0x00000800</p>
+  </td>
+  <td>
+  <p>When this computer discards an incomplete data
+  transmission because the entire transmission required more time than allowed,
+  it will reply to the sender with a time-expired message.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NAT_ICMP_ALLOW_OB_PARAM_PROBLEM</p>
+  <p>0x00001000</p>
+  </td>
+  <td>
+  <p>When this computer discards data it has received due
+  to a problematic header, it will reply to the sender with a bad-header error
+  message.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NAT_ICMP_ALLOW_IB_TIMESTAMP</p>
+  <p>0x00002000</p>
+  </td>
+  <td>
+  <p>The data sent to this computer can be acknowledged
+  with a confirmation message indicating the time that the data was received.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IP_NAT_ICMP_ALLOW_IB_MASK</p>
+  <p>0x00020000</p>
+  </td>
+  <td>
+  <p>This computer will listen for and respond to requests
+  for more information about the public network to which it is attached.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

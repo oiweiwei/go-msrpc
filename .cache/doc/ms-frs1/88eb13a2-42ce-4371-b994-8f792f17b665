@@ -1,1 +1,20 @@
-<div class="content"></div>
+<div class="content"><p>The structure of the COMM_LAST_JOIN_TIME packet element is
+as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _COMM_LAST_JOIN_TIME {
+   USHORT CommType;
+   ULONG Length;
+   ULONGLONG Data;
+ } COMM_LAST_JOIN_TIME,
+  *PCOMM_LAST_JOIN_TIME;
+</pre></div>
+</dd></dl><p><b>CommType:</b>   A 16-bit, unsigned
+integer that indicates the type of this <a href="194f8fff-d903-44b7-9530-c66f5366f8c7" data-linktype="relative-path">COMM_PACKET</a> element. MUST
+be set to 0x0012.</p><p><b>Length:</b>   A 32-bit, unsigned integer
+that indicates the length, in bytes, of the data following the Length field.
+MUST be 0x00000008.</p><p><b>Data:</b>   A 64-bit, unsigned integer
+that MUST indicate the Coordinated Universal Time (UTC) time of the last
+successful <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_961ac809-b9b0-4bd7-b35d-ddd53d76e4fe" data-linktype="relative-path">connection join</a>.
+If the value of Data is 0x0000000000000001, the last join time is invalid. If
+this field contains a valid last join time, it MUST be in <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">FILETIME</a>
+format, as specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>.</p></div>

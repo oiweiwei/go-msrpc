@@ -1,1 +1,140 @@
-<div class="content"></div>
+<div class="content"><p>The <b>FILTER_INFO_V6</b> structure SHOULD<a id="Appendix_A_Target_24"></a><a aria-label="Product behavior note 24" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_24" data-linktype="relative-path">&lt;24&gt;</a> specify the five-tuple <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_ffbe7b55-8e84-4f41-a18d-fc29191a4cda" data-linktype="relative-path">filters</a> to be used in <a href="3d3c143f-3da6-45d0-9152-37baa976f3c8" data-linktype="relative-path"><b>FILTER_DESCRIPTOR_V6 (section 2.2.1.2.7)</b></a>.
+</p><dl>
+<dd>
+<div><pre> typedef struct _FILTER_INFO_V6 {
+   BYTE ipv6SrcAddr[16];
+   DWORD dwSrcPrefixLength;
+   BYTE ipv6DstAddr[16];
+   DWORD dwDstPrefixLength;
+   DWORD dwProtocol;
+   DWORD fLateBound;
+   WORD wSrcPort;
+   WORD wDstPort;
+ } FILTER_INFO_V6,
+  *PFILTER_INFO_V6;
+</pre></div>
+</dd></dl><p><b>ipv6SrcAddr: </b>A 128-bit, unsigned integer in
+network byte order that MUST contain the IPv6 source address for which the filter
+applies. A value of zero (0) in this field signifies ANY.</p><p><b>dwSrcPrefixLength: </b>A 32-bit, unsigned integer
+in network byte order that MUST be the prefix length for the source address. A
+value of zero (0) in this field signifies ANY source address.</p><p><b>ipv6DstAddr: </b>A 128-bit, unsigned integer in
+network byte order that MUST contain the IPv6 destination address for the
+filter. A value of zero (0) in this field signifies ANY.</p><p><b>dwDstPrefixLength: </b>A 32-bit, unsigned integer
+in network byte order that MUST be the prefix length for the destination
+address. A value of zero (0) in this field signifies ANY destination address.</p><p><b>dwProtocol: </b>A 32-bit, unsigned integer in
+network byte order that specifies the protocol number (such as TCP or UDP) for
+the filter.</p><dl>
+<dd>
+<p>Possible values include the following.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>ANY</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>ICMP</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000003A</p>
+  </td>
+  <td>
+  <p>ICMPv6</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>TCP</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000011</p>
+  </td>
+  <td>
+  <p>UDP</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>fLateBound: </b>A 32-bit, unsigned integer in
+network byte order that indicates if the fields in the filter can be
+dynamically replaced by the network access server (NAS) with values for
+specific endpoints.</p><dl>
+<dd>
+<p>The value MUST be one of the following values, or a
+bit-wise OR a combination of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>No source or destination address or mask replacement.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Source address replaceable with a new address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Destination address replaceable with a new address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Source address mask replaceable with a new mask.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Destination address mask replaceable with a new mask.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>wSrcPort: </b>If the protocol is TCP or UDP, this
+MUST be a 16-bit, unsigned integer in network byte order that specifies a port
+number for the corresponding protocol. If the protocol is ICMP or ICMPv6, this
+MUST be a 16-bit, unsigned integer in network byte order that specifies a type
+indicator for ICMP or ICMPv6 correspondingly. For all other protocol values,
+this MUST be set to 0 (byte order does not matter).</p><p><b>wDstPort: </b>If the protocol is TCP or UDP, this
+MUST be a 16-bit, unsigned integer in network byte order that specifies a port
+number for the corresponding protocol. If the protocol is ICMP or ICMPv6, this
+MUST be a 16-bit, unsigned integer in network byte order that specifies a code
+indicator for ICMP or ICMPv6 correspondingly. For all other protocol values,
+this MUST be set to 0 (byte order does not matter).</p></div>

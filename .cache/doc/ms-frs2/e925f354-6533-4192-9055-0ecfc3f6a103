@@ -1,1 +1,7 @@
-<div class="content"></div>
+<div class="content"><p><b>Message Handling: </b>None.</p><p><b>Actions Triggered:</b> A client MUST, possibly with a
+delay induced by a schedule, call <a href="2c51e5f4-bef1-4e29-9292-b63f1d5ccff6" data-linktype="relative-path">EstablishConnection</a> to
+establish connection objects with each configured inbound connection. For
+SYSVOL replication, the client MUST set connectionId to objectGUID of
+nTDSConnection object. Otherwise, the client MUST set connectionId to
+objectGUID of msDFSR-Connection object.</p><p><b>Sequencing:</b> All <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> traffic, other than <a href="000b8085-8321-4cb9-9d64-faa90bcbc825" data-linktype="relative-path">CheckConnectivity</a>, with
+the server has to have  been preceded by an EstablishConnection method.</p><p><b>Error Handling:</b> None.</p></div>

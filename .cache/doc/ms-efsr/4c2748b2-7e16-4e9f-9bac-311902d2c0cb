@@ -1,1 +1,67 @@
-<div class="content"></div>
+<div class="content"><p>The ENCRYPTED_FILE_METADATA_SIGNATURE structure is used by
+the client to prove to the server that it possesses a <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_6fca10f4-e829-42ab-ad40-1566585060ca" data-linktype="relative-path">private key</a> that is
+authorized to decrypt a given object.</p><dl>
+<dd>
+<div><pre> typedef struct _ENCRYPTED_FILE_METADATA_SIGNATURE {
+   DWORD dwEfsAccessType;
+   ENCRYPTION_CERTIFICATE_HASH_LIST* CertificatesAdded;
+   ENCRYPTION_CERTIFICATE* EncryptionCertificate;
+   EFS_RPC_BLOB* EfsStreamSignature;
+ } ENCRYPTED_FILE_METADATA_SIGNATURE;
+</pre></div>
+</dd></dl><p><b>dwEfsAccessType:</b>  The operation
+being performed. It MUST be set to one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>EFS_METADATA_ADD_USER</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>One or more additional user <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificates</a> are being
+  granted access to the object.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EFS_METADATA_REMOVE_USER</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>One or more user certificates are having their access
+  to the object revoked.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EFS_METADATA_REPLACE_USER</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>One or more user certificates with access to the
+  object are being replaced.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>EFS_METADATA_GENERAL_OP</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>A change is being made to the metadata that is not
+  fully described by exactly one of the previous options.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>CertificatesAdded:</b>   The <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_2069b65d-b546-4198-abfd-768badc2258e" data-linktype="relative-path">X.509</a> certificates whose
+corresponding private keys are to be granted or denied the ability to decrypt
+the object.</p><p><b>EncryptionCertificate:</b>   The X.509
+certificates whose corresponding private key the caller claims to possess.</p><p><b>EfsStreamSignature:</b>  The signature
+obtained by signing the SHA-1 hash of the new <a href="3166cf4a-e085-47be-94c6-b69bddf274ff" data-linktype="relative-path">EFSRPC Metadata</a> with the
+private <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_3f85a24a-f32a-4322-9e99-eba6ae802cd6" data-linktype="relative-path">RSA</a> key
+corresponding to EncryptionCertificate.</p></div>

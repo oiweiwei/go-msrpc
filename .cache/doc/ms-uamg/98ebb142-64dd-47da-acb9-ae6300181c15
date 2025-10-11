@@ -1,1 +1,26 @@
-<div class="content"></div>
+<div class="content"><p>The IStringCollection::Copy (opnum 15) method creates a deep
+read-write copy of the collection from this instance.</p><dl>
+<dd>
+<div><pre> HRESULT Copy(
+   [out, retval] IStringCollection** retval
+ );
+</pre></div>
+</dd></dl><p><b>retval: </b>A read-write <span><a href="ebbad999-fb23-433b-ad86-9ecf748ceb0e" data-linktype="relative-path">IStringCollection (section 3.18.4)</a></span>
+instance containing a copy of the strings in this collection, in the same
+order.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method  SHOULD create a new object implementing the <b>IStringCollection</b>
+interface and initialize the copy&#39;s ADM as follows:</p><ul><li><p><span><span> 
+</span></span><b>ReadOnly:</b> Set to FALSE.</p>
+</li><li><p><span><span> 
+</span></span><b>List:</b> A copy of the original server&#39;s <b>List</b> ADM
+element.</p>
+</li><li><p><span><span> 
+</span></span><b>Count:</b> Set to the value of the original server&#39;s <b>Count</b>
+ADM element.</p>
+</li></ul></div>

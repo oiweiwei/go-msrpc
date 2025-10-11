@@ -1,1 +1,20 @@
-<div class="content"></div>
+<div class="content"><p>The <b>ROUTER_IKEv2_IF_CUSTOM_CONFIG_1</b> structure<a id="Appendix_A_Target_197"></a><a aria-label="Product behavior note 197" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_197" data-linktype="relative-path">&lt;197&gt;</a> is used to get or set IKEv2
+tunnel configuration parameters for IKEv2 tunnel-based demand-dial interfaces.</p><dl>
+<dd>
+<div><pre> typedef struct _ROUTER_IKEv2_IF_CUSTOM_CONFIG_1 {
+   DWORD dwSaLifeTime;
+   DWORD dwSaDataSize;
+   CERT_BLOB_1 certificateName;
+   PROUTER_CUSTOM_IKEv2_POLICY_0 customPolicy;
+   CERT_BLOB_1 certificateHash;
+ } ROUTER_IKEv2_IF_CUSTOM_CONFIG_1,
+  *PROUTER_IKEv2_IF_CUSTOM_CONFIG_1;
+</pre></div>
+</dd></dl><p><b>dwSaLifeTime: </b>This is the same as <b>dwSaLifeTime</b>
+in <a href="31e91e7e-7793-4f7f-b464-b8c9851bfe96" data-linktype="relative-path"><b>ROUTER_IKEv2_IF_CUSTOM_CONFIG_0 (section 2.2.1.2.243)</b></a>.  
+</p><p><b>dwSaDataSize: </b>This is the same as <b>dwSaDataSize</b>
+in ROUTER_IKEv2_IF_CUSTOM_CONFIG_0.</p><p><b>certificateName: </b>Same as <b>certificateName</b>
+in ROUTER_IKEv2_IF_CUSTOM_CONFIG_0.</p><p><b>customPolicy: </b>This is the same as <b>customPolicy</b>
+in ROUTER_IKEv2_IF_CUSTOM_CONFIG_0.</p><p><b>certificateHash: </b>This is the same as <b>machineCertificateHash</b>
+in <a href="34bbe454-370e-4c01-8fab-92c0daf7961b" data-linktype="relative-path"><b>IKEV2_TUNNEL_CONFIG_PARAMS_3</b></a>.
+</p></div>

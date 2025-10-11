@@ -1,1 +1,21 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsDriveState enumeration defines the states of a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a>.</p><dl>
+<dd>
+<div><pre> enum NtmsDriveState
+ {
+   NTMS_DRIVESTATE_DISMOUNTED = 0,
+   NTMS_DRIVESTATE_MOUNTED = 1,
+   NTMS_DRIVESTATE_LOADED = 2,
+   NTMS_DRIVESTATE_UNLOADED = 5,
+   NTMS_DRIVESTATE_BEING_CLEANED = 6,
+   NTMS_DRIVESTATE_DISMOUNTABLE = 7
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_DRIVESTATE_DISMOUNTED:  </b>No medium is in
+the drive.</p><p><b>NTMS_DRIVESTATE_MOUNTED:  </b>A medium is <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b" data-linktype="relative-path">mounted</a> in the drive, but
+is not yet ready for access.</p><p><b>NTMS_DRIVESTATE_LOADED:  </b>A medium is mounted
+in the drive, and is loaded for access.</p><p><b>NTMS_DRIVESTATE_UNLOADED:  </b>A medium has been <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a8ebf8eb-a5f7-406a-b211-9f9c08ee15d3" data-linktype="relative-path">dismounted</a>, and the drive
+is ready to be opened.</p><p><b>NTMS_DRIVESTATE_BEING_CLEANED:  </b>The drive is
+being cleaned and is unavailable.</p><p><b>NTMS_DRIVESTATE_DISMOUNTABLE:  </b>If a library is
+set for deferred dismounts, the medium might be left in the drive of the
+library when it is dismounted. RSM can satisfy mount requests for loaded and
+dismounted drives.</p></div>

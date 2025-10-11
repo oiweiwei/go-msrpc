@@ -1,1 +1,19 @@
-<div class="content"></div>
+<div class="content"><p>The IUpdateService2::IsDefaultAUService (opnum 21) method
+retrieves whether this <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_1692cfd4-4b1d-4566-9820-8171465bbc4b" data-linktype="relative-path">update service</a></span> is
+the default update service for the <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_b1d92af1-3c57-42f7-936f-8c56fb75e818" data-linktype="relative-path">automatic update agent</a></span>.</p><dl>
+<dd>
+<div><pre> HRESULT IsDefaultAUService(
+   [out, retval] VARIANT_BOOL* retval
+ );
+</pre></div>
+</dd></dl><p><b>retval: </b>MUST be set either to VARIANT_TRUE if
+the service is the default service for the automatic update agent or to
+VARIANT_FALSE if not.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method SHOULD return the value of the <b>IsDefaultAUService</b>
+ADM element. </p></div>

@@ -1,1 +1,63 @@
-<div class="content"></div>
+<div class="content"><p> The Protector Info Datum encapsulates information
+describing the origin of a protector. It MUST be formatted as below.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EFSX_Datum</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Data_Fields
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>EFSX_Datum (8 bytes): </b>MUST be formatted as
+specified in section <a href="1d2fa232-d557-43fe-95e3-2d4ced7f7934" data-linktype="relative-path">2.2.2.2.2</a>.
+The datum <b>Type</b> MUST be EFSX_TYPE_PROTECTOR_INFO (0x0004). The datum <b>Flags</b>
+SHOULD include 0x0002 indicating a complex datum.</p><p><b>Data_Fields (variable): </b>This field contains
+any number of nested EFSX_Datum structures. The nested datum structures MUST
+NOT overlap, and MUST be entirely contained within the protector info datum.</p></div>

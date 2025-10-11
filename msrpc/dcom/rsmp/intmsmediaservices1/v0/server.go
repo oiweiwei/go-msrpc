@@ -31,41 +31,72 @@ type MediaServices1Server interface {
 	// IUnknown base class.
 	iunknown.UnknownServer
 
+	// The MountNtmsMedia method mounts one or more pieces of media.
 	MountNTMSMedia(context.Context, *MountNTMSMediaRequest) (*MountNTMSMediaResponse, error)
 
+	// The DismountNtmsMedia method queues a command to move a medium in a drive to its
+	// storage.
 	DismountNTMSMedia(context.Context, *DismountNTMSMediaRequest) (*DismountNTMSMediaResponse, error)
 
 	// Opnum5NotUsedOnWire operation.
 	// Opnum5NotUsedOnWire
 
+	// The AllocateNtmsMedia method allocates a piece of available media.
 	AllocateNTMSMedia(context.Context, *AllocateNTMSMediaRequest) (*AllocateNTMSMediaResponse, error)
 
+	// The DeallocateNtmsMedia method deallocates the side that is associated with a piece
+	// of logical media.
 	DeallocateNTMSMedia(context.Context, *DeallocateNTMSMediaRequest) (*DeallocateNTMSMediaResponse, error)
 
+	// The SwapNtmsMedia method swaps the position of two media sides.
 	SwapNTMSMedia(context.Context, *SwapNTMSMediaRequest) (*SwapNTMSMediaResponse, error)
 
+	// The DecommissionNtmsMedia method moves media from available state to decommissioned
+	// state. Media that are decommissioned by the DecommissionNtmsMedia method are recognized
+	// by the server, but decommissioned media does not contain any data and is never again
+	// used. Only media that are in an available state can be decommissioned.
 	DecommissionNTMSMedia(context.Context, *DecommissionNTMSMediaRequest) (*DecommissionNTMSMediaResponse, error)
 
+	// The SetNtmsMediaComplete method marks a piece of logical media as complete.
 	SetNTMSMediaComplete(context.Context, *SetNTMSMediaCompleteRequest) (*SetNTMSMediaCompleteResponse, error)
 
+	// The DeleteNtmsMedia method deletes a physical piece of offline media by removing
+	// all references to it.
 	DeleteNTMSMedia(context.Context, *DeleteNTMSMediaRequest) (*DeleteNTMSMediaResponse, error)
 
+	// The CreateNtmsMediaPoolA method creates a new application media pool, with strings
+	// encoded using ASCII.
 	CreateNTMSMediaPoolA(context.Context, *CreateNTMSMediaPoolARequest) (*CreateNTMSMediaPoolAResponse, error)
 
+	// The CreateNtmsMediaPoolW method creates a new application media pool whose name is
+	// composed of a sequence of Unicode characters.
 	CreateNTMSMediaPoolW(context.Context, *CreateNTMSMediaPoolWRequest) (*CreateNTMSMediaPoolWResponse, error)
 
+	// The GetNtmsMediaPoolNameA method retrieves the full name hierarchy of a media pool,
+	// with null-terminated strings encoded using ASCII.
 	GetNTMSMediaPoolNameA(context.Context, *GetNTMSMediaPoolNameARequest) (*GetNTMSMediaPoolNameAResponse, error)
 
+	// The GetNtmsMediaPoolNameW method retrieves the full name hierarchy of a media pool,
+	// with strings encoded using Unicode.
 	GetNTMSMediaPoolNameW(context.Context, *GetNTMSMediaPoolNameWRequest) (*GetNTMSMediaPoolNameWResponse, error)
 
+	// The MoveToNtmsMediaPool method moves a medium from its current media pool to another
+	// media pool.
 	MoveToNTMSMediaPool(context.Context, *MoveToNTMSMediaPoolRequest) (*MoveToNTMSMediaPoolResponse, error)
 
+	// The DeleteNtmsMediaPool method deletes an application media pool.
 	DeleteNTMSMediaPool(context.Context, *DeleteNTMSMediaPoolRequest) (*DeleteNTMSMediaPoolResponse, error)
 
+	// The AddNtmsMediaType method MUST add a media type to a library if there is not currently
+	// a relation in the library. The method MUST create the system media pools (FREE, IMPORT,
+	// and UNRECOGNIZED) if they do not exist.
 	AddNTMSMediaType(context.Context, *AddNTMSMediaTypeRequest) (*AddNTMSMediaTypeResponse, error)
 
+	// The DeleteNtmsMediaType method deletes a media type from a library.
 	DeleteNTMSMediaType(context.Context, *DeleteNTMSMediaTypeRequest) (*DeleteNTMSMediaTypeResponse, error)
 
+	// The ChangeNtmsMediaType method moves a physical media identifier to a new media pool
+	// and sets the media type of the medium to that of the pool.
 	ChangeNTMSMediaType(context.Context, *ChangeNTMSMediaTypeRequest) (*ChangeNTMSMediaTypeResponse, error)
 }
 

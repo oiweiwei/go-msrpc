@@ -1,1 +1,65 @@
-<div class="content"></div>
+<div class="content"><p> The Descriptor Datum encapsulates a Unicode string in
+UTF-16 encoding. It MUST be formatted as below.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>EFSX_Datum</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Descriptor_Text
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>EFSX_Datum (8 bytes): </b> MUST be formatted as
+specified in section <a href="1d2fa232-d557-43fe-95e3-2d4ced7f7934" data-linktype="relative-path">2.2.2.2.2</a>.
+The datum <b>Type</b> MUST be EFSX_TYPE_DESCRIPTOR (0x0002). The datum <b>Flags</b>
+MUST NOT include 0x0002.</p><p><b>Descriptor_Text (variable): </b>Contains a
+null-terminated, variable-sized Unicode string in UTF-16 encoding. The <b>Descriptor_Text</b>
+MUST be entirely contained within the <b>Descriptor</b> Datum. The length of
+the <b>Descriptor_Text</b> MUST be at least 2 bytes to include the null
+terminator (0x0000).</p></div>

@@ -221,8 +221,8 @@ return properties of the <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_a6bcff
 collector set</a> (or its encapsulated objects) that could not be set by the
 server. Sections <a href="b7b0e0f8-327c-46de-b034-3d598306890e" data-linktype="relative-path">3.2.4.1.54</a>,
 <a href="dc40db82-6894-4e47-96f8-df0ba863594d" data-linktype="relative-path">3.2.4.1.58</a>, <a href="f84a6227-7a15-4704-ae99-098934876f4f" data-linktype="relative-path">3.2.4.2.24</a>, <a href="6f99ca8b-2197-43eb-b17a-7761c529787c" data-linktype="relative-path">3.2.4.5.22</a>, and <a href="bf21bda1-fd42-4796-ad06-1933e7e1aa96" data-linktype="relative-path">3.2.4.15.8</a> provide more
-information on how the IValueMap is used for this purpose. The second primary
-use of IValueMap in the Performance Logs and Alerts Protocol is to return
+information on how the IValueMap is used for this purpose. The second primary use
+of IValueMap in the Performance Logs and Alerts Protocol is to return
 information about a trace provider in the ITraceDataProvider interface.
 Sections <a href="075034e9-d905-4ced-a6b3-ddc7a83db246" data-linktype="relative-path">3.2.4.11.5</a>, <a href="c263d8d0-f97c-4d20-bf9d-386331db6741" data-linktype="relative-path">3.2.4.11.6</a>, and <a href="451feb4b-e34f-4f9b-931c-7f7f0065570e" data-linktype="relative-path">3.2.4.11.7</a> detail how
 information about the trace provider is returned using the IValueMap. </p></div>

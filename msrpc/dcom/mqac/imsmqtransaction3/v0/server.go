@@ -31,7 +31,14 @@ type Transaction3Server interface {
 	// IMSMQTransaction2 base class.
 	imsmqtransaction2.Transaction2Server
 
-	// ITransaction operation.
+	// The ITransaction method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns the ITransaction interface on the underlying transaction object.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
+	//
+	// The pvarITransaction output parameter MUST be set to the ITransaction interface pointer
+	// of the Transaction instance variable.
 	GetITransaction(context.Context, *GetITransactionRequest) (*GetITransactionResponse, error)
 }
 

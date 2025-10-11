@@ -1,1 +1,95 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RASMAN_INFO</b> structure contains general
+information regarding a specific RRAS port, such as port status and port name.</p><dl>
+<dd>
+<div><pre> typedef struct _RASMAN_INFO {
+   RASMAN_STATUS RI_PortStatus;
+   RASMAN_STATE RI_ConnState;
+   DWORD RI_LinkSpeed;
+   DWORD RI_LastError;
+   RASMAN_USAGE RI_CurrentUsage;
+   CHAR RI_DeviceTypeConnecting[16];
+   CHAR RI_DeviceConnecting[129];
+   CHAR RI_szDeviceType[16];
+   CHAR RI_szDeviceName[129];
+   CHAR RI_szPortName[17];
+   RASMAN_DISCONNECT_TYPE RI_DisconnectType;
+   DWORD RI_OwnershipFlag;
+   DWORD RI_ConnectDuration;
+   DWORD RI_BytesReceived;
+   CHAR RI_Phonebook[261];
+   CHAR RI_PhoneEntry[257];
+   HANDLE RI_ConnectionHandle;
+   DWORD RI_SubEntry;
+   RASDEVICETYPE RI_rdtDeviceType;
+   GUID RI_GuidEntry;
+   DWORD RI_dwSessionId;
+   DWORD RI_dwFlags;
+   GUID RI_CorrelationGuid;
+ } RASMAN_INFO;
+</pre></div>
+</dd></dl><p><b>RI_PortStatus: </b>Specifies the status of the
+port as defined in <a href="88348417-04b4-4739-b500-93cf51742e04" data-linktype="relative-path"><b>RASMAN_STATUS (section 2.2.1.1.17)</b></a>
+enumeration type.  </p><p><b>RI_ConnState: </b>Specifies the connection state
+of the port as defined in <a href="f0656ff1-ee27-4ad1-90ec-ef490d15d986" data-linktype="relative-path"><b>RASMAN_STATE (section 2.2.1.1.19)</b></a>. 
+</p><p><b>RI_LinkSpeed: </b>Specifies the link speed in bits
+per second (bps) of the connection using port as specified by <b>RI_szPortName</b>.</p><p><b>RI_LastError: </b>Specifies the return status as
+explained in section <a href="c39d153e-2f97-4e11-8aff-bcf983869dc9" data-linktype="relative-path">2.2.1.2.218</a>
+for <b>retcode</b> field.</p><p><b>RI_CurrentUsage: </b>Specifies the current usage
+of the port as defined in section <a href="eee884a6-4cc4-4a93-932f-bf8a386c6ad0" data-linktype="relative-path">2.2.1.1.21</a>. </p><p><b>RI_DeviceTypeConnecting: </b>Specifies a
+null-terminated ASCII string that indicates the RRAS server device type as
+specified for the <b>wszDeviceType</b> field of a <a href="ed4beef4-11ba-413f-abf4-2659412169e8" data-linktype="relative-path"><b>RASI_PORT_0 (section 2.2.1.2.75)</b></a>
+structure.  </p><p><b>RI_DeviceConnecting: </b>Specifies a
+null-terminated ASCII string that contains the name of the device associated
+with the port.</p><p><b>RI_szDeviceType: </b>Specifies a null-terminated
+ASCII string that contains the RRAS server device type as specified for the <b>wszDeviceType</b>
+field of <b>RASI_PORT_0</b> structure. </p><p><b>RI_szDeviceName: </b>Specifies a null-terminated
+ASCII string that contains the name of the device associated with the port.</p><p><b>RI_szPortName: </b>Specifies a null-terminated
+ASCII string that contains the port name.</p><p><b>RI_DisconnectType: </b>Specifies the disconnect
+type of the port as defined by the <a href="2849e93b-aae8-4da2-a885-3632b793d7da" data-linktype="relative-path"><b>RASMAN_DISCONNECT_TYPE (section 2.2.1.1.20)</b></a>
+enumeration type.  </p><p><b>RI_OwnershipFlag: </b>Specifies the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_38a420dd-6f31-456e-ae5c-63ec6905380d" data-linktype="relative-path">process identifier (PID)</a> of
+the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> application
+that has opened the port.</p><p><b>RI_ConnectDuration: </b>Specifies the duration of
+the current connection on this port, in milliseconds.</p><p><b>RI_BytesReceived: </b>Specifies the number of
+bytes received on this port.</p><p><b>RI_Phonebook: </b>Specifies the <b>RRAS Phonebook
+path</b> for the connection associated with this port.</p><p><b>RI_PhoneEntry: </b>Specifies the <b>RRAS Phonebook
+entry</b> name for the connection associated with this port.</p><p><b>RI_ConnectionHandle: </b>Specifies a unique 32-bit
+unsigned integer identifying the connection associated with this port.</p><p><b>RI_SubEntry: </b>Specifies an index to the <b>multilink</b>
+subentry associated with this port.</p><p><b>RI_rdtDeviceType: </b>Specifies a value giving the
+<a href="47fa4723-e879-4191-8fe5-34c13487cca4" data-linktype="relative-path"><b>RASDEVICETYPE (section 2.2.1.1.16)</b></a>
+enumeration type.  </p><p><b>RI_GuidEntry: </b>Specifies a GUID uniquely
+identifying the connection associated with the port.</p><p><b>RI_dwSessionId: </b>Specifies the unique session
+ID associated with the port.<a id="Appendix_A_Target_158"></a><a aria-label="Product behavior note 158" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_158" data-linktype="relative-path">&lt;158&gt;</a> </p><p><b>RI_dwFlags: </b>Specifies the configuration option
+of the connection associated with this port.<a id="Appendix_A_Target_159"></a><a aria-label="Product behavior note 159" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_159" data-linktype="relative-path">&lt;159&gt;</a> </p><dl>
+<dd>
+<p>The value MUST be one of the following values or a
+bit-wise OR combination of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Connection associated with this port is configured to
+  store the credentials for everyone.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Connection associated with this port is configured as
+  outgoing connection.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>RI_CorrelationGuid: </b>Specifies a GUID that
+uniquely identifies the connection associated with this port.<a id="Appendix_A_Target_160"></a><a aria-label="Product behavior note 160" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_160" data-linktype="relative-path">&lt;160&gt;</a> </p></div>

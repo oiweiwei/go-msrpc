@@ -1,1 +1,12 @@
-<div class="content"></div>
+<div class="content"><p>The VSS_VOLUME_PROP structure defines properties of a <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _VSS_VOLUME_PROP {
+   VSS_PWSZ m_pwszVolumeName;
+   VSS_PWSZ m_pwszVolumeDisplayName;
+ } VSS_VOLUME_PROP;
+</pre></div>
+</dd></dl><p><b>m_pwszVolumeName:</b>  A null-terminated
+character string that contains the <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_ae3b4c60-05dc-4011-bd62-753ef23bb3cd" data-linktype="relative-path">volume mount name</a> of the
+volume.</p><p><b>m_pwszVolumeDisplayName:</b>  A
+null-terminated character string that contains a <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_513fcb37-059f-475c-a13d-e89b302f8ae8" data-linktype="relative-path">mount point</a> <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_2cd71385-2d9c-4ab8-bf4a-7b258816d613" data-linktype="relative-path">path</a> for the volume. If the
+volume has no mount points, the string MUST be equal to <b>m_pwszVolumeName</b>.</p></div>

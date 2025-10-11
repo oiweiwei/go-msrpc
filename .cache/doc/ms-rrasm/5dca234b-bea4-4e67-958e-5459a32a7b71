@@ -1,1 +1,84 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IPFORWARDROW</b> structure contains information
+that describes an IPv4 network <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_ad8a294a-8e3c-47e3-a876-7488cd5c8353" data-linktype="relative-path">route</a>. This structure is
+used in the following methods: </p><ul><li><p><span><span> 
+</span></span><b>MIB_OPAQUE_INFO</b> (section <a href="169e435d-a975-4c1c-bf41-55fd2bd76125" data-linktype="relative-path">2.2.1.2.52</a>)</p>
+</li><li><p><span><span> 
+</span></span><a href="3e73e08b-3421-4875-a433-a1279deeefe7" data-linktype="relative-path"><b>MIB_IPDESTROW (section 2.2.1.2.20)</b></a> 
+</p>
+</li><li><p><span><span> 
+</span></span><a href="538d5740-fa34-4b20-bdc6-2946b36a055a" data-linktype="relative-path"><b>MIB_IPFORWARDTABLE (section 2.2.1.2.36)</b></a><span> </span></p>
+<div><pre> typedef struct _MIB_IPFORWARDROW 
+ {
+   DWORD dwForwardDest;
+   DWORD dwForwardMask;
+   DWORD dwForwardPolicy;
+   DWORD dwForwardNextHop;
+   DWORD dwForwardIfIndex;
+   union {
+     DWORD dwForwardType;
+     MIB_IPFORWARD_TYPE ForwardType;
+   };
+   union {
+     DWORD dwForwardProto;
+     MIB_IPFORWARD_PROTO ForwardProto;
+   };
+   DWORD dwForwardAge;
+   DWORD dwForwardNextHopAS;
+   DWORD dwForwardMetric1;
+   DWORD dwForwardMetric2;
+   DWORD dwForwardMetric3;
+   DWORD dwForwardMetric4;
+   DWORD dwForwardMetric5;
+ } MIB_IPFORWARDROW,
+  *PMIB_IPFORWARDROW;
+</pre></div>
+</li></ul><p><b>dwForwardDest: </b>The destination IPv4 address of
+the route. An entry with an IPv4 address of 0.0.0.0 is considered a default
+route. This member MUST NOT be set to a <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_70b74a6e-db1d-4648-bedd-5a524dfe6396" data-linktype="relative-path">multicast</a> (class D) IPv4
+address.</p><p><b>dwForwardMask: </b>The IPv4 subnet mask to be
+logically ANDed with the destination IPv4 address before being compared to the
+value in the <b>dwForwardDest</b> member; see <a href="https://go.microsoft.com/fwlink/?LinkId=90501" data-linktype="external">[RFC950]</a>.</p><p><b>dwForwardPolicy: </b>The set of conditions that
+would cause the selection of a multipath route (the set of <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_348e9ede-8752-4382-a8a5-e9613378ca9d" data-linktype="relative-path">next hops</a> for a given
+destination). This member is typically in IP TOS format. The encoding of this
+member is specified in <a href="https://go.microsoft.com/fwlink/?LinkId=119993" data-linktype="external">[RFC1354]</a>.</p><p><b>dwForwardNextHop: </b>For remote routes, the IPv4
+address of the next system in the route. Otherwise, this member SHOULD be an
+IPv4 address of 0x00000000.</p><p><b>dwForwardIfIndex: </b>The index of the local <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> through which the
+<a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_c626520e-7d79-4b5e-a5c9-1e2b0eaf1995" data-linktype="relative-path">next hop</a> of this route
+is reachable. This MUST be an interface index of one of the interfaces on RRAS.</p><p><b>dwForwardType: </b>The route type as specified in
+[RFC1354]. The enum <a href="b69c1074-11b9-448a-8f31-2bf51b7f8faa" data-linktype="relative-path"><b>MIB_IPFORWARD_TYPE (section 2.2.1.1.8)</b></a>
+describes the possible values for this member. In addition, <b>dwForwardType</b>
+can also be IP_PRIORITY_MAX_METRIC (0x000000FF) or IP_PRIORITY_DEFAULT_METRIC
+(0x0000007F). </p><p><b>ForwardType: </b>The route type as specified in
+[RFC1354].<a id="Appendix_A_Target_34"></a><a aria-label="Product behavior note 34" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_34" data-linktype="relative-path">&lt;34&gt;</a></p><p><b>dwForwardProto: </b>The protocol or routing
+mechanism that generated the route. It can take one of the values specified in
+[RFC1354]. The enum <a href="c40401df-9ef7-42aa-b336-759c2086e476" data-linktype="relative-path"><b>MIB_IPFORWARD_PROTO (section 2.2.1.1.9)</b></a>
+describes the possible values for this member.  </p><p><b>ForwardProto: </b>The protocol or routing
+mechanism that generated the route.<a id="Appendix_A_Target_35"></a><a aria-label="Product behavior note 35" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_35" data-linktype="relative-path">&lt;35&gt;</a></p><p><b>dwForwardAge: </b>The number of seconds since the
+route was added or modified in the network <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_c8605177-11ad-432e-bb3d-591165aca429" data-linktype="relative-path">routing table</a>. The <b>dwForwardAge</b>
+member is also used if the RRAS server is running for routes of type
+PROTO_IP_NETMGMT as defined on the Protocol Identifiers reference page. When <b>dwForwardAge</b>
+is set to INFINITE (-1) when running the RRAS server, the route will not be
+removed based on a time-out value.</p><p><b>dwForwardNextHopAS: </b>The autonomous system
+number of the next hop. When this member is unknown or not relevant to the
+protocol or routing mechanism specified in <b>dwForwardProto</b>, this value
+SHOULD be set to 0. This value is documented in [RFC1354].</p><p><b>dwForwardMetric1: </b>The primary routing metric
+value for this route. The semantics of this metric are determined by the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_edf0a770-0034-4c2d-8acd-68508bac32ae" data-linktype="relative-path">routing protocol</a> specified
+in the <b>dwForwardProto</b> member. If this metric is not used, its value
+SHOULD be set to MIB_IPROUTE_METRIC_UNUSED (-1). This value is documented in
+[RFC1354].</p><p><b>dwForwardMetric2: </b>An alternate routing metric
+value for this route. The semantics of this metric are determined by the
+routing protocol specified in the <b>dwForwardProto</b> member. If this metric
+is not used, its value SHOULD be set to -1. This value is documented in
+[RFC1354].</p><p><b>dwForwardMetric3: </b>An alternate routing metric
+value for this route. The semantics of this metric are determined by the
+routing protocol specified in the <b>dwForwardProto</b> member. If this metric
+is not used, its value SHOULD be set to -1. This value is documented in
+[RFC1354].</p><p><b>dwForwardMetric4: </b>An alternate routing metric
+value for this route. The semantics of this metric are determined by the
+routing protocol specified in the <b>dwForwardProto</b> member. If this metric
+is not used, its value SHOULD be set to -1. This value is documented in
+[RFC1354].</p><p><b>dwForwardMetric5: </b>An alternate routing metric
+value for this route. The semantics of this metric are determined by the
+routing protocol specified in the <b>dwForwardProto</b> member. If this metric
+is not used, its value SHOULD be set to -1. This value is documented in
+[RFC1354].</p></div>

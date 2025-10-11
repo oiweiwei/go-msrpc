@@ -1,0 +1,29 @@
+<div class="content"><p>The Item method is received by the server in an RPC_REQUEST
+packet. In response, the server MUST return a VARIANT from the <i>VariantCollection</i>
+instance variable where the key matches the <i>Index</i> input parameter.</p><dl>
+<dd>
+<div><pre> HRESULT Item(
+   [in] VARIANT* Index,
+   [out, retval] VARIANT* pvarRet
+ );
+</pre></div>
+</dd></dl><p><b>Index: </b>A pointer to a <a href="../ms-oaut/a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">VARIANT</a>
+containing a <a href="../ms-dtyp/692a42a9-06ce-4394-b9bc-5d2a50440168" data-linktype="relative-path">BSTR</a>
+that contains the key value used to look up the associated VARIANT value in the
+<i>VariantCollection</i> instance variable.</p><p><b>pvarRet: </b>A pointer to a VARIANT that upon
+success will contain the element returned from the <i>VariantCollection</i>
+instance variable.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the server MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>VariantCollection</i> instance variable does not
+contain an element where the key value matches the <i>Index</i> input
+parameter:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST return MQ_ERROR_INVALID_PARAMETER (0xC00E0006) and take no further
+action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>The <i>pvarRet</i> output parameter MUST be set to the associated
+VARIANT in the <i>VariantCollection</i> instance variable where the key value
+matches the <i>Index</i> input parameter.</p>
+</li></ul></div>

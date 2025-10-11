@@ -1,1 +1,15 @@
-<div class="content"></div>
+<div class="content"><p>The UPDATE_REQUEST_TYPE enumerated type specifies the type
+of updates being requested when the client calls the <a href="e321d7d9-babf-4431-b055-871137014855" data-linktype="relative-path">RequestUpdates</a> method.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   UPDATE_REQUEST_ALL = 0,
+   UPDATE_REQUEST_TOMBSTONES = 1,
+   UPDATE_REQUEST_LIVE = 2
+ } UPDATE_REQUEST_TYPE;
+</pre></div>
+</dd></dl><p><b>UPDATE_REQUEST_ALL:</b>  Request all updates that
+pertain to a <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_b5d43ea0-cf01-4294-b0d8-0b0362d4a3a2" data-linktype="relative-path">version chain
+vector</a>.</p><p><b>UPDATE_REQUEST_TOMBSTONES:</b>  Request only
+tombstone updates that pertain to a version chain vector.</p><p><b>UPDATE_REQUEST_LIVE:</b>  Request only
+non-tombstone updates that pertain to a version chain vector.</p></div>

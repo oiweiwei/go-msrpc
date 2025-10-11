@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The FRS_REQUESTED_STAGING_POLICY enumerated type indicates
+the staging policy for the server to use.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   SERVER_DEFAULT = 0,
+   STAGING_REQUIRED = 1,
+   RESTAGING_REQUIRED = 2
+ } FRS_REQUESTED_STAGING_POLICY;
+</pre></div>
+</dd></dl><p><b>SERVER_DEFAULT:  </b>The client indicates to the
+server that the server is free to use or bypass its cache.</p><p><b>STAGING_REQUIRED:  </b>The client indicates to the
+server to store the served content in its cache.</p><p><b>RESTAGING_REQUIRED:  </b>The client indicates to
+the server to purge existing content from its cache.</p></div>

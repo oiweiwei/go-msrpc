@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>The NTMS_LMIDINFORMATION structure defines the properties
+specific to a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_05349689-4cd0-4643-a13e-9f552ecf3346" data-linktype="relative-path">logical media</a>
+object.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_LMIDINFORMATION {
+   NTMS_GUID MediaPool;
+   DWORD dwNumberOfPartitions;
+ } NTMS_LMIDINFORMATION;
+</pre></div>
+</dd></dl><p><b>MediaPool:</b>  The unique identifier of
+the media pool that contains the logical media. </p><p><b>dwNumberOfPartitions:</b>  The number of
+<a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_55db62c5-a84f-43b7-a037-b44ecd8fb92f" data-linktype="relative-path">sides</a> in the media
+object.</p></div>

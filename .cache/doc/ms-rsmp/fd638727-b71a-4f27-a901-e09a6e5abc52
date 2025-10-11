@@ -1,1 +1,53 @@
-<div class="content"></div>
+<div class="content"><p>The EndNtmsDeviceChangeDetection method ends device change
+detection for one or more target devices. Implementation of this method is
+optional.<a id="Appendix_A_Target_27"></a><a aria-label="Product behavior note 27" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_27" data-linktype="relative-path">&lt;27&gt;</a> The server MAY return a
+non-implemented error (ERROR_CALL_NOT_IMPLEMENTED, 0x80070078). <a id="Appendix_A_Target_28"></a><a aria-label="Product behavior note 28" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_28" data-linktype="relative-path">&lt;28&gt;</a></p><dl>
+<dd>
+<div><pre> HRESULT EndNtmsDeviceChangeDetection(
+   [in] NTMS_HANDLE DetectHandle
+ );
+</pre></div>
+</dd></dl><p><b>DetectHandle: </b>The device change detection
+handle to close. The handle MUST have come from a prior <a href="49879215-0972-4215-8ddc-b56f5540b36c" data-linktype="relative-path">BeginNtmsDeviceChangeDetection</a>
+method invocation.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070006</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The session handle was is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070078</p>
+  <p>ERROR_CALL_NOT_IMPLEMENTED</p>
+  </td>
+  <td>
+  <p>This function is not supported on this system.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>If the method is implemented, the server MUST verify that <i>DetectHandle</i>
+is not NULL. If it is NULL, the server MUST immediately fail the operation and
+return an invalid handler error ERROR_INVALID_HANDLE (0x80070006).</p><p>The EndNtmsDeviceChangeDetection method ends device change
+detection for any target devices specified using the <a href="df7b9490-c4e0-4d8f-aee9-b4811e57d914" data-linktype="relative-path">SetNtmsDeviceChangeDetection</a>
+method, and closes the change detection handle.</p><p>Closing the RSM session also ends all device change
+detection sessions. </p></div>

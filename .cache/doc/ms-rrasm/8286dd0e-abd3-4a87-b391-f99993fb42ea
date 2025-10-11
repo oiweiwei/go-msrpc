@@ -1,1 +1,18 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IP_DNS_PROXY_STATISTICS</b> structure contains the IP
+DNS proxy statistics.</p><dl>
+<dd>
+<div><pre> typedef struct _IP_DNS_PROXY_STATISTICS {
+   ULONG MessagesIgnored;
+   ULONG QueriesReceived;
+   ULONG ResponsesReceived;
+   ULONG QueriesSent;
+   ULONG ResponsesSent;
+ } IP_DNS_PROXY_STATISTICS,
+  *PIP_DNS_PROXY_STATISTICS;
+</pre></div>
+</dd></dl><p><b>MessagesIgnored: </b>The count of the DNS proxy messages
+ignored.</p><p><b>QueriesReceived: </b>The count of the DNS proxy
+queries received.</p><p><b>ResponsesReceived: </b>The count of the DNS proxy
+responses received.</p><p><b>QueriesSent: </b>The count of the DNS proxy
+queries sent.</p><p><b>ResponsesSent: </b>The count of the DNS proxy
+responses sent.</p></div>

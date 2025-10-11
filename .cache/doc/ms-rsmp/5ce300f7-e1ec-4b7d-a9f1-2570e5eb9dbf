@@ -1,1 +1,42 @@
-<div class="content"></div>
+<div class="content"><p>The NTMS_PMIDINFORMATIONA structure describes the properties
+of a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_9036b269-4f3b-4353-a1d0-54f5c686ec2c" data-linktype="relative-path">physical media</a>
+object, as a sequence of ASCII characters.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_PMIDINFORMATIONA {
+   NTMS_GUID CurrentLibrary;
+   NTMS_GUID MediaPool;
+   NTMS_GUID Location;
+   DWORD LocationType;
+   NTMS_GUID MediaType;
+   NTMS_GUID HomeSlot;
+   char szBarCode[64];
+   DWORD BarCodeState;
+   char szSequenceNumber[32];
+   DWORD MediaState;
+   DWORD dwNumberOfPartitions;
+   DWORD dwMediaTypeCode;
+   DWORD dwDensityCode;
+   NTMS_GUID MountedPartition;
+ } NTMS_PMIDINFORMATIONA;
+</pre></div>
+</dd></dl><p><b>CurrentLibrary:</b>  The identifier of
+the library in which the media is contained. </p><p><b>MediaPool:</b>  The identifier of the
+media pool to which the media is assigned. </p><p><b>Location:</b>  The identifier of the
+physical location object for the media. </p><p><b>LocationType:</b>  Any of the
+NTMS_STORAGESLOT, NTMS_DRIVE, or NTMS_IEPORT values defined in the <a href="5b190198-a0cb-4e20-90a3-234009357051" data-linktype="relative-path">NtmsObjectsTypes (section 2.2.1.6)</a>
+enumeration, specifying the type of the current location for a piece of
+physical media.</p><p><b>MediaType:</b>  The identifier of the
+media type object for the medium. </p><p><b>HomeSlot:</b>  The identifier of the
+library storage <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a1f0ab90-f3c0-46b8-9c77-d0d7508ede94" data-linktype="relative-path">slot</a> in
+which the medium is stored. </p><p><b>szBarCode:</b>   The null-terminated
+Unicode string specifying the numeric value of the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_0c1aa461-4c32-4e8b-bb45-577085c32afb" data-linktype="relative-path">bar code</a> of the media. If
+the bar code is not available, <b>BarCodeState</b> MUST be set to
+NTMS_BARCODESTATE_UNREADABLE. For more information, see section <a href="d9830103-1d40-452f-8c40-9d9fd238aabf" data-linktype="relative-path">2.2.4.1</a>.</p><p><b>BarCodeState:</b>  A value from the
+NtmsBarCodeState (section 2.2.4.1) enumeration specifying the state
+of the bar code. </p><p><b>szSequenceNumber:</b>   A sequential
+number assigned to the specified medium as a human-readable value.</p><p><b>MediaState:</b>  The value from the <a href="8adec97a-fe74-4290-8770-d1e2fcfd7281" data-linktype="relative-path">NtmsMediaState (section 2.2.4.4)</a>
+enumeration describing the state of the media.</p><p><b>dwNumberOfPartitions:</b>  The number of
+<a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_55db62c5-a84f-43b7-a037-b44ecd8fb92f" data-linktype="relative-path">sides</a> on the medium. </p><p><b>dwMediaTypeCode:</b>  The SCSI <a href="https://go.microsoft.com/fwlink/?LinkId=90512" data-linktype="external">[ANSI-131-1994]</a> type
+code of the medium.</p><p><b>dwDensityCode:</b>  The SCSI density
+code of the medium.</p><p><b>MountedPartition:</b>  The identifier of
+the media side that is currently <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b" data-linktype="relative-path">mounted</a>. </p></div>

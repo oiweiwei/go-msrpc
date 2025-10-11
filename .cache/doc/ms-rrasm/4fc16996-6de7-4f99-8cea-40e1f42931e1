@@ -1,1 +1,89 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPRIP_MIB_GET_OUTPUT_DATA</b> structure is populated
+by the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="9102e585-2f62-4408-bfb6-02a6460cc883" data-linktype="relative-path"><b>RMIBEntryGetFirst (section 3.1.4.31)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="50f78033-d248-4272-b4b9-a2519a0f304d" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.1.4.32)</b></a><span>  </span></p>
+<div><pre> typedef struct _IPRIP_MIB_GET_OUTPUT_DATA {
+   DWORD IMGOD_TypeID;
+   union {
+     DWORD IMGOD_IfIndex;
+     DWORD IMGOD_PeerAddress;
+   };
+   BYTE IMGOD_Buffer[1];
+ } IPRIP_MIB_GET_OUTPUT_DATA,
+  *PIPRIP_MIB_GET_OUTPUT_DATA;
+</pre></div>
+</li></ul><p><b>IMGOD_TypeID: </b>This MUST be one of the following
+values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPRIP_GLOBAL_STATS_ID</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The global statistics for the IP RIP, <a href="f9723b2d-08d0-424a-8e42-b9daf75b2320" data-linktype="relative-path"><b>IPRIP_GLOBAL_STATS (section 2.2.1.2.163)</b></a>. 
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_GLOBAL_CONFIG_ID</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The global configuration for the IP RIP, <a href="bd082244-f666-4d4d-9ef3-cade80b09c13" data-linktype="relative-path"><b>IPRIP_GLOBAL_CONFIG (section 2.2.1.2.164)</b></a>. 
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_IF_STATS_ID</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The per-interface statistics for the IP RIP, <a href="daf45a5b-7a73-4ede-ad54-8b3daed917d5" data-linktype="relative-path"><b>IPRIP_IF_STATS (section 2.2.1.2.165)</b></a>. 
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_IF_CONFIG_ID</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The per-interface configuration, <a href="7053ff8a-73fc-4557-b7d5-fce2dccd9382" data-linktype="relative-path"><b>IPRIP_IF_CONFIG (section 2.2.1.2.166)</b></a>. 
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_IF_BINDING_ID</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The table of IP addresses to which each interface is
+  bound, <a href="1b9836f1-3007-4826-b6e6-60ac2650659d" data-linktype="relative-path"><b>IPRIP_IF_BINDING (section 2.2.1.2.168)</b></a>. 
+  </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPRIP_PEER_STATS_ID</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The statistics kept about neighboring routers, <a href="73411b71-c4a7-4499-b09e-be37f8a70703" data-linktype="relative-path"><b>IPRIP_PEER_STATS (section 2.2.1.2.170)</b></a>. 
+  </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>(unnamed union): </b>The interface index or peer
+IP address for which data specified by <b>IMGOD_TypeID</b> needs to be
+retrieved.</p><p><b>IMGOD_Buffer: </b>One of the structures in the
+previous table based on the <b>IMGOD_TypeID</b>.</p></div>

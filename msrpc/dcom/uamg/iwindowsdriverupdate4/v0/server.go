@@ -31,8 +31,38 @@ type WindowsDriverUpdate4Server interface {
 	// IWindowsDriverUpdate3 base class.
 	iwindowsdriverupdate3.WindowsDriverUpdate3Server
 
+	// The IWindowsDriverUpdate4::WindowsDriverUpdateEntries (opnum 66) method retrieves
+	// a collection of driver update entries associated with this driver.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the WindowsDriverUpdateEntries ADM element.
 	GetWindowsDriverUpdateEntries(context.Context, *GetWindowsDriverUpdateEntriesRequest) (*GetWindowsDriverUpdateEntriesResponse, error)
 
+	// The IUpdate4::PerUser (opnum 58) method retrieves whether the update is per user.
+	//
+	// The IWindowsDriverUpdate4::PerUser (opnum 67) method retrieves whether the update
+	// is per user.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the PerUser ADM element.
 	GetPerUser(context.Context, *GetPerUserRequest) (*GetPerUserResponse, error)
 }
 

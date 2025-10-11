@@ -1,0 +1,16 @@
+<div class="content"><p>The Hwnd method is received by the server in an RPC_REQUEST
+packet. In response, the server MUST return a <a href="../ms-dtyp/29d44d70-382f-4998-9d76-8a1fe93e445c" data-linktype="relative-path">LONG</a>
+value, which the client MUST ignore. Because the returned LONG value serves no
+purpose, the server MAY<a id="Appendix_A_Target_90"></a><a aria-label="Product behavior note 90" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_90" data-linktype="relative-path">&lt;90&gt;</a> return
+0x00000000.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT Hwnd(
+   [out, retval] long* phwnd
+ );
+</pre></div>
+</dd></dl><p><b>phwnd: </b>A pointer to a <b>long</b> that MAY
+contain 0x00000000. The value returned via this parameter MUST be ignored by
+the client, and it serves no purpose.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>This interface is optional for communication with the
+client. If implemented, this interface MUST reside on the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>.</p></div>

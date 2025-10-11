@@ -51,20 +51,103 @@ type UpdateServiceManagerClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The IUpdateServiceManager::Services (opnum 8) method retrieves a collection of update
+	// services registered with the update agent.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Services ADM element.
 	GetServices(context.Context, *GetServicesRequest, ...dcerpc.CallOption) (*GetServicesResponse, error)
 
 	// Opnum9NotUsedOnWire operation.
 	// Opnum9NotUsedOnWire
 
+	// The IUpdateServiceManager::RegisterServiceWithAU (opnum 10) method registers an update
+	// service with the automatic update agent.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD register the given service with the automatic update agent through
+	// an implementation-defined interface. This method SHOULD set the ServiceRegisteredWithAU
+	// ADM element to the given update service identifier.
 	RegisterServiceWithAU(context.Context, *RegisterServiceWithAURequest, ...dcerpc.CallOption) (*RegisterServiceWithAUResponse, error)
 
+	// The IUpdateServiceManager::RemoveService (opnum 11) method removes an update service
+	// from the update agent.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD trigger the update agent to remove the given service through an
+	// implementation-defined interface. The method SHOULD remove the given service from
+	// the Services ADM element.
 	RemoveService(context.Context, *RemoveServiceRequest, ...dcerpc.CallOption) (*RemoveServiceResponse, error)
 
 	// Opnum12NotUsedOnWire operation.
 	// Opnum12NotUsedOnWire
 
+	// The IUpdateServiceManager::AddScanPackageService (opnum 13) method registers an update
+	// service based on a scan package.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD trigger the update agent to add a service based on this scan package
+	// through an implementation-dependent<47> interface. This method SHOULD add the given
+	// service to the Services ADM element and return an IUpdateService instance representing
+	// the added service.
 	AddScanPackageService(context.Context, *AddScanPackageServiceRequest, ...dcerpc.CallOption) (*AddScanPackageServiceResponse, error)
 
+	// The IUpdateServiceManager::SetOption (opnum 14) method sets options on this interface.
+	// The "AllowedServiceID" option restricts the IUpdateServiceManager::RegisterServiceWithAU
+	// (opnum 10) (section 3.44.4.2) method to work only with the given service ID. The
+	// "AllowWarningUI" option controls whether a warning UI is displayed when changing
+	// the service registered with the automatic update agent.
+	//
+	// Return Values: The method MUST return information in an HRESULT  data structure.
+	// The severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// If optionName is "AllowedServiceID", this method SHOULD set the value of the AllowedServiceID
+	// ADM element to the string stored in optionValue. If optionName is "AllowWarningUI",
+	// this method SHOULD set the value of the AllowWarningUI ADM element to the VARIANT_BOOL
+	// stored in optionValue.
 	SetOption(context.Context, *SetOptionRequest, ...dcerpc.CallOption) (*SetOptionResponse, error)
 
 	// AlterContext alters the client context.
@@ -431,7 +514,8 @@ func (o *GetServicesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // GetServicesResponse structure represents the Services operation response
 type GetServicesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat                `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A collection of update services registered with the update agent.
 	ReturnValue *uamg.UpdateServiceCollection `idl:"name:retval" json:"return_value"`
 	// Return: The Services return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -639,8 +723,10 @@ func (o *xxx_RegisterServiceWithAUOperation) UnmarshalNDRResponse(ctx context.Co
 // RegisterServiceWithAURequest structure represents the RegisterServiceWithAU operation request
 type RegisterServiceWithAURequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ServiceID *oaut.String   `idl:"name:serviceID" json:"service_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// serviceID: A string identifying the update service to register with the automatic
+	// update agent. This service MUST already be registered with the update agent.
+	ServiceID *oaut.String `idl:"name:serviceID" json:"service_id"`
 }
 
 func (o *RegisterServiceWithAURequest) xxx_ToOp(ctx context.Context, op *xxx_RegisterServiceWithAUOperation) *xxx_RegisterServiceWithAUOperation {
@@ -882,8 +968,9 @@ func (o *xxx_RemoveServiceOperation) UnmarshalNDRResponse(ctx context.Context, w
 // RemoveServiceRequest structure represents the RemoveService operation request
 type RemoveServiceRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ServiceID *oaut.String   `idl:"name:serviceID" json:"service_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// serviceID: A string identifying the registered service to remove.
+	ServiceID *oaut.String `idl:"name:serviceID" json:"service_id"`
 }
 
 func (o *RemoveServiceRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveServiceOperation) *xxx_RemoveServiceOperation {
@@ -1232,10 +1319,14 @@ func (o *xxx_AddScanPackageServiceOperation) UnmarshalNDRResponse(ctx context.Co
 // AddScanPackageServiceRequest structure represents the AddScanPackageService operation request
 type AddScanPackageServiceRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This             *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ServiceName      *oaut.String   `idl:"name:serviceName" json:"service_name"`
-	ScanFileLocation *oaut.String   `idl:"name:scanFileLocation" json:"scan_file_location"`
-	Flags            int32          `idl:"name:flags" json:"flags"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// serviceName: The name of the service.
+	ServiceName *oaut.String `idl:"name:serviceName" json:"service_name"`
+	// scanFileLocation: The filesystem path of the scan package file.
+	ScanFileLocation *oaut.String `idl:"name:scanFileLocation" json:"scan_file_location"`
+	// flags: A bitmask produced from values from the UpdateServiceOption (section 2.2.14)
+	// enumeration value.
+	Flags int32 `idl:"name:flags" json:"flags"`
 }
 
 func (o *AddScanPackageServiceRequest) xxx_ToOp(ctx context.Context, op *xxx_AddScanPackageServiceOperation) *xxx_AddScanPackageServiceOperation {
@@ -1276,7 +1367,8 @@ func (o *AddScanPackageServiceRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 // AddScanPackageServiceResponse structure represents the AddScanPackageService operation response
 type AddScanPackageServiceResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat      `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppService: An IUpdateService instance representing a service based on the scan package.
 	Service *uamg.UpdateService `idl:"name:ppService" json:"service"`
 	// Return: The AddScanPackageService return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1510,9 +1602,14 @@ func (o *xxx_SetOptionOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 // SetOptionRequest structure represents the SetOption operation request
 type SetOptionRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	OptionName  *oaut.String   `idl:"name:optionName" json:"option_name"`
-	OptionValue *oaut.Variant  `idl:"name:optionValue" json:"option_value"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// optionName: MUST be set either to "AllowedServiceID" or "AllowWarningUI".
+	OptionName *oaut.String `idl:"name:optionName" json:"option_name"`
+	// optionValue: If optionName is "AllowedServiceID", the vt member MUST be set to VT_BSTR,
+	// as specified in [MS-OAUT] section 2.2.7, and the bstrVal member MUST contain the
+	// identifier of the service to which to restrict the IUpdateServiceManager::RegisterServiceWithAU
+	// (section 3.44.4.2) method.
+	OptionValue *oaut.Variant `idl:"name:optionValue" json:"option_value"`
 }
 
 func (o *SetOptionRequest) xxx_ToOp(ctx context.Context, op *xxx_SetOptionOperation) *xxx_SetOptionOperation {

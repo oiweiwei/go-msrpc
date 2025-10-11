@@ -1,1 +1,103 @@
-<div class="content"></div>
+<div class="content"><p>The EnumerateNtmsObject method enumerates the objects of the
+container specified by the <i>lpContainerId</i> parameter.</p><dl>
+<dd>
+<div><pre> HRESULT EnumerateNtmsObject(
+   [in, unique] const LPNTMS_GUID lpContainerId,
+   [out, size_is(*lpdwListBufferSize), length_is(*lpdwListBufferSize)] 
+     LPNTMS_GUID lpList,
+   [in] DWORD* lpdwListBufferSize,
+   [out] DWORD* lpdwListSize,
+   [in] DWORD dwType,
+   [in] DWORD dwOptions
+ );
+</pre></div>
+</dd></dl><p><b>lpContainerId: </b>A pointer to the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a> of the container for
+which to enumerate objects; can be set to NULL to enumerate all objects of type
+<i>dwType</i>.</p><dl>
+<dd>
+<p>If the <i>lpContainerId</i> parameter is set to
+NULL, the server MUST enumerate top-level objects (such as libraries). If more
+than one object is listed, the object can be enumerated from more than one
+container. The NULL container is the highest-level container, and enumerates
+all objects in a system. <i>lpContainerId</i> can be an object identifier (for
+example, a library identifier) which would return the objects associated with
+it, depending on the type of object chosen in the <i>dwType</i> parameter.</p>
+</dd></dl><p><b>lpList: </b>An array of object identifiers.</p><p><b>lpdwListBufferSize: </b>A pointer to the size, in
+bytes, of <i>lpList</i>.</p><p><b>lpdwListSize: </b>A pointer to the number of
+elements in <i>lpList</i>.</p><p><b>dwType: </b>A value from the <a href="5b190198-a0cb-4e20-90a3-234009357051" data-linktype="relative-path">NtmsObjectsTypes (section 2.2.1.6)</a>
+enumeration specifying the type of the object.</p><p><b>dwOptions: </b>This parameter is unused. It MUST
+be 0 and MUST be ignored on receipt.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p> The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to an object was denied. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p> An allocation failure occurred during processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p> The <i>lpdwListSize</i> pointer is NULL, or <i>lpContainerId</i>
+  is not of the object type specified by <i>dwType</i>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007007A</p>
+  <p>ERROR_INSUFFICIENT_BUFFER</p>
+  </td>
+  <td>
+  <p> The specified buffer size is too small. The required
+  size is returned in the <i>lpdwListSize</i> parameter.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D8</p>
+  <p>ERROR_OBJECT_NOT_FOUND</p>
+  </td>
+  <td>
+  <p> The <i>lpContainerId</i> is not the identifier of any
+  container in the database.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpdwListSize</i>
+is not NULL. If parameter validation fails, the server MUST immediately fail
+the operation and return ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights. If the client does not have the
+required access rights, the server MUST return ERROR_ACCESS_DENIED (0x80070005).</p><p>If the available number of IDs specified in the <i>lpdwListSize</i>
+parameter is greater than the current buffer size, <i>lpdwListSize</i> MUST
+return the required size in <i>lpdwListSize</i> and ERROR_INSUFFICIENT_BUFFER
+(0x8007007A). The client MUST then <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_0e546e86-71c4-45cc-9ef1-4a78f6cb425a" data-linktype="relative-path">allocate</a> a larger buffer
+and try again.</p><p>If the <i>lpContainerId</i> parameter is set to NULL, the
+server MUST enumerate top-level objects (such as libraries).</p><p>If more than one object is listed, the object can be
+enumerated from more than one container. The NULL container is the
+highest-level container, and enumerates all objects in a system. </p></div>

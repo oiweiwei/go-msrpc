@@ -31,33 +31,118 @@ type Session1Server interface {
 	// IUnknown base class.
 	iunknown.UnknownServer
 
+	// The OpenNtmsServerSessionW method sets up a session with the server. All input parameters
+	// for this method are optional.
 	OpenNTMSServerSessionW(context.Context, *OpenNTMSServerSessionWRequest) (*OpenNTMSServerSessionWResponse, error)
 
+	// The OpenNtmsServerSessionA method sets up a session with the server. All input parameters
+	// for this method are optional.
 	OpenNTMSServerSessionA(context.Context, *OpenNTMSServerSessionARequest) (*OpenNTMSServerSessionAResponse, error)
 
+	// The CloseNtmsSession method closes a session.
+	//
+	// This method has no parameters.
+	//
+	//	+-------------------------------------+------------------------------------------------+
+	//	|               RETURN                |                                                |
+	//	|             VALUE/CODE              |                  DESCRIPTION                   |
+	//	|                                     |                                                |
+	//	+-------------------------------------+------------------------------------------------+
+	//	+-------------------------------------+------------------------------------------------+
+	//	| 0x00000000 S_OK                     | The call was successful.                       |
+	//	+-------------------------------------+------------------------------------------------+
+	//	| 0x800704B1 ERROR_CONNECTION_UNAVAIL | The connection to the server is not available. |
+	//	+-------------------------------------+------------------------------------------------+
+	//
+	// This method will close the session. This method MUST be called when the client has
+	// dereferenced the session. Note, however, that the server might not yet have dereferenced
+	// the session, because one or more interfaces might still be in process. The server,
+	// therefore, does not tear down the session, but rather cleans up the session and releases
+	// the open session reference, allowing the session to be ended when the last reference
+	// is removed.
+	//
+	// If the client has an outstanding synchronous request, the requests MUST be unwound
+	// and canceled.
 	CloseNTMSSession(context.Context, *CloseNTMSSessionRequest) (*CloseNTMSSessionResponse, error)
 
+	// The SubmitNtmsOperatorRequestW method submits an operator request, with strings encoded
+	// using Unicode.
 	SubmitNTMSOperatorRequestW(context.Context, *SubmitNTMSOperatorRequestWRequest) (*SubmitNTMSOperatorRequestWResponse, error)
 
+	// The SubmitNtmsOperatorRequestA method submits an operator request, with strings encoded
+	// using ASCII.
 	SubmitNTMSOperatorRequestA(context.Context, *SubmitNTMSOperatorRequestARequest) (*SubmitNTMSOperatorRequestAResponse, error)
 
+	// The WaitForNtmsOperatorRequest method waits for an operator request.
 	WaitForNTMSOperatorRequest(context.Context, *WaitForNTMSOperatorRequestRequest) (*WaitForNTMSOperatorRequestResponse, error)
 
+	// The CancelNtmsOperatorRequest method cancels an operator request.
 	CancelNTMSOperatorRequest(context.Context, *CancelNTMSOperatorRequestRequest) (*CancelNTMSOperatorRequestResponse, error)
 
+	// The SatisfyNtmsOperatorRequest method completes an operator request.
 	SatisfyNTMSOperatorRequest(context.Context, *SatisfyNTMSOperatorRequestRequest) (*SatisfyNTMSOperatorRequestResponse, error)
 
+	// The ImportNtmsDatabase method imports the state of the server at the next server
+	// restart.
+	//
+	// This method has no parameters.
+	//
+	//	+-----------------------------------+----------------------------------------------------------------------------------+
+	//	|              RETURN               |                                                                                  |
+	//	|            VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                   |                                                                                  |
+	//	+-----------------------------------+----------------------------------------------------------------------------------+
+	//	+-----------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                   | The call was successful.                                                         |
+	//	+-----------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED    | Access to object was denied. For more information regarding object, see section  |
+	//	|                                   | 3.2.5.2.                                                                         |
+	//	+-----------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800708CA ERROR_NOT_CONNECTED    | Unable to connect to the server.                                                 |
+	//	+-----------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE | The database query or update failed.                                             |
+	//	+-----------------------------------+----------------------------------------------------------------------------------+
+	//
+	// The ImportNtmsDatabase method directs the server to import the content of the export
+	// directory into the database upon the next restart. When the server restarts, it MUST
+	// import the already saved database to its current database if the import is set.
 	ImportNTMSDatabase(context.Context, *ImportNTMSDatabaseRequest) (*ImportNTMSDatabaseResponse, error)
 
+	// The ExportNtmsDatabase method exports the state of the server.
+	//
+	// This method has no parameters.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access to object was denied. For more information regarding object, see section  |
+	//	|                                    | 3.2.5.2.                                                                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070020 ERROR_SHARING_VIOLATION | One of the files that needs to be written to is open.                            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800708CA ERROR_NOT_CONNECTED     | Unable to connect to the server.                                                 |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D9 ERROR_DATABASE_FAILURE  | The database query or update failed.                                             |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
 	ExportNTMSDatabase(context.Context, *ExportNTMSDatabaseRequest) (*ExportNTMSDatabaseResponse, error)
 
 	// Opnum13NotUsedOnWire operation.
 	// Opnum13NotUsedOnWire
 
+	// The AddNotification method registers a client to receive change notifications for
+	// a type of object.
 	AddNotification(context.Context, *AddNotificationRequest) (*AddNotificationResponse, error)
 
+	// The RemoveNotification method unregisters a client from receiving change notifications
+	// for a type of object.
 	RemoveNotification(context.Context, *RemoveNotificationRequest) (*RemoveNotificationResponse, error)
 
+	// The DispatchNotification method sends a notification to all registered sinks.
 	DispatchNotification(context.Context, *DispatchNotificationRequest) (*DispatchNotificationResponse, error)
 }
 

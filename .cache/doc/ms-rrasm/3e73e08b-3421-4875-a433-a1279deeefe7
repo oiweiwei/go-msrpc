@@ -1,1 +1,21 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IPDESTROW</b> structure contains information
+about how a destination can be reached. In addition to the route information,
+this structure contains preference and view information. This structure is used
+in <b>MIB_OPAQUE_INFO</b> (section <a href="169e435d-a975-4c1c-bf41-55fd2bd76125" data-linktype="relative-path">2.2.1.2.52</a>) structure.</p><dl>
+<dd>
+<div><pre> typedef struct _MIB_IPDESTROW {
+   MIB_IPFORWARDROW ForwardRow;
+   DWORD dwForwardPreference;
+   DWORD dwForwardViewSet;
+ } MIB_IPDESTROW,
+  *PMIB_IPDESTROW;
+</pre></div>
+</dd></dl><p><b>ForwardRow: </b>Contains the <a href="5dca234b-bea4-4e67-958e-5459a32a7b71" data-linktype="relative-path"><b>MIB_IPFORWARDROW (section 2.2.1.2.35)</b></a>
+structure that contains the route information.</p><p><b>dwForwardPreference: </b>This MUST be the
+preference value of the <b>ForwardRow</b>. While routing packets for two
+routes, if the prefix length is the same, the packet with the lower <b>dwForwardPreference</b>
+is chosen.</p><p><b>dwForwardViewSet: </b>This MUST be the view
+information of the <b>ForwardRow</b>. This member describes the type of route,
+for example a multicast route. For more information, see the <b>dwRtInfoViewSet</b>
+member of <a href="784d8544-140a-4769-b659-7d3168de9242" data-linktype="relative-path"><b>INTERFACE_ROUTE_INFO (section 2.2.1.2.11)</b></a>.
+</p></div>

@@ -1,0 +1,48 @@
+<div class="content"><p>The Advise method is received by the server in an
+RPC_REQUEST packet. In response, the server MUST register a client&#39;s callback
+object to receive event notifications.</p><dl>
+<dd>
+<div><pre> HRESULT Advise(
+   [in] IUnknown* pUnkSink,
+   [out] DWORD* pdwCookie
+ );
+</pre></div>
+</dd></dl><p><b>pUnkSink: </b>A pointer to an <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+(as specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+section 3.1.1.5.8) interface for the client object.</p><p><b>pdwCookie: </b>A pointer to a unique <a href="../ms-dtyp/262627d8-3418-4627-9218-4ffe110850b2" data-linktype="relative-path">DWORD</a>
+value that uniquely identifies the new element in the <i>ConnectionCollection</i>
+instance variable.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.<a id="Appendix_A_Target_94"></a><a aria-label="Product behavior note 94" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_94" data-linktype="relative-path">&lt;94&gt;</a></p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>pUnkSink</i> input parameter equals NULL:</p>
+<ul><li><p><span><span>  </span></span>Return
+E_POINTER (0x80000005), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>pdwCookie</i> output parameter equals NULL:</p>
+<ul><li><p><span><span>  </span></span>Return
+E_POINTER (0x80000005), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the number of elements in the <i>ConnectionCollection</i>
+instance variable is equal to the <i>ConnectionLimit</i> instance variable:</p>
+<ul><li><p><span><span>  </span></span>Return
+CONNECT_E_ADVISELIMIT (0x80040201), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Attempt to obtain a pointer to the <a href="b910c6a9-81db-4b87-b049-20eabf8853eb" data-linktype="relative-path">_DMSMQEventEvents</a> interface
+by calling IUnknown::QueryInterface (refer to section <a href="6b1800d7-4e98-48be-997e-57f09ce52d41" data-linktype="relative-path">3.1</a>) on the <i>pUnkSink</i>
+input parameter.</p>
+</li><li><p><span><span> 
+</span></span>If the IUnknown::QueryInterface method returns an error:</p>
+<ul><li><p><span><span>  </span></span>Set
+the <i>pdwCookie</i> value to zero (0x00000000).</p>
+</li><li><p><span><span>  </span></span>Return
+CONNECT_E_CANNOTCONNECT (0x80040202), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Set the value of the <i>pdwCookie</i> pointer output parameter to
+a DWORD &#34;cookie&#34; that is a unique key within the <i>ConnectionCollection</i>
+instance variable.</p>
+</li><li><p><span><span> 
+</span></span>Add a new item to the <i>ConnectionCollection</i> instance
+variable, using the value of the <i>pdwCookie</i> as the <i>ConnectionCookie</i>
+and the interface pointer acquired earlier as the associated value.</p>
+</li></ul></div>

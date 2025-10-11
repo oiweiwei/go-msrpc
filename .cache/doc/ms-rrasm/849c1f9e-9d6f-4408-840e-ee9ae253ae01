@@ -1,1 +1,29 @@
-<div class="content"></div>
+<div class="content"><p>The <b>ROUTER_INTERFACE_TYPE</b> type enumerates the
+different kinds of interfaces on the RRAS server.</p><dl>
+<dd>
+<div><pre> typedef enum _ROUTER_INTERFACE_TYPE
+ {
+   ROUTER_IF_TYPE_CLIENT,
+   ROUTER_IF_TYPE_HOME_ROUTER,
+   ROUTER_IF_TYPE_FULL_ROUTER,
+   ROUTER_IF_TYPE_DEDICATED,
+   ROUTER_IF_TYPE_INTERNAL,
+   ROUTER_IF_TYPE_LOOPBACK,
+   ROUTER_IF_TYPE_TUNNEL1,
+   ROUTER_IF_TYPE_DIALOUT
+ } ROUTER_INTERFACE_TYPE;
+</pre></div>
+</dd></dl><p><b>ROUTER_IF_TYPE_CLIENT: </b>The interface is for a
+remote access client.</p><p><b>ROUTER_IF_TYPE_HOME_ROUTER: </b>The interface is
+for a home RRAS server or a one-way initiated <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_a5f114fd-0784-48a8-96b1-c07447033a0d" data-linktype="relative-path">demand-dial</a> interface. With
+one-way initiated connections, one router is always the answering router and
+the other router is always the calling router <a href="https://go.microsoft.com/fwlink/?LinkId=141758" data-linktype="external">[MSFT-ROUTING]</a>.</p><p><b>ROUTER_IF_TYPE_FULL_ROUTER: </b>The interface is
+for a full router or a two-way initiated demand-dial interface. With two-way
+initiated connections, either router can be the answering router or the calling
+router, depending on which router initiates the connection [MSFT-ROUTING].</p><p><b>ROUTER_IF_TYPE_DEDICATED: </b>The interface is
+always connected. It is a LAN interface, or the interface is connected over a
+leased line.</p><p><b>ROUTER_IF_TYPE_INTERNAL: </b>The interface is an
+internal-only interface.</p><p><b>ROUTER_IF_TYPE_LOOPBACK: </b>The interface is a
+loopback interface.</p><p><b>ROUTER_IF_TYPE_TUNNEL1: </b>The interface is an IP
+in IP tunnel.<a id="Appendix_A_Target_9"></a><a aria-label="Product behavior note 9" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_9" data-linktype="relative-path">&lt;9&gt;</a></p><p><b>ROUTER_IF_TYPE_DIALOUT: </b>The interface is a
+demand-dial interface [MSFT-ROUTING].</p></div>

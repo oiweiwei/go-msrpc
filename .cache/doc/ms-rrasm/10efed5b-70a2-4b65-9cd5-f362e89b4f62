@@ -1,1 +1,41 @@
-<div class="content"></div>
+<div class="content"><p>The <b>OSPF_PARAM_TYPE</b> enumeration contains an OSPF
+parameter type that defines the type of information in the following
+structures:</p><ul><li><p><span><span> 
+</span></span><b>OSPF_ROUTE_FILTER_INFO</b> (section <a href="027f5f7a-ae39-44f2-95ac-f557c881a069" data-linktype="relative-path">2.2.1.2.209)</a></p>
+</li><li><p><span><span> 
+</span></span><b>OSPF_PROTO_FILTER_INFO</b> (section <a href="1c930f3c-6b7a-4731-b124-3252f408f0ea" data-linktype="relative-path">2.2.1.2.210)</a></p>
+</li><li><p><span><span> 
+</span></span><b>OSPF_GLOBAL_PARAM</b> (section <a href="0fd4f4e7-3dc1-4d39-93a9-fbcd073e3011" data-linktype="relative-path">2.2.1.2.211)</a></p>
+</li><li><p><span><span> 
+</span></span><b>OSPF_AREA_PARAM</b> (section <a href="1c78678e-4d2d-4e6c-b40b-5c435b89bd09" data-linktype="relative-path">2.2.1.2.212)</a></p>
+</li><li><p><span><span> 
+</span></span><b>OSPF_AREA_RANGE_PARAM</b> (section <a href="d73ca99d-16f6-4304-851e-15b18aaa78c5" data-linktype="relative-path">2.2.1.2.213)</a></p>
+</li><li><p><span><span> 
+</span></span><b>OSPF_VIRT_INTERFACE_PARAM</b> (section <a href="7fb02ecb-a32b-4967-bb60-a49f90d348a7" data-linktype="relative-path">2.2.1.2.214)</a></p>
+</li><li><p><span><span> 
+</span></span><b>OSPF_INTERFACE_PARAM</b> (section <a href="a74c9676-a5d5-4075-833b-b2276942f482" data-linktype="relative-path">2.2.1.2.215)</a></p>
+</li><li><p><span><span> 
+</span></span><b>OSPF_NBMA_NEIGHBOR_PARAM</b> (section <a href="d5c8a58c-ce43-4791-9ffd-59e28a5b9b54" data-linktype="relative-path">2.2.1.2.216)</a></p>
+<div><pre> typedef  enum 
+ {
+   OSPF_END_PARAM_TYPE = 0,
+   OSPF_GLOBAL_PARAM_TYPE,
+   OSPF_AREA_PARAM_TYPE,
+   OSPF_AREA_RANGE_PARAM_TYPE,
+   OSPF_INTF_PARAM_TYPE,
+   OSPF_NEIGHBOR_PARAM_TYPE,
+   OSPF_VIRT_INTF_PARAM_TYPE,
+   OSPF_ROUTE_FILTER_PARAM_TYPE,
+   OSPF_PROTOCOL_FILTER_PARAM_TYPE
+ } OSPF_PARAM_TYPE;
+</pre></div>
+</li></ul><p><b>OSPF_END_PARAM_TYPE: </b>Specifies that there is
+no more configuration information and marks the end of the configuration.</p><p><b>OSPF_GLOBAL_PARAM_TYPE: </b>Mapped to the <b>OSPF_GLOBAL_PARAM</b>
+structure.</p><p><b>OSPF_AREA_PARAM_TYPE: </b>Mapped to the <b>OSPF_AREA_PARAM</b>
+structure.</p><p><b>OSPF_AREA_RANGE_PARAM_TYPE: </b>Mapped to the <b>OSPF_AREA_RANGE_PARAM</b>
+structure.</p><p><b>OSPF_INTF_PARAM_TYPE: </b>Mapped to the <b>OSPF_INTERFACE_PARAM</b>
+structure.</p><p><b>OSPF_NEIGHBOR_PARAM_TYPE: </b>Mapped to the <b>OSPF_NBMA_NEIGHBOR_PARAM</b>
+structure.</p><p><b>OSPF_VIRT_INTF_PARAM_TYPE: </b>Mapped to the <b>OSPF_VIRT_INTF_PARAM</b>
+structure.</p><p><b>OSPF_ROUTE_FILTER_PARAM_TYPE: </b>Mapped to the <b>OSPF_ROUTE_FILTER_PARAM</b>
+structure.</p><p><b>OSPF_PROTOCOL_FILTER_PARAM_TYPE: </b>Mapped to the
+<b>OSPF_PROTOCOL_FILTER_PARAM</b> structure. </p></div>

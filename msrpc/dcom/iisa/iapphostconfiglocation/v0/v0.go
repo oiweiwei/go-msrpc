@@ -51,7 +51,27 @@ type AppHostConfigLocationClient interface {
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
 
-	// Path operation.
+	// The Path method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns the subpath for the specific IAppHostConfigLocation.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *pbstrLocationPath is not NULL. If
+	// processing fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF].
+	// The following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetPath(context.Context, *GetPathRequest, ...dcerpc.CallOption) (*GetPathResponse, error)
 
 	// Count operation.
@@ -60,10 +80,65 @@ type AppHostConfigLocationClient interface {
 	// Item operation.
 	GetItem(context.Context, *GetItemRequest, ...dcerpc.CallOption) (*GetItemResponse, error)
 
-	// AddConfigSection operation.
+	// The AddConfigSection method is received by the server in an RPC_REQUEST packet. In
+	// response, the server attempts to create a new empty IAppHostElement and add it to
+	// the specified IAppHostConfigLocation. The server MAY choose to create the IAppHostElement
+	// object in memory only and not persist it to permanent storage, such as a disk file,
+	// until later.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. In this case, *ppAdminElement is not NULL. If processing
+	// fails, the server MUST return a nonzero HRESULT code as defined in [MS-ERREF]. The
+	// following table describes the error conditions that MUST be handled and the corresponding
+	// error codes. A server MAY return additional implementation-specific error codes.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                                            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                                    |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X800700B7 ERROR_ALREADY_EXISTS    | A configuration element with the name specified by bstrSectionName already       |
+	//	|                                    | exists.                                                                          |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070013 ERROR_INVALID_DATA      | Configuration data or schema on the server are malformed or corrupted.           |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070021 ERROR_LOCK_VIOLATION    | The instance is not editable.                                                    |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
 	AddConfigSection(context.Context, *AddConfigSectionRequest, ...dcerpc.CallOption) (*AddConfigSectionResponse, error)
 
-	// DeleteConfigSection operation.
+	// The DeleteConfigSection method is received by the server in an RPC_REQUEST packet.
+	// In response, the server attempts to delete the IAppHostElement of the specified index.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If processing fails, the server MUST return a nonzero
+	// HRESULT code as defined in [MS-ERREF]. The following table describes the error conditions
+	// that MUST be handled and the corresponding error codes. A server MAY return additional
+	// implementation-specific error codes.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN               |                                                                                  |
+	//	|             VALUE/CODE             |                                   DESCRIPTION                                    |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                                            |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.                                    |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070013 ERROR_INVALID_DATA      | Configuration data or schema on the server are malformed or corrupted.           |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070021 ERROR_LOCK_VIOLATION    | The instance is not editable.                                                    |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X80070585 ERROR_INVALID_INDEX     | The integer index specified by cIndex is invalid, or the element with name       |
+	//	|                                    | specified by cIndex could not be found.                                          |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command.                          |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
 	DeleteConfigSection(context.Context, *DeleteConfigSectionRequest, ...dcerpc.CallOption) (*DeleteConfigSectionResponse, error)
 
 	// AlterContext alters the client context.
@@ -430,8 +505,10 @@ func (o *GetPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // GetPathResponse structure represents the Path operation response
 type GetPathResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
-	LocationPath *oaut.String   `idl:"name:pbstrLocationPath" json:"location_path"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrLocationPath: Contains the path for the specific IAppHostConfigLocation. If
+	// the path is "" (an empty string), it represents the same path as the containing IAppHostConfigFile.
+	LocationPath *oaut.String `idl:"name:pbstrLocationPath" json:"location_path"`
 	// Return: The Path return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1164,8 +1241,9 @@ func (o *xxx_AddConfigSectionOperation) UnmarshalNDRResponse(ctx context.Context
 // AddConfigSectionRequest structure represents the AddConfigSection operation request
 type AddConfigSectionRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	SectionName *oaut.String   `idl:"name:bstrSectionName" json:"section_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrSectionName: The name of the new IAppHostElement section to add.
+	SectionName *oaut.String `idl:"name:bstrSectionName" json:"section_name"`
 }
 
 func (o *AddConfigSectionRequest) xxx_ToOp(ctx context.Context, op *xxx_AddConfigSectionOperation) *xxx_AddConfigSectionOperation {
@@ -1202,7 +1280,8 @@ func (o *AddConfigSectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // AddConfigSectionResponse structure represents the AddConfigSection operation response
 type AddConfigSectionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That         *dcom.ORPCThat       `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppAdminElement: Contains a newly created IAppHostElement.
 	AdminElement *iisa.AppHostElement `idl:"name:ppAdminElement" json:"admin_element"`
 	// Return: The AddConfigSection return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1391,8 +1470,13 @@ func (o *xxx_DeleteConfigSectionOperation) UnmarshalNDRResponse(ctx context.Cont
 // DeleteConfigSectionRequest structure represents the DeleteConfigSection operation request
 type DeleteConfigSectionRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Index *oaut.Variant  `idl:"name:cIndex" json:"index"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// cIndex: A VARIANT, which is used to specify the IAppHostElement object to delete.
+	// If the VARIANT is of type integer, the index is a zero-based index to the collection
+	// of IAppHostElement objects, where 0 indicates the first IAppHostElement object, 1
+	// the second, and so on. If the VARIANT is of type string, the index is the name of
+	// the IAppHostElement object being retrieved.
+	Index *oaut.Variant `idl:"name:cIndex" json:"index"`
 }
 
 func (o *DeleteConfigSectionRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteConfigSectionOperation) *xxx_DeleteConfigSectionOperation {

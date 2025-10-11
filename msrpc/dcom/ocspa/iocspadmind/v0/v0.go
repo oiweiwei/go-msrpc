@@ -635,7 +635,7 @@ type GetOCSPPropertyResponse struct {
 	//	+-------------------------+----------------------------------------------------------------------------------+
 	//	| NumOfThreads            | The vt member of the VARIANT referenced by pEntryValue MUST be set to VT_I4, and |
 	//	|                         | the lVal member MUST be set to the maximum number of simultaneous OCSP requests  |
-	//	|                         | [MS-OCSP] that can be served by the Online Responder Service. <5>                |
+	//	|                         | [MS-OCSP] that can be served by the Online Responder Service. <7>                |
 	//	+-------------------------+----------------------------------------------------------------------------------+
 	//	| MaxNumOfCacheEntries    | The vt member of the VARIANT referenced by pEntryValue MUST be set to VT_I4, and |
 	//	|                         | the lVal member MUST be the maximum number of OCSP responses that can be cached  |
@@ -652,16 +652,16 @@ type GetOCSPPropertyResponse struct {
 	//	| LogLevel                | The vt member of the VARIANT referenced by pEntryValue SHOULD be set to VT_I4,   |
 	//	|                         | and the lVal member SHOULD be set to the integer value that specifies the level  |
 	//	|                         | of information to be communicated to the system (application eventlog channel)   |
-	//	|                         | as part of operations being performed on the service.<6>                         |
+	//	|                         | as part of operations being performed on the service.<8>                         |
 	//	+-------------------------+----------------------------------------------------------------------------------+
 	//	| Debug                   | The vt member of the VARIANT referenced by pEntryValue SHOULD be set to VT_I4,   |
 	//	|                         | and the lVal member SHOULD be an integer value that specifies whether tracing    |
-	//	|                         | for errors on the responder is enabled or not.<7>                                |
+	//	|                         | for errors on the responder is enabled or not.<9>                                |
 	//	+-------------------------+----------------------------------------------------------------------------------+
 	//	| EnrollPollInterval      | The vt member of the VARIANT referenced by pEntryValue SHOULD be set to VT_I4,   |
 	//	|                         | and the lVal member SHOULD be set to the integer value that specifies the        |
 	//	|                         | frequency (in number of hours) with which the responder will attempt to enroll   |
-	//	|                         | for a signing certificate (for signing OCSP responses).<8>                       |
+	//	|                         | for a signing certificate (for signing OCSP responses).<10>                      |
 	//	+-------------------------+----------------------------------------------------------------------------------+
 	//	| RequestFlags            | The vt member of the VARIANT referenced by pEntryValue SHOULD be set to VT_I4,   |
 	//	|                         | and the lVal member SHOULD be either 0 or the following value. Flag value –      |
@@ -676,7 +676,7 @@ type GetOCSPPropertyResponse struct {
 	//	| NumOfBackendConnections | The vt member of the VARIANT referenced by pEntryValue SHOULD be set to VT_I4,   |
 	//	|                         | and the lVal member SHOULD be set to the integer value that specifies the        |
 	//	|                         | maximum number of connections that can be created by the web server to the       |
-	//	|                         | Online Responder Service. <9>                                                    |
+	//	|                         | Online Responder Service. <11>                                                   |
 	//	+-------------------------+----------------------------------------------------------------------------------+
 	//	| RefreshRate             | The vt member of the VARIANT referenced by pEntryValue SHOULD be set to VT_I4,   |
 	//	|                         | and the lVal member SHOULD be set to the integer value that specifies the        |
@@ -691,12 +691,12 @@ type GetOCSPPropertyResponse struct {
 	//	+-------------------------+----------------------------------------------------------------------------------+
 	//	| ISAPIDebug              | The vt member of the VARIANT referenced by pEntryValue SHOULD be set to VT_I4,   |
 	//	|                         | and the lVal member SHOULD be set to the integer value that specifies whether    |
-	//	|                         | the tracing for errors on the web server is enabled or not.<10>                  |
+	//	|                         | the tracing for errors on the web server is enabled or not.<12>                  |
 	//	+-------------------------+----------------------------------------------------------------------------------+
 	//	| MaxNumOfRequestEntries  | The vt member of the VARIANT referenced by pEntryValue SHOULD be set to VT_I4,   |
 	//	|                         | and the lVal member SHOULD be set to the integer value that specifies the        |
 	//	|                         | maximum number of requests that can be included in the requestList field of the  |
-	//	|                         | OCSPRequest structure ([RFC2560] section 4.1.1).<11>                             |
+	//	|                         | OCSPRequest structure ([RFC2560] section 4.1.1).<13>                             |
 	//	+-------------------------+----------------------------------------------------------------------------------+
 	//	| AllEntries              | The vt member of the VARIANT MUST be set to VT_ARRAY | VT_VARIANT, and the       |
 	//	|                         | pArray member MUST reference a two-dimensional safearray. The number of elements |
@@ -727,7 +727,7 @@ type GetOCSPPropertyResponse struct {
 	// MAY return the value as a VARIANT containing data of the type integer, string, date,
 	// or binary object. Otherwise, for bstrEntryName values that do not correspond to the
 	// previous list, the server responds as if the property were not yet configured on
-	// the responder. <12> ( ff1216b3-6fb4-4be8-b256-fb7055b1e86d#Appendix_A_12 )
+	// the responder. <14> ( ff1216b3-6fb4-4be8-b256-fb7055b1e86d#Appendix_A_14 )
 	EntryValue *oaut.Variant `idl:"name:pEntryValue;pointer:ref" json:"entry_value"`
 	// Return: The GetOCSPProperty return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1765,7 +1765,7 @@ type GetSecurityResponse struct {
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pctbSD: This is a pointer to a CERTTRANSBLOB structure that contains the marshaled
 	// Security Descriptor. Information on Security Descriptors is documented in [MS-DTYP]
-	// section 2.4.6.<17>
+	// section 2.4.6.<21>
 	SecurityDescriptor *ocspa.CertTransportBlob `idl:"name:pctbSD;pointer:ref" json:"security_descriptor"`
 	// Return: The GetSecurity return value.
 	Return int32 `idl:"name:Return" json:"return"`

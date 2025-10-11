@@ -1,1 +1,16 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_UDPROW</b> structure contains address information
+for sending and receiving <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_a70f5e84-6960-42f0-a160-ba0281eb548d" data-linktype="relative-path">User
+Datagram Protocol (UDP)</a> <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_96ea17cd-226a-48f8-aa14-38d2d3ae60a5" data-linktype="relative-path">datagrams</a>.
+This structure is used in the following structures: </p><ul><li><p><span><span> 
+</span></span><b>MIB_OPAQUE_INFO</b> (section <a href="169e435d-a975-4c1c-bf41-55fd2bd76125" data-linktype="relative-path">2.2.1.2.52</a>)</p>
+</li><li><p><span><span> 
+</span></span><b>MIB_UDPTABLE</b> (section <a href="3994ba16-51a1-4e1c-801e-f3ea2d01fd74" data-linktype="relative-path">2.2.1.2.60</a>)</p>
+<div><pre> typedef struct _MIB_UDPROW {
+   DWORD dwLocalAddr;
+   DWORD dwLocalPort;
+ } MIB_UDPROW,
+  *PMIB_UDPROW;
+</pre></div>
+</li></ul><p><b>dwLocalAddr: </b>The IPv4 address on the local
+computer.</p><p><b>dwLocalPort: </b>The port number on the local
+computer.</p></div>

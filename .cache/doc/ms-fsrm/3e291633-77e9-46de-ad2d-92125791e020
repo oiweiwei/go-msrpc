@@ -51,8 +51,8 @@ success, or a nonzero error code on failure.</p><dl>
 </dd></dl><p>Upon receiving this message, the server MUST validate
 parameters:</p><ul><li><p><span><span> 
 </span></span>Verify that <b>property</b> is not NULL.</p>
-</li></ul><p>If any validation fails, the server MUST terminate
-processing and return a nonzero error code.</p><p>The server MUST perform the following steps or return a
+</li></ul><p>If any validation fails, the server MUST terminate processing
+and return a nonzero error code.</p><p>The server MUST perform the following steps or return a
 nonzero error code:</p><ol><li><p><span>    </span>Perform the <a href="8fe62844-c8f1-4317-9752-9706ea401638" data-linktype="relative-path">Retrieve stored classification
 properties</a> for the file.</p>
 </li><li><p><span>    </span>If <b>options</b>

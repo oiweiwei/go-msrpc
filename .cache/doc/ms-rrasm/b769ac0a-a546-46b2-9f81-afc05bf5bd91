@@ -1,1 +1,77 @@
-<div class="content"></div>
+<div class="content"><p>The <b>DHCPV6R_IF_CONFIG</b> structure is an MIB entry and
+describes the per-interface configuration. This structure is used in <a href="c16ecd43-fa27-4146-a55b-5721f6500f2f" data-linktype="relative-path"><b>DHCPV6R_MIB_GET_INPUT_DATA (section 2.2.1.2.160)</b></a>
+and <a href="f841e214-2cfe-4265-9867-bd1cb685936b" data-linktype="relative-path"><b>DHCPV6R_MIB_GET_OUTPUT_DATA (section 2.2.1.2.156)</b></a>
+structures.   </p><dl>
+<dd>
+<div><pre> typedef struct _DHCPV6R_IF_CONFIG {
+   DWORD IC_State;
+   DWORD IC_RelayMode;
+   DWORD IC_MaxHopCount;
+   DWORD IC_MinElapsedTime;
+ } DHCPV6R_IF_CONFIG,
+  *PDHCPV6R_IF_CONFIG;
+</pre></div>
+</dd></dl><p><b>IC_State: </b>Contains the status of the DHCPV6
+relay. This member is read-only and MUST be a combination of one or more of the
+following values. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DHCPV6R_STATE_ENABLED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The interface is enabled</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DHCPV6R_STATE_BOUND</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The socket is bound and can listen to the DHCPv6 relay
+  agent packets <a href="https://go.microsoft.com/fwlink/?LinkId=90417" data-linktype="external">[RFC3315]</a>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IC_RelayMode: </b>Contains the DHCPV6 relay mode
+status. It MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>DHCPV6R_RELAY_DISABLED</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The relay is configured.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>DHCPV6R_RELAY_ENABLED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The relay is not configured.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>IC_MaxHopCount: </b>The maximum number of DHCPv6
+relay agents that will handle the DHCPv6 relayed traffic. It MUST be less than
+33.</p><p><b>IC_MinElapsedTime: </b>The number of seconds the
+relay agent waits before forwarding the DHCPv6 messages.</p></div>

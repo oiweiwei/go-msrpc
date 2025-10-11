@@ -1,1 +1,24 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsEjectOperation enumeration defines the types of
+actions to perform in an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a22dff61-81ae-4414-8242-3d28f4c70c31" data-linktype="relative-path">eject</a>
+operation.</p><dl>
+<dd>
+<div><pre> enum NtmsEjectOperation
+ {
+   NTMS_EJECT_START = 0,
+   NTMS_EJECT_STOP = 1,
+   NTMS_EJECT_QUEUE = 2,
+   NTMS_EJECT_FORCE = 3,
+   NTMS_EJECT_IMMEDIATE = 4,
+   NTMS_EJECT_ASK_USER = 5
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_EJECT_START:  </b>Start an eject operation on
+a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">port</a>. The specified
+medium MUST be ejected unless the action times out or NTMS_EJECT_STOP is
+issued. The time-out value is specified in the library object, and MUST be
+applied to all ejects in the library.</p><p><b>NTMS_EJECT_STOP:  </b>Terminate the ejection
+process.</p><p><b>NTMS_EJECT_QUEUE:  </b>Queue the specified media
+for ejection, for multislot NTMS_IEPORT objects.</p><p><b>NTMS_EJECT_FORCE:  </b>Start an eject operation on
+a port, even if the media is in use.</p><p><b>NTMS_EJECT_IMMEDIATE:  </b>Start an eject
+operation on a port, and block it until it completes.</p><p><b>NTMS_EJECT_ASK_USER:  </b>Confirm the ejection
+operation with a user interface message if the medium is in use.</p></div>

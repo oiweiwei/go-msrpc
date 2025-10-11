@@ -1,1 +1,328 @@
-<div class="content"></div>
+<div class="content"><p>The <b>PPP_PROJECTION_INFO_1</b> structure<a id="Appendix_A_Target_117"></a><a aria-label="Product behavior note 117" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_117" data-linktype="relative-path">&lt;117&gt;</a> contains information obtained
+during the PPP negotiation for the PPP-based tunnels.</p><dl>
+<dd>
+<div><pre> typedef struct _PPP_PROJECTION_INFO_1{
+   DWORD dwIPv4NegotiationError;
+   WCHAR wszAddress[16];
+   WCHAR wszRemoteAddress[16];
+   DWORD dwIPv4Options;
+   DWORD dwIPv4RemoteOptions;
+   ULONG64 IPv4SubInterfaceIndex;
+   DWORD dwIPv6NegotiationError;
+   UCHAR bInterfaceIdentifier[8];
+   UCHAR bRemoteInterfaceIdentifier[8];
+   UCHAR bPrefix[8];
+   DWORD dwPrefixLength;
+   ULONG64 IPv6SubInterfaceIndex;
+   DWORD dwLcpError;
+   DWORD dwAuthenticationProtocol;
+   DWORD dwAuthenticationData;
+   DWORD dwRemoteAuthenticationProtocol;
+   DWORD dwRemoteAuthenticationData;
+   DWORD dwLcpTerminateReason;
+   DWORD dwLcpRemoteTerminateReason;
+   DWORD dwLcpOptions;
+   DWORD dwLcpRemoteOptions;
+   DWORD dwEapTypeId;
+   DWORD dwRemoteEapTypeId;
+   DWORD dwCcpError;
+   DWORD dwCompressionAlgorithm;
+   DWORD dwCcpOptions;
+   DWORD dwRemoteCompressionAlgorithm;
+   DWORD dwCcpRemoteOptions;
+ } PPP_PROJECTION_INFO_1,
+  *PPPP_PROJECTION_INFO_1;
+</pre></div>
+</dd></dl><p><b>dwIPv4NegotiationError: </b>Same as <b>dwError</b>
+in <a href="a61b226f-bc4c-4fdd-9683-6b7e80e58737" data-linktype="relative-path"><b>PPP_IPCP_INFO (section 2.2.1.2.65)</b></a>. 
+</p><p><b>wszAddress: </b>Same as <b>wszAddress</b> in <b>PPP_IPCP_INFO</b>.</p><p><b>wszRemoteAddress: </b>Same as <b>wszRemoteAddress</b>
+in <b>PPP_IPCP_INFO</b>.</p><p><b>dwIPv4Options: </b>Same as <b>dwOptions</b> in <b>PPP_IPCP_INFO</b>.</p><p><b>dwIPv4RemoteOptions: </b>Same as <b>dwIPv4Options</b>.</p><p><b>IPv4SubInterfaceIndex: </b>Specifies the index of
+the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_5874bf10-ab68-43bd-acbd-a123cb494c06" data-linktype="relative-path">subinterface</a>
+corresponding to the connection on the server.</p><p><b>dwIPv6NegotiationError: </b>Specifies the result
+of PPP_IPv6. Network control protocol negotiation. A value of zero (0)
+indicates that either IPv6 was not negotiated or Ipv6 has been negotiated
+successfully. A nonzero value indicates failure and is the actual fatal error
+that occurred during the control protocol.</p><p><b>bInterfaceIdentifier: </b>If <b>dwIPv6NegotiationError</b>
+is zero (0) and IPv6 was negotiated, this MUST be the 64-bit interface
+identifier of the IPv6 address of the server interface. If <b>dwIPv6NegotiationError</b>
+is zero, a value of zero for this indicates that IPv6 was not negotiated. It
+MUST be zero when <b>dwIPv6NegotiationError</b> is nonzero. </p><p><b>bRemoteInterfaceIdentifier: </b>If <b>dwIPv6NegotiationError</b>
+is zero (0) and IPv6 was negotiated, this MUST be the 64-bit interface
+identifier of the IPv6 address of the client interface. If <b>dwIPv6NegotiationError</b>
+is zero, a value of zero for this indicates that IPv6 was not negotiated. It
+MUST be zero when <b>dwIPv6NegotiationError</b> is nonzero. </p><p><b>bPrefix: </b>Specifies the prefix of the IPv6
+address of the client interface.</p><p><b>dwPrefixLength: </b>The length, in bits, of the
+address prefix.</p><p><b>IPv6SubInterfaceIndex: </b>Specifies the index of the
+subInterface corresponding to the connection on the server.</p><p><b>dwLcpError: </b>Specifies the error that occurred if the
+PPP negotiation was unsuccessful and it MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ERROR_NO_LOCAL_ENCRYPTION</p>
+  <p>0x000002E5</p>
+  </td>
+  <td>
+  <p>The local computer does not support the required data
+  encryption type.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_NO_REMOTE_ENCRYPTION</p>
+  <p>0x000002E6</p>
+  </td>
+  <td>
+  <p>The remote computer does not support the required data
+  encryption type.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_CHANGING_PASSWORD</p>
+  <p>0x000002C5</p>
+  </td>
+  <td>
+  <p>There was an error changing the password on the
+  domain. The password might have been too short or might have matched a
+  previously used password.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_PPP_NO_PROTOCOLS_CONFIGURED</p>
+  <p>0x000002D0</p>
+  </td>
+  <td>
+  <p>The PPP controlled protocols were not configured.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_AUTHENTICATION_FAILURE</p>
+  <p>0x000002B3</p>
+  </td>
+  <td>
+  <p>The connection was denied because the username or
+  password specified is not valid or because the selected authentication
+  protocol is not permitted on the remote server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_MORE_DATA</p>
+  <p>0x000000EA</p>
+  </td>
+  <td>
+  <p>More data is available. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_PROTOCOL_NOT_CONFIGURED</p>
+  <p>0x000002DC</p>
+  </td>
+  <td>
+  <p>The received control protocol of the PPP is not
+  configured.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_AUTH_INTERNAL</p>
+  <p>0x00000285</p>
+  </td>
+  <td>
+  <p>There was an internal error while processing
+  authentication.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_NO_DIALIN_PERMISSION</p>
+  <p>0x00000289</p>
+  </td>
+  <td>
+  <p>The user does not have permission to dial in.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_SERVER_POLICY</p>
+  <p>0x0000032C</p>
+  </td>
+  <td>
+  <p>The connection was prevented because of a policy
+  configured on the RRAS.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_PEER_REFUSED_AUTH</p>
+  <p>0x00000397</p>
+  </td>
+  <td>
+  <p>The connection could not be established because the
+  authentication protocol used by the RRAS to verify username and password
+  could not be matched with the one proposed by the client. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_UNKNOWN_FRAMED_PROTOCOL</p>
+  <p>0x0000031A</p>
+  </td>
+  <td>
+  <p>The Framed Protocol <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_76bec7ae-e297-44e8-b25d-c04953f722a0" data-linktype="relative-path">RADIUS</a> <a href="https://go.microsoft.com/fwlink/?LinkId=90392" data-linktype="external">[RFC2865]</a> attribute
+  for this client is not PPP.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_WRONG_TUNNEL_TYPE</p>
+  <p>0x0000031B</p>
+  </td>
+  <td>
+  <p>The Tunnel Type RADIUS [RFC2865] attribute for this
+  user is not correct.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_UNKNOWN_SERVICE_TYPE</p>
+  <p>0x0000031C</p>
+  </td>
+  <td>
+  <p>The Service Type RADIUS [RFC2865] attribute for this
+  user is neither Framed nor callback Framed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_RESTRICTED_LOGON_HOURS</p>
+  <p>0x00000286</p>
+  </td>
+  <td>
+  <p>The user is not permitted to log on at this time of
+  day.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ACCT_DISABLED</p>
+  <p>0x00000287</p>
+  </td>
+  <td>
+  <p>The account is disabled.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_PASSWD_EXPIRED</p>
+  <p>0x00000288</p>
+  </td>
+  <td>
+  <p>The password for this account has expired.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_ILL_FORMED_PASSWORD</p>
+  <p>0x0000052C</p>
+  </td>
+  <td>
+  <p>Unable to update the password. The value provided for
+  the new password contains values that are not allowed in passwords.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwAuthenticationProtocol: </b>The same as <b>dwAuthenticatedProtocol</b>
+in <a href="4532a920-e20e-4fb0-8f72-22a95c3e5553" data-linktype="relative-path"><b>PPP_LCP_INFO</b></a>.
+</p><p><b>dwAuthenticationData: </b>The same as <b>dwAuthenticationData</b>
+in <b>PPP_LCP_INFO </b>(see section 2.2.1.2.71).</p><p><b>dwRemoteAuthenticationProtocol: </b>Specifies the
+authentication protocol used to authenticate the remote computer. This will be
+different from <b>dwAuthenticationProtocol</b> in the case of demand-dial if
+the authentication protocol used by the two ends are different. See the <b>dwAuthenticationProtocol</b>
+member for a list of possible values.</p><p><b>dwRemoteAuthenticationData: </b>Specifies
+additional information about the authentication protocol specified by <i>dwRemoteAuthenticationProtocol</i>.
+This will be different from <b>dwAuthenticationData</b> in the case of
+demand-dial if the authentication protocol used by the two ends are different.
+See the <b>dwAuthenticationData</b> member for a list of possible values.</p><p><b>dwLcpTerminateReason: </b>Specifies the reason the
+connection was terminated by the local computer. This member always has a value
+of zero (0).</p><p><b>dwLcpRemoteTerminateReason: </b>Specifies the
+reason the connection was terminated by the remote computer. This member always
+has a value of zero (0).</p><p><b>dwLcpOptions: </b>The same as <b>dwOptions</b> in <b>PPP_LCP_INFO
+</b>(see<b> </b>section 2.2.1.2.71).</p><p><b>dwLcpRemoteOptions: </b>Specifies information
+about the LCP options in use by the remote computer. See the <b>dwLcpOptions</b>
+member for a list of possible values.</p><p><b>dwEapTypeId: </b>Specifies the type identifier of
+the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_5de8ef80-3a1d-4ec8-bf8c-321972e06eae" data-linktype="relative-path">EAP</a> used to
+authenticate the local computer. The value of this member is valid only if <b>dwAuthenticationProtocol</b>
+is PPP_LCP_EAP. The valid values are defined in <a href="https://go.microsoft.com/fwlink/?LinkId=89882" data-linktype="external">[IANA-EAP]</a>.</p><p><b>dwRemoteEapTypeId: </b>MUST be zero (0). This
+value has no significance.</p><p><b>dwCcpError: </b>Specifies an error if the
+negotiation is unsuccessful.</p><p><b>dwCompressionAlgorithm: </b>The same as <b>dwCompressionAlgorithm</b>
+in <b>PPP_LCP_INFO</b>.</p><p><b>dwCcpOptions: </b>The same as <b>dwCcpOptions</b>
+in <b>PPP_LCP_INFO</b>.</p><p><b>dwRemoteCompressionAlgorithm: </b>Specifies the
+compression algorithm used by the remote computer. The values are the same as
+those for <b>dwCompressionAlgorithm</b>.</p><p><b>dwCcpRemoteOptions: </b>Specifies the compression
+options on the remote computer. The following options are supported.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PPP_CCP_COMPRESSION</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Compression without encryption.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PPP_CCP_HISTORYLESS</p>
+  <p>0x01000000</p>
+  </td>
+  <td>
+  <p>MPPE in stateless mode. The session key is changed
+  after every packet. This mode improves performance on high-latency networks,
+  or networks that experience significant packet loss.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PPP_CCP_ENCRYPTION40BITOLD</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>PPE using 40-bit keys.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PPP_CCP_ENCRYPTION40BIT</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>MPPE using 40-bit keys.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PPP_CCP_ENCRYPTION56BIT</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>MPPE using 56-bit keys.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>PPP_CCP_ENCRYPTION128BIT</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>MPPE using 128-bit keys.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ERROR_PPP_NOT_CONVERGING</p>
+  <p>0x000002DC</p>
+  </td>
+  <td>
+  <p>The remote computer and RRAS could not converge on
+  address negotiation.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

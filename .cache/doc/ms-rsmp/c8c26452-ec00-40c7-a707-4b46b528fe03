@@ -1,1 +1,106 @@
-<div class="content"></div>
+<div class="content"><p>The GetNtmsUIOptionsA method enumerates the list of computer
+names to which the specified type of UI is being directed for an object, with
+strings encoded using ASCII.</p><dl>
+<dd>
+<div><pre> HRESULT GetNtmsUIOptionsA(
+   [in, unique] const LPNTMS_GUID lpObjectId,
+   [in] DWORD dwType,
+   [out, size_is(*lpdwBufSize), length_is(*lpdwDataSize)] 
+     unsigned  char* lpszDestination,
+   [in] DWORD* lpdwBufSize,
+   [out] DWORD* lpdwDataSize,
+   [out] DWORD* lpdwOutSize
+ );
+</pre></div>
+</dd></dl><p><b>lpObjectId: </b>A pointer to the identifier of a
+computer or library whose UI is being redirected. To choose all events for this
+session, set this parameter to NULL.</p><p><b>dwType: </b>A value from the <a href="7a997c88-e0bd-4966-8792-7964cbcf3eef" data-linktype="relative-path">NtmsUITypes (section 2.2.5.2)</a>
+enumeration specifying the type of UI messages to enumerate.</p><p><b>lpszDestination: </b>A buffer of null-terminated
+destinations, with the buffer terminated by two null characters.</p><p><b>lpdwBufSize: </b>A pointer to the size, in bytes,
+of <i>lpszDestination</i>.</p><p><b>lpdwDataSize: </b>A pointer to the number of
+strings in <i>lpszDestination</i>.</p><p><b>lpdwOutSize: </b>A pointer to the required size of
+the <i>lpdwDataSize</i> parameter if more data needs to be returned than can
+fit in <i>lpszDestination</i>. In such a case, <i>lpdwDataSize</i> MUST be set
+to 0.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to an object was denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>An allocation failure occurred during processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The parameter is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007007A</p>
+  <p>ERROR_INSUFFICIENT_BUFFER</p>
+  </td>
+  <td>
+  <p>The specified buffer size is not large enough.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D8</p>
+  <p>ERROR_OBJECT_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The object was not found.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpszDestination</i>
+is not NULL, verify that <i>dwType</i> is not equal to NTMS_UITYPE_INVALID, and
+verify that <i>dwType</i> is not equal to or greater than NTMS_UITYPE_MAX. If
+parameter validation fails, the server MUST immediately fail the operation and
+return ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST perform
+the following actions:</p><ul><li><p><span><span> 
+</span></span>Ensure that the client has READ permissions on the object.</p>
+</li><li><p><span><span> 
+</span></span> Validate the object container.</p>
+</li><li><p><span><span> 
+</span></span> Allocate a large enough buffer to hold all of the destinations.</p>
+</li><li><p><span><span> 
+</span></span> Traverse through all the available destinations, and generate
+the list of machine names to which the specified type of UI is being directed
+for the given object.</p>
+</li><li><p><span><span> 
+</span></span> Return this list to the client.</p>
+</li></ul><p>If the client does not have the required access rights, the
+server MUST return ERROR_ACCESS_DENIED (0x80070005). If the buffer size
+specified by <i>lpdwBufSize</i> is too small, the server MUST return
+ERROR_INSUFFICIENT_BUFFER (0x8007007A) with <i>lpdwOutSize</i> set to the
+required size.</p><p>Strings sent to this method as parameters MUST be
+ASCII-encoded. </p></div>

@@ -1,1 +1,50 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MCAST_HBEAT_INFO</b> is used for <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_9a8dad3a-9dfd-44ee-9f73-cf3717dd4ee1" data-linktype="relative-path">multicast heartbeat</a>
+information. See <a href="https://go.microsoft.com/fwlink/?LinkID=119992" data-linktype="external">[RFC1301]</a>
+and <a href="https://go.microsoft.com/fwlink/?LinkId=111895" data-linktype="external">[RFC3376]</a> for
+more details.</p><dl>
+<dd>
+<div><pre> typedef struct _MCAST_HBEAT_INFO {
+   WCHAR pwszGroup[MAX_GROUP_LEN];
+   BOOL bActive;
+   ULONG ulDeadInterval;
+   BYTE byProtocol;
+   WORD wPort;
+ } MCAST_HBEAT_INFO,
+  *PMCAST_HBEAT_INFO;
+</pre></div>
+</dd></dl><p><b>pwszGroup: </b>A null-terminated Unicode string
+that contains the name and address of the multicast group.</p><p><b>bActive: </b>Indicates whether or not the
+heartbeat is active.</p><p><b>ulDeadInterval: </b>The dead interval in minutes.</p><p><b>byProtocol: </b>Specifies how the heartbeat is
+being carried out. This MUST have one of the following values. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>RAW</p>
+  <p>(0xFF)</p>
+  </td>
+  <td>
+  <p>A non-UDP based protocol is specified for use as
+  multicast heartbeat. <b>wPort</b> specifies the identifier for the protocol.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>UDP</p>
+  <p>(0x11)</p>
+  </td>
+  <td>
+  <p>UDP-based protocol is specified for use as multicast
+  heartbeat. <b>wPort</b> specifies the UDP port number.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>wPort: </b>The port or protocol for which the
+heartbeat is being carried out.</p><p>When this structure is used, the <b>InfoType</b> of <a href="c99955ec-6d18-4665-8d5b-e124de63a368" data-linktype="relative-path"><b>RTR_TOC_ENTRY (section 2.2.1.2.4)</b></a>
+MUST be 0xFFFF000A to specify IP multicast heartbeat configuration.</p></div>

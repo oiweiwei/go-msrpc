@@ -1,1 +1,101 @@
-<div class="content"></div>
+<div class="content"><p>The DecommissionNtmsMedia method moves media from available
+state to <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_d753ed1c-ff6a-4179-81ea-10ba369e1cca" data-linktype="relative-path">decommissioned</a>
+state. Media that are decommissioned by the DecommissionNtmsMedia method are
+recognized by the server, but decommissioned media does not contain any data
+and is never again used. Only media that are in an available state can be
+decommissioned.</p><dl>
+<dd>
+<div><pre> HRESULT DecommissionNtmsMedia(
+   [in] LPNTMS_GUID lpMediaId
+ );
+</pre></div>
+</dd></dl><p><b>lpMediaId: </b>A pointer to the medium identifier
+of the partition to be decommissioned.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to the object is denied; other security errors
+  are possible, but indicate a security subsystem error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>An allocation error occurred during processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The parameter is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CC</p>
+  <p>ERROR_INVALID_MEDIA</p>
+  </td>
+  <td>
+  <p>The <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_746b1ad1-e1ad-4120-9986-fef919a2eaf7" data-linktype="relative-path">media
+  identifier</a> is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CE</p>
+  <p>ERROR_INVALID_MEDIA_POOL</p>
+  </td>
+  <td>
+  <p>The media pool identifier is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database query or update failed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007139F</p>
+  <p>ERROR_INVALID_STATE</p>
+  </td>
+  <td>
+  <p>An unexpected state was encountered; might be disabled
+  or offline.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpMediaId</i>
+is not NULL. If it is NULL, the server MUST immediately fail the operation and
+return ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights. If the client does not have the
+required access rights, NTMS_MODIFY_ACCESS to the media is denied and the
+server MUST return ERROR_ACCESS_DENIED (0x80070005).</p><p>If the client has the required access rights, the server
+MUST verify that the media is in the NTMS_PARTSTATE_AVAILABLE state as defined
+in <a href="bdf99d44-7849-4a94-93ec-270a3e8c4eb3" data-linktype="relative-path">NtmsPartitionState (section 2.2.4.7)</a>.
+If the media is not in an available state, the server MUST return
+ERROR_INVALID_STATE (0x8007139F).</p></div>

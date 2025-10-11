@@ -1,1 +1,123 @@
-<div class="content"></div>
+<div class="content"><p>The DismountNtmsDrive method moves a medium from a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a> to its storage <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a1f0ab90-f3c0-46b8-9c77-d0d7508ede94" data-linktype="relative-path">slot</a>.</p><dl>
+<dd>
+<div><pre> HRESULT DismountNtmsDrive(
+   [in] LPNTMS_GUID lpDriveId
+ );
+</pre></div>
+</dd></dl><p><b>lpDriveId: </b>A pointer to the identifier of a
+drive.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to an object was denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>An allocation failure occurred during processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007000F</p>
+  <p>ERROR_INVALID_DRIVE</p>
+  </td>
+  <td>
+  <p>The drive identifier is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CD</p>
+  <p>ERROR_INVALID_LIBRARY</p>
+  </td>
+  <td>
+  <p>The library identifier is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D1</p>
+  <p>ERROR_LIBRARY_OFFLINE</p>
+  </td>
+  <td>
+  <p>The library identifier refers to an offline library.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database query or update failed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DA</p>
+  <p>ERROR_DATABASE_FULL</p>
+  </td>
+  <td>
+  <p>The database is full.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DF</p>
+  <p>ERROR_DEVICE_NOT_AVAILABLE</p>
+  </td>
+  <td>
+  <p>The device is not available; it might be disabled or
+  offline.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007139F</p>
+  <p>ERROR_INVALID_STATE</p>
+  </td>
+  <td>
+  <p>An unexpected state was encountered.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpDriveId</i>
+is not NULL. If it is NULL, the server MUST immediately fail the operation and
+return ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST get the
+selected library from the database, check the access to the library, and verify
+that the library is enabled and online before making the call. If the client
+does not have the required access rights, NTMS_CONTROL_ACCESS to the library is
+denied and the server MUST return ERROR_ACCESS_DENIED (0x80070005). Other
+security errors are possible, but they indicate a security subsystem error. If
+the library is disabled, the server MUST return ERROR_RESOURCE_DISABLED
+(0x800710D5). If the library is offline, the server MUST return
+ERROR_LIBRARY_OFFLINE (0x800710D1).</p><p>If the drive specified by the <i>lpDriveId</i> parameter is
+empty or if the media is opened, an error MUST be returned; otherwise, the
+media MUST be <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a8ebf8eb-a5f7-406a-b211-9f9c08ee15d3" data-linktype="relative-path">dismounted</a>
+from the drive.</p><p>On completion of an asynchronous operation, notification
+will be sent with the identifier lpDriveId.</p></div>

@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPBOOTP_IP_ADDRESS</b> structure is used for storing
+interface bindings. A series of structures of this type follows the <a href="02273e6a-7a6d-4a00-a05c-57633c5f0884" data-linktype="relative-path"><b>IPBOOTP_IF_BINDING</b></a>
+structure. Both fields are IP address fields in network order. </p><dl>
+<dd>
+<div><pre> typedef struct _IPBOOTP_IP_ADDRESS {
+   DWORD IA_Address;
+   DWORD IA_Netmask;
+ } IPBOOTP_IP_ADDRESS,
+  *PIPBOOTP_IP_ADDRESS;
+</pre></div>
+</dd></dl><p><b>IA_Address: </b>The IP address in network byte
+order.</p><p><b>IA_Netmask: </b>The network mask in network byte
+order. See <a href="https://go.microsoft.com/fwlink/?LinkId=90501" data-linktype="external">[RFC950]</a>.</p></div>

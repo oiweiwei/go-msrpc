@@ -31,13 +31,30 @@ type PrivateEventServer interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
-	// Hwnd operation.
+	// The Hwnd method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return a LONG value, which the client MUST ignore. Because the returned
+	// LONG value serves no purpose, the server MAY<90> return 0x00000000.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
+	//
+	// This interface is optional for communication with the client. If implemented, this
+	// interface MUST reside on the server.
 	GetHandle(context.Context, *GetHandleRequest) (*GetHandleResponse, error)
 
-	// FireArrivedEvent operation.
+	// The FireArrivedEvent method is received by the server in an RPC_REQUEST packet. In
+	// response, the server MUST provide notification of the availability of a Message.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	FireArrivedEvent(context.Context, *FireArrivedEventRequest) (*FireArrivedEventResponse, error)
 
-	// FireArrivedErrorEvent operation.
+	// The FireArrivedErrorEvent method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST provide notification of an error relating to the arrival
+	// of a message.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	FireArrivedErrorEvent(context.Context, *FireArrivedErrorEventRequest) (*FireArrivedErrorEventResponse, error)
 }
 

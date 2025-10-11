@@ -1,1 +1,44 @@
-<div class="content"></div>
+<div class="content"><p>The RemoveNotification method unregisters a client from
+receiving change notifications for a type of object.</p><dl>
+<dd>
+<div><pre> HRESULT RemoveNotification(
+   [in] DWORD dwType
+ );
+</pre></div>
+</dd></dl><p><b>dwType: </b>A value from the <a href="5b190198-a0cb-4e20-90a3-234009357051" data-linktype="relative-path">NtmsObjectsTypes (section 2.2.1.6)</a>
+enumeration specifying the type of object for which the client no longer wants
+to receive change notifications.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to an object was denied.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>dwType</i>
+is a valid notification type. If it is not, the server MUST return S_OK
+(0x00000000) and take no further action.</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights, and set the server to stop
+sending notifications of <i>dwType</i> type. If the client does not have the
+required access rights, the server MUST return ERROR_ACCESS_DENIED (0x80070005)
+and no further action is taken.</p></div>

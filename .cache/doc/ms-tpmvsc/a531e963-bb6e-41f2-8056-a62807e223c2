@@ -1,1 +1,35 @@
-<div class="content"></div>
+<div class="content"><p>The DCOM Interfaces for the Trusted Platform Module (TPM)
+Virtual Smart Card Management Protocol provides a Distributed Component Object
+Model (DCOM) Remote Protocol <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+interface used for creating and destroying <a href="348a1d4a-acc7-43ea-9413-b7e92ae9682d#gt_51714f66-75dc-4642-bd63-73b8b2825067" data-linktype="relative-path">VSCs</a>. Like all other DCOM
+interfaces, this protocol uses RPC <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>, with the
+extensions specified in <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>,
+as its underlying protocol. A VSC is a device that presents a device interface
+complying with the PC/SC specification for PC-connected interface devices <a href="https://go.microsoft.com/fwlink/?LinkId=90244" data-linktype="external">[PCSC3]</a> to its host
+operating system (OS) platform. This protocol does not assume anything about
+the underlying implementation of VSC devices. In particular, while it is
+primarily intended for the management of VSCs based on TPMs, it can also be
+used to manage other types of VSCs. The protocol defines two interfaces: a
+primary interface which is used to request VSC operations on a target system,
+and a secondary interface which is used by that target system to return status
+and progress information to the requestor.</p><p>In a typical scenario, this protocol is used by a requestor
+(generally an administrative workstation) to manage VSC devices on a target
+(generally an end-user workstation). The requestor, acting as a client,
+connects to the ITpmVirtualSmartCardManager, ITpmVirtualSmartCardManager2, or
+ITpmVirtualSmartCardManager3 interface on the target (which acts as the server)
+and requests the target to either create or destroy a VSC by passing
+appropriate parameters. These parameters include a reference to an
+ITpmVirtualSmartCardManagerStatusCallback DCOM interface on the requestor that
+can be used to provide status updates through callbacks.</p><p>The principal difference between the
+ITpmVirtualSmartCardManager2 interface and the ITpmVirtualSmartCardManager3
+interface is that the latter supports creation of attestation-capable virtual
+smart cards.</p><p>The principal difference between the
+ITpmVirtualSmartCardManager interface and the ITpmVirtualSmartCardManager2
+interface is that the latter supports policies to define valid values for the
+smart-card PIN.</p><p>The target, after validating these parameters, starts
+executing the requested operation. It also opens a second connection back to
+the requestor over which it invokes the requestor’s
+ITpmVirtualSmartCardManagerStatusCallback interface as a client, and calls the
+appropriate functions of that interface to provide progress or error codes.
+When the operation is completed, the target closes this second connection and
+returns the result for the requestor’s original method invocation.</p><p>This entire process is illustrated in Figure 1.</p><p><img src="ms-tpmvsc_files/image001.png" alt="Typical protocol scenario" title="Typical protocol scenario" data-linktype="relative-path"/></p><p><b>Figure 1: Typical protocol scenario</b></p></div>

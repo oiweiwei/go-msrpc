@@ -1,1 +1,88 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IGMP_MIB_GROUP_INFO</b> structure is used in the <a href="8fc7a277-b135-47e2-af2a-65d16cb8f8ad" data-linktype="relative-path"><b>IGMP_MIB_IF_GROUPS_LIST (section 2.2.1.2.175)</b></a>
+structure. If the interface is of type IGMP_IF_RAS_SERVER then the group
+membership of all the RAS clients is summarized, and the <b>GroupUpTime</b> and
+<b>GroupExpiryTime</b> is the maximum over all member RAS clients, while the <b>V1HostPresentTimeLeft</b>
+is set to 0. If the interface is of type IGMP_IF_RAS_CLIENT, the <b>IpAddr</b>
+is the next hop IP address of the RAS client.  </p><dl>
+<dd>
+<div><pre> typedef struct _IGMP_MIB_GROUP_INFO {
+   union {
+     DWORD IfIndex;
+     DWORD GroupAddr;
+   };
+   DWORD IpAddr;
+   DWORD GroupUpTime;
+   DWORD GroupExpiryTime;
+   DWORD LastReporter;
+   DWORD V1HostPresentTimeLeft;
+   DWORD Flags;
+ } IGMP_MIB_GROUP_INFO,
+  *PIGMP_MIB_GROUP_INFO;
+</pre></div>
+</dd></dl><p><b>IfIndex/ GroupAddr: </b>The index of the interface
+or group address.</p><p><b>IpAddr: </b>The IP address of the interface.</p><p><b>GroupUpTime: </b>The time, in seconds, since the
+group is up.</p><p><b>GroupExpiryTime: </b>The time, in seconds, before
+the group expires.</p><p><b>LastReporter: </b>The IP address of the last
+reporter.</p><p><b>V1HostPresentTimeLeft: </b>The time left for the
+present IGMPv1 hosts.</p><p><b>Flags: </b>It MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IGMP_GROUP_TYPE_NON_STATIC</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The IGMP group is not static.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_GROUP_TYPE_STATIC</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The IGMP group is static.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_GROUP_FWD_TO_MGM</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The IGMP group needs to be forwarded to the multiple
+  multicast routing protocols.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_GROUP_ALLOW</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Allows IGMP groups.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_GROUP_BLOCK</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Blocks IGMP groups.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IGMP_GROUP_NO_STATE</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>There is no IGMP group state.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

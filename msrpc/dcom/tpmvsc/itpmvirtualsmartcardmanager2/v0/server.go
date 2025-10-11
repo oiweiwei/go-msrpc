@@ -31,6 +31,14 @@ type VirtualSmartCardManager2Server interface {
 	// ITpmVirtualSmartCardManager base class.
 	itpmvirtualsmartcardmanager.VirtualSmartCardManagerServer
 
+	// This method is invoked by the requestor to create a VSC with the specified PIN policy
+	// on the target.
+	//
+	// Return Values:  The server MUST return 0 if it successfully creates the new VSC,
+	// and a nonzero value otherwise.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	CreateVirtualSmartCardWithPINPolicy(context.Context, *CreateVirtualSmartCardWithPINPolicyRequest) (*CreateVirtualSmartCardWithPINPolicyResponse, error)
 }
 

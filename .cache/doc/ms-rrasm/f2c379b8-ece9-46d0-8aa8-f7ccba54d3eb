@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPX_MIB_ROW</b> union MAY<a id="Appendix_A_Target_102"></a><a aria-label="Product behavior note 102" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_102" data-linktype="relative-path">&lt;102&gt;</a> be used to contain
+information about the IPX interface, route, and service.</p><dl>
+<dd>
+<div><pre> typedef union _IPX_MIB_ROW {
+   IPX_INTERFACE Interface;
+   IPX_ROUTE Route;
+   IPX_SERVICE Service;
+ } IPX_MIB_ROW,
+  *PIPX_MIB_ROW;
+</pre></div>
+</dd></dl><p><b>Interface: </b>The <a href="6eff48f1-3f2e-4ba7-9db1-35d96b3ab5d0" data-linktype="relative-path"><b>IPX_INTERFACE (section 2.2.1.2.108)</b></a>
+structure.  </p><p><b>Route: </b>The <a href="05547443-377f-4578-9d2a-c9a3d88ebc3d" data-linktype="relative-path"><b>IPX_ROUTE (section 2.2.1.2.109)</b></a>
+structure. </p><p><b>Service: </b>The <a href="a1677c0c-302c-4789-9f5f-7af6a07ea8c1" data-linktype="relative-path"><b>IPX_SERVICE (section 2.2.1.2.120)</b></a>
+structure.  </p></div>

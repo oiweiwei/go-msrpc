@@ -49,8 +49,44 @@ type UpdateSearcher3Client interface {
 	// IUpdateSearcher2 retrieval method.
 	UpdateSearcher2() iupdatesearcher2.UpdateSearcher2Client
 
+	// The IUpdateSearcher3::SearchScope (opnum 28) method returns the scope of the search.
+	//
+	// The SearchScope enumeration defines values that describe the combination of per-user
+	// and per-machine updates for which to search.
+	//
+	// The IUpdateSearcher3::SearchScope (opnum 29) method sets the scope of the search.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the SearchScope ADM element.
 	GetSearchScope(context.Context, *GetSearchScopeRequest, ...dcerpc.CallOption) (*GetSearchScopeResponse, error)
 
+	// The IUpdateSearcher3::SearchScope (opnum 28) method returns the scope of the search.
+	//
+	// The SearchScope enumeration defines values that describe the combination of per-user
+	// and per-machine updates for which to search.
+	//
+	// The IUpdateSearcher3::SearchScope (opnum 29) method sets the scope of the search.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the SearchScope ADM element.
 	SetSearchScope(context.Context, *SetSearchScopeRequest, ...dcerpc.CallOption) (*SetSearchScopeResponse, error)
 
 	// AlterContext alters the client context.
@@ -323,7 +359,8 @@ func (o *GetSearchScopeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetSearchScopeResponse structure represents the SearchScope operation response
 type GetSearchScopeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat   `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The scope of searches initiated by using this interface.
 	ReturnValue uamg.SearchScope `idl:"name:retval" json:"return_value"`
 	// Return: The SearchScope return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -364,8 +401,9 @@ func (o *GetSearchScopeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // xxx_SetSearchScopeOperation structure represents the SearchScope operation
 type xxx_SetSearchScopeOperation struct {
-	This   *dcom.ORPCThis   `idl:"name:This" json:"this"`
-	That   *dcom.ORPCThat   `idl:"name:That" json:"that"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// value: The scope of searches initiated by using this interface.
 	Value  uamg.SearchScope `idl:"name:value" json:"value"`
 	Return int32            `idl:"name:Return" json:"return"`
 }
@@ -495,7 +533,10 @@ func (o *xxx_SetSearchScopeOperation) UnmarshalNDRResponse(ctx context.Context, 
 // SetSearchScopeRequest structure represents the SearchScope operation request
 type SetSearchScopeRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis   `idl:"name:This" json:"this"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// value: The scope of searches initiated by using this interface.
+	//
+	// value: The scope of searches initiated by using this interface.
 	Value uamg.SearchScope `idl:"name:value" json:"value"`
 }
 

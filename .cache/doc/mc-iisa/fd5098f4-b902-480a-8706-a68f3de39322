@@ -1,0 +1,62 @@
+<div class="content"><p>The RootSectionGroup method is received by the server in an
+RPC_REQUEST packet. In response, the server returns an <a href="89168d9d-1fe8-4a84-bcd2-55fdbc3c47ea" data-linktype="relative-path">IAppHostSectionGroup</a>
+object, which represents a declaration of <a href="59774887-09e3-4de5-ad8e-4794f404b123" data-linktype="relative-path">IAppHostElement</a> objects
+that apply to the specified <a href="3687acff-fb79-4e02-8349-6ca2f49df2a5" data-linktype="relative-path">IAppHostConfigFile</a>
+and that potentially apply to other IAppHostConfigFile at deeper hierarchy
+paths than the current file.</p><p>A declaration means that an IAppHostElement of the name in
+the declaration MAY exist in the specified IAppHostConfigFile or potentially in
+deeper paths. A declaration is NOT a definition/instance. A declaration only
+controls whether an actual IAppHostElement instance is supported.</p><p>This function returns the section group object in the
+configSections section group that defines the root section group for the
+current section.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT RootSectionGroup(
+   [out, retval] IAppHostSectionGroup** ppSectionGroups
+ );
+</pre></div>
+</dd></dl><p><b>ppSectionGroups: </b>Contains an IAppHostSectionGroup
+that contains declarations.</p><p><b>Return Values: </b>The server MUST return zero if
+it successfully processes the message that is received from the client. In this
+case, *ppSectionGroups is not NULL. If processing fails, the server MUST return
+a nonzero <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+code as defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following table describes the error conditions that MUST be handled and the
+corresponding error codes. A server MAY return additional
+implementation-specific error codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0X00000000</p>
+  <p>NO_ERROR</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X80070057  </p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One or more parameters are incorrect or null.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X00000008  </p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>Not enough memory is available to process this
+  command.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

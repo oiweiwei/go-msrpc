@@ -51,34 +51,407 @@ type PolicyClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The GetPolicyInfo method gets one or more specified resource allocation policies
+	// (RAP).
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------------------+------------------------------------+
+	//	|               RETURN                |                                    |
+	//	|             VALUE/CODE              |            DESCRIPTION             |
+	//	|                                     |                                    |
+	//	+-------------------------------------+------------------------------------+
+	//	+-------------------------------------+------------------------------------+
+	//	| 0x00000000 S_OK                     | Operation successful.              |
+	//	+-------------------------------------+------------------------------------+
+	//	| 0x80070057 E_INVALIDARG             | One or more arguments are invalid. |
+	//	+-------------------------------------+------------------------------------+
+	//	| 0xC1FF00C9 WRM_ERR_POLICYID_INVALID | The specified RAP does not exist.  |
+	//	+-------------------------------------+------------------------------------+
+	//
+	// Additional IWRMPolicy interface methods are specified in section 3.2.4.7.
 	GetPolicyInfo(context.Context, *GetPolicyInfoRequest, ...dcerpc.CallOption) (*GetPolicyInfoResponse, error)
 
+	// The CreatePolicy method creates a new resource allocation policy (RAP).
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                      RETURN                      |                                                                                  |
+	//	|                    VALUE/CODE                    |                                   DESCRIPTION                                    |
+	//	|                                                  |                                                                                  |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                                  | Operation successful.                                                            |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                          | One or more arguments are invalid.                                               |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006F WRM_ERR_ID_VALUE                      | The specified name contains characters that are invalid. The name cannot         |
+	//	|                                                  | start with a hyphen "-", cannot contain spaces, and cannot contain any of the    |
+	//	|                                                  | following characters: \ / ? * | : < > " , ;                                      |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER             | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                                  | be processed.<105>                                                               |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF00CA WRM_ERR_POLICYID_ALREADY_EXISTS       | The request has been aborted because a RAP with the specified name already       |
+	//	|                                                  | exists.                                                                          |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF00DF WRM_ERR_POLICY_LIMIT_EXCEEDED         | The request has been aborted because the total number of RAPs has exceeded an    |
+	//	|                                                  | implementation-defined limit.<106>                                               |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF00E3 WRM_ERR_CANNOT_CREATE_RESERVED_POLICY | A user created policy cannot have the same name as that of a built-in policy.    |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF012E WRM_ERR_RESOURCEGROUPID_INVALID       | The request has been aborted because the process matching criteria (PMC) name    |
+	//	|                                                  | could not be found.                                                              |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMPolicy interface methods are specified in section 3.2.4.7.
 	CreatePolicy(context.Context, *CreatePolicyRequest, ...dcerpc.CallOption) (*CreatePolicyResponse, error)
 
+	// The ModifyPolicy method modifies an existing resource allocation policy (RAP).
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                   RETURN                   |                                                                                  |
+	//	|                 VALUE/CODE                 |                                   DESCRIPTION                                    |
+	//	|                                            |                                                                                  |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                            | Operation successful.                                                            |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                    | One or more arguments are invalid.                                               |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0069 WRM_ERR_OLD_INFORMATION         | The XML timestamp is out of date.                                                |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006F WRM_ERR_ID_VALUE                | The specified name contains characters that are invalid. The name cannot start   |
+	//	|                                            | with a hyphen ("-"), cannot contain spaces, and cannot contain any of the        |
+	//	|                                            | following characters: \ / ? * | : < > " , ;                                      |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER       | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                            | be processed.<107>                                                               |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF00C9 WRM_ERR_POLICYID_INVALID        | The specified RAP does not exist.                                                |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF00E0 WRM_ERR_WSRM_RESERVED_POLICY    | The specified policy is a built-in policy. It cannot be altered.                 |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF012E WRM_ERR_RESOURCEGROUPID_INVALID | The request has been aborted because the process matching criteria (PMC) name    |
+	//	|                                            | could not be found.                                                              |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMPolicy interface methods are specified in section 3.2.4.7.
 	ModifyPolicy(context.Context, *ModifyPolicyRequest, ...dcerpc.CallOption) (*ModifyPolicyResponse, error)
 
+	// The DeletePolicy method deletes an existing resource policy.
+	//
+	// );
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	|                 RETURN                  |                                                                                  |
+	//	|               VALUE/CODE                |                                   DESCRIPTION                                    |
+	//	|                                         |                                                                                  |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                         | Operation successful.                                                            |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                 | One or more arguments are invalid.                                               |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006F WRM_ERR_ID_VALUE             | The specified name contains characters that are invalid. The name cannot start   |
+	//	|                                         | with a hyphen ("-"), cannot contain spaces, and cannot contain any of the        |
+	//	|                                         | following characters: \ / ? * | : < > " , ;                                      |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF00CF WRM_ERR_IS_CURRENT_POLICY    | This resource allocation policy (RAP) is being used by WSRM and cannot be        |
+	//	|                                         | deleted.                                                                         |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF00E0 WRM_ERR_WSRM_RESERVED_POLICY | The specified policy is a built-in policy. It cannot be altered.                 |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF00E7 WRM_ERR_DELETING_POLICY      | The specified policy could not be deleted. A policy cannot be deleted if it is a |
+	//	|                                         | member of one or more conditional policies.                                      |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER    | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                         | be processed. Windows returns this value if the XML data is corrupt.             |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF00C9 WRM_ERR_POLICYID_INVALID     | The specified RAP does not exist.                                                |
+	//	+-----------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMPolicy interface methods are specified in section 3.2.4.7.
 	DeletePolicy(context.Context, *DeletePolicyRequest, ...dcerpc.CallOption) (*DeletePolicyResponse, error)
 
+	// The RenameAllocationPolicy method renames an existing resource allocation policy
+	// (RAP).
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                   RETURN                   |                                                                                  |
+	//	|                 VALUE/CODE                 |                                   DESCRIPTION                                    |
+	//	|                                            |                                                                                  |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                            | Operation successful.                                                            |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                    | One or more arguments are invalid.                                               |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006F WRM_ERR_ID_VALUE                | The specified name contains characters that are invalid. The name cannot start   |
+	//	|                                            | with a hyphen ("-"), cannot contain spaces, and cannot contain any of the        |
+	//	|                                            | following characters: \ / ? * | : < > " , ;                                      |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF00C8 WRM_ERR_TOO_LONG_POLICY_ID      | The request has been aborted, because the RAP name has exceeded an               |
+	//	|                                            | implementation-defined limit.<108>                                               |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF00C9 WRM_ERR_POLICYID_INVALID        | The specified RAP does not exist.                                                |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF00CA WRM_ERR_POLICYID_ALREADY_EXISTS | A RAP with the specified name already exists.                                    |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF00CB WRM_ERR_POLICYID_RESERVED_WORD  | The specified RAP name is a reserved word used by WSRM and cannot be used as     |
+	//	|                                            | a name. Reserved words for RAPs are "current", "none", "\" and "Residual".       |
+	//	|                                            | Reserved words are case-insensitive.                                             |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF00E0 WRM_ERR_WSRM_RESERVED_POLICY    | The specified policy is a built-in policy. It cannot be altered.                 |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER       | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                            | be processed.<109>                                                               |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF00E5 WRM_ERR_RENAME_ACTIVE_POLICY    | The specified RAP is being used by WSRM and cannot be renamed.                   |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMPolicy interface methods are specified in section 3.2.4.7.
 	RenameAllocationPolicy(context.Context, *RenameAllocationPolicyRequest, ...dcerpc.CallOption) (*RenameAllocationPolicyResponse, error)
 
+	// The MoveBefore method moves a specified resource group to a location just before
+	// a reference resource group.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------------+------------------------------------------------------------------+
+	//	|                   RETURN                   |                                                                  |
+	//	|                 VALUE/CODE                 |                           DESCRIPTION                            |
+	//	|                                            |                                                                  |
+	//	+--------------------------------------------+------------------------------------------------------------------+
+	//	+--------------------------------------------+------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                            | Operation successful.                                            |
+	//	+--------------------------------------------+------------------------------------------------------------------+
+	//	| 0xC1FF012E WRM_ERR_RESOURCEGROUPID_INVALID | The specified process matching criteria (PMC) does not exist.    |
+	//	+--------------------------------------------+------------------------------------------------------------------+
+	//	| 0xC1FF00C9 WRM_ERR_POLICYID_INVALID        | The specified resource allocation policy does not exist.         |
+	//	+--------------------------------------------+------------------------------------------------------------------+
+	//	| 0xC1FF00E0 WRM_ERR_WSRM_RESERVED_POLICY    | The specified policy is a built-in policy. It cannot be altered. |
+	//	+--------------------------------------------+------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                    | One or more arguments are invalid.                               |
+	//	+--------------------------------------------+------------------------------------------------------------------+
+	//
+	// Additional IWRMPolicy interface methods are specified in section 3.2.4.7.
 	MoveBefore(context.Context, *MoveBeforeRequest, ...dcerpc.CallOption) (*MoveBeforeResponse, error)
 
+	// The MoveAfter method moves a specified resource group to a location just after a
+	// reference resource group.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------------+------------------------------------------------------------------+
+	//	|                   RETURN                   |                                                                  |
+	//	|                 VALUE/CODE                 |                           DESCRIPTION                            |
+	//	|                                            |                                                                  |
+	//	+--------------------------------------------+------------------------------------------------------------------+
+	//	+--------------------------------------------+------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                            | Operation successful.                                            |
+	//	+--------------------------------------------+------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                    | One or more arguments are invalid.                               |
+	//	+--------------------------------------------+------------------------------------------------------------------+
+	//	| 0xC1FF00E0 WRM_ERR_WSRM_RESERVED_POLICY    | The specified policy is a built-in policy. It cannot be altered. |
+	//	+--------------------------------------------+------------------------------------------------------------------+
+	//	| 0xC1FF00C9 WRM_ERR_POLICYID_INVALID        | The specified resource allocation policy does not exist.         |
+	//	+--------------------------------------------+------------------------------------------------------------------+
+	//	| 0xC1FF012E WRM_ERR_RESOURCEGROUPID_INVALID | The specified process matching criteria (PMC) does not exist.    |
+	//	+--------------------------------------------+------------------------------------------------------------------+
+	//
+	// Additional IWRMPolicy interface methods are specified in section 3.2.4.7.
 	MoveAfter(context.Context, *MoveAfterRequest, ...dcerpc.CallOption) (*MoveAfterResponse, error)
 
+	// The SetCalDefaultPolicyName method stores the name of the default resource allocation
+	// policy (RAP) in the registry.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN                |                                                                                  |
+	//	|             VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                     |                                                                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                     | Operation successful.                                                            |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG             | One or more arguments are invalid.                                               |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF00C9 WRM_ERR_POLICYID_INVALID | The request has been aborted because the specified resource allocation policy    |
+	//	|                                     | does not exist.                                                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006F WRM_ERR_ID_VALUE         | The specified name contains characters that are invalid. The name cannot start   |
+	//	|                                     | with a hyphen ("-"), cannot contain spaces, and cannot contain any of the        |
+	//	|                                     | following characters: \ / ? * | : < > " , ;                                      |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMPolicy interface methods are specified in section 3.2.4.7.
 	SetCALDefaultPolicyName(context.Context, *SetCALDefaultPolicyNameRequest, ...dcerpc.CallOption) (*SetCALDefaultPolicyNameResponse, error)
 
+	// The GetCalDefaultPolicyName method used to get the name of the default resource allocation
+	// policy (RAP).
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+---------------------------+--------------------------------------------------------------------------+
+	//	|          RETURN           |                                                                          |
+	//	|        VALUE/CODE         |                               DESCRIPTION                                |
+	//	|                           |                                                                          |
+	//	+---------------------------+--------------------------------------------------------------------------+
+	//	+---------------------------+--------------------------------------------------------------------------+
+	//	| 0xC1FF038F WRM_NO_DEF_RAP | The WSRM server does not have a default resource allocation policy.<110> |
+	//	+---------------------------+--------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK           | Operation successful.                                                    |
+	//	+---------------------------+--------------------------------------------------------------------------+
+	//
+	// Additional IWRMPolicy interface methods are specified in section 3.2.4.7.
 	GetCALDefaultPolicyName(context.Context, *GetCALDefaultPolicyNameRequest, ...dcerpc.CallOption) (*GetCALDefaultPolicyNameResponse, error)
 
+	// The GetProcessList method returns a list of processes for a specified policy.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN                |                                                                                  |
+	//	|             VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                     |                                                                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                     | Operation successful.                                                            |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG             | One or more arguments are invalid.                                               |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006F WRM_ERR_ID_VALUE         | The specified name contains characters that are not valid. The name cannot       |
+	//	|                                     | start with a hyphen ("-"), cannot contain spaces, and cannot contain any of the  |
+	//	|                                     | following characters: \ / ? * | : < > " , ;                                      |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF00C9 WRM_ERR_POLICYID_INVALID | The specified resource allocation policy does not exist.                         |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMPolicy interface methods are specified in section 3.2.4.7.
 	GetProcessList(context.Context, *GetProcessListRequest, ...dcerpc.CallOption) (*GetProcessListResponse, error)
 
+	// The GetCurrentPolicy method returns the current resource policy.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IWRMPolicy interface methods are specified in section 3.2.4.7.
 	GetCurrentPolicy(context.Context, *GetCurrentPolicyRequest, ...dcerpc.CallOption) (*GetCurrentPolicyResponse, error)
 
+	// The SetCurrentPolicy method sets the current resource policy to a specified resource
+	// policy by name.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	|               RETURN                |                                                                                  |
+	//	|             VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                     |                                                                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                     | Operation successful.                                                            |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006F WRM_ERR_ID_VALUE         | The specified name contains characters that are not valid. The name cannot       |
+	//	|                                     | start with a hyphen ("-"), cannot contain spaces, and cannot contain any of the  |
+	//	|                                     | following characters: \ / ? * | : < > " , ;                                      |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG             | One or more arguments are invalid.                                               |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF00C9 WRM_ERR_POLICYID_INVALID | The specified RAP does not exist.                                                |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMPolicy interface methods are specified in section 3.2.4.7.
 	SetCurrentPolicy(context.Context, *SetCurrentPolicyRequest, ...dcerpc.CallOption) (*SetCurrentPolicyResponse, error)
 
+	// The GetCurrentStateAndActivePolicyName method returns the name of the current resource
+	// policy and the management state in which the WSRM management service is currently
+	// available.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IWRMPolicy interface methods are specified in section 3.2.4.7.
 	GetCurrentStateAndActivePolicyName(context.Context, *GetCurrentStateAndActivePolicyNameRequest, ...dcerpc.CallOption) (*GetCurrentStateAndActivePolicyNameResponse, error)
 
+	// The GetConditionalPolicy function returns conditions for a specified conditional
+	// policy.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------+------------------------------------------------------------------------------+
+	//	|         RETURN          |                                                                              |
+	//	|       VALUE/CODE        |                                 DESCRIPTION                                  |
+	//	|                         |                                                                              |
+	//	+-------------------------+------------------------------------------------------------------------------+
+	//	+-------------------------+------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK         | Operation successful.                                                        |
+	//	+-------------------------+------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG | One or more arguments are invalid or the specified policy name is not found. |
+	//	+-------------------------+------------------------------------------------------------------------------+
+	//
+	// Additional IWRMPolicy interface methods are specified in section 3.2.4.7.
 	GetConditionalPolicy(context.Context, *GetConditionalPolicyRequest, ...dcerpc.CallOption) (*GetConditionalPolicyResponse, error)
 
+	// The SetConditionalPolicy method loads specified conditions into the conditional policy,
+	// which contains the conditions and the respective SwitchToPolicy element values. When
+	// a specified condition occurs and the management mode is MANUAL_ACTIVE_POLICY, WSRM
+	// MUST start managing resources using the policy specified by the corresponding SwitchToPolicy
+	// element value.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------+------------------------------------+
+	//	|         RETURN          |                                    |
+	//	|       VALUE/CODE        |            DESCRIPTION             |
+	//	|                         |                                    |
+	//	+-------------------------+------------------------------------+
+	//	+-------------------------+------------------------------------+
+	//	| 0x00000000 S_OK         | Operation successful.              |
+	//	+-------------------------+------------------------------------+
+	//	| 0x80070057 E_INVALIDARG | One or more arguments are invalid. |
+	//	+-------------------------+------------------------------------+
+	//
+	// Additional IWRMPolicy interface methods are specified in section 3.2.4.7.
 	SetConditionalPolicy(context.Context, *SetConditionalPolicyRequest, ...dcerpc.CallOption) (*SetConditionalPolicyResponse, error)
 
 	// AlterContext alters the client context.
@@ -657,8 +1030,10 @@ func (o *xxx_GetPolicyInfoOperation) UnmarshalNDRResponse(ctx context.Context, w
 // GetPolicyInfoRequest structure represents the GetPolicyInfo operation request
 type GetPolicyInfoRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PolicyName *oaut.String   `idl:"name:bstrPolicyName" json:"policy_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrPolicyName: The name of the policy to get. If the string value is "\", this method
+	// returns a list of all allocation policies.
+	PolicyName *oaut.String `idl:"name:bstrPolicyName" json:"policy_name"`
 }
 
 func (o *GetPolicyInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPolicyInfoOperation) *xxx_GetPolicyInfoOperation {
@@ -695,8 +1070,11 @@ func (o *GetPolicyInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetPolicyInfoResponse structure represents the GetPolicyInfo operation response
 type GetPolicyInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PolicyInfo *oaut.String   `idl:"name:pbstrPolicyInfo" json:"policy_info"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrPolicyInfo: A pointer to a string that returns the policy specified by bstrPolicyName,
+	// in the form of a Policy element (section 2.2.5.21). For an example, see the Policy
+	// example (section 4.2.19).
+	PolicyInfo *oaut.String `idl:"name:pbstrPolicyInfo" json:"policy_info"`
 	// Return: The GetPolicyInfo return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -901,8 +1279,11 @@ func (o *xxx_CreatePolicyOperation) UnmarshalNDRResponse(ctx context.Context, w 
 // CreatePolicyRequest structure represents the CreatePolicy operation request
 type CreatePolicyRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PolicyInfo *oaut.String   `idl:"name:bstrPolicyInfo" json:"policy_info"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrPolicyInfo: A string that specifies the new policy to be created in the form
+	// of a Policy element (section 2.2.5.21). For an example, see Policy Example (section
+	// 4.2.19).
+	PolicyInfo *oaut.String `idl:"name:bstrPolicyInfo" json:"policy_info"`
 }
 
 func (o *CreatePolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_CreatePolicyOperation) *xxx_CreatePolicyOperation {
@@ -1163,9 +1544,31 @@ func (o *xxx_ModifyPolicyOperation) UnmarshalNDRResponse(ctx context.Context, w 
 // ModifyPolicyRequest structure represents the ModifyPolicy operation request
 type ModifyPolicyRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PolicyInfo *oaut.String   `idl:"name:bstrPolicyInfo" json:"policy_info"`
-	Overwrite  bool           `idl:"name:bOverwrite" json:"overwrite"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrPolicyInfo: A string that contains the policy to modify, in the form of a Policy
+	// element (section 2.2.5.21). For an example, see Policy example (section 4.2.19).
+	PolicyInfo *oaut.String `idl:"name:bstrPolicyInfo" json:"policy_info"`
+	// bOverwrite: A Boolean value that specifies whether to ignore the timestamp of the
+	// specified policy when validating.
+	//
+	// A timestamp MUST be defined inside a common node at the root level of an XML element,
+	// as shown in the Calendar example (section 4.2.6). The format of a timestamp is specified
+	// in section 2.2.1.4.
+	//
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	|                  |                                                                                  |
+	//	|      VALUE       |                                     MEANING                                      |
+	//	|                  |                                                                                  |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| FALSE 0x00000000 | The timestamp of the new policy MUST specify a time that is later than or equal  |
+	//	|                  | to the timestamp of any modifications made to a policy object on the server.     |
+	//	|                  | Otherwise, the modification MUST fail, and WRM_ERR_OLD_INFORMATION MUST be       |
+	//	|                  | returned.                                                                        |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| TRUE 0x00000001  | The policy is validated and modified without checking the timestamp.             |
+	//	+------------------+----------------------------------------------------------------------------------+
+	Overwrite bool `idl:"name:bOverwrite" json:"overwrite"`
 }
 
 func (o *ModifyPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_ModifyPolicyOperation) *xxx_ModifyPolicyOperation {
@@ -1407,8 +1810,9 @@ func (o *xxx_DeletePolicyOperation) UnmarshalNDRResponse(ctx context.Context, w 
 // DeletePolicyRequest structure represents the DeletePolicy operation request
 type DeletePolicyRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PolicyName *oaut.String   `idl:"name:bstrPolicyName" json:"policy_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrPolicyName: The name of the resource policy to be deleted.
+	PolicyName *oaut.String `idl:"name:bstrPolicyName" json:"policy_name"`
 }
 
 func (o *DeletePolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePolicyOperation) *xxx_DeletePolicyOperation {
@@ -1697,9 +2101,13 @@ func (o *xxx_RenameAllocationPolicyOperation) UnmarshalNDRResponse(ctx context.C
 // RenameAllocationPolicyRequest structure represents the RenameAllocationPolicy operation request
 type RenameAllocationPolicyRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This          *dcom.ORPCThis `idl:"name:This" json:"this"`
-	NewPolicyName *oaut.String   `idl:"name:bstrNewPolicyName" json:"new_policy_name"`
-	OldPolicyName *oaut.String   `idl:"name:bstrOldPolicyName" json:"old_policy_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrNewPolicyName: The new policy name that replaces the old one.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
+	NewPolicyName *oaut.String `idl:"name:bstrNewPolicyName" json:"new_policy_name"`
+	// bstrOldPolicyName: The old policy name to be replaced.
+	OldPolicyName *oaut.String `idl:"name:bstrOldPolicyName" json:"old_policy_name"`
 }
 
 func (o *RenameAllocationPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_RenameAllocationPolicyOperation) *xxx_RenameAllocationPolicyOperation {
@@ -2035,10 +2443,13 @@ func (o *xxx_MoveBeforeOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 // MoveBeforeRequest structure represents the MoveBefore operation request
 type MoveBeforeRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PolicyName                 *oaut.String   `idl:"name:bstrPolicyName" json:"policy_name"`
-	ResourceGroupName          *oaut.String   `idl:"name:bstrResourceGroupName" json:"resource_group_name"`
-	ReferenceResourceGroupName *oaut.String   `idl:"name:bstrRefResourceGroupName" json:"reference_resource_group_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrPolicyName: The name of the policy in which the resource group is to be moved.
+	PolicyName *oaut.String `idl:"name:bstrPolicyName" json:"policy_name"`
+	// bstrResourceGroupName: The name of the resource group to be moved.
+	ResourceGroupName *oaut.String `idl:"name:bstrResourceGroupName" json:"resource_group_name"`
+	// bstrRefResourceGroupName: The name of the reference resource group.
+	ReferenceResourceGroupName *oaut.String `idl:"name:bstrRefResourceGroupName" json:"reference_resource_group_name"`
 }
 
 func (o *MoveBeforeRequest) xxx_ToOp(ctx context.Context, op *xxx_MoveBeforeOperation) *xxx_MoveBeforeOperation {
@@ -2376,10 +2787,15 @@ func (o *xxx_MoveAfterOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 // MoveAfterRequest structure represents the MoveAfter operation request
 type MoveAfterRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PolicyName                 *oaut.String   `idl:"name:bstrPolicyName" json:"policy_name"`
-	ResourceGroupName          *oaut.String   `idl:"name:bstrResourceGroupName" json:"resource_group_name"`
-	ReferenceResourceGroupName *oaut.String   `idl:"name:bstrRefResourceGroupName" json:"reference_resource_group_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrPolicyName: The name of the policy in which resource group is to be moved.
+	//
+	// If this parameter is NULL, E_INVALIDARG MUST be returned.
+	PolicyName *oaut.String `idl:"name:bstrPolicyName" json:"policy_name"`
+	// bstrResourceGroupName: The name of the resource group to be moved.
+	ResourceGroupName *oaut.String `idl:"name:bstrResourceGroupName" json:"resource_group_name"`
+	// bstrRefResourceGroupName: The name of the reference resource group.
+	ReferenceResourceGroupName *oaut.String `idl:"name:bstrRefResourceGroupName" json:"reference_resource_group_name"`
 }
 
 func (o *MoveAfterRequest) xxx_ToOp(ctx context.Context, op *xxx_MoveAfterOperation) *xxx_MoveAfterOperation {
@@ -2625,8 +3041,9 @@ func (o *xxx_SetCALDefaultPolicyNameOperation) UnmarshalNDRResponse(ctx context.
 // SetCALDefaultPolicyNameRequest structure represents the SetCalDefaultPolicyName operation request
 type SetCALDefaultPolicyNameRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This              *dcom.ORPCThis `idl:"name:This" json:"this"`
-	DefaultPolicyName *oaut.String   `idl:"name:bstrDefaultPolicyName" json:"default_policy_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrDefaultPolicyName: The name of the policy to be used as the default policy.
+	DefaultPolicyName *oaut.String `idl:"name:bstrDefaultPolicyName" json:"default_policy_name"`
 }
 
 func (o *SetCALDefaultPolicyNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetCALDefaultPolicyNameOperation) *xxx_SetCALDefaultPolicyNameOperation {
@@ -2903,8 +3320,9 @@ func (o *GetCALDefaultPolicyNameRequest) UnmarshalNDR(ctx context.Context, r ndr
 // GetCALDefaultPolicyNameResponse structure represents the GetCalDefaultPolicyName operation response
 type GetCALDefaultPolicyNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That              *dcom.ORPCThat `idl:"name:That" json:"that"`
-	DefaultPolicyName *oaut.String   `idl:"name:pbstrDefaultPolicyName" json:"default_policy_name"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrDefaultPolicyName: A pointer to a string that returns the default RAP name.
+	DefaultPolicyName *oaut.String `idl:"name:pbstrDefaultPolicyName" json:"default_policy_name"`
 	// Return: The GetCalDefaultPolicyName return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3156,8 +3574,9 @@ func (o *xxx_GetProcessListOperation) UnmarshalNDRResponse(ctx context.Context, 
 // GetProcessListRequest structure represents the GetProcessList operation request
 type GetProcessListRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PolicyName *oaut.String   `idl:"name:bstrPolicyName" json:"policy_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrPolicyName: Name of the policy for which a matching process list is to be returned.
+	PolicyName *oaut.String `idl:"name:bstrPolicyName" json:"policy_name"`
 }
 
 func (o *GetProcessListRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProcessListOperation) *xxx_GetProcessListOperation {
@@ -3194,8 +3613,11 @@ func (o *GetProcessListRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetProcessListResponse structure represents the GetProcessList operation response
 type GetProcessListResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ProcessList *oaut.String   `idl:"name:pbstrProcessList" json:"process_list"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrProcessList: A pointer to a string that returns a list of processes in the form
+	// of a ProcessList element (section 2.2.5.23). The data about matching processes is
+	// queried from the operating system to create the ProcessList element.
+	ProcessList *oaut.String `idl:"name:pbstrProcessList" json:"process_list"`
 	// Return: The GetProcessList return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3448,9 +3870,16 @@ func (o *GetCurrentPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // GetCurrentPolicyResponse structure represents the GetCurrentPolicy operation response
 type GetCurrentPolicyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That              *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	CurrentPolicyInfo *oaut.String        `idl:"name:pbstrCurrentPolicyInfo" json:"current_policy_info"`
-	EnumManage        wsrm.ManagementType `idl:"name:enumManage" json:"enum_manage"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrCurrentPolicyInfo: A pointer to a string that returns the current resource policy,
+	// in the form of a Policy element (section 2.2.5.21). For an example, see Policy example
+	// (section 4.2.19). If enumManage is PROFILING, this parameter returns the info of
+	// the policy whose name was specified when setting PROFILING mode using the SetCurrentPolicy
+	// method.
+	CurrentPolicyInfo *oaut.String `idl:"name:pbstrCurrentPolicyInfo" json:"current_policy_info"`
+	// enumManage: A pointer to a MANAGEMENT_TYPE enumeration (section 2.2.3.5) value that
+	// returns the current mode in which the management service is operating.
+	EnumManage wsrm.ManagementType `idl:"name:enumManage" json:"enum_manage"`
 	// Return: The GetCurrentPolicy return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3670,8 +4099,15 @@ func (o *xxx_SetCurrentPolicyOperation) UnmarshalNDRResponse(ctx context.Context
 // SetCurrentPolicyRequest structure represents the SetCurrentPolicy operation request
 type SetCurrentPolicyRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	PolicyName *oaut.String        `idl:"name:bstrPolicyName" json:"policy_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrPolicyName: The name of the policy to become the current resource policy. If
+	// enumManage is PROFILING, the specified policy is used to gather PMC details required
+	// for accounting. The WSRM service categorizes every process based on the PMCs of the
+	// policy and collects data to serve accounting-related queries.
+	PolicyName *oaut.String `idl:"name:bstrPolicyName" json:"policy_name"`
+	// enumManage: The MANAGEMENT_TYPE enumeration (section 2.2.3.5) value that specifies
+	// the current mode in which the management service is operating. This function does
+	// not support calendar mode, so the value CALENDAR_POLICY is not valid for this parameter.
 	EnumManage wsrm.ManagementType `idl:"name:enumManage" json:"enum_manage"`
 }
 
@@ -3964,9 +4400,13 @@ func (o *GetCurrentStateAndActivePolicyNameRequest) UnmarshalNDR(ctx context.Con
 // GetCurrentStateAndActivePolicyNameResponse structure represents the GetCurrentStateAndActivePolicyName operation response
 type GetCurrentStateAndActivePolicyNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That              *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	CurrentPolicyName *oaut.String        `idl:"name:pbstrCurrentPolicyName" json:"current_policy_name"`
-	EnumManage        wsrm.ManagementType `idl:"name:enumManage" json:"enum_manage"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrCurrentPolicyName: A pointer to a string that returns the name of the current
+	// resource policy.
+	CurrentPolicyName *oaut.String `idl:"name:pbstrCurrentPolicyName" json:"current_policy_name"`
+	// enumManage: A pointer to a MANAGEMENT_TYPE enumeration (section 2.2.3.5) value that
+	// returns the mode in which the management service is currently operating.
+	EnumManage wsrm.ManagementType `idl:"name:enumManage" json:"enum_manage"`
 	// Return: The GetCurrentStateAndActivePolicyName return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -4222,8 +4662,10 @@ func (o *xxx_GetConditionalPolicyOperation) UnmarshalNDRResponse(ctx context.Con
 // GetConditionalPolicyRequest structure represents the GetConditionalPolicy operation request
 type GetConditionalPolicyRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PolicyName *oaut.String   `idl:"name:bstrPolicyName" json:"policy_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrPolicyName: The name of the conditional policy for which conditions are to be
+	// returned.<111>
+	PolicyName *oaut.String `idl:"name:bstrPolicyName" json:"policy_name"`
 }
 
 func (o *GetConditionalPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_GetConditionalPolicyOperation) *xxx_GetConditionalPolicyOperation {
@@ -4260,8 +4702,11 @@ func (o *GetConditionalPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 // GetConditionalPolicyResponse structure represents the GetConditionalPolicy operation response
 type GetConditionalPolicyResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	PolicyInfo *oaut.String   `idl:"name:pbstrPolicyInfo" json:"policy_info"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrPolicyInfo: A pointer to a string that returns the resource policy conditions,
+	// in the form of a ConditionalPolicy element (section 2.2.5.12). For an example, see
+	// ConditionalPolicy example (section 4.2.9).
+	PolicyInfo *oaut.String `idl:"name:pbstrPolicyInfo" json:"policy_info"`
 	// Return: The GetConditionalPolicy return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -4468,8 +4913,11 @@ func (o *xxx_SetConditionalPolicyOperation) UnmarshalNDRResponse(ctx context.Con
 // SetConditionalPolicyRequest structure represents the SetConditionalPolicy operation request
 type SetConditionalPolicyRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	PolicyInfo *oaut.String   `idl:"name:bstrPolicyInfo" json:"policy_info"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrPolicyInfo: A string that specifies the conditions to be loaded in the form of
+	// a ConditionalPolicy element (section 2.2.5.12). For an example, see ConditionalPolicy
+	// example (section 4.2.9).
+	PolicyInfo *oaut.String `idl:"name:bstrPolicyInfo" json:"policy_info"`
 }
 
 func (o *SetConditionalPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_SetConditionalPolicyOperation) *xxx_SetConditionalPolicyOperation {

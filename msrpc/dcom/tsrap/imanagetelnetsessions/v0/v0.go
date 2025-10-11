@@ -49,10 +49,36 @@ type ManageTelnetSessionsClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The GetTelnetSessions method is used to query the telnet server for information about
+	// all active telnet sessions.
+	//
+	// Return Values: The server MUST return zero if the method is successful. The server
+	// MUST return 0x01 if processing fails and set output parameters to NULL. These are
+	// in addition to the values that can be returned by the underlying [MS-DCOM] implementation.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// DCOM protocol [MS-DCOM].
 	GetTelnetSessions(context.Context, *GetTelnetSessionsRequest, ...dcerpc.CallOption) (*GetTelnetSessionsResponse, error)
 
+	// The TerminateSession method terminates a telnet session.
+	//
+	// Return Values: The server MUST return zero if the method is successful. The server
+	// MUST return 0x01 if processing fails. These are in addition to the values that can
+	// be returned by the underlying [MS-DCOM] implementation.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// DCOM protocol [MS-DCOM].
 	TerminateSession(context.Context, *TerminateSessionRequest, ...dcerpc.CallOption) (*TerminateSessionResponse, error)
 
+	// The SendMsgToASession method directs the telnet server to send a text message to
+	// the telnet client that initiated the session.
+	//
+	// Return Values: The server MUST return zero if the method is successful. The server
+	// MUST return 0x01 if processing fails. These are in addition to the values that can
+	// be returned by the underlying [MS-DCOM] implementation.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// DCOM protocol [MS-DCOM].
 	SendMessageToASession(context.Context, *SendMessageToASessionRequest, ...dcerpc.CallOption) (*SendMessageToASessionResponse, error)
 
 	// AlterContext alters the client context.
@@ -381,8 +407,10 @@ func (o *GetTelnetSessionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // GetTelnetSessionsResponse structure represents the GetTelnetSessions operation response
 type GetTelnetSessionsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	SessionData *oaut.String   `idl:"name:pszSessionData" json:"session_data"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pszSessionData: A string pointer to PSZSESSIONDATA string that contains information
+	// about telnet sessions in the server.<1>
+	SessionData *oaut.String `idl:"name:pszSessionData" json:"session_data"`
 	// Return: The GetTelnetSessions return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -555,8 +583,12 @@ func (o *xxx_TerminateSessionOperation) UnmarshalNDRResponse(ctx context.Context
 // TerminateSessionRequest structure represents the TerminateSession operation request
 type TerminateSessionRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
-	UniqueID uint32         `idl:"name:dwUniqueId" json:"unique_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// dwUniqueId: The ID of the session. The ID of a session can be obtained by calling
+	// the GetTelnetSessions method or can be user provided. The server MUST ensure that
+	// at any given point in time only one telnet session exists with a particular ID. Refer
+	// to Section 3.1.1 for an abstract data model that the server can maintain.
+	UniqueID uint32 `idl:"name:dwUniqueId" json:"unique_id"`
 }
 
 func (o *TerminateSessionRequest) xxx_ToOp(ctx context.Context, op *xxx_TerminateSessionOperation) *xxx_TerminateSessionOperation {
@@ -811,9 +843,14 @@ func (o *xxx_SendMessageToASessionOperation) UnmarshalNDRResponse(ctx context.Co
 // SendMessageToASessionRequest structure represents the SendMsgToASession operation request
 type SendMessageToASessionRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
-	UniqueID uint32         `idl:"name:dwUniqueId" json:"unique_id"`
-	Message  *oaut.String   `idl:"name:szMsg" json:"message"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// dwUniqueId: The ID of the session. The ID of a session can be obtained using the
+	// GetTelnetSessions method or can be user provided. The server MUST ensure that at
+	// any given point in time only one telnet session exists with a particular ID. Refer
+	// to Section 3.1.1 for an abstract data model that the server can maintain.
+	UniqueID uint32 `idl:"name:dwUniqueId" json:"unique_id"`
+	// szMsg: The string text that has to be sent.
+	Message *oaut.String `idl:"name:szMsg" json:"message"`
 }
 
 func (o *SendMessageToASessionRequest) xxx_ToOp(ctx context.Context, op *xxx_SendMessageToASessionOperation) *xxx_SendMessageToASessionOperation {

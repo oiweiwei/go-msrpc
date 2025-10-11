@@ -1,0 +1,88 @@
+<div class="content"><p>The QUEUE_STATE enumeration defines values that indicate the
+status of an <a href="../ms-mqdmpr/d53d687d-49c4-4b6f-af29-351f7341b423" data-linktype="relative-path">OutgoingQueue</a>.
+The state of an OutgoingQueue is determined and managed by the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a> transfer process.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MQ_QUEUE_STATE_LOCAL_CONNECTION,
+   MQ_QUEUE_STATE_DISCONNECTED,
+   MQ_QUEUE_STATE_WAITING,
+   MQ_QUEUE_STATE_NEEDVALIDATE,
+   MQ_QUEUE_STATE_ONHOLD,
+   MQ_QUEUE_STATE_NONACTIVE,
+   MQ_QUEUE_STATE_CONNECTED,
+   MQ_QUEUE_STATE_DISCONNECTING,
+   MQ_QUEUE_STATE_LOCKED
+ } QUEUE_STATE;
+</pre></div>
+</dd></dl><p>Used by:</p><ul><li><p><span><span> 
+</span></span>get <a href="571198d0-5813-455d-b041-6366cd521337" data-linktype="relative-path">IMSMQOutgoingQueueManagement::State</a></p>
+</li></ul><p>The QUEUE_STATE is set to MQ_QUEUE_STATE_LOCAL_CONNECTION if
+the destination queue is local. Otherwise, enumeration values for QUEUE_STATE
+correspond to the enumeration values for OutgoingQueue.<b>State</b>, as shown
+in the following table:</p><table><thead>
+  <tr>
+   <th>
+   <p>QUEUE_STATE</p>
+   </th>
+   <th>
+   <p>OutgoingQueue.State</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQ_QUEUE_STATE_DISCONNECTED</p>
+  </td>
+  <td>
+  <p>Disconnected</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_QUEUE_STATE_WAITING</p>
+  </td>
+  <td>
+  <p>Waiting</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_QUEUE_STATE_NEEDVALIDATE</p>
+  </td>
+  <td>
+  <p>NeedValidation</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_QUEUE_STATE_ONHOLD</p>
+  </td>
+  <td>
+  <p>OnHold</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_QUEUE_STATE_NONACTIVE</p>
+  </td>
+  <td>
+  <p>Inactive</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_QUEUE_STATE_CONNECTED</p>
+  </td>
+  <td>
+  <p>Connected</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_QUEUE_STATE_DISCONNECTING</p>
+  </td>
+  <td>
+  <p>Disconnecting</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_QUEUE_STATE_LOCKED</p>
+  </td>
+  <td>
+  <p>Locked</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

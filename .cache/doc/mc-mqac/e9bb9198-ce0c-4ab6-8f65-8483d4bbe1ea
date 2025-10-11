@@ -1,0 +1,31 @@
+<div class="content"><p>The BytesInAllQueues method is received by the server in an
+RPC_REQUEST packet. In response, the server MUST return the number of message
+bytes that are currently stored in all <a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">Queue</a>s
+of the represented <a href="../ms-mqdmpr/9adb2d90-c63b-43c7-9b9c-804ab96a57d5" data-linktype="relative-path">QueueManager</a>.QueueCollection.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT BytesInAllQueues(
+   [out, retval] VARIANT* pvBytesInAllQueues
+ );
+</pre></div>
+</dd></dl><p><b>pvBytesInAllQueues: </b>A pointer to a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_a3af3eaf-64b7-499b-a95f-193cd4c27812" data-linktype="relative-path">VARIANT</a> that, when
+successfully completed, contains a 64-bit integer (VT_I8) that specifies (in
+bytes) the amount of data stored in all Queues of the represented
+QueueManager.QueueCollection.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>ComputerName</i> instance variable is NULL:</p>
+<ul><li><p><span><span>  </span></span>Set
+the <i>pvBytesInAllQueues</i> output variable to the sum of all the
+Queue.TotalBytes of the. Local QueueManager.QueueCollection.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST generate a QMMgmt Get Info event with the following inputs:</p>
+<ul><li><p><span><span> 
+</span></span>iPropID = PROPID_MGMT_MSMQ_BYTES_IN_ALL_QUEUES</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the <i>rStatus</i> return value is not equal to MQ_OK (0x00000000), the server
+MUST return <i>rStatus</i> and MUST take no further action. Otherwise, the <i>pvBytesInAllQueues</i>
+output variable MUST be set to the value of the returned <i>rPropVar</i>.</p>
+</li></ul></li></ul></div>

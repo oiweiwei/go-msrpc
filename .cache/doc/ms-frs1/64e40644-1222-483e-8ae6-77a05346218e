@@ -1,1 +1,19 @@
-<div class="content"></div>
+<div class="content"><p>The structure of the COMM_VVECTOR packet element is as
+follows:</p><dl>
+<dd>
+<div><pre> typedef struct _COMM_VVECTOR {
+   USHORT CommType;
+   ULONG Length;
+   ULONG DataLength;
+   GVSN Data;
+ } COMM_VVECTOR,
+  *PCOMM_VVECTOR;
+</pre></div>
+</dd></dl><p><b>CommType:</b>   A 16-bit, unsigned
+integer that indicates the type of this <a href="194f8fff-d903-44b7-9530-c66f5366f8c7" data-linktype="relative-path">COMM_PACKET</a> element. MUST
+be set to 0x0007.</p><p><b>Length:</b>   A 32-bit, unsigned integer
+that indicates the length in bytes of the data following the Length field. MUST
+be 0x0000001C.</p><p><b>DataLength:</b>   A 32-bit, unsigned
+integer that indicates the length in bytes of the data in the <b>Data</b>
+field. MUST be 0x000000018.</p><p><b>Data:</b>   The <a href="ae220d39-5afc-43a8-b808-8d1c2e62b101" data-linktype="relative-path">GVSN</a> structure, as
+specified in section 2.2.3.1, being transmitted. </p></div>

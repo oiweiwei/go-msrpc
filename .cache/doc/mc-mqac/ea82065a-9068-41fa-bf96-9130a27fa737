@@ -1,0 +1,40 @@
+<div class="content"><p>The MachineNameOfMachineId method is received by the server
+in an RPC_REQUEST packet. In response, the server MUST return a string that
+contains the <a href="../ms-mqdmpr/9adb2d90-c63b-43c7-9b9c-804ab96a57d5" data-linktype="relative-path">QueueManager</a>.<i>ComputerName</i>
+of the QueueManager that is identified by the <i>bstrGuid</i> input parameter.</p><dl>
+<dd>
+<div><pre> HRESULT MachineNameOfMachineId(
+   [in] BSTR bstrGuid,
+   [out, retval] BSTR* pbstrMachineName
+ );
+</pre></div>
+</dd></dl><p><b>bstrGuid: </b>A <a href="../ms-oaut/1c9d2cfc-cf7d-4f4b-95bf-584be5defd81" data-linktype="relative-path">BSTR</a>
+that specifies an identifier for the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_9a7bc8b3-3374-4608-8f73-be20a90b898b" data-linktype="relative-path">computer name</a>, in the <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a>
+format. The <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST
+accept GUIDs with or without surrounding curly braces ({ }).</p><p><b>pbstrMachineName: </b>A pointer to a <a href="../ms-dtyp/692a42a9-06ce-4394-b9bc-5d2a50440168" data-linktype="relative-path">BSTR</a>
+that after successful completion, contains the computer name in the DNS or
+Universal Naming Convention (UNC) format.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.<a id="Appendix_A_Target_12"></a><a aria-label="Product behavior note 12" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_12" data-linktype="relative-path">&lt;12&gt;</a></p><p>When processing this call, the server MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>Retrieve the QueueManager, referred to here as
+DirectoryQueueManager, from the directory as follows:</p>
+</li><li><p><span><span> 
+</span></span>Generate a <a href="../ms-mqdmpr/314c2287-dc0b-4079-b24a-550817c9e9ae" data-linktype="relative-path">Read
+Directory</a> (<a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a>
+section 3.1.7.1.20) event with the following inputs, where <i>bstrGuid</i> is the
+<i>bstrGuid</i> input parameter:</p>
+<ul><li><p><span><span>  </span></span><i>iDirectoryObjectType</i>
+= QueueManager.</p>
+</li><li><p><span><span>  </span></span><i>iFilter</i>
+= &#34;Identifier&#34; EQUALS <i>bstrGuid</i>.</p>
+</li><li><p><span><span>  </span></span><i>iAttributeList</i>
+= a list consisting of two ADM attribute names, <b>Identifier</b> and <b>ComputerName</b>.
+Set <b>Identifier</b> to QueueManager.Identifier.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>rStatus</i> return value is not equal to <b>DirectoryOperationResult.Success:</b></p>
+<ul><li><p><span><span>  </span></span>Return
+an error HRESULT, and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Set the <i>pbstrMachineName</i> output variable to <b>ComputerName</b>.</p>
+</li></ul></div>

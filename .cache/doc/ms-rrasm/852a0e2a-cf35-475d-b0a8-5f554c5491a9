@@ -1,1 +1,170 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPX_TRAFFIC_FILTER_INFO</b> structure MAY<a id="Appendix_A_Target_89"></a><a aria-label="Product behavior note 89" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_89" data-linktype="relative-path">&lt;89&gt;</a> be used to specify the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_ffbe7b55-8e84-4f41-a18d-fc29191a4cda" data-linktype="relative-path">filter</a> data for an IPX
+interface. When this structure is encapsulated in <a href="c99955ec-6d18-4665-8d5b-e124de63a368" data-linktype="relative-path"><b>RTR_TOC_ENTRY (section 2.2.1.2.4)</b></a>,
+the <b>InfoType</b> value MUST be 0x00000006 or 0x0000000C. If the value of <b>InfoType</b>
+is 0x00000006, the filter is applied to incoming traffic, if the value of <b>InfoType</b>
+is 0x0000000C, the filter is applied to outgoing traffic.  </p><dl>
+<dd>
+<div><pre> typedef struct _IPX_TRAFFIC_FILTER_INFO {
+   ULONG FilterDefinition;
+   UCHAR DestinationNetwork[4];
+   UCHAR DestinationNetworkMask[4];
+   UCHAR DestinationNode[6];
+   UCHAR DestinationSocket[2];
+   UCHAR SourceNetwork[4];
+   UCHAR SourceNetworkMask[4];
+   UCHAR SourceNode[6];
+   UCHAR SourceSocket[2];
+   UCHAR  PacketType;
+ } IPX_TRAFFIC_FILTER_INFO,
+  *PIPX_TRAFFIC_FILTER_INFO;
+</pre></div>
+</dd></dl><p><b>FilterDefinition: </b>Flags that specify relevant
+IPX address fields to filter on. The values MUST be one of the following
+values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPX_TRAFFIC_FILTER_ON_SRCNET</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Apply filter on source network.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_TRAFFIC_FILTER_ON_SRCNODE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Apply filter on source node.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_TRAFFIC_FILTER_ON_SRCSOCKET</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Apply filter on source socket.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_TRAFFIC_FILTER_ON_DSTNET</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Apply filter on destination network.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_TRAFFIC_FILTER_ON_DSTNODE</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Apply filter on destination node.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_TRAFFIC_FILTER_ON_DSTSOCKET</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>Apply filter on destination socket.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_TRAFFIC_FILTER_ON_PKTTYPE</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>Apply filter based on packet type.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPX_TRAFFIC_FILTER_LOG_MATCHES</p>
+  <p>0x80000000</p>
+  </td>
+  <td>
+  <p>Apply filters based on log matches.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>DestinationNetwork: </b>The <b>DestinationNetwork</b>
+field identifies the network (a segment of the IPX internetwork bounded by the
+IPX routers) to which an IPX node is connected.</p><p><b>DestinationNetworkMask: </b>The mask that MUST be
+logically ANDed with <b>DestinationNetwork</b>. </p><p><b>DestinationNode: </b>Identifies a node on an IPX
+network. The 6-byte fields can be used to store physical addresses, also known
+as MAC addresses.</p><p><b>DestinationSocket: </b>Identifies the software
+process addresses of the destination and source applications respectively. With
+multiple processes communicating between the same two computers, the IPX
+network and node numbers are the same. The IPX socket number is a software
+process identifier that is used to forward the IPX payload to the proper
+process.</p><p><b>SourceNetwork: </b>Identifies the network (a
+segment of the IPX internetwork bounded by the IPX routers) to which an IPX
+node is connected.</p><p><b>SourceNetworkMask: </b>The mask that MUST be
+logically ANDed with <b>SourceNetwork</b>.</p><p><b>SourceNode: </b>Identifies a node on an IPX
+network. The 6-byte fields can be used to store physical addresses, also known
+as MAC addresses.</p><p><b>SourceSocket: </b>Identifies the software process
+addresses of the destination and source applications respectively. With
+multiple processes communicating between the same two computers, the IPX
+network and node numbers are the same. The IPX socket number is a software
+process identifier that is used to forward the IPX payload to the proper
+process.</p><p><b>PacketType: </b>The <b>PacketType</b> field
+indicates the contents of the payload portion of the IPX packet. It allows
+several client protocols to use the IPX and be identified by the IPX router.
+The following table lists some common defined values of the IPX packet type.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>Unspecified</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>RIP</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0004</p>
+  </td>
+  <td>
+  <p>SAP/Normal IPX</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0005</p>
+  </td>
+  <td>
+  <p>SPX</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0014</p>
+  </td>
+  <td>
+  <p>IPX WAN broadcast (used for NetBIOS over IPX
+  broadcasts)</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

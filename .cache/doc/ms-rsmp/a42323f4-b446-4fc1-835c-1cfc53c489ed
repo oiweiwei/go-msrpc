@@ -1,1 +1,34 @@
-<div class="content"></div>
+<div class="content"><p>The ReleaseNtmsCleanerSlot method removes an existing <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a1f0ab90-f3c0-46b8-9c77-d0d7508ede94" data-linktype="relative-path">slot</a> reservation for a
+cleaning <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a71cfd0c-a569-4544-8127-7ae496bca92b" data-linktype="relative-path">cartridge</a>.</p><dl>
+<dd>
+<div><pre> HRESULT ReleaseNtmsCleanerSlot(
+   [in] LPNTMS_GUID lpLibrary
+ );
+</pre></div>
+</dd></dl><p><b>lpLibrary: </b>A pointer to the identifier of the
+media library from which to remove the slot reservation.</p><dl>
+<dd>
+<p>Upon receiving this message, the server MUST
+validate that <i>lpLibrary</i> is not NULL. If it is NULL, the server MUST
+immediately fail the operation and return ERROR_INVALID_PARAMETER (0x80070057).</p>
+</dd>
+<dd>
+<p>If parameter validation succeeds, the server MUST
+check access rights to the library and verify that the library is enabled and
+online before processing further. If the client does not have the required
+access rights, the server MUST return ERROR_ACCESS_DENIED (0x80070005). If the
+library is disabled, the server MUST return ERROR_RESOURCE_DISABLED
+(0x800710D5). If the library is offline, the server MUST return
+ERROR_LIBRARY_OFFLINE (0x800710D1).</p>
+</dd>
+<dd>
+<p>The ReleaseNtmsCleanerSlot method removes an
+existing slot reservation for a cleaning cartridge. The slot can then be used
+for data cartridges. For the ReleaseNtmsCleanerSlot method to succeed, the slot
+MUST be present and empty. The library MUST also have a slot reserved for
+cleaning.</p>
+</dd>
+<dd>
+<p>On completion of an asynchronous operation,
+notification will be sent with the identifier lpLibrary.</p>
+</dd></dl></div>

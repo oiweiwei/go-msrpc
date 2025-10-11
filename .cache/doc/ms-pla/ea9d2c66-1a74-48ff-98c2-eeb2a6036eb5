@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The Performance Logs and Alerts (PLA) protocol is a set of
+Distributed Component Object Model (DCOM) interfaces (as specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>)
+for logging <a href="f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_e05fc83f-045b-4f29-bea4-c4692b0f950d" data-linktype="relative-path">diagnosis data</a>
+on a remote computer.</p><p>The PLA Protocol allows users to:</p><ul><li><p><span><span> 
+</span></span>Specify the diagnostic data to be collected and logged.</p>
+</li><li><p><span><span> 
+</span></span>Specify the data retention and reporting policies for the logged
+data.</p>
+</li><li><p><span><span> 
+</span></span>Specify alert conditions.</p>
+</li><li><p><span><span> 
+</span></span>Start, stop, or schedule the collection.</p>
+</li></ul><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are informative.</p></div>

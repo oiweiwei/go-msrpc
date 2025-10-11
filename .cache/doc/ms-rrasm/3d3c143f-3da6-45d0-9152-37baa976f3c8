@@ -1,1 +1,78 @@
-<div class="content"></div>
+<div class="content"><p>The <b>FILTER_DESCRIPTOR_V6</b> structure MUST be used while
+specifying IPv6 <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_ffbe7b55-8e84-4f41-a18d-fc29191a4cda" data-linktype="relative-path">filters</a>.</p><p>This structure is used in the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="927c5bf1-ac91-4325-b945-0d96a58f609b" data-linktype="relative-path"><b>RRouterInterfaceTransportAdd (section 3.1.4.18)</b></a></p>
+</li><li><p><span><span> 
+</span></span><a href="ec9ba293-45e9-4f12-b9af-7e77ec96c90e" data-linktype="relative-path"><b>RRouterInterfaceTransportGetInfo (section 3.1.4.19)</b></a></p>
+</li><li><p><span><span> 
+</span></span><a href="209ba5e7-876e-4406-a05c-65b7e5fb2380" data-linktype="relative-path"><b>RRouterInterfaceTransportSetInfo (section 3.1.4.20)</b></a></p>
+</li><li><p><span><span> 
+</span></span><a href="9829344c-f22b-4d53-946b-20542ec43be4" data-linktype="relative-path"><b>RRouterInterfaceTransportCreate (section 3.1.4.38)</b></a></p>
+</li></ul><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwVersion</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNumFilters</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>faDefaultAction</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>fiFilter
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwVersion (4 bytes): </b>A 32-bit integer in <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_502de58c-ffc0-4dda-8fcb-b152b2c31fba" data-linktype="relative-path">network byte order</a> used to
+specify the version. It MUST be 0x00000001. No other versions are defined.</p><p><b>dwNumFilters (4 bytes): </b>A 32-bit integer in
+network byte order used to specify the number of filters. It MUST be greater
+than 0.</p><p><b>faDefaultAction (4 bytes): </b>A 32-bit integer in
+network byte order used to specify the action for the filter. It MUST be <a href="c5a5872b-86d6-48e3-b71c-83def9d45af4" data-linktype="relative-path"><b>FORWARD_ACTION (section</b></a><span> </span>2.2.1.1.7).</p><p><b>fiFilter (variable): </b>This is defined in <a href="b4493dfb-7e50-4f7a-a684-752c86789846" data-linktype="relative-path"><b>FILTER_INFO_V6 (section</b></a><span> </span>2.2.1.2.8).</p><p>When this structure is used as an embedded structure in <span><b>RTR_TOC_ENTRY </b>(section </span><a href="c99955ec-6d18-4665-8d5b-e124de63a368" data-linktype="relative-path">2.2.1.2.4)</a>, the <b>InfoType</b>
+of <b>RTR_TOC_ENTRY</b> MUST be 0xFFFF0011, 0xFFFF0012, or 0xFFFF0013 to
+specify an IPv6 in filter, an IPv6 out filter, or an IPv6 demand-dial filter
+respectively.<a id="Appendix_A_Target_23"></a><a aria-label="Product behavior note 23" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_23" data-linktype="relative-path">&lt;23&gt;</a></p></div>

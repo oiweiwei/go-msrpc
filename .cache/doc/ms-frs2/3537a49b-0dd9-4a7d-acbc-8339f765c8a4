@@ -1,1 +1,100 @@
-<div class="content"></div>
+<div class="content"><p>The RdcPushSourceNeeds method is used to register requests
+for file ranges on a server.</p><dl>
+<dd>
+<div><pre> DWORD RdcPushSourceNeeds(
+   [in] PFRS_SERVER_CONTEXT serverContext,
+   [in, size_is(needCount)] FRS_RDC_SOURCE_NEED* sourceNeeds,
+   [in, range(0, CONFIG_RDC_NEED_QUEUE_SIZE)] 
+     DWORD needCount
+ );
+</pre></div>
+</dd></dl><p><b>serverContext: </b>The context handle that
+represents the requested file replication operation. The client MUST specify a
+server context that was retrieved by a previously successful call to the <a href="908b4cc2-9915-4e31-84b8-f6b3e09b7c03" data-linktype="relative-path">InitializeFileTransferAsync</a>
+method in which the client set the <i>rdcDesired</i> parameter to TRUE.</p><p><b>sourceNeeds: </b>The pointer to a set of <a href="5cce1f99-a5a6-4b34-b1e1-9a089c1de311" data-linktype="relative-path">FRS_RDC_SOURCE_NEED</a>
+structures that indicate the offsets and lengths of file data that is sent from
+the server to the client.</p><p><b>needCount: </b>The number of FRS_RDC_SOURCE_NEED
+structures pointed to by <i>sourceNeeds</i>.</p><p><b>Return Values: </b>This method MUST return 0 on
+success or a nonzero error code on failure. For protocol purposes all nonzero
+values MUST be treated as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The context is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00002344</p>
+  <p>FRS_ERROR_CONTENTSET_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The content set was not found.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Validating the RDC source needs request:</b> The server
+MUST validate the request by performing the following checks. </p><ul><li><p><span><span> 
+</span></span>If the specified server context was not retrieved by a previously
+successful call to the InitializeFileTransferAsync method, then the server MUST
+fail the call with the ERROR_INVALID_PARAMETER failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the server has already completed transferring the file
+associated with the server context, the server MUST fail the call with an
+implementation-defined failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the specified server context was retrieved via a call to the
+InitializeFileTransferAsync method in which the client set the <i>rdcDesired</i>
+parameter to FALSE, then the server MUST fail the call with an
+implementation-defined failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the specified server context was retrieved via a call to the
+InitializeFileTransferAsync method in which the server set the <b>rdcSignatureLevels</b>
+field to zero in the <i>rdcFileInfo</i> output parameter (see section <a href="7e65da8c-67d7-4235-b019-c630c8ec5711" data-linktype="relative-path">2.2.1.4.11</a>), then the
+server MUST fail the call with an implementation-defined failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the server is not currently participating in the replication
+of the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_064adaf1-86c7-43e5-a157-b0949980181e" data-linktype="relative-path">replicated folder</a>
+that is associated with the specified server context, then the server MUST fail
+the call with the FRS_ERROR_CONTENTSET_NOT_FOUND failure value.</p>
+</li></ul><p><b>Actions Triggered:</b> Upon successfully validating the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_a0d8116e-63f3-418b-afea-ca6258840e92" data-linktype="relative-path">RDC</a> source needs request,
+the server queues up the requested file offset/length pairs, also known as RDC
+source needs. The number of RDC source needs queued by the server MUST NOT
+exceed the value of CONFIG_RDC_NEED_QUEUE_SIZE. The client MAY send multiple
+RdcPushSourceNeeds requests. If the server receives a request that causes the
+total number of RDC source needs already in the queue plus the value of the <i>needCount</i>
+parameter to be greater than the value of CONFIG_RDC_NEED_QUEUE_SIZE, then the
+server MUST fail the request with an implementation-defined failure value. </p><p>The server uses the queued RDC source needs to form a stream
+of data from the marshaled source file. The format of this data stream is
+specified in section <a href="e09dc22a-0008-4af6-a7bf-22560c86d1b3" data-linktype="relative-path">3.2.4.1.12</a>
+and is returned in the buffer supplied by the RdcGetFileData method or the <a href="5b789a80-26b2-469f-812a-4424bf492bc3" data-linktype="relative-path">RdcGetFileDataAsync</a>
+method.</p><p><b>Remarks:</b> If the <i>needSize</i> parameter in
+FRS_RDC_SOURCE_NEED has a value of zero, then the server SHOULD fail the
+request to queue RDC source needs, with an implementation-defined failure
+value.</p><p>If the <i>needCount</i> parameter has a value of zero, then
+the server SHOULD complete the call successfully, or MAY fail the call with an
+implementation-defined failure value.</p><p>If any of the RDC source needs in the <i>sourceNeeds</i>
+buffer specifies a range of data that is not part of the marshaled source file,
+then the server completes this call successfully and will fail the call to the
+RdcGetFileData method or the RdcGetFileDataAsync method when the RDC source
+needs are processed.</p></div>

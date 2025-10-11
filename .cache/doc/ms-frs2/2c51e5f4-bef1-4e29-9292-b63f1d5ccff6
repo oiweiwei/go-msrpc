@@ -1,1 +1,119 @@
-<div class="content"></div>
+<div class="content"><p>The EstablishConnection method establishes an outbound
+connection, uniquely identified by a replication group ID/connection ID pair,
+from a client to a server. An outbound connection to the server is required
+before most other operations can be performed.</p><dl>
+<dd>
+<div><pre> DWORD EstablishConnection(
+   [in] FRS_REPLICA_SET_ID replicaSetId,
+   [in] FRS_CONNECTION_ID connectionId,
+   [in] DWORD downstreamProtocolVersion,
+   [in] DWORD downstreamFlags,
+   [out] DWORD* upstreamProtocolVersion,
+   [out] DWORD* upstreamFlags
+ );
+</pre></div>
+</dd></dl><p><b>replicaSetId: </b>The <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a> of
+the outbound connection&#39;s <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_fcc139c9-86ff-4414-bc66-5f63e4465b6d" data-linktype="relative-path">replication
+group</a> (see the <b>objectGUID</b> attribute specified in section <a href="1454c5ea-ccaa-44d0-a885-9130465ea4bd" data-linktype="relative-path">2.3.5</a>).</p><p><b>connectionId: </b>The GUID of the outbound
+connection (see the <b>objectGUID</b> attribute specified in section <a href="afd3c10a-9783-4df7-ae2b-13e56c37ab03" data-linktype="relative-path">2.3.11</a>) in the specified
+replication group.</p><p><b>downstreamProtocolVersion: </b>Identifies the
+version of the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_8f3c866a-07d2-4921-98ba-f5d376bfdba5" data-linktype="relative-path">DFS-R</a>
+protocol implemented by the client. Currently implemented protocol versions are
+specified in section <a href="6a642c03-6281-47d6-b18f-15f8023f6fc7" data-linktype="relative-path">2.2.1.1.1</a>.</p><p><b>downstreamFlags: </b>This parameter is unused and
+SHOULD be set to 0 by the client.  <a id="Appendix_A_Target_22"></a><a aria-label="Product behavior note 22" href="c43938b1-6e96-48ec-9725-5e5d42089f49#Appendix_A_22" data-linktype="relative-path">&lt;22&gt;</a></p><p><b>upstreamProtocolVersion: </b>Receives the version
+of the DFS-R protocol implemented by the server. Currently implemented protocol
+versions are specified in section 2.2.1.1.1.</p><p><b>upstreamFlags: </b>A flags bitmask. The server
+MUST set the TRANSPORT_SUPPORTS_RDC_SIMILARITY bit flag to 1 if the server
+supports <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_a0d8116e-63f3-418b-afea-ca6258840e92" data-linktype="relative-path">RDC</a> similarity
+(as specified in <a href="../ms-rdc/5b027295-0b63-45b9-8f62-0e49448350d9" data-linktype="relative-path">[MS-RDC]</a>
+section <a href="../ms-rdc/0b4ecd59-8bab-45d0-ad48-42193e0e7c74" data-linktype="relative-path">3.1.5.4</a>).
+Otherwise, the server MUST clear this bitmask (set all bits to 0). The client
+MUST ignore any bit flags other than TRANSPORT_SUPPORTS_RDC_SIMILARITY.</p><p><b>Return Values: </b>The method MUST return 0 on
+success or a nonzero error code on failure. For protocol purposes all nonzero
+values MUST be treated as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000235A</p>
+  <p>FRS_ERROR_INCOMPATIBLE_VERSION</p>
+  </td>
+  <td>
+  <p>The client&#39;s DFS-R protocol version is not compatible
+  with the server&#39;s DFS-R protocol version.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00002342</p>
+  <p>FRS_ERROR_CONNECTION_INVALID</p>
+  </td>
+  <td>
+  <p>The connection is invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Validating the connection request:</b> The server
+validates the connection request by performing the following checks:</p><ul><li><p><span><span> 
+</span></span>If the server is not a member of the specified replication group
+it MUST fail the call with an implementation-defined failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the specified connection does not exist in the specified
+replication group&#39;s configuration and the replication group&#39;s type (see the <b>msDFSR-ReplicationGroupType</b>
+attribute specified in section 2.3.5) is not SYSVOL, then the server MUST fail
+the call with FRS_ERROR_CONNECTION_INVALID.</p>
+</li><li><p><span><span> 
+</span></span>If the replication group&#39;s type is SYSVOL and the specified
+connection does not exist in the specified replication group&#39;s configuration
+and there is no Member object in the specified replication group&#39;s
+configuration, the server MUST fail the request with
+FRS_ERROR_CONNECTION_INVALID.</p>
+</li><li><p><span><span> 
+</span></span>If the replication group&#39;s type is SYSVOL and the client is not a
+domain controller in the same domain as the server, or if the server is not a
+domain controller, then the server MUST fail the call with
+FRS_ERROR_CONNECTION_INVALID.</p>
+</li><li><p><span><span> 
+</span></span>If the specified connection is disabled (see the <b>msDFSR-Enabled</b>
+attribute specified in section 2.3.11) then the server MUST fail the call with
+FRS_ERROR_CONNECTION_INVALID.</p>
+</li><li><p><span><span> 
+</span></span>If the server is not the specified connection&#39;s outbound partner,
+or the client is not the connection&#39;s inbound partner (see the <b>FromServer</b>
+attribute specified in section 2.3.11) then the server MUST fail the call with
+FRS_ERROR_CONNECTION_INVALID.</p>
+</li><li><p><span><span> 
+</span></span>If the client&#39;s protocol version number is 0x00050001, or if the
+client&#39;s protocol&#39;s major version number (see section 2.2.1.1.1) is not equal
+to the server protocol&#39;s major version number, then the server MUST fail the
+call with the FRS_ERROR_INCOMPATIBLE_VERSION failure value.</p>
+</li></ul><p><b>Actions Triggered:</b> Upon successfully validating the
+connection request, the server establishes an outbound connection with the
+client. </p><p>If the specified connection does not exist in the specified
+replication group&#39;s configuration and the replication group&#39;s type is SYSVOL
+and there is a Member object in the specified replication group&#39;s configuration,
+then the server MUST behave as if the replication group&#39;s configuration
+contains an enabled connection in which the server is the connection&#39;s outbound
+partner and the client is the connection&#39;s inbound partner.</p><p>The server MUST ensure that no more than one outbound
+connection for a unique replicaSetId / connectionId pair exists with the client
+at the same time. If an outbound connection with the client already exists for
+the same unique replicaSetId / connectionId pair, the server MUST replace the
+pre-existing connection with a new connection. The pre-existing outbound
+connection MUST be torn down by the server, and all outstanding calls
+associated with the pre-existing connection MUST be completed with an
+implementation-defined failure value.</p></div>

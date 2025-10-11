@@ -1,1 +1,16 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IPMCAST_OIF</b> structure stores the information
+required to send an outgoing IP <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_70b74a6e-db1d-4648-bedd-5a524dfe6396" data-linktype="relative-path">multicast</a> packet.</p><dl>
+<dd>
+<div><pre> typedef struct _MIB_IPMCAST_OIF {
+   DWORD dwOutIfIndex;
+   DWORD dwNextHopAddr;
+   PVOID pvReserved;
+   DWORD dwReserved;
+ } MIB_IPMCAST_OIF,
+  *PMIB_IPMCAST_OIF;
+</pre></div>
+</dd></dl><p><b>dwOutIfIndex: </b>The index of the interface on
+which to send the outgoing IP multicast packet.</p><p><b>dwNextHopAddr: </b>The destination address for the
+outgoing IPv4 multicast packet.</p><p><b>pvReserved: </b>Reserved. This member MUST be
+NULL. </p><p><b>dwReserved: </b>Reserved. This member MUST be zero
+(0).</p></div>

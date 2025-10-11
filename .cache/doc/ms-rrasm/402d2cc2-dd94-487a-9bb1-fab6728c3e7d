@@ -1,1 +1,76 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RTR_INFO_BLOCK_HEADER</b> structure specifies
+information pertaining to the protocol using a set of <a href="c99955ec-6d18-4665-8d5b-e124de63a368" data-linktype="relative-path"><b>RTR_TOC_ENTRY (section 2.2.1.2.4)</b></a>
+structures. These structures are encapsulated by an <b>RTR_INFO_BLOCK_HEADER</b>.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Version</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Size</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TocEntriesCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>TocEntry
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Version (4 bytes): </b>A 32-bit, unsigned integer
+in <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_502de58c-ffc0-4dda-8fcb-b152b2c31fba" data-linktype="relative-path">network byte order</a>
+that MUST be set to 0x00000001. No other versions are defined.</p><p><b>Size (4 bytes): </b>A 32-bit, unsigned integer in
+network byte order that MUST specify the size of the structure in bytes
+including the <b>Version</b>, <b>Size</b>, <b>TocEntriesCount</b>, and entries
+(<b>TocEntry</b>). The size MUST be at least 28 bytes. The total size depends
+on the number and type of the entries. This value MUST be the size of the blob
+represented by the structure. This MUST be the sum of the <b>InfoSize</b> of
+each element of <b>TocEntry</b> and <b>TocEntriesCount</b> times the size of <b>RTR_TOC_ENTRY</b>.</p><p><b>TocEntriesCount (4 bytes): </b>A 32-bit, unsigned
+integer in network byte order that MUST specify the number of entries. It MUST
+be greater than 0.</p><p><b>TocEntry (variable): </b>A list of consecutive
+entries, <b>TocEntriesCount</b> in number, each of which MUST be formatted as
+defined in <b>RTR_TOC_ENTRY</b>.</p></div>

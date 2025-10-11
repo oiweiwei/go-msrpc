@@ -1,1 +1,59 @@
-<div class="content"></div>
+<div class="content"><p>The AsyncPoll method is used to register an asynchronous
+callback, associated with an outbound connection, which the server uses to
+provide <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_b5d43ea0-cf01-4294-b0d8-0b0362d4a3a2" data-linktype="relative-path">version chain
+vectors</a> and notifications of version chain vector changes to the client.</p><dl>
+<dd>
+<div><pre> DWORD AsyncPoll(
+   [in] FRS_CONNECTION_ID connectionId,
+   [out] FRS_ASYNC_RESPONSE_CONTEXT* response
+ );
+</pre></div>
+</dd></dl><p><b>connectionId: </b>The <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a> of
+an outbound connection (see the <b>objectGUID</b> attribute specified in
+section <a href="afd3c10a-9783-4df7-ae2b-13e56c37ab03" data-linktype="relative-path">2.3.11</a>) that
+the client established by a previous call to the <a href="2c51e5f4-bef1-4e29-9292-b63f1d5ccff6" data-linktype="relative-path">EstablishConnection</a>
+method.</p><p><b>response: </b>The <a href="2076fe18-4362-45d4-94f5-5c02439e5c3f" data-linktype="relative-path">FRS_ASYNC_RESPONSE_CONTEXT</a>
+structure that contains the context for the requested poll.</p><p><b>Return Values: </b>This method MUST return 0 on
+success or a nonzero error code on failure. For protocol purposes all nonzero
+values MUST be treated as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Validating the asynchronous poll request:</b> The server
+validates the asynchronous poll request by performing the following checks:</p><ul><li><p><span><span> 
+</span></span>If an outbound connection for the specified connection is not
+established between the client and server (see the EstablishConnection method),
+then the server MUST fail the call with an implementation-defined failure
+value.</p>
+</li></ul><p><b>Actions Triggered:</b> Upon successfully validating the
+asynchronous poll request, the server MUST register the callback with the
+specified outbound connection.</p><p>The server invokes the callback in response to a client call
+to the <a href="dc9cd8a6-826b-414d-83cf-d742367cba9f" data-linktype="relative-path">RequestVersionVector</a>
+method. The conditions under which the callback is invoked are determined by
+the type of the version vector request issued by the client. See the
+RequestVersionVector method specified in section 3.2.4.1.5 for more
+information.</p><p>The client SHOULD NOT issue more than one call to the
+AsyncPoll method for a particular outbound connection without an intervening
+call to the RequestVersionVector method. The server MUST ensure that no more
+than one AsyncPoll callback is registered with an outbound connection at the
+same time. If an AsyncPoll request is already registered with the outbound
+connection, the server MUST replace the pre-existing AsyncPoll callback with
+the new AsyncPoll callback. The pre-existing callback MUST be completed with an
+implementation-defined failure value.</p></div>

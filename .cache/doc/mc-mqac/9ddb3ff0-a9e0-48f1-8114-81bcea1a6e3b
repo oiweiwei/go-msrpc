@@ -1,0 +1,76 @@
+<div class="content"><p>The RELOPS enumeration defines values for the <a href="1f17f54d-e086-4dff-9e86-87c2b0165739" data-linktype="relative-path">MSMQQuery::LookupQueue</a> and
+<a href="ca768a59-b51e-4f8c-a0a8-50613d8f90e0" data-linktype="relative-path">MSMQQuery::LookupQueue_v2</a>
+methods. The values in this enumeration represent comparison operators that are
+used together with the query parameters that are passed to
+MSMQQuery::LookupQueue.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   REL_NOP = 0,
+   REL_EQ,
+   REL_NEQ,
+   REL_LT,
+   REL_GT,
+   REL_LE,
+   REL_GE
+ } RELOPS;
+</pre></div>
+</dd></dl><p>Used by:</p><ul><li><p><span><span> 
+</span></span>IMSMQQuery::LookupQueue</p>
+</li><li><p><span><span> 
+</span></span>IMSMQQuery::LookupQueue_v2</p>
+</li></ul><p>The RELOPS enumeration values, except for REL_NOP,
+correspond to the operators for the attribute-filter expressions defined in <a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a>
+section <a href="../ms-mqdmpr/314c2287-dc0b-4079-b24a-550817c9e9ae" data-linktype="relative-path">3.1.7.1.20</a>,
+as shown in the following table:</p><table><thead>
+  <tr>
+   <th>
+   <p>RELOPS</p>
+   </th>
+   <th>
+   <p>Operator</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>REL_EQ</p>
+  </td>
+  <td>
+  <p>EQUALS</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REL_NEQ</p>
+  </td>
+  <td>
+  <p>NOT-EQUALS</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REL_LT</p>
+  </td>
+  <td>
+  <p>LESS-THAN</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REL_GT</p>
+  </td>
+  <td>
+  <p>GREATER-THAN</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REL_LE</p>
+  </td>
+  <td>
+  <p>LESS-THAN-OR-EQUAL</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>REL_GE</p>
+  </td>
+  <td>
+  <p>GREATER-THAN-OR-EQUAL</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

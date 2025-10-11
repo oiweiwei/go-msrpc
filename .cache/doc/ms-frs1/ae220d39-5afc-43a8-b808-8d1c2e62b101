@@ -1,1 +1,15 @@
-<div class="content"></div>
+<div class="content"><p>The <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_b2063d4f-ec5f-4417-9dc8-7ab381e2beab" data-linktype="relative-path">GVSN</a>
+structure, which contains a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">GUID</a>
+and a VSN associated with a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_a04c146a-de3b-4e4b-829f-a9e772f3fe25" data-linktype="relative-path">file</a>
+that might require replication, MUST be formatted as follows:</p><dl>
+<dd>
+<div><pre> typedef struct _GVSN {
+   ULONGLONG VSN;
+   GUID GUID;
+ } GVSN,
+  *PGVSN;
+</pre></div>
+</dd></dl><p><b>VSN:</b>  A 64-bit, unsigned integer
+containing the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_dad98bb4-1dd5-404f-a742-3c3195292945" data-linktype="relative-path">VSN</a> for
+the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_0f1759ad-60d9-4a6d-8d4b-1dd5f9c7c1f6" data-linktype="relative-path">originator GUID</a>.</p><p><b>GUID:</b>  A field of type GUID that
+MUST contain the originator GUID.</p></div>

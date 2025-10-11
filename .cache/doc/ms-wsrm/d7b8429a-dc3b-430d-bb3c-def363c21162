@@ -1,1 +1,109 @@
-<div class="content"></div>
+<div class="content"><p>The RenameResourceGroup renames an existing <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_04c2dc43-6f4a-432d-bca6-ceeef2d5f2ae" data-linktype="relative-path">resource group</a>.</p><dl>
+<dd>
+<div><pre> [id(5), helpstring(&#34;method RenameResourceGroup&#34;)] HRESULT RenameResourceGroup(
+   [in] BSTR bstrNewResourceGroupName,
+   [in] BSTR bstrOldResourceGroupName
+ );
+</pre></div>
+</dd></dl><p><b>bstrNewResourceGroupName: </b>A string that
+specifies the new name of the resource group.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>bstrOldResourceGroupName: </b>A string that
+specifies the name of the resource group to be renamed.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF006F</p>
+  <p>WRM_ERR_ID_VALUE</p>
+  </td>
+  <td>
+  <p>The specified name contains characters that are valid.
+  The name cannot start with a hyphen (&#34;-&#34;), cannot contain spaces,
+  and cannot contain any of the following characters:</p>
+  <dl>
+<dd>
+<div><pre> \   / ? * | : &lt; &gt; &#34; , ;
+</pre></div>
+</dd></dl>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF012D</p>
+  <p>WRM_ERR_TOO_LONG_RESOURCE_GROUP_ID</p>
+  </td>
+  <td>
+  <p>The resource group name has exceeded an
+  implementation-defined limit. <a id="Appendix_A_Target_121"></a><a aria-label="Product behavior note 121" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_121" data-linktype="relative-path">&lt;121&gt;</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF012E</p>
+  <p>WRM_ERR_RESOURCEGROUPID_INVALID</p>
+  </td>
+  <td>
+  <p>The specified resource group does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0Xc1FF012F</p>
+  <p>WRM_ERR_RESOURCEGROUPID_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>A resource group with the specified name already
+  exists.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0130</p>
+  <p>WRM_ERR_RESOURCEGROUPID_RESERVED_WORD</p>
+  </td>
+  <td>
+  <p>&#34;\&#34; is a reserved name for resource group
+  identifiers.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0138</p>
+  <p>WRM_ERR_RESERVED_RESOURCEGROUP</p>
+  </td>
+  <td>
+  <p>The specified resource group is built-in. It cannot be
+  modified.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="a314adf4-0bff-40d1-a5b2-d909dcf176a3" data-linktype="relative-path">IWRMResourceGroup</a>
+interface methods are specified in section 3.2.4.10.</p></div>

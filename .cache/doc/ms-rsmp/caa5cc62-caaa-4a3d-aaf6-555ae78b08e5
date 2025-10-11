@@ -1,1 +1,87 @@
-<div class="content"></div>
+<div class="content"><p> The SetNtmsObjectSecurity method changes the security
+descriptor of an object.</p><dl>
+<dd>
+<div><pre> HRESULT SetNtmsObjectSecurity(
+   [in] LPNTMS_GUID lpObjectId,
+   [in] DWORD dwType,
+   [in] DWORD SecurityInformation,
+   [in, size_is(nLength)] PSECURITY_DESCRIPTOR_NTMS lpSecurityDescriptor,
+   [in] DWORD nLength
+ );
+</pre></div>
+</dd></dl><p><b>lpObjectId: </b>A pointer to the identifier of the
+object for which to change security information.</p><p><b>dwType: </b>A value from the <a href="5b190198-a0cb-4e20-90a3-234009357051" data-linktype="relative-path">NtmsObjectsTypes (section 2.2.1.6)</a>
+enumeration specifying the type of the object.</p><p><b>SecurityInformation: </b>A <a href="../ms-dtyp/23e75ca3-98fd-4396-84e5-86cd9d40d343" data-linktype="relative-path">SECURITY_INFORMATION</a>
+structure specifying the security data to change.</p><p><b>lpSecurityDescriptor: </b>A pointer to a <a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">SECURITY_DESCRIPTOR</a>
+structure that describes the security descriptor to write to the object.</p><p><b>nLength: </b>The length, in bytes, of <i>lpSecurityDescriptor</i>.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Privileges required to modify the security descriptor
+  are denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D8</p>
+  <p>ERROR_OBJECT_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The object was not found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database query or update failed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DA</p>
+  <p>ERROR_DATABASE_FULL</p>
+  </td>
+  <td>
+  <p>The database is full.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpObjectId</i>,
+<i>lpSecurityDescriptor</i>, and <i>nLength</i> are not NULL. If parameter
+validation fails, the server MUST immediately fail the operation and return
+ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights, and set the security information
+of the given object. If the client does not have the required access rights to
+the object, the server MUST return ERROR_ACCESS_DENIED (0x80070005).</p><p>If an application uses SetNtmsObjectSecurity to set the
+discretionary access control list (DACL) of an object, the application MUST
+have WRITE_DAC permission or be the owner of the object.</p><p>If an application uses SetNtmsObjectSecurity to set the
+system DACL of an object, the SE_SECURITY_NAME privilege MUST be enabled for
+the application.</p></div>

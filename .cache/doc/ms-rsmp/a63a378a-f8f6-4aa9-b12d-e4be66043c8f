@@ -1,1 +1,64 @@
-<div class="content"></div>
+<div class="content"><p>The NTMS_DRIVETYPEINFORMATIONW structure describes the
+properties specific to a type of <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a>, in Unicode.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_DRIVETYPEINFORMATIONW {
+   [string] wchar_t szVendor[128];
+   [string] wchar_t szProduct[128];
+   DWORD NumberOfHeads;
+   DWORD DeviceType;
+ } NTMS_DRIVETYPEINFORMATIONW;
+</pre></div>
+</dd></dl><p><b>szVendor:</b>   A null-terminated
+sequence of Unicode UTF-16 characters specifying the name of the vendor of the
+drive, acquired from device inquiry data. If this information is not available,
+the member MUST specify an empty string.</p><p><b>szProduct:</b>   A null-terminated
+sequence of Unicode UTF-16 characters specifying the name of the product of the
+drive, acquired from device inquiry data. If this information is not available,
+the member MUST specify an empty string.</p><p><b>NumberOfHeads:</b>  This parameter is
+currently unused. It MUST be zero and MUST be ignored on receipt.</p><p><b>DeviceType:</b>  One of the following
+SCSI device types <a href="https://go.microsoft.com/fwlink/?LinkId=90512" data-linktype="external">[ANSI-131-1994]</a>
+acquired from device inquiry data. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FILE_DEVICE_CD_ROM</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Device is a CD-ROM.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILE_DEVICE_DISK</p>
+  <p>0x00000007</p>
+  </td>
+  <td>
+  <p>Device is a direct-access drive.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILE_DEVICE_DVD</p>
+  <p>0x00000033</p>
+  </td>
+  <td>
+  <p>Device is a DVD.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FILE_DEVICE_TAPE</p>
+  <p>0x0000001F</p>
+  </td>
+  <td>
+  <p>Device is a sequential-access drive.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

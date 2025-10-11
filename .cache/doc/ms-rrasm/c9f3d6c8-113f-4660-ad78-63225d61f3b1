@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_ROUTESTATE</b> structure contains information as
+to whether the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_ad8a294a-8e3c-47e3-a876-7488cd5c8353" data-linktype="relative-path">route</a>
+needs to be added to the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_001ff1c1-e24f-4766-a5b1-a5802871054f" data-linktype="relative-path">forwarder</a>
+or not. Typically, only the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_6e1f63f5-d9fa-4e56-80bc-a18cae389b80" data-linktype="relative-path">best
+routes</a> are added to the forwarder.</p><dl>
+<dd>
+<div><pre> typedef struct _MIB_ROUTESTATE {
+   BOOL bRoutesSetToStack;
+ } MIB_ROUTESTATE,
+  *PMIB_ROUTESTATE;
+</pre></div>
+</dd></dl><p><b>bRoutesSetToStack: </b>This MUST be set to
+0x00000001 to set routes to the forwarder.</p></div>

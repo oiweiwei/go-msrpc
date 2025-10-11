@@ -1,1 +1,44 @@
-<div class="content"></div>
+<div class="content"><p>Upon successful completion, the client has notified the
+server that an update received from the server could not be processed by the client.</p><p><b>Actions Triggered:</b> The client does not have to
+perform any further actions.</p><p><b>Sequencing:</b> This method is used if, at any time, the
+client is unable to process an update. It guarantees that the server will
+return that update again the next time the client calls <a href="dc9cd8a6-826b-414d-83cf-d742367cba9f" data-linktype="relative-path">RequestVersionVector</a>.</p><p><b>Error Handling:</b> The following table summarizes the
+set of errors returned by the <a href="d4bf402f-e9b2-4056-abb2-45436c334164" data-linktype="relative-path">UpdateCancel</a> method that
+cause a client to behave in specific ways.</p><table><thead>
+  <tr>
+   <th>
+   <p>Error code</p>
+   </th>
+   <th>
+   <p>Client Response</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The client MUST perform the actions listed under the
+  Actions Triggered heading.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00002344</p>
+  <p>FRS_ERROR_CONTENTSET_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The client MUST remain in the Polling connection state
+  and enter the Restart <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_064adaf1-86c7-43e5-a157-b0949980181e" data-linktype="relative-path">replicated
+  folder</a> session state.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>Any other non-zero error code</p>
+  </td>
+  <td>
+  <p>The client MUST transition to the Disconnected connection
+  state. The client SHOULD try to re-establish the connection by calling the <a href="2c51e5f4-bef1-4e29-9292-b63f1d5ccff6" data-linktype="relative-path">EstablishConnection</a>
+  method after a time-out interval of its choice.</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

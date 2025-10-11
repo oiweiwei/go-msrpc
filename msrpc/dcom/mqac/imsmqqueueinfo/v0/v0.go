@@ -51,7 +51,11 @@ type QueueInfoClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
-	// QueueGuid operation.
+	// The QueueGuid method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns the Queue.Identifier that uniquely identifies the referenced queue.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
 	GetQueueGUID(context.Context, *GetQueueGUIDRequest, ...dcerpc.CallOption) (*GetQueueGUIDResponse, error)
 
 	// ServiceTypeGuid operation.
@@ -78,7 +82,31 @@ type QueueInfoClient interface {
 	// FormatName operation.
 	SetFormatName(context.Context, *SetFormatNameRequest, ...dcerpc.CallOption) (*SetFormatNameResponse, error)
 
-	// IsTransactional operation.
+	// The IsTransactional method is received by the server in an RPC_REQUEST packet. In
+	// response, the server returns a value that indicates whether the referenced queue
+	// is transactional or nontransactional.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
+	//
+	// When the server processes this call, it MUST abide by the following contract:
+	//
+	// * If IsRefreshed is FALSE call Refresh ( e4072abd-b433-4b22-a4ed-8f654d182705 ) (section
+	// 3.10.4.1.29).
+	//
+	// * If Refresh returns a value other than S_OK (0x00000000), return the HRESULT returned
+	// by Refresh and take no further action.
+	//
+	// * The Queue ( ../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579 ).Transactional instance
+	// variable is True, and ( IsRefreshed is True or IsQueueCreated is True):
+	//
+	// * Set the pisTransactional output parameter to MQ_TRANSACTIONAL (0x0001).
+	//
+	// * Else:
+	//
+	// * Set the pisTransactional output parameter to MQ_TRANSACTIONAL_NONE (0x0000).
+	//
+	// * Return S_OK (0x00000000), and take no further action.
 	GetIsTransactional(context.Context, *GetIsTransactionalRequest, ...dcerpc.CallOption) (*GetIsTransactionalResponse, error)
 
 	// PrivLevel operation.
@@ -105,10 +133,19 @@ type QueueInfoClient interface {
 	// BasePriority operation.
 	SetBasePriority(context.Context, *SetBasePriorityRequest, ...dcerpc.CallOption) (*SetBasePriorityResponse, error)
 
-	// CreateTime operation.
+	// The CreateTime method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns the date and time when the referenced queue was created.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
 	GetCreateTime(context.Context, *GetCreateTimeRequest, ...dcerpc.CallOption) (*GetCreateTimeResponse, error)
 
-	// ModifyTime operation.
+	// The ModifyTime method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns the latest date and time when one of the properties of the referenced
+	// queue was updated.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) to indicate success or an
+	// implementation-specific error HRESULT on failure.
 	GetModifyTime(context.Context, *GetModifyTimeRequest, ...dcerpc.CallOption) (*GetModifyTimeResponse, error)
 
 	// Authenticate operation.
@@ -123,22 +160,53 @@ type QueueInfoClient interface {
 	// JournalQuota operation.
 	SetJournalQuota(context.Context, *SetJournalQuotaRequest, ...dcerpc.CallOption) (*SetJournalQuotaResponse, error)
 
-	// IsWorldReadable operation.
+	// The IsWorldReadable method is received by the server in an RPC_REQUEST packet. In
+	// response, the server returns a BOOLEAN that indicates whether the referenced queue
+	// is accessible to everyone, or only to the owner and the system administrators. This
+	// can be computed through the security descriptor in the Queue.Security attribute.
+	// The owner is the security principal that has MQSEC_TAKE_QUEUE_OWNERSHIP permissions
+	// for the Queue, as defined by the security descriptor in the refQueue.Security attribute.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000).
 	GetIsWorldReadable(context.Context, *GetIsWorldReadableRequest, ...dcerpc.CallOption) (*GetIsWorldReadableResponse, error)
 
-	// Create operation.
+	// The Create method is received by the server in an RPC_REQUEST packet. In response,
+	// the server creates a new public or private ApplicationQueue.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Create(context.Context, *CreateRequest, ...dcerpc.CallOption) (*CreateResponse, error)
 
-	// Delete operation.
+	// The Delete method is received by the server in an RPC_REQUEST packet. In response,
+	// the server deletes the referenced queue.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Delete(context.Context, *DeleteRequest, ...dcerpc.CallOption) (*DeleteResponse, error)
 
 	// Open operation.
 	Open(context.Context, *OpenRequest, ...dcerpc.CallOption) (*OpenResponse, error)
 
-	// Refresh operation.
+	// The Refresh method is received by the server in an RPC_REQUEST packet. In response,
+	// the server refreshes the properties of the MSMQQueueInfo object with the values stored
+	// in the directory (for public queues) or in the local QueueManager (for private queues).
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Refresh(context.Context, *RefreshRequest, ...dcerpc.CallOption) (*RefreshResponse, error)
 
-	// Update operation.
+	// The Update method is received by the server in an RPC_REQUEST packet. In response,
+	// the server updates the directory or the local QueueManager with the current values
+	// of the MSMQQueueInfo object's properties.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Update(context.Context, *UpdateRequest, ...dcerpc.CallOption) (*UpdateResponse, error)
 
 	// AlterContext alters the client context.
@@ -1005,8 +1073,9 @@ func (o *GetQueueGUIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 // GetQueueGUIDResponse structure represents the QueueGuid operation response
 type GetQueueGUIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Queue *oaut.String   `idl:"name:pbstrGuidQueue" json:"queue"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrGuidQueue: A pointer to a BSTR that represents a GUID.
+	Queue *oaut.String `idl:"name:pbstrGuidQueue" json:"queue"`
 	// Return: The QueueGuid return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3146,8 +3215,10 @@ func (o *GetIsTransactionalRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 // GetIsTransactionalResponse structure represents the IsTransactional operation response
 type GetIsTransactionalResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IsTransactional int16          `idl:"name:pisTransactional" json:"is_transactional"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pisTransactional: A pointer to a short that corresponds to one of the MQTRANSACTIONAL
+	// enumeration values.
+	IsTransactional int16 `idl:"name:pisTransactional" json:"is_transactional"`
 	// Return: The IsTransactional return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -5043,8 +5114,10 @@ func (o *GetCreateTimeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetCreateTimeResponse structure represents the CreateTime operation response
 type GetCreateTimeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	CreateTime *oaut.Variant  `idl:"name:pvarCreateTime" json:"create_time"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pvarCreateTime: A pointer to a VARIANT that contains a UTC date/time (VT_DATE) that
+	// specifies the date and time when the referenced queue was created.
+	CreateTime *oaut.Variant `idl:"name:pvarCreateTime" json:"create_time"`
 	// Return: The CreateTime return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -5284,8 +5357,11 @@ func (o *GetModifyTimeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetModifyTimeResponse structure represents the ModifyTime operation response
 type GetModifyTimeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ModifyTime *oaut.Variant  `idl:"name:pvarModifyTime" json:"modify_time"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pvarModifyTime: A pointer to a VARIANT that contains a UTC date/time (VT_DATE) that
+	// specifies the latest date and time when one of properties of the referenced queue
+	// was updated.
+	ModifyTime *oaut.Variant `idl:"name:pvarModifyTime" json:"modify_time"`
 	// Return: The ModifyTime return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -6321,8 +6397,10 @@ func (o *GetIsWorldReadableRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 // GetIsWorldReadableResponse structure represents the IsWorldReadable operation response
 type GetIsWorldReadableResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IsWorldReadable int16          `idl:"name:pisWorldReadable" json:"is_world_readable"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pisWorldReadable: A pointer to a short that indicates whether the referenced queue
+	// is accessible to everyone or only to the owner and the system administrators.
+	IsWorldReadable int16 `idl:"name:pisWorldReadable" json:"is_world_readable"`
 	// Return: The IsWorldReadable return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -6574,9 +6652,17 @@ func (o *xxx_CreateOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 // CreateRequest structure represents the Create operation request
 type CreateRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This            *dcom.ORPCThis `idl:"name:This" json:"this"`
-	IsTransactional *oaut.Variant  `idl:"name:IsTransactional" json:"is_transactional"`
-	IsWorldReadable *oaut.Variant  `idl:"name:IsWorldReadable" json:"is_world_readable"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// IsTransactional: A VARIANT pointer to a BOOLEAN value (VT_BOOL) that specifies whether
+	// the queue is transactional. If the value is TRUE (0x00000001), the queue is transactional.
+	// If the value is FALSE (0x00000000), the queue is not transactional. If the value
+	// is unspecified, the server MUST assume that this value is FALSE.
+	IsTransactional *oaut.Variant `idl:"name:IsTransactional" json:"is_transactional"`
+	// IsWorldReadable: A VARIANT pointer to a BOOLEAN value (VT_BOOL) that, if set to TRUE
+	// (0x00000001), specifies that the queue is accessible to everyone. If the value is
+	// not specified, the server MUST use FALSE (0x00000000), which specifies that the queue
+	// will be accessible only to the owner and system administrators.
+	IsWorldReadable *oaut.Variant `idl:"name:IsWorldReadable" json:"is_world_readable"`
 }
 
 func (o *CreateRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateOperation) *xxx_CreateOperation {

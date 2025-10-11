@@ -1,1 +1,75 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RASRPC_PBUSER</b> structure contains configuration
+information of Demand Dial connection.</p><dl>
+<dd>
+<div><pre> typedef struct _RASRPC_PBUSER {
+   BOOL fOperatorDial;
+   BOOL fPreviewPhoneNumber;
+   BOOL fUseLocation;
+   BOOL fShowLights;
+   BOOL fShowConnectStatus;
+   BOOL fCloseOnDial;
+   BOOL fAllowLogonPhonebookEdits;
+   BOOL fAllowLogonLocationEdits;
+   BOOL fSkipConnectComplete;
+   BOOL fNewEntryWizard;
+   DWORD dwRedialAttempts;
+   DWORD dwRedialSeconds;
+   DWORD dwIdleDisconnectSeconds;
+   BOOL fRedialOnLinkFailure;
+   BOOL fPopupOnTopWhenRedialing;
+   BOOL fExpandAutoDialQuery;
+   DWORD dwCallbackMode;
+   [unique] LPRASRPC_CALLBACKLIST pCallbacks;
+   WCHAR pszLastCallbackByCaller[129];
+   DWORD dwPhonebookMode;
+   WCHAR pszPersonalFile[260];
+   WCHAR pszAlternatePath[260];
+   [unique] LPRASRPC_STRINGLIST pPhonebooks;
+   [unique] LPRASRPC_STRINGLIST pAreaCodes;
+   BOOL fUseAreaAndCountry;
+   [unique] LPRASRPC_STRINGLIST pPrefixes;
+   [unique] LPRASRPC_STRINGLIST pSuffixes;
+   [unique] LPRASRPC_LOCATIONLIST pLocations;
+   DWORD dwXPhonebook;
+   DWORD dwYPhonebook;
+   WCHAR pszDefaultEntry[257];
+   BOOL fInitialized;
+   BOOL fDirty;
+ } RASRPC_PBUSER,
+  *LPRASRPC_PBUSER;
+</pre></div>
+</dd></dl><p><b>fOperatorDial: </b>It is unused and can be set to
+any value.</p><p><b>fPreviewPhoneNumber: </b>It is unused and can be
+set to any value.</p><p><b>fUseLocation: </b>It is unused can be set to any
+value.</p><p><b>fShowLights: </b>It is unused and can be set to
+any value.</p><p><b>fShowConnectStatus: </b>It is unused and can be
+set to any value.</p><p><b>fCloseOnDial: </b>It is unused and can be set to
+any value.</p><p><b>fAllowLogonPhonebookEdits: </b>It is unused and
+can be set to any value.</p><p><b>fAllowLogonLocationEdits: </b>It is unused and can
+be set to any value.</p><p><b>fSkipConnectComplete: </b>It is unused and can be
+set to any value.</p><p><b>fNewEntryWizard: </b>It is unused and can be set
+to any value.</p><p><b>dwRedialAttempts: </b>It is unused and can be set
+to any value.</p><p><b>dwRedialSeconds: </b>It is unused and can be set
+to any value.</p><p><b>dwIdleDisconnectSeconds: </b>It is unused and can
+be set to any value.</p><p><b>fRedialOnLinkFailure: </b>It is unused and can be
+set to any value.</p><p><b>fPopupOnTopWhenRedialing: </b>It is unused and can
+be set to any value.</p><p><b>fExpandAutoDialQuery: </b>It is unused and can be
+set to any value.</p><p><b>dwCallbackMode: </b>It is unused and can be set to
+any value.</p><p><b>pCallbacks: </b>A pointer to a linked list of <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_e7262460-8c1b-4122-af99-66d74ef3b2a1" data-linktype="relative-path">callback</a> information
+specified by <a href="eb252f76-d313-47a2-b148-bd7a23b319f9" data-linktype="relative-path"><b>RASRPC_CALLBACKLIST (section 2.2.1.2.230)</b></a>
+structures. Each member of the linked list specifies the callback information
+for a particular port associated with a device.   </p><p><b>pszLastCallbackByCaller: </b>A null-terminated
+Unicode string specifying the callback phone number last used.</p><p><b>dwPhonebookMode: </b>It is unused and can be set
+to any value.</p><p><b>pszPersonalFile: </b>It MUST be set to an empty
+string (&#34;&#34;).</p><p><b>pszAlternatePath: </b>It MUST be set to an empty
+string (&#34;&#34;).</p><p><b>pPhonebooks: </b>It is not used and can be set to
+NULL.</p><p><b>pAreaCodes: </b>It is not used and can be set to
+NULL.</p><p><b>fUseAreaAndCountry: </b>It is unused and can be
+set to any value.</p><p><b>pPrefixes: </b>It MUST be set to NULL.</p><p><b>pSuffixes: </b>It MUST be set to NULL.</p><p><b>pLocations: </b>It MUST be set to NULL.</p><p><b>dwXPhonebook: </b>It is unused and can be set to
+any value.</p><p><b>dwYPhonebook: </b>It is unused can be set to any
+value.</p><p><b>pszDefaultEntry: </b>It MUST be set to an empty
+string (&#34;).</p><p><b>fInitialized: </b>If set to 1, specifies that the
+RASRPC_PBUSER structure is initialized if set to 0 specifies that the
+RASRPC_PBUSER structure is not initialized.</p><p><b>fDirty: </b>If set to 1, specifies that the
+RASRPC_PBUSER structure needs to be stored on server. If set to 0, specifies
+that the RASRPC_PBUSER structure need not be stored on RRAS.</p></div>

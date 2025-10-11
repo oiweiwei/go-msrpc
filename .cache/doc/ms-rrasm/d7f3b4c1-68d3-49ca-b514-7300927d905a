@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RIP_MIB_GET_INPUT_DATA</b> structure MAY<a id="Appendix_A_Target_114"></a><a aria-label="Product behavior note 114" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_114" data-linktype="relative-path">&lt;114&gt;</a> be used to retrieve
+information from the IPX RIP MIB.</p><dl>
+<dd>
+<div><pre> typedef struct _RIP_MIB_GET_INPUT_DATA {
+   ULONG TableId;
+   ULONG InterfaceIndex;
+ } RIP_MIB_GET_INPUT_DATA,
+  *PRIP_MIB_GET_INPUT_DATA;
+</pre></div>
+</dd></dl><p><b>TableId: </b>This MUST contain 0x00000000 if the
+table refers to <a href="619380a6-e17d-4bfe-b1f9-02a73b30fda9" data-linktype="relative-path"><b>RIPMIB_BASE (section 2.2.1.2.122)</b></a>
+or it MUST contain 0x00000001 if the table refers to <a href="049a7ab1-9265-4814-a65a-cb08e726576f" data-linktype="relative-path"><b>RIP_INTERFACE (section 2.2.1.2.124)</b></a>.
+</p><p><b>InterfaceIndex: </b>The interface index. </p></div>

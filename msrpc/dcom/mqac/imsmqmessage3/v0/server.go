@@ -31,7 +31,11 @@ type Message3Server interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
-	// Class operation.
+	// The Class method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the represented Message.Class.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetClass(context.Context, *GetClassRequest) (*GetClassResponse, error)
 
 	// PrivLevel operation.
@@ -46,7 +50,12 @@ type Message3Server interface {
 	// AuthLevel operation.
 	SetAuthLevel(context.Context, *SetAuthLevelRequest) (*SetAuthLevelResponse, error)
 
-	// IsAuthenticated operation.
+	// The IsAuthenticated method is received by the server in an RPC_REQUEST packet. In
+	// response, the server MUST return a BOOLEAN flag indicating whether the message was
+	// authenticated by the Queue Manager that received the message.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetIsAuthenticated(context.Context, *GetIsAuthenticatedRequest) (*GetIsAuthenticatedResponse, error)
 
 	// Delivery operation.
@@ -85,10 +94,18 @@ type Message3Server interface {
 	// AppSpecific operation.
 	SetAppSpecific(context.Context, *SetAppSpecificRequest) (*SetAppSpecificResponse, error)
 
-	// SourceMachineGuid operation.
+	// The SourceMachineGuid method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return the represented Message.SourceMachineIdentifier.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetSourceMachineGUID(context.Context, *GetSourceMachineGUIDRequest) (*GetSourceMachineGUIDResponse, error)
 
-	// BodyLength operation.
+	// The BodyLength method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the number of bytes in the represented Message.Body.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetBodyLength(context.Context, *GetBodyLengthRequest) (*GetBodyLengthResponse, error)
 
 	// Body operation.
@@ -103,7 +120,11 @@ type Message3Server interface {
 	// AdminQueueInfo_v1 operation.
 	SetAdminQueueInfoV1(context.Context, *SetAdminQueueInfoV1Request) (*SetAdminQueueInfoV1Response, error)
 
-	// Id operation.
+	// The Id method is received by the server in an RPC_REQUEST packet. In response, the
+	// server MUST return the represented Message.Identifier.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetID(context.Context, *GetIDRequest) (*GetIDResponse, error)
 
 	// CorrelationId operation.
@@ -148,13 +169,26 @@ type Message3Server interface {
 	// EncryptAlgorithm operation.
 	SetEncryptAlgorithm(context.Context, *SetEncryptAlgorithmRequest) (*SetEncryptAlgorithmResponse, error)
 
-	// SentTime operation.
+	// The SentTime method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the represented Message.SentTime.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetSentTime(context.Context, *GetSentTimeRequest) (*GetSentTimeResponse, error)
 
-	// ArrivedTime operation.
+	// The ArrivedTime method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the represented Message.ArrivalTime.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetArrivedTime(context.Context, *GetArrivedTimeRequest) (*GetArrivedTimeResponse, error)
 
-	// DestinationQueueInfo operation.
+	// The DestinationQueueInfo method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return an IMSMQQueueInfo interface pointer to an MSMQQueueInfo
+	// object that represents the Queue identified by the represented Message.DestinationQueueFormatName.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetDestinationQueueInfo(context.Context, *GetDestinationQueueInfoRequest) (*GetDestinationQueueInfoResponse, error)
 
 	// SenderCertificate operation.
@@ -172,13 +206,34 @@ type Message3Server interface {
 	// SenderIdType operation.
 	SetSenderIDType(context.Context, *SetSenderIDTypeRequest) (*SetSenderIDTypeResponse, error)
 
-	// Send operation.
+	// The Send method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST send a message.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Send(context.Context, *SendRequest) (*SendResponse, error)
 
-	// AttachCurrentSecurityContext operation.
+	// The AttachCurrentSecurityContext method is received by the server in an RPC_REQUEST
+	// packet. In response, the server MUST cache the relevant information required to sign
+	// a message on behalf of the client, including the Message.SenderIdentifier and Message.SenderCertificate.
+	// This method is provided purely as an optimization to allow the client to reduce lookups
+	// of the security information about the calling client each time the message is sent.
+	// The represented Message.SenderIdentifier and Message.SenderCertificate property values
+	// MUST NOT be updated as a result of calling this method. This method is superseded
+	// by IMSMQMessage4::AttachSecurityContext2.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	AttachCurrentSecurityContext(context.Context, *AttachCurrentSecurityContextRequest) (*AttachCurrentSecurityContextResponse, error)
 
-	// SenderVersion operation.
+	// The SenderVersion method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return a numeric value that indicates the version of transfer used
+	// to send the message.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetSenderVersion(context.Context, *GetSenderVersionRequest) (*GetSenderVersionResponse, error)
 
 	// Extension operation.
@@ -193,7 +248,12 @@ type Message3Server interface {
 	// ConnectorTypeGuid operation.
 	SetConnectorTypeGUID(context.Context, *SetConnectorTypeGUIDRequest) (*SetConnectorTypeGUIDResponse, error)
 
-	// TransactionStatusQueueInfo operation.
+	// The TransactionStatusQueueInfo method is received by the server in an RPC_REQUEST
+	// packet. In response, the server MUST return an IMSMQQueueInfo interface pointer to
+	// an MSMQQueueInfo object that represents the queue identified by the represented Message.TransactionStatusQueueFormatName.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetTransactionStatusQueueInfo(context.Context, *GetTransactionStatusQueueInfoRequest) (*GetTransactionStatusQueueInfoResponse, error)
 
 	// DestinationSymmetricKey operation.
@@ -232,13 +292,25 @@ type Message3Server interface {
 	// Properties operation.
 	GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error)
 
-	// TransactionId operation.
+	// The TransactionId method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the represented Message.TransactionalMessageSequenceIdentifier.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetTransactionID(context.Context, *GetTransactionIDRequest) (*GetTransactionIDResponse, error)
 
-	// IsFirstInTransaction operation.
+	// The IsFirstInTransaction method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return the represented Message.FirstInTransaction.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetIsFirstInTransaction(context.Context, *GetIsFirstInTransactionRequest) (*GetIsFirstInTransactionResponse, error)
 
-	// IsLastInTransaction operation.
+	// The IsLastInTransaction method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return the represented Message.LastInTransaction.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetIsLastInTransaction(context.Context, *GetIsLastInTransactionRequest) (*GetIsLastInTransactionResponse, error)
 
 	// ResponseQueueInfo_v2 operation.
@@ -253,7 +325,11 @@ type Message3Server interface {
 	// AdminQueueInfo_v2 operation.
 	SetAdminQueueInfoV2(context.Context, *SetAdminQueueInfoV2Request) (*SetAdminQueueInfoV2Response, error)
 
-	// ReceivedAuthenticationLevel operation.
+	// The ReceivedAuthenticationLevel method is received by the server in an RPC_REQUEST
+	// packet. In response, the server MUST return the represented Message.AuthenticationLevel.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetReceivedAuthenticationLevel(context.Context, *GetReceivedAuthenticationLevelRequest) (*GetReceivedAuthenticationLevelResponse, error)
 
 	// ResponseQueueInfo operation.
@@ -274,34 +350,84 @@ type Message3Server interface {
 	// ResponseDestination operation.
 	SetByRefResponseDestination(context.Context, *SetByRefResponseDestinationRequest) (*SetByRefResponseDestinationResponse, error)
 
-	// Destination operation.
+	// The Destination method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return an IDispatch interface pointer to an MSMQDestination object
+	// that represents 0 or more queues identified by the represented Message.DestinationMultiQueueFormatName.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetDestination(context.Context, *GetDestinationRequest) (*GetDestinationResponse, error)
 
-	// LookupId operation.
+	// The LookupId method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the represented Message.LookupIdentifier.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetLookupID(context.Context, *GetLookupIDRequest) (*GetLookupIDResponse, error)
 
-	// IsAuthenticated2 operation.
+	// The IsAuthenticated2 method is received by the server in an RPC_REQUEST packet. In
+	// response, the server MUST return a Boolean flag indicating if the message was authenticated
+	// by the Queue Manager that received the Message. This provides identical behavior
+	// to the method IMSMQMessage4::IsAuthenticated (section 3.17.4.1.6).
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetIsAuthenticated2(context.Context, *GetIsAuthenticated2Request) (*GetIsAuthenticated2Response, error)
 
-	// IsFirstInTransaction2 operation.
+	// The IsFirstInTransaction2 method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return the represented Message.FirstInTransaction.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetIsFirstInTransaction2(context.Context, *GetIsFirstInTransaction2Request) (*GetIsFirstInTransaction2Response, error)
 
-	// IsLastInTransaction2 operation.
+	// The IsLastInTransaction2 method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return the represented Message.LastInTransaction.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetIsLastInTransaction2(context.Context, *GetIsLastInTransaction2Request) (*GetIsLastInTransaction2Response, error)
 
-	// AttachCurrentSecurityContext2 operation.
+	// The AttachCurrentSecurityContext2 method is received by the server in an RPC_REQUEST
+	// packet. In response, the server caches the relevant information required to sign
+	// a message on behalf of the client, including Message.SenderIdentifier and Message.SenderCertificate.
+	// This method is provided purely as an optimization to allow the client to reduce lookups
+	// of the security information about the calling client each time the message is sent.
+	// The represented Message.SenderIdentifier and Message.SenderCertificate property values
+	// MUST NOT be updated as a result of calling this method.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	AttachCurrentSecurityContext2(context.Context, *AttachCurrentSecurityContext2Request) (*AttachCurrentSecurityContext2Response, error)
 
-	// SoapEnvelope operation.
+	// The SoapEnvelope method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the represented Message.SoapEnvelope.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetSOAPEnvelope(context.Context, *GetSOAPEnvelopeRequest) (*GetSOAPEnvelopeResponse, error)
 
-	// CompoundMessage operation.
+	// The CompoundMessage method is received by the server in an RPC_REQUEST packet. In
+	// response, the server MUST return the represented Message.SoapCompoundMessage.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetCompoundMessage(context.Context, *GetCompoundMessageRequest) (*GetCompoundMessageResponse, error)
 
-	// SoapHeader operation.
+	// The SoapHeader method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST set the SOAPHeader instance variable.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	SetSOAPHeader(context.Context, *SetSOAPHeaderRequest) (*SetSOAPHeaderResponse, error)
 
-	// SoapBody operation.
+	// The SoapBody method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST set the SOAPBody instance variable.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	SetSOAPBody(context.Context, *SetSOAPBodyRequest) (*SetSOAPBodyResponse, error)
 }
 

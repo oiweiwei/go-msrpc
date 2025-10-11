@@ -1,1 +1,43 @@
-<div class="content"></div>
+<div class="content"><p>The EFS_CERTIFICATE_BLOB type is used to represent the
+encoded contents of an <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_2069b65d-b546-4198-abfd-768badc2258e" data-linktype="relative-path">X.509</a>
+<a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _CERTIFICATE_BLOB {
+   DWORD dwCertEncodingType;
+   [range(0,32768)] DWORD cbData;
+   [size_is(cbData)] unsigned char* bData;
+ } EFS_CERTIFICATE_BLOB;
+</pre></div>
+</dd></dl><p><b>dwCertEncodingType:</b>  The certificate
+encoding type. This MUST be set to one of the following values. If set to any
+other value, the certificate is considered invalid and behavior is undefined.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Certificate uses X.509 ASN.1 encoding.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Certificate uses X.509 NDR encoding.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>cbData:</b>  The number of bytes in the
+bData buffer.</p><p><b>bData:</b>  An encoded X.509 certificate.
+Its format is specified by the <b>dwCertEncodingType</b> member. For more
+information on ASN encoding, see <a href="https://go.microsoft.com/fwlink/?LinkId=90593" data-linktype="external">[X690]</a>. NDR encoding
+is specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>.<a id="Appendix_A_Target_21"></a><a aria-label="Product behavior note 21" href="cecd911d-7105-45cc-a7c8-348335d6f03f#Appendix_A_21" data-linktype="relative-path">&lt;21&gt;</a></p></div>

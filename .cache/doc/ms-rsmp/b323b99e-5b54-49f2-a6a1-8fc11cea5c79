@@ -1,1 +1,137 @@
-<div class="content"></div>
+<div class="content"><p>The DismountNtmsMedia method queues a command to move a
+medium in a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_1112c690-ee01-4c9b-aa55-9569fd82178b" data-linktype="relative-path">drive</a> to its
+storage.</p><dl>
+<dd>
+<div><pre> HRESULT DismountNtmsMedia(
+   [in, size_is(dwCount)] LPNTMS_GUID lpMediaId,
+   [in] DWORD dwCount,
+   [in] DWORD dwOptions
+ );
+</pre></div>
+</dd></dl><p><b>lpMediaId: </b>An array of <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_05349689-4cd0-4643-a13e-9f552ecf3346" data-linktype="relative-path">logical media</a> or media <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_55db62c5-a84f-43b7-a037-b44ecd8fb92f" data-linktype="relative-path">side</a> identifiers.</p><p><b>dwCount: </b>The number of elements in the <i>lpMediaId</i>
+array.</p><p><b>dwOptions: </b>One of the options from the <a href="a5e8a819-69c1-4924-94da-27e26fdd981e" data-linktype="relative-path">NtmsDismountOptions (section 2.2.1.9)</a>
+numeration.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>NTMS_USE_ACCESS to the media pool or library that
+  contains the media is denied; other security errors are possible, but
+  indicate a security subsystem error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is missing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database is inaccessible or damaged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DA</p>
+  <p>ERROR_DATABASE_FULL</p>
+  </td>
+  <td>
+  <p>The database is full.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DF</p>
+  <p>ERROR_DEVICE_NOT_AVAILABLE</p>
+  </td>
+  <td>
+  <p>One or more resources required to perform the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a8ebf8eb-a5f7-406a-b211-9f9c08ee15d3" data-linktype="relative-path">dismount</a> are not currently
+  available.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CD</p>
+  <p>ERROR_INVALID_LIBRARY</p>
+  </td>
+  <td>
+  <p>The library that contains the drives or media is not
+  valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CC</p>
+  <p>ERROR_INVALID_MEDIA</p>
+  </td>
+  <td>
+  <p>A medium is not valid, or <i>lpMediaId</i> contains
+  duplicate identifiers.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007139F</p>
+  <p>ERROR_INVALID_STATE</p>
+  </td>
+  <td>
+  <p>An unexpected media or device state occurred during
+  dismount.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D0</p>
+  <p>ERROR_MEDIA_OFFLINE</p>
+  </td>
+  <td>
+  <p>The specified media is offline.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070008</p>
+  <p>ERROR_NOT_ENOUGH_MEMORY</p>
+  </td>
+  <td>
+  <p>A memory allocation failure occurred during
+  processing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800705B4</p>
+  <p>ERROR_TIMEOUT</p>
+  </td>
+  <td>
+  <p>The time-out event expired while the application
+  attempted to acquire one or more resources.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>dwCount</i>
+is not 0 and verify that <i>lpMediaId</i> is not NULL. If parameter validation
+fails, the server MUST immediately fail the operation and return
+ERROR_INVALID_PARAMETER (0x80070057).</p><p>The DismountNtmsMedia method MUST return as soon as the
+operation is queued with the server. The application can wait for the side
+state to become idle. An application MUST use the DismountNtmsMedia method to
+release the drive resource after the application has used the specified medium.
+Unreleased media cannot be used by other RSM sessions.</p><p>On completion of an asynchronous operation, notification is
+sent with the identifier <b>lpMediaId</b>.</p></div>

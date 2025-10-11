@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>The VSS_MGMT_OBJECT_TYPE enumeration defines the types of
+objects that can be queried by the <a href="7b274c35-057f-4d99-9038-b451e31590a2" data-linktype="relative-path">IVssEnumMgmtType</a> <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a>.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum _VSS_MGMT_OBJECT_TYPE
+ {
+   VSS_MGMT_OBJECT_UNKNOWN = 0x00000000,
+   VSS_MGMT_OBJECT_VOLUME = 0x00000001,
+   VSS_MGMT_OBJECT_DIFF_VOLUME = 0x00000002,
+   VSS_MGMT_OBJECT_DIFF_AREA = 0x00000003,
+ } VSS_MGMT_OBJECT_TYPE;
+</pre></div>
+</dd></dl><p><b>VSS_MGMT_OBJECT_UNKNOWN:  </b>The object is of an
+unknown type.</p><p><b>VSS_MGMT_OBJECT_VOLUME:  </b>The object is an <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_57484dae-5eef-4485-bfe4-db22b9cd90d6" data-linktype="relative-path">original volume</a>.</p><p><b>VSS_MGMT_OBJECT_DIFF_VOLUME:  </b>The object is a <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_9abab753-55aa-4455-bb21-7b51a32654fa" data-linktype="relative-path">shadow copy storage volume</a>.</p><p><b>VSS_MGMT_OBJECT_DIFF_AREA:  </b>The object is <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_d85fc09f-c375-4e90-952d-7c95a8e244dd" data-linktype="relative-path">shadow copy storage</a>.</p></div>

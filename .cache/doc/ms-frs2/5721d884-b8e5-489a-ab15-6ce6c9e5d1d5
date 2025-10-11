@@ -1,1 +1,12 @@
-<div class="content"></div>
+<div class="content"><p>An entry of an epoque vector.</p><dl>
+<dd>
+<div><pre> typedef struct _FRS_EPOQUE_VECTOR {
+   GUID machine;
+   EPOQUE epoque;
+ } FRS_EPOQUE_VECTOR;
+</pre></div>
+</dd></dl><p><b>machine:</b>  Unused. MUST be 0. MUST be
+ignored on receipt.</p><p><b>epoque:</b>  Unused. MUST be 0. MUST be
+ignored on receipt.</p><p>Epoque vectors are attributes of the response payload, as
+specified in section <a href="75a379c2-c5e1-4398-919a-c232d780f6bc" data-linktype="relative-path">2.2.1.4.12</a>.
+</p></div>

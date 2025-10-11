@@ -47,8 +47,38 @@ type UpdateSession2Client interface {
 	// IUpdateSession retrieval method.
 	UpdateSession() iupdatesession.UpdateSessionClient
 
+	// The IUpdateSession2::UserLocale (opnum 14) method gets the language for update results.
+	//
+	// The IUpdateSession2::UserLocale (opnum 15) method sets the language for update results.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the UserLocale ADM element.
 	GetUserLocale(context.Context, *GetUserLocaleRequest, ...dcerpc.CallOption) (*GetUserLocaleResponse, error)
 
+	// The IUpdateSession2::UserLocale (opnum 14) method gets the language for update results.
+	//
+	// The IUpdateSession2::UserLocale (opnum 15) method sets the language for update results.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the UserLocale ADM element.
 	SetUserLocale(context.Context, *SetUserLocaleRequest, ...dcerpc.CallOption) (*SetUserLocaleResponse, error)
 
 	// AlterContext alters the client context.
@@ -321,8 +351,12 @@ func (o *GetUserLocaleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetUserLocaleResponse structure represents the UserLocale operation response
 type GetUserLocaleResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue uint32         `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An LCID that contains the ID of the locale for results of operations in this
+	// session. If no locale is set by using IUpdateSession2::UserLocale (opnum 15) (section
+	// 3.16.5.2), this MUST contain the current user's default locale as obtained from the
+	// system.<17>
+	ReturnValue uint32 `idl:"name:retval" json:"return_value"`
 	// Return: The UserLocale return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -493,8 +527,10 @@ func (o *xxx_SetUserLocaleOperation) UnmarshalNDRResponse(ctx context.Context, w
 // SetUserLocaleRequest structure represents the UserLocale operation request
 type SetUserLocaleRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
-	LocaleID uint32         `idl:"name:lcid" json:"locale_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lcid: An LCID that contains the language identifier for results of operations in
+	// this session.
+	LocaleID uint32 `idl:"name:lcid" json:"locale_id"`
 }
 
 func (o *SetUserLocaleRequest) xxx_ToOp(ctx context.Context, op *xxx_SetUserLocaleOperation) *xxx_SetUserLocaleOperation {

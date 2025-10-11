@@ -1,1 +1,11 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RAS_CONNECTION_EX_IDL</b> union contains a
+placeholder for <a href="d9078168-75b2-4d5d-93b6-f39b29736682" data-linktype="relative-path"><b>RAS_CONNECTION_EX_1_IDL (section 2.2.1.2.133)</b></a><span> </span>structure. This union is used in the <a href="2d1031a2-3df3-458e-9b9c-b5477b4130f1" data-linktype="relative-path"><b>RRasAdminConnectionGetInfoEx (section 3.1.4.47)</b></a>
+method. </p><dl>
+<dd>
+<div><pre> typedef union _RAS_CONNECTION_EX_IDL switch (UCHAR revision) ConnObject {
+   case 1: RAS_CONNECTION_EX_1_IDL RasConnection1;
+ } RAS_CONNECTION_EX_IDL,
+  *PRAS_CONNECTION_EX_IDL;
+</pre></div>
+</dd></dl><p><b>RasConnection1: </b>This MUST be the structure <b>RAS_CONNECTION_EX_1_IDL</b>.
+</p></div>

@@ -8,9 +8,9 @@ return S_FALSE.</p><dl>
    [out, retval] BSTR* lastError
  );
 </pre></div>
-</dd></dl><p><b>lastError: </b>Pointer to a variable that upon completion
-contains the <b>last error</b>, if any, from when classification was previously
-run.</p><p><b>Return Values: </b>The method MUST return zero on
+</dd></dl><p><b>lastError: </b>Pointer to a variable that upon
+completion contains the <b>last error</b>, if any, from when classification was
+previously run.</p><p><b>Return Values: </b>The method MUST return zero on
 success, or a nonzero error code on failure.</p><dl>
 <dd>
 <table><thead>

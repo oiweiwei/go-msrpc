@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The <b>TCP_RTO_ALGORITHM</b> enumerates different TCP
+retransmission time-out algorithms.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MIB_TCP_RTO_OTHER = 1,
+   MIB_TCP_RTO_CONSTANT = 2,
+   MIB_TCP_RTO_RSRE = 3,
+   MIB_TCP_RTO_VANJ = 4,
+ } TCP_RTO_ALGORITHM,
+  *PTCP_RTO_ALGORITHM;
+</pre></div>
+</dd></dl><p><b>MIB_TCP_RTO_OTHER: </b>Other. </p><p><b>MIB_TCP_RTO_CONSTANT: </b>Constant time-out. </p><p><b>MIB_TCP_RTO_RSRE: </b>MIL-STD-1778. See <a href="https://go.microsoft.com/fwlink/?LinkId=151376" data-linktype="external">[RFC4022]</a>.</p><p><b>MIB_TCP_RTO_VANJ: </b>Van Jacobson&#39;s algorithm.
+See <a href="https://go.microsoft.com/fwlink/?linkid=852336" data-linktype="external">[RFC1144]</a>.</p></div>

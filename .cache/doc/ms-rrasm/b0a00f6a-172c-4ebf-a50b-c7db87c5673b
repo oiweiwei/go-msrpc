@@ -1,1 +1,89 @@
-<div class="content"></div>
+<div class="content"><p>The <b>BGP_POLICY_MATCH</b> structure<a id="Appendix_A_Target_187"></a><a aria-label="Product behavior note 187" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_187" data-linktype="relative-path">&lt;187&gt;</a> is used to represent a single
+Match clause in a BGP policy. The Match clause is used to filter the BGP routes
+on which the BGP policy would be allowed.</p><dl>
+<dd>
+<div><pre> typedef struct _BGP_POLICY_MATCH {
+   BGP_POLICY_MATCH_TYPE eType;
+   union {
+     BGP_IP_PREFIX prefix;
+     BGP_ASN_RANGE asnRange;
+     DWORD dwCommunity;
+     DWORD dwMaxPrefixes;
+   } PolicyMatch;
+ } BGP_POLICY_MATCH,
+  *PBGP_POLICY_MATCH;
+</pre></div>
+</dd></dl><p><b>eType: </b>Specifies the attribute type to be used
+while matching the policy for a BGP route. This value MUST be one of the
+following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MatchPrefix</p>
+  <p>(0x1)</p>
+  </td>
+  <td>
+  <p>The policy match is done based on the network prefix
+  of the BGP route. The value of the <b>prefix</b> field is used for the
+  comparison.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MatchIgnorePrefix</p>
+  <p>(0x2)</p>
+  </td>
+  <td>
+  <p>The policy match is done based on the network prefix
+  of the BGP route. It filters out the BGP routes whose prefix value is the
+  same as that specified in the <b>prefix</b> field.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MatchAsnRange</p>
+  <p>(0x3)</p>
+  </td>
+  <td>
+  <p>The policy match is done based on the ASN attribute of
+  the BGP route. The value of the <b>asnRange</b> field is used for the
+  comparison.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MatchCommunity</p>
+  <p>(0x4)</p>
+  </td>
+  <td>
+  <p>The policy match is done based on the community
+  attribute of the route. The value of the <b>dwCommunity</b> field is used for
+  the comparison.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MatchMaxPrefixes</p>
+  <p>(0x5)</p>
+  </td>
+  <td>
+  <p>The policy match is done based on the number of
+  prefixes learned from a BGP peer. The value of the <b>dwMaxPrefixes</b> field
+  is used for the comparison.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>prefix: </b>Specifies the network prefix that
+would be compared with the network prefix of the BGP route. This MUST be of
+type <a href="7b71cafe-ab5f-44df-94a8-615e40a4dc09" data-linktype="relative-path"><b>BGP_IP_PREFIX (section 2.2.1.2.255)</b></a>.  
+</p><p><b>asnRange: </b>Specifies the ASN range that would
+be compared with the ASN in the ASN path attribute of the BGP route. This MUST
+be of type <a href="15426bc5-613f-4fe3-882d-900cd3cc1039" data-linktype="relative-path"><b>BGP_ASN_RANGE (section 2.2.1.2.256)</b></a>.  
+</p><p><b>dwCommunity: </b>Specifies the value of the
+community attribute that would be compared with the community attribute of the
+BGP route.</p><p><b>dwMaxPrefixes: </b>Specifies the maximum number of
+prefixes that can be learned from a BGP peer.</p></div>

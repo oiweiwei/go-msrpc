@@ -1,0 +1,20 @@
+<div class="content"><p>The _NewEnum method is received by the server in an
+RPC_REQUEST packet. In response, the server MUST return a pointer to an <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface pointer that represents an enumerator instance for this collection.
+_NewEnum implements the IEnumVARIANT server functionality, as described in <a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a>
+section <a href="../ms-oaut/716d04d1-cd16-4065-9b19-1b8808b3df31" data-linktype="relative-path">3.3</a>.</p><dl>
+<dd>
+<div><pre> [restricted] HRESULT _NewEnum(
+   [out, retval] IUnknown** ppunk
+ );
+</pre></div>
+</dd></dl><p><b>ppunk: </b>The <i>ppunk</i> output parameter MUST
+be set to an IUnknown pointer to a standard OLE automation enumerator that can
+be used to enumerate the <i>VariantCollection</i> instance variable elements.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the server MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>The <i>ppunk</i> output parameter MUST be set to an IUnknown
+pointer to a standard OLE automation enumerator that can be used to enumerate
+the <i>VariantCollection</i> instance variable elements.</p>
+</li></ul></div>

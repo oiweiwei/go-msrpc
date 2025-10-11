@@ -9,4 +9,5 @@ Being Enumerated</b>.</p><dl>
 interface pointer (section <a href="b1521352-6c34-4870-a13d-cbcf57544ae2" data-linktype="relative-path">3.2.4.2.2</a>)
 that upon successful completion contains the <b>IFsrmMutableCollection</b>
 pointer of a copy of this collection of <b>Objects Being Enumerated</b>.</p><p><b>Return Values: </b>The method MUST return a
-nonzero error code. Upon receiving this message, the server MUST return E_NOTIMPL.</p></div>
+nonzero error code. Upon receiving this message, the server MUST return
+E_NOTIMPL.</p></div>

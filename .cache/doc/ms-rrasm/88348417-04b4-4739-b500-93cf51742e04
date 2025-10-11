@@ -1,1 +1,15 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RASMAN_STATUS</b> type enumerates the status of the
+Port.</p><dl>
+<dd>
+<div><pre> typedef enum _RASMAN_STATUS 
+ {
+   OPEN = 0,
+   CLOSED = 1,
+   UNAVAILABLE = 2,
+   REMOVED = 3
+ } RASMAN_STATUS;
+</pre></div>
+</dd></dl><p><b>OPEN: </b>Port is in open state for a connection.</p><p><b>CLOSED: </b>Port is in closed state and is
+available for connection.</p><p><b>UNAVAILABLE: </b>Port is in the process of being
+removed and is not available for connection.</p><p><b>REMOVED: </b>Port is removed and is not available
+for connection.</p></div>

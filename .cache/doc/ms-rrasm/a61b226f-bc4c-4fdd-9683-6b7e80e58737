@@ -1,1 +1,27 @@
-<div class="content"></div>
+<div class="content"><p> The <b>PPP_IPCP_INFO</b> structure contains the result of a
+<a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_d158ba19-bb5e-458e-bcda-38aed4eff053" data-linktype="relative-path">PPP</a> control protocol
+negotiation for IP.</p><dl>
+<dd>
+<div><pre> typedef struct _PPP_IPCP_INFO {
+   DWORD dwError;
+   WCHAR wszAddress[16];
+   WCHAR wszRemoteAddress[16];
+ } PPP_IPCP_INFO;
+</pre></div>
+</dd></dl><p><b>dwError: </b>Specifies the result of the PPP
+control protocol negotiation. A value of zero (0) indicates success. A nonzero
+value indicates failure and is the actual fatal error that occurred during the
+control protocol negotiation.</p><p><b>wszAddress: </b>Specifies a null-terminated
+Unicode string that holds the local computer&#39;s IP address for the connection.
+This string has the form a.b.c.d; for example, &#34;10.102.235.84&#34;. </p><dl>
+<dd>
+<p>If a remote access client is connecting to a RRAS
+server, this member holds the IP address of the server.</p>
+</dd></dl><p><b>wszRemoteAddress: </b>Specifies a null-terminated
+Unicode string that holds the IP address of the remote computer. This string
+has the form a.b.c.d. If the address is not available, this member is an empty
+string. </p><dl>
+<dd>
+<p>If a remote access client is connecting to a RRAS
+server, this member holds the IP address of the client.</p>
+</dd></dl></div>

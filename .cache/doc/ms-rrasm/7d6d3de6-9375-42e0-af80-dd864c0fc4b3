@@ -1,1 +1,48 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIBICMPSTATS</b> structure contains statistics for
+the ICMP messages on a specific computer. This structure is used in <a href="33d66d79-c877-4b24-b823-802838d65ec0" data-linktype="relative-path"><b>MIBICMPINFO (section 2.2.1.2.26)</b></a>.
+</p><dl>
+<dd>
+<div><pre> typedef struct _MIBICMPSTATS {
+   DWORD dwMsgs;
+   DWORD dwErrors;
+   DWORD dwDestUnreachs;
+   DWORD dwTimeExcds;
+   DWORD dwParmProbs;
+   DWORD dwSrcQuenchs;
+   DWORD dwRedirects;
+   DWORD dwEchos;
+   DWORD dwEchoReps;
+   DWORD dwTimestamps;
+   DWORD dwTimestampReps;
+   DWORD dwAddrMasks;
+   DWORD dwAddrMaskReps;
+ } MIBICMPSTATS;
+</pre></div>
+</dd></dl><p><b>dwMsgs: </b>The number of ICMP messages received
+or sent.</p><p><b>dwErrors: </b>The number of errors that occurred
+while sending or receiving ICMP messages.</p><p><b>dwDestUnreachs: </b>The number of
+destination-unreachable messages received or sent. A destination-unreachable
+message is sent to the originating computer when the destination address in a <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_96ea17cd-226a-48f8-aa14-38d2d3ae60a5" data-linktype="relative-path">datagram</a> cannot be reached.</p><p><b>dwTimeExcds: </b>The number of TTL-exceeded
+messages received or sent. A TTL-exceeded message is sent to the originating
+computer when a datagram is discarded because the number of routers it has
+passed through exceeds its TTL value.</p><p><b>dwParmProbs: </b>The number of parameter-problem
+messages received or sent. A parameter-problem message is sent to the
+originating computer when a router or host detects an error in a datagram&#39;s IP
+header.</p><p><b>dwSrcQuenchs: </b>The number of source quench
+messages received or sent. A source quench request is sent to a computer to
+request that it reduce its rate of packet transmission.</p><p><b>dwRedirects: </b>The number of redirect messages
+received or sent. A redirect message is sent to the originating computer when a
+better route is discovered for a datagram sent by that computer.</p><p><b>dwEchos: </b>The number of echo requests received
+or sent. An echo request causes the receiving computer to send an echo reply
+message back to the originating computer.</p><p><b>dwEchoReps: </b>The number of echo replies received
+or sent. A computer sends an echo reply in response to receiving an echo
+request message.</p><p><b>dwTimestamps: </b>The number of time stamp
+requests received or sent. A time stamp request causes the receiving computer
+to send a time stamp reply back to the originating computer.</p><p><b>dwTimestampReps: </b>The number of time stamp
+replies received or sent. A computer sends a time stamp reply in response to
+having received a time stamp request. Routers can use time stamp requests and
+replies to measure the transmission speed of datagrams on a network.</p><p><b>dwAddrMasks: </b>The number of address mask
+requests received or sent. A computer sends an address mask request to
+determine the number of bits in the subnet mask for its local subnet.</p><p><b>dwAddrMaskReps: </b>The number of address mask
+responses received or sent. A computer sends an address mask response in
+response to an address mask request.</p></div>

@@ -1,1 +1,34 @@
-<div class="content"></div>
+<div class="content"><p>The <b>SAP_IF_INFO</b> structure MAY<a id="Appendix_A_Target_113"></a><a aria-label="Product behavior note 113" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_113" data-linktype="relative-path">&lt;113&gt;</a> be used to contain
+information about the SAP interface. This structure is returned as part of the
+following methods:</p><ul><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="9102e585-2f62-4408-bfb6-02a6460cc883" data-linktype="relative-path"><b>RMIBEntryGetFirst (section 3.1.4.31)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="50f78033-d248-4272-b4b9-a2519a0f304d" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.1.4.32)</b></a><span>  </span></p>
+<div><pre> typedef struct _SAP_IF_INFO {
+   ULONG AdminState;
+   ULONG UpdateMode;
+   ULONG PacketType;
+   ULONG Supply;
+   ULONG Listen;
+   ULONG GetNearestServerReply;
+   ULONG PeriodicUpdateInterval;
+   ULONG AgeIntervalMultiplier;
+ } SAP_IF_INFO,
+  *PSAP_IF_INFO;
+</pre></div>
+</li></ul><p><b>AdminState: </b>This MUST be the desired state of
+the interface. A value of 0x00000001 disables the SAP on the interface, and a
+value of 0x00000002 enables the SAP on the interface.</p><p><b>UpdateMode: </b>This MUST be the SAP update
+mechanism used on the interface.</p><p><b>PacketType: </b>This MUST be the SAP packet type
+used on this interface.</p><p><b>Supply: </b>This MUST be set to a value of
+0x00000001 to disable sending SAP updates on this interface and to a value of
+0x00000002 to enable.</p><p><b>Listen: </b>This MUST be set to a value of
+0x00000001 to disable listening to SAP updates on this interface and to a value
+of 0x00000002 to enable.</p><p><b>GetNearestServerReply: </b>Set to a value of
+0x00000001 to disable GetNearestServer and to a value of 0x00000002 to enable.</p><p><b>PeriodicUpdateInterval: </b>This MUST be the
+interval, in seconds, at which the information is periodically updated. The
+default value is 60.</p><p><b>AgeIntervalMultiplier: </b>Each time a periodic
+update is done at the server, <b>PeriodicUpdateInterval</b> is multiplied by <b>AgeIntervalMultiplier</b>.
+The default value is 3.</p></div>

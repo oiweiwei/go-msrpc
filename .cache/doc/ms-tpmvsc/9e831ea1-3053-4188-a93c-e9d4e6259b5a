@@ -1,1 +1,15 @@
-<div class="content"></div>
+<div class="content"><p>This enumeration is used in fields of the
+PinPolicySerialization structure specified in section <a href="ffcc719e-2468-44e7-aedf-a15ca08a5df2" data-linktype="relative-path">2.2.2.1</a>.<a id="Appendix_A_Target_1"></a><a aria-label="Product behavior note 1" href="9f9c883f-15f8-45be-affb-5c0bd13325a8#Appendix_A_1" data-linktype="relative-path">&lt;1&gt;</a></p><dl>
+<dd>
+<div><pre> enum SmartCardPinCharacterPolicyOption
+ {
+     Allow = 0,
+     RequireAtLeastOne = 1,
+     Disallow  = 2
+ };
+  
+</pre></div>
+</dd></dl><p><b>Allow:</b> The value is 0. This character class is
+allowed.</p><p><b>RequireAtLeastOne:</b> The value is 1. At least
+one item belonging to this character class is required.</p><p><b>Disallow:</b> The value is 2. This character class
+is not allowed.</p></div>

@@ -1,1 +1,20 @@
-<div class="content"></div>
+<div class="content"><p>The AutoDownloadMode enumeration defines values describing
+the recommendation for whether an update is downloaded automatically by an <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_362092cf-7fb5-43eb-92e1-c3e4affdd92b" data-linktype="relative-path">update
+agent</a></span>.</p><dl>
+<dd>
+<div><pre> typedef  enum tagAutoDownloadMode
+ {
+   adLetWindowsUpdateDecide = 0,
+   adNeverAutoDownload = 1,
+   adAlwaysAutoDownload = 2,
+ } AutoDownloadMode;
+</pre></div>
+</dd></dl><p><b>adLetWindowsUpdateDecide:  </b>The update service
+recommends that the update agent SHOULD decide on its own whether to
+automatically download the update. This decision is implementation-specific and
+can involve other properties of the update and/or the administrator&#39;s
+configuration of the update agent. In Windows, the update agent has an option
+to allow automatic download of important updates and another option to allow
+automatic download of recommended updates.<a id="Appendix_A_Target_3"></a><a aria-label="Product behavior note 3" href="50faf1ae-d0ab-42cb-87e2-33f30391e807#Appendix_A_3" data-linktype="relative-path">&lt;3&gt;</a></p><p><b>adNeverAutoDownload:  </b>The update service
+recommends that the update agent SHOULD NOT automatically download the update.</p><p><b>adAlwaysAutoDownload:  </b>The update service
+recommends that the update agent SHOULD automatically download the update.</p></div>

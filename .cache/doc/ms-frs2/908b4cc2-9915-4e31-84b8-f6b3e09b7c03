@@ -1,1 +1,168 @@
-<div class="content"></div>
+<div class="content"><p>The InitializeFileTransferAsync method is used by a client
+to start a file download. The client supplies an update to specify which file
+to download. The server provides its latest version of the update and initial
+file contents. The server returns information about the file currently being
+replicated and the first buffer of data from that file (if any).</p><dl>
+<dd>
+<div><pre> DWORD InitializeFileTransferAsync(
+   [in] FRS_CONNECTION_ID connectionId,
+   [in, out] FRS_UPDATE* frsUpdate,
+   [in, range(0,1)] long rdcDesired,
+   [in, out] FRS_REQUESTED_STAGING_POLICY* stagingPolicy,
+   [out] PFRS_SERVER_CONTEXT* serverContext,
+   [out] FRS_RDC_FILEINFO** rdcFileInfo,
+   [out, size_is(bufferSize), length_is(*sizeRead)] 
+     byte* dataBuffer,
+   [in, range(0, CONFIG_TRANSPORT_MAX_BUFFER_SIZE)] 
+     DWORD bufferSize,
+   [out] DWORD* sizeRead,
+   [out] long* isEndOfFile
+ );
+</pre></div>
+</dd></dl><p><b>connectionId: </b>The <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a> of
+an outbound connection (see the <b>objectGUID</b> attribute specified in
+section <a href="afd3c10a-9783-4df7-ae2b-13e56c37ab03" data-linktype="relative-path">2.3.11</a>) that
+the client established by a previous call to the <a href="2c51e5f4-bef1-4e29-9292-b63f1d5ccff6" data-linktype="relative-path">EstablishConnection</a>
+method.</p><p><b>frsUpdate: </b> The <a href="0bcec46c-9c69-46a6-8b0a-66ccce19611c" data-linktype="relative-path">FRS_UPDATE</a> structure that
+contains information about the file being replicated. The fields for the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_3d9dd73b-8923-43cc-ac95-8103f17683d7" data-linktype="relative-path">UID</a> in <i>frsUpdate</i>
+MUST be set to the UID of the file to be downloaded. All other fields are
+cleared (zeroed out) or can have the values provided by the server in the
+response to a <a href="e321d7d9-babf-4431-b055-871137014855" data-linktype="relative-path">RequestUpdates</a>
+call. On return, all fields of <i>frsUpdate</i> MUST contain the values that
+are held by the server.</p><p><b>rdcDesired: </b>The value is TRUE if <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_a0d8116e-63f3-418b-afea-ca6258840e92" data-linktype="relative-path">RDC</a> has to be used when
+replicating this file; otherwise, the value is FALSE.</p><p><b>stagingPolicy: </b>The <a href="f19305ad-7df0-47dd-9197-8fbc4d21110f" data-linktype="relative-path">FRS_REQUESTED_STAGING_POLICY</a>
+enumeration value that indicates the type of staging requested.  If the
+client-supplied value of <i>rdcDesired</i> is TRUE and the client-supplied
+value of <i>stagingPolicy</i> is SERVER_DEFAULT, then the server MUST set <i>stagingPolicy</i>
+to STAGING_REQUIRED. If the client-supplied value of <i>rdcDesired</i> is FALSE
+and the client-supplied value of <i>stagingPolicy</i> is STAGING_REQUIRED, then
+the server MUST set <i>stagingPolicy</i> to STAGING_REQUIRED. If the
+client-supplied value of <i>rdcDesired</i> is FALSE and the client-supplied
+value of <i>stagingPolicy</i> is RESTAGING_REQUIRED, then the server MUST set <i>stagingPolicy</i>
+to RESTAGING_REQUIRED.</p><p><b>serverContext: </b>The context handle that
+represents the requested file replication operation.</p><p><b>rdcFileInfo: </b>The <a href="7e65da8c-67d7-4235-b019-c630c8ec5711" data-linktype="relative-path">FRS_RDC_FILEINFO</a> structure
+that describes the file whose replication is in progress.</p><p><b>dataBuffer: </b>The file data received from the
+server.</p><p><b>bufferSize: </b>The size, in bytes, of <i>dataBuffer</i>.
+CONFIG_TRANSPORT_MAX_BUFFER_SIZE is 262,144.</p><p><b>sizeRead: </b>The size, in bytes, of the file data
+returned in <i>dataBuffer</i>.</p><p><b>isEndOfFile: </b>The value is TRUE if the end of
+the specified file has been reached and there is no more file data to replicate
+to the client; otherwise, the value is FALSE.</p><p><b>Return Values: </b>This method MUST return 0 on
+success or a nonzero error code on failure. For protocol purposes all nonzero
+values MUST be treated as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00002342</p>
+  <p>FRS_ERROR_CONNECTION_INVALID</p>
+  </td>
+  <td>
+  <p>The connection is invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00002344</p>
+  <p>FRS_ERROR_CONTENTSET_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The content set was not found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x0000234B</p>
+  <p>FRS_ERROR_RDC_GENERIC</p>
+  </td>
+  <td>
+  <p>Unknown error in RDC.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00002358</p>
+  <p>FRS_ERROR_XPRESS_INVALID_DATA</p>
+  </td>
+  <td>
+  <p>The compressed data is invalid.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Validating the file transfer request:</b> The server MUST
+validate the file transfer request by performing the following checks. </p><ul><li><p><span><span> 
+</span></span>If an outbound connection for the specified connection is not
+established between the client and server (see the EstablishConnection method)
+then the server MUST fail the call with the FRS_ERROR_CONNECTION_INVALID
+failure value.</p>
+</li><li><p><span><span> 
+</span></span>If a <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_064adaf1-86c7-43e5-a157-b0949980181e" data-linktype="relative-path">replicated
+folder</a> session for the contentSetId specified in <i>frsUpdate</i> is not
+established between the client and server (see the EstablishSession method),
+then the server MUST fail the call with the FRS_ERROR_CONTENTSET_NOT_FOUND
+failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the file on the server has been deleted and if the
+corresponding file metadata has been updated with the present flag set to 0
+then the server MUST fail the call with an implementation-defined failure
+value.</p>
+</li><li><p><span><span> 
+</span></span>If the information stored in its database for the file associated
+with the requested UID in the supplied update is not in sync with the <b>File
+Replication Store</b>, or the server is performing operations on the database
+records that prevent the file from being replicated until those operations
+complete, then the server MUST fail the call with an implementation-defined
+failure value. <a id="Appendix_A_Target_29"></a><a aria-label="Product behavior note 29" href="c43938b1-6e96-48ec-9725-5e5d42089f49#Appendix_A_29" data-linktype="relative-path">&lt;29&gt;</a></p>
+</li><li><p><span><span> 
+</span></span>If the server detects that the compressed data of the staged file
+is corrupted then the server MUST fail the call with
+FRS_ERROR_XPRESS_INVALID_DATA. Refer to section <a href="610b30e0-7b9e-404f-bc1c-913dcdf825c3" data-linktype="relative-path">3.3.4.7.1</a> for more
+information about the staging area.</p>
+</li></ul><p><b>Actions Triggered:</b> Upon successfully validating the
+file transfer request, the server MUST retrieve the file data associated with
+the requested UID in the supplied update. The server MUST then send the file
+data in the way that the client has specified if possible (using RDC or not
+using RDC). The server sends file data by providing as much marshaled and
+compressed data as fits into the output buffer provided in the
+InitializeFileTransferAsync method call. The remaining marshaled and compressed
+file data is sent in response to subsequent client calls to retrieve file
+contents. The server MUST provide the file metadata that is associated with the
+file that it serves. It does so by providing its own view of the update
+associated with the requested UID in the return value of <i>frsUpdate</i>.</p><p><b>Remarks:</b> File data in <i>dataBuffer</i> is
+transferred over the wire in a format that is composed of two layers.</p><ol><li><p><span>    </span>A stream of file
+data that consists of a custom marshaled format (as specified in section <a href="adf1823f-1792-4383-a0df-c3c377f40410" data-linktype="relative-path">3.2.4.1.14.1</a>). The custom
+marshaled format encapsulates file data compatible with <a href="../ms-bkup/f67950c8-d583-469a-83dd-c4ff4cedf533" data-linktype="relative-path">[MS-BKUP]</a>
+and file metadata compatible with formats specified in <a href="../ms-fscc/efbfe127-73ad-4140-9967-ec6500e66d5e" data-linktype="relative-path">[MS-FSCC]</a>.</p>
+</li><li><p><span>    </span>An encapsulation
+of the marshaled file data stream using the compressed data format (as
+specified in section <a href="dbb265dc-4bcc-4697-952a-4039ebe5ccfb" data-linktype="relative-path">3.2.4.1.14.2</a>)
+generated by the compression algorithm specified in section <a href="a6715af1-8c14-416c-bc41-60b2ed2ebd25" data-linktype="relative-path">3.1.1.1</a>. Even if the
+marshaled file data stream is not compressed by the server, it is still
+encapsulated using the compressed data format.</p>
+</li></ol><p>The format of the backup stream is as specified in
+[MS-BKUP], and the format of the compressed marshaled stream is as specified in
+sections 3.2.4.1.14.1 and 3.2.4.1.14.2.</p><p>If bufferSize is zero then the server SHOULD complete the
+call successfully with sizeRead set to zero, or fail the call with an
+implementation-defined failure value. </p><p>In the case where the client requests an RDC transfer, the
+server informs the client of the RDC parameters that were used for the
+signatures for the file being transferred. Typically, the parameters are
+different for the first recursion level and for all other levels <a id="Appendix_A_Target_30"></a><a aria-label="Product behavior note 30" href="c43938b1-6e96-48ec-9725-5e5d42089f49#Appendix_A_30" data-linktype="relative-path">&lt;30&gt;</a> The server limits the number of
+simultaneous outstanding file downloads and returns an implementation-defined
+failure value when a file download is attempted while a configured threshold<a id="Appendix_A_Target_31"></a><a aria-label="Product behavior note 31" href="c43938b1-6e96-48ec-9725-5e5d42089f49#Appendix_A_31" data-linktype="relative-path">&lt;31&gt;</a> of simultaneous downloads has
+been reached.</p><p>If a client issues multiple simultaneous calls to any of the
+RPC methods taking a server context as an input parameter (<a href="5a3d7236-a35b-4e90-8f42-3773ea28220a" data-linktype="relative-path">RawGetFileData</a>, <a href="5b7294f6-26fb-47d6-858a-cbac937d091d" data-linktype="relative-path">RdcGetSignatures</a>, <a href="3537a49b-0dd9-4a7d-acbc-8339f765c8a4" data-linktype="relative-path">RdcPushSourceNeeds</a>, <a href="e09dc22a-0008-4af6-a7bf-22560c86d1b3" data-linktype="relative-path">RdcGetFileData</a>, <a href="dbd8ab7d-a8ad-498a-bf07-13277b064db0" data-linktype="relative-path">RawGetFileDataAsync</a> or <a href="5b789a80-26b2-469f-812a-4424bf492bc3" data-linktype="relative-path">RdcGetFileDataAsync</a>) with
+the same server context, then the server MUST ensure that only the first call
+is processed and all other calls are failed with an implementation-defined
+failure value.</p></div>

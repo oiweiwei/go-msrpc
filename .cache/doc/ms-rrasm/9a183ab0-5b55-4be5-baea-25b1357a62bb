@@ -1,1 +1,20 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RASI_CONNECTION_2</b> structure contains information
+for a connection, including the GUID that identifies the connection, as defined
+in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>
+section <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">2.3.4</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _RASI_CONNECTION_2 {
+   DWORD dwConnection;
+   WCHAR wszUserName[257];
+   ROUTER_INTERFACE_TYPE dwInterfaceType;
+   GUID guid;
+   PPP_INFO_2 PppInfo2;
+ } RASI_CONNECTION_2,
+  *PRASI_CONNECTION_2;
+</pre></div>
+</dd></dl><p><b>dwConnection: </b>See <b>dwConnection</b> in <a href="e979f770-cb84-426a-9b43-1ce5eec2d169" data-linktype="relative-path"><b>RASI_CONNECTION_0 (section 2.2.1.2.77)</b></a>.
+</p><p><b>wszUserName: </b>See <b>wszUserName</b> in <b>RASI_CONNECTION_0</b>.</p><p><b>dwInterfaceType: </b>A <a href="849c1f9e-9d6f-4408-840e-ee9ae253ae01" data-linktype="relative-path"><b>ROUTER_INTERFACE_TYPE (section 2.2.1.1.1)</b></a>
+that specifies the interface type of the current connection. </p><p><b>guid: </b>A GUID uniquely identifying the
+connection.</p><p><b>PppInfo2: </b>A <a href="d8584858-c0fa-437a-931a-4b17658b8668" data-linktype="relative-path"><b>PPP_INFO_2 (section 2.2.1.2.73)</b></a>
+structure that contains information about the PPP negotiation for this
+connection. </p></div>

@@ -1,0 +1,20 @@
+<div class="content"><p>The ArrivedError method is implemented by a client and MUST
+be invoked by the server to notify a message arrival error event.</p><dl>
+<dd>
+<div><pre> void ArrivedError(
+   [in] IDispatch* Queue,
+   [in] long ErrorCode,
+   [in] long Cursor
+ );
+</pre></div>
+</dd></dl><p><b>Queue: </b>A pointer to an <a href="../ms-oaut/ac9c502b-ac1c-4202-8ad4-048ac98afcc9" data-linktype="relative-path">IDispatch</a>
+interface for the <a href="48d37ac3-e585-4c3e-a075-42a18f317bcc" data-linktype="relative-path">MSMQQueue</a>
+that is associated with the event.</p><p><b>ErrorCode: </b>A <b>long</b> value that specifies
+the error code. The error code is an <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+casted to <b>long</b>.<a id="Appendix_A_Target_91"></a><a aria-label="Product behavior note 91" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_91" data-linktype="relative-path">&lt;91&gt;</a></p><p><b>Cursor: </b>A <b>long</b> value that specifies the
+value of the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursor</a>
+option that was specified through the <i>Cursor</i> input parameter passed to
+the <a href="e9d4a14a-4979-48ef-8b42-ef251f1ec592" data-linktype="relative-path">IMSMQQueue4::EnableNotification</a>
+operation to associate this MSMQEvent with the queue. This parameter
+corresponds to the <a href="f0456e8d-2f85-4c5b-ad2c-13b730ebfa77" data-linktype="relative-path">MQMSGCURSOR</a>
+enum as defined in section 2.2.2.8.</p><p>This method has no return values.</p></div>

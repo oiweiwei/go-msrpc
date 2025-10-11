@@ -1,1 +1,78 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MPR_SERVER_1</b> structure is used to get and set the
+number of Point-to-Point Tunneling Protocol/Layer Two Tunneling Protocol (<a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_09e8ce64-853c-4599-961d-1c3d851eaecb" data-linktype="relative-path">PPTP</a>/<a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_d8e02e99-2309-4981-9da3-b6f2267b9f8f" data-linktype="relative-path">L2TP</a>) ports configured on
+the RRAS server. It is also used to get and set the RRAS functionality and
+router functionality enabled on those ports.</p><dl>
+<dd>
+<div><pre> typedef struct MPR_SERVER_1 {
+   DWORD dwNumPptpPorts;
+   DWORD dwPptpPortFlags;
+   DWORD dwNumL2tpPorts;
+   DWORD dwL2tpPortFlags;
+ } MPR_SERVER_1,
+  *PMPR_SERVER_1;
+</pre></div>
+</dd></dl><p><b>dwNumPptpPorts: </b>Specifies the number of ports
+configured on that (PPTP) device. This value cannot exceed the server port
+limit.<a id="Appendix_A_Target_39"></a><a aria-label="Product behavior note 39" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_39" data-linktype="relative-path">&lt;39&gt;</a></p><p><b>dwPptpPortFlags: </b>Indicates the RRAS server
+and/or router functionality configured on the PPTP device. Possible flag values
+are as follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MPR_ENABLE_RAS_ON_DEVICE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Remote access is enabled for PPTP.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_ENABLE_ROUTING_ON_DEVICE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Routing is enabled for PPTP.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>dwNumL2tpPorts: </b>Specifies the number of ports
+configured on that (L2TP) device. This value cannot exceed the server port
+limit.<a id="Appendix_A_Target_40"></a><a aria-label="Product behavior note 40" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_40" data-linktype="relative-path">&lt;40&gt;</a></p><p><b>dwL2tpPortFlags: </b>Indicates the RAS and/or
+router functionality configured on the L2TP device. Possible flag values are as
+follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MPR_ENABLE_RAS_ON_DEVICE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Remote access is enabled for L2TP.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_ENABLE_ROUTING_ON_DEVICE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Routing is enabled for L2TP.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

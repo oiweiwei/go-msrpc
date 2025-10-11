@@ -1,1 +1,19 @@
-<div class="content"></div>
+<div class="content"><p>The IUpdateSession::ReadOnly (opnum 10) method returns
+whether the session is read-only.</p><dl>
+<dd>
+<div><pre> HRESULT ReadOnly(
+   [out, retval] VARIANT_BOOL* retval
+ );
+</pre></div>
+</dd></dl><p><b>retval: </b>MUST be VARIANT_TRUE if the session is
+read-only, or VARIANT_FALSE if not. See <span><a href="../ms-oaut/bbb05720-f724-45c7-8d17-f83c3d1a3961" data-linktype="relative-path">[MS-OAUT]</a></span>
+section <span><a href="../ms-oaut/7b39eb24-9d39-498a-bcd8-75c38e5823d0" data-linktype="relative-path">2.2.27</a></span>
+for information on these two values.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method SHOULD return the value of the <b>ReadOnly</b>
+ADM element.</p></div>

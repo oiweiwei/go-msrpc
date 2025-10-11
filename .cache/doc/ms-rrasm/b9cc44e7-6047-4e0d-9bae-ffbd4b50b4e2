@@ -1,1 +1,24 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_BOUNDARYROW</b> structure contains the IPv4 group
+address value and mask for a <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_70b74a6e-db1d-4648-bedd-5a524dfe6396" data-linktype="relative-path">multicast</a>
+boundary. Whenever this structure is used, the <b>InfoType</b> of <a href="c99955ec-6d18-4665-8d5b-e124de63a368" data-linktype="relative-path"><b>RTR_TOC_ENTRY (section 2.2.1.2.4)</b></a>
+MUST be 0xFFFF000B to specify multicast boundary information.</p><p>This structure is used in <b>MIB_OPAQUE_INFO</b> (section
+<a href="169e435d-a975-4c1c-bf41-55fd2bd76125" data-linktype="relative-path">2.2.1.2.52</a>) structure.</p><p>This structure is used in the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="927c5bf1-ac91-4325-b945-0d96a58f609b" data-linktype="relative-path"><b>RRouterInterfaceTransportAdd (section 3.1.4.18)</b></a></p>
+</li><li><p><span><span> 
+</span></span><a href="209ba5e7-876e-4406-a05c-65b7e5fb2380" data-linktype="relative-path"><b>RRouterInterfaceTransportSetInfo (section 3.1.4.20)</b></a></p>
+</li><li><p><span><span> 
+</span></span><a href="ec9ba293-45e9-4f12-b9af-7e77ec96c90e" data-linktype="relative-path"><b>RRouterInterfaceTransportGetInfo (section 3.1.4.19)</b></a></p>
+<div><pre> typedef struct {
+   DWORD dwGroupAddress;
+   DWORD dwGroupMask;
+ } MIB_BOUNDARYROW,
+  *PMIB_BOUNDARYROW;
+</pre></div>
+</li></ul><p><b>dwGroupAddress: </b>The 32-bit integer
+representation of the IPv4 group address which, when combined with the
+corresponding value in <b>dwGroupMask</b>, identifies the group range for which
+the scoped boundary exists. </p><p><b>Note</b>  Scoped addresses MUST come
+from the range 239.*.*.* as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=119994" data-linktype="external">[RFC2365]</a>.</p><p><b>dwGroupMask: </b>The 32-bit integer representation
+of the IPv4 group address mask which, when combined with the corresponding
+value in <b>dwGroupAddress</b>, identifies the group range for which the scoped
+boundary exists.</p></div>

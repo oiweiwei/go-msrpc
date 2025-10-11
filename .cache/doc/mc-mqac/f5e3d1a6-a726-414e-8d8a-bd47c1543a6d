@@ -1,0 +1,101 @@
+<div class="content"><p>The MQMSGACKNOWLEDGEMENT enumeration defines flags for the <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>.<b>AcknowledgementsRequested</b>
+property. The values of the enumeration indicate the categories of
+administrative acknowledgment <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">messages</a>
+that are generated in response to successful or unsuccessful delivery outcomes.
+Administrative acknowledgment messages are generated to indicate the delivery
+outcome of a message that was originated by a client of this protocol. The <a href="eaab11bf-07b9-4e74-9197-c5eb1bf772e7" data-linktype="relative-path">MQMSGCLASS (section 2.2.2.9)</a>
+enumeration specifies the types of administrative acknowledgment messages and
+the specific conditions in which they are produced by the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_b8a2f77c-783c-49d0-a724-1393de48ad8a" data-linktype="relative-path">message queuing system</a>.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MQMSG_ACKNOWLEDGMENT_NONE = 0x00,
+   MQMSG_ACKNOWLEDGMENT_POS_ARRIVAL = 0x01,
+   MQMSG_ACKNOWLEDGMENT_POS_RECEIVE = 0x02,
+   MQMSG_ACKNOWLEDGMENT_NEG_ARRIVAL = 0x04,
+   MQMSG_ACKNOWLEDGMENT_NEG_RECEIVE = 0x08,
+   MQMSG_ACKNOWLEDGMENT_NACK_REACH_QUEUE = 0x04,
+   MQMSG_ACKNOWLEDGMENT_FULL_REACH_QUEUE = 0x05,
+   MQMSG_ACKNOWLEDGMENT_NACK_RECEIVE = 0x0c,
+   MQMSG_ACKNOWLEDGMENT_FULL_RECEIVE = 0x0e
+ } MQMSGACKNOWLEDGEMENT;
+</pre></div>
+</dd></dl><p> Used by: </p><ul><li><p><span><span> 
+</span></span>get <a href="c48e9085-dfde-4c99-ad2f-05a5db1a2a15" data-linktype="relative-path">IMSMQMessage::Ack</a></p>
+</li><li><p><span><span> 
+</span></span>put <a href="1d773983-c08f-4549-a4f3-bf9336b9c602" data-linktype="relative-path">IMSMQMessage::Ack</a></p>
+</li></ul><p>The MQMSGACKNOWLEDGEMENT enumeration values correspond to
+the enumeration values for Message.<b>AcknowledgementsRequested</b>, as shown
+in the following table:</p><table><thead>
+  <tr>
+   <th>
+   <p>MQMSGACKNOWLEDGEMENT</p>
+   </th>
+   <th>
+   <p>AcknowledgementsRequested</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p> MQMSG_ACKNOWLEDGEMENT_NONE</p>
+  </td>
+  <td>
+  <p> None</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> MQMSG_ACKNOWLEDGEMENT_POS_ARRIVAL</p>
+  </td>
+  <td>
+  <p> AckPosArrival</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> MQMSG_ACKNOWLEDGEMENT_POS_RECEIVE</p>
+  </td>
+  <td>
+  <p> AckPosReceive</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> MQMSG_ACKNOWLEDGEMENT_NEG_ARRIVAL</p>
+  </td>
+  <td>
+  <p> AckNegArrival</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> MQMSG_ACKNOWLEDGEMENT_NEG_RECEIVE</p>
+  </td>
+  <td>
+  <p> AckNegReceive</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_ACKNOWLEDGEMENT_NACK_REACH_QUEUE </p>
+  </td>
+  <td>
+  <p> AckNackReachQueue</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_ACKNOWLEDGEMENT_FULL_REACH_QUEUE </p>
+  </td>
+  <td>
+  <p> AckFullReachQueue</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> MQMSG_ACKNOWLEDGEMENT_NACK_RECEIVE</p>
+  </td>
+  <td>
+  <p> AckNackReceive</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p> MQMSG_ACKNOWLEDGEMENT_FULL_RECEIVE </p>
+  </td>
+  <td>
+  <p> AckFullReceive</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

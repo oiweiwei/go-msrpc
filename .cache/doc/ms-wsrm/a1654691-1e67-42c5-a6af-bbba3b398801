@@ -1,1 +1,17 @@
-<div class="content"></div>
+<div class="content"><p>The RESTORE_MODE enumeration defines states that the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_c18a91a3-689f-4e5e-9a91-c7b8f5402c5e" data-linktype="relative-path">WSRM configuration</a> can have
+when it is restored. The WSRM configuration is restored by the <a href="352ba7f6-3051-4d9b-9426-aaa62c47afd1" data-linktype="relative-path">RestoreXMLFiles
+method (section 3.2.4.1.5)</a>.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum 
+ {
+   RESTORE_LAST_GOOD_STATE = 1,
+   RESTORE_EMPTY_FILES = 2
+ } RESTORE_MODE;
+</pre></div>
+</dd></dl><p><b>RESTORE_LAST_GOOD_STATE:  </b>This value targets
+the last saved good state of the WSRM configuration, which is defined as a
+consistent set of <b>WSRM</b> objects. <b>WSRM</b> objects are stored in the
+XML files after successful completion of any method call of this protocol.</p><p><b>RESTORE_EMPTY_FILES:  </b>This value targets the
+initial state of the WSRM configuration with which the product is shipped. This
+means that only the out-of-box policies, empty calendars, and conditional
+policies will be used in the restored state of the object.</p></div>

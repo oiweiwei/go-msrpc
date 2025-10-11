@@ -1,1 +1,55 @@
-<div class="content"></div>
+<div class="content"><p>The <b>SAP_IF_STATS</b> structure MAY<a id="Appendix_A_Target_108"></a><a aria-label="Product behavior note 108" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_108" data-linktype="relative-path">&lt;108&gt;</a> be used to contain the SAP
+MIB Interface Table Entry. This structure is returned as part of the following
+methods: </p><ul><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="9102e585-2f62-4408-bfb6-02a6460cc883" data-linktype="relative-path"><b>RMIBEntryGetFirst (section 3.1.4.31)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="50f78033-d248-4272-b4b9-a2519a0f304d" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.1.4.32)</b></a><span>  </span></p>
+<div><pre> typedef struct _SAP_IF_STATS {
+   ULONG SapIfOperState;
+   ULONG SapIfInputPackets;
+   ULONG SapIfOutputPackets;
+ } SAP_IF_STATS,
+  *PSAP_IF_STATS;
+</pre></div>
+</li></ul><p><b>SapIfOperState: </b>Indicates the operation status
+of the SAP on the interface. It MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>OPER_STATE_DOWN</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Nonoperational.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>OPER_STATE_UP</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Operational and can pass packets.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>OPER_STATE_SLEEPING</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Sleeping.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>SapIfInputPackets: </b>Counts the SAP input
+packets on the interface.</p><p><b>SapIfOutputPackets: </b>Counts the SAP output
+packets on the interface.</p></div>

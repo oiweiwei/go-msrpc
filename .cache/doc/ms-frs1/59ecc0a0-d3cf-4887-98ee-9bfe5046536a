@@ -1,1 +1,55 @@
-<div class="content"></div>
+<div class="content"><p>The CHANGE_ORDER_RECORD_EXTENSION structure MUST be
+formatted as follows.</p><dl>
+<dd>
+<div><pre> typedef struct _CHANGE_ORDER_RECORD_EXTENSION {
+   ULONG FieldSize;
+   USHORT Major;
+   USHORT OffsetCount;
+   ULONG Offset[2];
+   ULONG OffsetLast;
+   ULONG Not used;
+   DATA_EXTENSION_CHECKSUM DataChecksum;
+   DATA_EXTENSION_RETRY_TIMEOUT DataRetryTimeout;
+ } CHANGE_ORDER_RECORD_EXTENSION,
+  *PCHANGE_ORDER_RECORD_EXTENSION;
+</pre></div>
+</dd></dl><p><b>FieldSize:</b>  Size, in bytes, of the
+CHANGE_ORDER_RECORD_EXTENSION structure. MUST be 0x00000048, which is the size
+of CHANGE_ORDER_RECORD_EXTENSION in bytes.</p><p><b>Major:</b>  A 16-bit, unsigned integer
+that specifies the version of the CHANGE_ORDER_RECORD_EXTENSION structure. MUST
+be one of the following two values.<a id="Appendix_A_Target_10"></a><a aria-label="Product behavior note 10" href="d18cc589-677e-4133-97e5-113641792c5e#Appendix_A_10" data-linktype="relative-path">&lt;10&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CO_RECORD_EXTENSION_VERSION_WIN2K</p>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>Version 0 of CHANGE_ORDER_RECORD_EXTENSION.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CO_RECORD_EXTENSION_VERSION_1</p>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>Version 1 of CHANGE_ORDER_RECORD_EXTENSION.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>OffsetCount:</b>  MUST be 0x0002, which
+is the number of element in array Offset.</p><p><b>Offset:</b>  Offset[0] is the offset of
+the DataChecksum member from the beginning of the CHANGE_ORDER_RECORD_EXTENSION
+structure. MUST be 0x00000018.</p><p><b>OffsetLast:</b>  MUST be 0.</p><p><b>Not used:</b>  Four padding bytes to
+align the following structure in memory. Not used. MUST be 0. MUST be ignored
+on receipt.</p><p><b>DataChecksum:</b>  <a href="660990ab-11a6-4568-8e2f-8a84ad61f835" data-linktype="relative-path">DATA_EXTENSION_CHECKSUM</a>
+structure, as specified in section 2.2.3.7.</p><p><b>DataRetryTimeout:</b>  <a href="09476f54-0d7a-4236-9ffd-9e318a99de93" data-linktype="relative-path">DATA_EXTENSION_RETRY_TIMEOUT</a>
+structure, as specified in section 2.2.3.9.</p></div>

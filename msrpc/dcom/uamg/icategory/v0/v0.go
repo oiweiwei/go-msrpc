@@ -51,22 +51,160 @@ type CategoryClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The ICategory::Name (opnum 8) method retrieves the name of the update category.
+	//
+	// The IUpdateService::Name (opnum 8) method retrieves the name of the update service.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Name ADM element.
 	GetName(context.Context, *GetNameRequest, ...dcerpc.CallOption) (*GetNameResponse, error)
 
+	// The ICategory:: CategoryID (opnum 9) method retrieves the ID of the update category.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ID ADM element.
 	GetCategoryID(context.Context, *GetCategoryIDRequest, ...dcerpc.CallOption) (*GetCategoryIDResponse, error)
 
+	// The ICategory::Children (opnum 10) method retrieves an ICategoryCollection interface
+	// instance containing the children of the update category.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Children ADM element.
 	GetChildren(context.Context, *GetChildrenRequest, ...dcerpc.CallOption) (*GetChildrenResponse, error)
 
+	// The ICategory::Description (opnum 11) method retrieves the description of the update
+	// category.
+	//
+	// The IUpdateHistoryEntry::Description (opnum 14) method retrieves the description
+	// of the update for which the operation is performed.
+	//
+	// The IUpdate::Description (opnum 16) method retrieves the localized description for
+	// the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Description ADM element.
 	GetDescription(context.Context, *GetDescriptionRequest, ...dcerpc.CallOption) (*GetDescriptionResponse, error)
 
+	// The ICategory::Image (opnum 12) method retrieves an IImageInformation interface instance
+	// that contains information on the image associated with the update category.
+	//
+	// The IUpdate::Image (opnum 21) method retrieves a localized image associated with
+	// the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Image ADM element.
 	GetImage(context.Context, *GetImageRequest, ...dcerpc.CallOption) (*GetImageResponse, error)
 
+	// The ICategory::Order (opnum 13) method retrieves the recommended display order of
+	// the update category among its siblings.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Order ADM element.
 	GetOrder(context.Context, *GetOrderRequest, ...dcerpc.CallOption) (*GetOrderResponse, error)
 
+	// The ICategory::Parent (opnum 14) method retrieves the parent of the update category.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Parent ADM element.
 	GetParent(context.Context, *GetParentRequest, ...dcerpc.CallOption) (*GetParentResponse, error)
 
+	// The ICategory::Type (opnum 15) method retrieves the type of the update category.
+	//
+	// The IUpdate::Type (opnum 43) method retrieves the type of the update.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Type ADM element.
 	GetType(context.Context, *GetTypeRequest, ...dcerpc.CallOption) (*GetTypeResponse, error)
 
+	// The ICategory::Updates (opnum 16) method retrieves an IUpdateCollection interface
+	// containing the updates that belong to the update category.
+	//
+	// The ISearchResult::Updates (opnum 10) method retrieves the updates found during the
+	// search.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Updates ADM element.
 	GetUpdates(context.Context, *GetUpdatesRequest, ...dcerpc.CallOption) (*GetUpdatesResponse, error)
 
 	// AlterContext alters the client context.
@@ -513,8 +651,11 @@ func (o *GetNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // GetNameResponse structure represents the Name operation response
 type GetNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The localized name of the category.
+	//
+	// retval: The name of the service.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The Name return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -754,8 +895,9 @@ func (o *GetCategoryIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetCategoryIDResponse structure represents the CategoryID operation response
 type GetCategoryIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A globally unique string identifying this category.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The CategoryID return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -995,7 +1137,9 @@ func (o *GetChildrenRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // GetChildrenResponse structure represents the Children operation response
 type GetChildrenResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat           `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An instance of the ICategoryCollection interface that contains the categories
+	// that are children of this category.
 	ReturnValue *uamg.CategoryCollection `idl:"name:retval" json:"return_value"`
 	// Return: The Children return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1236,8 +1380,18 @@ func (o *GetDescriptionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetDescriptionResponse structure represents the Description operation response
 type GetDescriptionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set to a string containing the description of the category, or MUST
+	// be set to NULL or the empty string if there is no description for the category.
+	//
+	// retval: The localized description of the update for which the operation is performed.
+	// The description SHOULD be in the language of the user who initiated the operation
+	// but MAY be in the language of the current calling user. If there is no description
+	// of the update, the retval MUST be set either to NULL or to the empty string.
+	//
+	// retval: A localized description of the update. If there is no description of the
+	// update, this MUST be set to NULL or the empty string.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The Description return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1477,7 +1631,14 @@ func (o *GetImageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 // GetImageResponse structure represents the Image operation response
 type GetImageResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat         `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set to an instance of IImageInformation that describes the image
+	// associated with the category, or MUST be set to NULL if no image is associated with
+	// the category.
+	//
+	// retval: An IImageInformation instance that contains information about the localized
+	// image associated with the update. If no image is associated with the update, retval
+	// MUST be set to NULL.
 	ReturnValue *uamg.ImageInformation `idl:"name:retval" json:"return_value"`
 	// Return: The Image return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1684,8 +1845,11 @@ func (o *GetOrderRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 // GetOrderResponse structure represents the Order operation response
 type GetOrderResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int32          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set to a value indicating the recommended display order of this category
+	// among its siblings. A category with a lesser Order value is recommended to be displayed
+	// before a category with a greater Order value.
+	ReturnValue int32 `idl:"name:retval" json:"return_value"`
 	// Return: The Order return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1925,7 +2089,9 @@ func (o *GetParentRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 // GetParentResponse structure represents the Parent operation response
 type GetParentResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: MUST be set to an instance of the ICategory interface representing this category's
+	// parent category, or MUST be set to NULL if this category is the root category.
 	ReturnValue *uamg.Category `idl:"name:retval" json:"return_value"`
 	// Return: The Parent return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -2166,8 +2332,22 @@ func (o *GetTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // GetTypeResponse structure represents the Type operation response
 type GetTypeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A string containing the type of this category. The string MUST be set to
+	// one of the following values:
+	//
+	// * "Company", if this category refers to the company or organization that has public
+	// ownership and support accountability for the updates belonging to the category.
+	//
+	// * "ProductFamily", if this category refers to a related set of products.
+	//
+	// * "Product", if this category refers to a single product.
+	//
+	// * "UpdateClassification", for all other cases.
+	//
+	// retval: A value of the UpdateType (section 2.2.3) enumeration that describes the
+	// type of the update.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The Type return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2407,7 +2587,10 @@ func (o *GetUpdatesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 // GetUpdatesResponse structure represents the Updates operation response
 type GetUpdatesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat         `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An instance of IUpdateCollection containing updates belonging to this category.
+	//
+	// retval: A collection of the updates found for the computer.
 	ReturnValue *uamg.UpdateCollection `idl:"name:retval" json:"return_value"`
 	// Return: The Updates return value.
 	Return int32 `idl:"name:Return" json:"return"`

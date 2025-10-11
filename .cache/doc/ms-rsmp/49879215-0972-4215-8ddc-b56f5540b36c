@@ -1,1 +1,66 @@
-<div class="content"></div>
+<div class="content"><p>The BeginNtmsDeviceChangeDetection method begins a device change
+detection session. The libraries for which media change detection is required
+MUST be set using the <a href="df7b9490-c4e0-4d8f-aee9-b4811e57d914" data-linktype="relative-path">SetNtmsDeviceChangeDetection</a>
+method. Implementation of this method is optional.<a id="Appendix_A_Target_23"></a><a aria-label="Product behavior note 23" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_23" data-linktype="relative-path">&lt;23&gt;</a> The
+server MAY return a non-implemented error (ERROR_CALL_NOT_IMPLEMENTED,
+0x80070078).<a id="Appendix_A_Target_24"></a><a aria-label="Product behavior note 24" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_24" data-linktype="relative-path">&lt;24&gt;</a></p><dl>
+<dd>
+<div><pre> HRESULT BeginNtmsDeviceChangeDetection(
+   [out] NTMS_HANDLE* lpDetectHandle
+ );
+</pre></div>
+</dd></dl><p><b>lpDetectHandle: </b>A pointer to the new device
+change detection handle.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070006</p>
+  <p>ERROR_INVALID_HANDLE</p>
+  </td>
+  <td>
+  <p>The session handle is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070078</p>
+  <p>ERROR_CALL_NOT_IMPLEMENTED</p>
+  </td>
+  <td>
+  <p>This function is not supported on this system.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>If the method is implemented, the server MUST verify that <i>lpDetectHandle</i>
+is not NULL. If it is NULL, the server MUST immediately fail the operation and
+return an invalid handler error ERROR_INVALID_HANDLE (0x80070006).</p><p>The BeginNtmsDeviceChangeDetection method allows the
+application to begin a device change detection session.</p><p>After calling BeginNtmsDeviceChangeDetection, the
+application can set the stand-alone libraries for which media change detection
+is required using the SetNtmsDeviceChangeDetection method. RSM continues to
+detect changes for the devices specified until the change detection session is
+closed using the <a href="fd638727-b71a-4f27-a901-e09a6e5abc52" data-linktype="relative-path">EndNtmsDeviceChangeDetection</a>
+method.</p><p>The server MUST return a pointer to the new device change
+detection handle in <i>lpDetectHandle</i>.</p></div>

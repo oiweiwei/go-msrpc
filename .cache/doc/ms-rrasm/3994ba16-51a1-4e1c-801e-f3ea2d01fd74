@@ -1,1 +1,16 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_UDPTABLE</b> structure contains a table of
+address information for sending and receiving UDP datagrams on the local
+computer.</p><dl>
+<dd>
+<div><pre> typedef struct _MIB_UDPTABLE {
+   DWORD dwNumEntries;
+   MIB_UDPROW table[1];
+   BYTE reserved[8];
+ } MIB_UDPTABLE,
+  *PMIB_UDPTABLE;
+</pre></div>
+</dd></dl><p><b>dwNumEntries: </b>The number of entries in the
+table.</p><p><b>table: </b>Pointer to an array of
+MIB_UDPROW (section <a href="451bb64e-496e-4887-89c5-171b6d10f6ee" data-linktype="relative-path">2.2.1.2.58</a>)
+structures.</p><p><b>reserved: </b>An array of 8 bytes that SHOULD be
+set to 0 and ignored on receipt.</p></div>

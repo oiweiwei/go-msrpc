@@ -1,0 +1,15 @@
+<div class="content"><p>The ITransaction method is received by the server in an
+RPC_REQUEST packet. In response, the server returns the <a href="1fb025b7-9089-45da-9b01-2078fa8073bb" data-linktype="relative-path">ITransaction</a> interface on
+the underlying <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a>
+object.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT ITransaction(
+   [out, retval] VARIANT* pvarITransaction
+ );
+</pre></div>
+</dd></dl><p><b>pvarITransaction: </b>A pointer to a <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_a3af3eaf-64b7-499b-a95f-193cd4c27812" data-linktype="relative-path">VARIANT</a> (VT_UNKNOWN or
+VT_EMPTY) that, when successfully completed, contains the underlying
+transaction object.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>The <i>pvarITransaction</i> output parameter MUST be set to
+the ITransaction interface pointer of the <i>Transaction</i> instance variable.</p></div>

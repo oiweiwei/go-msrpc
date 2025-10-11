@@ -1,0 +1,16 @@
+<div class="content"><p>The BodyLength method is received by the server in an
+RPC_REQUEST packet. In response, the server MUST return the number of bytes in
+the represented Message.Body.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT BodyLength(
+   [out, retval] long* pcbBody
+ );
+</pre></div>
+</dd></dl><p><b>pcbBody: </b>A pointer to a <b>long</b> integer
+that contains the number of bytes in the body of the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a>.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>Set the <i>pcbBody</i> output parameter to the byte length of the
+represented Message.Body.</p>
+</li></ul></div>

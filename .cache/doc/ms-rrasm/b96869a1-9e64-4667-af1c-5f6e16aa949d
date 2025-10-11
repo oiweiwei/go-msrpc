@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>The <b>GetNdiswanDriverCapsStruct</b> structure contains the
+information specific to the REQTYPE_GETNDISWANDRIVERCAPS in the <a href="fcb89c61-ced3-43ba-a2ef-4c6f4a2d40a6" data-linktype="relative-path"><b>ReqTypes (section 2.2.1.1.18)</b></a>
+enumeration. </p><dl>
+<dd>
+<div><pre> typedef struct GetNdiswanDriverCapsStruct {
+   DWORD retcode;
+   RAS_NDISWAN_DRIVER_INFO NdiswanDriverInfo;
+ } GetNdiswanDriverCapsStruct;
+</pre></div>
+</dd></dl><p><b>retcode: </b>Specifies the return status as
+explained in section <a href="c39d153e-2f97-4e11-8aff-bcf983869dc9" data-linktype="relative-path">2.2.1.2.218</a>
+for retcode field.</p><p><b>NdiswanDriverInfo: </b>The <b>RAS_NDISWAN_DRIVER_INFO</b>
+structure.</p></div>

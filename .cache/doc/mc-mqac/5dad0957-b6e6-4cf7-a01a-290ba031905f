@@ -1,0 +1,25 @@
+<div class="content"><p>The CreateTime method is received by the server in an
+RPC_REQUEST packet. In response, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> returns the date and
+time when the <i>referenced queue</i> was created.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT CreateTime(
+   [out, retval] VARIANT* pvarCreateTime
+ );
+</pre></div>
+</dd></dl><p><b>pvarCreateTime: </b>A pointer to a <a href="../ms-oaut/a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">VARIANT</a>
+that contains a UTC date/time (VT_DATE) that specifies the date and time when
+the <i>referenced queue</i> was created.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the server MUST abide by the
+following contract:</p><ul><li><p><span><span> 
+</span></span>If <i>IsRefreshed</i> is FALSE call <a href="e4072abd-b433-4b22-a4ed-8f654d182705" data-linktype="relative-path">Refresh</a> (section
+3.10.4.1.29).</p>
+</li><li><p><span><span> 
+</span></span>If Refresh returns a value other than S_OK (0x00000000), return
+the HRESULT returned by Refresh and take no further action.</p>
+</li><li><p><span><span> 
+</span></span>Set the <i>pvarCreateTime</i> output parameter to the value of
+refQueue.CreateTime.</p>
+</li><li><p><span><span> 
+</span></span>Return S_OK (0x00000000), and take no further action.</p>
+</li></ul></div>

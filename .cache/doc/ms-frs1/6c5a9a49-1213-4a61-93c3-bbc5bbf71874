@@ -1,1 +1,15 @@
-<div class="content"></div>
+<div class="content"><p>The structure of the COMM_EOP packet element is as follows.</p><dl>
+<dd>
+<div><pre> typedef struct _COMM_EOP {
+   USHORT CommType;
+   ULONG Length;
+   ULONG Data;
+ } COMM_EOP,
+  *PCOMM_EOP;
+</pre></div>
+</dd></dl><p><b>CommType:</b>   A 16-bit, unsigned
+integer that indicates the type of this <a href="194f8fff-d903-44b7-9530-c66f5366f8c7" data-linktype="relative-path">COMM_PACKET</a> element. MUST
+be set to 0x0013.</p><p><b>Length:</b>   A 32-bit, unsigned integer
+that indicates the length in bytes of the data following the Length field. MUST
+be 0x00000004.</p><p><b>Data:</b>   A 32-bit, unsigned integer
+that indicates the end of the packet. MUST be set to 0xFFFFFFFF.</p></div>

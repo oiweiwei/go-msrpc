@@ -1,1 +1,15 @@
-<div class="content"></div>
+<div class="content"><p>The VSS_PROVIDER_PROP structure provides information about a
+<a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_c714f43b-a2c0-4a47-b022-deeeabf318b3" data-linktype="relative-path">shadow copy provider</a>.
+This structure is not used by this protocol. It MUST NOT be referenced and MUST
+be ignored on receipt.</p><dl>
+<dd>
+<div><pre> typedef struct _VSS_PROVIDER_PROP {
+   VSS_ID m_ProviderId;
+   VSS_PWSZ m_pwszProviderName;
+   VSS_PROVIDER_TYPE m_eProviderType;
+   VSS_PWSZ m_pwszProviderVersion;
+   VSS_ID m_ProviderVersionId;
+   CLSID m_ClassId;
+ } VSS_PROVIDER_PROP;
+</pre></div>
+</dd></dl></div>

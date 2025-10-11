@@ -1,1 +1,97 @@
-<div class="content"></div>
+<div class="content"><p>The <b>SSTP_CERT_INFO_1</b> structure<a id="Appendix_A_Target_127"></a><a aria-label="Product behavior note 127" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_127" data-linktype="relative-path">&lt;127&gt;</a> contain the subject name of
+the x.509 certificates that will be configured by the RRAS to be used in
+SSL/TLS negotiation as a part of the <a href="../ms-sstp/c50ed240-56f3-4309-8e0c-1644898f0ea8" data-linktype="relative-path">[MS-SSTP]</a>
+protocol.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>isDefault</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>certBlob
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>isDefault (4 bytes): </b>This value specifies how
+the SSTP certificate hash values are configured. Possible flag values are as
+follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TRUE</p>
+  </td>
+  <td>
+  <p>RRAS server chooses a certificate hash on its own
+  automatically.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>FALSE</p>
+  </td>
+  <td>
+  <p>The SSTP certificate hash values are configured by the
+  administrator.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>This value SHOULD be set to FALSE
+when sent. The RRAS server specifies TRUE for this value if administrator has
+not configured the certificate and default certificate selection logic is used.
+This value is FALSE if the administrator has configured the certificate. </p>
+</dd></dl><p><b>certBlob (variable): </b>This MUST be a <a href="b44c33b9-607a-4fee-894c-8af13f86ac5a" data-linktype="relative-path"><b>CERT_BLOB_1</b></a>. This
+contains the Certificate HASH Length and Certificate Hash. It accepts ONLY
+SHA256 HASH as the valid HASH. Thus, the value of the length field SHOULD
+always be 32 <a href="https://go.microsoft.com/fwlink/?LinkId=90356" data-linktype="external">[RFC2459]</a>.
+Specifying a value 0 for the <b>cbData</b> member of <b>CERT_BLOB_1</b> removes
+the certificate configuration. In this case, RRAS server uses its default
+certificate selection logic. </p></div>

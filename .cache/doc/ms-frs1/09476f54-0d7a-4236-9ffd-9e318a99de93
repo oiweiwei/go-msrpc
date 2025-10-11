@@ -1,1 +1,20 @@
-<div class="content"></div>
+<div class="content"><p>The DATA_EXTENSION_RETRY_TIMEOUT structure specifies retries
+to a <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_576a8417-dd00-4f9e-b52f-c9a2e3766a8a" data-linktype="relative-path">change order</a> and
+the time of the first try. The structure of DATA_EXTENSION_RETRY_TIMEOUT is as
+follows.</p><dl>
+<dd>
+<div><pre> typedef struct _DATA_EXTENSION_RETRY_TIMEOUT {
+   DATA_EXTENSION_PREFIX Prefix;
+   DWORD Count;
+   ULONG Notused;
+   LONGLONG FirstTryTime;
+ } DATA_EXTENSION_RETRY_TIMEOUT,
+  *PDATA_EXTENSION_RETRY_TIMEOUT;
+</pre></div>
+</dd></dl><p><b>Prefix:</b>   MUST be the same as <a href="ad6ee4ae-4a85-4e66-a2a7-45495426da20" data-linktype="relative-path">DATA_EXTENSION_PREFIX</a>.
+Size MUST be set to 0x18. Type MUST be set to 2.</p><p><b>Count:</b>   A 32-bit, unsigned integer
+that specifies the number of retries of this change order to date.</p><p><b>Notused:</b>  Four padding bytes to
+align the following structure in memory. Not used. MUST be 0. MUST be ignored
+on receipt.</p><p><b>FirstTryTime:</b>   The UTC time of the
+first try of this change order. MUST be in <a href="../ms-dtyp/2c57429b-fdd4-488f-b5fc-9e4cf020fcdf" data-linktype="relative-path">FILETIME</a>
+format.</p></div>

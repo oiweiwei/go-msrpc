@@ -1,1 +1,111 @@
-<div class="content"></div>
+<div class="content"><p>The <b>BGP_ADVERTISE</b> structure<a id="Appendix_A_Target_193"></a><a aria-label="Product behavior note 193" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_193" data-linktype="relative-path">&lt;193&gt;</a> is used to get or set the BGP
+route advertisement configuration.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwFlags</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uInterfaceCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>uPrefixCount</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Interfaces
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Prefixes
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwFlags (4 bytes): </b>This flag MUST to set to
+one of the following values while modifying the BGP route advertisement
+configuration and MUST be ignored on receipt.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>None of the attributes in the <b>BGP_ADVERTISE</b>
+  structure is modified</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>One or more attributes in the <b>BGP_ADVERTISE</b>
+  structure are modified. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>uInterfaceCount (4 bytes): </b>Specifies the
+number of interfaces whose static routes would be advertised.</p><p><b>uPrefixCount (4 bytes): </b>Specifies the number
+of prefixes in addition to the prefixes learned from the BGP peers that would
+be advertised. These additional prefix values are specified in the <b>Prefixes</b>
+field.</p><p><b>Interfaces (variable): </b>An array of <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_96b64af9-1896-4bde-b988-54d469c5affd" data-linktype="relative-path">LUIDs</a> of the interfaces
+whose static routes would be advertised. The number of entries in this array
+MUST be <b>uInterfaceCount</b>.</p><p><b>Prefixes (variable): </b>An array of prefixes, <b>uPrefixCount</b>
+in number, each of which MUST be of type <a href="7b71cafe-ab5f-44df-94a8-615e40a4dc09" data-linktype="relative-path"><b>BGP_IP_PREFIX (section</b></a><span><b> </b></span>2.2.1.2.255).   </p></div>

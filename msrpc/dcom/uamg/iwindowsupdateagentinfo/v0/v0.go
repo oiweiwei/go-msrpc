@@ -49,6 +49,18 @@ type WindowsUpdateAgentInfoClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The IWindowsUpdateAgentInfo::GetInfo (opnum 8) method retrieves version information
+	// for the server side of the protocol and the update agent.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	GetInfo(context.Context, *GetInfoRequest, ...dcerpc.CallOption) (*GetInfoResponse, error)
 
 	// AlterContext alters the client context.
@@ -328,8 +340,24 @@ func (o *xxx_GetInfoOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 // GetInfoRequest structure represents the GetInfo operation request
 type GetInfoRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis `idl:"name:This" json:"this"`
-	VarInfoID *oaut.Variant  `idl:"name:varInfoIdentifier" json:"var_info_id"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// varInfoIdentifier: A VARIANT ([MS-OAUT] section 2.2.29.2) containing a string specifying
+	// the type of version information to retrieve. The vt member of varInfoIdentifier MUST
+	// be set to VT_BSTR, and the BSTR ([MS-OAUT] section 2.2.23) stored in the bstrVal
+	// member MUST case-insensitively compare equal to one of the following values.
+	//
+	//	+----------------------+--------------------------------------------------------------+
+	//	|       BSTRVAL        |                      INFORMATION TO BE                       |
+	//	|        VALUE         |                          RETRIEVED                           |
+	//	+----------------------+--------------------------------------------------------------+
+	//	+----------------------+--------------------------------------------------------------+
+	//	| ApiMajorVersion      | The major version number of the server side of the protocol. |
+	//	+----------------------+--------------------------------------------------------------+
+	//	| ApiMinorVersion      | The minor version number of the server side of the protocol. |
+	//	+----------------------+--------------------------------------------------------------+
+	//	| ProductVersionString | The version of the update agent.                             |
+	//	+----------------------+--------------------------------------------------------------+
+	VarInfoID *oaut.Variant `idl:"name:varInfoIdentifier" json:"var_info_id"`
 }
 
 func (o *GetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetInfoOperation) *xxx_GetInfoOperation {
@@ -366,8 +394,26 @@ func (o *GetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // GetInfoResponse structure represents the GetInfo operation response
 type GetInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.Variant  `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A VARIANT containing the requested version information, as specified by the
+	// following table.
+	//
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	|    VARINFOIDENTIFIER BSTRVAL    |                                                                                  |
+	//	|              VALUE              |                                      RETVAL                                      |
+	//	|                                 |                                                                                  |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| ApiMajorVersion                 | The vt member MUST be set to VT_I4. The lVal member SHOULD<52> be set to the     |
+	//	|                                 | server's major version.                                                          |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| ApiMinorVersion                 | The vt member MUST be set to VT_I4. The lVal member SHOULD<53> be set to the     |
+	//	|                                 | server's minor version.                                                          |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	//	| ProductVersionString            | The vt member MUST be set to VT_BSTR. The bstrVal member SHOULD<54> be set to    |
+	//	|                                 | the version of the update agent.                                                 |
+	//	+---------------------------------+----------------------------------------------------------------------------------+
+	ReturnValue *oaut.Variant `idl:"name:retval" json:"return_value"`
 	// Return: The GetInfo return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

@@ -1,1 +1,17 @@
-<div class="content"></div>
+<div class="content"><p>The SendMsgToASession method directs the <a href="2773e920-ee91-4a2c-bb52-9f09c583f1af#gt_0a962242-a6b0-42e4-abb1-39d7434d3c8b" data-linktype="relative-path">telnet server</a> to send a
+text message to the telnet client that initiated the session.</p><dl>
+<dd>
+<div><pre> HRESULT SendMsgToASession(
+   [in] DWORD dwUniqueId,
+   [in] BSTR szMsg
+ );
+</pre></div>
+</dd></dl><p><b>dwUniqueId: </b>The ID of the session. The ID of a
+session can be obtained using the GetTelnetSessions method or can be user
+provided. The server MUST ensure that at any given point in time only one
+telnet session exists with a particular ID. Refer to Section <a href="985f52c9-34ae-4b74-ac04-c4f95589ca9f" data-linktype="relative-path">3.1.1</a> for an abstract data
+model that the server can maintain.</p><p><b>szMsg: </b>The string text that has to be sent.</p><p><b>Return Values: </b>The server MUST return zero if
+the method is successful. The server MUST return 0x01 if processing fails.
+These are in addition to the values that can be returned by the underlying <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+implementation.</p><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying DCOM protocol [MS-DCOM].</p></div>

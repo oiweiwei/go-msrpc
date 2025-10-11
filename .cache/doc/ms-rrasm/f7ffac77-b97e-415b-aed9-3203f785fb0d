@@ -1,1 +1,31 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RTR_DISC_INFO</b> structure is used to set and
+retrieve router discovery information according to <a href="https://go.microsoft.com/fwlink/?LinkId=119991" data-linktype="external">[RFC1256]</a>.</p><p>This structure is used in the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="209ba5e7-876e-4406-a05c-65b7e5fb2380" data-linktype="relative-path"><b>RRouterInterfaceTransportSetInfo (section 3.1.4.20)</b></a></p>
+</li><li><p><span><span> 
+</span></span><a href="927c5bf1-ac91-4325-b945-0d96a58f609b" data-linktype="relative-path"><b>RRouterInterfaceTransportAdd (section 3.1.4.18)</b></a></p>
+<div><pre> typedef struct _RTR_DISC_INFO {
+   IN OUT WORD wMaxAdvtInterval;
+   IN OUT WORD wMinAdvtInterval;
+   IN OUT WORD wAdvtLifetime;
+   IN OUT BOOL bAdvertise;
+   IN OUT LONG lPrefLevel;
+ } RTR_DISC_INFO,
+  *PRTR_DISC_INFO;
+</pre></div>
+</li></ul><p><b>wMaxAdvtInterval: </b>This MUST be set to the
+maximum time allowed between sending <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_70b74a6e-db1d-4648-bedd-5a524dfe6396" data-linktype="relative-path">multicast</a> Router
+Advertisements from the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a>,
+in seconds. It MUST be no less than 4 seconds and no greater than 1800 seconds.</p><p><b>wMinAdvtInterval: </b>This MUST be the minimum
+time allowed between sending unsolicited multicast Router Advertisements from
+the interface, in seconds. It MUST be no less than 3 seconds and no greater
+than <b>wMaxAdvtInterval</b>.</p><p><b>wAdvtLifetime: </b>This MUST be the value to be
+placed in the <b>Lifetime</b> field of Router Advertisements sent from the
+interface, in seconds. It MUST be no less than <b>wMaxAdvtInterval</b> and no
+greater than 9000 seconds.</p><p><b>bAdvertise: </b>This MUST be the flag indicating
+whether or not the address is to be advertised.</p><p><b>lPrefLevel: </b>This MUST be the preference of the
+address as a default <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_7c837f59-0dca-4e5b-a8cb-2da817ac1d08" data-linktype="relative-path">router</a>
+address, relative to other router addresses on the same subnet. A 32-bit,
+signed, twos complement integer, with higher values meaning more preferable.
+The minimum value (0x80000000) is used to indicate that the address, even if
+advertised, is not to be used by neighboring hosts as a default router address.</p><p>When this structure is used, the <b>InfoType</b> of <a href="c99955ec-6d18-4665-8d5b-e124de63a368" data-linktype="relative-path"><b>RTR_TOC_ENTRY (section 2.2.1.2.4)</b></a>
+MUST be 0xFFFF0007 to specify router discovery information.</p></div>

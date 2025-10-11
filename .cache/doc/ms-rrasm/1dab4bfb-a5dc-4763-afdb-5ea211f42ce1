@@ -1,1 +1,57 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IPNETROW</b> structure contains information for
+an Address Resolution Protocol (ARP) table entry for an IPv4 address. This
+structure is used in <b>MIB_OPAQUE_INFO</b> (section <a href="169e435d-a975-4c1c-bf41-55fd2bd76125" data-linktype="relative-path">2.2.1.2.52</a>) structure.</p><dl>
+<dd>
+<div><pre> typedef struct _MIB_IPNETROW {
+   DWORD dwIndex;
+   DWORD dwPhysAddrLen;
+   BYTE bPhysAddr[8];
+   DWORD dwAddr;
+   DWORD dwType;
+ } MIB_IPNETROW,
+  *PMIB_IPNETROW;
+</pre></div>
+</dd></dl><p><b>dwIndex: </b>This MUST be the interface index of
+an adapter.</p><p><b>dwPhysAddrLen: </b>The length, in bytes, of the
+physical address.</p><p><b>bPhysAddr: </b>The physical address.</p><p><b>dwAddr: </b>The IPv4 address.</p><p><b>dwType: </b>The type of ARP entry. This type MUST
+be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Other</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Invalid</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Dynamic</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Static</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

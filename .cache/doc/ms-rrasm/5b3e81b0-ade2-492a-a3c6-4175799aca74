@@ -1,1 +1,42 @@
-<div class="content"></div>
+<div class="content"><p>The <b>PPTP_CONFIG_PARAMS_1</b> structure<a id="Appendix_A_Target_123"></a><a aria-label="Product behavior note 123" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_123" data-linktype="relative-path">&lt;123&gt;</a> be used to get or set the
+device configuration for PPTP on the RAS Server.</p><dl>
+<dd>
+<div><pre> typedef struct _PPTP_CONFIG_PARAMS_1 {
+   DWORD dwNumPorts;
+   DWORD dwPortFlags;
+ } PPTP_CONFIG_PARAMS_1,
+  *PPPTP_CONFIG_PARAMS_1;
+</pre></div>
+</dd></dl><p><b>dwNumPorts: </b>Specifies the number of ports
+configured on that (PPTP) device. This value cannot exceed the server port
+limit.<a id="Appendix_A_Target_124"></a><a aria-label="Product behavior note 124" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_124" data-linktype="relative-path">&lt;124&gt;</a></p><p><b>dwPortFlags: </b>Specifies the type of port
+configured on PPTP devices. The possible flag values are as follows.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MPR_ENABLE_RAS_ON_DEVICE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>PPTP is enabled to accept Remote Access client
+  connection.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPR_ENABLE_ROUTING_ON_DEVICE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>PPTP is enabled to accept demand-dial connections.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

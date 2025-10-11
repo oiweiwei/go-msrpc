@@ -1,1 +1,64 @@
-<div class="content"></div>
+<div class="content"><p>The <b>PRIORITY_INFO_EX</b> structure<a id="Appendix_A_Target_195"></a><a aria-label="Product behavior note 195" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_195" data-linktype="relative-path">&lt;195&gt;</a> is used to set preferences to
+different protocols on the RRAS server. This structure is used in the following
+methods:</p><ul><li><p><span><span> 
+</span></span><a href="071439e7-a9fd-40e4-91f7-ab756108e82f" data-linktype="relative-path"><b>RRouterInterfaceTransportSetGlobalInfo (section 3.1.4.10)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="bf82d259-06a7-4886-bb4e-9870d597eae9" data-linktype="relative-path"><b>RRouterInterfaceTransportGetGlobalInfo (section 3.2.4.11)</b></a><span>  </span></p>
+</li></ul><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>dwNumProtocols</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>ppmProtocolMetric
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>dwNumProtocols (4 bytes): </b>This MUST be the
+number of protocols for which metric information is given in this structure <a href="c9156a82-fa42-4b1e-96d3-b3acd648cebc" data-linktype="relative-path"><b>PROTOCOL_METRIC_EX (section</b></a><span><b> </b></span>2.2.1.2.267).  </p><p><b>ppmProtocolMetric (variable): </b>This MUST be an
+array of <b>PROTOCOL_METRIC_EX</b> structures with <b>dwNumProtocols</b>
+specifying the number of elements in the array.</p><p>When this structure is used, the <b>InfoType</b> of <a href="c99955ec-6d18-4665-8d5b-e124de63a368" data-linktype="relative-path"><b>RTR_TOC_ENTRY (section 2.2.1.2.4)</b></a>
+MUST be 0xFFFF0017. Multiple instances of this structure can be present. If
+multiple instances are present, and there are overlapping protocol IDs, the
+metric specified in the last instance will be set.  </p></div>

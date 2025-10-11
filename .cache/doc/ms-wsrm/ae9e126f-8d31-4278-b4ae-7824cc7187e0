@@ -1,1 +1,87 @@
-<div class="content"></div>
+<div class="content"><p>The RefreshRemoteSessionWeights method forces reallocation
+of CPU quotas for the sessions run by users according to the category type
+specified in <i>bstrTargetUserSessions</i>.</p><dl>
+<dd>
+<div><pre> [id(3), helpstring(&#34;method RefreshRemoteSessionWeights&#34;)] HRESULT RefreshRemoteSessionWeights(
+   [in] BSTR bstrTaregetUserSessions,
+   [in] BOOL bUpdateAll
+ );
+</pre></div>
+</dd></dl><p><b>bstrTargetUserSessions: </b>A string that
+specifies a list of user categories, in the format of a <a href="8dffd3a5-d731-459b-81de-7a33287a4901" data-linktype="relative-path">ConfigurationFiles</a> element
+(section 2.2.5.13).</p><p><b>bUpdateAll: </b>A Boolean value that specifies
+whether to recursively delete all instances of the specified machine group.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>FALSE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Only the CPU quotas for users specified in <i>bstrTargetUserSessions</i>
+  are reallocated according to their category type.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TRUE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The CPU quotas for all remote sessions are reallocated
+  according to the category type specified in <i>bstrTargetUserSessions</i>.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0xC1FF0070</p>
+  <p>WRM_ERR_TAGS_NOT_IN_ORDER</p>
+  </td>
+  <td>
+  <p>The XML data is invalid or cannot be processed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF006F</p>
+  <p>WRM_ERR_ID_VALUE</p>
+  </td>
+  <td>
+  <p>The specified name contains characters that are invalid.
+  The name cannot start with a hyphen (<code>-</code>), cannot contain spaces, and cannot
+  contain any of the following characters: </p>
+  <p><code>\   / ? * | : &lt; &gt; &#34; , ;</code> </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="e92c2589-b1ae-4bee-980a-b1f96710b4e7" data-linktype="relative-path">IWRMRemoteSessionMgmt</a>
+interface methods are specified in section 3.2.4.9.</p></div>

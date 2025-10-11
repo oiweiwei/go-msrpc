@@ -1,1 +1,47 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IPMCAST_MFE</b> structure stores the information
+for an IP <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_70b74a6e-db1d-4648-bedd-5a524dfe6396" data-linktype="relative-path">multicast</a>
+forwarding entry (MFE). This structure is used in <b>MIB_MFE_TABLE</b> (section
+<a href="bfcd42b8-8453-4f32-9148-f0affd3766a0" data-linktype="relative-path">2.2.1.2.51</a>) structure. </p><dl>
+<dd>
+<div><pre> typedef struct _MIB_IPMCAST_MFE {
+   DWORD dwGroup;
+   DWORD dwSource;
+   DWORD dwSrcMask;
+   DWORD dwUpStrmNgbr;
+   DWORD dwInIfIndex;
+   DWORD dwInIfProtocol;
+   DWORD dwRouteProtocol;
+   DWORD dwRouteNetwork;
+   DWORD dwRouteMask;
+   ULONG ulUpTime;
+   ULONG ulExpiryTime;
+   ULONG ulTimeOut;
+   ULONG ulNumOutIf;
+   DWORD fFlags;
+   DWORD dwReserved;
+   MIB_IPMCAST_OIF rgmioOutInfo[1];
+ } MIB_IPMCAST_MFE,
+  *PMIB_IPMCAST_MFE;
+</pre></div>
+</dd></dl><p><b>dwGroup: </b>The range of IPv4 multicast groups
+for this MFE. A value of zero (0) indicates a wildcard group.</p><p><b>dwSource: </b>The range of IPv4 source addresses
+for this MFE. A value of zero (0) indicates a wildcard source.</p><p><b>dwSrcMask: </b>The IPv4 subnet mask that
+corresponds to <b>dwSource</b>. The <b>dwSource</b> and <b>dwSrcMask</b>
+members are used together to define a range of sources.</p><p><b>dwUpStrmNgbr: </b>The <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_4daf1e81-3ffe-4656-8074-a9914b14a60c" data-linktype="relative-path">upstream</a> neighbor that is
+related to this MFE.</p><p><b>dwInIfIndex: </b>The index of the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> to which this MFE
+is related.</p><p><b>dwInIfProtocol: </b>The <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_edf0a770-0034-4c2d-8acd-68508bac32ae" data-linktype="relative-path">routing protocol</a> that owns
+the incoming interface to which this MFE is related.</p><p><b>dwRouteProtocol: </b>The protocol that created the
+<a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_ad8a294a-8e3c-47e3-a876-7488cd5c8353" data-linktype="relative-path">route</a>. This is the enum <b>MIB_IPFORWARD_PROTO</b>
+(section <a href="c40401df-9ef7-42aa-b336-759c2086e476" data-linktype="relative-path">2.2.1.1.9</a>).</p><p><b>dwRouteNetwork: </b>The IPv4 address associated
+with the route referred to by <b>dwRouteProtocol</b>.</p><p><b>dwRouteMask: </b>The IPv4 mask associated with the
+route referred to by <b>dwRouteProtocol</b>.</p><p><b>ulUpTime: </b>The time, in seconds, that this MFE
+has been valid. This value starts from zero (0) and is incremented until it
+reaches the <b>ulTimeOut</b> value, at which time the MFE is deleted.</p><p><b>ulExpiryTime: </b>The time, in seconds, that
+remains before the MFE expires and is deleted. This value starts from <b>ulTimeOut</b>
+and is decremented until it reaches zero (0), at which time the MFE is deleted.</p><p><b>ulTimeOut: </b>The total length of time, in
+seconds, that this MFE remains valid. After the time-out value is exceeded, the
+MFE is deleted.</p><p><b>ulNumOutIf: </b>The number of outgoing interfaces
+that are associated with this MFE.</p><p><b>fFlags: </b>Reserved. This member SHOULD be NULL.</p><p><b>dwReserved: </b>Reserved. This member SHOULD be
+NULL.</p><p><b>rgmioOutInfo: </b>A pointer to a table of outgoing
+interface statistics that are implemented as an array of <a href="31b2d6c9-3daf-44ec-9516-fd0588a1ca6f" data-linktype="relative-path"><b>MIB_IPMCAST_OIF (section 2.2.1.2.43)</b></a>
+structures. </p></div>

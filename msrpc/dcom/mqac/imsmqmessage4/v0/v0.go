@@ -51,7 +51,11 @@ type Message4Client interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
-	// Class operation.
+	// The Class method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the represented Message.Class.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetClass(context.Context, *GetClassRequest, ...dcerpc.CallOption) (*GetClassResponse, error)
 
 	// PrivLevel operation.
@@ -66,7 +70,12 @@ type Message4Client interface {
 	// AuthLevel operation.
 	SetAuthLevel(context.Context, *SetAuthLevelRequest, ...dcerpc.CallOption) (*SetAuthLevelResponse, error)
 
-	// IsAuthenticated operation.
+	// The IsAuthenticated method is received by the server in an RPC_REQUEST packet. In
+	// response, the server MUST return a BOOLEAN flag indicating whether the message was
+	// authenticated by the Queue Manager that received the message.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetIsAuthenticated(context.Context, *GetIsAuthenticatedRequest, ...dcerpc.CallOption) (*GetIsAuthenticatedResponse, error)
 
 	// Delivery operation.
@@ -105,10 +114,18 @@ type Message4Client interface {
 	// AppSpecific operation.
 	SetAppSpecific(context.Context, *SetAppSpecificRequest, ...dcerpc.CallOption) (*SetAppSpecificResponse, error)
 
-	// SourceMachineGuid operation.
+	// The SourceMachineGuid method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return the represented Message.SourceMachineIdentifier.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetSourceMachineGUID(context.Context, *GetSourceMachineGUIDRequest, ...dcerpc.CallOption) (*GetSourceMachineGUIDResponse, error)
 
-	// BodyLength operation.
+	// The BodyLength method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the number of bytes in the represented Message.Body.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetBodyLength(context.Context, *GetBodyLengthRequest, ...dcerpc.CallOption) (*GetBodyLengthResponse, error)
 
 	// Body operation.
@@ -123,7 +140,11 @@ type Message4Client interface {
 	// AdminQueueInfo_v1 operation.
 	SetAdminQueueInfoV1(context.Context, *SetAdminQueueInfoV1Request, ...dcerpc.CallOption) (*SetAdminQueueInfoV1Response, error)
 
-	// Id operation.
+	// The Id method is received by the server in an RPC_REQUEST packet. In response, the
+	// server MUST return the represented Message.Identifier.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetID(context.Context, *GetIDRequest, ...dcerpc.CallOption) (*GetIDResponse, error)
 
 	// CorrelationId operation.
@@ -168,13 +189,26 @@ type Message4Client interface {
 	// EncryptAlgorithm operation.
 	SetEncryptAlgorithm(context.Context, *SetEncryptAlgorithmRequest, ...dcerpc.CallOption) (*SetEncryptAlgorithmResponse, error)
 
-	// SentTime operation.
+	// The SentTime method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the represented Message.SentTime.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetSentTime(context.Context, *GetSentTimeRequest, ...dcerpc.CallOption) (*GetSentTimeResponse, error)
 
-	// ArrivedTime operation.
+	// The ArrivedTime method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the represented Message.ArrivalTime.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetArrivedTime(context.Context, *GetArrivedTimeRequest, ...dcerpc.CallOption) (*GetArrivedTimeResponse, error)
 
-	// DestinationQueueInfo operation.
+	// The DestinationQueueInfo method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return an IMSMQQueueInfo interface pointer to an MSMQQueueInfo
+	// object that represents the Queue identified by the represented Message.DestinationQueueFormatName.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetDestinationQueueInfo(context.Context, *GetDestinationQueueInfoRequest, ...dcerpc.CallOption) (*GetDestinationQueueInfoResponse, error)
 
 	// SenderCertificate operation.
@@ -192,13 +226,34 @@ type Message4Client interface {
 	// SenderIdType operation.
 	SetSenderIDType(context.Context, *SetSenderIDTypeRequest, ...dcerpc.CallOption) (*SetSenderIDTypeResponse, error)
 
-	// Send operation.
+	// The Send method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST send a message.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Send(context.Context, *SendRequest, ...dcerpc.CallOption) (*SendResponse, error)
 
-	// AttachCurrentSecurityContext operation.
+	// The AttachCurrentSecurityContext method is received by the server in an RPC_REQUEST
+	// packet. In response, the server MUST cache the relevant information required to sign
+	// a message on behalf of the client, including the Message.SenderIdentifier and Message.SenderCertificate.
+	// This method is provided purely as an optimization to allow the client to reduce lookups
+	// of the security information about the calling client each time the message is sent.
+	// The represented Message.SenderIdentifier and Message.SenderCertificate property values
+	// MUST NOT be updated as a result of calling this method. This method is superseded
+	// by IMSMQMessage4::AttachSecurityContext2.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	AttachCurrentSecurityContext(context.Context, *AttachCurrentSecurityContextRequest, ...dcerpc.CallOption) (*AttachCurrentSecurityContextResponse, error)
 
-	// SenderVersion operation.
+	// The SenderVersion method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return a numeric value that indicates the version of transfer used
+	// to send the message.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetSenderVersion(context.Context, *GetSenderVersionRequest, ...dcerpc.CallOption) (*GetSenderVersionResponse, error)
 
 	// Extension operation.
@@ -213,7 +268,12 @@ type Message4Client interface {
 	// ConnectorTypeGuid operation.
 	SetConnectorTypeGUID(context.Context, *SetConnectorTypeGUIDRequest, ...dcerpc.CallOption) (*SetConnectorTypeGUIDResponse, error)
 
-	// TransactionStatusQueueInfo operation.
+	// The TransactionStatusQueueInfo method is received by the server in an RPC_REQUEST
+	// packet. In response, the server MUST return an IMSMQQueueInfo interface pointer to
+	// an MSMQQueueInfo object that represents the queue identified by the represented Message.TransactionStatusQueueFormatName.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetTransactionStatusQueueInfo(context.Context, *GetTransactionStatusQueueInfoRequest, ...dcerpc.CallOption) (*GetTransactionStatusQueueInfoResponse, error)
 
 	// DestinationSymmetricKey operation.
@@ -252,13 +312,25 @@ type Message4Client interface {
 	// Properties operation.
 	GetProperties(context.Context, *GetPropertiesRequest, ...dcerpc.CallOption) (*GetPropertiesResponse, error)
 
-	// TransactionId operation.
+	// The TransactionId method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the represented Message.TransactionalMessageSequenceIdentifier.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetTransactionID(context.Context, *GetTransactionIDRequest, ...dcerpc.CallOption) (*GetTransactionIDResponse, error)
 
-	// IsFirstInTransaction operation.
+	// The IsFirstInTransaction method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return the represented Message.FirstInTransaction.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetIsFirstInTransaction(context.Context, *GetIsFirstInTransactionRequest, ...dcerpc.CallOption) (*GetIsFirstInTransactionResponse, error)
 
-	// IsLastInTransaction operation.
+	// The IsLastInTransaction method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return the represented Message.LastInTransaction.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetIsLastInTransaction(context.Context, *GetIsLastInTransactionRequest, ...dcerpc.CallOption) (*GetIsLastInTransactionResponse, error)
 
 	// ResponseQueueInfo_v2 operation.
@@ -273,7 +345,11 @@ type Message4Client interface {
 	// AdminQueueInfo_v2 operation.
 	SetAdminQueueInfoV2(context.Context, *SetAdminQueueInfoV2Request, ...dcerpc.CallOption) (*SetAdminQueueInfoV2Response, error)
 
-	// ReceivedAuthenticationLevel operation.
+	// The ReceivedAuthenticationLevel method is received by the server in an RPC_REQUEST
+	// packet. In response, the server MUST return the represented Message.AuthenticationLevel.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetReceivedAuthenticationLevel(context.Context, *GetReceivedAuthenticationLevelRequest, ...dcerpc.CallOption) (*GetReceivedAuthenticationLevelResponse, error)
 
 	// ResponseQueueInfo operation.
@@ -294,34 +370,84 @@ type Message4Client interface {
 	// ResponseDestination operation.
 	SetByRefResponseDestination(context.Context, *SetByRefResponseDestinationRequest, ...dcerpc.CallOption) (*SetByRefResponseDestinationResponse, error)
 
-	// Destination operation.
+	// The Destination method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return an IDispatch interface pointer to an MSMQDestination object
+	// that represents 0 or more queues identified by the represented Message.DestinationMultiQueueFormatName.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetDestination(context.Context, *GetDestinationRequest, ...dcerpc.CallOption) (*GetDestinationResponse, error)
 
-	// LookupId operation.
+	// The LookupId method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the represented Message.LookupIdentifier.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetLookupID(context.Context, *GetLookupIDRequest, ...dcerpc.CallOption) (*GetLookupIDResponse, error)
 
-	// IsAuthenticated2 operation.
+	// The IsAuthenticated2 method is received by the server in an RPC_REQUEST packet. In
+	// response, the server MUST return a Boolean flag indicating if the message was authenticated
+	// by the Queue Manager that received the Message. This provides identical behavior
+	// to the method IMSMQMessage4::IsAuthenticated (section 3.17.4.1.6).
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetIsAuthenticated2(context.Context, *GetIsAuthenticated2Request, ...dcerpc.CallOption) (*GetIsAuthenticated2Response, error)
 
-	// IsFirstInTransaction2 operation.
+	// The IsFirstInTransaction2 method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return the represented Message.FirstInTransaction.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetIsFirstInTransaction2(context.Context, *GetIsFirstInTransaction2Request, ...dcerpc.CallOption) (*GetIsFirstInTransaction2Response, error)
 
-	// IsLastInTransaction2 operation.
+	// The IsLastInTransaction2 method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return the represented Message.LastInTransaction.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetIsLastInTransaction2(context.Context, *GetIsLastInTransaction2Request, ...dcerpc.CallOption) (*GetIsLastInTransaction2Response, error)
 
-	// AttachCurrentSecurityContext2 operation.
+	// The AttachCurrentSecurityContext2 method is received by the server in an RPC_REQUEST
+	// packet. In response, the server caches the relevant information required to sign
+	// a message on behalf of the client, including Message.SenderIdentifier and Message.SenderCertificate.
+	// This method is provided purely as an optimization to allow the client to reduce lookups
+	// of the security information about the calling client each time the message is sent.
+	// The represented Message.SenderIdentifier and Message.SenderCertificate property values
+	// MUST NOT be updated as a result of calling this method.
+	//
+	// This method has no parameters.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	AttachCurrentSecurityContext2(context.Context, *AttachCurrentSecurityContext2Request, ...dcerpc.CallOption) (*AttachCurrentSecurityContext2Response, error)
 
-	// SoapEnvelope operation.
+	// The SoapEnvelope method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the represented Message.SoapEnvelope.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetSOAPEnvelope(context.Context, *GetSOAPEnvelopeRequest, ...dcerpc.CallOption) (*GetSOAPEnvelopeResponse, error)
 
-	// CompoundMessage operation.
+	// The CompoundMessage method is received by the server in an RPC_REQUEST packet. In
+	// response, the server MUST return the represented Message.SoapCompoundMessage.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetCompoundMessage(context.Context, *GetCompoundMessageRequest, ...dcerpc.CallOption) (*GetCompoundMessageResponse, error)
 
-	// SoapHeader operation.
+	// The SoapHeader method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST set the SOAPHeader instance variable.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	SetSOAPHeader(context.Context, *SetSOAPHeaderRequest, ...dcerpc.CallOption) (*SetSOAPHeaderResponse, error)
 
-	// SoapBody operation.
+	// The SoapBody method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST set the SOAPBody instance variable.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	SetSOAPBody(context.Context, *SetSOAPBodyRequest, ...dcerpc.CallOption) (*SetSOAPBodyResponse, error)
 
 	// AlterContext alters the client context.
@@ -2374,8 +2500,10 @@ func (o *GetClassRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 // GetClassResponse structure represents the Class operation response
 type GetClassResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Class int32          `idl:"name:plClass" json:"class"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// plClass: A pointer to a long that identifies the message type. This parameter corresponds
+	// to the MQMSGCLASS (section 2.2.2.9) enum.
+	Class int32 `idl:"name:plClass" json:"class"`
 	// Return: The Class return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3409,8 +3537,9 @@ func (o *GetIsAuthenticatedRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 // GetIsAuthenticatedResponse structure represents the IsAuthenticated operation response
 type GetIsAuthenticatedResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IsAuthenticated int16          `idl:"name:pisAuthenticated" json:"is_authenticated"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pisAuthenticated: A pointer to a short that specifies whether the message was authenticated.
+	IsAuthenticated int16 `idl:"name:pisAuthenticated" json:"is_authenticated"`
 	// Return: The IsAuthenticated return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -6208,8 +6337,11 @@ func (o *GetSourceMachineGUIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 // GetSourceMachineGUIDResponse structure represents the SourceMachineGuid operation response
 type GetSourceMachineGUIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
-	SourceMachine *oaut.String   `idl:"name:pbstrGuidSrcMachine" json:"source_machine"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrGuidSrcMachine: A pointer to a BSTR that contains the GUID identifier of the
+	// computer that sent the message. The string MUST adhere to the following format, specified
+	// using ABNF.
+	SourceMachine *oaut.String `idl:"name:pbstrGuidSrcMachine" json:"source_machine"`
 	// Return: The SourceMachineGuid return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -6415,8 +6547,10 @@ func (o *GetBodyLengthRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetBodyLengthResponse structure represents the BodyLength operation response
 type GetBodyLengthResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	BodyLength int32          `idl:"name:pcbBody" json:"body_length"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pcbBody: A pointer to a long integer that contains the number of bytes in the body
+	// of the message.
+	BodyLength int32 `idl:"name:pcbBody" json:"body_length"`
 	// Return: The BodyLength return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -7605,8 +7739,9 @@ func (o *GetIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // GetIDResponse structure represents the Id operation response
 type GetIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
-	MessageID *oaut.Variant  `idl:"name:pvarMsgId" json:"message_id"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pvarMsgId: A pointer to a VARIANT that contains a 20-byte array (VT_ARRAY | VT_UI1) that contains the unique message identifier.
+	MessageID *oaut.Variant `idl:"name:pvarMsgId" json:"message_id"`
 	// Return: The Id return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -10873,8 +11008,10 @@ func (o *GetSentTimeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // GetSentTimeResponse structure represents the SentTime operation response
 type GetSentTimeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That     *dcom.ORPCThat `idl:"name:That" json:"that"`
-	SentTime *oaut.Variant  `idl:"name:pvarSentTime" json:"sent_time"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pvarSentTime: A pointer to a VARIANT that contains a VT_DATE that contains the UTC
+	// date and time stamp of when the message was sent.
+	SentTime *oaut.Variant `idl:"name:pvarSentTime" json:"sent_time"`
 	// Return: The SentTime return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -11114,8 +11251,10 @@ func (o *GetArrivedTimeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetArrivedTimeResponse structure represents the ArrivedTime operation response
 type GetArrivedTimeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ArrivedTime *oaut.Variant  `idl:"name:plArrivedTime" json:"arrived_time"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// plArrivedTime: A pointer to a VARIANT that contains a VT_DATE that contains the UTC
+	// date and time stamp of when the message arrived in the queue.
+	ArrivedTime *oaut.Variant `idl:"name:plArrivedTime" json:"arrived_time"`
 	// Return: The ArrivedTime return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -11357,7 +11496,10 @@ func (o *GetDestinationQueueInfoRequest) UnmarshalNDR(ctx context.Context, r ndr
 // GetDestinationQueueInfoResponse structure represents the DestinationQueueInfo operation response
 type GetDestinationQueueInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat   `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppqinfoDest: A pointer to a pointer to an IMSMQQueueInfo interface that upon successful
+	// completion will contain an MSMQQueue object that represents the destination queue
+	// for the message.
 	Destination *mqac.QueueInfo4 `idl:"name:ppqinfoDest" json:"destination"`
 	// Return: The DestinationQueueInfo return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -12732,9 +12874,17 @@ func (o *xxx_SendOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 // SendRequest structure represents the Send operation request
 type SendRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This             *dcom.ORPCThis `idl:"name:This" json:"this"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// DestinationQueue: A pointer to an IDispatch interface that can reference either an
+	// MSMQQueue object instance or an MSMQDestination object instance.
 	DestinationQueue *oaut.Dispatch `idl:"name:DestinationQueue" json:"destination_queue"`
-	Transaction      *oaut.Variant  `idl:"name:Transaction" json:"transaction"`
+	// Transaction: A pointer to a VARIANT that contains either:
+	//
+	//   - A VT_DISPATCH or a VT_DISPATCH | VT_BYREF that points to an MSMQTransaction object.
+	//
+	// * A VT_I4 that references one of the following enumeration values as defined in section
+	// 2.2.2.1 ( 3ff1f343-d6e9-4bab-848f-6f2b39209762 ).
+	Transaction *oaut.Variant `idl:"name:Transaction" json:"transaction"`
 }
 
 func (o *SendRequest) xxx_ToOp(ctx context.Context, op *xxx_SendOperation) *xxx_SendOperation {
@@ -13170,8 +13320,10 @@ func (o *GetSenderVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // GetSenderVersionResponse structure represents the SenderVersion operation response
 type GetSenderVersionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
-	SenderVersion int32          `idl:"name:plSenderVersion" json:"sender_version"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// plSenderVersion: A pointer to a long integer that specifies the version of transfer
+	// used to send the message.
+	SenderVersion int32 `idl:"name:plSenderVersion" json:"sender_version"`
 	// Return: The SenderVersion return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -14362,7 +14514,10 @@ func (o *GetTransactionStatusQueueInfoRequest) UnmarshalNDR(ctx context.Context,
 // GetTransactionStatusQueueInfoResponse structure represents the TransactionStatusQueueInfo operation response
 type GetTransactionStatusQueueInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That              *dcom.ORPCThat   `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppqinfoXactStatus: A pointer to an IMSMQQueueInfo interface pointer that upon successful
+	// completion will contain an MSMQQueue object representing the transaction status queue
+	// for the message.
 	TransactionStatus *mqac.QueueInfo4 `idl:"name:ppqinfoXactStatus" json:"transaction_status"`
 	// Return: The TransactionStatusQueueInfo return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -17314,8 +17469,9 @@ func (o *GetTransactionIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // GetTransactionIDResponse structure represents the TransactionId operation response
 type GetTransactionIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
-	TransactionID *oaut.Variant  `idl:"name:pvarXactId" json:"transaction_id"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pvarXactId: A pointer to a VARIANT that contains a 20-byte array (VT_ARRAY | VT_UI1) containing the transaction identifier. The format for this ID MUST follow the structure as defined in [MS-MQMQ] section 2.2.8, where the Lineage part is the GUID of the sending computer and the Uniquifier part is a transaction sequence number.
+	TransactionID *oaut.Variant `idl:"name:pvarXactId" json:"transaction_id"`
 	// Return: The TransactionId return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -17523,8 +17679,10 @@ func (o *GetIsFirstInTransactionRequest) UnmarshalNDR(ctx context.Context, r ndr
 // GetIsFirstInTransactionResponse structure represents the IsFirstInTransaction operation response
 type GetIsFirstInTransactionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IsFirstInTransaction int16          `idl:"name:pisFirstInXact" json:"is_first_in_transaction"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pisFirstInXact: A pointer to a short that specifies whether the message was the first
+	// sent by the transaction.
+	IsFirstInTransaction int16 `idl:"name:pisFirstInXact" json:"is_first_in_transaction"`
 	// Return: The IsFirstInTransaction return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -17732,8 +17890,10 @@ func (o *GetIsLastInTransactionRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // GetIsLastInTransactionResponse structure represents the IsLastInTransaction operation response
 type GetIsLastInTransactionResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That                *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IsLastInTransaction int16          `idl:"name:pisLastInXact" json:"is_last_in_transaction"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pisLastInXact: A pointer to a short that specifies whether the message was the last
+	// sent by the transaction.
+	IsLastInTransaction int16 `idl:"name:pisLastInXact" json:"is_last_in_transaction"`
 	// Return: The IsLastInTransaction return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -18913,8 +19073,11 @@ func (o *GetReceivedAuthenticationLevelRequest) UnmarshalNDR(ctx context.Context
 // GetReceivedAuthenticationLevelResponse structure represents the ReceivedAuthenticationLevel operation response
 type GetReceivedAuthenticationLevelResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That                        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReceivedAuthenticationLevel int16          `idl:"name:psReceivedAuthenticationLevel" json:"received_authentication_level"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// psReceivedAuthenticationLevel: A pointer to a short that identifies if the message
+	// was authenticated and what digital signature was used. This parameter corresponds
+	// to the MQMSGAUTHENTICATION enum as defined in MQMSGAUTHENTICATION (section 2.2.2.17).
+	ReceivedAuthenticationLevel int16 `idl:"name:psReceivedAuthenticationLevel" json:"received_authentication_level"`
 	// Return: The ReceivedAuthenticationLevel return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -20610,7 +20773,10 @@ func (o *GetDestinationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetDestinationResponse structure represents the Destination operation response
 type GetDestinationResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppdestDestination: A pointer to a pointer to an IDispatch interface that upon successful
+	// completion will contain an MSMQDestination object representing the set of queues
+	// to send the message to.
 	Destination *oaut.Dispatch `idl:"name:ppdestDestination" json:"destination"`
 	// Return: The Destination return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -20851,8 +21017,10 @@ func (o *GetLookupIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // GetLookupIDResponse structure represents the LookupId operation response
 type GetLookupIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That     *dcom.ORPCThat `idl:"name:That" json:"that"`
-	LookupID *oaut.Variant  `idl:"name:pvarLookupId" json:"lookup_id"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pvarLookupId: A pointer to a VARIANT that upon successful completion will contain
+	// a BSTR that contains the 64-bit lookup identifier for the message.
+	LookupID *oaut.Variant `idl:"name:pvarLookupId" json:"lookup_id"`
 	// Return: The LookupId return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -21060,8 +21228,10 @@ func (o *GetIsAuthenticated2Request) UnmarshalNDR(ctx context.Context, r ndr.Rea
 // GetIsAuthenticated2Response structure represents the IsAuthenticated2 operation response
 type GetIsAuthenticated2Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IsAuthenticated int16          `idl:"name:pisAuthenticated" json:"is_authenticated"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pisAuthenticated: A pointer to a VARIANT_BOOL that specifies whether the message
+	// was authenticated.
+	IsAuthenticated int16 `idl:"name:pisAuthenticated" json:"is_authenticated"`
 	// Return: The IsAuthenticated2 return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -21269,8 +21439,10 @@ func (o *GetIsFirstInTransaction2Request) UnmarshalNDR(ctx context.Context, r nd
 // GetIsFirstInTransaction2Response structure represents the IsFirstInTransaction2 operation response
 type GetIsFirstInTransaction2Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That                 *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IsFirstInTransaction int16          `idl:"name:pisFirstInXact" json:"is_first_in_transaction"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pisFirstInXact: A pointer to a VARIANT_BOOL that specifies whether the message was
+	// the first sent by the transaction.
+	IsFirstInTransaction int16 `idl:"name:pisFirstInXact" json:"is_first_in_transaction"`
 	// Return: The IsFirstInTransaction2 return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -21478,8 +21650,10 @@ func (o *GetIsLastInTransaction2Request) UnmarshalNDR(ctx context.Context, r ndr
 // GetIsLastInTransaction2Response structure represents the IsLastInTransaction2 operation response
 type GetIsLastInTransaction2Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That                *dcom.ORPCThat `idl:"name:That" json:"that"`
-	IsLastInTransaction int16          `idl:"name:pisLastInXact" json:"is_last_in_transaction"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pisLastInXact: A pointer to a VARIANT_BOOL that specifies whether the message was
+	// the last sent by the transaction.
+	IsLastInTransaction int16 `idl:"name:pisLastInXact" json:"is_last_in_transaction"`
 	// Return: The IsLastInTransaction2 return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -21912,8 +22086,10 @@ func (o *GetSOAPEnvelopeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // GetSOAPEnvelopeResponse structure represents the SoapEnvelope operation response
 type GetSOAPEnvelopeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That         *dcom.ORPCThat `idl:"name:That" json:"that"`
-	SOAPEnvelope *oaut.String   `idl:"name:pbstrSoapEnvelope" json:"soap_envelope"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrSoapEnvelope: A pointer to a BSTR containing a string of Unicode characters
+	// that contains the SOAP envelope.
+	SOAPEnvelope *oaut.String `idl:"name:pbstrSoapEnvelope" json:"soap_envelope"`
 	// Return: The SoapEnvelope return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -22153,8 +22329,9 @@ func (o *GetCompoundMessageRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 // GetCompoundMessageResponse structure represents the CompoundMessage operation response
 type GetCompoundMessageResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
-	CompoundMessage *oaut.Variant  `idl:"name:pvarCompoundMessage" json:"compound_message"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pvarCompoundMessage: A pointer to a VARIANT that contains an array of BYTES (VT_ARRAY | VT_UI1) that contains the entire contents of the SRMP message, including the SOAP envelope and all SOAP attachments.
+	CompoundMessage *oaut.Variant `idl:"name:pvarCompoundMessage" json:"compound_message"`
 	// Return: The CompoundMessage return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -22359,8 +22536,10 @@ func (o *xxx_SetSOAPHeaderOperation) UnmarshalNDRResponse(ctx context.Context, w
 // SetSOAPHeaderRequest structure represents the SoapHeader operation request
 type SetSOAPHeaderRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	SOAPHeader *oaut.String   `idl:"name:bstrSoapHeader" json:"soap_header"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrSoapHeader: A BSTR that contains a string representation of the XML elements
+	// that will be appended to the end of the SOAP header within the message.
+	SOAPHeader *oaut.String `idl:"name:bstrSoapHeader" json:"soap_header"`
 }
 
 func (o *SetSOAPHeaderRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSOAPHeaderOperation) *xxx_SetSOAPHeaderOperation {
@@ -22600,8 +22779,10 @@ func (o *xxx_SetSOAPBodyOperation) UnmarshalNDRResponse(ctx context.Context, w n
 // SetSOAPBodyRequest structure represents the SoapBody operation request
 type SetSOAPBodyRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
-	SOAPBody *oaut.String   `idl:"name:bstrSoapBody" json:"soap_body"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrSoapBody: A BSTR that contains a string representation of the XML elements that
+	// will be appended to the end of the SOAP body within the message.
+	SOAPBody *oaut.String `idl:"name:bstrSoapBody" json:"soap_body"`
 }
 
 func (o *SetSOAPBodyRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSOAPBodyOperation) *xxx_SetSOAPBodyOperation {

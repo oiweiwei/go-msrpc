@@ -2,7 +2,79 @@
 //
 // # Introduction
 //
+// This document specifies the Removable Storage Manager (RSM) Remote Protocol.
+//
+// The RSM Remote Protocol is a set of distributed component object model (DCOM) [MS-DCOM]
+// interfaces for applications to manage robotic changers, media libraries, and tape
+// drives. The RSM Remote Protocol deals with detailed low-level operating system and
+// storage concepts. Although the necessary basic concepts are outlined in this specification,
+// this specification assumes reader familiarity with these technologies.
+//
 // # Overview
+//
+// The RSM Remote Protocol provides a mechanism for the remote configuration and management
+// of removable storage devices such as robotic changers, media libraries, and tape
+// drives. It allows multiple clients to manage removable media within a single-server
+// system, and share local robotic media libraries, tape drives, and disk drives. The
+// protocol also enables clients to obtain notifications of changes to these storage
+// objects.
+//
+// Two entities are involved in the RSM Remote Protocol: the server, whose storage is
+// configured, and the client, which accesses and requests changes to the server's storage
+// configuration.
+//
+// The RSM Remote Protocol is expressed as a set of DCOM interfaces [MS-DCOM].
+//
+// The client end of the protocol invokes method calls on the interface to perform various
+// tasks with the removable storage on the server. The client also implements some DCOM
+// interfaces to get notifications for changes in the removable storage.
+//
+// The server end of the protocol implements DCOM interfaces to provide the following
+// functions:<1>
+//
+// * *Session Management*
+//
+// This interface is used to open and close sessions. Establishing a session is a prerequisite
+// to using the other functions of the RSM Remote Protocol.
+//
+// * *Media Library Management*
+//
+// The Media Library Management interface provides functions that:
+//
+// * Eject ( 8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a22dff61-81ae-4414-8242-3d28f4c70c31
+// ) or inject ( 8d988f06-72be-47cf-9e09-9060aa8ed897#gt_5e9a10ec-4dc8-457c-bac6-4df3af609f40
+// ) media from a library.
+//
+// * Reserve or release a slot ( 8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a1f0ab90-f3c0-46b8-9c77-d0d7508ede94
+// ) for cleaning.
+//
+// * Clean the drive.
+//
+// * Eject or inject a cleaner ( 8d988f06-72be-47cf-9e09-9060aa8ed897#gt_95e53eb6-39e3-43ed-905e-ff1f427446d2
+// ).
+//
+// * *Object Management*
+//
+// During the initialization process, the server performs an inventory ( 8d988f06-72be-47cf-9e09-9060aa8ed897#gt_38cb8216-53ff-4936-a5c4-4d8d7672950a
+// ) of media libraries, tape drives, robotic changers, and so on. The object management
+// functions allow a client to create, delete, modify, or enumerate these objects. The
+// server also maintains a record of all configured objects in the RSM database, which
+// can be used across sessions.
+//
+// * *Media Management*
+//
+// The media management functions enable a client to perform any of the following functions:
+//
+// * Create or delete a media pool.
+//
+// * Mount ( 8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b
+// ) or dismount ( 8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a8ebf8eb-a5f7-406a-b211-9f9c08ee15d3
+// ) media.
+//
+// * Allocate ( 8d988f06-72be-47cf-9e09-9060aa8ed897#gt_0e546e86-71c4-45cc-9ef1-4a78f6cb425a
+// ) , deallocate ( 8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a8986e06-b078-4c42-86bc-178390427f04
+// ) , or decommission ( 8d988f06-72be-47cf-9e09-9060aa8ed897#gt_d753ed1c-ff6a-4179-81ea-10ba369e1cca
+// ) media.
 package rsmp
 
 import (
@@ -125,30 +197,121 @@ func (o *GUID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // LibraryInformation structure represents NTMS_LIBRARYINFORMATION RPC structure.
+//
+// The NTMS_LIBRARYINFORMATION structure defines properties specific to a library object.
 type LibraryInformation struct {
-	LibraryType                  uint32     `idl:"name:LibraryType" json:"library_type"`
-	CleanerSlot                  *GUID      `idl:"name:CleanerSlot" json:"cleaner_slot"`
-	CleanerSlotDefault           *GUID      `idl:"name:CleanerSlotDefault" json:"cleaner_slot_default"`
-	LibrarySupportsDriveCleaning bool       `idl:"name:LibrarySupportsDriveCleaning" json:"library_supports_drive_cleaning"`
-	BarCodeReaderInstalled       bool       `idl:"name:BarCodeReaderInstalled" json:"bar_code_reader_installed"`
-	InventoryMethod              uint32     `idl:"name:InventoryMethod" json:"inventory_method"`
-	CleanerUsesRemaining         uint32     `idl:"name:dwCleanerUsesRemaining" json:"cleaner_uses_remaining"`
-	FirstDriveNumber             uint32     `idl:"name:FirstDriveNumber" json:"first_drive_number"`
-	NumberOfDrives               uint32     `idl:"name:dwNumberOfDrives" json:"number_of_drives"`
-	FirstSlotNumber              uint32     `idl:"name:FirstSlotNumber" json:"first_slot_number"`
-	NumberOfSlots                uint32     `idl:"name:dwNumberOfSlots" json:"number_of_slots"`
-	FirstDoorNumber              uint32     `idl:"name:FirstDoorNumber" json:"first_door_number"`
-	NumberOfDoors                uint32     `idl:"name:dwNumberOfDoors" json:"number_of_doors"`
-	FirstPortNumber              uint32     `idl:"name:FirstPortNumber" json:"first_port_number"`
-	NumberOfPorts                uint32     `idl:"name:dwNumberOfPorts" json:"number_of_ports"`
-	FirstChangerNumber           uint32     `idl:"name:FirstChangerNumber" json:"first_changer_number"`
-	NumberOfChangers             uint32     `idl:"name:dwNumberOfChangers" json:"number_of_changers"`
-	NumberOfMedia                uint32     `idl:"name:dwNumberOfMedia" json:"number_of_media"`
-	NumberOfMediaTypes           uint32     `idl:"name:dwNumberOfMediaTypes" json:"number_of_media_types"`
-	NumberOfLibRequests          uint32     `idl:"name:dwNumberOfLibRequests" json:"number_of_lib_requests"`
-	_                            *dtyp.GUID `idl:"name:Reserved"`
-	AutoRecovery                 bool       `idl:"name:AutoRecovery" json:"auto_recovery"`
-	Flags                        uint32     `idl:"name:dwFlags" json:"flags"`
+	// LibraryType:  The library type object. This MUST be one of the following values.
+	//
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                        |                                                                                  |
+	//	|                 VALUE                  |                                     MEANING                                      |
+	//	|                                        |                                                                                  |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_LIBRARYTYPE_UNKNOWN 0x00000000    | The library type cannot be determined.                                           |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_LIBRARYTYPE_OFFLINE 0x00000001    | The library is not accessible.                                                   |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_LIBRARYTYPE_ONLINE 0x00000002     | A robotic element that automates the mounting and dismounting of media into one  |
+	//	|                                        | or more drives.                                                                  |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_LIBRARYTYPE_STANDALONE 0x00000003 | A stand-alone drive that is modeled as a library with one drive in RSM.          |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	LibraryType uint32 `idl:"name:LibraryType" json:"library_type"`
+	// CleanerSlot:  Specifies, for each library, the slot that was assigned to the cleaner
+	// cartridge. If no cleaner slot is defined for this library, this member MUST be NULL.
+	CleanerSlot *GUID `idl:"name:CleanerSlot" json:"cleaner_slot"`
+	// CleanerSlotDefault:  Specifies a library's default or preferred cleaner slot. If
+	// there is no preferred slot, this MUST be NULL.
+	CleanerSlotDefault *GUID `idl:"name:CleanerSlotDefault" json:"cleaner_slot_default"`
+	// LibrarySupportsDriveCleaning:  Used by drives requiring cleaning under automated
+	// control. If TRUE, automatic drive cleaning operations are enabled; otherwise, cleaning
+	// operations are not enabled.
+	LibrarySupportsDriveCleaning bool `idl:"name:LibrarySupportsDriveCleaning" json:"library_supports_drive_cleaning"`
+	// BarCodeReaderInstalled:  This MUST return TRUE if a bar code reader is installed
+	// in a library; otherwise, it MUST return FALSE.
+	BarCodeReaderInstalled bool `idl:"name:BarCodeReaderInstalled" json:"bar_code_reader_installed"`
+	// InventoryMethod:  A default or user-selected method for performing an inventory of
+	// this library. This MUST be one of the following values.
+	//
+	//	+--------------------------------+----------------------------------------------------------------------------------+
+	//	|                                |                                                                                  |
+	//	|             VALUE              |                                     MEANING                                      |
+	//	|                                |                                                                                  |
+	//	+--------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_INVENTORY_NONE 0x00000000 | An inventory MUST NOT be performed after the library door is closed. An          |
+	//	|                                | inventory might be required if a mount label check fails.                        |
+	//	+--------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_INVENTORY_FAST 0x00000001 | If the library has a bar code reader installed, a bar code inventory MUST        |
+	//	|                                | be performed. If the library does not have a bar code reader, a differential     |
+	//	|                                | inventory MUST be performed (slots that transitioned from empty to full are      |
+	//	|                                | added).                                                                          |
+	//	+--------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_INVENTORY_OMID 0x00000002 | A full inventory MUST be performed. A full inventory involves mounting each side |
+	//	|                                | in a library and reading the on-media identification from the media.             |
+	//	+--------------------------------+----------------------------------------------------------------------------------+
+	InventoryMethod uint32 `idl:"name:InventoryMethod" json:"inventory_method"`
+	// dwCleanerUsesRemaining:  The number of uses remaining on the cleaner in the library.
+	// This member MUST be 0 if no cleaner is present, or if the library does not support
+	// cleaning.
+	CleanerUsesRemaining uint32 `idl:"name:dwCleanerUsesRemaining" json:"cleaner_uses_remaining"`
+	// FirstDriveNumber:  The number of the first drive in the library.
+	FirstDriveNumber uint32 `idl:"name:FirstDriveNumber" json:"first_drive_number"`
+	// dwNumberOfDrives:  The number of drives in the library.
+	NumberOfDrives uint32 `idl:"name:dwNumberOfDrives" json:"number_of_drives"`
+	// FirstSlotNumber:  The number of the first slot in the library.
+	FirstSlotNumber uint32 `idl:"name:FirstSlotNumber" json:"first_slot_number"`
+	// dwNumberOfSlots:  The number of slots in the library.
+	NumberOfSlots uint32 `idl:"name:dwNumberOfSlots" json:"number_of_slots"`
+	// FirstDoorNumber:  The number of the first access door in the library.
+	FirstDoorNumber uint32 `idl:"name:FirstDoorNumber" json:"first_door_number"`
+	// dwNumberOfDoors:  The number of access doors in the library.
+	NumberOfDoors uint32 `idl:"name:dwNumberOfDoors" json:"number_of_doors"`
+	// FirstPortNumber:  The number of the first IE port in the library.
+	FirstPortNumber uint32 `idl:"name:FirstPortNumber" json:"first_port_number"`
+	// dwNumberOfPorts:  The number of IE ports in the library.
+	NumberOfPorts uint32 `idl:"name:dwNumberOfPorts" json:"number_of_ports"`
+	// FirstChangerNumber:  The number of the first changer in the library.
+	FirstChangerNumber uint32 `idl:"name:FirstChangerNumber" json:"first_changer_number"`
+	// dwNumberOfChangers:  The number of changers in the library.
+	NumberOfChangers uint32 `idl:"name:dwNumberOfChangers" json:"number_of_changers"`
+	// dwNumberOfMedia:  The number of media in the online or offline library.
+	NumberOfMedia uint32 `idl:"name:dwNumberOfMedia" json:"number_of_media"`
+	// dwNumberOfMediaTypes:  The number of media types that the library supports.
+	NumberOfMediaTypes uint32 `idl:"name:dwNumberOfMediaTypes" json:"number_of_media_types"`
+	// dwNumberOfLibRequests:  The number of current library requests.
+	NumberOfLibRequests uint32 `idl:"name:dwNumberOfLibRequests" json:"number_of_lib_requests"`
+	// Reserved:  This MUST be 0 and MUST be ignored on receipt.
+	_ *dtyp.GUID `idl:"name:Reserved"`
+	// AutoRecovery:  If the mount operation fails and this member is TRUE, a full inventory
+	// MUST be performed. If this member is FALSE, a full inventory MUST NOT be performed.
+	// The failure can be either a hardware or a label mismatch. For ATAPI CD libraries,
+	// this member MUST NOT be set to FALSE. The default value is TRUE.
+	AutoRecovery bool `idl:"name:AutoRecovery" json:"auto_recovery"`
+	// dwFlags:  This member MUST be one or more of the following values.
+	//
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                                  |                                                                                  |
+	//	|                      VALUE                       |                                     MEANING                                      |
+	//	|                                                  |                                                                                  |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_LIBRARYFLAG_FIXEDOFFLINE 0x01               | The library is an offline library, not a library that is not present.            |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_LIBRARYFLAG_CLEANERPRESENT 0x02             | A cleaner is present in the changer.                                             |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_LIBRARYFLAG_IGNORECLEANERUSESREMAINING 0x08 | The cleaner cartridge MUST be used until it no longer cleans the drive, instead  |
+	//	|                                                  | of keeping track of the number of cleanings left. This flag MUST NOT be set      |
+	//	|                                                  | by the client. The server MUST set the flag if dwCleanerUsesRemaining is         |
+	//	|                                                  | 0xFFFFFFFF, and the server MUST clear the flag otherwise.                        |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_LIBRARYFLAG_RECOGNIZECLEANERBARCODE 0x10    | Bar-coded cartridges that have CLN as a prefix MUST be treated as cleaner        |
+	//	|                                                  | cartridges, instead of mounting them in the drive to identify them.              |
+	//	+--------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// The NTMS_LIBRARYINFORMATION structure defines properties specific to a library object.
+	Flags uint32 `idl:"name:dwFlags" json:"flags"`
 }
 
 func (o *LibraryInformation) xxx_PreparePayload(ctx context.Context) error {
@@ -363,11 +526,20 @@ func (o *LibraryInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 }
 
 // SecurityAttributesNTMS structure represents SECURITY_ATTRIBUTES_NTMS RPC structure.
+//
+// The SECURITY_ATTRIBUTES_NTMS structure contains the security descriptor for an object.
 type SecurityAttributesNTMS struct {
-	Length             uint32 `idl:"name:nLength" json:"length"`
+	// nLength:  The size, in bytes, of the particular instance of the structure containing
+	// this field.
+	Length uint32 `idl:"name:nLength" json:"length"`
+	// lpSecurityDescriptor:  A pointer to a security descriptor for the object that controls
+	// the sharing of that object. Security descriptors are specified in [MS-DTYP].
 	SecurityDescriptor []byte `idl:"name:lpSecurityDescriptor;size_is:(nDescriptorLength)" json:"security_descriptor"`
-	InheritHandle      bool   `idl:"name:bInheritHandle" json:"inherit_handle"`
-	DescriptorLength   uint32 `idl:"name:nDescriptorLength" json:"descriptor_length"`
+	// bInheritHandle:  If set to TRUE, the new process MUST inherit the handle; if set
+	// to FALSE, the handle MUST NOT be inherited.
+	InheritHandle bool `idl:"name:bInheritHandle" json:"inherit_handle"`
+	// nDescriptorLength:  The size, in bytes, of the descriptor.
+	DescriptorLength uint32 `idl:"name:nDescriptorLength" json:"descriptor_length"`
 }
 
 func (o *SecurityAttributesNTMS) xxx_PreparePayload(ctx context.Context) error {
@@ -493,10 +665,17 @@ func (o *SecurityAttributesNTMS) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 }
 
 // AllocationInformation structure represents NTMS_ALLOCATION_INFORMATION RPC structure.
+//
+// The NTMS_ALLOCATION_INFORMATION structure contains information about the source media
+// pool from which a medium was taken.
 type AllocationInformation struct {
-	Size          uint32 `idl:"name:dwSize" json:"size"`
-	_             uint8  `idl:"name:lpReserved"`
-	AllocatedFrom *GUID  `idl:"name:AllocatedFrom" json:"allocated_from"`
+	// dwSize:  The size, in bytes, of the structure.
+	Size uint32 `idl:"name:dwSize" json:"size"`
+	// lpReserved:  Unused. This value MUST be NULL and MUST be ignored on receipt.
+	_ uint8 `idl:"name:lpReserved"`
+	// AllocatedFrom:  The GUID of the media source (that is, an import pool or any other
+	// user-defined pool).
+	AllocatedFrom *GUID `idl:"name:AllocatedFrom" json:"allocated_from"`
 }
 
 func (o *AllocationInformation) xxx_PreparePayload(ctx context.Context) error {
@@ -568,14 +747,25 @@ func (o *AllocationInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 }
 
 // AsyncIO structure represents NTMS_ASYNC_IO RPC structure.
+//
+// The NTMS_ASYNC_IO structure defines the state of an asynchronous request.
 type AsyncIO struct {
-	OperationID   *GUID  `idl:"name:OperationId" json:"operation_id"`
-	EventID       *GUID  `idl:"name:EventId" json:"event_id"`
+	// OperationId:  Unused. This value MUST be NULL and MUST be ignored on receipt.
+	OperationID *GUID `idl:"name:OperationId" json:"operation_id"`
+	// EventId:  The NTMS_GUID which is used by the server to notify the client using the
+	// INtmsNotifySink::OnNotify (section 3.1.5.2.2.2) method.
+	EventID *GUID `idl:"name:EventId" json:"event_id"`
+	// dwOperationType:  Unused. This value MUST be NULL and MUST be ignored on receipt.
 	OperationType uint32 `idl:"name:dwOperationType" json:"operation_type"`
-	Result        uint32 `idl:"name:dwResult" json:"result"`
-	AsyncState    uint32 `idl:"name:dwAsyncState" json:"async_state"`
-	Event         uint64 `idl:"name:hEvent" json:"event"`
-	OnStateChange bool   `idl:"name:bOnStateChange" json:"on_state_change"`
+	// dwResult:  Unused. This value MUST be NULL and MUST be ignored on receipt.
+	Result uint32 `idl:"name:dwResult" json:"result"`
+	// dwAsyncState:  Unused. This value MUST be NULL and MUST be ignored on receipt.
+	AsyncState uint32 `idl:"name:dwAsyncState" json:"async_state"`
+	// hEvent:  Unused. This value MUST be NULL and MUST be ignored on receipt.
+	Event uint64 `idl:"name:hEvent" json:"event"`
+	// bOnStateChange:  Indicates whether or not to signal on every status change. FALSE
+	// means to signal only upon completion of the request.
+	OnStateChange bool `idl:"name:bOnStateChange" json:"on_state_change"`
 }
 
 func (o *AsyncIO) xxx_PreparePayload(ctx context.Context) error {
@@ -672,9 +862,14 @@ func (o *AsyncIO) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // MountInformation structure represents NTMS_MOUNT_INFORMATION RPC structure.
+//
+// The NTMS_MOUNT_INFORMATION structure defines mount information for the management
+// of removable storage libraries.
 type MountInformation struct {
-	Size uint32   `idl:"name:dwSize" json:"size"`
-	_    *AsyncIO `idl:"name:lpReserved;pointer:ptr"`
+	// dwSize:  The size, in bytes, of the structure.
+	Size uint32 `idl:"name:dwSize" json:"size"`
+	// lpReserved:  Unused. This value MUST be NULL and MUST be ignored on receipt.
+	_ *AsyncIO `idl:"name:lpReserved;pointer:ptr"`
 }
 
 func (o *MountInformation) xxx_PreparePayload(ctx context.Context) error {
@@ -728,17 +923,34 @@ func (o *MountInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 }
 
 // ChangerInformationA structure represents NTMS_CHANGERINFORMATIONA RPC structure.
+//
+// The NTMS_CHANGERINFORMATIONA structure describes the properties of a changer object
+// as a sequence of ASCII characters.
 type ChangerInformationA struct {
-	Number       uint32 `idl:"name:Number" json:"number"`
-	ChangerType  *GUID  `idl:"name:ChangerType" json:"changer_type"`
+	// Number:  The number of the changer within the online library.
+	Number uint32 `idl:"name:Number" json:"number"`
+	// ChangerType:  An identifier of the type object for the changer.
+	ChangerType *GUID `idl:"name:ChangerType" json:"changer_type"`
+	// szSerialNumber:   A serial number for the changer in a null-terminated ASCII-character
+	// string. Devices that do not support serial numbers MUST report NULL for this member.
 	SerialNumber []byte `idl:"name:szSerialNumber" json:"serial_number"`
-	Revision     []byte `idl:"name:szRevision" json:"revision"`
-	DeviceName   []byte `idl:"name:szDeviceName" json:"device_name"`
-	SCSIPort     uint16 `idl:"name:ScsiPort" json:"scsi_port"`
-	SCSIBus      uint16 `idl:"name:ScsiBus" json:"scsi_bus"`
-	SCSITarget   uint16 `idl:"name:ScsiTarget" json:"scsi_target"`
-	SCSILUN      uint16 `idl:"name:ScsiLun" json:"scsi_lun"`
-	Library      *GUID  `idl:"name:Library" json:"library"`
+	// szRevision:   A null-terminated sequence of ASCII characters specifying the revision
+	// of the changer.
+	Revision []byte `idl:"name:szRevision" json:"revision"`
+	// szDeviceName:   A null-terminated sequence of ASCII characters specifying the name
+	// of the device used to access the changer.
+	DeviceName []byte `idl:"name:szDeviceName" json:"device_name"`
+	// ScsiPort:  The small computer system interface (SCSI) [ANSI-131-1994] host adapter
+	// to which the changer is connected.
+	SCSIPort uint16 `idl:"name:ScsiPort" json:"scsi_port"`
+	// ScsiBus:  The SCSI bus to which the changer is connected.
+	SCSIBus uint16 `idl:"name:ScsiBus" json:"scsi_bus"`
+	// ScsiTarget:  The SCSI target identifier of the changer.
+	SCSITarget uint16 `idl:"name:ScsiTarget" json:"scsi_target"`
+	// ScsiLun:  The SCSI logical unit identifier of the changer.
+	SCSILUN uint16 `idl:"name:ScsiLun" json:"scsi_lun"`
+	// Library:  The identifier of the library that contains the changer.
+	Library *GUID `idl:"name:Library" json:"library"`
 }
 
 func (o *ChangerInformationA) xxx_PreparePayload(ctx context.Context) error {
@@ -890,17 +1102,33 @@ func (o *ChangerInformationA) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 }
 
 // ChangerInformationW structure represents NTMS_CHANGERINFORMATIONW RPC structure.
+//
+// The NTMS_CHANGERINFORMATIONW structure describes the properties of a changer object
+// as a sequence of Unicode [UNICODE] characters.
 type ChangerInformationW struct {
-	Number       uint32 `idl:"name:Number" json:"number"`
-	ChangerType  *GUID  `idl:"name:ChangerType" json:"changer_type"`
+	// Number:  The number of the changer within the online library.
+	Number uint32 `idl:"name:Number" json:"number"`
+	// ChangerType:  The identifier of the type object for the changer.
+	ChangerType *GUID `idl:"name:ChangerType" json:"changer_type"`
+	// szSerialNumber:   The serial number for the changer in a null-terminated string.
+	// Devices that do not support serial numbers MUST report NULL for this member.
 	SerialNumber string `idl:"name:szSerialNumber;string" json:"serial_number"`
-	Revision     string `idl:"name:szRevision;string" json:"revision"`
-	DeviceName   string `idl:"name:szDeviceName;string" json:"device_name"`
-	SCSIPort     uint16 `idl:"name:ScsiPort" json:"scsi_port"`
-	SCSIBus      uint16 `idl:"name:ScsiBus" json:"scsi_bus"`
-	SCSITarget   uint16 `idl:"name:ScsiTarget" json:"scsi_target"`
-	SCSILUN      uint16 `idl:"name:ScsiLun" json:"scsi_lun"`
-	Library      *GUID  `idl:"name:Library" json:"library"`
+	// szRevision:   A null-terminated sequence of Unicode characters specifying the revision
+	// of the changer.
+	Revision string `idl:"name:szRevision;string" json:"revision"`
+	// szDeviceName:   A null-terminated sequence of Unicode characters specifying the name
+	// of the device used to access the changer.
+	DeviceName string `idl:"name:szDeviceName;string" json:"device_name"`
+	// ScsiPort:  The SCSI [ANSI-131-1994] host adapter to which the changer is connected.
+	SCSIPort uint16 `idl:"name:ScsiPort" json:"scsi_port"`
+	// ScsiBus:  The SCSI bus to which the changer is connected.
+	SCSIBus uint16 `idl:"name:ScsiBus" json:"scsi_bus"`
+	// ScsiTarget:  The SCSI target identifier of the changer.
+	SCSITarget uint16 `idl:"name:ScsiTarget" json:"scsi_target"`
+	// ScsiLun:  The SCSI logical unit identifier of the changer.
+	SCSILUN uint16 `idl:"name:ScsiLun" json:"scsi_lun"`
+	// Library:  The identifier of the library that contains the changer.
+	Library *GUID `idl:"name:Library" json:"library"`
 }
 
 func (o *ChangerInformationW) xxx_PreparePayload(ctx context.Context) error {
@@ -1085,9 +1313,29 @@ func (o *ChangerInformationW) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 }
 
 // ChangerTypeInformationA structure represents NTMS_CHANGERTYPEINFORMATIONA RPC structure.
+//
+// The NTMS_CHANGERTYPEINFORMATIONA structure describes the properties specific to a
+// type of changer, as a sequence of ASCII characters.
 type ChangerTypeInformationA struct {
-	Vendor     []byte `idl:"name:szVendor" json:"vendor"`
-	Product    []byte `idl:"name:szProduct" json:"product"`
+	// szVendor:   A null-terminated sequence of ASCII characters specifying the name of
+	// the changer vendor, acquired from device inquiry data. If no name is available, this
+	// MUST contain an empty string.
+	Vendor []byte `idl:"name:szVendor" json:"vendor"`
+	// szProduct:   A null-terminated sequence of ASCII characters specifying the name of
+	// the changer product, acquired through SCSI commands. If no name is available, this
+	// MUST contain an empty string.
+	Product []byte `idl:"name:szProduct" json:"product"`
+	// DeviceType:  The following SCSI device type [ANSI-131-1994] acquired from device
+	// inquiry data.
+	//
+	//	+--------------------------------+----------------------+
+	//	|                                |                      |
+	//	|             VALUE              |       MEANING        |
+	//	|                                |                      |
+	//	+--------------------------------+----------------------+
+	//	+--------------------------------+----------------------+
+	//	| FILE_DEVICE_CHANGER 0x00000030 | Device is a changer. |
+	//	+--------------------------------+----------------------+
 	DeviceType uint32 `idl:"name:DeviceType" json:"device_type"`
 }
 
@@ -1165,9 +1413,29 @@ func (o *ChangerTypeInformationA) UnmarshalNDR(ctx context.Context, w ndr.Reader
 }
 
 // ChangerTypeInformationW structure represents NTMS_CHANGERTYPEINFORMATIONW RPC structure.
+//
+// The NTMS_CHANGERTYPEINFORMATIONW structure describes the properties specific to a
+// type of changer, in Unicode.
 type ChangerTypeInformationW struct {
-	Vendor     string `idl:"name:szVendor;string" json:"vendor"`
-	Product    string `idl:"name:szProduct;string" json:"product"`
+	// szVendor:   A null-terminated sequence of Unicode UTF-16 characters specifying the
+	// name of the changer vendor, acquired from device inquiry data. If no name is available,
+	// this MUST contain an empty string.
+	Vendor string `idl:"name:szVendor;string" json:"vendor"`
+	// szProduct:   A null-terminated sequence of Unicode UTF-16 characters specifying the
+	// name of the changer product, acquired from device inquiry data. If no name is available,
+	// this MUST contain an empty string.
+	Product string `idl:"name:szProduct;string" json:"product"`
+	// DeviceType:  The following SCSI device type [ANSI-131-1994] acquired through SCSI
+	// commands.
+	//
+	//	+--------------------------------+----------------------+
+	//	|                                |                      |
+	//	|             VALUE              |       MEANING        |
+	//	|                                |                      |
+	//	+--------------------------------+----------------------+
+	//	+--------------------------------+----------------------+
+	//	| FILE_DEVICE_CHANGER 0x00000030 | Device is a changer. |
+	//	+--------------------------------+----------------------+
 	DeviceType uint32 `idl:"name:DeviceType" json:"device_type"`
 }
 
@@ -1269,23 +1537,54 @@ func (o *ChangerTypeInformationW) UnmarshalNDR(ctx context.Context, w ndr.Reader
 }
 
 // DriveInformationA structure represents NTMS_DRIVEINFORMATIONA RPC structure.
+//
+// The NTMS_DRIVEINFORMATIONA structure describes the properties of a drive object,
+// as a sequence of ASCII characters.
 type DriveInformationA struct {
-	Number             uint32           `idl:"name:Number" json:"number"`
-	State              uint32           `idl:"name:State" json:"state"`
-	DriveType          *GUID            `idl:"name:DriveType" json:"drive_type"`
-	DeviceName         []byte           `idl:"name:szDeviceName" json:"device_name"`
-	SerialNumber       []byte           `idl:"name:szSerialNumber" json:"serial_number"`
-	Revision           []byte           `idl:"name:szRevision" json:"revision"`
-	SCSIPort           uint16           `idl:"name:ScsiPort" json:"scsi_port"`
-	SCSIBus            uint16           `idl:"name:ScsiBus" json:"scsi_bus"`
-	SCSITarget         uint16           `idl:"name:ScsiTarget" json:"scsi_target"`
-	SCSILUN            uint16           `idl:"name:ScsiLun" json:"scsi_lun"`
-	MountCount         uint32           `idl:"name:dwMountCount" json:"mount_count"`
-	LastCleanedTS      *dtyp.SystemTime `idl:"name:LastCleanedTs" json:"last_cleaned_ts"`
-	SavedPartitionID   *GUID            `idl:"name:SavedPartitionId" json:"saved_partition_id"`
-	Library            *GUID            `idl:"name:Library" json:"library"`
-	_                  *dtyp.GUID       `idl:"name:Reserved"`
-	DeferDismountDelay uint32           `idl:"name:dwDeferDismountDelay" json:"defer_dismount_delay"`
+	// Number:  The number of the drive in the library. Some changers assign the number
+	// 0 to the first of their drives; other changers number the first drive 1.
+	Number uint32 `idl:"name:Number" json:"number"`
+	// State:  A value from the NtmsDriveState enumeration specifying the state of the drive.
+	State uint32 `idl:"name:State" json:"state"`
+	// DriveType:  The identifier of the type object for the drive.
+	DriveType *GUID `idl:"name:DriveType" json:"drive_type"`
+	// szDeviceName:   A null-terminated sequence of ASCII characters specifying the name
+	// of the device path to access the drive.
+	DeviceName []byte `idl:"name:szDeviceName" json:"device_name"`
+	// szSerialNumber:   The null-terminated serial number of the drive.
+	SerialNumber []byte `idl:"name:szSerialNumber" json:"serial_number"`
+	// szRevision:   A null-terminated sequence of ASCII characters specifying the revision
+	// of the drive.
+	Revision []byte `idl:"name:szRevision" json:"revision"`
+	// ScsiPort:  The SCSI [ANSI-131-1994] host adapter to which the drive is connected.
+	SCSIPort uint16 `idl:"name:ScsiPort" json:"scsi_port"`
+	// ScsiBus:  The SCSI bus to which the drive is connected.
+	SCSIBus uint16 `idl:"name:ScsiBus" json:"scsi_bus"`
+	// ScsiTarget:  The SCSI target identifier of the drive.
+	SCSITarget uint16 `idl:"name:ScsiTarget" json:"scsi_target"`
+	// ScsiLun:  The SCSI logical unit identifier of the drive.
+	SCSILUN uint16 `idl:"name:ScsiLun" json:"scsi_lun"`
+	// dwMountCount:  The number of times the drive has had media mounted in it. If the
+	// drive supports the reporting of a unique serial number, this value MUST be the number
+	// of times the drive has been mounted since RSM began managing this drive. If the drive
+	// does not support unique serial numbers, this member MUST indicate the number of mounts
+	// to all the drives at that mount location.
+	MountCount uint32 `idl:"name:dwMountCount" json:"mount_count"`
+	// LastCleanedTs:  A SYSTEMTIME structure that specifies the last time the drive was
+	// cleaned.
+	LastCleanedTS *dtyp.SystemTime `idl:"name:LastCleanedTs" json:"last_cleaned_ts"`
+	// SavedPartitionId:  The partition identifier of the medium in the drive. If this value
+	// is NULL and the drive is marked as full, the medium was loaded by a user, and it
+	// MUST be identified and given a partition identifier.
+	SavedPartitionID *GUID `idl:"name:SavedPartitionId" json:"saved_partition_id"`
+	// Library:  The identifier of the library that contains the drive.
+	Library *GUID `idl:"name:Library" json:"library"`
+	// Reserved:  This parameter is unused. It MUST be 0 and MUST be ignored on receipt.
+	_ *dtyp.GUID `idl:"name:Reserved"`
+	// dwDeferDismountDelay:  Minimum number of seconds that media will remain in the drive
+	// of an online library after a deferred dismount is performed; the default is 5 minutes.
+	// This member does not apply to stand-alone libraries.
+	DeferDismountDelay uint32 `idl:"name:dwDeferDismountDelay" json:"defer_dismount_delay"`
 }
 
 func (o *DriveInformationA) xxx_PreparePayload(ctx context.Context) error {
@@ -1497,23 +1796,54 @@ func (o *DriveInformationA) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 }
 
 // DriveInformationW structure represents NTMS_DRIVEINFORMATIONW RPC structure.
+//
+// The NTMS_DRIVEINFORMATIONW structure describes the properties of a drive object,
+// as a sequence of Unicode characters.
 type DriveInformationW struct {
-	Number             uint32           `idl:"name:Number" json:"number"`
-	State              uint32           `idl:"name:State" json:"state"`
-	DriveType          *GUID            `idl:"name:DriveType" json:"drive_type"`
-	DeviceName         string           `idl:"name:szDeviceName;string" json:"device_name"`
-	SerialNumber       string           `idl:"name:szSerialNumber;string" json:"serial_number"`
-	Revision           string           `idl:"name:szRevision;string" json:"revision"`
-	SCSIPort           uint16           `idl:"name:ScsiPort" json:"scsi_port"`
-	SCSIBus            uint16           `idl:"name:ScsiBus" json:"scsi_bus"`
-	SCSITarget         uint16           `idl:"name:ScsiTarget" json:"scsi_target"`
-	SCSILUN            uint16           `idl:"name:ScsiLun" json:"scsi_lun"`
-	MountCount         uint32           `idl:"name:dwMountCount" json:"mount_count"`
-	LastCleanedTS      *dtyp.SystemTime `idl:"name:LastCleanedTs" json:"last_cleaned_ts"`
-	SavedPartitionID   *GUID            `idl:"name:SavedPartitionId" json:"saved_partition_id"`
-	Library            *GUID            `idl:"name:Library" json:"library"`
-	_                  *dtyp.GUID       `idl:"name:Reserved"`
-	DeferDismountDelay uint32           `idl:"name:dwDeferDismountDelay" json:"defer_dismount_delay"`
+	// Number:  The number of the drive in the library. Some changers assign the number
+	// 0 to the first drive; other changers number the first drive 1.
+	Number uint32 `idl:"name:Number" json:"number"`
+	// State:  A value from the NtmsDriveState enumeration that specifies the state of the
+	// drive.
+	State uint32 `idl:"name:State" json:"state"`
+	// DriveType:  The identifier of the type object for the drive.
+	DriveType *GUID `idl:"name:DriveType" json:"drive_type"`
+	// szDeviceName:   A null-terminated sequence of Unicode UTF-16 characters specifying
+	// the name of the device path to access the drive.
+	DeviceName string `idl:"name:szDeviceName;string" json:"device_name"`
+	// szSerialNumber:   The null-terminated serial number of the drive.
+	SerialNumber string `idl:"name:szSerialNumber;string" json:"serial_number"`
+	// szRevision:   A null-terminated sequence of Unicode UTF-16 characters specifying
+	// the revision of the drive.
+	Revision string `idl:"name:szRevision;string" json:"revision"`
+	// ScsiPort:  The SCSI [ANSI-131-1994] host adapter to which the drive is connected.
+	SCSIPort uint16 `idl:"name:ScsiPort" json:"scsi_port"`
+	// ScsiBus:  The SCSI bus to which the drive is connected.
+	SCSIBus uint16 `idl:"name:ScsiBus" json:"scsi_bus"`
+	// ScsiTarget:  The SCSI target identifier of the drive.
+	SCSITarget uint16 `idl:"name:ScsiTarget" json:"scsi_target"`
+	// ScsiLun:  The SCSI logical unit identifier of the drive.
+	SCSILUN uint16 `idl:"name:ScsiLun" json:"scsi_lun"`
+	// dwMountCount:  The number of times the drive has had media mounted in it. If the
+	// drive supports the reporting of a unique serial number, this value MUST be the number
+	// of times the drive has been mounted since the RSM began managing this drive. If the
+	// drive does not support unique serial numbers, this member MUST indicate the number
+	// of mounts to all the drives at that mount location.
+	MountCount uint32 `idl:"name:dwMountCount" json:"mount_count"`
+	// LastCleanedTs:  A SYSTEMTIME structure specifying the last time the drive was cleaned.
+	LastCleanedTS *dtyp.SystemTime `idl:"name:LastCleanedTs" json:"last_cleaned_ts"`
+	// SavedPartitionId:  The partition identifier of the media in the drive. If this value
+	// is NULL and the drive is marked as full, the medium was loaded by a user, and MUST
+	// be identified and given a partition identifier.
+	SavedPartitionID *GUID `idl:"name:SavedPartitionId" json:"saved_partition_id"`
+	// Library:  The identifier of the library that contains the drive.
+	Library *GUID `idl:"name:Library" json:"library"`
+	// Reserved:  This parameter is unused. It MUST be 0 and MUST be ignored on receipt.
+	_ *dtyp.GUID `idl:"name:Reserved"`
+	// dwDeferDismountDelay:  The minimum number of seconds that media MUST remain in the
+	// drive of an online library after a deferred dismount is performed; the default MUST
+	// be five minutes. This member MUST NOT apply to stand-alone libraries.
+	DeferDismountDelay uint32 `idl:"name:dwDeferDismountDelay" json:"defer_dismount_delay"`
 }
 
 func (o *DriveInformationW) xxx_PreparePayload(ctx context.Context) error {
@@ -1758,11 +2088,39 @@ func (o *DriveInformationW) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 }
 
 // DriveTypeInformationA structure represents NTMS_DRIVETYPEINFORMATIONA RPC structure.
+//
+// The NTMS_DRIVETYPEINFORMATIONA structure describes the properties specific to a type
+// of drive, in ASCII.
 type DriveTypeInformationA struct {
-	Vendor        []byte `idl:"name:szVendor" json:"vendor"`
-	Product       []byte `idl:"name:szProduct" json:"product"`
+	// szVendor:   A null-terminated sequence of ASCII characters specifying the name of
+	// the vendor of the drive, acquired from device inquiry data. If this information is
+	// not available, the member MUST specify an empty string.
+	Vendor []byte `idl:"name:szVendor" json:"vendor"`
+	// szProduct:   A null-terminated sequence of ASCII characters specifying the name of
+	// the product of the drive, acquired from device inquiry data. If this information
+	// is not available, the member MUST specify an empty string.
+	Product []byte `idl:"name:szProduct" json:"product"`
+	// NumberOfHeads:  This parameter is currently unused. It MUST be NULL and MUST be ignored
+	// on  receipt.
 	NumberOfHeads uint32 `idl:"name:NumberOfHeads" json:"number_of_heads"`
-	DeviceType    uint32 `idl:"name:DeviceType" json:"device_type"`
+	// DeviceType:  One of the following SCSI device types [ANSI-131-1994] acquired from
+	// device inquiry data.
+	//
+	//	+-------------------------------+--------------------------------------+
+	//	|                               |                                      |
+	//	|             VALUE             |               MEANING                |
+	//	|                               |                                      |
+	//	+-------------------------------+--------------------------------------+
+	//	+-------------------------------+--------------------------------------+
+	//	| FILE_DEVICE_CD_ROM 0x00000002 | Device is a CD-ROM.                  |
+	//	+-------------------------------+--------------------------------------+
+	//	| FILE_DEVICE_DISK 0x00000007   | Device is a direct-access drive.     |
+	//	+-------------------------------+--------------------------------------+
+	//	| FILE_DEVICE_DVD 0x00000033    | Device is a DVD.                     |
+	//	+-------------------------------+--------------------------------------+
+	//	| FILE_DEVICE_TAPE 0x0000001F   | Device is a sequential-access drive. |
+	//	+-------------------------------+--------------------------------------+
+	DeviceType uint32 `idl:"name:DeviceType" json:"device_type"`
 }
 
 func (o *DriveTypeInformationA) xxx_PreparePayload(ctx context.Context) error {
@@ -1845,11 +2203,39 @@ func (o *DriveTypeInformationA) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 }
 
 // DriveTypeInformationW structure represents NTMS_DRIVETYPEINFORMATIONW RPC structure.
+//
+// The NTMS_DRIVETYPEINFORMATIONW structure describes the properties specific to a type
+// of drive, in Unicode.
 type DriveTypeInformationW struct {
-	Vendor        string `idl:"name:szVendor;string" json:"vendor"`
-	Product       string `idl:"name:szProduct;string" json:"product"`
+	// szVendor:   A null-terminated sequence of Unicode UTF-16 characters specifying the
+	// name of the vendor of the drive, acquired from device inquiry data. If this information
+	// is not available, the member MUST specify an empty string.
+	Vendor string `idl:"name:szVendor;string" json:"vendor"`
+	// szProduct:   A null-terminated sequence of Unicode UTF-16 characters specifying the
+	// name of the product of the drive, acquired from device inquiry data. If this information
+	// is not available, the member MUST specify an empty string.
+	Product string `idl:"name:szProduct;string" json:"product"`
+	// NumberOfHeads:  This parameter is currently unused. It MUST be zero and MUST be ignored
+	// on receipt.
 	NumberOfHeads uint32 `idl:"name:NumberOfHeads" json:"number_of_heads"`
-	DeviceType    uint32 `idl:"name:DeviceType" json:"device_type"`
+	// DeviceType:  One of the following SCSI device types [ANSI-131-1994] acquired from
+	// device inquiry data.
+	//
+	//	+-------------------------------+--------------------------------------+
+	//	|                               |                                      |
+	//	|             VALUE             |               MEANING                |
+	//	|                               |                                      |
+	//	+-------------------------------+--------------------------------------+
+	//	+-------------------------------+--------------------------------------+
+	//	| FILE_DEVICE_CD_ROM 0x00000002 | Device is a CD-ROM.                  |
+	//	+-------------------------------+--------------------------------------+
+	//	| FILE_DEVICE_DISK 0x00000007   | Device is a direct-access drive.     |
+	//	+-------------------------------+--------------------------------------+
+	//	| FILE_DEVICE_DVD 0x00000033    | Device is a DVD.                     |
+	//	+-------------------------------+--------------------------------------+
+	//	| FILE_DEVICE_TAPE 0x0000001F   | Device is a sequential-access drive. |
+	//	+-------------------------------+--------------------------------------+
+	DeviceType uint32 `idl:"name:DeviceType" json:"device_type"`
 }
 
 func (o *DriveTypeInformationW) xxx_PreparePayload(ctx context.Context) error {
@@ -1956,23 +2342,88 @@ func (o *DriveTypeInformationW) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 }
 
 // LibraryRequestInformationA structure represents NTMS_LIBREQUESTINFORMATIONA RPC structure.
+//
+// The NTMS_LIBREQUESTINFORMATIONA structure describes the properties of a work request,
+// in ASCII.
 type LibraryRequestInformationA struct {
-	OperationCode   uint32           `idl:"name:OperationCode" json:"operation_code"`
-	OperationOption uint32           `idl:"name:OperationOption" json:"operation_option"`
-	State           uint32           `idl:"name:State" json:"state"`
-	PartitionID     *GUID            `idl:"name:PartitionId" json:"partition_id"`
-	DriveID         *GUID            `idl:"name:DriveId" json:"drive_id"`
-	PhysicalMediaID *GUID            `idl:"name:PhysMediaId" json:"physical_media_id"`
-	Library         *GUID            `idl:"name:Library" json:"library"`
-	SlotID          *GUID            `idl:"name:SlotId" json:"slot_id"`
-	TimeQueued      *dtyp.SystemTime `idl:"name:TimeQueued" json:"time_queued"`
-	TimeCompleted   *dtyp.SystemTime `idl:"name:TimeCompleted" json:"time_completed"`
-	Application     []byte           `idl:"name:szApplication" json:"application"`
-	User            []byte           `idl:"name:szUser" json:"user"`
-	Computer        []byte           `idl:"name:szComputer" json:"computer"`
-	ErrorCode       uint32           `idl:"name:dwErrorCode" json:"error_code"`
-	WorkItemID      *GUID            `idl:"name:WorkItemId" json:"work_item_id"`
-	Priority        uint32           `idl:"name:dwPriority" json:"priority"`
+	// OperationCode:  A value from the NtmsLmOperation enumeration specifying the type
+	// of operation requested.
+	OperationCode uint32 `idl:"name:OperationCode" json:"operation_code"`
+	// OperationOption:  Options specific to a library request. The following table shows
+	// the meanings if OperationCode is set to LM_MOUNT, LM_DISMOUNT, or LM_EJECT.
+	//
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	|                           |                                                                                  |
+	//	|           VALUE           |                                     MEANING                                      |
+	//	|                           |                                                                                  |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| IMMEDIATE 0x00000000      | The operation MUST be completed immediately.                                     |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| DEFERRED 0x00000001       | The operation MUST be completed only when the slot is later required for an      |
+	//	|                           | operation.                                                                       |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| FORCEIMMEDIATE 0x00000002 | The operation MUST be completed immediately. The operation will complete even if |
+	//	|                           | there are open handles to the medium.                                            |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| FORCEDEFERRED 0x00000003  | The operation MUST be completed only when the slot is later required for an      |
+	//	|                           | operation. The operation MUST complete even if there are open handles to the     |
+	//	|                           | medium.                                                                          |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| INJECTMANY 0x00000004     | The operation applies to multiple slots.                                         |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//
+	// The following table shows the meanings if OperationCode is set to LM_INVENTORY.
+	//
+	//	+---------------------------+-------------------------------------------------------+
+	//	|                           |                                                       |
+	//	|           VALUE           |                        MEANING                        |
+	//	|                           |                                                       |
+	//	+---------------------------+-------------------------------------------------------+
+	//	+---------------------------+-------------------------------------------------------+
+	//	| FULL_INVENTORY 0x00000000 | A complete inventory of media MUST be done.           |
+	//	+---------------------------+-------------------------------------------------------+
+	//	| SLOTS_ONLY 0x00000001     | Only the media loaded into slots MUST be inventoried. |
+	//	+---------------------------+-------------------------------------------------------+
+	OperationOption uint32 `idl:"name:OperationOption" json:"operation_option"`
+	// State:  A value from the NtmsLmState (section 2.2.1.10) enumeration specifying the
+	// state of the work request.
+	State uint32 `idl:"name:State" json:"state"`
+	// PartitionId:  The identifier of a side for which the request is submitted to the
+	// server.
+	PartitionID *GUID `idl:"name:PartitionId" json:"partition_id"`
+	// DriveId:  The identifier of a drive that is being serviced.
+	DriveID *GUID `idl:"name:DriveId" json:"drive_id"`
+	// PhysMediaId:  The identifier of a piece of physical media that is being serviced.
+	PhysicalMediaID *GUID `idl:"name:PhysMediaId" json:"physical_media_id"`
+	// Library:  The identifier of the library for the request.
+	Library *GUID `idl:"name:Library" json:"library"`
+	// SlotId:  The identifier of the slot of the piece of physical media that is being
+	// serviced.
+	SlotID *GUID `idl:"name:SlotId" json:"slot_id"`
+	// TimeQueued:  A SYSTEMTIME structure specifying the time at which the request was
+	// submitted to the server.
+	TimeQueued *dtyp.SystemTime `idl:"name:TimeQueued" json:"time_queued"`
+	// TimeCompleted:  A SYSTEMTIME structure specifying the time at which the request was
+	// completed.
+	TimeCompleted *dtyp.SystemTime `idl:"name:TimeCompleted" json:"time_completed"`
+	// szApplication:   A null-terminated sequence of ASCII characters specifying the name
+	// of the application that submitted the operator request.<7>
+	Application []byte `idl:"name:szApplication" json:"application"`
+	// szUser:   A null-terminated sequence of ASCII characters specifying the name of the
+	// interactive user who submitted the operator request.<8>
+	User []byte `idl:"name:szUser" json:"user"`
+	// szComputer:   A null-terminated sequence of ASCII characters specifying the name
+	// of the computer that submitted the operator request.<9>
+	Computer []byte `idl:"name:szComputer" json:"computer"`
+	// dwErrorCode:  An implementation-specific nonzero error code that returns with State
+	// set to the NTMS_LM_FAILED value.<10>
+	ErrorCode uint32 `idl:"name:dwErrorCode" json:"error_code"`
+	// WorkItemId:  The associated identifier for the request, which was assigned by a server
+	// when it received a request from a client to perform an operation on a library.
+	WorkItemID *GUID `idl:"name:WorkItemId" json:"work_item_id"`
+	// dwPriority:  The priority of the request.
+	Priority uint32 `idl:"name:dwPriority" json:"priority"`
 }
 
 func (o *LibraryRequestInformationA) xxx_PreparePayload(ctx context.Context) error {
@@ -2214,23 +2665,88 @@ func (o *LibraryRequestInformationA) UnmarshalNDR(ctx context.Context, w ndr.Rea
 }
 
 // LibraryRequestInformationW structure represents NTMS_LIBREQUESTINFORMATIONW RPC structure.
+//
+// The NTMS_LIBREQUESTINFORMATIONW structure describes the properties of a work request,
+// in Unicode.
 type LibraryRequestInformationW struct {
-	OperationCode   uint32           `idl:"name:OperationCode" json:"operation_code"`
-	OperationOption uint32           `idl:"name:OperationOption" json:"operation_option"`
-	State           uint32           `idl:"name:State" json:"state"`
-	PartitionID     *GUID            `idl:"name:PartitionId" json:"partition_id"`
-	DriveID         *GUID            `idl:"name:DriveId" json:"drive_id"`
-	PhysicalMediaID *GUID            `idl:"name:PhysMediaId" json:"physical_media_id"`
-	Library         *GUID            `idl:"name:Library" json:"library"`
-	SlotID          *GUID            `idl:"name:SlotId" json:"slot_id"`
-	TimeQueued      *dtyp.SystemTime `idl:"name:TimeQueued" json:"time_queued"`
-	TimeCompleted   *dtyp.SystemTime `idl:"name:TimeCompleted" json:"time_completed"`
-	Application     string           `idl:"name:szApplication;string" json:"application"`
-	User            string           `idl:"name:szUser;string" json:"user"`
-	Computer        string           `idl:"name:szComputer;string" json:"computer"`
-	ErrorCode       uint32           `idl:"name:dwErrorCode" json:"error_code"`
-	WorkItemID      *GUID            `idl:"name:WorkItemId" json:"work_item_id"`
-	Priority        uint32           `idl:"name:dwPriority" json:"priority"`
+	// OperationCode:  A value from the NtmsLmOperation enumeration specifying the type
+	// of operation requested.
+	OperationCode uint32 `idl:"name:OperationCode" json:"operation_code"`
+	// OperationOption:  Options specific to a library request. The following table shows
+	// the meanings if OperationCode is set to LM_MOUNT, LM_DISMOUNT, or LM_EJECT.
+	//
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	|                           |                                                                                  |
+	//	|           VALUE           |                                     MEANING                                      |
+	//	|                           |                                                                                  |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| IMMEDIATE 0x00000000      | The operation MUST be completed immediately.                                     |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| DEFERRED 0x00000001       | The operation MUST be completed only when the slot is later required for an      |
+	//	|                           | operation.                                                                       |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| FORCEIMMEDIATE 0x00000002 | The operation MUST be completed immediately. The operation will complete even if |
+	//	|                           | there are open handles to the medium.                                            |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| FORCEDEFERRED 0x00000003  | The operation MUST be completed only when the slot is later required for an      |
+	//	|                           | operation. The operation MUST complete even if there are open handles to the     |
+	//	|                           | medium.                                                                          |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| INJECTMANY 0x00000004     | The operation applies to multiple slots.                                         |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//
+	// The following table shows the meanings if OperationCode is set to LM_INVENTORY.
+	//
+	//	+---------------------------+-------------------------------------------------------+
+	//	|                           |                                                       |
+	//	|           VALUE           |                        MEANING                        |
+	//	|                           |                                                       |
+	//	+---------------------------+-------------------------------------------------------+
+	//	+---------------------------+-------------------------------------------------------+
+	//	| FULL_INVENTORY 0x00000000 | A complete inventory of media MUST be done.           |
+	//	+---------------------------+-------------------------------------------------------+
+	//	| SLOTS_ONLY 0x00000001     | Only the media loaded into slots MUST be inventoried. |
+	//	+---------------------------+-------------------------------------------------------+
+	OperationOption uint32 `idl:"name:OperationOption" json:"operation_option"`
+	// State:  A value from the NtmsLmState (section 2.2.1.10) enumeration specifying the
+	// state of the work request.
+	State uint32 `idl:"name:State" json:"state"`
+	// PartitionId:  The identifier of a side for which the request is submitted to the
+	// server.
+	PartitionID *GUID `idl:"name:PartitionId" json:"partition_id"`
+	// DriveId:  The identifier of a drive that is being serviced.
+	DriveID *GUID `idl:"name:DriveId" json:"drive_id"`
+	// PhysMediaId:  The identifier of a piece of physical media that is being serviced.
+	PhysicalMediaID *GUID `idl:"name:PhysMediaId" json:"physical_media_id"`
+	// Library:  The identifier of the library for the request.
+	Library *GUID `idl:"name:Library" json:"library"`
+	// SlotId:  The identifier of the slot of the piece of physical media that is being
+	// serviced.
+	SlotID *GUID `idl:"name:SlotId" json:"slot_id"`
+	// TimeQueued:  A SYSTEMTIME structure specifying the time at which the request was
+	// queued.
+	TimeQueued *dtyp.SystemTime `idl:"name:TimeQueued" json:"time_queued"`
+	// TimeCompleted:  A SYSTEMTIME structure specifying the time at which the request was
+	// completed.
+	TimeCompleted *dtyp.SystemTime `idl:"name:TimeCompleted" json:"time_completed"`
+	// szApplication:   A null-terminated sequence of Unicode UTF-16 characters specifying
+	// the name of the application that submitted the operator request.<11>
+	Application string `idl:"name:szApplication;string" json:"application"`
+	// szUser:   A null-terminated sequence of Unicode UTF-16 characters specifying the
+	// name of the interactive user who submitted the operator request.
+	User string `idl:"name:szUser;string" json:"user"`
+	// szComputer:   A null-terminated sequence of Unicode UTF-16 characters specifying
+	// the name of the computer that submitted the operator request.
+	Computer string `idl:"name:szComputer;string" json:"computer"`
+	// dwErrorCode:  An implementation-specific nonzero error code for requests that return
+	// with State set to the NTMS_LM_FAILED value.<12>
+	ErrorCode uint32 `idl:"name:dwErrorCode" json:"error_code"`
+	// WorkItemId:  The associated identifier for the request, which is assigned by a server
+	// when it receives a request from a client to perform an operation on a library.
+	WorkItemID *GUID `idl:"name:WorkItemId" json:"work_item_id"`
+	// dwPriority:  The priority of the request.
+	Priority uint32 `idl:"name:dwPriority" json:"priority"`
 }
 
 func (o *LibraryRequestInformationW) xxx_PreparePayload(ctx context.Context) error {
@@ -2505,16 +3021,70 @@ func (o *LibraryRequestInformationW) UnmarshalNDR(ctx context.Context, w ndr.Rea
 }
 
 // MediaPoolInformation structure represents NTMS_MEDIAPOOLINFORMATION RPC structure.
+//
+// The NTMS_MEDIAPOOLINFORMATION structure defines the properties specific to a media
+// pool object.
 type MediaPoolInformation struct {
-	PoolType              uint32 `idl:"name:PoolType" json:"pool_type"`
-	MediaType             *GUID  `idl:"name:MediaType" json:"media_type"`
-	Parent                *GUID  `idl:"name:Parent" json:"parent"`
-	AllocationPolicy      uint32 `idl:"name:AllocationPolicy" json:"allocation_policy"`
-	DeallocationPolicy    uint32 `idl:"name:DeallocationPolicy" json:"deallocation_policy"`
-	MaxAllocates          uint32 `idl:"name:dwMaxAllocates" json:"max_allocates"`
+	// PoolType:  An NTMS-supported media pool type.
+	//
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                     |                                                                                  |
+	//	|                VALUE                |                                     MEANING                                      |
+	//	|                                     |                                                                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_POOLTYPE_UNKNOWN 0x00000000    | Unknown pool type.                                                               |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_POOLTYPE_SCRATCH 0x00000001    | Media that are available to other applications.                                  |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_POOLTYPE_FOREIGN 0x00000002    | Media that have been written to and that do not contain a recognizable on-media  |
+	//	|                                     | identifier label type or label ID.                                               |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_POOLTYPE_IMPORT 0x00000003     | Media that have been written to and that have a recognizable on-media identifier |
+	//	|                                     | label type but an unrecognizable label ID.                                       |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_POOLTYPE_APPLICATION 0x00003E8 | A media pool that is created by an application. One or more application media    |
+	//	|                                     | pools can be created per system.                                                 |
+	//	+-------------------------------------+----------------------------------------------------------------------------------+
+	PoolType uint32 `idl:"name:PoolType" json:"pool_type"`
+	// MediaType:  A single media type that makes up each media pool.
+	MediaType *GUID `idl:"name:MediaType" json:"media_type"`
+	// Parent:  A parent media pool or NULL.
+	Parent *GUID `idl:"name:Parent" json:"parent"`
+	// AllocationPolicy:  A bitfield that specifies the action at allocation time. This
+	// MUST be the following value, or left as 0.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                      |                                                                                  |
+	//	|                VALUE                 |                                     MEANING                                      |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_ALLOCATE_FROMSCRATCH 0x00000001 | Draw media from the free pool if none is available in the pool. The default is   |
+	//	|                                      | not to draw from free pool. Return media to free when available. The default is  |
+	//	|                                      | not to return to free.                                                           |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	AllocationPolicy uint32 `idl:"name:AllocationPolicy" json:"allocation_policy"`
+	// DeallocationPolicy:  A bitfield that specifies action at deallocation time. This
+	// member can be the following value or left as 0.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------+
+	//	|                                      |                                                                            |
+	//	|                VALUE                 |                                  MEANING                                   |
+	//	|                                      |                                                                            |
+	//	+--------------------------------------+----------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------+
+	//	| NTMS_DEALLOCATE_TOSCRATCH 0x00000001 | Return media to free when available. The default is not to return to free. |
+	//	+--------------------------------------+----------------------------------------------------------------------------+
+	DeallocationPolicy uint32 `idl:"name:DeallocationPolicy" json:"deallocation_policy"`
+	// dwMaxAllocates:  The maximum number of times the medium can be allocated and deallocated.
+	MaxAllocates uint32 `idl:"name:dwMaxAllocates" json:"max_allocates"`
+	// dwNumberOfPhysicalMedia:  The number of physical media in this media pool.
 	NumberOfPhysicalMedia uint32 `idl:"name:dwNumberOfPhysicalMedia" json:"number_of_physical_media"`
-	NumberOfLogicalMedia  uint32 `idl:"name:dwNumberOfLogicalMedia" json:"number_of_logical_media"`
-	NumberOfMediaPools    uint32 `idl:"name:dwNumberOfMediaPools" json:"number_of_media_pools"`
+	// dwNumberOfLogicalMedia:  The number of logical media in this media pool.
+	NumberOfLogicalMedia uint32 `idl:"name:dwNumberOfLogicalMedia" json:"number_of_logical_media"`
+	// dwNumberOfMediaPools:  The number of media pools in this media pool.
+	NumberOfMediaPools uint32 `idl:"name:dwNumberOfMediaPools" json:"number_of_media_pools"`
 }
 
 func (o *MediaPoolInformation) xxx_PreparePayload(ctx context.Context) error {
@@ -2615,11 +3185,187 @@ func (o *MediaPoolInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 }
 
 // MediaTypeInformation structure represents NTMS_MEDIATYPEINFORMATION RPC structure.
+//
+// The NTMS_MEDIATYPEINFORMATION structure defines the properties specific to a type
+// of media supported by RSM.
 type MediaTypeInformation struct {
-	MediaType                uint32 `idl:"name:MediaType" json:"media_type"`
-	NumberOfSides            uint32 `idl:"name:NumberOfSides" json:"number_of_sides"`
+	// MediaType:  Each disk or tape driver reports the media type enumeration value of
+	// the medium that is currently mounted in the drive. This media type value MUST be
+	// unique, and is mapped to a human-readable string in the object szName member of a
+	// NTMS_OBJECTINFORMATIONA or NTMS_OBJECTINFORMATIONW structure.
+	//
+	// MediaType MUST be one of the following values.
+	//
+	//	+-------------------------------+----------------------------------------------------------+
+	//	|                               |                                                          |
+	//	|             VALUE             |                         MEANING                          |
+	//	|                               |                                                          |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| DDS_4mm 0x00000020            | Tape - DAT, DDS1, DDS2, and so on (all vendors)          |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| MiniQic 0x00000021            | Tape - miniQIC tape                                      |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| Travan 0x00000022             | Tape - Travan tape (TR-1, TR-2, TR-3, and so on)         |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| QIC 0x00000023                | Tape - QIC tape                                          |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| MP_8mm 0x00000024             | Tape - 8 mm Exabyte metal particle tape                  |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| AME_8mm 0x00000025            | Tape - 8 mm Exabyte advanced metal evaporative tape      |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| AIT1_8mm 0x00000026           | Tape - 8 mm Sony AIT                                     |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| DLT 0x00000027                | Tape - DLT compact tape (IIIxt or IV)                    |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| NCTP 0x00000028               | Tape - Philips NCTP tape                                 |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| IBM_3480 0x00000029           | Tape - IBM 3480 tape                                     |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| IBM_3490E 0x0000002a          | Tape - IBM 3490E tape                                    |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| IBM_Magstar_3590 0x0000002b   | Tape - IBM Magstar 3590 tape                             |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| IBM_Magstar_MP 0x0000002c     | Tape - IBM Magstar MP tape                               |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| STK_DATA_D3 0x0000002d        | Tape - STK Data D3 tape                                  |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| SONY_DTF 0x0000002e           | Tape - Sony DTF tape                                     |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| DV_6mm 0x0000002f             | Tape - 6 mm digital video tape                           |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| DMI 0x00000030                | Tape - Exabyte DMI tape and compatibles                  |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| SONY_D2 0x00000031            | Tape - Sony D2S and D2L tape                             |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| CLEANER_CARTRIDGE 0x00000032  | Cleaner (all drive types that support drive cleaners)    |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| CD_ROM 0x00000033             | Optical disk - CD                                        |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| CD_R 0x00000034               | Optical disk - CD-Recordable (write once)                |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| CD_RW 0x00000035              | Optical disk - CD-Rewritable                             |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| DVD_ROM 0x00000036            | Optical disk - DVD-ROM                                   |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| DVD_R 0x00000037              | Optical disk - DVD-Recordable (write once)               |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| DVD_RW 0x00000038             | Optical disk - DVD-Rewritable                            |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| MO_3_RW 0x00000039            | Optical disk - 3.5 inch rewritable MO disk               |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| MO_5_WO 0x0000003a            | Optical disk - MO 5.25 inch write once                   |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| MO_5_RW 0x0000003b            | Optical disk - MO 5.25 inch rewritable (not LIMDOW)      |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| MO_5_LIMDOW 0x0000003c        | Optical disk - MO 5.25 inch rewritable (LIMDOW)          |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| PC_5_WO 0x0000003d            | Optical disk - Phase change 5.25 inch write once optical |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| PC_5_RW 0x0000003e            | Optical disk - Phase change 5.25 inch rewritable         |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| PD_5_RW 0x0000003f            | Optical disk - Phase change dual rewritable              |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| ABL_5_WO 0x00000040           | Optical disk - Ablative 5.25 inch write once optical     |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| PINNACLE_APEX_5_RW 0x00000041 | Optical disk - Pinnacle Apex 4.6GB rewritable optical    |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| SONY_12_WO 0x00000042         | Optical disk - Sony 12 inch write once                   |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| PHILIPS_12_WO 0x00000043      | Optical disk - Philips/LMS 12 inch write once            |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| HITACHI_12_WO 0x00000044      | Optical disk - Hitachi 12 inch write once                |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| CYGNET_12_WO 0x00000045       | Optical disk - Cygnet/ATG 12 inch write once             |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| KODAK_14_WO 0x00000046        | Optical disk - Kodak 14 inch write once                  |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| MO_NFR_525 0x00000047         | Optical disk - Near field recording (Terastor)           |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| NIKON_12_RW 0x00000048        | Optical disk - Nikon 12 inch rewritable                  |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| IOMEGA_ZIP 0x00000049         | Magnetic disk - Iomega Zip                               |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| IOMEGA_JAZ 0x0000004a         | Magnetic disk - Iomega Jaz                               |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| SYQUEST_EZ135 0x0000004b      | Magnetic disk - Syquest EZ135                            |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| SYQUEST_EZFLYER 0x0000004c    | Magnetic disk - Syquest EzFlyer                          |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| SYQUEST_SYJET 0x0000004d      | Magnetic disk - Syquest SyJet                            |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| AVATAR_F2 0x0000004e          | Magnetic disk - 2.5 inch floppy                          |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| MP2_8mm 0x0000004f            | Tape - 8 millimeter Hitachi tape                         |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| DST_S 0x00000050              | Ampex DST small tapes                                    |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| DST_M 0x00000051              | Ampex DST medium tapes                                   |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| DST_L 0x00000052              | Ampex DST large tapes                                    |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| VXATape_1 0x00000053          | Ecrix 8 millimeter tape                                  |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| VXATape_2 0x00000054          | Ecrix 8 millimeter tape                                  |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| STK_9840 0x00000055           | STK 9840                                                 |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| LTO_Ultrium 0x00000056        | IBM, HP, Seagate LTO Ultrium                             |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| LTO_Accelis 0x00000057        | IBM, HP, Seagate LTO Accelis                             |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| DVD_RAM 0x00000058            | Optical disk - DVD-RAM                                   |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| AIT_8mm 0x00000059            | AIT2 or higher                                           |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| ADR_1 0x0000005a              | OnStream ADR Mediatypes                                  |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| ADR_2 0x0000005b              | OnStream ADR Mediatypes                                  |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| STK_9940 0x0000005c           | STK 9940                                                 |
+	//	+-------------------------------+----------------------------------------------------------+
+	//	| SAIT 0x0000005d               | SAIT tapes                                               |
+	//	+-------------------------------+----------------------------------------------------------+
+	MediaType uint32 `idl:"name:MediaType" json:"media_type"`
+	// NumberOfSides:  The number of sides on the media.
+	NumberOfSides uint32 `idl:"name:NumberOfSides" json:"number_of_sides"`
+	// ReadWriteCharacteristics:  Identifies the read/write characteristics of the media
+	// type. This MUST be one of the following values.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                    |                                                                                  |
+	//	|               VALUE                |                                     MEANING                                      |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_MEDIARW_UNKNOWN 0x00000000    | Unknown media characteristics. This value can be used to initialize              |
+	//	|                                    | ReadWriteCharacteristics before a final value is assigned.                       |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_MEDIARW_REWRITABLE 0x00000001 | Media that can be written to more than once. This includes magnetic tape,        |
+	//	|                                    | magnetic disk, and some optical disk media.                                      |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_MEDIARW_WRITEONCE 0x00000002  | Media that can be written to only one time. Some optical media (for example,     |
+	//	|                                    | 5.25-inch, 12-inch, 14-inch WORM, and CD-R) are designed to be write-once.       |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_MEDIARW_READONLY 0x00000003   | Media that cannot be written to, such as a CD-ROM and a DVD-ROM.                 |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
 	ReadWriteCharacteristics uint32 `idl:"name:ReadWriteCharacteristics" json:"read_write_characteristics"`
-	DeviceType               uint32 `idl:"name:DeviceType" json:"device_type"`
+	// DeviceType:  The SCSI device type [ANSI-131-1994] as reported from device inquiry
+	// data. This MUST be one of the following values.
+	//
+	//	+-------------------------------+---------------------------+
+	//	|                               |                           |
+	//	|             VALUE             |          MEANING          |
+	//	|                               |                           |
+	//	+-------------------------------+---------------------------+
+	//	+-------------------------------+---------------------------+
+	//	| FILE_DEVICE_CD_ROM 0x00000002 | CD-ROM device.            |
+	//	+-------------------------------+---------------------------+
+	//	| FILE_DEVICE_DISK 0x00000007   | Direct-access device.     |
+	//	+-------------------------------+---------------------------+
+	//	| FILE_DEVICE_TAPE 0x0000001F   | Sequential-access device. |
+	//	+-------------------------------+---------------------------+
+	DeviceType uint32 `idl:"name:DeviceType" json:"device_type"`
 }
 
 func (o *MediaTypeInformation) xxx_PreparePayload(ctx context.Context) error {
@@ -2672,10 +3418,34 @@ func (o *MediaTypeInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 }
 
 // StorageSlotInformation structure represents NTMS_STORAGESLOTINFORMATION RPC structure.
+//
+// The NTMS_STORAGESLOTINFORMATION structure defines properties specific to a storage
+// slot object.
 type StorageSlotInformation struct {
-	Number  uint32 `idl:"name:Number" json:"number"`
-	State   uint32 `idl:"name:State" json:"state"`
-	Library *GUID  `idl:"name:Library" json:"library"`
+	// Number:  The number of the slot in the library.
+	Number uint32 `idl:"name:Number" json:"number"`
+	// State:  The current state of the slot. This MUST be one of the following values.
+	//
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                          |                                                                                  |
+	//	|                  VALUE                   |                                     MEANING                                      |
+	//	|                                          |                                                                                  |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_SLOTSTATE_UNKNOWN 0x00000000        | The slot state cannot be determined.                                             |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_SLOTSTATE_FULL 0x00000001           | The slot is present and contains physical media.                                 |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_SLOTSTATE_EMPTY 0x00000002          | The slot is present but does not contain physical media.                         |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_SLOTSTATE_NOTPRESENT 0x00000003     | The slot is not present. If the library contains magazines, this value is        |
+	//	|                                          | reported for each slot when the associated magazine is missing.                  |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_SLOTSTATE_NEEDSINVENTORY 0x00000004 | The slot needs inventory.                                                        |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	State uint32 `idl:"name:State" json:"state"`
+	// Library:  The library that contains the slot.
+	Library *GUID `idl:"name:Library" json:"library"`
 }
 
 func (o *StorageSlotInformation) xxx_PreparePayload(ctx context.Context) error {
@@ -2731,11 +3501,31 @@ func (o *StorageSlotInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 }
 
 // IEDoorInformation structure represents NTMS_IEDOORINFORMATION RPC structure.
+//
+// The NTMS_IEDOORINFORMATION structure defines properties specific to an insert/eject
+// door object.
 type IEDoorInformation struct {
-	Number      uint32 `idl:"name:Number" json:"number"`
-	State       uint32 `idl:"name:State" json:"state"`
+	// Number:  The number of the doors in the library. Libraries typically have one door.
+	Number uint32 `idl:"name:Number" json:"number"`
+	// State:  The state of the door. This MUST be one of the following values.
+	//
+	//	+-----------------------------------+--------------------------------------+
+	//	|                                   |                                      |
+	//	|               VALUE               |               MEANING                |
+	//	|                                   |                                      |
+	//	+-----------------------------------+--------------------------------------+
+	//	+-----------------------------------+--------------------------------------+
+	//	| NTMS_DOORSTATE_CLOSED 0x00000001  | The library door is closed.          |
+	//	+-----------------------------------+--------------------------------------+
+	//	| NTMS_DOORSTATE_OPEN 0x00000002    | The library door is open.            |
+	//	+-----------------------------------+--------------------------------------+
+	//	| NTMS_DOORSTATE_UNKNOWN 0x00000000 | The state of the library is unknown. |
+	//	+-----------------------------------+--------------------------------------+
+	State uint32 `idl:"name:State" json:"state"`
+	// MaxOpenSecs:  The maximum number of seconds the door is to remain open.
 	MaxOpenSecs uint16 `idl:"name:MaxOpenSecs" json:"max_open_secs"`
-	Library     *GUID  `idl:"name:Library" json:"library"`
+	// Library:  The library that contains this door.
+	Library *GUID `idl:"name:Library" json:"library"`
 }
 
 func (o *IEDoorInformation) xxx_PreparePayload(ctx context.Context) error {
@@ -2797,12 +3587,48 @@ func (o *IEDoorInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 }
 
 // IEPortInformation structure represents NTMS_IEPORTINFORMATION RPC structure.
+//
+// The NTMS_IEPORTINFORMATION structure defines properties specific to an IE port object.
 type IEPortInformation struct {
-	Number        uint32 `idl:"name:Number" json:"number"`
-	Content       uint32 `idl:"name:Content" json:"content"`
-	Position      uint32 `idl:"name:Position" json:"position"`
+	// Number:   The library port number.
+	Number uint32 `idl:"name:Number" json:"number"`
+	// Content:  The full/empty state of the NTMS_IEPORT object. This MUST be one of the
+	// following values.
+	//
+	//	+-------------------------------------+---------------------------------------+
+	//	|                                     |                                       |
+	//	|                VALUE                |                MEANING                |
+	//	|                                     |                                       |
+	//	+-------------------------------------+---------------------------------------+
+	//	+-------------------------------------+---------------------------------------+
+	//	| NTMS_PORTCONTENT_UNKNOWN 0x00000000 | The content of the port is not known. |
+	//	+-------------------------------------+---------------------------------------+
+	//	| NTMS_PORTCONTENT_FULL 0x00000001    | The port is full.                     |
+	//	+-------------------------------------+---------------------------------------+
+	//	| NTMS_PORTCONTENT_EMPTY 0x00000002   | The port is empty.                    |
+	//	+-------------------------------------+---------------------------------------+
+	Content uint32 `idl:"name:Content" json:"content"`
+	// Position:  The position of the NTMS_IEPORT object. This MUST be one of the following
+	// values.
+	//
+	//	+----------------------------------------+-------------------------------+
+	//	|                                        |                               |
+	//	|                 VALUE                  |            MEANING            |
+	//	|                                        |                               |
+	//	+----------------------------------------+-------------------------------+
+	//	+----------------------------------------+-------------------------------+
+	//	| NTMS_PORTPOSITION_UNKNOWN 0x00000000   | The port position is unknown. |
+	//	+----------------------------------------+-------------------------------+
+	//	| NTMS_PORTPOSITION_EXTENDED 0x00000001  | The port is extended.         |
+	//	+----------------------------------------+-------------------------------+
+	//	| NTMS_PORTPOSITION_RETRACTED 0x00000002 | The port is retracted.        |
+	//	+----------------------------------------+-------------------------------+
+	Position uint32 `idl:"name:Position" json:"position"`
+	// MaxExtendSecs:  The maximum number of seconds the port is allowed to remain open
+	// before an operator request is issued. Valid values are between zero and 65,535 seconds.
 	MaxExtendSecs uint16 `idl:"name:MaxExtendSecs" json:"max_extend_secs"`
-	Library       *GUID  `idl:"name:Library" json:"library"`
+	// Library:  The library that contains the port.
+	Library *GUID `idl:"name:Library" json:"library"`
 }
 
 func (o *IEPortInformation) xxx_PreparePayload(ctx context.Context) error {
@@ -2870,8 +3696,13 @@ func (o *IEPortInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 }
 
 // LMIDInformation structure represents NTMS_LMIDINFORMATION RPC structure.
+//
+// The NTMS_LMIDINFORMATION structure defines the properties specific to a logical media
+// object.
 type LMIDInformation struct {
-	MediaPool          *GUID  `idl:"name:MediaPool" json:"media_pool"`
+	// MediaPool:  The unique identifier of the media pool that contains the logical media.
+	MediaPool *GUID `idl:"name:MediaPool" json:"media_pool"`
+	// dwNumberOfPartitions:  The number of sides in the media object.
 	NumberOfPartitions uint32 `idl:"name:dwNumberOfPartitions" json:"number_of_partitions"`
 }
 
@@ -2922,12 +3753,76 @@ func (o *LMIDInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 }
 
 // ComputerInformation structure represents NTMS_COMPUTERINFORMATION RPC structure.
+//
+// The NTMS_COMPUTERINFORMATION structure defines the properties specific to the RSM
+// server.
 type ComputerInformation struct {
-	LibRequestPurgeTime       uint32 `idl:"name:dwLibRequestPurgeTime" json:"lib_request_purge_time"`
+	// dwLibRequestPurgeTime:  The total number of seconds that the completed library requests
+	// are maintained in the work queue.<15>
+	LibRequestPurgeTime uint32 `idl:"name:dwLibRequestPurgeTime" json:"lib_request_purge_time"`
+	// dwOpRequestPurgeTime:  The total number of seconds that the completed operator requests
+	// are maintained in the operator request queue.<16>
 	OperationRequestPurgeTime uint32 `idl:"name:dwOpRequestPurgeTime" json:"operation_request_purge_time"`
-	LibRequestFlags           uint32 `idl:"name:dwLibRequestFlags" json:"lib_request_flags"`
-	OperationRequestFlags     uint32 `idl:"name:dwOpRequestFlags" json:"operation_request_flags"`
-	MediaPoolPolicy           uint32 `idl:"name:dwMediaPoolPolicy" json:"media_pool_policy"`
+	// dwLibRequestFlags:  The library request options. This member contains the following
+	// flag fields.
+	//
+	//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+	//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+	//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+	//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+	//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+	//	| 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | F | A |
+	//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+	//
+	// Where the bits are defined as:
+	//
+	//	+----------------------------------+----------------------------------------------------------------------------------+
+	//	|                                  |                                                                                  |
+	//	|              VALUE               |                                   DESCRIPTION                                    |
+	//	|                                  |                                                                                  |
+	//	+----------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------+----------------------------------------------------------------------------------+
+	//	| A NTMS_LIBREQFLAGS_NOAUTOPURGE   | Library requests are not purged from the work queue. This MUST be set to NULL by |
+	//	|                                  | default.                                                                         |
+	//	+----------------------------------+----------------------------------------------------------------------------------+
+	//	| F NTMS_LIBREQFLAGS_NOFAILEDPURGE | Failed work items are not purged from the work queue. This MUST be set to NULL   |
+	//	|                                  | by default.                                                                      |
+	//	+----------------------------------+----------------------------------------------------------------------------------+
+	LibRequestFlags uint32 `idl:"name:dwLibRequestFlags" json:"lib_request_flags"`
+	// dwOpRequestFlags:  The operator request options. Possible values include the following.
+	//
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                    |                                                                                  |
+	//	|               VALUE                |                                     MEANING                                      |
+	//	|                                    |                                                                                  |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQFLAGS_NOAUTOPURGE 0x01   | Operator requests MUST NOT be purged from the work queue. This MUST be set to    |
+	//	|                                    | NULL by default.                                                                 |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQFLAGS_NOFAILEDPURGE 0x02 | Failed operator requests MUST NOT be purged from the queue. This MUST be set to  |
+	//	|                                    | NULL by default.                                                                 |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQFLAGS_NOALERTS 0x10      | The alert for operator requests MUST be disabled.                                |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_OPREQFLAGS_NOTRAYICON 0x20    | The taskbar icon for operator requests MUST be disabled.                         |
+	//	+------------------------------------+----------------------------------------------------------------------------------+
+	OperationRequestFlags uint32 `idl:"name:dwOpRequestFlags" json:"operation_request_flags"`
+	// dwMediaPoolPolicy:  Media pool policies. Possible values include the following.
+	//
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                          |                                                                                  |
+	//	|                  VALUE                   |                                     MEANING                                      |
+	//	|                                          |                                                                                  |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_POOLPOLICY_PURGEOFFLINESCRATCH 0x01 | Any free media that is ejected MUST be automatically deleted. This MUST be set   |
+	//	|                                          | to NULL by default.                                                              |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	//	| NTMS_POOLPOLICY_KEEPOFFLINEIMPORT 0x02   | Any import media that is ejected MUST NOT be deleted automatically. This MUST be |
+	//	|                                          | set to NULL by default.                                                          |
+	//	+------------------------------------------+----------------------------------------------------------------------------------+
+	MediaPoolPolicy uint32 `idl:"name:dwMediaPoolPolicy" json:"media_pool_policy"`
 }
 
 func (o *ComputerInformation) xxx_PreparePayload(ctx context.Context) error {
@@ -2986,18 +3881,60 @@ func (o *ComputerInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 }
 
 // OperationRequestInformationA structure represents NTMS_OPREQUESTINFORMATIONA RPC structure.
+//
+// The NTMS_OPREQUESTINFORMATIONA structure describes the properties of an operator
+// request, in ASCII.
 type OperationRequestInformationA struct {
-	Request     uint32           `idl:"name:Request" json:"request"`
-	Submitted   *dtyp.SystemTime `idl:"name:Submitted" json:"submitted"`
-	State       uint32           `idl:"name:State" json:"state"`
-	Message     []byte           `idl:"name:szMessage" json:"message"`
-	Arg1Type    uint32           `idl:"name:Arg1Type" json:"arg1_type"`
-	Arg1        *GUID            `idl:"name:Arg1" json:"arg1"`
-	Arg2Type    uint32           `idl:"name:Arg2Type" json:"arg2_type"`
-	Arg2        *GUID            `idl:"name:Arg2" json:"arg2"`
-	Application []byte           `idl:"name:szApplication" json:"application"`
-	User        []byte           `idl:"name:szUser" json:"user"`
-	Computer    []byte           `idl:"name:szComputer" json:"computer"`
+	// Request:  The value from the NtmsOpreqCommand enumeration that specifies the type
+	// of the operator request.
+	Request uint32 `idl:"name:Request" json:"request"`
+	// Submitted:  A SYSTEMTIME structure that specifies the time at which the request was
+	// submitted.
+	Submitted *dtyp.SystemTime `idl:"name:Submitted" json:"submitted"`
+	// State:  A value from the NtmsOpreqState enumeration that specifies the state of the
+	// operator request.
+	State uint32 `idl:"name:State" json:"state"`
+	// szMessage:   A null-terminated string that contains operator message text. For example,
+	// "The cleaner cartridge in %s (slot #%d) has reached its maximum usage and needs to
+	// be replaced."
+	Message []byte `idl:"name:szMessage" json:"message"`
+	// Arg1Type:  A value from the NtmsObjectsTypes enumeration that specifies the type
+	// of object in Arg1.
+	Arg1Type uint32 `idl:"name:Arg1Type" json:"arg1_type"`
+	// Arg1:  This parameter MUST be set based on the value of Request.
+	//
+	// If Request = NTMS_OPREQ_NEWMEDIA (0x00000001), Arg1 MUST be set to the identifier
+	// of the media pool requiring new media.
+	//
+	// If Request = NTMS_OPREQ_CLEANER (0x00000002), Arg1 MUST be set to the identifier
+	// of the library requiring the cleaner cartridge.
+	//
+	// If Request = NTMS_OPREQ_DEVICESERVICE (0x00000003), Arg1 MUST be set to the identifier
+	// of the device requiring service.
+	//
+	// If Request = NTMS_OPREQ_MOVEMEDIA (0x00000004), Arg1 MUST be set to the identifier
+	// of the physical medium to move.
+	Arg1 *GUID `idl:"name:Arg1" json:"arg1"`
+	// Arg2Type:  A value from the NtmsObjectsTypes enumeration that specifies the type
+	// of object in Arg2.
+	Arg2Type uint32 `idl:"name:Arg2Type" json:"arg2_type"`
+	// Arg2:  This parameter MUST be set based on the value of Request.
+	//
+	// If Request = NTMS_OPREQ_NEWMEDIA (0x00000001), Arg2 MAY be set to the identifier
+	// of the library in which the new media MUST be placed.
+	//
+	// If Request = NTMS_OPREQ_MOVEMEDIA (0x00000004), Arg2 MUST be set to the identifier
+	// of the library to which the physical medium MUST be moved.
+	Arg2 *GUID `idl:"name:Arg2" json:"arg2"`
+	// szApplication:   A null-terminated sequence of Unicode characters that specifies
+	// the name of the application that submitted the operator request.
+	Application []byte `idl:"name:szApplication" json:"application"`
+	// szUser:   A null-terminated sequence of Unicode characters that specifies the name
+	// of the interactive user who submitted the operator request.
+	User []byte `idl:"name:szUser" json:"user"`
+	// szComputer:   A null-terminated sequence of Unicode characters that specifies the
+	// name of the computer that submitted the operator request.
+	Computer []byte `idl:"name:szComputer" json:"computer"`
 }
 
 func (o *OperationRequestInformationA) xxx_PreparePayload(ctx context.Context) error {
@@ -3185,18 +4122,52 @@ func (o *OperationRequestInformationA) UnmarshalNDR(ctx context.Context, w ndr.R
 }
 
 // OperationRequestInformationW structure represents NTMS_OPREQUESTINFORMATIONW RPC structure.
+//
+// The NTMS_OPREQUESTINFORMATIONW structure describes the properties of an operator
+// request, in Unicode.
 type OperationRequestInformationW struct {
-	Request     uint32           `idl:"name:Request" json:"request"`
-	Submitted   *dtyp.SystemTime `idl:"name:Submitted" json:"submitted"`
-	State       uint32           `idl:"name:State" json:"state"`
-	Message     string           `idl:"name:szMessage;string" json:"message"`
-	Arg1Type    uint32           `idl:"name:Arg1Type" json:"arg1_type"`
-	Arg1        *GUID            `idl:"name:Arg1" json:"arg1"`
-	Arg2Type    uint32           `idl:"name:Arg2Type" json:"arg2_type"`
-	Arg2        *GUID            `idl:"name:Arg2" json:"arg2"`
-	Application string           `idl:"name:szApplication;string" json:"application"`
-	User        string           `idl:"name:szUser;string" json:"user"`
-	Computer    string           `idl:"name:szComputer;string" json:"computer"`
+	// Request:  A value from the NtmsOpreqCommand enumeration that specifies the type of
+	// the operator request.
+	Request uint32 `idl:"name:Request" json:"request"`
+	// Submitted:  A SYSTEMTIME structure that specifies the time at which the request was
+	// submitted.
+	Submitted *dtyp.SystemTime `idl:"name:Submitted" json:"submitted"`
+	// State:  A value from the NtmsOpreqState enumeration that specifies the state of the
+	// operator request.
+	State uint32 `idl:"name:State" json:"state"`
+	// szMessage:   A null-terminated operator message text.
+	Message string `idl:"name:szMessage;string" json:"message"`
+	// Arg1Type:  A value from the NtmsObjectsTypes enumeration that specifies the type
+	// of object in Arg1.
+	Arg1Type uint32 `idl:"name:Arg1Type" json:"arg1_type"`
+	// Arg1:  This parameter MUST be set based on the value of Request.
+	//
+	// If Request = NTMS_OPREQ_NEWMEDIA (0x00000001), Arg1 MUST be set to the identifier
+	// of the media pool requiring new media.
+	//
+	// If Request = NTMS_OPREQ_CLEANER (0x00000002), Arg1 MUST be set to the identifier
+	// of the library requiring the cleaner cartridge.
+	//
+	// If Request = NTMS_OPREQ_DEVICESERVICE (0x00000003), Arg1 MUST be set to the identifier
+	// of the device requiring service.
+	Arg1 *GUID `idl:"name:Arg1" json:"arg1"`
+	// Arg2Type:  A value from the NtmsObjectsTypes enumeration that specifies the type
+	// of object in Arg2.
+	Arg2Type uint32 `idl:"name:Arg2Type" json:"arg2_type"`
+	// Arg2:  This parameter MUST be set based on the value of Request.
+	//
+	// If Request = NTMS_OPREQ_NEWMEDIA (0x00000001), Arg2 MAY be set to the identifier
+	// of the library in which the new media MUST be placed.
+	Arg2 *GUID `idl:"name:Arg2" json:"arg2"`
+	// szApplication:   A null-terminated sequence of Unicode characters that specifies
+	// the name of the application that submitted the operator request.
+	Application string `idl:"name:szApplication;string" json:"application"`
+	// szUser:   A null-terminated sequence of Unicode characters that specifies the name
+	// of the interactive user who submitted the operator request.
+	User string `idl:"name:szUser;string" json:"user"`
+	// szComputer:   A null-terminated sequence of Unicode characters that specifies the
+	// name of the computer that submitted the operator request.
+	Computer string `idl:"name:szComputer;string" json:"computer"`
 }
 
 func (o *OperationRequestInformationW) xxx_PreparePayload(ctx context.Context) error {
@@ -3434,18 +4405,63 @@ func (o *OperationRequestInformationW) UnmarshalNDR(ctx context.Context, w ndr.R
 }
 
 // PartitionInformationA structure represents NTMS_PARTITIONINFORMATIONA RPC structure.
+//
+// The NTMS_PARTITIONINFORMATIONA structure describes the properties of a media side
+// object, as a sequence of ASCII characters.
 type PartitionInformationA struct {
-	PhysicalMedia     *GUID              `idl:"name:PhysicalMedia" json:"physical_media"`
-	LogicalMedia      *GUID              `idl:"name:LogicalMedia" json:"logical_media"`
-	State             uint32             `idl:"name:State" json:"state"`
-	Side              uint16             `idl:"name:Side" json:"side"`
-	OMIDLabelIDLength uint32             `idl:"name:dwOmidLabelIdLength" json:"omid_label_id_length"`
-	OMIDLabelID       []byte             `idl:"name:OmidLabelId" json:"omid_label_id"`
-	OMIDLabelType     []byte             `idl:"name:szOmidLabelType" json:"omid_label_type"`
-	OMIDLabelInfo     []byte             `idl:"name:szOmidLabelInfo" json:"omid_label_info"`
-	MountCount        uint32             `idl:"name:dwMountCount" json:"mount_count"`
-	AllocateCount     uint32             `idl:"name:dwAllocateCount" json:"allocate_count"`
-	Capacity          *dtyp.LargeInteger `idl:"name:Capacity" json:"capacity"`
+	// PhysicalMedia:  The identifier of the medium that contains the side.
+	PhysicalMedia *GUID `idl:"name:PhysicalMedia" json:"physical_media"`
+	// LogicalMedia:  The identifier of the piece of logical media that contains the side.
+	// This MUST be set to 0 if the side is not allocated.
+	//
+	//	+-------+----------------------------+
+	//	|       |                            |
+	//	| VALUE |          MEANING           |
+	//	|       |                            |
+	//	+-------+----------------------------+
+	//	+-------+----------------------------+
+	//	|     0 | The side is not allocated. |
+	//	+-------+----------------------------+
+	LogicalMedia *GUID `idl:"name:LogicalMedia" json:"logical_media"`
+	// State:  The value from the NtmsPartitionState (section 2.2.4.7) enumeration describing
+	// the state of the side.
+	State uint32 `idl:"name:State" json:"state"`
+	// Side:  A zero-relative value that indicates which side of a multisided media this
+	// is. For single-sided media, this value MUST be 0. For dual-sided media, one NTMS_PARTITIONINFORMATIONA
+	// record MUST have its member set to 0, and a second NTMS_PARTITIONINFORMATIONA record
+	// MUST have its member set to 1.
+	//
+	//	+-------------+-----------------------------------------------------------------------------+
+	//	|             |                                                                             |
+	//	| MEDIA\VALUE |                                   MEANING                                   |
+	//	|             |                                                                             |
+	//	+-------------+-----------------------------------------------------------------------------+
+	//	+-------------+-----------------------------------------------------------------------------+
+	//	|           0 | The only side of single-sided media, or the first side of dual-sided media. |
+	//	+-------------+-----------------------------------------------------------------------------+
+	//	|           1 | The second side of dual-sided media.                                        |
+	//	+-------------+-----------------------------------------------------------------------------+
+	Side uint16 `idl:"name:Side" json:"side"`
+	// dwOmidLabelIdLength:  The length of the label identification string of the on-media
+	// identifier.
+	OMIDLabelIDLength uint32 `idl:"name:dwOmidLabelIdLength" json:"omid_label_id_length"`
+	// OmidLabelId:   The label identifier of the on-media identifier.
+	OMIDLabelID []byte `idl:"name:OmidLabelId" json:"omid_label_id"`
+	// szOmidLabelType:   A null-terminated sequence of ASCII characters specifying the
+	// label type of the on-media identifier.
+	OMIDLabelType []byte `idl:"name:szOmidLabelType" json:"omid_label_type"`
+	// szOmidLabelInfo:   A null-terminated sequence of ASCII characters specifying the
+	// label information of the on-media identifier.
+	OMIDLabelInfo []byte `idl:"name:szOmidLabelInfo" json:"omid_label_info"`
+	// dwMountCount:  The number of times the medium has been mounted into a drive since
+	// being initialized for this server. This member MUST be initialized to 0 when the
+	// object is created in the database.
+	MountCount uint32 `idl:"name:dwMountCount" json:"mount_count"`
+	// dwAllocateCount:  The number of times the medium has been allocated since being initialized
+	// for this server.
+	AllocateCount uint32 `idl:"name:dwAllocateCount" json:"allocate_count"`
+	// Capacity:  The number of bytes available on this side.
+	Capacity *dtyp.LargeInteger `idl:"name:Capacity" json:"capacity"`
 }
 
 func (o *PartitionInformationA) xxx_PreparePayload(ctx context.Context) error {
@@ -3612,18 +4628,61 @@ func (o *PartitionInformationA) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 }
 
 // PartitionInformationW structure represents NTMS_PARTITIONINFORMATIONW RPC structure.
+//
+// The NTMS_PARTITIONINFORMATIONW structure describes the properties of a media side
+// object, as a sequence of Unicode characters. Unicode encoding is specified in [UNICODE].
 type PartitionInformationW struct {
-	PhysicalMedia     *GUID              `idl:"name:PhysicalMedia" json:"physical_media"`
-	LogicalMedia      *GUID              `idl:"name:LogicalMedia" json:"logical_media"`
-	State             uint32             `idl:"name:State" json:"state"`
-	Side              uint16             `idl:"name:Side" json:"side"`
-	OMIDLabelIDLength uint32             `idl:"name:dwOmidLabelIdLength" json:"omid_label_id_length"`
-	OMIDLabelID       []byte             `idl:"name:OmidLabelId" json:"omid_label_id"`
-	OMIDLabelType     string             `idl:"name:szOmidLabelType;string" json:"omid_label_type"`
-	OMIDLabelInfo     string             `idl:"name:szOmidLabelInfo;string" json:"omid_label_info"`
-	MountCount        uint32             `idl:"name:dwMountCount" json:"mount_count"`
-	AllocateCount     uint32             `idl:"name:dwAllocateCount" json:"allocate_count"`
-	Capacity          *dtyp.LargeInteger `idl:"name:Capacity" json:"capacity"`
+	// PhysicalMedia:  The identifier of the medium that contains the side.
+	PhysicalMedia *GUID `idl:"name:PhysicalMedia" json:"physical_media"`
+	// LogicalMedia:  The identifier of the piece of logical media that contains the side.
+	// This MUST be set to GUID_NULL if the side is not allocated.
+	//
+	//	+-------------+----------------------------+
+	//	|             |                            |
+	//	|    VALUE    |          MEANING           |
+	//	|             |                            |
+	//	+-------------+----------------------------+
+	//	+-------------+----------------------------+
+	//	| "GUID_NULL" | The side is not allocated. |
+	//	+-------------+----------------------------+
+	LogicalMedia *GUID `idl:"name:LogicalMedia" json:"logical_media"`
+	// State:  A value from the NtmsPartitionState (section 2.2.4.7) enumeration describing
+	// the state of the side.
+	State uint32 `idl:"name:State" json:"state"`
+	// Side:  A zero-relative value that indicates which side of a multisided media this
+	// is. For single-sided media, this value MUST be 0. For dual-sided media, one NTMS_PARTITIONINFORMATIONW
+	// record MUST have its member set to 0, and a second NTMS_PARTITIONINFORMATIONW record
+	// MUST have its member set to 1.
+	//
+	//	+-------------+----------------------------------------------------------------------------+
+	//	|             |                                                                            |
+	//	| MEDIA\VALUE |                                  MEANING                                   |
+	//	|             |                                                                            |
+	//	+-------------+----------------------------------------------------------------------------+
+	//	+-------------+----------------------------------------------------------------------------+
+	//	|           0 | The only side of single-sided media or the first side of dual-sided media. |
+	//	+-------------+----------------------------------------------------------------------------+
+	//	|           1 | The second side of dual-sided media.                                       |
+	//	+-------------+----------------------------------------------------------------------------+
+	Side uint16 `idl:"name:Side" json:"side"`
+	// dwOmidLabelIdLength:  The length of the label identification string of the on-media
+	// identifier.
+	OMIDLabelIDLength uint32 `idl:"name:dwOmidLabelIdLength" json:"omid_label_id_length"`
+	// OmidLabelId:   The label identifier of the on-media identifier.
+	OMIDLabelID []byte `idl:"name:OmidLabelId" json:"omid_label_id"`
+	// szOmidLabelType:   A null-terminated sequence of Unicode UTF-16 characters specifying
+	// the label type of the on-media identifier.
+	OMIDLabelType string `idl:"name:szOmidLabelType;string" json:"omid_label_type"`
+	// szOmidLabelInfo:   A null-terminated sequence of Unicode characters specifying the
+	// label information of the on-media identifier.
+	OMIDLabelInfo string `idl:"name:szOmidLabelInfo;string" json:"omid_label_info"`
+	// dwMountCount:  The number of times the medium has been mounted into a drive. This
+	// member is initialized to 0 when the object is created in the server information database.
+	MountCount uint32 `idl:"name:dwMountCount" json:"mount_count"`
+	// dwAllocateCount:  The number of times the medium has been allocated.
+	AllocateCount uint32 `idl:"name:dwAllocateCount" json:"allocate_count"`
+	// Capacity:  The number of bytes available on this side.
+	Capacity *dtyp.LargeInteger `idl:"name:Capacity" json:"capacity"`
 }
 
 func (o *PartitionInformationW) xxx_PreparePayload(ctx context.Context) error {
@@ -3808,21 +4867,45 @@ func (o *PartitionInformationW) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 }
 
 // PMIDInformationA structure represents NTMS_PMIDINFORMATIONA RPC structure.
+//
+// The NTMS_PMIDINFORMATIONA structure describes the properties of a physical media
+// object, as a sequence of ASCII characters.
 type PMIDInformationA struct {
-	CurrentLibrary     *GUID  `idl:"name:CurrentLibrary" json:"current_library"`
-	MediaPool          *GUID  `idl:"name:MediaPool" json:"media_pool"`
-	Location           *GUID  `idl:"name:Location" json:"location"`
-	LocationType       uint32 `idl:"name:LocationType" json:"location_type"`
-	MediaType          *GUID  `idl:"name:MediaType" json:"media_type"`
-	HomeSlot           *GUID  `idl:"name:HomeSlot" json:"home_slot"`
-	BarCode            []byte `idl:"name:szBarCode" json:"bar_code"`
-	BarCodeState       uint32 `idl:"name:BarCodeState" json:"bar_code_state"`
-	SequenceNumber     []byte `idl:"name:szSequenceNumber" json:"sequence_number"`
-	MediaState         uint32 `idl:"name:MediaState" json:"media_state"`
+	// CurrentLibrary:  The identifier of the library in which the media is contained.
+	CurrentLibrary *GUID `idl:"name:CurrentLibrary" json:"current_library"`
+	// MediaPool:  The identifier of the media pool to which the media is assigned.
+	MediaPool *GUID `idl:"name:MediaPool" json:"media_pool"`
+	// Location:  The identifier of the physical location object for the media.
+	Location *GUID `idl:"name:Location" json:"location"`
+	// LocationType:  Any of the NTMS_STORAGESLOT, NTMS_DRIVE, or NTMS_IEPORT values defined
+	// in the NtmsObjectsTypes (section 2.2.1.6) enumeration, specifying the type of the
+	// current location for a piece of physical media.
+	LocationType uint32 `idl:"name:LocationType" json:"location_type"`
+	// MediaType:  The identifier of the media type object for the medium.
+	MediaType *GUID `idl:"name:MediaType" json:"media_type"`
+	// HomeSlot:  The identifier of the library storage slot in which the medium is stored.
+	HomeSlot *GUID `idl:"name:HomeSlot" json:"home_slot"`
+	// szBarCode:   The null-terminated Unicode string specifying the numeric value of the
+	// bar code of the media. If the bar code is not available, BarCodeState MUST be set
+	// to NTMS_BARCODESTATE_UNREADABLE. For more information, see section 2.2.4.1.
+	BarCode []byte `idl:"name:szBarCode" json:"bar_code"`
+	// BarCodeState:  A value from the NtmsBarCodeState (section 2.2.4.1) enumeration specifying
+	// the state of the bar code.
+	BarCodeState uint32 `idl:"name:BarCodeState" json:"bar_code_state"`
+	// szSequenceNumber:   A sequential number assigned to the specified medium as a human-readable
+	// value.
+	SequenceNumber []byte `idl:"name:szSequenceNumber" json:"sequence_number"`
+	// MediaState:  The value from the NtmsMediaState (section 2.2.4.4) enumeration describing
+	// the state of the media.
+	MediaState uint32 `idl:"name:MediaState" json:"media_state"`
+	// dwNumberOfPartitions:  The number of sides on the medium.
 	NumberOfPartitions uint32 `idl:"name:dwNumberOfPartitions" json:"number_of_partitions"`
-	MediaTypeCode      uint32 `idl:"name:dwMediaTypeCode" json:"media_type_code"`
-	DensityCode        uint32 `idl:"name:dwDensityCode" json:"density_code"`
-	MountedPartition   *GUID  `idl:"name:MountedPartition" json:"mounted_partition"`
+	// dwMediaTypeCode:  The SCSI [ANSI-131-1994] type code of the medium.
+	MediaTypeCode uint32 `idl:"name:dwMediaTypeCode" json:"media_type_code"`
+	// dwDensityCode:  The SCSI density code of the medium.
+	DensityCode uint32 `idl:"name:dwDensityCode" json:"density_code"`
+	// MountedPartition:  The identifier of the media side that is currently mounted.
+	MountedPartition *GUID `idl:"name:MountedPartition" json:"mounted_partition"`
 }
 
 func (o *PMIDInformationA) xxx_PreparePayload(ctx context.Context) error {
@@ -4019,21 +5102,44 @@ func (o *PMIDInformationA) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 }
 
 // PMIDInformationW structure represents NTMS_PMIDINFORMATIONW RPC structure.
+//
+// The NTMS_PMIDINFORMATIONW structure describes the properties of a physical media
+// object, as a sequence of Unicode characters.
 type PMIDInformationW struct {
-	CurrentLibrary     *GUID  `idl:"name:CurrentLibrary" json:"current_library"`
-	MediaPool          *GUID  `idl:"name:MediaPool" json:"media_pool"`
-	Location           *GUID  `idl:"name:Location" json:"location"`
-	LocationType       uint32 `idl:"name:LocationType" json:"location_type"`
-	MediaType          *GUID  `idl:"name:MediaType" json:"media_type"`
-	HomeSlot           *GUID  `idl:"name:HomeSlot" json:"home_slot"`
-	BarCode            string `idl:"name:szBarCode;string" json:"bar_code"`
-	BarCodeState       uint32 `idl:"name:BarCodeState" json:"bar_code_state"`
-	SequenceNumber     string `idl:"name:szSequenceNumber;string" json:"sequence_number"`
-	MediaState         uint32 `idl:"name:MediaState" json:"media_state"`
+	// CurrentLibrary:  The identifier of the library in which the medium is contained.
+	CurrentLibrary *GUID `idl:"name:CurrentLibrary" json:"current_library"`
+	// MediaPool:  The identifier of the media pool to which the medium is assigned.
+	MediaPool *GUID `idl:"name:MediaPool" json:"media_pool"`
+	// Location:  The identifier of the physical location object for the medium.
+	Location *GUID `idl:"name:Location" json:"location"`
+	// LocationType:  Any of the NTMS_STORAGESLOT, NTMS_DRIVE, or NTMS_IEPORT values defined
+	// in the NtmsObjectsTypes (section 2.2.1.6) enumeration, specifying the type of the
+	// current location for a piece of physical media.
+	LocationType uint32 `idl:"name:LocationType" json:"location_type"`
+	// MediaType:  The identifier of the media type object for the medium.
+	MediaType *GUID `idl:"name:MediaType" json:"media_type"`
+	// HomeSlot:  The identifier of the library storage slot in which the medium is stored.
+	HomeSlot *GUID `idl:"name:HomeSlot" json:"home_slot"`
+	// szBarCode:   The null-terminated bar code of the medium.
+	BarCode string `idl:"name:szBarCode;string" json:"bar_code"`
+	// BarCodeState:  The value from the NtmsBarCodeState (section 2.2.4.1) enumeration
+	// specifying the state of the bar code.
+	BarCodeState uint32 `idl:"name:BarCodeState" json:"bar_code_state"`
+	// szSequenceNumber:   Sequential number assigned to the specified medium as a human-readable
+	// value. This value MUST be transcribed by a user on the medium so it can be located
+	// in an offline library.
+	SequenceNumber string `idl:"name:szSequenceNumber;string" json:"sequence_number"`
+	// MediaState:  The value from the NtmsMediaState (section 2.2.4.4) enumeration describing
+	// the state of the media.
+	MediaState uint32 `idl:"name:MediaState" json:"media_state"`
+	// dwNumberOfPartitions:  The number of sides on the medium.
 	NumberOfPartitions uint32 `idl:"name:dwNumberOfPartitions" json:"number_of_partitions"`
-	MediaTypeCode      uint32 `idl:"name:dwMediaTypeCode" json:"media_type_code"`
-	DensityCode        uint32 `idl:"name:dwDensityCode" json:"density_code"`
-	MountedPartition   *GUID  `idl:"name:MountedPartition" json:"mounted_partition"`
+	// dwMediaTypeCode:  The SCSI [ANSI-131-1994] type code of the medium.
+	MediaTypeCode uint32 `idl:"name:dwMediaTypeCode" json:"media_type_code"`
+	// dwDensityCode:  The SCSI density code of the medium.
+	DensityCode uint32 `idl:"name:dwDensityCode" json:"density_code"`
+	// MountedPartition:  The identifier of the media side that is currently mounted.
+	MountedPartition *GUID `idl:"name:MountedPartition" json:"mounted_partition"`
 }
 
 func (o *PMIDInformationW) xxx_PreparePayload(ctx context.Context) error {
@@ -4254,18 +5360,37 @@ func (o *PMIDInformationW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 }
 
 // RSMMessage structure represents RSM_MESSAGE RPC structure.
+//
+// The RSM_MESSAGE structure describes a message.
 type RSMMessage struct {
+	// lpguidOperation:  A pointer to the identifier of the operation to which the message
+	// refers.
 	LpguidOperation *dtyp.GUID `idl:"name:lpguidOperation;pointer:unique" json:"lpguid_operation"`
-	NTMSType        uint32     `idl:"name:dwNtmsType" json:"ntms_type"`
-	State           uint32     `idl:"name:dwState" json:"state"`
-	Flags           uint32     `idl:"name:dwFlags" json:"flags"`
-	Priority        uint32     `idl:"name:dwPriority" json:"priority"`
-	ErrorCode       uint32     `idl:"name:dwErrorCode" json:"error_code"`
-	ComputerName    string     `idl:"name:lpszComputerName;string;pointer:unique" json:"computer_name"`
-	Application     string     `idl:"name:lpszApplication;string" json:"application"`
-	User            string     `idl:"name:lpszUser;string" json:"user"`
-	TimeSubmitted   string     `idl:"name:lpszTimeSubmitted;string" json:"time_submitted"`
-	Message         string     `idl:"name:lpszMessage;string" json:"message"`
+	// dwNtmsType:  A value from the NtmsObjectsTypes (section 2.2.1.6) enumeration specifying
+	// the type of object to which the message refers.
+	NTMSType uint32 `idl:"name:dwNtmsType" json:"ntms_type"`
+	// dwState:  A value from the NtmsLmState (section 2.2.1.10) enumeration specifying
+	// the state of the operation to which the message refers.
+	State uint32 `idl:"name:dwState" json:"state"`
+	// dwFlags:  This parameter is unused. It MUST be 0 and MUST be ignored on receipt.
+	Flags uint32 `idl:"name:dwFlags" json:"flags"`
+	// dwPriority:  The priority of the message.
+	Priority uint32 `idl:"name:dwPriority" json:"priority"`
+	// dwErrorCode:  An implementation-specific, nonzero error code.
+	ErrorCode uint32 `idl:"name:dwErrorCode" json:"error_code"`
+	// lpszComputerName:  A null-terminated sequence of Unicode characters specifying the
+	// name of the computer from which the message was sent.
+	ComputerName string `idl:"name:lpszComputerName;string;pointer:unique" json:"computer_name"`
+	// lpszApplication:  A null-terminated sequence of Unicode characters specifying the
+	// name of the application sending the message.
+	Application string `idl:"name:lpszApplication;string" json:"application"`
+	// lpszUser:  A null-terminated sequence of Unicode characters specifying the name of
+	// the user sending the message.
+	User string `idl:"name:lpszUser;string" json:"user"`
+	// lpszTimeSubmitted:  The null-terminated time at which the message was created.
+	TimeSubmitted string `idl:"name:lpszTimeSubmitted;string" json:"time_submitted"`
+	// lpszMessage:  The null-terminated description of the message.
+	Message string `idl:"name:lpszMessage;string" json:"message"`
 }
 
 func (o *RSMMessage) xxx_PreparePayload(ctx context.Context) error {
@@ -4483,17 +5608,35 @@ func (o *RSMMessage) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 }
 
 // ObjectInformationA structure represents NTMS_OBJECTINFORMATIONA RPC structure.
+//
+// The NTMS_OBJECTINFORMATIONA structure describes the properties of RSM objects, in
+// ASCII.
 type ObjectInformationA struct {
-	Size             uint32                   `idl:"name:dwSize" json:"size"`
-	Type             uint32                   `idl:"name:dwType" json:"type"`
-	Created          *dtyp.SystemTime         `idl:"name:Created" json:"created"`
-	Modified         *dtyp.SystemTime         `idl:"name:Modified" json:"modified"`
-	ObjectGUID       *GUID                    `idl:"name:ObjectGuid" json:"object_guid"`
-	Enabled          bool                     `idl:"name:Enabled" json:"enabled"`
-	OperationalState uint32                   `idl:"name:dwOperationalState" json:"operational_state"`
-	Name             []byte                   `idl:"name:szName" json:"name"`
-	Description      []byte                   `idl:"name:szDescription" json:"description"`
-	Info             *ObjectInformationA_Info `idl:"name:Info;switch_is:dwType" json:"info"`
+	// dwSize:  The size, in bytes, of the structure.
+	Size uint32 `idl:"name:dwSize" json:"size"`
+	// dwType:  A value from the NtmsObjectsTypes (section 2.2.1.6) enumeration specifying
+	// the type of the object.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// Created:  A SYSTEMTIME structure specifying the time when the object was created.
+	Created *dtyp.SystemTime `idl:"name:Created" json:"created"`
+	// Modified:  A SYSTEMTIME structure specifying the time when the object was last modified.
+	Modified *dtyp.SystemTime `idl:"name:Modified" json:"modified"`
+	// ObjectGuid:  The identifier of the object.
+	ObjectGUID *GUID `idl:"name:ObjectGuid" json:"object_guid"`
+	// Enabled:  If set to TRUE, the object MUST be enabled; if set to FALSE, the object
+	// MUST NOT be enabled.
+	Enabled bool `idl:"name:Enabled" json:"enabled"`
+	// dwOperationalState:  A value from the NtmsOperationalState (section 2.2.4.5) enumeration
+	// specifying the operation state of the object.
+	OperationalState uint32 `idl:"name:dwOperationalState" json:"operational_state"`
+	// szName:   A null-terminated sequence of ASCII characters specifying the name of the
+	// object.
+	Name []byte `idl:"name:szName" json:"name"`
+	// szDescription:   The null-terminated description of the object.<13>
+	Description []byte `idl:"name:szDescription" json:"description"`
+	// Info:  A device or system control object information that is specific to the value
+	// of dwType.
+	Info *ObjectInformationA_Info `idl:"name:Info;switch_is:dwType" json:"info"`
 }
 
 func (o *ObjectInformationA) xxx_PreparePayload(ctx context.Context) error {
@@ -4658,6 +5801,9 @@ func (o *ObjectInformationA) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 }
 
 // ObjectInformationA_Info structure represents NTMS_OBJECTINFORMATIONA union anonymous member.
+//
+// The NTMS_OBJECTINFORMATIONA structure describes the properties of RSM objects, in
+// ASCII.
 type ObjectInformationA_Info struct {
 	// Types that are assignable to Value
 	//
@@ -5094,6 +6240,7 @@ func (o *ObjectInformationA_Info) UnmarshalUnionNDR(ctx context.Context, w ndr.R
 //
 // It has following labels: 5
 type ObjectInformationA_Drive struct {
+	// Drive:   An NTMS_DRIVEINFORMATIONA structure that describes the properties of a drive.
 	Drive *DriveInformationA `idl:"name:Drive" json:"drive"`
 }
 
@@ -5125,6 +6272,8 @@ func (o *ObjectInformationA_Drive) UnmarshalNDR(ctx context.Context, w ndr.Reade
 //
 // It has following labels: 6
 type ObjectInformationA_DriveType struct {
+	// DriveType:  An NTMS_DRIVETYPEINFORMATIONA structure that describes the properties
+	// specific to a type of drive.
 	DriveType *DriveTypeInformationA `idl:"name:DriveType" json:"drive_type"`
 }
 
@@ -5156,6 +6305,8 @@ func (o *ObjectInformationA_DriveType) UnmarshalNDR(ctx context.Context, w ndr.R
 //
 // It has following labels: 9
 type ObjectInformationA_Library struct {
+	// Library:  An NTMS_LIBRARYINFORMATION structure that describes the properties of a
+	// media library.
 	Library *LibraryInformation `idl:"name:Library" json:"library"`
 }
 
@@ -5187,6 +6338,8 @@ func (o *ObjectInformationA_Library) UnmarshalNDR(ctx context.Context, w ndr.Rea
 //
 // It has following labels: 2
 type ObjectInformationA_Changer struct {
+	// Changer:  An NTMS_CHANGERINFORMATIONA structure that describes the properties of
+	// a changer object.
 	Changer *ChangerInformationA `idl:"name:Changer" json:"changer"`
 }
 
@@ -5218,6 +6371,8 @@ func (o *ObjectInformationA_Changer) UnmarshalNDR(ctx context.Context, w ndr.Rea
 //
 // It has following labels: 3
 type ObjectInformationA_ChangerType struct {
+	// ChangerType:  An NTMS_CHANGERTYPEINFORMATIONA structure that describes the properties
+	// specific to a type of changer object.
 	ChangerType *ChangerTypeInformationA `idl:"name:ChangerType" json:"changer_type"`
 }
 
@@ -5249,6 +6404,8 @@ func (o *ObjectInformationA_ChangerType) UnmarshalNDR(ctx context.Context, w ndr
 //
 // It has following labels: 16
 type ObjectInformationA_StorageSlot struct {
+	// StorageSlot:  An NTMS_STORAGESLOTINFORMATION structure that describes the properties
+	// of a media storage slot.
 	StorageSlot *StorageSlotInformation `idl:"name:StorageSlot" json:"storage_slot"`
 }
 
@@ -5280,6 +6437,8 @@ func (o *ObjectInformationA_StorageSlot) UnmarshalNDR(ctx context.Context, w ndr
 //
 // It has following labels: 7
 type ObjectInformationA_IEDoor struct {
+	// IEDoor:  An NTMS_IEDOORINFORMATION structure that describes the properties of an
+	// access door.
 	IEDoor *IEDoorInformation `idl:"name:IEDoor" json:"ie_door"`
 }
 
@@ -5311,6 +6470,8 @@ func (o *ObjectInformationA_IEDoor) UnmarshalNDR(ctx context.Context, w ndr.Read
 //
 // It has following labels: 8
 type ObjectInformationA_IEPort struct {
+	// IEPort:  An NTMS_IEPORTINFORMATION structure that describes the properties of an
+	// inject/eject port.
 	IEPort *IEPortInformation `idl:"name:IEPort" json:"ie_port"`
 }
 
@@ -5342,6 +6503,8 @@ func (o *ObjectInformationA_IEPort) UnmarshalNDR(ctx context.Context, w ndr.Read
 //
 // It has following labels: 15
 type ObjectInformationA_PhysicalMedia struct {
+	// PhysicalMedia:  An NTMS_PMIDINFORMATIONA structure that describes the properties
+	// of a physical media object.
 	PhysicalMedia *PMIDInformationA `idl:"name:PhysicalMedia" json:"physical_media"`
 }
 
@@ -5373,6 +6536,8 @@ func (o *ObjectInformationA_PhysicalMedia) UnmarshalNDR(ctx context.Context, w n
 //
 // It has following labels: 11
 type ObjectInformationA_LogicalMedia struct {
+	// LogicalMedia:  An NTMS_LMIDINFORMATION structure that describes the properties of
+	// a logical media object.
 	LogicalMedia *LMIDInformation `idl:"name:LogicalMedia" json:"logical_media"`
 }
 
@@ -5404,6 +6569,8 @@ func (o *ObjectInformationA_LogicalMedia) UnmarshalNDR(ctx context.Context, w nd
 //
 // It has following labels: 14
 type ObjectInformationA_Partition struct {
+	// Partition:  An NTMS_PARTITIONINFORMATIONA structure that describes the properties
+	// of a media-side object.
 	Partition *PartitionInformationA `idl:"name:Partition" json:"partition"`
 }
 
@@ -5435,6 +6602,8 @@ func (o *ObjectInformationA_Partition) UnmarshalNDR(ctx context.Context, w ndr.R
 //
 // It has following labels: 12
 type ObjectInformationA_MediaPool struct {
+	// MediaPool:  An NTMS_MEDIAPOOLINFORMATION structure that describes the properties
+	// of a media pool.
 	MediaPool *MediaPoolInformation `idl:"name:MediaPool" json:"media_pool"`
 }
 
@@ -5466,6 +6635,8 @@ func (o *ObjectInformationA_MediaPool) UnmarshalNDR(ctx context.Context, w ndr.R
 //
 // It has following labels: 13
 type ObjectInformationA_MediaType struct {
+	// MediaType:  An NTMS_MEDIATYPEINFORMATION structure that describes the properties
+	// specific to a type of media.
 	MediaType *MediaTypeInformation `idl:"name:MediaType" json:"media_type"`
 }
 
@@ -5497,6 +6668,8 @@ func (o *ObjectInformationA_MediaType) UnmarshalNDR(ctx context.Context, w ndr.R
 //
 // It has following labels: 10
 type ObjectInformationA_LibRequest struct {
+	// LibRequest:  An NTMS_LIBREQUESTINFORMATIONA structure that describes the properties
+	// of a library request.
 	LibRequest *LibraryRequestInformationA `idl:"name:LibRequest" json:"lib_request"`
 }
 
@@ -5528,6 +6701,8 @@ func (o *ObjectInformationA_LibRequest) UnmarshalNDR(ctx context.Context, w ndr.
 //
 // It has following labels: 17
 type ObjectInformationA_OperationRequest struct {
+	// OpRequest:  An NTMS_OPREQUESTINFORMATIONA structure that describes the properties
+	// of an operator request.
 	OperationRequest *OperationRequestInformationA `idl:"name:OpRequest" json:"operation_request"`
 }
 
@@ -5559,6 +6734,8 @@ func (o *ObjectInformationA_OperationRequest) UnmarshalNDR(ctx context.Context, 
 //
 // It has following labels: 4
 type ObjectInformationA_Computer struct {
+	// Computer:  An NTMS_COMPUTERINFORMATION structure that describes the properties of
+	// a computer.
 	Computer *ComputerInformation `idl:"name:Computer" json:"computer"`
 }
 
@@ -5587,17 +6764,35 @@ func (o *ObjectInformationA_Computer) UnmarshalNDR(ctx context.Context, w ndr.Re
 }
 
 // ObjectInformationW structure represents NTMS_OBJECTINFORMATIONW RPC structure.
+//
+// The NTMS_OBJECTINFORMATIONW structure describes the properties of RSM objects, in
+// Unicode.
 type ObjectInformationW struct {
-	Size             uint32                   `idl:"name:dwSize" json:"size"`
-	Type             uint32                   `idl:"name:dwType" json:"type"`
-	Created          *dtyp.SystemTime         `idl:"name:Created" json:"created"`
-	Modified         *dtyp.SystemTime         `idl:"name:Modified" json:"modified"`
-	ObjectGUID       *GUID                    `idl:"name:ObjectGuid" json:"object_guid"`
-	Enabled          bool                     `idl:"name:Enabled" json:"enabled"`
-	OperationalState uint32                   `idl:"name:dwOperationalState" json:"operational_state"`
-	Name             string                   `idl:"name:szName;string" json:"name"`
-	Description      string                   `idl:"name:szDescription;string" json:"description"`
-	Info             *ObjectInformationW_Info `idl:"name:Info;switch_is:dwType" json:"info"`
+	// dwSize:  The size, in bytes, of the structure.
+	Size uint32 `idl:"name:dwSize" json:"size"`
+	// dwType:  A value from the NtmsObjectsTypes (section 2.2.1.6) enumeration specifying
+	// the type of the object.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// Created:  A SYSTEMTIME structure specifying the time when the object was created.
+	Created *dtyp.SystemTime `idl:"name:Created" json:"created"`
+	// Modified:  A SYSTEMTIME structure specifying the time when the object was last modified.
+	Modified *dtyp.SystemTime `idl:"name:Modified" json:"modified"`
+	// ObjectGuid:  The identifier of the object.
+	ObjectGUID *GUID `idl:"name:ObjectGuid" json:"object_guid"`
+	// Enabled:  If set to TRUE, the object MUST be enabled; if set to FALSE, the object
+	// MUST NOT be enabled.
+	Enabled bool `idl:"name:Enabled" json:"enabled"`
+	// dwOperationalState:  A value from the NtmsOperationalState (section 2.2.4.5) enumeration
+	// specifying the operation state of the object.
+	OperationalState uint32 `idl:"name:dwOperationalState" json:"operational_state"`
+	// szName:   A null-terminated sequence of Unicode UTF-16 characters specifying the
+	// name of the object.
+	Name string `idl:"name:szName;string" json:"name"`
+	// szDescription:   The null-terminated description of the object.<14>
+	Description string `idl:"name:szDescription;string" json:"description"`
+	// Info:  A device or system control object information that is specific to the value
+	// of dwType.
+	Info *ObjectInformationW_Info `idl:"name:Info;switch_is:dwType" json:"info"`
 }
 
 func (o *ObjectInformationW) xxx_PreparePayload(ctx context.Context) error {
@@ -5780,6 +6975,9 @@ func (o *ObjectInformationW) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 }
 
 // ObjectInformationW_Info structure represents NTMS_OBJECTINFORMATIONW union anonymous member.
+//
+// The NTMS_OBJECTINFORMATIONW structure describes the properties of RSM objects, in
+// Unicode.
 type ObjectInformationW_Info struct {
 	// Types that are assignable to Value
 	//
@@ -6216,6 +7414,7 @@ func (o *ObjectInformationW_Info) UnmarshalUnionNDR(ctx context.Context, w ndr.R
 //
 // It has following labels: 5
 type ObjectInformationW_Drive struct {
+	// Drive:   An NTMS_DRIVEINFORMATIONW structure that describes the properties of a drive.
 	Drive *DriveInformationW `idl:"name:Drive" json:"drive"`
 }
 
@@ -6247,6 +7446,8 @@ func (o *ObjectInformationW_Drive) UnmarshalNDR(ctx context.Context, w ndr.Reade
 //
 // It has following labels: 6
 type ObjectInformationW_DriveType struct {
+	// DriveType:  An NTMS_DRIVETYPEINFORMATIONW structure that describes the properties
+	// specific to a type of drive.
 	DriveType *DriveTypeInformationW `idl:"name:DriveType" json:"drive_type"`
 }
 
@@ -6278,6 +7479,8 @@ func (o *ObjectInformationW_DriveType) UnmarshalNDR(ctx context.Context, w ndr.R
 //
 // It has following labels: 9
 type ObjectInformationW_Library struct {
+	// Library:  An NTMS_LIBRARYINFORMATION structure that describes the properties of a
+	// media library.
 	Library *LibraryInformation `idl:"name:Library" json:"library"`
 }
 
@@ -6309,6 +7512,8 @@ func (o *ObjectInformationW_Library) UnmarshalNDR(ctx context.Context, w ndr.Rea
 //
 // It has following labels: 2
 type ObjectInformationW_Changer struct {
+	// Changer:  An NTMS_CHANGERINFORMATIONW structure that describes the properties of
+	// a changer object.
 	Changer *ChangerInformationW `idl:"name:Changer" json:"changer"`
 }
 
@@ -6340,6 +7545,8 @@ func (o *ObjectInformationW_Changer) UnmarshalNDR(ctx context.Context, w ndr.Rea
 //
 // It has following labels: 3
 type ObjectInformationW_ChangerType struct {
+	// ChangerType:  An NTMS_CHANGERTYPEINFORMATIONW structure that describes the properties
+	// specific to a type of changer object.
 	ChangerType *ChangerTypeInformationW `idl:"name:ChangerType" json:"changer_type"`
 }
 
@@ -6371,6 +7578,8 @@ func (o *ObjectInformationW_ChangerType) UnmarshalNDR(ctx context.Context, w ndr
 //
 // It has following labels: 16
 type ObjectInformationW_StorageSlot struct {
+	// StorageSlot:  An NTMS_STORAGESLOTINFORMATION structure that describes the properties
+	// of a media storage slot.
 	StorageSlot *StorageSlotInformation `idl:"name:StorageSlot" json:"storage_slot"`
 }
 
@@ -6402,6 +7611,8 @@ func (o *ObjectInformationW_StorageSlot) UnmarshalNDR(ctx context.Context, w ndr
 //
 // It has following labels: 7
 type ObjectInformationW_IEDoor struct {
+	// IEDoor:  An NTMS_IEDOORINFORMATION structure that describes the properties of an
+	// access door.
 	IEDoor *IEDoorInformation `idl:"name:IEDoor" json:"ie_door"`
 }
 
@@ -6433,6 +7644,8 @@ func (o *ObjectInformationW_IEDoor) UnmarshalNDR(ctx context.Context, w ndr.Read
 //
 // It has following labels: 8
 type ObjectInformationW_IEPort struct {
+	// IEPort:  An NTMS_IEPORTINFORMATION structure that describes the properties of an
+	// IE port.
 	IEPort *IEPortInformation `idl:"name:IEPort" json:"ie_port"`
 }
 
@@ -6464,6 +7677,8 @@ func (o *ObjectInformationW_IEPort) UnmarshalNDR(ctx context.Context, w ndr.Read
 //
 // It has following labels: 15
 type ObjectInformationW_PhysicalMedia struct {
+	// PhysicalMedia:  An NTMS_PMIDINFORMATIONW structure that describes the properties
+	// of a physical media object.
 	PhysicalMedia *PMIDInformationW `idl:"name:PhysicalMedia" json:"physical_media"`
 }
 
@@ -6495,6 +7710,8 @@ func (o *ObjectInformationW_PhysicalMedia) UnmarshalNDR(ctx context.Context, w n
 //
 // It has following labels: 11
 type ObjectInformationW_LogicalMedia struct {
+	// LogicalMedia:  An NTMS_LMIDINFORMATION structure that describes the properties of
+	// a logical media object.
 	LogicalMedia *LMIDInformation `idl:"name:LogicalMedia" json:"logical_media"`
 }
 
@@ -6526,6 +7743,8 @@ func (o *ObjectInformationW_LogicalMedia) UnmarshalNDR(ctx context.Context, w nd
 //
 // It has following labels: 14
 type ObjectInformationW_Partition struct {
+	// Partition:  An NTMS_PARTITIONINFORMATIONW structure that describes the properties
+	// of a media-side object.
 	Partition *PartitionInformationW `idl:"name:Partition" json:"partition"`
 }
 
@@ -6557,6 +7776,8 @@ func (o *ObjectInformationW_Partition) UnmarshalNDR(ctx context.Context, w ndr.R
 //
 // It has following labels: 12
 type ObjectInformationW_MediaPool struct {
+	// MediaPool:  An NTMS_MEDIAPOOLINFORMATION structure that describes the properties
+	// of a media pool.
 	MediaPool *MediaPoolInformation `idl:"name:MediaPool" json:"media_pool"`
 }
 
@@ -6588,6 +7809,8 @@ func (o *ObjectInformationW_MediaPool) UnmarshalNDR(ctx context.Context, w ndr.R
 //
 // It has following labels: 13
 type ObjectInformationW_MediaType struct {
+	// MediaType:  An NTMS_MEDIATYPEINFORMATION structure that describes the properties
+	// specific to a type of media.
 	MediaType *MediaTypeInformation `idl:"name:MediaType" json:"media_type"`
 }
 
@@ -6619,6 +7842,8 @@ func (o *ObjectInformationW_MediaType) UnmarshalNDR(ctx context.Context, w ndr.R
 //
 // It has following labels: 10
 type ObjectInformationW_LibRequest struct {
+	// LibRequest:  An NTMS_LIBREQUESTINFORMATIONW structure that describes the properties
+	// of a library request.
 	LibRequest *LibraryRequestInformationW `idl:"name:LibRequest" json:"lib_request"`
 }
 
@@ -6650,6 +7875,8 @@ func (o *ObjectInformationW_LibRequest) UnmarshalNDR(ctx context.Context, w ndr.
 //
 // It has following labels: 17
 type ObjectInformationW_OperationRequest struct {
+	// OpRequest:  An NTMS_OPREQUESTINFORMATIONW structure that describes the properties
+	// of an operator request.
 	OperationRequest *OperationRequestInformationW `idl:"name:OpRequest" json:"operation_request"`
 }
 
@@ -6681,6 +7908,8 @@ func (o *ObjectInformationW_OperationRequest) UnmarshalNDR(ctx context.Context, 
 //
 // It has following labels: 4
 type ObjectInformationW_Computer struct {
+	// Computer:  An NTMS_COMPUTERINFORMATION structure that describes the properties of
+	// a computer.
 	Computer *ComputerInformation `idl:"name:Computer" json:"computer"`
 }
 

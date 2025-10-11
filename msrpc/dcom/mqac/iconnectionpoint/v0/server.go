@@ -31,19 +31,44 @@ type ConnectionPointServer interface {
 	// IUnknown base class.
 	iunknown.UnknownServer
 
-	// GetConnectionInterface operation.
+	// The GetConnectionInterface method is received by the server in an RPC_REQUEST packet.
+	// In response, the server MUST return a pointer to the IID of the interface that client
+	// applications MUST implement for the MSMQEvent object to be able to notify them when
+	// an event is raised.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.<92>
 	GetConnectionInterface(context.Context, *GetConnectionInterfaceRequest) (*GetConnectionInterfaceResponse, error)
 
-	// GetConnectionPointContainer operation.
+	// The GetConnectionPointContainer method is received by the server in an RPC_REQUEST
+	// packet. In response, the server MUST return a pointer to a pointer to an IConnectionPointContainer
+	// interface for the MSMQEvent object.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.<93>
 	GetConnectionPointContainer(context.Context, *GetConnectionPointContainerRequest) (*GetConnectionPointContainerResponse, error)
 
-	// Advise operation.
+	// The Advise method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST register a client's callback object to receive event notifications.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.<94>
 	Advise(context.Context, *AdviseRequest) (*AdviseResponse, error)
 
-	// Unadvise operation.
+	// The Unadvise method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST deregister a client's callback object to cease receiving event notifications.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.<95>
 	Unadvise(context.Context, *UnadviseRequest) (*UnadviseResponse, error)
 
-	// EnumConnections operation.
+	// The EnumConnections method is received by the server in an RPC_REQUEST packet. In
+	// response, the server MUST return a pointer to an IEnumConnections interface pointer,
+	// as defined in [MSDN-EC], for the client to enumerate all the currently registered
+	// callback objects.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.<96>
 	EnumConnections(context.Context, *EnumConnectionsRequest) (*EnumConnectionsResponse, error)
 }
 

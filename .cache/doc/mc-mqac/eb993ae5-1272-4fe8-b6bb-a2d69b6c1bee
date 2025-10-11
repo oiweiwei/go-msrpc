@@ -1,0 +1,16 @@
+<div class="content"><p>The SoapEnvelope method is received by the server in an
+RPC_REQUEST packet. In response, the server MUST return the represented
+Message.SoapEnvelope.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT SoapEnvelope(
+   [out, retval] BSTR* pbstrSoapEnvelope
+ );
+</pre></div>
+</dd></dl><p><b>pbstrSoapEnvelope: </b>A pointer to a BSTR
+containing a string of Unicode characters that contains the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_3cfba24a-8d9e-4cb3-8110-fc9147c76a0e" data-linktype="relative-path">SOAP envelope</a>.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>Set the <i>pbstrSoapEnvelope</i> output parameter to the value of
+the represented Message.SoapEnvelope.</p>
+</li></ul></div>

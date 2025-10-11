@@ -1,1 +1,50 @@
-<div class="content"></div>
+<div class="content"><p>The Windows System Resource Manager (WSRM) Protocol provides
+tools for managing processor and memory resources on a computer. With WSRM,
+administrators can control how CPU resources are allocated to applications,
+services, and processes, and prevent applications from consuming more than
+their share, thereby preventing one application from starving other
+applications of CPU resources and memory.</p><p>WSRM policies can be applied according to a date/time
+schedule. This allows administrators to free up the CPU and memory for
+maintenance applications during nonpeak hours and for mission-critical
+applications during peak hours.</p><p>The WSRM <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1156c8ef-4d49-462b-9f76-aebcb6c57011" data-linktype="relative-path">accounting</a>
+feature allows administrators to generate, store, view, and export resource
+utilization reports for systems management, as well as service-level agreement
+tracking and billing information. </p><p>WSRM exposes a set of <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_ae2a9876-7fed-4f0d-a390-bf78f76c0736" data-linktype="relative-path">DCOM</a> Protocol <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+interfaces that perform the following functions:</p><ul><li><p><span><span> 
+</span></span><b>Resource Management:</b> Performs administrative tasks and
+retrieves system information from the computer being managed.</p>
+</li><li><p><span><span> 
+</span></span><b>Accounting Management:</b> Performs configuration tasks on
+accounting data, including the following:</p>
+<ul><li><p><span><span>  </span></span>Specifying
+the database server.</p>
+</li><li><p><span><span>  </span></span>Changing
+the location of database files.</p>
+</li><li><p><span><span>  </span></span>Controlling
+how often the server creates accounting records.</p>
+</li><li><p><span><span>  </span></span>Managing
+accounting data records.</p>
+</li></ul></li><li><p><span><span> 
+</span></span><b>Calendar Management:</b> Schedules <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_43754e9e-2697-43b5-857d-2a81c17f010a" data-linktype="relative-path">resource management</a>
+operations.</p>
+</li><li><p><span><span> 
+</span></span><b>Configuration:</b> Manages the global configuration of server
+resources.</p>
+</li><li><p><span><span> 
+</span></span><b>Machine Group Management:</b> Creates, manages, and deletes <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_f4153c8c-848d-4db5-b9cc-4113e5f1e406" data-linktype="relative-path">machine groups</a>.</p>
+</li><li><p><span><span> 
+</span></span><b>Object Management:</b> Imports and exports objects with <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_576cff61-4f0a-4a8a-9829-52ad99f6891c" data-linktype="relative-path">smart import-conflict
+resolution</a>.</p>
+</li><li><p><span><span> 
+</span></span><b>Policy Management:</b> Creates, edits, enumerates, and deletes
+objects that control the allocation of resources to user tasks.</p>
+</li><li><p><span><span> 
+</span></span><b>Protocol Management:</b> Manages client versions supported on
+the server.</p>
+</li><li><p><span><span> 
+</span></span><b>Remote Session Management:</b> Manages CPU quota allocation to
+different remote sessions.</p>
+</li><li><p><span><span> 
+</span></span><b>Resource Group Management:</b> Retrieves, modifies, and
+deletes <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_04c2dc43-6f4a-432d-bca6-ceeef2d5f2ae" data-linktype="relative-path">resource groups</a>.</p>
+</li></ul></div>

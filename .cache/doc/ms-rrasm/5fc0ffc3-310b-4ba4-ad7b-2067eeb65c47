@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IPMCAST_GLOBAL</b> structure stores global
+information for IP <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_70b74a6e-db1d-4648-bedd-5a524dfe6396" data-linktype="relative-path">multicast</a>
+on a specific computer.</p><dl>
+<dd>
+<div><pre> typedef struct _MIB_IPMCAST_GLOBAL {
+   DWORD dwEnable;
+ } MIB_IPMCAST_GLOBAL,
+  *PMIB_IPMCAST_GLOBAL;
+</pre></div>
+</dd></dl><p><b>dwEnable: </b>Specifies whether or not IP
+multicast is enabled on the computer. This value is set to 1 if IP multicast is
+enabled on the computer and is set to 2 if IP multicast is not enabled on the
+computer.</p></div>

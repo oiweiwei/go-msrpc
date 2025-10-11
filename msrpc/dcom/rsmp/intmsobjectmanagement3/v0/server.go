@@ -31,8 +31,12 @@ type ObjectManagement3Server interface {
 	// INtmsObjectManagement2 base class.
 	intmsobjectmanagement2.ObjectManagement2Server
 
+	// The GetNtmsObjectAttributeAR method retrieves private data from an object, with strings
+	// encoded using ASCII.
 	GetNTMSObjectAttributeAR(context.Context, *GetNTMSObjectAttributeARRequest) (*GetNTMSObjectAttributeARResponse, error)
 
+	// The GetNtmsObjectAttributeWR method retrieves private data from an object, with strings
+	// encoded using Unicode.
 	GetNTMSObjectAttributeWR(context.Context, *GetNTMSObjectAttributeWRRequest) (*GetNTMSObjectAttributeWRResponse, error)
 }
 

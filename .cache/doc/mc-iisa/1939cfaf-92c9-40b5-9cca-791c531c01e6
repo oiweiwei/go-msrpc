@@ -1,0 +1,56 @@
+<div class="content"><p>The IAppHostConfigLocation <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides methods
+that access the <a href="59774887-09e3-4de5-ad8e-4794f404b123" data-linktype="relative-path">IAppHostElement</a>
+objects that are contained in a specific hierarchy subpath in a specified <a href="3687acff-fb79-4e02-8349-6ca2f49df2a5" data-linktype="relative-path">IAppHostConfigFile</a>.
+IAppHostConfigFile maps to a specific hierarchy path in the administration
+system, as specified in section 3.1.4.6.</p><p>Each IAppHostConfigFile can optionally contain subpaths
+within it. Each subpath is represented by an IAppHostConfigLocation object. The
+object contains a collection of IAppHostElement objects, with the guarantee
+that each IAppHostConfigLocation contains at most one IAppHostElement object of
+the same name (in other words, the IAppHostElement object name is a key into
+the collection).</p><p>The IAppHostConfigLocation interface inherits opnums 0–2
+from the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="dc8767fd-db36-4c06-8070-76decb0e9f83" data-linktype="relative-path">Path</a></p>
+  </td>
+  <td>
+  <p>Opnum: 3</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="080368e8-1b04-4fc8-8abe-c24f0b8ceb14" data-linktype="relative-path">Count</a></p>
+  </td>
+  <td>
+  <p>Opnum: 4</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="26f1e36d-4c8f-4c39-b48d-9f8c072d3a77" data-linktype="relative-path">Item</a></p>
+  </td>
+  <td>
+  <p>Opnum: 5</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="94777dd6-65e1-4d83-9214-75ed78176812" data-linktype="relative-path">AddConfigSection</a></p>
+  </td>
+  <td>
+  <p>Opnum: 6</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="f5690b96-ae50-4e3c-ad4f-7fc8fbcc0e8b" data-linktype="relative-path">DeleteConfigSection</a></p>
+  </td>
+  <td>
+  <p>Opnum: 7</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

@@ -1,1 +1,39 @@
-<div class="content"></div>
+<div class="content"><p>The SendMessage method adds a message to the send queue. </p><dl>
+<dd>
+<div><pre> HRESULT SendMessage(
+   [in, unique] LPRSM_MESSAGE lpRsmMessage
+ );
+</pre></div>
+</dd></dl><p><b>lpRsmMessage: </b>A pointer to an <a href="4b1a338a-faf0-496e-8503-c4ea7e595c67" data-linktype="relative-path">RSM_MESSAGE (section 2.2.6.1)</a>
+structure describing the message that is to be sent.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is missing. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpRsmMessage</i>
+is not NULL. If parameter validation fails, the server MUST immediately fail
+the operation and return ERROR_INVALID_PARAMETER (0x80070057).</p><p>Otherwise, the server MUST deliver the message to the
+operator.</p></div>

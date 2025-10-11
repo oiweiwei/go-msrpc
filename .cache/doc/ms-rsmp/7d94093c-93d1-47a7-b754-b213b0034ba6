@@ -1,1 +1,31 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsInventoryMethod enumeration defines the types of <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_38cb8216-53ff-4936-a5c4-4d8d7672950a" data-linktype="relative-path">inventory</a> actions to
+perform.</p><dl>
+<dd>
+<div><pre> enum NtmsInventoryMethod
+ {
+   NTMS_INVENTORY_NONE = 0,
+   NTMS_INVENTORY_FAST = 1,
+   NTMS_INVENTORY_OMID = 2,
+   NTMS_INVENTORY_DEFAULT = 3,
+   NTMS_INVENTORY_SLOT = 4,
+   NTMS_INVENTORY_STOP = 5,
+   NTMS_INVENTORY_MAX = 6
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_INVENTORY_NONE:  </b>After the user closes
+the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_52b64896-966d-41bd-849a-36602125506b" data-linktype="relative-path">doors</a>, the media
+MUST be <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_cc98b88f-7fd4-40f6-b315-212dc4d8378b" data-linktype="relative-path">mounted</a>, and the
+label is checked against the label already in the database. If the labels do
+not match, an inventory MUST be performed; otherwise, an inventory MUST NOT be
+performed.</p><p><b>NTMS_INVENTORY_FAST:  </b>After the user closes
+the doors, a full inventory MUST be performed. If the library has a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_d4650c0f-44cb-4988-8aa6-ca8c3ffdf1a0" data-linktype="relative-path">bar code reader</a> installed,
+a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_0c1aa461-4c32-4e8b-bb45-577085c32afb" data-linktype="relative-path">bar code</a> inventory
+MUST be performed. If the library does not have a bar code reader, a
+differential inventory MUST be performed. The <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_e88a9ca7-9b8d-4dca-9338-59c98e1a5f13" data-linktype="relative-path">on-media identifiers</a> MUST
+be checked on each medium placed in an empty <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_a1f0ab90-f3c0-46b8-9c77-d0d7508ede94" data-linktype="relative-path">slot</a> while the doors are
+open.</p><p><b>NTMS_INVENTORY_OMID:  </b>After the user closes
+the doors, a full inventory MUST be performed. </p><p><b>NTMS_INVENTORY_DEFAULT:  </b>The default inventory
+type specified by the user.</p><p><b>NTMS_INVENTORY_SLOT:  </b>Inventories only the
+storage slot.</p><p><b>NTMS_INVENTORY_STOP:  </b>Terminates the inventory
+process.</p><p><b>NTMS_INVENTORY_MAX:  </b>Maximum possible
+inventory type value.</p></div>

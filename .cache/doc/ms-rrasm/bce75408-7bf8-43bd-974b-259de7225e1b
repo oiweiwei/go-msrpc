@@ -1,1 +1,12 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RASRPC_STRINGLIST</b> structure contains a
+null-terminated Unicode string.</p><dl>
+<dd>
+<div><pre> typedef struct _RASRPC_STRINGLIST {
+   WCHAR psz[256];
+   [unique] struct _RASRPC_STRINGLIST* pNext;
+ } RASRPC_STRINGLIST,
+  *LPRASRPC_STRINGLIST;
+</pre></div>
+</dd></dl><p><b>psz: </b>Specifies a null-terminated Unicode
+string.</p><p><b>pNext: </b>Specifies the pointer to the next
+RASRPC_STRINGLIST structure.</p></div>

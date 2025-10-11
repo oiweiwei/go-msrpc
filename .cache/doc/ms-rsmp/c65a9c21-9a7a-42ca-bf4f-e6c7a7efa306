@@ -1,1 +1,135 @@
-<div class="content"></div>
+<div class="content"><p>The CreateNtmsMediaPoolA method creates a new application
+media pool, with strings encoded using ASCII.</p><dl>
+<dd>
+<div><pre> HRESULT CreateNtmsMediaPoolA(
+   [in, string] const char* lpPoolName,
+   [in, unique] LPNTMS_GUID lpMediaType,
+   [in] DWORD dwOptions,
+   [in, unique] LPSECURITY_ATTRIBUTES_NTMS lpSecurityAttributes,
+   [out] LPNTMS_GUID lpPoolId
+ );
+</pre></div>
+</dd></dl><p><b>lpPoolName: </b>A null-terminated sequence of
+ASCII characters that constitute the name of the new media pool; MUST be unique
+among all the media pool present in the server. </p><p><b>lpMediaType: </b>Pointer to a unique identifier
+for the type of media in this media pool. <a href="f520a2b0-0881-48e6-b04a-cd0fb65673b1" data-linktype="relative-path">INtmsObjectManagement1::EnumerateNtmsObject</a>
+produces a list of available media types and their attributes. Use of a NULL
+pointer creates a media pool that contains only other media pools. </p><p><b>dwOptions: </b>A value from the <a href="0ec8abd1-13f8-418a-9e3f-ad952d3d2c60" data-linktype="relative-path">NtmsCreateOptions (section 2.2.3.2)</a>
+enumeration that specifies the type of creation to undertake. </p><p><b>lpSecurityAttributes: </b>A pointer to an optional
+<a href="0fe90884-8ec6-4076-b8d3-831821fc094d" data-linktype="relative-path">SECURITY_ATTRIBUTES_NTMS</a>
+structure that is used to restrict access to the pool. </p><p><b>lpPoolId: </b>A pointer to the identifier of the
+new media pool.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>NTMS_MODIFY_ACCESS to the library is denied; other
+  security errors are possible but indicate a security subsystem error.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>The media pool name or identifier is missing.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007007B</p>
+  <p>ERROR_INVALID_NAME</p>
+  </td>
+  <td>
+  <p>The pool name syntax is invalid or the name is too
+  long.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800700B7</p>
+  <p>ERROR_ALREADY_EXISTS</p>
+  </td>
+  <td>
+  <p>A new media pool could not be created because one
+  already exists with this name.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710CC</p>
+  <p>ERROR_INVALID_MEDIA</p>
+  </td>
+  <td>
+  <p>The selected media type is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D8</p>
+  <p>ERROR_OBJECT_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>Unable to open existing media pool.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database is inaccessible or damaged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710DA</p>
+  <p>ERROR_DATABASE_FULL</p>
+  </td>
+  <td>
+  <p>The database is full; other security errors are
+  possible but indicate a security subsystem error.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>When the server receives this message, it MUST verify that <i>lpPoolName</i>,
+<i>lpMediaType</i>, <i>lpPoolId</i>, and <i>lpSecurityAttributes</i> are not
+NULL. If parameter validation fails, the server MUST immediately fail the
+operation and return ERROR_INVALID_PARAMETER (0x80070057).</p><p>If <i>lpSecurityAttributes</i> is not NULL, the server MUST
+verify that the SECURITY_ATTRIBUTES_NTMS structure is valid. If validation
+fails, the server MUST return ERROR_INVALID_PARAMENTER (0x800750057) else the
+server MUST restrict access to the pool as per client input.</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights, and check if <i>lpPoolName</i> is
+present. If the client does not have the required access rights, the server
+MUST return ERROR_ACCESS_DENIED (0x80070005).</p><p>If the media pool that is specified by <i>lpPoolName</i> is
+present, and if <i>dwOptions</i> is not NTMS_CREATE_NEW, the server MUST open
+the existing media pool and return success.</p><p>If the media pool that is specified by <i>lpPoolName</i> is
+present and <i>dwOptions</i> is NTMS_CREATE_NEW, the server MUST return
+ERROR_ALREADY_EXISTS (0x800700B7).</p><p>If the media pool that is specified by <i>lpPoolName</i> is
+not present and the parent media pool of <i>lpPoolName</i> is also not present,
+the server MUST return ERROR_OBJECT_NOT_FOUND (0x800710D8).</p><p>If the media pool that is specified by <i>lpPoolName</i> is
+not present, and the parent media pool of <i>lpPoolName</i> is present, the
+server creates a new pool under the parent pool, opens the newly created media
+pool, and return success (S_OK).</p><p>Application-specific media pools are created by
+applications. Applications create media pools for their own use under the root <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_15b985cc-5c71-4573-873a-275218a37a3d" data-linktype="relative-path">application pool</a>. These
+media pools have names like those of file systems. Only the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoint</a> of the name
+contains media and policy. An application can define pools such as \MyApp\Pool1
+and \MyApp\Pool2. This conveys the hierarchy to the user interface and avoids
+duplicate names. Each pool level MUST be created individually; for example,
+first MyApp and then Pool1 and Pool2, in much the same way as folders and
+files.</p><p>Strings that are sent to this method as parameters MUST be
+ASCII-encoded.</p></div>

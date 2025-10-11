@@ -1,0 +1,140 @@
+<div class="content"><p>The MQCALG enumeration defines numeric values that represent
+specific cryptographic encryption and hash algorithms.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MQMSG_CALG_MD2 = 0x8001,
+   MQMSG_CALG_MD4 = 0x8002,
+   MQMSG_CALG_MD5 = 0x8003,
+   MQMSG_CALG_SHA = 0x8004,
+   MQMSG_CALG_SHA1 = 0x8004,
+   MQMSG_CALG_MAC = 0x8005,
+   MQMSG_CALG_RSA_SIGN = 0x2400,
+   MQMSG_CALG_DSS_SIGN = 0x2200,
+   MQMSG_CALG_RSA_KEYX = 0xa400,
+   MQMSG_CALG_DES = 0x6601,
+   MQMSG_CALG_RC2 = 0x6602,
+   MQMSG_CALG_RC4 = 0x6801,
+   MQMSG_CALG_SEAL = 0x6802
+ } MQCALG;
+</pre></div>
+</dd></dl><p>Used by</p><ul><li><p><span><span> 
+</span></span>get <a href="99a3c923-2bf5-4790-9e0e-5eb42ca25e3d" data-linktype="relative-path">IMSMQMessage::HashAlgorithm</a></p>
+</li><li><p><span><span> 
+</span></span>put <a href="d18a7e45-c277-40d7-9962-8f6525ac476a" data-linktype="relative-path">IMSMQMessage::HashAlgorithm</a></p>
+</li><li><p><span><span> 
+</span></span>get <a href="48ad9a90-0a32-4917-bb3e-4e6e3cb3c04b" data-linktype="relative-path">IMSMQMessage::EncryptAlgorithm</a></p>
+</li><li><p><span><span> 
+</span></span>put <a href="b29b28ef-67c9-4c20-a45d-efc9cdc95ca7" data-linktype="relative-path">IMSMQMessage::EncryptAlgorithm</a></p>
+</li></ul><p>The MQCALG enumeration values correspond to the enumeration
+values for <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>.<b>HashAlgorithm</b>
+and Message.<b>EncryptionAlgorithm</b>, as shown in the following tables:</p><table><thead>
+  <tr>
+   <th>
+   <p>MQCALG</p>
+   </th>
+   <th>
+   <p>Message.HashAlgorithm</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQMSG_CALG_MD2</p>
+  </td>
+  <td>
+  <p>MD2<a id="Appendix_A_Target_5"></a><a aria-label="Product behavior note 5" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_5" data-linktype="relative-path">&lt;5&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CALG_MD4</p>
+  </td>
+  <td>
+  <p>MD4<a id="Appendix_A_Target_6"></a><a aria-label="Product behavior note 6" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_6" data-linktype="relative-path">&lt;6&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CALG_MD5</p>
+  </td>
+  <td>
+  <p>MD5<a id="Appendix_A_Target_7"></a><a aria-label="Product behavior note 7" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_7" data-linktype="relative-path">&lt;7&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CALG_SHA1</p>
+  </td>
+  <td>
+  <p>SHA1</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CALG_SHA</p>
+  </td>
+  <td>
+  <p>SHA</p>
+  </td>
+ </tr></tbody></table><p> </p><table><thead>
+  <tr>
+   <th>
+   <p>MQCALG</p>
+   </th>
+   <th>
+   <p>Message.EncryptionAlgorithm</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQMSG_CALG_MAC</p>
+  </td>
+  <td>
+  <p>Unsupported<a id="Appendix_A_Target_8"></a><a aria-label="Product behavior note 8" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_8" data-linktype="relative-path">&lt;8&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CALG_RSA_SIGN</p>
+  </td>
+  <td>
+  <p>RSA</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CALG_DSS_SIGN</p>
+  </td>
+  <td>
+  <p>DSS</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CALG_RSA_KEYX</p>
+  </td>
+  <td>
+  <p>RSA_KEYS</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CALG_DES</p>
+  </td>
+  <td>
+  <p>DES</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CALG_RC2</p>
+  </td>
+  <td>
+  <p>RC2</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CALG_RC4</p>
+  </td>
+  <td>
+  <p>RC4</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQMSG_CALG_SEAL</p>
+  </td>
+  <td>
+  <p>SEAL</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

@@ -1,1 +1,12 @@
-<div class="content"></div>
+<div class="content"><p>A (<a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_3d9dd73b-8923-43cc-ac95-8103f17683d7" data-linktype="relative-path">UID</a>,
+<a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_b2063d4f-ec5f-4417-9dc8-7ab381e2beab" data-linktype="relative-path">GVSN</a>) pair.</p><dl>
+<dd>
+<div><pre> typedef struct _FRS_ID_GVSN {
+   GUID uidDbGuid;
+   DWORDLONG uidVersion;
+   GUID gvsnDbGuid;
+   DWORDLONG gvsnVersion;
+ } FRS_ID_GVSN;
+</pre></div>
+</dd></dl><p>An FRS_ID_GVSN encodes a pair that consists of a UID and a
+GVSN. It is used as part of the messages for <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_ae57a184-1a13-48a5-87d7-3f140cc671e8" data-linktype="relative-path">Slow Sync</a>.</p></div>

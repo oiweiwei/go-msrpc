@@ -1,1 +1,37 @@
-<div class="content"></div>
+<div class="content"><p>The GetIISAppPoolNames method returns a list of all the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_15b985cc-5c71-4573-873a-275218a37a3d" data-linktype="relative-path">application pools</a> on the
+WSRM server that are defined by and known to the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_f31d61e4-7dc6-4710-ba18-944e0dbc2a11" data-linktype="relative-path">IIS</a> server.</p><dl>
+<dd>
+<div><pre> [id(8), helpstring(&#34;method GetIISAppPoolNames&#34;)] HRESULT GetIISAppPoolNames(
+   [out] BSTR* pbstrIISAppPoolList,
+   [out] BSTR* pbstrSystemDirectory
+ );
+</pre></div>
+</dd></dl><p><b>pbstrIISAppPoolList: </b>A pointer to a string in
+the format of the <a href="39284d2f-b1e5-496e-a47f-38ea836d47c8" data-linktype="relative-path">AppPoolList</a>
+element (section 2.2.5.6) that returns an IIS application pool list structure.</p><p><b>pbstrSystemDirectory: </b>A pointer to a string
+that returns implementation-specific system directory information.<a id="Appendix_A_Target_32"></a><a aria-label="Product behavior note 32" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_32" data-linktype="relative-path">&lt;32&gt;</a></p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="7c62a2fd-63f4-435f-8fc8-c94e4509f6fd" data-linktype="relative-path">IResourceManager</a> interface
+methods are specified in section 3.2.4.1.</p></div>

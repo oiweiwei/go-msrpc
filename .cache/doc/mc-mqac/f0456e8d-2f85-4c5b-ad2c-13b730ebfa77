@@ -1,0 +1,36 @@
+<div class="content"><p>The MQMSGCURSOR enumeration defines values that indicate the
+<a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_aa5e9c2d-16c1-4301-8bfe-18a0913ed275" data-linktype="relative-path">cursor</a> behavior mode for
+notifications from an <a href="48d37ac3-e585-4c3e-a075-42a18f317bcc" data-linktype="relative-path">MSMQQueue</a>
+method. The cursor behavior mode indicates how the state of the cursor that is
+associated with an event notification is updated.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MQMSG_FIRST = 0,
+   MQMSG_CURRENT = 1,
+   MQMSG_NEXT = 2
+ } MQMSGCURSOR;
+</pre></div>
+</dd></dl><p><b>MQMSG_FIRST:  </b>The client is notified when a <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>
+is available at the head of the <a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">Queue</a>.</p><dl>
+<dd>
+<p>The behavior for this value is defined for the <a href="e9d4a14a-4979-48ef-8b42-ef251f1ec592" data-linktype="relative-path">MSMQQueue::EnableNotification</a>
+method in section 3.11.4.1.9.</p>
+</dd></dl><p><b>MQMSG_CURRENT:  </b>The client is notified when a
+Message is available at the current cursor position within the Queue.</p><dl>
+<dd>
+<p>The behavior for this value is defined for the
+MSMQQueue::EnableNotification method in section 3.11.4.1.9.</p>
+</dd></dl><p><b>MQMSG_NEXT:  </b>The cursor is advanced, and the
+client is notified when a Message is available at the advanced cursor position
+within the Queue.</p><dl>
+<dd>
+<p>The behavior for this value is defined for the
+MSMQQueue::EnableNotification method in section 3.11.4.1.9.</p>
+</dd></dl><p>Used by:</p><ul><li><p><span><span> 
+</span></span>IMSMQQueue::EnableNotification</p>
+</li><li><p><span><span> 
+</span></span><a href="9f3a65f2-2bff-4d24-abf0-acec6b2c7291" data-linktype="relative-path">_DMSMQEventEvents::Arrived</a></p>
+</li><li><p><span><span> 
+</span></span><a href="cf8c1f55-0f43-465e-96bc-3316d9b05f76" data-linktype="relative-path">_DMSMQEventEvents::ArrivedError</a></p>
+</li></ul></div>

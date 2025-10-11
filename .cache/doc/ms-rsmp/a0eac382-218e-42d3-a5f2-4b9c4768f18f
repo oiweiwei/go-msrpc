@@ -1,1 +1,97 @@
-<div class="content"></div>
+<div class="content"><p>The GetNtmsObjectSecurity method retrieves the security
+descriptor of an object.</p><dl>
+<dd>
+<div><pre> HRESULT GetNtmsObjectSecurity(
+   [in] LPNTMS_GUID lpObjectId,
+   [in] DWORD dwType,
+   [in] DWORD SecurityInformation,
+   [out, size_is(nLength)] PSECURITY_DESCRIPTOR_NTMS lpSecurityDescriptor,
+   [in] DWORD nLength,
+   [out] DWORD* lpnLengthNeeded
+ );
+</pre></div>
+</dd></dl><p><b>lpObjectId: </b>A pointer to the identifier of the
+object for which to retrieve information.</p><p><b>dwType: </b>A value from the <a href="5b190198-a0cb-4e20-90a3-234009357051" data-linktype="relative-path">NtmsObjectsTypes (section 2.2.1.6)</a>
+enumeration specifying the type of the object.</p><p><b>SecurityInformation: </b>A <a href="../ms-dtyp/23e75ca3-98fd-4396-84e5-86cd9d40d343" data-linktype="relative-path">SECURITY_INFORMATION</a>
+structure specifying the security data to retrieve.</p><p><b>lpSecurityDescriptor: </b>A pointer to a <a href="../ms-dtyp/7d4dac05-9cef-4563-a058-f108abecce1d" data-linktype="relative-path">SECURITY_DESCRIPTOR</a>
+structure that describes the security of the object.</p><p><b>nLength: </b>The size, in bytes, of the client
+buffer for <i>lpSecurityDescriptor</i>.</p><p><b>lpnLengthNeeded: </b>A pointer to the required
+size of <i>lpSecurityDescriptor</i> if the specified client buffer was not
+large enough.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to an object was denied.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>A parameter is not valid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x8007007A</p>
+  <p>ERROR_INSUFFICIENT_BUFFER</p>
+  </td>
+  <td>
+  <p>The specified buffer size is not large enough.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070546</p>
+  <p>ERROR_NO_SECURITY_ON_OBJECT</p>
+  </td>
+  <td>
+  <p>The object has no security information.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D8</p>
+  <p>ERROR_OBJECT_NOT_FOUND</p>
+  </td>
+  <td>
+  <p>The object was not found.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database query or update failed.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>lpObjectId</i>,
+<i>lpSecurityDescriptor</i>, and <i>lpnLengthNeeded</i> are not NULL. If
+parameter validation fails, the server MUST immediately fail the operation and
+return ERROR_INVALID_PARAMETER (0x80070057).</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights, and return security information
+for the database object. If the client does not have the required access
+rights, the server MUST return ERROR_ACCESS_DENIED (0x80070005).</p><p>If the buffer size that is specified by <i>nLength</i> is
+too small, the server MUST return ERROR_INSUFFICIENT_BUFFER (0x8007007A).</p><p>Server security uses the standard security descriptors and
+information members. This allows the standard security dialog boxes to be used
+to select server security.</p></div>

@@ -1,1 +1,28 @@
-<div class="content"></div>
+<div class="content"><p>The NTMS_ASYNC_IO structure defines the state of an
+asynchronous request.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_ASYNC_IO {
+   NTMS_GUID OperationId;
+   NTMS_GUID EventId;
+   DWORD dwOperationType;
+   DWORD dwResult;
+   DWORD dwAsyncState;
+ #ifdef __midl
+   NTMS_HANDLE hEvent;
+ #else
+   PVOID hEvent;
+ #endif
+   BOOL bOnStateChange;
+ } NTMS_ASYNC_IO,
+  *LPNTMS_ASYNC_IO;
+</pre></div>
+</dd></dl><p><b>OperationId:</b>  Unused. This value
+MUST be NULL and MUST be ignored on receipt.</p><p><b>EventId:</b>  The <a href="a19770df-a045-4f90-b7c3-ab7630c4d22b" data-linktype="relative-path">NTMS_GUID</a> which is used by
+the server to notify the client using the <a href="c4db93ad-cb50-40f8-9e67-24fc85223b32" data-linktype="relative-path">INtmsNotifySink::OnNotify (section 3.1.5.2.2.2)</a>
+method.</p><p><b>dwOperationType:</b>  Unused. This value
+MUST be NULL and MUST be ignored on receipt.</p><p><b>dwResult:</b>  Unused. This value MUST
+be NULL and MUST be ignored on receipt.</p><p><b>dwAsyncState:</b>  Unused. This value
+MUST be NULL and MUST be ignored on receipt.</p><p><b>hEvent:</b>  Unused. This value MUST be
+NULL and MUST be ignored on receipt.</p><p><b>bOnStateChange:</b>  Indicates whether
+or not to signal on every status change. FALSE means to signal only upon
+completion of the request.</p></div>

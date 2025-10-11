@@ -31,12 +31,114 @@ type ResourceManager2Server interface {
 	// IDispatch base class.
 	idispatch.DispatchServer
 
+	// The ExportObjects method creates XML for exporting objects.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------------+------------------------------------+
+	//	|         RETURN          |                                    |
+	//	|       VALUE/CODE        |            DESCRIPTION             |
+	//	|                         |                                    |
+	//	+-------------------------+------------------------------------+
+	//	+-------------------------+------------------------------------+
+	//	| 0x00000000 S_OK         | Operation successful.              |
+	//	+-------------------------+------------------------------------+
+	//	| 0x80070057 E_INVALIDARG | One or more arguments are invalid. |
+	//	+-------------------------+------------------------------------+
+	//
+	// Additional IResourceManager2 interface methods are specified in section 3.2.4.2.
+	//
+	// The server SHOULD process this method call as follows.
+	//
+	// * If one or more ObjectIds XML elements included in the bstrObjectIds parameter cannot
+	// be found, they MUST be ignored, and the call MUST proceed for other ObjectIds.
+	//
+	// * If a PMC ( e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_65daee12-445f-41c0-8456-f728063bef24
+	// ) object is specified in the enumObjectType parameter, this method MUST return an
+	// XML string containing the requested PMCs in the configuration. The "Type" attributes
+	// of individual objects in the ObjectIds XML element MUST be ignored.
+	//
+	// * If a resource policy object is specified in the enumObjectType parameter, this
+	// method MUST return an XML string containing the requested RAPs ( e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_6442eac9-3264-4d95-a435-fdc08e71603f
+	// ) in the configuration. The "Type" attributes of individual objects in the ObjectIds
+	// XML element MUST be ignored.
+	//
+	// * If a schedule object is specified in the enumObjectType parameter and the "Type"
+	// attribute of the object requested in the ObjectIds XML element is "Calendar", this
+	// method MUST return an XML string containing the requested calendar objects in the
+	// configuration.
+	//
+	// * If a schedule object is specified in the enumObjectType parameter and the "Type"
+	// attribute of the object requested in the ObjectIds XML element is not "Calendar",
+	// this method MUST return an XML string containing the requested schedule objects in
+	// the configuration.
 	ExportObjects(context.Context, *ExportObjectsRequest) (*ExportObjectsResponse, error)
 
+	// The GetImportConflicts method finds conflicts between import objects and existing
+	// objects.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | Operation successful.                                                            |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG              | One or more arguments are invalid.                                               |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                      | be processed.<36>                                                                |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IResourceManager2 interface methods are specified in section 3.2.4.2.
 	GetImportConflicts(context.Context, *GetImportConflictsRequest) (*GetImportConflictsResponse, error)
 
+	// The ImportXml method imports objects into the configuration.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	|                 RETURN                 |                                                                                  |
+	//	|               VALUE/CODE               |                                   DESCRIPTION                                    |
+	//	|                                        |                                                                                  |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                        | Operation successful.                                                            |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                | One or more arguments are invalid.                                               |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0272 WRM_ERR_CAL_SCHEDULE_IN_USE | An existing schedule with the same name as the one in the supplied               |
+	//	|                                        | CalendarsCollection is currently in use with an existing calendar. The complete  |
+	//	|                                        | import process is canceled.<38>                                                  |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER   | The XML data that is maintained by the management service is invalid or cannot   |
+	//	|                                        | be processed.<39>                                                                |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IResourceManager2 interface methods are specified in section 3.2.4.2.
 	ImportXML(context.Context, *ImportXMLRequest) (*ImportXMLResponse, error)
 
+	// The ExportXml method exports objects from the configuration.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-------------------+-----------------------+
+	//	|      RETURN       |                       |
+	//	|    VALUE/CODE     |      DESCRIPTION      |
+	//	|                   |                       |
+	//	+-------------------+-----------------------+
+	//	+-------------------+-----------------------+
+	//	| 0x00000000 S_OK   | Operation successful. |
+	//	+-------------------+-----------------------+
+	//
+	// Additional IResourceManager2 interface methods are specified in section 3.2.4.2.
 	ExportXML(context.Context, *ExportXMLRequest) (*ExportXMLResponse, error)
 }
 

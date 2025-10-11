@@ -1,1 +1,11 @@
-<div class="content"></div>
+<div class="content"><p>The EfsRpcCloseRaw method is called to release any resources
+allocated by the <a href="ccc4fb75-1c86-41d7-bbc4-b278ec13bfb8" data-linktype="relative-path">EfsRpcOpenFileRaw</a>
+method, or by subsequent calls to the <a href="a3a6d95f-ebd5-4a08-9d19-6b6c1b7d41f6" data-linktype="relative-path">EfsRpcReadFileRaw</a> or <a href="b4fa10e8-31bb-4dd4-87af-1c4a3dedf417" data-linktype="relative-path">EfsRpcWriteFileRaw</a>
+methods. </p><dl>
+<dd>
+<div><pre> void EfsRpcCloseRaw(
+   [in, out] PEXIMPORT_CONTEXT_HANDLE* hContext
+ );
+</pre></div>
+</dd></dl><p><b>Return Values: </b>This method has no return
+values.</p></div>

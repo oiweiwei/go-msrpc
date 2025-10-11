@@ -1,1 +1,30 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IPMCAST_OIF_STATS</b> structure stores the
+statistics that are associated with an outgoing <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_70b74a6e-db1d-4648-bedd-5a524dfe6396" data-linktype="relative-path">multicast</a> <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _MIB_IPMCAST_OIF_STATS {
+   DWORD dwOutIfIndex;
+   DWORD dwNextHopAddr;
+   PVOID pvDialContext;
+   ULONG ulTtlTooLow;
+   ULONG ulFragNeeded;
+   ULONG ulOutPackets;
+   ULONG ulOutDiscards;
+ } MIB_IPMCAST_OIF_STATS,
+  *PMIB_IPMCAST_OIF_STATS;
+</pre></div>
+</dd></dl><p><b>dwOutIfIndex: </b>Specifies the outgoing interface
+to which these statistics are related.</p><p><b>dwNextHopAddr: </b>Specifies the address of the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_c626520e-7d79-4b5e-a5c9-1e2b0eaf1995" data-linktype="relative-path">next hop</a> that corresponds
+to <b>dwOutIfIndex</b>. The <b>dwOutIfIndex</b> and <b>dwNextHopAddr</b>
+members uniquely identify a next hop on <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_2cecf3b2-408e-4953-a706-8e1f3f92ffd3" data-linktype="relative-path">point-to-multipoint interfaces</a>,
+where one interface connects to multiple networks. Examples of
+point-to-multipoint interfaces include non-broadcast multiple-access (NBMA)
+interfaces, and the <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_5dae64cb-caae-49ce-93a7-833c60b8f224" data-linktype="relative-path">internal
+interface</a> on which all dial-up clients connect. For Ethernet and other
+broadcast interfaces, specify zero (0). Also specify zero (0) for <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_95f099a0-1ae7-44fb-8a89-93d02c323fb2" data-linktype="relative-path">point-to-point interfaces</a>,
+which are identified by only <b>dwOutIfIndex</b>.</p><p><b>pvDialContext: </b>Reserved. This member MUST be
+NULL.</p><p><b>ulTtlTooLow: </b>Specifies the number of packets
+on this outgoing interface that were discarded because the packet&#39;s TTL value
+was too low.</p><p><b>ulFragNeeded: </b>Specifies the number of packets
+that required fragmentation when they were forwarded on this interface.</p><p><b>ulOutPackets: </b>Specifies the number of packets
+that were forwarded out of this interface.</p><p><b>ulOutDiscards: </b>Specifies the number of packets
+that were discarded on this interface.</p></div>

@@ -1,1 +1,79 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPXMIB_BASE</b> structure MAY<a id="Appendix_A_Target_97"></a><a aria-label="Product behavior note 97" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_97" data-linktype="relative-path">&lt;97&gt;</a> be used to contain basic
+information about the IPX protocol. This structure is returned as part of the
+following methods: </p><ul><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a><span> </span></p>
+</li><li><p><span><span> 
+</span></span><a href="9102e585-2f62-4408-bfb6-02a6460cc883" data-linktype="relative-path"><b>RMIBEntryGetFirst (section 3.1.4.31)</b></a><span> </span></p>
+</li><li><p><span><span> 
+</span></span><a href="50f78033-d248-4272-b4b9-a2519a0f304d" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.1.4.32)</b></a><span> </span></p>
+<div><pre> typedef struct _IPXMIB_BASE {
+   ULONG OperState;
+   UCHAR PrimaryNetNumber[4];
+   UCHAR Node[6];
+   UCHAR SysName[48];
+   ULONG MaxPathSplits;
+   ULONG IfCount;
+   ULONG DestCount;
+   ULONG ServCount;
+ } IPXMIB_BASE,
+  *PIPXMIB_BASE;
+</pre></div>
+</li></ul><p><b>OperState: </b>The operational status of the
+interface. This member can be one of the following values. </p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>OPER_STATE_DOWN</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Nonoperational.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>OPER_STATE_UP</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Operational and can pass packets.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>OPER_STATE_SLEEPING</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Operational but has to connect to pass packets.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>PrimaryNetNumber: </b>Every IPX WAN router has a
+&#34;primary network number&#34;. This is an IPX network number unique to the
+entire internet. This number will be a permanently assigned network number for
+the router.</p><dl>
+<dd>
+<p>A 32-bit number assigned by a network administrator;
+set to 0 on the local network.</p>
+</dd></dl><p><b>Node: </b>A 48-bit number that identifies the LAN
+hardware address. If the node number is FFFF FFFF FFFF, it means broadcast. If
+the node number is 0000 0000 0001, that means it is the server.</p><p><b>SysName: </b>An administratively assigned name for
+this managed node. By convention, this is the node&#39;s fully qualified domain
+name.</p><p><b>MaxPathSplits: </b>The maximum number of path
+splits implies the number of network interface boards in the server that are
+connected to the network or the number of ports in the server that are
+connected to a switch. The highest possible number is 8.</p><p><b>IfCount: </b>Indicates the number of available
+interfaces.</p><p><b>DestCount: </b>This value indicates the maximum
+destinations (networks) that the user expects the router to learn. This is used
+to pre-allocate table sizes for network tables. Changing this value can greatly
+affect the memory used by the IPX, but it can also speed learning times.</p><p><b>ServCount: </b>This value indicates the maximum
+services that the user expects the router to learn. This is used to
+pre-allocate table sizes for service tables. Changing this value can greatly
+affect the memory used by the IPX, but it can also speed learning times.</p></div>

@@ -1,1 +1,75 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IPADDRROW</b> structure specifies information for
+a specific IPv4 address. This structure is used in the following methods:</p><ul><li><p><span><span> 
+</span></span><b>MIB_OPAQUE_INFO </b>(section <a href="169e435d-a975-4c1c-bf41-55fd2bd76125" data-linktype="relative-path">2.2.1.2.52</a>)</p>
+</li><li><p><span><span> 
+</span></span><a href="dda988f0-4cce-4ffe-b8c9-d5199deafba5" data-linktype="relative-path"><b>MIB_IPADDRTABLE (section 2.2.1.2.33)</b></a><span> </span></p>
+<div><pre> typedef struct _MIB_IPADDRROW {
+   DWORD dwAddr;
+   DWORD dwIndex;
+   DWORD dwMask;
+   DWORD dwBCastAddr;
+   DWORD dwReasmSize;
+   unsigned short unused1;
+   unsigned short wType;
+ } MIB_IPADDRROW,
+  *PMIB_IPADDRROW;
+</pre></div>
+</li></ul><p><b>dwAddr: </b>The IPv4 address.</p><p><b>dwIndex: </b>The index of the interface associated
+with this IPv4 address.</p><p><b>dwMask: </b>The subnet mask for the IPv4 address.
+See <a href="https://go.microsoft.com/fwlink/?LinkId=90501" data-linktype="external">[RFC950]</a>.</p><p><b>dwBCastAddr: </b>The broadcast address. A
+broadcast address is typically the IPv4 address with the host portion set to
+either all zeros or all ones.</p><p><b>dwReasmSize: </b>The maximum reassembly size for
+received <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_96ea17cd-226a-48f8-aa14-38d2d3ae60a5" data-linktype="relative-path">datagrams</a>.</p><p><b>unused1: </b>This member is reserved and SHOULD be
+set to 0.</p><p><b>wType: </b>The address type or state.<a id="Appendix_A_Target_33"></a><a aria-label="Product behavior note 33" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_33" data-linktype="relative-path">&lt;33&gt;</a></p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MIB_IPADDR_PRIMARY</p>
+  <p>0x0001</p>
+  </td>
+  <td>
+  <p>Primary IP address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MIB_IPADDR_DYNAMIC</p>
+  <p>0x0004</p>
+  </td>
+  <td>
+  <p>Dynamic IP address.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MIB_IPADDR_DISCONNECTED</p>
+  <p>0x0008</p>
+  </td>
+  <td>
+  <p>Address is on a disconnected interface.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MIB_IPADDR_DELETED</p>
+  <p>0x0040</p>
+  </td>
+  <td>
+  <p>Address is being deleted.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MIB_IPADDR_TRANSIENT</p>
+  <p>0x0080</p>
+  </td>
+  <td>
+  <p>Transient address.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

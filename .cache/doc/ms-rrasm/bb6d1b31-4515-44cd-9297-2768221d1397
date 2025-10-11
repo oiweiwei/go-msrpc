@@ -1,1 +1,121 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MPRI_INTERFACE_1</b> structure<a id="Appendix_A_Target_61"></a><a aria-label="Product behavior note 61" href="3bb906f0-b077-47ab-ad11-d8d807afde26#Appendix_A_61" data-linktype="relative-path">&lt;61&gt;</a> is used to contain
+configuration and status information for a specific router <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a>. This structure
+is used in the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="72bead5c-821f-4e98-bacd-0de279552379" data-linktype="relative-path"><b>RRouterInterfaceCreate (section 3.1.4.13)</b></a><span> </span></p>
+</li><li><p><span><span> 
+</span></span><a href="2fbcf316-2082-4f98-878b-eab5d0c2da1d" data-linktype="relative-path"><b>RRouterInterfaceGetInfo (section 3.1.4.14)</b></a> 
+</p>
+</li><li><p><span><span> 
+</span></span><a href="615c1081-5d03-415a-b57c-76876bb2cf23" data-linktype="relative-path"><b>RRouterInterfaceSetInfo (section 3.1.4.15)</b></a><span> </span></p>
+<div><pre> typedef struct _MPRI_INTERFACE_1 {
+   WCHAR wszInterfaceName[257];
+   DWORD dwInterface;
+   BOOL fEnabled;
+   ROUTER_INTERFACE_TYPE dwIfType;
+   ROUTER_CONNECTION_STATE dwConnectionState;
+   DWORD fUnReachabilityReasons;
+   DWORD dwLastError;
+   LPWSTR lpwsDialoutHoursRestriction;
+ } MPRI_INTERFACE_1,
+  *PMPRI_INTERFACE_1;
+</pre></div>
+</li></ul><p><b>wszInterfaceName: </b>The same as <b>wszInterfaceName</b>
+in <a href="1c0f45b1-e5f4-4479-86cf-5f7753b4697c" data-linktype="relative-path"><b>MPRI_INTERFACE_0 (section 2.2.1.2.81)</b></a><span> structure</span>. </p><p><b>dwInterface: </b>The same as <b>dwInterface</b> in
+<b>MPRI_INTERFACE_0</b>.</p><p><b>fEnabled: </b>The same as <b>fEnabled</b> in <b>MPRI_INTERFACE_0</b>.</p><p><b>dwIfType: </b>The same as <b>dwIfType</b> in <b>MPRI_INTERFACE_0</b>.</p><p><b>dwConnectionState: </b>The same as <b>dwConnectionState</b>
+in <b>MPRI_INTERFACE_0</b>.</p><p><b>fUnReachabilityReasons: </b>The same as <b>fUnReachabilityReasons</b>
+in <b>MPRI_INTERFACE_0</b>.</p><p><b>dwLastError: </b>The same as <b>dwLastError</b> in
+<b>MPRI_INTERFACE_0</b>.</p><p><b>lpwsDialoutHoursRestriction: </b>Pointer to a <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a> string that
+specifies the times during which dial-out is restricted. The format for this
+string is as follows.</p><dl>
+<dd>
+<p>&lt;day&gt;&lt;space&gt;&lt;time
+range&gt;&lt;space&gt;&lt;time range&gt;. . .&lt;NULL&gt;&lt;day&gt;. .
+.&lt;NULL&gt;&lt;NULL&gt;</p>
+</dd>
+<dd>
+<p>Where &lt;day&gt; is a numeral
+that corresponds to a day of the week.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>Sunday</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>Monday</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>Tuesday</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>3</p>
+  </td>
+  <td>
+  <p>Wednesday</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4</p>
+  </td>
+  <td>
+  <p>Thursday</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>5</p>
+  </td>
+  <td>
+  <p>Friday</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>6</p>
+  </td>
+  <td>
+  <p>Saturday</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>&lt;Time range&gt; is of the form HH:MM-HH:MM,
+using 24-hour notation.</p>
+</dd>
+<dd>
+<p>&lt;space&gt; denotes a space
+character. </p>
+</dd>
+<dd>
+<p>&lt;NULL&gt; denotes a null
+character. The restriction string is terminated by two consecutive null
+characters as in the following example:</p>
+</dd>
+<dd>
+<p>2 09:00-12:00
+13:00-17:30&lt;NULL&gt;4 09:00-12:00 13:00-17:30&lt;NULL&gt;&lt;NULL&gt;</p>
+</dd>
+<dd>
+<p>The preceding string restricts
+dial-out to Tuesdays and Thursdays from 9:00 A.M. to 12:00 P.M. and from 1:00
+P.M. to 5:30 P.M.</p>
+</dd></dl></div>

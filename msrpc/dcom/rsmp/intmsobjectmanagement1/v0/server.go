@@ -31,22 +31,36 @@ type ObjectManagement1Server interface {
 	// IUnknown base class.
 	iunknown.UnknownServer
 
+	// The GetNtmsObjectSecurity method retrieves the security descriptor of an object.
 	GetNTMSObjectSecurity(context.Context, *GetNTMSObjectSecurityRequest) (*GetNTMSObjectSecurityResponse, error)
 
+	// The SetNtmsObjectSecurity method changes the security descriptor of an object.
 	SetNTMSObjectSecurity(context.Context, *SetNTMSObjectSecurityRequest) (*SetNTMSObjectSecurityResponse, error)
 
+	// The GetNtmsObjectAttributeA method retrieves private data of an object, with strings
+	// encoded using ASCII.
 	GetNTMSObjectAttributeA(context.Context, *GetNTMSObjectAttributeARequest) (*GetNTMSObjectAttributeAResponse, error)
 
+	// The GetNtmsObjectAttributeW method retrieves private data from an object, with strings
+	// encoded using Unicode.
 	GetNTMSObjectAttributeW(context.Context, *GetNTMSObjectAttributeWRequest) (*GetNTMSObjectAttributeWResponse, error)
 
+	// The SetNtmsObjectAttributeA method changes the private data of an object, with strings
+	// encoded using ASCII.
 	SetNTMSObjectAttributeA(context.Context, *SetNTMSObjectAttributeARequest) (*SetNTMSObjectAttributeAResponse, error)
 
+	// The SetNtmsObjectAttributeW method changes the private data of an object, with strings
+	// encoded using Unicode.
 	SetNTMSObjectAttributeW(context.Context, *SetNTMSObjectAttributeWRequest) (*SetNTMSObjectAttributeWResponse, error)
 
+	// The EnumerateNtmsObject method enumerates the objects of the container specified
+	// by the lpContainerId parameter.
 	EnumerateNTMSObject(context.Context, *EnumerateNTMSObjectRequest) (*EnumerateNTMSObjectResponse, error)
 
+	// The DisableNtmsObject method disables an object.
 	DisableNTMSObject(context.Context, *DisableNTMSObjectRequest) (*DisableNTMSObjectResponse, error)
 
+	// The EnableNtmsObject method enables an object.
 	EnableNTMSObject(context.Context, *EnableNTMSObjectRequest) (*EnableNTMSObjectResponse, error)
 }
 

@@ -1,1 +1,20 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RIP_INTERFACE</b> structure contains information
+about a specific RIP interface. This structure is returned as part of the
+following methods: </p><ul><li><p><span><span> 
+</span></span><a href="ebc5c709-36d8-4520-a0ac-6f36d2d6c0b2" data-linktype="relative-path"><b>RMIBEntryGet (section 3.1.4.30)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="9102e585-2f62-4408-bfb6-02a6460cc883" data-linktype="relative-path"><b>RMIBEntryGetFirst (section 3.1.4.31)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="50f78033-d248-4272-b4b9-a2519a0f304d" data-linktype="relative-path"><b>RMIBEntryGetNext (section 3.1.4.32)</b></a><span>  </span></p>
+<div><pre> typedef struct _RIP_INTERFACE {
+   ULONG InterfaceIndex;
+   RIP_IF_INFO RipIfInfo;
+   RIP_IF_STATS RipIfStats;
+ } RIP_INTERFACE,
+  *PRIP_INTERFACE;
+</pre></div>
+</li></ul><p><b>InterfaceIndex: </b>This MUST be the interface
+index of the interface.</p><p><b>RipIfInfo: </b>This MUST be the <b>RIP_IF_INFO</b> (section
+<a href="42b98562-8e14-476c-9205-693525139eec" data-linktype="relative-path">2.2.1.2.205)</a> structure.
+</p><p><b>RipIfStats: </b>This MUST be the <a href="bb558394-f2ee-4131-95ec-4cde062f963c" data-linktype="relative-path"><b>RIP_IF_STATS (section 2.2.1.2.123)</b></a>
+structure.  </p></div>

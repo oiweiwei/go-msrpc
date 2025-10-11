@@ -1,1 +1,15 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsNotificationOperations enumeration defines the types
+of sink notifications.</p><dl>
+<dd>
+<div><pre> enum NtmsNotificationOperations
+ {
+   NTMS_OBJ_UPDATE = 1,
+   NTMS_OBJ_INSERT = 2,
+   NTMS_OBJ_DELETE = 3,
+   NTMS_EVENT_SIGNAL = 4,
+   NTMS_EVENT_COMPLETE = 5
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_OBJ_UPDATE:  </b>The object has been updated.</p><p><b>NTMS_OBJ_INSERT:  </b>The object has been
+inserted.</p><p><b>NTMS_OBJ_DELETE:  </b>The object has been deleted.</p><p><b>NTMS_EVENT_SIGNAL:  </b>The object has changed.</p><p><b>NTMS_EVENT_COMPLETE:  </b>The object has completed
+its operation.</p></div>

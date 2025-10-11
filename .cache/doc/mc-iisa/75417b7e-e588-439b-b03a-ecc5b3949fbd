@@ -1,0 +1,29 @@
+<div class="content"><p>The IAppHostPathMapper <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides methods
+that are called by the server implementation when the server informs the client
+about hierarchy mapping decisions.</p><p>To receive incoming remote calls for this interface, the
+client MUST implement a <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a>
+(e7927575-5cc3-403b-822e-328a6b904bee). It MUST then specify an object that
+implements this interface to the <a href="1e694f74-02bd-4bae-a74f-abf7a9bc4610" data-linktype="relative-path">IAppHostAdminManager::SetMetadata()</a>
+method with a bstrMetadataName of &#34;pathMapper&#34;.</p><p>As an administration system maps hierarchy paths to physical
+paths on the server, it optionally calls this client-supplied object that
+implements the IAppHostPathMapper interface. The implementer of this interface
+receives details of all mappings and can change the results of each mapping if
+required.</p><p>The IAppHostPathMapper interface inherits opnums 0–2 from
+the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="ea289bf3-f534-4341-9080-80afdd54abc5" data-linktype="relative-path">MapPath</a></p>
+  </td>
+  <td>
+  <p>Opnum: 3</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

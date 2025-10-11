@@ -40,7 +40,30 @@ type AppHostAdminManagerServer interface {
 	// SetMetadata operation.
 	SetMetadata(context.Context, *SetMetadataRequest) (*SetMetadataResponse, error)
 
-	// ConfigManager operation.
+	// The ConfigManager method is received by the server in an RPC_REQUEST packet. In response,
+	// the server returns an IAppHostConfigManager that provides direct access to the supported
+	// path hierarchy of the administration system and access to individual IAppHostElement
+	// objects that are contained within.
+	//
+	// Return Values: The server MUST return zero if it successfully processes the message
+	// that is received from the client. If successful, *ppConfigManager MUST NOT be NULL.
+	// If processing fails, the server MUST return a nonzero HRESULT code as defined in
+	// [MS-ERREF]. The following table describes the error conditions that MUST be handled
+	// and the corresponding error codes. A server MAY return additional implementation-specific
+	// error codes.
+	//
+	//	+------------------------------------+---------------------------------------------------------+
+	//	|               RETURN               |                                                         |
+	//	|             VALUE/CODE             |                       DESCRIPTION                       |
+	//	|                                    |                                                         |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000000 NO_ERROR                | The operation completed successfully.                   |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X80070057 ERROR_INVALID_PARAMETER | One or more parameters are incorrect or null.           |
+	//	+------------------------------------+---------------------------------------------------------+
+	//	| 0X00000008 ERROR_NOT_ENOUGH_MEMORY | Not enough memory is available to process this command. |
+	//	+------------------------------------+---------------------------------------------------------+
 	GetConfigManager(context.Context, *GetConfigManagerRequest) (*GetConfigManagerResponse, error)
 }
 

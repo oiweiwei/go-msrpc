@@ -1,1 +1,67 @@
-<div class="content"></div>
+<div class="content"><p>The NtFrsApi_Rpc_Get_DsPollingIntervalW method MUST return
+the current <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_e467d927-17bf-49c9-98d1-96ddf61ddd90" data-linktype="relative-path">Active Directory</a>
+polling intervals.</p><p>Provides the current, long, and short polling intervals. All
+polling intervals are in minutes.</p><dl>
+<dd>
+<div><pre> unsigned long NtFrsApi_Rpc_Get_DsPollingIntervalW(
+   [in] handle_t Handle,
+   [out] unsigned long* Interval,
+   [out] unsigned long* LongInterval,
+   [out] unsigned long* ShortInterval
+ );
+</pre></div>
+</dd></dl><p><b>Handle: </b>Binding handle obtained when the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a> authenticates with
+the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_20f21413-875c-4ebf-9913-a3282fbb779f" data-linktype="relative-path">file replication service</a>.</p><p><b>Interval: </b>Current interval in minutes, which
+MUST be the same value as either LongInterval or ShortInterval (see section <a href="5cdfc6a1-6712-4194-a910-c373d6838bb0" data-linktype="relative-path">3.1.2</a>).</p><p><b>LongInterval: </b>Long interval in minutes.</p><p><b>ShortInterval: </b>Short interval in minutes.</p><p><b>Return Values: </b>The method MUST return 0 on
+success or a nonzero error code on failure. All nonzero values MUST be treated
+as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Validating the _Rpc_Get_DsPollingIntervalW request: </b>The
+server must validate the NtFrsApi_Rpc_Get_DsPollingIntervalW request by
+performing the following checks. </p><ul><li><p><span><span> 
+</span></span>If <b>IsGetDsPollingIntervalAccessCheckEnabled</b> is set to
+&#34;None&#34;, the server MUST fail the call with an implementation-specific
+value.</p>
+</li><li><p><span><span> 
+</span></span>If <b>IsGetDsPollingIntervalAccessCheckEnabled</b> is set to
+&#34;Disabled&#34;, the server MUST process the request without performing an
+access check. </p>
+</li><li><p><span><span> 
+</span></span>If <b>IsGetDsPollingIntervalAccessCheckEnabled</b> is set to
+&#34;Enabled&#34;, the server MUST check whether the calling client is
+authorized to perform that function. If the client is not authorized to perform
+that function, the server MUST return ERROR_NOT_AUTHENTICATED.</p>
+</li><li><p><span><span> 
+</span></span>If <b>GetDsPollingIntervalAccessRequired</b> is set to
+&#34;None&#34;, the server MUST fail the call with an implementation-specific
+value.</p>
+</li><li><p><span><span> 
+</span></span>If <b>GetDsPollingIntervalAccessRequired</b> is set to
+&#34;Read&#34;, the server MUST verify that the caller has read access. If
+the caller does not have read access, the server MUST return
+FRS_ERR_INSUFFICIENT_PRIV.</p>
+</li><li><p><span><span> 
+</span></span>If <b>GetDsPollingIntervalAccessRequired</b> is set to
+&#34;Write&#34;, the server MUST verify that the caller has write access. If
+the caller does not have write access, the server MUST return
+FRS_ERR_INSUFFICIENT_PRIV.</p>
+</li></ul></div>

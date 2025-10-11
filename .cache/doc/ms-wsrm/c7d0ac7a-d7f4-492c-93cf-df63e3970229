@@ -1,1 +1,18 @@
-<div class="content"></div>
+<div class="content"><p>The CONFIGTYPE enumeration defines types of <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_c18a91a3-689f-4e5e-9a91-c7b8f5402c5e" data-linktype="relative-path">WSRM configuration</a> objects
+on which operations can be performed. WSRM configuration objects are used in
+the <a href="38d3fffd-48ad-4e02-a7ce-b13da6304c80" data-linktype="relative-path">IWRMConfig
+Interface (section 3.2.4.5)</a>.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum 
+ {
+   CONFIGTYPE_ACCOUNTING = 1,
+   CONFIGTYPE_NOTIFICATION = 2,
+   CONFIGTYPE_CALENDARING = 3
+ } CONFIGTYPE;
+</pre></div>
+</dd></dl><p><b>CONFIGTYPE_ACCOUNTING:  </b>This operation targets
+the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_1156c8ef-4d49-462b-9f76-aebcb6c57011" data-linktype="relative-path">accounting</a>
+configuration.</p><p><b>CONFIGTYPE_NOTIFICATION:  </b>This operation
+targets the notification configuration.</p><p><b>CONFIGTYPE_CALENDARING:  </b>This operation
+targets the <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_7204b2ed-dcef-4434-be15-6451f92d03fb" data-linktype="relative-path">calendar</a>
+configuration.</p></div>

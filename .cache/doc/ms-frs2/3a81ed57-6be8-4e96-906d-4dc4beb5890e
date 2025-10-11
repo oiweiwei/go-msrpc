@@ -1,1 +1,104 @@
-<div class="content"></div>
+<div class="content"><p>The Distributed File System: Replication (<a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_8f3c866a-07d2-4921-98ba-f5d376bfdba5" data-linktype="relative-path">DFS-R</a>) Protocol is used to
+implement a multimaster file replication system. In this system, no single
+computer is a master, but rather all computers in the replication system share
+their knowledge by exchanging <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_b5d43ea0-cf01-4294-b0d8-0b0362d4a3a2" data-linktype="relative-path">version
+chain vectors</a>, updates, and files. A computer can take dual roles as both a
+<a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_60e0e1fa-66fe-41e1-b5e3-ceab97e53506" data-linktype="relative-path">client</a> and a <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>. As a client, a
+computer retrieves replicated metadata and replicated files from a server.
+Conversely, as a server, a computer serves replicated metadata and replicated
+files to a client.</p><p>DFS-R takes a three-tiered approach to file replication:</p><ol><li><p><span>    </span>Version chain
+vectors are retrieved from a server to determine which file versions are known
+to the server but not to the client. The protocol requires that a server
+ensures that the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_6ea49fb3-42c8-42a5-b246-cd7321981287" data-linktype="relative-path">global
+version sequence numbers (GVSN)</a> of all replicated files and file metadata
+that it maintains in <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_05028436-8377-415f-b9a1-1e0665864138" data-linktype="relative-path">persistent
+storage</a> (that is, saved to disk) are eventually included in its version
+chain vector, such that the state of a server&#39;s knowledge can be determined by
+examining the version chain vectors alone.</p>
+</li><li><p><span>    </span>Updates, which
+summarize file metadata, are retrieved from a server. The client uses the
+version chain vector received from the server to limit the set of updates that
+are retrieved from the server. To retrieve all updates known to the server but
+not to the client, it is sufficient to request updates with a <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_b2063d4f-ec5f-4417-9dc8-7ab381e2beab" data-linktype="relative-path">GVSN</a> range over the version
+chain vector received from the server less the version chain vector maintained
+by the client. The updates contain <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_528b06a4-e67c-43b3-a02d-8738858a691d" data-linktype="relative-path">file system</a> information
+about the replicated files but not about the <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_5fa0434e-0f2f-47bb-afbc-cdf47058941c" data-linktype="relative-path">file data</a>. The information
+includes the coordinates of the file in terms of a <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_3d9dd73b-8923-43cc-ac95-8103f17683d7" data-linktype="relative-path">unique identifier (UID)</a> identifying
+the file across different versions of the file, the GVSN (identifying a
+particular version of the file on a particular machine), a reference to the
+file&#39;s parent directory in terms of a UID for the parent resource (directories
+are treated as files), and a file name.</p>
+</li><li><p><span>    </span>File data is
+retrieved if a client determines that the file data corresponding to a received
+update  is required to be downloaded in order for the client to synchronize
+with the server.</p>
+</li></ol><p>The process of retrieving updates alternates with retrieving
+version chain vectors. A client first registers a callback with the server to
+retrieve the latest version chain vector from the server. When receiving the
+server&#39;s version chain vector, the client retrieves all updates pertaining to
+it, using successive calls to the server. Finally, when a client cannot
+retrieve more updates from the version chain vector, it registers another
+callback with the server to retrieve the server&#39;s version chain vector the next
+time that the version vector, for more information on version vectors see <a href="../ms-frs1/0fa4f914-9442-4b49-93cc-038674a333f1" data-linktype="relative-path">[MS-FRS1]</a>
+section <a href="../ms-frs1/63e5f8af-dcb1-4d84-8732-b3a5d4598675" data-linktype="relative-path">3.1.1.11</a>,
+changes relative to the last time that the callback was registered.</p><p>File data can be downloaded at the same time the client
+retrieves version chain vectors and updates. File downloads thus proceed as an
+independent process of synchronizing version chain vectors and updates. The
+client specifies which file data to download based on the UID in the file
+metadata.</p><p>Clients can update their previously saved version chain
+vector based on the server&#39;s version chain vector after a completed
+synchronization; that is, when all updates pertaining to a version chain vector
+have been processed and all file data that is required by a client to
+synchronize with a server has been downloaded. A client&#39;s version chain vector
+is updated by taking the union of its version chain vector and the server&#39;s
+version chain vector.</p><p>The version chain vectors themselves are an abstract measure
+of the knowledge of a member. They record the versions of files a <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_5084630d-a50a-4a4b-8cbd-908bbc8856ff" data-linktype="relative-path">member (DFS-R)</a> has
+received, processed, and either discarded or stored in persistent storage. A
+member can combine its version chain vector with that of a partner by taking
+the union of the two vectors. The resulting version chain vector will also
+include the versions of files that the partner, and by transitivity, all its
+partners, have processed. The difference between the version chain vectors from
+two members determines a superset of the set of updates required to synchronize
+one member with the contents from the other member. </p><p>To enable replication across multiple <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_064adaf1-86c7-43e5-a157-b0949980181e" data-linktype="relative-path">replicated folders</a>, clients
+and servers isolate all activities that belong to one replicated folder in a <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_2f72becd-9e86-4e19-b687-aaec710b3f4f" data-linktype="relative-path">replication session</a>. Thus,
+DFS-R contains a separate layer for establishing replication activity for each
+replicated folder. </p><p>To summarize DFS-R at the level of detail described so far,
+the following sequence of activities occur for a client computer:</p><ol><li><p><span>    </span>A client
+establishes a <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_866b0055-ceba-4acf-a692-98452943b981" data-linktype="relative-path">connection</a>
+with a server.</p>
+</li><li><p><span>    </span>For each (in
+parallel) replicated folder that is shared between the client and the server,
+the client establishes a replication session.</p>
+</li><li><p><span>    </span>For each
+replication session, the client requests the server version chain vectors.</p>
+</li><li><p><span>    </span>When the client
+receives a version chain vector from the server, it calculates the versions
+that are not known to it and requests updates from the server pertaining to
+these versions.</p>
+</li><li><p><span>    </span>The client
+processes updates from the server as it receives them. While processing a
+requested update, the client machine can decide that the server updates
+correspond to file content that it needs to retrieve. It then requests the file
+from the server.</p>
+</li><li><p><span>    </span>The client
+registers a request for updated version chain vectors from the server when the
+client has received all updates from the previous version chain vector.</p>
+</li></ol><p>At a very high level, this sequence of events can be
+summarized as shown in the following sequence diagram.</p><p><img src="ms-frs2_files/image001.png" alt="DFS-R replication sequence" title="DFS-R replication sequence" data-linktype="relative-path"/></p><p><b>Figure 1: DFS-R replication sequence</b></p><p>Sections <a href="048040a8-b408-4004-a048-f85f73e282aa" data-linktype="relative-path">2</a>
+and <a href="3f495c80-8531-4079-aca7-f34b96613386" data-linktype="relative-path">3</a> specify DFS-R. </p><p>The detailed specification introduces several additional
+messages and layers. Most noteworthy are the following:</p><ul><li><p><span><span> 
+</span></span>The <a href="86aed736-5269-40ea-b674-e758f33e279e" data-linktype="relative-path">RequestRecords</a>
+method is used for retrieving UID and GVSN pairs for each replicated file on
+the server. This method is used as part of a synchronization protocol (<a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_ae57a184-1a13-48a5-87d7-3f140cc671e8" data-linktype="relative-path">Slow Sync</a>) that simply
+polls the entire content of the server&#39;s store of updates in order to
+synchronize. The Slow Sync protocol acts as an alternative protocol to the main
+synchronization protocol described in the beginning of this section.</p>
+</li><li><p><span><span> 
+</span></span><a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_a0d8116e-63f3-418b-afea-ca6258840e92" data-linktype="relative-path">Remote
+differential compression (RDC)</a> is a file transfer protocol used for
+efficiently retrieving file data. For more information, see <a href="../ms-rdc/5b027295-0b63-45b9-8f62-0e49448350d9" data-linktype="relative-path">[MS-RDC]</a>.</p>
+</li><li><p><span><span> 
+</span></span>AsyncPoll is used for polling version chain vectors using a
+single pending asynchronous <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a>
+call.</p>
+</li></ul></div>

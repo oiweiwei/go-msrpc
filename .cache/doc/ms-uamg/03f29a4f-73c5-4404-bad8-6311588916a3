@@ -1,1 +1,19 @@
-<div class="content"></div>
+<div class="content"><p>The ICategory::Image (opnum 12) method retrieves an <b>IImageInformation</b>
+interface instance that contains information on the image associated with the
+update category.</p><dl>
+<dd>
+<div><pre> HRESULT Image(
+   [out, retval] IImageInformation** retval
+ );
+</pre></div>
+</dd></dl><p><b>retval: </b>MUST be set to an instance of <b>IImageInformation</b>
+that describes the image associated with the category, or MUST be set to NULL
+if no image is associated with the category.</p><p><b>Return Values: </b>The method MUST return
+information in an <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a></span> data structure.
+The severity bit in the structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method SHOULD return the value of the <b>Image</b> ADM
+element.</p></div>

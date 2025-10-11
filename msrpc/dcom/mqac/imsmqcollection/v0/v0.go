@@ -49,10 +49,20 @@ type CollectionClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
-	// Item operation.
+	// The Item method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return a VARIANT from the VariantCollection instance variable where
+	// the key matches the Index input parameter.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	Item(context.Context, *ItemRequest, ...dcerpc.CallOption) (*ItemResponse, error)
 
-	// Count operation.
+	// The Count method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return the total number of elements in the VariantCollection instance
+	// variable.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	GetCount(context.Context, *GetCountRequest, ...dcerpc.CallOption) (*GetCountResponse, error)
 
 	// _NewEnum operation.
@@ -394,8 +404,10 @@ func (o *xxx_ItemOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 // ItemRequest structure represents the Item operation request
 type ItemRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This  *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Index *oaut.Variant  `idl:"name:Index" json:"index"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// Index: A pointer to a VARIANT containing a BSTR that contains the key value used
+	// to look up the associated VARIANT value in the VariantCollection instance variable.
+	Index *oaut.Variant `idl:"name:Index" json:"index"`
 }
 
 func (o *ItemRequest) xxx_ToOp(ctx context.Context, op *xxx_ItemOperation) *xxx_ItemOperation {
@@ -432,8 +444,10 @@ func (o *ItemRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // ItemResponse structure represents the Item operation response
 type ItemResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Result *oaut.Variant  `idl:"name:pvarRet" json:"result"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pvarRet: A pointer to a VARIANT that upon success will contain the element returned
+	// from the VariantCollection instance variable.
+	Result *oaut.Variant `idl:"name:pvarRet" json:"result"`
 	// Return: The Item return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -639,8 +653,10 @@ func (o *GetCountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 // GetCountResponse structure represents the Count operation response
 type GetCountResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Count int32          `idl:"name:pCount" json:"count"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pCount: A pointer to a long that contains the number of elements in the VariantCollection
+	// instance variable.
+	Count int32 `idl:"name:pCount" json:"count"`
 	// Return: The Count return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

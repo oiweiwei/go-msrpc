@@ -1,1 +1,26 @@
-<div class="content"></div>
+<div class="content"><p>The VSS_DIFF_AREA_PROP structure defines a <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_34a368ce-08be-44b8-8d15-cfa0d4ac176e" data-linktype="relative-path">shadow copy storage association</a>
+and the current sizes of the <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_d85fc09f-c375-4e90-952d-7c95a8e244dd" data-linktype="relative-path">shadow
+copy storage</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _VSS_DIFF_AREA_PROP {
+   VSS_PWSZ m_pwszVolumeName;
+   VSS_PWSZ m_pwszDiffAreaVolumeName;
+   LONGLONG m_llMaximumDiffSpace;
+   LONGLONG m_llAllocatedDiffSpace;
+   LONGLONG m_llUsedDiffSpace;
+ } VSS_DIFF_AREA_PROP;
+</pre></div>
+</dd></dl><p><b>m_pwszVolumeName:</b>  A null-terminated
+character string that contains the <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_ae3b4c60-05dc-4011-bd62-753ef23bb3cd" data-linktype="relative-path">volume mount name</a> of the <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_57484dae-5eef-4485-bfe4-db22b9cd90d6" data-linktype="relative-path">original volume</a> that is or
+will be shadow copied.</p><p><b>m_pwszDiffAreaVolumeName:</b>  A
+null-terminated character string that contains the volume mount name of the <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_9abab753-55aa-4455-bb21-7b51a32654fa" data-linktype="relative-path">shadow copy storage volume</a>
+where <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_34537940-5a56-4122-b6ff-b9a4d065d066" data-linktype="relative-path">shadow copy</a> <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_66d47f15-010c-4d4e-beaf-1bfbff27a211" data-linktype="relative-path">differential data</a> will be
+located for the <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_9a876829-33a1-4f0b-8b81-8552b7e5561c" data-linktype="relative-path">volume</a>
+specified in <b>m_pwszVolumeName</b>.</p><p><b>m_llMaximumDiffSpace:</b>  The maximum
+number of <a href="../ms-dtyp/d7edc080-e499-4219-a837-1bc40b64bb04" data-linktype="relative-path">BYTEs</a>
+that will be consumed on the shadow copy storage volume to maintain shadow
+copies.</p><p><b>m_llAllocatedDiffSpace:</b>   The number
+of BYTEs currently allocated for shadow copy storage space. This value MUST be
+less than or equal to <b>m_llMaximumDiffSpace</b>.</p><p><b>m_llUsedDiffSpace:</b>   The number of
+BYTEs currently in use on the shadow copy storage volume to maintain shadow
+copies. This value MUST be less than or equal to <b>m_llAllocatedDiffSpace</b>.</p></div>

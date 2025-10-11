@@ -1,1 +1,90 @@
-<div class="content"></div>
+<div class="content"><p>The RenameSchedule method renames a specified schedule
+object. If the schedule object is being referenced by some calendar object,
+then the calendar object is also updated with the new name.</p><dl>
+<dd>
+<div><pre> [id(11), helpstring(&#34;method RenameSchedule&#34;)] HRESULT RenameSchedule(
+   [in] BSTR bstrOldScheduleName,
+   [in] BSTR bstrNewScheduleName
+ );
+</pre></div>
+</dd></dl><p><b>bstrOldScheduleName: </b>A string that specifies
+the current name of the schedule object to be renamed.</p><dl>
+<dd>
+<p>If this parameter is NULL, <b>E_INVALIDARG</b> MUST
+be returned.</p>
+</dd></dl><p><b>bstrNewScheduleName: </b>A string that specifies
+the new name of the schedule object.</p><p><b>Return Values: </b>This method returns 0x00000000
+for success or a negative <a href="e371cc74-bf4c-4870-8afe-5062cc628b4f#gt_799103ab-b3cb-4eab-8c55-322821b2b235" data-linktype="relative-path">HRESULT</a>
+value (in the following table or in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>
+section <a href="../ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8" data-linktype="relative-path">2.1.1</a>)
+if an error occurs.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Operation successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070057</p>
+  <p>E_INVALIDARG</p>
+  </td>
+  <td>
+  <p>One or more arguments are invalid.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF006F</p>
+  <p>WRM_ERR_ID_VALUE</p>
+  </td>
+  <td>
+  <p>The specified name contains characters that are
+  invalid. The name cannot start with a hyphen (&#34;-&#34;) and cannot
+  contain spaces or any of the following characters:</p>
+  <dl>
+<dd>
+<div><pre> \   / ? * | : &lt; &gt; &#34; , ;.
+</pre></div>
+</dd></dl>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0270</p>
+  <p>WRM_ERR_CAL_DUPLICATE_SCHEDULE</p>
+  </td>
+  <td>
+  <p>The new schedule name is already taken by an existing
+  schedule object.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0271</p>
+  <p>WRM_ERR_CAL_UNKNOWN_SCHEDULE</p>
+  </td>
+  <td>
+  <p>The specified schedule object does not exist.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0xC1FF0273</p>
+  <p>WRM_ERR_CAL_SCHEDULE_NAME_TOOLONG</p>
+  </td>
+  <td>
+  <p>The schedule object name has exceeded an implementation-defined
+  limit.<a id="Appendix_A_Target_68"></a><a aria-label="Product behavior note 68" href="1af5b971-a682-44a0-affe-c98947d5e7f7#Appendix_A_68" data-linktype="relative-path">&lt;68&gt;</a></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Additional <a href="b573c233-e3b6-4179-896f-90a4eb0ca8ff" data-linktype="relative-path">IWRMCalendar</a> interface
+methods are specified in section 3.2.4.4.</p></div>

@@ -1,1 +1,25 @@
-<div class="content"></div>
+<div class="content"><p>The <b>ReqTypes</b> enumeration indicates the different
+types of message requests that can be passed in the <b>RB_ReqType</b> field of <a href="d72dc078-e797-4e1e-a7c7-51bb20bcaa99" data-linktype="relative-path"><b>RequestBuffer</b></a>
+structure.</p><dl>
+<dd>
+<div><pre> typedef enum _ReqTypes
+ {
+   REQTYPE_PORTENUM = 21,
+   REQTYPE_GETINFO = 22,
+   REQTYPE_GETDEVCONFIG = 73,
+   REQTYPE_SETDEVICECONFIGINFO = 94,
+   REQTYPE_GETDEVICECONFIGINFO = 95,
+   REQTYPE_GETCALLEDID = 105,
+   REQTYPE_SETCALLEDID = 106,
+   REQTYPE_GETNDISWANDRIVERCAPS = 111
+ } ReqTypes;
+</pre></div>
+</dd></dl><p><b>REQTYPE_PORTENUM: </b>Request to enumerate all the
+port information on the RRAS.</p><p><b>REQTYPE_GETINFO: </b>Request to get information
+about a specific port on the RRAS.</p><p><b>REQTYPE_GETDEVCONFIG: </b>Request to get device
+information on the RRAS.</p><p><b>REQTYPE_SETDEVICECONFIGINFO: </b>Request to set
+device configuration information on RRAS.</p><p><b>REQTYPE_GETDEVICECONFIGINFO: </b>Request to get
+device configuration information on RRAS.</p><p><b>REQTYPE_GETCALLEDID: </b>Request to get CalledId
+information for a specific device on RRAS.</p><p><b>REQTYPE_SETCALLEDID: </b>Request to set CalledId
+information for a specific device on RRAS.</p><p><b>REQTYPE_GETNDISWANDRIVERCAPS: </b>Request to get
+the encryption capabilities of the RRAS.</p></div>

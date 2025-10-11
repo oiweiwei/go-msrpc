@@ -49,12 +49,72 @@ type SearchResultClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The ISearchResult::ResultCode (opnum 8) method retrieves the result code for the
+	// search.
+	//
+	// The IUpdateHistoryEntry::ResultCode (opnum 9) method describes the result of the
+	// operation.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the ResultCode ADM element.
 	GetResultCode(context.Context, *GetResultCodeRequest, ...dcerpc.CallOption) (*GetResultCodeResponse, error)
 
+	// The ISearchResult::RootCategories (opnum 9) method retrieves the root categories
+	// found during the search.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
 	GetRootCategories(context.Context, *GetRootCategoriesRequest, ...dcerpc.CallOption) (*GetRootCategoriesResponse, error)
 
+	// The ICategory::Updates (opnum 16) method retrieves an IUpdateCollection interface
+	// containing the updates that belong to the update category.
+	//
+	// The ISearchResult::Updates (opnum 10) method retrieves the updates found during the
+	// search.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Updates ADM element.
 	GetUpdates(context.Context, *GetUpdatesRequest, ...dcerpc.CallOption) (*GetUpdatesResponse, error)
 
+	// The ISearchResult::Warnings (opnum 11) method retrieves the warnings generated during
+	// the search.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the Warnings ADM element.
 	GetWarnings(context.Context, *GetWarningsRequest, ...dcerpc.CallOption) (*GetWarningsResponse, error)
 
 	// AlterContext alters the client context.
@@ -367,7 +427,11 @@ func (o *GetResultCodeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetResultCodeResponse structure represents the ResultCode operation response
 type GetResultCodeResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat           `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: The OperationResultCode (section 2.2.9) value that specifies the overall
+	// result of the search.
+	//
+	// retval: Specifies the result of the operation.
 	ReturnValue uamg.OperationResultCode `idl:"name:retval" json:"return_value"`
 	// Return: The ResultCode return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -608,7 +672,8 @@ func (o *GetRootCategoriesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // GetRootCategoriesResponse structure represents the RootCategories operation response
 type GetRootCategoriesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat           `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A collection of the root categories found for the computer.
 	ReturnValue *uamg.CategoryCollection `idl:"name:retval" json:"return_value"`
 	// Return: The RootCategories return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -849,7 +914,10 @@ func (o *GetUpdatesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 // GetUpdatesResponse structure represents the Updates operation response
 type GetUpdatesResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat         `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: An instance of IUpdateCollection containing updates belonging to this category.
+	//
+	// retval: A collection of the updates found for the computer.
 	ReturnValue *uamg.UpdateCollection `idl:"name:retval" json:"return_value"`
 	// Return: The Updates return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -1090,7 +1158,8 @@ func (o *GetWarningsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // GetWarningsResponse structure represents the Warnings operation response
 type GetWarningsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat                  `idl:"name:That" json:"that"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A collection of the warnings generated during the search.
 	ReturnValue *uamg.UpdateExceptionCollection `idl:"name:retval" json:"return_value"`
 	// Return: The Warnings return value.
 	Return int32 `idl:"name:Return" json:"return"`

@@ -51,13 +51,27 @@ type Query4Client interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
-	// LookupQueue_v2 operation.
+	// The LookupQueue_v2 method is received by the server in an RPC_REQUEST packet. In
+	// response, the server MUST return a pointer to an IMSMQQueueInfos4 interface pointer.
+	// The returned interface allows the client to enumerate over a collection of Queues.
+	// The queue query represents search criteria based on any combination of Queue.Identifier,
+	// Queue.Type, Queue.Label, Queue.CreateTime, or Queue.ModifyTime  properties.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	LookupQueueV2(context.Context, *LookupQueueV2Request, ...dcerpc.CallOption) (*LookupQueueV2Response, error)
 
 	// Properties operation.
 	GetProperties(context.Context, *GetPropertiesRequest, ...dcerpc.CallOption) (*GetPropertiesResponse, error)
 
-	// LookupQueue operation.
+	// The LookupQueue method is received by the server in an RPC_REQUEST packet. In response,
+	// the server MUST return a pointer to an IMSMQQueueInfos4 interface pointer. The returned
+	// interface allows the client to enumerate over a collection of Queues. The queue query
+	// represents search criteria based on any combination of Queue.Identifier, Queue.Type,
+	// Queue.Label, Queue.CreateTime, Queue.ModifyTime, or Queue.MulticastAddress properties.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success or an implementation-specific
+	// error HRESULT on failure.
 	LookupQueue(context.Context, *LookupQueueRequest, ...dcerpc.CallOption) (*LookupQueueResponse, error)
 
 	// AlterContext alters the client context.
@@ -772,16 +786,44 @@ func (o *xxx_LookupQueueV2Operation) UnmarshalNDRResponse(ctx context.Context, w
 // LookupQueueV2Request structure represents the LookupQueue_v2 operation request
 type LookupQueueV2Request struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                *dcom.ORPCThis `idl:"name:This" json:"this"`
-	QueueGUID           *oaut.Variant  `idl:"name:QueueGuid" json:"queue_guid"`
-	ServiceTypeGUID     *oaut.Variant  `idl:"name:ServiceTypeGuid" json:"service_type_guid"`
-	Label               *oaut.Variant  `idl:"name:Label" json:"label"`
-	CreateTime          *oaut.Variant  `idl:"name:CreateTime" json:"create_time"`
-	ModifyTime          *oaut.Variant  `idl:"name:ModifyTime" json:"modify_time"`
-	RelationServiceType *oaut.Variant  `idl:"name:RelServiceType" json:"relation_service_type"`
-	RelationLabel       *oaut.Variant  `idl:"name:RelLabel" json:"relation_label"`
-	RelationCreateTime  *oaut.Variant  `idl:"name:RelCreateTime" json:"relation_create_time"`
-	RelationModifyTime  *oaut.Variant  `idl:"name:RelModifyTime" json:"relation_modify_time"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// QueueGuid: Pointer to a VARIANT containing a BSTR that contains a string representation
+	// of a Queue.Identifier. The string MUST adhere to the following format, specified
+	// using ABNF.
+	QueueGUID *oaut.Variant `idl:"name:QueueGuid" json:"queue_guid"`
+	// ServiceTypeGuid: Pointer to a VARIANT containing a BSTR that contains a string representation
+	// of a Queue.Type. The string MUST adhere to the same format defined for the QueueGuid
+	// input parameter.
+	ServiceTypeGUID *oaut.Variant `idl:"name:ServiceTypeGuid" json:"service_type_guid"`
+	// Label: Pointer to a VARIANT containing a BSTR that is used to query against the Queue.Label.
+	Label *oaut.Variant `idl:"name:Label" json:"label"`
+	// CreateTime: Pointer to a VARIANT that contains a DATE value that is used to query
+	// against Queue.CreateTime.
+	CreateTime *oaut.Variant `idl:"name:CreateTime" json:"create_time"`
+	// ModifyTime: Pointer to a VARIANT that contains a DATE value that is used to query
+	// against Queue.ModifyTime.
+	ModifyTime *oaut.Variant `idl:"name:ModifyTime" json:"modify_time"`
+	// RelServiceType: Pointer to a VARIANT that contains a VT_I4 that specifies a logical
+	// comparison operator against the ServiceTypeGuid input parameter. This parameter corresponds
+	// to the RELOPS (section 2.2.2.20) enum. If this value is not specified by the client,
+	// the server MUST use the default value REL_EQ (0x00000001) in place of the unspecified
+	// value.
+	RelationServiceType *oaut.Variant `idl:"name:RelServiceType" json:"relation_service_type"`
+	// RelLabel: Pointer to a VARIANT that contains a VT_I4 that specifies a logical comparison
+	// operator against the Label input parameter. This parameter corresponds to the RELOPS
+	// enum. If this value is not specified by the client, the server MUST use the default
+	// value REL_EQ (0x00000001) in place of the unspecified value.
+	RelationLabel *oaut.Variant `idl:"name:RelLabel" json:"relation_label"`
+	// RelCreateTime: Pointer to a VARIANT that contains a VT_I4 that specifies a logical
+	// comparison operator against the CreateTime input parameter. This parameter corresponds
+	// to the RELOPS enum. If this value is not specified by the client, the server MUST
+	// use the default value REL_EQ (0x00000001) in place of the unspecified value.
+	RelationCreateTime *oaut.Variant `idl:"name:RelCreateTime" json:"relation_create_time"`
+	// RelModifyTime: Pointer to a VARIANT that contains a VT_I4 that specifies a logical
+	// comparison operator against the ModifyTime input parameter. This parameter corresponds
+	// to the RELOPS enum. If this value is not specified by the client, the server MUST
+	// use the default value REL_EQ (0x00000001) in place of the unspecified value.
+	RelationModifyTime *oaut.Variant `idl:"name:RelModifyTime" json:"relation_modify_time"`
 }
 
 func (o *LookupQueueV2Request) xxx_ToOp(ctx context.Context, op *xxx_LookupQueueV2Operation) *xxx_LookupQueueV2Operation {
@@ -834,8 +876,12 @@ func (o *LookupQueueV2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // LookupQueueV2Response structure represents the LookupQueue_v2 operation response
 type LookupQueueV2Response struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat    `idl:"name:That" json:"that"`
-	S    *mqac.QueueInfos4 `idl:"name:ppqinfos" json:"s"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppqinfos: Pointer to an IMSMQQueueInfos4 interface pointer, which upon successful
+	// completion contains a pointer to an MSMQQueueInfos instance. This MSMQQueueInfos
+	// instance contains the query definition that can be used by the client to enumerate
+	// a collection of Directory Queues that match the specified criteria.
+	S *mqac.QueueInfos4 `idl:"name:ppqinfos" json:"s"`
 	// Return: The LookupQueue_v2 return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1798,18 +1844,54 @@ func (o *xxx_LookupQueueOperation) UnmarshalNDRResponse(ctx context.Context, w n
 // LookupQueueRequest structure represents the LookupQueue operation request
 type LookupQueueRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                     *dcom.ORPCThis `idl:"name:This" json:"this"`
-	QueueGUID                *oaut.Variant  `idl:"name:QueueGuid" json:"queue_guid"`
-	ServiceTypeGUID          *oaut.Variant  `idl:"name:ServiceTypeGuid" json:"service_type_guid"`
-	Label                    *oaut.Variant  `idl:"name:Label" json:"label"`
-	CreateTime               *oaut.Variant  `idl:"name:CreateTime" json:"create_time"`
-	ModifyTime               *oaut.Variant  `idl:"name:ModifyTime" json:"modify_time"`
-	RelationServiceType      *oaut.Variant  `idl:"name:RelServiceType" json:"relation_service_type"`
-	RelationLabel            *oaut.Variant  `idl:"name:RelLabel" json:"relation_label"`
-	RelationCreateTime       *oaut.Variant  `idl:"name:RelCreateTime" json:"relation_create_time"`
-	RelationModifyTime       *oaut.Variant  `idl:"name:RelModifyTime" json:"relation_modify_time"`
-	MulticastAddress         *oaut.Variant  `idl:"name:MulticastAddress" json:"multicast_address"`
-	RelationMulticastAddress *oaut.Variant  `idl:"name:RelMulticastAddress" json:"relation_multicast_address"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// QueueGuid: Pointer to a VARIANT containing a BSTR that contains a string representation
+	// of a Queue.Identifier. The string MUST adhere to the following format, specified
+	// using ABNF.
+	QueueGUID *oaut.Variant `idl:"name:QueueGuid" json:"queue_guid"`
+	// ServiceTypeGuid: Pointer to a VARIANT containing a BSTR that contains a string representation
+	// of a Queue.Type. The string MUST adhere to the same format defined for QueueGuid.
+	ServiceTypeGUID *oaut.Variant `idl:"name:ServiceTypeGuid" json:"service_type_guid"`
+	// Label: Pointer to a VARIANT containing a BSTR that is used to query against Queue.Label.
+	Label *oaut.Variant `idl:"name:Label" json:"label"`
+	// CreateTime: Pointer to a VARIANT that contains a DATE that is used to query against
+	// Queue.CreateTime.
+	CreateTime *oaut.Variant `idl:"name:CreateTime" json:"create_time"`
+	// ModifyTime: Pointer to a VARIANT that contains a DATE that is used to query against
+	// Queue.ModifyTime.
+	ModifyTime *oaut.Variant `idl:"name:ModifyTime" json:"modify_time"`
+	// RelServiceType: Pointer to a VARIANT that contains a VT_I4 that specifies a logical
+	// comparison operator against the ServiceTypeGuid input parameter. This parameter corresponds
+	// to the RELOPS (section 2.2.2.20) enum. If this value is not specified by the client,
+	// the server MUST use the default value REL_EQ (0x00000001) in place of the unspecified
+	// value.
+	RelationServiceType *oaut.Variant `idl:"name:RelServiceType" json:"relation_service_type"`
+	// RelLabel: Pointer to a VARIANT that contains a VT_I4 that specifies a logical comparison
+	// operator against the Label input parameter. This parameter corresponds to the RELOPS
+	// enum. If this value is not specified by the client, the server MUST use the default
+	// value REL_EQ (0x00000001) in place of the unspecified value.
+	RelationLabel *oaut.Variant `idl:"name:RelLabel" json:"relation_label"`
+	// RelCreateTime: Pointer to a VARIANT that contains a VT_I4 that specifies a logical
+	// comparison operator against the CreateTime input parameter. This parameter corresponds
+	// to the RELOPS enum. If this value is not specified by the client, the server MUST
+	// use the default value REL_EQ (0x00000001) in place of the unspecified value.
+	RelationCreateTime *oaut.Variant `idl:"name:RelCreateTime" json:"relation_create_time"`
+	// RelModifyTime: Pointer to a VARIANT that contains a VT_I4 that specifies a logical
+	// comparison operator against the ModifyTime input parameter. This parameter corresponds
+	// to the RELOPS enum. If this value is not specified by the client, the server MUST
+	// use the default value REL_EQ (0x00000001) in place of the unspecified value.
+	RelationModifyTime *oaut.Variant `idl:"name:RelModifyTime" json:"relation_modify_time"`
+	// MulticastAddress: Pointer to a VARIANT that contains a BSTR that is used to query
+	// against the Queue.MulticastAddress. If this value is not specified or an empty string
+	// is passed in, the server MUST create a query restriction that matches all queues
+	// that do not have a MulticastAddress property defined.
+	MulticastAddress *oaut.Variant `idl:"name:MulticastAddress" json:"multicast_address"`
+	// RelMulticastAddress: Pointer to a VARIANT that contains a VT_I4 that specifies a
+	// logical comparison operator against the MulticastAddress input parameter. This parameter
+	// corresponds to the RELOPS enum. If this value is not specified by the client, the
+	// server MUST use the default value REL_EQ (0x00000001) in place of the unspecified
+	// value.
+	RelationMulticastAddress *oaut.Variant `idl:"name:RelMulticastAddress" json:"relation_multicast_address"`
 }
 
 func (o *LookupQueueRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupQueueOperation) *xxx_LookupQueueOperation {
@@ -1866,8 +1948,12 @@ func (o *LookupQueueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // LookupQueueResponse structure represents the LookupQueue operation response
 type LookupQueueResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat    `idl:"name:That" json:"that"`
-	S    *mqac.QueueInfos4 `idl:"name:ppqinfos" json:"s"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// ppqinfos: Pointer to an IMSMQQueueInfos4 interface pointer, which upon successful
+	// completion contains a pointer to a MSMQQueueInfos instance containing the query definition
+	// that can be used by the client to enumerate a collection of Queues that match the
+	// specified criteria.
+	S *mqac.QueueInfos4 `idl:"name:ppqinfos" json:"s"`
 	// Return: The LookupQueue return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

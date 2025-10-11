@@ -1,0 +1,24 @@
+<div class="content"><p>The Disconnect method is received by the server in an
+RPC_REQUEST packet. In response, the server MUST disconnect the represented <a href="../ms-mqdmpr/9adb2d90-c63b-43c7-9b9c-804ab96a57d5" data-linktype="relative-path">QueueManager</a>
+from the network and the directory.</p><dl>
+<dd>
+<div><pre> HRESULT Disconnect();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) to indicate success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.<a id="Appendix_A_Target_18"></a><a aria-label="Product behavior note 18" href="71c359c3-e9ec-4fe6-a101-aab1eabecdcf#Appendix_A_18" data-linktype="relative-path">&lt;18&gt;</a></p><p>When the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a>
+processes this call, it MUST follow these guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>ComputerName</i> instance variable is NULL:</p>
+<ul><li><p><span><span>  </span></span>Send
+a <a href="../ms-mqdmpr/3f4f55d3-aa90-41fb-985d-288fd76b2703" data-linktype="relative-path">Take
+Offline</a> event as defined in <a href="../ms-mqdmpr/5eafe0a6-a22f-436b-a0d9-4cbc25c52b47" data-linktype="relative-path">[MS-MQDMPR]</a>
+section 3.1.4.12 to the local QueueManager.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>The
+server MUST generate a QMMgmt Action event with the following inputs:</p>
+<ul><li><p><span><span> 
+</span></span>iAction = &#34;DISCONNECT&#34;</p>
+</li></ul></li><li><p><span><span>  </span></span>The
+server MUST return <i>rStatus</i>, and MUST take no further action.</p>
+</li></ul></li></ul></div>

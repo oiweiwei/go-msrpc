@@ -1,1 +1,110 @@
-<div class="content"></div>
+<div class="content"><p> Each stream data segment MUST be formatted as follows.</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Length</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>0x47</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x55</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="8">
+  <p>0x52</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+  <td colspan="8">
+  <p>0x45</p>
+  </td>
+  <td colspan="8">
+  <p>0x00</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Reserved</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Data
+  Segment Encryption Header (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>Stream Data
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>Length (4 bytes): </b>The length, in bytes, of
+this segment. It MUST be a 32-bit unsigned integer in little-endian format. The
+length MUST be measured from the start of this field to the end of the <b>Stream
+Data</b> field.</p><p><b>Reserved (4 bytes): </b>This field is set to zero
+and is ignored by the server.</p><p><b>Data Segment Encryption Header (variable): </b>This
+header MUST be present only if the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_f3529cd8-50da-4f36-aa0b-66af455edbb6" data-linktype="relative-path">stream</a> is encrypted (that
+is, if the <b>Flag</b> field in the stream header is set to zero and this is
+not the EFSRPC Metadata stream). It MUST be formatted as specified in section <a href="a38459f2-40e9-418d-866c-d33789886a91" data-linktype="relative-path">2.2.3.3</a>.</p><p><b>Stream Data (variable): </b>This field MUST
+contain part or all of the stream data. If the <b>Data Segment Encryption
+Header</b> field is present, <b>Stream Data</b> MUST be consistent with it. <b>Stream
+Data</b> MUST consist of contiguous bytes taken from the stream except for zero
+bytes that are omitted in accordance with the Data Segment Encryption Header.
+If the stream is encrypted, its data MUST be encrypted with the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_3a58e275-3d9f-4b66-8c8d-9808cd0cd8ff" data-linktype="relative-path">FEK</a>, using the algorithm
+indicated by the <b>Algorithm</b> field in the <a href="3166cf4a-e085-47be-94c6-b69bddf274ff" data-linktype="relative-path">EFSRPC Metadata</a> (specified
+in section 2.2.2) in the Cipher Block Chaining (CBC) mode.</p></div>

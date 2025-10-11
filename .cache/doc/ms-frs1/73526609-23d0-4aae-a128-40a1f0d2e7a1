@@ -1,1 +1,45 @@
-<div class="content"></div>
+<div class="content"><p>The FrsRpcSendCommPkt method transfers <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_576a8417-dd00-4f9e-b52f-c9a2e3766a8a" data-linktype="relative-path">change order</a> commands,
+files, and folders on an <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_20f21413-875c-4ebf-9913-a3282fbb779f" data-linktype="relative-path">FRS</a>
+connection.</p><dl>
+<dd>
+<div><pre> unsigned long FrsRpcSendCommPkt(
+   [in] handle_t Handle,
+   [in] PCOMM_PACKET CommPkt
+ );
+</pre></div>
+</dd></dl><p><b>Handle: </b>Binding handle obtained when the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a> authenticates with
+the FRS.</p><p><b>CommPkt: </b>Command and data sent from the
+replication partner.</p><p><b>Return Values: </b>The method MUST return 0 on
+success or a nonzero error code on failure. For protocol purposes, all nonzero
+values MUST be treated as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>FRS uses FrsRpcSendCommPkt to send <a href="194f8fff-d903-44b7-9530-c66f5366f8c7" data-linktype="relative-path">COMM_PACKET</a> objects (see
+section 2.2.3.5) between <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_bd31ad9b-d9b9-4624-bbba-ace6fa3f9923" data-linktype="relative-path">replica
+members</a> to replicate files and folders inside a Replica Set. See sections <a href="db1e2546-9b77-4dd3-8ffc-b57eb8fa092f" data-linktype="relative-path">4.1</a> and <a href="f1e84433-0dfb-4a5e-a94a-c5611006ac68" data-linktype="relative-path">4.2</a>.</p><p>In the following section, these two sentences have the same
+meaning:</p><ul><li><p><span><span> 
+</span></span>Machine A sends a COMM_PACKET to machine B.</p>
+</li><li><p><span><span> 
+</span></span> Machine A calls the FrsRpcSendCommPkt method on machine B. </p>
+</li></ul><p>There are 12 types of COMM_PACKETs (see section <a href="f300ec84-7c63-4f13-8590-54b630e15413" data-linktype="relative-path">2.2.3.6.2</a>). If machine A
+sends a COMM_PACKET packet to machine B with COMM_PACKET.COMM_COMMAND set to
+CMD_XXXX, a simple way to describe this is as follows: Machine A sends CMD_XXXX
+to machine B.</p></div>

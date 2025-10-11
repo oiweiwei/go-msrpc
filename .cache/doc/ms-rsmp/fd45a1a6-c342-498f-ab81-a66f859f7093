@@ -1,1 +1,62 @@
-<div class="content"></div>
+<div class="content"><p>The ExportNtmsDatabase method exports the state of the
+server.</p><dl>
+<dd>
+<div><pre> HRESULT ExportNtmsDatabase();
+</pre></div>
+</dd></dl><p>This method has no parameters.</p><table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to object was denied. For more information
+  regarding object, see section <a href="403095af-f4d3-46b9-85d7-3e2310e2bbdd" data-linktype="relative-path">3.2.5.2</a>.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070020</p>
+  <p>ERROR_SHARING_VIOLATION</p>
+  </td>
+  <td>
+  <p>One of the files that needs to be written to is open.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800708CA</p>
+  <p>ERROR_NOT_CONNECTED</p>
+  </td>
+  <td>
+  <p>Unable to connect to the server.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x800710D9</p>
+  <p>ERROR_DATABASE_FAILURE</p>
+  </td>
+  <td>
+  <p>The database query or update failed.</p>
+  </td>
+ </tr></tbody></table><p>Upon receiving this message, the server MUST verify that the
+client has the required access rights to the database. If the client does not
+have the required access rights, the server MUST return ERROR_ACCESS_DENIED
+(0x80070005). If the client has the required access rights, ExportNtmsDatabase
+creates a consistent set of database files in the export directory under the
+RSM database directory. Any existing files in the export directory are
+overwritten by this method.<a id="Appendix_A_Target_78"></a><a aria-label="Product behavior note 78" href="7184b376-4ee3-4482-b9c4-f87ff22b421f#Appendix_A_78" data-linktype="relative-path">&lt;78&gt;</a></p></div>

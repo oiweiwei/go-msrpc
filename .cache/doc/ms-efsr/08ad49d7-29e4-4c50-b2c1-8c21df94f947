@@ -1,1 +1,11 @@
-<div class="content"></div>
+<div class="content"><p> </p><p>The EFS_COMPATIBILITY_INFO type is used to represent
+information about the compatibility restrictions of an encrypted file.</p><dl>
+<dd>
+<div><pre> typedef struct {
+   DWORD EfsVersion;
+ } EFS_COMPATIBILITY_INFO;
+</pre></div>
+</dd></dl><p><b>EfsVersion:</b>  The <b>EfsVersion</b>
+associated with the EFSRPC Metadata. Valid values for the <b>EfsVersion</b>
+field are described in sections <a href="625335e5-a423-4d1c-be51-c696c32aa2eb" data-linktype="relative-path">2.2.2.1</a><span>,</span> <a href="5f08e2b7-5894-46ab-a3cc-d273bdeed658" data-linktype="relative-path">2.2.2.2</a>,
+and <a href="2e024178-db73-4647-9110-3c03db18743e" data-linktype="relative-path">2.2.2.3</a>.<a id="Appendix_A_Target_29"></a><a aria-label="Product behavior note 29" href="cecd911d-7105-45cc-a7c8-348335d6f03f#Appendix_A_29" data-linktype="relative-path">&lt;29&gt;</a></p></div>

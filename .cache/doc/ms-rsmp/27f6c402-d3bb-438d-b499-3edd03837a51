@@ -1,1 +1,24 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsAllocateOptions enumeration defines options for
+media allocation.</p><dl>
+<dd>
+<div><pre> enum NtmsAllocateOptions
+ {
+   NTMS_ALLOCATE_NEW = 0x0001,
+   NTMS_ALLOCATE_NEXT = 0x0002,
+   NTMS_ALLOCATE_ERROR_IF_UNAVAILABLE = 0x0004
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_ALLOCATE_NEW:  </b><a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_0e546e86-71c4-45cc-9ef1-4a78f6cb425a" data-linktype="relative-path">Allocates</a> a <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_55db62c5-a84f-43b7-a037-b44ecd8fb92f" data-linktype="relative-path">side</a> of the specified
+medium that MUST NOT be shared with another application&#39;s <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_05349689-4cd0-4643-a13e-9f552ecf3346" data-linktype="relative-path">logical media</a>. For example,
+this value could be used to reserve the second side of a piece of two-sided
+optical media. This value is mutually exclusive with NTMS_ALLOCATE_NEXT, and
+the user MUST NOT use both values in the same call.</p><p><b>NTMS_ALLOCATE_NEXT:  </b>MUST allocate the next
+side of the multisided medium that was previously allocated with the
+NTMS_ALLOCATE_NEW value. This allows a single application to use both sides of
+a two-sided medium, and ensures that the application owns all the data on the <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_9036b269-4f3b-4353-a1d0-54f5c686ec2c" data-linktype="relative-path">physical medium</a>. If all
+sides of the medium are already allocated, the request MUST fail. This value is
+mutually exclusive with NTMS_ALLOCATE_NEW, and the user MUST NOT use both
+values in the same call.</p><p><b>NTMS_ALLOCATE_ERROR_IF_UNAVAILABLE:  </b>MUST
+prevent the submission of an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_4676b5f2-6ecd-463c-8218-811911038e63" data-linktype="relative-path">operator
+request</a> for new media if none can be allocated with the specified
+constraints.</p></div>

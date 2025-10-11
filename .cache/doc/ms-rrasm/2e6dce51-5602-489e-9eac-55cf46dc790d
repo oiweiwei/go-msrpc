@@ -1,1 +1,89 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IPMCAST_BOUNDARY</b> structure contains a
+router&#39;s scoped IPv4 <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_70b74a6e-db1d-4648-bedd-5a524dfe6396" data-linktype="relative-path">multicast</a>
+address boundaries. This structure is used in the following methods:</p><ul><li><p><span><span> 
+</span></span><b>MIB_OPAQUE_INFO</b> (section <a href="169e435d-a975-4c1c-bf41-55fd2bd76125" data-linktype="relative-path">2.2.1.2.52</a>)</p>
+</li><li><p><span><span> 
+</span></span><a href="a6a848da-af0c-4772-af06-6bfd49723824" data-linktype="relative-path"><b>MIB_IPMCAST_BOUNDARY_TABLE (section 2.2.1.2.38)</b></a><span> </span></p>
+<div><pre> typedef struct {
+   DWORD dwIfIndex;
+   DWORD dwGroupAddress;
+   DWORD dwGroupMask;
+   DWORD dwStatus;
+ } MIB_IPMCAST_BOUNDARY,
+  *PMIB_IPMCAST_BOUNDARY;
+</pre></div>
+</li></ul><p><b>dwIfIndex: </b>The index value for the interface
+that applies to this boundary. Packets with a destination address in the
+associated address/mask range are not forwarded with this interface.</p><p><b>dwGroupAddress: </b>The 32-bit integer
+representation of the IPv4 group address which, when combined with the
+corresponding value in <b>dwGroupMask</b>, identifies the group range for which
+the scoped boundary exists.</p><dl>
+<dd>
+<p><b>Note</b>  Scoped addresses MUST come
+from the range 239.*.*.* as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=119994" data-linktype="external">[RFC2365]</a>.</p>
+</dd></dl><p><b>dwGroupMask: </b>The 32-bit integer representation
+of the IPv4 group address mask which, when combined with the corresponding
+value in <b>dwGroupAddress</b>, identifies the group range for which the scoped
+boundary exists.</p><p><b>dwStatus: </b>A status value that describes the
+current status of this entry in a multicast forwarding entry (MFE) boundary
+table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>ROWSTATUS_ACTIVE</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The entry has an active status.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ROWSTATUS_NOTINSERVICE</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The entry has a notInService status.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ROWSTATUS_NOTREADY</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>The entry has a notReady status.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ROWSTATUS_CREATEANDGO </p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>The entry has a createAndGo status.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ROWSTATUS_CREATEANDWAIT</p>
+  <p>0x00000005</p>
+  </td>
+  <td>
+  <p>The entry has a createAndWait status.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>ROWSTATUS_DESTROY</p>
+  <p>0x00000006</p>
+  </td>
+  <td>
+  <p>The entry has a destroy status.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

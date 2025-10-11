@@ -1,1 +1,9 @@
-<div class="content"></div>
+<div class="content"><p>The Telnet Server Remote Administration Protocol is a
+Distributed Component Object Model (DCOM) Protocol <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+interface that is exposed by a DCOM server and consumed by a DCOM client. A
+client uses the Telnet Server Remote Administration Protocol by invoking DCOM
+method calls on the interface exposed by the DCOM server that implements the
+protocol.</p><p>Telnet Server Remote Administration Protocol is a stateless
+protocol. An implementation can call any of the methods any number of times and
+in any order. Each call to a method in the DCOM/COM interface is independent of
+any other call to the same or different method. </p></div>

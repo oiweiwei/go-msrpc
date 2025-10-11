@@ -49,14 +49,171 @@ type ResourceGroupClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The GetResourceGroupInfo method gets information about the resource group with the
+	// specified ID. If the ID is "\", this method returns all selection criteria.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                   RETURN                   |                                                                                  |
+	//	|                 VALUE/CODE                 |                                   DESCRIPTION                                    |
+	//	|                                            |                                                                                  |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                            | Operation successful.                                                            |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                    | One or more arguments are invalid.                                               |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006F WRM_ERR_ID_VALUE                | The specified name contains characters that are invalid. The name cannot start   |
+	//	|                                            | with a hyphen ("-"), cannot contain spaces, and cannot contain any of the        |
+	//	|                                            | following characters; "\" cannot be used with other characters. / ? * | : < > "  |
+	//	|                                            | , ;                                                                              |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF012E WRM_ERR_RESOURCEGROUPID_INVALID | The request has been aborted because the specified resource group does not       |
+	//	|                                            | exist.                                                                           |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMResourceGroup interface methods are specified in section 3.2.4.10.
 	GetResourceGroupInfo(context.Context, *GetResourceGroupInfoRequest, ...dcerpc.CallOption) (*GetResourceGroupInfoResponse, error)
 
+	// The ModifyResourceGroup method modifies an existing resource group.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+-----------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                    RETURN                     |                                                                                  |
+	//	|                  VALUE/CODE                   |                                   DESCRIPTION                                    |
+	//	|                                               |                                                                                  |
+	//	+-----------------------------------------------+----------------------------------------------------------------------------------+
+	//	+-----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                               | The call was successful.                                                         |
+	//	+-----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0069 WRM_ERR_OLD_INFORMATION            | The XML timestamp is out-of-date.                                                |
+	//	+-----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006A WRM_ERR_NO_TIMESTAMP_PRESENT       | The specified resource group could not be modified because the XML timestamp in  |
+	//	|                                               | the bstrResourceGroupInfo parameter was not found.                               |
+	//	+-----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006F WRM_ERR_ID_VALUE                   | The specified name of the ProcessMatchingCriteria element contains characters    |
+	//	|                                               | that are not valid. The name cannot start with a hyphen ("-"), cannot contain    |
+	//	|                                               | spaces, and cannot contain any of the following characters: \ / ? * | : < > " ,  |
+	//	|                                               | ;                                                                                |
+	//	+-----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0070 WRM_ERR_TAGS_NOT_IN_ORDER          | The XML data that is maintained by the management service is not valid or cannot |
+	//	|                                               | be processed.<115>                                                               |
+	//	+-----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF012D WRM_ERR_TOO_LONG_RESOURCE_GROUP_ID | The resource group name has exceeded an implementation-defined<116> limit. The   |
+	//	|                                               | modify request has been aborted.                                                 |
+	//	+-----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF012E WRM_ERR_RESOURCEGROUPID_INVALID    | The specified resource group does not exist, or "\" was specified. "\" is a      |
+	//	|                                               | reserved name for resource group identifiers.                                    |
+	//	+-----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0132 WRM_ERR_PATH_LIMIT_EXCEEDED        | The command-line length has exceeded an implementation-defined limit.<117>       |
+	//	+-----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0134 WRM_ERR_USER_LIMIT_EXCEEDED        | The user name or group value has exceeded an implementation-defined limit.<118>  |
+	//	+-----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0135 WRM_ERR_RULE_LIMIT_EXCEEDED        | The specified resource group could not be modified because a resource group      |
+	//	|                                               | cannot have more than 64 rules.                                                  |
+	//	+-----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0138 WRM_ERR_RESERVED_RESOURCEGROUP     | The specified resource group is built-in. It cannot be modified.<119>            |
+	//	+-----------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMResourceGroup interface methods are specified in section 3.2.4.10.
 	ModifyResourceGroup(context.Context, *ModifyResourceGroupRequest, ...dcerpc.CallOption) (*ModifyResourceGroupResponse, error)
 
+	// The CreateResourceGroup function creates a new resource group.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                         RETURN                          |                                                                                  |
+	//	|                       VALUE/CODE                        |                                   DESCRIPTION                                    |
+	//	|                                                         |                                                                                  |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                                         | The operation was successfully done.                                             |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                                 | One or more arguments are invalid.                                               |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006F WRM_ERR_ID_VALUE                             | The specified name contains characters that are not valid. The name cannot       |
+	//	|                                                         | start with a hyphen ("-"), cannot contain spaces, and cannot contain any of the  |
+	//	|                                                         | following characters: \ / ? * | : < > " , ;                                      |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF012F WRM_ERR_RESOURCEGROUPID_ALREADY_EXISTS       | The request has been aborted because the resource group with the specified name  |
+	//	|                                                         | already exists.                                                                  |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0136 WRM_ERR_PMC_LIMIT_EXCEEDED                   | The total number of resource groups has exceeded an implementation-defined       |
+	//	|                                                         | limit.<120>.                                                                     |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0139 WRM_ERR_CANNOT_CREATE_RESERVED_RESOURCEGROUP | A user-created resource group cannot have the same name as that of a built-in    |
+	//	|                                                         | resource group.                                                                  |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMResourceGroup interface methods are specified in section 3.2.4.10.
 	CreateResourceGroup(context.Context, *CreateResourceGroupRequest, ...dcerpc.CallOption) (*CreateResourceGroupResponse, error)
 
+	// The DeleteResourceGroup deletes a resource group with the specified identifier.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                   RETURN                   |                                                                                  |
+	//	|                 VALUE/CODE                 |                                   DESCRIPTION                                    |
+	//	|                                            |                                                                                  |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                            | Operation successful.                                                            |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                    | One or more arguments are invalid.                                               |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006F WRM_ERR_ID_VALUE                | The specified name contains characters that are invalid. The name cannot start   |
+	//	|                                            | with a hyphen ("-"), cannot contain spaces, and cannot contain any of the        |
+	//	|                                            | following characters: \ / ? * | : < > " , ;                                      |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF012E WRM_ERR_RESOURCEGROUPID_INVALID | The specified resource group does not exist.                                     |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0137 WRM_ERR_DELETING_RESOURCE_GROUP | resource group that are members of one or more RAPs cannot be deleted.           |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0138 WRM_ERR_RESERVED_RESOURCEGROUP  | The specified resource group is built-in. It cannot be modified.                 |
+	//	+--------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMResourceGroup interface methods are specified in section 3.2.4.10.
 	DeleteResourceGroup(context.Context, *DeleteResourceGroupRequest, ...dcerpc.CallOption) (*DeleteResourceGroupResponse, error)
 
+	// The RenameResourceGroup renames an existing resource group.
+	//
+	// Return Values: This method returns 0x00000000 for success or a negative HRESULT value
+	// (in the following table or in [MS-ERREF] section 2.1.1) if an error occurs.
+	//
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                      RETURN                       |                                                                                  |
+	//	|                    VALUE/CODE                     |                                   DESCRIPTION                                    |
+	//	|                                                   |                                                                                  |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000                                        | The call was successful.                                                         |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                           | One or more arguments are invalid.                                               |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF006F WRM_ERR_ID_VALUE                       | The specified name contains characters that are valid. The name cannot start     |
+	//	|                                                   | with a hyphen ("-"), cannot contain spaces, and cannot contain any of the        |
+	//	|                                                   | following characters: \ / ? * | : < > " , ;                                      |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF012D WRM_ERR_TOO_LONG_RESOURCE_GROUP_ID     | The resource group name has exceeded an implementation-defined limit. <121>.     |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF012E WRM_ERR_RESOURCEGROUPID_INVALID        | The specified resource group does not exist.                                     |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0Xc1FF012F WRM_ERR_RESOURCEGROUPID_ALREADY_EXISTS | A resource group with the specified name already exists.                         |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0130 WRM_ERR_RESOURCEGROUPID_RESERVED_WORD  | "\" is a reserved name for resource group identifiers.                           |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0xC1FF0138 WRM_ERR_RESERVED_RESOURCEGROUP         | The specified resource group is built-in. It cannot be modified.                 |
+	//	+---------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// Additional IWRMResourceGroup interface methods are specified in section 3.2.4.10.
 	RenameResourceGroup(context.Context, *RenameResourceGroupRequest, ...dcerpc.CallOption) (*RenameResourceGroupResponse, error)
 
 	// AlterContext alters the client context.
@@ -437,8 +594,9 @@ func (o *xxx_GetResourceGroupInfoOperation) UnmarshalNDRResponse(ctx context.Con
 // GetResourceGroupInfoRequest structure represents the GetResourceGroupInfo operation request
 type GetResourceGroupInfoRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This              *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ResourceGroupName *oaut.String   `idl:"name:bstrResourceGroupName" json:"resource_group_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrResourceGroupName: A string that specifies the name of the selection criteria.
+	ResourceGroupName *oaut.String `idl:"name:bstrResourceGroupName" json:"resource_group_name"`
 }
 
 func (o *GetResourceGroupInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetResourceGroupInfoOperation) *xxx_GetResourceGroupInfoOperation {
@@ -475,8 +633,11 @@ func (o *GetResourceGroupInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 // GetResourceGroupInfoResponse structure represents the GetResourceGroupInfo operation response
 type GetResourceGroupInfoResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That              *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ResourceGroupInfo *oaut.String   `idl:"name:pbstrResourceGroupInfo" json:"resource_group_info"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// pbstrResourceGroupInfo: A pointer to a string that returns the selection criteria,
+	// in the form of a ProcessMatchingCriteria element (section 2.2.5.24). For an example,
+	// see the ProcessMatchingCriteria example (section 4.2.20).
+	ResourceGroupInfo *oaut.String `idl:"name:pbstrResourceGroupInfo" json:"resource_group_info"`
 	// Return: The GetResourceGroupInfo return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -704,9 +865,32 @@ func (o *xxx_ModifyResourceGroupOperation) UnmarshalNDRResponse(ctx context.Cont
 // ModifyResourceGroupRequest structure represents the ModifyResourceGroup operation request
 type ModifyResourceGroupRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This              *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ResourceGroupInfo *oaut.String   `idl:"name:bstrResourceGroupInfo" json:"resource_group_info"`
-	Overwrite         bool           `idl:"name:bOverwrite" json:"overwrite"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrResourceGroupInfo: A string that contains the modified resource group, in the
+	// form of a ProcessMatchingCriteria element (section 2.2.5.24). Sample XML is provided
+	// in ProcessMatchingCriteria example (section 4.2.20).
+	ResourceGroupInfo *oaut.String `idl:"name:bstrResourceGroupInfo" json:"resource_group_info"`
+	// bOverwrite: A Boolean value that specifies whether to ignore the timestamp of the
+	// resource group when validating.
+	//
+	// A timestamp MUST be defined inside a common node at the root level of an XML element,
+	// as shown in the Calendar example (section 4.2.6). The format of a timestamp is specified
+	// in section 2.2.1.4.
+	//
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	|                  |                                                                                  |
+	//	|      VALUE       |                                     MEANING                                      |
+	//	|                  |                                                                                  |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| FALSE 0x00000000 | The timestamp of the new resource group MUST specify a time that is equal to     |
+	//	|                  | or later than the timestamp of any modifications made to the PMC object on the   |
+	//	|                  | server. Otherwise, the modification SHOULD fail, and WRM_ERR_OLD_INFORMATION     |
+	//	|                  | SHOULD be returned.                                                              |
+	//	+------------------+----------------------------------------------------------------------------------+
+	//	| TRUE 0x00000001  | The resource group is validated and modified without checking the timestamp.     |
+	//	+------------------+----------------------------------------------------------------------------------+
+	Overwrite bool `idl:"name:bOverwrite" json:"overwrite"`
 }
 
 func (o *ModifyResourceGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_ModifyResourceGroupOperation) *xxx_ModifyResourceGroupOperation {
@@ -950,8 +1134,11 @@ func (o *xxx_CreateResourceGroupOperation) UnmarshalNDRResponse(ctx context.Cont
 // CreateResourceGroupRequest structure represents the CreateResourceGroup operation request
 type CreateResourceGroupRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This              *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ResourceGroupInfo *oaut.String   `idl:"name:bstrResourceGroupInfo" json:"resource_group_info"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrResourceGroupInfo: A string that specifies a new resource group, in the form
+	// of a ProcessMatchingCriteria (section 2.2.5.24) element (section 2.2.5.24). For an
+	// example, see ProcessMatchingCriteria example (section 4.2.20).
+	ResourceGroupInfo *oaut.String `idl:"name:bstrResourceGroupInfo" json:"resource_group_info"`
 }
 
 func (o *CreateResourceGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateResourceGroupOperation) *xxx_CreateResourceGroupOperation {
@@ -1193,8 +1380,10 @@ func (o *xxx_DeleteResourceGroupOperation) UnmarshalNDRResponse(ctx context.Cont
 // DeleteResourceGroupRequest structure represents the DeleteResourceGroup operation request
 type DeleteResourceGroupRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This              *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ResourceGroupName *oaut.String   `idl:"name:bstrResourceGroupName" json:"resource_group_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrResourceGroupName: A string that specifies the name of the resource group that
+	// is to be deleted.
+	ResourceGroupName *oaut.String `idl:"name:bstrResourceGroupName" json:"resource_group_name"`
 }
 
 func (o *DeleteResourceGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteResourceGroupOperation) *xxx_DeleteResourceGroupOperation {
@@ -1483,9 +1672,12 @@ func (o *xxx_RenameResourceGroupOperation) UnmarshalNDRResponse(ctx context.Cont
 // RenameResourceGroupRequest structure represents the RenameResourceGroup operation request
 type RenameResourceGroupRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This                 *dcom.ORPCThis `idl:"name:This" json:"this"`
-	NewResourceGroupName *oaut.String   `idl:"name:bstrNewResourceGroupName" json:"new_resource_group_name"`
-	OldResourceGroupName *oaut.String   `idl:"name:bstrOldResourceGroupName" json:"old_resource_group_name"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrNewResourceGroupName: A string that specifies the new name of the resource group.
+	NewResourceGroupName *oaut.String `idl:"name:bstrNewResourceGroupName" json:"new_resource_group_name"`
+	// bstrOldResourceGroupName: A string that specifies the name of the resource group
+	// to be renamed.
+	OldResourceGroupName *oaut.String `idl:"name:bstrOldResourceGroupName" json:"old_resource_group_name"`
 }
 
 func (o *RenameResourceGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_RenameResourceGroupOperation) *xxx_RenameResourceGroupOperation {

@@ -49,7 +49,12 @@ type AppHostChangeHandlerClient interface {
 	// IUnknown retrieval method.
 	Unknown() iunknown.UnknownClient
 
-	// OnSectionChanges operation.
+	// The OnSectionChanges method is called by the server by using an RPC_REQUEST packet.
+	// This method is called when a change in the path of the administration system hierarchy
+	// is detected. The callee (the client-implemented object) can react to this notification
+	// as it determines. It can return any error and the server MUST ignore it.
+	//
+	// Return Values: The return value MUST be ignored by the server.
 	OnSectionChanges(context.Context, *OnSectionChangesRequest, ...dcerpc.CallOption) (*OnSectionChangesResponse, error)
 
 	// AlterContext alters the client context.
@@ -350,9 +355,13 @@ func (o *xxx_OnSectionChangesOperation) UnmarshalNDRResponse(ctx context.Context
 // OnSectionChangesRequest structure represents the OnSectionChanges operation request
 type OnSectionChangesRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	SectionName *oaut.String   `idl:"name:bstrSectionName" json:"section_name"`
-	ConfigPath  *oaut.String   `idl:"name:bstrConfigPath" json:"config_path"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// bstrSectionName: The name of the IAppHostElement on the server that changed. A server
+	// is free to not implement this parameter and always passes NULL.
+	SectionName *oaut.String `idl:"name:bstrSectionName" json:"section_name"`
+	// bstrConfigPath: The path in the hierarchy where the change was detected by the administration
+	// system.
+	ConfigPath *oaut.String `idl:"name:bstrConfigPath" json:"config_path"`
 }
 
 func (o *OnSectionChangesRequest) xxx_ToOp(ctx context.Context, op *xxx_OnSectionChangesOperation) *xxx_OnSectionChangesOperation {

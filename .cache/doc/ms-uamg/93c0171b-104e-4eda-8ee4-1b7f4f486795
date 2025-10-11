@@ -1,1 +1,27 @@
-<div class="content"></div>
+<div class="content"><p>The IUpdateCollection::Item (opnum 9) method replaces an
+item in the collection by index.</p><dl>
+<dd>
+<div><pre> HRESULT Item(
+   [in] LONG index,
+   [in] IUpdate* value
+ );
+</pre></div>
+</dd></dl><p><b>index: </b>The zero-based index of the item to replace.</p><p><b>value: </b>The item with which to replace the existing
+item.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><dl>
+<dd>
+<p>If the <i>index</i> is less than
+0x00000000 or greater than or equal to the number of items in the collection,
+the server MUST return an error.</p>
+</dd>
+<dd>
+<p>If the collection is read-only, the
+server MUST return an error.</p>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method SHOULD set the given item at the given <i>index</i>
+in the <b>List</b> ADM element.</p></div>

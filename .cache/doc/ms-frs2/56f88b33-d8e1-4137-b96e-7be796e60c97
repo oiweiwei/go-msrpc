@@ -1,1 +1,11 @@
-<div class="content"></div>
+<div class="content"><p>Binary large object (BLOB) for alternate <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_a0d8116e-63f3-418b-afea-ca6258840e92" data-linktype="relative-path">RDC</a> algorithms.</p><dl>
+<dd>
+<div><pre> typedef struct _FRS_RDC_PARAMETERS_GENERIC {
+   unsigned short chunkerType;
+   byte chunkerParameters[64];
+ } FRS_RDC_PARAMETERS_GENERIC;
+</pre></div>
+</dd></dl><p><b>chunkerType:</b>  The <b>chunkerType</b>
+MUST be RDC_FILTERMAX, as specified in section <a href="9cc63d63-15fc-499f-a8db-d2cd85895617" data-linktype="relative-path">2.2.1.2.3</a>.</p><p><b>chunkerParameters:</b>  Not used. This
+is a generic parameter block, which allows for space in future protocol
+versions.</p></div>

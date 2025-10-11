@@ -1,0 +1,66 @@
+<div class="content"><p>The IAppHostElementSchema <a href="4e36e522-a35d-4fec-bc9c-6ed14d49d5ca#gt_95913fbd-3262-47ae-b5eb-18e6806824b9" data-linktype="relative-path">interface</a> provides methods
+that access the schema and constraints of a specific <a href="59774887-09e3-4de5-ad8e-4794f404b123" data-linktype="relative-path">IAppHostElement</a> object.</p><p>The IAppHostElementSchema interface inherits opnums 0–2 from
+the <a href="../ms-dcom/2b4db106-fb79-4a67-b45f-63654f19c54c" data-linktype="relative-path">IUnknown</a>
+interface.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><a href="4d3f2b78-641b-4c0a-86f5-7460c74c8aa3" data-linktype="relative-path">Name</a></p>
+  </td>
+  <td>
+  <p>Returns the name of the element entry.</p>
+  <p>Opnum: 3</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="26c45729-e36b-4a4f-8544-27328430e35c" data-linktype="relative-path">DoesAllowUnschematizedProperties</a></p>
+  </td>
+  <td>
+  <p>Determines if the section allows unrecognized
+  attributes.</p>
+  <p>Opnum: 4</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="4529cc6c-4ce1-41d9-ad72-d6e00b943797" data-linktype="relative-path">GetMetadata</a></p>
+  </td>
+  <td>
+  <p>Used to get a metadata property. </p>
+  <p>Opnum: 5</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="0b61da9b-ef9f-401b-8919-285aeb32c9ad" data-linktype="relative-path">CollectionSchema</a></p>
+  </td>
+  <td>
+  <p>Opnum: 6</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="02afc0b7-5071-45cc-b7f1-15d2c0622145" data-linktype="relative-path">ChildElementSchemas</a></p>
+  </td>
+  <td>
+  <p>Opnum: 7</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="f8c5be0c-a7be-4f18-9bb6-c85f296bb96f" data-linktype="relative-path">PropertySchemas</a></p>
+  </td>
+  <td>
+  <p>Opnum: 8</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><a href="23492937-388b-4f34-96ad-d93feb7a3455" data-linktype="relative-path">IsCollectionDefault</a></p>
+  </td>
+  <td>
+  <p>Opnum: 9</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

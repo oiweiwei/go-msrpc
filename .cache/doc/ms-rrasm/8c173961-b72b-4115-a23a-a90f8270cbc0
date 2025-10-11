@@ -1,1 +1,74 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IP_AUTO_DHCP_GLOBAL_INFO</b> structure holds the
+global configuration for the DHCP allocator and is used in the following methods:</p><ul><li><p><span><span> 
+</span></span><a href="071439e7-a9fd-40e4-91f7-ab756108e82f" data-linktype="relative-path"><b>RRouterInterfaceTransportSetGlobalInfo (section 3.1.4.10)</b></a><span>  </span></p>
+</li><li><p><span><span> 
+</span></span><a href="14ad8d26-d7d7-48dd-914d-da962d5d7049" data-linktype="relative-path"><b>RRouterInterfaceTransportGetGlobalInfo (section 3.1.4.11)</b></a><span>  </span></p>
+</li></ul><p>The configuration consists of two things:</p><ol><li><p><span>    </span>The network and
+mask from which addresses are to be allocated.</p>
+</li><li><p><span>    </span>An optional list
+of addresses to be excluded from allocation. Thus, this structure is of
+variable length.</p>
+<div><pre> typedef struct _IP_AUTO_DHCP_GLOBAL_INFO {
+   ULONG LoggingLevel;
+   ULONG Flags;
+   ULONG LeaseTime;
+   ULONG ScopeNetwork;
+   ULONG ScopeMask;
+   ULONG ExclusionCount;
+   ULONG ExclusionArray;
+ } IP_AUTO_DHCP_GLOBAL_INFO,
+  *PIP_AUTO_DHCP_GLOBAL_INFO;
+</pre></div>
+</li></ol><p><b>LoggingLevel: </b>Specifies the logging level. It
+MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>IPNATHLP_LOGGING_NONE</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>No logging is done.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPNATHLP_LOGGING_ERROR</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Only errors are logged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPNATHLP_LOGGING_WARN</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Errors and warnings are logged.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>IPNATHLP_LOGGING_INFO</p>
+  <p>0x00000003</p>
+  </td>
+  <td>
+  <p>Errors, warnings, and information is logged.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Flags: </b>This MUST be set to 0.</p><p><b>LeaseTime: </b>The lease time, in minutes.</p><p><b>ScopeNetwork: </b>The scope of the network from
+which addresses are to be allocated.</p><p><b>ScopeMask: </b>The mask used to identify the
+subnet portion of the address. See <a href="https://go.microsoft.com/fwlink/?LinkId=90501" data-linktype="external">[RFC950]</a>. The value
+obtained by logically ANDing ScopeMask and ScopeNetwork MUST equal
+ScopeNetwork. Any ScopeMask that produces a different ANDed result is invalid.</p><p><b>ExclusionCount: </b>The number of IP addresses
+that need to be excluded from being allocated. This is also indicates the size
+of the <i>ExclusionArray</i>.</p><p><b>ExclusionArray: </b>An array of IP addresses that
+need to be excluded. The size of the array is given by <i>ExclusionCount</i>.</p></div>

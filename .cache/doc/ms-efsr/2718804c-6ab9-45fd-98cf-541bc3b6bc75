@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>The ENCRYPTION_CERTIFICATE_HASH_LIST type is used to
+represent a set of <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a>
+hashes.</p><dl>
+<dd>
+<div><pre> typedef struct _ENCRYPTION_CERTIFICATE_HASH_LIST {
+   [range(0,500)] DWORD nCert_Hash;
+   [size_is(nCert_Hash,)] ENCRYPTION_CERTIFICATE_HASH** Users;
+ } ENCRYPTION_CERTIFICATE_HASH_LIST;
+</pre></div>
+</dd></dl><p><b>nCert_Hash:</b>  The number of
+certificate hashes in the list.</p><p><b>Users:</b>  A pointer to an array of
+pointers to <a href="3a7e7151-edcb-4b32-a119-35cdce1584c0" data-linktype="relative-path">ENCRYPTION_CERTIFICATE_HASH</a>
+(2.2.10) structures. This array is of size nCert_Hash.<a id="Appendix_A_Target_24"></a><a aria-label="Product behavior note 24" href="cecd911d-7105-45cc-a7c8-348335d6f03f#Appendix_A_24" data-linktype="relative-path">&lt;24&gt;</a></p></div>

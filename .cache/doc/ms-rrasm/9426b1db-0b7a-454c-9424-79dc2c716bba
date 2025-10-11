@@ -1,1 +1,20 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IP_NAT_PORT_MAPPING</b> structure holds a static
+mapping that ties a public-side port on this NAT interface to a specific
+private machine&#39;s address or port. In the case of an interface with a pool of
+addresses, the &#34;PublicAddress&#34; specifies which of those addresses
+this static mapping applies to.</p><dl>
+<dd>
+<div><pre> typedef struct _IP_NAT_PORT_MAPPING {
+   UCHAR Protocol;
+   USHORT PublicPort;
+   ULONG PublicAddress;
+   USHORT PrivatePort;
+   ULONG PrivateAddress;
+ } IP_NAT_PORT_MAPPING, *PIP_NAT_PORT_MAPPING;
+</pre></div>
+</dd></dl><p><b>Protocol: </b>Specifies the protocol used for data
+reception and transmission.</p><p><b>PublicPort: </b>Specifies the destination port
+number of incoming public traffic.</p><p><b>PublicAddress: </b>Specifies the public IPv4
+address.</p><p><b>PrivatePort: </b>The destination port number of
+the private traffic.</p><p><b>PrivateAddress: </b>Specifies the private IPv4
+address.</p></div>

@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IPRIP_ROUTE_FILTER</b> structure is used to specify a
+route filter for use in the <b>IC_AcceptFilter</b> and <b>IC_AnnounceFilter</b>
+fields of the <a href="7053ff8a-73fc-4557-b7d5-fce2dccd9382" data-linktype="relative-path"><b>IPRIP_IF_CONFIG (section 2.2.1.2.166)</b></a>
+structure.   </p><dl>
+<dd>
+<div><pre> typedef struct _IPRIP_ROUTE_FILTER {
+   DWORD RF_LoAddress;
+   DWORD RF_HiAddress;
+ } IPRIP_ROUTE_FILTER,
+  *PIPRIP_ROUTE_FILTER;
+</pre></div>
+</dd></dl><p><b>RF_LoAddress: </b>The starting IPv4 address of the
+route filter specified in network byte order.</p><p><b>RF_HiAddress: </b>The ending IPv4 address of the
+route filter specified in network byte order.</p></div>

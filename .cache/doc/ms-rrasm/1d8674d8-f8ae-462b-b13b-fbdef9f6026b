@@ -1,1 +1,13 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IPMCAST_IF_TABLE</b> structure contains a table
+of IP <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_70b74a6e-db1d-4648-bedd-5a524dfe6396" data-linktype="relative-path">multicast</a>
+interface entries. </p><dl>
+<dd>
+<div><pre> typedef struct _MIB_IPMCAST_IF_TABLE {
+   DWORD dwNumEntries;
+   MIB_IPMCAST_IF_ENTRY table[1];
+ } MIB_IPMCAST_IF_TABLE,
+  *PMIB_IPMCAST_IF_TABLE;
+</pre></div>
+</dd></dl><p><b>dwNumEntries: </b>Specifies the number of
+interface entries in the table.</p><p><b>table: </b>A pointer to a table of interface
+entries implemented as an array of <b>MIB_IPMCAST_IF_ENTRY</b><span><span> </span></span>(section <a href="b1a89487-81f5-4c73-82eb-88df2abe310a" data-linktype="relative-path">2.2.1.2.40</a>) structures.</p></div>

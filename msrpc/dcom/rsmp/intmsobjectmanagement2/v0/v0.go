@@ -49,14 +49,24 @@ type ObjectManagement2Client interface {
 	// INtmsObjectManagement1 retrieval method.
 	ObjectManagement1() intmsobjectmanagement1.ObjectManagement1Client
 
+	// The EnumerateNtmsObjectR method enumerates the objects of the container specified
+	// by lpContainerId.
 	EnumerateNTMSObjectR(context.Context, *EnumerateNTMSObjectRRequest, ...dcerpc.CallOption) (*EnumerateNTMSObjectRResponse, error)
 
+	// The GetNtmsUIOptionsA method enumerates the list of computer names to which the specified
+	// type of UI is being directed for an object, with strings encoded using ASCII.
 	GetNTMSUIOptionsA(context.Context, *GetNTMSUIOptionsARequest, ...dcerpc.CallOption) (*GetNTMSUIOptionsAResponse, error)
 
+	// The GetNtmsUIOptionsW method enumerates the list of computer names to which the specified
+	// type of UI is being directed for an object. This method encodes strings using Unicode.
 	GetNTMSUIOptionsW(context.Context, *GetNTMSUIOptionsWRequest, ...dcerpc.CallOption) (*GetNTMSUIOptionsWResponse, error)
 
+	// The SetNtmsUIOptionsA method modifies the list of computer names to which the specified
+	// type of UI is being directed for an object, with strings encoded using ASCII.
 	SetNTMSUIOptionsA(context.Context, *SetNTMSUIOptionsARequest, ...dcerpc.CallOption) (*SetNTMSUIOptionsAResponse, error)
 
+	// The SetNtmsUIOptionsW method modifies the list of computer names to which the specified
+	// type of UI is being directed for an object, with strings encoded using Unicode.
 	SetNTMSUIOptionsW(context.Context, *SetNTMSUIOptionsWRequest, ...dcerpc.CallOption) (*SetNTMSUIOptionsWResponse, error)
 
 	// AlterContext alters the client context.
@@ -533,11 +543,38 @@ func (o *xxx_EnumerateNTMSObjectROperation) UnmarshalNDRResponse(ctx context.Con
 // EnumerateNTMSObjectRRequest structure represents the EnumerateNtmsObjectR operation request
 type EnumerateNTMSObjectRRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ContainerID    *dtyp.GUID     `idl:"name:lpContainerId;pointer:unique" json:"container_id"`
-	ListBufferSize uint32         `idl:"name:lpdwListBufferSize" json:"list_buffer_size"`
-	Type           uint32         `idl:"name:dwType" json:"type"`
-	Options        uint32         `idl:"name:dwOptions" json:"options"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpContainerId: A pointer to the identifier of the container for which to enumerate
+	// objects. If this parameter is set to NULL, top-level objects MUST be enumerated.
+	ContainerID *dtyp.GUID `idl:"name:lpContainerId;pointer:unique" json:"container_id"`
+	// lpdwListBufferSize: A pointer to the size, in bytes, of the lpList buffer.
+	ListBufferSize uint32 `idl:"name:lpdwListBufferSize" json:"list_buffer_size"`
+	// dwType: A value from the NtmsObjectsTypes (section 2.2.1.6) enumeration specifying
+	// the type of the container.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// dwOptions: Enumeration options. This is applicable only when dwType is NTMS_MEDIA_POOL;
+	// if dwType is not NTMS_MEDIA_POOL, this MUST be set to NTMS_ENUM_DEFAULT
+	//
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                |                                                                                  |
+	//	|              VALUE/CODE              |                                   DESCRIPTION                                    |
+	//	|                                      |                                                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000 S_OK                      | The call was successful.                                                         |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED       | Access to an object was denied.                                                  |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY   | An allocation failure occurred during processing.                                |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER   | The parameter is NULL or invalid.                                                |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND    | The lpContainerId parameter is invalid.                                          |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8007007A ERROR_INSUFFICIENT_BUFFER | The specified buffer size is too small. The required size is returned in the     |
+	//	|                                      | lpdwOutputSize parameter.                                                        |
+	//	+--------------------------------------+----------------------------------------------------------------------------------+
+	Options uint32 `idl:"name:dwOptions" json:"options"`
 }
 
 func (o *EnumerateNTMSObjectRRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumerateNTMSObjectROperation) *xxx_EnumerateNTMSObjectROperation {
@@ -583,10 +620,15 @@ type EnumerateNTMSObjectRResponse struct {
 	ListBufferSize uint32 `idl:"name:lpdwListBufferSize" json:"list_buffer_size"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	List       []*dtyp.GUID   `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(lpdwListSize)" json:"list"`
-	ListSize   uint32         `idl:"name:lpdwListSize" json:"list_size"`
-	OutputSize uint32         `idl:"name:lpdwOutputSize" json:"output_size"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpList: An array of identifiers for the objects of lpContainerId.
+	List []*dtyp.GUID `idl:"name:lpList;size_is:(lpdwListBufferSize);length_is:(lpdwListSize)" json:"list"`
+	// lpdwListSize: A pointer to the number of elements in lpList.
+	ListSize uint32 `idl:"name:lpdwListSize" json:"list_size"`
+	// lpdwOutputSize: A pointer to the required size of the lpdwListSize parameter if more
+	// data need to be returned than can fit in the lpList buffer. In such a case, lpdwListSize
+	// MUST be set to 0.
+	OutputSize uint32 `idl:"name:lpdwOutputSize" json:"output_size"`
 	// Return: The EnumerateNtmsObjectR return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -926,10 +968,15 @@ func (o *xxx_GetNTMSUIOptionsAOperation) UnmarshalNDRResponse(ctx context.Contex
 // GetNTMSUIOptionsARequest structure represents the GetNtmsUIOptionsA operation request
 type GetNTMSUIOptionsARequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ObjectID   *dtyp.GUID     `idl:"name:lpObjectId;pointer:unique" json:"object_id"`
-	Type       uint32         `idl:"name:dwType" json:"type"`
-	BufferSize uint32         `idl:"name:lpdwBufSize" json:"buffer_size"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpObjectId: A pointer to the identifier of a computer or library whose UI is being
+	// redirected. To choose all events for this session, set this parameter to NULL.
+	ObjectID *dtyp.GUID `idl:"name:lpObjectId;pointer:unique" json:"object_id"`
+	// dwType: A value from the NtmsUITypes (section 2.2.5.2) enumeration specifying the
+	// type of UI messages to enumerate.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// lpdwBufSize: A pointer to the size, in bytes, of lpszDestination.
+	BufferSize uint32 `idl:"name:lpdwBufSize" json:"buffer_size"`
 }
 
 func (o *GetNTMSUIOptionsARequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSUIOptionsAOperation) *xxx_GetNTMSUIOptionsAOperation {
@@ -973,10 +1020,35 @@ type GetNTMSUIOptionsAResponse struct {
 	BufferSize uint32 `idl:"name:lpdwBufSize" json:"buffer_size"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Destination []byte         `idl:"name:lpszDestination;size_is:(lpdwBufSize);length_is:(lpdwDataSize)" json:"destination"`
-	DataSize    uint32         `idl:"name:lpdwDataSize" json:"data_size"`
-	OutSize     uint32         `idl:"name:lpdwOutSize" json:"out_size"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpszDestination: A buffer of null-terminated destinations, with the buffer terminated
+	// by two null characters.
+	Destination []byte `idl:"name:lpszDestination;size_is:(lpdwBufSize);length_is:(lpdwDataSize)" json:"destination"`
+	// lpdwDataSize: A pointer to the number of strings in lpszDestination.
+	DataSize uint32 `idl:"name:lpdwDataSize" json:"data_size"`
+	// lpdwOutSize: A pointer to the required size of the lpdwDataSize parameter if more
+	// data needs to be returned than can fit in lpszDestination. In such a case, lpdwDataSize
+	// MUST be set to 0.
+	//
+	//	+--------------------------------------+---------------------------------------------------+
+	//	|                RETURN                |                                                   |
+	//	|              VALUE/CODE              |                    DESCRIPTION                    |
+	//	|                                      |                                                   |
+	//	+--------------------------------------+---------------------------------------------------+
+	//	+--------------------------------------+---------------------------------------------------+
+	//	| 0x00000000 S_OK                      | The call was successful.                          |
+	//	+--------------------------------------+---------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED       | Access to an object was denied.                   |
+	//	+--------------------------------------+---------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY   | An allocation failure occurred during processing. |
+	//	+--------------------------------------+---------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER   | The parameter is not valid.                       |
+	//	+--------------------------------------+---------------------------------------------------+
+	//	| 0x8007007A ERROR_INSUFFICIENT_BUFFER | The specified buffer size is not large enough.    |
+	//	+--------------------------------------+---------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND    | The object was not found.                         |
+	//	+--------------------------------------+---------------------------------------------------+
+	OutSize uint32 `idl:"name:lpdwOutSize" json:"out_size"`
 	// Return: The GetNtmsUIOptionsA return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1322,10 +1394,15 @@ func (o *xxx_GetNTMSUIOptionsWOperation) UnmarshalNDRResponse(ctx context.Contex
 // GetNTMSUIOptionsWRequest structure represents the GetNtmsUIOptionsW operation request
 type GetNTMSUIOptionsWRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ObjectID   *dtyp.GUID     `idl:"name:lpObjectId;pointer:unique" json:"object_id"`
-	Type       uint32         `idl:"name:dwType" json:"type"`
-	BufferSize uint32         `idl:"name:lpdwBufSize" json:"buffer_size"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpObjectId: A pointer to the identifier of a computer or library whose UI is being
+	// redirected. To choose all events for this session, set this parameter to NULL.
+	ObjectID *dtyp.GUID `idl:"name:lpObjectId;pointer:unique" json:"object_id"`
+	// dwType: A value from the NtmsUIType (section 2.2.5.2) enumeration specifying the
+	// type of UI messages to enumerate.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// lpdwBufSize: A pointer to the size, in bytes, of lpszDestination.
+	BufferSize uint32 `idl:"name:lpdwBufSize" json:"buffer_size"`
 }
 
 func (o *GetNTMSUIOptionsWRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNTMSUIOptionsWOperation) *xxx_GetNTMSUIOptionsWOperation {
@@ -1369,10 +1446,35 @@ type GetNTMSUIOptionsWResponse struct {
 	BufferSize uint32 `idl:"name:lpdwBufSize" json:"buffer_size"`
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Destination string         `idl:"name:lpszDestination;size_is:(lpdwBufSize);length_is:(lpdwDataSize)" json:"destination"`
-	DataSize    uint32         `idl:"name:lpdwDataSize" json:"data_size"`
-	OutSize     uint32         `idl:"name:lpdwOutSize" json:"out_size"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// lpszDestination: A buffer of null-terminated Unicode characters denoting destinations,
+	// with the buffer terminated by two null characters.
+	Destination string `idl:"name:lpszDestination;size_is:(lpdwBufSize);length_is:(lpdwDataSize)" json:"destination"`
+	// lpdwDataSize: A pointer to the number of strings in lpszDestination.
+	DataSize uint32 `idl:"name:lpdwDataSize" json:"data_size"`
+	// lpdwOutSize: A pointer to the required size of the lpdwDataSize parameter if more
+	// data needs to be returned than can fit in lpszDestination. In such a case, lpdwDataSize
+	// is set to 0.
+	//
+	//	+--------------------------------------+---------------------------------------------------+
+	//	|                RETURN                |                                                   |
+	//	|              VALUE/CODE              |                    DESCRIPTION                    |
+	//	|                                      |                                                   |
+	//	+--------------------------------------+---------------------------------------------------+
+	//	+--------------------------------------+---------------------------------------------------+
+	//	| 0x00000000 S_OK                      | The call was successful.                          |
+	//	+--------------------------------------+---------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED       | Access to an object is denied.                    |
+	//	+--------------------------------------+---------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY   | An allocation failure occurred during processing. |
+	//	+--------------------------------------+---------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER   | A parameter is not valid.                         |
+	//	+--------------------------------------+---------------------------------------------------+
+	//	| 0x8007007A ERROR_INSUFFICIENT_BUFFER | The specified buffer size is not large enough.    |
+	//	+--------------------------------------+---------------------------------------------------+
+	//	| 0x800710D8 ERROR_OBJECT_NOT_FOUND    | The object was not found.                         |
+	//	+--------------------------------------+---------------------------------------------------+
+	OutSize uint32 `idl:"name:lpdwOutSize" json:"out_size"`
 	// Return: The GetNtmsUIOptionsW return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1630,11 +1732,36 @@ func (o *xxx_SetNTMSUIOptionsAOperation) UnmarshalNDRResponse(ctx context.Contex
 // SetNTMSUIOptionsARequest structure represents the SetNtmsUIOptionsA operation request
 type SetNTMSUIOptionsARequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ObjectID    *dtyp.GUID     `idl:"name:lpObjectId;pointer:unique" json:"object_id"`
-	Type        uint32         `idl:"name:dwType" json:"type"`
-	Operation   uint32         `idl:"name:dwOperation" json:"operation"`
-	Destination string         `idl:"name:lpszDestination;string" json:"destination"`
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+	// lpObjectId: A pointer to the identifier of a computer or library whose UI MUST be
+	// redirected. To choose all events for this session, set this parameter to NULL.
+	ObjectID *dtyp.GUID `idl:"name:lpObjectId;pointer:unique" json:"object_id"`
+	// dwType: The value from the NtmsUIType (section 2.2.5.2) enumeration specifying the
+	// type of UI message to enumerate.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// dwOperation: The value from the NtmsUIOperations (section 2.2.5.1) enumeration specifying
+	// the type of change to make to the destination list.
+	Operation uint32 `idl:"name:dwOperation" json:"operation"`
+	// lpszDestination: The null-terminated destination to add to or delete from the list.
+	//
+	//	+------------------------------------+---------------------------------------------------+
+	//	|               RETURN               |                                                   |
+	//	|             VALUE/CODE             |                    DESCRIPTION                    |
+	//	|                                    |                                                   |
+	//	+------------------------------------+---------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                          |
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access to an object was denied.                   |
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | A parameter is invalid.                           |
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY | An allocation failure occurred during processing. |
+	//	+------------------------------------+---------------------------------------------------+
+	//
+	// The purpose of this method is to add or delete lpszDestination from the list of computer
+	// names to which the specified type of UI is being directed for the specific object.
+	Destination string `idl:"name:lpszDestination;string" json:"destination"`
 }
 
 func (o *SetNTMSUIOptionsARequest) xxx_ToOp(ctx context.Context, op *xxx_SetNTMSUIOptionsAOperation) *xxx_SetNTMSUIOptionsAOperation {
@@ -1921,11 +2048,63 @@ func (o *xxx_SetNTMSUIOptionsWOperation) UnmarshalNDRResponse(ctx context.Contex
 // SetNTMSUIOptionsWRequest structure represents the SetNtmsUIOptionsW operation request
 type SetNTMSUIOptionsWRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	ObjectID    *dtyp.GUID     `idl:"name:lpObjectId;pointer:unique" json:"object_id"`
-	Type        uint32         `idl:"name:dwType" json:"type"`
-	Operation   uint32         `idl:"name:dwOperation" json:"operation"`
-	Destination string         `idl:"name:lpszDestination;string" json:"destination"`
+	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
+	ObjectID *dtyp.GUID     `idl:"name:lpObjectId;pointer:unique" json:"object_id"`
+	// dwType: The value from the NtmsUIType (section 2.2.5.2) enumeration specifying the
+	// type of UI message to enumerate.
+	Type uint32 `idl:"name:dwType" json:"type"`
+	// dwOperation: The value from the NtmsUIOperations (section 2.2.5.1) enumeration specifying
+	// the type of change to make to the destination list.
+	Operation uint32 `idl:"name:dwOperation" json:"operation"`
+	// lpszDestination: The null-terminated destination to add to or delete from the list.
+	//
+	//	+------------------------------------+---------------------------------------------------+
+	//	|               RETURN               |                                                   |
+	//	|             VALUE/CODE             |                    DESCRIPTION                    |
+	//	|                                    |                                                   |
+	//	+------------------------------------+---------------------------------------------------+
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x00000000 S_OK                    | The call was successful.                          |
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x80070005 ERROR_ACCESS_DENIED     | Access to an object was denied.                   |
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x80070057 ERROR_INVALID_PARAMETER | A parameter is invalid.                           |
+	//	+------------------------------------+---------------------------------------------------+
+	//	| 0x80070008 ERROR_NOT_ENOUGH_MEMORY | An allocation failure occurred during processing. |
+	//	+------------------------------------+---------------------------------------------------+
+	//
+	// The purpose of this method is to add or delete lpszDestination from the list of computer
+	// names to which the specified type of UI is being directed for the given object.
+	//
+	// After the server receives this message, it MUST verify that dwType is not equal to
+	// NTMS_UITYPE_INVALID, and verify that dwType is not equal to or greater than NTMS_UITYPE_MAX.
+	// If parameter validation fails, the server MUST immediately fail the operation and
+	// return ERROR_INVALID_PARAMETER (0x80070057).
+	//
+	// If parameter validation succeeds, the server MUST compose a response to the client
+	// after verifying that the user has the required access rights. If the client does
+	// not have the required access rights, the server MUST return ERROR_ACCESS_DENIED (0x80070005).
+	//
+	// If lpszDestination is NULL, the server MUST use the computer name of the client as
+	// lpszDestination.
+	//
+	// The action taken depends on the value of dwOperation.
+	//
+	//	+-----------------------+--------------------------------------------------------+
+	//	|                       |                                                        |
+	//	|         VALUE         |                        MEANING                         |
+	//	|                       |                                                        |
+	//	+-----------------------+--------------------------------------------------------+
+	//	+-----------------------+--------------------------------------------------------+
+	//	| NTMS_UIDEST_ADD       | Add a new lpszDestination (computer name) to the list. |
+	//	+-----------------------+--------------------------------------------------------+
+	//	| NTMS_UIDEST_DELETE    | Remove an lpszDestination from the list.               |
+	//	+-----------------------+--------------------------------------------------------+
+	//	| NTMS_UIDEST_DELETEALL | Clear all names from the list.                         |
+	//	+-----------------------+--------------------------------------------------------+
+	//
+	// Strings that are sent to this method as parameters MUST be Unicode-encoded.
+	Destination string `idl:"name:lpszDestination;string" json:"destination"`
 }
 
 func (o *SetNTMSUIOptionsWRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNTMSUIOptionsWOperation) *xxx_SetNTMSUIOptionsWOperation {

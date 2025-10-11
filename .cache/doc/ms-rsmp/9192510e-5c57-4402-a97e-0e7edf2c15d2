@@ -1,1 +1,20 @@
-<div class="content"></div>
+<div class="content"><p>The NtmsOpreqState enumeration defines the state of an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_4676b5f2-6ecd-463c-8218-811911038e63" data-linktype="relative-path">operator request</a>.</p><dl>
+<dd>
+<div><pre> enum NtmsOpreqState
+ {
+   NTMS_OPSTATE_UNKNOWN = 0,
+   NTMS_OPSTATE_SUBMITTED = 1,
+   NTMS_OPSTATE_ACTIVE = 2,
+   NTMS_OPSTATE_INPROGRESS = 3,
+   NTMS_OPSTATE_REFUSED = 4,
+   NTMS_OPSTATE_COMPLETE = 5
+ };
+</pre></div>
+</dd></dl><p><b>NTMS_OPSTATE_UNKNOWN:  </b>The operator request is
+in an unknown state.</p><p><b>NTMS_OPSTATE_SUBMITTED:  </b>The operator request
+was submitted, but has not been read by an operator console.</p><p><b>NTMS_OPSTATE_ACTIVE:  </b>The operator request has
+been read by one or more operator consoles, and might be in progress.</p><p><b>NTMS_OPSTATE_INPROGRESS:  </b>The user
+acknowledged the operator request, and is in the process of performing the
+service.</p><p><b>NTMS_OPSTATE_REFUSED:  </b>The user rejected the
+operator service request.</p><p><b>NTMS_OPSTATE_COMPLETE:  </b>The user completed the
+operator service request.</p></div>

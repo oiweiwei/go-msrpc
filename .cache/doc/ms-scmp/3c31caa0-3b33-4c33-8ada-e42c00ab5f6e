@@ -1,1 +1,11 @@
-<div class="content"></div>
+<div class="content"><p>The VSS_PROVIDER_TYPE enumeration defines the set of valid <a href="726a3dc9-844e-44c8-9527-236c3bd52dff#gt_c714f43b-a2c0-4a47-b022-deeeabf318b3" data-linktype="relative-path">shadow copy provider</a> types.
+This enumeration is not used by the Shadow Copy Management Protocol; it MUST
+NOT be referenced and MUST be ignored on receipt.</p><dl>
+<dd>
+<div><pre> typedef [v1_enum] enum _VSS_PROVIDER_TYPE
+ {
+   VSS_PROV_UNKNOWN = 0x00000000,
+ } VSS_PROVIDER_TYPE;
+</pre></div>
+</dd></dl><p><b>VSS_PROV_UNKNOWN:  </b>The shadow copy provider
+type is unknown.</p></div>

@@ -1,1 +1,73 @@
-<div class="content"></div>
+<div class="content"><p>This call MUST trigger replication on the connection even if
+the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_a25a0f4f-2a1d-4c4a-bc65-fe8b0642c66b" data-linktype="relative-path">schedule</a> is off. </p><dl>
+<dd>
+<div><pre> unsigned long NtFrsApi_Rpc_ForceReplication(
+   [in] handle_t Handle,
+   [in, unique] GUID* ReplicaSetGuid,
+   [in, unique] GUID* CxtionGuid,
+   [in, string, unique] PWCHAR ReplicaSetName,
+   [in, string, unique] PWCHAR PartnerDnsName
+ );
+</pre></div>
+</dd></dl><p><b>Handle: </b>The binding handle that is obtained
+when the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_7b0ee975-d1b4-4a39-865d-d13e6c96aa76" data-linktype="relative-path">partner</a>
+authenticated with the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_20f21413-875c-4ebf-9913-a3282fbb779f" data-linktype="relative-path">file
+replication service (FRS)</a>.</p><p><b>ReplicaSetGuid: </b>A pointer to the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_f49694cc-c350-462d-ab8e-816f0103c6c1" data-linktype="relative-path">globally unique identifier
+(GUID)</a> of the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_6cef9d9c-c366-490a-8e4e-a350688731ca" data-linktype="relative-path">replica
+set</a>.</p><p><b>CxtionGuid: </b>A pointer to the GUID of the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_4daf1e81-3ffe-4656-8074-a9914b14a60c" data-linktype="relative-path">upstream partner</a>
+connection.</p><p><b>ReplicaSetName: </b>The replica set name.</p><p><b>PartnerDnsName: </b>The fully qualified domain
+name of the upstream partner.</p><p><b>Return Values: </b>The method MUST return 0 on
+success or a nonzero error code on failure. All nonzero values MUST be treated
+as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Validating the _NtFrsApi_Rpc ForceReplication request: </b>The
+server must validate the NtFrsApi_Rpc ForceReplication request by performing
+the following checks. </p><ul><li><p><span><span> 
+</span></span>If <b>IsForceReplicationCheckEnabled</b> is set to
+&#34;None&#34;, the server MUST fail the call with an implementation-specific
+value.</p>
+</li><li><p><span><span> 
+</span></span>If <b>IsForceReplicationCheckEnabled</b> is set to
+&#34;Disabled&#34;, the server MUST process the request without performing an
+access check.</p>
+</li><li><p><span><span> 
+</span></span>If <b>IsForceReplicationCheckEnabled</b> is set to
+&#34;Enabled&#34;, the server MUST check whether the calling client is
+authorized to perform that function. If the caller is not authorized to perform
+that function, the server MUST return ERROR_NOT_AUTHENTICATED.</p>
+<ul><li><p><span><span>  </span></span>If <b>ForceReplicationAccessRequired</b>
+is set to &#34;None&#34;, the server MUST fail the call with an
+implementation-specific value.</p>
+</li><li><p><span><span>  </span></span>If <b>ForceReplicationAccessRequired</b>
+is set to &#34;Read&#34;, the server MUST check whether the caller has read
+access. If the caller does not have read access, the server MUST return
+FRS_ERR_INSUFFICIENT_PRIV.</p>
+</li><li><p><span><span>  </span></span>If <b>ForceReplicationAccessRequired</b>
+is set to &#34;Write&#34;, the server MUST check whether the caller has write
+access. If the caller does not have write access, the server MUST return
+FRS_ERR_INSUFFICIENT_PRIV</p>
+</li><li><p><span><span> 
+</span></span>If the server is not able to verify the passed in parameters then
+it MUST ignore the failure and succeed the call.</p>
+</li></ul></li></ul><p><b>Actions Triggered: </b>The NtFrsApi_Rpc_ForceReplication
+method MUST force replication to occur outside the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_5af0376e-f670-4928-b758-ba27ade44814" data-linktype="relative-path">scheduled</a> replication
+activity.</p></div>

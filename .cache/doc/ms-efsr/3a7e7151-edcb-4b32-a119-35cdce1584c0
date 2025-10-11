@@ -1,1 +1,21 @@
-<div class="content"></div>
+<div class="content"><p>The ENCRYPTION_CERTIFICATE_HASH type is used to represent a
+single <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_7a0f4b71-23ba-434f-b781-28053ed64879" data-linktype="relative-path">certificate</a> hash.
+For more information on certificates, see <a href="https://go.microsoft.com/fwlink/?LinkId=90590" data-linktype="external">[X509]</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _ENCRYPTION_CERTIFICATE_HASH {
+   DWORD cbTotalLength;
+   RPC_SID* UserSid;
+   EFS_HASH_BLOB* Hash;
+   [string] wchar_t* lpDisplayInformation;
+ } ENCRYPTION_CERTIFICATE_HASH;
+</pre></div>
+</dd></dl><p><b>cbTotalLength:</b>  The length, in
+bytes, of the structure. </p><p><b>UserSid:</b>  The <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_83f2020d-0804-4840-a5ac-e06439d50f8d" data-linktype="relative-path">SID</a> of the user who owns
+the certificate. This is intended only as a hint. It MAY be set to zero if no
+such hint is available. The structure of an RPC SID is specified in <a href="../ms-dtyp/cca27429-5689-4a16-b2b4-9325d93e4ba2" data-linktype="relative-path">[MS-DTYP]</a>,
+section <a href="../ms-dtyp/5cb97814-a1c2-4215-b7dc-76d1f4bfad01" data-linktype="relative-path">2.4.2.3</a>.</p><p><b>Hash:</b>  A pointer to an <a href="242d857f-ac8e-4cc8-b5e4-9314a942f45e" data-linktype="relative-path">EFS_HASH_BLOB</a> (2.2.7)
+structure. </p><p><b>lpDisplayInformation:</b>  A string that
+contains the subject or principal name of the account the certification is
+assigned to. The subject name and the principal name can be the same. This is
+only intended as a hint for display purposes, and is implementation-dependent.
+This field MAY be set to NULL if no such information is available.</p></div>

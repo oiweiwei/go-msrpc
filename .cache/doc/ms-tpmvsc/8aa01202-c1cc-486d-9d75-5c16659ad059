@@ -1,1 +1,17 @@
-<div class="content"></div>
+<div class="content"><p>This method is called by the target to indicate that an
+error was encountered during the execution of a <b>TPMVSC management request</b>
+on the target. The association to a specific ITpmVirtualSmartCardManager method
+invocation is made by the causality ID in the underlying DCOM transport, as
+specified in <a href="../ms-dcom/4a893f3d-bd29-48cd-9f43-d9777a4415b0" data-linktype="relative-path">[MS-DCOM]</a>
+section <a href="../ms-dcom/a32b1703-e8dc-4940-9624-825ccc7db328" data-linktype="relative-path">3.2.4.2</a>.</p><dl>
+<dd>
+<div><pre> HRESULT ReportError(
+         [in] TPMVSCMGR_ERROR Error);
+  
+</pre></div>
+</dd></dl><p><b>Error:</b> A TPMVSCMGR_ERROR, defined in section <a href="35d6eef7-c4e1-4bc6-b325-a5e8ab0b697a" data-linktype="relative-path">2.2.1.1</a>.</p><p><b>Return Values:</b> The server MUST return 0 unless
+it has been instructed to abort the <b>TPMVSC management request</b> as
+specified in section <a href="df1515f3-e2ef-45bc-b91a-102c2fe4c1b8" data-linktype="relative-path">3.2.6</a>.</p><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p>The server SHOULD report the error code to the higher-layer
+protocol or application that called the associated ITpmVirtualSmartCardManager
+method.</p></div>

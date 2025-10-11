@@ -1,1 +1,90 @@
-<div class="content"></div>
+<div class="content"><p>The NTMS_IEPORTINFORMATION structure defines properties
+specific to an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_e2c6dee3-9f37-4fe2-b970-ae3c00a8ed70" data-linktype="relative-path">IE port</a>
+object.</p><dl>
+<dd>
+<div><pre> typedef struct _NTMS_IEPORTINFORMATION {
+   DWORD Number;
+   DWORD Content;
+   DWORD Position;
+   unsigned short MaxExtendSecs;
+   NTMS_GUID Library;
+ } NTMS_IEPORTINFORMATION;
+</pre></div>
+</dd></dl><p><b>Number:</b>   The library <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_ac027425-6043-4ad3-be27-56a381b75d38" data-linktype="relative-path">port</a> number. </p><p><b>Content:</b>  The full/empty state of
+the NTMS_IEPORT object. This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_PORTCONTENT_UNKNOWN</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The content of the port is not known.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_PORTCONTENT_FULL</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The port is full.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_PORTCONTENT_EMPTY</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The port is empty.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Position:</b>  The position of the
+NTMS_IEPORT object. This MUST be one of the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>NTMS_PORTPOSITION_UNKNOWN</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The port position is unknown.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_PORTPOSITION_EXTENDED</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>The port is extended.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>NTMS_PORTPOSITION_RETRACTED</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>The port is retracted.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>MaxExtendSecs:</b>  The maximum number
+of seconds the port is allowed to remain open before an <a href="8d988f06-72be-47cf-9e09-9060aa8ed897#gt_4676b5f2-6ecd-463c-8218-811911038e63" data-linktype="relative-path">operator request</a> is issued.
+Valid values are between zero and 65,535 seconds.</p><p><b>Library:</b>  The library that contains
+the port.</p></div>

@@ -1,1 +1,17 @@
-<div class="content"></div>
+<div class="content"><p>The method EfsRpcWriteFileRaw is used to create an encrypted
+object on the server from the marshaled data provided by the client.</p><dl>
+<dd>
+<div><pre> long EfsRpcWriteFileRaw(
+   [in] PEXIMPORT_CONTEXT_HANDLE hContext,
+   [in] EFS_EXIM_PIPE* EfsInPipe
+ );
+</pre></div>
+</dd></dl><p><b>hContext: </b>A context handle returned by the <a href="ccc4fb75-1c86-41d7-bbc4-b278ec13bfb8" data-linktype="relative-path">EfsRpcOpenFileRaw</a> method,
+which MUST have been called with the CREATE_FOR_IMPORT flag.</p><p><b>EfsInPipe: </b>A pipe structure. The pull
+procedure of this pipe is expected to provide the marshaled data. The structure
+of this marshaled data is specified in section <a href="e67520ea-0cb6-4349-bbe5-427a644d9492" data-linktype="relative-path">2.2.3</a>.</p><p><b>Return Values: </b>The server MUST return 0 if it
+successfully processes the message received from the client.</p><p>If called with a context handle that has not been obtained
+by calling EfsRpcOpenFileRaw with the CREATE_FOR_IMPORT flag set, the server
+MUST abort the operation. In this case, it SHOULD throw an RPC exception.</p><p>The server MUST read data from the pipe and write it to the
+object indicated by the context handle. If an error is encountered during the
+write, the server SHOULD throw an RPC exception.</p></div>

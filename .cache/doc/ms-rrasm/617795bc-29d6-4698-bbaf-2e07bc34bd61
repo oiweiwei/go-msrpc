@@ -1,1 +1,42 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RASI_CONNECTION_1</b> structure contains detailed
+statistical information regarding a specific connection, such as error counts
+and bytes received.</p><dl>
+<dd>
+<div><pre> typedef struct RASI_CONNECTION_1 {
+   DWORD dwConnection;
+   DWORD dwInterface;
+   PPP_INFO PppInfo;
+   DWORD dwBytesXmited;
+   DWORD dwBytesRcved;
+   DWORD dwFramesXmited;
+   DWORD dwFramesRcved;
+   DWORD dwCrcErr;
+   DWORD dwTimeoutErr;
+   DWORD dwAlignmentErr;
+   DWORD dwHardwareOverrunErr;
+   DWORD dwFramingErr;
+   DWORD dwBufferOverrunErr;
+   DWORD dwCompressionRatioIn;
+   DWORD dwCompressionRatioOut;
+ } RASI_CONNECTION_1,
+  *PRASI_CONNECTION_1;
+</pre></div>
+</dd></dl><p><b>dwConnection: </b>See <b>dwConnection</b> in <a href="e979f770-cb84-426a-9b43-1ce5eec2d169" data-linktype="relative-path"><b>RASI_CONNECTION_0 (section 2.2.1.2.77)</b></a>.
+</p><p><b>dwInterface: </b>See <b>dwInterface</b> in <b>RASI_CONNECTION_0</b>.</p><p><b>PppInfo: </b>A <a href="09e2ecad-df34-4605-9ef3-98445bb434d3" data-linktype="relative-path"><b>PPP_INFO (section 2.2.1.2.72)</b></a>
+structure giving the connections details. </p><p><b>dwBytesXmited: </b>Specifies the bytes transmitted
+on the current connection.</p><p><b>dwBytesRcved: </b>Specifies the bytes received on the
+current connection.</p><p><b>dwFramesXmited: </b>Specifies the frames transmitted on
+the current connection.</p><p><b>dwFramesRcved: </b>Specifies the frames received on the
+current connection.</p><p><b>dwCrcErr: </b>Specifies the CRC errors on the
+current connection.</p><p><b>dwTimeoutErr: </b>Specifies the time-out errors on
+the current connection.</p><p><b>dwAlignmentErr: </b>Specifies the alignment errors
+on the current connection.</p><p><b>dwHardwareOverrunErr: </b>Specifies the number of
+hardware-overrun errors on the current connection.</p><p><b>dwFramingErr: </b>Specifies the number of framing
+errors for the current connection.</p><p><b>dwBufferOverrunErr: </b>Specifies the number of
+buffer-overrun errors.</p><p><b>dwCompressionRatioIn: </b>Specifies a percentage
+that indicates the degree to which data received on this connection is
+compressed. The ratio is the size of the compressed data divided by the size of
+the same data in an uncompressed state.</p><p><b>dwCompressionRatioOut: </b>Specifies a percentage
+that indicates the degree to which data transmitted on this connection is
+compressed. The ratio is the size of the compressed data divided by the size of
+the same data in an uncompressed state.</p></div>

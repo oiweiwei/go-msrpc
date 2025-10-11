@@ -1,1 +1,47 @@
-<div class="content"></div>
+<div class="content"><p>The DispatchNotification method sends a notification to all
+registered sinks.</p><dl>
+<dd>
+<div><pre> HRESULT DispatchNotification(
+   [in] DWORD dwType,
+   [in] DWORD dwOperation,
+   [in] LPNTMS_GUID lpIdentifier
+ );
+</pre></div>
+</dd></dl><p><b>dwType: </b>A value from the <a href="5b190198-a0cb-4e20-90a3-234009357051" data-linktype="relative-path">NtmsObjectsTypes (section 2.2.1.6)</a>
+enumeration specifying the type of object to which the notification refers. </p><p><b>dwOperation: </b>A value from the <a href="9bd3f090-afd1-470c-ac27-258352048a76" data-linktype="relative-path">NtmsNotificationOperations (section 2.2.1.8)</a>
+enumeration specifying the type of operation to which the notification refers.</p><p><b>lpIdentifier: </b> A pointer to the identifier of
+the event for which notification is being sent.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x80070005</p>
+  <p>ERROR_ACCESS_DENIED</p>
+  </td>
+  <td>
+  <p>Access to an object was denied.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p>Upon receiving this message, the server MUST verify that <i>dwType</i>
+is a valid notification type. If it is not, the server MUST return S_OK
+(0x00000000) and take no further action.</p><p>If parameter validation succeeds, the server MUST verify
+that the user has the required access rights, and send an input notification of
+type <i>dwType</i> to all registered sinks. If the client does not have the
+required access rights, the server MUST return ERROR_ACCESS_DENIED (0x80070005)
+and no further action is taken.</p><p>The server MUST return value returned by client sink.</p></div>

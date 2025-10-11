@@ -1,1 +1,14 @@
-<div class="content"></div>
+<div class="content"><p>The <b>IN6_ADDR</b> structure represents an IPv6 address.</p><dl>
+<dd>
+<div><pre> typedef struct in6_addr {
+   union {
+     UCHAR Byte[16];
+     USHORT Word[8];
+   } u;
+ } IN6_ADDR,
+  *PIN6_ADDR,
+  *LPIN6_ADDR;
+</pre></div>
+</dd></dl><p><b>Byte: </b>An IPv6 address represented as an array
+of 16 UCHAR values.</p><p><b>Word: </b>An IPv6 address represented as an array
+of USHORT values.</p></div>

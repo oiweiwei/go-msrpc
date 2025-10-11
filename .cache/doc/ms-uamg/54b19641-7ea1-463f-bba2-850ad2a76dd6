@@ -1,1 +1,17 @@
-<div class="content"></div>
+<div class="content"><p>The IUpdateSession2::UserLocale (opnum 15) method sets the
+language for update results.</p><dl>
+<dd>
+<div><pre> HRESULT UserLocale(
+   [in] LCID lcid
+ );
+</pre></div>
+</dd></dl><p><b>lcid: </b>An <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_c7f99c66-592f-4053-b62a-878c189653b6" data-linktype="relative-path">LCID</a></span> that contains
+the language identifier for results of operations in this session.</p><p><b>Return Values: </b>The method MUST return
+information in an <b>HRESULT</b> data structure. The severity bit in the
+structure identifies the following conditions:</p><ul><li><p><span><span>  </span></span>If
+the severity bit is set to 0, the method completed successfully.</p>
+</li><li><p><span><span>  </span></span>If
+the severity bit is set to 1, the method failed and encountered a fatal error.</p>
+</li></ul><p><b>Exceptions Thrown:</b> No exceptions are thrown beyond
+those thrown by the underlying RPC protocol <span><a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a></span>.</p><p>This method SHOULD set the <b>UserLocale</b> ADM element to
+the value provided.</p></div>

@@ -1,0 +1,262 @@
+<div class="content"><p>The Receive_v1 method is received by the server in an
+RPC_REQUEST packet. In response, the server retrieves the <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>
+at the head of the <i>referenced queue</i>&#39;s <b>MessagePositionList.Head</b>
+and removes it.</p><dl>
+<dd>
+<div><pre> HRESULT Receive_v1(
+   [in, optional] VARIANT* Transaction,
+   [in, optional] VARIANT* WantDestinationQueue,
+   [in, optional] VARIANT* WantBody,
+   [in, optional] VARIANT* ReceiveTimeout,
+   [out, retval] IMSMQMessage** ppmsg
+ );
+</pre></div>
+</dd></dl><p><b>Transaction: </b> A pointer to a VARIANT that MUST
+contain either:</p><ul><li><p><span><span> 
+</span></span>A VT_DISPATCH or a VT_DISPATCH | VT_BYREF that points to an <a href="b670ebdc-cd6e-4098-a51f-5d4274d8dfdd" data-linktype="relative-path">MSMQTransaction</a> object.</p>
+</li><li><p><span><span> 
+</span></span>A VT_I4 that corresponds to one of the <a href="3ff1f343-d6e9-4bab-848f-6f2b39209762" data-linktype="relative-path">MQTRANSACTION (section 2.2.2.1)</a>
+enumeration values.</p>
+<p>If this parameter is not specified by the client,
+the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST use the
+default value MQ_MTS_TRANSACTION (0x00000001) in place of the unspecified
+value.</p>
+</li></ul><p><b>WantDestinationQueue: </b> A pointer to a VARIANT
+(VT_BOOL).</p><dl>
+<dd>
+<p>If this parameter is not specified by the client,
+the server MUST use the default value VARIANT_FALSE (0x0000) in place of the
+unspecified value.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>VARIANT_TRUE</p>
+  <p>0xFFFF</p>
+  </td>
+  <td>
+  <p>The server MUST return an <a href="2aa64ba4-66ca-440c-bda1-df31bcf00394" data-linktype="relative-path">MSMQMessage</a> object that
+  has the DestinationQueueInfo property set.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VARIANT_FALSE</p>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>Default. The server MUST return an MSMQMessage object
+  that does not have the DestinationQueueInfo property set. </p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>WantBody: </b> A pointer to a VARIANT (VT_BOOL). </p><dl>
+<dd>
+<p>If this parameter is not specified by the client,
+the server MUST use the default value VARIANT_TRUE (0xFFFF) in place of the
+unspecified value.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>VARIANT_TRUE</p>
+  <p>0xFFFF</p>
+  </td>
+  <td>
+  <p>Default. The server MUST return an MSMQMessage object
+  that has the Body property set. </p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>VARIANT_FALSE</p>
+  <p>0x0000</p>
+  </td>
+  <td>
+  <p>The server MUST return an MSMQMessage object that does
+  not have the Body property set.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ReceiveTimeout: </b> A pointer to a VARIANT
+containing a long value (VT_I4) that specifies the time, in milliseconds, that
+the server MUST NOT exceed while waiting for a new <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a> to arrive.</p><dl>
+<dd>
+<p>If this parameter is not specified by the client,
+the server MUST use the default value INFINITE (0xFFFFFFFF).</p>
+</dd></dl><p><b>ppmsg: </b> A pointer to an <a href="7e7b8992-89c1-40b9-996f-93d68bf434b3" data-linktype="relative-path">IMSMQMessage</a> interface
+pointer that MUST be set by the server with the received message.</p><p><b>Return Values: </b> The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure. </p><p>When processing this call, the server MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>If the <i>IsInitialized</i> instance variable equals False:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error OLE_E_BLANK (0x80040007), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>IsClosed</i> instance variable equals True:</p>
+<ul><li><p><span><span>  </span></span>Return
+an error MQ_ERROR_INVALID_HANDLE (0xC00E0007), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If <b>refQueue.AccessType</b> is not equal to <b>ReceiveAccess</b>
+or <b>ReceiveAdminAccess:</b></p>
+<ul><li><p><span><span>  </span></span>Return
+an error MQ_ERROR_ACCESS_DENIED (0xC00E0025), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>ppmsg</i> output parameter is NULL:</p>
+<ul><li><p><span><span>  </span></span>Return
+E_INVALIDARG (0x80070057), and take no further action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>Transaction</i> input parameter is not NULL:</p>
+<ul><li><p><span><span>  </span></span>If
+the <i>Transaction</i> input parameter is a VT_DISPATCH or a VT_DISPATCH |
+VT_BYREF that points to an MSMQTransaction object:</p>
+<ul><li><p><span><span> 
+</span></span>Obtain the MSMQTransaction instance that corresponds to the <i>Transaction</i>
+parameter by invoking the <b>IDispatch::QueryInterface</b> method (see section <a href="6b1800d7-4e98-48be-997e-57f09ce52d41" data-linktype="relative-path">3.1</a>) on the <i>Transaction</i>
+parameter with the interface identifier of <a href="1097cf5d-f5ed-4eaf-878e-9e4d19ae40e0" data-linktype="relative-path">IMSMQTransaction3</a>.</p>
+</li><li><p><span><span> 
+</span></span>Define <i>transaction identifier</i> as
+MSMQTransaction.Transaction.TransactionIdentifier.</p>
+</li></ul></li><li><p><span><span>  </span></span>Else,
+if the <i>Transaction</i> input parameter is a VT_I4:</p>
+<ul><li><p><span><span> 
+</span></span>Define and retrieve <i>transaction identifier</i> as described in
+section <a href="23ba234d-be50-4558-92bf-ec867674de81" data-linktype="relative-path">2.2.1</a>, using
+the enum numeric value represented by the <i>Transaction</i> input parameter.</p>
+</li></ul></li><li><p><span><span>  </span></span>Else:</p>
+<ul><li><p><span><span> 
+</span></span>Return an error, and take no further action.</p>
+</li></ul></li><li><p><span><span>  </span></span>Identify
+the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_61e1de21-a78d-4d20-b184-eda380386871" data-linktype="relative-path">transaction</a>, as
+defined in section <a href="975b189d-bed2-445b-9669-e1a958dc3dde" data-linktype="relative-path">3.1.1</a>,
+from the <b>TransactionCollection</b> of the <a href="../ms-mqdmpr/9adb2d90-c63b-43c7-9b9c-804ab96a57d5" data-linktype="relative-path">QueueManager</a>,
+where the value of the Transaction.Identifier property equals the value of the
+transaction identifier.</p>
+</li><li><p><span><span>  </span></span>If
+a transaction cannot be located in the QueueManager.<b>TransactionCollection:</b></p>
+<ul><li><p><span><span> 
+</span></span>Create a new <a href="../ms-mqdmpr/977818a4-098a-44f4-a6e2-97b8e8b1bb6b" data-linktype="relative-path">Transaction</a>
+object, and set the Transaction object in the QueueManager.<b>TransactionCollection</b>.
+Add the created Transaction object to the QueueManager.<b>TransactionCollection</b>.</p>
+</li></ul></li></ul></li><li><p><span><span> 
+</span></span>Define <i>suitable message</i> as the first Message from the head
+of the <b>MessagePositionList</b> of the <i>referenced queue</i> for which the <a href="../ms-mqdmpr/be575c24-2a25-42cf-a4d7-61780c10230d" data-linktype="relative-path">MessagePosition</a>.<b>State</b>
+attribute does not equal <b>Locked</b>.</p>
+</li><li><p><span><span> 
+</span></span>Attempt to retrieve the <i>suitable message</i> by raising the
+Dequeue Message event with the following arguments.</p>
+<ul><li><p><span><span>  </span></span><i>iQueueDesc</i>:
+This MUST be set to the <a href="../ms-mqdmpr/e2005510-8785-414e-9a71-fa313fa6e119" data-linktype="relative-path">OpenQueueDescriptor</a>
+at <i>Cursor.OpenQueueDescriptorReference</i>.</p>
+</li><li><p><span><span>  </span></span><i>iTimeout</i>:
+The amount of time to wait, in seconds</p>
+</li><li><p><span><span>  </span></span><i>iCursor</i>:
+This MUST be set to a reference to the <i>Cursor</i> instance variable.</p>
+</li><li><p><span><span>  </span></span><i>iTransaction</i>:
+If the <i>Transaction</i> input parameter is not NULL, this MUST be set to a
+reference to the newly created Transaction object that provides the unit-of-work
+for the dequeue operation.</p>
+<p>Based on the rStatus, the
+following actions MUST be taken:</p>
+</li><li><p><span><span>  </span></span>If
+the rStatus is not MQ_OK and the <i>ReceiveTimeout</i> input parameter is 0:</p>
+<ul><li><p><span><span> 
+</span></span>Set the <i>ppmsg</i> output parameter to NULL.</p>
+</li><li><p><span><span> 
+</span></span>Return MQ_ERROR_MESSAGE_NOT_FOUND (0xc00e0008), and take no
+further action.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the rStatus is not MQ_OK and the <i>ReceiveTimeout</i> input parameter is
+INFINITE (0xFFFFFFFF):</p>
+<ul><li><p><span><span> 
+</span></span>Block this call until a <i>suitable message</i> is available.</p>
+</li><li><p><span><span> 
+</span></span>Retrieve the <i>suitable message</i>, and instantiate an
+MSMQMessage instance and initialize it with the <i>suitable message</i>,
+observing the requirements set forth by the WantBody and WantDestinationQueue
+input parameters. For details of initializing the MSMQMessage object, refer to
+section <a href="9f3d4014-b019-49ea-a37e-7725b7fb20cf" data-linktype="relative-path">3.17.3</a>.</p>
+</li><li><p><span><span> 
+</span></span>Set the <i>ppmsg</i> output parameter to the newly instantiated
+MSMQMessage instance.</p>
+</li></ul></li><li><p><span><span>  </span></span>If
+the <i>ReceiveTimeout</i> input parameter is neither 0 nor INFINITE
+(0xFFFFFFFF):</p>
+<ul><li><p><span><span> 
+</span></span>Block the call until either of the following events occurs:</p>
+<ul><li><p><span><span> 
+</span></span>The time-out specified by the <i>ReceiveTimeout</i> input
+parameter expires:</p>
+<ul><li><p><span><span> 
+</span></span>Set the <i>ppmsg</i> output parameter to NULL. </p>
+</li><li><p><span><span> 
+</span></span>Return MQ_ERROR_IO_TIMEOUT (0xc00e001b), and take no further
+action.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>A <i>suitable message</i> becomes available:</p>
+<ul><li><p><span><span> 
+</span></span>Retrieve the <i>suitable message</i>, and instantiate an
+MSMQMessage instance and initialize it with the <i>suitable message</i>,
+observing the requirements set forth by the <i>WantBody</i> and <i>WantDestinationQueue</i>
+input parameters. For details of initializing the MSMQMessage object, refer to
+section 3.17.3.</p>
+</li><li><p><span><span> 
+</span></span>Set the <i>ppmsg</i> output parameter to the newly instantiated
+MSMQMessage instance.</p>
+</li></ul></li></ul></li></ul></li></ul></li><li><p><span><span> 
+</span></span>Else, if one or more <i>suitable messages</i> are available:</p>
+<ul><li><p><span><span>  </span></span>Retrieve
+the <i>suitable message</i>, and instantiate an MSMQMessage instance and
+initialize it with the <i>suitable message</i>, observing the requirements set
+forth by the <i>WantBody</i> and <i>WantDestinationQueue</i> input parameters.
+For details of initializing the MSMQMessage object, refer to section 3.17.3.</p>
+</li><li><p><span><span>  </span></span>Set
+the <i>ppmsg</i> output parameter to the newly instantiated MSMQMessage
+instance.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>If the <i>Transaction</i> input parameter is equal to
+MQ_MTS_TRANSACTION (0x00000001), MQ_XA_TRANSACTION (0x00000002), or a pointer
+to an MSMQTransaction instance:</p>
+<ul><li><p><span><span>  </span></span>Set
+the MessagePosition.<b>State</b> attribute of the <i>suitable message</i> to <b>Locked</b>.</p>
+</li><li><p><span><span>  </span></span>Create
+a new <a href="../ms-mqdmpr/580c9ef8-f041-40f7-9328-5f070b7f7e71" data-linktype="relative-path">TransactionalOperation</a>,
+and set:</p>
+<ul><li><p><span><span> 
+</span></span>The <b>MessagePositionReference</b> property with the reference
+to the MessagePosition of the <i>suitable message</i> in the <a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">Queue</a>.<b>MessagePositionList</b>.</p>
+</li><li><p><span><span> 
+</span></span>The <b>Operation Type</b> property to the <b>Operation Type</b>.<b>Enqueue</b>
+enumeration value.</p>
+</li></ul></li><li><p><span><span>  </span></span>Add
+the newly created TransactionalOperation to the <b>TransactionalOperationCollection</b>
+of the Transaction previously identified.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Else:</p>
+<ul><li><p><span><span>  </span></span>If
+the <b>QueueType</b> is not set to <b>System</b> for the <i>referenced queue</i>
+and its <b>Journaling</b> property is True:</p>
+<ul><li><p><span><span> 
+</span></span>Copy the <i>suitable message</i> to the <b>MessagePositionList</b>
+of the queue referenced by the <b>JournalQueueReference</b> property of the <i>referenced
+queue</i>.</p>
+</li></ul></li><li><p><span><span>  </span></span>Remove
+the <i>suitable message</i> from the <b>MessagePositionList</b> of the <i>referenced
+queue</i>.</p>
+</li></ul></li><li><p><span><span> 
+</span></span>Return S_OK (0x00000000), and take no further action.</p>
+</li></ul></div>

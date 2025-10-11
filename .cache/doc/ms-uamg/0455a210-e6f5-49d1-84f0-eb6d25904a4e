@@ -1,1 +1,9 @@
-<div class="content"></div>
+<div class="content"><p>The Update Agent Management Protocol defines a set of types
+and interfaces that allow clients to manage an <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_362092cf-7fb5-43eb-92e1-c3e4affdd92b" data-linktype="relative-path">update agent</a></span>. The
+protocol implements two primary classes of functionality: (1) managing the set
+of <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_1692cfd4-4b1d-4566-9820-8171465bbc4b" data-linktype="relative-path">update
+services</a></span> registered with an update agent and (2) performing an
+update search with the update agent and returning the results.</p><p>The client and server can be on the same machine, or they
+can be on different machines connected by a network. A client can use the
+functionality provided by this protocol to perform an update search on the
+server machine against an update service of the client&#39;s choice.</p></div>

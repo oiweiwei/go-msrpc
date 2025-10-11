@@ -1,1 +1,16 @@
-<div class="content"></div>
+<div class="content"><p>The EfsRpcFlushEfsCache method causes <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_3bd30c20-9517-4030-a48c-380362e209a1" data-linktype="relative-path">EFS</a> to flush the logical
+cache that holds all the sensitive information required to perform EFSRPC
+operations for the calling user.</p><dl>
+<dd>
+<div><pre> DWORD EfsRpcFlushEfsCache(
+   [in] handle_t binding_h
+ );
+</pre></div>
+</dd></dl><p><b>binding_h: </b>This is an <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a> <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_1cf35308-abab-4123-9cbd-99c42dc9a6ff" data-linktype="relative-path">binding</a> handle parameter,
+as specified in <a href="https://go.microsoft.com/fwlink/?LinkId=89824" data-linktype="external">[C706]</a>
+and <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>
+section <a href="../ms-rpce/a01f5886-c485-4bcf-bb23-e0d755510ab7" data-linktype="relative-path">2</a>.</p><p><b>Return Values: </b>The server MUST return 0 if it
+successfully processes the message received from the client. The server MUST
+return a nonzero value if processing fails.</p><p>The server MUST completely discard the logical cache being
+maintained on behalf of the calling user. The logical cache is as specified in
+section <a href="2425f825-aa14-4895-a159-4122927dec7c" data-linktype="relative-path">3.1.1</a>.</p></div>

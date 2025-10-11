@@ -1,1 +1,19 @@
-<div class="content"></div>
+<div class="content"><p>The InstallationImpact enumeration defines values that
+describe the level of impact resulting from installing or uninstalling an
+update.</p><dl>
+<dd>
+<div><pre> typedef  enum tagInstallationImpact
+ {
+   iiNormal = 0,
+   iiMinor = 1,
+   iiRequiresExclusiveHandling = 2,
+ } InstallationImpact;
+</pre></div>
+</dd></dl><p><b>iiNormal:  </b>Installing or uninstalling an
+update results in a level of impact on the target computer that is typical of
+most updates.</p><p><b>iiMinor:  </b>Installing or uninstalling an update
+results in an insignificant impact on the target computer. For example, this
+can apply to an update to the signatures of an antivirus application.</p><p><b>iiRequiresExclusiveHandling:  </b>Installing or
+uninstalling an update has such a high impact on the target computer that the
+update is required to be installed or uninstalled exclusively. This value can
+apply to a major update such as an operating system service pack.</p></div>

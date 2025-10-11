@@ -1,1 +1,24 @@
-<div class="content"></div>
+<div class="content"><p>The <b>PPP_IPCP_INFO2</b> structure contains the result of a
+<a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_d158ba19-bb5e-458e-bcda-38aed4eff053" data-linktype="relative-path">PPP</a> control protocol
+negotiation for the IP.</p><dl>
+<dd>
+<div><pre> typedef struct _PPP_IPCP_INFO2 {
+   DWORD dwError;
+   WCHAR wszAddress[16];
+   WCHAR wszRemoteAddress[16];
+   DWORD dwOptions;
+   DWORD dwRemoteOptons;
+ } PPP_IPCP_INFO2;
+</pre></div>
+</dd></dl><p><b>dwError: </b>See <b>dwError</b> in <a href="a61b226f-bc4c-4fdd-9683-6b7e80e58737" data-linktype="relative-path"><b>PPP_IPCP_INFO (section 2.2.1.2.65)</b></a>.
+</p><p><b>wszAddress: </b>See <b>wszAddress</b> in <b>PPP_IPCP_INFO</b>.
+</p><p><b>wszRemoteAddress: </b>See <b>wszRemoteAddress</b>
+in <b>PPP_IPCP_INFO</b>.</p><p><b>dwOptions: </b>Specifies IP Configuration
+Parameters (IPCP) options for the local computer.</p><dl>
+<dd>
+<p>When set to PPP_IPCP_VJ (0x00000001), indicates that
+IP datagrams sent by the local computer are compressed using Van Jacobson
+compression <a href="https://go.microsoft.com/fwlink/?linkid=852336" data-linktype="external">[RFC1144]</a>.
+Otherwise, set to 0x00000000.</p>
+</dd></dl><p><b>dwRemoteOptons: </b>Uses the same values as <b>dwOptions</b>
+but applies to datagrams received by the local computer. </p></div>

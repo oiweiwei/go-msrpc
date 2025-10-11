@@ -1,5 +1,5 @@
-<div class="content"><p>The KeywordsAny (Get) method retrieves the KeywordsAny
-property, as specified in the property table in section <a href="ebd49d76-5e50-4dd3-869c-8bba6eba42f7" data-linktype="relative-path">3.2.4.11</a>.</p><dl>
+<div class="content"><p>The KeywordsAny (Get) method retrieves the KeywordsAny property,
+as specified in the property table in section <a href="ebd49d76-5e50-4dd3-869c-8bba6eba42f7" data-linktype="relative-path">3.2.4.11</a>.</p><dl>
 <dd>
 <div><pre> [propget] HRESULT KeywordsAny(
    [out, retval] IValueMap** ppKeywords

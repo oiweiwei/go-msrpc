@@ -1,0 +1,58 @@
+<div class="content"><p>The MQPRIVLEVEL enumeration defines values that indicate
+whether an <a href="7d8d0dab-699c-4121-9ee4-226a2dbced2e" data-linktype="relative-path">ApplicationQueue</a>
+accepts only encrypted <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">messages</a>.
+Encrypted messages are <a href="../ms-mqdmpr/9170afda-9524-4abd-91fe-8c53e51e0def" data-linktype="relative-path">Message</a>s
+for which the <b>PrivacyLevel</b> value indicates that the message was
+encrypted during the message transfer process.</p><dl>
+<dd>
+<div><pre> typedef enum 
+ {
+   MQ_PRIV_LEVEL_NONE = 0,
+   MQ_PRIV_LEVEL_OPTIONAL = 1,
+   MQ_PRIV_LEVEL_BODY = 2
+ } MQPRIVLEVEL;
+</pre></div>
+</dd></dl><p><b>MQ_PRIV_LEVEL_NONE:  </b>The ApplicationQueue only
+accepts Messages for which the <b>PrivacyLevel</b> value, as defined by the <a href="4c872b93-66d0-4cd4-9ed2-666a66457643" data-linktype="relative-path">MQMSGPRIVLEVEL</a> enumeration
+section 2.2.2.15, indicates that the message was NOT encrypted during the
+message transfer process.</p><p><b>MQ_PRIV_LEVEL_OPTIONAL:  </b>The ApplicationQueue
+does not restrict Messages according to their <b>PrivacyLevel</b> value.</p><p><b>MQ_PRIV_LEVEL_BODY:  </b>The ApplicationQueue
+accepts only Messages for which the <b>PrivacyLevel</b> value (as defined by
+the MQMSGPRIVLEVEL enumeration) indicates that the message was encrypted during
+the message transfer process.</p><p>Used by:</p><ul><li><p><span><span> 
+</span></span>get <a href="80ca6dad-f190-4f8e-ad89-2a3127cd2a3f" data-linktype="relative-path">IMSMQQueueInfo::PrivLevel</a></p>
+</li><li><p><span><span> 
+</span></span>put <a href="43e5d777-dd87-4bfe-a272-fc8a3f4fa412" data-linktype="relative-path">IMSMQQueueInfo::PrivLevel</a></p>
+</li></ul><p>The MQPRIVLEVEL enumeration values correspond to the
+enumeration values for <a href="../ms-mqdmpr/2e026a09-999e-478f-8c4c-5344b661e579" data-linktype="relative-path">Queue</a>.<b>PrivacyLevel</b>,
+as shown in the following table:</p><table><thead>
+  <tr>
+   <th>
+   <p>MQPRIVLEVEL</p>
+   </th>
+   <th>
+   <p>Queue.PrivacyLevel</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MQ_PRIV_LEVEL_NONE</p>
+  </td>
+  <td>
+  <p>None</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_PRIV_LEVEL_OPTIONAL</p>
+  </td>
+  <td>
+  <p>Optional</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MQ_PRIV_LEVEL_BODY</p>
+  </td>
+  <td>
+  <p>Body</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

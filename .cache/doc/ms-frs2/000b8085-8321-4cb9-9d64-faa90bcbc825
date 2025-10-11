@@ -1,1 +1,62 @@
-<div class="content"></div>
+<div class="content"><p>The CheckConnectivity method determines whether a server can
+establish an outbound connection (see the <a href="2c51e5f4-bef1-4e29-9292-b63f1d5ccff6" data-linktype="relative-path">EstablishConnection</a> method
+specified in section 3.2.4.1.2).</p><dl>
+<dd>
+<div><pre> DWORD CheckConnectivity(
+   [in] FRS_REPLICA_SET_ID replicaSetId,
+   [in] FRS_CONNECTION_ID connectionId
+ );
+</pre></div>
+</dd></dl><p><b>replicaSetId: </b>The <a href="../ms-dtyp/4926e530-816e-41c2-b251-ec5c7aca018a" data-linktype="relative-path">GUID</a> of
+the outbound connection’s <a href="81169399-de63-4f92-8da0-91bd31e3c24c#gt_fcc139c9-86ff-4414-bc66-5f63e4465b6d" data-linktype="relative-path">replication
+group</a> (see the <b>objectGUID</b> attribute specified in section <a href="1454c5ea-ccaa-44d0-a885-9130465ea4bd" data-linktype="relative-path">2.3.5</a>).</p><p><b>connectionId: </b>The GUID of the outbound
+connection (see the <b>objectGUID</b> attribute specified in section <a href="afd3c10a-9783-4df7-ae2b-13e56c37ab03" data-linktype="relative-path">2.3.11</a>) in the specified
+replication group.</p><p><b>Return Values: </b>The method MUST return 0 on
+success or a nonzero error code on failure. All nonzero values MUST be treated
+as equivalent failures unless otherwise specified.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>ERROR_SUCCESS</p>
+  </td>
+  <td>
+  <p>The method completed successfully. The server is ready
+  to establish the specified outbound connection.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Exceptions Thrown:</b> No exceptions are thrown
+beyond those thrown by the underlying RPC protocol <a href="../ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15" data-linktype="relative-path">[MS-RPCE]</a>.</p><p><b>Validating the connectivity check request:</b> The server
+validates the connectivity check request by performing the following checks.</p><ul><li><p><span><span> 
+</span></span>If the server is not a member of the specified replication group
+it MUST fail the call with an implementation-defined failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the specified connection does not exist in the specified replication
+group&#39;s configuration, then the server MUST fail the call with an
+implementation-defined failure value.</p>
+</li><li><p><span><span> 
+</span></span>If the specified connection is disabled (see the <b>msDFSR-Enabled</b>
+attribute specified in section 2.3.11), then the server MUST fail the call with
+an implementation-defined value.</p>
+</li><li><p><span><span> 
+</span></span>If the server is not the specified connection’s outbound partner,
+then the server MUST fail the call with an implementation-defined failure
+value.</p>
+</li></ul><p><b>Actions Triggered:</b> Upon successfully verifying the
+connection check request, the server MUST determine whether it is ready to
+process a call to the EstablishConnection method. The details of this test are
+implementation-specific. If the server is ready to process a call to the
+EstablishConnection method for the specified connection, then the server MUST
+complete the call successfully by returning ERROR_SUCCESS. If the server is not
+ready to process a call to the EstablishConnection method for the specified
+connection, then the server MUST fail the call with an implementation-defined
+failure value.</p></div>

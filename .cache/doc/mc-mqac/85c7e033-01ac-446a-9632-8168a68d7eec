@@ -1,0 +1,17 @@
+<div class="content"><p>The LookupId method is received by the server in an
+RPC_REQUEST packet. In response, the server MUST return the represented
+Message.LookupIdentifier.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT LookupId(
+   [out, retval] VARIANT* pvarLookupId
+ );
+</pre></div>
+</dd></dl><p><b>pvarLookupId: </b>A pointer to a <a href="../ms-oaut/a6a540af-38ac-48be-bd40-92e2c01e9aa6" data-linktype="relative-path">VARIANT</a>
+that upon successful completion will contain a <a href="../ms-dtyp/692a42a9-06ce-4394-b9bc-5d2a50440168" data-linktype="relative-path">BSTR</a>
+that contains the 64-bit lookup identifier for the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_85c78cf0-1fb6-4e5d-85f5-a2e9f58a6b9e" data-linktype="relative-path">message</a>.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success or an implementation-specific error <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+on failure.</p><p>When processing this call, the <a href="3b7be3f7-651c-4f9c-930b-a9a7c4355ad8#gt_434b0234-e970-4e8c-bdfa-e16a30d96703" data-linktype="relative-path">server</a> MUST follow these
+guidelines:</p><ul><li><p><span><span> 
+</span></span>Set the <i>pvarLookupId</i> output parameter to the value of the
+represented Message.LookupIdentifier.</p>
+</li></ul></div>

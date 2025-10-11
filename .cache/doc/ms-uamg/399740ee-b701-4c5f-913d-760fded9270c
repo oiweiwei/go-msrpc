@@ -1,1 +1,21 @@
-<div class="content"></div>
+<div class="content"><p>The AddServiceFlag enumeration defines values that control
+how an <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_1692cfd4-4b1d-4566-9820-8171465bbc4b" data-linktype="relative-path">update service</a></span> is
+registered.</p><dl>
+<dd>
+<div><pre> typedef enum tagAddServiceFlag
+ {
+   asfAllowPendingRegistration = 0x00000001,
+   asfAllowOnlineRegistration = 0x00000002,
+   asfRegisterServiceWithAU = 0x00000004,
+ } AddServiceFlag;
+</pre></div>
+</dd></dl><p><b>asfAllowPendingRegistration:  </b>Allows the <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_362092cf-7fb5-43eb-92e1-c3e4affdd92b" data-linktype="relative-path">update
+agent</a></span> to process the service registration at a later time if the
+service registration cannot be performed before returning from the
+IUpdateServiceManager2::AddService2 (opnum 18) (section <span><a href="e2d037e7-b25e-40f0-bb90-3f6071085d1d" data-linktype="relative-path">3.44.5.4)</a></span>
+method call.</p><p><b>asfAllowOnlineRegistration:  </b>Allows the update
+agent to process the service registration during the
+IUpdateServiceManager2::AddService2 (opnum 18) method call if network
+connectivity is available.</p><p><b>asfRegisterServiceWithAU:  </b>Registers the
+service with the <span><a href="750e8355-177c-4a51-bab8-927c813819c8#gt_b1d92af1-3c57-42f7-936f-8c56fb75e818" data-linktype="relative-path">automatic update agent</a></span>
+when the service is added.</p></div>

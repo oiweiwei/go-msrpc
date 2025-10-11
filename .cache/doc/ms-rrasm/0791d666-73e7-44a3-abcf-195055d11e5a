@@ -1,1 +1,11 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_IPFORWARDNUMBER</b> structure stores the number
+of <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_ad8a294a-8e3c-47e3-a876-7488cd5c8353" data-linktype="relative-path">routes</a> in a specific
+IP <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_c8605177-11ad-432e-bb3d-591165aca429" data-linktype="relative-path">routing table</a>.</p><dl>
+<dd>
+<div><pre> typedef struct _MIB_IPFORWARDNUMBER {
+   DWORD dwValue;
+ } MIB_IPFORWARDNUMBER,
+  *PMIB_IPFORWARDNUMBER;
+</pre></div>
+</dd></dl><p><b>dwValue: </b>Specifies the number of routes in the
+IP routing table.</p></div>

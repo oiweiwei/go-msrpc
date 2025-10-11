@@ -1,4 +1,17 @@
 // The ccfg package implements the CCFG client protocol.
+//
+// # Introduction
+//
+// The Server Cluster: Configuration (ClusCfg) Protocol is a DCOM interface, as specified
+// in [MS-DCOM], for initiating configuration operations for a failover cluster. The
+// ClusCfg Protocol allows users to restore a node that is no longer a configured member
+// of a failover cluster, back to its precluster installation state.
+//
+// # Overview
+//
+// The ClusCfg Protocol provides a DCOM interface that enables a client to restore a
+// node back to its pre-cluster installation state. For more information about clustering,
+// see [MSDN-CLUS].
 package ccfg
 
 import (

@@ -49,20 +49,166 @@ type WindowsDriverUpdateEntryClient interface {
 	// IDispatch retrieval method.
 	Dispatch() idispatch.DispatchClient
 
+	// The IWindowsDriverUpdate::DriverClass (opnum 53) method retrieves the class of this
+	// driver.
+	//
+	// The IWindowsDriverUpdateEntry::DriverClass (opnum 8) method retrieves the class of
+	// this driver.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the string returned by a call to the DriverClass method
+	// on the IWindowsDriverUpdateEntry instance referred to by the DefaultWindowsDriverUpdateEntry
+	// ADM element.
 	GetDriverClass(context.Context, *GetDriverClassRequest, ...dcerpc.CallOption) (*GetDriverClassResponse, error)
 
+	// The IWindowsDriverUpdateEntry::DriverHardwareID (opnum 9) method retrieves the hardware
+	// ID or compatible ID that this driver matches to be installable.
+	//
+	// The IWindowsDriverUpdate::DriverHardwareID (opnum 54) method retrieves the hardware
+	// ID or compatible ID that this driver matches to be installable.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the DriverHardwareID ADM element.
 	GetDriverHardwareID(context.Context, *GetDriverHardwareIDRequest, ...dcerpc.CallOption) (*GetDriverHardwareIDResponse, error)
 
+	// The IWindowsDriverUpdate::DriverManufacturer (opnum 55) method retrieves the language-invariant
+	// name of the driver manufacturer.
+	//
+	// The IWindowsDriverUpdateEntry::DriverManufacturer (opnum 10) method retrieves the
+	// language-invariant name of the driver manufacturer.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the string returned by a call to the DriverManufacturer
+	// method on the IWindowsDriverUpdateEntry instance referred to by the DefaultWindowsDriverUpdateEntry
+	// ADM element.
 	GetDriverManufacturer(context.Context, *GetDriverManufacturerRequest, ...dcerpc.CallOption) (*GetDriverManufacturerResponse, error)
 
+	// The IWindowsDriverUpdate::DriverModel (opnum 56) method retrieves the language-invariant
+	// model name of the device for which this driver is intended.
+	//
+	// The IWindowsDriverUpdateEntry::DriverModel (opnum 11) method retrieves the language-invariant
+	// model name of the device for which this driver is intended.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the string returned by a call to the DriverModel method
+	// on the IWindowsDriverUpdateEntry instance referred to by the DefaultWindowsDriverUpdateEntry
+	// ADM element.
 	GetDriverModel(context.Context, *GetDriverModelRequest, ...dcerpc.CallOption) (*GetDriverModelResponse, error)
 
+	// The IWindowsDriverUpdate::DriverProvider (opnum 57) method retrieves the language-invariant
+	// name of the provider of this driver.
+	//
+	// The IWindowsDriverUpdateEntry::DriverProvider (opnum 12) method retrieves the language-invariant
+	// name of the provider of this driver.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the string returned by a call to the DriverProvider method
+	// on the IWindowsDriverUpdateEntry instance referred to by the DefaultWindowsDriverUpdateEntry
+	// ADM element.
 	GetDriverProvider(context.Context, *GetDriverProviderRequest, ...dcerpc.CallOption) (*GetDriverProviderResponse, error)
 
+	// The IWindowsDriverUpdate::DriverVerDate (opnum 58) method retrieves the version date
+	// of the driver.
+	//
+	// The IWindowsDriverUpdateEntry::DriverVerDate (opnum 13) method retrieves the version
+	// date of the driver.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value returned by a call to the DriverVerDate method
+	// on the IWindowsDriverUpdateEntry instance referred to by the DefaultWindowsDriverUpdateEntry
+	// ADM element.
 	GetDriverVerDate(context.Context, *GetDriverVerDateRequest, ...dcerpc.CallOption) (*GetDriverVerDateResponse, error)
 
+	// The IWindowsDriverUpdateEntry::DeviceProblemNumber (opnum 14) method retrieves the
+	// problem number of the device this driver matches.
+	//
+	// The IWindowsDriverUpdate::DeviceProblemNumber (opnum 59) method retrieves the problem
+	// number of the device this driver matches.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the DeviceProblemNumber ADM element.
 	GetDeviceProblemNumber(context.Context, *GetDeviceProblemNumberRequest, ...dcerpc.CallOption) (*GetDeviceProblemNumberResponse, error)
 
+	// The IWindowsDriverUpdateEntry::DeviceStatus (opnum 15) method retrieves the status
+	// of the device this driver matches.
+	//
+	// The IWindowsDriverUpdate::DeviceStatus (opnum 60) method retrieves the status of
+	// the device this driver matches.
+	//
+	// Return Values: The method MUST return information in an HRESULT data structure. The
+	// severity bit in the structure identifies the following conditions:
+	//
+	// * If the severity bit is set to 0, the method completed successfully.
+	//
+	// * If the severity bit is set to 1, the method failed and encountered a fatal error.
+	//
+	// Exceptions Thrown: No exceptions are thrown beyond those thrown by the underlying
+	// RPC protocol [MS-RPCE].
+	//
+	// This method SHOULD return the value of the DeviceStatus ADM element.
 	GetDeviceStatus(context.Context, *GetDeviceStatusRequest, ...dcerpc.CallOption) (*GetDeviceStatusResponse, error)
 
 	// AlterContext alters the client context.
@@ -491,8 +637,9 @@ func (o *GetDriverClassRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetDriverClassResponse structure represents the DriverClass operation response
 type GetDriverClassResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A string specifying the class of this driver.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The DriverClass return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -734,8 +881,10 @@ func (o *GetDriverHardwareIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 // GetDriverHardwareIDResponse structure represents the DriverHardwareID operation response
 type GetDriverHardwareIDResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A string specifying the hardware ID or compatible ID that this driver matches
+	// to be installable.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The DriverHardwareID return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -977,8 +1126,13 @@ func (o *GetDriverManufacturerRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 // GetDriverManufacturerResponse structure represents the DriverManufacturer operation response
 type GetDriverManufacturerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A string containing the language-invariant name of the driver manufacturer.
+	// If the driver manufacturer name is not available, then this MUST be NULL.
+	//
+	// retval: A string containing the language-invariant name of the driver manufacturer.
+	// If the name of the driver manufacturer is not available, then this MUST be NULL.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The DriverManufacturer return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1220,8 +1374,10 @@ func (o *GetDriverModelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetDriverModelResponse structure represents the DriverModel operation response
 type GetDriverModelResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A string containing the language-invariant model name of the device for which
+	// this driver is intended.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The DriverModel return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1463,8 +1619,9 @@ func (o *GetDriverProviderRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // GetDriverProviderResponse structure represents the DriverProvider operation response
 type GetDriverProviderResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue *oaut.String   `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A string containing the language-invariant name of the provider of this driver.
+	ReturnValue *oaut.String `idl:"name:retval" json:"return_value"`
 	// Return: The DriverProvider return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1672,8 +1829,10 @@ func (o *GetDriverVerDateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // GetDriverVerDateResponse structure represents the DriverVerDate operation response
 type GetDriverVerDateResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue float64        `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A DATE ([MS-OAUT] section 2.2.25) structure containing the version date of
+	// this driver.
+	ReturnValue float64 `idl:"name:retval" json:"return_value"`
 	// Return: The DriverVerDate return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1881,8 +2040,9 @@ func (o *GetDeviceProblemNumberRequest) UnmarshalNDR(ctx context.Context, r ndr.
 // GetDeviceProblemNumberResponse structure represents the DeviceProblemNumber operation response
 type GetDeviceProblemNumberResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int32          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A LONG specifying the problem number of the device this driver matches.
+	ReturnValue int32 `idl:"name:retval" json:"return_value"`
 	// Return: The DeviceProblemNumber return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2090,8 +2250,9 @@ func (o *GetDeviceStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // GetDeviceStatusResponse structure represents the DeviceStatus operation response
 type GetDeviceStatusResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
-	ReturnValue int32          `idl:"name:retval" json:"return_value"`
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// retval: A LONG specifying the status of the device this driver matches.
+	ReturnValue int32 `idl:"name:retval" json:"return_value"`
 	// Return: The DeviceStatus return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

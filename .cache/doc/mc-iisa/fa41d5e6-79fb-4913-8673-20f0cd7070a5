@@ -1,0 +1,44 @@
+<div class="content"><p>The LineNumber (opnum 3) method is received by the server in
+an RPC_REQUEST packet. In response, the server returns a specific line number
+that might provide more detail regarding the location of the error in the
+hierarchy of the administration system.</p><dl>
+<dd>
+<div><pre> [propget] HRESULT LineNumber(
+   [out, retval] unsigned long* pcLineNumber
+ );
+</pre></div>
+</dd></dl><p><b>pcLineNumber: </b>Contains the line number.</p><p><b>Return Values: </b>The server MUST return zero if
+it successfully processes the message that is received from the client. If
+processing fails, the server MUST return a nonzero <a href="../ms-dtyp/a9046ed2-bfb2-4d56-a719-2824afce59ac" data-linktype="relative-path">HRESULT</a>
+code as defined in <a href="../ms-erref/1bc92ddf-b79e-413c-bbaa-99a5281a6c90" data-linktype="relative-path">[MS-ERREF]</a>.
+The following table describes the error conditions that MUST be handled and the
+corresponding error codes. A server MAY return additional
+implementation-specific error codes.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0X00000000</p>
+  <p>NO_ERROR</p>
+  </td>
+  <td>
+  <p>The operation completed successfully.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0X80070057</p>
+  <p>ERROR_INVALID_PARAMETER</p>
+  </td>
+  <td>
+  <p>One or more parameters are incorrect or null.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

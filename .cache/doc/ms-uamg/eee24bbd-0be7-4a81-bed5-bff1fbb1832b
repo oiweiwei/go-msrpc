@@ -1,1 +1,15 @@
-<div class="content"></div>
+<div class="content"><p>The InstallationRebootBehavior enumeration defines values
+that describe the reboot behavior of installing or uninstalling an update.</p><dl>
+<dd>
+<div><pre> typedef  enum tagInstallationRebootBehavior
+ {
+   irbNeverReboots = 0,
+   irbAlwaysRequiresReboot = 1,
+   irbCanRequestReboot = 2,
+ } InstallationRebootBehavior;
+</pre></div>
+</dd></dl><p><b>irbNeverReboots:  </b>The update never requires a
+system restart during or after an installation or an uninstallation.</p><p><b>irbAlwaysRequiresReboot:  </b>The update always
+requires a system restart after a successful installation or uninstallation.</p><p><b>irbCanRequestReboot:  </b>The update might or
+might not require a system restart after an installation or uninstallation. The
+need to restart is determined after the update is installed or uninstalled.</p></div>

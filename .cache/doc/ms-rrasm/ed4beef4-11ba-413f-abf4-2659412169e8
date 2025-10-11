@@ -1,1 +1,144 @@
-<div class="content"></div>
+<div class="content"><p>The <b>RASI_PORT_0</b> structure contains general
+information regarding a specific RRAS port, such as the port condition and the
+port name.</p><dl>
+<dd>
+<div><pre> typedef struct _RASI_PORT_0 {
+   DWORD dwPort;
+   DWORD dwConnection;
+   RAS_PORT_CONDITION dwPortCondition;
+   DWORD dwTotalNumberOfCalls;
+   DWORD dwConnectDuration;
+   WCHAR wszPortName[17];
+   WCHAR wszMediaName[17];
+   WCHAR wszDeviceName[129];
+   WCHAR wszDeviceType[17];
+ } RASI_PORT_0,
+  *PRASI_PORT_0;
+</pre></div>
+</dd></dl><p><b>dwPort: </b>A unique identifier for the port.</p><p><b>dwConnection: </b>A unique identifier that
+specifies the connection.</p><p><b>dwPortCondition: </b>A <a href="95329c58-a94d-476d-9480-087bb546ec44" data-linktype="relative-path"><b>RAS_PORT_CONDITION (section 2.2.1.1.4)</b></a>
+enumeration value indicating the condition of a port specified in <b>dwPort</b>.
+</p><p><b>dwTotalNumberOfCalls: </b>Specifies the cumulative
+number of calls that this port has serviced.</p><p><b>dwConnectDuration: </b>Specifies the duration of
+the current connection on this port, in seconds.</p><p><b>wszPortName: </b>Specifies the port name.</p><p><b>wszMediaName: </b>Specifies the media name.</p><p><b>wszDeviceName: </b>Specifies the device name.</p><p><b>wszDeviceType: </b>Specifies the device type. This
+member can be one of the following string constants.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>MPRDT_Modem</p>
+  <p>&#34;Modem&#34;</p>
+  </td>
+  <td>
+  <p>A modem that is accessed through a Component Object
+  Model (COM) port.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_Isdn</p>
+  <p>&#34;Isdn&#34;</p>
+  </td>
+  <td>
+  <p>An ISDN adapter with the corresponding NDISWAN driver
+  installed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_X25</p>
+  <p>&#34;x25&#34;</p>
+  </td>
+  <td>
+  <p>An X.25 adapter with the corresponding NDISWAN driver
+  installed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_Vpn</p>
+  <p>&#34;Vpn&#34;</p>
+  </td>
+  <td>
+  <p>A <a href="fc2dfae9-0d04-4e1d-97c9-c51c2dc06c3b#gt_16a7bb90-2875-41d6-bab2-3c63891f08b9" data-linktype="relative-path">virtual
+  private network (VPN)</a> connection.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_Pad</p>
+  <p>&#34;Pad&#34;</p>
+  </td>
+  <td>
+  <p>A packet assembler/disassembler.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_Generic</p>
+  <p>&#34;GENERIC&#34;</p>
+  </td>
+  <td>
+  <p>Generic.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_Serial</p>
+  <p>&#34;SERIAL&#34;</p>
+  </td>
+  <td>
+  <p>Direct serial connection through a serial port.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_FrameRelay</p>
+  <p>&#34;FRAMERELAY&#34;</p>
+  </td>
+  <td>
+  <p>Frame relay.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_Atm</p>
+  <p>&#34;ATM&#34;</p>
+  </td>
+  <td>
+  <p>Asynchronous transfer mode (ATM).</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_Sonet</p>
+  <p>&#34;SONET&#34;</p>
+  </td>
+  <td>
+  <p>Sonet.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_SW56</p>
+  <p>&#34;SW56&#34;</p>
+  </td>
+  <td>
+  <p>Switched 56K access.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_Irda</p>
+  <p>&#34;IRDA&#34;</p>
+  </td>
+  <td>
+  <p>An Infrared Data Association (IrDA)-compliant device.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>MPRDT_Parallel</p>
+  <p>&#34;PARALLEL&#34;</p>
+  </td>
+  <td>
+  <p>Direct parallel connection through a parallel port.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

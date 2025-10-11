@@ -1,1 +1,15 @@
-<div class="content"></div>
+<div class="content"><p>The <b>MIB_PROXYARP</b> structure stores information for a
+Proxy Address Resolution Protocol (PARP) entry. This structure is used in <b>MIB_OPAQUE_INFO</b> (section
+<a href="169e435d-a975-4c1c-bf41-55fd2bd76125" data-linktype="relative-path">2.2.1.2.52</a>).</p><dl>
+<dd>
+<div><pre> typedef struct _MIB_PROXYARP {
+   DWORD dwAddress;
+   DWORD dwMask;
+   DWORD dwIfIndex;
+ } MIB_PROXYARP,
+  *PMIB_PROXYARP;
+</pre></div>
+</dd></dl><p><b>dwAddress: </b>The IPv4 address that acts as a
+proxy.</p><p><b>dwMask: </b>The subnet mask for the IPv4 address
+specified by the <b>dwAddress</b> member. See <a href="https://go.microsoft.com/fwlink/?LinkId=90501" data-linktype="external">[RFC950]</a>.</p><p><b>dwIfIndex: </b>The index of the interface that
+acts as a proxy for the address specified by the <b>dwAddress</b> member.</p></div>

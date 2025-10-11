@@ -31,14 +31,133 @@ type DifferentialSoftwareSnapshotManagementServer interface {
 	// IUnknown base class.
 	iunknown.UnknownServer
 
+	// The AddDiffArea method creates a shadow copy storage association for a shadow copy.
+	//
+	// Return Values: The method MUST return the following error code for the specific conditions.
+	//
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                         RETURN                          |                                                                                  |
+	//	|                       VALUE/CODE                        |                                   DESCRIPTION                                    |
+	//	|                                                         |                                                                                  |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8004230d VSS_E_OBJECT_ALREADY_EXISTS                  | The object already exists on the server.                                         |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG                                 | R returned when pwszVolumeName or pwszDiffAreaVolumeName is NULL, or if          |
+	//	|                                                         | llMaximumDiffSpace is 0.                                                         |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8004230c VSS_E_VOLUME_NOT_SUPPORTED                   | Returned when the pwszVolumeName does not support shadow copies, or              |
+	//	|                                                         | pwszDiffAreaVolumeName does not support shadow copy storage.                     |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8004231e VSS_E_MAXIMUM_DIFF-AREA_ASSOCIATIONS_REACHED | Returned when the maximum number of diff area associations for pwszVolumeName    |
+	//	|                                                         | has been reached.                                                                |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80042306 VSS_E_PROVIDER_VETO                          | Returned when the snapshot provider receives an expected error and tries to veto |
+	//	|                                                         | the impending operation.                                                         |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 E_ACCESSDENIED                               | Returned when the user making the request does not have sufficient privileges to |
+	//	|                                                         | perform the operation.                                                           |
+	//	+---------------------------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// No exceptions are thrown except those that are thrown by the underlying RPC protocol
+	// specified in [MS-RPCE].
 	AddDiffArea(context.Context, *AddDiffAreaRequest) (*AddDiffAreaResponse, error)
 
+	// The ChangeDiffAreaMaximumSize method changes the maximum size of a shadow copy storage
+	// association on the server.
+	//
+	// Return Values: The method MUST return the following error code for the specific conditions.
+	//
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	|                RETURN                 |                                                                                  |
+	//	|              VALUE/CODE               |                                   DESCRIPTION                                    |
+	//	|                                       |                                                                                  |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80042308 VSS_E_OBJECT_NOT_FOUND     | The object does not exist on the server.                                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG               | Returned when pwszVolumeName or pwszDiffAreaVolume is NULL.                      |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8004231d VSS_E_VOLUME_IN_USE        | Returned when llMaximumDiffSpace is zero, and the diff area cannot be deleted    |
+	//	|                                       | because shadow copies are still being stored.                                    |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x8004231f VSS_E_INSUFFICIENT_STORAGE | Returned if a nonzero size is specified in llMaximumDiffSpace that is smaller    |
+	//	|                                       | than the size required for storing a single shadow copy.                         |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 E_ACCESSDENIED             | Returned when the user making the request does not have sufficient privileges to |
+	//	|                                       | perform the operation.                                                           |
+	//	+---------------------------------------+----------------------------------------------------------------------------------+
+	//
+	// No exceptions are thrown except those that are thrown by the underlying RPC protocol
+	// [MS-RPCE].
 	ChangeDiffAreaMaximumSize(context.Context, *ChangeDiffAreaMaximumSizeRequest) (*ChangeDiffAreaMaximumSizeResponse, error)
 
+	// The QueryVolumesSupportedForDiffAreas method retrieves from the server the collection
+	// of volumes that can be used as a shadow copy storage volume for a specified original
+	// volume.
+	//
+	// Return Values: The method MUST return zero when it has succeeded or an implementation-specific
+	// nonzero error code on failure.
+	//
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	|          RETURN           |                                                                                  |
+	//	|        VALUE/CODE         |                                   DESCRIPTION                                    |
+	//	|                           |                                                                                  |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG   | Returned when pwszOriginalVolumeName or ppEnum is NULL.                          |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 E_ACCESSDENIED | Returned when the user making the request does not have sufficient privileges to |
+	//	|                           | perform the operation.                                                           |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//
+	// No exceptions are thrown except those that are thrown by the underlying RPC protocol
+	// [MS-RPCE].
 	QueryVolumesSupportedForDiffAreas(context.Context, *QueryVolumesSupportedForDiffAreasRequest) (*QueryVolumesSupportedForDiffAreasResponse, error)
 
+	// The QueryDiffAreasForVolume method retrieves from the server the collection of shadow
+	// copy storage associations that are being used for shadow copy storage for a specified
+	// original volume.
+	//
+	// Return Values: The method MUST return zero when it has succeeded or an implementation-specific
+	// nonzero error code on failure.
+	//
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	|          RETURN           |                                                                                  |
+	//	|        VALUE/CODE         |                                   DESCRIPTION                                    |
+	//	|                           |                                                                                  |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG   | Returned when pwszVolumeName or ppEnum is NULL.                                  |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 E_ACCESSDENIED | Returned when the user making the request does not have sufficient privileges to |
+	//	|                           | perform the operation.                                                           |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//
+	// No exceptions are thrown except those that are thrown by the underlying RPC protocol
+	// [MS-RPCE].
 	QueryDiffAreasForVolume(context.Context, *QueryDiffAreasForVolumeRequest) (*QueryDiffAreasForVolumeResponse, error)
 
+	// The QueryDiffAreasOnVolume method retrieves from the server the collection of shadow
+	// copy storage associations that are located on a specified volume.
+	//
+	// Return Values: The method MUST return zero when it has succeeded or an implementation-specific
+	// nonzero error code on failure.
+	//
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	|          RETURN           |                                                                                  |
+	//	|        VALUE/CODE         |                                   DESCRIPTION                                    |
+	//	|                           |                                                                                  |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070057 E_INVALIDARG   | Returned when pwszVolumeName or ppEnum is NULL.                                  |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//	| 0x80070005 E_ACCESSDENIED | Returned when the user making the request does not have sufficient privileges to |
+	//	|                           | perform the operation.                                                           |
+	//	+---------------------------+----------------------------------------------------------------------------------+
+	//
+	// No exceptions are thrown except those that are thrown by the underlying RPC protocol
+	// [MS-RPCE].
 	QueryDiffAreasOnVolume(context.Context, *QueryDiffAreasOnVolumeRequest) (*QueryDiffAreasOnVolumeResponse, error)
 
 	// Opnum08NotUsedOnWire operation.

@@ -2,7 +2,84 @@
 //
 // # Introduction
 //
+// The Performance Logs and Alerts (PLA) protocol is a set of Distributed Component
+// Object Model (DCOM) interfaces (as specified in [MS-DCOM]) for logging diagnosis
+// data on a remote computer.
+//
+// The PLA Protocol allows users to:
+//
+// * Specify the diagnostic data to be collected and logged.
+//
+// * Specify the data retention and reporting policies for the logged data.
+//
+// * Specify alert conditions.
+//
+// * Start, stop, or schedule the collection.
+//
 // # Overview
+//
+// Software components can be designed to assist in serviceability, manageability, supportability,
+// and diagnostic ability. For instance, performance counters are a simple way of exposing
+// state information that can be sampled or polled. Event-based instrumentation typically
+// generates a state change notification. Alerts are a simple way of turning a sampled
+// counter into an event notification, based on a threshold value.
+//
+// System administrators often want to collect diagnosis data on a remote system in
+// a periodic or ongoing basis to better support and diagnose problems on the systems.
+// Furthermore, the collected data can be processed by tools for in-depth problem analysis.
+//
+// The Performance Logs and Alerts Protocol provides a set of DCOM interfaces to control
+// data collection on a remote system. The control includes creating, starting, stopping,
+// scheduling, and configuring data collector objects and the creation of alerts.
+//
+// The capabilities of the Performance Logs and Alerts Protocol are summarized as follows:
+//
+// * Performance Counter Logging (section 3.2.4.6 ( 489d285e-94eb-46b2-8a53-b3501a61b572
+// ) ): The Performance Logs and Alerts Protocol allows users to log performance counters'
+// data of resources on a remote system. A resource can be hardware (for example, CPU,
+// memory) or software (for example, application, process). The logged performance counter
+// data is often useful for the analysis of performance trends and bottlenecks. The
+// PLA Protocol also supports logging performance counter data in a SQL database format
+// (section 3.2.4.6). This option defines the name of an existing SQL database and log
+// set within the database where the performance counter data will be read or written.
+// This file format is useful when collecting and analyzing performance counter data
+// at an enterprise level rather than on a per-computer basis.
+//
+// * Event Trace Logging (section 3.2.4.9 ( 94e049b9-532a-4c3a-ada2-43c75802e825 ) ):
+// The Performance Logs and Alerts Protocol allows users to log event tracing data of
+// resources on a remote system. The event provider is software that can create event
+// notifications and generate events when certain activities, such as a disk ( f43f48aa-80a5-4b39-971e-7b3ac0bd9d0d#gt_c4133b2a-a990-4042-ba44-7fda3090f118
+// ) I/O operation or a page fault, occur. The application that uses the Performance
+// Logs and Alerts Protocol can enable or disable event providers and selectively log
+// the events of interest into a file.
+//
+// * API Trace Logging (section 3.2.4.10 ( fed87908-2a85-4cf6-b4ac-723b81b00e1b ) ):
+// The Performance Logs and Alerts Protocol allows users to log the API call activity
+// of an executable on a remote system. Observing API call activity is useful for the
+// diagnosis of various executable issues (for example, detecting unnecessary API calls.)
+//
+// * Configuration Data Logging (section 3.2.4.7 ( 0f979443-9db2-4805-b2ea-e1540d8b0533
+// ) ): The Performance Logs and Alerts Protocol allows users to log the computer configuration
+// information on a remote system. Readjustment of an incorrect setting is one of the
+// common diagnosis root causes.
+//
+// * Alerts (section 3.2.4.8 ( 07d907e9-10ed-42f6-9135-9131657a240f ) ): The Performance
+// Logs and Alerts Protocol allows users to create alerts based on performance counter
+// values on a remote system. An alert can trigger running a program, logging the alert
+// as an event, or starting another data collection.
+//
+// * Data Collector Set (section 3.2.4.1 ( 1809d280-56e0-4c78-9546-ad1869c3a16a ) ):
+// The Performance Logs and Alerts Protocol allows users to group multiple logging entities'
+// data collectors and apply operations to them at once. The operations include start
+// (section 3.2.4.1.56 ( d2ebf91b-9e67-440d-90e9-3134ee1613a0 ) ), stop (section 3.2.4.1.57
+// ( 2617595b-63fc-4c23-b674-4cb3e062eb6f ) ), schedule (section 3.2.4.1.20 ( 790ac479-7c9a-4ce2-ac82-108ac3e5121d
+// ) ), and configure (section 3.2.4.1).
+//
+// * Data Management (section 3.2.4.2 ( 16c70f7d-0f0e-4ae6-9785-be0032013c9f ) ): The
+// Performance Logs and Alerts Protocol allows users to set a data retention policy
+// against logged data and define post-actions of the collection. The post-actions,
+// such as delete largest log file and compress log file, can be defined with the Performance
+// Logs and Alerts Protocol interfaces.
 package pla
 
 import (

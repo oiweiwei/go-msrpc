@@ -1,1 +1,20 @@
-<div class="content"></div>
+<div class="content"><p>The structure of the COMM_CO_SEQUENCE_NUMBER packet element
+is as follows.</p><dl>
+<dd>
+<div><pre> typedef struct _COMM_CO_SEQUENCE_NUMBER {
+   USHORT CommType;
+   ULONG Length;
+   ULONG Data;
+ } COMM_CO_SEQUENCE_NUMBER,
+  *PCOMM_CO_SEQUENCE_NUMBER;
+</pre></div>
+</dd></dl><p><b>CommType:</b>   A 16-bit, unsigned
+integer that indicates the type of this <a href="194f8fff-d903-44b7-9530-c66f5366f8c7" data-linktype="relative-path">COMM_PACKET</a> element. MUST
+be set to 0x0010.</p><p><b>Length:</b>   A 32-bit, unsigned integer
+that indicates the length in bytes of the data following the Length field. MUST
+be 0x00000004.</p><p><b>Data:</b>   A 32-bit, unsigned integer
+that MUST indicate the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_576a8417-dd00-4f9e-b52f-c9a2e3766a8a" data-linktype="relative-path">change
+order</a> sequence number (see section <a href="93ac0801-c3cf-4dfc-80a4-c2bff7a9b09b" data-linktype="relative-path">2.2.3.2</a>). The sequence
+number MUST be incremented with each change order that goes into the <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_85aa757d-840d-4ae1-82dc-6a709c6eead1" data-linktype="relative-path">outbound log</a>. The sequence
+number MUST be a unique per <a href="2e457199-2dc1-46c3-8aa6-b2d8e016f95c#gt_6cef9d9c-c366-490a-8e4e-a350688731ca" data-linktype="relative-path">replica
+set</a> per machine.</p></div>

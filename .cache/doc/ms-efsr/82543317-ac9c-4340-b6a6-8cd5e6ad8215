@@ -1,1 +1,6 @@
-<div class="content"></div>
+<div class="content"><p>The Encrypting File System Remote (EFSRPC) Protocol is used
+for performing maintenance and management operations on encrypted data that is
+stored remotely and accessed over a network. It is used in Windows to manage <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_a04c146a-de3b-4e4b-829f-a9e772f3fe25" data-linktype="relative-path">files</a> that reside on remote
+file servers and are encrypted using the <a href="230807ac-20be-494f-86e3-4c8ac23ea584#gt_3bd30c20-9517-4030-a48c-380362e209a1" data-linktype="relative-path">Encrypting File System (EFS)</a>.</p><p>Sections 1.5, 1.8, 1.9, 2, and 3 of this specification are
+normative. All other sections and examples in this specification are
+informative.</p></div>
