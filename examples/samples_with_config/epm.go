@@ -10,6 +10,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"regexp"
 	"strings"
 
 	"github.com/oiweiwei/go-msrpc/midl/uuid"
@@ -34,8 +35,9 @@ import (
 )
 
 var (
-	cfg   = config.New().DisableEPM()
-	short bool
+	cfg    = config.New().DisableEPM()
+	short  bool
+	filter string
 )
 
 func init() {
@@ -43,6 +45,7 @@ func init() {
 	config_flag.BindFlags(cfg, flag.CommandLine)
 
 	flag.CommandLine.BoolVar(&short, "s", false, "short form")
+	flag.CommandLine.StringVar(&filter, "filter", "", "filter by regexp")
 
 }
 
@@ -52,6 +55,8 @@ func main() {
 		fmt.Fprintln(os.Stderr, err)
 		return
 	}
+
+	filter := regexp.MustCompile(filter)
 
 	ctx := gssapi.NewSecurityContext(context.Background())
 
@@ -86,12 +91,19 @@ func main() {
 	if short {
 
 		for i, entries := range resp.Entries {
-			fmt.Printf("[%d] %s (%s)\n", i, entries.Tower.Binding().URL(uConv), entries.Tower.Binding().StringBinding)
+			u := entries.Tower.Binding().URL(uConv)
+			if filter.MatchString(u.String()) || filter.MatchString(entries.Annotation) {
+				fmt.Printf("[%d] %s (%s)\n", i, u, entries.Tower.Binding().StringBinding)
+			}
 		}
 
 	} else {
 
 		for i, entries := range resp.Entries {
+			u := entries.Tower.Binding().URL(uConv)
+			if !filter.MatchString(u.String()) && !filter.MatchString(entries.Annotation) {
+				continue
+			}
 			fmt.Println(i, " --- ", entries.Annotation, entries.Object)
 			for i, floor := range entries.Tower.Floors() {
 				if i == 0 {

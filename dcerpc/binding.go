@@ -25,6 +25,8 @@ func (p ProtocolSequence) String() string {
 		return "ncacn_http"
 	case ProtocolSequenceLRPC:
 		return "ncacnlrpc"
+	case ProtocolSequenceUnix:
+		return "ncacn_hyperv"
 	}
 
 	return "unknown"
@@ -79,6 +81,9 @@ var (
 	// Example: object@ncacn_http:rpc_server[endpoint]
 	// URL (?): http://username:password@server-name:port/object/interface/version
 	ProtocolSequenceHTTP ProtocolSequence = 5
+
+	// Cannot be used.
+	ProtocolSequenceUnix ProtocolSequence = 6
 )
 
 // The string binding is an unsigned character string composed
@@ -177,6 +182,8 @@ func (s StringBinding) URL() *url.URL {
 		u.Scheme, u.Host = "http", net.JoinHostPort(s.NetworkAddress, s.Endpoint)
 	case ProtocolSequenceLRPC:
 		u.Scheme, u.Host = "alpc", afterSlash(s.Endpoint)
+	case ProtocolSequenceUnix:
+		u.Scheme, u.Host = "unix", s.Endpoint
 	}
 
 	if s.ObjectUUID != nil {
@@ -216,6 +223,8 @@ func ProtocolSequenceFromString(s string) ProtocolSequence {
 		p = ProtocolSequenceHTTP
 	case "ncacnlrpc":
 		p = ProtocolSequenceLRPC
+	case "ncacn_hyperv":
+		p = ProtocolSequenceUnix
 	}
 	return p
 }
@@ -306,6 +315,9 @@ func ParseBindingURL(s string) (*Binding, error) {
 		url.StringBinding.NetworkAddress, url.StringBinding.Endpoint = u.Hostname(), u.Port()
 	case "tcp":
 		url.StringBinding.ProtocolSequence = ProtocolSequenceIPTCP
+		url.StringBinding.NetworkAddress, url.StringBinding.Endpoint = u.Hostname(), u.Port()
+	case "unix":
+		url.StringBinding.ProtocolSequence = ProtocolSequenceUnix
 		url.StringBinding.NetworkAddress, url.StringBinding.Endpoint = u.Hostname(), u.Port()
 	}
 
