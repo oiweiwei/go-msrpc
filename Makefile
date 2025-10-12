@@ -58,6 +58,7 @@ all:
 		capr.go \
 		cmpo.go \
 		cmrp.go \
+		conv.go \
 		dcetypes.go \
 		dcom.go \
 		dcom/adtg.go \
@@ -116,6 +117,7 @@ all:
 		lrec.go \
 		lsad.go \
 		lsat.go \
+		mgmt.go \
 		mqds.go \
 		mqmp.go \
 		mqmq.go \

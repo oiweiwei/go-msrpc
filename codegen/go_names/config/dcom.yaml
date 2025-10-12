@@ -5,6 +5,8 @@ rename:
   pUnkCP: [Connection, Point]
   ppCP: [Connection, Point]
   ITransaction: [ITransaction]
+  st: [Status]
+  uuid_t: [UUID]
   pIIDs: [IIDs]
   ppdsaOrBindings: [Object, Resolver, Bindings]
   pActProperties: [Act, Properties, In]
