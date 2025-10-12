@@ -134,6 +134,7 @@ func main() {
 	fmt.Println("ievent")
 
 	MapSyntax(ctx, cli, eventlog.EventlogSyntaxV0_0)
+
 }
 
 func MapSyntax(ctx context.Context, cli epm.EpmClient, syntax *dcerpc.SyntaxID) {

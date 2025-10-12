@@ -326,6 +326,7 @@ F120A684-B926-447F-9DF4-C966CB785648	MS-RAI	Remote Assistance Initiation Protoco
 45F52C28-7F9F-101A-B52B-08002B2EFABE	MS-RAIW	Remote Administrative Interface: WINS	winsif	v1.0	ncacn_np:WinsPipe
 A35AF600-9CF4-11CD-A076-08002B2BD711	MS-RDPESC	Remote Desktop Protocol: Smart Card Virtual Channel Extension	TypeScardPack	v1.0	
 E1AF8308-5D1F-11C9-91A4-08002B14A0FA	MS-RPCE	Endpoint Mapper Protocol	EndpointMapper	v3.0	ncacn_ip_tcp:135 ncacn_np:epmapper
+AFA8BD80-7D8A-11C9-BEF4-08002B102989	MS-RPCE	Remote Management Protocol	RemoteManagement	v1.0	ncacn_ip_tcp:135
 71710533-BEBA-4937-8319-B5DBEF9CCC36	MS-RPCE	Transfer Syntax NDR64	TransferNDR64	v1.0	
 8A885D04-1CEB-11C9-9FE8-08002B104860	MS-RPCE	Transfer Syntax NDR	TransferNDR	v2.0	
 E33C0CC4-0482-101A-BC0C-02608C6BA218	MS-RPCL	Remote Procedure Call Location Services Extensions	LocToLoc	v1.0	ncacn_np:Locator
@@ -753,3 +754,11 @@ B4CB7611-AD0B-4C2D-B35F-FFE45785C709	MS-DLL	wwansvc.dll: WWAN Auto Config Servic
 9C56D792-0591-4431-8D1F-681BFD80E4C0	MS-DLL	wwansvc.dll: WWAN Auto Config Service	Wwan2Rpc	v1.0	
 DE2DAF3B-5C16-4613-B204-D810EE629D9E	MS-DLL	wwansvc.dll: WWAN Auto Config Service	WwanMgmtRpc	v1.0	
 C503F532-443A-4C69-8300-CCD1FBDB3839	MS-DLL	mpsvc.dll: Windows Defender Service	IMpService	v2.0	
+C6F3EE72-CE7E-11D1-B71E-00C04FC3111A	RPCSS	Machine Activator Control	IMachineActivatorControl	v1.0	
+00000136-0000-0000-C000-000000000046	RPCSS	The ISCM Local Activactor	ISCMLocalActivator	v0.0	
+412F241E-C12A-11CE-ABFF-0020AF6E7A17	RPCSS	The ISCM RPC interface	ISCM	v0.2 ncacn_ip_tcp:135	
+B9E79E60-3D52-11CE-AAA1-00006901293F	RPCSS	Running Object Table Interface	IROT	v0.2	ncacn_ip_tcp:135
+E60C73E6-88F9-11CF-9AF1-0020AF6E72F4	RPCSS	Local Object Exporter Service	ILocalObjectExporter	v2.0	ncacn_ip_tcp:135
+0B0A6584-9E0F-11CF-A3CF-00805F68CB1B	RPCSS	Local Endpoint Mapper	localepmp	v1.1	
+1D55B526-C137-46C5-AB79-638F2A68E869	RPCSS	Dbgidl	Dbgidl	v1.0	
+64FE0B7F-9EF5-4553-A7DB-9A1975777554	RPCSS	Fwidl	Fwidl	v1.0	
