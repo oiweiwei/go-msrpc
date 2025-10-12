@@ -333,6 +333,7 @@ var (
 	MSRAIWWinsif                                      = uuid.UUID{TimeLow: 0x45f52c28, TimeMid: 0x7f9f, TimeHiAndVersion: 0x101a, ClockSeqHiAndReserved: 0xb5, ClockSeqLow: 0x2b, Node: [6]uint8{0x8, 0x0, 0x2b, 0x2e, 0xfa, 0xbe}}
 	MSRDPESCTypeScardPack                             = uuid.UUID{TimeLow: 0xa35af600, TimeMid: 0x9cf4, TimeHiAndVersion: 0x11cd, ClockSeqHiAndReserved: 0xa0, ClockSeqLow: 0x76, Node: [6]uint8{0x8, 0x0, 0x2b, 0x2b, 0xd7, 0x11}}
 	MSRPCEEndpointMapper                              = uuid.UUID{TimeLow: 0xe1af8308, TimeMid: 0x5d1f, TimeHiAndVersion: 0x11c9, ClockSeqHiAndReserved: 0x91, ClockSeqLow: 0xa4, Node: [6]uint8{0x8, 0x0, 0x2b, 0x14, 0xa0, 0xfa}}
+	MSRPCERemoteManagement                            = uuid.UUID{TimeLow: 0xafa8bd80, TimeMid: 0x7d8a, TimeHiAndVersion: 0x11c9, ClockSeqHiAndReserved: 0xbe, ClockSeqLow: 0xf4, Node: [6]uint8{0x8, 0x0, 0x2b, 0x10, 0x29, 0x89}}
 	MSRPCETransferNDR64                               = uuid.UUID{TimeLow: 0x71710533, TimeMid: 0xbeba, TimeHiAndVersion: 0x4937, ClockSeqHiAndReserved: 0x83, ClockSeqLow: 0x19, Node: [6]uint8{0xb5, 0xdb, 0xef, 0x9c, 0xcc, 0x36}}
 	MSRPCETransferNDR                                 = uuid.UUID{TimeLow: 0x8a885d04, TimeMid: 0x1ceb, TimeHiAndVersion: 0x11c9, ClockSeqHiAndReserved: 0x9f, ClockSeqLow: 0xe8, Node: [6]uint8{0x8, 0x0, 0x2b, 0x10, 0x48, 0x60}}
 	MSRPCLLocToLoc                                    = uuid.UUID{TimeLow: 0xe33c0cc4, TimeMid: 0x482, TimeHiAndVersion: 0x101a, ClockSeqHiAndReserved: 0xbc, ClockSeqLow: 0xc, Node: [6]uint8{0x2, 0x60, 0x8c, 0x6b, 0xa2, 0x18}}
@@ -760,6 +761,14 @@ var (
 	MSDLLWwan2Rpc                                     = uuid.UUID{TimeLow: 0x9c56d792, TimeMid: 0x591, TimeHiAndVersion: 0x4431, ClockSeqHiAndReserved: 0x8d, ClockSeqLow: 0x1f, Node: [6]uint8{0x68, 0x1b, 0xfd, 0x80, 0xe4, 0xc0}}
 	MSDLLWwanMgmtRpc                                  = uuid.UUID{TimeLow: 0xde2daf3b, TimeMid: 0x5c16, TimeHiAndVersion: 0x4613, ClockSeqHiAndReserved: 0xb2, ClockSeqLow: 0x4, Node: [6]uint8{0xd8, 0x10, 0xee, 0x62, 0x9d, 0x9e}}
 	MSDLLIMpService                                   = uuid.UUID{TimeLow: 0xc503f532, TimeMid: 0x443a, TimeHiAndVersion: 0x4c69, ClockSeqHiAndReserved: 0x83, ClockSeqLow: 0x0, Node: [6]uint8{0xcc, 0xd1, 0xfb, 0xdb, 0x38, 0x39}}
+	RPCSSIMachineActivatorControl                     = uuid.UUID{TimeLow: 0xc6f3ee72, TimeMid: 0xce7e, TimeHiAndVersion: 0x11d1, ClockSeqHiAndReserved: 0xb7, ClockSeqLow: 0x1e, Node: [6]uint8{0x0, 0xc0, 0x4f, 0xc3, 0x11, 0x1a}}
+	RPCSSISCMLocalActivator                           = uuid.UUID{TimeLow: 0x136, TimeMid: 0x0, TimeHiAndVersion: 0x0, ClockSeqHiAndReserved: 0xc0, ClockSeqLow: 0x0, Node: [6]uint8{0x0, 0x0, 0x0, 0x0, 0x0, 0x46}}
+	RPCSSISCM                                         = uuid.UUID{TimeLow: 0x412f241e, TimeMid: 0xc12a, TimeHiAndVersion: 0x11ce, ClockSeqHiAndReserved: 0xab, ClockSeqLow: 0xff, Node: [6]uint8{0x0, 0x20, 0xaf, 0x6e, 0x7a, 0x17}}
+	RPCSSIROT                                         = uuid.UUID{TimeLow: 0xb9e79e60, TimeMid: 0x3d52, TimeHiAndVersion: 0x11ce, ClockSeqHiAndReserved: 0xaa, ClockSeqLow: 0xa1, Node: [6]uint8{0x0, 0x0, 0x69, 0x1, 0x29, 0x3f}}
+	RPCSSILocalObjectExporter                         = uuid.UUID{TimeLow: 0xe60c73e6, TimeMid: 0x88f9, TimeHiAndVersion: 0x11cf, ClockSeqHiAndReserved: 0x9a, ClockSeqLow: 0xf1, Node: [6]uint8{0x0, 0x20, 0xaf, 0x6e, 0x72, 0xf4}}
+	RPCSSLocalepmp                                    = uuid.UUID{TimeLow: 0xb0a6584, TimeMid: 0x9e0f, TimeHiAndVersion: 0x11cf, ClockSeqHiAndReserved: 0xa3, ClockSeqLow: 0xcf, Node: [6]uint8{0x0, 0x80, 0x5f, 0x68, 0xcb, 0x1b}}
+	RPCSSDbgidl                                       = uuid.UUID{TimeLow: 0x1d55b526, TimeMid: 0xc137, TimeHiAndVersion: 0x46c5, ClockSeqHiAndReserved: 0xab, ClockSeqLow: 0x79, Node: [6]uint8{0x63, 0x8f, 0x2a, 0x68, 0xe8, 0x69}}
+	RPCSSFwidl                                        = uuid.UUID{TimeLow: 0x64fe0b7f, TimeMid: 0x9ef5, TimeHiAndVersion: 0x4553, ClockSeqHiAndReserved: 0xa7, ClockSeqLow: 0xdb, Node: [6]uint8{0x9a, 0x19, 0x75, 0x77, 0x75, 0x54}}
 )
 
 type UUID uuid.UUID
@@ -1422,6 +1431,8 @@ func (u UUID) Describe() string {
 		return "MS-RDPESC: Remote Desktop Protocol: Smart Card Virtual Channel Extension: TypeScardPack"
 	case MSRPCEEndpointMapper:
 		return "MS-RPCE: Endpoint Mapper Protocol: EndpointMapper"
+	case MSRPCERemoteManagement:
+		return "MS-RPCE: Remote Management Protocol: RemoteManagement"
 	case MSRPCETransferNDR64:
 		return "MS-RPCE: Transfer Syntax NDR64: TransferNDR64"
 	case MSRPCETransferNDR:
@@ -2276,6 +2287,22 @@ func (u UUID) Describe() string {
 		return "MS-DLL: wwansvc.dll: WWAN Auto Config Service: WwanMgmtRpc"
 	case MSDLLIMpService:
 		return "MS-DLL: mpsvc.dll: Windows Defender Service: IMpService"
+	case RPCSSIMachineActivatorControl:
+		return "RPCSS: Machine Activator Control: IMachineActivatorControl"
+	case RPCSSISCMLocalActivator:
+		return "RPCSS: The ISCM Local Activactor: ISCMLocalActivator"
+	case RPCSSISCM:
+		return "RPCSS: The ISCM RPC interface: ISCM"
+	case RPCSSIROT:
+		return "RPCSS: Running Object Table Interface: IROT"
+	case RPCSSILocalObjectExporter:
+		return "RPCSS: Local Object Exporter Service: ILocalObjectExporter"
+	case RPCSSLocalepmp:
+		return "RPCSS: Local Endpoint Mapper: localepmp"
+	case RPCSSDbgidl:
+		return "RPCSS: Dbgidl: Dbgidl"
+	case RPCSSFwidl:
+		return "RPCSS: Fwidl: Fwidl"
 	}
 	return ""
 }
@@ -2336,6 +2363,8 @@ func (u UUID) WellKnownEndpoint() []string {
 		return []string{"ncacn_np:WinsPipe"}
 	case MSRPCEEndpointMapper:
 		return []string{"ncacn_ip_tcp:135", "ncacn_np:epmapper"}
+	case MSRPCERemoteManagement:
+		return []string{"ncacn_ip_tcp:135"}
 	case MSRPCLLocToLoc:
 		return []string{"ncacn_np:Locator"}
 	case MSRPRNWinspool:
@@ -2390,6 +2419,10 @@ func (u UUID) WellKnownEndpoint() []string {
 		return []string{"ncacn_np:locator"}
 	case MSDLLNsiM:
 		return []string{"ncacn_np:locator"}
+	case RPCSSIROT:
+		return []string{"ncacn_ip_tcp:135"}
+	case RPCSSILocalObjectExporter:
+		return []string{"ncacn_ip_tcp:135"}
 	}
 	return nil
 }
@@ -3051,6 +3084,8 @@ func (u UUID) Name() string {
 		return "TypeScardPack"
 	case MSRPCEEndpointMapper:
 		return "EndpointMapper"
+	case MSRPCERemoteManagement:
+		return "RemoteManagement"
 	case MSRPCETransferNDR64:
 		return "TransferNDR64"
 	case MSRPCETransferNDR:
@@ -3905,6 +3940,22 @@ func (u UUID) Name() string {
 		return "WwanMgmtRpc"
 	case MSDLLIMpService:
 		return "IMpService"
+	case RPCSSIMachineActivatorControl:
+		return "IMachineActivatorControl"
+	case RPCSSISCMLocalActivator:
+		return "ISCMLocalActivator"
+	case RPCSSISCM:
+		return "ISCM"
+	case RPCSSIROT:
+		return "IROT"
+	case RPCSSILocalObjectExporter:
+		return "ILocalObjectExporter"
+	case RPCSSLocalepmp:
+		return "localepmp"
+	case RPCSSDbgidl:
+		return "Dbgidl"
+	case RPCSSFwidl:
+		return "Fwidl"
 	}
 	return ""
 }
