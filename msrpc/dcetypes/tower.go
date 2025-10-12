@@ -95,6 +95,10 @@ func (f *Floor) String() string {
 		return fmt.Sprintf("0x%02x: rpc v5.%d", f.Protocol, f.VersionMinor())
 	case ProtocolRPC_CL:
 		return fmt.Sprintf("0x%02x: rpc v4.%d", f.Protocol, f.VersionMinor())
+	case ProtocolNULL:
+		return fmt.Sprintf("0x%02x: null:%s", f.Protocol, f.Str())
+	case ProtocolUnixDomain:
+		return fmt.Sprintf("0x%02x: unix:%s", f.Protocol, f.Str())
 	default:
 		return fmt.Sprintf("0x%02x: data:%s", f.Protocol, f.Hex())
 	}
@@ -176,6 +180,10 @@ func (o *Tower) Binding() *dcerpc.Binding {
 		case ProtocolNetBIOS:
 			// the netbios computer name.
 			b.StringBinding.ComputerName = floor.Str()
+		case ProtocolNULL:
+			b.StringBinding.Endpoint = floor.Str()
+		case ProtocolUnixDomain:
+			b.StringBinding.ProtocolSequence = dcerpc.ProtocolSequenceUnix
 		}
 	}
 
