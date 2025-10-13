@@ -437,7 +437,7 @@ func ParseStringBinding(s string) (*StringBinding, error) {
 			url.Endpoint, url.Extra = "", extras
 		}
 		switch url.ProtocolSequence {
-		case ProtocolSequenceIPTCP:
+		case ProtocolSequenceIPTCP, ProtocolSequenceHTTP:
 			// parse the port number.
 			if _, err := strconv.ParseUint(url.Endpoint, 10, 16); err != nil {
 				url.Endpoint, url.Extra = "", extras

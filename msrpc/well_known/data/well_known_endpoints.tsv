@@ -325,7 +325,7 @@ F120A684-B926-447F-9DF4-C966CB785648	MS-RAI	Remote Assistance Initiation Protoco
 811109BF-A4E1-11D1-AB54-00A0C91E9B45	MS-RAIW	Remote Administrative Interface: WINS	winsif2	v1.0	ncacn_np:WinsPipe
 45F52C28-7F9F-101A-B52B-08002B2EFABE	MS-RAIW	Remote Administrative Interface: WINS	winsif	v1.0	ncacn_np:WinsPipe
 A35AF600-9CF4-11CD-A076-08002B2BD711	MS-RDPESC	Remote Desktop Protocol: Smart Card Virtual Channel Extension	TypeScardPack	v1.0	
-E1AF8308-5D1F-11C9-91A4-08002B14A0FA	MS-RPCE	Endpoint Mapper Protocol	EndpointMapper	v3.0	ncacn_ip_tcp:135 ncacn_np:epmapper
+E1AF8308-5D1F-11C9-91A4-08002B14A0FA	MS-RPCE	Endpoint Mapper Protocol	EndpointMapper	v3.0	ncacn_ip_tcp:135 ncacn_np:epmapper ncacn_http:593
 AFA8BD80-7D8A-11C9-BEF4-08002B102989	MS-RPCE	Remote Management Protocol	RemoteManagement	v1.0	ncacn_ip_tcp:135
 71710533-BEBA-4937-8319-B5DBEF9CCC36	MS-RPCE	Transfer Syntax NDR64	TransferNDR64	v1.0	
 8A885D04-1CEB-11C9-9FE8-08002B104860	MS-RPCE	Transfer Syntax NDR	TransferNDR	v2.0	
@@ -762,3 +762,21 @@ E60C73E6-88F9-11CF-9AF1-0020AF6E72F4	RPCSS	Local Object Exporter Service	ILocalO
 0B0A6584-9E0F-11CF-A3CF-00805F68CB1B	RPCSS	Local Endpoint Mapper	localepmp	v1.1	
 1D55B526-C137-46C5-AB79-638F2A68E869	RPCSS	Dbgidl	Dbgidl	v1.0	
 64FE0B7F-9EF5-4553-A7DB-9A1975777554	RPCSS	Fwidl	Fwidl	v1.0	
+4F32ADC8-6052-4A04-8701-293CCF2096F0	MS-DLL	sspisrv.dll: LSA SSPI RPC interface	sspirpc	v1.0	
+D25576E4-00D2-43F7-98F9-B4C0724158F9	MS-DLL	lsasrv.dll: LSA Server 	lsasrv	v1.0	
+00000134-0000-0000-C000-000000000046	MS-DCOM	The OID Rundown Interface	IRundown	v0.0	
+18F70770-8E64-11CF-9AF1-0020AF6E72F4	MS-DCOM	combase.dll: Microsoft COM for Windows	combase	v0.0	
+A2C45F7C-7D32-46AD-96F5-ADAFB486BE74	MS-DLL	Sens.dll: System Event Notification Service (SENS)	servicechannel	v1.0	
+93149CA2-973B-11D1-8C39-00C04FB984F9	MS-DLL	SceSvc	SceSvc	v0.0	
+F50A28CF-5C9C-4F7E-9D80-E25E16E18C59	MS-WMI	Internal_IWbemServices	Internal_IWbemServices	v0.0	
+1BE41572-91DD-11D1-AEB2-00C04FB68820	MS-WMI	IWbemProviderInit	IWbemProviderInit	v0.0	
+6919DD07-1637-4611-A8A7-C16FAC5B2D53	MS-WMI	Internal_IWbemProviderInit	Internal_IWbemProviderInit	v0.0	
+FEC1B0AC-5808-4033-A915-C0185934581E	MS-WMI	_IWmiProviderSite	_IWmiProviderSite	v0.0	
+E245105B-B06E-11D0-AD61-00C04FD8FDFF	MS-WMI	IWbemEventProvider	IWbemEventProvider	v0.0	
+FD450835-CF1B-4C87-9FD2-5E0D42FDE081	MS-WMI	Internal_IWbemEventProvider	Internal_IWbemEventProvider	v0.0	
+580ACAF8-FA1C-11D0-AD72-00C04FD8FDFF	MS-WMI	IWbemEventProviderQuerySink	IWbemEventProviderQuerySink	v0.0	
+8A0DC377-A9D3-41CB-BD69-AE1FDAF2DC68	MS-WMI	Internal_IWbemEventProviderQuerySink	Internal_IWbemEventProviderQuerySink	v0.0	
+631F7D96-D993-11D2-B339-00105A1F4AAF	MS-WMI	IWbemEventProviderSecurity	IWbemEventProviderSecurity	v0.0	
+DF2373F5-EFB2-475C-AD58-3102D61967D4	MS-WMI	Internal_IWbemEventProviderSecurity	Internal_IWbemEventProviderSecurity	v0.0	
+00000132-0000-0000-C000-000000000046	MS-DCOM	ILocalSystemActivator	ILocalSystemActivator	v0.0	
+2A82BB21-E44F-4791-9AA1-DFAE788E2F43	MS-DLL	UBPM.dll: Unified Background Process Manager	UBPM	v1.0	
