@@ -420,6 +420,48 @@ func (t *conn) dialConn(ctx context.Context, binding StringBinding) (RawConn, er
 
 		return conn, nil
 
+	case ProtocolSequenceHTTP:
+
+		addr := net.JoinHostPort(binding.NetworkAddress, binding.Endpoint)
+
+		if binding.NetworkAddress == "" || binding.NetworkAddress == "0.0.0.0" {
+			addr = net.JoinHostPort(t.serverAddr, binding.Endpoint)
+		}
+
+		t.logger.Debug().Msgf("dialing http (v1) %s", addr)
+
+		var (
+			conn RawConn
+			err  error
+		)
+
+		if t.settings.Dialer != nil {
+			if conn, err = t.settings.Dialer.DialContext(ctx, "tcp", addr); err != nil {
+				return nil, fmt.Errorf("ncacn_http: custom dialer: %w", err)
+			}
+		} else {
+			if conn, err = net.DialTimeout("tcp", addr, t.settings.Timeout); err != nil {
+				return nil, fmt.Errorf("ncacn_http: %w", err)
+			}
+		}
+
+		tmp := make([]byte, 1024)
+
+		n, err := conn.Read(tmp)
+		if err != nil {
+			conn.Close()
+			return nil, fmt.Errorf("ncacn_http: read http response: %w", err)
+		}
+
+		if string(tmp[:n]) != "ncacn_http/1.0" {
+			conn.Close()
+			return nil, fmt.Errorf("ncacn_http: invalid http response, expected 'ncacn_http/1.0', got '%s'", string(tmp[:n]))
+		}
+
+		t.logger.Debug().Msgf("dialing http %s done", addr)
+
+		return conn, nil
+
 	case ProtocolSequenceNamedPipe:
 
 		t.logger.Debug().Msgf("dialing smb named pipe %s:%d:%s\\%s",
