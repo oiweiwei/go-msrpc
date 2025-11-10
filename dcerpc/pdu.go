@@ -70,6 +70,10 @@ type Auth3 struct {
 	Pad [4]byte
 }
 
+func (pdu *Auth3) Size() int {
+	return 4
+}
+
 func (pdu *Auth3) MarshalZerologObject(e *zerolog.Event) {}
 
 // marshal function ...
@@ -99,6 +103,14 @@ type AlterContext struct {
 	MaxRecvFrag  uint16
 	AssocGroupID uint32
 	ContextList  []*Context
+}
+
+func (pdu *AlterContext) Size() int {
+	size := 8 + 1
+	for _, ctx := range pdu.ContextList {
+		size += ctx.Size()
+	}
+	return size
 }
 
 func (pdu *AlterContext) MarshalZerologObject(e *zerolog.Event) {}
@@ -199,6 +211,14 @@ type Bind struct {
 	MaxRecvFrag  uint16
 	AssocGroupID uint32
 	ContextList  []*Context
+}
+
+func (pdu *Bind) Size() int {
+	size := 8 + 1
+	for _, ctx := range pdu.ContextList {
+		size += ctx.Size()
+	}
+	return size
 }
 
 func (pdu *Bind) MarshalZerologObject(e *zerolog.Event) {}

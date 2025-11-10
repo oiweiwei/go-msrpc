@@ -14,6 +14,10 @@ type SyntaxID struct {
 	IfVersionMinor uint16
 }
 
+func (v *SyntaxID) Size() int {
+	return 16 + 2 + 2
+}
+
 func (v *SyntaxID) Is(other *SyntaxID) bool {
 	if v == nil || other == nil {
 		return false
@@ -83,6 +87,14 @@ type Context struct {
 	_                uint8 // reserved.
 	AbstractSyntax   *SyntaxID
 	TransferSyntaxes []*SyntaxID
+}
+
+func (c *Context) Size() int {
+	size := 4 + c.AbstractSyntax.Size()
+	for i := range c.TransferSyntaxes {
+		size += c.TransferSyntaxes[i].Size()
+	}
+	return size
 }
 
 // marshal function ...
