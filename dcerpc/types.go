@@ -14,6 +14,10 @@ type SyntaxID struct {
 	IfVersionMinor uint16
 }
 
+func (v *SyntaxID) Size() int {
+	return 16 + 2 + 2
+}
+
 func (v *SyntaxID) Is(other *SyntaxID) bool {
 	if v == nil || other == nil {
 		return false
@@ -85,6 +89,14 @@ type Context struct {
 	TransferSyntaxes []*SyntaxID
 }
 
+func (c *Context) Size() int {
+	size := 4 + c.AbstractSyntax.Size()
+	for i := range c.TransferSyntaxes {
+		size += c.TransferSyntaxes[i].Size()
+	}
+	return size
+}
+
 // marshal function ...
 func (c *Context) WriteTo(ctx context.Context, w ndr.Writer) error {
 	w.WriteData(c.ContextID)
@@ -140,6 +152,7 @@ const (
 	AbstractSyntaxNotSupported           ProviderReason = 0x0001
 	ProposedTransferSyntaxesNotSupported ProviderReason = 0x0002
 	LocalLimitExceeded                   ProviderReason = 0x0003
+	ProtocolVersionNotSupported          ProviderReason = 0x0004
 	AuthTypeNotRecognized                ProviderReason = 0x0008
 	InvalidChecksum                      ProviderReason = 0x0009
 
