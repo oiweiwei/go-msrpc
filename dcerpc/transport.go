@@ -150,41 +150,6 @@ func (c *transport) ExportSMBSecurity(o *Security) {
 			o.SetAttribute(gssapi.AttributeSMBEffectiveSessionKey, pipe.SessionKey())
 		}
 	}
-
-}
-
-// writePacketFragmentedAuth writes the packet with fragmented authentication data.
-func (c *transport) writePacketFragmentedAuth(ctx context.Context, call Call, pkt *Packet) error {
-
-	authData, maxSize := pkt.AuthData, c.settings.MaxXmitFrag-pkt.PDUHeaderSize()
-
-	// https://pubs.opengroup.org/onlinepubs/9629399/chap12.htm:
-	//
-	// If pfc_flags does not have PFC_LAST_FRAG set and rpc_vers_minor is 1,
-	// then the PDU has fragmented auth_verifier data. The server will assemble
-	// the data concatenating sequentially each auth_verifier field until a
-	// PDU is sent with PFC_LAST_FRAG flag set. This completed buffer is then
-	// used as auth_verifier data.
-
-	for {
-
-		if pkt.Set(PacketFlagLastFrag); len(authData) > maxSize {
-			pkt.AuthData, authData = authData[:maxSize], authData[maxSize:]
-			pkt.Header.RPCVersionMinor = 1
-			pkt.Unset(PacketFlagLastFrag)
-		}
-
-		// write bind pdu.
-		if err := c.WritePacket(ctx, call, pkt); err != nil {
-			return fmt.Errorf("alter context: write packet: %w", err)
-		}
-
-		if pkt.Unset(PacketFlagFirstFrag); len(pkt.AuthData) <= maxSize {
-			break
-		}
-	}
-
-	return nil
 }
 
 // AlterContext function establishes new presentation or security (or both) context(s).
@@ -229,7 +194,7 @@ func (c *transport) AlterContext(ctx context.Context, opts ...Option) (Conn, err
 	}
 
 	// write alter-context pdu.
-	if err := c.writePacketFragmentedAuth(ctx, call, pkt); err != nil {
+	if err := c.WritePacket(ctx, call, pkt); err != nil {
 		return nil, err
 	}
 
@@ -279,14 +244,14 @@ func (c *transport) AlterContext(ctx context.Context, opts ...Option) (Conn, err
 			// replace type with auth3.
 			pkt.PDU = &Auth3{}
 			// write auth3 pdu.
-			if err = c.writePacketFragmentedAuth(ctx, call, pkt); err != nil {
+			if err = c.WritePacket(ctx, call, pkt); err != nil {
 				return nil, fmt.Errorf("alter context: auth3: write packet: %w", err)
 			}
 			// no response is assumed.
 			break
 		}
 		// write alter_context request.
-		if err = c.writePacketFragmentedAuth(ctx, call, pkt); err != nil {
+		if err = c.WritePacket(ctx, call, pkt); err != nil {
 			return nil, fmt.Errorf("alter context: write packet: %w", err)
 		}
 		// read alter_context response.
@@ -420,8 +385,20 @@ func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 	if pkt.AuthData, err = o.Security.Init(ctx, nil); err != nil {
 		return nil, fmt.Errorf("bind: %w", err)
 	}
+
+	// XXX: adjust max xmit frag size if auth data is too large.
+	if len(pkt.AuthData) > c.settings.MaxXmitFrag-pkt.PDUHeaderSize() {
+		c.logger.Warn().Int("auth_data_size", len(pkt.AuthData)).
+			Int("max_xmit_frag", c.settings.MaxXmitFrag).
+			Msg("adjusting transmit buffer size to fit auth data")
+		sz := len(pkt.AuthData) + pkt.PDUHeaderSize()
+		c.settings.MaxXmitFrag = sz
+		// reset buffered connector.
+		c.cc, c.tx, c.rx = c.cc.Resized(sz), resizeBuffer(c.tx, sz), resizeBuffer(c.rx, sz)
+	}
+
 	// write bind pdu.
-	if err = c.writePacketFragmentedAuth(ctx, call, pkt); err != nil {
+	if err = c.WritePacket(ctx, call, pkt); err != nil {
 		return nil, fmt.Errorf("bind: write packet: %w", err)
 	}
 	// read bind response (bind-ack, bind-nak).
@@ -432,11 +409,6 @@ func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 	switch pdu := (interface{})(pkt.PDU).(type) {
 
 	case *BindAck:
-
-		if c.settings.MaxRecvFrag != int(pdu.MaxRecvFrag) {
-			// reset buffered connector.
-			c.cc = c.cc.Resized(int(pdu.MaxRecvFrag))
-		}
 
 		sz := c.settings.FragmentSize()
 
@@ -450,7 +422,9 @@ func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 		o.Group.SetID(int(pdu.AssocGroupID))
 
 		if sz != c.settings.FragmentSize() {
-			c.tx, c.rx = make([]byte, c.settings.FragmentSize()), make([]byte, c.settings.FragmentSize())
+			c.tx, c.rx = resizeBuffer(c.tx, c.settings.FragmentSize()), resizeBuffer(c.rx, c.settings.FragmentSize())
+			// reset buffered connector.
+			c.cc = c.cc.Resized(c.settings.FragmentSize())
 		}
 
 		// save negotiated header sign parameter.
@@ -499,14 +473,14 @@ func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 			// replace type with auth3.
 			pkt.PDU = &Auth3{}
 			// write auth3 pdu.
-			if err = c.writePacketFragmentedAuth(ctx, call, pkt); err != nil {
+			if err = c.WritePacket(ctx, call, pkt); err != nil {
 				return nil, fmt.Errorf("bind: alter context: auth3: write packet: %w", err)
 			}
 			// no response is assumed.
 			break
 		}
 		// write alter_context request.
-		if err = c.writePacketFragmentedAuth(ctx, call, pkt); err != nil {
+		if err = c.WritePacket(ctx, call, pkt); err != nil {
 			return nil, fmt.Errorf("bind: alter context: write packet: %w", err)
 		}
 		// read alter_context response.

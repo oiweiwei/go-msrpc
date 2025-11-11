@@ -152,6 +152,7 @@ const (
 	AbstractSyntaxNotSupported           ProviderReason = 0x0001
 	ProposedTransferSyntaxesNotSupported ProviderReason = 0x0002
 	LocalLimitExceeded                   ProviderReason = 0x0003
+	ProtocolVersionNotSupported          ProviderReason = 0x0004
 	AuthTypeNotRecognized                ProviderReason = 0x0008
 	InvalidChecksum                      ProviderReason = 0x0009
 

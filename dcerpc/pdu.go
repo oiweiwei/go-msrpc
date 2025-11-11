@@ -106,7 +106,7 @@ type AlterContext struct {
 }
 
 func (pdu *AlterContext) Size() int {
-	size := 8 + 1
+	size := 8 + 4
 	for _, ctx := range pdu.ContextList {
 		size += ctx.Size()
 	}
@@ -214,7 +214,7 @@ type Bind struct {
 }
 
 func (pdu *Bind) Size() int {
-	size := 8 + 1
+	size := 8 + 4
 	for _, ctx := range pdu.ContextList {
 		size += ctx.Size()
 	}
@@ -325,6 +325,8 @@ func (pdu *BindNak) Error() string {
 		return "bind: authentication type was not recognized"
 	case InvalidChecksum:
 		return "bind: invalid checksum"
+	case ProtocolVersionNotSupported:
+		return "bind: protocol version not supported"
 	default:
 		return "bind: unknown error"
 	}
