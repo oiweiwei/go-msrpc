@@ -85,7 +85,8 @@ func main() {
 	}
 
 	clientCaps := drsuapi.ExtensionsInt{
-		Flags: drsuapi.ExtGetNCChangesRequestV8 | drsuapi.ExtStrongEncryption | drsuapi.ExtGetNCChangesReplyV6,
+		Flags:   drsuapi.ExtGetNCChangesRequestV8 | drsuapi.ExtStrongEncryption | drsuapi.ExtGetNCChangesReplyV6,
+		ExtCaps: 0xFFFFFFFF,
 	}
 
 	b, err := ndr.Marshal(&clientCaps, ndr.Opaque)

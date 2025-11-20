@@ -77,7 +77,8 @@ func main() {
 	}
 
 	clientCaps := drsuapi.ExtensionsInt{
-		Flags: drsuapi.ExtGetNCChangesRequestV8 | drsuapi.ExtStrongEncryption | drsuapi.ExtGetNCChangesReplyV6,
+		Flags:   drsuapi.ExtGetNCChangesRequestV8 | drsuapi.ExtStrongEncryption | drsuapi.ExtGetNCChangesReplyV6,
+		ExtCaps: 0xFFFFFFFF,
 	}
 
 	b, err := ndr.Marshal(&clientCaps, ndr.Opaque)
@@ -92,6 +93,17 @@ func main() {
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "drsuapi_bind", err)
 		return
+	}
+
+	var serverCaps drsuapi.ExtensionsInt
+
+	if err := ndr.Unmarshal(resp.Server.Data, &serverCaps, ndr.Opaque); err != nil {
+		fmt.Fprintln(os.Stderr, "unmarshal_server_caps", err)
+		return
+	}
+
+	if cfg.Debug {
+		fmt.Println(J(serverCaps))
 	}
 
 	// get the id using the provided name.
