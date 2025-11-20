@@ -169,7 +169,10 @@ type Config struct {
 	Protocol string `json:"protocol"`
 
 	// The transfer encoding to use (ndr20, ndr64)
-	TrasnferEncoding string `json:"transfer_encoding"`
+	TransferEncoding string `json:"transfer_encoding"`
+
+	// The transfer window size.
+	TransportXmitSize int `json:"transport_xmit_size"`
 
 	// The flag that indicates whether credentials and mechanisms should be
 	// included into connection options. If GlobalCredentials is true, then
@@ -203,7 +206,8 @@ func New() *Config {
 	cfg.Auth.KRB5.DisablePAFXFAST = true
 	cfg.Auth.KRB5.AnyServiceClassSPN = true
 
-	cfg.TrasnferEncoding = "ndr20"
+	cfg.TransferEncoding = "ndr20"
+	cfg.TransportXmitSize = dcerpc.DefaultXmitSize
 
 	return cfg
 }
@@ -373,7 +377,7 @@ func (cfg *Config) ClientOptions(ctx context.Context) []dcerpc.Option {
 
 	options := []dcerpc.Option{}
 
-	switch cfg.TrasnferEncoding {
+	switch cfg.TransferEncoding {
 	case "ndr20":
 		options = append(options, dcerpc.WithNDR20())
 	case "ndr64":
@@ -511,6 +515,10 @@ func (cfg *Config) getDialOptions() []dcerpc.Option {
 
 	if dialer := cfg.SMBDialerOptions(); len(dialer) > 0 {
 		options = append(options, dcerpc.WithSMBDialer(smb2.NewDialer(dialer...)))
+	}
+
+	if cfg.TransportXmitSize > 0 {
+		options = append(options, dcerpc.WithFragmentSize(cfg.TransportXmitSize))
 	}
 
 	if !cfg.useGlobalCredentials {
@@ -733,9 +741,9 @@ func (cfg *Config) ParseServerAddr() error {
 			switch extra {
 			// transfer encoding.
 			case "ndr20":
-				cfg.TrasnferEncoding = "ndr20"
+				cfg.TransferEncoding = "ndr20"
 			case "ndr64":
-				cfg.TrasnferEncoding = "ndr64"
+				cfg.TransferEncoding = "ndr64"
 			// auth type keywords.
 			case "spnego":
 				cfg.Auth.SPNEGO = true
@@ -806,8 +814,12 @@ func (cfg *Config) Validate() error {
 		}
 	}
 
-	if err := ValidateTransferEncoding(cfg.TrasnferEncoding); err != nil {
+	if err := ValidateTransferEncoding(cfg.TransferEncoding); err != nil {
 		return err
+	}
+
+	if cfg.TransportXmitSize <= 1024 {
+		return fmt.Errorf("transport xmit size must be greater than 1024")
 	}
 
 	if err := ValidateAuthLevel(cfg.Auth.Level); err != nil {
