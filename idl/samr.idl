@@ -114,6 +114,11 @@ typedef struct _USER_PROPERTY {
     [size_is(ValueLength), format(hex)] CHAR * PropertyValueRaw;
 } USER_PROPERTY, *PUSER_PROPERTY;
 
+typedef struct _USER_PROPERTIES_LIST {
+    unsigned short PropertyCount;
+    [size_is(PropertyCount)] PUSER_PROPERTY * UserProperties[];
+} USER_PROPERTIES_LIST, *PUSER_PROPERTIES_LIST;
+
 typedef struct _USER_PROPERTIES {
     unsigned long Reserved1;
     unsigned long Length;
@@ -121,12 +126,14 @@ typedef struct _USER_PROPERTIES {
     unsigned short Reserved3;
     BYTE Reserved4[96];
     BYTE PropertySignature[2];
-    unsigned short PropertyCount;
+    [ignore] unsigned short PropertyCount;
     [goext_layout(
-        [size_is(PropertyCount)] PUSER_PROPERTY UserProperties[]
+        PUSER_PROPERTIES_LIST * UserPropertiesList
     )]
-    [size_is(Length-100)] BYTE *UserPropertiesRaw[];
+    [size_is(Length-98)] BYTE *UserPropertiesRaw[];
     BYTE Reserved5;
+    [ignore] [size_is(PropertyCount)] PUSER_PROPERTY * UserProperties[];
+
 } USER_PROPERTIES, *PUSER_PROPERTIES;
  
 typedef struct _RPC_STRING {

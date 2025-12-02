@@ -1,11 +1,18 @@
 package samr
 
-import "context"
+import (
+	"context"
+)
 
 func (o *UserProperties) AfterUnmarshalNDR(ctx context.Context) error {
 
 	if o == nil {
 		return nil
+	}
+
+	if o.UserPropertiesList != nil {
+		o.UserProperties = o.UserPropertiesList.UserProperties
+		o.PropertyCount = o.UserPropertiesList.PropertyCount
 	}
 
 	for i1 := range o.UserProperties {
