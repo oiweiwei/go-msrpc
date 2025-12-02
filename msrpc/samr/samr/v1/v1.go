@@ -3093,6 +3093,136 @@ func (o *UserProperty_PropertyValue_RawCredential) UnmarshalNDR(ctx context.Cont
 	return nil
 }
 
+// UserPropertiesList structure represents USER_PROPERTIES_LIST RPC structure.
+type UserPropertiesList struct {
+	PropertyCount  uint16          `idl:"name:PropertyCount" json:"property_count"`
+	UserProperties []*UserProperty `idl:"name:UserProperties;size_is:(PropertyCount)" json:"user_properties"`
+}
+
+func (o *UserPropertiesList) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.UserProperties != nil && o.PropertyCount == 0 {
+		o.PropertyCount = uint16(len(o.UserProperties))
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *UserPropertiesList) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(7); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.PropertyCount); err != nil {
+		return err
+	}
+	if o.UserProperties != nil || o.PropertyCount > 0 {
+		_ptr_UserProperties := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.PropertyCount)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.UserProperties {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if o.UserProperties[i1] != nil {
+					_ptr_UserProperties := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+						if o.UserProperties[i1] != nil {
+							if err := o.UserProperties[i1].MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						} else {
+							if err := (&UserProperty{}).MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						}
+						return nil
+					})
+					if err := w.WritePointer(&o.UserProperties[i1], _ptr_UserProperties); err != nil {
+						return err
+					}
+				} else {
+					if err := w.WritePointer(nil); err != nil {
+						return err
+					}
+				}
+			}
+			for i1 := len(o.UserProperties); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WritePointer(nil); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.UserProperties, _ptr_UserProperties); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *UserPropertiesList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(7); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.PropertyCount); err != nil {
+		return err
+	}
+	_ptr_UserProperties := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.PropertyCount > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.PropertyCount)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.UserProperties", sizeInfo[0])
+		}
+		o.UserProperties = make([]*UserProperty, sizeInfo[0])
+		for i1 := range o.UserProperties {
+			i1 := i1
+			_ptr_UserProperties := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+				if o.UserProperties[i1] == nil {
+					o.UserProperties[i1] = &UserProperty{}
+				}
+				if err := o.UserProperties[i1].UnmarshalNDR(ctx, w); err != nil {
+					return err
+				}
+				return nil
+			})
+			_s_UserProperties := func(ptr interface{}) { o.UserProperties[i1] = *ptr.(**UserProperty) }
+			if err := w.ReadPointer(&o.UserProperties[i1], _s_UserProperties, _ptr_UserProperties); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_UserProperties := func(ptr interface{}) { o.UserProperties = *ptr.(*[]*UserProperty) }
+	if err := w.ReadPointer(&o.UserProperties, _s_UserProperties, _ptr_UserProperties); err != nil {
+		return err
+	}
+	return nil
+}
+
 // UserProperties structure represents USER_PROPERTIES RPC structure.
 //
 // The USER_PROPERTIES structure defines the format of the supplementalCredentials attribute.
@@ -3144,13 +3274,14 @@ type UserProperties struct {
 	// field. When there are zero USER_PROPERTY elements in the UserProperties field, this
 	// field MUST be omitted; the resultant USER_PROPERTIES structure has a constant size
 	// of 0x6F bytes.
-	PropertyCount     uint16 `idl:"name:PropertyCount" json:"property_count"`
-	UserPropertiesRaw []byte `idl:"name:UserPropertiesRaw;size_is:((Length-100))" json:"user_properties_raw"`
-	// UserProperties (variable): An array of PropertyCount USER_PROPERTY elements.
-	UserProperties []*UserProperty `idl:"name:UserProperties;size_is:(PropertyCount)" json:"user_properties"`
+	PropertyCount      uint16              `idl:"name:PropertyCount" json:"property_count"`
+	UserPropertiesRaw  []byte              `idl:"name:UserPropertiesRaw;size_is:((Length-98))" json:"user_properties_raw"`
+	UserPropertiesList *UserPropertiesList `idl:"name:UserPropertiesList" json:"user_properties_list"`
 	// Reserved5 (1 byte): This value SHOULD<23> be set to zero and MUST be ignored by the
 	// recipient.
 	_ uint8 `idl:"name:Reserved5"`
+	// UserProperties (variable): An array of PropertyCount USER_PROPERTY elements.
+	UserProperties []*UserProperty `idl:"name:UserProperties;size_is:(PropertyCount)" json:"user_properties"`
 }
 
 func (o *UserProperties) xxx_PreparePayload(ctx context.Context) error {
@@ -3158,10 +3289,13 @@ func (o *UserProperties) xxx_PreparePayload(ctx context.Context) error {
 		return err
 	}
 	if o.UserPropertiesRaw != nil && o.Length == 0 {
-		o.Length = uint32((len(o.UserPropertiesRaw) + 100))
+		o.Length = uint32((len(o.UserPropertiesRaw) + 98))
 	}
-	if o.Length < 100 {
-		o.Length = 100
+	if o.Length < 98 {
+		o.Length = 98
+	}
+	if o.UserProperties != nil && o.PropertyCount == 0 {
+		o.PropertyCount = uint16(len(o.UserProperties))
 	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
 		return err
@@ -3210,13 +3344,10 @@ func (o *UserProperties) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(o.PropertyCount); err != nil {
-		return err
-	}
-	if o.UserPropertiesRaw != nil || (o.Length-100) > 0 {
+	if o.UserPropertiesRaw != nil || (o.Length-98) > 0 {
 		_ptr_UserPropertiesRaw := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			dimSize1 := uint64((o.Length - 100))
-			if o.Length < 100 {
+			dimSize1 := uint64((o.Length - 98))
+			if o.Length < 98 {
 				dimSize1 = uint64(0)
 			}
 			if err := w.WriteSize(dimSize1); err != nil {
@@ -3251,9 +3382,6 @@ func (o *UserProperties) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	// reserved Reserved5
 	if err := w.WriteData(uint8(0)); err != nil {
-		return err
-	}
-	if err := w.WriteTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -3296,9 +3424,6 @@ func (o *UserProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 			return err
 		}
 	}
-	if err := w.ReadData(&o.PropertyCount); err != nil {
-		return err
-	}
 	_ptr_UserPropertiesRaw := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		sizeInfo := []uint64{
 			0,
@@ -3309,8 +3434,8 @@ func (o *UserProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 			}
 		}
 		// XXX: for opaque unmarshaling
-		if o.Length > 100 && sizeInfo[0] == 0 {
-			sizeInfo[0] = uint64((o.Length - 100))
+		if o.Length > 98 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64((o.Length - 98))
 		}
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
 			return fmt.Errorf("buffer overflow for size %d of array o.UserPropertiesRaw", sizeInfo[0])
@@ -3322,43 +3447,31 @@ func (o *UserProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 				return err
 			}
 		}
-		_layout_UserProperties := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			sizeInfo := []uint64{
-				0,
-			}
-			for sz1 := range sizeInfo {
-				if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
-					return err
-				}
-			}
-			// XXX: for opaque unmarshaling
-			if o.PropertyCount > 0 && sizeInfo[0] == 0 {
-				sizeInfo[0] = uint64(o.PropertyCount)
-			}
-			if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-				return fmt.Errorf("buffer overflow for size %d of array o.UserProperties", sizeInfo[0])
-			}
-			o.UserProperties = make([]*UserProperty, sizeInfo[0])
-			for i1 := range o.UserProperties {
-				i1 := i1
-				_ptr_UserProperties := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-					if o.UserProperties[i1] == nil {
-						o.UserProperties[i1] = &UserProperty{}
+		_layout_UserPropertiesList := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			_ptr_UserPropertiesList := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+				_ptr_UserPropertiesList := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+					if o.UserPropertiesList == nil {
+						o.UserPropertiesList = &UserPropertiesList{}
 					}
-					if err := o.UserProperties[i1].UnmarshalNDR(ctx, w); err != nil {
+					if err := o.UserPropertiesList.UnmarshalNDR(ctx, w); err != nil {
 						return err
 					}
 					return nil
 				})
-				_s_UserProperties := func(ptr interface{}) { o.UserProperties[i1] = *ptr.(**UserProperty) }
-				if err := w.ReadPointer(&o.UserProperties[i1], _s_UserProperties, _ptr_UserProperties); err != nil {
+				_s_UserPropertiesList := func(ptr interface{}) { o.UserPropertiesList = *ptr.(**UserPropertiesList) }
+				if err := w.ReadPointer(&o.UserPropertiesList, _s_UserPropertiesList, _ptr_UserPropertiesList); err != nil {
 					return err
 				}
+				return nil
+			})
+			_s_UserPropertiesList := func(ptr interface{}) { o.UserPropertiesList = *ptr.(**UserPropertiesList) }
+			if err := w.ReadPointer(&o.UserPropertiesList, _s_UserPropertiesList, _ptr_UserPropertiesList); err != nil {
+				return err
 			}
 			return nil
 		})
 		if len(o.UserPropertiesRaw) > 0 {
-			if err := w.WithBytes(o.UserPropertiesRaw).Unmarshal(ctx, _layout_UserProperties); err != nil {
+			if err := w.WithBytes(o.UserPropertiesRaw).Unmarshal(ctx, _layout_UserPropertiesList); err != nil {
 				return err
 			}
 		}
@@ -3371,9 +3484,6 @@ func (o *UserProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	// reserved Reserved5
 	var _Reserved5 uint8
 	if err := w.ReadData(&_Reserved5); err != nil {
-		return err
-	}
-	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
