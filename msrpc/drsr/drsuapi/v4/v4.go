@@ -754,7 +754,7 @@ var (
 	DSNameFormatMapSchemaGUID                     DSNameFormat = 4294967288
 	DSNameFormatListDomains                       DSNameFormat = 4294967287
 	DSNameFormatListNCS                           DSNameFormat = 4294967286
-	DSNameFormatLtSecurityIdentitiesName          DSNameFormat = 4294967285
+	DSNameFormatLTSecurityIdentitiesName          DSNameFormat = 4294967285
 	DSNameFormatStringSIDName                     DSNameFormat = 4294967284
 	DSNameFormatListServersWithDCSInSite          DSNameFormat = 4294967283
 	DSNameFormatListGlobalCatalogServers          DSNameFormat = 4294967281
@@ -807,8 +807,8 @@ func (o DSNameFormat) String() string {
 		return "DSNameFormatListDomains"
 	case DSNameFormatListNCS:
 		return "DSNameFormatListNCS"
-	case DSNameFormatLtSecurityIdentitiesName:
-		return "DSNameFormatLtSecurityIdentitiesName"
+	case DSNameFormatLTSecurityIdentitiesName:
+		return "DSNameFormatLTSecurityIdentitiesName"
 	case DSNameFormatStringSIDName:
 		return "DSNameFormatStringSIDName"
 	case DSNameFormatListServersWithDCSInSite:

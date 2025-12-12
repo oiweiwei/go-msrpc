@@ -63,6 +63,7 @@ all:
 		dcom.go \
 		dcom/adtg.go \
 		dcom/ccfg.go \
+		dcom/certview.go \
 		dcom/com.go \
 		dcom/coma.go \
 		dcom/comev.go \

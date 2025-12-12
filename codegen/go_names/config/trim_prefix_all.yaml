@@ -194,3 +194,7 @@ trim:
   - rpc__mgmt
   - conv_
   - convc_
+  - CV_OUT_
+  - CV_
+  - CVR_
+  - CVRC_
