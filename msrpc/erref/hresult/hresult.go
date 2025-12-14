@@ -1,4 +1,4 @@
-//go:generate go run ../gen.go -o hresult_errors.go -pkg hresult -url https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8 -url https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/ms775145(v=vs.85)
+//go:generate go run ../gen.go -o hresult_errors.go -pkg hresult -url https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8 -url https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/ms775145(v=vs.85) -url https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-csra/f46c3c08-6566-407e-a93e-b0f5e91010f7
 package hresult
 
 import (
