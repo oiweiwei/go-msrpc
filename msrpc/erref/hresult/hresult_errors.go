@@ -2965,6 +2965,12 @@ var (
 	InetEUseDefaultProtocolhandler                               = &Error{0x800C0011, "INET_E_USE_DEFAULT_PROTOCOLHANDLER", "Use the default protocol handler. (See IInternetProtocolRoot::Start.)"}
 	InetEUseDefaultSetting                                       = &Error{0x800C0012, "INET_E_USE_DEFAULT_SETTING", "Use the default settings. (See IInternetBindInfo::GetBindString.)"}
 	InetEUseExtendBinding                                        = &Error{0x800C0017, "INET_E_USE_EXTEND_BINDING", "(Microsoft internal.) Reissue request with extended binding."}
+	ErrorInvalidParameter                                        = &Error{0x80070057, "ERROR_INVALID_PARAMETER", "The parameter is incorrect."}
+	ErrorInvalidHandle                                           = &Error{0x80070006, "ERROR_INVALID_HANDLE", "The handle is invalid."}
+	ErrorUnexpectedError                                         = &Error{0x8000FFFF, "ERROR_UNEXPECTED_ERROR", "An unexpected error occurred."}
+	ErrorObjectExists                                            = &Error{0x80071392, "ERROR_OBJECT_EXISTS", "An object already exists."}
+	ErrorArithmeticOverflow                                      = &Error{0x00000001, "ERROR_ARITHMETIC_OVERFLOW", "Arithmetic overflow."}
+	ErrorOutOfMemory                                             = &Error{0xc800042D, "ERROR_OUT_OF_MEMORY", "Out of memory."}
 )
 
 func FromCode(code uint32) error {
@@ -8894,6 +8900,14 @@ func FromCode(code uint32) error {
 		return InetEUseDefaultSetting
 	case 0x800C0017:
 		return InetEUseExtendBinding
+	case 0x80070006:
+		return ErrorInvalidHandle
+	case 0x80071392:
+		return ErrorObjectExists
+	case 0x00000001:
+		return ErrorArithmeticOverflow
+	case 0xc800042D:
+		return ErrorOutOfMemory
 	}
 	return nil
 }

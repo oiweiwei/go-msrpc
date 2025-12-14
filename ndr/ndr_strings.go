@@ -274,3 +274,22 @@ func ReadUTF16NString(ctx context.Context, r Reader, s *string) error {
 
 	return nil
 }
+
+func ReadUTF16NStringNoSize(ctx context.Context, r Reader, s *string) error {
+
+	var buf = make([]uint16, 0)
+	for {
+		var chr uint16
+		if err := r.ReadData(&chr); err != nil {
+			return err
+		}
+		if chr == 0x0000 {
+			break
+		}
+		buf = append(buf, chr)
+	}
+
+	*s = strings.TrimRight(string(utf16.Decode(buf)), ZeroString)
+
+	return nil
+}
