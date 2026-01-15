@@ -119,7 +119,11 @@ func (t *transport) makeCall(ctx context.Context, opts ...any) (Call, error) {
 	}
 
 	if t.IsBinded() {
-		t.txQ <- call
+		select {
+		case t.txQ <- call:
+		case <-ctx.Done():
+			return nil, ctx.Err()
+		}
 	}
 
 	return call, nil
