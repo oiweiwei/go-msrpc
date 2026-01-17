@@ -10,6 +10,7 @@ import (
 
 	"github.com/rs/zerolog"
 
+	"github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	"github.com/oiweiwei/go-msrpc/midl/uuid"
 	"github.com/oiweiwei/go-msrpc/smb2"
 	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
@@ -519,4 +520,8 @@ func (c *conn) closeTransport(ctx context.Context, tr *transport) error {
 	}
 
 	return fmt.Errorf("transport not found")
+}
+
+func (c *conn) Error(ctx context.Context, value any) error {
+	return errors.New(ctx, value)
 }

@@ -63,6 +63,8 @@ type Conn interface {
 	Close(context.Context) error
 	// RegisterServer.
 	RegisterServer(ServerHandle, ...Option)
+	// Error.
+	Error(context.Context, any) error
 }
 
 var (

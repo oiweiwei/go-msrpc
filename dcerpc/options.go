@@ -3,6 +3,7 @@ package dcerpc
 import (
 	"context"
 
+	"github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	"github.com/oiweiwei/go-msrpc/midl/uuid"
 	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
 	"github.com/rs/zerolog"
@@ -43,6 +44,8 @@ type option struct {
 	Logger zerolog.Logger
 	// The binding string.
 	Bindings []string
+	// The Error mapper.
+	ErrorMappers []errors.Mapper
 }
 
 // TargetBinding returns the string representation without any trailing slashes or
@@ -436,6 +439,20 @@ func WithLogger(logger zerolog.Logger) BindOption {
 func WithEndpoint(s string) BindOption {
 	return BindOption(func(o *option) {
 		o.Bindings = append(o.Bindings, s)
+	})
+}
+
+// WithErrorMapper specifies the error mappers for the connection.
+//
+// Use this option to provide custom error mappers for the connection:
+//
+//	import "github.com/oiweiwei/go-msrpc/msrpc/erref/win32"
+//
+//	cli, err := winreg.NewWinregClient(ctx, conn,
+//	  dcerpc.WithSeal(), dcerpc.WithErrorMapper(win32.Mapper{}))
+func WithErrorMapper(mapper ...errors.Mapper) BindOption {
+	return BindOption(func(o *option) {
+		o.ErrorMappers = append(o.ErrorMappers, mapper...)
 	})
 }
 
