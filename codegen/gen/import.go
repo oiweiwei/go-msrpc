@@ -91,11 +91,6 @@ var (
 			Guard: "(*dcerpc.SyntaxID)(nil)",
 			Path:  "github.com/oiweiwei/go-msrpc/dcerpc",
 		},
-		{
-			Name:  "errors",
-			Guard: "(*errors.Error)(nil)",
-			Path:  "github.com/oiweiwei/go-msrpc/dcerpc/errors",
-		},
 	}
 )
 
