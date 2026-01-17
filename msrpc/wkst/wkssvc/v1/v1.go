@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
 	ndr "github.com/oiweiwei/go-msrpc/ndr"
@@ -21,7 +20,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dtyp.GoPackage
 )
 
@@ -6133,7 +6131,7 @@ func (o *xxx_DefaultWkssvcClient) GetInfo(ctx context.Context, in *GetInfoReques
 	out := &GetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6146,7 +6144,7 @@ func (o *xxx_DefaultWkssvcClient) SetInfo(ctx context.Context, in *SetInfoReques
 	out := &SetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6159,7 +6157,7 @@ func (o *xxx_DefaultWkssvcClient) UserEnum(ctx context.Context, in *UserEnumRequ
 	out := &UserEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6172,7 +6170,7 @@ func (o *xxx_DefaultWkssvcClient) TransportEnum(ctx context.Context, in *Transpo
 	out := &TransportEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6185,7 +6183,7 @@ func (o *xxx_DefaultWkssvcClient) TransportAdd(ctx context.Context, in *Transpor
 	out := &TransportAddResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6198,7 +6196,7 @@ func (o *xxx_DefaultWkssvcClient) TransportDelete(ctx context.Context, in *Trans
 	out := &TransportDeleteResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6211,7 +6209,7 @@ func (o *xxx_DefaultWkssvcClient) UseAdd(ctx context.Context, in *UseAddRequest,
 	out := &UseAddResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6224,7 +6222,7 @@ func (o *xxx_DefaultWkssvcClient) UseGetInfo(ctx context.Context, in *UseGetInfo
 	out := &UseGetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6237,7 +6235,7 @@ func (o *xxx_DefaultWkssvcClient) UseDelete(ctx context.Context, in *UseDeleteRe
 	out := &UseDeleteResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6250,7 +6248,7 @@ func (o *xxx_DefaultWkssvcClient) UseEnum(ctx context.Context, in *UseEnumReques
 	out := &UseEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6263,7 +6261,7 @@ func (o *xxx_DefaultWkssvcClient) WorkstationStatisticsGet(ctx context.Context, 
 	out := &WorkstationStatisticsGetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6276,7 +6274,7 @@ func (o *xxx_DefaultWkssvcClient) GetJoinInformation(ctx context.Context, in *Ge
 	out := &GetJoinInformationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6289,7 +6287,7 @@ func (o *xxx_DefaultWkssvcClient) JoinDomain2(ctx context.Context, in *JoinDomai
 	out := &JoinDomain2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6302,7 +6300,7 @@ func (o *xxx_DefaultWkssvcClient) UnjoinDomain2(ctx context.Context, in *UnjoinD
 	out := &UnjoinDomain2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6315,7 +6313,7 @@ func (o *xxx_DefaultWkssvcClient) RenameMachineInDomain2(ctx context.Context, in
 	out := &RenameMachineInDomain2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6328,7 +6326,7 @@ func (o *xxx_DefaultWkssvcClient) ValidateName2(ctx context.Context, in *Validat
 	out := &ValidateName2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6341,7 +6339,7 @@ func (o *xxx_DefaultWkssvcClient) GetJoinableOUs2(ctx context.Context, in *GetJo
 	out := &GetJoinableOUs2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6354,7 +6352,7 @@ func (o *xxx_DefaultWkssvcClient) AddAlternateComputerName(ctx context.Context, 
 	out := &AddAlternateComputerNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6367,7 +6365,7 @@ func (o *xxx_DefaultWkssvcClient) RemoveAlternateComputerName(ctx context.Contex
 	out := &RemoveAlternateComputerNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6380,7 +6378,7 @@ func (o *xxx_DefaultWkssvcClient) SetPrimaryComputerName(ctx context.Context, in
 	out := &SetPrimaryComputerNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -6393,7 +6391,7 @@ func (o *xxx_DefaultWkssvcClient) EnumerateComputerNames(ctx context.Context, in
 	out := &EnumerateComputerNamesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

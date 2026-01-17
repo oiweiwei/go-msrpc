@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcom "github.com/oiweiwei/go-msrpc/msrpc/dcom"
 	oaut "github.com/oiweiwei/go-msrpc/msrpc/dcom/oaut"
@@ -24,7 +23,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcom.GoPackage
 	_ = idispatch.GoPackage
 	_ = oaut.GoPackage
@@ -130,7 +128,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) GetCount(ctx context.Cont
 	out := &GetCountResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -150,7 +148,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) GetItem(ctx context.Conte
 	out := &GetItemResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -170,7 +168,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) Get_NewEnum(ctx context.C
 	out := &Get_NewEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -190,7 +188,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) Add(ctx context.Context, 
 	out := &AddResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -210,7 +208,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) Remove(ctx context.Contex
 	out := &RemoveResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -230,7 +228,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) Clear(ctx context.Context
 	out := &ClearResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -250,7 +248,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) AddRange(ctx context.Cont
 	out := &AddRangeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -270,7 +268,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) CreateTraceDataProvider(c
 	out := &CreateTraceDataProviderResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -290,7 +288,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) GetTraceDataProviders(ctx
 	out := &GetTraceDataProvidersResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -310,7 +308,7 @@ func (o *xxx_DefaultTraceDataProviderCollectionClient) GetTraceDataProvidersByPr
 	out := &GetTraceDataProvidersByProcessResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

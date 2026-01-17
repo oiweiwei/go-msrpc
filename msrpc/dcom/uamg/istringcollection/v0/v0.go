@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcom "github.com/oiweiwei/go-msrpc/msrpc/dcom"
 	oaut "github.com/oiweiwei/go-msrpc/msrpc/dcom/oaut"
@@ -24,7 +23,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcom.GoPackage
 	_ = idispatch.GoPackage
 	_ = oaut.GoPackage
@@ -343,7 +341,7 @@ func (o *xxx_DefaultStringCollectionClient) GetItem(ctx context.Context, in *Get
 	out := &GetItemResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -363,7 +361,7 @@ func (o *xxx_DefaultStringCollectionClient) SetItem(ctx context.Context, in *Set
 	out := &SetItemResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -383,7 +381,7 @@ func (o *xxx_DefaultStringCollectionClient) Get_NewEnum(ctx context.Context, in 
 	out := &Get_NewEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -403,7 +401,7 @@ func (o *xxx_DefaultStringCollectionClient) GetCount(ctx context.Context, in *Ge
 	out := &GetCountResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -423,7 +421,7 @@ func (o *xxx_DefaultStringCollectionClient) GetReadOnly(ctx context.Context, in 
 	out := &GetReadOnlyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -443,7 +441,7 @@ func (o *xxx_DefaultStringCollectionClient) Add(ctx context.Context, in *AddRequ
 	out := &AddResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -463,7 +461,7 @@ func (o *xxx_DefaultStringCollectionClient) Clear(ctx context.Context, in *Clear
 	out := &ClearResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -483,7 +481,7 @@ func (o *xxx_DefaultStringCollectionClient) Copy(ctx context.Context, in *CopyRe
 	out := &CopyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -503,7 +501,7 @@ func (o *xxx_DefaultStringCollectionClient) Insert(ctx context.Context, in *Inse
 	out := &InsertResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -523,7 +521,7 @@ func (o *xxx_DefaultStringCollectionClient) RemoveAT(ctx context.Context, in *Re
 	out := &RemoveATResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

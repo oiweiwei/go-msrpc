@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcetypes "github.com/oiweiwei/go-msrpc/msrpc/dcetypes"
 	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
@@ -22,7 +21,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcetypes.GoPackage
 	_ = dtyp.GoPackage
 )
@@ -2301,7 +2299,7 @@ func (o *xxx_DefaultEventServiceClient) RegisterRemoteSubscription(ctx context.C
 	out := &RegisterRemoteSubscriptionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2314,7 +2312,7 @@ func (o *xxx_DefaultEventServiceClient) RemoteSubscriptionNextAsync(ctx context.
 	out := &RemoteSubscriptionNextAsyncResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2327,7 +2325,7 @@ func (o *xxx_DefaultEventServiceClient) RemoteSubscriptionNext(ctx context.Conte
 	out := &RemoteSubscriptionNextResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2340,7 +2338,7 @@ func (o *xxx_DefaultEventServiceClient) RemoteSubscriptionWaitAsync(ctx context.
 	out := &RemoteSubscriptionWaitAsyncResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2353,7 +2351,7 @@ func (o *xxx_DefaultEventServiceClient) RegisterControllableOperation(ctx contex
 	out := &RegisterControllableOperationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2366,7 +2364,7 @@ func (o *xxx_DefaultEventServiceClient) RegisterLogQuery(ctx context.Context, in
 	out := &RegisterLogQueryResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2379,7 +2377,7 @@ func (o *xxx_DefaultEventServiceClient) ClearLog(ctx context.Context, in *ClearL
 	out := &ClearLogResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2392,7 +2390,7 @@ func (o *xxx_DefaultEventServiceClient) ExportLog(ctx context.Context, in *Expor
 	out := &ExportLogResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2405,7 +2403,7 @@ func (o *xxx_DefaultEventServiceClient) LocalizeExportLog(ctx context.Context, i
 	out := &LocalizeExportLogResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2418,7 +2416,7 @@ func (o *xxx_DefaultEventServiceClient) MessageRender(ctx context.Context, in *M
 	out := &MessageRenderResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2431,7 +2429,7 @@ func (o *xxx_DefaultEventServiceClient) MessageRenderDefault(ctx context.Context
 	out := &MessageRenderDefaultResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2444,7 +2442,7 @@ func (o *xxx_DefaultEventServiceClient) QueryNext(ctx context.Context, in *Query
 	out := &QueryNextResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2457,7 +2455,7 @@ func (o *xxx_DefaultEventServiceClient) QuerySeek(ctx context.Context, in *Query
 	out := &QuerySeekResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2470,7 +2468,7 @@ func (o *xxx_DefaultEventServiceClient) Close(ctx context.Context, in *CloseRequ
 	out := &CloseResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2483,7 +2481,7 @@ func (o *xxx_DefaultEventServiceClient) Cancel(ctx context.Context, in *CancelRe
 	out := &CancelResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2496,7 +2494,7 @@ func (o *xxx_DefaultEventServiceClient) AssertConfig(ctx context.Context, in *As
 	out := &AssertConfigResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2509,7 +2507,7 @@ func (o *xxx_DefaultEventServiceClient) RetractConfig(ctx context.Context, in *R
 	out := &RetractConfigResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2522,7 +2520,7 @@ func (o *xxx_DefaultEventServiceClient) OpenLog(ctx context.Context, in *OpenLog
 	out := &OpenLogResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2535,7 +2533,7 @@ func (o *xxx_DefaultEventServiceClient) GetLogFileInfo(ctx context.Context, in *
 	out := &GetLogFileInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2548,7 +2546,7 @@ func (o *xxx_DefaultEventServiceClient) GetChannelList(ctx context.Context, in *
 	out := &GetChannelListResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2561,7 +2559,7 @@ func (o *xxx_DefaultEventServiceClient) GetChannelConfig(ctx context.Context, in
 	out := &GetChannelConfigResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2574,7 +2572,7 @@ func (o *xxx_DefaultEventServiceClient) PutChannelConfig(ctx context.Context, in
 	out := &PutChannelConfigResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2587,7 +2585,7 @@ func (o *xxx_DefaultEventServiceClient) GetPublisherList(ctx context.Context, in
 	out := &GetPublisherListResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2600,7 +2598,7 @@ func (o *xxx_DefaultEventServiceClient) GetPublisherListForChannel(ctx context.C
 	out := &GetPublisherListForChannelResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2613,7 +2611,7 @@ func (o *xxx_DefaultEventServiceClient) GetPublisherMetadata(ctx context.Context
 	out := &GetPublisherMetadataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2626,7 +2624,7 @@ func (o *xxx_DefaultEventServiceClient) GetPublisherResourceMetadata(ctx context
 	out := &GetPublisherResourceMetadataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2639,7 +2637,7 @@ func (o *xxx_DefaultEventServiceClient) GetEventMetadataEnum(ctx context.Context
 	out := &GetEventMetadataEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2652,7 +2650,7 @@ func (o *xxx_DefaultEventServiceClient) GetNextEventMetadata(ctx context.Context
 	out := &GetNextEventMetadataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2665,7 +2663,7 @@ func (o *xxx_DefaultEventServiceClient) GetClassicLogDisplayName(ctx context.Con
 	out := &GetClassicLogDisplayNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

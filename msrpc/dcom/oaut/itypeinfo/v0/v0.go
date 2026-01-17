@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcom "github.com/oiweiwei/go-msrpc/msrpc/dcom"
 	iunknown "github.com/oiweiwei/go-msrpc/msrpc/dcom/iunknown/v0"
@@ -23,7 +22,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcom.GoPackage
 	_ = iunknown.GoPackage
 	_ = oaut.GoPackage
@@ -414,7 +412,7 @@ func (o *xxx_DefaultTypeInfoClient) GetTypeAttribute(ctx context.Context, in *Ge
 	out := &GetTypeAttributeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -434,7 +432,7 @@ func (o *xxx_DefaultTypeInfoClient) GetTypeComp(ctx context.Context, in *GetType
 	out := &GetTypeCompResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -454,7 +452,7 @@ func (o *xxx_DefaultTypeInfoClient) GetFuncDesc(ctx context.Context, in *GetFunc
 	out := &GetFuncDescResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -474,7 +472,7 @@ func (o *xxx_DefaultTypeInfoClient) GetVarDesc(ctx context.Context, in *GetVarDe
 	out := &GetVarDescResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -494,7 +492,7 @@ func (o *xxx_DefaultTypeInfoClient) GetNames(ctx context.Context, in *GetNamesRe
 	out := &GetNamesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -514,7 +512,7 @@ func (o *xxx_DefaultTypeInfoClient) GetReferenceTypeOfImplType(ctx context.Conte
 	out := &GetReferenceTypeOfImplTypeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -534,7 +532,7 @@ func (o *xxx_DefaultTypeInfoClient) GetImplTypeFlags(ctx context.Context, in *Ge
 	out := &GetImplTypeFlagsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -554,7 +552,7 @@ func (o *xxx_DefaultTypeInfoClient) GetDocumentation(ctx context.Context, in *Ge
 	out := &GetDocumentationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -574,7 +572,7 @@ func (o *xxx_DefaultTypeInfoClient) GetDLLEntry(ctx context.Context, in *GetDLLE
 	out := &GetDLLEntryResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -594,7 +592,7 @@ func (o *xxx_DefaultTypeInfoClient) GetReferenceTypeInfo(ctx context.Context, in
 	out := &GetReferenceTypeInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -614,7 +612,7 @@ func (o *xxx_DefaultTypeInfoClient) CreateInstance(ctx context.Context, in *Crea
 	out := &CreateInstanceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -634,7 +632,7 @@ func (o *xxx_DefaultTypeInfoClient) GetMops(ctx context.Context, in *GetMopsRequ
 	out := &GetMopsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -654,7 +652,7 @@ func (o *xxx_DefaultTypeInfoClient) GetContainingTypeLib(ctx context.Context, in
 	out := &GetContainingTypeLibResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

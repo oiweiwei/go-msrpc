@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	ndr "github.com/oiweiwei/go-msrpc/ndr"
 )
@@ -20,7 +19,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 )
 
 var (
@@ -1127,7 +1125,7 @@ func (o *xxx_DefaultMsgsvcClient) MessageNameAdd(ctx context.Context, in *Messag
 	out := &MessageNameAddResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1140,7 +1138,7 @@ func (o *xxx_DefaultMsgsvcClient) MessageNameEnum(ctx context.Context, in *Messa
 	out := &MessageNameEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1153,7 +1151,7 @@ func (o *xxx_DefaultMsgsvcClient) MessageNameGetInfo(ctx context.Context, in *Me
 	out := &MessageNameGetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1166,7 +1164,7 @@ func (o *xxx_DefaultMsgsvcClient) MessageNameDelete(ctx context.Context, in *Mes
 	out := &MessageNameDeleteResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

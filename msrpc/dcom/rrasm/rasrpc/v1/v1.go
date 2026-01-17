@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	rrasm "github.com/oiweiwei/go-msrpc/msrpc/dcom/rrasm"
 	ndr "github.com/oiweiwei/go-msrpc/ndr"
@@ -21,7 +20,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = rrasm.GoPackage
 )
 
@@ -356,7 +354,7 @@ func (o *xxx_DefaultRasrpcClient) DeleteEntry(ctx context.Context, in *DeleteEnt
 	out := &DeleteEntryResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -369,7 +367,7 @@ func (o *xxx_DefaultRasrpcClient) GetUserPreferences(ctx context.Context, in *Ge
 	out := &GetUserPreferencesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -382,7 +380,7 @@ func (o *xxx_DefaultRasrpcClient) SetUserPreferences(ctx context.Context, in *Se
 	out := &SetUserPreferencesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -395,7 +393,7 @@ func (o *xxx_DefaultRasrpcClient) GetSystemDirectory(ctx context.Context, in *Ge
 	out := &GetSystemDirectoryResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -408,7 +406,7 @@ func (o *xxx_DefaultRasrpcClient) SubmitRequest(ctx context.Context, in *SubmitR
 	out := &SubmitRequestResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -421,7 +419,7 @@ func (o *xxx_DefaultRasrpcClient) GetInstalledProtocolsEx(ctx context.Context, i
 	out := &GetInstalledProtocolsExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -434,7 +432,7 @@ func (o *xxx_DefaultRasrpcClient) GetVersion(ctx context.Context, in *GetVersion
 	out := &GetVersionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

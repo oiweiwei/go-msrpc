@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	rsp "github.com/oiweiwei/go-msrpc/msrpc/rsp"
 	ndr "github.com/oiweiwei/go-msrpc/ndr"
@@ -21,7 +20,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = rsp.GoPackage
 )
 
@@ -79,7 +77,7 @@ func (o *xxx_DefaultInitShutdownClient) BaseInitiateShutdown(ctx context.Context
 	out := &BaseInitiateShutdownResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -92,7 +90,7 @@ func (o *xxx_DefaultInitShutdownClient) BaseAbortShutdown(ctx context.Context, i
 	out := &BaseAbortShutdownResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -105,7 +103,7 @@ func (o *xxx_DefaultInitShutdownClient) BaseInitiateShutdownEx(ctx context.Conte
 	out := &BaseInitiateShutdownExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

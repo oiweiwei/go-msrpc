@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcom "github.com/oiweiwei/go-msrpc/msrpc/dcom"
 	iunknown "github.com/oiweiwei/go-msrpc/msrpc/dcom/iunknown/v0"
@@ -23,7 +22,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcom.GoPackage
 	_ = iunknown.GoPackage
 	_ = dtyp.GoPackage
@@ -116,7 +114,7 @@ func (o *xxx_DefaultObjectManagement1Client) GetNTMSObjectSecurity(ctx context.C
 	out := &GetNTMSObjectSecurityResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -136,7 +134,7 @@ func (o *xxx_DefaultObjectManagement1Client) SetNTMSObjectSecurity(ctx context.C
 	out := &SetNTMSObjectSecurityResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -156,7 +154,7 @@ func (o *xxx_DefaultObjectManagement1Client) GetNTMSObjectAttributeA(ctx context
 	out := &GetNTMSObjectAttributeAResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -176,7 +174,7 @@ func (o *xxx_DefaultObjectManagement1Client) GetNTMSObjectAttributeW(ctx context
 	out := &GetNTMSObjectAttributeWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -196,7 +194,7 @@ func (o *xxx_DefaultObjectManagement1Client) SetNTMSObjectAttributeA(ctx context
 	out := &SetNTMSObjectAttributeAResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -216,7 +214,7 @@ func (o *xxx_DefaultObjectManagement1Client) SetNTMSObjectAttributeW(ctx context
 	out := &SetNTMSObjectAttributeWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -236,7 +234,7 @@ func (o *xxx_DefaultObjectManagement1Client) EnumerateNTMSObject(ctx context.Con
 	out := &EnumerateNTMSObjectResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -256,7 +254,7 @@ func (o *xxx_DefaultObjectManagement1Client) DisableNTMSObject(ctx context.Conte
 	out := &DisableNTMSObjectResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -276,7 +274,7 @@ func (o *xxx_DefaultObjectManagement1Client) EnableNTMSObject(ctx context.Contex
 	out := &EnableNTMSObjectResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

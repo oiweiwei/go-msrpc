@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcom "github.com/oiweiwei/go-msrpc/msrpc/dcom"
 	oaut "github.com/oiweiwei/go-msrpc/msrpc/dcom/oaut"
@@ -24,7 +23,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcom.GoPackage
 	_ = idispatch.GoPackage
 	_ = pla.GoPackage
@@ -110,7 +108,7 @@ func (o *xxx_DefaultFolderActionClient) GetAge(ctx context.Context, in *GetAgeRe
 	out := &GetAgeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -130,7 +128,7 @@ func (o *xxx_DefaultFolderActionClient) SetAge(ctx context.Context, in *SetAgeRe
 	out := &SetAgeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -150,7 +148,7 @@ func (o *xxx_DefaultFolderActionClient) GetSize(ctx context.Context, in *GetSize
 	out := &GetSizeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -170,7 +168,7 @@ func (o *xxx_DefaultFolderActionClient) SetSize(ctx context.Context, in *SetSize
 	out := &SetSizeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -190,7 +188,7 @@ func (o *xxx_DefaultFolderActionClient) GetActions(ctx context.Context, in *GetA
 	out := &GetActionsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -210,7 +208,7 @@ func (o *xxx_DefaultFolderActionClient) SetActions(ctx context.Context, in *SetA
 	out := &SetActionsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -230,7 +228,7 @@ func (o *xxx_DefaultFolderActionClient) GetSendCabTo(ctx context.Context, in *Ge
 	out := &GetSendCabToResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -250,7 +248,7 @@ func (o *xxx_DefaultFolderActionClient) SetSendCabTo(ctx context.Context, in *Se
 	out := &SetSendCabToResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

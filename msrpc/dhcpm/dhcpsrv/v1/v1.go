@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dhcpm "github.com/oiweiwei/go-msrpc/msrpc/dhcpm"
 	ndr "github.com/oiweiwei/go-msrpc/ndr"
@@ -21,7 +20,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dhcpm.GoPackage
 )
 
@@ -1594,7 +1592,7 @@ func (o *xxx_DefaultDHCPServerClient) CreateSubnet(ctx context.Context, in *Crea
 	out := &CreateSubnetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1607,7 +1605,7 @@ func (o *xxx_DefaultDHCPServerClient) SetSubnetInfo(ctx context.Context, in *Set
 	out := &SetSubnetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1620,7 +1618,7 @@ func (o *xxx_DefaultDHCPServerClient) GetSubnetInfo(ctx context.Context, in *Get
 	out := &GetSubnetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1633,7 +1631,7 @@ func (o *xxx_DefaultDHCPServerClient) EnumSubnets(ctx context.Context, in *EnumS
 	out := &EnumSubnetsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1646,7 +1644,7 @@ func (o *xxx_DefaultDHCPServerClient) AddSubnetElement(ctx context.Context, in *
 	out := &AddSubnetElementResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1659,7 +1657,7 @@ func (o *xxx_DefaultDHCPServerClient) EnumSubnetElements(ctx context.Context, in
 	out := &EnumSubnetElementsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1672,7 +1670,7 @@ func (o *xxx_DefaultDHCPServerClient) RemoveSubnetElement(ctx context.Context, i
 	out := &RemoveSubnetElementResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1685,7 +1683,7 @@ func (o *xxx_DefaultDHCPServerClient) DeleteSubnet(ctx context.Context, in *Dele
 	out := &DeleteSubnetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1698,7 +1696,7 @@ func (o *xxx_DefaultDHCPServerClient) CreateOption(ctx context.Context, in *Crea
 	out := &CreateOptionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1711,7 +1709,7 @@ func (o *xxx_DefaultDHCPServerClient) SetOptionInfo(ctx context.Context, in *Set
 	out := &SetOptionInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1724,7 +1722,7 @@ func (o *xxx_DefaultDHCPServerClient) GetOptionInfo(ctx context.Context, in *Get
 	out := &GetOptionInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1737,7 +1735,7 @@ func (o *xxx_DefaultDHCPServerClient) RemoveOption(ctx context.Context, in *Remo
 	out := &RemoveOptionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1750,7 +1748,7 @@ func (o *xxx_DefaultDHCPServerClient) SetOptionValue(ctx context.Context, in *Se
 	out := &SetOptionValueResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1763,7 +1761,7 @@ func (o *xxx_DefaultDHCPServerClient) GetOptionValue(ctx context.Context, in *Ge
 	out := &GetOptionValueResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1776,7 +1774,7 @@ func (o *xxx_DefaultDHCPServerClient) EnumOptionValues(ctx context.Context, in *
 	out := &EnumOptionValuesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1789,7 +1787,7 @@ func (o *xxx_DefaultDHCPServerClient) RemoveOptionValue(ctx context.Context, in 
 	out := &RemoveOptionValueResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1802,7 +1800,7 @@ func (o *xxx_DefaultDHCPServerClient) CreateClientInfo(ctx context.Context, in *
 	out := &CreateClientInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1815,7 +1813,7 @@ func (o *xxx_DefaultDHCPServerClient) SetClientInfo(ctx context.Context, in *Set
 	out := &SetClientInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1828,7 +1826,7 @@ func (o *xxx_DefaultDHCPServerClient) GetClientInfo(ctx context.Context, in *Get
 	out := &GetClientInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1841,7 +1839,7 @@ func (o *xxx_DefaultDHCPServerClient) DeleteClientInfo(ctx context.Context, in *
 	out := &DeleteClientInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1854,7 +1852,7 @@ func (o *xxx_DefaultDHCPServerClient) EnumSubnetClients(ctx context.Context, in 
 	out := &EnumSubnetClientsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1867,7 +1865,7 @@ func (o *xxx_DefaultDHCPServerClient) GetClientOptions(ctx context.Context, in *
 	out := &GetClientOptionsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1880,7 +1878,7 @@ func (o *xxx_DefaultDHCPServerClient) GetMIBInfo(ctx context.Context, in *GetMIB
 	out := &GetMIBInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1893,7 +1891,7 @@ func (o *xxx_DefaultDHCPServerClient) EnumOptions(ctx context.Context, in *EnumO
 	out := &EnumOptionsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1906,7 +1904,7 @@ func (o *xxx_DefaultDHCPServerClient) SetOptionValues(ctx context.Context, in *S
 	out := &SetOptionValuesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1919,7 +1917,7 @@ func (o *xxx_DefaultDHCPServerClient) ServerSetConfig(ctx context.Context, in *S
 	out := &ServerSetConfigResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1932,7 +1930,7 @@ func (o *xxx_DefaultDHCPServerClient) ServerGetConfig(ctx context.Context, in *S
 	out := &ServerGetConfigResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1945,7 +1943,7 @@ func (o *xxx_DefaultDHCPServerClient) ScanDatabase(ctx context.Context, in *Scan
 	out := &ScanDatabaseResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1958,7 +1956,7 @@ func (o *xxx_DefaultDHCPServerClient) GetVersion(ctx context.Context, in *GetVer
 	out := &GetVersionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1971,7 +1969,7 @@ func (o *xxx_DefaultDHCPServerClient) AddSubnetElementV4(ctx context.Context, in
 	out := &AddSubnetElementV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1984,7 +1982,7 @@ func (o *xxx_DefaultDHCPServerClient) EnumSubnetElementsV4(ctx context.Context, 
 	out := &EnumSubnetElementsV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1997,7 +1995,7 @@ func (o *xxx_DefaultDHCPServerClient) RemoveSubnetElementV4(ctx context.Context,
 	out := &RemoveSubnetElementV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2010,7 +2008,7 @@ func (o *xxx_DefaultDHCPServerClient) CreateClientInfoV4(ctx context.Context, in
 	out := &CreateClientInfoV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2023,7 +2021,7 @@ func (o *xxx_DefaultDHCPServerClient) SetClientInfoV4(ctx context.Context, in *S
 	out := &SetClientInfoV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2036,7 +2034,7 @@ func (o *xxx_DefaultDHCPServerClient) GetClientInfoV4(ctx context.Context, in *G
 	out := &GetClientInfoV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2049,7 +2047,7 @@ func (o *xxx_DefaultDHCPServerClient) EnumSubnetClientsV4(ctx context.Context, i
 	out := &EnumSubnetClientsV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2062,7 +2060,7 @@ func (o *xxx_DefaultDHCPServerClient) SetSuperScopeV4(ctx context.Context, in *S
 	out := &SetSuperScopeV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2075,7 +2073,7 @@ func (o *xxx_DefaultDHCPServerClient) GetSuperScopeInfoV4(ctx context.Context, i
 	out := &GetSuperScopeInfoV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2088,7 +2086,7 @@ func (o *xxx_DefaultDHCPServerClient) DeleteSuperScopeV4(ctx context.Context, in
 	out := &DeleteSuperScopeV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2101,7 +2099,7 @@ func (o *xxx_DefaultDHCPServerClient) ServerSetConfigV4(ctx context.Context, in 
 	out := &ServerSetConfigV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2114,7 +2112,7 @@ func (o *xxx_DefaultDHCPServerClient) ServerGetConfigV4(ctx context.Context, in 
 	out := &ServerGetConfigV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2127,7 +2125,7 @@ func (o *xxx_DefaultDHCPServerClient) ServerSetConfigVQ(ctx context.Context, in 
 	out := &ServerSetConfigVQResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2140,7 +2138,7 @@ func (o *xxx_DefaultDHCPServerClient) ServerGetConfigVQ(ctx context.Context, in 
 	out := &ServerGetConfigVQResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2153,7 +2151,7 @@ func (o *xxx_DefaultDHCPServerClient) GetMIBInfoVQ(ctx context.Context, in *GetM
 	out := &GetMIBInfoVQResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2166,7 +2164,7 @@ func (o *xxx_DefaultDHCPServerClient) CreateClientInfoVQ(ctx context.Context, in
 	out := &CreateClientInfoVQResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2179,7 +2177,7 @@ func (o *xxx_DefaultDHCPServerClient) SetClientInfoVQ(ctx context.Context, in *S
 	out := &SetClientInfoVQResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2192,7 +2190,7 @@ func (o *xxx_DefaultDHCPServerClient) GetClientInfoVQ(ctx context.Context, in *G
 	out := &GetClientInfoVQResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2205,7 +2203,7 @@ func (o *xxx_DefaultDHCPServerClient) EnumSubnetClientsVQ(ctx context.Context, i
 	out := &EnumSubnetClientsVQResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2218,7 +2216,7 @@ func (o *xxx_DefaultDHCPServerClient) CreateSubnetVQ(ctx context.Context, in *Cr
 	out := &CreateSubnetVQResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2231,7 +2229,7 @@ func (o *xxx_DefaultDHCPServerClient) GetSubnetInfoVQ(ctx context.Context, in *G
 	out := &GetSubnetInfoVQResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2244,7 +2242,7 @@ func (o *xxx_DefaultDHCPServerClient) SetSubnetInfoVQ(ctx context.Context, in *S
 	out := &SetSubnetInfoVQResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

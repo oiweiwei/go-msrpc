@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcetypes "github.com/oiweiwei/go-msrpc/msrpc/dcetypes"
 	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
@@ -22,7 +21,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcetypes.GoPackage
 	_ = dtyp.GoPackage
 )
@@ -1633,7 +1631,7 @@ func (o *xxx_DefaultClusapi2Client) OpenCluster(ctx context.Context, in *OpenClu
 	out := &OpenClusterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != nil {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1646,7 +1644,7 @@ func (o *xxx_DefaultClusapi2Client) CloseCluster(ctx context.Context, in *CloseC
 	out := &CloseClusterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1659,7 +1657,7 @@ func (o *xxx_DefaultClusapi2Client) SetClusterName(ctx context.Context, in *SetC
 	out := &SetClusterNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1672,7 +1670,7 @@ func (o *xxx_DefaultClusapi2Client) GetClusterName(ctx context.Context, in *GetC
 	out := &GetClusterNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1685,7 +1683,7 @@ func (o *xxx_DefaultClusapi2Client) GetClusterVersion(ctx context.Context, in *G
 	out := &GetClusterVersionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1698,7 +1696,7 @@ func (o *xxx_DefaultClusapi2Client) GetQuorumResource(ctx context.Context, in *G
 	out := &GetQuorumResourceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1711,7 +1709,7 @@ func (o *xxx_DefaultClusapi2Client) SetQuorumResource(ctx context.Context, in *S
 	out := &SetQuorumResourceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1724,7 +1722,7 @@ func (o *xxx_DefaultClusapi2Client) CreateEnum(ctx context.Context, in *CreateEn
 	out := &CreateEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1737,7 +1735,7 @@ func (o *xxx_DefaultClusapi2Client) OpenResource(ctx context.Context, in *OpenRe
 	out := &OpenResourceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != nil {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1750,7 +1748,7 @@ func (o *xxx_DefaultClusapi2Client) CreateResource(ctx context.Context, in *Crea
 	out := &CreateResourceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != nil {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1763,7 +1761,7 @@ func (o *xxx_DefaultClusapi2Client) DeleteResource(ctx context.Context, in *Dele
 	out := &DeleteResourceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1776,7 +1774,7 @@ func (o *xxx_DefaultClusapi2Client) CloseResource(ctx context.Context, in *Close
 	out := &CloseResourceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1789,7 +1787,7 @@ func (o *xxx_DefaultClusapi2Client) GetResourceState(ctx context.Context, in *Ge
 	out := &GetResourceStateResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1802,7 +1800,7 @@ func (o *xxx_DefaultClusapi2Client) SetResourceName(ctx context.Context, in *Set
 	out := &SetResourceNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1815,7 +1813,7 @@ func (o *xxx_DefaultClusapi2Client) GetResourceID(ctx context.Context, in *GetRe
 	out := &GetResourceIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1828,7 +1826,7 @@ func (o *xxx_DefaultClusapi2Client) GetResourceType(ctx context.Context, in *Get
 	out := &GetResourceTypeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1841,7 +1839,7 @@ func (o *xxx_DefaultClusapi2Client) FailResource(ctx context.Context, in *FailRe
 	out := &FailResourceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1854,7 +1852,7 @@ func (o *xxx_DefaultClusapi2Client) OnlineResource(ctx context.Context, in *Onli
 	out := &OnlineResourceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1867,7 +1865,7 @@ func (o *xxx_DefaultClusapi2Client) OfflineResource(ctx context.Context, in *Off
 	out := &OfflineResourceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1880,7 +1878,7 @@ func (o *xxx_DefaultClusapi2Client) AddResourceDependency(ctx context.Context, i
 	out := &AddResourceDependencyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1893,7 +1891,7 @@ func (o *xxx_DefaultClusapi2Client) RemoveResourceDependency(ctx context.Context
 	out := &RemoveResourceDependencyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1906,7 +1904,7 @@ func (o *xxx_DefaultClusapi2Client) CanResourceBeDependent(ctx context.Context, 
 	out := &CanResourceBeDependentResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1919,7 +1917,7 @@ func (o *xxx_DefaultClusapi2Client) CreateRestrictionEnum(ctx context.Context, i
 	out := &CreateRestrictionEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1932,7 +1930,7 @@ func (o *xxx_DefaultClusapi2Client) AddResourceNode(ctx context.Context, in *Add
 	out := &AddResourceNodeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1945,7 +1943,7 @@ func (o *xxx_DefaultClusapi2Client) RemoveResourceNode(ctx context.Context, in *
 	out := &RemoveResourceNodeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1958,7 +1956,7 @@ func (o *xxx_DefaultClusapi2Client) ChangeResourceGroup(ctx context.Context, in 
 	out := &ChangeResourceGroupResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1971,7 +1969,7 @@ func (o *xxx_DefaultClusapi2Client) CreateResourceType(ctx context.Context, in *
 	out := &CreateResourceTypeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1984,7 +1982,7 @@ func (o *xxx_DefaultClusapi2Client) DeleteResourceType(ctx context.Context, in *
 	out := &DeleteResourceTypeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1997,7 +1995,7 @@ func (o *xxx_DefaultClusapi2Client) GetRootKey(ctx context.Context, in *GetRootK
 	out := &GetRootKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != nil {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2010,7 +2008,7 @@ func (o *xxx_DefaultClusapi2Client) CreateKey(ctx context.Context, in *CreateKey
 	out := &CreateKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != nil {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2023,7 +2021,7 @@ func (o *xxx_DefaultClusapi2Client) OpenKey(ctx context.Context, in *OpenKeyRequ
 	out := &OpenKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != nil {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2036,7 +2034,7 @@ func (o *xxx_DefaultClusapi2Client) EnumKey(ctx context.Context, in *EnumKeyRequ
 	out := &EnumKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2049,7 +2047,7 @@ func (o *xxx_DefaultClusapi2Client) SetValue(ctx context.Context, in *SetValueRe
 	out := &SetValueResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2062,7 +2060,7 @@ func (o *xxx_DefaultClusapi2Client) DeleteValue(ctx context.Context, in *DeleteV
 	out := &DeleteValueResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2075,7 +2073,7 @@ func (o *xxx_DefaultClusapi2Client) QueryValue(ctx context.Context, in *QueryVal
 	out := &QueryValueResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2088,7 +2086,7 @@ func (o *xxx_DefaultClusapi2Client) DeleteKey(ctx context.Context, in *DeleteKey
 	out := &DeleteKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2101,7 +2099,7 @@ func (o *xxx_DefaultClusapi2Client) EnumValue(ctx context.Context, in *EnumValue
 	out := &EnumValueResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2114,7 +2112,7 @@ func (o *xxx_DefaultClusapi2Client) CloseKey(ctx context.Context, in *CloseKeyRe
 	out := &CloseKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2127,7 +2125,7 @@ func (o *xxx_DefaultClusapi2Client) QueryInfoKey(ctx context.Context, in *QueryI
 	out := &QueryInfoKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2140,7 +2138,7 @@ func (o *xxx_DefaultClusapi2Client) SetKeySecurity(ctx context.Context, in *SetK
 	out := &SetKeySecurityResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2153,7 +2151,7 @@ func (o *xxx_DefaultClusapi2Client) GetKeySecurity(ctx context.Context, in *GetK
 	out := &GetKeySecurityResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2166,7 +2164,7 @@ func (o *xxx_DefaultClusapi2Client) OpenGroup(ctx context.Context, in *OpenGroup
 	out := &OpenGroupResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != nil {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2179,7 +2177,7 @@ func (o *xxx_DefaultClusapi2Client) CreateGroup(ctx context.Context, in *CreateG
 	out := &CreateGroupResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != nil {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2192,7 +2190,7 @@ func (o *xxx_DefaultClusapi2Client) DeleteGroup(ctx context.Context, in *DeleteG
 	out := &DeleteGroupResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2205,7 +2203,7 @@ func (o *xxx_DefaultClusapi2Client) CloseGroup(ctx context.Context, in *CloseGro
 	out := &CloseGroupResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2218,7 +2216,7 @@ func (o *xxx_DefaultClusapi2Client) GetGroupState(ctx context.Context, in *GetGr
 	out := &GetGroupStateResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2231,7 +2229,7 @@ func (o *xxx_DefaultClusapi2Client) SetGroupName(ctx context.Context, in *SetGro
 	out := &SetGroupNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2244,7 +2242,7 @@ func (o *xxx_DefaultClusapi2Client) GetGroupID(ctx context.Context, in *GetGroup
 	out := &GetGroupIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2257,7 +2255,7 @@ func (o *xxx_DefaultClusapi2Client) GetNodeID(ctx context.Context, in *GetNodeID
 	out := &GetNodeIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2270,7 +2268,7 @@ func (o *xxx_DefaultClusapi2Client) OnlineGroup(ctx context.Context, in *OnlineG
 	out := &OnlineGroupResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2283,7 +2281,7 @@ func (o *xxx_DefaultClusapi2Client) OfflineGroup(ctx context.Context, in *Offlin
 	out := &OfflineGroupResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2296,7 +2294,7 @@ func (o *xxx_DefaultClusapi2Client) MoveGroup(ctx context.Context, in *MoveGroup
 	out := &MoveGroupResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2309,7 +2307,7 @@ func (o *xxx_DefaultClusapi2Client) MoveGroupToNode(ctx context.Context, in *Mov
 	out := &MoveGroupToNodeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2322,7 +2320,7 @@ func (o *xxx_DefaultClusapi2Client) CreateGroupResourceEnum(ctx context.Context,
 	out := &CreateGroupResourceEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2335,7 +2333,7 @@ func (o *xxx_DefaultClusapi2Client) SetGroupNodeList(ctx context.Context, in *Se
 	out := &SetGroupNodeListResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2348,7 +2346,7 @@ func (o *xxx_DefaultClusapi2Client) CreateNotify(ctx context.Context, in *Create
 	out := &CreateNotifyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != nil {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2361,7 +2359,7 @@ func (o *xxx_DefaultClusapi2Client) CloseNotify(ctx context.Context, in *CloseNo
 	out := &CloseNotifyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2374,7 +2372,7 @@ func (o *xxx_DefaultClusapi2Client) AddNotifyCluster(ctx context.Context, in *Ad
 	out := &AddNotifyClusterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2387,7 +2385,7 @@ func (o *xxx_DefaultClusapi2Client) AddNotifyNode(ctx context.Context, in *AddNo
 	out := &AddNotifyNodeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2400,7 +2398,7 @@ func (o *xxx_DefaultClusapi2Client) AddNotifyGroup(ctx context.Context, in *AddN
 	out := &AddNotifyGroupResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2413,7 +2411,7 @@ func (o *xxx_DefaultClusapi2Client) AddNotifyResource(ctx context.Context, in *A
 	out := &AddNotifyResourceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2426,7 +2424,7 @@ func (o *xxx_DefaultClusapi2Client) AddNotifyKey(ctx context.Context, in *AddNot
 	out := &AddNotifyKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2439,7 +2437,7 @@ func (o *xxx_DefaultClusapi2Client) ReAddNotifyNode(ctx context.Context, in *ReA
 	out := &ReAddNotifyNodeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2452,7 +2450,7 @@ func (o *xxx_DefaultClusapi2Client) ReAddNotifyGroup(ctx context.Context, in *Re
 	out := &ReAddNotifyGroupResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2465,7 +2463,7 @@ func (o *xxx_DefaultClusapi2Client) ReAddNotifyResource(ctx context.Context, in 
 	out := &ReAddNotifyResourceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2478,7 +2476,7 @@ func (o *xxx_DefaultClusapi2Client) GetNotify(ctx context.Context, in *GetNotify
 	out := &GetNotifyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2491,7 +2489,7 @@ func (o *xxx_DefaultClusapi2Client) OpenNode(ctx context.Context, in *OpenNodeRe
 	out := &OpenNodeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != nil {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2504,7 +2502,7 @@ func (o *xxx_DefaultClusapi2Client) CloseNode(ctx context.Context, in *CloseNode
 	out := &CloseNodeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2517,7 +2515,7 @@ func (o *xxx_DefaultClusapi2Client) GetNodeState(ctx context.Context, in *GetNod
 	out := &GetNodeStateResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2530,7 +2528,7 @@ func (o *xxx_DefaultClusapi2Client) PauseNode(ctx context.Context, in *PauseNode
 	out := &PauseNodeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2543,7 +2541,7 @@ func (o *xxx_DefaultClusapi2Client) ResumeNode(ctx context.Context, in *ResumeNo
 	out := &ResumeNodeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2556,7 +2554,7 @@ func (o *xxx_DefaultClusapi2Client) EvictNode(ctx context.Context, in *EvictNode
 	out := &EvictNodeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2569,7 +2567,7 @@ func (o *xxx_DefaultClusapi2Client) NodeResourceControl(ctx context.Context, in 
 	out := &NodeResourceControlResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2582,7 +2580,7 @@ func (o *xxx_DefaultClusapi2Client) ResourceControl(ctx context.Context, in *Res
 	out := &ResourceControlResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2595,7 +2593,7 @@ func (o *xxx_DefaultClusapi2Client) NodeResourceTypeControl(ctx context.Context,
 	out := &NodeResourceTypeControlResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2608,7 +2606,7 @@ func (o *xxx_DefaultClusapi2Client) ResourceTypeControl(ctx context.Context, in 
 	out := &ResourceTypeControlResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2621,7 +2619,7 @@ func (o *xxx_DefaultClusapi2Client) NodeGroupControl(ctx context.Context, in *No
 	out := &NodeGroupControlResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2634,7 +2632,7 @@ func (o *xxx_DefaultClusapi2Client) GroupControl(ctx context.Context, in *GroupC
 	out := &GroupControlResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2647,7 +2645,7 @@ func (o *xxx_DefaultClusapi2Client) NodeNodeControl(ctx context.Context, in *Nod
 	out := &NodeNodeControlResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2660,7 +2658,7 @@ func (o *xxx_DefaultClusapi2Client) NodeControl(ctx context.Context, in *NodeCon
 	out := &NodeControlResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2673,7 +2671,7 @@ func (o *xxx_DefaultClusapi2Client) OpenNetwork(ctx context.Context, in *OpenNet
 	out := &OpenNetworkResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != nil {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2686,7 +2684,7 @@ func (o *xxx_DefaultClusapi2Client) CloseNetwork(ctx context.Context, in *CloseN
 	out := &CloseNetworkResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2699,7 +2697,7 @@ func (o *xxx_DefaultClusapi2Client) GetNetworkState(ctx context.Context, in *Get
 	out := &GetNetworkStateResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2712,7 +2710,7 @@ func (o *xxx_DefaultClusapi2Client) SetNetworkName(ctx context.Context, in *SetN
 	out := &SetNetworkNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2725,7 +2723,7 @@ func (o *xxx_DefaultClusapi2Client) CreateNetworkEnum(ctx context.Context, in *C
 	out := &CreateNetworkEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2738,7 +2736,7 @@ func (o *xxx_DefaultClusapi2Client) GetNetworkID(ctx context.Context, in *GetNet
 	out := &GetNetworkIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2751,7 +2749,7 @@ func (o *xxx_DefaultClusapi2Client) SetNetworkPriorityOrder(ctx context.Context,
 	out := &SetNetworkPriorityOrderResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2764,7 +2762,7 @@ func (o *xxx_DefaultClusapi2Client) NodeNetworkControl(ctx context.Context, in *
 	out := &NodeNetworkControlResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2777,7 +2775,7 @@ func (o *xxx_DefaultClusapi2Client) NetworkControl(ctx context.Context, in *Netw
 	out := &NetworkControlResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2790,7 +2788,7 @@ func (o *xxx_DefaultClusapi2Client) AddNotifyNetwork(ctx context.Context, in *Ad
 	out := &AddNotifyNetworkResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2803,7 +2801,7 @@ func (o *xxx_DefaultClusapi2Client) ReAddNotifyNetwork(ctx context.Context, in *
 	out := &ReAddNotifyNetworkResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2816,7 +2814,7 @@ func (o *xxx_DefaultClusapi2Client) OpenNetInterface(ctx context.Context, in *Op
 	out := &OpenNetInterfaceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != nil {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2829,7 +2827,7 @@ func (o *xxx_DefaultClusapi2Client) CloseNetInterface(ctx context.Context, in *C
 	out := &CloseNetInterfaceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2842,7 +2840,7 @@ func (o *xxx_DefaultClusapi2Client) GetNetInterfaceState(ctx context.Context, in
 	out := &GetNetInterfaceStateResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2855,7 +2853,7 @@ func (o *xxx_DefaultClusapi2Client) GetNetInterface(ctx context.Context, in *Get
 	out := &GetNetInterfaceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2868,7 +2866,7 @@ func (o *xxx_DefaultClusapi2Client) GetNetInterfaceID(ctx context.Context, in *G
 	out := &GetNetInterfaceIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2881,7 +2879,7 @@ func (o *xxx_DefaultClusapi2Client) NodeNetInterfaceControl(ctx context.Context,
 	out := &NodeNetInterfaceControlResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2894,7 +2892,7 @@ func (o *xxx_DefaultClusapi2Client) NetInterfaceControl(ctx context.Context, in 
 	out := &NetInterfaceControlResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2907,7 +2905,7 @@ func (o *xxx_DefaultClusapi2Client) AddNotifyNetInterface(ctx context.Context, i
 	out := &AddNotifyNetInterfaceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2920,7 +2918,7 @@ func (o *xxx_DefaultClusapi2Client) ReAddNotifyNetInterface(ctx context.Context,
 	out := &ReAddNotifyNetInterfaceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2933,7 +2931,7 @@ func (o *xxx_DefaultClusapi2Client) CreateNodeEnum(ctx context.Context, in *Crea
 	out := &CreateNodeEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2946,7 +2944,7 @@ func (o *xxx_DefaultClusapi2Client) GetClusterVersion2(ctx context.Context, in *
 	out := &GetClusterVersion2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2959,7 +2957,7 @@ func (o *xxx_DefaultClusapi2Client) CreateRestrictionTypeEnum(ctx context.Contex
 	out := &CreateRestrictionTypeEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2972,7 +2970,7 @@ func (o *xxx_DefaultClusapi2Client) BackupClusterDatabase(ctx context.Context, i
 	out := &BackupClusterDatabaseResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2985,7 +2983,7 @@ func (o *xxx_DefaultClusapi2Client) NodeClusterControl(ctx context.Context, in *
 	out := &NodeClusterControlResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2998,7 +2996,7 @@ func (o *xxx_DefaultClusapi2Client) ClusterControl(ctx context.Context, in *Clus
 	out := &ClusterControlResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3011,7 +3009,7 @@ func (o *xxx_DefaultClusapi2Client) UnblockGetNotifyCall(ctx context.Context, in
 	out := &UnblockGetNotifyCallResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3024,7 +3022,7 @@ func (o *xxx_DefaultClusapi2Client) SetServiceAccountPassword(ctx context.Contex
 	out := &SetServiceAccountPasswordResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

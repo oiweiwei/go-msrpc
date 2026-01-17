@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcom "github.com/oiweiwei/go-msrpc/msrpc/dcom"
 	oaut "github.com/oiweiwei/go-msrpc/msrpc/dcom/oaut"
@@ -24,7 +23,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcom.GoPackage
 	_ = itypeinfo.GoPackage
 	_ = oaut.GoPackage
@@ -427,7 +425,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetTypeKind(ctx context.Context, in *GetTyp
 	out := &GetTypeKindResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -447,7 +445,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetTypeFlags(ctx context.Context, in *GetTy
 	out := &GetTypeFlagsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -467,7 +465,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetFuncIndexOfMemberIDs(ctx context.Context
 	out := &GetFuncIndexOfMemberIDsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -487,7 +485,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetVarIndexOfMemberIDs(ctx context.Context,
 	out := &GetVarIndexOfMemberIDsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -507,7 +505,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetCustomData(ctx context.Context, in *GetC
 	out := &GetCustomDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -527,7 +525,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetFuncCustomData(ctx context.Context, in *
 	out := &GetFuncCustomDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -547,7 +545,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetParamCustomData(ctx context.Context, in 
 	out := &GetParamCustomDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -567,7 +565,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetVarCustomData(ctx context.Context, in *G
 	out := &GetVarCustomDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -587,7 +585,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetImplTypeCustomData(ctx context.Context, 
 	out := &GetImplTypeCustomDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -607,7 +605,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetDocumentation2(ctx context.Context, in *
 	out := &GetDocumentation2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -627,7 +625,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetAllCustomData(ctx context.Context, in *G
 	out := &GetAllCustomDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -647,7 +645,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetAllFuncCustomData(ctx context.Context, i
 	out := &GetAllFuncCustomDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -667,7 +665,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetAllParamCustomData(ctx context.Context, 
 	out := &GetAllParamCustomDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -687,7 +685,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetAllVarCustomData(ctx context.Context, in
 	out := &GetAllVarCustomDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -707,7 +705,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetAllImplTypeCustomData(ctx context.Contex
 	out := &GetAllImplTypeCustomDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

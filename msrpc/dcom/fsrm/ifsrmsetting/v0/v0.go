@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcom "github.com/oiweiwei/go-msrpc/msrpc/dcom"
 	fsrm "github.com/oiweiwei/go-msrpc/msrpc/dcom/fsrm"
@@ -24,7 +23,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcom.GoPackage
 	_ = idispatch.GoPackage
 	_ = oaut.GoPackage
@@ -174,7 +172,7 @@ func (o *xxx_DefaultSettingClient) GetSMTPServer(ctx context.Context, in *GetSMT
 	out := &GetSMTPServerResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -194,7 +192,7 @@ func (o *xxx_DefaultSettingClient) SetSMTPServer(ctx context.Context, in *SetSMT
 	out := &SetSMTPServerResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -214,7 +212,7 @@ func (o *xxx_DefaultSettingClient) GetMailFrom(ctx context.Context, in *GetMailF
 	out := &GetMailFromResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -234,7 +232,7 @@ func (o *xxx_DefaultSettingClient) SetMailFrom(ctx context.Context, in *SetMailF
 	out := &SetMailFromResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -254,7 +252,7 @@ func (o *xxx_DefaultSettingClient) GetAdminEmail(ctx context.Context, in *GetAdm
 	out := &GetAdminEmailResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -274,7 +272,7 @@ func (o *xxx_DefaultSettingClient) SetAdminEmail(ctx context.Context, in *SetAdm
 	out := &SetAdminEmailResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -294,7 +292,7 @@ func (o *xxx_DefaultSettingClient) GetDisableCommandLine(ctx context.Context, in
 	out := &GetDisableCommandLineResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -314,7 +312,7 @@ func (o *xxx_DefaultSettingClient) SetDisableCommandLine(ctx context.Context, in
 	out := &SetDisableCommandLineResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -334,7 +332,7 @@ func (o *xxx_DefaultSettingClient) GetEnableScreeningAudit(ctx context.Context, 
 	out := &GetEnableScreeningAuditResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -354,7 +352,7 @@ func (o *xxx_DefaultSettingClient) SetEnableScreeningAudit(ctx context.Context, 
 	out := &SetEnableScreeningAuditResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -374,7 +372,7 @@ func (o *xxx_DefaultSettingClient) EmailTest(ctx context.Context, in *EmailTestR
 	out := &EmailTestResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -394,7 +392,7 @@ func (o *xxx_DefaultSettingClient) SetActionRunLimitInterval(ctx context.Context
 	out := &SetActionRunLimitIntervalResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -414,7 +412,7 @@ func (o *xxx_DefaultSettingClient) GetActionRunLimitInterval(ctx context.Context
 	out := &GetActionRunLimitIntervalResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

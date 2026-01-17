@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcom "github.com/oiweiwei/go-msrpc/msrpc/dcom"
 	csvp "github.com/oiweiwei/go-msrpc/msrpc/dcom/csvp"
@@ -23,7 +22,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcom.GoPackage
 	_ = iunknown.GoPackage
 	_ = csvp.GoPackage
@@ -952,7 +950,7 @@ func (o *xxx_DefaultClusterStorage2Client) RawRead(ctx context.Context, in *RawR
 	out := &RawReadResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -972,7 +970,7 @@ func (o *xxx_DefaultClusterStorage2Client) RawWrite(ctx context.Context, in *Raw
 	out := &RawWriteResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -992,7 +990,7 @@ func (o *xxx_DefaultClusterStorage2Client) PrepareNode(ctx context.Context, in *
 	out := &PrepareNodeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1012,7 +1010,7 @@ func (o *xxx_DefaultClusterStorage2Client) PrepareNodePhase2(ctx context.Context
 	out := &PrepareNodePhase2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1032,7 +1030,7 @@ func (o *xxx_DefaultClusterStorage2Client) GetProperties(ctx context.Context, in
 	out := &GetPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1052,7 +1050,7 @@ func (o *xxx_DefaultClusterStorage2Client) StopDefense(ctx context.Context, in *
 	out := &StopDefenseResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1072,7 +1070,7 @@ func (o *xxx_DefaultClusterStorage2Client) Online(ctx context.Context, in *Onlin
 	out := &OnlineResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1092,7 +1090,7 @@ func (o *xxx_DefaultClusterStorage2Client) VerifyUnique(ctx context.Context, in 
 	out := &VerifyUniqueResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1112,7 +1110,7 @@ func (o *xxx_DefaultClusterStorage2Client) WriteFileData(ctx context.Context, in
 	out := &WriteFileDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1132,7 +1130,7 @@ func (o *xxx_DefaultClusterStorage2Client) VerifyFileData(ctx context.Context, i
 	out := &VerifyFileDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1152,7 +1150,7 @@ func (o *xxx_DefaultClusterStorage2Client) DeleteFile(ctx context.Context, in *D
 	out := &DeleteFileResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1172,7 +1170,7 @@ func (o *xxx_DefaultClusterStorage2Client) Offline(ctx context.Context, in *Offl
 	out := &OfflineResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1192,7 +1190,7 @@ func (o *xxx_DefaultClusterStorage2Client) GetUniqueIDs(ctx context.Context, in 
 	out := &GetUniqueIDsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1212,7 +1210,7 @@ func (o *xxx_DefaultClusterStorage2Client) Attach(ctx context.Context, in *Attac
 	out := &AttachResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1232,7 +1230,7 @@ func (o *xxx_DefaultClusterStorage2Client) PRArbitrate(ctx context.Context, in *
 	out := &PRArbitrateResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1252,7 +1250,7 @@ func (o *xxx_DefaultClusterStorage2Client) PRRegister(ctx context.Context, in *P
 	out := &PRRegisterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1272,7 +1270,7 @@ func (o *xxx_DefaultClusterStorage2Client) PRUnregister(ctx context.Context, in 
 	out := &PRUnregisterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1292,7 +1290,7 @@ func (o *xxx_DefaultClusterStorage2Client) PRReserve(ctx context.Context, in *PR
 	out := &PRReserveResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1312,7 +1310,7 @@ func (o *xxx_DefaultClusterStorage2Client) PRRelease(ctx context.Context, in *PR
 	out := &PRReleaseResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1332,7 +1330,7 @@ func (o *xxx_DefaultClusterStorage2Client) DiskPartitionIsNTFS(ctx context.Conte
 	out := &DiskPartitionIsNTFSResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1352,7 +1350,7 @@ func (o *xxx_DefaultClusterStorage2Client) GetArbSectors(ctx context.Context, in
 	out := &GetArbSectorsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1372,7 +1370,7 @@ func (o *xxx_DefaultClusterStorage2Client) IsPRPresent(ctx context.Context, in *
 	out := &IsPRPresentResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1392,7 +1390,7 @@ func (o *xxx_DefaultClusterStorage2Client) PRPreempt(ctx context.Context, in *PR
 	out := &PRPreemptResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1412,7 +1410,7 @@ func (o *xxx_DefaultClusterStorage2Client) PRClear(ctx context.Context, in *PRCl
 	out := &PRClearResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1432,7 +1430,7 @@ func (o *xxx_DefaultClusterStorage2Client) IsOnline(ctx context.Context, in *IsO
 	out := &IsOnlineResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1452,7 +1450,7 @@ func (o *xxx_DefaultClusterStorage2Client) SetOnline(ctx context.Context, in *Se
 	out := &SetOnlineResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1472,7 +1470,7 @@ func (o *xxx_DefaultClusterStorage2Client) GetFSName(ctx context.Context, in *Ge
 	out := &GetFSNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1492,7 +1490,7 @@ func (o *xxx_DefaultClusterStorage2Client) IsReadable(ctx context.Context, in *I
 	out := &IsReadableResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1512,7 +1510,7 @@ func (o *xxx_DefaultClusterStorage2Client) GetDSMs(ctx context.Context, in *GetD
 	out := &GetDSMsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

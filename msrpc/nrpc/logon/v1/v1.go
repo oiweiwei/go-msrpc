@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
 	ndr "github.com/oiweiwei/go-msrpc/ndr"
@@ -21,7 +20,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dtyp.GoPackage
 )
 
@@ -18959,7 +18957,7 @@ func (o *xxx_DefaultLogonClient) UASLogon(ctx context.Context, in *UASLogonReque
 	out := &UASLogonResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -18972,7 +18970,7 @@ func (o *xxx_DefaultLogonClient) UASLogoff(ctx context.Context, in *UASLogoffReq
 	out := &UASLogoffResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -18985,7 +18983,7 @@ func (o *xxx_DefaultLogonClient) SAMLogon(ctx context.Context, in *SAMLogonReque
 	out := &SAMLogonResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -18998,7 +18996,7 @@ func (o *xxx_DefaultLogonClient) SAMLogoff(ctx context.Context, in *SAMLogoffReq
 	out := &SAMLogoffResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19011,7 +19009,7 @@ func (o *xxx_DefaultLogonClient) RequestChallenge(ctx context.Context, in *Reque
 	out := &RequestChallengeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19024,7 +19022,7 @@ func (o *xxx_DefaultLogonClient) Authenticate(ctx context.Context, in *Authentic
 	out := &AuthenticateResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19037,7 +19035,7 @@ func (o *xxx_DefaultLogonClient) PasswordSet(ctx context.Context, in *PasswordSe
 	out := &PasswordSetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19050,7 +19048,7 @@ func (o *xxx_DefaultLogonClient) DatabaseDeltas(ctx context.Context, in *Databas
 	out := &DatabaseDeltasResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19063,7 +19061,7 @@ func (o *xxx_DefaultLogonClient) DatabaseSync(ctx context.Context, in *DatabaseS
 	out := &DatabaseSyncResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19076,7 +19074,7 @@ func (o *xxx_DefaultLogonClient) AccountDeltas(ctx context.Context, in *AccountD
 	out := &AccountDeltasResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19089,7 +19087,7 @@ func (o *xxx_DefaultLogonClient) AccountSync(ctx context.Context, in *AccountSyn
 	out := &AccountSyncResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19102,7 +19100,7 @@ func (o *xxx_DefaultLogonClient) GetNetrDCName(ctx context.Context, in *GetNetrD
 	out := &GetNetrDCNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19115,7 +19113,7 @@ func (o *xxx_DefaultLogonClient) Control(ctx context.Context, in *ControlRequest
 	out := &ControlResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19128,7 +19126,7 @@ func (o *xxx_DefaultLogonClient) GetAnyDCName(ctx context.Context, in *GetAnyDCN
 	out := &GetAnyDCNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19141,7 +19139,7 @@ func (o *xxx_DefaultLogonClient) Control2(ctx context.Context, in *Control2Reque
 	out := &Control2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19154,7 +19152,7 @@ func (o *xxx_DefaultLogonClient) Authenticate2(ctx context.Context, in *Authenti
 	out := &Authenticate2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19167,7 +19165,7 @@ func (o *xxx_DefaultLogonClient) DatabaseSync2(ctx context.Context, in *Database
 	out := &DatabaseSync2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19180,7 +19178,7 @@ func (o *xxx_DefaultLogonClient) DatabaseRedo(ctx context.Context, in *DatabaseR
 	out := &DatabaseRedoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19193,7 +19191,7 @@ func (o *xxx_DefaultLogonClient) Control2Ex(ctx context.Context, in *Control2ExR
 	out := &Control2ExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19206,7 +19204,7 @@ func (o *xxx_DefaultLogonClient) EnumerateTrustedDomains(ctx context.Context, in
 	out := &EnumerateTrustedDomainsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19219,7 +19217,7 @@ func (o *xxx_DefaultLogonClient) GetDCName(ctx context.Context, in *GetDCNameReq
 	out := &GetDCNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19232,7 +19230,7 @@ func (o *xxx_DefaultLogonClient) GetCapabilities(ctx context.Context, in *GetCap
 	out := &GetCapabilitiesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19245,7 +19243,7 @@ func (o *xxx_DefaultLogonClient) SetServiceBits(ctx context.Context, in *SetServ
 	out := &SetServiceBitsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19258,7 +19256,7 @@ func (o *xxx_DefaultLogonClient) GetTrustRID(ctx context.Context, in *GetTrustRI
 	out := &GetTrustRIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19271,7 +19269,7 @@ func (o *xxx_DefaultLogonClient) ComputeServerDigest(ctx context.Context, in *Co
 	out := &ComputeServerDigestResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19284,7 +19282,7 @@ func (o *xxx_DefaultLogonClient) ComputeClientDigest(ctx context.Context, in *Co
 	out := &ComputeClientDigestResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19297,7 +19295,7 @@ func (o *xxx_DefaultLogonClient) Authenticate3(ctx context.Context, in *Authenti
 	out := &Authenticate3Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19310,7 +19308,7 @@ func (o *xxx_DefaultLogonClient) GetDCNameEx(ctx context.Context, in *GetDCNameE
 	out := &GetDCNameExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19323,7 +19321,7 @@ func (o *xxx_DefaultLogonClient) GetSiteName(ctx context.Context, in *GetSiteNam
 	out := &GetSiteNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19336,7 +19334,7 @@ func (o *xxx_DefaultLogonClient) GetDomainInfo(ctx context.Context, in *GetDomai
 	out := &GetDomainInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19349,7 +19347,7 @@ func (o *xxx_DefaultLogonClient) PasswordSet2(ctx context.Context, in *PasswordS
 	out := &PasswordSet2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19362,7 +19360,7 @@ func (o *xxx_DefaultLogonClient) PasswordGet(ctx context.Context, in *PasswordGe
 	out := &PasswordGetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19375,7 +19373,7 @@ func (o *xxx_DefaultLogonClient) SendToSAM(ctx context.Context, in *SendToSAMReq
 	out := &SendToSAMResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19388,7 +19386,7 @@ func (o *xxx_DefaultLogonClient) AddressToSiteNamesW(ctx context.Context, in *Ad
 	out := &AddressToSiteNamesWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19401,7 +19399,7 @@ func (o *xxx_DefaultLogonClient) GetDCNameEx2(ctx context.Context, in *GetDCName
 	out := &GetDCNameEx2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19414,7 +19412,7 @@ func (o *xxx_DefaultLogonClient) GetTimeServiceParentDomain(ctx context.Context,
 	out := &GetTimeServiceParentDomainResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19427,7 +19425,7 @@ func (o *xxx_DefaultLogonClient) EnumerateTrustedDomainsEx(ctx context.Context, 
 	out := &EnumerateTrustedDomainsExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19440,7 +19438,7 @@ func (o *xxx_DefaultLogonClient) AddressToSiteNamesExW(ctx context.Context, in *
 	out := &AddressToSiteNamesExWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19453,7 +19451,7 @@ func (o *xxx_DefaultLogonClient) GetDCSiteCoverageW(ctx context.Context, in *Get
 	out := &GetDCSiteCoverageWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19466,7 +19464,7 @@ func (o *xxx_DefaultLogonClient) SAMLogonEx(ctx context.Context, in *SAMLogonExR
 	out := &SAMLogonExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19479,7 +19477,7 @@ func (o *xxx_DefaultLogonClient) EnumerateDomainTrusts(ctx context.Context, in *
 	out := &EnumerateDomainTrustsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19492,7 +19490,7 @@ func (o *xxx_DefaultLogonClient) DeregisterDNSHostRecords(ctx context.Context, i
 	out := &DeregisterDNSHostRecordsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19505,7 +19503,7 @@ func (o *xxx_DefaultLogonClient) TrustPasswordsGet(ctx context.Context, in *Trus
 	out := &TrustPasswordsGetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19518,7 +19516,7 @@ func (o *xxx_DefaultLogonClient) GetForestTrustInformation(ctx context.Context, 
 	out := &GetForestTrustInformationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19531,7 +19529,7 @@ func (o *xxx_DefaultLogonClient) GetNetrForestTrustInformation(ctx context.Conte
 	out := &GetNetrForestTrustInformationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19544,7 +19542,7 @@ func (o *xxx_DefaultLogonClient) SAMLogonWithFlags(ctx context.Context, in *SAML
 	out := &SAMLogonWithFlagsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19557,7 +19555,7 @@ func (o *xxx_DefaultLogonClient) GetTrustInfo(ctx context.Context, in *GetTrustI
 	out := &GetTrustInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19570,7 +19568,7 @@ func (o *xxx_DefaultLogonClient) UpdateReadOnlyServerDNSRecords(ctx context.Cont
 	out := &UpdateReadOnlyServerDNSRecordsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19583,7 +19581,7 @@ func (o *xxx_DefaultLogonClient) ChainSetClientAttributes(ctx context.Context, i
 	out := &ChainSetClientAttributesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

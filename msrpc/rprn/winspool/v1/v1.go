@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcetypes "github.com/oiweiwei/go-msrpc/msrpc/dcetypes"
 	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
@@ -22,7 +21,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcetypes.GoPackage
 	_ = dtyp.GoPackage
 )
@@ -16731,7 +16729,7 @@ func (o *xxx_DefaultWinspoolClient) EnumPrinters(ctx context.Context, in *EnumPr
 	out := &EnumPrintersResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16744,7 +16742,7 @@ func (o *xxx_DefaultWinspoolClient) OpenPrinter(ctx context.Context, in *OpenPri
 	out := &OpenPrinterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16757,7 +16755,7 @@ func (o *xxx_DefaultWinspoolClient) SetJob(ctx context.Context, in *SetJobReques
 	out := &SetJobResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16770,7 +16768,7 @@ func (o *xxx_DefaultWinspoolClient) GetJob(ctx context.Context, in *GetJobReques
 	out := &GetJobResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16783,7 +16781,7 @@ func (o *xxx_DefaultWinspoolClient) EnumJobs(ctx context.Context, in *EnumJobsRe
 	out := &EnumJobsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16796,7 +16794,7 @@ func (o *xxx_DefaultWinspoolClient) AddPrinter(ctx context.Context, in *AddPrint
 	out := &AddPrinterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16809,7 +16807,7 @@ func (o *xxx_DefaultWinspoolClient) DeletePrinter(ctx context.Context, in *Delet
 	out := &DeletePrinterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16822,7 +16820,7 @@ func (o *xxx_DefaultWinspoolClient) SetPrinter(ctx context.Context, in *SetPrint
 	out := &SetPrinterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16835,7 +16833,7 @@ func (o *xxx_DefaultWinspoolClient) GetPrinter(ctx context.Context, in *GetPrint
 	out := &GetPrinterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16848,7 +16846,7 @@ func (o *xxx_DefaultWinspoolClient) AddPrinterDriver(ctx context.Context, in *Ad
 	out := &AddPrinterDriverResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16861,7 +16859,7 @@ func (o *xxx_DefaultWinspoolClient) EnumPrinterDrivers(ctx context.Context, in *
 	out := &EnumPrinterDriversResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16874,7 +16872,7 @@ func (o *xxx_DefaultWinspoolClient) GetPrinterDriver(ctx context.Context, in *Ge
 	out := &GetPrinterDriverResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16887,7 +16885,7 @@ func (o *xxx_DefaultWinspoolClient) GetPrinterDriverDirectory(ctx context.Contex
 	out := &GetPrinterDriverDirectoryResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16900,7 +16898,7 @@ func (o *xxx_DefaultWinspoolClient) DeletePrinterDriver(ctx context.Context, in 
 	out := &DeletePrinterDriverResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16913,7 +16911,7 @@ func (o *xxx_DefaultWinspoolClient) AddPrintProcessor(ctx context.Context, in *A
 	out := &AddPrintProcessorResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16926,7 +16924,7 @@ func (o *xxx_DefaultWinspoolClient) EnumPrintProcessors(ctx context.Context, in 
 	out := &EnumPrintProcessorsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16939,7 +16937,7 @@ func (o *xxx_DefaultWinspoolClient) GetPrintProcessorDirectory(ctx context.Conte
 	out := &GetPrintProcessorDirectoryResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16952,7 +16950,7 @@ func (o *xxx_DefaultWinspoolClient) StartDocPrinter(ctx context.Context, in *Sta
 	out := &StartDocPrinterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16965,7 +16963,7 @@ func (o *xxx_DefaultWinspoolClient) StartPagePrinter(ctx context.Context, in *St
 	out := &StartPagePrinterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16978,7 +16976,7 @@ func (o *xxx_DefaultWinspoolClient) WritePrinter(ctx context.Context, in *WriteP
 	out := &WritePrinterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -16991,7 +16989,7 @@ func (o *xxx_DefaultWinspoolClient) EndPagePrinter(ctx context.Context, in *EndP
 	out := &EndPagePrinterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17004,7 +17002,7 @@ func (o *xxx_DefaultWinspoolClient) AbortPrinter(ctx context.Context, in *AbortP
 	out := &AbortPrinterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17017,7 +17015,7 @@ func (o *xxx_DefaultWinspoolClient) ReadPrinter(ctx context.Context, in *ReadPri
 	out := &ReadPrinterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17030,7 +17028,7 @@ func (o *xxx_DefaultWinspoolClient) EndDocPrinter(ctx context.Context, in *EndDo
 	out := &EndDocPrinterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17043,7 +17041,7 @@ func (o *xxx_DefaultWinspoolClient) AddJob(ctx context.Context, in *AddJobReques
 	out := &AddJobResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17056,7 +17054,7 @@ func (o *xxx_DefaultWinspoolClient) ScheduleJob(ctx context.Context, in *Schedul
 	out := &ScheduleJobResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17069,7 +17067,7 @@ func (o *xxx_DefaultWinspoolClient) GetPrinterData(ctx context.Context, in *GetP
 	out := &GetPrinterDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17082,7 +17080,7 @@ func (o *xxx_DefaultWinspoolClient) SetPrinterData(ctx context.Context, in *SetP
 	out := &SetPrinterDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17095,7 +17093,7 @@ func (o *xxx_DefaultWinspoolClient) WaitForPrinterChange(ctx context.Context, in
 	out := &WaitForPrinterChangeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17108,7 +17106,7 @@ func (o *xxx_DefaultWinspoolClient) ClosePrinter(ctx context.Context, in *CloseP
 	out := &ClosePrinterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17121,7 +17119,7 @@ func (o *xxx_DefaultWinspoolClient) AddForm(ctx context.Context, in *AddFormRequ
 	out := &AddFormResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17134,7 +17132,7 @@ func (o *xxx_DefaultWinspoolClient) DeleteForm(ctx context.Context, in *DeleteFo
 	out := &DeleteFormResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17147,7 +17145,7 @@ func (o *xxx_DefaultWinspoolClient) GetForm(ctx context.Context, in *GetFormRequ
 	out := &GetFormResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17160,7 +17158,7 @@ func (o *xxx_DefaultWinspoolClient) SetForm(ctx context.Context, in *SetFormRequ
 	out := &SetFormResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17173,7 +17171,7 @@ func (o *xxx_DefaultWinspoolClient) EnumForms(ctx context.Context, in *EnumForms
 	out := &EnumFormsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17186,7 +17184,7 @@ func (o *xxx_DefaultWinspoolClient) EnumPorts(ctx context.Context, in *EnumPorts
 	out := &EnumPortsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17199,7 +17197,7 @@ func (o *xxx_DefaultWinspoolClient) EnumMonitors(ctx context.Context, in *EnumMo
 	out := &EnumMonitorsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17212,7 +17210,7 @@ func (o *xxx_DefaultWinspoolClient) DeletePort(ctx context.Context, in *DeletePo
 	out := &DeletePortResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17225,7 +17223,7 @@ func (o *xxx_DefaultWinspoolClient) CreatePrinterIC(ctx context.Context, in *Cre
 	out := &CreatePrinterICResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17238,7 +17236,7 @@ func (o *xxx_DefaultWinspoolClient) PlayGDIScriptOnPrinterIC(ctx context.Context
 	out := &PlayGDIScriptOnPrinterICResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17251,7 +17249,7 @@ func (o *xxx_DefaultWinspoolClient) DeletePrinterIC(ctx context.Context, in *Del
 	out := &DeletePrinterICResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17264,7 +17262,7 @@ func (o *xxx_DefaultWinspoolClient) AddMonitor(ctx context.Context, in *AddMonit
 	out := &AddMonitorResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17277,7 +17275,7 @@ func (o *xxx_DefaultWinspoolClient) DeleteMonitor(ctx context.Context, in *Delet
 	out := &DeleteMonitorResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17290,7 +17288,7 @@ func (o *xxx_DefaultWinspoolClient) DeletePrintProcessor(ctx context.Context, in
 	out := &DeletePrintProcessorResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17303,7 +17301,7 @@ func (o *xxx_DefaultWinspoolClient) EnumPrintProcessorDataTypes(ctx context.Cont
 	out := &EnumPrintProcessorDataTypesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17316,7 +17314,7 @@ func (o *xxx_DefaultWinspoolClient) ResetPrinter(ctx context.Context, in *ResetP
 	out := &ResetPrinterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17329,7 +17327,7 @@ func (o *xxx_DefaultWinspoolClient) GetPrinterDriver2(ctx context.Context, in *G
 	out := &GetPrinterDriver2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17342,7 +17340,7 @@ func (o *xxx_DefaultWinspoolClient) FindClosePrinterChangeNotification(ctx conte
 	out := &FindClosePrinterChangeNotificationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17355,7 +17353,7 @@ func (o *xxx_DefaultWinspoolClient) ReplyOpenPrinter(ctx context.Context, in *Re
 	out := &ReplyOpenPrinterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17368,7 +17366,7 @@ func (o *xxx_DefaultWinspoolClient) RouterReplyPrinter(ctx context.Context, in *
 	out := &RouterReplyPrinterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17381,7 +17379,7 @@ func (o *xxx_DefaultWinspoolClient) ReplyClosePrinter(ctx context.Context, in *R
 	out := &ReplyClosePrinterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17394,7 +17392,7 @@ func (o *xxx_DefaultWinspoolClient) AddPortEx(ctx context.Context, in *AddPortEx
 	out := &AddPortExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17407,7 +17405,7 @@ func (o *xxx_DefaultWinspoolClient) RemoteFindFirstPrinterChangeNotification(ctx
 	out := &RemoteFindFirstPrinterChangeNotificationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17420,7 +17418,7 @@ func (o *xxx_DefaultWinspoolClient) RemoteFindFirstPrinterChangeNotificationEx(c
 	out := &RemoteFindFirstPrinterChangeNotificationExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17433,7 +17431,7 @@ func (o *xxx_DefaultWinspoolClient) RouterReplyPrinterEx(ctx context.Context, in
 	out := &RouterReplyPrinterExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17446,7 +17444,7 @@ func (o *xxx_DefaultWinspoolClient) RouterRefreshPrinterChangeNotification(ctx c
 	out := &RouterRefreshPrinterChangeNotificationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17459,7 +17457,7 @@ func (o *xxx_DefaultWinspoolClient) OpenPrinterEx(ctx context.Context, in *OpenP
 	out := &OpenPrinterExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17472,7 +17470,7 @@ func (o *xxx_DefaultWinspoolClient) AddPrinterEx(ctx context.Context, in *AddPri
 	out := &AddPrinterExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17485,7 +17483,7 @@ func (o *xxx_DefaultWinspoolClient) SetPort(ctx context.Context, in *SetPortRequ
 	out := &SetPortResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17498,7 +17496,7 @@ func (o *xxx_DefaultWinspoolClient) EnumPrinterData(ctx context.Context, in *Enu
 	out := &EnumPrinterDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17511,7 +17509,7 @@ func (o *xxx_DefaultWinspoolClient) DeletePrinterData(ctx context.Context, in *D
 	out := &DeletePrinterDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17524,7 +17522,7 @@ func (o *xxx_DefaultWinspoolClient) SetPrinterDataEx(ctx context.Context, in *Se
 	out := &SetPrinterDataExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17537,7 +17535,7 @@ func (o *xxx_DefaultWinspoolClient) GetPrinterDataEx(ctx context.Context, in *Ge
 	out := &GetPrinterDataExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17550,7 +17548,7 @@ func (o *xxx_DefaultWinspoolClient) EnumPrinterDataEx(ctx context.Context, in *E
 	out := &EnumPrinterDataExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17563,7 +17561,7 @@ func (o *xxx_DefaultWinspoolClient) EnumPrinterKey(ctx context.Context, in *Enum
 	out := &EnumPrinterKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17576,7 +17574,7 @@ func (o *xxx_DefaultWinspoolClient) DeletePrinterDataEx(ctx context.Context, in 
 	out := &DeletePrinterDataExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17589,7 +17587,7 @@ func (o *xxx_DefaultWinspoolClient) DeletePrinterKey(ctx context.Context, in *De
 	out := &DeletePrinterKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17602,7 +17600,7 @@ func (o *xxx_DefaultWinspoolClient) DeletePrinterDriverEx(ctx context.Context, i
 	out := &DeletePrinterDriverExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17615,7 +17613,7 @@ func (o *xxx_DefaultWinspoolClient) AddPerMachineConnection(ctx context.Context,
 	out := &AddPerMachineConnectionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17628,7 +17626,7 @@ func (o *xxx_DefaultWinspoolClient) DeletePerMachineConnection(ctx context.Conte
 	out := &DeletePerMachineConnectionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17641,7 +17639,7 @@ func (o *xxx_DefaultWinspoolClient) EnumPerMachineConnections(ctx context.Contex
 	out := &EnumPerMachineConnectionsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17654,7 +17652,7 @@ func (o *xxx_DefaultWinspoolClient) XcvData(ctx context.Context, in *XcvDataRequ
 	out := &XcvDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17667,7 +17665,7 @@ func (o *xxx_DefaultWinspoolClient) AddPrinterDriverEx(ctx context.Context, in *
 	out := &AddPrinterDriverExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17680,7 +17678,7 @@ func (o *xxx_DefaultWinspoolClient) FlushPrinter(ctx context.Context, in *FlushP
 	out := &FlushPrinterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17693,7 +17691,7 @@ func (o *xxx_DefaultWinspoolClient) SendRecvBIDIData(ctx context.Context, in *Se
 	out := &SendRecvBIDIDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17706,7 +17704,7 @@ func (o *xxx_DefaultWinspoolClient) GetCorePrinterDrivers(ctx context.Context, i
 	out := &GetCorePrinterDriversResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17719,7 +17717,7 @@ func (o *xxx_DefaultWinspoolClient) GetPrinterDriverPackagePath(ctx context.Cont
 	out := &GetPrinterDriverPackagePathResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17732,7 +17730,7 @@ func (o *xxx_DefaultWinspoolClient) GetJobNamedPropertyValue(ctx context.Context
 	out := &GetJobNamedPropertyValueResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17745,7 +17743,7 @@ func (o *xxx_DefaultWinspoolClient) SetJobNamedProperty(ctx context.Context, in 
 	out := &SetJobNamedPropertyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17758,7 +17756,7 @@ func (o *xxx_DefaultWinspoolClient) DeleteJobNamedProperty(ctx context.Context, 
 	out := &DeleteJobNamedPropertyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17771,7 +17769,7 @@ func (o *xxx_DefaultWinspoolClient) EnumJobNamedProperties(ctx context.Context, 
 	out := &EnumJobNamedPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17784,7 +17782,7 @@ func (o *xxx_DefaultWinspoolClient) LogJobInfoForBranchOffice(ctx context.Contex
 	out := &LogJobInfoForBranchOfficeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17797,7 +17795,7 @@ func (o *xxx_DefaultWinspoolClient) RegeneratePrintDeviceCapabilities(ctx contex
 	out := &RegeneratePrintDeviceCapabilitiesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17810,7 +17808,7 @@ func (o *xxx_DefaultWinspoolClient) CreateJobOnPrinter(ctx context.Context, in *
 	out := &CreateJobOnPrinterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17823,7 +17821,7 @@ func (o *xxx_DefaultWinspoolClient) GetJobAttributes(ctx context.Context, in *Ge
 	out := &GetJobAttributesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17836,7 +17834,7 @@ func (o *xxx_DefaultWinspoolClient) SetJobAttributes(ctx context.Context, in *Se
 	out := &SetJobAttributesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17849,7 +17847,7 @@ func (o *xxx_DefaultWinspoolClient) GetPrinterAttributes(ctx context.Context, in
 	out := &GetPrinterAttributesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -17862,7 +17860,7 @@ func (o *xxx_DefaultWinspoolClient) SetPrinterAttributes(ctx context.Context, in
 	out := &SetPrinterAttributesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

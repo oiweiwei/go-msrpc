@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcetypes "github.com/oiweiwei/go-msrpc/msrpc/dcetypes"
 	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
@@ -22,7 +21,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcetypes.GoPackage
 	_ = dtyp.GoPackage
 )
@@ -9801,7 +9799,7 @@ func (o *xxx_DefaultLsarpcClient) Close(ctx context.Context, in *CloseRequest, o
 	out := &CloseResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9814,7 +9812,7 @@ func (o *xxx_DefaultLsarpcClient) EnumeratePrivileges(ctx context.Context, in *E
 	out := &EnumeratePrivilegesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9827,7 +9825,7 @@ func (o *xxx_DefaultLsarpcClient) QuerySecurityObject(ctx context.Context, in *Q
 	out := &QuerySecurityObjectResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9840,7 +9838,7 @@ func (o *xxx_DefaultLsarpcClient) SetSecurityObject(ctx context.Context, in *Set
 	out := &SetSecurityObjectResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9853,7 +9851,7 @@ func (o *xxx_DefaultLsarpcClient) OpenPolicy(ctx context.Context, in *OpenPolicy
 	out := &OpenPolicyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9866,7 +9864,7 @@ func (o *xxx_DefaultLsarpcClient) QueryInformationPolicy(ctx context.Context, in
 	out := &QueryInformationPolicyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9879,7 +9877,7 @@ func (o *xxx_DefaultLsarpcClient) SetInformationPolicy(ctx context.Context, in *
 	out := &SetInformationPolicyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9892,7 +9890,7 @@ func (o *xxx_DefaultLsarpcClient) CreateAccount(ctx context.Context, in *CreateA
 	out := &CreateAccountResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9905,7 +9903,7 @@ func (o *xxx_DefaultLsarpcClient) EnumerateAccounts(ctx context.Context, in *Enu
 	out := &EnumerateAccountsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9918,7 +9916,7 @@ func (o *xxx_DefaultLsarpcClient) CreateTrustedDomain(ctx context.Context, in *C
 	out := &CreateTrustedDomainResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9931,7 +9929,7 @@ func (o *xxx_DefaultLsarpcClient) EnumerateTrustedDomains(ctx context.Context, i
 	out := &EnumerateTrustedDomainsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9944,7 +9942,7 @@ func (o *xxx_DefaultLsarpcClient) CreateSecret(ctx context.Context, in *CreateSe
 	out := &CreateSecretResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9957,7 +9955,7 @@ func (o *xxx_DefaultLsarpcClient) OpenAccount(ctx context.Context, in *OpenAccou
 	out := &OpenAccountResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9970,7 +9968,7 @@ func (o *xxx_DefaultLsarpcClient) EnumeratePrivilegesAccount(ctx context.Context
 	out := &EnumeratePrivilegesAccountResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9983,7 +9981,7 @@ func (o *xxx_DefaultLsarpcClient) AddPrivilegesToAccount(ctx context.Context, in
 	out := &AddPrivilegesToAccountResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9996,7 +9994,7 @@ func (o *xxx_DefaultLsarpcClient) RemovePrivilegesFromAccount(ctx context.Contex
 	out := &RemovePrivilegesFromAccountResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10009,7 +10007,7 @@ func (o *xxx_DefaultLsarpcClient) GetSystemAccessAccount(ctx context.Context, in
 	out := &GetSystemAccessAccountResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10022,7 +10020,7 @@ func (o *xxx_DefaultLsarpcClient) SetSystemAccessAccount(ctx context.Context, in
 	out := &SetSystemAccessAccountResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10035,7 +10033,7 @@ func (o *xxx_DefaultLsarpcClient) OpenTrustedDomain(ctx context.Context, in *Ope
 	out := &OpenTrustedDomainResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10048,7 +10046,7 @@ func (o *xxx_DefaultLsarpcClient) QueryInfoTrustedDomain(ctx context.Context, in
 	out := &QueryInfoTrustedDomainResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10061,7 +10059,7 @@ func (o *xxx_DefaultLsarpcClient) SetInformationTrustedDomain(ctx context.Contex
 	out := &SetInformationTrustedDomainResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10074,7 +10072,7 @@ func (o *xxx_DefaultLsarpcClient) OpenSecret(ctx context.Context, in *OpenSecret
 	out := &OpenSecretResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10087,7 +10085,7 @@ func (o *xxx_DefaultLsarpcClient) SetSecret(ctx context.Context, in *SetSecretRe
 	out := &SetSecretResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10100,7 +10098,7 @@ func (o *xxx_DefaultLsarpcClient) QuerySecret(ctx context.Context, in *QuerySecr
 	out := &QuerySecretResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10113,7 +10111,7 @@ func (o *xxx_DefaultLsarpcClient) LookupPrivilegeValue(ctx context.Context, in *
 	out := &LookupPrivilegeValueResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10126,7 +10124,7 @@ func (o *xxx_DefaultLsarpcClient) LookupPrivilegeName(ctx context.Context, in *L
 	out := &LookupPrivilegeNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10139,7 +10137,7 @@ func (o *xxx_DefaultLsarpcClient) LookupPrivilegeDisplayName(ctx context.Context
 	out := &LookupPrivilegeDisplayNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10152,7 +10150,7 @@ func (o *xxx_DefaultLsarpcClient) DeleteObject(ctx context.Context, in *DeleteOb
 	out := &DeleteObjectResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10165,7 +10163,7 @@ func (o *xxx_DefaultLsarpcClient) EnumerateAccountsWithUserRight(ctx context.Con
 	out := &EnumerateAccountsWithUserRightResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10178,7 +10176,7 @@ func (o *xxx_DefaultLsarpcClient) EnumerateAccountRights(ctx context.Context, in
 	out := &EnumerateAccountRightsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10191,7 +10189,7 @@ func (o *xxx_DefaultLsarpcClient) AddAccountRights(ctx context.Context, in *AddA
 	out := &AddAccountRightsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10204,7 +10202,7 @@ func (o *xxx_DefaultLsarpcClient) RemoveAccountRights(ctx context.Context, in *R
 	out := &RemoveAccountRightsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10217,7 +10215,7 @@ func (o *xxx_DefaultLsarpcClient) QueryTrustedDomainInfo(ctx context.Context, in
 	out := &QueryTrustedDomainInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10230,7 +10228,7 @@ func (o *xxx_DefaultLsarpcClient) SetTrustedDomainInfo(ctx context.Context, in *
 	out := &SetTrustedDomainInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10243,7 +10241,7 @@ func (o *xxx_DefaultLsarpcClient) DeleteTrustedDomain(ctx context.Context, in *D
 	out := &DeleteTrustedDomainResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10256,7 +10254,7 @@ func (o *xxx_DefaultLsarpcClient) StorePrivateData(ctx context.Context, in *Stor
 	out := &StorePrivateDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10269,7 +10267,7 @@ func (o *xxx_DefaultLsarpcClient) RetrievePrivateData(ctx context.Context, in *R
 	out := &RetrievePrivateDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10282,7 +10280,7 @@ func (o *xxx_DefaultLsarpcClient) OpenPolicy2(ctx context.Context, in *OpenPolic
 	out := &OpenPolicy2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10295,7 +10293,7 @@ func (o *xxx_DefaultLsarpcClient) QueryInformationPolicy2(ctx context.Context, i
 	out := &QueryInformationPolicy2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10308,7 +10306,7 @@ func (o *xxx_DefaultLsarpcClient) SetInformationPolicy2(ctx context.Context, in 
 	out := &SetInformationPolicy2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10321,7 +10319,7 @@ func (o *xxx_DefaultLsarpcClient) QueryTrustedDomainInfoByName(ctx context.Conte
 	out := &QueryTrustedDomainInfoByNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10334,7 +10332,7 @@ func (o *xxx_DefaultLsarpcClient) SetTrustedDomainInfoByName(ctx context.Context
 	out := &SetTrustedDomainInfoByNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10347,7 +10345,7 @@ func (o *xxx_DefaultLsarpcClient) EnumerateTrustedDomainsEx(ctx context.Context,
 	out := &EnumerateTrustedDomainsExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10360,7 +10358,7 @@ func (o *xxx_DefaultLsarpcClient) CreateTrustedDomainEx(ctx context.Context, in 
 	out := &CreateTrustedDomainExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10373,7 +10371,7 @@ func (o *xxx_DefaultLsarpcClient) QueryDomainInformationPolicy(ctx context.Conte
 	out := &QueryDomainInformationPolicyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10386,7 +10384,7 @@ func (o *xxx_DefaultLsarpcClient) SetDomainInformationPolicy(ctx context.Context
 	out := &SetDomainInformationPolicyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10399,7 +10397,7 @@ func (o *xxx_DefaultLsarpcClient) OpenTrustedDomainByName(ctx context.Context, i
 	out := &OpenTrustedDomainByNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10412,7 +10410,7 @@ func (o *xxx_DefaultLsarpcClient) CreateTrustedDomainEx2(ctx context.Context, in
 	out := &CreateTrustedDomainEx2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10425,7 +10423,7 @@ func (o *xxx_DefaultLsarpcClient) QueryForestTrustInformation(ctx context.Contex
 	out := &QueryForestTrustInformationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -10438,7 +10436,7 @@ func (o *xxx_DefaultLsarpcClient) SetForestTrustInformation(ctx context.Context,
 	out := &SetForestTrustInformationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

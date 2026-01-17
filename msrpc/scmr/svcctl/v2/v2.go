@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcetypes "github.com/oiweiwei/go-msrpc/msrpc/dcetypes"
 	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
@@ -22,7 +21,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcetypes.GoPackage
 	_ = dtyp.GoPackage
 )
@@ -8615,7 +8613,7 @@ func (o *xxx_DefaultSvcctlClient) CloseService(ctx context.Context, in *CloseSer
 	out := &CloseServiceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8628,7 +8626,7 @@ func (o *xxx_DefaultSvcctlClient) ControlService(ctx context.Context, in *Contro
 	out := &ControlServiceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8641,7 +8639,7 @@ func (o *xxx_DefaultSvcctlClient) DeleteService(ctx context.Context, in *DeleteS
 	out := &DeleteServiceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8654,7 +8652,7 @@ func (o *xxx_DefaultSvcctlClient) LockServiceDatabase(ctx context.Context, in *L
 	out := &LockServiceDatabaseResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8667,7 +8665,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceObjectSecurity(ctx context.Context
 	out := &QueryServiceObjectSecurityResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8680,7 +8678,7 @@ func (o *xxx_DefaultSvcctlClient) SetServiceObjectSecurity(ctx context.Context, 
 	out := &SetServiceObjectSecurityResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8693,7 +8691,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceStatus(ctx context.Context, in *Qu
 	out := &QueryServiceStatusResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8706,7 +8704,7 @@ func (o *xxx_DefaultSvcctlClient) SetServiceStatus(ctx context.Context, in *SetS
 	out := &SetServiceStatusResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8719,7 +8717,7 @@ func (o *xxx_DefaultSvcctlClient) UnlockServiceDatabase(ctx context.Context, in 
 	out := &UnlockServiceDatabaseResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8732,7 +8730,7 @@ func (o *xxx_DefaultSvcctlClient) NotifyBootConfigStatus(ctx context.Context, in
 	out := &NotifyBootConfigStatusResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8745,7 +8743,7 @@ func (o *xxx_DefaultSvcctlClient) ChangeServiceConfigW(ctx context.Context, in *
 	out := &ChangeServiceConfigWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8758,7 +8756,7 @@ func (o *xxx_DefaultSvcctlClient) CreateServiceW(ctx context.Context, in *Create
 	out := &CreateServiceWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8771,7 +8769,7 @@ func (o *xxx_DefaultSvcctlClient) EnumDependentServicesW(ctx context.Context, in
 	out := &EnumDependentServicesWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8784,7 +8782,7 @@ func (o *xxx_DefaultSvcctlClient) EnumServicesStatusW(ctx context.Context, in *E
 	out := &EnumServicesStatusWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8797,7 +8795,7 @@ func (o *xxx_DefaultSvcctlClient) OpenSCMW(ctx context.Context, in *OpenSCMWRequ
 	out := &OpenSCMWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8810,7 +8808,7 @@ func (o *xxx_DefaultSvcctlClient) OpenServiceW(ctx context.Context, in *OpenServ
 	out := &OpenServiceWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8823,7 +8821,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceConfigW(ctx context.Context, in *Q
 	out := &QueryServiceConfigWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8836,7 +8834,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceLockStatusW(ctx context.Context, i
 	out := &QueryServiceLockStatusWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8849,7 +8847,7 @@ func (o *xxx_DefaultSvcctlClient) StartServiceW(ctx context.Context, in *StartSe
 	out := &StartServiceWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8862,7 +8860,7 @@ func (o *xxx_DefaultSvcctlClient) GetServiceDisplayNameW(ctx context.Context, in
 	out := &GetServiceDisplayNameWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8875,7 +8873,7 @@ func (o *xxx_DefaultSvcctlClient) GetServiceKeyNameW(ctx context.Context, in *Ge
 	out := &GetServiceKeyNameWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8888,7 +8886,7 @@ func (o *xxx_DefaultSvcctlClient) ChangeServiceConfigA(ctx context.Context, in *
 	out := &ChangeServiceConfigAResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8901,7 +8899,7 @@ func (o *xxx_DefaultSvcctlClient) CreateServiceA(ctx context.Context, in *Create
 	out := &CreateServiceAResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8914,7 +8912,7 @@ func (o *xxx_DefaultSvcctlClient) EnumDependentServicesA(ctx context.Context, in
 	out := &EnumDependentServicesAResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8927,7 +8925,7 @@ func (o *xxx_DefaultSvcctlClient) EnumServicesStatusA(ctx context.Context, in *E
 	out := &EnumServicesStatusAResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8940,7 +8938,7 @@ func (o *xxx_DefaultSvcctlClient) OpenSCMA(ctx context.Context, in *OpenSCMARequ
 	out := &OpenSCMAResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8953,7 +8951,7 @@ func (o *xxx_DefaultSvcctlClient) OpenServiceA(ctx context.Context, in *OpenServ
 	out := &OpenServiceAResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8966,7 +8964,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceConfigA(ctx context.Context, in *Q
 	out := &QueryServiceConfigAResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8979,7 +8977,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceLockStatusA(ctx context.Context, i
 	out := &QueryServiceLockStatusAResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8992,7 +8990,7 @@ func (o *xxx_DefaultSvcctlClient) StartServiceA(ctx context.Context, in *StartSe
 	out := &StartServiceAResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9005,7 +9003,7 @@ func (o *xxx_DefaultSvcctlClient) GetServiceDisplayNameA(ctx context.Context, in
 	out := &GetServiceDisplayNameAResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9018,7 +9016,7 @@ func (o *xxx_DefaultSvcctlClient) GetServiceKeyNameA(ctx context.Context, in *Ge
 	out := &GetServiceKeyNameAResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9031,7 +9029,7 @@ func (o *xxx_DefaultSvcctlClient) EnumServiceGroupW(ctx context.Context, in *Enu
 	out := &EnumServiceGroupWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9044,7 +9042,7 @@ func (o *xxx_DefaultSvcctlClient) ChangeServiceConfig2A(ctx context.Context, in 
 	out := &ChangeServiceConfig2AResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9057,7 +9055,7 @@ func (o *xxx_DefaultSvcctlClient) ChangeServiceConfig2W(ctx context.Context, in 
 	out := &ChangeServiceConfig2WResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9070,7 +9068,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceConfig2A(ctx context.Context, in *
 	out := &QueryServiceConfig2AResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9083,7 +9081,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceConfig2W(ctx context.Context, in *
 	out := &QueryServiceConfig2WResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9096,7 +9094,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceStatusEx(ctx context.Context, in *
 	out := &QueryServiceStatusExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9109,7 +9107,7 @@ func (o *xxx_DefaultSvcctlClient) EnumServicesStatusExA(ctx context.Context, in 
 	out := &EnumServicesStatusExAResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9122,7 +9120,7 @@ func (o *xxx_DefaultSvcctlClient) EnumServicesStatusExW(ctx context.Context, in 
 	out := &EnumServicesStatusExWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9135,7 +9133,7 @@ func (o *xxx_DefaultSvcctlClient) CreateServiceWOW64A(ctx context.Context, in *C
 	out := &CreateServiceWOW64AResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9148,7 +9146,7 @@ func (o *xxx_DefaultSvcctlClient) CreateServiceWOW64W(ctx context.Context, in *C
 	out := &CreateServiceWOW64WResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9161,7 +9159,7 @@ func (o *xxx_DefaultSvcctlClient) NotifyServiceStatusChange(ctx context.Context,
 	out := &NotifyServiceStatusChangeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9174,7 +9172,7 @@ func (o *xxx_DefaultSvcctlClient) GetNotifyResults(ctx context.Context, in *GetN
 	out := &GetNotifyResultsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9187,7 +9185,7 @@ func (o *xxx_DefaultSvcctlClient) CloseNotify(ctx context.Context, in *CloseNoti
 	out := &CloseNotifyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9200,7 +9198,7 @@ func (o *xxx_DefaultSvcctlClient) ControlServiceExA(ctx context.Context, in *Con
 	out := &ControlServiceExAResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9213,7 +9211,7 @@ func (o *xxx_DefaultSvcctlClient) ControlServiceExW(ctx context.Context, in *Con
 	out := &ControlServiceExWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9226,7 +9224,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceConfigEx(ctx context.Context, in *
 	out := &QueryServiceConfigExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9239,7 +9237,7 @@ func (o *xxx_DefaultSvcctlClient) CreateWOWService(ctx context.Context, in *Crea
 	out := &CreateWOWServiceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -9252,7 +9250,7 @@ func (o *xxx_DefaultSvcctlClient) OpenSCM2(ctx context.Context, in *OpenSCM2Requ
 	out := &OpenSCM2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

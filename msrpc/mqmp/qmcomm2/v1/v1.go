@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	qmcomm "github.com/oiweiwei/go-msrpc/msrpc/mqmp/qmcomm/v1"
 	mqmq "github.com/oiweiwei/go-msrpc/msrpc/mqmq"
@@ -22,7 +21,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = mqmq.GoPackage
 	_ = qmcomm.GoPackage
 )
@@ -132,7 +130,7 @@ func (o *xxx_DefaultQmcomm2Client) QMSendMessageInternalEx(ctx context.Context, 
 	out := &QMSendMessageInternalExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -145,7 +143,7 @@ func (o *xxx_DefaultQmcomm2Client) SendMessageEx(ctx context.Context, in *SendMe
 	out := &SendMessageExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -158,7 +156,7 @@ func (o *xxx_DefaultQmcomm2Client) ReceiveMessageEx(ctx context.Context, in *Rec
 	out := &ReceiveMessageExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -171,7 +169,7 @@ func (o *xxx_DefaultQmcomm2Client) CreateCursorEx(ctx context.Context, in *Creat
 	out := &CreateCursorExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

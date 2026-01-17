@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcom "github.com/oiweiwei/go-msrpc/msrpc/dcom"
 	mqac "github.com/oiweiwei/go-msrpc/msrpc/dcom/mqac"
@@ -24,7 +23,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcom.GoPackage
 	_ = idispatch.GoPackage
 	_ = mqac.GoPackage
@@ -325,7 +323,7 @@ func (o *xxx_DefaultQueue3Client) GetAccess(ctx context.Context, in *GetAccessRe
 	out := &GetAccessResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -345,7 +343,7 @@ func (o *xxx_DefaultQueue3Client) GetShareMode(ctx context.Context, in *GetShare
 	out := &GetShareModeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -365,7 +363,7 @@ func (o *xxx_DefaultQueue3Client) GetQueueInfo(ctx context.Context, in *GetQueue
 	out := &GetQueueInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -385,7 +383,7 @@ func (o *xxx_DefaultQueue3Client) GetHandle(ctx context.Context, in *GetHandleRe
 	out := &GetHandleResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -405,7 +403,7 @@ func (o *xxx_DefaultQueue3Client) GetIsOpen(ctx context.Context, in *GetIsOpenRe
 	out := &GetIsOpenResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -425,7 +423,7 @@ func (o *xxx_DefaultQueue3Client) Close(ctx context.Context, in *CloseRequest, o
 	out := &CloseResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -445,7 +443,7 @@ func (o *xxx_DefaultQueue3Client) ReceiveV1(ctx context.Context, in *ReceiveV1Re
 	out := &ReceiveV1Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -465,7 +463,7 @@ func (o *xxx_DefaultQueue3Client) PeekV1(ctx context.Context, in *PeekV1Request,
 	out := &PeekV1Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -485,7 +483,7 @@ func (o *xxx_DefaultQueue3Client) EnableNotification(ctx context.Context, in *En
 	out := &EnableNotificationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -505,7 +503,7 @@ func (o *xxx_DefaultQueue3Client) Reset(ctx context.Context, in *ResetRequest, o
 	out := &ResetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -525,7 +523,7 @@ func (o *xxx_DefaultQueue3Client) ReceiveCurrentV1(ctx context.Context, in *Rece
 	out := &ReceiveCurrentV1Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -545,7 +543,7 @@ func (o *xxx_DefaultQueue3Client) PeekNextV1(ctx context.Context, in *PeekNextV1
 	out := &PeekNextV1Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -565,7 +563,7 @@ func (o *xxx_DefaultQueue3Client) PeekCurrentV1(ctx context.Context, in *PeekCur
 	out := &PeekCurrentV1Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -585,7 +583,7 @@ func (o *xxx_DefaultQueue3Client) Receive(ctx context.Context, in *ReceiveReques
 	out := &ReceiveResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -605,7 +603,7 @@ func (o *xxx_DefaultQueue3Client) Peek(ctx context.Context, in *PeekRequest, opt
 	out := &PeekResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -625,7 +623,7 @@ func (o *xxx_DefaultQueue3Client) ReceiveCurrent(ctx context.Context, in *Receiv
 	out := &ReceiveCurrentResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -645,7 +643,7 @@ func (o *xxx_DefaultQueue3Client) PeekNext(ctx context.Context, in *PeekNextRequ
 	out := &PeekNextResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -665,7 +663,7 @@ func (o *xxx_DefaultQueue3Client) PeekCurrent(ctx context.Context, in *PeekCurre
 	out := &PeekCurrentResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -685,7 +683,7 @@ func (o *xxx_DefaultQueue3Client) GetProperties(ctx context.Context, in *GetProp
 	out := &GetPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -705,7 +703,7 @@ func (o *xxx_DefaultQueue3Client) GetHandle2(ctx context.Context, in *GetHandle2
 	out := &GetHandle2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -725,7 +723,7 @@ func (o *xxx_DefaultQueue3Client) ReceiveByLookupID(ctx context.Context, in *Rec
 	out := &ReceiveByLookupIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -745,7 +743,7 @@ func (o *xxx_DefaultQueue3Client) ReceiveNextByLookupID(ctx context.Context, in 
 	out := &ReceiveNextByLookupIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -765,7 +763,7 @@ func (o *xxx_DefaultQueue3Client) ReceivePreviousByLookupID(ctx context.Context,
 	out := &ReceivePreviousByLookupIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -785,7 +783,7 @@ func (o *xxx_DefaultQueue3Client) ReceiveFirstByLookupID(ctx context.Context, in
 	out := &ReceiveFirstByLookupIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -805,7 +803,7 @@ func (o *xxx_DefaultQueue3Client) ReceiveLastByLookupID(ctx context.Context, in 
 	out := &ReceiveLastByLookupIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -825,7 +823,7 @@ func (o *xxx_DefaultQueue3Client) PeekByLookupID(ctx context.Context, in *PeekBy
 	out := &PeekByLookupIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -845,7 +843,7 @@ func (o *xxx_DefaultQueue3Client) PeekNextByLookupID(ctx context.Context, in *Pe
 	out := &PeekNextByLookupIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -865,7 +863,7 @@ func (o *xxx_DefaultQueue3Client) PeekPreviousByLookupID(ctx context.Context, in
 	out := &PeekPreviousByLookupIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -885,7 +883,7 @@ func (o *xxx_DefaultQueue3Client) PeekFirstByLookupID(ctx context.Context, in *P
 	out := &PeekFirstByLookupIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -905,7 +903,7 @@ func (o *xxx_DefaultQueue3Client) PeekLastByLookupID(ctx context.Context, in *Pe
 	out := &PeekLastByLookupIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -925,7 +923,7 @@ func (o *xxx_DefaultQueue3Client) Purge(ctx context.Context, in *PurgeRequest, o
 	out := &PurgeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -945,7 +943,7 @@ func (o *xxx_DefaultQueue3Client) GetIsOpen2(ctx context.Context, in *GetIsOpen2
 	out := &GetIsOpen2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

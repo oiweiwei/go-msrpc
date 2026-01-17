@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
 	ndr "github.com/oiweiwei/go-msrpc/ndr"
@@ -21,7 +20,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dtyp.GoPackage
 )
 
@@ -7781,7 +7779,7 @@ func (o *xxx_DefaultNetdfsClient) ManagerGetVersion(ctx context.Context, in *Man
 	out := &ManagerGetVersionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -7794,7 +7792,7 @@ func (o *xxx_DefaultNetdfsClient) Add(ctx context.Context, in *AddRequest, opts 
 	out := &AddResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -7807,7 +7805,7 @@ func (o *xxx_DefaultNetdfsClient) Remove(ctx context.Context, in *RemoveRequest,
 	out := &RemoveResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -7820,7 +7818,7 @@ func (o *xxx_DefaultNetdfsClient) SetInfo(ctx context.Context, in *SetInfoReques
 	out := &SetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -7833,7 +7831,7 @@ func (o *xxx_DefaultNetdfsClient) GetInfo(ctx context.Context, in *GetInfoReques
 	out := &GetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -7846,7 +7844,7 @@ func (o *xxx_DefaultNetdfsClient) Enum(ctx context.Context, in *EnumRequest, opt
 	out := &EnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -7859,7 +7857,7 @@ func (o *xxx_DefaultNetdfsClient) Move(ctx context.Context, in *MoveRequest, opt
 	out := &MoveResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -7872,7 +7870,7 @@ func (o *xxx_DefaultNetdfsClient) AddFTRoot(ctx context.Context, in *AddFTRootRe
 	out := &AddFTRootResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -7885,7 +7883,7 @@ func (o *xxx_DefaultNetdfsClient) RemoveFTRoot(ctx context.Context, in *RemoveFT
 	out := &RemoveFTRootResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -7898,7 +7896,7 @@ func (o *xxx_DefaultNetdfsClient) AddStdRoot(ctx context.Context, in *AddStdRoot
 	out := &AddStdRootResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -7911,7 +7909,7 @@ func (o *xxx_DefaultNetdfsClient) RemoveStdRoot(ctx context.Context, in *RemoveS
 	out := &RemoveStdRootResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -7924,7 +7922,7 @@ func (o *xxx_DefaultNetdfsClient) ManagerInitialize(ctx context.Context, in *Man
 	out := &ManagerInitializeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -7937,7 +7935,7 @@ func (o *xxx_DefaultNetdfsClient) AddStdRootForced(ctx context.Context, in *AddS
 	out := &AddStdRootForcedResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -7950,7 +7948,7 @@ func (o *xxx_DefaultNetdfsClient) GetDCAddress(ctx context.Context, in *GetDCAdd
 	out := &GetDCAddressResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -7963,7 +7961,7 @@ func (o *xxx_DefaultNetdfsClient) SetDCAddress(ctx context.Context, in *SetDCAdd
 	out := &SetDCAddressResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -7976,7 +7974,7 @@ func (o *xxx_DefaultNetdfsClient) FlushFTTable(ctx context.Context, in *FlushFTT
 	out := &FlushFTTableResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -7989,7 +7987,7 @@ func (o *xxx_DefaultNetdfsClient) Add2(ctx context.Context, in *Add2Request, opt
 	out := &Add2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8002,7 +8000,7 @@ func (o *xxx_DefaultNetdfsClient) Remove2(ctx context.Context, in *Remove2Reques
 	out := &Remove2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8015,7 +8013,7 @@ func (o *xxx_DefaultNetdfsClient) EnumEx(ctx context.Context, in *EnumExRequest,
 	out := &EnumExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8028,7 +8026,7 @@ func (o *xxx_DefaultNetdfsClient) SetInfo2(ctx context.Context, in *SetInfo2Requ
 	out := &SetInfo2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8041,7 +8039,7 @@ func (o *xxx_DefaultNetdfsClient) AddRootTarget(ctx context.Context, in *AddRoot
 	out := &AddRootTargetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8054,7 +8052,7 @@ func (o *xxx_DefaultNetdfsClient) RemoveRootTarget(ctx context.Context, in *Remo
 	out := &RemoveRootTargetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -8067,7 +8065,7 @@ func (o *xxx_DefaultNetdfsClient) GetSupportedNamespaceVersion(ctx context.Conte
 	out := &GetSupportedNamespaceVersionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

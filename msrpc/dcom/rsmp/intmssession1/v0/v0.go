@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcom "github.com/oiweiwei/go-msrpc/msrpc/dcom"
 	iunknown "github.com/oiweiwei/go-msrpc/msrpc/dcom/iunknown/v0"
@@ -23,7 +22,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcom.GoPackage
 	_ = iunknown.GoPackage
 	_ = dtyp.GoPackage
@@ -198,7 +196,7 @@ func (o *xxx_DefaultSession1Client) OpenNTMSServerSessionW(ctx context.Context, 
 	out := &OpenNTMSServerSessionWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -218,7 +216,7 @@ func (o *xxx_DefaultSession1Client) OpenNTMSServerSessionA(ctx context.Context, 
 	out := &OpenNTMSServerSessionAResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -238,7 +236,7 @@ func (o *xxx_DefaultSession1Client) CloseNTMSSession(ctx context.Context, in *Cl
 	out := &CloseNTMSSessionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -258,7 +256,7 @@ func (o *xxx_DefaultSession1Client) SubmitNTMSOperatorRequestW(ctx context.Conte
 	out := &SubmitNTMSOperatorRequestWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -278,7 +276,7 @@ func (o *xxx_DefaultSession1Client) SubmitNTMSOperatorRequestA(ctx context.Conte
 	out := &SubmitNTMSOperatorRequestAResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -298,7 +296,7 @@ func (o *xxx_DefaultSession1Client) WaitForNTMSOperatorRequest(ctx context.Conte
 	out := &WaitForNTMSOperatorRequestResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -318,7 +316,7 @@ func (o *xxx_DefaultSession1Client) CancelNTMSOperatorRequest(ctx context.Contex
 	out := &CancelNTMSOperatorRequestResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -338,7 +336,7 @@ func (o *xxx_DefaultSession1Client) SatisfyNTMSOperatorRequest(ctx context.Conte
 	out := &SatisfyNTMSOperatorRequestResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -358,7 +356,7 @@ func (o *xxx_DefaultSession1Client) ImportNTMSDatabase(ctx context.Context, in *
 	out := &ImportNTMSDatabaseResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -378,7 +376,7 @@ func (o *xxx_DefaultSession1Client) ExportNTMSDatabase(ctx context.Context, in *
 	out := &ExportNTMSDatabaseResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -398,7 +396,7 @@ func (o *xxx_DefaultSession1Client) AddNotification(ctx context.Context, in *Add
 	out := &AddNotificationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -418,7 +416,7 @@ func (o *xxx_DefaultSession1Client) RemoveNotification(ctx context.Context, in *
 	out := &RemoveNotificationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -438,7 +436,7 @@ func (o *xxx_DefaultSession1Client) DispatchNotification(ctx context.Context, in
 	out := &DispatchNotificationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

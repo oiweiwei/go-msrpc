@@ -58,7 +58,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dltw "github.com/oiweiwei/go-msrpc/msrpc/dltw"
 	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
@@ -73,7 +72,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dltw.GoPackage
 	_ = dtyp.GoPackage
 )

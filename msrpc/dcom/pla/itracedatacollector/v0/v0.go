@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcom "github.com/oiweiwei/go-msrpc/msrpc/dcom"
 	oaut "github.com/oiweiwei/go-msrpc/msrpc/dcom/oaut"
@@ -25,7 +24,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcom.GoPackage
 	_ = idatacollector.GoPackage
 	_ = pla.GoPackage
@@ -266,7 +264,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetBufferSize(ctx context.Context,
 	out := &GetBufferSizeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -286,7 +284,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) SetBufferSize(ctx context.Context,
 	out := &SetBufferSizeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -306,7 +304,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetBuffersLost(ctx context.Context
 	out := &GetBuffersLostResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -326,7 +324,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetBuffersWritten(ctx context.Cont
 	out := &GetBuffersWrittenResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -346,7 +344,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetClockType(ctx context.Context, 
 	out := &GetClockTypeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -366,7 +364,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) SetClockType(ctx context.Context, 
 	out := &SetClockTypeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -386,7 +384,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetEventsLost(ctx context.Context,
 	out := &GetEventsLostResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -406,7 +404,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetExtendedModes(ctx context.Conte
 	out := &GetExtendedModesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -426,7 +424,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) SetExtendedModes(ctx context.Conte
 	out := &SetExtendedModesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -446,7 +444,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetFlushTimer(ctx context.Context,
 	out := &GetFlushTimerResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -466,7 +464,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) SetFlushTimer(ctx context.Context,
 	out := &SetFlushTimerResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -486,7 +484,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetFreeBuffers(ctx context.Context
 	out := &GetFreeBuffersResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -506,7 +504,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetGUID(ctx context.Context, in *G
 	out := &GetGUIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -526,7 +524,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) SetGUID(ctx context.Context, in *S
 	out := &SetGUIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -546,7 +544,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetIsKernelTrace(ctx context.Conte
 	out := &GetIsKernelTraceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -566,7 +564,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetMaximumBuffers(ctx context.Cont
 	out := &GetMaximumBuffersResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -586,7 +584,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) SetMaximumBuffers(ctx context.Cont
 	out := &SetMaximumBuffersResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -606,7 +604,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetMinimumBuffers(ctx context.Cont
 	out := &GetMinimumBuffersResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -626,7 +624,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) SetMinimumBuffers(ctx context.Cont
 	out := &SetMinimumBuffersResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -646,7 +644,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetNumberOfBuffers(ctx context.Con
 	out := &GetNumberOfBuffersResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -666,7 +664,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) SetNumberOfBuffers(ctx context.Con
 	out := &SetNumberOfBuffersResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -686,7 +684,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetPreallocateFile(ctx context.Con
 	out := &GetPreallocateFileResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -706,7 +704,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) SetPreallocateFile(ctx context.Con
 	out := &SetPreallocateFileResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -726,7 +724,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetProcessMode(ctx context.Context
 	out := &GetProcessModeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -746,7 +744,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) SetProcessMode(ctx context.Context
 	out := &SetProcessModeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -766,7 +764,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetRealTimeBuffersLost(ctx context
 	out := &GetRealTimeBuffersLostResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -786,7 +784,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetSessionID(ctx context.Context, 
 	out := &GetSessionIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -806,7 +804,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetSessionName(ctx context.Context
 	out := &GetSessionNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -826,7 +824,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) SetSessionName(ctx context.Context
 	out := &SetSessionNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -846,7 +844,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetSessionThreadID(ctx context.Con
 	out := &GetSessionThreadIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -866,7 +864,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetStreamMode(ctx context.Context,
 	out := &GetStreamModeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -886,7 +884,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) SetStreamMode(ctx context.Context,
 	out := &SetStreamModeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -906,7 +904,7 @@ func (o *xxx_DefaultTraceDataCollectorClient) GetTraceDataProviders(ctx context.
 	out := &GetTraceDataProvidersResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

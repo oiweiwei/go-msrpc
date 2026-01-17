@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcetypes "github.com/oiweiwei/go-msrpc/msrpc/dcetypes"
 	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
@@ -22,7 +21,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcetypes.GoPackage
 	_ = dtyp.GoPackage
 )
@@ -31061,7 +31059,7 @@ func (o *xxx_DefaultDrsuapiClient) Bind(ctx context.Context, in *BindRequest, op
 	out := &BindResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31074,7 +31072,7 @@ func (o *xxx_DefaultDrsuapiClient) Unbind(ctx context.Context, in *UnbindRequest
 	out := &UnbindResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31087,7 +31085,7 @@ func (o *xxx_DefaultDrsuapiClient) SyncReplica(ctx context.Context, in *SyncRepl
 	out := &SyncReplicaResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31100,7 +31098,7 @@ func (o *xxx_DefaultDrsuapiClient) GetNCChanges(ctx context.Context, in *GetNCCh
 	out := &GetNCChangesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31113,7 +31111,7 @@ func (o *xxx_DefaultDrsuapiClient) UpdateReferences(ctx context.Context, in *Upd
 	out := &UpdateReferencesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31126,7 +31124,7 @@ func (o *xxx_DefaultDrsuapiClient) AddReplica(ctx context.Context, in *AddReplic
 	out := &AddReplicaResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31139,7 +31137,7 @@ func (o *xxx_DefaultDrsuapiClient) DeleteReplica(ctx context.Context, in *Delete
 	out := &DeleteReplicaResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31152,7 +31150,7 @@ func (o *xxx_DefaultDrsuapiClient) ModifyReplica(ctx context.Context, in *Modify
 	out := &ModifyReplicaResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31165,7 +31163,7 @@ func (o *xxx_DefaultDrsuapiClient) VerifyNames(ctx context.Context, in *VerifyNa
 	out := &VerifyNamesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31178,7 +31176,7 @@ func (o *xxx_DefaultDrsuapiClient) GetMemberships(ctx context.Context, in *GetMe
 	out := &GetMembershipsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31191,7 +31189,7 @@ func (o *xxx_DefaultDrsuapiClient) InterdomainMove(ctx context.Context, in *Inte
 	out := &InterdomainMoveResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31204,7 +31202,7 @@ func (o *xxx_DefaultDrsuapiClient) GetNT4ChangeLog(ctx context.Context, in *GetN
 	out := &GetNT4ChangeLogResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31217,7 +31215,7 @@ func (o *xxx_DefaultDrsuapiClient) CrackNames(ctx context.Context, in *CrackName
 	out := &CrackNamesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31230,7 +31228,7 @@ func (o *xxx_DefaultDrsuapiClient) WriteSPN(ctx context.Context, in *WriteSPNReq
 	out := &WriteSPNResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31243,7 +31241,7 @@ func (o *xxx_DefaultDrsuapiClient) RemoveDSServer(ctx context.Context, in *Remov
 	out := &RemoveDSServerResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31256,7 +31254,7 @@ func (o *xxx_DefaultDrsuapiClient) RemoveDSDomain(ctx context.Context, in *Remov
 	out := &RemoveDSDomainResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31269,7 +31267,7 @@ func (o *xxx_DefaultDrsuapiClient) DomainControllerInfo(ctx context.Context, in 
 	out := &DomainControllerInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31282,7 +31280,7 @@ func (o *xxx_DefaultDrsuapiClient) AddEntry(ctx context.Context, in *AddEntryReq
 	out := &AddEntryResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31295,7 +31293,7 @@ func (o *xxx_DefaultDrsuapiClient) ExecuteKCC(ctx context.Context, in *ExecuteKC
 	out := &ExecuteKCCResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31308,7 +31306,7 @@ func (o *xxx_DefaultDrsuapiClient) GetReplicationInfo(ctx context.Context, in *G
 	out := &GetReplicationInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31321,7 +31319,7 @@ func (o *xxx_DefaultDrsuapiClient) AddSIDHistory(ctx context.Context, in *AddSID
 	out := &AddSIDHistoryResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31334,7 +31332,7 @@ func (o *xxx_DefaultDrsuapiClient) GetMemberships2(ctx context.Context, in *GetM
 	out := &GetMemberships2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31347,7 +31345,7 @@ func (o *xxx_DefaultDrsuapiClient) VerifyObjectsReplica(ctx context.Context, in 
 	out := &VerifyObjectsReplicaResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31360,7 +31358,7 @@ func (o *xxx_DefaultDrsuapiClient) GetObjectExistence(ctx context.Context, in *G
 	out := &GetObjectExistenceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31373,7 +31371,7 @@ func (o *xxx_DefaultDrsuapiClient) QuerySitesByCost(ctx context.Context, in *Que
 	out := &QuerySitesByCostResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31386,7 +31384,7 @@ func (o *xxx_DefaultDrsuapiClient) InitDemotion(ctx context.Context, in *InitDem
 	out := &InitDemotionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31399,7 +31397,7 @@ func (o *xxx_DefaultDrsuapiClient) DemotionReplica(ctx context.Context, in *Demo
 	out := &DemotionReplicaResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31412,7 +31410,7 @@ func (o *xxx_DefaultDrsuapiClient) FinishDemotion(ctx context.Context, in *Finis
 	out := &FinishDemotionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31425,7 +31423,7 @@ func (o *xxx_DefaultDrsuapiClient) AddCloneDC(ctx context.Context, in *AddCloneD
 	out := &AddCloneDCResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31438,7 +31436,7 @@ func (o *xxx_DefaultDrsuapiClient) WriteNGCKey(ctx context.Context, in *WriteNGC
 	out := &WriteNGCKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -31451,7 +31449,7 @@ func (o *xxx_DefaultDrsuapiClient) ReadNGCKey(ctx context.Context, in *ReadNGCKe
 	out := &ReadNGCKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
