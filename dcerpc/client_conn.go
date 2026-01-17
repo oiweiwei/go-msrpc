@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"sync"
 
+	dcerpc_errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
+
 	"github.com/oiweiwei/go-msrpc/midl/uuid"
 	"github.com/rs/zerolog"
 )
@@ -38,6 +40,8 @@ type clientConn struct {
 	closed bool
 	// Logger.
 	logger zerolog.Logger
+	// Error mapper.
+	errorMappers []dcerpc_errors.Mapper
 }
 
 // SubConn interface implements the sub-connection query method
@@ -72,6 +76,16 @@ func (c *clientConn) SubConn(ctx context.Context, abstractSyntax *SyntaxID) (Con
 	}
 
 	return nil, ErrConnNotExist
+}
+
+// Error function maps the value to the registered error.
+func (c *clientConn) Error(ctx context.Context, value any) error {
+	for _, mapper := range c.errorMappers {
+		if err := mapper.MapValue(ctx, value); err != nil {
+			return err
+		}
+	}
+	return dcerpc_errors.New(ctx, value)
 }
 
 // Bind function establishes new client connection on the same transport

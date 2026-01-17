@@ -332,6 +332,7 @@ func (c *transport) makeConn(o *option) *clientConn {
 			presentation: o.Presentations[i],
 			subs:         conns,
 			logger:       o.Logger,
+			errorMappers: o.ErrorMappers,
 		}
 	}
 
