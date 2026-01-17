@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcetypes "github.com/oiweiwei/go-msrpc/msrpc/dcetypes"
 	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
@@ -23,7 +22,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = mqmq.GoPackage
 	_ = dtyp.GoPackage
 	_ = dcetypes.GoPackage
@@ -4428,7 +4426,7 @@ func (o *xxx_DefaultQmcommClient) GetRemoteQueueName(ctx context.Context, in *Ge
 	out := &GetRemoteQueueNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4441,7 +4439,7 @@ func (o *xxx_DefaultQmcommClient) OpenRemoteQueue(ctx context.Context, in *OpenR
 	out := &OpenRemoteQueueResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4464,7 +4462,7 @@ func (o *xxx_DefaultQmcommClient) CreateRemoteCursor(ctx context.Context, in *Cr
 	out := &CreateRemoteCursorResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4477,7 +4475,7 @@ func (o *xxx_DefaultQmcommClient) CreateObjectInternal(ctx context.Context, in *
 	out := &CreateObjectInternalResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4490,7 +4488,7 @@ func (o *xxx_DefaultQmcommClient) SetObjectSecurityInternal(ctx context.Context,
 	out := &SetObjectSecurityInternalResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4503,7 +4501,7 @@ func (o *xxx_DefaultQmcommClient) GetObjectSecurityInternal(ctx context.Context,
 	out := &GetObjectSecurityInternalResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4516,7 +4514,7 @@ func (o *xxx_DefaultQmcommClient) DeleteObject(ctx context.Context, in *DeleteOb
 	out := &DeleteObjectResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4529,7 +4527,7 @@ func (o *xxx_DefaultQmcommClient) GetObjectProperties(ctx context.Context, in *G
 	out := &GetObjectPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4542,7 +4540,7 @@ func (o *xxx_DefaultQmcommClient) SetObjectProperties(ctx context.Context, in *S
 	out := &SetObjectPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4555,7 +4553,7 @@ func (o *xxx_DefaultQmcommClient) ObjectPathToObjectFormat(ctx context.Context, 
 	out := &ObjectPathToObjectFormatResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4568,7 +4566,7 @@ func (o *xxx_DefaultQmcommClient) GetTMWhereabouts(ctx context.Context, in *GetT
 	out := &GetTMWhereaboutsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4581,7 +4579,7 @@ func (o *xxx_DefaultQmcommClient) EnlistTransaction(ctx context.Context, in *Enl
 	out := &EnlistTransactionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4594,7 +4592,7 @@ func (o *xxx_DefaultQmcommClient) EnlistInternalTransaction(ctx context.Context,
 	out := &EnlistInternalTransactionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4607,7 +4605,7 @@ func (o *xxx_DefaultQmcommClient) CommitTransaction(ctx context.Context, in *Com
 	out := &CommitTransactionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4620,7 +4618,7 @@ func (o *xxx_DefaultQmcommClient) AbortTransaction(ctx context.Context, in *Abor
 	out := &AbortTransactionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4633,7 +4631,7 @@ func (o *xxx_DefaultQmcommClient) OpenQueueInternal(ctx context.Context, in *Ope
 	out := &OpenQueueInternalResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4646,7 +4644,7 @@ func (o *xxx_DefaultQmcommClient) CloseHandle(ctx context.Context, in *CloseHand
 	out := &CloseHandleResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4659,7 +4657,7 @@ func (o *xxx_DefaultQmcommClient) CloseCursor(ctx context.Context, in *CloseCurs
 	out := &CloseCursorResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4672,7 +4670,7 @@ func (o *xxx_DefaultQmcommClient) SetCursorProperties(ctx context.Context, in *S
 	out := &SetCursorPropertiesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4685,7 +4683,7 @@ func (o *xxx_DefaultQmcommClient) HandleToFormatName(ctx context.Context, in *Ha
 	out := &HandleToFormatNameResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4698,7 +4696,7 @@ func (o *xxx_DefaultQmcommClient) PurgeQueue(ctx context.Context, in *PurgeQueue
 	out := &PurgeQueueResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4711,7 +4709,7 @@ func (o *xxx_DefaultQmcommClient) QueryQMRegistryInternal(ctx context.Context, i
 	out := &QueryQMRegistryInternalResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4724,7 +4722,7 @@ func (o *xxx_DefaultQmcommClient) GetRTQMServerPort(ctx context.Context, in *Get
 	out := &GetRTQMServerPortResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

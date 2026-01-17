@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcetypes "github.com/oiweiwei/go-msrpc/msrpc/dcetypes"
 	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
@@ -22,7 +21,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dtyp.GoPackage
 	_ = dcetypes.GoPackage
 )
@@ -1450,7 +1448,7 @@ func (o *xxx_DefaultWinregClient) OpenClassesRoot(ctx context.Context, in *OpenC
 	out := &OpenClassesRootResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1463,7 +1461,7 @@ func (o *xxx_DefaultWinregClient) OpenCurrentUser(ctx context.Context, in *OpenC
 	out := &OpenCurrentUserResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1476,7 +1474,7 @@ func (o *xxx_DefaultWinregClient) OpenLocalMachine(ctx context.Context, in *Open
 	out := &OpenLocalMachineResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1489,7 +1487,7 @@ func (o *xxx_DefaultWinregClient) OpenPerformanceData(ctx context.Context, in *O
 	out := &OpenPerformanceDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1502,7 +1500,7 @@ func (o *xxx_DefaultWinregClient) OpenUsers(ctx context.Context, in *OpenUsersRe
 	out := &OpenUsersResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1515,7 +1513,7 @@ func (o *xxx_DefaultWinregClient) BaseRegCloseKey(ctx context.Context, in *BaseR
 	out := &BaseRegCloseKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1528,7 +1526,7 @@ func (o *xxx_DefaultWinregClient) BaseRegCreateKey(ctx context.Context, in *Base
 	out := &BaseRegCreateKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1541,7 +1539,7 @@ func (o *xxx_DefaultWinregClient) BaseRegDeleteKey(ctx context.Context, in *Base
 	out := &BaseRegDeleteKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1554,7 +1552,7 @@ func (o *xxx_DefaultWinregClient) BaseRegDeleteValue(ctx context.Context, in *Ba
 	out := &BaseRegDeleteValueResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1567,7 +1565,7 @@ func (o *xxx_DefaultWinregClient) BaseRegEnumKey(ctx context.Context, in *BaseRe
 	out := &BaseRegEnumKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1580,7 +1578,7 @@ func (o *xxx_DefaultWinregClient) BaseRegEnumValue(ctx context.Context, in *Base
 	out := &BaseRegEnumValueResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1593,7 +1591,7 @@ func (o *xxx_DefaultWinregClient) BaseRegFlushKey(ctx context.Context, in *BaseR
 	out := &BaseRegFlushKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1606,7 +1604,7 @@ func (o *xxx_DefaultWinregClient) BaseRegGetKeySecurity(ctx context.Context, in 
 	out := &BaseRegGetKeySecurityResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1619,7 +1617,7 @@ func (o *xxx_DefaultWinregClient) BaseRegLoadKey(ctx context.Context, in *BaseRe
 	out := &BaseRegLoadKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1632,7 +1630,7 @@ func (o *xxx_DefaultWinregClient) BaseRegOpenKey(ctx context.Context, in *BaseRe
 	out := &BaseRegOpenKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1645,7 +1643,7 @@ func (o *xxx_DefaultWinregClient) BaseRegQueryInfoKey(ctx context.Context, in *B
 	out := &BaseRegQueryInfoKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1658,7 +1656,7 @@ func (o *xxx_DefaultWinregClient) BaseRegQueryValue(ctx context.Context, in *Bas
 	out := &BaseRegQueryValueResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1671,7 +1669,7 @@ func (o *xxx_DefaultWinregClient) BaseRegReplaceKey(ctx context.Context, in *Bas
 	out := &BaseRegReplaceKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1684,7 +1682,7 @@ func (o *xxx_DefaultWinregClient) BaseRegRestoreKey(ctx context.Context, in *Bas
 	out := &BaseRegRestoreKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1697,7 +1695,7 @@ func (o *xxx_DefaultWinregClient) BaseRegSaveKey(ctx context.Context, in *BaseRe
 	out := &BaseRegSaveKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1710,7 +1708,7 @@ func (o *xxx_DefaultWinregClient) BaseRegSetKeySecurity(ctx context.Context, in 
 	out := &BaseRegSetKeySecurityResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1723,7 +1721,7 @@ func (o *xxx_DefaultWinregClient) BaseRegSetValue(ctx context.Context, in *BaseR
 	out := &BaseRegSetValueResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1736,7 +1734,7 @@ func (o *xxx_DefaultWinregClient) BaseRegUnloadKey(ctx context.Context, in *Base
 	out := &BaseRegUnloadKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1749,7 +1747,7 @@ func (o *xxx_DefaultWinregClient) BaseRegGetVersion(ctx context.Context, in *Bas
 	out := &BaseRegGetVersionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1762,7 +1760,7 @@ func (o *xxx_DefaultWinregClient) OpenCurrentConfig(ctx context.Context, in *Ope
 	out := &OpenCurrentConfigResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1775,7 +1773,7 @@ func (o *xxx_DefaultWinregClient) BaseRegQueryMultipleValues(ctx context.Context
 	out := &BaseRegQueryMultipleValuesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1788,7 +1786,7 @@ func (o *xxx_DefaultWinregClient) BaseRegSaveKeyEx(ctx context.Context, in *Base
 	out := &BaseRegSaveKeyExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1801,7 +1799,7 @@ func (o *xxx_DefaultWinregClient) OpenPerformanceText(ctx context.Context, in *O
 	out := &OpenPerformanceTextResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1814,7 +1812,7 @@ func (o *xxx_DefaultWinregClient) OpenPerformanceNlsText(ctx context.Context, in
 	out := &OpenPerformanceNlsTextResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1827,7 +1825,7 @@ func (o *xxx_DefaultWinregClient) BaseRegQueryMultipleValues2(ctx context.Contex
 	out := &BaseRegQueryMultipleValues2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1840,7 +1838,7 @@ func (o *xxx_DefaultWinregClient) BaseRegDeleteKeyEx(ctx context.Context, in *Ba
 	out := &BaseRegDeleteKeyExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

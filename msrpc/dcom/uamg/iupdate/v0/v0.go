@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcom "github.com/oiweiwei/go-msrpc/msrpc/dcom"
 	oaut "github.com/oiweiwei/go-msrpc/msrpc/dcom/oaut"
@@ -24,7 +23,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcom.GoPackage
 	_ = idispatch.GoPackage
 	_ = oaut.GoPackage
@@ -804,7 +802,7 @@ func (o *xxx_DefaultUpdateClient) GetTitle(ctx context.Context, in *GetTitleRequ
 	out := &GetTitleResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -824,7 +822,7 @@ func (o *xxx_DefaultUpdateClient) GetAutoSelectOnWebSites(ctx context.Context, i
 	out := &GetAutoSelectOnWebSitesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -844,7 +842,7 @@ func (o *xxx_DefaultUpdateClient) GetBundledUpdates(ctx context.Context, in *Get
 	out := &GetBundledUpdatesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -864,7 +862,7 @@ func (o *xxx_DefaultUpdateClient) GetCanRequireSource(ctx context.Context, in *G
 	out := &GetCanRequireSourceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -884,7 +882,7 @@ func (o *xxx_DefaultUpdateClient) GetCategories(ctx context.Context, in *GetCate
 	out := &GetCategoriesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -904,7 +902,7 @@ func (o *xxx_DefaultUpdateClient) GetDeadline(ctx context.Context, in *GetDeadli
 	out := &GetDeadlineResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -924,7 +922,7 @@ func (o *xxx_DefaultUpdateClient) GetDeltaCompressedContentAvailable(ctx context
 	out := &GetDeltaCompressedContentAvailableResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -944,7 +942,7 @@ func (o *xxx_DefaultUpdateClient) GetDeltaCompressedContentPreferred(ctx context
 	out := &GetDeltaCompressedContentPreferredResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -964,7 +962,7 @@ func (o *xxx_DefaultUpdateClient) GetDescription(ctx context.Context, in *GetDes
 	out := &GetDescriptionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -984,7 +982,7 @@ func (o *xxx_DefaultUpdateClient) GetEulaAccepted(ctx context.Context, in *GetEu
 	out := &GetEulaAcceptedResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1004,7 +1002,7 @@ func (o *xxx_DefaultUpdateClient) GetEulaText(ctx context.Context, in *GetEulaTe
 	out := &GetEulaTextResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1024,7 +1022,7 @@ func (o *xxx_DefaultUpdateClient) GetHandlerID(ctx context.Context, in *GetHandl
 	out := &GetHandlerIDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1044,7 +1042,7 @@ func (o *xxx_DefaultUpdateClient) GetIdentity(ctx context.Context, in *GetIdenti
 	out := &GetIdentityResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1064,7 +1062,7 @@ func (o *xxx_DefaultUpdateClient) GetImage(ctx context.Context, in *GetImageRequ
 	out := &GetImageResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1084,7 +1082,7 @@ func (o *xxx_DefaultUpdateClient) GetInstallationBehavior(ctx context.Context, i
 	out := &GetInstallationBehaviorResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1104,7 +1102,7 @@ func (o *xxx_DefaultUpdateClient) GetIsBeta(ctx context.Context, in *GetIsBetaRe
 	out := &GetIsBetaResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1124,7 +1122,7 @@ func (o *xxx_DefaultUpdateClient) GetIsDownloaded(ctx context.Context, in *GetIs
 	out := &GetIsDownloadedResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1144,7 +1142,7 @@ func (o *xxx_DefaultUpdateClient) GetIsHidden(ctx context.Context, in *GetIsHidd
 	out := &GetIsHiddenResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1164,7 +1162,7 @@ func (o *xxx_DefaultUpdateClient) GetIsInstalled(ctx context.Context, in *GetIsI
 	out := &GetIsInstalledResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1184,7 +1182,7 @@ func (o *xxx_DefaultUpdateClient) GetIsMandatory(ctx context.Context, in *GetIsM
 	out := &GetIsMandatoryResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1204,7 +1202,7 @@ func (o *xxx_DefaultUpdateClient) GetIsUninstallable(ctx context.Context, in *Ge
 	out := &GetIsUninstallableResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1224,7 +1222,7 @@ func (o *xxx_DefaultUpdateClient) GetLanguages(ctx context.Context, in *GetLangu
 	out := &GetLanguagesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1244,7 +1242,7 @@ func (o *xxx_DefaultUpdateClient) GetLastDeploymentChangeTime(ctx context.Contex
 	out := &GetLastDeploymentChangeTimeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1264,7 +1262,7 @@ func (o *xxx_DefaultUpdateClient) GetMaxDownloadSize(ctx context.Context, in *Ge
 	out := &GetMaxDownloadSizeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1284,7 +1282,7 @@ func (o *xxx_DefaultUpdateClient) GetMinDownloadSize(ctx context.Context, in *Ge
 	out := &GetMinDownloadSizeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1304,7 +1302,7 @@ func (o *xxx_DefaultUpdateClient) GetMoreInfoUrls(ctx context.Context, in *GetMo
 	out := &GetMoreInfoUrlsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1324,7 +1322,7 @@ func (o *xxx_DefaultUpdateClient) GetMsrcSeverity(ctx context.Context, in *GetMs
 	out := &GetMsrcSeverityResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1344,7 +1342,7 @@ func (o *xxx_DefaultUpdateClient) GetRecommendedCpuSpeed(ctx context.Context, in
 	out := &GetRecommendedCpuSpeedResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1364,7 +1362,7 @@ func (o *xxx_DefaultUpdateClient) GetRecommendedHardDiskSpace(ctx context.Contex
 	out := &GetRecommendedHardDiskSpaceResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1384,7 +1382,7 @@ func (o *xxx_DefaultUpdateClient) GetRecommendedMemory(ctx context.Context, in *
 	out := &GetRecommendedMemoryResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1404,7 +1402,7 @@ func (o *xxx_DefaultUpdateClient) GetReleaseNotes(ctx context.Context, in *GetRe
 	out := &GetReleaseNotesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1424,7 +1422,7 @@ func (o *xxx_DefaultUpdateClient) GetSecurityBulletinIDs(ctx context.Context, in
 	out := &GetSecurityBulletinIDsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1444,7 +1442,7 @@ func (o *xxx_DefaultUpdateClient) GetSupersededUpdateIDs(ctx context.Context, in
 	out := &GetSupersededUpdateIDsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1464,7 +1462,7 @@ func (o *xxx_DefaultUpdateClient) GetSupportURL(ctx context.Context, in *GetSupp
 	out := &GetSupportURLResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1484,7 +1482,7 @@ func (o *xxx_DefaultUpdateClient) GetType(ctx context.Context, in *GetTypeReques
 	out := &GetTypeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1504,7 +1502,7 @@ func (o *xxx_DefaultUpdateClient) GetUninstallationNotes(ctx context.Context, in
 	out := &GetUninstallationNotesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1524,7 +1522,7 @@ func (o *xxx_DefaultUpdateClient) GetUninstallationBehavior(ctx context.Context,
 	out := &GetUninstallationBehaviorResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1544,7 +1542,7 @@ func (o *xxx_DefaultUpdateClient) GetUninstallationSteps(ctx context.Context, in
 	out := &GetUninstallationStepsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1564,7 +1562,7 @@ func (o *xxx_DefaultUpdateClient) GetKbArticleIDs(ctx context.Context, in *GetKb
 	out := &GetKbArticleIDsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1584,7 +1582,7 @@ func (o *xxx_DefaultUpdateClient) GetDeploymentAction(ctx context.Context, in *G
 	out := &GetDeploymentActionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1604,7 +1602,7 @@ func (o *xxx_DefaultUpdateClient) GetDownloadPriority(ctx context.Context, in *G
 	out := &GetDownloadPriorityResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1624,7 +1622,7 @@ func (o *xxx_DefaultUpdateClient) GetDownloadContents(ctx context.Context, in *G
 	out := &GetDownloadContentsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

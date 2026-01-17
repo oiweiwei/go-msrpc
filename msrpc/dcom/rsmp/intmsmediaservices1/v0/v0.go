@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcom "github.com/oiweiwei/go-msrpc/msrpc/dcom"
 	iunknown "github.com/oiweiwei/go-msrpc/msrpc/dcom/iunknown/v0"
@@ -24,7 +23,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcom.GoPackage
 	_ = iunknown.GoPackage
 	_ = dtyp.GoPackage
@@ -154,7 +152,7 @@ func (o *xxx_DefaultMediaServices1Client) MountNTMSMedia(ctx context.Context, in
 	out := &MountNTMSMediaResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -174,7 +172,7 @@ func (o *xxx_DefaultMediaServices1Client) DismountNTMSMedia(ctx context.Context,
 	out := &DismountNTMSMediaResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -194,7 +192,7 @@ func (o *xxx_DefaultMediaServices1Client) AllocateNTMSMedia(ctx context.Context,
 	out := &AllocateNTMSMediaResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -214,7 +212,7 @@ func (o *xxx_DefaultMediaServices1Client) DeallocateNTMSMedia(ctx context.Contex
 	out := &DeallocateNTMSMediaResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -234,7 +232,7 @@ func (o *xxx_DefaultMediaServices1Client) SwapNTMSMedia(ctx context.Context, in 
 	out := &SwapNTMSMediaResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -254,7 +252,7 @@ func (o *xxx_DefaultMediaServices1Client) DecommissionNTMSMedia(ctx context.Cont
 	out := &DecommissionNTMSMediaResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -274,7 +272,7 @@ func (o *xxx_DefaultMediaServices1Client) SetNTMSMediaComplete(ctx context.Conte
 	out := &SetNTMSMediaCompleteResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -294,7 +292,7 @@ func (o *xxx_DefaultMediaServices1Client) DeleteNTMSMedia(ctx context.Context, i
 	out := &DeleteNTMSMediaResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -314,7 +312,7 @@ func (o *xxx_DefaultMediaServices1Client) CreateNTMSMediaPoolA(ctx context.Conte
 	out := &CreateNTMSMediaPoolAResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -334,7 +332,7 @@ func (o *xxx_DefaultMediaServices1Client) CreateNTMSMediaPoolW(ctx context.Conte
 	out := &CreateNTMSMediaPoolWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -354,7 +352,7 @@ func (o *xxx_DefaultMediaServices1Client) GetNTMSMediaPoolNameA(ctx context.Cont
 	out := &GetNTMSMediaPoolNameAResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -374,7 +372,7 @@ func (o *xxx_DefaultMediaServices1Client) GetNTMSMediaPoolNameW(ctx context.Cont
 	out := &GetNTMSMediaPoolNameWResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -394,7 +392,7 @@ func (o *xxx_DefaultMediaServices1Client) MoveToNTMSMediaPool(ctx context.Contex
 	out := &MoveToNTMSMediaPoolResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -414,7 +412,7 @@ func (o *xxx_DefaultMediaServices1Client) DeleteNTMSMediaPool(ctx context.Contex
 	out := &DeleteNTMSMediaPoolResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -434,7 +432,7 @@ func (o *xxx_DefaultMediaServices1Client) AddNTMSMediaType(ctx context.Context, 
 	out := &AddNTMSMediaTypeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -454,7 +452,7 @@ func (o *xxx_DefaultMediaServices1Client) DeleteNTMSMediaType(ctx context.Contex
 	out := &DeleteNTMSMediaTypeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -474,7 +472,7 @@ func (o *xxx_DefaultMediaServices1Client) ChangeNTMSMediaType(ctx context.Contex
 	out := &ChangeNTMSMediaTypeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

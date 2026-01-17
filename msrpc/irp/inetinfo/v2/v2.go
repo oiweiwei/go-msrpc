@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
 	ndr "github.com/oiweiwei/go-msrpc/ndr"
@@ -21,7 +20,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dtyp.GoPackage
 )
 
@@ -4201,7 +4199,7 @@ func (o *xxx_DefaultInetinfoClient) GetVersion(ctx context.Context, in *GetVersi
 	out := &GetVersionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4214,7 +4212,7 @@ func (o *xxx_DefaultInetinfoClient) GetAdminInformation(ctx context.Context, in 
 	out := &GetAdminInformationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4227,7 +4225,7 @@ func (o *xxx_DefaultInetinfoClient) GetSites(ctx context.Context, in *GetSitesRe
 	out := &GetSitesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4240,7 +4238,7 @@ func (o *xxx_DefaultInetinfoClient) SetAdminInformation(ctx context.Context, in 
 	out := &SetAdminInformationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4253,7 +4251,7 @@ func (o *xxx_DefaultInetinfoClient) GetGlobalAdminInformation(ctx context.Contex
 	out := &GetGlobalAdminInformationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4266,7 +4264,7 @@ func (o *xxx_DefaultInetinfoClient) SetGlobalAdminInformation(ctx context.Contex
 	out := &SetGlobalAdminInformationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4279,7 +4277,7 @@ func (o *xxx_DefaultInetinfoClient) QueryStatistics(ctx context.Context, in *Que
 	out := &QueryStatisticsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4292,7 +4290,7 @@ func (o *xxx_DefaultInetinfoClient) ClearStatistics(ctx context.Context, in *Cle
 	out := &ClearStatisticsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4305,7 +4303,7 @@ func (o *xxx_DefaultInetinfoClient) FlushMemoryCache(ctx context.Context, in *Fl
 	out := &FlushMemoryCacheResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4318,7 +4316,7 @@ func (o *xxx_DefaultInetinfoClient) GetServerCapabilities(ctx context.Context, i
 	out := &GetServerCapabilitiesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4331,7 +4329,7 @@ func (o *xxx_DefaultInetinfoClient) W3QueryStatistics2(ctx context.Context, in *
 	out := &W3QueryStatistics2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4344,7 +4342,7 @@ func (o *xxx_DefaultInetinfoClient) W3ClearStatistics2(ctx context.Context, in *
 	out := &W3ClearStatistics2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4357,7 +4355,7 @@ func (o *xxx_DefaultInetinfoClient) FTPQueryStatistics2(ctx context.Context, in 
 	out := &FTPQueryStatistics2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4370,7 +4368,7 @@ func (o *xxx_DefaultInetinfoClient) FTPClearStatistics2(ctx context.Context, in 
 	out := &FTPClearStatistics2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4383,7 +4381,7 @@ func (o *xxx_DefaultInetinfoClient) IISEnumerateUsers(ctx context.Context, in *I
 	out := &IISEnumerateUsersResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4396,7 +4394,7 @@ func (o *xxx_DefaultInetinfoClient) IISDisconnectUser(ctx context.Context, in *I
 	out := &IISDisconnectUserResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

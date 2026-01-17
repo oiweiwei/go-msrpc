@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	rrasm "github.com/oiweiwei/go-msrpc/msrpc/dcom/rrasm"
 	ndr "github.com/oiweiwei/go-msrpc/ndr"
@@ -21,7 +20,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = rrasm.GoPackage
 )
 
@@ -1394,7 +1392,7 @@ func (o *xxx_DefaultDimsvcClient) ServerGetInfo(ctx context.Context, in *ServerG
 	out := &ServerGetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1407,7 +1405,7 @@ func (o *xxx_DefaultDimsvcClient) ConnectionEnum(ctx context.Context, in *Connec
 	out := &ConnectionEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1420,7 +1418,7 @@ func (o *xxx_DefaultDimsvcClient) ConnectionGetInfo(ctx context.Context, in *Con
 	out := &ConnectionGetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1433,7 +1431,7 @@ func (o *xxx_DefaultDimsvcClient) ConnectionClearStats(ctx context.Context, in *
 	out := &ConnectionClearStatsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1446,7 +1444,7 @@ func (o *xxx_DefaultDimsvcClient) PortEnum(ctx context.Context, in *PortEnumRequ
 	out := &PortEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1459,7 +1457,7 @@ func (o *xxx_DefaultDimsvcClient) PortGetInfo(ctx context.Context, in *PortGetIn
 	out := &PortGetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1472,7 +1470,7 @@ func (o *xxx_DefaultDimsvcClient) PortClearStats(ctx context.Context, in *PortCl
 	out := &PortClearStatsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1485,7 +1483,7 @@ func (o *xxx_DefaultDimsvcClient) PortReset(ctx context.Context, in *PortResetRe
 	out := &PortResetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1498,7 +1496,7 @@ func (o *xxx_DefaultDimsvcClient) PortDisconnect(ctx context.Context, in *PortDi
 	out := &PortDisconnectResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1511,7 +1509,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceTransportSetGlobalInfo(ctx cont
 	out := &RouterInterfaceTransportSetGlobalInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1524,7 +1522,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceTransportGetGlobalInfo(ctx cont
 	out := &RouterInterfaceTransportGetGlobalInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1537,7 +1535,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceGetHandle(ctx context.Context, 
 	out := &RouterInterfaceGetHandleResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1550,7 +1548,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceCreate(ctx context.Context, in 
 	out := &RouterInterfaceCreateResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1563,7 +1561,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceGetInfo(ctx context.Context, in
 	out := &RouterInterfaceGetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1576,7 +1574,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceSetInfo(ctx context.Context, in
 	out := &RouterInterfaceSetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1589,7 +1587,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceDelete(ctx context.Context, in 
 	out := &RouterInterfaceDeleteResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1602,7 +1600,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceTransportRemove(ctx context.Con
 	out := &RouterInterfaceTransportRemoveResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1615,7 +1613,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceTransportAdd(ctx context.Contex
 	out := &RouterInterfaceTransportAddResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1628,7 +1626,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceTransportGetInfo(ctx context.Co
 	out := &RouterInterfaceTransportGetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1641,7 +1639,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceTransportSetInfo(ctx context.Co
 	out := &RouterInterfaceTransportSetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1654,7 +1652,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceEnum(ctx context.Context, in *R
 	out := &RouterInterfaceEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1667,7 +1665,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceConnect(ctx context.Context, in
 	out := &RouterInterfaceConnectResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1680,7 +1678,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceDisconnect(ctx context.Context,
 	out := &RouterInterfaceDisconnectResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1693,7 +1691,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceUpdateRoutes(ctx context.Contex
 	out := &RouterInterfaceUpdateRoutesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1706,7 +1704,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceQueryUpdateResult(ctx context.C
 	out := &RouterInterfaceQueryUpdateResultResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1719,7 +1717,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceUpdatePhonebookInfo(ctx context
 	out := &RouterInterfaceUpdatePhonebookInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1732,7 +1730,7 @@ func (o *xxx_DefaultDimsvcClient) MIBEntryCreate(ctx context.Context, in *MIBEnt
 	out := &MIBEntryCreateResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1745,7 +1743,7 @@ func (o *xxx_DefaultDimsvcClient) MIBEntryDelete(ctx context.Context, in *MIBEnt
 	out := &MIBEntryDeleteResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1758,7 +1756,7 @@ func (o *xxx_DefaultDimsvcClient) MIBEntrySet(ctx context.Context, in *MIBEntryS
 	out := &MIBEntrySetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1771,7 +1769,7 @@ func (o *xxx_DefaultDimsvcClient) MIBEntryGet(ctx context.Context, in *MIBEntryG
 	out := &MIBEntryGetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1784,7 +1782,7 @@ func (o *xxx_DefaultDimsvcClient) MIBEntryGetFirst(ctx context.Context, in *MIBE
 	out := &MIBEntryGetFirstResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1797,7 +1795,7 @@ func (o *xxx_DefaultDimsvcClient) MIBEntryGetNext(ctx context.Context, in *MIBEn
 	out := &MIBEntryGetNextResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1810,7 +1808,7 @@ func (o *xxx_DefaultDimsvcClient) MIBGetTrapInfo(ctx context.Context, in *MIBGet
 	out := &MIBGetTrapInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1823,7 +1821,7 @@ func (o *xxx_DefaultDimsvcClient) MIBSetTrapInfo(ctx context.Context, in *MIBSet
 	out := &MIBSetTrapInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1836,7 +1834,7 @@ func (o *xxx_DefaultDimsvcClient) ConnectionNotification(ctx context.Context, in
 	out := &ConnectionNotificationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1849,7 +1847,7 @@ func (o *xxx_DefaultDimsvcClient) SendUserMessage(ctx context.Context, in *SendU
 	out := &SendUserMessageResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1862,7 +1860,7 @@ func (o *xxx_DefaultDimsvcClient) RouterDeviceEnum(ctx context.Context, in *Rout
 	out := &RouterDeviceEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1875,7 +1873,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceTransportCreate(ctx context.Con
 	out := &RouterInterfaceTransportCreateResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1888,7 +1886,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceDeviceGetInfo(ctx context.Conte
 	out := &RouterInterfaceDeviceGetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1901,7 +1899,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceDeviceSetInfo(ctx context.Conte
 	out := &RouterInterfaceDeviceSetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1914,7 +1912,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceSetCredentialsEx(ctx context.Co
 	out := &RouterInterfaceSetCredentialsExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1927,7 +1925,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceGetCredentialsEx(ctx context.Co
 	out := &RouterInterfaceGetCredentialsExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1940,7 +1938,7 @@ func (o *xxx_DefaultDimsvcClient) ConnectionRemoveQuarantine(ctx context.Context
 	out := &ConnectionRemoveQuarantineResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1953,7 +1951,7 @@ func (o *xxx_DefaultDimsvcClient) ServerSetInfo(ctx context.Context, in *ServerS
 	out := &ServerSetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1966,7 +1964,7 @@ func (o *xxx_DefaultDimsvcClient) ServerGetInfoEx(ctx context.Context, in *Serve
 	out := &ServerGetInfoExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1979,7 +1977,7 @@ func (o *xxx_DefaultDimsvcClient) ConnectionEnumEx(ctx context.Context, in *Conn
 	out := &ConnectionEnumExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -1992,7 +1990,7 @@ func (o *xxx_DefaultDimsvcClient) ConnectionGetInfoEx(ctx context.Context, in *C
 	out := &ConnectionGetInfoExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2005,7 +2003,7 @@ func (o *xxx_DefaultDimsvcClient) ServerSetInfoEx(ctx context.Context, in *Serve
 	out := &ServerSetInfoExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2018,7 +2016,7 @@ func (o *xxx_DefaultDimsvcClient) UpdateConnection(ctx context.Context, in *Upda
 	out := &UpdateConnectionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2031,7 +2029,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceSetCredentialsLocal(ctx context
 	out := &RouterInterfaceSetCredentialsLocalResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2044,7 +2042,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceGetCredentialsLocal(ctx context
 	out := &RouterInterfaceGetCredentialsLocalResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2057,7 +2055,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceGetCustomInfoEx(ctx context.Con
 	out := &RouterInterfaceGetCustomInfoExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -2070,7 +2068,7 @@ func (o *xxx_DefaultDimsvcClient) RouterInterfaceSetCustomInfoEx(ctx context.Con
 	out := &RouterInterfaceSetCustomInfoExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

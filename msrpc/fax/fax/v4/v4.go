@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	fax "github.com/oiweiwei/go-msrpc/msrpc/fax"
 	ndr "github.com/oiweiwei/go-msrpc/ndr"
@@ -21,7 +20,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = fax.GoPackage
 )
 
@@ -4123,7 +4121,7 @@ func (o *xxx_DefaultFaxClient) GetServicePrinters(ctx context.Context, in *GetSe
 	out := &GetServicePrintersResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4136,7 +4134,7 @@ func (o *xxx_DefaultFaxClient) ConnectionReferenceCount(ctx context.Context, in 
 	out := &ConnectionReferenceCountResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4149,7 +4147,7 @@ func (o *xxx_DefaultFaxClient) OpenPort(ctx context.Context, in *OpenPortRequest
 	out := &OpenPortResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4162,7 +4160,7 @@ func (o *xxx_DefaultFaxClient) ClosePort(ctx context.Context, in *ClosePortReque
 	out := &ClosePortResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4175,7 +4173,7 @@ func (o *xxx_DefaultFaxClient) EnumJobs(ctx context.Context, in *EnumJobsRequest
 	out := &EnumJobsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4188,7 +4186,7 @@ func (o *xxx_DefaultFaxClient) GetJob(ctx context.Context, in *GetJobRequest, op
 	out := &GetJobResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4201,7 +4199,7 @@ func (o *xxx_DefaultFaxClient) SetJob(ctx context.Context, in *SetJobRequest, op
 	out := &SetJobResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4214,7 +4212,7 @@ func (o *xxx_DefaultFaxClient) GetPageData(ctx context.Context, in *GetPageDataR
 	out := &GetPageDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4227,7 +4225,7 @@ func (o *xxx_DefaultFaxClient) GetDeviceStatus(ctx context.Context, in *GetDevic
 	out := &GetDeviceStatusResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4240,7 +4238,7 @@ func (o *xxx_DefaultFaxClient) Abort(ctx context.Context, in *AbortRequest, opts
 	out := &AbortResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4253,7 +4251,7 @@ func (o *xxx_DefaultFaxClient) EnumPorts(ctx context.Context, in *EnumPortsReque
 	out := &EnumPortsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4266,7 +4264,7 @@ func (o *xxx_DefaultFaxClient) GetPort(ctx context.Context, in *GetPortRequest, 
 	out := &GetPortResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4279,7 +4277,7 @@ func (o *xxx_DefaultFaxClient) SetPort(ctx context.Context, in *SetPortRequest, 
 	out := &SetPortResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4292,7 +4290,7 @@ func (o *xxx_DefaultFaxClient) EnumRoutingMethods(ctx context.Context, in *EnumR
 	out := &EnumRoutingMethodsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4305,7 +4303,7 @@ func (o *xxx_DefaultFaxClient) EnableRoutingMethod(ctx context.Context, in *Enab
 	out := &EnableRoutingMethodResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4318,7 +4316,7 @@ func (o *xxx_DefaultFaxClient) GetRoutingInfo(ctx context.Context, in *GetRoutin
 	out := &GetRoutingInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4331,7 +4329,7 @@ func (o *xxx_DefaultFaxClient) SetRoutingInfo(ctx context.Context, in *SetRoutin
 	out := &SetRoutingInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4344,7 +4342,7 @@ func (o *xxx_DefaultFaxClient) EnumGlobalRoutingInfo(ctx context.Context, in *En
 	out := &EnumGlobalRoutingInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4357,7 +4355,7 @@ func (o *xxx_DefaultFaxClient) SetGlobalRoutingInfo(ctx context.Context, in *Set
 	out := &SetGlobalRoutingInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4370,7 +4368,7 @@ func (o *xxx_DefaultFaxClient) GetConfiguration(ctx context.Context, in *GetConf
 	out := &GetConfigurationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4383,7 +4381,7 @@ func (o *xxx_DefaultFaxClient) SetConfiguration(ctx context.Context, in *SetConf
 	out := &SetConfigurationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4396,7 +4394,7 @@ func (o *xxx_DefaultFaxClient) GetLoggingCategories(ctx context.Context, in *Get
 	out := &GetLoggingCategoriesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4409,7 +4407,7 @@ func (o *xxx_DefaultFaxClient) SetLoggingCategories(ctx context.Context, in *Set
 	out := &SetLoggingCategoriesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4422,7 +4420,7 @@ func (o *xxx_DefaultFaxClient) GetSecurity(ctx context.Context, in *GetSecurityR
 	out := &GetSecurityResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4435,7 +4433,7 @@ func (o *xxx_DefaultFaxClient) SetSecurity(ctx context.Context, in *SetSecurityR
 	out := &SetSecurityResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4448,7 +4446,7 @@ func (o *xxx_DefaultFaxClient) AccessCheck(ctx context.Context, in *AccessCheckR
 	out := &AccessCheckResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4461,7 +4459,7 @@ func (o *xxx_DefaultFaxClient) CheckServerProtocolSeq(ctx context.Context, in *C
 	out := &CheckServerProtocolSeqResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4474,7 +4472,7 @@ func (o *xxx_DefaultFaxClient) SendDocumentEx(ctx context.Context, in *SendDocum
 	out := &SendDocumentExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4487,7 +4485,7 @@ func (o *xxx_DefaultFaxClient) EnumJobsEx(ctx context.Context, in *EnumJobsExReq
 	out := &EnumJobsExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4500,7 +4498,7 @@ func (o *xxx_DefaultFaxClient) GetJobEx(ctx context.Context, in *GetJobExRequest
 	out := &GetJobExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4513,7 +4511,7 @@ func (o *xxx_DefaultFaxClient) GetCountryList(ctx context.Context, in *GetCountr
 	out := &GetCountryListResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4526,7 +4524,7 @@ func (o *xxx_DefaultFaxClient) GetPersonalProfileInfo(ctx context.Context, in *G
 	out := &GetPersonalProfileInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4539,7 +4537,7 @@ func (o *xxx_DefaultFaxClient) GetQueueStates(ctx context.Context, in *GetQueueS
 	out := &GetQueueStatesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4552,7 +4550,7 @@ func (o *xxx_DefaultFaxClient) SetQueue(ctx context.Context, in *SetQueueRequest
 	out := &SetQueueResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4565,7 +4563,7 @@ func (o *xxx_DefaultFaxClient) GetReceiptsConfiguration(ctx context.Context, in 
 	out := &GetReceiptsConfigurationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4578,7 +4576,7 @@ func (o *xxx_DefaultFaxClient) SetReceiptsConfiguration(ctx context.Context, in 
 	out := &SetReceiptsConfigurationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4591,7 +4589,7 @@ func (o *xxx_DefaultFaxClient) GetReceiptsOptions(ctx context.Context, in *GetRe
 	out := &GetReceiptsOptionsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4604,7 +4602,7 @@ func (o *xxx_DefaultFaxClient) GetVersion(ctx context.Context, in *GetVersionReq
 	out := &GetVersionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4617,7 +4615,7 @@ func (o *xxx_DefaultFaxClient) GetOutboxConfiguration(ctx context.Context, in *G
 	out := &GetOutboxConfigurationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4630,7 +4628,7 @@ func (o *xxx_DefaultFaxClient) SetOutboxConfiguration(ctx context.Context, in *S
 	out := &SetOutboxConfigurationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4643,7 +4641,7 @@ func (o *xxx_DefaultFaxClient) GetPersonalCoverPagesOption(ctx context.Context, 
 	out := &GetPersonalCoverPagesOptionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4656,7 +4654,7 @@ func (o *xxx_DefaultFaxClient) GetArchiveConfiguration(ctx context.Context, in *
 	out := &GetArchiveConfigurationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4669,7 +4667,7 @@ func (o *xxx_DefaultFaxClient) SetArchiveConfiguration(ctx context.Context, in *
 	out := &SetArchiveConfigurationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4682,7 +4680,7 @@ func (o *xxx_DefaultFaxClient) GetActivityLoggingConfiguration(ctx context.Conte
 	out := &GetActivityLoggingConfigurationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4695,7 +4693,7 @@ func (o *xxx_DefaultFaxClient) SetActivityLoggingConfiguration(ctx context.Conte
 	out := &SetActivityLoggingConfigurationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4708,7 +4706,7 @@ func (o *xxx_DefaultFaxClient) EnumerateProviders(ctx context.Context, in *Enume
 	out := &EnumerateProvidersResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4721,7 +4719,7 @@ func (o *xxx_DefaultFaxClient) GetPortEx(ctx context.Context, in *GetPortExReque
 	out := &GetPortExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4734,7 +4732,7 @@ func (o *xxx_DefaultFaxClient) SetPortEx(ctx context.Context, in *SetPortExReque
 	out := &SetPortExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4747,7 +4745,7 @@ func (o *xxx_DefaultFaxClient) EnumPortsEx(ctx context.Context, in *EnumPortsExR
 	out := &EnumPortsExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4760,7 +4758,7 @@ func (o *xxx_DefaultFaxClient) GetExtensionData(ctx context.Context, in *GetExte
 	out := &GetExtensionDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4773,7 +4771,7 @@ func (o *xxx_DefaultFaxClient) SetExtensionData(ctx context.Context, in *SetExte
 	out := &SetExtensionDataResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4786,7 +4784,7 @@ func (o *xxx_DefaultFaxClient) AddOutboundGroup(ctx context.Context, in *AddOutb
 	out := &AddOutboundGroupResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4799,7 +4797,7 @@ func (o *xxx_DefaultFaxClient) SetOutboundGroup(ctx context.Context, in *SetOutb
 	out := &SetOutboundGroupResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4812,7 +4810,7 @@ func (o *xxx_DefaultFaxClient) RemoveOutboundGroup(ctx context.Context, in *Remo
 	out := &RemoveOutboundGroupResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4825,7 +4823,7 @@ func (o *xxx_DefaultFaxClient) EnumOutboundGroups(ctx context.Context, in *EnumO
 	out := &EnumOutboundGroupsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4838,7 +4836,7 @@ func (o *xxx_DefaultFaxClient) SetDeviceOrderInGroup(ctx context.Context, in *Se
 	out := &SetDeviceOrderInGroupResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4851,7 +4849,7 @@ func (o *xxx_DefaultFaxClient) AddOutboundRule(ctx context.Context, in *AddOutbo
 	out := &AddOutboundRuleResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4864,7 +4862,7 @@ func (o *xxx_DefaultFaxClient) RemoveOutboundRule(ctx context.Context, in *Remov
 	out := &RemoveOutboundRuleResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4877,7 +4875,7 @@ func (o *xxx_DefaultFaxClient) SetOutboundRule(ctx context.Context, in *SetOutbo
 	out := &SetOutboundRuleResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4890,7 +4888,7 @@ func (o *xxx_DefaultFaxClient) EnumOutboundRules(ctx context.Context, in *EnumOu
 	out := &EnumOutboundRulesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4903,7 +4901,7 @@ func (o *xxx_DefaultFaxClient) RegisterServiceProviderEx(ctx context.Context, in
 	out := &RegisterServiceProviderExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4916,7 +4914,7 @@ func (o *xxx_DefaultFaxClient) UnregisterServiceProviderEx(ctx context.Context, 
 	out := &UnregisterServiceProviderExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4929,7 +4927,7 @@ func (o *xxx_DefaultFaxClient) UnregisterRoutingExtension(ctx context.Context, i
 	out := &UnregisterRoutingExtensionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4942,7 +4940,7 @@ func (o *xxx_DefaultFaxClient) StartMessagesEnum(ctx context.Context, in *StartM
 	out := &StartMessagesEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4955,7 +4953,7 @@ func (o *xxx_DefaultFaxClient) EndMessagesEnum(ctx context.Context, in *EndMessa
 	out := &EndMessagesEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4968,7 +4966,7 @@ func (o *xxx_DefaultFaxClient) EnumMessages(ctx context.Context, in *EnumMessage
 	out := &EnumMessagesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4981,7 +4979,7 @@ func (o *xxx_DefaultFaxClient) GetMessage(ctx context.Context, in *GetMessageReq
 	out := &GetMessageResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4994,7 +4992,7 @@ func (o *xxx_DefaultFaxClient) RemoveMessage(ctx context.Context, in *RemoveMess
 	out := &RemoveMessageResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5007,7 +5005,7 @@ func (o *xxx_DefaultFaxClient) StartCopyToServer(ctx context.Context, in *StartC
 	out := &StartCopyToServerResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5020,7 +5018,7 @@ func (o *xxx_DefaultFaxClient) StartCopyMessageFromServer(ctx context.Context, i
 	out := &StartCopyMessageFromServerResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5033,7 +5031,7 @@ func (o *xxx_DefaultFaxClient) WriteFile(ctx context.Context, in *WriteFileReque
 	out := &WriteFileResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5046,7 +5044,7 @@ func (o *xxx_DefaultFaxClient) ReadFile(ctx context.Context, in *ReadFileRequest
 	out := &ReadFileResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5059,7 +5057,7 @@ func (o *xxx_DefaultFaxClient) EndCopy(ctx context.Context, in *EndCopyRequest, 
 	out := &EndCopyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5072,7 +5070,7 @@ func (o *xxx_DefaultFaxClient) StartServerNotification(ctx context.Context, in *
 	out := &StartServerNotificationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5085,7 +5083,7 @@ func (o *xxx_DefaultFaxClient) StartServerNotificationEx(ctx context.Context, in
 	out := &StartServerNotificationExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5098,7 +5096,7 @@ func (o *xxx_DefaultFaxClient) EndServerNotification(ctx context.Context, in *En
 	out := &EndServerNotificationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5111,7 +5109,7 @@ func (o *xxx_DefaultFaxClient) GetServerActivity(ctx context.Context, in *GetSer
 	out := &GetServerActivityResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5124,7 +5122,7 @@ func (o *xxx_DefaultFaxClient) SetConfigWizardUsed(ctx context.Context, in *SetC
 	out := &SetConfigWizardUsedResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5137,7 +5135,7 @@ func (o *xxx_DefaultFaxClient) EnumRoutingExtensions(ctx context.Context, in *En
 	out := &EnumRoutingExtensionsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5150,7 +5148,7 @@ func (o *xxx_DefaultFaxClient) ConnectFaxServer(ctx context.Context, in *Connect
 	out := &ConnectFaxServerResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5163,7 +5161,7 @@ func (o *xxx_DefaultFaxClient) GetSecurityEx(ctx context.Context, in *GetSecurit
 	out := &GetSecurityExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5176,7 +5174,7 @@ func (o *xxx_DefaultFaxClient) RefreshArchive(ctx context.Context, in *RefreshAr
 	out := &RefreshArchiveResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5189,7 +5187,7 @@ func (o *xxx_DefaultFaxClient) SetRecipientsLimit(ctx context.Context, in *SetRe
 	out := &SetRecipientsLimitResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5202,7 +5200,7 @@ func (o *xxx_DefaultFaxClient) GetRecipientsLimit(ctx context.Context, in *GetRe
 	out := &GetRecipientsLimitResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5215,7 +5213,7 @@ func (o *xxx_DefaultFaxClient) GetServerSKU(ctx context.Context, in *GetServerSK
 	out := &GetServerSKUResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5228,7 +5226,7 @@ func (o *xxx_DefaultFaxClient) CheckValidFaxFolder(ctx context.Context, in *Chec
 	out := &CheckValidFaxFolderResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5241,7 +5239,7 @@ func (o *xxx_DefaultFaxClient) GetJobEx2(ctx context.Context, in *GetJobEx2Reque
 	out := &GetJobEx2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5254,7 +5252,7 @@ func (o *xxx_DefaultFaxClient) EnumJobsEx2(ctx context.Context, in *EnumJobsEx2R
 	out := &EnumJobsEx2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5267,7 +5265,7 @@ func (o *xxx_DefaultFaxClient) GetMessageEx(ctx context.Context, in *GetMessageE
 	out := &GetMessageExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5280,7 +5278,7 @@ func (o *xxx_DefaultFaxClient) StartMessagesEnumEx(ctx context.Context, in *Star
 	out := &StartMessagesEnumExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5293,7 +5291,7 @@ func (o *xxx_DefaultFaxClient) EnumMessagesEx(ctx context.Context, in *EnumMessa
 	out := &EnumMessagesExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5306,7 +5304,7 @@ func (o *xxx_DefaultFaxClient) StartServerNotificationEx2(ctx context.Context, i
 	out := &StartServerNotificationEx2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5319,7 +5317,7 @@ func (o *xxx_DefaultFaxClient) CreateAccount(ctx context.Context, in *CreateAcco
 	out := &CreateAccountResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5332,7 +5330,7 @@ func (o *xxx_DefaultFaxClient) DeleteAccount(ctx context.Context, in *DeleteAcco
 	out := &DeleteAccountResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5345,7 +5343,7 @@ func (o *xxx_DefaultFaxClient) EnumAccounts(ctx context.Context, in *EnumAccount
 	out := &EnumAccountsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5358,7 +5356,7 @@ func (o *xxx_DefaultFaxClient) GetAccountInfo(ctx context.Context, in *GetAccoun
 	out := &GetAccountInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5371,7 +5369,7 @@ func (o *xxx_DefaultFaxClient) GetGeneralConfiguration(ctx context.Context, in *
 	out := &GetGeneralConfigurationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5384,7 +5382,7 @@ func (o *xxx_DefaultFaxClient) SetGeneralConfiguration(ctx context.Context, in *
 	out := &SetGeneralConfigurationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5397,7 +5395,7 @@ func (o *xxx_DefaultFaxClient) GetSecurityEx2(ctx context.Context, in *GetSecuri
 	out := &GetSecurityEx2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5410,7 +5408,7 @@ func (o *xxx_DefaultFaxClient) SetSecurityEx2(ctx context.Context, in *SetSecuri
 	out := &SetSecurityEx2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5423,7 +5421,7 @@ func (o *xxx_DefaultFaxClient) AccessCheckEx2(ctx context.Context, in *AccessChe
 	out := &AccessCheckEx2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5436,7 +5434,7 @@ func (o *xxx_DefaultFaxClient) ReassignMessage(ctx context.Context, in *Reassign
 	out := &ReassignMessageResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5449,7 +5447,7 @@ func (o *xxx_DefaultFaxClient) SetMessage(ctx context.Context, in *SetMessageReq
 	out := &SetMessageResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5462,7 +5460,7 @@ func (o *xxx_DefaultFaxClient) GetConfigOption(ctx context.Context, in *GetConfi
 	out := &GetConfigOptionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

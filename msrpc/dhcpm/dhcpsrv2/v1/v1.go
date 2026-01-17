@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dhcpm "github.com/oiweiwei/go-msrpc/msrpc/dhcpm"
 	ndr "github.com/oiweiwei/go-msrpc/ndr"
@@ -21,7 +20,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dhcpm.GoPackage
 )
 
@@ -3956,7 +3954,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumSubnetClientsV5(ctx context.Context, in 
 	out := &EnumSubnetClientsV5Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3969,7 +3967,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetMScopeInfo(ctx context.Context, in *SetMS
 	out := &SetMScopeInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3982,7 +3980,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetMScopeInfo(ctx context.Context, in *GetMS
 	out := &GetMScopeInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3995,7 +3993,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumMScopes(ctx context.Context, in *EnumMSc
 	out := &EnumMScopesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4008,7 +4006,7 @@ func (o *xxx_DefaultDhcpsrv2Client) AddMScopeElement(ctx context.Context, in *Ad
 	out := &AddMScopeElementResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4021,7 +4019,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumMScopeElements(ctx context.Context, in *
 	out := &EnumMScopeElementsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4034,7 +4032,7 @@ func (o *xxx_DefaultDhcpsrv2Client) RemoveMScopeElement(ctx context.Context, in 
 	out := &RemoveMScopeElementResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4047,7 +4045,7 @@ func (o *xxx_DefaultDhcpsrv2Client) DeleteMScope(ctx context.Context, in *Delete
 	out := &DeleteMScopeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4060,7 +4058,7 @@ func (o *xxx_DefaultDhcpsrv2Client) ScanMDatabase(ctx context.Context, in *ScanM
 	out := &ScanMDatabaseResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4073,7 +4071,7 @@ func (o *xxx_DefaultDhcpsrv2Client) CreateMClientInfo(ctx context.Context, in *C
 	out := &CreateMClientInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4086,7 +4084,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetMClientInfo(ctx context.Context, in *SetM
 	out := &SetMClientInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4099,7 +4097,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetMClientInfo(ctx context.Context, in *GetM
 	out := &GetMClientInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4112,7 +4110,7 @@ func (o *xxx_DefaultDhcpsrv2Client) DeleteMClientInfo(ctx context.Context, in *D
 	out := &DeleteMClientInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4125,7 +4123,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumMScopeClients(ctx context.Context, in *E
 	out := &EnumMScopeClientsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4138,7 +4136,7 @@ func (o *xxx_DefaultDhcpsrv2Client) CreateOptionV5(ctx context.Context, in *Crea
 	out := &CreateOptionV5Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4151,7 +4149,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetOptionInfoV5(ctx context.Context, in *Set
 	out := &SetOptionInfoV5Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4164,7 +4162,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetOptionInfoV5(ctx context.Context, in *Get
 	out := &GetOptionInfoV5Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4177,7 +4175,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumOptionsV5(ctx context.Context, in *EnumO
 	out := &EnumOptionsV5Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4190,7 +4188,7 @@ func (o *xxx_DefaultDhcpsrv2Client) RemoveOptionV5(ctx context.Context, in *Remo
 	out := &RemoveOptionV5Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4203,7 +4201,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetOptionValueV5(ctx context.Context, in *Se
 	out := &SetOptionValueV5Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4216,7 +4214,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetOptionValuesV5(ctx context.Context, in *S
 	out := &SetOptionValuesV5Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4229,7 +4227,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetOptionValueV5(ctx context.Context, in *Ge
 	out := &GetOptionValueV5Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4242,7 +4240,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumOptionValuesV5(ctx context.Context, in *
 	out := &EnumOptionValuesV5Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4255,7 +4253,7 @@ func (o *xxx_DefaultDhcpsrv2Client) RemoveOptionValueV5(ctx context.Context, in 
 	out := &RemoveOptionValueV5Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4268,7 +4266,7 @@ func (o *xxx_DefaultDhcpsrv2Client) CreateClass(ctx context.Context, in *CreateC
 	out := &CreateClassResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4281,7 +4279,7 @@ func (o *xxx_DefaultDhcpsrv2Client) ModifyClass(ctx context.Context, in *ModifyC
 	out := &ModifyClassResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4294,7 +4292,7 @@ func (o *xxx_DefaultDhcpsrv2Client) DeleteClass(ctx context.Context, in *DeleteC
 	out := &DeleteClassResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4307,7 +4305,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetClassInfo(ctx context.Context, in *GetCla
 	out := &GetClassInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4320,7 +4318,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumClasses(ctx context.Context, in *EnumCla
 	out := &EnumClassesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4333,7 +4331,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetAllOptions(ctx context.Context, in *GetAl
 	out := &GetAllOptionsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4346,7 +4344,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetAllOptionValues(ctx context.Context, in *
 	out := &GetAllOptionValuesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4359,7 +4357,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetMCastMIBInfo(ctx context.Context, in *Get
 	out := &GetMCastMIBInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4372,7 +4370,7 @@ func (o *xxx_DefaultDhcpsrv2Client) AuditLogSetParams(ctx context.Context, in *A
 	out := &AuditLogSetParamsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4385,7 +4383,7 @@ func (o *xxx_DefaultDhcpsrv2Client) AuditLogGetParams(ctx context.Context, in *A
 	out := &AuditLogGetParamsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4398,7 +4396,7 @@ func (o *xxx_DefaultDhcpsrv2Client) ServerQueryAttribute(ctx context.Context, in
 	out := &ServerQueryAttributeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4411,7 +4409,7 @@ func (o *xxx_DefaultDhcpsrv2Client) ServerQueryAttributes(ctx context.Context, i
 	out := &ServerQueryAttributesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4424,7 +4422,7 @@ func (o *xxx_DefaultDhcpsrv2Client) ServerRedoAuthorization(ctx context.Context,
 	out := &ServerRedoAuthorizationResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4437,7 +4435,7 @@ func (o *xxx_DefaultDhcpsrv2Client) AddSubnetElementV5(ctx context.Context, in *
 	out := &AddSubnetElementV5Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4450,7 +4448,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumSubnetElementsV5(ctx context.Context, in
 	out := &EnumSubnetElementsV5Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4463,7 +4461,7 @@ func (o *xxx_DefaultDhcpsrv2Client) RemoveSubnetElementV5(ctx context.Context, i
 	out := &RemoveSubnetElementV5Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4476,7 +4474,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetServerBindingInfo(ctx context.Context, in
 	out := &GetServerBindingInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4489,7 +4487,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetServerBindingInfo(ctx context.Context, in
 	out := &SetServerBindingInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4502,7 +4500,7 @@ func (o *xxx_DefaultDhcpsrv2Client) QueryDNSRegCredentials(ctx context.Context, 
 	out := &QueryDNSRegCredentialsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4515,7 +4513,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetDNSRegCredentials(ctx context.Context, in
 	out := &SetDNSRegCredentialsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4528,7 +4526,7 @@ func (o *xxx_DefaultDhcpsrv2Client) BackupDatabase(ctx context.Context, in *Back
 	out := &BackupDatabaseResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4541,7 +4539,7 @@ func (o *xxx_DefaultDhcpsrv2Client) RestoreDatabase(ctx context.Context, in *Res
 	out := &RestoreDatabaseResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4554,7 +4552,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetServerSpecificStrings(ctx context.Context
 	out := &GetServerSpecificStringsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4567,7 +4565,7 @@ func (o *xxx_DefaultDhcpsrv2Client) CreateOptionV6(ctx context.Context, in *Crea
 	out := &CreateOptionV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4580,7 +4578,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetOptionInfoV6(ctx context.Context, in *Set
 	out := &SetOptionInfoV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4593,7 +4591,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetOptionInfoV6(ctx context.Context, in *Get
 	out := &GetOptionInfoV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4606,7 +4604,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumOptionsV6(ctx context.Context, in *EnumO
 	out := &EnumOptionsV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4619,7 +4617,7 @@ func (o *xxx_DefaultDhcpsrv2Client) RemoveOptionV6(ctx context.Context, in *Remo
 	out := &RemoveOptionV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4632,7 +4630,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetOptionValueV6(ctx context.Context, in *Se
 	out := &SetOptionValueV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4645,7 +4643,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumOptionValuesV6(ctx context.Context, in *
 	out := &EnumOptionValuesV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4658,7 +4656,7 @@ func (o *xxx_DefaultDhcpsrv2Client) RemoveOptionValueV6(ctx context.Context, in 
 	out := &RemoveOptionValueV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4671,7 +4669,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetAllOptionsV6(ctx context.Context, in *Get
 	out := &GetAllOptionsV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4684,7 +4682,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetAllOptionValuesV6(ctx context.Context, in
 	out := &GetAllOptionValuesV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4697,7 +4695,7 @@ func (o *xxx_DefaultDhcpsrv2Client) CreateSubnetV6(ctx context.Context, in *Crea
 	out := &CreateSubnetV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4710,7 +4708,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumSubnetsV6(ctx context.Context, in *EnumS
 	out := &EnumSubnetsV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4723,7 +4721,7 @@ func (o *xxx_DefaultDhcpsrv2Client) AddSubnetElementV6(ctx context.Context, in *
 	out := &AddSubnetElementV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4736,7 +4734,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumSubnetElementsV6(ctx context.Context, in
 	out := &EnumSubnetElementsV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4749,7 +4747,7 @@ func (o *xxx_DefaultDhcpsrv2Client) RemoveSubnetElementV6(ctx context.Context, i
 	out := &RemoveSubnetElementV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4762,7 +4760,7 @@ func (o *xxx_DefaultDhcpsrv2Client) DeleteSubnetV6(ctx context.Context, in *Dele
 	out := &DeleteSubnetV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4775,7 +4773,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetSubnetInfoV6(ctx context.Context, in *Get
 	out := &GetSubnetInfoV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4788,7 +4786,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumSubnetClientsV6(ctx context.Context, in 
 	out := &EnumSubnetClientsV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4801,7 +4799,7 @@ func (o *xxx_DefaultDhcpsrv2Client) ServerSetConfigV6(ctx context.Context, in *S
 	out := &ServerSetConfigV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4814,7 +4812,7 @@ func (o *xxx_DefaultDhcpsrv2Client) ServerGetConfigV6(ctx context.Context, in *S
 	out := &ServerGetConfigV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4827,7 +4825,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetSubnetInfoV6(ctx context.Context, in *Set
 	out := &SetSubnetInfoV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4840,7 +4838,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetMIBInfoV6(ctx context.Context, in *GetMIB
 	out := &GetMIBInfoV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4853,7 +4851,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetServerBindingInfoV6(ctx context.Context, 
 	out := &GetServerBindingInfoV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4866,7 +4864,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetServerBindingInfoV6(ctx context.Context, 
 	out := &SetServerBindingInfoV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4879,7 +4877,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetClientInfoV6(ctx context.Context, in *Set
 	out := &SetClientInfoV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4892,7 +4890,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetClientInfoV6(ctx context.Context, in *Get
 	out := &GetClientInfoV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4905,7 +4903,7 @@ func (o *xxx_DefaultDhcpsrv2Client) DeleteClientInfoV6(ctx context.Context, in *
 	out := &DeleteClientInfoV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4918,7 +4916,7 @@ func (o *xxx_DefaultDhcpsrv2Client) CreateClassV6(ctx context.Context, in *Creat
 	out := &CreateClassV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4931,7 +4929,7 @@ func (o *xxx_DefaultDhcpsrv2Client) ModifyClassV6(ctx context.Context, in *Modif
 	out := &ModifyClassV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4944,7 +4942,7 @@ func (o *xxx_DefaultDhcpsrv2Client) DeleteClassV6(ctx context.Context, in *Delet
 	out := &DeleteClassV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4957,7 +4955,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumClassesV6(ctx context.Context, in *EnumC
 	out := &EnumClassesV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4970,7 +4968,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetOptionValueV6(ctx context.Context, in *Ge
 	out := &GetOptionValueV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4983,7 +4981,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetSubnetDelayOffer(ctx context.Context, in 
 	out := &SetSubnetDelayOfferResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4996,7 +4994,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetSubnetDelayOffer(ctx context.Context, in 
 	out := &GetSubnetDelayOfferResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5009,7 +5007,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetMIBInfoV5(ctx context.Context, in *GetMIB
 	out := &GetMIBInfoV5Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5022,7 +5020,7 @@ func (o *xxx_DefaultDhcpsrv2Client) AddFilterV4(ctx context.Context, in *AddFilt
 	out := &AddFilterV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5035,7 +5033,7 @@ func (o *xxx_DefaultDhcpsrv2Client) DeleteFilterV4(ctx context.Context, in *Dele
 	out := &DeleteFilterV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5048,7 +5046,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetFilterV4(ctx context.Context, in *SetFilt
 	out := &SetFilterV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5061,7 +5059,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetFilterV4(ctx context.Context, in *GetFilt
 	out := &GetFilterV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5074,7 +5072,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumFilterV4(ctx context.Context, in *EnumFi
 	out := &EnumFilterV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5087,7 +5085,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetDNSRegCredentialsV5(ctx context.Context, 
 	out := &SetDNSRegCredentialsV5Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5100,7 +5098,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumSubnetClientsFilterStatusInfo(ctx contex
 	out := &EnumSubnetClientsFilterStatusInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5113,7 +5111,7 @@ func (o *xxx_DefaultDhcpsrv2Client) FailoverCreateRelationshipV4(ctx context.Con
 	out := &FailoverCreateRelationshipV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5126,7 +5124,7 @@ func (o *xxx_DefaultDhcpsrv2Client) FailoverSetRelationshipV4(ctx context.Contex
 	out := &FailoverSetRelationshipV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5139,7 +5137,7 @@ func (o *xxx_DefaultDhcpsrv2Client) FailoverDeleteRelationshipV4(ctx context.Con
 	out := &FailoverDeleteRelationshipV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5152,7 +5150,7 @@ func (o *xxx_DefaultDhcpsrv2Client) FailoverGetRelationshipV4(ctx context.Contex
 	out := &FailoverGetRelationshipV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5165,7 +5163,7 @@ func (o *xxx_DefaultDhcpsrv2Client) FailoverEnumRelationshipV4(ctx context.Conte
 	out := &FailoverEnumRelationshipV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5178,7 +5176,7 @@ func (o *xxx_DefaultDhcpsrv2Client) FailoverAddScopeToRelationshipV4(ctx context
 	out := &FailoverAddScopeToRelationshipV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5191,7 +5189,7 @@ func (o *xxx_DefaultDhcpsrv2Client) FailoverDeleteScopeFromRelationshipV4(ctx co
 	out := &FailoverDeleteScopeFromRelationshipV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5204,7 +5202,7 @@ func (o *xxx_DefaultDhcpsrv2Client) FailoverGetScopeRelationshipV4(ctx context.C
 	out := &FailoverGetScopeRelationshipV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5217,7 +5215,7 @@ func (o *xxx_DefaultDhcpsrv2Client) FailoverGetScopeStatisticsV4(ctx context.Con
 	out := &FailoverGetScopeStatisticsV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5230,7 +5228,7 @@ func (o *xxx_DefaultDhcpsrv2Client) FailoverGetClientInfoV4(ctx context.Context,
 	out := &FailoverGetClientInfoV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5243,7 +5241,7 @@ func (o *xxx_DefaultDhcpsrv2Client) FailoverGetSystemTimeV4(ctx context.Context,
 	out := &FailoverGetSystemTimeV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5256,7 +5254,7 @@ func (o *xxx_DefaultDhcpsrv2Client) FailoverTriggerAddrAllocationV4(ctx context.
 	out := &FailoverTriggerAddrAllocationV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5269,7 +5267,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetOptionValueV4(ctx context.Context, in *Se
 	out := &SetOptionValueV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5282,7 +5280,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetOptionValuesV4(ctx context.Context, in *S
 	out := &SetOptionValuesV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5295,7 +5293,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetOptionValueV4(ctx context.Context, in *Ge
 	out := &GetOptionValueV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5308,7 +5306,7 @@ func (o *xxx_DefaultDhcpsrv2Client) RemoveOptionValueV4(ctx context.Context, in 
 	out := &RemoveOptionValueV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5321,7 +5319,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetAllOptionValuesV4(ctx context.Context, in
 	out := &GetAllOptionValuesV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5334,7 +5332,7 @@ func (o *xxx_DefaultDhcpsrv2Client) QueryPolicyEnforcementV4(ctx context.Context
 	out := &QueryPolicyEnforcementV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5347,7 +5345,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetPolicyEnforcementV4(ctx context.Context, 
 	out := &SetPolicyEnforcementV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5360,7 +5358,7 @@ func (o *xxx_DefaultDhcpsrv2Client) CreatePolicyV4(ctx context.Context, in *Crea
 	out := &CreatePolicyV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5373,7 +5371,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetPolicyV4(ctx context.Context, in *GetPoli
 	out := &GetPolicyV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5386,7 +5384,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetPolicyV4(ctx context.Context, in *SetPoli
 	out := &SetPolicyV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5399,7 +5397,7 @@ func (o *xxx_DefaultDhcpsrv2Client) DeletePolicyV4(ctx context.Context, in *Dele
 	out := &DeletePolicyV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5412,7 +5410,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumPoliciesV4(ctx context.Context, in *Enum
 	out := &EnumPoliciesV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5425,7 +5423,7 @@ func (o *xxx_DefaultDhcpsrv2Client) AddPolicyRangeV4(ctx context.Context, in *Ad
 	out := &AddPolicyRangeV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5438,7 +5436,7 @@ func (o *xxx_DefaultDhcpsrv2Client) RemovePolicyRangeV4(ctx context.Context, in 
 	out := &RemovePolicyRangeV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5451,7 +5449,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumSubnetClientsV4(ctx context.Context, in 
 	out := &EnumSubnetClientsV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5464,7 +5462,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetStatelessStoreParamsV6(ctx context.Contex
 	out := &SetStatelessStoreParamsV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5477,7 +5475,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetStatelessStoreParamsV6(ctx context.Contex
 	out := &GetStatelessStoreParamsV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5490,7 +5488,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetStatelessStatisticsV6(ctx context.Context
 	out := &GetStatelessStatisticsV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5503,7 +5501,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumSubnetReservationsV4(ctx context.Context
 	out := &EnumSubnetReservationsV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5516,7 +5514,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetFreeIPAddressV4(ctx context.Context, in *
 	out := &GetFreeIPAddressV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5529,7 +5527,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetFreeIPAddressV6(ctx context.Context, in *
 	out := &GetFreeIPAddressV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5542,7 +5540,7 @@ func (o *xxx_DefaultDhcpsrv2Client) CreateClientInfoV4(ctx context.Context, in *
 	out := &CreateClientInfoV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5555,7 +5553,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetClientInfoV4(ctx context.Context, in *Get
 	out := &GetClientInfoV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5568,7 +5566,7 @@ func (o *xxx_DefaultDhcpsrv2Client) CreateClientInfoV6(ctx context.Context, in *
 	out := &CreateClientInfoV6Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5581,7 +5579,7 @@ func (o *xxx_DefaultDhcpsrv2Client) FailoverGetAddressStatusV4(ctx context.Conte
 	out := &FailoverGetAddressStatusV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5594,7 +5592,7 @@ func (o *xxx_DefaultDhcpsrv2Client) CreatePolicyExV4(ctx context.Context, in *Cr
 	out := &CreatePolicyExV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5607,7 +5605,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetPolicyExV4(ctx context.Context, in *GetPo
 	out := &GetPolicyExV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5620,7 +5618,7 @@ func (o *xxx_DefaultDhcpsrv2Client) SetPolicyExV4(ctx context.Context, in *SetPo
 	out := &SetPolicyExV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5633,7 +5631,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumPoliciesExV4(ctx context.Context, in *En
 	out := &EnumPoliciesExV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5646,7 +5644,7 @@ func (o *xxx_DefaultDhcpsrv2Client) EnumSubnetClientsExV4(ctx context.Context, i
 	out := &EnumSubnetClientsExV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5659,7 +5657,7 @@ func (o *xxx_DefaultDhcpsrv2Client) CreateClientInfoExV4(ctx context.Context, in
 	out := &CreateClientInfoExV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -5672,7 +5670,7 @@ func (o *xxx_DefaultDhcpsrv2Client) GetClientInfoExV4(ctx context.Context, in *G
 	out := &GetClientInfoExV4Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

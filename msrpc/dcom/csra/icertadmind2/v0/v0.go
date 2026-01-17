@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcom "github.com/oiweiwei/go-msrpc/msrpc/dcom"
 	csra "github.com/oiweiwei/go-msrpc/msrpc/dcom/csra"
@@ -25,7 +24,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcom.GoPackage
 	_ = icertadmind.GoPackage
 	_ = dtyp.GoPackage
@@ -158,7 +156,7 @@ func (o *xxx_DefaultCertAdminD2Client) PublishCRLs(ctx context.Context, in *Publ
 	out := &PublishCRLsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -178,7 +176,7 @@ func (o *xxx_DefaultCertAdminD2Client) GetCAProperty(ctx context.Context, in *Ge
 	out := &GetCAPropertyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -198,7 +196,7 @@ func (o *xxx_DefaultCertAdminD2Client) SetCAProperty(ctx context.Context, in *Se
 	out := &SetCAPropertyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -218,7 +216,7 @@ func (o *xxx_DefaultCertAdminD2Client) GetCAPropertyInfo(ctx context.Context, in
 	out := &GetCAPropertyInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -238,7 +236,7 @@ func (o *xxx_DefaultCertAdminD2Client) EnumViewColumnTable(ctx context.Context, 
 	out := &EnumViewColumnTableResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -258,7 +256,7 @@ func (o *xxx_DefaultCertAdminD2Client) GetCASecurity(ctx context.Context, in *Ge
 	out := &GetCASecurityResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -278,7 +276,7 @@ func (o *xxx_DefaultCertAdminD2Client) SetCASecurity(ctx context.Context, in *Se
 	out := &SetCASecurityResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -298,7 +296,7 @@ func (o *xxx_DefaultCertAdminD2Client) Ping2(ctx context.Context, in *Ping2Reque
 	out := &Ping2Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -318,7 +316,7 @@ func (o *xxx_DefaultCertAdminD2Client) GetArchivedKey(ctx context.Context, in *G
 	out := &GetArchivedKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -338,7 +336,7 @@ func (o *xxx_DefaultCertAdminD2Client) GetAuditFilter(ctx context.Context, in *G
 	out := &GetAuditFilterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -358,7 +356,7 @@ func (o *xxx_DefaultCertAdminD2Client) SetAuditFilter(ctx context.Context, in *S
 	out := &SetAuditFilterResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -378,7 +376,7 @@ func (o *xxx_DefaultCertAdminD2Client) GetOfficerRights(ctx context.Context, in 
 	out := &GetOfficerRightsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -398,7 +396,7 @@ func (o *xxx_DefaultCertAdminD2Client) SetOfficerRights(ctx context.Context, in 
 	out := &SetOfficerRightsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -418,7 +416,7 @@ func (o *xxx_DefaultCertAdminD2Client) GetConfigEntry(ctx context.Context, in *G
 	out := &GetConfigEntryResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -438,7 +436,7 @@ func (o *xxx_DefaultCertAdminD2Client) SetConfigEntry(ctx context.Context, in *S
 	out := &SetConfigEntryResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -458,7 +456,7 @@ func (o *xxx_DefaultCertAdminD2Client) ImportKey(ctx context.Context, in *Import
 	out := &ImportKeyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -478,7 +476,7 @@ func (o *xxx_DefaultCertAdminD2Client) GetMyRoles(ctx context.Context, in *GetMy
 	out := &GetMyRolesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -498,7 +496,7 @@ func (o *xxx_DefaultCertAdminD2Client) DeleteRow(ctx context.Context, in *Delete
 	out := &DeleteRowResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

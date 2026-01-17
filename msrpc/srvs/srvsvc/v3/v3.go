@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcetypes "github.com/oiweiwei/go-msrpc/msrpc/dcetypes"
 	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
@@ -22,7 +21,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dtyp.GoPackage
 	_ = dcetypes.GoPackage
 )
@@ -18859,7 +18857,7 @@ func (o *xxx_DefaultSrvsvcClient) ConnectionEnum(ctx context.Context, in *Connec
 	out := &ConnectionEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -18872,7 +18870,7 @@ func (o *xxx_DefaultSrvsvcClient) FileEnum(ctx context.Context, in *FileEnumRequ
 	out := &FileEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -18885,7 +18883,7 @@ func (o *xxx_DefaultSrvsvcClient) FileGetInfo(ctx context.Context, in *FileGetIn
 	out := &FileGetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -18898,7 +18896,7 @@ func (o *xxx_DefaultSrvsvcClient) FileClose(ctx context.Context, in *FileCloseRe
 	out := &FileCloseResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -18911,7 +18909,7 @@ func (o *xxx_DefaultSrvsvcClient) SessionEnum(ctx context.Context, in *SessionEn
 	out := &SessionEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -18924,7 +18922,7 @@ func (o *xxx_DefaultSrvsvcClient) SessionDelete(ctx context.Context, in *Session
 	out := &SessionDeleteResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -18937,7 +18935,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareAdd(ctx context.Context, in *ShareAddRequ
 	out := &ShareAddResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -18950,7 +18948,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareEnum(ctx context.Context, in *ShareEnumRe
 	out := &ShareEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -18963,7 +18961,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareGetInfo(ctx context.Context, in *ShareGet
 	out := &ShareGetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -18976,7 +18974,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareSetInfo(ctx context.Context, in *ShareSet
 	out := &ShareSetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -18989,7 +18987,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareDelete(ctx context.Context, in *ShareDele
 	out := &ShareDeleteResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19002,7 +19000,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareDeleteSticky(ctx context.Context, in *Sha
 	out := &ShareDeleteStickyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19015,7 +19013,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareCheck(ctx context.Context, in *ShareCheck
 	out := &ShareCheckResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19028,7 +19026,7 @@ func (o *xxx_DefaultSrvsvcClient) GetInfo(ctx context.Context, in *GetInfoReques
 	out := &GetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19041,7 +19039,7 @@ func (o *xxx_DefaultSrvsvcClient) SetInfo(ctx context.Context, in *SetInfoReques
 	out := &SetInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19054,7 +19052,7 @@ func (o *xxx_DefaultSrvsvcClient) DiskEnum(ctx context.Context, in *DiskEnumRequ
 	out := &DiskEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19067,7 +19065,7 @@ func (o *xxx_DefaultSrvsvcClient) StatisticsGet(ctx context.Context, in *Statist
 	out := &StatisticsGetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19080,7 +19078,7 @@ func (o *xxx_DefaultSrvsvcClient) TransportAdd(ctx context.Context, in *Transpor
 	out := &TransportAddResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19093,7 +19091,7 @@ func (o *xxx_DefaultSrvsvcClient) TransportEnum(ctx context.Context, in *Transpo
 	out := &TransportEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19106,7 +19104,7 @@ func (o *xxx_DefaultSrvsvcClient) TransportDelete(ctx context.Context, in *Trans
 	out := &TransportDeleteResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19119,7 +19117,7 @@ func (o *xxx_DefaultSrvsvcClient) RemoteToD(ctx context.Context, in *RemoteToDRe
 	out := &RemoteToDResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19132,7 +19130,7 @@ func (o *xxx_DefaultSrvsvcClient) PathType(ctx context.Context, in *PathTypeRequ
 	out := &PathTypeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19145,7 +19143,7 @@ func (o *xxx_DefaultSrvsvcClient) PathCanonicalize(ctx context.Context, in *Path
 	out := &PathCanonicalizeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19158,7 +19156,7 @@ func (o *xxx_DefaultSrvsvcClient) PathCompare(ctx context.Context, in *PathCompa
 	out := &PathCompareResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19171,7 +19169,7 @@ func (o *xxx_DefaultSrvsvcClient) NameValidate(ctx context.Context, in *NameVali
 	out := &NameValidateResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19184,7 +19182,7 @@ func (o *xxx_DefaultSrvsvcClient) NameCanonicalize(ctx context.Context, in *Name
 	out := &NameCanonicalizeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19197,7 +19195,7 @@ func (o *xxx_DefaultSrvsvcClient) NameCompare(ctx context.Context, in *NameCompa
 	out := &NameCompareResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != int32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19210,7 +19208,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareEnumSticky(ctx context.Context, in *Share
 	out := &ShareEnumStickyResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19223,7 +19221,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareDeleteStart(ctx context.Context, in *Shar
 	out := &ShareDeleteStartResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19236,7 +19234,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareDeleteCommit(ctx context.Context, in *Sha
 	out := &ShareDeleteCommitResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19249,7 +19247,7 @@ func (o *xxx_DefaultSrvsvcClient) GetFileSecurity(ctx context.Context, in *GetFi
 	out := &GetFileSecurityResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19262,7 +19260,7 @@ func (o *xxx_DefaultSrvsvcClient) SetFileSecurity(ctx context.Context, in *SetFi
 	out := &SetFileSecurityResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19275,7 +19273,7 @@ func (o *xxx_DefaultSrvsvcClient) TransportAddEx(ctx context.Context, in *Transp
 	out := &TransportAddExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19288,7 +19286,7 @@ func (o *xxx_DefaultSrvsvcClient) GetVersion(ctx context.Context, in *GetVersion
 	out := &GetVersionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19301,7 +19299,7 @@ func (o *xxx_DefaultSrvsvcClient) CreateLocalPartition(ctx context.Context, in *
 	out := &CreateLocalPartitionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19314,7 +19312,7 @@ func (o *xxx_DefaultSrvsvcClient) DeleteLocalPartition(ctx context.Context, in *
 	out := &DeleteLocalPartitionResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19327,7 +19325,7 @@ func (o *xxx_DefaultSrvsvcClient) SetLocalVolumeState(ctx context.Context, in *S
 	out := &SetLocalVolumeStateResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19340,7 +19338,7 @@ func (o *xxx_DefaultSrvsvcClient) CreateExitPoint(ctx context.Context, in *Creat
 	out := &CreateExitPointResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19353,7 +19351,7 @@ func (o *xxx_DefaultSrvsvcClient) DeleteExitPoint(ctx context.Context, in *Delet
 	out := &DeleteExitPointResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19366,7 +19364,7 @@ func (o *xxx_DefaultSrvsvcClient) ModifyPrefix(ctx context.Context, in *ModifyPr
 	out := &ModifyPrefixResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19379,7 +19377,7 @@ func (o *xxx_DefaultSrvsvcClient) FixLocalVolume(ctx context.Context, in *FixLoc
 	out := &FixLocalVolumeResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19392,7 +19390,7 @@ func (o *xxx_DefaultSrvsvcClient) ManagerReportSiteInfo(ctx context.Context, in 
 	out := &ManagerReportSiteInfoResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19405,7 +19403,7 @@ func (o *xxx_DefaultSrvsvcClient) TransportDeleteEx(ctx context.Context, in *Tra
 	out := &TransportDeleteExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19418,7 +19416,7 @@ func (o *xxx_DefaultSrvsvcClient) AliasAdd(ctx context.Context, in *AliasAddRequ
 	out := &AliasAddResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19431,7 +19429,7 @@ func (o *xxx_DefaultSrvsvcClient) AliasEnum(ctx context.Context, in *AliasEnumRe
 	out := &AliasEnumResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19444,7 +19442,7 @@ func (o *xxx_DefaultSrvsvcClient) AliasDelete(ctx context.Context, in *AliasDele
 	out := &AliasDeleteResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -19457,7 +19455,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareDeleteEx(ctx context.Context, in *ShareDe
 	out := &ShareDeleteExResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }

@@ -7,7 +7,6 @@ import (
 	"unicode/utf16"
 
 	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
-	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
 	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
 	dcetypes "github.com/oiweiwei/go-msrpc/msrpc/dcetypes"
 	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
@@ -23,7 +22,6 @@ var (
 	_ = ndr.ZeroString
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
-	_ = (*errors.Error)(nil)
 	_ = dcetypes.GoPackage
 	_ = dtyp.GoPackage
 	_ = fasp.GoPackage
@@ -3138,7 +3136,7 @@ func (o *xxx_DefaultRemoteFwClient) OpenPolicyStore(ctx context.Context, in *Ope
 	out := &OpenPolicyStoreResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3151,7 +3149,7 @@ func (o *xxx_DefaultRemoteFwClient) ClosePolicyStore(ctx context.Context, in *Cl
 	out := &ClosePolicyStoreResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3164,7 +3162,7 @@ func (o *xxx_DefaultRemoteFwClient) RestoreDefaults(ctx context.Context, in *Res
 	out := &RestoreDefaultsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3177,7 +3175,7 @@ func (o *xxx_DefaultRemoteFwClient) GetGlobalConfig(ctx context.Context, in *Get
 	out := &GetGlobalConfigResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3190,7 +3188,7 @@ func (o *xxx_DefaultRemoteFwClient) SetGlobalConfig(ctx context.Context, in *Set
 	out := &SetGlobalConfigResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3203,7 +3201,7 @@ func (o *xxx_DefaultRemoteFwClient) AddFirewallRule(ctx context.Context, in *Add
 	out := &AddFirewallRuleResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3216,7 +3214,7 @@ func (o *xxx_DefaultRemoteFwClient) SetFirewallRule(ctx context.Context, in *Set
 	out := &SetFirewallRuleResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3229,7 +3227,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteFirewallRule(ctx context.Context, in *
 	out := &DeleteFirewallRuleResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3242,7 +3240,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteAllFirewallRules(ctx context.Context, 
 	out := &DeleteAllFirewallRulesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3255,7 +3253,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules(ctx context.Context, in *E
 	out := &EnumFirewallRulesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3268,7 +3266,7 @@ func (o *xxx_DefaultRemoteFwClient) GetConfig(ctx context.Context, in *GetConfig
 	out := &GetConfigResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3281,7 +3279,7 @@ func (o *xxx_DefaultRemoteFwClient) SetConfig(ctx context.Context, in *SetConfig
 	out := &SetConfigResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3294,7 +3292,7 @@ func (o *xxx_DefaultRemoteFwClient) AddConnectionSecurityRule(ctx context.Contex
 	out := &AddConnectionSecurityRuleResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3307,7 +3305,7 @@ func (o *xxx_DefaultRemoteFwClient) SetConnectionSecurityRule(ctx context.Contex
 	out := &SetConnectionSecurityRuleResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3320,7 +3318,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteConnectionSecurityRule(ctx context.Con
 	out := &DeleteConnectionSecurityRuleResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3333,7 +3331,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteAllConnectionSecurityRules(ctx context
 	out := &DeleteAllConnectionSecurityRulesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3346,7 +3344,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumConnectionSecurityRules(ctx context.Cont
 	out := &EnumConnectionSecurityRulesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3359,7 +3357,7 @@ func (o *xxx_DefaultRemoteFwClient) AddAuthenticationSet(ctx context.Context, in
 	out := &AddAuthenticationSetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3372,7 +3370,7 @@ func (o *xxx_DefaultRemoteFwClient) SetAuthenticationSet(ctx context.Context, in
 	out := &SetAuthenticationSetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3385,7 +3383,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteAuthenticationSet(ctx context.Context,
 	out := &DeleteAuthenticationSetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3398,7 +3396,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteAllAuthenticationSets(ctx context.Cont
 	out := &DeleteAllAuthenticationSetsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3411,7 +3409,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumAuthenticationSets(ctx context.Context, 
 	out := &EnumAuthenticationSetsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3424,7 +3422,7 @@ func (o *xxx_DefaultRemoteFwClient) AddCryptoSet(ctx context.Context, in *AddCry
 	out := &AddCryptoSetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3437,7 +3435,7 @@ func (o *xxx_DefaultRemoteFwClient) SetCryptoSet(ctx context.Context, in *SetCry
 	out := &SetCryptoSetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3450,7 +3448,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteCryptoSet(ctx context.Context, in *Del
 	out := &DeleteCryptoSetResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3463,7 +3461,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteAllCryptoSets(ctx context.Context, in 
 	out := &DeleteAllCryptoSetsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3476,7 +3474,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumCryptoSets(ctx context.Context, in *Enum
 	out := &EnumCryptoSetsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3489,7 +3487,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumPhase1SAs(ctx context.Context, in *EnumP
 	out := &EnumPhase1SAsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3502,7 +3500,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumPhase2SAs(ctx context.Context, in *EnumP
 	out := &EnumPhase2SAsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3515,7 +3513,7 @@ func (o *xxx_DefaultRemoteFwClient) DeletePhase1SAs(ctx context.Context, in *Del
 	out := &DeletePhase1SAsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3528,7 +3526,7 @@ func (o *xxx_DefaultRemoteFwClient) DeletePhase2SAs(ctx context.Context, in *Del
 	out := &DeletePhase2SAsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3541,7 +3539,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumProducts(ctx context.Context, in *EnumPr
 	out := &EnumProductsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3554,7 +3552,7 @@ func (o *xxx_DefaultRemoteFwClient) AddMainModeRule(ctx context.Context, in *Add
 	out := &AddMainModeRuleResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3567,7 +3565,7 @@ func (o *xxx_DefaultRemoteFwClient) SetMainModeRule(ctx context.Context, in *Set
 	out := &SetMainModeRuleResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3580,7 +3578,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteMainModeRule(ctx context.Context, in *
 	out := &DeleteMainModeRuleResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3593,7 +3591,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteAllMainModeRules(ctx context.Context, 
 	out := &DeleteAllMainModeRulesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3606,7 +3604,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumMainModeRules(ctx context.Context, in *E
 	out := &EnumMainModeRulesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3619,7 +3617,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules(ctx context.Context, in *
 	out := &QueryFirewallRulesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3632,7 +3630,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryConnectionSecurityRules210(ctx context.
 	out := &QueryConnectionSecurityRules210Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3645,7 +3643,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryMainModeRules(ctx context.Context, in *
 	out := &QueryMainModeRulesResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3658,7 +3656,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryAuthenticationSets(ctx context.Context,
 	out := &QueryAuthenticationSetsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3671,7 +3669,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryCryptoSets(ctx context.Context, in *Que
 	out := &QueryCryptoSetsResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3684,7 +3682,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumNetworks(ctx context.Context, in *EnumNe
 	out := &EnumNetworksResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3697,7 +3695,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumAdapters(ctx context.Context, in *EnumAd
 	out := &EnumAdaptersResponse{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3710,7 +3708,7 @@ func (o *xxx_DefaultRemoteFwClient) GetGlobalConfig210(ctx context.Context, in *
 	out := &GetGlobalConfig210Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3723,7 +3721,7 @@ func (o *xxx_DefaultRemoteFwClient) GetConfig210(ctx context.Context, in *GetCon
 	out := &GetConfig210Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3736,7 +3734,7 @@ func (o *xxx_DefaultRemoteFwClient) AddFirewallRule210(ctx context.Context, in *
 	out := &AddFirewallRule210Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3749,7 +3747,7 @@ func (o *xxx_DefaultRemoteFwClient) SetFirewallRule210(ctx context.Context, in *
 	out := &SetFirewallRule210Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3762,7 +3760,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules210(ctx context.Context, in
 	out := &EnumFirewallRules210Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3775,7 +3773,7 @@ func (o *xxx_DefaultRemoteFwClient) AddConnectionSecurityRule210(ctx context.Con
 	out := &AddConnectionSecurityRule210Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3788,7 +3786,7 @@ func (o *xxx_DefaultRemoteFwClient) SetConnectionSecurityRule210(ctx context.Con
 	out := &SetConnectionSecurityRule210Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3801,7 +3799,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumConnectionSecurityRules210(ctx context.C
 	out := &EnumConnectionSecurityRules210Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3814,7 +3812,7 @@ func (o *xxx_DefaultRemoteFwClient) AddAuthenticationSet210(ctx context.Context,
 	out := &AddAuthenticationSet210Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3827,7 +3825,7 @@ func (o *xxx_DefaultRemoteFwClient) SetAuthenticationSet210(ctx context.Context,
 	out := &SetAuthenticationSet210Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3840,7 +3838,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumAuthenticationSets210(ctx context.Contex
 	out := &EnumAuthenticationSets210Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3853,7 +3851,7 @@ func (o *xxx_DefaultRemoteFwClient) AddCryptoSet210(ctx context.Context, in *Add
 	out := &AddCryptoSet210Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3866,7 +3864,7 @@ func (o *xxx_DefaultRemoteFwClient) SetCryptoSet210(ctx context.Context, in *Set
 	out := &SetCryptoSet210Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3879,7 +3877,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumCryptoSets210(ctx context.Context, in *E
 	out := &EnumCryptoSets210Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3892,7 +3890,7 @@ func (o *xxx_DefaultRemoteFwClient) AddConnectionSecurityRule220(ctx context.Con
 	out := &AddConnectionSecurityRule220Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3905,7 +3903,7 @@ func (o *xxx_DefaultRemoteFwClient) SetConnectionSecurityRule220(ctx context.Con
 	out := &SetConnectionSecurityRule220Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3918,7 +3916,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumConnectionSecurityRules220(ctx context.C
 	out := &EnumConnectionSecurityRules220Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3931,7 +3929,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryConnectionSecurityRules220(ctx context.
 	out := &QueryConnectionSecurityRules220Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3944,7 +3942,7 @@ func (o *xxx_DefaultRemoteFwClient) AddAuthenticationSet220(ctx context.Context,
 	out := &AddAuthenticationSet220Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3957,7 +3955,7 @@ func (o *xxx_DefaultRemoteFwClient) SetAuthenticationSet220(ctx context.Context,
 	out := &SetAuthenticationSet220Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3970,7 +3968,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumAuthenticationSets220(ctx context.Contex
 	out := &EnumAuthenticationSets220Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3983,7 +3981,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryAuthenticationSets220(ctx context.Conte
 	out := &QueryAuthenticationSets220Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -3996,7 +3994,7 @@ func (o *xxx_DefaultRemoteFwClient) AddFirewallRule220(ctx context.Context, in *
 	out := &AddFirewallRule220Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4009,7 +4007,7 @@ func (o *xxx_DefaultRemoteFwClient) SetFirewallRule220(ctx context.Context, in *
 	out := &SetFirewallRule220Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4022,7 +4020,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules220(ctx context.Context, in
 	out := &EnumFirewallRules220Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4035,7 +4033,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules220(ctx context.Context, i
 	out := &QueryFirewallRules220Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4048,7 +4046,7 @@ func (o *xxx_DefaultRemoteFwClient) AddFirewallRule224(ctx context.Context, in *
 	out := &AddFirewallRule224Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4061,7 +4059,7 @@ func (o *xxx_DefaultRemoteFwClient) SetFirewallRule224(ctx context.Context, in *
 	out := &SetFirewallRule224Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4074,7 +4072,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules224(ctx context.Context, in
 	out := &EnumFirewallRules224Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4087,7 +4085,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules224(ctx context.Context, i
 	out := &QueryFirewallRules224Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4100,7 +4098,7 @@ func (o *xxx_DefaultRemoteFwClient) AddFirewallRule225(ctx context.Context, in *
 	out := &AddFirewallRule225Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4113,7 +4111,7 @@ func (o *xxx_DefaultRemoteFwClient) SetFirewallRule225(ctx context.Context, in *
 	out := &SetFirewallRule225Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4126,7 +4124,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules225(ctx context.Context, in
 	out := &EnumFirewallRules225Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4139,7 +4137,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules225(ctx context.Context, i
 	out := &QueryFirewallRules225Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4152,7 +4150,7 @@ func (o *xxx_DefaultRemoteFwClient) AddFirewallRule226(ctx context.Context, in *
 	out := &AddFirewallRule226Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4165,7 +4163,7 @@ func (o *xxx_DefaultRemoteFwClient) SetFirewallRule226(ctx context.Context, in *
 	out := &SetFirewallRule226Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4178,7 +4176,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules226(ctx context.Context, in
 	out := &EnumFirewallRules226Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4191,7 +4189,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules226(ctx context.Context, i
 	out := &QueryFirewallRules226Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4204,7 +4202,7 @@ func (o *xxx_DefaultRemoteFwClient) AddFirewallRule227(ctx context.Context, in *
 	out := &AddFirewallRule227Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4217,7 +4215,7 @@ func (o *xxx_DefaultRemoteFwClient) SetFirewallRule227(ctx context.Context, in *
 	out := &SetFirewallRule227Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4230,7 +4228,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules227(ctx context.Context, in
 	out := &EnumFirewallRules227Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4243,7 +4241,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules227(ctx context.Context, i
 	out := &QueryFirewallRules227Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4256,7 +4254,7 @@ func (o *xxx_DefaultRemoteFwClient) AddFirewallRule231(ctx context.Context, in *
 	out := &AddFirewallRule231Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4269,7 +4267,7 @@ func (o *xxx_DefaultRemoteFwClient) SetFirewallRule231(ctx context.Context, in *
 	out := &SetFirewallRule231Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4282,7 +4280,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules231(ctx context.Context, in
 	out := &EnumFirewallRules231Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -4295,7 +4293,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules231(ctx context.Context, i
 	out := &QueryFirewallRules231Response{}
 	out.xxx_FromOp(ctx, op)
 	if op.Return != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
 	}
 	return out, nil
 }
