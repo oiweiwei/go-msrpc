@@ -2,6 +2,7 @@ package smb2
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net"
 	"os"
@@ -74,6 +75,7 @@ func NewDialer(opts ...DialerOption) *smb2.Dialer {
 
 type NamedPipe struct {
 	*smb2.File
+	Session         *smb2.Session
 	Logger          zerolog.Logger
 	Address         string
 	Port            int
@@ -115,12 +117,12 @@ func (pipe *NamedPipe) Connect(ctx context.Context) error {
 		return fmt.Errorf("dial smb server: %s: %w", addr, err)
 	}
 
-	session, err := pipe.Dialer.DialContext(ctx, conn)
+	pipe.Session, err = pipe.Dialer.DialContext(ctx, conn)
 	if err != nil {
 		return fmt.Errorf("open smb session: %w", err)
 	}
 
-	pipe.Share, err = session.Mount(pipe.ShareName)
+	pipe.Share, err = pipe.Session.Mount(pipe.ShareName)
 	if err != nil {
 		return fmt.Errorf("mount share: %w", err)
 	}
@@ -138,4 +140,31 @@ func (pipe *NamedPipe) Connect(ctx context.Context) error {
 	}
 
 	return err
+}
+
+func (pipe *NamedPipe) Close() error {
+
+	var errs []error
+
+	if pipe.File != nil {
+		if err := pipe.File.Close(); err != nil {
+			errs = append(errs, fmt.Errorf("close file: %w", err))
+		}
+	}
+	if pipe.Share != nil {
+		if err := pipe.Share.Umount(); err != nil {
+			errs = append(errs, fmt.Errorf("unmount share: %w", err))
+		}
+	}
+	if pipe.Session != nil {
+		if err := pipe.Session.Logoff(); err != nil {
+			errs = append(errs, fmt.Errorf("logoff session: %w", err))
+		}
+	}
+
+	if len(errs) > 0 {
+		return errors.Join(errs...)
+	}
+
+	return nil
 }
