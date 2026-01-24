@@ -14,6 +14,8 @@ func (p *TypeGenerator) GenStructUnmarshalNDR(ctx context.Context) {
 	}
 
 	p.Block("func", "(o *"+p.GoTypeName+")", "UnmarshalNDR(ctx context.Context, w ndr.Reader)", "error", func() {
+		// size checks.
+		p.GenStructUnmarshalNDRSizeCheck(ctx)
 		// write size information.
 		p.GenStructUnmarshalNDRSizePreamble(ctx, p.StructLastField())
 		// align the structure.
@@ -34,6 +36,27 @@ func (p *TypeGenerator) GenStructUnmarshalNDR(ctx context.Context) {
 		p.P("return nil")
 	})
 
+}
+
+func (p *TypeGenerator) GenStructUnmarshalNDRSizeCheck(ctx context.Context) {
+	if rng := p.Scope().Range; rng != nil {
+		if rng.Min == rng.Max && rng.Min > 0 {
+			p.If("w.Len()", "!=", rng.Min, "/* size-is check */", func() {
+				p.P("return", "nil")
+			})
+		} else {
+			if rng.Min > 0 {
+				p.If("w.Len()", "<", rng.Min, "/* min-is check */", func() {
+					p.P("return", "nil")
+				})
+			}
+			if rng.Max > 0 {
+				p.If("w.Len()", ">", rng.Max, "/* max-is check */", func() {
+					p.P("return", "nil")
+				})
+			}
+		}
+	}
 }
 
 func (p *TypeGenerator) GenStructUnmarshalNDRSizePreamble(ctx context.Context, field *midl.Field) {
