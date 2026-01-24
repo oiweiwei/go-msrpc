@@ -3385,6 +3385,9 @@ func (o *UserProperties) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return nil
 }
 func (o *UserProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if w.Len() < 111 /* min-is check */ {
+		return nil
+	}
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}

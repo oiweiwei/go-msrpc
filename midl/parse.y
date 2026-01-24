@@ -2583,6 +2583,11 @@ range_declarator        : '(' integer_const_exp ',' integer_const_exp ')'
                                 }
                                 $$ = &Range{Min: min.Int64(), Max: max.Int64()}
                             }
+
+                        | '(' array_bound_pair ')'
+                            {
+                                $$ = &Range{Min: $2.Lower, Max: $2.Upper}
+                            }
                         ;
 // XXX: __midl_end__
 

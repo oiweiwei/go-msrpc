@@ -119,7 +119,7 @@ typedef struct _USER_PROPERTIES_LIST {
     [size_is(PropertyCount)] PUSER_PROPERTY * UserProperties[];
 } USER_PROPERTIES_LIST, *PUSER_PROPERTIES_LIST;
 
-typedef struct _USER_PROPERTIES {
+typedef [range(111 .. *) /* ignore anything below this size */] struct _USER_PROPERTIES {
     unsigned long Reserved1;
     unsigned long Length;
     unsigned short Reserved2;
