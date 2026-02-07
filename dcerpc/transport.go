@@ -154,7 +154,6 @@ func (c *transport) ExportSMBSecurity(o *Security) {
 			o.SetAttribute(gssapi.AttributeSMBEffectiveSessionKey, pipe.SessionKey())
 		}
 	}
-
 }
 
 // AlterContext function establishes new presentation or security (or both) context(s).
@@ -197,11 +196,13 @@ func (c *transport) AlterContext(ctx context.Context, opts ...Option) (Conn, err
 	if pkt.AuthData, err = o.Security.Init(ctx, nil); err != nil {
 		return nil, fmt.Errorf("alter context: init security: %w", err)
 	}
-	// write bind pdu.
-	if err = c.WritePacket(ctx, call, pkt); err != nil {
-		return nil, fmt.Errorf("alter context: write packet: %w", err)
+
+	// write alter-context pdu.
+	if err := c.WritePacket(ctx, call, pkt); err != nil {
+		return nil, err
 	}
-	// read bind response (bind-ack, bind-nak).
+
+	// read alter-context response (alter-context-response).
 	if pkt, err = c.ReadPacket(ctx, call, pkt); err != nil {
 		return nil, fmt.Errorf("alter context: read packet: %w", err)
 	}
@@ -389,6 +390,18 @@ func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 	if pkt.AuthData, err = o.Security.Init(ctx, nil); err != nil {
 		return nil, fmt.Errorf("bind: %w", err)
 	}
+
+	// XXX: adjust max xmit frag size if auth data is too large.
+	if len(pkt.AuthData) > c.settings.MaxXmitFrag-pkt.PDUHeaderSize() {
+		c.logger.Warn().Int("auth_data_size", len(pkt.AuthData)).
+			Int("max_xmit_frag", c.settings.MaxXmitFrag).
+			Msg("adjusting transmit buffer size to fit auth data")
+		sz := len(pkt.AuthData) + pkt.PDUHeaderSize()
+		c.settings.MaxXmitFrag = sz
+		// reset buffered connector.
+		c.cc, c.tx, c.rx = c.cc.Resized(sz), resizeBuffer(c.tx, sz), resizeBuffer(c.rx, sz)
+	}
+
 	// write bind pdu.
 	if err = c.WritePacket(ctx, call, pkt); err != nil {
 		return nil, fmt.Errorf("bind: write packet: %w", err)
@@ -402,11 +415,6 @@ func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 
 	case *BindAck:
 
-		if c.settings.MaxRecvFrag != int(pdu.MaxRecvFrag) {
-			// reset buffered connector.
-			c.cc = c.cc.Resized(int(pdu.MaxRecvFrag))
-		}
-
 		sz := c.settings.FragmentSize()
 
 		// save retrieved parameters.
@@ -419,7 +427,9 @@ func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 		o.Group.SetID(int(pdu.AssocGroupID))
 
 		if sz != c.settings.FragmentSize() {
-			c.tx, c.rx = make([]byte, c.settings.FragmentSize()), make([]byte, c.settings.FragmentSize())
+			c.tx, c.rx = resizeBuffer(c.tx, c.settings.FragmentSize()), resizeBuffer(c.rx, c.settings.FragmentSize())
+			// reset buffered connector.
+			c.cc = c.cc.Resized(c.settings.FragmentSize())
 		}
 
 		// save negotiated header sign parameter.
