@@ -381,7 +381,10 @@ func (c *transport) EncodePacket(ctx context.Context, pkt *Packet, raw []byte) e
 	if pkt.Header.AuthLength > 0 {
 		sz := MaxPad + SecurityTrailerSize + int(pkt.Header.AuthLength)
 		if pkt.end -= sz; pkt.end <= 0 {
-			return fmt.Errorf("encode_packet: insufficient buffer size for security trailer (%d bytes)", sz)
+			if pkt.end, raw = cap(raw)-sz, raw[:cap(raw)]; pkt.end <= 0 || pkt.Header.PacketType != PacketTypeAlterContext {
+				// XXX: allow exceeding capacity for alter-context requests (as they may contain large krb tickets)
+				return fmt.Errorf("encode_packet: insufficient buffer size for security trailer (%d bytes)", sz)
+			}
 		}
 	}
 

@@ -112,7 +112,10 @@ func (c *call) WriteBuffer(ctx context.Context, hdr Header, p []byte) error {
 func (c *transport) WriteBuffer(ctx context.Context, hdr Header, p []byte) error {
 
 	if int(hdr.FragLength) > c.settings.MaxXmitFrag {
-		return ErrPacketTooLong
+		if hdr.PacketType != PacketTypeAlterContext {
+			// XXX: allow exceeding capacity for alter-context requests (as they may contain large krb tickets)
+			return ErrPacketTooLong
+		}
 	}
 
 	p = p[:hdr.FragLength]
