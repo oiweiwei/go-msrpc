@@ -38,6 +38,21 @@ type Packet struct {
 	start, end int
 }
 
+func (p *Packet) Unset(flag PacketFlag) {
+	p.Header.PacketFlags &^= flag
+}
+
+func (p *Packet) Set(flag PacketFlag) {
+	p.Header.PacketFlags |= flag
+}
+
+func (p *Packet) PDUHeaderSize() int {
+	if sizer := p.PDU.(interface{ Size() int }); sizer != nil {
+		return HeaderSize + sizer.Size() + MaxPad + SecurityTrailerSize
+	}
+	return 0
+}
+
 func (p *Packet) IsLastFrag() bool {
 	return p.Header.PacketFlags&PacketFlagLastFrag != 0
 }
@@ -332,7 +347,7 @@ func (c *transport) EncodePacket(ctx context.Context, pkt *Packet, raw []byte) e
 	pkt.raw, pkt.end = raw, len(raw)
 
 	// set packet rpc version.
-	pkt.Header.RPCVersion, pkt.Header.RPCVersionMinor = 5, 0
+	pkt.Header.RPCVersion = 5
 	// set packet drep.
 	pkt.Header.PacketDRep = c.settings.DataRepresentation
 	// set packet type.
@@ -364,14 +379,23 @@ func (c *transport) EncodePacket(ctx context.Context, pkt *Packet, raw []byte) e
 
 	// adjust stub buffer to include security trailer.
 	if pkt.Header.AuthLength > 0 {
-		pkt.end -= MaxPad + SecurityTrailerSize + int(pkt.Header.AuthLength)
+		sz := MaxPad + SecurityTrailerSize + int(pkt.Header.AuthLength)
+		if pkt.end -= sz; pkt.end <= 0 {
+			if pkt.end, raw = cap(raw)-sz, raw[:cap(raw)]; pkt.end <= 0 || pkt.Header.PacketType != PacketTypeAlterContext {
+				// XXX: allow exceeding capacity for alter-context requests (as they may contain large krb tickets)
+				return fmt.Errorf("encode_packet: insufficient buffer size for security trailer (%d bytes)", sz)
+			}
+		}
 	}
 
 	// XXX: verification is computed for every fragment, however it's being
 	// written only for last fragment.
 	verifyLen := pkt.VerificationTrailer.Size()
 	if verifyLen > 0 {
-		pkt.end -= VerificationTrailerMaxPad + verifyLen /* VerificationMaxPad */
+		sz := VerificationTrailerMaxPad + verifyLen /* VerificationMaxPad */
+		if pkt.end -= sz; pkt.end <= 0 {
+			return fmt.Errorf("encode_packet: insufficient buffer size for verification trailer (%d bytes)", verifyLen)
+		}
 	}
 
 	w := c.Codec(raw, pkt.Header.PacketDRep)

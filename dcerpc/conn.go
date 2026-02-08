@@ -25,11 +25,15 @@ type BufferedConn struct {
 	cur, total []byte
 }
 
-func (conn *BufferedConn) Resized(sz int) *BufferedConn {
-	if sz > len(conn.total) {
-		conn.total = make([]byte, sz)
+func resizeBuffer(buf []byte, sz int) []byte {
+	if sz > len(buf) {
+		return make([]byte, sz)
 	}
-	conn.cur, conn.total = nil, conn.total[:sz]
+	return buf[:sz]
+}
+
+func (conn *BufferedConn) Resized(sz int) *BufferedConn {
+	conn.cur, conn.total = nil, resizeBuffer(conn.total, sz)
 	return conn
 }
 

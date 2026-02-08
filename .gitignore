@@ -3,3 +3,4 @@ rpc/y.out
 develop/.vagrant
 examples/testing
 test/
+.vimrc

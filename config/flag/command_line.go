@@ -18,7 +18,9 @@ func BindFlags(c *config.Config, flagSet *flag.FlagSet) {
 
 	flagSet.DurationVar(&c.Timeout, "timeout", c.Timeout, "timeout")
 
-	flagSet.StringVar(&c.TrasnferEncoding, "transfer-encoding", c.TrasnferEncoding, "transfer encoding: ndr20, ndr64")
+	flagSet.StringVar(&c.TransferEncoding, "transfer-encoding", c.TransferEncoding, "transfer encoding: ndr20, ndr64")
+
+	flagSet.IntVar(&c.TransportXmitSize, "transport-xmit-size", c.TransportXmitSize, "transport xmit size")
 
 	flagSet.StringVar(&c.Credential.Password, "password", c.Credential.Password, "password to authenticate with")
 	flagSet.StringVar(&c.Credential.NTHash, "nthash", c.Credential.NTHash, "NT hash to authenticate with")
