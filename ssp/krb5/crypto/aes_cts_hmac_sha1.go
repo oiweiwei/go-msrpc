@@ -108,7 +108,9 @@ func (c *AESCTSHMACSHA1) wrap(ctx context.Context, seqNum uint64, forSign, forSe
 		for _, b := range forSeal {
 			sz += len(b)
 		}
-		ec = (block - (sz % block)) % block
+		if ec = (block - (sz % block)) % block; sz == 0 {
+			ec = 16 // if the payload is empty, EC is 16 (the block size).
+		}
 	}
 
 	// gen ec.
