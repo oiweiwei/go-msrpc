@@ -257,6 +257,7 @@ func (m *Mechanism) Unwrap(ctx context.Context, tok *gssapi.MessageToken) (*gssa
 		Payloads: []*gssapi.PayloadEx{
 			{Capabilities: tok.Capabilities, Payload: tok.Payload},
 		},
+		Signature: tok.Signature,
 	})
 	if err != nil {
 		return nil, err
