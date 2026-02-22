@@ -87,6 +87,10 @@ func (c *AESCTSHMACSHA1) Wrap(ctx context.Context, seqNum uint64, forSign, forSe
 	return b, nil
 }
 
+func isSinglePayload(forSign, forSeal [][]byte) bool {
+	return len(forSign) == 1 && len(forSeal) == 1 && bytes.Equal(forSign[0], forSeal[0])
+}
+
 func (c *AESCTSHMACSHA1) wrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte) ([]byte, error) {
 
 	eB, hdr := bytes.NewBuffer(nil), c.WrapHeader(ctx, seqNum)
@@ -97,17 +101,29 @@ func (c *AESCTSHMACSHA1) wrap(ctx context.Context, seqNum uint64, forSign, forSe
 		return nil, fmt.Errorf("read confounder: %w", err)
 	}
 
+	ec := EC
+
+	if isSinglePayload(forSign, forSeal) /* it's a Wrap call, compute EC according to RFC 4121, section 4.3.2. */ {
+		sz, block := 0, c.setting.Type.GetMessageBlockByteSize()
+		for _, b := range forSeal {
+			sz += len(b)
+		}
+		if ec = (block - (sz % block)) % block; sz == 0 {
+			ec = 16 // if the payload is empty, EC is 16 (the block size).
+		}
+	}
+
 	// gen ec.
-	ec := bytes.Repeat([]byte{0xFF}, EC)
+	ecB := bytes.Repeat([]byte{0xFF}, ec)
 	// set ec value (16). (pad = 1, block_size = 16).
-	binary.BigEndian.PutUint16(hdr[4:6], EC)
+	binary.BigEndian.PutUint16(hdr[4:6], uint16(ec))
 
 	iH, err := c.IntegrityHash()
 	if err != nil {
 		return nil, fmt.Errorf("make integrity hash: %w", err)
 	}
 
-	if err := crypto.WriteHash(iH, confounder, forSign, ec, hdr); err != nil {
+	if err := crypto.WriteHash(iH, confounder, forSign, ecB, hdr); err != nil {
 		return nil, fmt.Errorf("write hash: %w", err)
 	}
 
@@ -116,7 +132,7 @@ func (c *AESCTSHMACSHA1) wrap(ctx context.Context, seqNum uint64, forSign, forSe
 		return nil, fmt.Errorf("derive key: %w", err)
 	}
 
-	if err := crypto.WriteHash(eB, confounder, forSeal, ec, hdr); err != nil {
+	if err := crypto.WriteHash(eB, confounder, forSeal, ecB, hdr); err != nil {
 		return nil, fmt.Errorf("write encryption buffers: %w", err)
 	}
 
@@ -125,9 +141,9 @@ func (c *AESCTSHMACSHA1) wrap(ctx context.Context, seqNum uint64, forSign, forSe
 		return nil, fmt.Errorf("encrypt data: %w", err)
 	}
 
-	b = Rotate(iH.Sum(b), EC+RRC)
+	b = Rotate(iH.Sum(b), ec+RRC)
 
-	sgn := make([]byte, EC+RRC+len(confounder))
+	sgn := make([]byte, ec+RRC+len(confounder))
 	b = b[copy(sgn, b):]
 
 	for i := range forSeal {
@@ -153,13 +169,20 @@ func (c *AESCTSHMACSHA1) unwrap(ctx context.Context, seqNum uint64, forSign, for
 	// buffer for decryption.
 	eB, hdr := bytes.NewBuffer(nil), sgn[:16]
 
+	rrc, ec := int(binary.BigEndian.Uint16(hdr[6:])), int(binary.BigEndian.Uint16(hdr[4:]))
+
+	sgnSize := ec + rrc + len(hdr) + c.setting.Type.GetConfounderByteSize()
+
+	if len(sgn) < sgnSize {
+		return false, fmt.Errorf("invalid signature size: %d < %d", len(sgn), sgnSize)
+	}
+
 	// write { ec | E"header" | confounder }
 	// write { E"data" }
-	if err := crypto.WriteHash(eB, sgn[16:], forSeal); err != nil {
+	if err := crypto.WriteHash(eB, sgn[16:sgnSize], forSeal); err != nil {
 		return false, fmt.Errorf("write encryption buffers: %w", err)
 	}
 
-	rrc, ec := int(binary.BigEndian.Uint16(hdr[6:])), int(binary.BigEndian.Uint16(hdr[4:]))
 	binary.BigEndian.PutUint16(hdr[6:8], uint16(0))
 
 	// rotate { ec | E"header" | confounder | E"data" | mic } ->
@@ -167,6 +190,7 @@ func (c *AESCTSHMACSHA1) unwrap(ctx context.Context, seqNum uint64, forSign, for
 	b := Rotate(eB.Bytes(), -(rrc + ec))
 
 	cksumSize := c.setting.Type.GetHMACBitLength() / 8
+
 	// trim mic.
 	b, cksum := b[:len(b)-cksumSize], b[len(b)-cksumSize:]
 
