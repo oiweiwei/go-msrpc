@@ -231,6 +231,7 @@ The set of changes includes:
 | [MS-TRP](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-trp) | Telephony Remote Protocol | [github.com/oiweiwei/msrpc/trp](./msrpc/trp) |
 | [MS-TSCH](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-tsch) | Task Scheduler Service Remoting Protocol | [github.com/oiweiwei/msrpc/tsch](./msrpc/tsch) |
 | [MS-TSGU](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-tsgu) | Terminal Services Gateway Server Protocol | [github.com/oiweiwei/msrpc/tsgu](./msrpc/tsgu) |
+| [MS-TSTS](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-tsts) | Terminal Services Terminal Server Runtime Interface Protocol | [github.com/oiweiwei/msrpc/tsts](./msrpc/tsts) |
 | [MS-W32T](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-w32t) | W32Time Remote Protocol | [github.com/oiweiwei/msrpc/w32t](./msrpc/w32t) |
 | [MS-WDSC](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wdsc) | Windows Deployment Services Control Protocol | [github.com/oiweiwei/msrpc/wdsc](./msrpc/wdsc) |
 | [MS-WKST](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wkst) | Workstation Service Remote Protocol | [github.com/oiweiwei/msrpc/wkst](./msrpc/wkst) |
