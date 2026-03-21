@@ -1,0 +1,24 @@
+<div class="content"><p>LOGONID is a macro defined to be the structure <b>SESSIONID</b>.
+This type represents information about the session or <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8cc89bb9-be94-4672-8a5d-9947b91bc952" data-linktype="relative-path">WinStation</a></span>
+identified by the identifier <b>SessionId</b>. For more information, see the
+macro definition in section <span><a href="ce70794f-2138-43e8-bf6c-2c147887d6a2" data-linktype="relative-path">6.5</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _SESSIONID {
+   union {
+     ULONG SessionId;
+     ULONG LogonId;
+   } _SessionId_LogonId_union;
+   WINSTATIONNAME WinStationName;
+   WINSTATIONSTATECLASS State;
+ } SESSIONID,
+  *PSESSIONID;
+</pre></div>
+</dd></dl><p><b>SessionId:</b>  In a union with LogonId.
+It represents WinStation or session identifier numbered 0 through 65535 for <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_ffff3f01-8c21-44d3-bbda-0062a1fbda4b" data-linktype="relative-path">Terminal
+Services</a></span> sessions. A number of 65536 or greater indicates that the
+WinStation is a listening WinStation.</p><p><b>LogonId:</b>  In a union with <b>SessionId</b>.
+It is used internally only, within Terminal Services code.</p><p><b>WinStationName:</b>  The name of the
+WinStation represented by this structure. See section <span><a href="b34d2909-b0cd-407e-934c-a2c7cb96ca26" data-linktype="relative-path">2.2.1.5</a></span> for more
+information on the type WINSTATIONNAME.</p><p><b>State:</b>  The current state of the
+WinStation. See section <span><a href="b619d8aa-4e8a-4716-954e-a4d596ed37f8" data-linktype="relative-path">2.2.1.9</a></span> for more
+information on the type WINSTATIONSTATECLASS.</p></div>

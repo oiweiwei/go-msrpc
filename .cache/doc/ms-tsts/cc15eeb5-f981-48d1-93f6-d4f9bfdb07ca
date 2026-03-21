@@ -1,0 +1,14 @@
+<div class="content"><p>The VARDATA_WIRE structure defines the size and offset of
+the variable-length data succeeding it. This structure is used before
+variable-length data fields that are returned by using specific
+WinStationInformationClass classes (see section <span><a href="1bba9ff2-71d3-49a3-bb26-2e5f6fcab3ee" data-linktype="relative-path">3.7.4.1.6</a></span>).</p><dl>
+<dd>
+<div><pre> typedef struct _VARDATA_WIRE {
+   USHORT Size;
+   USHORT Offset;
+ } VARDATA_WIRE,
+  *PVARDATA_WIRE;
+</pre></div>
+</dd></dl><p><b>Size:</b>  Size of the variable length
+data, in bytes, succeeding this structure.</p><p><b>Offset:</b>  Offset, in bytes, of the
+succeeding variable-length structure in the whole data BLOB.</p></div>

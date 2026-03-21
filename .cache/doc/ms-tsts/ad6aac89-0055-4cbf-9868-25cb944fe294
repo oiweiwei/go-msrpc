@@ -1,0 +1,12 @@
+<div class="content"><p>The <b>CDCLASS</b> enumeration specifies a type of
+connection driver.</p><dl>
+<dd>
+<div><pre> typedef  enum _CDCLASS
+ {
+   CdNone,
+   CdModem,
+   CdClass_Maximum,
+ } CDCLASS;
+</pre></div>
+</dd></dl><p><b>CdNone:  </b>No connection driver.</p><p><b>CdModem:  </b>Connection driver is a modem.</p><p><b>CdClass_Maximum:  </b>A given CdClass variable
+will always be less than this value.</p></div>

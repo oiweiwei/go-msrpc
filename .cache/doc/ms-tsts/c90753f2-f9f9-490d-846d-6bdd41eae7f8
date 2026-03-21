@@ -1,0 +1,17 @@
+<div class="content"><p>The <b>TS_UNICODE_STRING</b> structure contains a <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_c305d0ab-8b94-461a-bd76-13b40cb8c4d8" data-linktype="relative-path">Unicode</a></span>
+string.</p><dl>
+<dd>
+<div><pre> typedef struct _TS_UNICODE_STRING {
+     USHORT Length;
+     USHORT MaximumLength;
+ #ifdef __midl
+     [size_is(MaximumLength),length_is(Length)]PWSTR  Buffer;
+ #else
+     PWSTR  Buffer;
+ #endif
+ } TS_UNICODE_STRING;
+</pre></div>
+</dd></dl><p><b>Length:</b>  The actual length of the
+string currently stored in the <b>Buffer</b> member, in bytes.</p><p><b>MaximumLength:</b>  The maximum length
+of the string that can be stored in <b>Buffer</b>, in bytes.</p><p><b>Buffer:</b>  A wide character string
+that MUST NOT be followed by the terminating NULL character.</p></div>

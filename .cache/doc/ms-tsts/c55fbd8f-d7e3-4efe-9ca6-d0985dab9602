@@ -1,0 +1,14 @@
+<div class="content"><p>The <b>SHADOWSTATECLASS</b> enumeration specifies <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8cc89bb9-be94-4672-8a5d-9947b91bc952" data-linktype="relative-path">WinStation</a></span>
+shadow states.</p><dl>
+<dd>
+<div><pre> typedef  enum _SHADOWSTATECLASS
+ {
+   State_NoShadow,
+   State_Shadowing,
+   State_Shadowed,
+ } SHADOWSTATECLASS;
+</pre></div>
+</dd></dl><p><b>State_NoShadow:  </b>No shadow operations are
+currently being performed on this session.</p><p><b>State_Shadowing:  </b>The session is shadowing a
+different session. The current session is referred to as a shadow client.</p><p><b>State_Shadowed:  </b>The session is being shadowed
+by a different session. The current session is referred to as a shadow target.</p></div>

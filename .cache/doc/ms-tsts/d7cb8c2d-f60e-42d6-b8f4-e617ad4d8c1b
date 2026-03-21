@@ -1,0 +1,255 @@
+<div class="content"><p>The <b>POLICY_TS_MACHINE</b> structure defines the machine
+policy of the server. Each item in the policy has a flag to indicate if the
+policy is present and a value for the policy.<a id="Appendix_A_Target_106"></a><a aria-label="Product behavior note 106" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_106" data-linktype="relative-path">&lt;106&gt;</a></p><dl>
+<dd>
+<div><pre> typedef struct _POLICY_TS_MACHINE {
+   ULONG fPolicyDisableClip  :1;
+   ULONG fPolicyDisableCam  :1;
+   ULONG fPolicyDisableCcm  :1;
+   ULONG fPolicyDisableLPT  :1;
+   ULONG fPolicyDisableCpm  :1;
+   ULONG fPolicyPromptForPassword  :1;
+   ULONG fPolicyMaxInstanceCount  :1;
+   ULONG fPolicyMinEncryptionLevel  :1;
+   ULONG fPolicyFipsEnabled  :1;
+   ULONG fPolicyDisableAutoReconnect  :1;
+   ULONG fPolicyWFProfilePath  :1;
+   ULONG fPolicyWFHomeDir  :1;
+   ULONG fPolicyWFHomeDirDrive  :1;
+   ULONG fPolicyDenyTSConnections  :1;
+   ULONG fPolicyTempFoldersPerSession  :1;
+   ULONG fPolicyDeleteTempFoldersOnExit  :1;
+   ULONG fPolicyColorDepth  :1;
+   ULONG fPolicySessionDirectoryActive  :1;
+   ULONG fPolicySessionDirectoryLocation  :1;
+   ULONG fPolicySessionDirectoryClusterName  :1;
+   ULONG fPolicySessionDirectoryAdditionalParams  :1;
+   ULONG fPolicySessionDirectoryExposeServerIP  :1;
+   ULONG fPolicyPreventLicenseUpgrade  :1;
+   ULONG fPolicySecureLicensing  :1;
+   ULONG fPolicyWritableTSCCPermissionsTAB  :1;
+   ULONG fPolicyDisableCdm  :1;
+   ULONG fPolicyForceClientLptDef  :1;
+   ULONG fPolicyShadow  :1;
+   ULONG fPolicyResetBroken  :1;
+   ULONG fPolicyReconnectSame  :1;
+   ULONG fPolicyMaxSessionTime  :1;
+   ULONG fPolicyMaxDisconnectionTime  :1;
+   ULONG fPolicyMaxIdleTime  :1;
+   ULONG fPolicyInitialProgram  :1;
+   ULONG fPolicySingleSessionPerUser  :1;
+   ULONG fPolicyDisableWallpaper  :1;
+   ULONG fPolicyKeepAlive  :1;
+   ULONG fPolicyEnableTimeZoneRedirection  :1;
+   ULONG fPolicyDisableForcibleLogoff  :1;
+   ULONG fPolicyLicensingMode  :1;
+   ULONG fPolicyExplicitLSDiscovery  :1;
+   ULONG fPolicyDisableTerminalServerTooltip  :1;
+   ULONG fDisableClip  :1;
+   ULONG fDisableCam  :1;
+   ULONG fDisableCcm  :1;
+   ULONG fDisableLPT  :1;
+   ULONG fDisableCpm  :1;
+   ULONG fPromptForPassword  :1;
+   ULONG ColorDepth  :3;
+   ULONG fDenyTSConnections  :1;
+   ULONG fTempFoldersPerSession  :1;
+   ULONG fDeleteTempFoldersOnExit  :1;
+   ULONG fWritableTSCCPermissionsTAB  :1;
+   ULONG fDisableCdm  :1;
+   ULONG fForceClientLptDef  :1;
+   ULONG fResetBroken  :1;
+   ULONG fReconnectSame  :1;
+   ULONG fSingleSessionPerUser  :1;
+   ULONG fDisableWallpaper  :1;
+   ULONG fKeepAliveEnable  :1;
+   ULONG fPreventLicenseUpgrade  :1;
+   ULONG fSecureLicensing  :1;
+   ULONG fEnableTimeZoneRedirection  :1;
+   ULONG fDisableAutoReconnect  :1;
+   ULONG fDisableForcibleLogoff  :1;
+   ULONG fPolicyEncryptRPCTraffic  :1;
+   ULONG fEncryptRPCTraffic  :1;
+   ULONG fErrorInvalidProfile  :1;
+   ULONG fPolicyFallbackPrintDriver  :1;
+   ULONG FallbackPrintDriverType  :3;
+   ULONG fDisableTerminalServerTooltip  :1;
+   BYTE bSecurityLayer;
+   ULONG fPolicySecurityLayer  :1;
+   BYTE bUserAuthentication;
+   ULONG fPolicyUserAuthentication  :1;
+   ULONG fPolicyTurnOffSingleAppMode  :1;
+   ULONG fTurnOffSingleAppMode  :1;
+   ULONG fDisablePNPPolicyIsEnfored  :1;
+   ULONG fDisablePNPPolicyValue  :1;
+   ULONG MaxInstanceCount;
+   ULONG LicensingMode;
+   BYTE MinEncryptionLevel;
+   WCHAR WFProfilePath[DIRECTORY_LENGTH + 1];
+   WCHAR WFHomeDir[DIRECTORY_LENGTH + 1];
+   WCHAR WFHomeDirDrive[ 4 ];
+   ULONG SessionDirectoryActive;
+   WCHAR SessionDirectoryLocation[DIRECTORY_LENGTH+1];
+   WCHAR SessionDirectoryClusterName[DIRECTORY_LENGTH+1];
+   WCHAR SessionDirectoryAdditionalParams[DIRECTORY_LENGTH+1];
+   ULONG SessionDirectoryExposeServerIP;
+   ULONG KeepAliveInterval;
+   SHADOWCLASS Shadow;
+   ULONG MaxConnectionTime;
+   ULONG MaxDisconnectionTime;
+   ULONG MaxIdleTime;
+   WCHAR WorkDirectory[DIRECTORY_LENGTH+1];
+   WCHAR InitialProgram[INITIALPROGRAM_LENGTH + 1];
+   WCHAR LicenseServers[MAX_LICENSE_SERVER_LENGTH + 1];
+ } POLICY_TS_MACHINE,
+  *PPOLICY_TS_MACHINE;
+</pre></div>
+</dd></dl><p><b>fPolicyDisableClip:</b>  TRUE indicates
+the policy for DisableClip is set; FALSE otherwise.</p><p><b>fPolicyDisableCam:</b>  TRUE indicates
+the policy for DisableCam is set; FALSE otherwise.</p><p><b>fPolicyDisableCcm:</b>  TRUE indicates
+the policy for DisableCcm is set; FALSE otherwise.</p><p><b>fPolicyDisableLPT:</b>  TRUE indicates
+the policy for DisableLPT is set; FALSE otherwise.</p><p><b>fPolicyDisableCpm:</b>  TRUE indicates
+the policy for DisableCpm is set; FALSE otherwise.</p><p><b>fPolicyPromptForPassword:</b>  TRUE
+indicates the policy for PromptForPassword is set; FALSE otherwise.</p><p><b>fPolicyMaxInstanceCount:</b>  TRUE
+indicates the policy for MaxInstanceCount is set; FALSE otherwise.</p><p><b>fPolicyMinEncryptionLevel:</b>  TRUE
+indicates the policy for MinEncryptionLevel is set; FALSE otherwise.</p><p><b>fPolicyFipsEnabled:</b>  TRUE indicates
+the policy for Fips is enabled; FALSE otherwise.<a id="Appendix_A_Target_107"></a><a aria-label="Product behavior note 107" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_107" data-linktype="relative-path">&lt;107&gt;</a></p><p><b>fPolicyDisableAutoReconnect:</b>  TRUE
+indicates the policy for DisableAutoReconnect is set; FALSE otherwise.</p><p><b>fPolicyWFProfilePath:</b>  TRUE
+indicates the policy for WFProfilePath is set; FALSE otherwise.</p><p><b>fPolicyWFHomeDir:</b>  TRUE indicates
+the policy for WFHomeDir is set; FALSE otherwise.</p><p><b>fPolicyWFHomeDirDrive:</b>  TRUE
+indicates the policy for WFHomeDirDrive is set; FALSE otherwise.</p><p><b>fPolicyDenyTSConnections:</b>  TRUE
+indicates the policy for DenyTSConnections is set; FALSE otherwise.</p><p><b>fPolicyTempFoldersPerSession:</b>  TRUE
+indicates the policy for TempFoldersPerSession is set; FALSE otherwise.</p><p><b>fPolicyDeleteTempFoldersOnExit:</b>  TRUE
+indicates the policy for DeleteTempFoldersOnExit is set; FALSE otherwise.</p><p><b>fPolicyColorDepth:</b>  TRUE indicates
+the policy for ColorDepth is set; FALSE otherwise.</p><p><b>fPolicySessionDirectoryActive:</b>  TRUE
+indicates the policy for SessionDirectoryActive is set; FALSE otherwise.</p><p><b>fPolicySessionDirectoryLocation:</b>  TRUE
+indicates the policy for SessionDirectoryLocation is set; FALSE otherwise.</p><p><b>fPolicySessionDirectoryClusterName:</b>  TRUE
+indicates the policy for SessionDirectoryClusterName is set; FALSE otherwise.</p><p><b>fPolicySessionDirectoryAdditionalParams:</b>  TRUE
+indicates the policy for SessionDirectoryAdditionalParams is set; FALSE otherwise.</p><p><b>fPolicySessionDirectoryExposeServerIP:</b>  TRUE
+indicates the policy for SessionDirectoryExposeServerIP is set; FALSE
+otherwise.</p><p><b>fPolicyPreventLicenseUpgrade:</b>  TRUE
+indicates the policy for PreventLicenseUpgrade is set; FALSE otherwise.</p><p><b>fPolicySecureLicensing:</b>  TRUE
+indicates the policy for SecureLicensing is set; FALSE otherwise.<a id="Appendix_A_Target_108"></a><a aria-label="Product behavior note 108" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_108" data-linktype="relative-path">&lt;108&gt;</a></p><p><b>fPolicyWritableTSCCPermissionsTAB:</b>  TRUE
+indicates the policy for WritableTSCCPermissionsTAB is set; FALSE otherwise.</p><p><b>fPolicyDisableCdm:</b>  TRUE indicates
+the policy for DisableCdm is set; FALSE otherwise.</p><p><b>fPolicyForceClientLptDef:</b>  TRUE
+indicates the policy for ForceClientLptDef is set; FALSE otherwise.</p><p><b>fPolicyShadow:</b>  TRUE indicates the
+policy for Shadow is set; FALSE otherwise.</p><p><b>fPolicyResetBroken:</b>  TRUE indicates
+the policy for ResetBroken is set; FALSE otherwise.</p><p><b>fPolicyReconnectSame:</b>  TRUE
+indicates the policy for ReconnectSame is set; FALSE otherwise.</p><p><b>fPolicyMaxSessionTime:</b>  TRUE
+indicates the policy for MaxSessionTime is set; FALSE otherwise.</p><p><b>fPolicyMaxDisconnectionTime:</b>  TRUE
+indicates the policy for MaxDisconnectionTime is set; FALSE otherwise.</p><p><b>fPolicyMaxIdleTime:</b>  TRUE indicates
+the policy for MaxIdleTime is set; FALSE otherwise.</p><p><b>fPolicyInitialProgram:</b>  TRUE
+indicates the policy for InitialProgram is set; FALSE otherwise.</p><p><b>fPolicySingleSessionPerUser:</b>  TRUE
+indicates the policy for SingleSessionPerUser is set; FALSE otherwise.</p><p><b>fPolicyDisableWallpaper:</b>  TRUE
+indicates the policy for DisableWallpaper is set; FALSE otherwise.</p><p><b>fPolicyKeepAlive:</b>  TRUE indicates
+the policy for KeepAlive is set; FALSE otherwise.</p><p><b>fPolicyEnableTimeZoneRedirection:</b>  TRUE
+indicates the policy for EnableTimeZoneRedirection is set; FALSE otherwise.<a id="Appendix_A_Target_109"></a><a aria-label="Product behavior note 109" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_109" data-linktype="relative-path">&lt;109&gt;</a></p><p><b>fPolicyDisableForcibleLogoff:</b>  TRUE
+indicates the policy for DisableForcibleLogoff is set; FALSE otherwise.<a id="Appendix_A_Target_110"></a><a aria-label="Product behavior note 110" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_110" data-linktype="relative-path">&lt;110&gt;</a></p><p><b>fPolicyLicensingMode:</b>  TRUE
+indicates the policy for LicensingMode is set; FALSE otherwise.<a id="Appendix_A_Target_111"></a><a aria-label="Product behavior note 111" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_111" data-linktype="relative-path">&lt;111&gt;</a></p><p><b>fPolicyExplicitLSDiscovery:</b>  TRUE
+indicates the policy for ExplicitLSDiscovery is set; FALSE otherwise.<a id="Appendix_A_Target_112"></a><a aria-label="Product behavior note 112" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_112" data-linktype="relative-path">&lt;112&gt;</a></p><p><b>fPolicyDisableTerminalServerTooltip:</b>  TRUE
+indicates the policy for DisableTerminalServerTooltip is set; FALSE otherwise.<a id="Appendix_A_Target_113"></a><a aria-label="Product behavior note 113" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_113" data-linktype="relative-path">&lt;113&gt;</a></p><p><b>fDisableClip:</b>  TRUE indicates
+disable client clipboard redirection; FALSE otherwise.</p><p><b>fDisableCam:</b>  TRUE indicates disable
+client audio redirection; FALSE otherwise.</p><p><b>fDisableCcm:</b>  TRUE indicates disable
+client COM port redirection; FALSE otherwise.</p><p><b>fDisableLPT:</b>  TRUE indicates disable
+client LPT port redirection; FALSE otherwise.</p><p><b>fDisableCpm:</b>  TRUE indicates disable
+client printer redirection; FALSE otherwise.</p><p><b>fPromptForPassword:</b>  Set to FALSE to
+log on user with previously provided credentials, or TRUE to prompt the user
+for password.</p><p><b>ColorDepth:</b> The color depth of the session.<a id="Appendix_A_Target_114"></a><a aria-label="Product behavior note 114" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_114" data-linktype="relative-path">&lt;114&gt;</a> The following supported
+values translate to the number of colors supported: </p><p><span>§<span>  </span></span>0x1  
+256 (8 bpp)</p><p><span>§<span>  </span></span>0x2  
+32,768 (15 bpp)</p><p><span>§<span>  </span></span>0x3  
+65,536 (16 bpp)</p><p><span>§<span>  </span></span>0x4  
+16 million (24 bpp)</p><p><span>§<span>  </span></span>0x5  
+16 million with transparency (32 bpp)</p><p><b>fDenyTSConnections:</b>  If set to TRUE,
+<span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_ffff3f01-8c21-44d3-bbda-0062a1fbda4b" data-linktype="relative-path">Terminal
+Services</a></span> is effectively disabled since remote connections will be
+declined; FALSE otherwise.</p><p><b>fTempFoldersPerSession:</b>  Set to TRUE
+if there are temporary folders per session instead of one common temp folder,
+FALSE otherwise.</p><p><b>fDeleteTempFoldersOnExit:</b>  If set to
+TRUE, delete temporary folders on session exit; FALSE otherwise.</p><p><b>fWritableTSCCPermissionsTAB:</b>  If set
+to TRUE, an <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_eb335f5b-619b-46ed-9138-06e9910108c3" data-linktype="relative-path">administrator</a></span> can
+change the per-connection security description, FALSE otherwise.</p><p><b>fDisableCdm:</b>  TRUE indicates disable
+client drive redirection; FALSE otherwise.</p><p><b>fForceClientLptDef:</b>  TRUE indicates
+force the client&#39;s redirected printer to be the default printer for the user;
+FALSE otherwise.</p><p><b>fResetBroken:</b>  TRUE indicates reset
+the session if the connection is broken or if the connection or idle timers
+expire; FALSE otherwise.</p><p><b>fReconnectSame:</b>  Set to FALSE to
+indicate that the user can reconnect from any client computer to a disconnected
+session. TRUE indicates that the user can reconnect to a disconnected session
+only from the same client computer that initially established the disconnected
+session. Logging on from a different client computer will lead to a new
+Terminal Services session being created.</p><p><b>fSingleSessionPerUser:</b>  TRUE
+indicates each user can have only a single session; FALSE otherwise.</p><p><b>fDisableWallpaper:</b>  TRUE indicates
+display of the desktop wallpaper in the session has been disabled; FALSE
+otherwise.</p><p><b>fKeepAliveEnable:</b>  TRUE indicates
+KeepAlive is enabled; FALSE otherwise.</p><p><b>fPreventLicenseUpgrade:</b>  TRUE indicates
+licenses are prevented from being upgraded; FALSE otherwise.</p><p><b>fSecureLicensing:</b>  TRUE indicates
+secure licensing is enabled; FALSE otherwise.<a id="Appendix_A_Target_115"></a><a aria-label="Product behavior note 115" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_115" data-linktype="relative-path">&lt;115&gt;</a></p><p><b>fEnableTimeZoneRedirection:</b>  TRUE
+indicates Client time zone redirection is enabled; FALSE otherwise.<a id="Appendix_A_Target_116"></a><a aria-label="Product behavior note 116" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_116" data-linktype="relative-path">&lt;116&gt;</a></p><p><b>fDisableAutoReconnect:</b>  TRUE
+indicates disable auto-reconnect functionality; FALSE otherwise.</p><p><b>fDisableForcibleLogoff:</b>  TRUE
+indicates disable forcible logoff; FALSE otherwise.<a id="Appendix_A_Target_117"></a><a aria-label="Product behavior note 117" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_117" data-linktype="relative-path">&lt;117&gt;</a></p><p><b>fPolicyEncryptRPCTraffic:</b>  TRUE
+indicates policy for EncryptRpcTraffic is set; FALSE otherwise.<a id="Appendix_A_Target_118"></a><a aria-label="Product behavior note 118" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_118" data-linktype="relative-path">&lt;118&gt;</a></p><p><b>fEncryptRPCTraffic:</b>  TRUE indicates
+the policy for EncryptRpcTraffic is set; FALSE otherwise.</p><p><b>fErrorInvalidProfile:</b>  Set to TRUE
+if WFProfilePath, WFHomeDir, or WFHomeDirDrive is invalid (too long), FALSE
+otherwise.<a id="Appendix_A_Target_119"></a><a aria-label="Product behavior note 119" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_119" data-linktype="relative-path">&lt;119&gt;</a></p><p><b>fPolicyFallbackPrintDriver:</b>  TRUE
+indicates the policy for FallbackPrintDriver is set; FALSE otherwise.<a id="Appendix_A_Target_120"></a><a aria-label="Product behavior note 120" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_120" data-linktype="relative-path">&lt;120&gt;</a></p><p><b>FallbackPrintDriverType:</b>  The
+fallback printer driver type. Can be any of the following values:<a id="Appendix_A_Target_121"></a><a aria-label="Product behavior note 121" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_121" data-linktype="relative-path">&lt;121&gt;</a> </p><dl>
+<dd>
+<p>• NO_FALLBACK_DRIVERS (0x0)</p>
+</dd>
+<dd>
+<p>• FALLBACK_BESTGUESS (0x1) </p>
+</dd>
+<dd>
+<p>• FALLBACK_PCL (0x2)</p>
+</dd>
+<dd>
+<p>• FALLBACK_PS (0x3)</p>
+</dd>
+<dd>
+<p>• FALLBACK_PCLANDPS (0x4)</p>
+</dd></dl><p><b>fDisableTerminalServerTooltip:</b>  TRUE
+indicates disable <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span>
+tooltip; FALSE otherwise.<a id="Appendix_A_Target_122"></a><a aria-label="Product behavior note 122" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_122" data-linktype="relative-path">&lt;122&gt;</a></p><p><b>bSecurityLayer:</b>  If non-zero,
+indicates the SSL security layer in use.<a id="Appendix_A_Target_123"></a><a aria-label="Product behavior note 123" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_123" data-linktype="relative-path">&lt;123&gt;</a></p><p><b>fPolicySecurityLayer:</b>  TRUE
+indicates the policy for SecurityLayer is set; FALSE otherwise.<a id="Appendix_A_Target_124"></a><a aria-label="Product behavior note 124" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_124" data-linktype="relative-path">&lt;124&gt;</a></p><p><b>bUserAuthentication:</b>  The user
+authentication level. It can be any of the following values:</p><ul><li><p><span><span>  </span></span>TS_USER_AUTHENTICATION_NONE</p>
+</li><li><p><span><span>  </span></span>TS_USER_AUTHENTICATION_VIA_HYBRID</p>
+</li><li><p><span><span>  </span></span>TS_USER_AUTHENTICATION_VIA_SSL</p>
+</li><li><p><span><span>  </span></span>TS_USER_AUTHENTICATION_DEFAULT
+(same as TS_USER_AUTHENTICATION_NONE)</p>
+</li></ul><p><b>fPolicyUserAuthentication:</b>  TRUE
+indicates the policy for UserAuthentication is set; FALSE otherwise.<a id="Appendix_A_Target_125"></a><a aria-label="Product behavior note 125" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_125" data-linktype="relative-path">&lt;125&gt;</a></p><p><b>fPolicyTurnOffSingleAppMode:</b>  TRUE
+indicates the policy for TurnOffSingleAppMode is set; FALSE otherwise.<a id="Appendix_A_Target_126"></a><a aria-label="Product behavior note 126" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_126" data-linktype="relative-path">&lt;126&gt;</a></p><p><b>fTurnOffSingleAppMode:</b>  TRUE
+specifies that the desktop is always displayed when a client connects to a
+remote computer. FALSE specifies an initial program can be specified that runs
+on the remote computer after the client connects to the remote computer.</p><p><b>fDisablePNPPolicyIsEnfored:</b>  TRUE
+indicates policy for PnP redirection is set, FALSE otherwise. </p><p><b>fDisablePNPPolicyValue:</b>  TRUE
+indicates disable PnP redirection, FALSE otherwise. </p><p><b>MaxInstanceCount:</b>  The maximum
+number of instances that can connect.</p><p><b>LicensingMode:</b>  The licensing mode
+of the server.</p><p><b>MinEncryptionLevel:</b>  The minimum
+allowed encryption level. Possible numeric values for this parameter include 1
+(Low), 2 (Client Compatible), 3 (High), and 4 (FIPS). Detailed description of
+these encryption levels is included in <span><a href="../ms-rdpbcgr/5073f4ed-1e93-45e1-b039-6e30c385867c" data-linktype="relative-path">[MS-RDPBCGR]</a></span>
+sections <span><a href="../ms-rdpbcgr/f1c7c93b-94cc-4551-bb90-532a0185246a" data-linktype="relative-path">5.3.1</a></span>
+and <span><a href="../ms-rdpbcgr/6e547618-4755-41cb-9b3b-c9075565b80d" data-linktype="relative-path">5.4.1</a></span>.</p><p><b>WFProfilePath:</b>  The Terminal
+Services profile path. Overrides standard profile path.</p><p><b>WFHomeDir:</b>  The Terminal Services
+home directory path. Overrides standard home directory.</p><p><b>WFHomeDirDrive:</b>  The Terminal
+Services home directory drive. Overrides standard home directory.</p><p><b>SessionDirectoryActive:</b>  Set to TRUE
+if the machine is part of a Terminal Server Farm, FALSE otherwise. For
+information about Terminal Server Farms, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=90204" data-linktype="external">[MSFT-SDLBTS]</a></span>.</p><p><b>SessionDirectoryLocation:</b>  The name
+of the Session Directory Server. For information about Session Directory, see
+[MSFT-SDLBTS].</p><p><b>SessionDirectoryClusterName:</b>  The
+name of the Terminal Server Farm to which this machine belongs. For information
+about Terminal Server Farms, see [MSFT-SDLBTS].</p><p><b>SessionDirectoryAdditionalParams:</b>  Additional
+parameters to pass to the session directory. This is an opaque type.</p><p><b>SessionDirectoryExposeServerIP:</b>  If
+set to TRUE, expose the server&#39;s IP address to the client; otherwise FALSE.</p><p><b>KeepAliveInterval:</b>  Specifies the
+interval between keep-alives.</p><p><b>Shadow:</b>  Specifies whether shadowing
+of the session is allowed.</p><p><b>MaxConnectionTime:</b>  The maximum
+allowed session connection time setting of the session in milliseconds.</p><p><b>MaxDisconnectionTime:</b>  The maximum
+allowed session disconnect time of the session in milliseconds.</p><p><b>MaxIdleTime:</b>  The maximum allowed
+session idle time setting of the session in milliseconds.</p><p><b>WorkDirectory:</b>  The work directory
+for the initial program.</p><p><b>InitialProgram:</b>  The program to run
+instead of the default, if set.<a id="Appendix_A_Target_127"></a><a aria-label="Product behavior note 127" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_127" data-linktype="relative-path">&lt;127&gt;</a></p><p><b>LicenseServers:</b>  A hardcoded array
+of license servers that the server will use instead of using license server
+discovery.</p></div>

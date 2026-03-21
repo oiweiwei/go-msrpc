@@ -1,0 +1,82 @@
+package sessenvpublicrpc
+
+import (
+	"context"
+	"fmt"
+	"strings"
+	"unicode/utf16"
+
+	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
+	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
+	ndr "github.com/oiweiwei/go-msrpc/ndr"
+)
+
+var (
+	_ = context.Background
+	_ = fmt.Errorf
+	_ = utf16.Encode
+	_ = strings.TrimPrefix
+	_ = ndr.ZeroString
+	_ = (*uuid.UUID)(nil)
+	_ = (*dcerpc.SyntaxID)(nil)
+)
+
+// SessEnvPublicRpc server interface.
+type SessEnvPublicRPCServer interface {
+
+	// The RpcShadow2 method will create a shadow session using the Windows Desktop Sharing
+	// API in the target session and return an invitation to that session.
+	//
+	// The caller MUST have WINSTATION_SHADOW permission. The other session can be local
+	// or on a terminal server. The session to be shadowed MUST be in the active state with
+	// a user logged on. The method checks whether the caller has WINSTATION_SHADOW permission
+	// (section 3.1.1) and fails if the caller does not have the permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	Shadow2(context.Context, *Shadow2Request) (*Shadow2Response, error)
+}
+
+func RegisterSessEnvPublicRPCServer(conn dcerpc.Conn, o SessEnvPublicRPCServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewSessEnvPublicRPCServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(SessEnvPublicRPCSyntaxV1_0))...)
+}
+
+func NewSessEnvPublicRPCServerHandle(o SessEnvPublicRPCServer) dcerpc.ServerHandle {
+	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+		return SessEnvPublicRPCServerHandle(ctx, o, opNum, r)
+	}
+}
+
+func SessEnvPublicRPCServerHandle(ctx context.Context, o SessEnvPublicRPCServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+	switch opNum {
+	case 0: // RpcShadow2
+		op := &xxx_Shadow2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &Shadow2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Shadow2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	}
+	return nil, nil
+}
+
+// Unimplemented SessEnvPublicRpc
+type UnimplementedSessEnvPublicRPCServer struct {
+}
+
+func (UnimplementedSessEnvPublicRPCServer) Shadow2(context.Context, *Shadow2Request) (*Shadow2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ SessEnvPublicRPCServer = (*UnimplementedSessEnvPublicRPCServer)(nil)

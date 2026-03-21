@@ -1,0 +1,651 @@
+<div class="content"><p>Following is the format of each TSProperty structure:</p><table>
+ <tbody><tr>
+  <th><p><br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>1<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>2<br/>0</p></th>
+  <th><p><br/>1</p></th>
+  <th><p><br/>2</p></th>
+  <th><p><br/>3</p></th>
+  <th><p><br/>4</p></th>
+  <th><p><br/>5</p></th>
+  <th><p><br/>6</p></th>
+  <th><p><br/>7</p></th>
+  <th><p><br/>8</p></th>
+  <th><p><br/>9</p></th>
+  <th><p>3<br/>0</p></th>
+  <th><p><br/>1</p></th>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>NameLength</p>
+  </td>
+  <td colspan="16">
+  <p>ValueLength</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="16">
+  <p>Type</p>
+  </td>
+  <td colspan="16">
+  <p>PropName
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>PropValue
+  (variable)</p>
+  </td>
+ </tr>
+ <tr>
+  <td colspan="32">
+  <p>...</p>
+  </td>
+ </tr>
+</tbody></table><p><b>NameLength (2 bytes): </b>A 2-byte unsigned integer
+indicating the length of the PropName field in bytes.</p><p><b>ValueLength (2 bytes): </b>A 2-byte unsigned
+integer indicating the length of the PropValue field in bytes.</p><p><b>Type (2 bytes): </b>A 2-byte unsigned integer
+indicating the type of the PropValue field. It can have the following values:</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>PROP_TYPE_ITEM</p>
+  <p>0x01</p>
+  </td>
+  <td>
+  <p>Indicates that the property contains one item.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>PropName (variable): </b>A Unicode string whose
+length is indicated by the NameLength field. The string indicates the name of
+the property.</p><p><b>PropValue (variable): </b>An encoded binary BLOB
+of length indicated by the ValueLength field. This field either contains a
+32-bit unsigned integer or an array of ASCII characters. See <span><a href="27cd734a-b780-41e6-b9d5-b6c9fba6c16a" data-linktype="relative-path">Encoding
+and decoding PropValue field</a></span> for encoding and decoding this BLOB.</p><dl>
+<dd>
+<p>The following table describes various PropName
+fields and associated PropValue fields used by Terminal Services.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>PropName</p>
+   </th>
+   <th>
+   <p>PropValue type</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+   <th>
+   <p>[MS-TSTS] RPC call that can be used to query this
+   value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>CtxCfgPresent</p>
+  </td>
+  <td>
+  <p>32-bit unsigned integer</p>
+  </td>
+  <td>
+  <p>It indicates presence of valid TSProperty structures
+  in TSPropertyArray. If the TSPropertyArray does not contain a TSProperty
+  structure containing this PropName and PropValue, Terminal Services ignore
+  the remaining contents of TSPropertyArray. The PropValue field can only
+  contain value 0xB00B1E55.</p>
+  </td>
+  <td>
+  <p>None.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CtxCfgFlags1</p>
+  </td>
+  <td>
+  <p>32-bit unsigned integer</p>
+  </td>
+  <td>
+  <p>Each bit in the PropValue maps to a Boolean field of
+  the <span><a href="dba750b8-cb35-4e88-9811-e2a1f8a10701" data-linktype="relative-path">USERCONFIG</a></span>
+  structure returned by the RpcGetConfigData method. For details about each
+  bit, see the table of CtxCfgFlags1 values in this section. </p>
+  </td>
+  <td>
+  <p>RpcGetConfigData.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CtxCallBack</p>
+  </td>
+  <td>
+  <p>32-bit unsigned integer</p>
+  </td>
+  <td>
+  <p>The callback class for callback operations.</p>
+  </td>
+  <td>
+  <p>Returned by RpcGetConfigData method in Callback field
+  of USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CtxKeyboardLayout</p>
+  </td>
+  <td>
+  <p>32-bit unsigned integer</p>
+  </td>
+  <td>
+  <p>The keyboard layout (HKL) of the user session.</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  KeyboardLayout field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CtxMinEncryptionLevel</p>
+  </td>
+  <td>
+  <p>8-bit integer</p>
+  </td>
+  <td>
+  <p>The minimum allowed encryption level of the user
+  session.</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  MinEncryptionLevel field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CtxNWLogonServer</p>
+  </td>
+  <td>
+  <p>32-bit unsigned integer</p>
+  </td>
+  <td>
+  <p>The NetWare logon server name.</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  NWLogonServer field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CtxWFHomeDir</p>
+  </td>
+  <td>
+  <p>Variable-length ASCII character array</p>
+  </td>
+  <td>
+  <p>This attribute specifies the home directory for the
+  user. Each user on a terminal server has a unique home directory. This
+  ensures that application information is stored separately for each user in a
+  multi-user environment. To set a home directory on the local computer, the
+  implementer specifies a local path; for example, C:\Path. To set a home directory
+  in a network environment, the implementer MUST first set the
+  CtxWFHomeDirDrive property, and then set this property to a Universal Naming
+  Convention (UNC) path.</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  WFHomeDir field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CtxWFHomeDirDrive</p>
+  </td>
+  <td>
+  <p>Variable-length ASCII character array</p>
+  </td>
+  <td>
+  <p>This attribute specifies a home drive for the user. In
+  a network environment, this property is a string containing a drive
+  specification (a drive letter followed by a colon) to which the UNC path specified
+  in the TerminalServicesCtxWFHomeDir property is mapped. To set a home
+  directory in a network environment, the implementer MUST first set this
+  property, and then set the CtxWFHomeDir property.</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the WFHomeDirDrive
+  field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CtxInitialProgram</p>
+  </td>
+  <td>
+  <p>Variable-length ASCII character array</p>
+  </td>
+  <td>
+  <p>This attribute specifies the path and file name of the
+  application that the user requires to start automatically when the user logs
+  on to the terminal server. To set an initial application to start when the
+  user logs on, the implementer MUST first set this property, and then set the
+  CtxWorkDirectory property. If the implementer sets only the CtxInitialProgram
+  property, the application starts in the user&#39;s session in the default user
+  directory.</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  InitialProgram field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CtxMaxConnectionTime</p>
+  </td>
+  <td>
+  <p>32-bit unsigned integer</p>
+  </td>
+  <td>
+  <p>This attribute specifies the maximum duration (in
+  minutes) of the Terminal Services session. After the specified number of
+  minutes has elapsed, the session can be disconnected or terminated.</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  MaxConnectionTime field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CtxMaxDisconnectionTime</p>
+  </td>
+  <td>
+  <p>32-bit unsigned integer</p>
+  </td>
+  <td>
+  <p>This attribute specifies the maximum amount of time
+  (in minutes) that a disconnected Terminal Services session remains active on
+  the terminal server. After the specified number of minutes has elapsed, the
+  session is terminated.</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  MaxDisconnectionTime field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CtxMaxIdleTime</p>
+  </td>
+  <td>
+  <p>32-bit unsigned integer</p>
+  </td>
+  <td>
+  <p>This attribute specifies the maximum amount of time
+  (in minutes) that the Terminal Services session can remain idle. After the
+  specified number of minutes has elapsed, the session can be disconnected or
+  terminated.</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  MaxIdleTime field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CtxWFProfilePath</p>
+  </td>
+  <td>
+  <p>Variable-length ASCII character array</p>
+  </td>
+  <td>
+  <p>This attribute specifies a roaming or mandatory
+  profile path to use when the user logs on to the terminal server. The profile
+  path is in the following network path format: \\servername\profiles folder
+  name\username.</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  WFProfilePath field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CtxShadow</p>
+  </td>
+  <td>
+  <p>32-bit unsigned integer</p>
+  </td>
+  <td>
+  <p>This attribute specifies whether to allow remote
+  observation or remote control of the user&#39;s Terminal Services session. The
+  values are as follows:</p>
+  <p>0. Disable</p>
+  <p>1. EnableInputNotify</p>
+  <p>2. EnableInputNoNotify</p>
+  <p>3. EnableNoInputNotify</p>
+  <p>4. EnableNoInputNoNotify</p>
+  <p>For a description of these values, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=208353" data-linktype="external">[MSDN-RCMWin32_TSRCS]</a></span>.</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the Shadow
+  field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CtxWorkDirectory</p>
+  </td>
+  <td>
+  <p>Variable-length ASCII character array</p>
+  </td>
+  <td>
+  <p>This attribute specifies the working directory path
+  for the user. To set an initial application to start when the user logs on to
+  the terminal server, the implementer MUST first set the CtxInitialProgram
+  property, and then set this property.</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  WorkDirectory field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>CtxCallbackNumber</p>
+  </td>
+  <td>
+  <p>Variable-length ASCII character array</p>
+  </td>
+  <td>
+  <p>This attribute specifies the call back number provided
+  to the user on the client side for technical support.</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  CallbackNumber field of the USERCONFIG structure.</p>
+  </td>
+ </tr></tbody></table>
+</dd>
+<dd>
+<p>The following table provides the
+details of each bit in the PropValue associated with the PropName
+&#39;CtxCfgFlags1&#39;.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Bit mask in CtxCfgFlags1 PropValue</p>
+   </th>
+   <th>
+   <p>[MS-TSTS] RPC call that can be used to query this
+   value</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x10000000</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in
+  fInheritInitialProgram field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_INHERITCALLBACK</p>
+  <p>0x08000000</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fInheritCallback field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_INHERITCALLBACKNUMBER</p>
+  <p>0x04000000</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fInheritCallbackNumber field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_INHERITSHADOW</p>
+  <p>0x02000000</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fInheritShadow field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_INHERITMAXSESSIONTIME</p>
+  <p>0x01000000</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fInheritMaxSessionTime field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_INHERITMAXDISCONNECTIONTIME</p>
+  <p>0x00800000</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fInheritMaxDisconnectionTime field the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_INHERITMAXIDLETIME</p>
+  <p>0x00400000</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fInheritMaxIdleTime field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_INHERITAUTOCLIENT</p>
+  <p>0x00200000</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fInheritAutoClient field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_INHERITSECURITY</p>
+  <p>0x00100000</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fInheritSecurity field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_PROMPTFORPASSWORD</p>
+  <p>0x00080000</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fPromptForPassword field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_RESETBROKEN</p>
+  <p>0x00040000</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fResetBroken field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_RECONNECTSAME</p>
+  <p>0x00020000</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fReconnectSame field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_LOGONDISABLED</p>
+  <p>0x00010000</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fLogonDisabled field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_AUTOCLIENTDRIVES</p>
+  <p>0x00008000</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fAutoClientDrives field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_AUTOCLIENTLPTS</p>
+  <p>0x00004000</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fAutoClientLpts field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_FORCECLIENTLPTDEF</p>
+  <p>0x00002000</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fForceClientLptDef field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_DISABLEENCRYPTION</p>
+  <p>0x00001000</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fDisableEncryption field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_HOMEDIRECTORYMAPROOT</p>
+  <p>0x00000800</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fHomeDirectoryMapRoot field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_USEDEFAULTGINA</p>
+  <p>0x00000400</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fUseDefaultGina field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_DISABLECPM</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fDisableCpm field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_DISABLECDM</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fDisableCdm field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_DISABLECCM</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fDisableCcm field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_DISABLELPT</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fDisableLPT field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_DISABLECLIP</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fDisableClip field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_DISABLEEXE</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fDisableExe field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_WALLPAPERDISABLED</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fWallPaperDisabled field of the USERCONFIG structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>F1MSK_DISABLECAM</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Returned by the RpcGetConfigData method in the
+  fDisableCam field of the USERCONFIG structure.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

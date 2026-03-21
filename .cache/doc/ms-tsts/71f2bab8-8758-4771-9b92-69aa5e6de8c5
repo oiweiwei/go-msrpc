@@ -1,0 +1,14 @@
+<div class="content"><p>The <b>SHADOW_PERMISSION_REQUEST</b> enumeration specifies
+whether user permission is being requested.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   SHADOW_PERMISSION_REQUEST_SILENT = 0,
+   SHADOW_PERMISSION_REQUEST_REQUESTPERMISSION,
+   SHADOW_PERMISSION_REQUEST_Count
+ } SHADOW_PERMISSION_REQUEST;
+</pre></div>
+</dd></dl><p><b>SHADOW_PERMISSION_REQUEST_SILENT:  </b>Permission
+is not requested.</p><p><b>SHADOW_PERMISSION_REQUEST_REQUESTPERMISSION:  </b>User
+permission will be requested before the shadow session begins.</p><p><b>SHADOW_PERMISSION_REQUEST_Count:  </b>Count of
+enum values.</p></div>

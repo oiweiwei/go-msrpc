@@ -1,0 +1,122 @@
+<div class="content"><p>The following example shows how to enumerate sessions on a <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal
+server</a></span>. This example uses <span><a href="bc8c6536-baff-466b-b12e-435b66577bbd" data-linktype="relative-path">TermSrvBindSecure</a></span>
+from section 4.3.</p><ol><li><p><span>    </span>Get the LSM
+Binding.</p>
+<div><pre> HANDLE GetLSMBinding(LPWSTR pszServerName)
+ {
+   HANDLE hLSMBinding = NULL;
+   RPC_STATUS rpcStatus = RPC_S_OK;
+  
+   //ASSERT( NULL != pszServerName );
+   rpcStatus = TermSrvBindSecure(
+     gpszPublicUuid,
+     gpszRemoteProtocolSequence,
+     pszServerName,
+     TSRPC_REMOTE_ENDPOINT,
+     gpszOptions,
+     &amp;hLSMBinding
+     );
+  
+   if( rpcStatus != RPC_S_OK || hLSMBinding == NULL)
+   {
+     wprintf(L&#34;ERR: TermSrvBindSecure failed: %d\n&#34;, 
+             rpcStatus );
+     SetLastError( rpcStatus );
+   }
+  
+   return hLSMBinding;
+ }
+  
+</pre></div>
+</li><li><p><span>    </span>Enumerate the
+sessions.</p>
+<div><pre> RpcTryExcept 
+ {
+   hr = RpcOpenEnum( hLSMBind, &amp;hEnum );
+   if(hr == S_OK)
+   {
+     hr = RpcGetEnumResult( hEnum, &amp;pAllSessions, 
+                     CURRENT_ENUM_LEVEL, &amp;Entries );
+     if(hr == S_OK)
+     {
+       for(ULONG i=0;i&lt;Entries;i++)
+       {
+         wprintf(L&#34;%-10d %-20s %-40s\n&#34;, 
+           pAllSessions[i].Data.SessionEnum_Level3.SessionId, 
+           WinstationStateClassNames[pAllSessions[i].Data.
+                                     SessionEnum_Level3.State], 
+           pAllSessions[i].Data.SessionEnum_Level3.Name);
+  
+           if( NULL != pAllSessions[i].Data.SessionEnum_Level3.
+                       pProtocolData )
+           {
+             MIDL_user_free( pAllSessions[i].Data.
+                          SessionEnum_Level3.pProtocolData );                    
+           }
+       }
+  
+       rv1 = TRUE;
+     }
+     else
+     {
+       wprintf(L&#34;ERR: RpcGetEnumResult failed %d\n&#34;,hr );
+     }
+  
+     if ( pAllSessions )
+     {
+       MIDL_user_free(pAllSessions);
+     }
+  
+   }
+   else
+   {
+     wprintf(L&#34;ERR: RpcOpenEnum failed %d\n&#34;,hr );
+   }
+  
+ }
+  
+ RpcExcept(I_RpcExceptionFilter(RpcExceptionCode())) 
+ {
+   wprintf(L&#34;ERR: RPC Exception %d\n&#34;,RpcExceptionCode() );
+ }
+  
+ RpcEndExcept
+         
+  
+  
+</pre></div>
+</li><li><p><span>    </span>Close the
+handles.</p>
+<div><pre> if(hEnum)
+   RpcCloseEnum(&amp;hEnum);
+  
+ if(hLSMBind)
+   RpcBindingFree(&amp;hLSMBind);
+  
+</pre></div>
+</li></ol><p>The following diagram illustrates the message sequence for
+enumerating the sessions.</p><p><img id="MS-TSTS_pict6d40259a-f455-4c96-80c8-1406a19f5811.png" src="ms-tsts_files/image001.png" alt="LSM session enumeration sequence" title="LSM session enumeration sequence" data-linktype="relative-path"/></p><p><b>Figure 1: LSM session enumeration sequence</b></p><p>The sequence of messages for enumerating sessions on the
+server is as follows:</p><ol><li><p><span>    </span>After an RPC
+binding has been established to the server, the client requests a session
+enumeration handle to be opened by the server by calling the <span><a href="f17f4b8d-8d52-4538-acf3-cdfbe581a99b" data-linktype="relative-path">RpcOpenEnum</a></span>
+method.</p>
+</li><li><p><span>    </span>The server, in
+response, opens a handle of the type <span><a href="15f02d59-200a-435d-a07b-055e1276d01c" data-linktype="relative-path">ENUM_HANDLE</a></span> and
+returns to the client.</p>
+</li><li><p><span>    </span>The client then
+calls the <span><a href="1a7d5d1d-1ce5-448f-bb4a-c79741982edb" data-linktype="relative-path">RpcGetEnumResult</a></span>
+method by passing this handle, along with an uninitialized buffer, to get the
+list of sessions.</p>
+</li><li><p><span>    </span>The server, on
+receiving the request, allocates memory for the buffer and fills it with an
+array of <span><a href="fd8759ef-4f6c-45c6-b542-9d5e53e90f7d" data-linktype="relative-path">SESSIONENUM</a></span>
+structures containing session information, one for each session on the server.
+It also returns the number of sessions on the server.</p>
+</li><li><p><span>    </span>The client, on
+receiving the data, calls the <span><a href="cb9386d5-d99e-46ff-8199-563f6b59ecb8" data-linktype="relative-path">RpcCloseEnum</a></span> method
+to inform the server to close the enumeration handle.</p>
+</li><li><p><span>    </span>The server, on
+receiving the RpcCloseEnum call, closes the enumeration handle.</p>
+</li><li><p><span>    </span>The client frees
+the array of SESSIONENUM structures it received before exiting.</p>
+</li></ol></div>

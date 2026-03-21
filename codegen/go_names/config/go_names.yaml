@@ -35,6 +35,7 @@ rename:
   lpcSenderProfile: [Sender, Profile]
   lpcRecipientList: [Recipient, List]
   lpcCoverPageInfo: [Cover, Page, Info]
+  ppLanAdapter: [Lan, Adapter, Name]
 rotate:
   ob: Offset
   obwsz: Offset

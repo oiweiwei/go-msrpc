@@ -1,0 +1,398 @@
+package termsrvenumeration
+
+import (
+	"context"
+	"fmt"
+	"strings"
+	"unicode/utf16"
+
+	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
+	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
+	ndr "github.com/oiweiwei/go-msrpc/ndr"
+)
+
+var (
+	_ = context.Background
+	_ = fmt.Errorf
+	_ = utf16.Encode
+	_ = strings.TrimPrefix
+	_ = ndr.ZeroString
+	_ = (*uuid.UUID)(nil)
+	_ = (*dcerpc.SyntaxID)(nil)
+)
+
+// TermSrvEnumeration server interface.
+type TerminateServerEnumerationServer interface {
+
+	// The RpcOpenEnum method returns a handle of the type ENUM_HANDLE, which can be used
+	// to query information about the sessions that are currently running on a terminal
+	// server. No special permissions are required to call this method. However, only sessions
+	// to which the caller has WINSTATION_QUERY permission are enumerated.
+	//
+	// Return Values:  The method MUST return S_OK (0x00000000) on success; otherwise,
+	// it MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	OpenEnum(context.Context, *OpenEnumRequest) (*OpenEnumResponse, error)
+
+	// The RpcCloseEnum method closes the enumeration object returned by RpcOpenEnum. This
+	// method MUST be called after RpcOpenEnum. No special permissions are required to call
+	// this method.
+	//
+	// Return Values:  The method MUST return S_OK (0x00000000) on success; otherwise,
+	// it MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	CloseEnum(context.Context, *CloseEnumRequest) (*CloseEnumResponse, error)
+
+	// The RpcFilterByState method adds a filter to the session enumeration result, running
+	// on a terminal server, based on the state of the sessions. This method MUST be called
+	// after RpcOpenEnum and before RpcGetEnumResult or RpcGetEnumResultEx. No special permissions
+	// are required to call this method.
+	//
+	// Return Values:  The method MUST return S_OK (0x00000000) on success; otherwise,
+	// it MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	FilterByState(context.Context, *FilterByStateRequest) (*FilterByStateResponse, error)
+
+	// The RpcFilterByCallersName method adds a filter to the session enumeration result,
+	// running on a terminal server, based on the caller name. The enumeration will return
+	// only sessions belonging to the user making this call. This method MUST be called
+	// after RpcOpenEnum and before RpcGetEnumResult or RpcGetEnumResultEx. No special permissions
+	// are required to call this method.
+	//
+	// Return Values:  The method MUST return S_OK (0x00000000) on success; otherwise,
+	// it MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	FilterByCallersName(context.Context, *FilterByCallersNameRequest) (*FilterByCallersNameResponse, error)
+
+	// The RpcEnumAddFilter method adds another filter to the current enumeration. This
+	// method MUST be called after RpcOpenEnum and before RpcGetEnumResult or RpcGetEnumResultEx.
+	// No special permissions are required to call this method.
+	//
+	// Return Values:  The method MUST return S_OK (0x00000000) on success; otherwise,
+	// it MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	EnumAddFilter(context.Context, *EnumAddFilterRequest) (*EnumAddFilterResponse, error)
+
+	// The RpcGetEnumResult method returns a pointer of the type PSESSIONENUM which points
+	// to the list of sessions currently running on the terminal server after applying the
+	// specified filter. This method MUST be called after RpcOpenEnum. No special permissions
+	// are required to call this method. However, only sessions for which the caller has
+	// WINSTATION_QUERY permission are enumerated. The method checks whether the caller
+	// has WINSTATION_QUERY permission (section 3.1.1) by setting it as the Access Request
+	// mask, and skips the sessions for which the caller does not have the permission.
+	//
+	// Return Values:  The method MUST return S_OK (0x00000000) on success; otherwise,
+	// it MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetEnumResult(context.Context, *GetEnumResultRequest) (*GetEnumResultResponse, error)
+
+	// The RpcFilterBySessionType method adds a filter to the session enumeration result,
+	// running on a terminal server, based on the type of the session. This method MUST
+	// be called after RpcOpenEnum and before RpcGetEnumResult or RpcGetEnumResultEx. No
+	// special permissions are required to call this method.
+	//
+	// Return Values:  The method MUST return S_OK (0x00000000) on success; otherwise,
+	// it MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	FilterBySessionType(context.Context, *FilterBySessionTypeRequest) (*FilterBySessionTypeResponse, error)
+
+	// Opnum7NotUsedOnWire operation.
+	// Opnum7NotUsedOnWire
+
+	// The RpcGetSessionIds method returns a list of the IDs associated with the sessions
+	// running on a terminal server that satisfy the specified filter. No special permissions
+	// are required to call this method. However, only sessions for which the caller has
+	// WINSTATION_QUERY permission are enumerated. The method checks whether the caller
+	// has WINSTATION_QUERY permission (section 3.1.1) by setting it as the Access Request
+	// mask, and skips sessions for which the caller does not have the permission.
+	//
+	// Return Values:  The method MUST return S_OK (0x00000000) on success; otherwise,
+	// it MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetSessionIDs(context.Context, *GetSessionIDsRequest) (*GetSessionIDsResponse, error)
+
+	// The RpcGetEnumResultEx method returns a pointer of the type PSESSIONENUM_EX, which
+	// points to the list of sessions currently running on the terminal server after applying
+	// the specified filter. This method MUST be called after RpcOpenEnum. No special permissions
+	// are required to call this method. However, only sessions for which the caller has
+	// WINSTATION_QUERY permission are enumerated. The method checks whether the caller
+	// has WINSTATION_QUERY permission (section 3.1.1) by setting it as the Access Request
+	// mask, and skips the sessions for which the caller does not have the permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetEnumResultEx(context.Context, *GetEnumResultExRequest) (*GetEnumResultExResponse, error)
+
+	// The RpcGetAllSessions method returns a pointer of type PEXECENVDATA, which points
+	// to the list of sessions currently running on the terminal server and the sessions
+	// running on various virtual machines hosted by the server. No special permissions
+	// are required to call this method. However, only sessions for which the caller has
+	// WINSTATION_QUERY permission are enumerated. The method checks whether the caller
+	// has WINSTATION_QUERY permission (section 3.1.1) by setting it as the Access Request
+	// mask, and skips the sessions for which the caller does not have the permission.<155>
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetAllSessions(context.Context, *GetAllSessionsRequest) (*GetAllSessionsResponse, error)
+
+	// The RpcGetAllSessionsEx method returns a pointer of type PEXECENVDATAEX, which points
+	// to the list of sessions currently running on the terminal server and the sessions
+	// running on various virtual machines hosted by the server. No special permissions
+	// are required to call this method. However, only sessions for which the caller has
+	// WINSTATION_QUERY permission are enumerated. The method checks whether the caller
+	// has WINSTATION_QUERY permission (section 3.1.1) by setting it as the Access Request
+	// mask, and skips the sessions for which the caller does not have the permission.<157>
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetAllSessionsEx(context.Context, *GetAllSessionsExRequest) (*GetAllSessionsExResponse, error)
+}
+
+func RegisterTerminateServerEnumerationServer(conn dcerpc.Conn, o TerminateServerEnumerationServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewTerminateServerEnumerationServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(TerminateServerEnumerationSyntaxV1_0))...)
+}
+
+func NewTerminateServerEnumerationServerHandle(o TerminateServerEnumerationServer) dcerpc.ServerHandle {
+	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+		return TerminateServerEnumerationServerHandle(ctx, o, opNum, r)
+	}
+}
+
+func TerminateServerEnumerationServerHandle(ctx context.Context, o TerminateServerEnumerationServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+	switch opNum {
+	case 0: // RpcOpenEnum
+		op := &xxx_OpenEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &OpenEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 1: // RpcCloseEnum
+		op := &xxx_CloseEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &CloseEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 2: // RpcFilterByState
+		op := &xxx_FilterByStateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &FilterByStateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FilterByState(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 3: // RpcFilterByCallersName
+		op := &xxx_FilterByCallersNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &FilterByCallersNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FilterByCallersName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 4: // RpcEnumAddFilter
+		op := &xxx_EnumAddFilterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &EnumAddFilterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumAddFilter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 5: // RpcGetEnumResult
+		op := &xxx_GetEnumResultOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &GetEnumResultRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEnumResult(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 6: // RpcFilterBySessionType
+		op := &xxx_FilterBySessionTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &FilterBySessionTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FilterBySessionType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 7: // Opnum7NotUsedOnWire
+		// Opnum7NotUsedOnWire
+		return nil, nil
+	case 8: // RpcGetSessionIds
+		op := &xxx_GetSessionIDsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &GetSessionIDsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSessionIDs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 9: // RpcGetEnumResultEx
+		op := &xxx_GetEnumResultExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &GetEnumResultExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEnumResultEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 10: // RpcGetAllSessions
+		op := &xxx_GetAllSessionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &GetAllSessionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAllSessions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 11: // RpcGetAllSessionsEx
+		op := &xxx_GetAllSessionsExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &GetAllSessionsExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAllSessionsEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	}
+	return nil, nil
+}
+
+// Unimplemented TermSrvEnumeration
+type UnimplementedTerminateServerEnumerationServer struct {
+}
+
+func (UnimplementedTerminateServerEnumerationServer) OpenEnum(context.Context, *OpenEnumRequest) (*OpenEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerEnumerationServer) CloseEnum(context.Context, *CloseEnumRequest) (*CloseEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerEnumerationServer) FilterByState(context.Context, *FilterByStateRequest) (*FilterByStateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerEnumerationServer) FilterByCallersName(context.Context, *FilterByCallersNameRequest) (*FilterByCallersNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerEnumerationServer) EnumAddFilter(context.Context, *EnumAddFilterRequest) (*EnumAddFilterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerEnumerationServer) GetEnumResult(context.Context, *GetEnumResultRequest) (*GetEnumResultResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerEnumerationServer) FilterBySessionType(context.Context, *FilterBySessionTypeRequest) (*FilterBySessionTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerEnumerationServer) GetSessionIDs(context.Context, *GetSessionIDsRequest) (*GetSessionIDsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerEnumerationServer) GetEnumResultEx(context.Context, *GetEnumResultExRequest) (*GetEnumResultExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerEnumerationServer) GetAllSessions(context.Context, *GetAllSessionsRequest) (*GetAllSessionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerEnumerationServer) GetAllSessionsEx(context.Context, *GetAllSessionsExRequest) (*GetAllSessionsExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ TerminateServerEnumerationServer = (*UnimplementedTerminateServerEnumerationServer)(nil)

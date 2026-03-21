@@ -1,0 +1,43 @@
+<div class="content"><p>The RpcGetClientData method returns information about the
+client that is connected to a particular session running on a <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal
+server</a></span>. The caller must have WINSTATION_QUERY permission. The method
+checks whether the caller has WINSTATION_QUERY permission (section <span><a href="4507e852-be3d-45b6-bc47-8ca0b552c94d" data-linktype="relative-path">3.1.1</a></span>)
+by setting it as the Access Request mask, and fails if the caller does not have
+the permission. </p><dl>
+<dd>
+<div><pre> HRESULT RpcGetClientData(
+   [in] handle_t hBinding,
+   [in] ULONG SessionId,
+   [out, size_is(,*pOutBuffByteLen)] 
+     unsigned char** ppBuff,
+   [out] ULONG* pOutBuffByteLen
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b> The <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>.
+For more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=93771" data-linktype="external">[MSDN-RPCBIND]</a></span>.</p><p><b>SessionId: </b> The ID of the session from which
+client data is to be retrieved.</p><p><b>ppBuff: </b> The buffer that contains the client
+data. This data is of type <span><a href="673d8ac0-f557-48cb-98a6-49925160d729" data-linktype="relative-path">PWINSTATIONCLIENT</a></span>,
+specified in section 2.2.2.19. The buffer is allocated by RpcGetClientData.</p><p><b>pOutBuffByteLen: </b> The number of bytes of
+client data that is returned.</p><p><b>Return Values: </b> The method MUST return S_OK
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+negative value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Successful completion.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

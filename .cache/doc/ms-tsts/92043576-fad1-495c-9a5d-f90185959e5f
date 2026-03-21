@@ -1,0 +1,14 @@
+<div class="content"><p>The TSVIPSession structure defines a session with its IP
+address information.</p><dl>
+<dd>
+<div><pre> typedef struct _TSVIPSession {
+   DWORD dwVersion;
+   DWORD SessionId;
+   TSVIPAddress SessionIP;
+ } TSVIPSession,
+  *PTSVIPSession;
+</pre></div>
+</dd></dl><p><b>dwVersion:</b>  Specifies the version of
+the structure. This field MUST be set to 0x01, the only supported version.</p><p><b>SessionId:</b>  Specifies the ID of the
+session.</p><p><b>SessionIP:</b>  Specifies the IP address
+for the session. This is of type <span><a href="eb4b65ab-dbfe-481d-b85f-7931ee38c2cc" data-linktype="relative-path">TSVIPAddress</a></span>.</p></div>

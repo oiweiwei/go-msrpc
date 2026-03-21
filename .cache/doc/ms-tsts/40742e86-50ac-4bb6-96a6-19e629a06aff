@@ -1,0 +1,59 @@
+<div class="content"><p> The RCMListener interface provides methods that open,
+close, start, and stop a <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_1e5aa0c2-4617-4d7a-969e-a7091c415c8d" data-linktype="relative-path">listener</a></span>. The
+version for this interface is 1.0.</p><p>For information about <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b91c1e27-e8e0-499b-8c65-738006af72ee" data-linktype="relative-path">endpoints</a></span>, <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_c4813fc3-b2e5-4aa3-bde7-421d950d68d3" data-linktype="relative-path">UUID</a></span>
+values, and versions, see sections <span><a href="ac0535d0-a847-4386-ae3e-e93a50ff2484" data-linktype="relative-path">2.1</a></span> and <span><a href="4f5ff568-2887-4c50-8b36-38bb85170b58" data-linktype="relative-path">1.9</a></span>.</p><p>Methods in RPC Opnum Order</p><table><thead>
+  <tr>
+   <th>
+   <p>Method</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p><span><a href="126bc7fa-9e64-4b7b-a78c-1a08895fb60a" data-linktype="relative-path">RpcOpenListener</a></span></p>
+  </td>
+  <td>
+  <p> Returns a <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span> to the
+  specified <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_ffff3f01-8c21-44d3-bbda-0062a1fbda4b" data-linktype="relative-path">Terminal Services</a></span>
+  listener running on a terminal server.</p>
+  <p>Opnum: 0</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="95be2185-9921-48b0-b722-848ae3075b9d" data-linktype="relative-path">RpcCloseListener</a></span></p>
+  </td>
+  <td>
+  <p> Closes the handle for a Terminal Services listener
+  running on a terminal server.</p>
+  <p>Opnum: 1</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="64f7fe27-fea1-4e31-8495-f07aae42aed1" data-linktype="relative-path">RpcStopListener</a></span></p>
+  </td>
+  <td>
+  <p> Stops the specified Terminal Services listener
+  running on a terminal server.</p>
+  <p>Opnum: 2</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="e3aa6981-665a-4001-b5bc-996ba68c3f0e" data-linktype="relative-path">RpcStartListener</a></span></p>
+  </td>
+  <td>
+  <p> Starts the specified Terminal Services listener on a
+  terminal server.</p>
+  <p>Opnum: 3</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p><span><a href="13bb2b29-a4b0-48e0-a1d2-d73ea67b3069" data-linktype="relative-path">RpcIsListening</a></span></p>
+  </td>
+  <td>
+  <p> Checks if the specified Terminal Services listener is
+  running on a terminal server.</p>
+  <p>Opnum: 4</p>
+  </td>
+ </tr></tbody></table><p> </p></div>

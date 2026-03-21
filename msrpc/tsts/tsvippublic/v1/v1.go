@@ -1,0 +1,286 @@
+package tsvippublic
+
+import (
+	"context"
+	"fmt"
+	"strings"
+	"unicode/utf16"
+
+	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
+	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
+	tsts "github.com/oiweiwei/go-msrpc/msrpc/tsts"
+	ndr "github.com/oiweiwei/go-msrpc/ndr"
+)
+
+var (
+	_ = context.Background
+	_ = fmt.Errorf
+	_ = utf16.Encode
+	_ = strings.TrimPrefix
+	_ = ndr.ZeroString
+	_ = (*uuid.UUID)(nil)
+	_ = (*dcerpc.SyntaxID)(nil)
+	_ = tsts.GoPackage
+)
+
+var (
+	// import guard
+	GoPackage = "tsts"
+)
+
+var (
+	// Syntax UUID
+	PublicSyntaxUUID = &uuid.UUID{TimeLow: 0x53b46b02, TimeMid: 0xc73b, TimeHiAndVersion: 0x4a3e, ClockSeqHiAndReserved: 0x8d, ClockSeqLow: 0xee, Node: [6]uint8{0xb1, 0x6b, 0x80, 0x67, 0x2f, 0xc0}}
+	// Syntax ID
+	PublicSyntaxV1_0 = &dcerpc.SyntaxID{IfUUID: PublicSyntaxUUID, IfVersionMajor: 1, IfVersionMinor: 0}
+)
+
+// TSVIPPublic interface.
+type PublicClient interface {
+
+	// The RpcGetSessionIP method retrieves the IP address assigned to the session. This
+	// MUST be called by an administrator or the same user who logged onto the session.<214>
+	// The method performs access checks as defined in section 3.1.3 and 3.1.4. The method
+	// fails if both checks fail.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetSessionIP(context.Context, *GetSessionIPRequest, ...dcerpc.CallOption) (*GetSessionIPResponse, error)
+
+	// AlterContext alters the client context.
+	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+}
+
+type xxx_DefaultPublicClient struct {
+	cc dcerpc.Conn
+}
+
+func (o *xxx_DefaultPublicClient) GetSessionIP(ctx context.Context, in *GetSessionIPRequest, opts ...dcerpc.CallOption) (*GetSessionIPResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &GetSessionIPResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultPublicClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+	return o.cc.AlterContext(ctx, opts...)
+}
+
+func (o *xxx_DefaultPublicClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
+func NewPublicClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (PublicClient, error) {
+	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(PublicSyntaxV1_0))...)
+	if err != nil {
+		return nil, err
+	}
+	return &xxx_DefaultPublicClient{cc: cc}, nil
+}
+
+// xxx_GetSessionIPOperation structure represents the RpcGetSessionIP operation
+type xxx_GetSessionIPOperation struct {
+	Family     uint16        `idl:"name:Family" json:"family"`
+	SessionID  uint32        `idl:"name:SessionId" json:"session_id"`
+	VIPSession *tsts.Session `idl:"name:ppVIPSession;pointer:ref" json:"vip_session"`
+	Return     int32         `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_GetSessionIPOperation) OpNum() int { return 0 }
+
+func (o *xxx_GetSessionIPOperation) OpName() string { return "/TSVIPPublic/v1/RpcGetSessionIP" }
+
+func (o *xxx_GetSessionIPOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionIPOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// Family {in} (1:{alias=USHORT}(uint16))
+	{
+		if err := w.WriteData(o.Family); err != nil {
+			return err
+		}
+	}
+	// SessionId {in} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.SessionID); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionIPOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// Family {in} (1:{alias=USHORT}(uint16))
+	{
+		if err := w.ReadData(&o.Family); err != nil {
+			return err
+		}
+	}
+	// SessionId {in} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.SessionID); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionIPOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionIPOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// ppVIPSession {out} (1:{pointer=ref}*(1))(2:{alias=TSVIPSession}(struct))
+	{
+		if o.VIPSession != nil {
+			if err := o.VIPSession.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&tsts.Session{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionIPOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// ppVIPSession {out} (1:{pointer=ref}*(1))(2:{alias=TSVIPSession}(struct))
+	{
+		if o.VIPSession == nil {
+			o.VIPSession = &tsts.Session{}
+		}
+		if err := o.VIPSession.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// GetSessionIPRequest structure represents the RpcGetSessionIP operation request
+type GetSessionIPRequest struct {
+	// Family: MUST be AF_INET.
+	Family uint16 `idl:"name:Family" json:"family"`
+	// SessionId: The identifier of the session to open. This session MUST be present on
+	// the terminal server. This MUST NOT be the session ID of any of the listener sessions.
+	SessionID uint32 `idl:"name:SessionId" json:"session_id"`
+}
+
+func (o *GetSessionIPRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSessionIPOperation) *xxx_GetSessionIPOperation {
+	if op == nil {
+		op = &xxx_GetSessionIPOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Family = o.Family
+	op.SessionID = o.SessionID
+	return op
+}
+
+func (o *GetSessionIPRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSessionIPOperation) {
+	if o == nil {
+		return
+	}
+	o.Family = op.Family
+	o.SessionID = op.SessionID
+}
+func (o *GetSessionIPRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *GetSessionIPRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetSessionIPOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// GetSessionIPResponse structure represents the RpcGetSessionIP operation response
+type GetSessionIPResponse struct {
+	// ppVIPSession: The session structure containing the IP address assigned to the session.
+	// This is of type TSVIPSession.
+	VIPSession *tsts.Session `idl:"name:ppVIPSession;pointer:ref" json:"vip_session"`
+	// Return: The RpcGetSessionIP return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *GetSessionIPResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSessionIPOperation) *xxx_GetSessionIPOperation {
+	if op == nil {
+		op = &xxx_GetSessionIPOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.VIPSession = o.VIPSession
+	op.Return = o.Return
+	return op
+}
+
+func (o *GetSessionIPResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSessionIPOperation) {
+	if o == nil {
+		return
+	}
+	o.VIPSession = op.VIPSession
+	o.Return = op.Return
+}
+func (o *GetSessionIPResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *GetSessionIPResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetSessionIPOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}

@@ -1,0 +1,37 @@
+<div class="content"><p> The RpcOpenSession method returns a <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>
+to a specified session on the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span>. No
+special permissions are required to call this method.</p><dl>
+<dd>
+<div><pre> HRESULT RpcOpenSession(
+   [in] handle_t hBinding,
+   [in] LONG SessionId,
+   [out] SESSION_HANDLE* phSession
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b> The <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding handle.
+For more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=93771" data-linktype="external">[MSDN-RPCBIND]</a></span>.</p><p><b>SessionId: </b> The identifier of the session to
+open. This session MUST be present on the terminal server, or this call will
+fail. This MUST NOT be the session ID of any of the listener sessions.</p><p><b>phSession: </b> A handle to the session. This is
+of type <span><a href="08a45954-8173-43c6-aa10-7aeda48e8dc2" data-linktype="relative-path">SESSION_HANDLE</a></span>.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success; otherwise, it MUST return an implementation-specific negative
+value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Successful completion.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

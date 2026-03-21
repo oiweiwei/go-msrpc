@@ -148,6 +148,7 @@ all:
 		swn.go \
 		trp.go \
 		tsch.go \
+		tsts.go \
 		tsgu.go \
 		w32t.go \
 		wdsc.go \

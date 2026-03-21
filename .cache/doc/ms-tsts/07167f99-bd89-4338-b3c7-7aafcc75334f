@@ -1,0 +1,8 @@
+<div class="content"><p>TSHARE_CACHE is not used.</p><dl>
+<dd>
+<div><pre> typedef struct _TSHARE_CACHE {
+   ULONG Reserved;
+ } TSHARE_CACHE,
+  *PTSHARE_CACHE;
+</pre></div>
+</dd></dl><p><b>Reserved:</b>  This value is not used.</p></div>

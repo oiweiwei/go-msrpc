@@ -1,0 +1,14 @@
+<div class="content"><p>The <b>SHADOW_CONTROL_REQUEST</b> enumeration specifies if a
+shadow of user input control is being requested.</p><dl>
+<dd>
+<div><pre> typedef  enum 
+ {
+   SHADOW_CONTROL_REQUEST_VIEW = 0,
+   SHADOW_CONTROL_REQUEST_TAKECONTROL,
+   SHADOW_CONTROL_REQUEST_Count
+ } SHADOW_CONTROL_REQUEST;
+</pre></div>
+</dd></dl><p><b>SHADOW_CONTROL_REQUEST_VIEW:  </b>The shadow
+request is for a view-only session. User input is not being requested.</p><p><b>SHADOW_CONTROL_REQUEST_TAKECONTROL:  </b>User
+input control is being requested.</p><p><b>SHADOW_CONTROL_REQUEST_Count:  </b>Count of enum
+values.</p></div>

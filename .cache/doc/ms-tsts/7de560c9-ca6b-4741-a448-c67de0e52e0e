@@ -1,0 +1,16 @@
+<div class="content"><p>The <b>SDCLASS</b> (stack driver class) enumeration is used
+to specify a type of binary or driver in the union <span><a href="ff0e2998-fb8b-4dff-ab64-8427fad556eb" data-linktype="relative-path">PDPARAMS</a></span> and to
+indicate which structure in the union PDPARAMS applies to a given instance of
+the PDPARAMS structure.</p><dl>
+<dd>
+<div><pre> typedef  enum _SDCLASS
+ {
+   SdNone = 0,
+   SdConsole,
+   SdNetwork,
+   SdAsync,
+   SdOemTransport
+ } SDCLASS;
+</pre></div>
+</dd></dl><p><b>SdNone:  </b>None.</p><p><b>SdConsole:  </b>Not used.</p><p><b>SdNetwork:  </b>Indicates the networking binaries.<a id="Appendix_A_Target_38"></a><a aria-label="Product behavior note 38" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_38" data-linktype="relative-path">&lt;38&gt;</a></p><p><b>SdAsync:  </b>Indicates the async (modem) drivers.<a id="Appendix_A_Target_39"></a><a aria-label="Product behavior note 39" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_39" data-linktype="relative-path">&lt;39&gt;</a></p><p><b>SdOemTransport:  </b>Indicates the user transport
+drivers.<a id="Appendix_A_Target_40"></a><a aria-label="Product behavior note 40" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_40" data-linktype="relative-path">&lt;40&gt;</a></p></div>

@@ -1,0 +1,35 @@
+<div class="content"><p>PLSMSESSIONINFORMATION is a pointer to a
+LSMSESSIONINFORMATION structure containing information about a session running
+on a <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal
+server</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _LSMSessionInformation {
+   [string] WCHAR* pszUserName;
+   [string] WCHAR* pszDomain;
+   [string] WCHAR* pszTerminalName;
+   LONG SessionState;
+   BOOL DesktopLocked;
+   hyper ConnectTime;
+   hyper DisconnectTime;
+   hyper LogonTime;
+ } LSMSESSIONINFORMATION,
+  *PLSMSESSIONINFORMATION;
+</pre></div>
+</dd></dl><p><b>pszUserName:</b>  The name of the user
+logged on to the session.</p><p><b>pszDomain:</b>  The <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>
+to which the currently logged-on user belongs.</p><p><b>pszTerminalName:</b>  The name of the
+terminal associated with the specific session.</p><p><b>SessionState:</b>  The state of the
+session, as described in section <span><a href="58b06e1d-bfe4-4a2f-90a1-9c9129923e99" data-linktype="relative-path">3.3.4.1.8</a></span>.</p><p><b>DesktopLocked:</b>  Set to TRUE if the
+session is currently locked; FALSE otherwise.</p><p><b>ConnectTime:</b>  The time of the most
+recent connection to the session.</p><p>Time is measured as the number of 100-nanosecond
+intervals since January 1, 1601 (UTC).</p><p><b>DisconnectTime:</b>  The time of the
+most recent disconnection from the session.</p><dl>
+<dd>
+<p>Time is measured as the number of 100-nanosecond
+intervals since January 1, 1601 (UTC).</p>
+</dd></dl><p><b>LogonTime:</b>  The time of the most
+recent logon to the session.</p><dl>
+<dd>
+<p>Time is measured as the number of 100-nanosecond
+intervals since January 1, 1601 (UTC).</p>
+</dd></dl></div>

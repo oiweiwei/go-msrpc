@@ -1,0 +1,16 @@
+<div class="content"><p><span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8cc89bb9-be94-4672-8a5d-9947b91bc952" data-linktype="relative-path">WinStation</a></span>
+configuration data. Included inside a <span><a href="38d998ad-51e7-4435-8231-fff55348fff8" data-linktype="relative-path">WINSTATIONCONFIG2</a></span>
+structure.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSTATIONCONFIG {
+   WCHAR Comment[WINSTATIONCOMMENT_LENGTH + 1];
+   USERCONFIG User;
+   char OEMId[4];
+ } WINSTATIONCONFIG,
+  *PWINSTATIONCONFIG;
+</pre></div>
+</dd></dl><p><b>Comment:</b>  The WinStation descriptive
+comment.</p><p><b>User:</b>  The user configuration data
+for the session (WinStation).</p><p><b>OEMId:</b>  Value identifying who
+implemented the TermService Listener that this session (WinStation) belongs to.
+This can be any value defined by the implementer (OEM) of the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_1e5aa0c2-4617-4d7a-969e-a7091c415c8d" data-linktype="relative-path">listener</a></span>.</p></div>

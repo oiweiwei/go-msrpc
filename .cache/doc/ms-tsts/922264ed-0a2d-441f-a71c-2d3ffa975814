@@ -1,0 +1,46 @@
+<div class="content"><p>The RpcGetSessionIds method returns a list of the IDs
+associated with the sessions running on a <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span> that
+satisfy the specified filter. No special permissions are required to call this
+method. However, only sessions for which the caller has WINSTATION_QUERY
+permission are enumerated. The method checks whether the caller has
+WINSTATION_QUERY permission (section <span><a href="4507e852-be3d-45b6-bc47-8ca0b552c94d" data-linktype="relative-path">3.1.1</a></span>) by setting
+it as the Access Request mask, and skips sessions for which the caller does not
+have the permission. </p><dl>
+<dd>
+<div><pre> HRESULT RpcGetSessionIds(
+   [in] handle_t hBinding,
+   [in] SESSION_FILTER Filter,
+   [in, range(0, 0xFFFF)] ULONG MaxEntries,
+   [out, size_is(,*pcSessionIds)] LONG** pSessionIds,
+   [out] ULONG* pcSessionIds
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b> The <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>.
+For more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=93771" data-linktype="external">[MSDN-RPCBIND]</a></span>.</p><p><b>Filter: </b> The filter to apply to the sessions
+running on the terminal server. This is of type <span><a href="35269584-7c5e-4410-8195-1aa49559274e" data-linktype="relative-path">SESSION_FILTER</a></span>.</p><p><b>MaxEntries: </b> The maximum number of session IDs
+to return. This value MUST be less than or equal to the number of entries in
+the <i>pSessionIds</i> array.</p><p><b>pSessionIds: </b> An array to contain the list of
+session IDs running on the terminal server and filtered as specified by <i>Filter</i>.</p><p><b>pcSessionIds: </b> The number of session IDs
+returned.</p><p><b>Return Values: </b> The method MUST return S_OK
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+negative value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Successful completion.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

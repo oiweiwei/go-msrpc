@@ -1,0 +1,22 @@
+<div class="content"><p>The WINSTATIONLOADINDICATORDATA structure defines data used
+for the load balancing of a server.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSTATIONLOADINDICATORDATA {
+   ULONG RemainingSessionCapacity;
+   LOADFACTORTYPE LoadFactor;
+   ULONG TotalSessions;
+   ULONG DisconnectedSessions;
+   LARGE_INTEGER IdleCPU;
+   LARGE_INTEGER TotalCPU;
+   ULONG RawSessionCapacity;
+   ULONG reserved[9];
+ } WINSTATIONLOADINDICATORDATA,
+  *PWINSTATIONLOADINDICATORDATA;
+</pre></div>
+</dd></dl><p><b>RemainingSessionCapacity:</b>  The
+estimated number of additional sessions that can be supported given the CPU
+constraint.</p><p><b>LoadFactor:</b>  Indicates the most
+constrained current resource.</p><p><b>TotalSessions:</b>  The total number of
+sessions.</p><p><b>DisconnectedSessions:</b>  The number of
+disconnected sessions.</p><p><b>IdleCPU:</b>  This is always set to 0.</p><p><b>TotalCPU:</b>  This is always set to 0.</p><p><b>RawSessionCapacity:</b>  The raw number
+of sessions capacity.</p><p><b>reserved:</b>  Reserved.</p></div>

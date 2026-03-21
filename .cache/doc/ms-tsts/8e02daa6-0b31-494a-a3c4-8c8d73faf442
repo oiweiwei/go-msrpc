@@ -1,0 +1,40 @@
+<div class="content"><p>The RpcGetLoggedOnCount method gets the number of
+user-connected and device-connected sessions. No special permissions are
+required to call this method.</p><dl>
+<dd>
+<div><pre> HRESULT RpcGetLoggedOnCount(
+   [in] handle_t hBinding,
+   [out] ULONG* pUserSessions,
+   [out] ULONG* pDeviceSessions
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b>The <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>.
+For more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=93771" data-linktype="external">[MSDN-RPCBIND]</a></span>.</p><p><b>pUserSessions: </b>The number of sessions that are
+of SESSIONTYPE_REGULARDESKTOP, or SESSIONTYPE_ALTERNATESHELL, or
+SESSIONTYPE_REMOTEAPP as defined in <span><a href="12510151-f01d-4984-a1bb-64ec4298c31c" data-linktype="relative-path">SESSIONTYPE (section 2.2.1.18)</a></span>.</p><p><b>pDeviceSessions: </b>The number of sessions
+connected using media center extender device only. These sessions are of
+SESSIONTYPE_MEDIACENTEREXT as defined in
+SESSIONTYPE (section 2.2.1.18). For more information on media center,
+see <span><a href="https://go.microsoft.com/fwlink/?LinkId=208408" data-linktype="external">[MSFT-WINMCE]</a></span>.</p><p><b>Return Values: </b>The method MUST return S_OK
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+negative value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Successful completion.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

@@ -1,0 +1,14 @@
+<div class="content"><p>The WINSTATIONUSERTOKEN structure defines the user token for
+a session.</p><dl>
+<dd>
+<div><pre> typedef struct _WINSTATIONUSERTOKEN {
+   HANDLE ProcessId;
+   HANDLE ThreadId;
+   HANDLE UserToken;
+ } WINSTATIONUSERTOKEN,
+  *PWINSTATIONUSERTOKEN;
+</pre></div>
+</dd></dl><p><b>ProcessId:</b>  Specifies the Process
+ID.</p><p><b>ThreadId:</b>  Specifies the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>
+to the calling thread.</p><p><b>UserToken:</b>  Returns the user token
+that is currently logged on to the session.</p></div>

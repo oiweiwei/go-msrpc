@@ -1,0 +1,173 @@
+package termsrvnotification
+
+import (
+	"context"
+	"fmt"
+	"strings"
+	"unicode/utf16"
+
+	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
+	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
+	ndr "github.com/oiweiwei/go-msrpc/ndr"
+)
+
+var (
+	_ = context.Background
+	_ = fmt.Errorf
+	_ = utf16.Encode
+	_ = strings.TrimPrefix
+	_ = ndr.ZeroString
+	_ = (*uuid.UUID)(nil)
+	_ = (*dcerpc.SyntaxID)(nil)
+)
+
+// TermSrvNotification server interface.
+type TerminateServerNotificationServer interface {
+
+	// The RpcWaitForSessionState method blocks until the state of the specified session
+	// running on a terminal server changes to the desired state. The caller MUST have WINSTATION_QUERY
+	// permission for the session. The method checks whether the caller has WINSTATION_QUERY
+	// permission (section 3.1.1) by setting it as the Access Request mask, and fails if
+	// the caller does not have the permission.
+	//
+	// Return Values:  The method MUST return S_OK (0x00000000) on success; otherwise,
+	// it MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	WaitForSessionState(context.Context, *WaitForSessionStateRequest) (*WaitForSessionStateResponse, error)
+
+	// The RpcRegisterAsyncNotification method registers for an event or events happening
+	// on a terminal server. The caller MUST call RpcWaitAsyncNotification after calling
+	// RpcRegisterAsyncNotification to wait for the notification. No special permissions
+	// are required to call this method.
+	//
+	// Return Values:  The method MUST return S_OK (0x00000000) on success; otherwise,
+	// it MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	RegisterAsyncNotification(context.Context, *RegisterAsyncNotificationRequest) (*RegisterAsyncNotificationResponse, error)
+
+	// The RpcWaitAsyncNotification method starts the wait for the specified terminal server
+	// notification. The notification object specified in RpcRegisterAsyncNotification is
+	// called by RPC when a notification occurs. This is asynchronous notification and RpcWaitAsyncNotification
+	// starts the wait for notification and returns. Specify the notification object using
+	// RpcRegisterAsyncNotification and then start the notification wait process using RpcWaitAsyncNotification.
+	// No special permissions are required to call this method.
+	//
+	// Return Values:  The method MUST return S_OK (0x00000000) on success; otherwise,
+	// it MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	WaitAsyncNotification(context.Context, *WaitAsyncNotificationRequest) (*WaitAsyncNotificationResponse, error)
+
+	// The RpcUnRegisterAsyncNotification method cancels the asynchronous operation of waiting
+	// for notification from the terminal server. This MUST be called after RpcRegisterAsyncNotification.
+	// The call to this method MUST be serialized if there are multiple threads running
+	// otherwise the behavior of this function is unknown. No special permissions are required
+	// to call this method.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	UnregisterAsyncNotification(context.Context, *UnregisterAsyncNotificationRequest) (*UnregisterAsyncNotificationResponse, error)
+}
+
+func RegisterTerminateServerNotificationServer(conn dcerpc.Conn, o TerminateServerNotificationServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewTerminateServerNotificationServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(TerminateServerNotificationSyntaxV1_0))...)
+}
+
+func NewTerminateServerNotificationServerHandle(o TerminateServerNotificationServer) dcerpc.ServerHandle {
+	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+		return TerminateServerNotificationServerHandle(ctx, o, opNum, r)
+	}
+}
+
+func TerminateServerNotificationServerHandle(ctx context.Context, o TerminateServerNotificationServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+	switch opNum {
+	case 0: // RpcWaitForSessionState
+		op := &xxx_WaitForSessionStateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WaitForSessionStateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WaitForSessionState(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 1: // RpcRegisterAsyncNotification
+		op := &xxx_RegisterAsyncNotificationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &RegisterAsyncNotificationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RegisterAsyncNotification(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 2: // RpcWaitAsyncNotification
+		op := &xxx_WaitAsyncNotificationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WaitAsyncNotificationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WaitAsyncNotification(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 3: // RpcUnRegisterAsyncNotification
+		op := &xxx_UnregisterAsyncNotificationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &UnregisterAsyncNotificationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UnregisterAsyncNotification(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	}
+	return nil, nil
+}
+
+// Unimplemented TermSrvNotification
+type UnimplementedTerminateServerNotificationServer struct {
+}
+
+func (UnimplementedTerminateServerNotificationServer) WaitForSessionState(context.Context, *WaitForSessionStateRequest) (*WaitForSessionStateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerNotificationServer) RegisterAsyncNotification(context.Context, *RegisterAsyncNotificationRequest) (*RegisterAsyncNotificationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerNotificationServer) WaitAsyncNotification(context.Context, *WaitAsyncNotificationRequest) (*WaitAsyncNotificationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerNotificationServer) UnregisterAsyncNotification(context.Context, *UnregisterAsyncNotificationRequest) (*UnregisterAsyncNotificationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ TerminateServerNotificationServer = (*UnimplementedTerminateServerNotificationServer)(nil)

@@ -1,0 +1,239 @@
+<div class="content"><p> Information about a time zone. This structure is identical
+to the structure <span><a href="../ms-dtyp/2fefe8dd-ab48-4e33-a7d5-7171455a9289" data-linktype="relative-path">SYSTEMTIME</a></span>.
+For more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=93364" data-linktype="external">[MSDN-SYSTIME]</a></span>.
+</p><dl>
+<dd>
+<div><pre> typedef struct _TS_SYSTEMTIME {
+   USHORT wYear;
+   USHORT wMonth;
+   USHORT wDayOfWeek;
+   USHORT wDay;
+   USHORT wHour;
+   USHORT wMinute;
+   USHORT wSecond;
+   USHORT wMilliseconds;
+ } TS_SYSTEMTIME;
+</pre></div>
+</dd></dl><p><b>wYear:</b>  The year when transition
+from daylight saving time to standard time occurs (1601 to 30827).</p><p><b>wMonth:</b>  The month when transition
+from daylight saving time to standard time occurs.</p><dl>
+<dd>
+<p>This member can be one of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>January</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>February</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>3</p>
+  </td>
+  <td>
+  <p>March</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4</p>
+  </td>
+  <td>
+  <p>April</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>5</p>
+  </td>
+  <td>
+  <p>May</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>6</p>
+  </td>
+  <td>
+  <p>June</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>7</p>
+  </td>
+  <td>
+  <p>July</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>8</p>
+  </td>
+  <td>
+  <p>August</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>9</p>
+  </td>
+  <td>
+  <p>September</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>10</p>
+  </td>
+  <td>
+  <p>October</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>11</p>
+  </td>
+  <td>
+  <p>November</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>12</p>
+  </td>
+  <td>
+  <p>December</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>wDayOfWeek:</b>   The day of the week
+when the transition from daylight saving time to standard time occurs.</p><dl>
+<dd>
+<p>This member can be one of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0</p>
+  </td>
+  <td>
+  <p>Sunday</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>Monday</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>Tuesday</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>3</p>
+  </td>
+  <td>
+  <p>Wednesday</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4</p>
+  </td>
+  <td>
+  <p>Thursday</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>5</p>
+  </td>
+  <td>
+  <p>Friday</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>6</p>
+  </td>
+  <td>
+  <p>Saturday</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>wDay:</b>   The occurrence of <b>wDayOfWeek</b>
+within the month when the transition from daylight saving time to standard time
+takes place.</p><dl>
+<dd>
+<p>This member can be one of the following values.</p>
+</dd>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>First occurrence of <b>wDayOfWeek</b></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>Second occurrence of <b>wDayOfWeek</b></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>3</p>
+  </td>
+  <td>
+  <p>Third occurrence of <b>wDayOfWeek</b></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>4</p>
+  </td>
+  <td>
+  <p>Fourth occurrence of <b>wDayOfWeek</b></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>5</p>
+  </td>
+  <td>
+  <p>Last occurrence of <b>wDayOfWeek</b></p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>wHour:</b>   The hour when transition
+from daylight saving time to standard time occurs (0 to 23).</p><p><b>wMinute:</b>   The minute when
+transition from daylight saving time to standard time occurs (0 to 59).</p><p><b>wSecond:</b>   The second when
+transition from daylight saving time to standard time occurs (0 to 59).</p><p><b>wMilliseconds:</b>   The millisecond
+when transition from daylight saving time to standard time occurs (0 to 999).</p></div>

@@ -1,0 +1,14 @@
+<div class="content"><p>LISTENERENUM_LEVEL1 is a structure containing information of
+level 1 detail about a <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_ffff3f01-8c21-44d3-bbda-0062a1fbda4b" data-linktype="relative-path">Terminal Services</a></span> <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_1e5aa0c2-4617-4d7a-969e-a7091c415c8d" data-linktype="relative-path">listener</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _LISTENERENUM_LEVEL1 {
+   LONG Id;
+   BOOL bListening;
+   WCHAR Name[33];
+ } LISTENERENUM_LEVEL1,
+  *PLISTENERENUM_LEVEL1;
+</pre></div>
+</dd></dl><p><b>Id:</b>  The identifier associated with
+the listener.</p><p><b>bListening:</b>   Set to TRUE if the
+listener is listening for incoming connections; FALSE otherwise.</p><p><b>Name:</b>  A string that contains the
+name of the listener followed by the terminating NULL character.</p></div>

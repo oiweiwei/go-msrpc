@@ -1,0 +1,343 @@
+<div class="content"><p>The TS_TRACE structure specifies fields used for configuring
+tracing operations in TS binaries if they are checked.</p><dl>
+<dd>
+<div><pre> typedef struct _TS_TRACE {
+   WCHAR TraceFile[256];
+   BOOLEAN fDebugger;
+   BOOLEAN fTimestamp;
+   ULONG TraceClass;
+   ULONG TraceEnable;
+   WCHAR TraceOption[64];
+ } TS_TRACE,
+  *PTS_TRACE;
+</pre></div>
+</dd></dl><p><b>TraceFile:</b>  Specifies the file name,
+if any, to which to write debug information.</p><p><b>fDebugger:</b>  Specifies whether
+debugger is attached.</p><p><b>fTimestamp:</b>  Specifies whether to
+append time stamp to the traces logged.</p><p><b>TraceClass:</b>  Classes of tracing to
+log. They enable tracing for the various <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span>
+binaries/functionalities. It MUST be a bitwise OR combination of one or more of
+the following values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TC_ICASRV</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Enable tracing for the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_ffff3f01-8c21-44d3-bbda-0062a1fbda4b" data-linktype="relative-path">Terminal Services</a></span>
+  Service.<a id="Appendix_A_Target_134"></a><a aria-label="Product behavior note 134" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_134" data-linktype="relative-path">&lt;134&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TC_ICAAPI</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>Enable tracing for the DLL providing the API for
+  Terminal Services to communicate with the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8cc89bb9-be94-4672-8a5d-9947b91bc952" data-linktype="relative-path">WinStation</a></span> Driver.<a id="Appendix_A_Target_135"></a><a aria-label="Product behavior note 135" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_135" data-linktype="relative-path">&lt;135&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TC_ICADD</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>Enable tracing for the Terminal Services Device
+  Driver.<a id="Appendix_A_Target_136"></a><a aria-label="Product behavior note 136" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_136" data-linktype="relative-path">&lt;136&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TC_WD</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>Enable tracing for the WinStation Driver.<a id="Appendix_A_Target_137"></a><a aria-label="Product behavior note 137" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_137" data-linktype="relative-path">&lt;137&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TC_CD</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Enable tracing for the Connection Driver.<a id="Appendix_A_Target_138"></a><a aria-label="Product behavior note 138" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_138" data-linktype="relative-path">&lt;138&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TC_PD</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Enable tracing for the Protocol Driver.<a id="Appendix_A_Target_139"></a><a aria-label="Product behavior note 139" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_139" data-linktype="relative-path">&lt;139&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TC_TD</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>Enable tracing for the Transport Driver.<a id="Appendix_A_Target_140"></a><a aria-label="Product behavior note 140" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_140" data-linktype="relative-path">&lt;140&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TC_RELIABLE</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>Not used.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TC_FRAME</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>Enable tracing for the Frame Protocol Driver.<a id="Appendix_A_Target_141"></a><a aria-label="Product behavior note 141" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_141" data-linktype="relative-path">&lt;141&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TC_COMP</p>
+  <p>0x00000400</p>
+  </td>
+  <td>
+  <p>Enable tracing for the Compression library.<a id="Appendix_A_Target_142"></a><a aria-label="Product behavior note 142" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_142" data-linktype="relative-path">&lt;142&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TC_CRYPT</p>
+  <p>0x00000800</p>
+  </td>
+  <td>
+  <p>Enable tracing for the Encryption binary.<a id="Appendix_A_Target_143"></a><a aria-label="Product behavior note 143" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_143" data-linktype="relative-path">&lt;143&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TC_TW</p>
+  <p>0x10000000</p>
+  </td>
+  <td>
+  <p>Not used.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TC_DISPLAY</p>
+  <p>0x10000000</p>
+  </td>
+  <td>
+  <p>Enable tracing for the Display Driver.<a id="Appendix_A_Target_144"></a><a aria-label="Product behavior note 144" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_144" data-linktype="relative-path">&lt;144&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TC_WFSHELL</p>
+  <p>0x20000000</p>
+  </td>
+  <td>
+  <p>Not used.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TC_WX</p>
+  <p>0x40000000</p>
+  </td>
+  <td>
+  <p>Enable tracing for the WinStation Extension.<a id="Appendix_A_Target_145"></a><a aria-label="Product behavior note 145" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_145" data-linktype="relative-path">&lt;145&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TC_LOAD</p>
+  <p>0x80000000</p>
+  </td>
+  <td>
+  <p>Enable tracing for the Load balancing binary.<a id="Appendix_A_Target_146"></a><a aria-label="Product behavior note 146" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_146" data-linktype="relative-path">&lt;146&gt;</a></p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TC_ALL</p>
+  <p>0xffffffff</p>
+  </td>
+  <td>
+  <p>Everything.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>TraceEnable:</b>  Type of tracing calls
+log. It MUST be a bitwise OR combination of one or more of the following
+values.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>TT_API1</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>API level 1.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TT_API2</p>
+  <p>0x00000002</p>
+  </td>
+  <td>
+  <p>API level 2.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TT_API3</p>
+  <p>0x00000004</p>
+  </td>
+  <td>
+  <p>API level 3.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TT_API4</p>
+  <p>0x00000008</p>
+  </td>
+  <td>
+  <p>API level 4.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TT_OUT1</p>
+  <p>0x00000010</p>
+  </td>
+  <td>
+  <p>Output level 1.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TT_OUT2</p>
+  <p>0x00000020</p>
+  </td>
+  <td>
+  <p>Output level 2.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TT_OUT3</p>
+  <p>0x00000040</p>
+  </td>
+  <td>
+  <p>Output level 3.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TT_OUT4</p>
+  <p>0x00000080</p>
+  </td>
+  <td>
+  <p>Output level 4.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TT_IN1</p>
+  <p>0x00000100</p>
+  </td>
+  <td>
+  <p>Input level 1.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TT_IN2</p>
+  <p>0x00000200</p>
+  </td>
+  <td>
+  <p>Input level 2.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TT_IN3</p>
+  <p>0x00000400</p>
+  </td>
+  <td>
+  <p>Input level 3.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TT_IN4</p>
+  <p>0x00000800</p>
+  </td>
+  <td>
+  <p>Input level 4.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TT_ORAW</p>
+  <p>0x00001000</p>
+  </td>
+  <td>
+  <p>Raw output data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TT_IRAW</p>
+  <p>0x00002000</p>
+  </td>
+  <td>
+  <p>Raw input data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TT_OCOOK</p>
+  <p>0x00004000</p>
+  </td>
+  <td>
+  <p>Cooked output data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TT_ICOOK</p>
+  <p>0x00008000</p>
+  </td>
+  <td>
+  <p>Cooked input data.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TT_SEM </p>
+  <p>0x00010000</p>
+  </td>
+  <td>
+  <p>Semaphores.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TT_NONE</p>
+  <p>0x10000000</p>
+  </td>
+  <td>
+  <p>Only view errors.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>TT_ERROR</p>
+  <p>0xffffffff</p>
+  </td>
+  <td>
+  <p>Error condition.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>TraceOption:</b>  Trace option string.
+This SHOULD be in the format &#34;&lt;filename&gt;(start-end)&#34;, where
+&lt;filename&gt; is the name of the file that requires trace to be collected
+and (start-end) is the starting and ending line numbers during which trace is
+to be collected. This is an optional parameter and can be an empty string
+meaning collect trace for all files belonging to TraceClass and all lines in
+those files.</p></div>

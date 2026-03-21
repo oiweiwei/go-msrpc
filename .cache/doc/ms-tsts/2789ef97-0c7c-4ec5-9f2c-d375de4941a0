@@ -1,0 +1,84 @@
+<div class="content"><p>The LSM_SESSIONINFO_EX_LEVEL1 is a structure containing
+information about a session running on a <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _LSM_SESSIONINFO_EX_LEVEL1 {
+   LONG SessionState;
+   LONG SessionFlags;
+   WCHAR SessionName[33];
+   WCHAR DomainName[18];
+   WCHAR UserName[21];
+   hyper ConnectTime;
+   hyper DisconnectTime;
+   hyper LogonTime;
+   hyper LastInputTime;
+   ULONG ProtocolDataSize;
+   [size_is(ProtocolDataSize)] PBYTE ProtocolData;
+ } LSM_SESSIONINFO_EX_LEVEL1,
+  *PLSM_SESSIONINFO_EX_LEVEL1;
+</pre></div>
+</dd></dl><p><b>SessionState:</b>  The state of the
+session, as described in section <span><a href="58b06e1d-bfe4-4a2f-90a1-9c9129923e99" data-linktype="relative-path">3.3.4.1.8</a></span>.</p><p><b>SessionFlags:</b>  The state of the
+session. The <b>SessionFlags</b> member MUST be one of the values shown in the
+following table.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>WTS_SESSIONSTATE_UNKNOWN</p>
+  <p>0xFFFFFFFF</p>
+  </td>
+  <td>
+  <p>Unknown session state</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WTS_SESSIONSTATE_LOCK</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>Session is locked</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>WTS_SESSIONSTATE_UNLOCK</p>
+  <p>0x00000001</p>
+  </td>
+  <td>
+  <p>Session is unlocked</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>SessionName:</b>  The name of the
+terminal associated with the specific session.</p><p><b>DomainName:</b>  The <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b0276eb2-4e65-4cf1-a718-e0920a614aca" data-linktype="relative-path">domain</a></span>
+to which the currently logged-on user belongs.</p><p><b>UserName:</b>  The name of the user
+logged on to the session.</p><p><b>ConnectTime:</b>  The time of the most
+recent connection to the session. </p><dl>
+<dd>
+<p>Time is measured as the number of 100-nanosecond
+intervals since January 1, 1601 (UTC).</p>
+</dd></dl><p><b>DisconnectTime:</b>  The time of the
+most recent disconnection from the session.</p><dl>
+<dd>
+<p>Time is measured as the number of 100-nanosecond
+intervals since January 1, 1601 (UTC).</p>
+</dd></dl><p><b>LogonTime:</b>  The time of the most
+recent logon to the session.</p><dl>
+<dd>
+<p>Time is measured as the number of 100-nanosecond
+intervals since January 1, 1601 (UTC).</p>
+</dd></dl><p><b>LastInputTime:</b>  The time the session
+last received input. This is an indicator of how long a session has been idle.</p><dl>
+<dd>
+<p>Time is measured as the number of 100-nanosecond
+intervals since January 1, 1601 (UTC).</p>
+</dd></dl><p><b>ProtocolDataSize:</b>  Size of data, in
+bytes, contained in <b>ProtocolData</b>.</p><p><b>ProtocolData:</b>  Data about the
+protocol status between the terminal server client and server. This data is of
+type <span><a href="e32b64ed-22e2-45ca-b954-9e1b52a16c78" data-linktype="relative-path">PROTOCOLSTATUSEX</a></span>.</p></div>
