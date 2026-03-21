@@ -1,0 +1,11 @@
+<div class="content"><p>The <b>CLIENT_ID</b> structure contains identifiers of a
+process and a thread.</p><dl>
+<dd>
+<div><pre> typedef struct _CLIENT_ID {
+   HANDLE UniqueProcess;
+   HANDLE UniqueThread;
+ } CLIENT_ID;
+</pre></div>
+</dd></dl><p><b>UniqueProcess:</b>  Unique process
+identifier.</p><p><b>UniqueThread:</b>  Unique thread
+identifier.</p></div>

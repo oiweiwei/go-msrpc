@@ -1,0 +1,26 @@
+<div class="content"><p>The <b>SESSIONTYPE</b> enumeration defines the type of the
+session.</p><dl>
+<dd>
+<div><pre> typedef  enum _SessionType  
+ {
+   SESSIONTYPE_UNKNOWN = 0,
+   SESSIONTYPE_SERVICES,
+   SESSIONTYPE_LISTENER,
+   SESSIONTYPE_REGULARDESKTOP,
+   SESSIONTYPE_ALTERNATESHELL,
+   SESSIONTYPE_REMOTEAPP,
+   SESSIONTYPE_MEDIACENTEREXT
+ } SESSIONTYPE;
+</pre></div>
+</dd></dl><p><b>SESSIONTYPE_UNKNOWN:  </b>The type of the session
+cannot be determined. </p><p><b>SESSIONTYPE_SERVICES:  </b>The session is used
+only to run the operating system services, and that no user can be logged on to
+the session.</p><p><b>SESSIONTYPE_LISTENER:  </b>The session is used
+only to run the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_ffff3f01-8c21-44d3-bbda-0062a1fbda4b" data-linktype="relative-path">Terminal Services</a></span> <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_1e5aa0c2-4617-4d7a-969e-a7091c415c8d" data-linktype="relative-path">listeners</a></span>,
+and that no user can be logged on to the session.</p><p><b>SESSIONTYPE_REGULARDESKTOP:  </b>The session is
+connected by using Terminal Services and is running the standard <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_cf4261b3-230d-4aae-9e1e-ce90b10c09e6" data-linktype="relative-path">shell</a></span>.<a id="Appendix_A_Target_42"></a><a aria-label="Product behavior note 42" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_42" data-linktype="relative-path">&lt;42&gt;</a></p><p><b>SESSIONTYPE_ALTERNATESHELL:  </b>The session is
+connected by using Terminal Services and is running an alternate shell instead
+of the standard shell.</p><p><b>SESSIONTYPE_REMOTEAPP:  </b>The session is a RAIL
+(Remote Applications Integrated Locally) session as defined in <span><a href="../ms-rdperp/83275957-2d0e-4c52-88d1-1b4c998c6bec" data-linktype="relative-path">[MS-RDPERP]</a></span>.</p><p><b>SESSIONTYPE_MEDIACENTEREXT:  </b>The session was
+connected by using a media center extender device. For more information about
+the media center, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=208408" data-linktype="external">[MSFT-WINMCE]</a></span>.</p></div>

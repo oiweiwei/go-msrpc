@@ -1,0 +1,588 @@
+package termsrvsession
+
+import (
+	"context"
+	"fmt"
+	"strings"
+	"unicode/utf16"
+
+	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
+	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
+	ndr "github.com/oiweiwei/go-msrpc/ndr"
+)
+
+var (
+	_ = context.Background
+	_ = fmt.Errorf
+	_ = utf16.Encode
+	_ = strings.TrimPrefix
+	_ = ndr.ZeroString
+	_ = (*uuid.UUID)(nil)
+	_ = (*dcerpc.SyntaxID)(nil)
+)
+
+// TermSrvSession server interface.
+type TerminateServerSessionServer interface {
+
+	// The RpcOpenSession method returns a handle to a specified session on the terminal
+	// server. No special permissions are required to call this method.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	OpenSession(context.Context, *OpenSessionRequest) (*OpenSessionResponse, error)
+
+	// The RpcCloseSession method closes the connection to the specified session on the
+	// terminal server. This method MUST be called after RpcOpenSession. The call to this
+	// method MUST be serialized if there are multiple threads running otherwise the behavior
+	// of this function is unknown. No special permissions are required to call this method.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	CloseSession(context.Context, *CloseSessionRequest) (*CloseSessionResponse, error)
+
+	// The RpcConnect method reconnects a session handle returned by RpcOpenSession to another
+	// specified session on the terminal server. This method MUST be called after RpcOpenSession.
+	// If the method succeeds, the state of the session is State_Active as defined in the
+	// WINSTATIONSTATECLASS enumeration (section 2.2.1.9).
+	//
+	// The caller MUST have WINSTATION_CONNECT permission to connect the current session
+	// and the caller MUST have WINSTATION_DISCONNECT permission to disconnect the target
+	// session. For each aforementioned required permission, the method checks whether the
+	// caller has the permission (section 3.1.1) by setting the Access Request mask to the
+	// specific permission, and fails if the caller does not have the permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	Connect(context.Context, *ConnectRequest) (*ConnectResponse, error)
+
+	// The RpcDisconnect method disconnects the specified session on the terminal server.
+	// This method MUST be called after RpcOpenSession. If the method succeeds, the state
+	// of the session is State_Disconnected as defined in the WINSTATIONSTATECLASS enumeration
+	// (section 2.2.1.9).
+	//
+	// The caller MUST have WINSTATION_DISCONNECT permission to disconnect the session.
+	// The method checks whether the caller has WINSTATION_DISCONNECT permission (section
+	// 3.1.1) by setting it as the Access Request mask, and fails if the caller does not
+	// have the permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	Disconnect(context.Context, *DisconnectRequest) (*DisconnectResponse, error)
+
+	// The RpcLogoff method logs off the specified session on the terminal server. This
+	// method MUST be called after RpcOpenSession. The caller MUST have WINSTATION_LOGOFF
+	// permission to log off the session. The method checks whether the caller has WINSTATION_LOGOFF
+	// permission (section 3.1.1) by setting it as the Access Request mask, and fails if
+	// the caller does not have the permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	Logoff(context.Context, *LogoffRequest) (*LogoffResponse, error)
+
+	// The RpcGetUserName method gets the username and domain name of the user logged on
+	// to the specified session on the terminal server. This method MUST be called after
+	// RpcOpenSession. The caller MUST have WINSTATION_QUERY permission for the session.
+	// The method checks whether the caller has WINSTATION_QUERY permission (section 3.1.1)
+	// by setting it as the Access Request mask, and fails if the caller does not have the
+	// permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetUserName(context.Context, *GetUserNameRequest) (*GetUserNameResponse, error)
+
+	// The RpcGetTerminalName method gets the name of the terminal associated with the specified
+	// session on the terminal server. This method MUST be called after RpcOpenSession.
+	// The caller MUST have WINSTATION_QUERY permission for the session. The method checks
+	// whether the caller has WINSTATION_QUERY permission (section 3.1.1) by setting it
+	// as the Access Request mask, and fails if the caller does not have the permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetTerminalName(context.Context, *GetTerminalNameRequest) (*GetTerminalNameResponse, error)
+
+	// The RpcGetState method gets the state of the specified session on the terminal server.
+	// This method MUST be called after RpcOpenSession. The caller MUST have WINSTATION_QUERY
+	// permission for the session. The method checks whether the caller has WINSTATION_QUERY
+	// permission (section 3.1.1) by setting it as the Access Request mask, and fails if
+	// the caller does not have the permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetState(context.Context, *GetStateRequest) (*GetStateResponse, error)
+
+	// The RpcIsSessionDesktopLocked method checks whether the specified session on the
+	// terminal server is in a locked state. This method MUST be called after RpcOpenSession.
+	// The caller MUST have WINSTATION_QUERY permission for the session. The method checks
+	// whether the caller has WINSTATION_QUERY permission (section 3.1.1) by setting it
+	// as the Access Request mask, and fails if the caller does not have the permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) if the session is locked;
+	// otherwise, it MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	IsSessionDesktopLocked(context.Context, *IsSessionDesktopLockedRequest) (*IsSessionDesktopLockedResponse, error)
+
+	// The RpcShowMessageBox method displays a message box, with specified message and title,
+	// in the target user session running on the terminal server. This method MUST be called
+	// after RpcOpenSession. The caller MUST have WINSTATION_MSG permission for the session.
+	// The method checks whether the caller has WINSTATION_MSG permission (section 3.1.1)
+	// by setting it as the Access Request mask, and fails if the caller does not have the
+	// permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	ShowMessageBox(context.Context, *ShowMessageBoxRequest) (*ShowMessageBoxResponse, error)
+
+	// The RpcGetTimes method gets the connected, disconnected, and logged-on time for the
+	// specified session on the terminal server. This method MUST be called after RpcOpenSession.
+	// The caller MUST have WINSTATION_QUERY permission for the session. The method checks
+	// whether the caller has WINSTATION_QUERY permission (section 3.1.1) by setting it
+	// as the Access Request mask, and fails if the caller does not have the permission.
+	//
+	// Return Values:  The method MUST return S_OK (0x00000000) on success; otherwise,
+	// it MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetTimes(context.Context, *GetTimesRequest) (*GetTimesResponse, error)
+
+	// The RpcGetSessionCounters method returns the various performance counters associated
+	// with the terminal server. No special permissions are required to call this method.
+	//
+	// Return Values:  The method MUST return S_OK (0x00000000) on success; otherwise,
+	// it MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetSessionCounters(context.Context, *GetSessionCountersRequest) (*GetSessionCountersResponse, error)
+
+	// The RpcGetSessionInformation method retrieves information about a specified session
+	// running on a terminal server. The caller MUST have WINSTATION_QUERY permission for
+	// the session. The method checks whether the caller has WINSTATION_QUERY permission
+	// (section 3.1.1) by setting it as the Access Request mask, and fails if the caller
+	// does not have the permission.
+	//
+	// Return Values:  The method MUST return S_OK (0x00000000) on success; otherwise,
+	// it MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetSessionInformation(context.Context, *GetSessionInformationRequest) (*GetSessionInformationResponse, error)
+
+	// Opnum13NotUsedOnWire operation.
+	// Opnum13NotUsedOnWire
+
+	// Opnum14NotUsedOnWire operation.
+	// Opnum14NotUsedOnWire
+
+	// The RpcGetLoggedOnCount method gets the number of user-connected and device-connected
+	// sessions. No special permissions are required to call this method.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetLoggedOnCount(context.Context, *GetLoggedOnCountRequest) (*GetLoggedOnCountResponse, error)
+
+	// The RpcGetSessionType method gets the type associated with the specified session.
+	// No special permissions are required to call this method.<150>
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetSessionType(context.Context, *GetSessionTypeRequest) (*GetSessionTypeResponse, error)
+
+	// The RpcGetSessionInformationEx method retrieves extended information about a specified
+	// session running on a terminal server.<151> The caller MUST have WINSTATION_QUERY
+	// permission for the session. The method checks whether the caller has WINSTATION_QUERY
+	// permission (section 3.1.1) by setting it as the Access Request mask, and fails if
+	// the caller does not have the permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetSessionInformationEx(context.Context, *GetSessionInformationExRequest) (*GetSessionInformationExResponse, error)
+
+	// Opnum18NotUsedOnWire operation.
+	// Opnum18NotUsedOnWire
+
+	// Opnum19NotUsedOnWire operation.
+	// Opnum19NotUsedOnWire
+
+	// Opnum20NotUsedOnWire operation.
+	// Opnum20NotUsedOnWire
+
+	// RpcGetActivityId operation.
+	GetActivityID(context.Context, *GetActivityIDRequest) (*GetActivityIDResponse, error)
+}
+
+func RegisterTerminateServerSessionServer(conn dcerpc.Conn, o TerminateServerSessionServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewTerminateServerSessionServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(TerminateServerSessionSyntaxV1_0))...)
+}
+
+func NewTerminateServerSessionServerHandle(o TerminateServerSessionServer) dcerpc.ServerHandle {
+	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+		return TerminateServerSessionServerHandle(ctx, o, opNum, r)
+	}
+}
+
+func TerminateServerSessionServerHandle(ctx context.Context, o TerminateServerSessionServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+	switch opNum {
+	case 0: // RpcOpenSession
+		op := &xxx_OpenSessionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &OpenSessionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenSession(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 1: // RpcCloseSession
+		op := &xxx_CloseSessionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &CloseSessionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseSession(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 2: // RpcConnect
+		op := &xxx_ConnectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &ConnectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Connect(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 3: // RpcDisconnect
+		op := &xxx_DisconnectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &DisconnectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Disconnect(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 4: // RpcLogoff
+		op := &xxx_LogoffOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &LogoffRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Logoff(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 5: // RpcGetUserName
+		op := &xxx_GetUserNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &GetUserNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetUserName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 6: // RpcGetTerminalName
+		op := &xxx_GetTerminalNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &GetTerminalNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTerminalName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 7: // RpcGetState
+		op := &xxx_GetStateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &GetStateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetState(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 8: // RpcIsSessionDesktopLocked
+		op := &xxx_IsSessionDesktopLockedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &IsSessionDesktopLockedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsSessionDesktopLocked(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 9: // RpcShowMessageBox
+		op := &xxx_ShowMessageBoxOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &ShowMessageBoxRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ShowMessageBox(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 10: // RpcGetTimes
+		op := &xxx_GetTimesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &GetTimesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTimes(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 11: // RpcGetSessionCounters
+		op := &xxx_GetSessionCountersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &GetSessionCountersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSessionCounters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 12: // RpcGetSessionInformation
+		op := &xxx_GetSessionInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &GetSessionInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSessionInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 13: // Opnum13NotUsedOnWire
+		// Opnum13NotUsedOnWire
+		return nil, nil
+	case 14: // Opnum14NotUsedOnWire
+		// Opnum14NotUsedOnWire
+		return nil, nil
+	case 15: // RpcGetLoggedOnCount
+		op := &xxx_GetLoggedOnCountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &GetLoggedOnCountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLoggedOnCount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 16: // RpcGetSessionType
+		op := &xxx_GetSessionTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &GetSessionTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSessionType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 17: // RpcGetSessionInformationEx
+		op := &xxx_GetSessionInformationExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &GetSessionInformationExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSessionInformationEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 18: // Opnum18NotUsedOnWire
+		// Opnum18NotUsedOnWire
+		return nil, nil
+	case 19: // Opnum19NotUsedOnWire
+		// Opnum19NotUsedOnWire
+		return nil, nil
+	case 20: // Opnum20NotUsedOnWire
+		// Opnum20NotUsedOnWire
+		return nil, nil
+	case 21: // RpcGetActivityId
+		op := &xxx_GetActivityIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &GetActivityIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetActivityID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	}
+	return nil, nil
+}
+
+// Unimplemented TermSrvSession
+type UnimplementedTerminateServerSessionServer struct {
+}
+
+func (UnimplementedTerminateServerSessionServer) OpenSession(context.Context, *OpenSessionRequest) (*OpenSessionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerSessionServer) CloseSession(context.Context, *CloseSessionRequest) (*CloseSessionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerSessionServer) Connect(context.Context, *ConnectRequest) (*ConnectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerSessionServer) Disconnect(context.Context, *DisconnectRequest) (*DisconnectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerSessionServer) Logoff(context.Context, *LogoffRequest) (*LogoffResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerSessionServer) GetUserName(context.Context, *GetUserNameRequest) (*GetUserNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerSessionServer) GetTerminalName(context.Context, *GetTerminalNameRequest) (*GetTerminalNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerSessionServer) GetState(context.Context, *GetStateRequest) (*GetStateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerSessionServer) IsSessionDesktopLocked(context.Context, *IsSessionDesktopLockedRequest) (*IsSessionDesktopLockedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerSessionServer) ShowMessageBox(context.Context, *ShowMessageBoxRequest) (*ShowMessageBoxResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerSessionServer) GetTimes(context.Context, *GetTimesRequest) (*GetTimesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerSessionServer) GetSessionCounters(context.Context, *GetSessionCountersRequest) (*GetSessionCountersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerSessionServer) GetSessionInformation(context.Context, *GetSessionInformationRequest) (*GetSessionInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerSessionServer) GetLoggedOnCount(context.Context, *GetLoggedOnCountRequest) (*GetLoggedOnCountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerSessionServer) GetSessionType(context.Context, *GetSessionTypeRequest) (*GetSessionTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerSessionServer) GetSessionInformationEx(context.Context, *GetSessionInformationExRequest) (*GetSessionInformationExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTerminateServerSessionServer) GetActivityID(context.Context, *GetActivityIDRequest) (*GetActivityIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ TerminateServerSessionServer = (*UnimplementedTerminateServerSessionServer)(nil)

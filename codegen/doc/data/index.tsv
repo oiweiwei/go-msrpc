@@ -105,3 +105,11 @@ pac	cb56fe30-247d-4862-8ea5-85df14ab6687
 claims	ms-adts/9b7ab76e-076a-4f91-9d9d-186fd211fd66
 record	ms-dnsp/eb979e1d-77ec-414c-bda2-49cccc349d86
 objref	ms-dcom/05c5eff5-f779-49a2-89f6-963411b99be1
+tsts	01022875-91ea-4b35-8590-5256a3d30cf3
+tspubrpc	ms-tsts/01022875-91ea-4b35-8590-5256a3d30cf3
+allproc	ms-tsts/01022875-91ea-4b35-8590-5256a3d30cf3
+legacy	ms-tsts/01022875-91ea-4b35-8590-5256a3d30cf3
+rcmpublic	ms-tsts/01022875-91ea-4b35-8590-5256a3d30cf3
+tsdef	ms-tsts/01022875-91ea-4b35-8590-5256a3d30cf3
+tsvirpc	ms-tsts/01022875-91ea-4b35-8590-5256a3d30cf3
+sessenvrpc	ms-tsts/01022875-91ea-4b35-8590-5256a3d30cf3

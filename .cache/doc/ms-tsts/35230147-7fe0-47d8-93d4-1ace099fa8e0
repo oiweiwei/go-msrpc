@@ -1,0 +1,13 @@
+<div class="content"><p>The OEM transport driver configuration structure.</p><dl>
+<dd>
+<div><pre> typedef struct _OEMTDCONFIG {
+   LONG Adapter;
+   DEVICENAME DeviceName;
+   ULONG Flags;
+ } OEMTDCONFIG,
+  *POEMTDCONFIG;
+</pre></div>
+</dd></dl><p><b>Adapter:</b>  The ID of the adapter (OEM
+driver-specific).</p><p><b>DeviceName:</b>  The network name (OEM
+driver-specific).</p><p><b>Flags:</b>  Driver flags (OEM
+driver-specific).</p></div>

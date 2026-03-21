@@ -1,0 +1,1464 @@
+package icaapi
+
+import (
+	"context"
+	"fmt"
+	"strings"
+	"unicode/utf16"
+
+	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
+	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
+	ndr "github.com/oiweiwei/go-msrpc/ndr"
+)
+
+var (
+	_ = context.Background
+	_ = fmt.Errorf
+	_ = utf16.Encode
+	_ = strings.TrimPrefix
+	_ = ndr.ZeroString
+	_ = (*uuid.UUID)(nil)
+	_ = (*dcerpc.SyntaxID)(nil)
+)
+
+// IcaApi server interface.
+type IcaAPIServer interface {
+
+	// The RpcWinStationOpenServer method returns a server handle that can be used in other
+	// WinStation API methods for querying information about the WinStation (sessions) on
+	// the server. No special permissions are required to call this method.
+	//
+	// Return Values: Returns TRUE if the call succeeded, or FALSE if the call failed. On
+	// failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationOpenServer(context.Context, *WinStationOpenServerRequest) (*WinStationOpenServerResponse, error)
+
+	// The RpcWinStationCloseServer method closes the server handle for WinStation APIs.
+	// No special permissions are required to call this method.
+	//
+	// Return Values:  Returns TRUE if the call succeeded, or FALSE if the call failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationCloseServer(context.Context, *WinStationCloseServerRequest) (*WinStationCloseServerResponse, error)
+
+	// The RpcIcaServerPing method is called to verify that the server is alive. No special
+	// permissions are required to call this method.<161>
+	//
+	// Return Values:  Returns TRUE if the call succeeded and the server is alive, or FALSE
+	// if the method failed. On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	IcaServerPing(context.Context, *IcaServerPingRequest) (*IcaServerPingResponse, error)
+
+	// The RpcWinStationEnumerate method retrieves a list of LOGONID structures for sessions
+	// on a terminal server. No special permissions are required to call this method. However,
+	// only sessions to which the caller has WINSTATION_QUERY permission are enumerated.
+	// The method checks whether the caller has WINSTATION_QUERY permission (section 3.1.1)
+	// by setting it as the Access Request mask, and fails if the caller does not have the
+	// permission.
+	//
+	// Return Values:  Returns TRUE if the call succeeded, or FALSE if the lookup failed.
+	// On failure, pResult indicates the failure status code. If all of the logon IDs have
+	// already been retrieved from the server, TRUE will be returned, and pResult will be
+	// STATUS_NO_MORE_ENTRIES (as specified in [MS-ERREF]), indicating to the call that
+	// all logon IDs have been retrieved.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationEnumerate(context.Context, *WinStationEnumerateRequest) (*WinStationEnumerateResponse, error)
+
+	// The RpcWinStationRename method enables the caller to change the name of the session.
+	// The caller MUST have DELETE permission, as specified in [MS-DTYP] section 2.4.3,
+	// on the session that is identified by the old name.<162>
+	//
+	// Return Values:  Returns TRUE if the call succeeded, or FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationRename(context.Context, *WinStationRenameRequest) (*WinStationRenameResponse, error)
+
+	// The RpcWinStationQueryInformation method retrieves various types of configuration
+	// information on a session. The caller MUST have the WINSTATION_QUERY permission right
+	// as well as specific permission rights for some operations as indicated in the following
+	// sections. The method checks whether the caller has WINSTATION_QUERY permission and
+	// the specific permission required for some operations (section 3.1.1) by setting it
+	// as the Access Request mask, and fails if the caller does not have the permission.<163>
+	//
+	// Return Values:  Returns TRUE if the call succeeded, or FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationQueryInformation(context.Context, *WinStationQueryInformationRequest) (*WinStationQueryInformationResponse, error)
+
+	// The RpcWinStationSetInformation method sets various types of configuration information
+	// for a session. The caller MUST have the WINSTATION_SET permission. Some operations
+	// MUST have more specific permissions as indicated in more detail in the sections that
+	// follow. The method checks whether the caller has WINSTATION_SET permission and the
+	// specific permission for the configuration information (section 3.1.1) by setting
+	// it as the Access Request mask, and fails if the caller does not have the permissions.<173>
+	//
+	// Return Values:  Returns TRUE if the call succeeded, or FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationSetInformation(context.Context, *WinStationSetInformationRequest) (*WinStationSetInformationResponse, error)
+
+	// The RpcWinStationSendMessage method displays a message box on a given terminal server
+	// session and, optionally, waits for a reply. The caller MUST have WINSTATION_MSG permission
+	// for this method to succeed. The method checks whether the caller has WINSTATION_MSG
+	// permission (section 3.1.1) by setting it as the Access Request mask, and fails if
+	// the caller does not have the permission.<177>
+	//
+	// Return Values:  Returns TRUE if the call succeeded, or FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationSendMessage(context.Context, *WinStationSendMessageRequest) (*WinStationSendMessageResponse, error)
+
+	// The RpcLogonIdFromWinStationName method returns a session's session ID given its
+	// session name. The caller MUST have WINSTATION_QUERY permission. The method checks
+	// whether the caller has WINSTATION_QUERY permission (section 3.1.1) by setting it
+	// as the Access Request mask, and fails if the caller does not have the permission.<178>
+	//
+	// Return Values:  Returns TRUE if the call succeeded, or FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	LogonIDFromWinStationName(context.Context, *LogonIDFromWinStationNameRequest) (*LogonIDFromWinStationNameResponse, error)
+
+	// The RpcWinStationNameFromLogonId method retrieves the Windows Station (WinStation)
+	// name for a specific session. The caller MUST have WINSTATION_QUERY permission. The
+	// method checks whether the caller has WINSTATION_QUERY permission (section 3.1.1)
+	// by setting it as the Access Request mask, and fails if the caller does not have the
+	// permission.<179>
+	//
+	// Return Values:  Returns TRUE if the call succeeded, or FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationNameFromLogonID(context.Context, *WinStationNameFromLogonIDRequest) (*WinStationNameFromLogonIDResponse, error)
+
+	// The RpcWinStationConnect method connects a user's terminal server client from a given
+	// terminal server session to a different terminal server session. If there is a user
+	// connected to the client session, it will be disconnected at the end of this call.
+	// If the method succeeds, the state of the session is State_Active as defined in the
+	// WINSTATIONSTATECLASS enumeration (section 2.2.1.9).
+	//
+	// The client indicated by ConnectLogonId MUST have WINSTATION_DISCONNECT permission.
+	// Similarly, TargetLogonId MUST have WINSTATION_CONNECT and WINSTATION_DISCONNECT permissions.
+	// For each of the aforementioned permissions, the method checks whether the caller
+	// has the permission (section 3.1.1) by setting the Access Request mask to the specific
+	// permission, and fails if the caller does not have the permission.<180>
+	//
+	// Return Values:  Returns TRUE if the call succeeded, or FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationConnect(context.Context, *WinStationConnectRequest) (*WinStationConnectResponse, error)
+
+	// Opnum11NotUsedOnWire operation.
+	// Opnum11NotUsedOnWire
+
+	// Opnum12NotUsedOnWire operation.
+	// Opnum12NotUsedOnWire
+
+	// The RpcWinStationDisconnect method disconnects, on the server, the terminal server
+	// client from a session. If the method succeeds, the state of the session is State_Disconnected
+	// as defined in the WINSTATIONSTATECLASS enumeration (section 2.2.1.9).
+	//
+	// The caller of this method MUST have WINSTATION_DISCONNECT permission on the session
+	// to disconnect. The method checks whether the caller has WINSTATION_DISCONNECT permission
+	// (section 3.1.1) by setting it as the Access Request mask, and fails if the caller
+	// does not have the permission.<182>
+	//
+	// Return Values:  Returns TRUE if the call succeeded, or FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationDisconnect(context.Context, *WinStationDisconnectRequest) (*WinStationDisconnectResponse, error)
+
+	// The RpcWinStationReset method resets a session. Resetting a session will lead to
+	// the user being logged off and his or her terminal server client being disconnected.
+	// The caller MUST have WINSTATION_RESET permissions. The method checks whether the
+	// caller has WINSTATION_RESET permission (section 3.1.1) by setting it as the Access
+	// Request mask, and fails if the caller does not have the permission.<184>
+	//
+	// Return Values:  Returns TRUE if the call succeeded, or FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationReset(context.Context, *WinStationResetRequest) (*WinStationResetResponse, error)
+
+	// The RpcWinStationShutdownSystem method shuts down the system and optionally logs
+	// off all sessions and/or reboots the system. The caller requires SeShutdownPrivilege
+	// (see [MSDN-PRVLGECNSTS]) when performing the shutdown locally and SeRemoteShutdownPrivilege
+	// (see [MSDN-PRVLGECNSTS]) when performing the shutdown remotely. The caller calls
+	// ExitWindowsEx (see [MSDN-ExitWindowsEx]) to perform the actual shutdown once all
+	// checks have been completed.
+	//
+	// Return Values:  Returns TRUE if the call succeeded, or FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationShutdownSystem(context.Context, *WinStationShutdownSystemRequest) (*WinStationShutdownSystemResponse, error)
+
+	// The RpcWinStationWaitSystemEvent method waits synchronously for a system event from
+	// an RPC API request on behalf of the caller. There is no time-out on the wait. Only
+	// one event wait at a time can be posted per server handle. If an event wait is already
+	// outstanding and the new request is not a cancel, the new request will fail. The caller
+	// is not required to have any specific permission to call RpcWinStationWaitSystemEvent.
+	// The first time this is called, the server will create an event block for the handle
+	// specified by hServer. This event block will be cleared if RpcWinStationWaitSystemEvent
+	// is called with EventMask equal to WEVENT_NONE or if RpcWinStationCloseServer or RpcWinStationCloseServerEx
+	// are closed for the handle hServer.
+	//
+	// Return Values:  Returns TRUE if the call succeeded, or FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationWaitSystemEvent(context.Context, *WinStationWaitSystemEventRequest) (*WinStationWaitSystemEventResponse, error)
+
+	// The RpcWinStationShadow method starts a shadow (remote control) operation of another
+	// terminal server session. If the method succeeds, the state of the session that started
+	// the shadow operation is State_Shadow and the state of the session being shadowed
+	// is State_Active as defined in the WINSTATIONSTATECLASS enumeration (section 2.2.1.9).
+	//
+	// The caller MUST have WINSTATION_SHADOW permission. The other session can be local
+	// or on a terminal server. The method MUST be called from inside a remote terminal
+	// server session. The session to shadow MUST be in the active state with a user logged
+	// on. The method checks whether the caller has WINSTATION_SHADOW permission (section
+	// 3.1.1) by setting it as the Access Request mask, and fails if the caller does not
+	// have the permission.<186>
+	//
+	// Return Values: Returns TRUE if the call succeeded, or FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationShadow(context.Context, *WinStationShadowRequest) (*WinStationShadowResponse, error)
+
+	// Opnum18NotUsedOnWire operation.
+	// Opnum18NotUsedOnWire
+
+	// Opnum19NotUsedOnWire operation.
+	// Opnum19NotUsedOnWire
+
+	// Opnum20NotUsedOnWire operation.
+	// Opnum20NotUsedOnWire
+
+	// Opnum21NotUsedOnWire operation.
+	// Opnum21NotUsedOnWire
+
+	// Opnum22NotUsedOnWire operation.
+	// Opnum22NotUsedOnWire
+
+	// Opnum23NotUsedOnWire operation.
+	// Opnum23NotUsedOnWire
+
+	// Opnum24NotUsedOnWire operation.
+	// Opnum24NotUsedOnWire
+
+	// Opnum25NotUsedOnWire operation.
+	// Opnum25NotUsedOnWire
+
+	// Opnum26NotUsedOnWire operation.
+	// Opnum26NotUsedOnWire
+
+	// Opnum27NotUsedOnWire operation.
+	// Opnum27NotUsedOnWire
+
+	// Opnum28NotUsedOnWire operation.
+	// Opnum28NotUsedOnWire
+
+	// The RpcWinStationBreakPoint method breaks into the debugger in either the session
+	// process of a specific session or in the terminal server service process. When this
+	// method is called, the server impersonates the caller and then tries to enable SeShutdownPrivilege
+	// (see [MSDN-PRVLGECNSTS]). If the attempt to enable this privilege fails, the RpcWinStationBreakPoint
+	// call fails.<187>
+	//
+	// Return Values:  Returns TRUE if the call succeeded, or FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationBreakPoint(context.Context, *WinStationBreakPointRequest) (*WinStationBreakPointResponse, error)
+
+	// The RpcWinStationReadRegistry method tells the terminal server to reread, from the
+	// registry, the configuration data for all the WinStations, and to update the memory
+	// locations where this data was stored with the values read from the registry.<189>
+	// The caller of this RPC method MUST be running either as SYSTEM or as an Administrator.<190>
+	//
+	// Return Values:  Returns TRUE if the call succeeded, or FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationReadRegistry(context.Context, *WinStationReadRegistryRequest) (*WinStationReadRegistryResponse, error)
+
+	// Opnum31NotUsedOnWire operation.
+	// Opnum31NotUsedOnWire
+
+	// Opnum32NotUsedOnWire operation.
+	// Opnum32NotUsedOnWire
+
+	// Opnum33NotUsedOnWire operation.
+	// Opnum33NotUsedOnWire
+
+	// The OldRpcWinStationEnumerateProcesses method calls the RpcWinStationEnumerateProcesses
+	// method and returns whatever is returned by that method. It has the same parameters
+	// as the RpcWinStationEnumerateProcesses method. No special permissions are required
+	// to call this method.<191>
+	//
+	// Return Values:  Returns TRUE if the call succeeded, or FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	OldRPCWinStationEnumerateProcesses(context.Context, *OldRPCWinStationEnumerateProcessesRequest) (*OldRPCWinStationEnumerateProcessesResponse, error)
+
+	// Opnum35NotUsedOnWire operation.
+	// Opnum35NotUsedOnWire
+
+	// The RpcWinStationEnumerateProcesses method retrieves the processes running on a remote
+	// server on which the caller has WINSTATION_QUERY permission to retrieve information.
+	// The method checks whether the caller has WINSTATION_QUERY permission (section 3.1.1)
+	// by setting it as the Access Request mask, and fails if the caller does not have the
+	// permission.<192>
+	//
+	// Return Values:  Returns TRUE if the call succeeded, or FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationEnumerateProcesses(context.Context, *WinStationEnumerateProcessesRequest) (*WinStationEnumerateProcessesResponse, error)
+
+	// The RpcWinStationTerminateProcess method terminates the specified process. An attempt
+	// is made to enable the SE_DEBUG_PRIVILEGE privilege to kill processes not owned by
+	// the current user, including processes running in other terminal server sessions.
+	// Caller MUST have terminate permission to terminate the process.
+	//
+	// Return Values:  Returns TRUE if the call succeeded, and FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationTerminateProcess(context.Context, *WinStationTerminateProcessRequest) (*WinStationTerminateProcessResponse, error)
+
+	// Opnum38NotUsedOnWire operation.
+	// Opnum38NotUsedOnWire
+
+	// Opnum39NotUsedOnWire operation.
+	// Opnum39NotUsedOnWire
+
+	// Opnum40NotUsedOnWire operation.
+	// Opnum40NotUsedOnWire
+
+	// Opnum41NotUsedOnWire operation.
+	// Opnum41NotUsedOnWire
+
+	// Opnum42NotUsedOnWire operation.
+	// Opnum42NotUsedOnWire
+
+	// The RpcWinStationGetAllProcesses method retrieves the list of processes running on
+	// the server machine. Only the processes from the sessions on which the user has WINSTATION_QUERY
+	// permission will be retrieved. The method checks whether the caller has WINSTATION_QUERY
+	// permission (section 3.1.1) by setting it as the Access Request mask, and fails if
+	// the caller does not have the permission.
+	//
+	// Return Values:  Returns TRUE if the call succeeded, and FALSE if the lookup failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationGetAllProcesses(context.Context, *WinStationGetAllProcessesRequest) (*WinStationGetAllProcessesResponse, error)
+
+	// The RpcWinStationGetProcessSid method retrieves the process security identifier (SID),
+	// as specified in [MS-DTYP] section 2.4.2, for a given process ID and process start
+	// time combination.<193>The caller MUST have the PROCESS_QUERY_INFORMATION access right
+	// to the process being queried and the TOKEN_QUERY access right to the access token
+	// associated with the process. For more information on the process access rights, see
+	// [MSDN-PROCRIGHTS]. For more information on access rights for access tokens, see [MSDN-TOKENRIGHTS].
+	//
+	// Return Values:  Returns TRUE if the call succeeded, and FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationGetProcessSID(context.Context, *WinStationGetProcessSIDRequest) (*WinStationGetProcessSIDResponse, error)
+
+	// The RpcWinStationGetTermSrvCountersValue method retrieves the current value of requested
+	// terminal server performance counters. The caller is not required to have any specific
+	// permission to call this method.
+	//
+	// Return Values:  Returns TRUE if the call succeeded, and FALSE if the method failed.
+	// On failure, pResult indicates the failure status code. Individual entries in the
+	// array pCounter will indicate whether or not the counter data for that counter could
+	// be retrieved.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationGetTerminateServerCountersValue(context.Context, *WinStationGetTerminateServerCountersValueRequest) (*WinStationGetTerminateServerCountersValueResponse, error)
+
+	// The RpcWinStationReInitializeSecurity method reinitializes security for all non-console
+	// WinStations (remote connection protocols). <202> Existing sessions will not be affected,
+	// but future sessions will have the new security descriptor read from the registry
+	// applied to them. This method MUST be called by processes running as SYSTEM or as
+	// an Administrator.<203>
+	//
+	// Return Values:  Returns TRUE if the call succeeded, and FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationReInitializeSecurity(context.Context, *WinStationReInitializeSecurityRequest) (*WinStationReInitializeSecurityResponse, error)
+
+	// Opnum47NotUsedOnWire operation.
+	// Opnum47NotUsedOnWire
+
+	// Opnum48NotUsedOnWire operation.
+	// Opnum48NotUsedOnWire
+
+	// Opnum49NotUsedOnWire operation.
+	// Opnum49NotUsedOnWire
+
+	// Opnum50NotUsedOnWire operation.
+	// Opnum50NotUsedOnWire
+
+	// Opnum51NotUsedOnWire operation.
+	// Opnum51NotUsedOnWire
+
+	// Opnum52NotUsedOnWire operation.
+	// Opnum52NotUsedOnWire
+
+	// The RpcWinStationGetLanAdapterName method returns the name of the LAN adapter with
+	// a specific LAN adapter number (lana) and transport type, if it is configured to be
+	// used for a Terminal Services protocol connection. No special permissions are required
+	// to call this method.<204><205>
+	//
+	// Return Values:  Returns TRUE if the call is successful, and FALSE if the method
+	// fails. On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationGetLANAdapterName(context.Context, *WinStationGetLANAdapterNameRequest) (*WinStationGetLANAdapterNameResponse, error)
+
+	// Opnum54NotUsedOnWire operation.
+	// Opnum54NotUsedOnWire
+
+	// Opnum55NotUsedOnWire operation.
+	// Opnum55NotUsedOnWire
+
+	// Opnum56NotUsedOnWire operation.
+	// Opnum56NotUsedOnWire
+
+	// Opnum57NotUsedOnWire operation.
+	// Opnum57NotUsedOnWire
+
+	// The RpcWinStationUpdateSettings method rereads settings for all WinStations. The
+	// caller MUST have WINSTATION_QUERY permission. The method checks whether the caller
+	// has WINSTATION_QUERY permission (section 3.1.1) by setting it as the Access Request
+	// mask, and fails if the caller does not have the permission.<206>
+	//
+	// Return Values:  Returns TRUE if the call succeeded, and FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationUpdateSettings(context.Context, *WinStationUpdateSettingsRequest) (*WinStationUpdateSettingsResponse, error)
+
+	// The RpcWinStationShadowStop method stops all shadow operations on the specified session,
+	// including whether the session is acting as a shadow client (a session that is shadowing
+	// another session) or as a shadow target (a session being shadowed by another session).
+	// If the method succeeds, both the state of the session that started the shadow operation
+	// and the state of the session being shadowed are State_Active as defined in the WINSTATIONSTATECLASS
+	// enumeration (section 2.2.1.9).
+	//
+	// Caller MUST have WINSTATION_DISCONNECT and WINSTATION_RESET permissions. For each
+	// aforementioned required permission, the method checks whether the caller has the
+	// permission (section 3.1.1) by setting the Access Request mask to the specific permission,
+	// and fails if the caller does not have the permission.<208>
+	//
+	// Return Values: Returns TRUE if the call succeeded, and FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationShadowStop(context.Context, *WinStationShadowStopRequest) (*WinStationShadowStopResponse, error)
+
+	// The RpcWinStationCloseServerEx method closes the server handle for WinStation APIs.
+	// The call to this method MUST be serialized if there are multiple threads running;
+	// otherwise, the behavior of this function is unknown. No special permissions are required
+	// to call this method.
+	//
+	// Return Values: Returns TRUE if the call succeeded, and FALSE if the call failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationCloseServerEx(context.Context, *WinStationCloseServerExRequest) (*WinStationCloseServerExResponse, error)
+
+	// The RpcWinStationIsHelpAssistantSession method determines if a session is created
+	// by the built-in HelpAssistant user account.<209> The caller is not required to have
+	// any specific permission to call this method.
+	//
+	// Return Values:  Returns TRUE if the session is running as HelpAssistant, and FALSE
+	// if this is not a HelpAssistant session or if an error was encountered during the
+	// test. On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationIsHelpAssistantSession(context.Context, *WinStationIsHelpAssistantSessionRequest) (*WinStationIsHelpAssistantSessionResponse, error)
+
+	// The RpcWinStationGetMachinePolicy method returns a copy of the terminal server machine
+	// policy to the caller.<210> The caller is not required to have any specific permission
+	// to call this method.
+	//
+	// Return Values:  Returns TRUE if the call succeeded, and FALSE if the method failed.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationGetMachinePolicy(context.Context, *WinStationGetMachinePolicyRequest) (*WinStationGetMachinePolicyResponse, error)
+
+	// Opnum63NotUsedOnWire operation.
+	// Opnum63NotUsedOnWire
+
+	// Opnum64NotUsedOnWire operation.
+	// Opnum64NotUsedOnWire
+
+	// The RpcWinStationCheckLoopBack method checks if there is a loopback when a client
+	// tries to connect. Loopback refers to opening a terminal server session on the local
+	// machine.<211> The caller is not required to have any specific permission to call
+	// this method.
+	//
+	// Return Values:  Returns FALSE if there is no loopback, and TRUE if a loopback was
+	// detected. This method returns TRUE also in the case when an error was encountered
+	// during the loopback test. In this case, the pResult value contains the relevant error
+	// code.
+	//
+	//	+-------------------+----------------------------------------------------+
+	//	|      RETURN       |                                                    |
+	//	|    VALUE/CODE     |                    DESCRIPTION                     |
+	//	|                   |                                                    |
+	//	+-------------------+----------------------------------------------------+
+	//	+-------------------+----------------------------------------------------+
+	//	| 0x01 TRUE         | A loopback was detected or the method call failed. |
+	//	+-------------------+----------------------------------------------------+
+	//	| 0x00 FALSE        | A loopback was not detected.                       |
+	//	+-------------------+----------------------------------------------------+
+	WinStationCheckLoopBack(context.Context, *WinStationCheckLoopBackRequest) (*WinStationCheckLoopBackResponse, error)
+
+	// The RpcConnectCallback method initiates a TCP connection to the specified IP address
+	// and waits for the party on the other end of the connection to start the Remote Desktop
+	// Protocol (RDP) connection sequence. More information on Remote Desktop Protocol can
+	// be found in [MS-RDPBCGR]. This method MUST be called by processes running as SYSTEM.
+	// Note that this function assumes that the address being passed in is an IPv4 address.
+	// IPv6 addresses are not supported.<212>
+	//
+	// Return Values:  Returns TRUE if the call succeeded, and FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	ConnectCallback(context.Context, *ConnectCallbackRequest) (*ConnectCallbackResponse, error)
+
+	// Opnum67NotUsedOnWire operation.
+	// Opnum67NotUsedOnWire
+
+	// Opnum68NotUsedOnWire operation.
+	// Opnum68NotUsedOnWire
+
+	// Opnum69NotUsedOnWire operation.
+	// Opnum69NotUsedOnWire
+
+	// The RpcWinStationGetAllProcesses_NT6 method retrieves the processes running a remote
+	// server machine. Only the processes from the sessions on which the caller has WINSTATION_QUERY
+	// permission will be retrieved. The method checks whether the caller has WINSTATION_QUERY
+	// permission (section 3.1.1) by setting it as the Access Request mask, and fails if
+	// the caller does not have the permission.
+	//
+	// Return Values:  Returns TRUE if the call succeeded, and FALSE if the lookup failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationGetAllProcessesNT6(context.Context, *WinStationGetAllProcessesNT6Request) (*WinStationGetAllProcessesNT6Response, error)
+
+	// Opnum71NotUsedOnWire operation.
+	// Opnum71NotUsedOnWire
+
+	// Opnum72NotUsedOnWire operation.
+	// Opnum72NotUsedOnWire
+
+	// Opnum73NotUsedOnWire operation.
+	// Opnum73NotUsedOnWire
+
+	// Opnum74NotUsedOnWire operation.
+	// Opnum74NotUsedOnWire
+
+	// The RpcWinStationOpenSessionDirectory method pings the Session Directory to see if
+	// it can accept RPC calls. The caller MUST be either SYSTEM or an administrator. The
+	// method performs access checks as defined in sections 3.1.2 and 3.1.3. The method
+	// fails if both checks fail. For more information about the Session Directory, see
+	// [MSFT-SDLBTS].<213>
+	//
+	// Return Values:  Returns TRUE if the call succeeded, and FALSE if the method failed.
+	// On failure, pResult indicates the failure status code.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x01 TRUE         | Successful completion. |
+	//	+-------------------+------------------------+
+	//	| 0x00 FALSE        | Method call failed.    |
+	//	+-------------------+------------------------+
+	WinStationOpenSessionDirectory(context.Context, *WinStationOpenSessionDirectoryRequest) (*WinStationOpenSessionDirectoryResponse, error)
+}
+
+func RegisterIcaAPIServer(conn dcerpc.Conn, o IcaAPIServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewIcaAPIServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(IcaAPISyntaxV1_0))...)
+}
+
+func NewIcaAPIServerHandle(o IcaAPIServer) dcerpc.ServerHandle {
+	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+		return IcaAPIServerHandle(ctx, o, opNum, r)
+	}
+}
+
+func IcaAPIServerHandle(ctx context.Context, o IcaAPIServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+	switch opNum {
+	case 0: // RpcWinStationOpenServer
+		op := &xxx_WinStationOpenServerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationOpenServerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationOpenServer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 1: // RpcWinStationCloseServer
+		op := &xxx_WinStationCloseServerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationCloseServerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationCloseServer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 2: // RpcIcaServerPing
+		op := &xxx_IcaServerPingOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &IcaServerPingRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IcaServerPing(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 3: // RpcWinStationEnumerate
+		op := &xxx_WinStationEnumerateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationEnumerateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationEnumerate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 4: // RpcWinStationRename
+		op := &xxx_WinStationRenameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationRenameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationRename(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 5: // RpcWinStationQueryInformation
+		op := &xxx_WinStationQueryInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationQueryInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationQueryInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 6: // RpcWinStationSetInformation
+		op := &xxx_WinStationSetInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationSetInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationSetInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 7: // RpcWinStationSendMessage
+		op := &xxx_WinStationSendMessageOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationSendMessageRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationSendMessage(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 8: // RpcLogonIdFromWinStationName
+		op := &xxx_LogonIDFromWinStationNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &LogonIDFromWinStationNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LogonIDFromWinStationName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 9: // RpcWinStationNameFromLogonId
+		op := &xxx_WinStationNameFromLogonIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationNameFromLogonIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationNameFromLogonID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 10: // RpcWinStationConnect
+		op := &xxx_WinStationConnectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationConnectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationConnect(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 11: // Opnum11NotUsedOnWire
+		// Opnum11NotUsedOnWire
+		return nil, nil
+	case 12: // Opnum12NotUsedOnWire
+		// Opnum12NotUsedOnWire
+		return nil, nil
+	case 13: // RpcWinStationDisconnect
+		op := &xxx_WinStationDisconnectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationDisconnectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationDisconnect(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 14: // RpcWinStationReset
+		op := &xxx_WinStationResetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationResetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationReset(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 15: // RpcWinStationShutdownSystem
+		op := &xxx_WinStationShutdownSystemOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationShutdownSystemRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationShutdownSystem(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 16: // RpcWinStationWaitSystemEvent
+		op := &xxx_WinStationWaitSystemEventOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationWaitSystemEventRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationWaitSystemEvent(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 17: // RpcWinStationShadow
+		op := &xxx_WinStationShadowOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationShadowRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationShadow(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 18: // Opnum18NotUsedOnWire
+		// Opnum18NotUsedOnWire
+		return nil, nil
+	case 19: // Opnum19NotUsedOnWire
+		// Opnum19NotUsedOnWire
+		return nil, nil
+	case 20: // Opnum20NotUsedOnWire
+		// Opnum20NotUsedOnWire
+		return nil, nil
+	case 21: // Opnum21NotUsedOnWire
+		// Opnum21NotUsedOnWire
+		return nil, nil
+	case 22: // Opnum22NotUsedOnWire
+		// Opnum22NotUsedOnWire
+		return nil, nil
+	case 23: // Opnum23NotUsedOnWire
+		// Opnum23NotUsedOnWire
+		return nil, nil
+	case 24: // Opnum24NotUsedOnWire
+		// Opnum24NotUsedOnWire
+		return nil, nil
+	case 25: // Opnum25NotUsedOnWire
+		// Opnum25NotUsedOnWire
+		return nil, nil
+	case 26: // Opnum26NotUsedOnWire
+		// Opnum26NotUsedOnWire
+		return nil, nil
+	case 27: // Opnum27NotUsedOnWire
+		// Opnum27NotUsedOnWire
+		return nil, nil
+	case 28: // Opnum28NotUsedOnWire
+		// Opnum28NotUsedOnWire
+		return nil, nil
+	case 29: // RpcWinStationBreakPoint
+		op := &xxx_WinStationBreakPointOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationBreakPointRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationBreakPoint(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 30: // RpcWinStationReadRegistry
+		op := &xxx_WinStationReadRegistryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationReadRegistryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationReadRegistry(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 31: // Opnum31NotUsedOnWire
+		// Opnum31NotUsedOnWire
+		return nil, nil
+	case 32: // Opnum32NotUsedOnWire
+		// Opnum32NotUsedOnWire
+		return nil, nil
+	case 33: // Opnum33NotUsedOnWire
+		// Opnum33NotUsedOnWire
+		return nil, nil
+	case 34: // OldRpcWinStationEnumerateProcesses
+		op := &xxx_OldRPCWinStationEnumerateProcessesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &OldRPCWinStationEnumerateProcessesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OldRPCWinStationEnumerateProcesses(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 35: // Opnum35NotUsedOnWire
+		// Opnum35NotUsedOnWire
+		return nil, nil
+	case 36: // RpcWinStationEnumerateProcesses
+		op := &xxx_WinStationEnumerateProcessesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationEnumerateProcessesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationEnumerateProcesses(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 37: // RpcWinStationTerminateProcess
+		op := &xxx_WinStationTerminateProcessOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationTerminateProcessRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationTerminateProcess(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 38: // Opnum38NotUsedOnWire
+		// Opnum38NotUsedOnWire
+		return nil, nil
+	case 39: // Opnum39NotUsedOnWire
+		// Opnum39NotUsedOnWire
+		return nil, nil
+	case 40: // Opnum40NotUsedOnWire
+		// Opnum40NotUsedOnWire
+		return nil, nil
+	case 41: // Opnum41NotUsedOnWire
+		// Opnum41NotUsedOnWire
+		return nil, nil
+	case 42: // Opnum42NotUsedOnWire
+		// Opnum42NotUsedOnWire
+		return nil, nil
+	case 43: // RpcWinStationGetAllProcesses
+		op := &xxx_WinStationGetAllProcessesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationGetAllProcessesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationGetAllProcesses(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 44: // RpcWinStationGetProcessSid
+		op := &xxx_WinStationGetProcessSIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationGetProcessSIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationGetProcessSID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 45: // RpcWinStationGetTermSrvCountersValue
+		op := &xxx_WinStationGetTerminateServerCountersValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationGetTerminateServerCountersValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationGetTerminateServerCountersValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 46: // RpcWinStationReInitializeSecurity
+		op := &xxx_WinStationReInitializeSecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationReInitializeSecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationReInitializeSecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 47: // Opnum47NotUsedOnWire
+		// Opnum47NotUsedOnWire
+		return nil, nil
+	case 48: // Opnum48NotUsedOnWire
+		// Opnum48NotUsedOnWire
+		return nil, nil
+	case 49: // Opnum49NotUsedOnWire
+		// Opnum49NotUsedOnWire
+		return nil, nil
+	case 50: // Opnum50NotUsedOnWire
+		// Opnum50NotUsedOnWire
+		return nil, nil
+	case 51: // Opnum51NotUsedOnWire
+		// Opnum51NotUsedOnWire
+		return nil, nil
+	case 52: // Opnum52NotUsedOnWire
+		// Opnum52NotUsedOnWire
+		return nil, nil
+	case 53: // RpcWinStationGetLanAdapterName
+		op := &xxx_WinStationGetLANAdapterNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationGetLANAdapterNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationGetLANAdapterName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 54: // Opnum54NotUsedOnWire
+		// Opnum54NotUsedOnWire
+		return nil, nil
+	case 55: // Opnum55NotUsedOnWire
+		// Opnum55NotUsedOnWire
+		return nil, nil
+	case 56: // Opnum56NotUsedOnWire
+		// Opnum56NotUsedOnWire
+		return nil, nil
+	case 57: // Opnum57NotUsedOnWire
+		// Opnum57NotUsedOnWire
+		return nil, nil
+	case 58: // RpcWinStationUpdateSettings
+		op := &xxx_WinStationUpdateSettingsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationUpdateSettingsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationUpdateSettings(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 59: // RpcWinStationShadowStop
+		op := &xxx_WinStationShadowStopOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationShadowStopRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationShadowStop(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 60: // RpcWinStationCloseServerEx
+		op := &xxx_WinStationCloseServerExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationCloseServerExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationCloseServerEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 61: // RpcWinStationIsHelpAssistantSession
+		op := &xxx_WinStationIsHelpAssistantSessionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationIsHelpAssistantSessionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationIsHelpAssistantSession(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 62: // RpcWinStationGetMachinePolicy
+		op := &xxx_WinStationGetMachinePolicyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationGetMachinePolicyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationGetMachinePolicy(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 63: // Opnum63NotUsedOnWire
+		// Opnum63NotUsedOnWire
+		return nil, nil
+	case 64: // Opnum64NotUsedOnWire
+		// Opnum64NotUsedOnWire
+		return nil, nil
+	case 65: // RpcWinStationCheckLoopBack
+		op := &xxx_WinStationCheckLoopBackOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationCheckLoopBackRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationCheckLoopBack(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 66: // RpcConnectCallback
+		op := &xxx_ConnectCallbackOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &ConnectCallbackRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ConnectCallback(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 67: // Opnum67NotUsedOnWire
+		// Opnum67NotUsedOnWire
+		return nil, nil
+	case 68: // Opnum68NotUsedOnWire
+		// Opnum68NotUsedOnWire
+		return nil, nil
+	case 69: // Opnum69NotUsedOnWire
+		// Opnum69NotUsedOnWire
+		return nil, nil
+	case 70: // RpcWinStationGetAllProcesses_NT6
+		op := &xxx_WinStationGetAllProcessesNT6Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationGetAllProcessesNT6Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationGetAllProcessesNT6(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 71: // Opnum71NotUsedOnWire
+		// Opnum71NotUsedOnWire
+		return nil, nil
+	case 72: // Opnum72NotUsedOnWire
+		// Opnum72NotUsedOnWire
+		return nil, nil
+	case 73: // Opnum73NotUsedOnWire
+		// Opnum73NotUsedOnWire
+		return nil, nil
+	case 74: // Opnum74NotUsedOnWire
+		// Opnum74NotUsedOnWire
+		return nil, nil
+	case 75: // RpcWinStationOpenSessionDirectory
+		op := &xxx_WinStationOpenSessionDirectoryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &WinStationOpenSessionDirectoryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WinStationOpenSessionDirectory(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	}
+	return nil, nil
+}
+
+// Unimplemented IcaApi
+type UnimplementedIcaAPIServer struct {
+}
+
+func (UnimplementedIcaAPIServer) WinStationOpenServer(context.Context, *WinStationOpenServerRequest) (*WinStationOpenServerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationCloseServer(context.Context, *WinStationCloseServerRequest) (*WinStationCloseServerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) IcaServerPing(context.Context, *IcaServerPingRequest) (*IcaServerPingResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationEnumerate(context.Context, *WinStationEnumerateRequest) (*WinStationEnumerateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationRename(context.Context, *WinStationRenameRequest) (*WinStationRenameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationQueryInformation(context.Context, *WinStationQueryInformationRequest) (*WinStationQueryInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationSetInformation(context.Context, *WinStationSetInformationRequest) (*WinStationSetInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationSendMessage(context.Context, *WinStationSendMessageRequest) (*WinStationSendMessageResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) LogonIDFromWinStationName(context.Context, *LogonIDFromWinStationNameRequest) (*LogonIDFromWinStationNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationNameFromLogonID(context.Context, *WinStationNameFromLogonIDRequest) (*WinStationNameFromLogonIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationConnect(context.Context, *WinStationConnectRequest) (*WinStationConnectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationDisconnect(context.Context, *WinStationDisconnectRequest) (*WinStationDisconnectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationReset(context.Context, *WinStationResetRequest) (*WinStationResetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationShutdownSystem(context.Context, *WinStationShutdownSystemRequest) (*WinStationShutdownSystemResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationWaitSystemEvent(context.Context, *WinStationWaitSystemEventRequest) (*WinStationWaitSystemEventResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationShadow(context.Context, *WinStationShadowRequest) (*WinStationShadowResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationBreakPoint(context.Context, *WinStationBreakPointRequest) (*WinStationBreakPointResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationReadRegistry(context.Context, *WinStationReadRegistryRequest) (*WinStationReadRegistryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) OldRPCWinStationEnumerateProcesses(context.Context, *OldRPCWinStationEnumerateProcessesRequest) (*OldRPCWinStationEnumerateProcessesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationEnumerateProcesses(context.Context, *WinStationEnumerateProcessesRequest) (*WinStationEnumerateProcessesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationTerminateProcess(context.Context, *WinStationTerminateProcessRequest) (*WinStationTerminateProcessResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationGetAllProcesses(context.Context, *WinStationGetAllProcessesRequest) (*WinStationGetAllProcessesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationGetProcessSID(context.Context, *WinStationGetProcessSIDRequest) (*WinStationGetProcessSIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationGetTerminateServerCountersValue(context.Context, *WinStationGetTerminateServerCountersValueRequest) (*WinStationGetTerminateServerCountersValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationReInitializeSecurity(context.Context, *WinStationReInitializeSecurityRequest) (*WinStationReInitializeSecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationGetLANAdapterName(context.Context, *WinStationGetLANAdapterNameRequest) (*WinStationGetLANAdapterNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationUpdateSettings(context.Context, *WinStationUpdateSettingsRequest) (*WinStationUpdateSettingsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationShadowStop(context.Context, *WinStationShadowStopRequest) (*WinStationShadowStopResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationCloseServerEx(context.Context, *WinStationCloseServerExRequest) (*WinStationCloseServerExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationIsHelpAssistantSession(context.Context, *WinStationIsHelpAssistantSessionRequest) (*WinStationIsHelpAssistantSessionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationGetMachinePolicy(context.Context, *WinStationGetMachinePolicyRequest) (*WinStationGetMachinePolicyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationCheckLoopBack(context.Context, *WinStationCheckLoopBackRequest) (*WinStationCheckLoopBackResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) ConnectCallback(context.Context, *ConnectCallbackRequest) (*ConnectCallbackResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationGetAllProcessesNT6(context.Context, *WinStationGetAllProcessesNT6Request) (*WinStationGetAllProcessesNT6Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIcaAPIServer) WinStationOpenSessionDirectory(context.Context, *WinStationOpenSessionDirectoryRequest) (*WinStationOpenSessionDirectoryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ IcaAPIServer = (*UnimplementedIcaAPIServer)(nil)

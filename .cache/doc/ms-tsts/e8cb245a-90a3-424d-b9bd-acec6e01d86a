@@ -1,0 +1,92 @@
+<div class="content"><p>The RpcWinStationCheckLoopBack method checks if there is a
+loopback when a client tries to connect. Loopback refers to opening a <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal
+server</a></span> session on the local machine.<a id="Appendix_A_Target_211"></a><a aria-label="Product behavior note 211" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_211" data-linktype="relative-path">&lt;211&gt;</a> The
+caller is not required to have any specific permission to call this method.</p><dl>
+<dd>
+<div><pre> BOOLEAN RpcWinStationCheckLoopBack(
+   [in] SERVER_HANDLE hServer,
+   [out] DWORD* pResult,
+   [in] DWORD ClientLogonId,
+   [in] DWORD TargetLogonId,
+   [in, size_is(NameSize)] PWCHAR pTargetServerName,
+   [in, range(0, 1024)] DWORD NameSize
+ );
+</pre></div>
+</dd></dl><p><b>hServer: </b>Handle to the server object. This is
+of type <span><a href="49484cdf-2feb-4de9-a588-5d01cf8995dc" data-linktype="relative-path">SERVER_HANDLE</a></span>. The <i>hServer</i>
+argument MUST be obtained from a previous call to <span><a href="fd6f339d-f5dd-452c-a9a9-ec753c22a36a" data-linktype="relative-path">RpcWinStationOpenServer</a></span>.</p><p><b>pResult: </b>Failure error code if the call to
+RpcWinStationCheckLoopBack failed. If the call was successful, this parameter
+MUST be STATUS_SUCCESS (0x00000000).</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>STATUS_SUCCESS</p>
+  <p>0x00000000</p>
+  </td>
+  <td>
+  <p>The call was successful.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>STATUS_ACCESS_DENIED</p>
+  <p>0xC0000022</p>
+  </td>
+  <td>
+  <p>A loopback was detected.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>STATUS_CTX_WINSTATION_ACCESS_DENIED</p>
+  <p>0xC00A002B</p>
+  </td>
+  <td>
+  <p>The server is in the process of shutting down and
+  cannot complete the request.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>ClientLogonId: </b>The ID of the session from
+which the terminal server client was started.</p><p><b>TargetLogonId: </b>The session ID to which the
+client is trying to connect.</p><p><b>pTargetServerName: </b>The name of the target
+server to which the client is connecting. The string MUST contain the
+terminating NULL character.</p><p><b>NameSize: </b>The length of the <i>pTargetServerName</i>
+string in characters including the terminating NULL character.</p><p><b>Return Values: </b> Returns FALSE if there is no
+loopback, and TRUE if a loopback was detected. This method returns TRUE also in
+the case when an error was encountered during the loopback test. In this case,
+the <i>pResult</i> value contains the relevant error code.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x01</p>
+  <p>TRUE</p>
+  </td>
+  <td>
+  <p>A loopback was detected or the method call failed.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>0x00</p>
+  <p>FALSE</p>
+  </td>
+  <td>
+  <p>A loopback was not detected.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

@@ -275,9 +275,9 @@ func NewNetEventForwarderClient(ctx context.Context, cc dcerpc.Conn, opts ...dce
 
 // xxx_OpenSessionOperation structure represents the RpcNetEventOpenSession operation
 type xxx_OpenSessionOperation struct {
-	LoggerName    string   `idl:"name:LoggerName;string" json:"logger_name"`
-	SessionHandle *Session `idl:"name:SessionHandle" json:"session_handle"`
-	Return        uint32   `idl:"name:Return" json:"return"`
+	LoggerName string   `idl:"name:LoggerName;string" json:"logger_name"`
+	Session    *Session `idl:"name:SessionHandle" json:"session"`
+	Return     uint32   `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_OpenSessionOperation) OpNum() int { return 0 }
@@ -333,8 +333,8 @@ func (o *xxx_OpenSessionOperation) MarshalNDRResponse(ctx context.Context, w ndr
 	}
 	// SessionHandle {out} (1:{pointer=ref}*(1))(2:{context_handle, alias=PSESSION_HANDLE, names=ndr_context_handle}(struct))
 	{
-		if o.SessionHandle != nil {
-			if err := o.SessionHandle.MarshalNDR(ctx, w); err != nil {
+		if o.Session != nil {
+			if err := o.Session.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -355,10 +355,10 @@ func (o *xxx_OpenSessionOperation) MarshalNDRResponse(ctx context.Context, w ndr
 func (o *xxx_OpenSessionOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// SessionHandle {out} (1:{pointer=ref}*(1))(2:{context_handle, alias=PSESSION_HANDLE, names=ndr_context_handle}(struct))
 	{
-		if o.SessionHandle == nil {
-			o.SessionHandle = &Session{}
+		if o.Session == nil {
+			o.Session = &Session{}
 		}
-		if err := o.SessionHandle.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Session.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -407,7 +407,7 @@ func (o *OpenSessionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 
 // OpenSessionResponse structure represents the RpcNetEventOpenSession operation response
 type OpenSessionResponse struct {
-	SessionHandle *Session `idl:"name:SessionHandle" json:"session_handle"`
+	Session *Session `idl:"name:SessionHandle" json:"session"`
 	// Return: The RpcNetEventOpenSession return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -419,7 +419,7 @@ func (o *OpenSessionResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenSessionO
 	if o == nil {
 		return op
 	}
-	op.SessionHandle = o.SessionHandle
+	op.Session = o.Session
 	op.Return = o.Return
 	return op
 }
@@ -428,7 +428,7 @@ func (o *OpenSessionResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenSessio
 	if o == nil {
 		return
 	}
-	o.SessionHandle = op.SessionHandle
+	o.Session = op.Session
 	o.Return = op.Return
 }
 func (o *OpenSessionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -445,9 +445,9 @@ func (o *OpenSessionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 
 // xxx_ReceiveDataOperation structure represents the RpcNetEventReceiveData operation
 type xxx_ReceiveDataOperation struct {
-	SessionHandle *Session     `idl:"name:SessionHandle" json:"session_handle"`
-	EventBuffer   *EventBuffer `idl:"name:EventBuffer" json:"event_buffer"`
-	Return        uint32       `idl:"name:Return" json:"return"`
+	Session     *Session     `idl:"name:SessionHandle" json:"session"`
+	EventBuffer *EventBuffer `idl:"name:EventBuffer" json:"event_buffer"`
+	Return      uint32       `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_ReceiveDataOperation) OpNum() int { return 1 }
@@ -471,8 +471,8 @@ func (o *xxx_ReceiveDataOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// SessionHandle {in} (1:{context_handle, alias=PSESSION_HANDLE, names=ndr_context_handle}(struct))
 	{
-		if o.SessionHandle != nil {
-			if err := o.SessionHandle.MarshalNDR(ctx, w); err != nil {
+		if o.Session != nil {
+			if err := o.Session.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -487,10 +487,10 @@ func (o *xxx_ReceiveDataOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 func (o *xxx_ReceiveDataOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// SessionHandle {in} (1:{context_handle, alias=PSESSION_HANDLE, names=ndr_context_handle}(struct))
 	{
-		if o.SessionHandle == nil {
-			o.SessionHandle = &Session{}
+		if o.Session == nil {
+			o.Session = &Session{}
 		}
-		if err := o.SessionHandle.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Session.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -558,7 +558,7 @@ func (o *xxx_ReceiveDataOperation) UnmarshalNDRResponse(ctx context.Context, w n
 
 // ReceiveDataRequest structure represents the RpcNetEventReceiveData operation request
 type ReceiveDataRequest struct {
-	SessionHandle *Session `idl:"name:SessionHandle" json:"session_handle"`
+	Session *Session `idl:"name:SessionHandle" json:"session"`
 }
 
 func (o *ReceiveDataRequest) xxx_ToOp(ctx context.Context, op *xxx_ReceiveDataOperation) *xxx_ReceiveDataOperation {
@@ -568,7 +568,7 @@ func (o *ReceiveDataRequest) xxx_ToOp(ctx context.Context, op *xxx_ReceiveDataOp
 	if o == nil {
 		return op
 	}
-	op.SessionHandle = o.SessionHandle
+	op.Session = o.Session
 	return op
 }
 
@@ -576,7 +576,7 @@ func (o *ReceiveDataRequest) xxx_FromOp(ctx context.Context, op *xxx_ReceiveData
 	if o == nil {
 		return
 	}
-	o.SessionHandle = op.SessionHandle
+	o.Session = op.Session
 }
 func (o *ReceiveDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -630,7 +630,7 @@ func (o *ReceiveDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 
 // xxx_CloseSessionOperation structure represents the RpcNetEventCloseSession operation
 type xxx_CloseSessionOperation struct {
-	SessionHandle *Session `idl:"name:SessionHandle" json:"session_handle"`
+	Session *Session `idl:"name:SessionHandle" json:"session"`
 }
 
 func (o *xxx_CloseSessionOperation) OpNum() int { return 2 }
@@ -654,8 +654,8 @@ func (o *xxx_CloseSessionOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// SessionHandle {in, out} (1:{pointer=ref}*(1))(2:{context_handle, alias=PSESSION_HANDLE, names=ndr_context_handle}(struct))
 	{
-		if o.SessionHandle != nil {
-			if err := o.SessionHandle.MarshalNDR(ctx, w); err != nil {
+		if o.Session != nil {
+			if err := o.Session.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -670,10 +670,10 @@ func (o *xxx_CloseSessionOperation) MarshalNDRRequest(ctx context.Context, w ndr
 func (o *xxx_CloseSessionOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// SessionHandle {in, out} (1:{pointer=ref}*(1))(2:{context_handle, alias=PSESSION_HANDLE, names=ndr_context_handle}(struct))
 	{
-		if o.SessionHandle == nil {
-			o.SessionHandle = &Session{}
+		if o.Session == nil {
+			o.Session = &Session{}
 		}
-		if err := o.SessionHandle.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Session.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -695,8 +695,8 @@ func (o *xxx_CloseSessionOperation) MarshalNDRResponse(ctx context.Context, w nd
 	}
 	// SessionHandle {in, out} (1:{pointer=ref}*(1))(2:{context_handle, alias=PSESSION_HANDLE, names=ndr_context_handle}(struct))
 	{
-		if o.SessionHandle != nil {
-			if err := o.SessionHandle.MarshalNDR(ctx, w); err != nil {
+		if o.Session != nil {
+			if err := o.Session.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -711,10 +711,10 @@ func (o *xxx_CloseSessionOperation) MarshalNDRResponse(ctx context.Context, w nd
 func (o *xxx_CloseSessionOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// SessionHandle {in, out} (1:{pointer=ref}*(1))(2:{context_handle, alias=PSESSION_HANDLE, names=ndr_context_handle}(struct))
 	{
-		if o.SessionHandle == nil {
-			o.SessionHandle = &Session{}
+		if o.Session == nil {
+			o.Session = &Session{}
 		}
-		if err := o.SessionHandle.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Session.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -723,7 +723,7 @@ func (o *xxx_CloseSessionOperation) UnmarshalNDRResponse(ctx context.Context, w 
 
 // CloseSessionRequest structure represents the RpcNetEventCloseSession operation request
 type CloseSessionRequest struct {
-	SessionHandle *Session `idl:"name:SessionHandle" json:"session_handle"`
+	Session *Session `idl:"name:SessionHandle" json:"session"`
 }
 
 func (o *CloseSessionRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseSessionOperation) *xxx_CloseSessionOperation {
@@ -733,7 +733,7 @@ func (o *CloseSessionRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseSession
 	if o == nil {
 		return op
 	}
-	op.SessionHandle = o.SessionHandle
+	op.Session = o.Session
 	return op
 }
 
@@ -741,7 +741,7 @@ func (o *CloseSessionRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseSessi
 	if o == nil {
 		return
 	}
-	o.SessionHandle = op.SessionHandle
+	o.Session = op.Session
 }
 func (o *CloseSessionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -757,7 +757,7 @@ func (o *CloseSessionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 
 // CloseSessionResponse structure represents the RpcNetEventCloseSession operation response
 type CloseSessionResponse struct {
-	SessionHandle *Session `idl:"name:SessionHandle" json:"session_handle"`
+	Session *Session `idl:"name:SessionHandle" json:"session"`
 }
 
 func (o *CloseSessionResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseSessionOperation) *xxx_CloseSessionOperation {
@@ -767,7 +767,7 @@ func (o *CloseSessionResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseSessio
 	if o == nil {
 		return op
 	}
-	op.SessionHandle = o.SessionHandle
+	op.Session = o.Session
 	return op
 }
 
@@ -775,7 +775,7 @@ func (o *CloseSessionResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseSess
 	if o == nil {
 		return
 	}
-	o.SessionHandle = op.SessionHandle
+	o.Session = op.Session
 }
 func (o *CloseSessionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)

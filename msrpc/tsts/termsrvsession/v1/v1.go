@@ -1,0 +1,4563 @@
+package termsrvsession
+
+import (
+	"context"
+	"fmt"
+	"strings"
+	"unicode/utf16"
+
+	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
+	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
+	dcetypes "github.com/oiweiwei/go-msrpc/msrpc/dcetypes"
+	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
+	tsts "github.com/oiweiwei/go-msrpc/msrpc/tsts"
+	ndr "github.com/oiweiwei/go-msrpc/ndr"
+)
+
+var (
+	_ = context.Background
+	_ = fmt.Errorf
+	_ = utf16.Encode
+	_ = strings.TrimPrefix
+	_ = ndr.ZeroString
+	_ = (*uuid.UUID)(nil)
+	_ = (*dcerpc.SyntaxID)(nil)
+	_ = dcetypes.GoPackage
+	_ = dtyp.GoPackage
+	_ = tsts.GoPackage
+)
+
+var (
+	// import guard
+	GoPackage = "tsts"
+)
+
+var (
+	// Syntax UUID
+	TerminateServerSessionSyntaxUUID = &uuid.UUID{TimeLow: 0x484809d6, TimeMid: 0x4239, TimeHiAndVersion: 0x471b, ClockSeqHiAndReserved: 0xb5, ClockSeqLow: 0xbc, Node: [6]uint8{0x61, 0xdf, 0x8c, 0x23, 0xac, 0x48}}
+	// Syntax ID
+	TerminateServerSessionSyntaxV1_0 = &dcerpc.SyntaxID{IfUUID: TerminateServerSessionSyntaxUUID, IfVersionMajor: 1, IfVersionMinor: 0}
+)
+
+// TermSrvSession interface.
+type TerminateServerSessionClient interface {
+
+	// The RpcOpenSession method returns a handle to a specified session on the terminal
+	// server. No special permissions are required to call this method.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	OpenSession(context.Context, *OpenSessionRequest, ...dcerpc.CallOption) (*OpenSessionResponse, error)
+
+	// The RpcCloseSession method closes the connection to the specified session on the
+	// terminal server. This method MUST be called after RpcOpenSession. The call to this
+	// method MUST be serialized if there are multiple threads running otherwise the behavior
+	// of this function is unknown. No special permissions are required to call this method.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	CloseSession(context.Context, *CloseSessionRequest, ...dcerpc.CallOption) (*CloseSessionResponse, error)
+
+	// The RpcConnect method reconnects a session handle returned by RpcOpenSession to another
+	// specified session on the terminal server. This method MUST be called after RpcOpenSession.
+	// If the method succeeds, the state of the session is State_Active as defined in the
+	// WINSTATIONSTATECLASS enumeration (section 2.2.1.9).
+	//
+	// The caller MUST have WINSTATION_CONNECT permission to connect the current session
+	// and the caller MUST have WINSTATION_DISCONNECT permission to disconnect the target
+	// session. For each aforementioned required permission, the method checks whether the
+	// caller has the permission (section 3.1.1) by setting the Access Request mask to the
+	// specific permission, and fails if the caller does not have the permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	Connect(context.Context, *ConnectRequest, ...dcerpc.CallOption) (*ConnectResponse, error)
+
+	// The RpcDisconnect method disconnects the specified session on the terminal server.
+	// This method MUST be called after RpcOpenSession. If the method succeeds, the state
+	// of the session is State_Disconnected as defined in the WINSTATIONSTATECLASS enumeration
+	// (section 2.2.1.9).
+	//
+	// The caller MUST have WINSTATION_DISCONNECT permission to disconnect the session.
+	// The method checks whether the caller has WINSTATION_DISCONNECT permission (section
+	// 3.1.1) by setting it as the Access Request mask, and fails if the caller does not
+	// have the permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	Disconnect(context.Context, *DisconnectRequest, ...dcerpc.CallOption) (*DisconnectResponse, error)
+
+	// The RpcLogoff method logs off the specified session on the terminal server. This
+	// method MUST be called after RpcOpenSession. The caller MUST have WINSTATION_LOGOFF
+	// permission to log off the session. The method checks whether the caller has WINSTATION_LOGOFF
+	// permission (section 3.1.1) by setting it as the Access Request mask, and fails if
+	// the caller does not have the permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	Logoff(context.Context, *LogoffRequest, ...dcerpc.CallOption) (*LogoffResponse, error)
+
+	// The RpcGetUserName method gets the username and domain name of the user logged on
+	// to the specified session on the terminal server. This method MUST be called after
+	// RpcOpenSession. The caller MUST have WINSTATION_QUERY permission for the session.
+	// The method checks whether the caller has WINSTATION_QUERY permission (section 3.1.1)
+	// by setting it as the Access Request mask, and fails if the caller does not have the
+	// permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetUserName(context.Context, *GetUserNameRequest, ...dcerpc.CallOption) (*GetUserNameResponse, error)
+
+	// The RpcGetTerminalName method gets the name of the terminal associated with the specified
+	// session on the terminal server. This method MUST be called after RpcOpenSession.
+	// The caller MUST have WINSTATION_QUERY permission for the session. The method checks
+	// whether the caller has WINSTATION_QUERY permission (section 3.1.1) by setting it
+	// as the Access Request mask, and fails if the caller does not have the permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetTerminalName(context.Context, *GetTerminalNameRequest, ...dcerpc.CallOption) (*GetTerminalNameResponse, error)
+
+	// The RpcGetState method gets the state of the specified session on the terminal server.
+	// This method MUST be called after RpcOpenSession. The caller MUST have WINSTATION_QUERY
+	// permission for the session. The method checks whether the caller has WINSTATION_QUERY
+	// permission (section 3.1.1) by setting it as the Access Request mask, and fails if
+	// the caller does not have the permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetState(context.Context, *GetStateRequest, ...dcerpc.CallOption) (*GetStateResponse, error)
+
+	// The RpcIsSessionDesktopLocked method checks whether the specified session on the
+	// terminal server is in a locked state. This method MUST be called after RpcOpenSession.
+	// The caller MUST have WINSTATION_QUERY permission for the session. The method checks
+	// whether the caller has WINSTATION_QUERY permission (section 3.1.1) by setting it
+	// as the Access Request mask, and fails if the caller does not have the permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) if the session is locked;
+	// otherwise, it MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	IsSessionDesktopLocked(context.Context, *IsSessionDesktopLockedRequest, ...dcerpc.CallOption) (*IsSessionDesktopLockedResponse, error)
+
+	// The RpcShowMessageBox method displays a message box, with specified message and title,
+	// in the target user session running on the terminal server. This method MUST be called
+	// after RpcOpenSession. The caller MUST have WINSTATION_MSG permission for the session.
+	// The method checks whether the caller has WINSTATION_MSG permission (section 3.1.1)
+	// by setting it as the Access Request mask, and fails if the caller does not have the
+	// permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	ShowMessageBox(context.Context, *ShowMessageBoxRequest, ...dcerpc.CallOption) (*ShowMessageBoxResponse, error)
+
+	// The RpcGetTimes method gets the connected, disconnected, and logged-on time for the
+	// specified session on the terminal server. This method MUST be called after RpcOpenSession.
+	// The caller MUST have WINSTATION_QUERY permission for the session. The method checks
+	// whether the caller has WINSTATION_QUERY permission (section 3.1.1) by setting it
+	// as the Access Request mask, and fails if the caller does not have the permission.
+	//
+	// Return Values:  The method MUST return S_OK (0x00000000) on success; otherwise,
+	// it MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetTimes(context.Context, *GetTimesRequest, ...dcerpc.CallOption) (*GetTimesResponse, error)
+
+	// The RpcGetSessionCounters method returns the various performance counters associated
+	// with the terminal server. No special permissions are required to call this method.
+	//
+	// Return Values:  The method MUST return S_OK (0x00000000) on success; otherwise,
+	// it MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetSessionCounters(context.Context, *GetSessionCountersRequest, ...dcerpc.CallOption) (*GetSessionCountersResponse, error)
+
+	// The RpcGetSessionInformation method retrieves information about a specified session
+	// running on a terminal server. The caller MUST have WINSTATION_QUERY permission for
+	// the session. The method checks whether the caller has WINSTATION_QUERY permission
+	// (section 3.1.1) by setting it as the Access Request mask, and fails if the caller
+	// does not have the permission.
+	//
+	// Return Values:  The method MUST return S_OK (0x00000000) on success; otherwise,
+	// it MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetSessionInformation(context.Context, *GetSessionInformationRequest, ...dcerpc.CallOption) (*GetSessionInformationResponse, error)
+
+	// Opnum13NotUsedOnWire operation.
+	// Opnum13NotUsedOnWire
+
+	// Opnum14NotUsedOnWire operation.
+	// Opnum14NotUsedOnWire
+
+	// The RpcGetLoggedOnCount method gets the number of user-connected and device-connected
+	// sessions. No special permissions are required to call this method.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetLoggedOnCount(context.Context, *GetLoggedOnCountRequest, ...dcerpc.CallOption) (*GetLoggedOnCountResponse, error)
+
+	// The RpcGetSessionType method gets the type associated with the specified session.
+	// No special permissions are required to call this method.<150>
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetSessionType(context.Context, *GetSessionTypeRequest, ...dcerpc.CallOption) (*GetSessionTypeResponse, error)
+
+	// The RpcGetSessionInformationEx method retrieves extended information about a specified
+	// session running on a terminal server.<151> The caller MUST have WINSTATION_QUERY
+	// permission for the session. The method checks whether the caller has WINSTATION_QUERY
+	// permission (section 3.1.1) by setting it as the Access Request mask, and fails if
+	// the caller does not have the permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	GetSessionInformationEx(context.Context, *GetSessionInformationExRequest, ...dcerpc.CallOption) (*GetSessionInformationExResponse, error)
+
+	// Opnum18NotUsedOnWire operation.
+	// Opnum18NotUsedOnWire
+
+	// Opnum19NotUsedOnWire operation.
+	// Opnum19NotUsedOnWire
+
+	// Opnum20NotUsedOnWire operation.
+	// Opnum20NotUsedOnWire
+
+	// RpcGetActivityId operation.
+	GetActivityID(context.Context, *GetActivityIDRequest, ...dcerpc.CallOption) (*GetActivityIDResponse, error)
+
+	// AlterContext alters the client context.
+	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+}
+
+// WTSSessionStateUnknown represents the WTS_SESSIONSTATE_UNKNOWN RPC constant
+var WTSSessionStateUnknown = 4294967295
+
+// WTSSessionStateLock represents the WTS_SESSIONSTATE_LOCK RPC constant
+var WTSSessionStateLock = 0
+
+// WTSSessionStateUnlock represents the WTS_SESSIONSTATE_UNLOCK RPC constant
+var WTSSessionStateUnlock = 1
+
+// Session structure represents SESSION_HANDLE RPC structure.
+type Session dcetypes.ContextHandle
+
+func (o *Session) ContextHandle() *dcetypes.ContextHandle { return (*dcetypes.ContextHandle)(o) }
+
+func (o *Session) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *Session) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Attributes); err != nil {
+		return err
+	}
+	if o.UUID != nil {
+		if err := o.UUID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Session) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Attributes); err != nil {
+		return err
+	}
+	if o.UUID == nil {
+		o.UUID = &dtyp.GUID{}
+	}
+	if err := o.UUID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// LSMSessionInformation structure represents LSMSESSIONINFORMATION RPC structure.
+//
+// PLSMSESSIONINFORMATION is a pointer to a LSMSESSIONINFORMATION structure containing
+// information about a session running on a terminal server.
+type LSMSessionInformation struct {
+	// pszUserName:  The name of the user logged on to the session.
+	UserName string `idl:"name:pszUserName;string" json:"user_name"`
+	// pszDomain:  The domain to which the currently logged-on user belongs.
+	Domain string `idl:"name:pszDomain;string" json:"domain"`
+	// pszTerminalName:  The name of the terminal associated with the specific session.
+	TerminalName string `idl:"name:pszTerminalName;string" json:"terminal_name"`
+	// SessionState:  The state of the session, as described in section 3.3.4.1.8.
+	SessionState int32 `idl:"name:SessionState" json:"session_state"`
+	// DesktopLocked:  Set to TRUE if the session is currently locked; FALSE otherwise.
+	DesktopLocked bool `idl:"name:DesktopLocked" json:"desktop_locked"`
+	// ConnectTime:  The time of the most recent connection to the session.
+	//
+	// Time is measured as the number of 100-nanosecond intervals since January 1, 1601
+	// (UTC).
+	ConnectTime int64 `idl:"name:ConnectTime" json:"connect_time"`
+	// DisconnectTime:  The time of the most recent disconnection from the session.
+	DisconnectTime int64 `idl:"name:DisconnectTime" json:"disconnect_time"`
+	// LogonTime:  The time of the most recent logon to the session.
+	LogonTime int64 `idl:"name:LogonTime" json:"logon_time"`
+}
+
+func (o *LSMSessionInformation) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *LSMSessionInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(8); err != nil {
+		return err
+	}
+	if o.UserName != "" {
+		_ptr_pszUserName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.UserName); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.UserName, _ptr_pszUserName); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.Domain != "" {
+		_ptr_pszDomain := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.Domain); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Domain, _ptr_pszDomain); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.TerminalName != "" {
+		_ptr_pszTerminalName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if err := ndr.WriteUTF16NString(ctx, w, o.TerminalName); err != nil {
+				return err
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.TerminalName, _ptr_pszTerminalName); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.SessionState); err != nil {
+		return err
+	}
+	if !o.DesktopLocked {
+		if err := w.WriteData(int32(0)); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WriteData(int32(1)); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.ConnectTime); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.DisconnectTime); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.LogonTime); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *LSMSessionInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(8); err != nil {
+		return err
+	}
+	_ptr_pszUserName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.UserName); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_pszUserName := func(ptr interface{}) { o.UserName = *ptr.(*string) }
+	if err := w.ReadPointer(&o.UserName, _s_pszUserName, _ptr_pszUserName); err != nil {
+		return err
+	}
+	_ptr_pszDomain := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.Domain); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_pszDomain := func(ptr interface{}) { o.Domain = *ptr.(*string) }
+	if err := w.ReadPointer(&o.Domain, _s_pszDomain, _ptr_pszDomain); err != nil {
+		return err
+	}
+	_ptr_pszTerminalName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.TerminalName); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_pszTerminalName := func(ptr interface{}) { o.TerminalName = *ptr.(*string) }
+	if err := w.ReadPointer(&o.TerminalName, _s_pszTerminalName, _ptr_pszTerminalName); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.SessionState); err != nil {
+		return err
+	}
+	var _bDesktopLocked int32
+	if err := w.ReadData(&_bDesktopLocked); err != nil {
+		return err
+	}
+	o.DesktopLocked = _bDesktopLocked != 0
+	if err := w.ReadData(&o.ConnectTime); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.DisconnectTime); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.LogonTime); err != nil {
+		return err
+	}
+	return nil
+}
+
+// LSMSessionInfoExLevel1 structure represents LSM_SESSIONINFO_EX_LEVEL1 RPC structure.
+//
+// The LSM_SESSIONINFO_EX_LEVEL1 is a structure containing information about a session
+// running on a terminal server.
+type LSMSessionInfoExLevel1 struct {
+	// SessionState:  The state of the session, as described in section 3.3.4.1.8.
+	SessionState int32 `idl:"name:SessionState" json:"session_state"`
+	// SessionFlags:  The state of the session. The SessionFlags member MUST be one of the
+	// values shown in the following table.
+	//
+	//	+-------------------------------------+-----------------------+
+	//	|                                     |                       |
+	//	|                VALUE                |        MEANING        |
+	//	|                                     |                       |
+	//	+-------------------------------------+-----------------------+
+	//	+-------------------------------------+-----------------------+
+	//	| WTS_SESSIONSTATE_UNKNOWN 0xFFFFFFFF | Unknown session state |
+	//	+-------------------------------------+-----------------------+
+	//	| WTS_SESSIONSTATE_LOCK 0x00000000    | Session is locked     |
+	//	+-------------------------------------+-----------------------+
+	//	| WTS_SESSIONSTATE_UNLOCK 0x00000001  | Session is unlocked   |
+	//	+-------------------------------------+-----------------------+
+	SessionFlags int32 `idl:"name:SessionFlags" json:"session_flags"`
+	// SessionName:  The name of the terminal associated with the specific session.
+	SessionName []uint16 `idl:"name:SessionName" json:"session_name"`
+	// DomainName:  The domain to which the currently logged-on user belongs.
+	DomainName []uint16 `idl:"name:DomainName" json:"domain_name"`
+	// UserName:  The name of the user logged on to the session.
+	UserName []uint16 `idl:"name:UserName" json:"user_name"`
+	// ConnectTime:  The time of the most recent connection to the session.
+	ConnectTime int64 `idl:"name:ConnectTime" json:"connect_time"`
+	// DisconnectTime:  The time of the most recent disconnection from the session.
+	DisconnectTime int64 `idl:"name:DisconnectTime" json:"disconnect_time"`
+	// LogonTime:  The time of the most recent logon to the session.
+	LogonTime int64 `idl:"name:LogonTime" json:"logon_time"`
+	// LastInputTime:  The time the session last received input. This is an indicator of
+	// how long a session has been idle.
+	LastInputTime int64 `idl:"name:LastInputTime" json:"last_input_time"`
+	// ProtocolDataSize:  Size of data, in bytes, contained in ProtocolData.
+	ProtocolDataSize uint32 `idl:"name:ProtocolDataSize" json:"protocol_data_size"`
+	// ProtocolData:  Data about the protocol status between the terminal server client
+	// and server. This data is of type PROTOCOLSTATUSEX.
+	ProtocolData []byte `idl:"name:ProtocolData;size_is:(ProtocolDataSize)" json:"protocol_data"`
+}
+
+func (o *LSMSessionInfoExLevel1) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.ProtocolData != nil && o.ProtocolDataSize == 0 {
+		o.ProtocolDataSize = uint32(len(o.ProtocolData))
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *LSMSessionInfoExLevel1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(8); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.SessionState); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.SessionFlags); err != nil {
+		return err
+	}
+	for i1 := range o.SessionName {
+		i1 := i1
+		if uint64(i1) >= 33 {
+			break
+		}
+		if err := w.WriteData(o.SessionName[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.SessionName); uint64(i1) < 33; i1++ {
+		if err := w.WriteData(uint16(0)); err != nil {
+			return err
+		}
+	}
+	for i1 := range o.DomainName {
+		i1 := i1
+		if uint64(i1) >= 18 {
+			break
+		}
+		if err := w.WriteData(o.DomainName[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.DomainName); uint64(i1) < 18; i1++ {
+		if err := w.WriteData(uint16(0)); err != nil {
+			return err
+		}
+	}
+	for i1 := range o.UserName {
+		i1 := i1
+		if uint64(i1) >= 21 {
+			break
+		}
+		if err := w.WriteData(o.UserName[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.UserName); uint64(i1) < 21; i1++ {
+		if err := w.WriteData(uint16(0)); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.ConnectTime); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.DisconnectTime); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.LogonTime); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.LastInputTime); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.ProtocolDataSize); err != nil {
+		return err
+	}
+	if o.ProtocolData != nil || o.ProtocolDataSize > 0 {
+		_ptr_ProtocolData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.ProtocolDataSize)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.ProtocolData {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.ProtocolData[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.ProtocolData); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ProtocolData, _ptr_ProtocolData); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *LSMSessionInfoExLevel1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(8); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.SessionState); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.SessionFlags); err != nil {
+		return err
+	}
+	o.SessionName = make([]uint16, 33)
+	for i1 := range o.SessionName {
+		i1 := i1
+		if err := w.ReadData(&o.SessionName[i1]); err != nil {
+			return err
+		}
+	}
+	o.DomainName = make([]uint16, 18)
+	for i1 := range o.DomainName {
+		i1 := i1
+		if err := w.ReadData(&o.DomainName[i1]); err != nil {
+			return err
+		}
+	}
+	o.UserName = make([]uint16, 21)
+	for i1 := range o.UserName {
+		i1 := i1
+		if err := w.ReadData(&o.UserName[i1]); err != nil {
+			return err
+		}
+	}
+	if err := w.ReadData(&o.ConnectTime); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.DisconnectTime); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.LogonTime); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.LastInputTime); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.ProtocolDataSize); err != nil {
+		return err
+	}
+	_ptr_ProtocolData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.ProtocolDataSize > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.ProtocolDataSize)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.ProtocolData", sizeInfo[0])
+		}
+		o.ProtocolData = make([]byte, sizeInfo[0])
+		for i1 := range o.ProtocolData {
+			i1 := i1
+			if err := w.ReadData(&o.ProtocolData[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_ProtocolData := func(ptr interface{}) { o.ProtocolData = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.ProtocolData, _s_ProtocolData, _ptr_ProtocolData); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
+		return err
+	}
+	return nil
+}
+
+// LSMSessionInfoEx structure represents LSM_SESSIONINFO_EX RPC union.
+type LSMSessionInfoEx struct {
+	// Types that are assignable to Value
+	//
+	// *LSMSessionInfoEx_LSMSessionInfoLevel1
+	Value is_LSMSessionInfoEx `json:"value"`
+}
+
+func (o *LSMSessionInfoEx) GetValue() any {
+	if o == nil {
+		return nil
+	}
+	switch value := (interface{})(o.Value).(type) {
+	case *LSMSessionInfoEx_LSMSessionInfoLevel1:
+		if value != nil {
+			return value.LSMSessionInfoLevel1
+		}
+	}
+	return nil
+}
+
+type is_LSMSessionInfoEx interface {
+	ndr.Marshaler
+	ndr.Unmarshaler
+	is_LSMSessionInfoEx()
+}
+
+func (o *LSMSessionInfoEx) NDRSwitchValue(sw uint32) uint32 {
+	if o == nil {
+		return uint32(0)
+	}
+	switch (interface{})(o.Value).(type) {
+	case *LSMSessionInfoEx_LSMSessionInfoLevel1:
+		return uint32(1)
+	}
+	return uint32(0)
+}
+
+func (o *LSMSessionInfoEx) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
+	if err := w.WriteSwitch(uint32(sw)); err != nil {
+		return err
+	}
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
+	switch sw {
+	case uint32(1):
+		_o, _ := o.Value.(*LSMSessionInfoEx_LSMSessionInfoLevel1)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&LSMSessionInfoEx_LSMSessionInfoLevel1{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	default:
+		return fmt.Errorf("unsupported switch case value %v", sw)
+	}
+	return nil
+}
+
+func (o *LSMSessionInfoEx) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(8); err != nil {
+		return err
+	}
+	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(8); err != nil {
+		return err
+	}
+	switch sw {
+	case uint32(1):
+		o.Value = &LSMSessionInfoEx_LSMSessionInfoLevel1{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	default:
+		return fmt.Errorf("unsupported switch case value %v", sw)
+	}
+	return nil
+}
+
+// LSMSessionInfoEx_LSMSessionInfoLevel1 structure represents LSM_SESSIONINFO_EX RPC union arm.
+//
+// It has following labels: 1
+type LSMSessionInfoEx_LSMSessionInfoLevel1 struct {
+	LSMSessionInfoLevel1 *LSMSessionInfoExLevel1 `idl:"name:LSM_SessionInfo_Level1" json:"lsm_session_info_level1"`
+}
+
+func (*LSMSessionInfoEx_LSMSessionInfoLevel1) is_LSMSessionInfoEx() {}
+
+func (o *LSMSessionInfoEx_LSMSessionInfoLevel1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.LSMSessionInfoLevel1 != nil {
+		if err := o.LSMSessionInfoLevel1.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&LSMSessionInfoExLevel1{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *LSMSessionInfoEx_LSMSessionInfoLevel1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.LSMSessionInfoLevel1 == nil {
+		o.LSMSessionInfoLevel1 = &LSMSessionInfoExLevel1{}
+	}
+	if err := o.LSMSessionInfoLevel1.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// LSMSessionInformationEx structure represents LSMSESSIONINFORMATION_EX RPC structure.
+//
+// The PLSMSESSIONINFORMATION_EX is a pointer to a LSMSESSIONINFORMATION_EX structure
+// containing information about a session running on a terminal server and the level
+// of detail of the information provided.
+type LSMSessionInformationEx struct {
+	// Level:  The level of detail provided about the session. This field MUST be set to
+	// 1.
+	Level uint32 `idl:"name:Level" json:"level"`
+	// Data:  Information about the session. This is of type LSM_SESSIONINFO_EX.
+	Data *LSMSessionInfoEx `idl:"name:Data;switch_is:Level" json:"data"`
+}
+
+func (o *LSMSessionInformationEx) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *LSMSessionInformationEx) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(8); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Level); err != nil {
+		return err
+	}
+	_swData := uint32(o.Level)
+	if o.Data != nil {
+		if err := o.Data.MarshalUnionNDR(ctx, w, _swData); err != nil {
+			return err
+		}
+	} else {
+		if err := (&LSMSessionInfoEx{}).MarshalUnionNDR(ctx, w, _swData); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *LSMSessionInformationEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(8); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Level); err != nil {
+		return err
+	}
+	if o.Data == nil {
+		o.Data = &LSMSessionInfoEx{}
+	}
+	_swData := uint32(o.Level)
+	if err := o.Data.UnmarshalUnionNDR(ctx, w, _swData); err != nil {
+		return err
+	}
+	return nil
+}
+
+type xxx_DefaultTerminateServerSessionClient struct {
+	cc dcerpc.Conn
+}
+
+func (o *xxx_DefaultTerminateServerSessionClient) OpenSession(ctx context.Context, in *OpenSessionRequest, opts ...dcerpc.CallOption) (*OpenSessionResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &OpenSessionResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultTerminateServerSessionClient) CloseSession(ctx context.Context, in *CloseSessionRequest, opts ...dcerpc.CallOption) (*CloseSessionResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &CloseSessionResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultTerminateServerSessionClient) Connect(ctx context.Context, in *ConnectRequest, opts ...dcerpc.CallOption) (*ConnectResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &ConnectResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultTerminateServerSessionClient) Disconnect(ctx context.Context, in *DisconnectRequest, opts ...dcerpc.CallOption) (*DisconnectResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &DisconnectResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultTerminateServerSessionClient) Logoff(ctx context.Context, in *LogoffRequest, opts ...dcerpc.CallOption) (*LogoffResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &LogoffResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultTerminateServerSessionClient) GetUserName(ctx context.Context, in *GetUserNameRequest, opts ...dcerpc.CallOption) (*GetUserNameResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &GetUserNameResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultTerminateServerSessionClient) GetTerminalName(ctx context.Context, in *GetTerminalNameRequest, opts ...dcerpc.CallOption) (*GetTerminalNameResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &GetTerminalNameResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultTerminateServerSessionClient) GetState(ctx context.Context, in *GetStateRequest, opts ...dcerpc.CallOption) (*GetStateResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &GetStateResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultTerminateServerSessionClient) IsSessionDesktopLocked(ctx context.Context, in *IsSessionDesktopLockedRequest, opts ...dcerpc.CallOption) (*IsSessionDesktopLockedResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &IsSessionDesktopLockedResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultTerminateServerSessionClient) ShowMessageBox(ctx context.Context, in *ShowMessageBoxRequest, opts ...dcerpc.CallOption) (*ShowMessageBoxResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &ShowMessageBoxResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultTerminateServerSessionClient) GetTimes(ctx context.Context, in *GetTimesRequest, opts ...dcerpc.CallOption) (*GetTimesResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &GetTimesResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultTerminateServerSessionClient) GetSessionCounters(ctx context.Context, in *GetSessionCountersRequest, opts ...dcerpc.CallOption) (*GetSessionCountersResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &GetSessionCountersResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultTerminateServerSessionClient) GetSessionInformation(ctx context.Context, in *GetSessionInformationRequest, opts ...dcerpc.CallOption) (*GetSessionInformationResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &GetSessionInformationResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultTerminateServerSessionClient) GetLoggedOnCount(ctx context.Context, in *GetLoggedOnCountRequest, opts ...dcerpc.CallOption) (*GetLoggedOnCountResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &GetLoggedOnCountResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultTerminateServerSessionClient) GetSessionType(ctx context.Context, in *GetSessionTypeRequest, opts ...dcerpc.CallOption) (*GetSessionTypeResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &GetSessionTypeResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultTerminateServerSessionClient) GetSessionInformationEx(ctx context.Context, in *GetSessionInformationExRequest, opts ...dcerpc.CallOption) (*GetSessionInformationExResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &GetSessionInformationExResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultTerminateServerSessionClient) GetActivityID(ctx context.Context, in *GetActivityIDRequest, opts ...dcerpc.CallOption) (*GetActivityIDResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &GetActivityIDResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultTerminateServerSessionClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+	return o.cc.AlterContext(ctx, opts...)
+}
+
+func (o *xxx_DefaultTerminateServerSessionClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
+func NewTerminateServerSessionClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (TerminateServerSessionClient, error) {
+	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(TerminateServerSessionSyntaxV1_0))...)
+	if err != nil {
+		return nil, err
+	}
+	return &xxx_DefaultTerminateServerSessionClient{cc: cc}, nil
+}
+
+// xxx_OpenSessionOperation structure represents the RpcOpenSession operation
+type xxx_OpenSessionOperation struct {
+	SessionID int32    `idl:"name:SessionId" json:"session_id"`
+	Session   *Session `idl:"name:phSession" json:"session"`
+	Return    int32    `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_OpenSessionOperation) OpNum() int { return 0 }
+
+func (o *xxx_OpenSessionOperation) OpName() string { return "/TermSrvSession/v1/RpcOpenSession" }
+
+func (o *xxx_OpenSessionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenSessionOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// SessionId {in} (1:{alias=LONG}(int32))
+	{
+		if err := w.WriteData(o.SessionID); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenSessionOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// SessionId {in} (1:{alias=LONG}(int32))
+	{
+		if err := w.ReadData(&o.SessionID); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenSessionOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenSessionOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// phSession {out} (1:{pointer=ref}*(1))(2:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session != nil {
+			if err := o.Session.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Session{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_OpenSessionOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// phSession {out} (1:{pointer=ref}*(1))(2:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session == nil {
+			o.Session = &Session{}
+		}
+		if err := o.Session.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// OpenSessionRequest structure represents the RpcOpenSession operation request
+type OpenSessionRequest struct {
+	// SessionId:  The identifier of the session to open. This session MUST be present
+	// on the terminal server, or this call will fail. This MUST NOT be the session ID of
+	// any of the listener sessions.
+	SessionID int32 `idl:"name:SessionId" json:"session_id"`
+}
+
+func (o *OpenSessionRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenSessionOperation) *xxx_OpenSessionOperation {
+	if op == nil {
+		op = &xxx_OpenSessionOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.SessionID = o.SessionID
+	return op
+}
+
+func (o *OpenSessionRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenSessionOperation) {
+	if o == nil {
+		return
+	}
+	o.SessionID = op.SessionID
+}
+func (o *OpenSessionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *OpenSessionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_OpenSessionOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// OpenSessionResponse structure represents the RpcOpenSession operation response
+type OpenSessionResponse struct {
+	// phSession:  A handle to the session. This is of type SESSION_HANDLE.
+	Session *Session `idl:"name:phSession" json:"session"`
+	// Return: The RpcOpenSession return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *OpenSessionResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenSessionOperation) *xxx_OpenSessionOperation {
+	if op == nil {
+		op = &xxx_OpenSessionOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Session = o.Session
+	op.Return = o.Return
+	return op
+}
+
+func (o *OpenSessionResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenSessionOperation) {
+	if o == nil {
+		return
+	}
+	o.Session = op.Session
+	o.Return = op.Return
+}
+func (o *OpenSessionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *OpenSessionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_OpenSessionOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_CloseSessionOperation structure represents the RpcCloseSession operation
+type xxx_CloseSessionOperation struct {
+	Session *Session `idl:"name:phSession" json:"session"`
+	Return  int32    `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_CloseSessionOperation) OpNum() int { return 1 }
+
+func (o *xxx_CloseSessionOperation) OpName() string { return "/TermSrvSession/v1/RpcCloseSession" }
+
+func (o *xxx_CloseSessionOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CloseSessionOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// phSession {in, out} (1:{pointer=ref}*(1))(2:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session != nil {
+			if err := o.Session.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Session{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CloseSessionOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// phSession {in, out} (1:{pointer=ref}*(1))(2:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session == nil {
+			o.Session = &Session{}
+		}
+		if err := o.Session.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CloseSessionOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CloseSessionOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// phSession {in, out} (1:{pointer=ref}*(1))(2:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session != nil {
+			if err := o.Session.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Session{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CloseSessionOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// phSession {in, out} (1:{pointer=ref}*(1))(2:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session == nil {
+			o.Session = &Session{}
+		}
+		if err := o.Session.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// CloseSessionRequest structure represents the RpcCloseSession operation request
+type CloseSessionRequest struct {
+	// phSession: Pointer to a handle to the session to close. The pointer is returned by
+	// RpcOpenSession. This is of type SESSION_HANDLE. The handle is set to NULL when the
+	// call returns.
+	Session *Session `idl:"name:phSession" json:"session"`
+}
+
+func (o *CloseSessionRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseSessionOperation) *xxx_CloseSessionOperation {
+	if op == nil {
+		op = &xxx_CloseSessionOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Session = o.Session
+	return op
+}
+
+func (o *CloseSessionRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseSessionOperation) {
+	if o == nil {
+		return
+	}
+	o.Session = op.Session
+}
+func (o *CloseSessionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *CloseSessionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_CloseSessionOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// CloseSessionResponse structure represents the RpcCloseSession operation response
+type CloseSessionResponse struct {
+	// phSession: Pointer to a handle to the session to close. The pointer is returned by
+	// RpcOpenSession. This is of type SESSION_HANDLE. The handle is set to NULL when the
+	// call returns.
+	Session *Session `idl:"name:phSession" json:"session"`
+	// Return: The RpcCloseSession return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *CloseSessionResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseSessionOperation) *xxx_CloseSessionOperation {
+	if op == nil {
+		op = &xxx_CloseSessionOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Session = o.Session
+	op.Return = o.Return
+	return op
+}
+
+func (o *CloseSessionResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseSessionOperation) {
+	if o == nil {
+		return
+	}
+	o.Session = op.Session
+	o.Return = op.Return
+}
+func (o *CloseSessionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *CloseSessionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_CloseSessionOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_ConnectOperation structure represents the RpcConnect operation
+type xxx_ConnectOperation struct {
+	Session         *Session `idl:"name:hSession" json:"session"`
+	TargetSessionID int32    `idl:"name:TargetSessionId" json:"target_session_id"`
+	Password        string   `idl:"name:szPassword;string" json:"password"`
+	Return          int32    `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_ConnectOperation) OpNum() int { return 2 }
+
+func (o *xxx_ConnectOperation) OpName() string { return "/TermSrvSession/v1/RpcConnect" }
+
+func (o *xxx_ConnectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ConnectOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session != nil {
+			if err := o.Session.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Session{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// TargetSessionId {in} (1:{alias=LONG}(int32))
+	{
+		if err := w.WriteData(o.TargetSessionID); err != nil {
+			return err
+		}
+	}
+	// szPassword {in} (1:{string, pointer=ref}*(1))(2:{alias=WCHAR}[dim:0,string,null](wchar))
+	{
+		if err := ndr.WriteUTF16NString(ctx, w, o.Password); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ConnectOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session == nil {
+			o.Session = &Session{}
+		}
+		if err := o.Session.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// TargetSessionId {in} (1:{alias=LONG}(int32))
+	{
+		if err := w.ReadData(&o.TargetSessionID); err != nil {
+			return err
+		}
+	}
+	// szPassword {in} (1:{string, pointer=ref}*(1))(2:{alias=WCHAR}[dim:0,string,null](wchar))
+	{
+		if err := ndr.ReadUTF16NString(ctx, w, &o.Password); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ConnectOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ConnectOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ConnectOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// ConnectRequest structure represents the RpcConnect operation request
+type ConnectRequest struct {
+	// hSession: The handle to a session returned by RpcOpenSession. This is of type SESSION_HANDLE.
+	Session *Session `idl:"name:hSession" json:"session"`
+	// TargetSessionId: The identifier of the session on the terminal server to which to
+	// reconnect the session handle. This session MUST be present on the terminal server
+	// or this call will fail.
+	TargetSessionID int32 `idl:"name:TargetSessionId" json:"target_session_id"`
+	// szPassword: The password of the user connected to the current session. This is an
+	// optional field. If not specified, the terminal server will impersonate the current
+	// user, making the call and checking whether it has permission to disconnect the current
+	// session.
+	Password string `idl:"name:szPassword;string" json:"password"`
+}
+
+func (o *ConnectRequest) xxx_ToOp(ctx context.Context, op *xxx_ConnectOperation) *xxx_ConnectOperation {
+	if op == nil {
+		op = &xxx_ConnectOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Session = o.Session
+	op.TargetSessionID = o.TargetSessionID
+	op.Password = o.Password
+	return op
+}
+
+func (o *ConnectRequest) xxx_FromOp(ctx context.Context, op *xxx_ConnectOperation) {
+	if o == nil {
+		return
+	}
+	o.Session = op.Session
+	o.TargetSessionID = op.TargetSessionID
+	o.Password = op.Password
+}
+func (o *ConnectRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *ConnectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ConnectOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// ConnectResponse structure represents the RpcConnect operation response
+type ConnectResponse struct {
+	// Return: The RpcConnect return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *ConnectResponse) xxx_ToOp(ctx context.Context, op *xxx_ConnectOperation) *xxx_ConnectOperation {
+	if op == nil {
+		op = &xxx_ConnectOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Return = o.Return
+	return op
+}
+
+func (o *ConnectResponse) xxx_FromOp(ctx context.Context, op *xxx_ConnectOperation) {
+	if o == nil {
+		return
+	}
+	o.Return = op.Return
+}
+func (o *ConnectResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *ConnectResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ConnectOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_DisconnectOperation structure represents the RpcDisconnect operation
+type xxx_DisconnectOperation struct {
+	Session *Session `idl:"name:hSession" json:"session"`
+	Return  int32    `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_DisconnectOperation) OpNum() int { return 3 }
+
+func (o *xxx_DisconnectOperation) OpName() string { return "/TermSrvSession/v1/RpcDisconnect" }
+
+func (o *xxx_DisconnectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_DisconnectOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session != nil {
+			if err := o.Session.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Session{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func (o *xxx_DisconnectOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session == nil {
+			o.Session = &Session{}
+		}
+		if err := o.Session.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_DisconnectOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_DisconnectOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_DisconnectOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// DisconnectRequest structure represents the RpcDisconnect operation request
+type DisconnectRequest struct {
+	// hSession: The handle to the session returned by RpcOpenSession. This is of type SESSION_HANDLE.
+	Session *Session `idl:"name:hSession" json:"session"`
+}
+
+func (o *DisconnectRequest) xxx_ToOp(ctx context.Context, op *xxx_DisconnectOperation) *xxx_DisconnectOperation {
+	if op == nil {
+		op = &xxx_DisconnectOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Session = o.Session
+	return op
+}
+
+func (o *DisconnectRequest) xxx_FromOp(ctx context.Context, op *xxx_DisconnectOperation) {
+	if o == nil {
+		return
+	}
+	o.Session = op.Session
+}
+func (o *DisconnectRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *DisconnectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_DisconnectOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// DisconnectResponse structure represents the RpcDisconnect operation response
+type DisconnectResponse struct {
+	// Return: The RpcDisconnect return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *DisconnectResponse) xxx_ToOp(ctx context.Context, op *xxx_DisconnectOperation) *xxx_DisconnectOperation {
+	if op == nil {
+		op = &xxx_DisconnectOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Return = o.Return
+	return op
+}
+
+func (o *DisconnectResponse) xxx_FromOp(ctx context.Context, op *xxx_DisconnectOperation) {
+	if o == nil {
+		return
+	}
+	o.Return = op.Return
+}
+func (o *DisconnectResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *DisconnectResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_DisconnectOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_LogoffOperation structure represents the RpcLogoff operation
+type xxx_LogoffOperation struct {
+	Session *Session `idl:"name:hSession" json:"session"`
+	Return  int32    `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_LogoffOperation) OpNum() int { return 4 }
+
+func (o *xxx_LogoffOperation) OpName() string { return "/TermSrvSession/v1/RpcLogoff" }
+
+func (o *xxx_LogoffOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_LogoffOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session != nil {
+			if err := o.Session.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Session{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func (o *xxx_LogoffOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session == nil {
+			o.Session = &Session{}
+		}
+		if err := o.Session.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_LogoffOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_LogoffOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_LogoffOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// LogoffRequest structure represents the RpcLogoff operation request
+type LogoffRequest struct {
+	// hSession: The handle to the session returned by RpcOpenSession. This is of type SESSION_HANDLE.
+	Session *Session `idl:"name:hSession" json:"session"`
+}
+
+func (o *LogoffRequest) xxx_ToOp(ctx context.Context, op *xxx_LogoffOperation) *xxx_LogoffOperation {
+	if op == nil {
+		op = &xxx_LogoffOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Session = o.Session
+	return op
+}
+
+func (o *LogoffRequest) xxx_FromOp(ctx context.Context, op *xxx_LogoffOperation) {
+	if o == nil {
+		return
+	}
+	o.Session = op.Session
+}
+func (o *LogoffRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *LogoffRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_LogoffOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// LogoffResponse structure represents the RpcLogoff operation response
+type LogoffResponse struct {
+	// Return: The RpcLogoff return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *LogoffResponse) xxx_ToOp(ctx context.Context, op *xxx_LogoffOperation) *xxx_LogoffOperation {
+	if op == nil {
+		op = &xxx_LogoffOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Return = o.Return
+	return op
+}
+
+func (o *LogoffResponse) xxx_FromOp(ctx context.Context, op *xxx_LogoffOperation) {
+	if o == nil {
+		return
+	}
+	o.Return = op.Return
+}
+func (o *LogoffResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *LogoffResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_LogoffOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_GetUserNameOperation structure represents the RpcGetUserName operation
+type xxx_GetUserNameOperation struct {
+	Session  *Session `idl:"name:hSession" json:"session"`
+	UserName string   `idl:"name:pszUserName;string" json:"user_name"`
+	Domain   string   `idl:"name:pszDomain;string" json:"domain"`
+	Return   int32    `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_GetUserNameOperation) OpNum() int { return 5 }
+
+func (o *xxx_GetUserNameOperation) OpName() string { return "/TermSrvSession/v1/RpcGetUserName" }
+
+func (o *xxx_GetUserNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetUserNameOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session != nil {
+			if err := o.Session.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Session{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetUserNameOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session == nil {
+			o.Session = &Session{}
+		}
+		if err := o.Session.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetUserNameOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetUserNameOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// pszUserName {out} (1:{string, pointer=ref}*(2)*(1))(2:{alias=WCHAR}[dim:0,string,null](wchar))
+	{
+		if o.UserName != "" {
+			_ptr_pszUserName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.UserName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.UserName, _ptr_pszUserName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// pszDomain {out} (1:{string, pointer=ref}*(2)*(1))(2:{alias=WCHAR}[dim:0,string,null](wchar))
+	{
+		if o.Domain != "" {
+			_ptr_pszDomain := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.Domain); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Domain, _ptr_pszDomain); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetUserNameOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// pszUserName {out} (1:{string, pointer=ref}*(2)*(1))(2:{alias=WCHAR}[dim:0,string,null](wchar))
+	{
+		_ptr_pszUserName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.UserName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_pszUserName := func(ptr interface{}) { o.UserName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.UserName, _s_pszUserName, _ptr_pszUserName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// pszDomain {out} (1:{string, pointer=ref}*(2)*(1))(2:{alias=WCHAR}[dim:0,string,null](wchar))
+	{
+		_ptr_pszDomain := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.Domain); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_pszDomain := func(ptr interface{}) { o.Domain = *ptr.(*string) }
+		if err := w.ReadPointer(&o.Domain, _s_pszDomain, _ptr_pszDomain); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// GetUserNameRequest structure represents the RpcGetUserName operation request
+type GetUserNameRequest struct {
+	// hSession: The handle to the session returned by RpcOpenSession. This is of type SESSION_HANDLE.
+	Session *Session `idl:"name:hSession" json:"session"`
+}
+
+func (o *GetUserNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUserNameOperation) *xxx_GetUserNameOperation {
+	if op == nil {
+		op = &xxx_GetUserNameOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Session = o.Session
+	return op
+}
+
+func (o *GetUserNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetUserNameOperation) {
+	if o == nil {
+		return
+	}
+	o.Session = op.Session
+}
+func (o *GetUserNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *GetUserNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetUserNameOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// GetUserNameResponse structure represents the RpcGetUserName operation response
+type GetUserNameResponse struct {
+	// pszUserName: The name of the user who is logged on to the specific session.
+	UserName string `idl:"name:pszUserName;string" json:"user_name"`
+	// pszDomain: The domain to which the currently logged-on user belongs. If the terminal
+	// server is not joined to a domain, pszDomain will be the name of the terminal server
+	// computer.
+	Domain string `idl:"name:pszDomain;string" json:"domain"`
+	// Return: The RpcGetUserName return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *GetUserNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUserNameOperation) *xxx_GetUserNameOperation {
+	if op == nil {
+		op = &xxx_GetUserNameOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.UserName = o.UserName
+	op.Domain = o.Domain
+	op.Return = o.Return
+	return op
+}
+
+func (o *GetUserNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetUserNameOperation) {
+	if o == nil {
+		return
+	}
+	o.UserName = op.UserName
+	o.Domain = op.Domain
+	o.Return = op.Return
+}
+func (o *GetUserNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *GetUserNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetUserNameOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_GetTerminalNameOperation structure represents the RpcGetTerminalName operation
+type xxx_GetTerminalNameOperation struct {
+	Session      *Session `idl:"name:hSession" json:"session"`
+	TerminalName string   `idl:"name:pszTerminalName;string" json:"terminal_name"`
+	Return       int32    `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_GetTerminalNameOperation) OpNum() int { return 6 }
+
+func (o *xxx_GetTerminalNameOperation) OpName() string {
+	return "/TermSrvSession/v1/RpcGetTerminalName"
+}
+
+func (o *xxx_GetTerminalNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetTerminalNameOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session != nil {
+			if err := o.Session.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Session{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetTerminalNameOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session == nil {
+			o.Session = &Session{}
+		}
+		if err := o.Session.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetTerminalNameOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetTerminalNameOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// pszTerminalName {out} (1:{string, pointer=ref}*(2)*(1))(2:{alias=WCHAR}[dim:0,string,null](wchar))
+	{
+		if o.TerminalName != "" {
+			_ptr_pszTerminalName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := ndr.WriteUTF16NString(ctx, w, o.TerminalName); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TerminalName, _ptr_pszTerminalName); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetTerminalNameOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// pszTerminalName {out} (1:{string, pointer=ref}*(2)*(1))(2:{alias=WCHAR}[dim:0,string,null](wchar))
+	{
+		_ptr_pszTerminalName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.TerminalName); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_pszTerminalName := func(ptr interface{}) { o.TerminalName = *ptr.(*string) }
+		if err := w.ReadPointer(&o.TerminalName, _s_pszTerminalName, _ptr_pszTerminalName); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// GetTerminalNameRequest structure represents the RpcGetTerminalName operation request
+type GetTerminalNameRequest struct {
+	// hSession: The handle to the session returned by RpcOpenSession. This is of type SESSION_HANDLE.
+	Session *Session `idl:"name:hSession" json:"session"`
+}
+
+func (o *GetTerminalNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTerminalNameOperation) *xxx_GetTerminalNameOperation {
+	if op == nil {
+		op = &xxx_GetTerminalNameOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Session = o.Session
+	return op
+}
+
+func (o *GetTerminalNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetTerminalNameOperation) {
+	if o == nil {
+		return
+	}
+	o.Session = op.Session
+}
+func (o *GetTerminalNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *GetTerminalNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetTerminalNameOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// GetTerminalNameResponse structure represents the RpcGetTerminalName operation response
+type GetTerminalNameResponse struct {
+	// pszTerminalName: The name of the terminal associated with the specific session.
+	TerminalName string `idl:"name:pszTerminalName;string" json:"terminal_name"`
+	// Return: The RpcGetTerminalName return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *GetTerminalNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTerminalNameOperation) *xxx_GetTerminalNameOperation {
+	if op == nil {
+		op = &xxx_GetTerminalNameOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.TerminalName = o.TerminalName
+	op.Return = o.Return
+	return op
+}
+
+func (o *GetTerminalNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetTerminalNameOperation) {
+	if o == nil {
+		return
+	}
+	o.TerminalName = op.TerminalName
+	o.Return = op.Return
+}
+func (o *GetTerminalNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *GetTerminalNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetTerminalNameOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_GetStateOperation structure represents the RpcGetState operation
+type xxx_GetStateOperation struct {
+	Session *Session `idl:"name:hSession" json:"session"`
+	State   int32    `idl:"name:plState" json:"state"`
+	Return  int32    `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_GetStateOperation) OpNum() int { return 7 }
+
+func (o *xxx_GetStateOperation) OpName() string { return "/TermSrvSession/v1/RpcGetState" }
+
+func (o *xxx_GetStateOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetStateOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session != nil {
+			if err := o.Session.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Session{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetStateOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session == nil {
+			o.Session = &Session{}
+		}
+		if err := o.Session.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetStateOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetStateOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// plState {out} (1:{pointer=ref}*(1))(2:{alias=LONG}(int32))
+	{
+		if err := w.WriteData(o.State); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetStateOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// plState {out} (1:{pointer=ref}*(1))(2:{alias=LONG}(int32))
+	{
+		if err := w.ReadData(&o.State); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// GetStateRequest structure represents the RpcGetState operation request
+type GetStateRequest struct {
+	// hSession: The handle to the session returned by RpcOpenSession. This is of type SESSION_HANDLE.
+	Session *Session `idl:"name:hSession" json:"session"`
+}
+
+func (o *GetStateRequest) xxx_ToOp(ctx context.Context, op *xxx_GetStateOperation) *xxx_GetStateOperation {
+	if op == nil {
+		op = &xxx_GetStateOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Session = o.Session
+	return op
+}
+
+func (o *GetStateRequest) xxx_FromOp(ctx context.Context, op *xxx_GetStateOperation) {
+	if o == nil {
+		return
+	}
+	o.Session = op.Session
+}
+func (o *GetStateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *GetStateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetStateOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// GetStateResponse structure represents the RpcGetState operation response
+type GetStateResponse struct {
+	// plState:  The current state of the session as defined in WINSTATIONSTATECLASS (section
+	// 2.2.1.9).
+	State int32 `idl:"name:plState" json:"state"`
+	// Return: The RpcGetState return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *GetStateResponse) xxx_ToOp(ctx context.Context, op *xxx_GetStateOperation) *xxx_GetStateOperation {
+	if op == nil {
+		op = &xxx_GetStateOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.State = o.State
+	op.Return = o.Return
+	return op
+}
+
+func (o *GetStateResponse) xxx_FromOp(ctx context.Context, op *xxx_GetStateOperation) {
+	if o == nil {
+		return
+	}
+	o.State = op.State
+	o.Return = op.Return
+}
+func (o *GetStateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *GetStateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetStateOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_IsSessionDesktopLockedOperation structure represents the RpcIsSessionDesktopLocked operation
+type xxx_IsSessionDesktopLockedOperation struct {
+	Session *Session `idl:"name:hSession" json:"session"`
+	Return  int32    `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_IsSessionDesktopLockedOperation) OpNum() int { return 8 }
+
+func (o *xxx_IsSessionDesktopLockedOperation) OpName() string {
+	return "/TermSrvSession/v1/RpcIsSessionDesktopLocked"
+}
+
+func (o *xxx_IsSessionDesktopLockedOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_IsSessionDesktopLockedOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session != nil {
+			if err := o.Session.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Session{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func (o *xxx_IsSessionDesktopLockedOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session == nil {
+			o.Session = &Session{}
+		}
+		if err := o.Session.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_IsSessionDesktopLockedOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_IsSessionDesktopLockedOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_IsSessionDesktopLockedOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// IsSessionDesktopLockedRequest structure represents the RpcIsSessionDesktopLocked operation request
+type IsSessionDesktopLockedRequest struct {
+	// hSession: The handle to the session returned by RpcOpenSession. This is of type SESSION_HANDLE.
+	Session *Session `idl:"name:hSession" json:"session"`
+}
+
+func (o *IsSessionDesktopLockedRequest) xxx_ToOp(ctx context.Context, op *xxx_IsSessionDesktopLockedOperation) *xxx_IsSessionDesktopLockedOperation {
+	if op == nil {
+		op = &xxx_IsSessionDesktopLockedOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Session = o.Session
+	return op
+}
+
+func (o *IsSessionDesktopLockedRequest) xxx_FromOp(ctx context.Context, op *xxx_IsSessionDesktopLockedOperation) {
+	if o == nil {
+		return
+	}
+	o.Session = op.Session
+}
+func (o *IsSessionDesktopLockedRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *IsSessionDesktopLockedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_IsSessionDesktopLockedOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// IsSessionDesktopLockedResponse structure represents the RpcIsSessionDesktopLocked operation response
+type IsSessionDesktopLockedResponse struct {
+	// Return: The RpcIsSessionDesktopLocked return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *IsSessionDesktopLockedResponse) xxx_ToOp(ctx context.Context, op *xxx_IsSessionDesktopLockedOperation) *xxx_IsSessionDesktopLockedOperation {
+	if op == nil {
+		op = &xxx_IsSessionDesktopLockedOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Return = o.Return
+	return op
+}
+
+func (o *IsSessionDesktopLockedResponse) xxx_FromOp(ctx context.Context, op *xxx_IsSessionDesktopLockedOperation) {
+	if o == nil {
+		return
+	}
+	o.Return = op.Return
+}
+func (o *IsSessionDesktopLockedResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *IsSessionDesktopLockedResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_IsSessionDesktopLockedOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_ShowMessageBoxOperation structure represents the RpcShowMessageBox operation
+type xxx_ShowMessageBoxOperation struct {
+	Session   *Session `idl:"name:hSession" json:"session"`
+	Title     string   `idl:"name:szTitle;string" json:"title"`
+	Message   string   `idl:"name:szMessage;string" json:"message"`
+	Style     uint32   `idl:"name:ulStyle" json:"style"`
+	Timeout   uint32   `idl:"name:ulTimeout" json:"timeout"`
+	Response  uint32   `idl:"name:pulResponse" json:"response"`
+	DoNotWait bool     `idl:"name:bDoNotWait" json:"do_not_wait"`
+	Return    int32    `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_ShowMessageBoxOperation) OpNum() int { return 9 }
+
+func (o *xxx_ShowMessageBoxOperation) OpName() string { return "/TermSrvSession/v1/RpcShowMessageBox" }
+
+func (o *xxx_ShowMessageBoxOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ShowMessageBoxOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session != nil {
+			if err := o.Session.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Session{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// szTitle {in} (1:{string, pointer=ref}*(1))(2:{alias=WCHAR}[dim:0,string,null](wchar))
+	{
+		if err := ndr.WriteUTF16NString(ctx, w, o.Title); err != nil {
+			return err
+		}
+	}
+	// szMessage {in} (1:{string, pointer=ref}*(1))(2:{alias=WCHAR}[dim:0,string,null](wchar))
+	{
+		if err := ndr.WriteUTF16NString(ctx, w, o.Message); err != nil {
+			return err
+		}
+	}
+	// ulStyle {in} (1:{alias=ULONG}(uint32))
+	{
+		if err := w.WriteData(o.Style); err != nil {
+			return err
+		}
+	}
+	// ulTimeout {in} (1:{alias=ULONG}(uint32))
+	{
+		if err := w.WriteData(o.Timeout); err != nil {
+			return err
+		}
+	}
+	// bDoNotWait {in} (1:{alias=BOOL}(int32))
+	{
+		if !o.DoNotWait {
+			if err := w.WriteData(int32(0)); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WriteData(int32(1)); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ShowMessageBoxOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session == nil {
+			o.Session = &Session{}
+		}
+		if err := o.Session.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// szTitle {in} (1:{string, pointer=ref}*(1))(2:{alias=WCHAR}[dim:0,string,null](wchar))
+	{
+		if err := ndr.ReadUTF16NString(ctx, w, &o.Title); err != nil {
+			return err
+		}
+	}
+	// szMessage {in} (1:{string, pointer=ref}*(1))(2:{alias=WCHAR}[dim:0,string,null](wchar))
+	{
+		if err := ndr.ReadUTF16NString(ctx, w, &o.Message); err != nil {
+			return err
+		}
+	}
+	// ulStyle {in} (1:{alias=ULONG}(uint32))
+	{
+		if err := w.ReadData(&o.Style); err != nil {
+			return err
+		}
+	}
+	// ulTimeout {in} (1:{alias=ULONG}(uint32))
+	{
+		if err := w.ReadData(&o.Timeout); err != nil {
+			return err
+		}
+	}
+	// bDoNotWait {in} (1:{alias=BOOL}(int32))
+	{
+		var _bDoNotWait int32
+		if err := w.ReadData(&_bDoNotWait); err != nil {
+			return err
+		}
+		o.DoNotWait = _bDoNotWait != 0
+	}
+	return nil
+}
+
+func (o *xxx_ShowMessageBoxOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ShowMessageBoxOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// pulResponse {out} (1:{pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	{
+		if err := w.WriteData(o.Response); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ShowMessageBoxOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// pulResponse {out} (1:{pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	{
+		if err := w.ReadData(&o.Response); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// ShowMessageBoxRequest structure represents the RpcShowMessageBox operation request
+type ShowMessageBoxRequest struct {
+	// hSession: The handle to the session returned by RpcOpenSession. This is of type SESSION_HANDLE.
+	Session *Session `idl:"name:hSession" json:"session"`
+	// szTitle: The title to assign to the message box.
+	Title string `idl:"name:szTitle;string" json:"title"`
+	// szMessage: The message to display inside the message box.
+	Message string `idl:"name:szMessage;string" json:"message"`
+	// ulStyle: Specifies the contents and behavior of the message box. This parameter can
+	// be a combination of flags specified for the uType parameter of the MessageBox function
+	// as defined in [MSDN-MSGBOX].
+	Style uint32 `idl:"name:ulStyle" json:"style"`
+	// ulTimeout: The time in seconds for which to display the message box. This time-out
+	// value is managed by another system component which dismisses the message box if no
+	// user input is entered during this interval.
+	Timeout uint32 `idl:"name:ulTimeout" json:"timeout"`
+	// bDoNotWait: Set to FALSE to wait for the message box to time-out or close, TRUE otherwise.
+	DoNotWait bool `idl:"name:bDoNotWait" json:"do_not_wait"`
+}
+
+func (o *ShowMessageBoxRequest) xxx_ToOp(ctx context.Context, op *xxx_ShowMessageBoxOperation) *xxx_ShowMessageBoxOperation {
+	if op == nil {
+		op = &xxx_ShowMessageBoxOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Session = o.Session
+	op.Title = o.Title
+	op.Message = o.Message
+	op.Style = o.Style
+	op.Timeout = o.Timeout
+	op.DoNotWait = o.DoNotWait
+	return op
+}
+
+func (o *ShowMessageBoxRequest) xxx_FromOp(ctx context.Context, op *xxx_ShowMessageBoxOperation) {
+	if o == nil {
+		return
+	}
+	o.Session = op.Session
+	o.Title = op.Title
+	o.Message = op.Message
+	o.Style = op.Style
+	o.Timeout = op.Timeout
+	o.DoNotWait = op.DoNotWait
+}
+func (o *ShowMessageBoxRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *ShowMessageBoxRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ShowMessageBoxOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// ShowMessageBoxResponse structure represents the RpcShowMessageBox operation response
+type ShowMessageBoxResponse struct {
+	// pulResponse: Pointer to a variable that receives the user's response, which can be
+	// one of the following values. The values defined in [MSDN-MSGBOX].
+	//
+	//	+-----------------+----------------------------------------------------------------------------------+
+	//	|                 |                                                                                  |
+	//	|      VALUE      |                                     MEANING                                      |
+	//	|                 |                                                                                  |
+	//	+-----------------+----------------------------------------------------------------------------------+
+	//	+-----------------+----------------------------------------------------------------------------------+
+	//	| IDABORT 3       | The Abort button was selected.                                                   |
+	//	+-----------------+----------------------------------------------------------------------------------+
+	//	| IDCANCEL 2      | The Cancel button was selected.                                                  |
+	//	+-----------------+----------------------------------------------------------------------------------+
+	//	| IDIGNORE 5      | The Ignore button was selected.                                                  |
+	//	+-----------------+----------------------------------------------------------------------------------+
+	//	| IDNO 7          | The No button was selected.                                                      |
+	//	+-----------------+----------------------------------------------------------------------------------+
+	//	| IDOK 1          | The OK button was selected.                                                      |
+	//	+-----------------+----------------------------------------------------------------------------------+
+	//	| IDRETRY 4       | The Retry button was selected.                                                   |
+	//	+-----------------+----------------------------------------------------------------------------------+
+	//	| IDYES 6         | The Yes button was selected.                                                     |
+	//	+-----------------+----------------------------------------------------------------------------------+
+	//	| IDASYNC 32001   | The bDoNotWait parameter was TRUE, so the function returned without waiting for  |
+	//	|                 | a response.                                                                      |
+	//	+-----------------+----------------------------------------------------------------------------------+
+	//	| IDTIMEOUT 32000 | The bDoNotWait parameter was FALSE and the time-out interval elapsed.            |
+	//	+-----------------+----------------------------------------------------------------------------------+
+	Response uint32 `idl:"name:pulResponse" json:"response"`
+	// Return: The RpcShowMessageBox return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *ShowMessageBoxResponse) xxx_ToOp(ctx context.Context, op *xxx_ShowMessageBoxOperation) *xxx_ShowMessageBoxOperation {
+	if op == nil {
+		op = &xxx_ShowMessageBoxOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Response = o.Response
+	op.Return = o.Return
+	return op
+}
+
+func (o *ShowMessageBoxResponse) xxx_FromOp(ctx context.Context, op *xxx_ShowMessageBoxOperation) {
+	if o == nil {
+		return
+	}
+	o.Response = op.Response
+	o.Return = op.Return
+}
+func (o *ShowMessageBoxResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *ShowMessageBoxResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ShowMessageBoxOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_GetTimesOperation structure represents the RpcGetTimes operation
+type xxx_GetTimesOperation struct {
+	Session        *Session `idl:"name:hSession" json:"session"`
+	ConnectTime    int64    `idl:"name:pConnectTime" json:"connect_time"`
+	DisconnectTime int64    `idl:"name:pDisconnectTime" json:"disconnect_time"`
+	LogonTime      int64    `idl:"name:pLogonTime" json:"logon_time"`
+	Return         int32    `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_GetTimesOperation) OpNum() int { return 10 }
+
+func (o *xxx_GetTimesOperation) OpName() string { return "/TermSrvSession/v1/RpcGetTimes" }
+
+func (o *xxx_GetTimesOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetTimesOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session != nil {
+			if err := o.Session.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Session{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetTimesOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session == nil {
+			o.Session = &Session{}
+		}
+		if err := o.Session.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetTimesOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetTimesOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// pConnectTime {out} (1:{pointer=ref}*(1)(int64))
+	{
+		if err := w.WriteData(o.ConnectTime); err != nil {
+			return err
+		}
+	}
+	// pDisconnectTime {out} (1:{pointer=ref}*(1)(int64))
+	{
+		if err := w.WriteData(o.DisconnectTime); err != nil {
+			return err
+		}
+	}
+	// pLogonTime {out} (1:{pointer=ref}*(1)(int64))
+	{
+		if err := w.WriteData(o.LogonTime); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetTimesOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// pConnectTime {out} (1:{pointer=ref}*(1)(int64))
+	{
+		if err := w.ReadData(&o.ConnectTime); err != nil {
+			return err
+		}
+	}
+	// pDisconnectTime {out} (1:{pointer=ref}*(1)(int64))
+	{
+		if err := w.ReadData(&o.DisconnectTime); err != nil {
+			return err
+		}
+	}
+	// pLogonTime {out} (1:{pointer=ref}*(1)(int64))
+	{
+		if err := w.ReadData(&o.LogonTime); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// GetTimesRequest structure represents the RpcGetTimes operation request
+type GetTimesRequest struct {
+	// hSession: Handle to the session returned by RpcOpenSession. This is of type SESSION_HANDLE.
+	Session *Session `idl:"name:hSession" json:"session"`
+}
+
+func (o *GetTimesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTimesOperation) *xxx_GetTimesOperation {
+	if op == nil {
+		op = &xxx_GetTimesOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Session = o.Session
+	return op
+}
+
+func (o *GetTimesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetTimesOperation) {
+	if o == nil {
+		return
+	}
+	o.Session = op.Session
+}
+func (o *GetTimesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *GetTimesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetTimesOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// GetTimesResponse structure represents the RpcGetTimes operation response
+type GetTimesResponse struct {
+	// pConnectTime:  The most recent time of a connection to the session.
+	ConnectTime int64 `idl:"name:pConnectTime" json:"connect_time"`
+	// pDisconnectTime: The most recent time of a disconnection from the session.
+	DisconnectTime int64 `idl:"name:pDisconnectTime" json:"disconnect_time"`
+	// pLogonTime: The most recent time of a logon to the session.
+	LogonTime int64 `idl:"name:pLogonTime" json:"logon_time"`
+	// Return: The RpcGetTimes return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *GetTimesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTimesOperation) *xxx_GetTimesOperation {
+	if op == nil {
+		op = &xxx_GetTimesOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.ConnectTime = o.ConnectTime
+	op.DisconnectTime = o.DisconnectTime
+	op.LogonTime = o.LogonTime
+	op.Return = o.Return
+	return op
+}
+
+func (o *GetTimesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetTimesOperation) {
+	if o == nil {
+		return
+	}
+	o.ConnectTime = op.ConnectTime
+	o.DisconnectTime = op.DisconnectTime
+	o.LogonTime = op.LogonTime
+	o.Return = op.Return
+}
+func (o *GetTimesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *GetTimesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetTimesOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_GetSessionCountersOperation structure represents the RpcGetSessionCounters operation
+type xxx_GetSessionCountersOperation struct {
+	Counter []*tsts.Counter `idl:"name:pCounter;size_is:(uEntries)" json:"counter"`
+	Entries uint32          `idl:"name:uEntries" json:"entries"`
+	Return  int32           `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_GetSessionCountersOperation) OpNum() int { return 11 }
+
+func (o *xxx_GetSessionCountersOperation) OpName() string {
+	return "/TermSrvSession/v1/RpcGetSessionCounters"
+}
+
+func (o *xxx_GetSessionCountersOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if o.Counter != nil && o.Entries == 0 {
+		o.Entries = uint32(len(o.Counter))
+	}
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionCountersOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// pCounter {in, out} (1:{alias=PTS_COUNTER}*(1))(2:{alias=TS_COUNTER}[dim:0,size_is=uEntries](struct))
+	{
+		dimSize1 := uint64(o.Entries)
+		if err := w.WriteSize(dimSize1); err != nil {
+			return err
+		}
+		sizeInfo := []uint64{
+			dimSize1,
+		}
+		for i1 := range o.Counter {
+			i1 := i1
+			if uint64(i1) >= sizeInfo[0] {
+				break
+			}
+			if o.Counter[i1] != nil {
+				if err := o.Counter[i1].MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&tsts.Counter{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+		}
+		for i1 := len(o.Counter); uint64(i1) < sizeInfo[0]; i1++ {
+			if err := (&tsts.Counter{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// uEntries {in} (1:{alias=ULONG}(uint32))
+	{
+		if err := w.WriteData(o.Entries); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionCountersOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// pCounter {in, out} (1:{alias=PTS_COUNTER,pointer=ref}*(1))(2:{alias=TS_COUNTER}[dim:0,size_is=uEntries](struct))
+	{
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.Counter", sizeInfo[0])
+		}
+		o.Counter = make([]*tsts.Counter, sizeInfo[0])
+		for i1 := range o.Counter {
+			i1 := i1
+			if o.Counter[i1] == nil {
+				o.Counter[i1] = &tsts.Counter{}
+			}
+			if err := o.Counter[i1].UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// uEntries {in} (1:{alias=ULONG}(uint32))
+	{
+		if err := w.ReadData(&o.Entries); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionCountersOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionCountersOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// pCounter {in, out} (1:{alias=PTS_COUNTER}*(1))(2:{alias=TS_COUNTER}[dim:0,size_is=uEntries](struct))
+	{
+		dimSize1 := uint64(o.Entries)
+		if err := w.WriteSize(dimSize1); err != nil {
+			return err
+		}
+		sizeInfo := []uint64{
+			dimSize1,
+		}
+		for i1 := range o.Counter {
+			i1 := i1
+			if uint64(i1) >= sizeInfo[0] {
+				break
+			}
+			if o.Counter[i1] != nil {
+				if err := o.Counter[i1].MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&tsts.Counter{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+		}
+		for i1 := len(o.Counter); uint64(i1) < sizeInfo[0]; i1++ {
+			if err := (&tsts.Counter{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionCountersOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// pCounter {in, out} (1:{alias=PTS_COUNTER,pointer=ref}*(1))(2:{alias=TS_COUNTER}[dim:0,size_is=uEntries](struct))
+	{
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.Counter", sizeInfo[0])
+		}
+		o.Counter = make([]*tsts.Counter, sizeInfo[0])
+		for i1 := range o.Counter {
+			i1 := i1
+			if o.Counter[i1] == nil {
+				o.Counter[i1] = &tsts.Counter{}
+			}
+			if err := o.Counter[i1].UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// GetSessionCountersRequest structure represents the RpcGetSessionCounters operation request
+type GetSessionCountersRequest struct {
+	// pCounter: An array of TS_COUNTER structures. The caller MUST set the dwCounterId
+	// field in the TS_COUNTER structures for each entry in the array to indicate the counter
+	// whose current value to retrieve. On return, the method MUST set the value for that
+	// performance counter. If the performance counter ID is not recognized or is not supported,
+	// the method will set the bResult field to 0.
+	Counter []*tsts.Counter `idl:"name:pCounter;size_is:(uEntries)" json:"counter"`
+	// uEntries: The number of performance counters to query. Indicates the size of the
+	// array pointed to by the pCounter parameter.
+	Entries uint32 `idl:"name:uEntries" json:"entries"`
+}
+
+func (o *GetSessionCountersRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSessionCountersOperation) *xxx_GetSessionCountersOperation {
+	if op == nil {
+		op = &xxx_GetSessionCountersOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Counter = o.Counter
+	op.Entries = o.Entries
+	return op
+}
+
+func (o *GetSessionCountersRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSessionCountersOperation) {
+	if o == nil {
+		return
+	}
+	o.Counter = op.Counter
+	o.Entries = op.Entries
+}
+func (o *GetSessionCountersRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *GetSessionCountersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetSessionCountersOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// GetSessionCountersResponse structure represents the RpcGetSessionCounters operation response
+type GetSessionCountersResponse struct {
+	// XXX: uEntries is an implicit input depedency for output parameters
+	Entries uint32 `idl:"name:uEntries" json:"entries"`
+
+	// pCounter: An array of TS_COUNTER structures. The caller MUST set the dwCounterId
+	// field in the TS_COUNTER structures for each entry in the array to indicate the counter
+	// whose current value to retrieve. On return, the method MUST set the value for that
+	// performance counter. If the performance counter ID is not recognized or is not supported,
+	// the method will set the bResult field to 0.
+	Counter []*tsts.Counter `idl:"name:pCounter;size_is:(uEntries)" json:"counter"`
+	// Return: The RpcGetSessionCounters return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *GetSessionCountersResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSessionCountersOperation) *xxx_GetSessionCountersOperation {
+	if op == nil {
+		op = &xxx_GetSessionCountersOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Entries == uint32(0) {
+		op.Entries = o.Entries
+	}
+
+	op.Counter = o.Counter
+	op.Return = o.Return
+	return op
+}
+
+func (o *GetSessionCountersResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSessionCountersOperation) {
+	if o == nil {
+		return
+	}
+	// XXX: implicit input dependencies for output parameters
+	o.Entries = op.Entries
+
+	o.Counter = op.Counter
+	o.Return = op.Return
+}
+func (o *GetSessionCountersResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *GetSessionCountersResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetSessionCountersOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_GetSessionInformationOperation structure represents the RpcGetSessionInformation operation
+type xxx_GetSessionInformationOperation struct {
+	SessionID   int32                  `idl:"name:SessionId" json:"session_id"`
+	SessionInfo *LSMSessionInformation `idl:"name:pSessionInfo;pointer:ref" json:"session_info"`
+	Return      int32                  `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_GetSessionInformationOperation) OpNum() int { return 12 }
+
+func (o *xxx_GetSessionInformationOperation) OpName() string {
+	return "/TermSrvSession/v1/RpcGetSessionInformation"
+}
+
+func (o *xxx_GetSessionInformationOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionInformationOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// SessionId {in} (1:{alias=LONG}(int32))
+	{
+		if err := w.WriteData(o.SessionID); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionInformationOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// SessionId {in} (1:{alias=LONG}(int32))
+	{
+		if err := w.ReadData(&o.SessionID); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionInformationOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionInformationOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// pSessionInfo {out} (1:{pointer=ref, alias=PLSMSESSIONINFORMATION}*(1))(2:{alias=LSMSESSIONINFORMATION}(struct))
+	{
+		if o.SessionInfo != nil {
+			if err := o.SessionInfo.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&LSMSessionInformation{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionInformationOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// pSessionInfo {out} (1:{pointer=ref, alias=PLSMSESSIONINFORMATION}*(1))(2:{alias=LSMSESSIONINFORMATION}(struct))
+	{
+		if o.SessionInfo == nil {
+			o.SessionInfo = &LSMSessionInformation{}
+		}
+		if err := o.SessionInfo.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// GetSessionInformationRequest structure represents the RpcGetSessionInformation operation request
+type GetSessionInformationRequest struct {
+	// SessionId:  The identifier of the session whose information is to be retrieved.
+	SessionID int32 `idl:"name:SessionId" json:"session_id"`
+}
+
+func (o *GetSessionInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSessionInformationOperation) *xxx_GetSessionInformationOperation {
+	if op == nil {
+		op = &xxx_GetSessionInformationOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.SessionID = o.SessionID
+	return op
+}
+
+func (o *GetSessionInformationRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSessionInformationOperation) {
+	if o == nil {
+		return
+	}
+	o.SessionID = op.SessionID
+}
+func (o *GetSessionInformationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *GetSessionInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetSessionInformationOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// GetSessionInformationResponse structure represents the RpcGetSessionInformation operation response
+type GetSessionInformationResponse struct {
+	// pSessionInfo:  A PLSMSESSIONINFORMATION element containing information about the
+	// session.
+	SessionInfo *LSMSessionInformation `idl:"name:pSessionInfo;pointer:ref" json:"session_info"`
+	// Return: The RpcGetSessionInformation return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *GetSessionInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSessionInformationOperation) *xxx_GetSessionInformationOperation {
+	if op == nil {
+		op = &xxx_GetSessionInformationOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.SessionInfo = o.SessionInfo
+	op.Return = o.Return
+	return op
+}
+
+func (o *GetSessionInformationResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSessionInformationOperation) {
+	if o == nil {
+		return
+	}
+	o.SessionInfo = op.SessionInfo
+	o.Return = op.Return
+}
+func (o *GetSessionInformationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *GetSessionInformationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetSessionInformationOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_GetLoggedOnCountOperation structure represents the RpcGetLoggedOnCount operation
+type xxx_GetLoggedOnCountOperation struct {
+	UserSessions   uint32 `idl:"name:pUserSessions" json:"user_sessions"`
+	DeviceSessions uint32 `idl:"name:pDeviceSessions" json:"device_sessions"`
+	Return         int32  `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_GetLoggedOnCountOperation) OpNum() int { return 15 }
+
+func (o *xxx_GetLoggedOnCountOperation) OpName() string {
+	return "/TermSrvSession/v1/RpcGetLoggedOnCount"
+}
+
+func (o *xxx_GetLoggedOnCountOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetLoggedOnCountOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *xxx_GetLoggedOnCountOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	return nil
+}
+
+func (o *xxx_GetLoggedOnCountOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetLoggedOnCountOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// pUserSessions {out} (1:{pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	{
+		if err := w.WriteData(o.UserSessions); err != nil {
+			return err
+		}
+	}
+	// pDeviceSessions {out} (1:{pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	{
+		if err := w.WriteData(o.DeviceSessions); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetLoggedOnCountOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// pUserSessions {out} (1:{pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	{
+		if err := w.ReadData(&o.UserSessions); err != nil {
+			return err
+		}
+	}
+	// pDeviceSessions {out} (1:{pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	{
+		if err := w.ReadData(&o.DeviceSessions); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// GetLoggedOnCountRequest structure represents the RpcGetLoggedOnCount operation request
+type GetLoggedOnCountRequest struct {
+}
+
+func (o *GetLoggedOnCountRequest) xxx_ToOp(ctx context.Context, op *xxx_GetLoggedOnCountOperation) *xxx_GetLoggedOnCountOperation {
+	if op == nil {
+		op = &xxx_GetLoggedOnCountOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	return op
+}
+
+func (o *GetLoggedOnCountRequest) xxx_FromOp(ctx context.Context, op *xxx_GetLoggedOnCountOperation) {
+	if o == nil {
+		return
+	}
+}
+func (o *GetLoggedOnCountRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *GetLoggedOnCountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetLoggedOnCountOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// GetLoggedOnCountResponse structure represents the RpcGetLoggedOnCount operation response
+type GetLoggedOnCountResponse struct {
+	// pUserSessions: The number of sessions that are of SESSIONTYPE_REGULARDESKTOP, or
+	// SESSIONTYPE_ALTERNATESHELL, or SESSIONTYPE_REMOTEAPP as defined in SESSIONTYPE (section
+	// 2.2.1.18).
+	UserSessions uint32 `idl:"name:pUserSessions" json:"user_sessions"`
+	// pDeviceSessions: The number of sessions connected using media center extender device
+	// only. These sessions are of SESSIONTYPE_MEDIACENTEREXT as defined in SESSIONTYPE
+	// (section 2.2.1.18). For more information on media center, see [MSFT-WINMCE].
+	DeviceSessions uint32 `idl:"name:pDeviceSessions" json:"device_sessions"`
+	// Return: The RpcGetLoggedOnCount return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *GetLoggedOnCountResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLoggedOnCountOperation) *xxx_GetLoggedOnCountOperation {
+	if op == nil {
+		op = &xxx_GetLoggedOnCountOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.UserSessions = o.UserSessions
+	op.DeviceSessions = o.DeviceSessions
+	op.Return = o.Return
+	return op
+}
+
+func (o *GetLoggedOnCountResponse) xxx_FromOp(ctx context.Context, op *xxx_GetLoggedOnCountOperation) {
+	if o == nil {
+		return
+	}
+	o.UserSessions = op.UserSessions
+	o.DeviceSessions = op.DeviceSessions
+	o.Return = op.Return
+}
+func (o *GetLoggedOnCountResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *GetLoggedOnCountResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetLoggedOnCountOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_GetSessionTypeOperation structure represents the RpcGetSessionType operation
+type xxx_GetSessionTypeOperation struct {
+	SessionID   int32  `idl:"name:SessionId" json:"session_id"`
+	SessionType uint32 `idl:"name:pSessionType" json:"session_type"`
+	Return      int32  `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_GetSessionTypeOperation) OpNum() int { return 16 }
+
+func (o *xxx_GetSessionTypeOperation) OpName() string { return "/TermSrvSession/v1/RpcGetSessionType" }
+
+func (o *xxx_GetSessionTypeOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionTypeOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// SessionId {in} (1:{pointer=ref}*(1))(2:{alias=LONG}(int32))
+	{
+		if err := w.WriteData(o.SessionID); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionTypeOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// SessionId {in} (1:{pointer=ref}*(1))(2:{alias=LONG}(int32))
+	{
+		if err := w.ReadData(&o.SessionID); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionTypeOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionTypeOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// pSessionType {out} (1:{pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	{
+		if err := w.WriteData(o.SessionType); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionTypeOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// pSessionType {out} (1:{pointer=ref}*(1))(2:{alias=ULONG}(uint32))
+	{
+		if err := w.ReadData(&o.SessionType); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// GetSessionTypeRequest structure represents the RpcGetSessionType operation request
+type GetSessionTypeRequest struct {
+	// SessionId: The identifier of the session whose type is being retrieved.
+	SessionID int32 `idl:"name:SessionId" json:"session_id"`
+}
+
+func (o *GetSessionTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSessionTypeOperation) *xxx_GetSessionTypeOperation {
+	if op == nil {
+		op = &xxx_GetSessionTypeOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.SessionID = o.SessionID
+	return op
+}
+
+func (o *GetSessionTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSessionTypeOperation) {
+	if o == nil {
+		return
+	}
+	o.SessionID = op.SessionID
+}
+func (o *GetSessionTypeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *GetSessionTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetSessionTypeOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// GetSessionTypeResponse structure represents the RpcGetSessionType operation response
+type GetSessionTypeResponse struct {
+	// pSessionType: The type of the session as defined in SESSIONTYPE (section 2.2.1.18).
+	SessionType uint32 `idl:"name:pSessionType" json:"session_type"`
+	// Return: The RpcGetSessionType return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *GetSessionTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSessionTypeOperation) *xxx_GetSessionTypeOperation {
+	if op == nil {
+		op = &xxx_GetSessionTypeOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.SessionType = o.SessionType
+	op.Return = o.Return
+	return op
+}
+
+func (o *GetSessionTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSessionTypeOperation) {
+	if o == nil {
+		return
+	}
+	o.SessionType = op.SessionType
+	o.Return = op.Return
+}
+func (o *GetSessionTypeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *GetSessionTypeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetSessionTypeOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_GetSessionInformationExOperation structure represents the RpcGetSessionInformationEx operation
+type xxx_GetSessionInformationExOperation struct {
+	SessionID        int32                    `idl:"name:SessionId" json:"session_id"`
+	Level            uint32                   `idl:"name:Level" json:"level"`
+	LSMSessionInfoEx *LSMSessionInformationEx `idl:"name:LSMSessionInfoExPtr;pointer:ref" json:"lsm_session_info_ex"`
+	Return           int32                    `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_GetSessionInformationExOperation) OpNum() int { return 17 }
+
+func (o *xxx_GetSessionInformationExOperation) OpName() string {
+	return "/TermSrvSession/v1/RpcGetSessionInformationEx"
+}
+
+func (o *xxx_GetSessionInformationExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionInformationExOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// SessionId {in} (1:{alias=LONG}(int32))
+	{
+		if err := w.WriteData(o.SessionID); err != nil {
+			return err
+		}
+	}
+	// Level {in} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.Level); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionInformationExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// SessionId {in} (1:{alias=LONG}(int32))
+	{
+		if err := w.ReadData(&o.SessionID); err != nil {
+			return err
+		}
+	}
+	// Level {in} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.Level); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionInformationExOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionInformationExOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// LSMSessionInfoExPtr {out} (1:{pointer=ref, alias=PLSMSESSIONINFORMATION_EX}*(1))(2:{alias=LSMSESSIONINFORMATION_EX}(struct))
+	{
+		if o.LSMSessionInfoEx != nil {
+			if err := o.LSMSessionInfoEx.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&LSMSessionInformationEx{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetSessionInformationExOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// LSMSessionInfoExPtr {out} (1:{pointer=ref, alias=PLSMSESSIONINFORMATION_EX}*(1))(2:{alias=LSMSESSIONINFORMATION_EX}(struct))
+	{
+		if o.LSMSessionInfoEx == nil {
+			o.LSMSessionInfoEx = &LSMSessionInformationEx{}
+		}
+		if err := o.LSMSessionInfoEx.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// GetSessionInformationExRequest structure represents the RpcGetSessionInformationEx operation request
+type GetSessionInformationExRequest struct {
+	SessionID int32 `idl:"name:SessionId" json:"session_id"`
+	// Level: The level of the information to be retrieved. This MUST be 1.
+	Level uint32 `idl:"name:Level" json:"level"`
+}
+
+func (o *GetSessionInformationExRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSessionInformationExOperation) *xxx_GetSessionInformationExOperation {
+	if op == nil {
+		op = &xxx_GetSessionInformationExOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.SessionID = o.SessionID
+	op.Level = o.Level
+	return op
+}
+
+func (o *GetSessionInformationExRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSessionInformationExOperation) {
+	if o == nil {
+		return
+	}
+	o.SessionID = op.SessionID
+	o.Level = op.Level
+}
+func (o *GetSessionInformationExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *GetSessionInformationExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetSessionInformationExOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// GetSessionInformationExResponse structure represents the RpcGetSessionInformationEx operation response
+type GetSessionInformationExResponse struct {
+	// LSMSessionInfoExPtr: A PLSMSESSIONINFORMATION_EX element containing information about
+	// the session.
+	LSMSessionInfoEx *LSMSessionInformationEx `idl:"name:LSMSessionInfoExPtr;pointer:ref" json:"lsm_session_info_ex"`
+	// Return: The RpcGetSessionInformationEx return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *GetSessionInformationExResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSessionInformationExOperation) *xxx_GetSessionInformationExOperation {
+	if op == nil {
+		op = &xxx_GetSessionInformationExOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.LSMSessionInfoEx = o.LSMSessionInfoEx
+	op.Return = o.Return
+	return op
+}
+
+func (o *GetSessionInformationExResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSessionInformationExOperation) {
+	if o == nil {
+		return
+	}
+	o.LSMSessionInfoEx = op.LSMSessionInfoEx
+	o.Return = op.Return
+}
+func (o *GetSessionInformationExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *GetSessionInformationExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetSessionInformationExOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_GetActivityIDOperation structure represents the RpcGetActivityId operation
+type xxx_GetActivityIDOperation struct {
+	Session    *Session   `idl:"name:hSession" json:"session"`
+	ActivityID *dtyp.GUID `idl:"name:pActivityId;pointer:ref" json:"activity_id"`
+	Return     int32      `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_GetActivityIDOperation) OpNum() int { return 21 }
+
+func (o *xxx_GetActivityIDOperation) OpName() string { return "/TermSrvSession/v1/RpcGetActivityId" }
+
+func (o *xxx_GetActivityIDOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetActivityIDOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session != nil {
+			if err := o.Session.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Session{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetActivityIDOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// hSession {in} (1:{context_handle, alias=SESSION_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Session == nil {
+			o.Session = &Session{}
+		}
+		if err := o.Session.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetActivityIDOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetActivityIDOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// pActivityId {out} (1:{pointer=ref}*(2)*(1))(2:{alias=GUID}(struct))
+	{
+		if o.ActivityID != nil {
+			_ptr_pActivityId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.ActivityID != nil {
+					if err := o.ActivityID.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ActivityID, _ptr_pActivityId); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetActivityIDOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// pActivityId {out} (1:{pointer=ref}*(2)*(1))(2:{alias=GUID}(struct))
+	{
+		_ptr_pActivityId := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.ActivityID == nil {
+				o.ActivityID = &dtyp.GUID{}
+			}
+			if err := o.ActivityID.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_pActivityId := func(ptr interface{}) { o.ActivityID = *ptr.(**dtyp.GUID) }
+		if err := w.ReadPointer(&o.ActivityID, _s_pActivityId, _ptr_pActivityId); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// GetActivityIDRequest structure represents the RpcGetActivityId operation request
+type GetActivityIDRequest struct {
+	Session *Session `idl:"name:hSession" json:"session"`
+}
+
+func (o *GetActivityIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetActivityIDOperation) *xxx_GetActivityIDOperation {
+	if op == nil {
+		op = &xxx_GetActivityIDOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Session = o.Session
+	return op
+}
+
+func (o *GetActivityIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetActivityIDOperation) {
+	if o == nil {
+		return
+	}
+	o.Session = op.Session
+}
+func (o *GetActivityIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *GetActivityIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetActivityIDOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// GetActivityIDResponse structure represents the RpcGetActivityId operation response
+type GetActivityIDResponse struct {
+	ActivityID *dtyp.GUID `idl:"name:pActivityId;pointer:ref" json:"activity_id"`
+	// Return: The RpcGetActivityId return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *GetActivityIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetActivityIDOperation) *xxx_GetActivityIDOperation {
+	if op == nil {
+		op = &xxx_GetActivityIDOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.ActivityID = o.ActivityID
+	op.Return = o.Return
+	return op
+}
+
+func (o *GetActivityIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetActivityIDOperation) {
+	if o == nil {
+		return
+	}
+	o.ActivityID = op.ActivityID
+	o.Return = op.Return
+}
+func (o *GetActivityIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *GetActivityIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetActivityIDOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}

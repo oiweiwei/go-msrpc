@@ -37,7 +37,7 @@ lookBehind:
   entity: {inf: [entity, info]}
   enum: {handle: [enum], empty: [empty], "null": ["null"], cy: [currency], y: [currency], lpstr: [char, str], lpwstr: [unicode, str], wbem: [enum], vds: [enum]}
   event: {handle: [event]}
-  ex: {handle: [ex]}
+  ex: {handle: [ex], ptr: [ex]}
   f: {can: [can], pb: [fpb]}
   fax: {handle: [fax]}
   flag: {vf: [flag], svf: [flag], pkf: [flag], ptf: [flag], fss: [flag], fpf: [flag], hsf: [flag], hsf1: [flag, "1"], hsf2: [flag, "2"], hsf10: [flag, "10"], hsf4: [flag, "4"]}
@@ -98,7 +98,7 @@ lookBehind:
   opc: {e: [type]}
   orp: {cthis: [orpc, this], cthat: [orpc, that]}
   oth: {domains: [other, domains]}
-  p: {rpl: [periodic, rpl], scv: [periodic, scv], bstr: [p], rpc: [p]}
+  p: {rpl: [periodic, rpl], scv: [periodic, scv], bstr: [p], rpc: [p], ts: [p]}
   pdroid: {next: [next, object, id], last: [last, object, id]}
   pdw: {num: [num]}
   personal: {prof: [personal, profile]}
@@ -116,6 +116,7 @@ lookBehind:
   psec: {phase: [ipsec, phase], phase1: [phase1], phase2: [phase2]}
   sec: {dns: [dnssec]}
   psession: {handle: [session]}
+  session: {handle: [session]}
   pswz: {identifier: [vpd, identifier]}
   pul: {title: [actual, title], relative: [actual, relative], num: [num]}
   pwsz: {val: [unicode, string]}
@@ -194,5 +195,9 @@ lookBehind:
   is: {is: [isis]}
   es: {is: [esis]}
   up: {strm: [upstream]}
-  pp: {po: [pppo]}
+  pp: {po: [pppo], ts: [pp]}
   pppo: {e: [pppoe]}
+  nt6: {ts: [nt6]}
+  spare: {li1: [reserved], li2: [reserved], li3: [reserved], ul3: [reserved]}
+  key: {vk: [key, virtual, key]}
+  ph: {listener: [listener]}

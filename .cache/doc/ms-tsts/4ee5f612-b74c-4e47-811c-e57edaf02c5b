@@ -1,0 +1,39 @@
+<div class="content"><p>The RpcGetRemoteAddress method retrieves the IP address of
+the client computer connected to the session on the terminal server. The caller
+MUST have WINSTATION_QUERY permission for the session. The method checks
+whether the caller has WINSTATION_QUERY permission (section <span><a href="4507e852-be3d-45b6-bc47-8ca0b552c94d" data-linktype="relative-path">3.1.1</a></span>)
+by setting it as the Access Request mask, and fails if the caller does not have
+the permission. </p><dl>
+<dd>
+<div><pre> HRESULT RpcGetRemoteAddress(
+   [in] handle_t hBinding,
+   [in] ULONG SessionId,
+   [out] PRCM_REMOTEADDRESS pRemoteAddress
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b> The <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>.
+For more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=93771" data-linktype="external">[MSDN-RPCBIND]</a></span>.</p><p><b>SessionId: </b> The ID of the session for which
+client data is to be retrieved.</p><p><b>pRemoteAddress: </b>The address of the client
+computer that is connected to the session. This is of the type <span><a href="3c5dea7c-f9a4-41c6-b9f8-31b5bc985b6b" data-linktype="relative-path">PRCM_REMOTEADDRESS</a></span>.</p><p><b>Return Values: </b> The method MUST return S_OK
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+negative value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Successful completion.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

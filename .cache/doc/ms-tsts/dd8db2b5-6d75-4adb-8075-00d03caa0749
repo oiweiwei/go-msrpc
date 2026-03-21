@@ -1,0 +1,14 @@
+<div class="content"><p>The <b>TRANSMITFLOWCONTROLCLASS</b> enumeration specifies
+which, if any, means of transit flow control is supported.</p><dl>
+<dd>
+<div><pre> typedef  enum _TRANSMITFLOWCONTROLCLASS
+ {
+   TransmitFlowControl_None,
+   TransmitFlowControl_CTS,
+   TransmitFlowControl_DSR,
+ } TRANSMITFLOWCONTROLCLASS;
+</pre></div>
+</dd></dl><p><b>TransmitFlowControl_None:  </b>No transmit flow
+control currently.</p><p><b>TransmitFlowControl_CTS:  </b>Transmit flow
+control Clear to Send (CTS).</p><p><b>TransmitFlowControl_DSR:  </b>Transmit flow
+control Data Set Ready (DSR).</p></div>

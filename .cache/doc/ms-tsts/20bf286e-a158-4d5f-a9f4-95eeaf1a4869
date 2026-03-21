@@ -1,0 +1,45 @@
+<div class="content"><p>PEXECENVDATA is a pointer to a structure containing
+information about the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_0cd96b80-a737-4f06-bca4-cf9efb449d12" data-linktype="relative-path">sessions</a></span> running on
+the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal
+server</a></span> and the sessions running on virtual machines hosted on the
+server.<a id="Appendix_A_Target_48"></a><a aria-label="Product behavior note 48" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_48" data-linktype="relative-path">&lt;48&gt;</a> It is returned by <span><a href="68e824e0-d786-4987-8ccb-c34503fffd3f" data-linktype="relative-path">RpcGetAllSessions</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _EXECENVDATA {
+   DWORD Level;
+   [switch_is(Level)] ExecEnvData Data;
+ } EXECENVDATA,
+  *PEXECENVDATA;
+</pre></div>
+</dd></dl><p><b>Level:</b>  The level of information
+contained in <b>Data</b>; the valid values are 1 and 2.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Value</p>
+   </th>
+   <th>
+   <p>Meaning</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>1</p>
+  </td>
+  <td>
+  <p>The union <span><a href="9846fe50-582c-4f69-a070-677049ebc1ae" data-linktype="relative-path">ExecEnvData</a></span> has
+  the <span><a href="004305a6-4265-4ff5-bb8a-58fd0f7cf2d5" data-linktype="relative-path">EXECENVDATA_LEVEL1</a></span>
+  structure.</p>
+  </td>
+ </tr><tr>
+  <td>
+  <p>2</p>
+  </td>
+  <td>
+  <p>The union ExecEnvData has the <span><a href="e85daed7-ed77-4c8a-afc0-5596c8d41c9c" data-linktype="relative-path">EXECENVDATA_LEVEL2</a></span>
+  structure.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p><b>Data:</b>  Contains information at a
+specified level of detail about sessions running on a computer. This is of type
+ExecEnvData.</p></div>

@@ -1,0 +1,2807 @@
+// The tsts package implements the TSTS client protocol.
+//
+// # Introduction
+//
+// This document specifies the Terminal Services Terminal Server Runtime Interface Protocol.
+// The Terminal Services Terminal Server Runtime Interface Protocol is an RPC-based
+// protocol used for remotely querying and configuring various aspects of a terminal
+// server.
+//
+// # Overview
+//
+// The Terminal Services Terminal Server Runtime Interface Protocol is a simple request-response
+// RPC-based protocol used for remotely querying and configuring various aspects of
+// a terminal server. For example, this protocol can be used to query the number of
+// active sessions running on a terminal server. For every method that the server receives,
+// it executes the method and returns a completion. The client simply returns the completion
+// status to the caller.
+//
+// The protocol consists of four major subcomponents:
+//
+// * *Local Session Manager (LSM):* A system component that creates, destroys, and manages
+// sessions.
+//
+// * *TermService:* A service running on the system that manages remote connection requests.
+//
+// * *VM Host Agent:* A service running on the system that monitors the states of the
+// sessions within virtual machines hosted on the server [MSFT-VS] ( https://go.microsoft.com/fwlink/?LinkId=123460
+// ). <1> ( 7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_1 )
+//
+// * *Virtual IP:* A service running on the system that assigns IP addresses to sessions
+// that are created by using remote connection requests.
+//
+// The protocol can be further divided into the following functional categories:<2>
+//
+// Functional categories associated with the Local Session Manager (LSM) subcomponent:
+//
+// * *Local Session Manager (LSM) Session:* These calls collect information, and control
+// and configure sessions running on the terminal server.
+//
+// * *Local Session Manager (LSM) Notification:* These RPC ( c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8a7f6700-8311-45bc-af10-82e10accd331
+// ) calls are asynchronous and can be used to receive event notifications from the
+// LSM.
+//
+// * *Local Session Manager (LSM) Enumeration:* These calls are used to enumerate information
+// related to sessions running on a terminal server.
+//
+// Functional categories associated with the VM Host Agent subcomponent:
+//
+// * *VM Host Agent Session:* These calls collect information as well as control and
+// configure sessions running on the virtual machines hosted on the server.
+//
+// * *VM Host Agent Notification:* These RPC calls are asynchronous and can be used
+// to receive event notifications from *VM Host Agent*.
+//
+// * *VM Host Agent Enumeration:* These calls are used to enumerate information related
+// to sessions running on the virtual machines hosted on the server.
+//
+// Functional categories associated with the TermService subcomponent:
+//
+// * *TermService:* These calls can be used to query and configure various aspects of
+// the TermServices running on the terminal server.
+//
+// * *TermService Listener:* These calls are specific to the listener session running
+// on the terminal server and listening for incoming connection requests.
+//
+// * *Legacy:* The legacy calls used by Terminal Services ( c41d3367-04c9-4c93-babf-9b5de834eb29#gt_ffff3f01-8c21-44d3-bbda-0062a1fbda4b
+// ) clients.
+package tsts
+
+import (
+	"context"
+	"fmt"
+	"strings"
+	"unicode/utf16"
+
+	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
+	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
+	dcetypes "github.com/oiweiwei/go-msrpc/msrpc/dcetypes"
+	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
+	ndr "github.com/oiweiwei/go-msrpc/ndr"
+)
+
+var (
+	_ = context.Background
+	_ = fmt.Errorf
+	_ = utf16.Encode
+	_ = strings.TrimPrefix
+	_ = ndr.ZeroString
+	_ = (*uuid.UUID)(nil)
+	_ = (*dcerpc.SyntaxID)(nil)
+	_ = dtyp.GoPackage
+	_ = dcetypes.GoPackage
+)
+
+var (
+	// import guard
+	GoPackage = "tsts"
+)
+
+// ProcessInfoMagicNT4 represents the TS_PROCESS_INFO_MAGIC_NT4 RPC constant
+var ProcessInfoMagicNT4 = 592008274
+
+// SizeOfTS4SystemThreadInformation represents the SIZEOF_TS4_SYSTEM_THREAD_INFORMATION RPC constant
+var SizeOfTS4SystemThreadInformation = 64
+
+// SizeOfTS4SystemProcessInformation represents the SIZEOF_TS4_SYSTEM_PROCESS_INFORMATION RPC constant
+var SizeOfTS4SystemProcessInformation = 136
+
+// GapLevelBasic represents the GAP_LEVEL_BASIC RPC constant
+var GapLevelBasic = 0
+
+// MaxAdapterAddressLength represents the TSVIP_MAX_ADAPTER_ADDRESS_LENGTH RPC constant
+var MaxAdapterAddressLength = 16
+
+// WTSNotifyNone represents the WTS_NOTIFY_NONE RPC constant
+var WTSNotifyNone = 0
+
+// WTSNotifyCreate represents the WTS_NOTIFY_CREATE RPC constant
+var WTSNotifyCreate = 1
+
+// WTSNotifyConnect represents the WTS_NOTIFY_CONNECT RPC constant
+var WTSNotifyConnect = 2
+
+// WTSNotifyDisconnect represents the WTS_NOTIFY_DISCONNECT RPC constant
+var WTSNotifyDisconnect = 4
+
+// WTSNotifyLogon represents the WTS_NOTIFY_LOGON RPC constant
+var WTSNotifyLogon = 8
+
+// WTSNotifyLogoff represents the WTS_NOTIFY_LOGOFF RPC constant
+var WTSNotifyLogoff = 16
+
+// WTSNotifyShadowStart represents the WTS_NOTIFY_SHADOW_START RPC constant
+var WTSNotifyShadowStart = 32
+
+// WTSNotifyShadowStop represents the WTS_NOTIFY_SHADOW_STOP RPC constant
+var WTSNotifyShadowStop = 64
+
+// WTSNotifyTerminate represents the WTS_NOTIFY_TERMINATE RPC constant
+var WTSNotifyTerminate = 128
+
+// WTSNotifyConsoleConnect represents the WTS_NOTIFY_CONSOLE_CONNECT RPC constant
+var WTSNotifyConsoleConnect = 256
+
+// WTSNotifyConsoleDisconnect represents the WTS_NOTIFY_CONSOLE_DISCONNECT RPC constant
+var WTSNotifyConsoleDisconnect = 512
+
+// WTSNotifyLock represents the WTS_NOTIFY_LOCK RPC constant
+var WTSNotifyLock = 1024
+
+// WTSNotifyUnlock represents the WTS_NOTIFY_UNLOCK RPC constant
+var WTSNotifyUnlock = 2048
+
+// WTSNotifyAll represents the WTS_NOTIFY_ALL RPC constant
+var WTSNotifyAll = 4294967295
+
+// ProcessInformationNT4 structure represents TS_PROCESS_INFORMATION_NT4 RPC structure.
+//
+// The TS_PROCESS_INFORMATION_NT4 structure is returned by RpcWinStationEnumerateProcesses.
+type ProcessInformationNT4 struct {
+	// MagicNumber:  MUST be set to TS_PROCESS_INFO_MAGIC_NT4 (0x23495452).
+	MagicNumber uint32 `idl:"name:MagicNumber" json:"magic_number"`
+	// LogonId:  The session ID of the process.
+	LogonID uint32 `idl:"name:LogonId" json:"logon_id"`
+	// ProcessSid:  The security identifier (SID), as specified in [MS-DTYP] section 2.4.2,
+	// of the owner of the process.
+	ProcessSID []byte `idl:"name:ProcessSid" json:"process_sid"`
+	// Pad:  MUST be set to 0.
+	Pad uint32 `idl:"name:Pad" json:"pad"`
+}
+
+func (o *ProcessInformationNT4) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *ProcessInformationNT4) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.MagicNumber); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.LogonID); err != nil {
+		return err
+	}
+	if o.ProcessSID != nil {
+		_ptr_ProcessSid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			// FIXME unknown type ProcessSid
+			return nil
+		})
+		if err := w.WritePointer(&o.ProcessSID, _ptr_ProcessSid); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.Pad); err != nil {
+		return err
+	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *ProcessInformationNT4) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.MagicNumber); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.LogonID); err != nil {
+		return err
+	}
+	_ptr_ProcessSid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		// FIXME: unknown type ProcessSid
+		return nil
+	})
+	_s_ProcessSid := func(ptr interface{}) { o.ProcessSID = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.ProcessSID, _s_ProcessSid, _ptr_ProcessSid); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Pad); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
+		return err
+	}
+	return nil
+}
+
+// UnicodeString structure represents TS_UNICODE_STRING RPC structure.
+//
+// The TS_UNICODE_STRING structure contains a Unicode string.
+type UnicodeString struct {
+	// Length:  The actual length of the string currently stored in the Buffer member, in
+	// bytes.
+	Length uint16 `idl:"name:Length" json:"length"`
+	// MaximumLength:  The maximum length of the string that can be stored in Buffer, in
+	// bytes.
+	MaximumLength uint16 `idl:"name:MaximumLength" json:"maximum_length"`
+	// Buffer:  A wide character string that MUST NOT be followed by the terminating NULL
+	// character.
+	Buffer string `idl:"name:Buffer;size_is:(MaximumLength);length_is:(Length)" json:"buffer"`
+}
+
+func (o *UnicodeString) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.Buffer != "" && o.MaximumLength == 0 {
+		o.MaximumLength = uint16(ndr.UTF16Len(o.Buffer))
+	}
+	if o.Buffer != "" && o.Length == 0 {
+		o.Length = uint16(ndr.UTF16Len(o.Buffer))
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *UnicodeString) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(7); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Length); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.MaximumLength); err != nil {
+		return err
+	}
+	if o.Buffer != "" || o.MaximumLength > 0 {
+		_ptr_Buffer := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.MaximumLength)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			dimLength1 := uint64(o.Length)
+			if dimLength1 > sizeInfo[0] {
+				dimLength1 = sizeInfo[0]
+			} else {
+				sizeInfo[0] = dimLength1
+			}
+			if err := w.WriteSize(0); err != nil {
+				return err
+			}
+			if err := w.WriteSize(dimLength1); err != nil {
+				return err
+			}
+			_Buffer_buf := utf16.Encode([]rune(o.Buffer))
+			if uint64(len(_Buffer_buf)) > sizeInfo[0] {
+				_Buffer_buf = _Buffer_buf[:sizeInfo[0]]
+			}
+			for i1 := range _Buffer_buf {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(_Buffer_buf[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(_Buffer_buf); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint16(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Buffer, _ptr_Buffer); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *UnicodeString) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(7); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Length); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.MaximumLength); err != nil {
+		return err
+	}
+	_ptr_Buffer := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		var _Buffer_buf []uint16
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array _Buffer_buf", sizeInfo[0])
+		}
+		_Buffer_buf = make([]uint16, sizeInfo[0])
+		for i1 := range _Buffer_buf {
+			i1 := i1
+			if err := w.ReadData(&_Buffer_buf[i1]); err != nil {
+				return err
+			}
+		}
+		o.Buffer = strings.TrimRight(string(utf16.Decode(_Buffer_buf)), ndr.ZeroString)
+		return nil
+	})
+	_s_Buffer := func(ptr interface{}) { o.Buffer = *ptr.(*string) }
+	if err := w.ReadPointer(&o.Buffer, _s_Buffer, _ptr_Buffer); err != nil {
+		return err
+	}
+	return nil
+}
+
+// SystemProcessInformation structure represents TS_SYS_PROCESS_INFORMATION RPC structure.
+//
+// The TS_SYS_PROCESS_INFORMATION structure contains information about a process running
+// on a system.
+type SystemProcessInformation struct {
+	// NextEntryOffset:  Offset to the start of data for the next process.
+	NextEntryOffset uint32 `idl:"name:NextEntryOffset" json:"next_entry_offset"`
+	// NumberOfThreads:  Number of threads in the process.
+	NumberOfThreads uint32 `idl:"name:NumberOfThreads" json:"number_of_threads"`
+	// SpareLi1:  Reserved.
+	_ *dtyp.LargeInteger `idl:"name:SpareLi1"`
+	// SpareLi2:  Reserved.
+	_ *dtyp.LargeInteger `idl:"name:SpareLi2"`
+	// SpareLi3:  Reserved.
+	_ *dtyp.LargeInteger `idl:"name:SpareLi3"`
+	// CreateTime:  Creation time of the process. Time is measured as the number of 100-nanosecond
+	// intervals since January 1, 1601 (UTC).
+	CreateTime *dtyp.LargeInteger `idl:"name:CreateTime" json:"create_time"`
+	// UserTime:  Amount of time in milliseconds the process has spent running in user mode.
+	UserTime *dtyp.LargeInteger `idl:"name:UserTime" json:"user_time"`
+	// KernelTime:  Amount of time in milliseconds the process has spent running in kernel
+	// mode.
+	KernelTime *dtyp.LargeInteger `idl:"name:KernelTime" json:"kernel_time"`
+	// ImageName:  String containing the process's image name.
+	ImageName *UnicodeString `idl:"name:ImageName" json:"image_name"`
+	// BasePriority:  Base priority of the process.
+	BasePriority int32 `idl:"name:BasePriority" json:"base_priority"`
+	// UniqueProcessId:  Process's unique process ID.
+	UniqueProcessID uint32 `idl:"name:UniqueProcessId" json:"unique_process_id"`
+	// InheritedFromUniqueProcessId:  Parent process's unique process ID.
+	InheritedFromUniqueProcessID uint32 `idl:"name:InheritedFromUniqueProcessId" json:"inherited_from_unique_process_id"`
+	// HandleCount:  Current number of handles open in the process.
+	HandleCount uint32 `idl:"name:HandleCount" json:"handle_count"`
+	// SessionId:  Session identifier of the process session.
+	SessionID uint32 `idl:"name:SessionId" json:"session_id"`
+	// SpareUl3:  Reserved.
+	_ uint32 `idl:"name:SpareUl3"`
+	// PeakVirtualSize:  Peak size of virtual memory, in bytes, used by the process.
+	PeakVirtualSize uint64 `idl:"name:PeakVirtualSize" json:"peak_virtual_size"`
+	// VirtualSize:  Current size of virtual memory, in bytes, used by the process.
+	VirtualSize uint64 `idl:"name:VirtualSize" json:"virtual_size"`
+	// PageFaultCount:  Number of page faults in the process.
+	PageFaultCount uint32 `idl:"name:PageFaultCount" json:"page_fault_count"`
+	// PeakWorkingSetSize:  Peak size of the working set in kilobytes of the process.
+	PeakWorkingSetSize uint32 `idl:"name:PeakWorkingSetSize" json:"peak_working_set_size"`
+	// WorkingSetSize:  Current size, in bytes, of the working set of the process.
+	WorkingSetSize uint32 `idl:"name:WorkingSetSize" json:"working_set_size"`
+	// QuotaPeakPagedPoolUsage:  Peak quota charged to the process for paged pool usage.
+	QuotaPeakPagedPoolUsage uint64 `idl:"name:QuotaPeakPagedPoolUsage" json:"quota_peak_paged_pool_usage"`
+	// QuotaPagedPoolUsage:  Current quota charged to the process for paged pool usage.
+	QuotaPagedPoolUsage uint64 `idl:"name:QuotaPagedPoolUsage" json:"quota_paged_pool_usage"`
+	// QuotaPeakNonPagedPoolUsage:  Peak quota charged to the process for nonpaged pool
+	// usage.
+	QuotaPeakNonPagedPoolUsage uint64 `idl:"name:QuotaPeakNonPagedPoolUsage" json:"quota_peak_non_paged_pool_usage"`
+	// QuotaNonPagedPoolUsage:  Current quota charged to the process for nonpaged pool usage.
+	QuotaNonPagedPoolUsage uint64 `idl:"name:QuotaNonPagedPoolUsage" json:"quota_non_paged_pool_usage"`
+	// PagefileUsage:  Amount of bytes of page file storage in use by the process.
+	PageFileUsage uint64 `idl:"name:PagefileUsage" json:"page_file_usage"`
+	// PeakPagefileUsage:  Peak amount of bytes of page file storage in use by the process.
+	PeakPageFileUsage uint64 `idl:"name:PeakPagefileUsage" json:"peak_page_file_usage"`
+	// PrivatePageCount:  Current number of memory pages allocated by the process.
+	PrivatePageCount uint64 `idl:"name:PrivatePageCount" json:"private_page_count"`
+}
+
+func (o *SystemProcessInformation) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *SystemProcessInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(8); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.NextEntryOffset); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.NumberOfThreads); err != nil {
+		return err
+	}
+	// reserved SpareLi1
+	if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	// reserved SpareLi2
+	if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	// reserved SpareLi3
+	if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.CreateTime != nil {
+		if err := o.CreateTime.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.UserTime != nil {
+		if err := o.UserTime.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.KernelTime != nil {
+		if err := o.KernelTime.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.ImageName != nil {
+		if err := o.ImageName.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&UnicodeString{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.BasePriority); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.UniqueProcessID); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.InheritedFromUniqueProcessID); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.HandleCount); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.SessionID); err != nil {
+		return err
+	}
+	// reserved SpareUl3
+	if err := w.WriteData(uint32(0)); err != nil {
+		return err
+	}
+	if err := w.WriteData(ndr.Uint3264(o.PeakVirtualSize)); err != nil {
+		return err
+	}
+	if err := w.WriteData(ndr.Uint3264(o.VirtualSize)); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.PageFaultCount); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.PeakWorkingSetSize); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.WorkingSetSize); err != nil {
+		return err
+	}
+	if err := w.WriteData(ndr.Uint3264(o.QuotaPeakPagedPoolUsage)); err != nil {
+		return err
+	}
+	if err := w.WriteData(ndr.Uint3264(o.QuotaPagedPoolUsage)); err != nil {
+		return err
+	}
+	if err := w.WriteData(ndr.Uint3264(o.QuotaPeakNonPagedPoolUsage)); err != nil {
+		return err
+	}
+	if err := w.WriteData(ndr.Uint3264(o.QuotaNonPagedPoolUsage)); err != nil {
+		return err
+	}
+	if err := w.WriteData(ndr.Uint3264(o.PageFileUsage)); err != nil {
+		return err
+	}
+	if err := w.WriteData(ndr.Uint3264(o.PeakPageFileUsage)); err != nil {
+		return err
+	}
+	if err := w.WriteData(ndr.Uint3264(o.PrivatePageCount)); err != nil {
+		return err
+	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *SystemProcessInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(8); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.NextEntryOffset); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.NumberOfThreads); err != nil {
+		return err
+	}
+	// reserved SpareLi1
+	var _SpareLi1 *dtyp.LargeInteger
+	if _SpareLi1 == nil {
+		_SpareLi1 = &dtyp.LargeInteger{}
+	}
+	if err := _SpareLi1.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	// reserved SpareLi2
+	var _SpareLi2 *dtyp.LargeInteger
+	if _SpareLi2 == nil {
+		_SpareLi2 = &dtyp.LargeInteger{}
+	}
+	if err := _SpareLi2.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	// reserved SpareLi3
+	var _SpareLi3 *dtyp.LargeInteger
+	if _SpareLi3 == nil {
+		_SpareLi3 = &dtyp.LargeInteger{}
+	}
+	if err := _SpareLi3.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.CreateTime == nil {
+		o.CreateTime = &dtyp.LargeInteger{}
+	}
+	if err := o.CreateTime.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.UserTime == nil {
+		o.UserTime = &dtyp.LargeInteger{}
+	}
+	if err := o.UserTime.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.KernelTime == nil {
+		o.KernelTime = &dtyp.LargeInteger{}
+	}
+	if err := o.KernelTime.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.ImageName == nil {
+		o.ImageName = &UnicodeString{}
+	}
+	if err := o.ImageName.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.BasePriority); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.UniqueProcessID); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.InheritedFromUniqueProcessID); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.HandleCount); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.SessionID); err != nil {
+		return err
+	}
+	// reserved SpareUl3
+	var _SpareUl3 uint32
+	if err := w.ReadData(&_SpareUl3); err != nil {
+		return err
+	}
+	if err := w.ReadData((*ndr.Uint3264)(&o.PeakVirtualSize)); err != nil {
+		return err
+	}
+	if err := w.ReadData((*ndr.Uint3264)(&o.VirtualSize)); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.PageFaultCount); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.PeakWorkingSetSize); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.WorkingSetSize); err != nil {
+		return err
+	}
+	if err := w.ReadData((*ndr.Uint3264)(&o.QuotaPeakPagedPoolUsage)); err != nil {
+		return err
+	}
+	if err := w.ReadData((*ndr.Uint3264)(&o.QuotaPagedPoolUsage)); err != nil {
+		return err
+	}
+	if err := w.ReadData((*ndr.Uint3264)(&o.QuotaPeakNonPagedPoolUsage)); err != nil {
+		return err
+	}
+	if err := w.ReadData((*ndr.Uint3264)(&o.QuotaNonPagedPoolUsage)); err != nil {
+		return err
+	}
+	if err := w.ReadData((*ndr.Uint3264)(&o.PageFileUsage)); err != nil {
+		return err
+	}
+	if err := w.ReadData((*ndr.Uint3264)(&o.PeakPageFileUsage)); err != nil {
+		return err
+	}
+	if err := w.ReadData((*ndr.Uint3264)(&o.PrivatePageCount)); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AllProcessesInfo structure represents TS_ALL_PROCESSES_INFO RPC structure.
+//
+// The TS_ALL_PROCESSES_INFO structure contains data on all the processes on the system
+// accessible to the user who issued the call.
+type AllProcessesInfo struct {
+	// pTsProcessInfo:  Pointer to the process information TS_SYS_PROCESS_INFORMATION.
+	ProcessInfo *SystemProcessInformation `idl:"name:pTsProcessInfo" json:"process_info"`
+	// SizeOfSid:  Size of pSid, in bytes.
+	SizeOfSID uint32 `idl:"name:SizeOfSid" json:"size_of_sid"`
+	// pSid:  The security identifier (SID), as specified in [MS-DTYP], of the owner of
+	// the process.
+	SID []byte `idl:"name:pSid;size_is:(SizeOfSid)" json:"sid"`
+}
+
+func (o *AllProcessesInfo) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.SID != nil && o.SizeOfSID == 0 {
+		o.SizeOfSID = uint32(len(o.SID))
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *AllProcessesInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.ProcessInfo != nil {
+		_ptr_pTsProcessInfo := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.ProcessInfo != nil {
+				if err := o.ProcessInfo.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SystemProcessInformation{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ProcessInfo, _ptr_pTsProcessInfo); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.SizeOfSID); err != nil {
+		return err
+	}
+	if o.SID != nil || o.SizeOfSID > 0 {
+		_ptr_pSid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.SizeOfSID)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.SID {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.SID[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.SID); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SID, _ptr_pSid); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *AllProcessesInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	_ptr_pTsProcessInfo := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.ProcessInfo == nil {
+			o.ProcessInfo = &SystemProcessInformation{}
+		}
+		if err := o.ProcessInfo.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_pTsProcessInfo := func(ptr interface{}) { o.ProcessInfo = *ptr.(**SystemProcessInformation) }
+	if err := w.ReadPointer(&o.ProcessInfo, _s_pTsProcessInfo, _ptr_pTsProcessInfo); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.SizeOfSID); err != nil {
+		return err
+	}
+	_ptr_pSid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.SizeOfSID > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.SizeOfSID)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.SID", sizeInfo[0])
+		}
+		o.SID = make([]byte, sizeInfo[0])
+		for i1 := range o.SID {
+			i1 := i1
+			if err := w.ReadData(&o.SID[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_pSid := func(ptr interface{}) { o.SID = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.SID, _s_pSid, _ptr_pSid); err != nil {
+		return err
+	}
+	return nil
+}
+
+// NT6UnicodeString structure represents NT6_TS_UNICODE_STRING RPC structure.
+//
+// The NT6_TS_UNICODE_STRING structure contains a Unicode string.
+type NT6UnicodeString struct {
+	// Length:  The actual length of the string currently stored in Buffer, in bytes.
+	Length uint16 `idl:"name:Length" json:"length"`
+	// MaximumLength:  The maximum length of the string that could be stored in Buffer,
+	// in bytes.
+	MaximumLength uint16 `idl:"name:MaximumLength" json:"maximum_length"`
+	// Buffer:  A wide character string that MUST NOT be followed by the terminating NULL
+	// character.
+	Buffer string `idl:"name:Buffer;size_is:((MaximumLength/2));length_is:((Length/2))" json:"buffer"`
+}
+
+func (o *NT6UnicodeString) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.Buffer != "" && o.MaximumLength == 0 {
+		o.MaximumLength = uint16((ndr.UTF16Len(o.Buffer) * 2))
+	}
+	if o.Buffer != "" && o.Length == 0 {
+		o.Length = uint16((ndr.UTF16Len(o.Buffer) * 2))
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *NT6UnicodeString) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(7); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Length); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.MaximumLength); err != nil {
+		return err
+	}
+	if o.Buffer != "" || (o.MaximumLength/2) > 0 {
+		_ptr_Buffer := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64((o.MaximumLength / 2))
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			dimLength1 := uint64((o.Length / 2))
+			if dimLength1 > sizeInfo[0] {
+				dimLength1 = sizeInfo[0]
+			} else {
+				sizeInfo[0] = dimLength1
+			}
+			if err := w.WriteSize(0); err != nil {
+				return err
+			}
+			if err := w.WriteSize(dimLength1); err != nil {
+				return err
+			}
+			_Buffer_buf := utf16.Encode([]rune(o.Buffer))
+			if uint64(len(_Buffer_buf)) > sizeInfo[0] {
+				_Buffer_buf = _Buffer_buf[:sizeInfo[0]]
+			}
+			for i1 := range _Buffer_buf {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(_Buffer_buf[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(_Buffer_buf); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint16(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Buffer, _ptr_Buffer); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *NT6UnicodeString) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(7); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Length); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.MaximumLength); err != nil {
+		return err
+	}
+	_ptr_Buffer := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		var _Buffer_buf []uint16
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array _Buffer_buf", sizeInfo[0])
+		}
+		_Buffer_buf = make([]uint16, sizeInfo[0])
+		for i1 := range _Buffer_buf {
+			i1 := i1
+			if err := w.ReadData(&_Buffer_buf[i1]); err != nil {
+				return err
+			}
+		}
+		o.Buffer = strings.TrimRight(string(utf16.Decode(_Buffer_buf)), ndr.ZeroString)
+		return nil
+	})
+	_s_Buffer := func(ptr interface{}) { o.Buffer = *ptr.(*string) }
+	if err := w.ReadPointer(&o.Buffer, _s_Buffer, _ptr_Buffer); err != nil {
+		return err
+	}
+	return nil
+}
+
+// SystemProcessInformationNT6 structure represents TS_SYS_PROCESS_INFORMATION_NT6 RPC structure.
+//
+// The TS_SYS_PROCESS_INFORMATION_NT6 structure contains information about a process
+// running on a system.
+type SystemProcessInformationNT6 struct {
+	// NextEntryOffset:  Offset to the start of data for the next process.
+	NextEntryOffset uint32 `idl:"name:NextEntryOffset" json:"next_entry_offset"`
+	// NumberOfThreads:  Number of threads in the process.
+	NumberOfThreads uint32 `idl:"name:NumberOfThreads" json:"number_of_threads"`
+	// SpareLi1:  Reserved.
+	_ *dtyp.LargeInteger `idl:"name:SpareLi1"`
+	// SpareLi2:  Reserved.
+	_ *dtyp.LargeInteger `idl:"name:SpareLi2"`
+	// SpareLi3:  Reserved.
+	_ *dtyp.LargeInteger `idl:"name:SpareLi3"`
+	// CreateTime:  Creation time of the process. Time is measured as the number of 100-nanosecond
+	// intervals since January 1, 1601 (UTC).
+	CreateTime *dtyp.LargeInteger `idl:"name:CreateTime" json:"create_time"`
+	// UserTime:  Amount of time in milliseconds the process has spent running in user mode.
+	UserTime *dtyp.LargeInteger `idl:"name:UserTime" json:"user_time"`
+	// KernelTime:  Amount of time in milliseconds the process has spent running in kernel
+	// mode.
+	KernelTime *dtyp.LargeInteger `idl:"name:KernelTime" json:"kernel_time"`
+	// ImageName:  String containing the process's image name.
+	ImageName *NT6UnicodeString `idl:"name:ImageName" json:"image_name"`
+	// BasePriority:  Base priority of the process, which is the starting priority for threads
+	// created within the associated process.
+	BasePriority int32 `idl:"name:BasePriority" json:"base_priority"`
+	// UniqueProcessId:  Process's unique process ID.
+	UniqueProcessID uint32 `idl:"name:UniqueProcessId" json:"unique_process_id"`
+	// InheritedFromUniqueProcessId:  Parent process's unique process ID.
+	InheritedFromUniqueProcessID uint32 `idl:"name:InheritedFromUniqueProcessId" json:"inherited_from_unique_process_id"`
+	// HandleCount:  Current number of handles open in the process.
+	HandleCount uint32 `idl:"name:HandleCount" json:"handle_count"`
+	// SessionId:  Session identifier of the process session.
+	SessionID uint32 `idl:"name:SessionId" json:"session_id"`
+	// SpareUl3:  Reserved.
+	_ uint32 `idl:"name:SpareUl3"`
+	// PeakVirtualSize:  Peak size, in bytes, of the virtual memory used by the process.
+	PeakVirtualSize uint64 `idl:"name:PeakVirtualSize" json:"peak_virtual_size"`
+	// VirtualSize:  Current size, in bytes, of virtual memory used by the process.
+	VirtualSize uint64 `idl:"name:VirtualSize" json:"virtual_size"`
+	// PageFaultCount:  Number of page faults in the process.
+	PageFaultCount uint32 `idl:"name:PageFaultCount" json:"page_fault_count"`
+	// PeakWorkingSetSize:  Peak size, in kilobytes, of the working set of the process.
+	PeakWorkingSetSize uint32 `idl:"name:PeakWorkingSetSize" json:"peak_working_set_size"`
+	// WorkingSetSize:  Current size, in bytes, of the working set of the process.
+	WorkingSetSize uint32 `idl:"name:WorkingSetSize" json:"working_set_size"`
+	// QuotaPeakPagedPoolUsage:  Peak quota charged to the process for paged pool usage.
+	QuotaPeakPagedPoolUsage uint64 `idl:"name:QuotaPeakPagedPoolUsage" json:"quota_peak_paged_pool_usage"`
+	// QuotaPagedPoolUsage:  Current quota charged to the process for paged pool usage.
+	QuotaPagedPoolUsage uint64 `idl:"name:QuotaPagedPoolUsage" json:"quota_paged_pool_usage"`
+	// QuotaPeakNonPagedPoolUsage:  Peak quota charged to the process for nonpaged pool
+	// usage.
+	QuotaPeakNonPagedPoolUsage uint64 `idl:"name:QuotaPeakNonPagedPoolUsage" json:"quota_peak_non_paged_pool_usage"`
+	// QuotaNonPagedPoolUsage:  Current quota charged to the process for nonpaged pool usage.
+	QuotaNonPagedPoolUsage uint64 `idl:"name:QuotaNonPagedPoolUsage" json:"quota_non_paged_pool_usage"`
+	// PagefileUsage:  Number of bytes of page file storage in use by the process.
+	PageFileUsage uint64 `idl:"name:PagefileUsage" json:"page_file_usage"`
+	// PeakPagefileUsage:  Peak number of bytes of page file storage in use by the process.
+	PeakPageFileUsage uint64 `idl:"name:PeakPagefileUsage" json:"peak_page_file_usage"`
+	// PrivatePageCount:  Current number of memory pages allocated by the process.
+	PrivatePageCount uint64 `idl:"name:PrivatePageCount" json:"private_page_count"`
+}
+
+func (o *SystemProcessInformationNT6) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *SystemProcessInformationNT6) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(8); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.NextEntryOffset); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.NumberOfThreads); err != nil {
+		return err
+	}
+	// reserved SpareLi1
+	if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	// reserved SpareLi2
+	if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	// reserved SpareLi3
+	if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.CreateTime != nil {
+		if err := o.CreateTime.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.UserTime != nil {
+		if err := o.UserTime.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.KernelTime != nil {
+		if err := o.KernelTime.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.ImageName != nil {
+		if err := o.ImageName.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&NT6UnicodeString{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.BasePriority); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.UniqueProcessID); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.InheritedFromUniqueProcessID); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.HandleCount); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.SessionID); err != nil {
+		return err
+	}
+	// reserved SpareUl3
+	if err := w.WriteData(uint32(0)); err != nil {
+		return err
+	}
+	if err := w.WriteData(ndr.Uint3264(o.PeakVirtualSize)); err != nil {
+		return err
+	}
+	if err := w.WriteData(ndr.Uint3264(o.VirtualSize)); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.PageFaultCount); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.PeakWorkingSetSize); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.WorkingSetSize); err != nil {
+		return err
+	}
+	if err := w.WriteData(ndr.Uint3264(o.QuotaPeakPagedPoolUsage)); err != nil {
+		return err
+	}
+	if err := w.WriteData(ndr.Uint3264(o.QuotaPagedPoolUsage)); err != nil {
+		return err
+	}
+	if err := w.WriteData(ndr.Uint3264(o.QuotaPeakNonPagedPoolUsage)); err != nil {
+		return err
+	}
+	if err := w.WriteData(ndr.Uint3264(o.QuotaNonPagedPoolUsage)); err != nil {
+		return err
+	}
+	if err := w.WriteData(ndr.Uint3264(o.PageFileUsage)); err != nil {
+		return err
+	}
+	if err := w.WriteData(ndr.Uint3264(o.PeakPageFileUsage)); err != nil {
+		return err
+	}
+	if err := w.WriteData(ndr.Uint3264(o.PrivatePageCount)); err != nil {
+		return err
+	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *SystemProcessInformationNT6) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(8); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.NextEntryOffset); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.NumberOfThreads); err != nil {
+		return err
+	}
+	// reserved SpareLi1
+	var _SpareLi1 *dtyp.LargeInteger
+	if _SpareLi1 == nil {
+		_SpareLi1 = &dtyp.LargeInteger{}
+	}
+	if err := _SpareLi1.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	// reserved SpareLi2
+	var _SpareLi2 *dtyp.LargeInteger
+	if _SpareLi2 == nil {
+		_SpareLi2 = &dtyp.LargeInteger{}
+	}
+	if err := _SpareLi2.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	// reserved SpareLi3
+	var _SpareLi3 *dtyp.LargeInteger
+	if _SpareLi3 == nil {
+		_SpareLi3 = &dtyp.LargeInteger{}
+	}
+	if err := _SpareLi3.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.CreateTime == nil {
+		o.CreateTime = &dtyp.LargeInteger{}
+	}
+	if err := o.CreateTime.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.UserTime == nil {
+		o.UserTime = &dtyp.LargeInteger{}
+	}
+	if err := o.UserTime.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.KernelTime == nil {
+		o.KernelTime = &dtyp.LargeInteger{}
+	}
+	if err := o.KernelTime.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.ImageName == nil {
+		o.ImageName = &NT6UnicodeString{}
+	}
+	if err := o.ImageName.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.BasePriority); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.UniqueProcessID); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.InheritedFromUniqueProcessID); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.HandleCount); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.SessionID); err != nil {
+		return err
+	}
+	// reserved SpareUl3
+	var _SpareUl3 uint32
+	if err := w.ReadData(&_SpareUl3); err != nil {
+		return err
+	}
+	if err := w.ReadData((*ndr.Uint3264)(&o.PeakVirtualSize)); err != nil {
+		return err
+	}
+	if err := w.ReadData((*ndr.Uint3264)(&o.VirtualSize)); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.PageFaultCount); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.PeakWorkingSetSize); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.WorkingSetSize); err != nil {
+		return err
+	}
+	if err := w.ReadData((*ndr.Uint3264)(&o.QuotaPeakPagedPoolUsage)); err != nil {
+		return err
+	}
+	if err := w.ReadData((*ndr.Uint3264)(&o.QuotaPagedPoolUsage)); err != nil {
+		return err
+	}
+	if err := w.ReadData((*ndr.Uint3264)(&o.QuotaPeakNonPagedPoolUsage)); err != nil {
+		return err
+	}
+	if err := w.ReadData((*ndr.Uint3264)(&o.QuotaNonPagedPoolUsage)); err != nil {
+		return err
+	}
+	if err := w.ReadData((*ndr.Uint3264)(&o.PageFileUsage)); err != nil {
+		return err
+	}
+	if err := w.ReadData((*ndr.Uint3264)(&o.PeakPageFileUsage)); err != nil {
+		return err
+	}
+	if err := w.ReadData((*ndr.Uint3264)(&o.PrivatePageCount)); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AllProcessesInfoNT6 structure represents TS_ALL_PROCESSES_INFO_NT6 RPC structure.
+//
+// The TS_ALL_PROCESSES_INFO_NT6 structure contains data on all the processes on the
+// system that are accessible using the user's credentials.
+type AllProcessesInfoNT6 struct {
+	// pTsProcessInfo:  Pointer to the process information.
+	ProcessInfo *SystemProcessInformationNT6 `idl:"name:pTsProcessInfo" json:"process_info"`
+	// SizeOfSid:  Size, in bytes, of the security identifier (SID) structure pointed to
+	// by pSid.
+	SizeOfSID uint32 `idl:"name:SizeOfSid" json:"size_of_sid"`
+	// pSid:  Security identifier (SID), as specified in [MS-DTYP] section 2.4.2, of the
+	// process.
+	SID []byte `idl:"name:pSid;size_is:(SizeOfSid)" json:"sid"`
+}
+
+func (o *AllProcessesInfoNT6) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.SID != nil && o.SizeOfSID == 0 {
+		o.SizeOfSID = uint32(len(o.SID))
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *AllProcessesInfoNT6) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.ProcessInfo != nil {
+		_ptr_pTsProcessInfo := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.ProcessInfo != nil {
+				if err := o.ProcessInfo.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SystemProcessInformationNT6{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ProcessInfo, _ptr_pTsProcessInfo); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.SizeOfSID); err != nil {
+		return err
+	}
+	if o.SID != nil || o.SizeOfSID > 0 {
+		_ptr_pSid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.SizeOfSID)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.SID {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.SID[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.SID); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SID, _ptr_pSid); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *AllProcessesInfoNT6) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	_ptr_pTsProcessInfo := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.ProcessInfo == nil {
+			o.ProcessInfo = &SystemProcessInformationNT6{}
+		}
+		if err := o.ProcessInfo.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_pTsProcessInfo := func(ptr interface{}) { o.ProcessInfo = *ptr.(**SystemProcessInformationNT6) }
+	if err := w.ReadPointer(&o.ProcessInfo, _s_pTsProcessInfo, _ptr_pTsProcessInfo); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.SizeOfSID); err != nil {
+		return err
+	}
+	_ptr_pSid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.SizeOfSID > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.SizeOfSID)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.SID", sizeInfo[0])
+		}
+		o.SID = make([]byte, sizeInfo[0])
+		for i1 := range o.SID {
+			i1 := i1
+			if err := w.ReadData(&o.SID[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_pSid := func(ptr interface{}) { o.SID = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.SID, _s_pSid, _ptr_pSid); err != nil {
+		return err
+	}
+	return nil
+}
+
+// CounterHeader structure represents TS_COUNTER_HEADER RPC structure.
+//
+// The TS_COUNTER_HEADER is the header of the Terminal Services performance counter
+// structure providing general information on the counter.
+type CounterHeader struct {
+	// dwCounterID:  The identifier of the counter. Set by the caller of RpcWinStationGetTermSrvCountersValue
+	// to indicate the counter on which to retrieve data. This will be set to zero by RpcWinStationGetTermSrvCountersValue
+	// if the dwCounterId isn't recognized.
+	//
+	// The following values for dwCounterId are supported.
+	//
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                           |                                                                                  |
+	//	|                   VALUE                   |                                     MEANING                                      |
+	//	|                                           |                                                                                  |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TERMSRV_TOTAL_SESSIONS 0x01               | Total number of sessions: Value will indicate the total number of reconnections  |
+	//	|                                           | to the server since startup.                                                     |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TERMSRV_DISC_SESSIONS 0x02                | Number of disconnected sessions: Value will indicate the total number of         |
+	//	|                                           | disconnections from the server since startup.                                    |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TERMSRV_RECON_SESSIONS 0x03               | Number of reconnected sessions: Value will indicate the total number of all      |
+	//	|                                           | reconnected sessions that have existed on the server since startup.              |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TERMSRV_CURRENT_ACTIVE_SESSIONS 0x04      | Current number of active sessions: Value will indicate the current number of     |
+	//	|                                           | active sessions on the server.                                                   |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TERMSRV_CURRENT_DISC_SESSIONS 0x05        | Current number of disconnected sessions: Value will indicate the current number  |
+	//	|                                           | of disconnected sessions on the server.                                          |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TERMSRV_PENDING_SESSIONS 0x06             | Current number of pending sessions: Value will indicate the current number of    |
+	//	|                                           | pending connections to the server.<57>                                           |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TERMSRV_SUCC_TOTAL_LOGONS 0x07            | Total number of successful logons: Value will indicate the total number of       |
+	//	|                                           | successful logons on the server, both locally and remotely.<58>                  |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TERMSRV_SUCC_LOCAL_LOGONS 0x08            | Total number of successful local logons: Value will indicate the total number of |
+	//	|                                           | successful local logons on the server.<59>                                       |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TERMSRV_SUCC_REMOTE_LOGONS 0x09           | Total number of successful remote logons: Value will indicate the total number   |
+	//	|                                           | of successful remote logons on the server.<60>                                   |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TERMSRV_SUCC_SESSION0_LOGONS 0x0A         | Total number of successful session 0 logons: Value will indicate the total       |
+	//	|                                           | number of successful connects on the server to session 0.<61>                    |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TERMSRV_CURRENT_TERMINATING_SESSIONS 0x0B | Number of terminating sessions: Value will indicate the current number of        |
+	//	|                                           | terminating sessions on the server.<62>                                          |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	//	| TERMSRV_CURRENT_LOGGEDON_SESSIONS 0x0C    | Number of logged on sessions: Value will indicate the current number of          |
+	//	|                                           | logged-on sessions on the server.<63>                                            |
+	//	+-------------------------------------------+----------------------------------------------------------------------------------+
+	CounterID uint32 `idl:"name:dwCounterID" json:"counter_id"`
+	// bResult:  Set to TRUE if counter information is returned. Set to FALSE if counter
+	// data isn't being returned because the counter ID being requested was unrecognized.
+	Result bool `idl:"name:bResult" json:"result"`
+}
+
+func (o *CounterHeader) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *CounterHeader) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.CounterID); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Result); err != nil {
+		return err
+	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *CounterHeader) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.CounterID); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Result); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Counter structure represents TS_COUNTER RPC structure.
+//
+// A Terminal Services performance counter structure used to represent a single performance
+// counter.
+type Counter struct {
+	// counterHead:  A header identifying the counter.
+	CounterHead *CounterHeader `idl:"name:counterHead" json:"counter_head"`
+	// dwValue:  The value of the counter. This indicates different things based on the
+	// counter.
+	Value uint32 `idl:"name:dwValue" json:"value"`
+	// startTime:  Always set to zero because time stamps are not supported.
+	StartTime *dtyp.LargeInteger `idl:"name:startTime" json:"start_time"`
+}
+
+func (o *Counter) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *Counter) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(8); err != nil {
+		return err
+	}
+	if o.CounterHead != nil {
+		if err := o.CounterHead.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&CounterHeader{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.Value); err != nil {
+		return err
+	}
+	if o.StartTime != nil {
+		if err := o.StartTime.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Counter) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(8); err != nil {
+		return err
+	}
+	if o.CounterHead == nil {
+		o.CounterHead = &CounterHeader{}
+	}
+	if err := o.CounterHead.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Value); err != nil {
+		return err
+	}
+	if o.StartTime == nil {
+		o.StartTime = &dtyp.LargeInteger{}
+	}
+	if err := o.StartTime.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Sockaddr structure represents TSVIP_SOCKADDR RPC structure.
+//
+// The TSVIP_SOCKADDR structure defines a socket address.
+type Sockaddr struct {
+	Sockaddr *Sockaddr_Sockaddr `idl:"name:Sockaddr" json:"sockaddr"`
+}
+
+func (o *Sockaddr) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *Sockaddr) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	if o.Sockaddr != nil {
+		if err := o.Sockaddr.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Sockaddr_Sockaddr{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Sockaddr) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	if o.Sockaddr == nil {
+		o.Sockaddr = &Sockaddr_Sockaddr{}
+	}
+	if err := o.Sockaddr.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Sockaddr_Sockaddr structure represents TSVIP_SOCKADDR union anonymous member.
+//
+// The TSVIP_SOCKADDR structure defines a socket address.
+type Sockaddr_Sockaddr struct {
+	Family uint16
+	// Types that are assignable to Value
+	//
+	// *Sockaddr_IPv4
+	// *Sockaddr_IPv6
+	Value is_Sockaddr_Sockaddr `json:"value"`
+}
+
+func (o *Sockaddr_Sockaddr) GetValue() any {
+	if o == nil {
+		return nil
+	}
+	switch value := (interface{})(o.Value).(type) {
+	case *Sockaddr_IPv4:
+		if value != nil {
+			return value
+		}
+	case *Sockaddr_IPv6:
+		if value != nil {
+			return value
+		}
+	}
+	return nil
+}
+
+type is_Sockaddr_Sockaddr interface {
+	ndr.Marshaler
+	ndr.Unmarshaler
+	is_Sockaddr_Sockaddr()
+}
+
+func (o *Sockaddr_Sockaddr) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteData(uint16(o.Family)); err != nil {
+		return err
+	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
+	switch o.Family {
+	case uint16(2):
+		_o, _ := o.Value.(*Sockaddr_IPv4)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Sockaddr_IPv4{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint16(23):
+		_o, _ := o.Value.(*Sockaddr_IPv6)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Sockaddr_IPv6{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	default:
+		return fmt.Errorf("unsupported switch case value %v", o.Family)
+	}
+	return nil
+}
+
+func (o *Sockaddr_Sockaddr) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadUnionAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadData((*uint16)(&o.Family)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
+		return err
+	}
+	switch o.Family {
+	case uint16(2):
+		o.Value = &Sockaddr_IPv4{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint16(23):
+		o.Value = &Sockaddr_IPv6{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	default:
+		return fmt.Errorf("unsupported switch case value %v", o.Family)
+	}
+	return nil
+}
+
+// Sockaddr_IPv4 structure represents Sockaddr_Sockaddr RPC union arm.
+//
+// It has following labels: 2
+type Sockaddr_IPv4 struct {
+	// sin_port:   Specifies a TCP or UDP port number.
+	Port uint16 `idl:"name:sin_port" json:"port"`
+	// in_addr:  Indicates the IP address.
+	InAddr uint32 `idl:"name:in_addr" json:"in_addr"`
+	// sin_zero:  An array filled with zeros.
+	Zero []byte `idl:"name:sin_zero" json:"zero"`
+}
+
+func (*Sockaddr_IPv4) is_Sockaddr_Sockaddr() {}
+
+func (o *Sockaddr_IPv4) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Port); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.InAddr); err != nil {
+		return err
+	}
+	for i1 := range o.Zero {
+		i1 := i1
+		if uint64(i1) >= 8 {
+			break
+		}
+		if err := w.WriteData(o.Zero[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.Zero); uint64(i1) < 8; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Sockaddr_IPv4) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Port); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.InAddr); err != nil {
+		return err
+	}
+	o.Zero = make([]byte, 8)
+	for i1 := range o.Zero {
+		i1 := i1
+		if err := w.ReadData(&o.Zero[i1]); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// Sockaddr_IPv6 structure represents Sockaddr_Sockaddr RPC union arm.
+//
+// It has following labels: 23
+type Sockaddr_IPv6 struct {
+	// sin6_port:  Specifies a TCP or UDP port number.
+	Port uint16 `idl:"name:sin6_port" json:"port"`
+	// sin6_flowinfo:  IPv6 flow information.
+	FlowInfo uint32 `idl:"name:sin6_flowinfo" json:"flow_info"`
+	// sin6_addr:   Indicates the IP address.
+	Addr []uint16 `idl:"name:sin6_addr" json:"addr"`
+	// sin6_scope_id:   Set of interfaces for a scope. For more information, see [MSDN-SOCKADDR_IN6].
+	ScopeID uint32 `idl:"name:sin6_scope_id" json:"scope_id"`
+}
+
+func (*Sockaddr_IPv6) is_Sockaddr_Sockaddr() {}
+
+func (o *Sockaddr_IPv6) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Port); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.FlowInfo); err != nil {
+		return err
+	}
+	for i1 := range o.Addr {
+		i1 := i1
+		if uint64(i1) >= 8 {
+			break
+		}
+		if err := w.WriteData(o.Addr[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.Addr); uint64(i1) < 8; i1++ {
+		if err := w.WriteData(uint16(0)); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.ScopeID); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *Sockaddr_IPv6) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Port); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.FlowInfo); err != nil {
+		return err
+	}
+	o.Addr = make([]uint16, 8)
+	for i1 := range o.Addr {
+		i1 := i1
+		if err := w.ReadData(&o.Addr[i1]); err != nil {
+			return err
+		}
+	}
+	if err := w.ReadData(&o.ScopeID); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Address structure represents TSVIPAddress RPC structure.
+//
+// The TSVIPAddress structure defines a session's IP address.
+type Address struct {
+	// dwVersion:  Specifies the current TSVIPAddress structure version. This field MUST
+	// be set to 0x01, the only supported version.
+	Version uint32 `idl:"name:dwVersion" json:"version"`
+	// IPAddress:  Specifies the IP address.
+	IPAddress *Sockaddr `idl:"name:IPAddress" json:"ip_address"`
+	// PrefixOrSubnetMask:  Subnet mask of the IP address.
+	PrefixOrSubnetMask uint32 `idl:"name:PrefixOrSubnetMask" json:"prefix_or_subnet_mask"`
+	// PhysicalAddressLength:  Number of bytes in the PhysicalAddress.
+	//
+	// Where TSVIP_MAX_ADAPTER_ADDRESS_LENGTH is defined as
+	PhysicalAddressLength uint32 `idl:"name:PhysicalAddressLength" json:"physical_address_length"`
+	// PhysicalAddress:  The MAC address used to acquire the IP address.
+	PhysicalAddress []byte `idl:"name:PhysicalAddress;length_is:(PhysicalAddressLength)" json:"physical_address"`
+	// LeaseExpires:  The lease expiration time for the IP address.
+	LeaseExpires uint32 `idl:"name:LeaseExpires" json:"lease_expires"`
+	// T1:  The time at which a request to renew the IP address will be made.
+	T1 uint32 `idl:"name:T1" json:"t1"`
+	// T2:  Not used.
+	T2 uint32 `idl:"name:T2" json:"t2"`
+}
+
+func (o *Address) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.PhysicalAddressLength > uint32(16) {
+		return fmt.Errorf("PhysicalAddressLength is out of range")
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *Address) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Version); err != nil {
+		return err
+	}
+	if o.IPAddress != nil {
+		if err := o.IPAddress.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Sockaddr{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.PrefixOrSubnetMask); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.PhysicalAddressLength); err != nil {
+		return err
+	}
+	for i1 := range o.PhysicalAddress {
+		i1 := i1
+		if uint64(i1) >= 16 {
+			break
+		}
+		if err := w.WriteData(o.PhysicalAddress[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.PhysicalAddress); uint64(i1) < 16; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.LeaseExpires); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.T1); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.T2); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *Address) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Version); err != nil {
+		return err
+	}
+	if o.IPAddress == nil {
+		o.IPAddress = &Sockaddr{}
+	}
+	if err := o.IPAddress.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.PrefixOrSubnetMask); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.PhysicalAddressLength); err != nil {
+		return err
+	}
+	o.PhysicalAddress = make([]byte, 16)
+	for i1 := range o.PhysicalAddress {
+		i1 := i1
+		if err := w.ReadData(&o.PhysicalAddress[i1]); err != nil {
+			return err
+		}
+	}
+	if err := w.ReadData(&o.LeaseExpires); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.T1); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.T2); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Session structure represents TSVIPSession RPC structure.
+//
+// The TSVIPSession structure defines a session with its IP address information.
+type Session struct {
+	// dwVersion:  Specifies the version of the structure. This field MUST be set to 0x01,
+	// the only supported version.
+	Version uint32 `idl:"name:dwVersion" json:"version"`
+	// SessionId:  Specifies the ID of the session.
+	SessionID uint32 `idl:"name:SessionId" json:"session_id"`
+	// SessionIP:  Specifies the IP address for the session. This is of type TSVIPAddress.
+	SessionIP *Address `idl:"name:SessionIP" json:"session_ip"`
+}
+
+func (o *Session) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *Session) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Version); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.SessionID); err != nil {
+		return err
+	}
+	if o.SessionIP != nil {
+		if err := o.SessionIP.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Address{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Session) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Version); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.SessionID); err != nil {
+		return err
+	}
+	if o.SessionIP == nil {
+		o.SessionIP = &Address{}
+	}
+	if err := o.SessionIP.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// WinStationUpdateConfigClass type represents WINSTATIONUPDATECFGCLASS RPC enumeration.
+type WinStationUpdateConfigClass uint16
+
+var (
+	WinStationUpdateConfigClassLegacy  WinStationUpdateConfigClass = 0
+	WinStationUpdateConfigClassSessDir WinStationUpdateConfigClass = 1
+)
+
+func (o WinStationUpdateConfigClass) String() string {
+	switch o {
+	case WinStationUpdateConfigClassLegacy:
+		return "WinStationUpdateConfigClassLegacy"
+	case WinStationUpdateConfigClassSessDir:
+		return "WinStationUpdateConfigClassSessDir"
+	}
+	return "Invalid"
+}
+
+// SessionChange structure represents SESSION_CHANGE RPC structure.
+//
+// The SESSION_CHANGE structure contains the ID of a session running on a terminal server
+// and a mask of the notifications that were received for that session.
+type SessionChange struct {
+	// SessionId:  Identifies the session for which notification was received.
+	SessionID int32 `idl:"name:SessionId" json:"session_id"`
+	// NotificationId:  Mask of the notifications that were received for this session.
+	NotificationID uint32 `idl:"name:NotificationId" json:"notification_id"`
+}
+
+func (o *SessionChange) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *SessionChange) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.SessionID); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.NotificationID); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *SessionChange) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.SessionID); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.NotificationID); err != nil {
+		return err
+	}
+	return nil
+}
+
+// SystemTime structure represents TS_SYSTEMTIME RPC structure.
+//
+// Information about a time zone. This structure is identical to the structure SYSTEMTIME.
+// For more information, see [MSDN-SYSTIME].
+type SystemTime struct {
+	// wYear:  The year when transition from daylight saving time to standard time occurs
+	// (1601 to 30827).
+	Year uint16 `idl:"name:wYear" json:"year"`
+	// wMonth:  The month when transition from daylight saving time to standard time occurs.
+	//
+	// This member can be one of the following values.
+	//
+	//	+-------+-----------+
+	//	|       |           |
+	//	| VALUE |  MEANING  |
+	//	|       |           |
+	//	+-------+-----------+
+	//	+-------+-----------+
+	//	|     1 | January   |
+	//	+-------+-----------+
+	//	|     2 | February  |
+	//	+-------+-----------+
+	//	|     3 | March     |
+	//	+-------+-----------+
+	//	|     4 | April     |
+	//	+-------+-----------+
+	//	|     5 | May       |
+	//	+-------+-----------+
+	//	|     6 | June      |
+	//	+-------+-----------+
+	//	|     7 | July      |
+	//	+-------+-----------+
+	//	|     8 | August    |
+	//	+-------+-----------+
+	//	|     9 | September |
+	//	+-------+-----------+
+	//	|    10 | October   |
+	//	+-------+-----------+
+	//	|    11 | November  |
+	//	+-------+-----------+
+	//	|    12 | December  |
+	//	+-------+-----------+
+	Month uint16 `idl:"name:wMonth" json:"month"`
+	// wDayOfWeek:   The day of the week when the transition from daylight saving time to
+	// standard time occurs.
+	//
+	// This member can be one of the following values.
+	//
+	//	+-------+-----------+
+	//	|       |           |
+	//	| VALUE |  MEANING  |
+	//	|       |           |
+	//	+-------+-----------+
+	//	+-------+-----------+
+	//	|     0 | Sunday    |
+	//	+-------+-----------+
+	//	|     1 | Monday    |
+	//	+-------+-----------+
+	//	|     2 | Tuesday   |
+	//	+-------+-----------+
+	//	|     3 | Wednesday |
+	//	+-------+-----------+
+	//	|     4 | Thursday  |
+	//	+-------+-----------+
+	//	|     5 | Friday    |
+	//	+-------+-----------+
+	//	|     6 | Saturday  |
+	//	+-------+-----------+
+	DayOfWeek uint16 `idl:"name:wDayOfWeek" json:"day_of_week"`
+	// wDay:   The occurrence of wDayOfWeek within the month when the transition from daylight
+	// saving time to standard time takes place.
+	//
+	// This member can be one of the following values.
+	//
+	//	+-------+---------------------------------+
+	//	|       |                                 |
+	//	| VALUE |             MEANING             |
+	//	|       |                                 |
+	//	+-------+---------------------------------+
+	//	+-------+---------------------------------+
+	//	|     1 | First occurrence of wDayOfWeek  |
+	//	+-------+---------------------------------+
+	//	|     2 | Second occurrence of wDayOfWeek |
+	//	+-------+---------------------------------+
+	//	|     3 | Third occurrence of wDayOfWeek  |
+	//	+-------+---------------------------------+
+	//	|     4 | Fourth occurrence of wDayOfWeek |
+	//	+-------+---------------------------------+
+	//	|     5 | Last occurrence of wDayOfWeek   |
+	//	+-------+---------------------------------+
+	Day uint16 `idl:"name:wDay" json:"day"`
+	// wHour:   The hour when transition from daylight saving time to standard time occurs
+	// (0 to 23).
+	Hour uint16 `idl:"name:wHour" json:"hour"`
+	// wMinute:   The minute when transition from daylight saving time to standard time
+	// occurs (0 to 59).
+	Minute uint16 `idl:"name:wMinute" json:"minute"`
+	// wSecond:   The second when transition from daylight saving time to standard time
+	// occurs (0 to 59).
+	Second uint16 `idl:"name:wSecond" json:"second"`
+	// wMilliseconds:   The millisecond when transition from daylight saving time to standard
+	// time occurs (0 to 999).
+	Milliseconds uint16 `idl:"name:wMilliseconds" json:"milliseconds"`
+}
+
+func (o *SystemTime) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *SystemTime) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(2); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Year); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Month); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.DayOfWeek); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Day); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Hour); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Minute); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Second); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Milliseconds); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *SystemTime) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(2); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Year); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Month); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.DayOfWeek); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Day); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Hour); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Minute); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Second); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Milliseconds); err != nil {
+		return err
+	}
+	return nil
+}
+
+// TimeZoneInformation structure represents TS_TIME_ZONE_INFORMATION RPC structure.
+//
+// The TS_TIME_ZONE_INFORMATION structure contains client time zone information.
+type TimeZoneInformation struct {
+	// Bias:  A 32-bit integer. Current bias for local time translation on the client, in
+	// minutes. The bias is the difference, in minutes, between Coordinated Universal Time
+	// (UTC) and local time. All translations between UTC and local time are based on the
+	// following formula:
+	Bias int32 `idl:"name:Bias" json:"bias"`
+	// StandardName:  A description for standard time on the client. For example, this field
+	// could contain the string "Pacific Standard Time" to indicate Pacific Standard Time.
+	// An array of 32 Unicode characters.
+	StandardName []uint16 `idl:"name:StandardName" json:"standard_name"`
+	// StandardDate:  A TS_SYSTEMTIME structure that contains the date and local time when
+	// the transition from daylight saving time to standard time occurs on the client. If
+	// this field is specified, the DaylightDate field is also specified.
+	StandardDate *SystemTime `idl:"name:StandardDate" json:"standard_date"`
+	// StandardBias:  A 32-bit integer that defines the bias value in number of minutes
+	// to be used during local time translations that occur during standard time. This field
+	// SHOULD be ignored if a value is not supplied in the StandardDate field. This value
+	// is added to the value of the Bias field to form the bias used during standard time.
+	// In most time zones, the value of this field is 0.
+	StandardBias int32 `idl:"name:StandardBias" json:"standard_bias"`
+	// DaylightName:  An array of 32 Unicode characters that describes daylight time on
+	// the client. For example, this field could contain "Pacific Daylight Time" to indicate
+	// Pacific Daylight Time.
+	DaylightName []uint16 `idl:"name:DaylightName" json:"daylight_name"`
+	// DaylightDate:  A TS_SYSTEMTIME that contains a date and local time when the transition
+	// from standard time to daylight saving time occurs on the client. If this field is
+	// specified, the StandardDate field is also specified.
+	DaylightDate *SystemTime `idl:"name:DaylightDate" json:"daylight_date"`
+	// DaylightBias:  A 32-bit integer that defines the bias value to be used during local
+	// time translations that occur during daylight saving time. This field SHOULD be ignored
+	// if a value for the DaylightDate field is not supplied. This value is added to the
+	// value of the Bias field to form the bias used during daylight saving time. In most
+	// time zones, the value of this field is 60.
+	DaylightBias int32 `idl:"name:DaylightBias" json:"daylight_bias"`
+}
+
+func (o *TimeZoneInformation) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *TimeZoneInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Bias); err != nil {
+		return err
+	}
+	for i1 := range o.StandardName {
+		i1 := i1
+		if uint64(i1) >= 32 {
+			break
+		}
+		if err := w.WriteData(o.StandardName[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.StandardName); uint64(i1) < 32; i1++ {
+		if err := w.WriteData(uint16(0)); err != nil {
+			return err
+		}
+	}
+	if o.StandardDate != nil {
+		if err := o.StandardDate.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&SystemTime{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.StandardBias); err != nil {
+		return err
+	}
+	for i1 := range o.DaylightName {
+		i1 := i1
+		if uint64(i1) >= 32 {
+			break
+		}
+		if err := w.WriteData(o.DaylightName[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.DaylightName); uint64(i1) < 32; i1++ {
+		if err := w.WriteData(uint16(0)); err != nil {
+			return err
+		}
+	}
+	if o.DaylightDate != nil {
+		if err := o.DaylightDate.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&SystemTime{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.DaylightBias); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *TimeZoneInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Bias); err != nil {
+		return err
+	}
+	o.StandardName = make([]uint16, 32)
+	for i1 := range o.StandardName {
+		i1 := i1
+		if err := w.ReadData(&o.StandardName[i1]); err != nil {
+			return err
+		}
+	}
+	if o.StandardDate == nil {
+		o.StandardDate = &SystemTime{}
+	}
+	if err := o.StandardDate.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.StandardBias); err != nil {
+		return err
+	}
+	o.DaylightName = make([]uint16, 32)
+	for i1 := range o.DaylightName {
+		i1 := i1
+		if err := w.ReadData(&o.DaylightName[i1]); err != nil {
+			return err
+		}
+	}
+	if o.DaylightDate == nil {
+		o.DaylightDate = &SystemTime{}
+	}
+	if err := o.DaylightDate.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.DaylightBias); err != nil {
+		return err
+	}
+	return nil
+}
+
+// SessionFilter type represents SESSION_FILTER RPC enumeration.
+//
+// The SESSION_FILTER enumeration specifies the types of filters to apply when retrieving
+// the list of session IDs running on a terminal server. There is only one type of filter
+// exposed by RPC.
+type SessionFilter uint16
+
+var (
+	// SF_SERVICES_SESSION_POPUP:  Returns all sessions in a logged-on state.
+	SessionFilterServicesSessionPopup SessionFilter = 0
+)
+
+func (o SessionFilter) String() string {
+	switch o {
+	case SessionFilterServicesSessionPopup:
+		return "SessionFilterServicesSessionPopup"
+	}
+	return "Invalid"
+}
+
+// ClientID structure represents CLIENT_ID RPC structure.
+//
+// The CLIENT_ID structure contains identifiers of a process and a thread.
+type ClientID struct {
+	// UniqueProcess:  Unique process identifier.
+	UniqueProcess []byte `idl:"name:UniqueProcess" json:"unique_process"`
+	// UniqueThread:  Unique thread identifier.
+	UniqueThread []byte `idl:"name:UniqueThread" json:"unique_thread"`
+}
+
+func (o *ClientID) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *ClientID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(6); err != nil {
+		return err
+	}
+	if o.UniqueProcess != nil {
+		_ptr_UniqueProcess := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			// FIXME unknown type UniqueProcess
+			return nil
+		})
+		if err := w.WritePointer(&o.UniqueProcess, _ptr_UniqueProcess); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.UniqueThread != nil {
+		_ptr_UniqueThread := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			// FIXME unknown type UniqueThread
+			return nil
+		})
+		if err := w.WritePointer(&o.UniqueThread, _ptr_UniqueThread); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ClientID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(6); err != nil {
+		return err
+	}
+	_ptr_UniqueProcess := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		// FIXME: unknown type UniqueProcess
+		return nil
+	})
+	_s_UniqueProcess := func(ptr interface{}) { o.UniqueProcess = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.UniqueProcess, _s_UniqueProcess, _ptr_UniqueProcess); err != nil {
+		return err
+	}
+	_ptr_UniqueThread := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		// FIXME: unknown type UniqueThread
+		return nil
+	})
+	_s_UniqueThread := func(ptr interface{}) { o.UniqueThread = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.UniqueThread, _s_UniqueThread, _ptr_UniqueThread); err != nil {
+		return err
+	}
+	return nil
+}
+
+// SystemThreadInformation structure represents SYSTEM_THREAD_INFORMATION RPC structure.
+//
+// The SYSTEM_THREAD_INFORMATION structure contains information about a thread running
+// on a system.
+type SystemThreadInformation struct {
+	// KernelTime:  Number of 100-nanosecond intervals spent executing kernel code.
+	KernelTime *dtyp.LargeInteger `idl:"name:KernelTime" json:"kernel_time"`
+	// UserTime:  Number of 100-nanosecond intervals spent executing user code.
+	UserTime *dtyp.LargeInteger `idl:"name:UserTime" json:"user_time"`
+	// CreateTime:  System time when the thread was created.
+	CreateTime *dtyp.LargeInteger `idl:"name:CreateTime" json:"create_time"`
+	// WaitTime:  Time spent in ready queue or waiting (depending on the thread state).
+	WaitTime uint32 `idl:"name:WaitTime" json:"wait_time"`
+	// StartAddress:  Start address of the thread.
+	StartAddress []byte `idl:"name:StartAddress" json:"start_address"`
+	// ClientId:  ID of the thread and the process owning the thread.
+	ClientID *ClientID `idl:"name:ClientId" json:"client_id"`
+	// Priority:  Dynamic thread priority.
+	Priority int32 `idl:"name:Priority" json:"priority"`
+	// BasePriority:  Base thread priority.
+	BasePriority int32 `idl:"name:BasePriority" json:"base_priority"`
+	// ContextSwitches:  Total context switches.
+	ContextSwitches uint32 `idl:"name:ContextSwitches" json:"context_switches"`
+	// ThreadState:  Current thread state.
+	ThreadState uint32 `idl:"name:ThreadState" json:"thread_state"`
+	// WaitReason:  The reason the thread is waiting.
+	WaitReason uint32 `idl:"name:WaitReason" json:"wait_reason"`
+}
+
+func (o *SystemThreadInformation) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *SystemThreadInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(8); err != nil {
+		return err
+	}
+	if o.KernelTime != nil {
+		if err := o.KernelTime.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.UserTime != nil {
+		if err := o.UserTime.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.CreateTime != nil {
+		if err := o.CreateTime.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.LargeInteger{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.WaitTime); err != nil {
+		return err
+	}
+	if o.StartAddress != nil {
+		_ptr_StartAddress := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			// FIXME unknown type StartAddress
+			return nil
+		})
+		if err := w.WritePointer(&o.StartAddress, _ptr_StartAddress); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.ClientID != nil {
+		if err := o.ClientID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&ClientID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.Priority); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.BasePriority); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.ContextSwitches); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.ThreadState); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.WaitReason); err != nil {
+		return err
+	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *SystemThreadInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(8); err != nil {
+		return err
+	}
+	if o.KernelTime == nil {
+		o.KernelTime = &dtyp.LargeInteger{}
+	}
+	if err := o.KernelTime.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.UserTime == nil {
+		o.UserTime = &dtyp.LargeInteger{}
+	}
+	if err := o.UserTime.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.CreateTime == nil {
+		o.CreateTime = &dtyp.LargeInteger{}
+	}
+	if err := o.CreateTime.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.WaitTime); err != nil {
+		return err
+	}
+	_ptr_StartAddress := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		// FIXME: unknown type StartAddress
+		return nil
+	})
+	_s_StartAddress := func(ptr interface{}) { o.StartAddress = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.StartAddress, _s_StartAddress, _ptr_StartAddress); err != nil {
+		return err
+	}
+	if o.ClientID == nil {
+		o.ClientID = &ClientID{}
+	}
+	if err := o.ClientID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Priority); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.BasePriority); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.ContextSwitches); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.ThreadState); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.WaitReason); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Server structure represents SERVER_HANDLE RPC structure.
+type Server dcetypes.ContextHandle
+
+func (o *Server) ContextHandle() *dcetypes.ContextHandle { return (*dcetypes.ContextHandle)(o) }
+
+func (o *Server) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *Server) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Attributes); err != nil {
+		return err
+	}
+	if o.UUID != nil {
+		if err := o.UUID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Server) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Attributes); err != nil {
+		return err
+	}
+	if o.UUID == nil {
+		o.UUID = &dtyp.GUID{}
+	}
+	if err := o.UUID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}

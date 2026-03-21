@@ -1,0 +1,516 @@
+package sessenvpublicrpc
+
+import (
+	"context"
+	"fmt"
+	"strings"
+	"unicode/utf16"
+
+	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
+	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
+	ndr "github.com/oiweiwei/go-msrpc/ndr"
+)
+
+var (
+	_ = context.Background
+	_ = fmt.Errorf
+	_ = utf16.Encode
+	_ = strings.TrimPrefix
+	_ = ndr.ZeroString
+	_ = (*uuid.UUID)(nil)
+	_ = (*dcerpc.SyntaxID)(nil)
+)
+
+var (
+	// import guard
+	GoPackage = "tsts"
+)
+
+var (
+	// Syntax UUID
+	SessEnvPublicRPCSyntaxUUID = &uuid.UUID{TimeLow: 0x1257b580, TimeMid: 0xce2f, TimeHiAndVersion: 0x4109, ClockSeqHiAndReserved: 0x82, ClockSeqLow: 0xd6, Node: [6]uint8{0xa9, 0x45, 0x9d, 0xb, 0xf6, 0xbc}}
+	// Syntax ID
+	SessEnvPublicRPCSyntaxV1_0 = &dcerpc.SyntaxID{IfUUID: SessEnvPublicRPCSyntaxUUID, IfVersionMajor: 1, IfVersionMinor: 0}
+)
+
+// SessEnvPublicRpc interface.
+type SessEnvPublicRPCClient interface {
+
+	// The RpcShadow2 method will create a shadow session using the Windows Desktop Sharing
+	// API in the target session and return an invitation to that session.
+	//
+	// The caller MUST have WINSTATION_SHADOW permission. The other session can be local
+	// or on a terminal server. The session to be shadowed MUST be in the active state with
+	// a user logged on. The method checks whether the caller has WINSTATION_SHADOW permission
+	// (section 3.1.1) and fails if the caller does not have the permission.
+	//
+	// Return Values: The method MUST return S_OK (0x00000000) on success; otherwise, it
+	// MUST return an implementation-specific negative value.
+	//
+	//	+-------------------+------------------------+
+	//	|      RETURN       |                        |
+	//	|    VALUE/CODE     |      DESCRIPTION       |
+	//	|                   |                        |
+	//	+-------------------+------------------------+
+	//	+-------------------+------------------------+
+	//	| 0x00000000 S_OK   | Successful completion. |
+	//	+-------------------+------------------------+
+	Shadow2(context.Context, *Shadow2Request, ...dcerpc.CallOption) (*Shadow2Response, error)
+
+	// AlterContext alters the client context.
+	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+}
+
+// ShadowControlRequest type represents SHADOW_CONTROL_REQUEST RPC enumeration.
+//
+// The SHADOW_CONTROL_REQUEST enumeration specifies if a shadow of user input control
+// is being requested.
+type ShadowControlRequest uint16
+
+var (
+	// SHADOW_CONTROL_REQUEST_VIEW:  The shadow request is for a view-only session. User
+	// input is not being requested.
+	ShadowControlRequestView ShadowControlRequest = 0
+	// SHADOW_CONTROL_REQUEST_TAKECONTROL:  User input control is being requested.
+	ShadowControlRequestTakeControl ShadowControlRequest = 1
+	// SHADOW_CONTROL_REQUEST_Count:  Count of enum values.
+	ShadowControlRequestCount ShadowControlRequest = 2
+)
+
+func (o ShadowControlRequest) String() string {
+	switch o {
+	case ShadowControlRequestView:
+		return "ShadowControlRequestView"
+	case ShadowControlRequestTakeControl:
+		return "ShadowControlRequestTakeControl"
+	case ShadowControlRequestCount:
+		return "ShadowControlRequestCount"
+	}
+	return "Invalid"
+}
+
+// ShadowPermissionRequest type represents SHADOW_PERMISSION_REQUEST RPC enumeration.
+//
+// The SHADOW_PERMISSION_REQUEST enumeration specifies whether user permission is being
+// requested.
+type ShadowPermissionRequest uint16
+
+var (
+	// SHADOW_PERMISSION_REQUEST_SILENT:  Permission is not requested.
+	ShadowPermissionRequestSilent ShadowPermissionRequest = 0
+	// SHADOW_PERMISSION_REQUEST_REQUESTPERMISSION:  User permission will be requested
+	// before the shadow session begins.
+	ShadowPermissionRequestPermission ShadowPermissionRequest = 1
+	// SHADOW_PERMISSION_REQUEST_Count:  Count of enum values.
+	ShadowPermissionRequestCount ShadowPermissionRequest = 2
+)
+
+func (o ShadowPermissionRequest) String() string {
+	switch o {
+	case ShadowPermissionRequestSilent:
+		return "ShadowPermissionRequestSilent"
+	case ShadowPermissionRequestPermission:
+		return "ShadowPermissionRequestPermission"
+	case ShadowPermissionRequestCount:
+		return "ShadowPermissionRequestCount"
+	}
+	return "Invalid"
+}
+
+// ShadowRequestResponse type represents SHADOW_REQUEST_RESPONSE RPC enumeration.
+//
+// The SHADOW_REQUEST_RESPONSE enumeration defines the response to a shadow session
+// request.
+type ShadowRequestResponse uint16
+
+var (
+	// SHADOW_REQUEST_RESPONSE_ALLOW:  The user has granted the request for permission
+	// to shadow the session.
+	ShadowRequestResponseAllow ShadowRequestResponse = 0
+	// SHADOW_REQUEST_RESPONSE_DECLINE:  The user has declined the request for permission
+	// to shadow the session.
+	ShadowRequestResponseDecline ShadowRequestResponse = 1
+	// SHADOW_REQUEST_RESPONSE_POLICY_PERMISSION_REQUIRED: Permission was not requested,
+	// but group policy specifies that permission is required.
+	ShadowRequestResponsePolicyPermissionRequired ShadowRequestResponse = 2
+	// SHADOW_REQUEST_RESPONSE_POLICY_DISABLED:  Shadowing has been disabled by group policy.
+	ShadowRequestResponsePolicyDisabled ShadowRequestResponse = 3
+	// SHADOW_REQUEST_RESPONSE_POLICY_VIEW_ONLY:  A request for control was made, but group
+	// policy exclusively allows view-only shadowing.
+	ShadowRequestResponsePolicyViewOnly ShadowRequestResponse = 4
+	// SHADOW_REQUEST_RESPONSE_POLICY_VIEW_ONLY_PERMISSION_REQUIRED: A request was made
+	// to take control without requesting permission, but group policy exclusively allows
+	// view-only shadowing and also requires permission.
+	ShadowRequestResponsePolicyViewOnlyPermissionRequired ShadowRequestResponse = 5
+	// SHADOW_REQUEST_RESPONSE_SESSION_ALREADY_CONTROLLED: The session cannot be shadowed
+	// because another shadow session is currently controlling the session.
+	ShadowRequestResponseSessionAlreadyControlled ShadowRequestResponse = 6
+)
+
+func (o ShadowRequestResponse) String() string {
+	switch o {
+	case ShadowRequestResponseAllow:
+		return "ShadowRequestResponseAllow"
+	case ShadowRequestResponseDecline:
+		return "ShadowRequestResponseDecline"
+	case ShadowRequestResponsePolicyPermissionRequired:
+		return "ShadowRequestResponsePolicyPermissionRequired"
+	case ShadowRequestResponsePolicyDisabled:
+		return "ShadowRequestResponsePolicyDisabled"
+	case ShadowRequestResponsePolicyViewOnly:
+		return "ShadowRequestResponsePolicyViewOnly"
+	case ShadowRequestResponsePolicyViewOnlyPermissionRequired:
+		return "ShadowRequestResponsePolicyViewOnlyPermissionRequired"
+	case ShadowRequestResponseSessionAlreadyControlled:
+		return "ShadowRequestResponseSessionAlreadyControlled"
+	}
+	return "Invalid"
+}
+
+type xxx_DefaultSessEnvPublicRPCClient struct {
+	cc dcerpc.Conn
+}
+
+func (o *xxx_DefaultSessEnvPublicRPCClient) Shadow2(ctx context.Context, in *Shadow2Request, opts ...dcerpc.CallOption) (*Shadow2Response, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &Shadow2Response{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultSessEnvPublicRPCClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+	return o.cc.AlterContext(ctx, opts...)
+}
+
+func (o *xxx_DefaultSessEnvPublicRPCClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
+func NewSessEnvPublicRPCClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (SessEnvPublicRPCClient, error) {
+	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(SessEnvPublicRPCSyntaxV1_0))...)
+	if err != nil {
+		return nil, err
+	}
+	return &xxx_DefaultSessEnvPublicRPCClient{cc: cc}, nil
+}
+
+// xxx_Shadow2Operation structure represents the RpcShadow2 operation
+type xxx_Shadow2Operation struct {
+	TargetSessionID   uint32                  `idl:"name:TargetSessionId" json:"target_session_id"`
+	RequestControl    ShadowControlRequest    `idl:"name:eRequestControl" json:"request_control"`
+	RequestPermission ShadowPermissionRequest `idl:"name:eRequestPermission" json:"request_permission"`
+	PePermission      ShadowRequestResponse   `idl:"name:pePermission" json:"pe_permission"`
+	Invitation        string                  `idl:"name:pszInvitation;size_is:(cchInvitation);string" json:"invitation"`
+	InvitationLength  uint32                  `idl:"name:cchInvitation" json:"invitation_length"`
+	Return            int32                   `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_Shadow2Operation) OpNum() int { return 0 }
+
+func (o *xxx_Shadow2Operation) OpName() string { return "/SessEnvPublicRpc/v1/RpcShadow2" }
+
+func (o *xxx_Shadow2Operation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if o.InvitationLength < uint32(1) || o.InvitationLength > uint32(8192) {
+		return fmt.Errorf("InvitationLength is out of range")
+	}
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_Shadow2Operation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// TargetSessionId {in} (1:{alias=ULONG}(uint32))
+	{
+		if err := w.WriteData(o.TargetSessionID); err != nil {
+			return err
+		}
+	}
+	// eRequestControl {in} (1:{alias=SHADOW_CONTROL_REQUEST}(enum))
+	{
+		if err := w.WriteEnum(uint16(o.RequestControl)); err != nil {
+			return err
+		}
+	}
+	// eRequestPermission {in} (1:{alias=SHADOW_PERMISSION_REQUEST}(enum))
+	{
+		if err := w.WriteEnum(uint16(o.RequestPermission)); err != nil {
+			return err
+		}
+	}
+	// cchInvitation {in} (1:{range=(1,8192), alias=ULONG}(uint32))
+	{
+		if err := w.WriteData(o.InvitationLength); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_Shadow2Operation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// TargetSessionId {in} (1:{alias=ULONG}(uint32))
+	{
+		if err := w.ReadData(&o.TargetSessionID); err != nil {
+			return err
+		}
+	}
+	// eRequestControl {in} (1:{alias=SHADOW_CONTROL_REQUEST}(enum))
+	{
+		if err := w.ReadEnum((*uint16)(&o.RequestControl)); err != nil {
+			return err
+		}
+	}
+	// eRequestPermission {in} (1:{alias=SHADOW_PERMISSION_REQUEST}(enum))
+	{
+		if err := w.ReadEnum((*uint16)(&o.RequestPermission)); err != nil {
+			return err
+		}
+	}
+	// cchInvitation {in} (1:{range=(1,8192), alias=ULONG}(uint32))
+	{
+		if err := w.ReadData(&o.InvitationLength); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_Shadow2Operation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_Shadow2Operation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// pePermission {out} (1:{pointer=ref}*(1))(2:{alias=SHADOW_REQUEST_RESPONSE}(enum))
+	{
+		if err := w.WriteEnum(uint16(o.PePermission)); err != nil {
+			return err
+		}
+	}
+	// pszInvitation {out} (1:{string, alias=LPWSTR}*(1)[dim:0,size_is=cchInvitation,string,null](wchar))
+	{
+		dimSize1 := uint64(o.InvitationLength)
+		if err := w.WriteSize(dimSize1); err != nil {
+			return err
+		}
+		sizeInfo := []uint64{
+			dimSize1,
+		}
+		dimLength1 := ndr.UTF16NLen(o.Invitation)
+		if dimLength1 > sizeInfo[0] {
+			dimLength1 = sizeInfo[0]
+		} else {
+			sizeInfo[0] = dimLength1
+		}
+		if err := w.WriteSize(0); err != nil {
+			return err
+		}
+		if err := w.WriteSize(dimLength1); err != nil {
+			return err
+		}
+		_Invitation_buf := utf16.Encode([]rune(o.Invitation))
+		if uint64(len(_Invitation_buf)) > sizeInfo[0]-1 {
+			_Invitation_buf = _Invitation_buf[:sizeInfo[0]-1]
+		}
+		if o.Invitation != ndr.ZeroString {
+			_Invitation_buf = append(_Invitation_buf, uint16(0))
+		}
+		for i1 := range _Invitation_buf {
+			i1 := i1
+			if uint64(i1) >= sizeInfo[0] {
+				break
+			}
+			if err := w.WriteData(_Invitation_buf[i1]); err != nil {
+				return err
+			}
+		}
+		for i1 := len(_Invitation_buf); uint64(i1) < sizeInfo[0]; i1++ {
+			if err := w.WriteData(uint16(0)); err != nil {
+				return err
+			}
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_Shadow2Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// pePermission {out} (1:{pointer=ref}*(1))(2:{alias=SHADOW_REQUEST_RESPONSE}(enum))
+	{
+		if err := w.ReadEnum((*uint16)(&o.PePermission)); err != nil {
+			return err
+		}
+	}
+	// pszInvitation {out} (1:{string, alias=LPWSTR,pointer=ref}*(1)[dim:0,size_is=cchInvitation,string,null](wchar))
+	{
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		var _Invitation_buf []uint16
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array _Invitation_buf", sizeInfo[0])
+		}
+		_Invitation_buf = make([]uint16, sizeInfo[0])
+		for i1 := range _Invitation_buf {
+			i1 := i1
+			if err := w.ReadData(&_Invitation_buf[i1]); err != nil {
+				return err
+			}
+		}
+		o.Invitation = strings.TrimRight(string(utf16.Decode(_Invitation_buf)), ndr.ZeroString)
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// Shadow2Request structure represents the RpcShadow2 operation request
+type Shadow2Request struct {
+	// TargetSessionId: The ID of the session to be shadowed.
+	TargetSessionID uint32 `idl:"name:TargetSessionId" json:"target_session_id"`
+	// eRequestControl: Specifies a request for either a UI interaction or a view-only session.
+	RequestControl ShadowControlRequest `idl:"name:eRequestControl" json:"request_control"`
+	// eRequestPermission: Specifies whether to request permission before the shadow session
+	// is started. The call is synchronous, so if permission is requested, the call will
+	// wait until the user responds to the request.
+	RequestPermission ShadowPermissionRequest `idl:"name:eRequestPermission" json:"request_permission"`
+	// cchInvitation: The size, in WCHARs (16-bit Unicode), of pszInvitation.
+	InvitationLength uint32 `idl:"name:cchInvitation" json:"invitation_length"`
+}
+
+func (o *Shadow2Request) xxx_ToOp(ctx context.Context, op *xxx_Shadow2Operation) *xxx_Shadow2Operation {
+	if op == nil {
+		op = &xxx_Shadow2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.TargetSessionID = o.TargetSessionID
+	op.RequestControl = o.RequestControl
+	op.RequestPermission = o.RequestPermission
+	op.InvitationLength = o.InvitationLength
+	return op
+}
+
+func (o *Shadow2Request) xxx_FromOp(ctx context.Context, op *xxx_Shadow2Operation) {
+	if o == nil {
+		return
+	}
+	o.TargetSessionID = op.TargetSessionID
+	o.RequestControl = op.RequestControl
+	o.RequestPermission = op.RequestPermission
+	o.InvitationLength = op.InvitationLength
+}
+func (o *Shadow2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *Shadow2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_Shadow2Operation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// Shadow2Response structure represents the RpcShadow2 operation response
+type Shadow2Response struct {
+	// XXX: cchInvitation is an implicit input depedency for output parameters
+	InvitationLength uint32 `idl:"name:cchInvitation" json:"invitation_length"`
+
+	// pePermission: User response to permission request. If the response is anything other
+	// than SHADOW_REQUEST_RESPONSE_ALLOW, the shadow session has been denied.
+	PePermission ShadowRequestResponse `idl:"name:pePermission" json:"pe_permission"`
+	// pszInvitation: The output data containing the invitation string for the shadow session.
+	// The data returned is a Unicode string in the XML format specified in [MS-RAI] section
+	// 2.2.2 that can be used to connect to a session running in the target session (specified
+	// by TargetSessionId). The caller must allocate a buffer to hold this data and specify
+	// the size of the buffer in cchInvitation.
+	Invitation string `idl:"name:pszInvitation;size_is:(cchInvitation);string" json:"invitation"`
+	// Return: The RpcShadow2 return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *Shadow2Response) xxx_ToOp(ctx context.Context, op *xxx_Shadow2Operation) *xxx_Shadow2Operation {
+	if op == nil {
+		op = &xxx_Shadow2Operation{}
+	}
+	if o == nil {
+		return op
+	}
+	// XXX: implicit input dependencies for output parameters
+	if op.InvitationLength == uint32(0) {
+		op.InvitationLength = o.InvitationLength
+	}
+
+	op.PePermission = o.PePermission
+	op.Invitation = o.Invitation
+	op.Return = o.Return
+	return op
+}
+
+func (o *Shadow2Response) xxx_FromOp(ctx context.Context, op *xxx_Shadow2Operation) {
+	if o == nil {
+		return
+	}
+	// XXX: implicit input dependencies for output parameters
+	o.InvitationLength = op.InvitationLength
+
+	o.PePermission = op.PePermission
+	o.Invitation = op.Invitation
+	o.Return = op.Return
+}
+func (o *Shadow2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *Shadow2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_Shadow2Operation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}

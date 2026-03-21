@@ -1,0 +1,21 @@
+<div class="content"><p>The SESSIONENUM_LEVEL2 structure contains information about
+sessions running on a computer that is more detailed than the information
+contained in <span><a href="0c4fde3b-4fdb-4524-8cae-792d0320247a" data-linktype="relative-path">SESSIONENUM_LEVEL1</a></span>.</p><dl>
+<dd>
+<div><pre> typedef struct _SESSIONENUM_LEVEL2 {
+   LONG SessionId;
+   LONG State;
+   WCHAR Name[33];
+   ULONG Source;
+   BOOL bFullDesktop;
+   GUID SessionType;
+ } SESSIONENUM_LEVEL2,
+  *PSESSIONENUM_LEVEL2;
+</pre></div>
+</dd></dl><p><b>SessionId:</b>  An identifier assigned
+by the operating system to the session contained in this structure.</p><p><b>State:</b>  The state of the session, as
+specified in section <span><a href="58b06e1d-bfe4-4a2f-90a1-9c9129923e99" data-linktype="relative-path">3.3.4.1.8</a></span>.</p><p><b>Name:</b>  A string that contains the
+name of the session followed by the terminating NULL character.</p><p><b>Source:</b>  The parameter is always set
+to zero.</p><p><b>bFullDesktop:</b>  The parameter is
+always set to TRUE.</p><p><b>SessionType:</b>  Describes the type of
+the session.<a id="Appendix_A_Target_47"></a><a aria-label="Product behavior note 47" href="7ce7f717-461b-4f18-9829-6690168c7707#Appendix_A_47" data-linktype="relative-path">&lt;47&gt;</a></p></div>

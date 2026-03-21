@@ -1,0 +1,41 @@
+<div class="content"><p>The <b>RpcGetSessionCounters</b> method returns the various
+performance counters associated with the <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span>. No
+special permissions are required to call this method.</p><dl>
+<dd>
+<div><pre> HRESULT RpcGetSessionCounters(
+   [in] handle_t hBinding,
+   [in, out, size_is(uEntries)] PTS_COUNTER pCounter,
+   [in] ULONG uEntries
+ );
+</pre></div>
+</dd></dl><p><b>hBinding: </b> The <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_8a7f6700-8311-45bc-af10-82e10accd331" data-linktype="relative-path">RPC</a></span> binding <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>.
+For more information, see <span><a href="https://go.microsoft.com/fwlink/?LinkId=93771" data-linktype="external">[MSDN-RPCBIND]</a></span>.</p><p><b>pCounter: </b>An array of <span><a href="a0173488-c483-4340-ab1a-aab2d21ea323" data-linktype="relative-path">TS_COUNTER</a></span>
+structures. The caller MUST set the <b>dwCounterId</b> field in the TS_COUNTER
+structures for each entry in the array to indicate the counter whose current
+value to retrieve. On return, the method MUST set the value for that
+performance counter. If the performance counter ID is not recognized or is not
+supported, the method will set the <b>bResult</b> field to 0.</p><p><b>uEntries: </b>The number of performance counters
+to query. Indicates the size of the array pointed to by the <i>pCounter</i>
+parameter.</p><p><b>Return Values: </b> The method MUST return S_OK
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+negative value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Successful completion.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>

@@ -1,0 +1,42 @@
+<div class="content"><p>The RpcWaitAsyncNotification method starts the wait for the
+specified <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_b416f72e-cf04-4d80-bf93-f5753f3b0998" data-linktype="relative-path">terminal server</a></span>
+notification. The notification object specified in <span><a href="bb3d1c58-f397-472e-82ed-44c242846464" data-linktype="relative-path">RpcRegisterAsyncNotification</a></span>
+is called by RPC when a notification occurs. This is asynchronous notification
+and RpcWaitAsyncNotification starts the wait for notification and returns.
+Specify the notification object using RpcRegisterAsyncNotification and then
+start the notification wait process using RpcWaitAsyncNotification. No special
+permissions are required to call this method.</p><dl>
+<dd>
+<div><pre> HRESULT RpcWaitAsyncNotification(
+   [in] NOTIFY_HANDLE hNotify,
+   [out, size_is(, *pEntries)] PSESSION_CHANGE* SessionChange,
+   [out] ULONG* pEntries
+ );
+</pre></div>
+</dd></dl><p><b>hNotify: </b> The notification <span><a href="c41d3367-04c9-4c93-babf-9b5de834eb29#gt_5044babb-08e3-4bb9-bc12-fe8f542b05ee" data-linktype="relative-path">handle</a></span>
+returned by RpcRegisterAsyncNotification.</p><p><b>SessionChange: </b> An array of type <span><a href="e22785c9-5a37-4a47-864a-ed2865d053bc" data-linktype="relative-path">SESSION_CHANGE</a></span>
+containing information about all the sessions and the notifications received
+for that session.</p><p><b>pEntries: </b> The number of entries returned in
+the <i>SessionChange</i> array.</p><p><b>Return Values: </b> The method MUST return S_OK
+(0x00000000) on success; otherwise, it MUST return an implementation-specific
+negative value.</p><dl>
+<dd>
+<table><thead>
+  <tr>
+   <th>
+   <p>Return value/code</p>
+   </th>
+   <th>
+   <p>Description</p>
+   </th>
+  </tr>
+ </thead><tbody><tr>
+  <td>
+  <p>0x00000000</p>
+  <p>S_OK</p>
+  </td>
+  <td>
+  <p>Successful completion.</p>
+  </td>
+ </tr></tbody></table>
+</dd></dl><p> </p></div>
