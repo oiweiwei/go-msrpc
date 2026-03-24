@@ -41,7 +41,7 @@ interface winreg
     typedef struct value_ent {  
         PRPC_UNICODE_STRING   ve_valuename;  
         DWORD             ve_valuelen;  
-        LPDWORD           ve_valueptr;  
+        /* XXX: LPDWORD */ DWORD           ve_valueptr;
         DWORD             ve_type;
     } RVALENT,  *PRVALENT;
  

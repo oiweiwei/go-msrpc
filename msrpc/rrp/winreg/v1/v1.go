@@ -1166,15 +1166,7 @@ func (o *ValueEntry) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.ValueLength); err != nil {
 		return err
 	}
-	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_default_null([cond]) attribute.
-	_ptr_ve_valueptr := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.ValuePointer); err != nil {
-			return err
-		}
-		return nil
-	})
-	if err := w.WritePointer(&o.ValuePointer, _ptr_ve_valueptr); err != nil {
+	if err := w.WriteData(o.ValuePointer); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Type); err != nil {
@@ -1205,14 +1197,7 @@ func (o *ValueEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.ValueLength); err != nil {
 		return err
 	}
-	_ptr_ve_valueptr := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		if err := w.ReadData(&o.ValuePointer); err != nil {
-			return err
-		}
-		return nil
-	})
-	_s_ve_valueptr := func(ptr interface{}) { o.ValuePointer = *ptr.(*uint32) }
-	if err := w.ReadPointer(&o.ValuePointer, _s_ve_valueptr, _ptr_ve_valueptr); err != nil {
+	if err := w.ReadData(&o.ValuePointer); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Type); err != nil {
