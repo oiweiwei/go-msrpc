@@ -1,0 +1,1004 @@
+package mimicom
+
+import (
+	"context"
+	"fmt"
+	"strings"
+	"unicode/utf16"
+
+	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
+	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
+	dcetypes "github.com/oiweiwei/go-msrpc/msrpc/dcetypes"
+	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
+	ndr "github.com/oiweiwei/go-msrpc/ndr"
+)
+
+var (
+	_ = context.Background
+	_ = fmt.Errorf
+	_ = utf16.Encode
+	_ = strings.TrimPrefix
+	_ = ndr.ZeroString
+	_ = (*uuid.UUID)(nil)
+	_ = (*dcerpc.SyntaxID)(nil)
+	_ = dcetypes.GoPackage
+	_ = dtyp.GoPackage
+)
+
+var (
+	// import guard
+	GoPackage = "mimicom"
+)
+
+var (
+	// Syntax UUID
+	MimicomSyntaxUUID = &uuid.UUID{TimeLow: 0x17fc11e9, TimeMid: 0xc258, TimeHiAndVersion: 0x4b8d, ClockSeqHiAndReserved: 0x8d, ClockSeqLow: 0x7, Node: [6]uint8{0x2f, 0x41, 0x25, 0x15, 0x62, 0x44}}
+	// Syntax ID
+	MimicomSyntaxV1_0 = &dcerpc.SyntaxID{IfUUID: MimicomSyntaxUUID, IfVersionMajor: 1, IfVersionMinor: 0}
+)
+
+// MimiCom interface.
+type MimicomClient interface {
+
+	// MimiBind operation.
+	Bind(context.Context, *BindRequest, ...dcerpc.CallOption) (*BindResponse, error)
+
+	// MimiUnbind operation.
+	Unbind(context.Context, *UnbindRequest, ...dcerpc.CallOption) (*UnbindResponse, error)
+
+	// MimiCommand operation.
+	Command(context.Context, *CommandRequest, ...dcerpc.CallOption) (*CommandResponse, error)
+
+	// AlterContext alters the client context.
+	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+}
+
+// Handle structure represents MIMI_HANDLE RPC structure.
+type Handle dcetypes.ContextHandle
+
+func (o *Handle) ContextHandle() *dcetypes.ContextHandle { return (*dcetypes.ContextHandle)(o) }
+
+func (o *Handle) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *Handle) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Attributes); err != nil {
+		return err
+	}
+	if o.UUID != nil {
+		if err := o.UUID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Handle) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Attributes); err != nil {
+		return err
+	}
+	if o.UUID == nil {
+		o.UUID = &dtyp.GUID{}
+	}
+	if err := o.UUID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Publickey structure represents MIMI_PUBLICKEY RPC structure.
+type Publickey struct {
+	SessionType     uint32 `idl:"name:sessionType" json:"session_type"`
+	PublicKeyLength uint32 `idl:"name:cbPublicKey" json:"public_key_length"`
+	PublicKey       []byte `idl:"name:pbPublicKey;size_is:(cbPublicKey)" json:"public_key"`
+}
+
+func (o *Publickey) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if o.PublicKey != nil && o.PublicKeyLength == 0 {
+		o.PublicKeyLength = uint32(len(o.PublicKey))
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *Publickey) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.SessionType); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.PublicKeyLength); err != nil {
+		return err
+	}
+	if o.PublicKey != nil || o.PublicKeyLength > 0 {
+		_ptr_pbPublicKey := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.PublicKeyLength)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.PublicKey {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.PublicKey[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.PublicKey); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.PublicKey, _ptr_pbPublicKey); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Publickey) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.SessionType); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.PublicKeyLength); err != nil {
+		return err
+	}
+	_ptr_pbPublicKey := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.PublicKeyLength > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.PublicKeyLength)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.PublicKey", sizeInfo[0])
+		}
+		o.PublicKey = make([]byte, sizeInfo[0])
+		for i1 := range o.PublicKey {
+			i1 := i1
+			if err := w.ReadData(&o.PublicKey[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_pbPublicKey := func(ptr interface{}) { o.PublicKey = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.PublicKey, _s_pbPublicKey, _ptr_pbPublicKey); err != nil {
+		return err
+	}
+	return nil
+}
+
+type xxx_DefaultMimicomClient struct {
+	cc dcerpc.Conn
+}
+
+func (o *xxx_DefaultMimicomClient) Bind(ctx context.Context, in *BindRequest, opts ...dcerpc.CallOption) (*BindResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &BindResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultMimicomClient) Unbind(ctx context.Context, in *UnbindRequest, opts ...dcerpc.CallOption) (*UnbindResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &UnbindResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultMimicomClient) Command(ctx context.Context, in *CommandRequest, opts ...dcerpc.CallOption) (*CommandResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &CommandResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), o.cc.Error(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultMimicomClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+	return o.cc.AlterContext(ctx, opts...)
+}
+
+func (o *xxx_DefaultMimicomClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
+func NewMimicomClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (MimicomClient, error) {
+	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(MimicomSyntaxV1_0))...)
+	if err != nil {
+		return nil, err
+	}
+	return &xxx_DefaultMimicomClient{cc: cc}, nil
+}
+
+// xxx_BindOperation structure represents the MimiBind operation
+type xxx_BindOperation struct {
+	ClientPublicKey *Publickey `idl:"name:clientPublicKey;pointer:ref" json:"client_public_key"`
+	ServerPublicKey *Publickey `idl:"name:serverPublicKey;pointer:ref" json:"server_public_key"`
+	Handle          *Handle    `idl:"name:phMimi;pointer:ref" json:"handle"`
+	Return          int32      `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_BindOperation) OpNum() int { return 0 }
+
+func (o *xxx_BindOperation) OpName() string { return "/MimiCom/v1/MimiBind" }
+
+func (o *xxx_BindOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_BindOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// clientPublicKey {in} (1:{pointer=ref, alias=PMIMI_PUBLICKEY}*(1))(2:{alias=MIMI_PUBLICKEY}(struct))
+	{
+		if o.ClientPublicKey != nil {
+			if err := o.ClientPublicKey.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Publickey{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_BindOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// clientPublicKey {in} (1:{pointer=ref, alias=PMIMI_PUBLICKEY}*(1))(2:{alias=MIMI_PUBLICKEY}(struct))
+	{
+		if o.ClientPublicKey == nil {
+			o.ClientPublicKey = &Publickey{}
+		}
+		if err := o.ClientPublicKey.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_BindOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_BindOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// serverPublicKey {out} (1:{pointer=ref, alias=PMIMI_PUBLICKEY}*(1))(2:{alias=MIMI_PUBLICKEY}(struct))
+	{
+		if o.ServerPublicKey != nil {
+			if err := o.ServerPublicKey.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Publickey{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// phMimi {out} (1:{pointer=ref}*(1))(2:{context_handle, alias=MIMI_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Handle != nil {
+			if err := o.Handle.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_BindOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// serverPublicKey {out} (1:{pointer=ref, alias=PMIMI_PUBLICKEY}*(1))(2:{alias=MIMI_PUBLICKEY}(struct))
+	{
+		if o.ServerPublicKey == nil {
+			o.ServerPublicKey = &Publickey{}
+		}
+		if err := o.ServerPublicKey.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// phMimi {out} (1:{pointer=ref}*(1))(2:{context_handle, alias=MIMI_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Handle == nil {
+			o.Handle = &Handle{}
+		}
+		if err := o.Handle.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// BindRequest structure represents the MimiBind operation request
+type BindRequest struct {
+	ClientPublicKey *Publickey `idl:"name:clientPublicKey;pointer:ref" json:"client_public_key"`
+}
+
+func (o *BindRequest) xxx_ToOp(ctx context.Context, op *xxx_BindOperation) *xxx_BindOperation {
+	if op == nil {
+		op = &xxx_BindOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.ClientPublicKey = o.ClientPublicKey
+	return op
+}
+
+func (o *BindRequest) xxx_FromOp(ctx context.Context, op *xxx_BindOperation) {
+	if o == nil {
+		return
+	}
+	o.ClientPublicKey = op.ClientPublicKey
+}
+func (o *BindRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *BindRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_BindOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// BindResponse structure represents the MimiBind operation response
+type BindResponse struct {
+	ServerPublicKey *Publickey `idl:"name:serverPublicKey;pointer:ref" json:"server_public_key"`
+	Handle          *Handle    `idl:"name:phMimi;pointer:ref" json:"handle"`
+	// Return: The MimiBind return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *BindResponse) xxx_ToOp(ctx context.Context, op *xxx_BindOperation) *xxx_BindOperation {
+	if op == nil {
+		op = &xxx_BindOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.ServerPublicKey = o.ServerPublicKey
+	op.Handle = o.Handle
+	op.Return = o.Return
+	return op
+}
+
+func (o *BindResponse) xxx_FromOp(ctx context.Context, op *xxx_BindOperation) {
+	if o == nil {
+		return
+	}
+	o.ServerPublicKey = op.ServerPublicKey
+	o.Handle = op.Handle
+	o.Return = op.Return
+}
+func (o *BindResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *BindResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_BindOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_UnbindOperation structure represents the MimiUnbind operation
+type xxx_UnbindOperation struct {
+	Handle *Handle `idl:"name:phMimi;pointer:ref" json:"handle"`
+	Return int32   `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_UnbindOperation) OpNum() int { return 1 }
+
+func (o *xxx_UnbindOperation) OpName() string { return "/MimiCom/v1/MimiUnbind" }
+
+func (o *xxx_UnbindOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnbindOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// phMimi {in, out} (1:{pointer=ref}*(1))(2:{context_handle, alias=MIMI_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Handle != nil {
+			if err := o.Handle.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnbindOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// phMimi {in, out} (1:{pointer=ref}*(1))(2:{context_handle, alias=MIMI_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Handle == nil {
+			o.Handle = &Handle{}
+		}
+		if err := o.Handle.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnbindOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnbindOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// phMimi {in, out} (1:{pointer=ref}*(1))(2:{context_handle, alias=MIMI_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Handle != nil {
+			if err := o.Handle.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_UnbindOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// phMimi {in, out} (1:{pointer=ref}*(1))(2:{context_handle, alias=MIMI_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Handle == nil {
+			o.Handle = &Handle{}
+		}
+		if err := o.Handle.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// UnbindRequest structure represents the MimiUnbind operation request
+type UnbindRequest struct {
+	Handle *Handle `idl:"name:phMimi;pointer:ref" json:"handle"`
+}
+
+func (o *UnbindRequest) xxx_ToOp(ctx context.Context, op *xxx_UnbindOperation) *xxx_UnbindOperation {
+	if op == nil {
+		op = &xxx_UnbindOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Handle = o.Handle
+	return op
+}
+
+func (o *UnbindRequest) xxx_FromOp(ctx context.Context, op *xxx_UnbindOperation) {
+	if o == nil {
+		return
+	}
+	o.Handle = op.Handle
+}
+func (o *UnbindRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *UnbindRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_UnbindOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// UnbindResponse structure represents the MimiUnbind operation response
+type UnbindResponse struct {
+	Handle *Handle `idl:"name:phMimi;pointer:ref" json:"handle"`
+	// Return: The MimiUnbind return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *UnbindResponse) xxx_ToOp(ctx context.Context, op *xxx_UnbindOperation) *xxx_UnbindOperation {
+	if op == nil {
+		op = &xxx_UnbindOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Handle = o.Handle
+	op.Return = o.Return
+	return op
+}
+
+func (o *UnbindResponse) xxx_FromOp(ctx context.Context, op *xxx_UnbindOperation) {
+	if o == nil {
+		return
+	}
+	o.Handle = op.Handle
+	o.Return = op.Return
+}
+func (o *UnbindResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *UnbindResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_UnbindOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_CommandOperation structure represents the MimiCommand operation
+type xxx_CommandOperation struct {
+	Handle         *Handle `idl:"name:phMimi;pointer:ref" json:"handle"`
+	EncCommandSize uint32  `idl:"name:szEncCommand" json:"enc_command_size"`
+	EncCommand     []byte  `idl:"name:encCommand;size_is:(szEncCommand);pointer:unique" json:"enc_command"`
+	EncResultSize  uint32  `idl:"name:szEncResult;pointer:ref" json:"enc_result_size"`
+	EncResult      []byte  `idl:"name:encResult;size_is:(, szEncResult)" json:"enc_result"`
+	Return         int32   `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_CommandOperation) OpNum() int { return 2 }
+
+func (o *xxx_CommandOperation) OpName() string { return "/MimiCom/v1/MimiCommand" }
+
+func (o *xxx_CommandOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if o.EncCommand != nil && o.EncCommandSize == 0 {
+		o.EncCommandSize = uint32(len(o.EncCommand))
+	}
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CommandOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// phMimi {in} (1:{context_handle, pointer=ref, alias=MIMI_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Handle != nil {
+			if err := o.Handle.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&Handle{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	// szEncCommand {in} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.EncCommandSize); err != nil {
+			return err
+		}
+	}
+	// encCommand {in} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=szEncCommand](uchar))
+	{
+		if o.EncCommand != nil || o.EncCommandSize > 0 {
+			_ptr_encCommand := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				dimSize1 := uint64(o.EncCommandSize)
+				if err := w.WriteSize(dimSize1); err != nil {
+					return err
+				}
+				sizeInfo := []uint64{
+					dimSize1,
+				}
+				for i1 := range o.EncCommand {
+					i1 := i1
+					if uint64(i1) >= sizeInfo[0] {
+						break
+					}
+					if err := w.WriteData(o.EncCommand[i1]); err != nil {
+						return err
+					}
+				}
+				for i1 := len(o.EncCommand); uint64(i1) < sizeInfo[0]; i1++ {
+					if err := w.WriteData(uint8(0)); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.EncCommand, _ptr_encCommand); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CommandOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// phMimi {in} (1:{context_handle, pointer=ref, alias=MIMI_HANDLE, names=ndr_context_handle}(struct))
+	{
+		if o.Handle == nil {
+			o.Handle = &Handle{}
+		}
+		if err := o.Handle.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	// szEncCommand {in} (1:{alias=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.EncCommandSize); err != nil {
+			return err
+		}
+	}
+	// encCommand {in} (1:{pointer=unique}*(1))(2:{alias=BYTE}[dim:0,size_is=szEncCommand](uchar))
+	{
+		_ptr_encCommand := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			sizeInfo := []uint64{
+				0,
+			}
+			for sz1 := range sizeInfo {
+				if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+					return err
+				}
+			}
+			if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+				return fmt.Errorf("buffer overflow for size %d of array o.EncCommand", sizeInfo[0])
+			}
+			o.EncCommand = make([]byte, sizeInfo[0])
+			for i1 := range o.EncCommand {
+				i1 := i1
+				if err := w.ReadData(&o.EncCommand[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		_s_encCommand := func(ptr interface{}) { o.EncCommand = *ptr.(*[]byte) }
+		if err := w.ReadPointer(&o.EncCommand, _s_encCommand, _ptr_encCommand); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CommandOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if o.EncResult != nil && o.EncResultSize == 0 {
+		o.EncResultSize = uint32(len(o.EncResult))
+	}
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CommandOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// szEncResult {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	{
+		if err := w.WriteData(o.EncResultSize); err != nil {
+			return err
+		}
+	}
+	// encResult {out} (1:{pointer=ref}*(2)*(1))(2:{alias=BYTE}[dim:0,size_is=szEncResult](uchar))
+	{
+		if o.EncResult != nil || o.EncResultSize > 0 {
+			_ptr_encResult := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				dimSize1 := uint64(o.EncResultSize)
+				if err := w.WriteSize(dimSize1); err != nil {
+					return err
+				}
+				sizeInfo := []uint64{
+					dimSize1,
+				}
+				for i1 := range o.EncResult {
+					i1 := i1
+					if uint64(i1) >= sizeInfo[0] {
+						break
+					}
+					if err := w.WriteData(o.EncResult[i1]); err != nil {
+						return err
+					}
+				}
+				for i1 := len(o.EncResult); uint64(i1) < sizeInfo[0]; i1++ {
+					if err := w.WriteData(uint8(0)); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.EncResult, _ptr_encResult); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_CommandOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// szEncResult {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.EncResultSize); err != nil {
+			return err
+		}
+	}
+	// encResult {out} (1:{pointer=ref}*(2)*(1))(2:{alias=BYTE}[dim:0,size_is=szEncResult](uchar))
+	{
+		_ptr_encResult := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			sizeInfo := []uint64{
+				0,
+			}
+			for sz1 := range sizeInfo {
+				if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+					return err
+				}
+			}
+			if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+				return fmt.Errorf("buffer overflow for size %d of array o.EncResult", sizeInfo[0])
+			}
+			o.EncResult = make([]byte, sizeInfo[0])
+			for i1 := range o.EncResult {
+				i1 := i1
+				if err := w.ReadData(&o.EncResult[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		_s_encResult := func(ptr interface{}) { o.EncResult = *ptr.(*[]byte) }
+		if err := w.ReadPointer(&o.EncResult, _s_encResult, _ptr_encResult); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=NTSTATUS}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// CommandRequest structure represents the MimiCommand operation request
+type CommandRequest struct {
+	Handle         *Handle `idl:"name:phMimi;pointer:ref" json:"handle"`
+	EncCommandSize uint32  `idl:"name:szEncCommand" json:"enc_command_size"`
+	EncCommand     []byte  `idl:"name:encCommand;size_is:(szEncCommand);pointer:unique" json:"enc_command"`
+}
+
+func (o *CommandRequest) xxx_ToOp(ctx context.Context, op *xxx_CommandOperation) *xxx_CommandOperation {
+	if op == nil {
+		op = &xxx_CommandOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.Handle = o.Handle
+	op.EncCommandSize = o.EncCommandSize
+	op.EncCommand = o.EncCommand
+	return op
+}
+
+func (o *CommandRequest) xxx_FromOp(ctx context.Context, op *xxx_CommandOperation) {
+	if o == nil {
+		return
+	}
+	o.Handle = op.Handle
+	o.EncCommandSize = op.EncCommandSize
+	o.EncCommand = op.EncCommand
+}
+func (o *CommandRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *CommandRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_CommandOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// CommandResponse structure represents the MimiCommand operation response
+type CommandResponse struct {
+	EncResultSize uint32 `idl:"name:szEncResult;pointer:ref" json:"enc_result_size"`
+	EncResult     []byte `idl:"name:encResult;size_is:(, szEncResult)" json:"enc_result"`
+	// Return: The MimiCommand return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *CommandResponse) xxx_ToOp(ctx context.Context, op *xxx_CommandOperation) *xxx_CommandOperation {
+	if op == nil {
+		op = &xxx_CommandOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.EncResultSize = o.EncResultSize
+	op.EncResult = o.EncResult
+	op.Return = o.Return
+	return op
+}
+
+func (o *CommandResponse) xxx_FromOp(ctx context.Context, op *xxx_CommandOperation) {
+	if o == nil {
+		return
+	}
+	o.EncResultSize = op.EncResultSize
+	o.EncResult = op.EncResult
+	o.Return = op.Return
+}
+func (o *CommandResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *CommandResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_CommandOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
