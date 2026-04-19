@@ -387,7 +387,9 @@ func Wrap(ctx context.Context, tok *MessageToken, opts ...Option) (*MessageToken
 		tok.QoP = cfg.QoP
 	}
 
-	tok.Capabilities |= cfg.Capabilities
+	if tok.Capabilities == 0 {
+		tok.Capabilities |= cfg.Capabilities
+	}
 
 	return cc.Mechanism.Wrap(ctx, tok)
 }
@@ -412,7 +414,9 @@ func WrapEx(ctx context.Context, tokEx *MessageTokenEx, opts ...Option) (*Messag
 	}
 
 	for _, tok := range tokEx.Payloads {
-		tok.Capabilities |= cfg.Capabilities
+		if tok.Capabilities == 0 {
+			tok.Capabilities |= cfg.Capabilities
+		}
 	}
 
 	mechEx, ok := (interface{})(cc.Mechanism).(MechanismEx)
@@ -442,7 +446,9 @@ func Unwrap(ctx context.Context, tok *MessageToken, opts ...Option) (*MessageTok
 		tok.QoP = cfg.QoP
 	}
 
-	tok.Capabilities |= cfg.Capabilities
+	if tok.Capabilities == 0 {
+		tok.Capabilities |= cfg.Capabilities
+	}
 
 	return cc.Mechanism.Unwrap(ctx, tok)
 }
@@ -467,7 +473,9 @@ func UnwrapEx(ctx context.Context, tokEx *MessageTokenEx, opts ...Option) (*Mess
 	}
 
 	for _, tok := range tokEx.Payloads {
-		tok.Capabilities |= cfg.Capabilities
+		if tok.Capabilities == 0 {
+			tok.Capabilities |= cfg.Capabilities
+		}
 	}
 
 	mechEx, ok := (interface{})(cc.Mechanism).(MechanismEx)
@@ -497,7 +505,9 @@ func MakeSignature(ctx context.Context, tok *MessageToken, opts ...Option) (*Mes
 		tok.QoP = cfg.QoP
 	}
 
-	tok.Capabilities |= cfg.Capabilities
+	if tok.Capabilities == 0 {
+		tok.Capabilities |= cfg.Capabilities
+	}
 
 	return cc.Mechanism.MakeSignature(ctx, tok)
 }
@@ -522,7 +532,9 @@ func MakeSignatureEx(ctx context.Context, tokEx *MessageTokenEx, opts ...Option)
 	}
 
 	for _, tok := range tokEx.Payloads {
-		tok.Capabilities |= cfg.Capabilities
+		if tok.Capabilities == 0 {
+			tok.Capabilities |= cfg.Capabilities
+		}
 	}
 
 	mechEx, ok := (interface{})(cc.Mechanism).(MechanismEx)
@@ -552,7 +564,9 @@ func VerifySignature(ctx context.Context, tok *MessageToken, opts ...Option) err
 		tok.QoP = cfg.QoP
 	}
 
-	tok.Capabilities |= cfg.Capabilities
+	if tok.Capabilities == 0 {
+		tok.Capabilities |= cfg.Capabilities
+	}
 
 	return cc.Mechanism.VerifySignature(ctx, tok)
 }
@@ -575,7 +589,9 @@ func VerifySignatureEx(ctx context.Context, tokEx *MessageTokenEx, opts ...Optio
 	}
 
 	for _, tok := range tokEx.Payloads {
-		tok.Capabilities |= cfg.Capabilities
+		if tok.Capabilities == 0 {
+			tok.Capabilities |= cfg.Capabilities
+		}
 	}
 
 	mechEx, ok := (interface{})(cc.Mechanism).(MechanismEx)
