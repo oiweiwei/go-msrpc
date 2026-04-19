@@ -107,14 +107,14 @@ func (o *Handle) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// Publickey structure represents MIMI_PUBLICKEY RPC structure.
-type Publickey struct {
+// PublicKey structure represents MIMI_PUBLICKEY RPC structure.
+type PublicKey struct {
 	SessionType     uint32 `idl:"name:sessionType" json:"session_type"`
 	PublicKeyLength uint32 `idl:"name:cbPublicKey" json:"public_key_length"`
 	PublicKey       []byte `idl:"name:pbPublicKey;size_is:(cbPublicKey)" json:"public_key"`
 }
 
-func (o *Publickey) xxx_PreparePayload(ctx context.Context) error {
+func (o *PublicKey) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -126,7 +126,7 @@ func (o *Publickey) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *Publickey) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *PublicKey) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -174,7 +174,7 @@ func (o *Publickey) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *Publickey) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *PublicKey) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -277,8 +277,8 @@ func NewMimicomClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option
 
 // xxx_BindOperation structure represents the MimiBind operation
 type xxx_BindOperation struct {
-	ClientPublicKey *Publickey `idl:"name:clientPublicKey;pointer:ref" json:"client_public_key"`
-	ServerPublicKey *Publickey `idl:"name:serverPublicKey;pointer:ref" json:"server_public_key"`
+	ClientPublicKey *PublicKey `idl:"name:clientPublicKey;pointer:ref" json:"client_public_key"`
+	ServerPublicKey *PublicKey `idl:"name:serverPublicKey;pointer:ref" json:"server_public_key"`
 	Handle          *Handle    `idl:"name:phMimi;pointer:ref" json:"handle"`
 	Return          int32      `idl:"name:Return" json:"return"`
 }
@@ -307,7 +307,7 @@ func (o *xxx_BindOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 				return err
 			}
 		} else {
-			if err := (&Publickey{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&PublicKey{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -322,7 +322,7 @@ func (o *xxx_BindOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 	// clientPublicKey {in} (1:{pointer=ref, alias=PMIMI_PUBLICKEY}*(1))(2:{alias=MIMI_PUBLICKEY}(struct))
 	{
 		if o.ClientPublicKey == nil {
-			o.ClientPublicKey = &Publickey{}
+			o.ClientPublicKey = &PublicKey{}
 		}
 		if err := o.ClientPublicKey.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -354,7 +354,7 @@ func (o *xxx_BindOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 				return err
 			}
 		} else {
-			if err := (&Publickey{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&PublicKey{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -387,7 +387,7 @@ func (o *xxx_BindOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 	// serverPublicKey {out} (1:{pointer=ref, alias=PMIMI_PUBLICKEY}*(1))(2:{alias=MIMI_PUBLICKEY}(struct))
 	{
 		if o.ServerPublicKey == nil {
-			o.ServerPublicKey = &Publickey{}
+			o.ServerPublicKey = &PublicKey{}
 		}
 		if err := o.ServerPublicKey.UnmarshalNDR(ctx, w); err != nil {
 			return err
@@ -416,7 +416,7 @@ func (o *xxx_BindOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 
 // BindRequest structure represents the MimiBind operation request
 type BindRequest struct {
-	ClientPublicKey *Publickey `idl:"name:clientPublicKey;pointer:ref" json:"client_public_key"`
+	ClientPublicKey *PublicKey `idl:"name:clientPublicKey;pointer:ref" json:"client_public_key"`
 }
 
 func (o *BindRequest) xxx_ToOp(ctx context.Context, op *xxx_BindOperation) *xxx_BindOperation {
@@ -450,7 +450,7 @@ func (o *BindRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // BindResponse structure represents the MimiBind operation response
 type BindResponse struct {
-	ServerPublicKey *Publickey `idl:"name:serverPublicKey;pointer:ref" json:"server_public_key"`
+	ServerPublicKey *PublicKey `idl:"name:serverPublicKey;pointer:ref" json:"server_public_key"`
 	Handle          *Handle    `idl:"name:phMimi;pointer:ref" json:"handle"`
 	// Return: The MimiBind return value.
 	Return int32 `idl:"name:Return" json:"return"`

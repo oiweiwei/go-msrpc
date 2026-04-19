@@ -724,3 +724,4 @@ split:
   sessionenum: [session, enum]
   lsmsessioninformation: [lsm, session, information]
   sessioninfo: [session, info]
+  publickey: [public, key]
