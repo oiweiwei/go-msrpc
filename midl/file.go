@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"runtime"
 	"sort"
 	"strings"
 	"sync"
@@ -92,7 +93,16 @@ func FileStore(p string, f *File) {
 }
 
 func FindPath() []string {
-	return strings.Split(os.Getenv("MSIDLPATH"), ":")
+	var paths []string
+	_, p, _, ok := runtime.Caller(0)
+	if ok {
+		paths = append(paths, filepath.Join(filepath.Dir(p), "idl"))
+	}
+
+	if p := os.Getenv("MSIDLPATH"); p != "" {
+		paths = append(paths, strings.Split(p, ":")...)
+	}
+	return paths
 }
 
 func LookupType(n string) *Type {
