@@ -59,6 +59,8 @@ type Mechanism interface {
 	Type() OID
 	// The security context init call.
 	Init(ctx context.Context, token *Token) (*Token, error)
+	// The capabilities of the token are defined by the mechanism.
+	Capabilities(ctx context.Context) Cap
 	// The security context accept call.
 	Accept(ctx context.Context, token *Token) (*Token, error)
 	// The maximum message size for the given limit. (and flag determining if

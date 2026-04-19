@@ -146,7 +146,7 @@ func (v1 *V1) ChallengeResponse(ctx context.Context, cred Credential,
 
 	respNT, respLM := new(NTLMv1Response), new(LMv1Response)
 
-	if c.Negotiate.IsSet(NegotiateExtendedSessionSecurity) {
+	if v1.ExtendedSessionSecurity || c.Negotiate.IsSet(NegotiateExtendedSessionSecurity) {
 		if respNT.Response, err = crypto.MD5(c.ServerChallenge, nonce); err != nil {
 			return nil, fmt.Errorf("v1: compute response: %w", err)
 		}
@@ -161,6 +161,10 @@ func (v1 *V1) ChallengeResponse(ctx context.Context, cred Credential,
 		}
 	}
 
+	if resp.SessionBaseKey, err = crypto.MD4(resp.KeyNT); err != nil {
+		return nil, fmt.Errorf("v1: compute session base key: %v", err)
+	}
+
 	if resp.NT, err = respNT.Marshal(ctx); err != nil {
 		return nil, fmt.Errorf("v1: marshal nt response: %v", err)
 	}
@@ -169,8 +173,62 @@ func (v1 *V1) ChallengeResponse(ctx context.Context, cred Credential,
 		return nil, fmt.Errorf("v1: marshal lm response: %v", err)
 	}
 
+	return resp, nil
+}
+
+func (v1 *V1) AuthenticateResponse(ctx context.Context, cred Credential, a *AuthenticateMessage, nonce []byte) (*ChallengeResponse, error) {
+
+	if len(a.NTChallengeResponse) == 0 && bytes.Equal(a.LMChallengeResponse, []byte{0}) {
+		return &ChallengeResponse{
+			LM:             []byte{0},
+			IsAnonymous:    true,
+			SessionBaseKey: make([]byte, 16),
+		}, nil
+	}
+
+	var (
+		resp = new(ChallengeResponse)
+		err  error
+	)
+
+	if resp.KeyNT, err = v1.NTOWF(ctx, cred); err != nil {
+		return nil, err
+	}
+
+	if resp.KeyLM, err = v1.LMOWF(ctx, cred); err != nil {
+		return nil, err
+	}
+
+	if v1.ExtendedSessionSecurity || a.Negotiate.IsSet(NegotiateExtendedSessionSecurity) {
+		if resp.NT, err = crypto.MD5(nonce, a.LMChallengeResponse); err != nil {
+			return nil, fmt.Errorf("v1: compute response: %w", err)
+		}
+		resp.NT = crypto.DESL(resp.KeyNT, resp.NT[:8])
+		resp.LM = a.LMChallengeResponse
+	} else {
+		resp.NT = crypto.DESL(resp.KeyNT, nonce)
+		resp.LM = crypto.DESL(resp.KeyLM, nonce)
+	}
+
 	if resp.SessionBaseKey, err = crypto.MD4(resp.KeyNT); err != nil {
 		return nil, fmt.Errorf("v1: compute session base key: %v", err)
+	}
+
+	if !bytes.Equal(a.NTChallengeResponse, resp.NT) {
+		return nil, fmt.Errorf("v1: authenticate response: nt challenge response mismatch")
+	}
+
+	if len(a.LMChallengeResponse) > 0 {
+		if !bytes.Equal(a.LMChallengeResponse, resp.LM) && !bytes.Equal(a.LMChallengeResponse, resp.NT) {
+			return nil, fmt.Errorf("v1: authenticate response: lm challenge response mismatch")
+		}
+	}
+
+	if resp.KeyExchangeKey, err = v1.KeyExchangeKey(ctx, &ChallengeMessage{
+		Negotiate:       a.Negotiate,
+		ServerChallenge: v1.ServerChallenge,
+	}, resp); err != nil {
+		return nil, fmt.Errorf("v1: compute key exchange key: %v", err)
 	}
 
 	return resp, nil
@@ -188,7 +246,7 @@ func (v1 *V1) KeyExchangeKey(ctx context.Context, c *ChallengeMessage, chal *Cha
 		return nil, errors.New("v1: key exchange key: challenge response lm is empty")
 	}
 
-	if c.Negotiate.IsSet(NegotiateExtendedSessionSecurity) {
+	if v1.ExtendedSessionSecurity || c.Negotiate.IsSet(NegotiateExtendedSessionSecurity) {
 		return crypto.HMACMD5(chal.SessionBaseKey, c.ServerChallenge, chal.LM[:8])
 	}
 
@@ -196,7 +254,7 @@ func (v1 *V1) KeyExchangeKey(ctx context.Context, c *ChallengeMessage, chal *Cha
 		return nil, errors.New("v1: key exchange key: challenge response key lm is empty")
 	}
 
-	if c.Negotiate.IsSet(NegotiateLMKey) {
+	if v1.SecurityParameters.UseLMKey || c.Negotiate.IsSet(NegotiateLMKey) {
 
 		buf := bytes.NewBuffer(nil)
 
@@ -212,7 +270,7 @@ func (v1 *V1) KeyExchangeKey(ctx context.Context, c *ChallengeMessage, chal *Cha
 		return buf.Bytes(), nil
 	}
 
-	if c.Negotiate.IsSet(RequestNonNTSessionKey) {
+	if v1.SecurityParameters.NonNTSessionKey || c.Negotiate.IsSet(RequestNonNTSessionKey) {
 		return append(chal.KeyLM[:8], bytes.Repeat([]byte{0}, 8)...), nil
 	}
 

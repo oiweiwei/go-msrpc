@@ -3,6 +3,8 @@ package gssapi
 import (
 	"context"
 	"encoding/asn1"
+
+	"github.com/oiweiwei/go-msrpc/ssp/name"
 )
 
 // Cap is a capability used both for request and response.
@@ -135,6 +137,10 @@ type Config struct {
 	// The flag that indicates whether it's a server
 	// handle.
 	IsServer bool
+	// The credential database.
+	CredentialDatabase CredentialDatabase
+
+	ServerNames []*name.Name
 }
 
 // MakeOption function is used to build the option structure.
@@ -214,6 +220,21 @@ func WithMechanismType(oid OID) Option {
 	}
 }
 
+// WithCredentialDatabase returns the option for the
+// credential database.
+func WithCredentialDatabase(db CredentialDatabase) Option {
+	return func(o *Config) {
+		o.CredentialDatabase = db
+	}
+}
+
+// WithServerNames returns the option for the server names.
+func WithServerNames(names ...*name.Name) Option {
+	return func(o *Config) {
+		o.ServerNames = append(o.ServerNames, names...)
+	}
+}
+
 type MessageToken struct {
 	// The quality-of-protection.
 	QoP int
@@ -225,6 +246,11 @@ type MessageToken struct {
 	// The input/output signature for verification or
 	// generation.
 	Signature []byte
+}
+
+func (m *MessageToken) Raw() []byte {
+	// The raw token is the concatenation of the payload and signature.
+	return append(m.Signature, m.Payload...)
 }
 
 // Per-Message Security Service Availability.

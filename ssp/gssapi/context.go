@@ -3,6 +3,8 @@ package gssapi
 import (
 	"context"
 	"fmt"
+
+	"github.com/oiweiwei/go-msrpc/ssp/name"
 )
 
 type ChannelBindings interface {
@@ -46,6 +48,13 @@ type SecurityContext struct {
 	MechanismStore *MechanismStore
 	// Local context credentials storage.
 	CredentialStore *CredentialStore
+	// The credential database for the server to
+	// validate incoming client credentials.
+	CredentialDatabase CredentialDatabase
+	// The list of acceptable server names.
+	ServerNames []*name.Name
+	// DefaultOptions for the context.
+	DefaultOptions []Option
 }
 
 // The security context key.
@@ -100,8 +109,9 @@ func WithMechanismFactory(value MechanismFactory, defaultConfig ...MechanismConf
 func NewSecurityContext(ctx context.Context, opts ...ContextOption) context.Context {
 
 	var (
-		creds *CredentialStore
-		mechs *MechanismStore
+		creds       *CredentialStore
+		mechs       *MechanismStore
+		defaultOpts []Option
 	)
 
 	// fill-in the credentials and mechanisms local to the current
@@ -118,10 +128,16 @@ func NewSecurityContext(ctx context.Context, opts ...ContextOption) context.Cont
 				mechs = new(MechanismStore)
 			}
 			mechs.AddMechanism(o)
+		case Option:
+			defaultOpts = append(defaultOpts, o)
 		}
 	}
 
-	return context.WithValue(ctx, ctxKey{}, &SecurityContext{MechanismStore: mechs, CredentialStore: creds})
+	return context.WithValue(ctx, ctxKey{}, &SecurityContext{
+		MechanismStore:  mechs,
+		CredentialStore: creds,
+		DefaultOptions:  defaultOpts,
+	})
 }
 
 // ResetSecurityContext to it's initial state.
@@ -130,7 +146,11 @@ func ResetSecurityContext(ctx context.Context) context.Context {
 	if cc == nil {
 		return ctx
 	}
-	return context.WithValue(ctx, ctxKey{}, &SecurityContext{MechanismStore: cc.MechanismStore, CredentialStore: cc.CredentialStore})
+	return context.WithValue(ctx, ctxKey{}, &SecurityContext{
+		MechanismStore:  cc.MechanismStore,
+		CredentialStore: cc.CredentialStore,
+		DefaultOptions:  cc.DefaultOptions,
+	})
 }
 
 // FromContext retrieves the Security Context.
@@ -143,6 +163,7 @@ func FromContext(ctx context.Context) SecurityContext {
 		c.MechanismConfigs = nil                       // guard from changing the state.
 		c.Attributes = nil                             // guard from changing the state.
 		c.MechanismStore, c.CredentialStore = nil, nil // guard from changing the state.
+		c.DefaultOptions = nil
 		return c
 	}
 	return SecurityContext{}
@@ -201,7 +222,7 @@ func InitSecurityContext(ctx context.Context, tok *Token, opts ...Option) (*Toke
 
 		// initalize context with parameters.
 
-		cfg := MakeOptions(opts...)
+		cfg := MakeOptions(append(cc.DefaultOptions, opts...)...)
 
 		cc.Compatibility = cfg.Compatibility
 		cc.QoP = cfg.QoP
@@ -257,6 +278,81 @@ func InitSecurityContext(ctx context.Context, tok *Token, opts ...Option) (*Toke
 	return &Token{}, nil
 }
 
+// Accept inbound security context.
+func AcceptSecurityContext(ctx context.Context, tok *Token, opts ...Option) (*Token, error) {
+
+	cc := fromContext(ctx)
+	if cc == nil {
+		return nil, ErrNoContext
+	}
+
+	var err error
+
+	if cc.Status == NoContext {
+
+		// initalize context with parameters.
+
+		cfg := MakeOptions(append(cc.DefaultOptions, opts...)...)
+
+		cc.Compatibility = cfg.Compatibility
+		cc.QoP = cfg.QoP
+		cc.Capabilities = cfg.Capabilities
+		cc.ContextTTL = cfg.ContextTTL
+		cc.TargetName = cfg.TargetName
+		cc.MechanismConfigs = cfg.MechanismConfigs
+		cc.CredentialDatabase = cfg.CredentialDatabase
+		cc.ServerNames = cfg.ServerNames
+
+		f := GetMechanism(ctx, cfg.MechanismType)
+		if f == nil {
+			return nil, ContextError(ctx, BadMech, ErrBadMech)
+		}
+
+		// get stored credentials.
+		cc.Credential = GetCredential(ctx, cfg.TargetName, f.Type(), InitiateOnly)
+
+		// optionally validate credential.
+		if cc.Credential != nil {
+			if validator, ok := (any)(cc.Credential.Value()).(interface{ Validate() error }); ok {
+				if err = validator.Validate(); err != nil {
+					return nil, ContextError(ctx, Failure, err)
+				}
+			}
+		}
+
+		// initiator is a server.
+		cc.IsServer = true
+
+		if cc.Mechanism, err = f.New(ctx); err != nil {
+			return nil, ContextError(ctx, Failure, err)
+		}
+	}
+
+	// handle error.
+	if tok, err = cc.Mechanism.Accept(ctx, tok); err != nil {
+		// set proper error if not set.
+		if cc.Status == NoContext || cc.Error == nil {
+			return tok, withContextStatus(ctx, Failure, err)
+		}
+		return tok, err
+	}
+
+	if caps := cc.Mechanism.Capabilities(ctx); caps != 0 {
+		cc.Capabilities = caps
+	}
+
+	// set proper status. (if nil is returned.)
+	if cc.Status == NoContext {
+		cc.Status = Complete
+	}
+
+	if tok != nil {
+		return tok, nil
+	}
+
+	return &Token{}, nil
+}
+
 // The maximum message size for the given limit.
 func WrapSizeLimit(ctx context.Context, sz int, opts ...Option) int {
 
@@ -269,7 +365,7 @@ func WrapSizeLimit(ctx context.Context, sz int, opts ...Option) int {
 		return sz
 	}
 
-	cfg := MakeOptions(opts...)
+	cfg := MakeOptions(append(cc.DefaultOptions, opts...)...)
 
 	return cc.Mechanism.WrapSizeLimit(ctx, sz, cfg.Capabilities.IsSet(Confidentiality))
 }
@@ -285,7 +381,7 @@ func Wrap(ctx context.Context, tok *MessageToken, opts ...Option) (*MessageToken
 		return nil, ErrUnavailable
 	}
 
-	cfg := MakeOptions(opts...)
+	cfg := MakeOptions(append(cc.DefaultOptions, opts...)...)
 
 	if cfg.QoP >= 0 {
 		tok.QoP = cfg.QoP
@@ -309,7 +405,7 @@ func WrapEx(ctx context.Context, tokEx *MessageTokenEx, opts ...Option) (*Messag
 		return nil, ErrUnavailable
 	}
 
-	cfg := MakeOptions(opts...)
+	cfg := MakeOptions(append(cc.DefaultOptions, opts...)...)
 
 	if cfg.QoP >= 0 {
 		tokEx.QoP = cfg.QoP
@@ -340,7 +436,7 @@ func Unwrap(ctx context.Context, tok *MessageToken, opts ...Option) (*MessageTok
 		return nil, ErrUnavailable
 	}
 
-	cfg := MakeOptions(opts...)
+	cfg := MakeOptions(append(cc.DefaultOptions, opts...)...)
 
 	if cfg.QoP >= 0 {
 		tok.QoP = cfg.QoP
@@ -364,7 +460,7 @@ func UnwrapEx(ctx context.Context, tokEx *MessageTokenEx, opts ...Option) (*Mess
 		return nil, ErrUnavailable
 	}
 
-	cfg := MakeOptions(opts...)
+	cfg := MakeOptions(append(cc.DefaultOptions, opts...)...)
 
 	if cfg.QoP >= 0 {
 		tokEx.QoP = cfg.QoP
@@ -395,7 +491,7 @@ func MakeSignature(ctx context.Context, tok *MessageToken, opts ...Option) (*Mes
 		return nil, ErrUnavailable
 	}
 
-	cfg := MakeOptions(opts...)
+	cfg := MakeOptions(append(cc.DefaultOptions, opts...)...)
 
 	if cfg.QoP >= 0 {
 		tok.QoP = cfg.QoP
@@ -419,7 +515,7 @@ func MakeSignatureEx(ctx context.Context, tokEx *MessageTokenEx, opts ...Option)
 		return nil, ErrUnavailable
 	}
 
-	cfg := MakeOptions(opts...)
+	cfg := MakeOptions(append(cc.DefaultOptions, opts...)...)
 
 	if cfg.QoP >= 0 {
 		tokEx.QoP = cfg.QoP
@@ -450,7 +546,7 @@ func VerifySignature(ctx context.Context, tok *MessageToken, opts ...Option) err
 		return ErrUnavailable
 	}
 
-	cfg := MakeOptions(opts...)
+	cfg := MakeOptions(append(cc.DefaultOptions, opts...)...)
 
 	if cfg.QoP >= 0 {
 		tok.QoP = cfg.QoP
@@ -472,7 +568,7 @@ func VerifySignatureEx(ctx context.Context, tokEx *MessageTokenEx, opts ...Optio
 		return ErrUnavailable
 	}
 
-	cfg := MakeOptions(opts...)
+	cfg := MakeOptions(append(cc.DefaultOptions, opts...)...)
 
 	if cfg.QoP >= 0 {
 		tokEx.QoP = cfg.QoP

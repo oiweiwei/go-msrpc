@@ -165,9 +165,87 @@ func (m *Mechanism) Init(ctx context.Context, tok *gssapi.Token) (*gssapi.Token,
 	return &gssapi.Token{Payload: b}, gssapi.ContextContinueNeeded(ctx)
 }
 
+func (m *Mechanism) Capabilities(ctx context.Context) gssapi.Cap {
+
+	caps := gssapi.Cap(0)
+
+	if m.Config.FlagIsSet(gssapi.Anonymity) {
+		caps |= gssapi.Anonymity
+	}
+	if m.Config.FlagIsSet(gssapi.Identify) {
+		caps |= gssapi.Identify
+	}
+	if m.Config.FlagIsSet(gssapi.MutualAuthn) {
+		caps |= gssapi.MutualAuthn
+	}
+	if m.Config.FlagIsSet(gssapi.ReplayDetection) {
+		caps |= gssapi.ReplayDetection
+	}
+	if m.Config.FlagIsSet(gssapi.Sequencing) {
+		caps |= gssapi.Sequencing
+	}
+	if m.Config.FlagIsSet(gssapi.Integrity) {
+		caps |= gssapi.Integrity
+	}
+	if m.Config.FlagIsSet(gssapi.Confidentiality) {
+		caps |= gssapi.Confidentiality
+	}
+	if m.Config.FlagIsSet(gssapi.DCEStyle) || m.Config.DCEStyle {
+		caps |= gssapi.DCEStyle
+	}
+
+	for _, o := range m.Config.APOptions {
+		if o == flags.APOptionMutualRequired {
+			caps |= gssapi.MutualAuthn
+		}
+	}
+
+	return caps
+
+}
+
 // The security context accept call.
 func (m *Mechanism) Accept(ctx context.Context, tok *gssapi.Token) (*gssapi.Token, error) {
-	return nil, gssapi.ContextError(ctx, gssapi.Unavailable, gssapi.ErrUnavailable)
+
+	if m.APRep != nil {
+
+		if err := m.VerifyAPReply(ctx, tok.Payload); err != nil {
+			return nil, gssapi.ContextError(ctx, gssapi.Failure, err)
+		}
+
+		gssapi.SetAttribute(ctx, gssapi.AttributeSessionKey, m.ExportedSessionKey)
+		gssapi.SetAttribute(ctx, gssapi.AttributeTarget, m.Config.SName)
+
+		return &gssapi.Token{}, gssapi.ContextComplete(ctx)
+	}
+
+	if m.APReq != nil {
+
+		b, err := m.APReply(ctx, tok.Payload)
+		if err != nil {
+			return nil, gssapi.ContextError(ctx, gssapi.Failure, err)
+		}
+
+		gssapi.SetAttribute(ctx, gssapi.AttributeSessionKey, m.ExportedSessionKey)
+		gssapi.SetAttribute(ctx, gssapi.AttributeTarget, m.Config.SName)
+
+		return &gssapi.Token{Payload: b}, gssapi.ContextComplete(ctx)
+	}
+
+	b, err := m.VerifyAPRequest(ctx, tok.Payload)
+	if err != nil {
+		return nil, gssapi.ContextError(ctx, gssapi.Failure, err)
+	}
+
+	if !m.Config.DCEStyle && !m.Config.FlagIsSet(gssapi.MutualAuthn) /* for non-dce style, there will be no APReply */ {
+
+		gssapi.SetAttribute(ctx, gssapi.AttributeSessionKey, m.ExportedSessionKey)
+		gssapi.SetAttribute(ctx, gssapi.AttributeTarget, m.Config.SName)
+
+		return &gssapi.Token{Payload: b}, gssapi.ContextComplete(ctx)
+	}
+
+	return &gssapi.Token{Payload: b}, gssapi.ContextContinueNeeded(ctx)
 }
 
 // The maximum message size for the given limit. (and flag determining if
@@ -192,7 +270,7 @@ func (m *Mechanism) WrapEx(ctx context.Context, tokEx *gssapi.MessageTokenEx) (*
 
 	var err error
 
-	tokEx.Signature, err = m.WrapOutboundPayload(ctx, forSign, forSeal)
+	tokEx.Signature, err = m.WrapExOutboundPayload(ctx, forSign, forSeal)
 	if err != nil {
 		return nil, gssapi.ContextError(ctx, gssapi.Failure, err)
 	}
@@ -214,7 +292,7 @@ func (m *Mechanism) UnwrapEx(ctx context.Context, tokEx *gssapi.MessageTokenEx) 
 		}
 	}
 
-	ok, err := m.UnwrapInboundPayload(ctx, forSign, forSeal, tokEx.Signature)
+	ok, err := m.UnwrapExInboundPayload(ctx, forSign, forSeal, tokEx.Signature)
 	if err != nil {
 		return nil, gssapi.ContextError(ctx, gssapi.Failure, err)
 	}
@@ -230,21 +308,18 @@ func (m *Mechanism) UnwrapEx(ctx context.Context, tokEx *gssapi.MessageTokenEx) 
 // Wrap token.
 func (m *Mechanism) Wrap(ctx context.Context, tok *gssapi.MessageToken) (*gssapi.MessageToken, error) {
 
-	tokEx, err := m.WrapEx(ctx, &gssapi.MessageTokenEx{
-		QoP: tok.QoP,
-		Payloads: []*gssapi.PayloadEx{
-			{Capabilities: tok.Capabilities, Payload: tok.Payload},
-		},
-	})
+	var err error
+
+	tok.Signature, err = m.WrapOutboundPayload(ctx, tok.Payload, tok.Capabilities.IsSet(gssapi.Confidentiality))
 	if err != nil {
-		return nil, err
+		return nil, gssapi.ContextError(ctx, gssapi.Failure, err)
 	}
 
 	return &gssapi.MessageToken{
-		QoP:          tokEx.QoP,
-		Capabilities: tokEx.Payloads[0].Capabilities,
-		Payload:      tokEx.Payloads[0].Payload,
-		Signature:    tokEx.Signature,
+		QoP:          tok.QoP,
+		Capabilities: tok.Capabilities,
+		Payload:      tok.Payload,
+		Signature:    tok.Signature,
 	}, nil
 
 }
@@ -252,22 +327,25 @@ func (m *Mechanism) Wrap(ctx context.Context, tok *gssapi.MessageToken) (*gssapi
 // Unwrap token.
 func (m *Mechanism) Unwrap(ctx context.Context, tok *gssapi.MessageToken) (*gssapi.MessageToken, error) {
 
-	tokEx, err := m.UnwrapEx(ctx, &gssapi.MessageTokenEx{
-		QoP: tok.QoP,
-		Payloads: []*gssapi.PayloadEx{
-			{Capabilities: tok.Capabilities, Payload: tok.Payload},
-		},
-		Signature: tok.Signature,
-	})
+	sgn, ok, err := m.UnwrapInboundPayload(ctx, tok.Payload, tok.Signature)
 	if err != nil {
-		return nil, err
+		return nil, gssapi.ContextError(ctx, gssapi.Failure, err)
+	}
+
+	if !ok {
+		return nil, gssapi.ContextError(ctx, gssapi.BadMIC, gssapi.ErrBadMIC)
+	}
+
+	if len(tok.Signature) == 0 && len(sgn) > 0 {
+		tok.Payload = tok.Payload[len(sgn):]
+		tok.Signature = sgn
 	}
 
 	return &gssapi.MessageToken{
-		QoP:          tokEx.QoP,
-		Capabilities: tokEx.Payloads[0].Capabilities,
-		Payload:      tokEx.Payloads[0].Payload,
-		Signature:    tokEx.Signature,
+		QoP:          tok.QoP,
+		Capabilities: tok.Capabilities,
+		Payload:      tok.Payload,
+		Signature:    tok.Signature,
 	}, nil
 }
 
@@ -311,6 +389,14 @@ func (m *Mechanism) MakeSignatureEx(ctx context.Context, tokEx *gssapi.MessageTo
 
 // VerifySignature token.
 func (m *Mechanism) VerifySignature(ctx context.Context, tok *gssapi.MessageToken) error {
+
+	var err error
+
+	if len(tok.Signature) == 0 {
+		if tok.Signature, tok.Payload, err = m.ParseInboundSignature(ctx, tok.Payload); err != nil {
+			return gssapi.ContextError(ctx, gssapi.Failure, err)
+		}
+	}
 
 	expSgn, err := m.MakeInboundSignature(ctx, [][]byte{tok.Payload})
 	if err != nil {

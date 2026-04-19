@@ -10,8 +10,11 @@ import (
 )
 
 type Cipher interface {
-	Wrap(context.Context, uint64, [][]byte, [][]byte) ([]byte, error)
-	Unwrap(context.Context, uint64, [][]byte, [][]byte, []byte) (bool, error)
+	Wrap(context.Context, uint64, []byte, bool) ([]byte, error)
+	WrapEx(context.Context, uint64, [][]byte, [][]byte) ([]byte, error)
+	UnwrapEx(context.Context, uint64, [][]byte, [][]byte, []byte) (bool, error)
+	Unwrap(context.Context, uint64, []byte, []byte) ([]byte, bool, error)
+	ParseSignature(context.Context, []byte) ([]byte, []byte, error)
 	MakeSignature(context.Context, uint64, [][]byte) ([]byte, error)
 	Size(context.Context, bool) int
 }

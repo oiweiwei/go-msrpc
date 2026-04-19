@@ -17,7 +17,38 @@ func NewRC4Cipher(ctx context.Context, setting CipherSetting) (Cipher, error) {
 	return &RC4HMAC{setting: setting}, nil
 }
 
-func (c *RC4HMAC) Wrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte) ([]byte, error) {
+func (c *RC4HMAC) ParseSignature(ctx context.Context, payload []byte) ([]byte, []byte, error) {
+
+	_, oft, _, err := ParseASN1Value(payload, [][]byte{payload})
+	if err != nil {
+		return nil, nil, fmt.Errorf("des: parse header: %w", err)
+	}
+
+	if len(payload) < oft+4 {
+		return nil, nil, fmt.Errorf("des: parse header: invalid payload size: %d < %d", len(payload), oft)
+	}
+
+	switch payload[oft+4] {
+	case 0x02 /* wrap token */ :
+		oft += 32
+	case 0x01 /* mic token */ :
+		oft += 24
+	default:
+		return nil, nil, fmt.Errorf("des: parse header: invalid token type: %d", payload[oft+4])
+	}
+
+	return payload[:oft], payload[oft:], nil
+}
+
+func (c *RC4HMAC) Wrap(ctx context.Context, seqNum uint64, payload []byte, conf bool) ([]byte, error) {
+	var forSeal [][]byte
+	if conf {
+		forSeal = [][]byte{payload}
+	}
+	return c.WrapEx(ctx, seqNum, [][]byte{payload}, forSeal)
+}
+
+func (c *RC4HMAC) WrapEx(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte) ([]byte, error) {
 	b, err := c.wrap(ctx, seqNum, forSign, forSeal)
 	if err != nil {
 		return nil, fmt.Errorf("rc4-hmac: wrap: %w", err)
@@ -63,15 +94,34 @@ func (c *RC4HMAC) wrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]
 	return EncodeASN1Value(tok.Marshal(), KRB5OID, true /* always use dce-style */, forSign)
 }
 
-func (c *RC4HMAC) Unwrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
-	ok, err := c.unwrap(ctx, seqNum, forSign, forSeal, sgn)
+func (c *RC4HMAC) Unwrap(ctx context.Context, seqNum uint64, payload []byte, sgn []byte) ([]byte, bool, error) {
+
+	var err error
+
+	if len(sgn) == 0 {
+		// if sgn is empty, it's encoded as part of the payload.
+		if sgn, payload, err = c.ParseSignature(ctx, payload); err != nil {
+			return nil, false, fmt.Errorf("rc4-hmac: unwrap: parse token: %w", err)
+		}
+	}
+
+	ok, err := c.unwrapEx(ctx, seqNum, [][]byte{payload}, [][]byte{payload}, sgn)
+	if err != nil {
+		return nil, false, fmt.Errorf("rc4-hmac: unwrap: %w", err)
+	}
+
+	return sgn, ok, nil
+}
+
+func (c *RC4HMAC) UnwrapEx(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
+	ok, err := c.unwrapEx(ctx, seqNum, forSign, forSeal, sgn)
 	if err != nil {
 		return ok, fmt.Errorf("rc4-hmac: unwrap: %w", err)
 	}
 	return ok, nil
 }
 
-func (c *RC4HMAC) unwrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
+func (c *RC4HMAC) unwrapEx(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
 
 	key := c.setting.Key.KeyValue
 
@@ -79,7 +129,7 @@ func (c *RC4HMAC) unwrap(ctx context.Context, seqNum uint64, forSign, forSeal []
 	expTok.SetSequenceNumber(uint32(seqNum), c.setting.IsLocal)
 
 	// trim asn1 header.
-	sgn, _, err := ParseASN1Value(sgn, forSign)
+	sgn, _, _, err := ParseASN1Value(sgn, forSign)
 	if err != nil {
 		return false, gssapi.ErrDefectiveToken
 	}

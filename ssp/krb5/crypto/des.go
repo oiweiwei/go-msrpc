@@ -17,7 +17,39 @@ func NewDESCipher(ctx context.Context, setting CipherSetting) (Cipher, error) {
 	return &DES{setting: setting}, nil
 }
 
-func (c *DES) Wrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte) ([]byte, error) {
+// ParseHeader extracts the header and payload from the token.
+func (c *DES) ParseSignature(ctx context.Context, payload []byte) ([]byte, []byte, error) {
+
+	_, oft, _, err := ParseASN1Value(payload, [][]byte{payload})
+	if err != nil {
+		return nil, nil, fmt.Errorf("des: parse header: %w", err)
+	}
+
+	if len(payload) < oft+4 {
+		return nil, nil, fmt.Errorf("des: parse header: invalid payload size: %d < %d", len(payload), oft)
+	}
+
+	switch payload[oft+4] {
+	case 0x02 /* wrap token */ :
+		oft += 32
+	case 0x01 /* mic token */ :
+		oft += 24
+	default:
+		return nil, nil, fmt.Errorf("des: parse header: invalid token type: %d", payload[oft+4])
+	}
+
+	return payload[:oft], payload[oft:], nil
+}
+
+func (c *DES) Wrap(ctx context.Context, seqNum uint64, payload []byte, conf bool) ([]byte, error) {
+	var forSeal [][]byte
+	if conf {
+		forSeal = [][]byte{payload}
+	}
+	return c.WrapEx(ctx, seqNum, [][]byte{payload}, forSeal)
+}
+
+func (c *DES) WrapEx(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte) ([]byte, error) {
 	b, err := c.wrap(ctx, seqNum, forSign, forSeal)
 	if err != nil {
 		return nil, fmt.Errorf("des: wrap: %w", err)
@@ -62,15 +94,33 @@ func (c *DES) wrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte
 	return EncodeASN1Value(tok.Marshal(), KRB5OID, true /* always use dce-style */, forSign)
 }
 
-func (c *DES) Unwrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
-	ok, err := c.unwrap(ctx, seqNum, forSign, forSeal, sgn)
+func (c *DES) Unwrap(ctx context.Context, seqNum uint64, payload []byte, sgn []byte) ([]byte, bool, error) {
+
+	var err error
+
+	if len(sgn) == 0 {
+		// if sgn is empty, it's encoded as part of the payload.
+		if sgn, payload, err = c.ParseSignature(ctx, payload); err != nil {
+			return nil, false, fmt.Errorf("des: unwrap: parse token: %w", err)
+		}
+	}
+	ok, err := c.unwrapEx(ctx, seqNum, [][]byte{payload}, [][]byte{payload}, sgn)
+	if err != nil {
+		return nil, false, fmt.Errorf("des: unwrap: %w", err)
+	}
+
+	return sgn, ok, err
+}
+
+func (c *DES) UnwrapEx(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
+	ok, err := c.unwrapEx(ctx, seqNum, forSign, forSeal, sgn)
 	if err != nil {
 		return ok, fmt.Errorf("des: unwrap: %w", err)
 	}
 	return ok, nil
 }
 
-func (c *DES) unwrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
+func (c *DES) unwrapEx(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
 
 	key := c.setting.Key
 
@@ -78,7 +128,7 @@ func (c *DES) unwrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]by
 	expTok.SetSequenceNumber(uint32(seqNum), c.setting.IsLocal)
 
 	// trim asn1 header.
-	sgn, _, err := ParseASN1Value(sgn, forSign)
+	sgn, _, _, err := ParseASN1Value(sgn, forSign)
 	if err != nil {
 		return false, gssapi.ErrDefectiveToken
 	}
