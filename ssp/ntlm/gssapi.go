@@ -389,11 +389,11 @@ func (m *Mechanism) Unwrap(ctx context.Context, tok *gssapi.MessageToken) (*gssa
 	}
 
 	if len(tok.Signature) == 0 {
-		if len(tok.Payload) < 16 {
+		if len(tok.Payload) < SignatureSize {
 			return nil, gssapi.ContextError(ctx, gssapi.DefectiveToken, gssapi.ErrDefectiveToken)
 		}
 		// compute signature and checksum from the payload if signature is not provided.
-		tok.Signature, tok.Payload = tok.Payload[len(tok.Payload)-16:], tok.Payload[:len(tok.Payload)-16]
+		tok.Signature, tok.Payload = tok.Payload[:SignatureSize], tok.Payload[SignatureSize:]
 	}
 
 	// decrypt the payload.
