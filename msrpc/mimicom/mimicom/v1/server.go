@@ -1,0 +1,94 @@
+package mimicom
+
+import (
+	"context"
+	"fmt"
+	"strings"
+	"unicode/utf16"
+
+	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
+	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
+	ndr "github.com/oiweiwei/go-msrpc/ndr"
+)
+
+var (
+	_ = context.Background
+	_ = fmt.Errorf
+	_ = utf16.Encode
+	_ = strings.TrimPrefix
+	_ = ndr.ZeroString
+	_ = (*uuid.UUID)(nil)
+	_ = (*dcerpc.SyntaxID)(nil)
+)
+
+// MimiCom server interface.
+type MimicomServer interface {
+
+	// MimiBind operation.
+	Bind(context.Context, *BindRequest) (*BindResponse, error)
+
+	// MimiUnbind operation.
+	Unbind(context.Context, *UnbindRequest) (*UnbindResponse, error)
+
+	// MimiCommand operation.
+	Command(context.Context, *CommandRequest) (*CommandResponse, error)
+}
+
+func RegisterMimicomServer(conn dcerpc.Conn, o MimicomServer, opts ...dcerpc.Option) {
+	conn.RegisterServer(NewMimicomServerHandle(o), append(opts, dcerpc.WithAbstractSyntax(MimicomSyntaxV1_0))...)
+}
+
+func NewMimicomServerHandle(o MimicomServer) dcerpc.ServerHandle {
+	return func(ctx context.Context, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+		return MimicomServerHandle(ctx, o, opNum, r)
+	}
+}
+
+func MimicomServerHandle(ctx context.Context, o MimicomServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
+	switch opNum {
+	case 0: // MimiBind
+		op := &xxx_BindOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &BindRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Bind(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 1: // MimiUnbind
+		op := &xxx_UnbindOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &UnbindRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Unbind(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	case 2: // MimiCommand
+		op := &xxx_CommandOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
+			return nil, err
+		}
+		req := &CommandRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Command(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
+	}
+	return nil, nil
+}
+
+// Unimplemented MimiCom
+type UnimplementedMimicomServer struct {
+}
+
+func (UnimplementedMimicomServer) Bind(context.Context, *BindRequest) (*BindResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedMimicomServer) Unbind(context.Context, *UnbindRequest) (*UnbindResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedMimicomServer) Command(context.Context, *CommandRequest) (*CommandResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ MimicomServer = (*UnimplementedMimicomServer)(nil)

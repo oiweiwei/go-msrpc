@@ -117,6 +117,7 @@ all:
 		lrec.go \
 		lsad.go \
 		lsat.go \
+		mimicom.go \
 		mgmt.go \
 		mqds.go \
 		mqmp.go \

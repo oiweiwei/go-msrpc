@@ -787,6 +787,7 @@ var (
 	MSWMIInternal_IWbemEventProviderSecurity          = uuid.UUID{TimeLow: 0xdf2373f5, TimeMid: 0xefb2, TimeHiAndVersion: 0x475c, ClockSeqHiAndReserved: 0xad, ClockSeqLow: 0x58, Node: [6]uint8{0x31, 0x2, 0xd6, 0x19, 0x67, 0xd4}}
 	MSDCOMILocalSystemActivator                       = uuid.UUID{TimeLow: 0x132, TimeMid: 0x0, TimeHiAndVersion: 0x0, ClockSeqHiAndReserved: 0xc0, ClockSeqLow: 0x0, Node: [6]uint8{0x0, 0x0, 0x0, 0x0, 0x0, 0x46}}
 	MSDLLUBPM                                         = uuid.UUID{TimeLow: 0x2a82bb21, TimeMid: 0xe44f, TimeHiAndVersion: 0x4791, ClockSeqHiAndReserved: 0x9a, ClockSeqLow: 0xa1, Node: [6]uint8{0xdf, 0xae, 0x78, 0x8e, 0x2f, 0x43}}
+	MIMICOMMimicom                                    = uuid.UUID{TimeLow: 0x17fc11e9, TimeMid: 0xc258, TimeHiAndVersion: 0x4b8d, ClockSeqHiAndReserved: 0x8d, ClockSeqLow: 0x7, Node: [6]uint8{0x2f, 0x41, 0x25, 0x15, 0x62, 0x44}}
 )
 
 type UUID uuid.UUID
@@ -2357,6 +2358,8 @@ func (u UUID) Describe() string {
 		return "MS-DCOM: ILocalSystemActivator: ILocalSystemActivator"
 	case MSDLLUBPM:
 		return "MS-DLL: UBPM.dll: Unified Background Process Manager: UBPM"
+	case MIMICOMMimicom:
+		return "MIMICOM: Mimikatz: Open source credential-dumping utility: Mimicom"
 	}
 	return ""
 }
@@ -4046,6 +4049,8 @@ func (u UUID) Name() string {
 		return "ILocalSystemActivator"
 	case MSDLLUBPM:
 		return "UBPM"
+	case MIMICOMMimicom:
+		return "Mimicom"
 	}
 	return ""
 }

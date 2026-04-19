@@ -83,6 +83,7 @@ lookBehind:
   mbr: {part: [mbr, partition]}
   mcid: {last: [last, machine, id], next: [next, machine, id]}
   mem: {id: [member, ids]}
+  mimi: {com: [mimicom], bind: [bind], unbind: [unbind], command: [command]}
   meta: {data: [metadata]}
   name: {length: [0name, length]}
   no: {of: [number, of]}
@@ -200,4 +201,6 @@ lookBehind:
   nt6: {ts: [nt6]}
   spare: {li1: [reserved], li2: [reserved], li3: [reserved], ul3: [reserved]}
   key: {vk: [key, virtual, key]}
-  ph: {listener: [listener]}
+  ph: {listener: [listener], mimi: [handle]}
+  sz: {enc: [encsize]}
+  encsize: {result: [enc, result, size], command: [enc, command, size]}
